@@ -30,6 +30,10 @@ Optionally the first argument is the desired port you want the sever to run on. 
 
 I am using express.js as a server side framework, and ejs as a template language. As of this writing I do not have a well thought out plain on how to structure the app, but I am not loosing sleep over it, this project is more about the demos anyway. Still for my own sanity I thought it would be a good idea to maintain some notes on how I am building this.
 
+## How demos are structured
+
+I have thought about making some complex system for this, but for now all the demos fall in a path that follows a /demos/r[XXX]/[demoName] pattern.
+
 ### How front end \*.js files are delivered
 
 I have a /js path where *.js files can be fetched like this:
@@ -40,3 +44,7 @@ I have a /js path where *.js files can be fetched like this:
 ```
 
 Where the variable r is the currently set revision number that is to be used for a threejs demo, or project.
+
+## How the r (revision) variable is determined
+
+As of this writing it is determined by the folder that the demo is in as that structoering follows a /demos/rXXX pattern where XXX is the revision number that is used for the demos in that path.
