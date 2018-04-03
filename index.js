@@ -27,12 +27,16 @@ app.get('/', function (req, res) {
 
 });
 
+app.get(/\/css\/[\s\S]+\.css/, function (req, res) {
+
+    res.sendFile(path.join(__dirname, 'views', req.url));
+
+});
+
 // javaScript file path
 app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
 
-    let url = path.join(__dirname, 'views', req.url);
-
-    res.sendFile(url);
+    res.sendFile(path.join(__dirname, 'views', req.url));
 
 });
 
