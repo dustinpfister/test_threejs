@@ -1,6 +1,8 @@
 # test_threejs
 
-These are my three.js demos
+These are my three.js demos that I intend to write about on my [github site](https://http://dustinpfister.github.io) as I wanted to write some content on the project, as it goes without saying that it's a good one to get into. Not only do I intend to write a lot of three.js related projects, I would also like to work out a well structured full stack application using express, and ejs as well.
+
+So this should be fun.
 
 ## install
 
@@ -23,3 +25,18 @@ $ node index 8080
 ```
 
 Optionally the first argument is the desired port you want the sever to run on. it will default to a PORT environment variable, or hard coded value of 3000 if not given.
+
+## Notes on the back end
+
+I am using express.js as a server side framework, and ejs as a template language. As of this writing I do not have a well thought out plain on how to structure the app, but I am not loosing sleep over it, this project is more about the demos anyway. Still for my own sanity I thought it would be a good idea to maintain some notes on how I am building this.
+
+### How front end \*.js files are delivered
+
+I have a /js path where *.js files can be fetched like this:
+
+```html
+<!-- loading three.js -->
+<script src="/js/threejs/0.<%= r %>.0/three.min.js" ></script>
+```
+
+Where the variable r is the currently set revision number that is to be used for a threejs demo, or project.
