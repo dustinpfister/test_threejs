@@ -21,8 +21,7 @@ app.set('view engine', 'ejs');
 app.get('/', function (req, res) {
 
     res.render('index', {
-        page: 'main',
-        r: 91
+        page: 'main'
     });
 
 });
@@ -40,12 +39,30 @@ app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
 
 });
 
-// demos path
+// demo index
+app.get('/demos', function(req,res){
+
+    res.render('index', {
+        page: 'demo_index'
+    });
+
+});
+
+// demos paths for given demos
 app.get(/\/demos\/r\d{1,3}/, function (req, res) {
+
+    let r = 91,
+    m = req.url.match(/r\d{1,3}/);
+
+    if (m) {
+
+        r = m[0].split('r')[1];
+
+    }
 
     res.render('index', {
         page: 'demo',
-        r: req.url.match(/r\d{1,3}/)[0].split('r')[1]
+        r: r
     });
 
 });
