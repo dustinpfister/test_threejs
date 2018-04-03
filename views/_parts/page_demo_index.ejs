@@ -1,3 +1,21 @@
-<h1> I am a the demo index</h1>
+<%
+
+   if(!links){
+   
+       links = [];
+   
+   }
+
+%>
+
+<h3> I am a the demo index</h3>
 
 <p><a href="/demos/r91">r91 demos</a></p>
+
+<h3>links:</h3>
+
+<% links.forEach(function(link){ %>
+
+ <a href="<%= link.href %>"><%= link.href %></a><br>
+
+<% }); %>

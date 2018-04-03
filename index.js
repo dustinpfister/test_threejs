@@ -42,10 +42,16 @@ app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
 });
 
 // demo index
-app.get('/demos', function(req,res){
+app.get('/demos', function (req, res) {
 
     res.render('index', {
-        page: 'demo_index'
+        page: 'demo_index',
+        links: [{
+
+                href: '/foo'
+
+            }
+        ]
     });
 
 });
@@ -54,9 +60,14 @@ app.get('/demos', function(req,res){
 // ( /demos/r[revisionNumber] )
 app.get(/(\/demos\/r\d{1,3})$/, function (req, res) {
 
+    res.render('index', {
+        page: 'demo_index',
+        links: [{
 
-       res.render('index', {
-        page: 'demo_index'
+                href: '/bar'
+
+            }
+        ]
     });
 
 });
