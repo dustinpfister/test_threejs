@@ -41,39 +41,66 @@ app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
 
 });
 
-// demo index
-app.get('/demos', function (req, res) {
+// build an index of links to folders
+let buildIndex = function (opt) {
 
-    let links = [];
-    klaw(path.join(__dirname, 'views/demos'), {
-        depthLimit: 0
-    })
-    .pipe(through2.obj(function (item, enc, next) {
+    opt = opt || {};
+
+    opt.source = opt.source || 'views/demos';
+    opt.through2 = opt.through2 || through2.obj(function (item, enc, next) {
             if (item.stats.isDirectory()) {
 
                 this.push(item);
             }
 
             next()
-        }))
-    .on('data', function (item) {
+        });
 
-        let folderName = path.basename(item.path);
+    return new Promise(function (resolve, reject) {
 
-        // folder follows r\d+ pattern
-        if (folderName.match(/r\d+/)) {
+        let links = [];
+        klaw(path.join(__dirname, opt.source), {
+            depthLimit: 0
+        })
+        .pipe(opt.through2)
+        .on('data', function (item) {
 
-            links.push({
+            let folderName = path.basename(item.path);
 
-                href: '/demos/' + folderName
+            // folder follows r\d+ pattern
+            if (folderName.match(/r\d+/)) {
 
+                links.push({
+
+                    href: '/demos/' + folderName
+
+                });
+
+            }
+
+        })
+        .on('end', function () {
+
+            /*
+            res.render('index', {
+            page: 'demo_index',
+            links: links
             });
 
-        }
+             */
 
-    })
-    .on('end', function () {
+            resolve(links);
 
+        });
+
+    });
+
+};
+
+// demo index
+app.get('/demos', function (req, res) {
+
+    buildIndex().then(function (links) {
 
         res.render('index', {
             page: 'demo_index',
