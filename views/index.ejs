@@ -1,14 +1,23 @@
+<%
+
+   // default page to 'main'
+   if(!page){
+
+       let page = 'main';
+
+   }
+   
+%>
+
 <html>
 
-<head>
-<title></title>
-</head>
+<%- include("_parts/head.ejs",this) %>
 
 <body>
 
-<h1>EJS Problems</h1>
+<h1>Three js</h1>
 
-<script src="/js/test.js"></script>
+<%- include("_parts/page_" + page + ".ejs",this) %>
 
 </body>
 

@@ -9,7 +9,7 @@ express = require('express'),
 port = process.env.PORT || process.argv[2] || 3000,
 
 // patterns
-pat_jsfile = /\/js\/[\s\S]+\.js/,
+//pat_jsfile = /\/js\/[\s\S]+\.js/,
 
 // create the express app instance
 app = express();
@@ -21,17 +21,28 @@ app.set('view engine', 'ejs');
 app.get('/', function (req, res) {
 
     res.render('index', {
-        port: port
+        page: 'main',
+        r: 91
     });
 
 });
 
 // javaScript file path
-app.get(pat_jsfile, function (req, res) {
+app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
 
     let url = path.join(__dirname, 'views', req.url);
 
     res.sendFile(url);
+
+});
+
+// demos path
+app.get(/\/demos\/r\d{1,3}/, function (req, res) {
+
+    res.render('index', {
+        page: 'demo',
+        r: req.url.match(/r\d{1,3}/)[0].split('r')[1]
+    });
 
 });
 
