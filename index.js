@@ -1,6 +1,8 @@
 
 // node.js modules
 let path = require('path'),
+klaw = require('klaw'),
+through2 = require('through2'),
 
 // from npm
 express = require('express'),

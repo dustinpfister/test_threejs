@@ -11,6 +11,7 @@
   "dependencies": {
     "ejs": "^2.5.8",
     "express": "^4.16.3",
-    "klaw": "^2.1.1"
+    "klaw": "^2.1.1",
+    "through2": "^2.0.3"
   }
 }
