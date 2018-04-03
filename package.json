@@ -10,6 +10,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "ejs": "^2.5.8",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "klaw": "^2.1.1"
   }
 }
