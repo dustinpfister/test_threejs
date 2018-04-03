@@ -156,7 +156,7 @@ app.get(/\/demos\/r\d{1,3}/, function (req, res) {
     res.render('index', {
         page: 'demo',
         r: r,
-        demoName: req.url.replace(/\/demos\/r\d{1,3}/,'').replace(/\//,'').split('/')[0]
+        demoName: req.url.replace(/\/demos\/r\d{1,3}/, '').replace(/\//, '').split('/')[0]
     });
 
 });
