@@ -46,20 +46,29 @@ let buildIndex = function (opt) {
 
     opt = opt || {};
 
-    opt.source = opt.source || 'views/demos';
-    opt.through2 = opt.through2 || through2.obj(function (item, enc, next) {
-            if (item.stats.isDirectory()) {
+    opt.source = opt.source || 'demos';
 
-                this.push(item);
+    let uri = path.join(__dirname, 'views/' + opt.source);
+
+    opt.through2 = opt.through2 || through2.obj(function (item, enc, next) {
+
+            if (item.path != uri) {
+
+                if (item.stats.isDirectory()) {
+
+                    this.push(item);
+                }
+
             }
 
             next()
         });
 
+    // return a promise
     return new Promise(function (resolve, reject) {
 
         let links = [];
-        klaw(path.join(__dirname, opt.source), {
+        klaw(uri, {
             depthLimit: 0
         })
         .pipe(opt.through2)
@@ -68,26 +77,18 @@ let buildIndex = function (opt) {
             let folderName = path.basename(item.path);
 
             // folder follows r\d+ pattern
-            if (folderName.match(/r\d+/)) {
+            //if (folderName.match(/r\d+/)) {
 
-                links.push({
+            links.push({
 
-                    href: '/demos/' + folderName
+                href: path.join('/', opt.source, folderName)
 
-                });
+            });
 
-            }
+            //}
 
         })
         .on('end', function () {
-
-            /*
-            res.render('index', {
-            page: 'demo_index',
-            links: links
-            });
-
-             */
 
             resolve(links);
 
@@ -115,14 +116,26 @@ app.get('/demos', function (req, res) {
 // ( /demos/r[revisionNumber] )
 app.get(/(\/demos\/r\d{1,3})$/, function (req, res) {
 
-    res.render('index', {
-        page: 'demo_index',
-        links: [{
+    let r = 91,
+    m = req.url.match(/r\d{1,3}/);
 
-                href: '/bar'
+    if (m) {
 
-            }
-        ]
+        r = m[0].split('r')[1];
+
+    }
+
+    buildIndex({
+
+        source: 'demos/r' + r
+
+    }).then(function (links) {
+
+        res.render('index', {
+            page: 'demo_index',
+            links: links
+        });
+
     });
 
 });
@@ -142,7 +155,8 @@ app.get(/\/demos\/r\d{1,3}/, function (req, res) {
 
     res.render('index', {
         page: 'demo',
-        r: r
+        r: r,
+        url: req.url
     });
 
 });
