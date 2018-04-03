@@ -50,7 +50,19 @@ app.get('/demos', function(req,res){
 
 });
 
-// demos paths for given demos
+// demos list for a given revision
+// ( /demos/r[revisionNumber] )
+app.get(/(\/demos\/r\d{1,3})$/, function (req, res) {
+
+
+       res.render('index', {
+        page: 'demo_index'
+    });
+
+});
+
+// demos paths for a given demo
+// ( /demos/r[revisionNumber]/[demoName] )
 app.get(/\/demos\/r\d{1,3}/, function (req, res) {
 
     let r = 91,
