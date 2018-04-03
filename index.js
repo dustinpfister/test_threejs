@@ -44,14 +44,42 @@ app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
 // demo index
 app.get('/demos', function (req, res) {
 
-    res.render('index', {
-        page: 'demo_index',
-        links: [{
+    let links = [];
+    klaw(path.join(__dirname, 'views/demos'), {
+        depthLimit: 0
+    })
+    .pipe(through2.obj(function (item, enc, next) {
+            if (item.stats.isDirectory()) {
 
-                href: '/foo'
-
+                this.push(item);
             }
-        ]
+
+            next()
+        }))
+    .on('data', function (item) {
+
+        let folderName = path.basename(item.path);
+
+        // folder follows r\d+ pattern
+        if (folderName.match(/r\d+/)) {
+
+            links.push({
+
+                href: '/demos/' + folderName
+
+            });
+
+        }
+
+    })
+    .on('end', function () {
+
+
+        res.render('index', {
+            page: 'demo_index',
+            links: links
+        });
+
     });
 
 });
