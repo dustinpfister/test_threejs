@@ -20,7 +20,7 @@ function init() {
     scene.add(mesh);
 
     renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(320, 240);
 
     document.getElementById('cube').appendChild(renderer.domElement);
 }
@@ -31,8 +31,8 @@ function animate() {
 }
 
 function render() {
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.02;
+    //mesh.rotation.x += 0.01;
+    //mesh.rotation.y += 0.02;
 
     renderer.render(scene, camera);
 }

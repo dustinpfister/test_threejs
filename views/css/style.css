@@ -1,6 +1,25 @@
 body{
-	
-	background: #000000;
-	color: #ffffff;
-	
+
+    margin:0px;
+    padding:0px;
+
+}
+
+.container{
+
+    padding: 5px;
+    margin:0px;
+
+}
+
+.nav_container{
+
+    background:#000000;
+    color: #ffffff;
+    text-align:center;
+
+}
+
+
+.content_container{
 }
