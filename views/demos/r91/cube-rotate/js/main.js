@@ -40,21 +40,31 @@
 
     // update method
     i = 0,
+    iMax = 10000,
+    lt = new Date(),
+    fr = 100,
     update = function () {
 
-        var per = i / 100;
-        var bias = 1 - Math.abs(.5 - per) / .5;
+        var per = i / iMax,
+        now = new Date();
+        //var bias = 1 - Math.abs(.5 - per) / .5;
+        //var r = Math.PI * 2 * per;
 
-        var r = Math.PI * 2 * per;
+        //camera.position.x = Math.cos(r) * 300;
+        //camera.position.z = Math.sin(r) * 300;
 
-        camera.position.x = Math.cos(r) * 300;
-        camera.position.z = Math.sin(r) * 300;
+        if (now - lt >= fr) {
 
-        camera.lookAt(0, 0, 0);
+            mesh.rotation.y = 360 * per;
 
-        i += 1;
+            //camera.lookAt(0, 0, 0);
 
-        i = i % 100;
+            i += 1;
+            i = i % iMax;
+
+            lt = now;
+
+        }
 
     },
 
