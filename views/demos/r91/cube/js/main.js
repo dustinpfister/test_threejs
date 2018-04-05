@@ -1,38 +1,45 @@
-var camera, scene, renderer,
-geometry, material, mesh;
 
-init();
-animate();
+(function () {
 
-function init() {
-    scene = new THREE.Scene();
+    // a scene is needed to place objects in
+    var scene = new THREE.Scene(),
 
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 1000;
+    // I will need an camera to look at objects in the scene
+    camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000),
 
-    geometry = new THREE.BoxGeometry(200, 200, 200);
+    // I will need a geometry, in this case BoxGeometery
+    geometry = new THREE.BoxGeometry(200, 200, 200),
+
+    // I will need a material for the cube
     material = new THREE.MeshBasicMaterial({
             color: 0xff0000,
             wireframe: true
         });
 
-    mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+    // I need a mesh that will tie a geometry and material together
+    mesh = new THREE.Mesh(geometry, material),
 
+    // In order to see anything I will also need a renderer
+    // to use with my scene, and camera
     renderer = new THREE.WebGLRenderer();
+
+    // I must append the dom element used by the renderer to the html
+    // that I am using.
+    document.getElementById('cube').appendChild(renderer.domElement);
+
+    // now that I have everything I need I can call some methods
+    // of what I have to set up my scene, camera, and renderer.
+    // I must at least add the mesh to the scene, and position the camera
+    // in a way so that it is looking at the mesh
+    scene.add(mesh);
+    camera.position.z = 250;
+    camera.position.x = 250;
+    camera.lookAt(0,0,0);
     renderer.setSize(320, 240);
 
-    document.getElementById('cube').appendChild(renderer.domElement);
-}
-
-function animate() {
-    requestAnimationFrame(animate);
-    render();
-}
-
-function render() {
-    //mesh.rotation.x += 0.01;
-    //mesh.rotation.y += 0.02;
-
+    // finnaly I call renderer.render to draw the current
+    // state of the scene, from the perspective of the camera
     renderer.render(scene, camera);
+
 }
+    ());
