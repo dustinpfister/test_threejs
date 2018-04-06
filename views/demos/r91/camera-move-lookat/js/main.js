@@ -5,6 +5,8 @@
     var scene = new THREE.Scene(),
 
     // I will need an camera to look at objects in the scene
+    // https://en.wikipedia.org/wiki/Viewing_frustum
+    // THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far)
     camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000),
 
     // I will need a geometry, in this case BoxGeometery

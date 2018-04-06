@@ -68,7 +68,7 @@
             camera.position.x = Math.cos(r) * 300;
             camera.position.z = Math.sin(r) * 300;
 
-            //scene.background = new THREE.Color(Math.random(), Math.random(), Math.random());
+            scene.background = new THREE.Color(Math.random(), Math.random(), Math.random());
 
             // set the point that the camera is looking at
             camera.lookAt(0, -125 + 250 * bias, 0);
