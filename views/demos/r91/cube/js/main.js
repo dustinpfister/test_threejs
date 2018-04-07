@@ -25,16 +25,18 @@
 
     // I must append the dom element used by the renderer to the html
     // that I am using.
-    document.getElementById('cube').appendChild(renderer.domElement);
+    document.getElementById('demo').appendChild(renderer.domElement);
 
     // now that I have everything I need I can call some methods
     // of what I have to set up my scene, camera, and renderer.
     // I must at least add the mesh to the scene, and position the camera
     // in a way so that it is looking at the mesh
     scene.add(mesh);
-    camera.position.z = 250;
-    camera.position.x = 250;
-    camera.lookAt(0,0,0);
+
+    // set the position of the camera away from the cube, and
+    // look at the origin.
+    camera.position.set(250, 200, 250);
+    camera.lookAt(0, 0, 0);
     renderer.setSize(320, 240);
 
     // finnaly I call renderer.render to draw the current
