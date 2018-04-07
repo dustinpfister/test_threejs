@@ -7,18 +7,6 @@
     // for this demo I will have an array of cameras
     cam = new THREE.PerspectiveCamera(45, 16 / 9, 1, 1000),
 
-    // I will need a geometry, in this case BoxGeometery
-    geometry = new THREE.BoxGeometry(200, 200, 200),
-
-    // I will need a material for the cube
-    material = new THREE.MeshBasicMaterial({
-            color: 0xff0000,
-            wireframe: false
-        });
-
-    // I need a mesh that will tie a geometry and material together
-    mesh = new THREE.Mesh(geometry, material),
-
     // In order to see anything I will also need a renderer
     // to use with my scene, and camera
     renderer = new THREE.WebGLRenderer();
@@ -30,18 +18,39 @@
     // initialize method
     var init = function () {
 
+        // add plane
+        var plane = new THREE.Mesh(
+                new THREE.PlaneBufferGeometry(500, 500, 8, 8),
+                new THREE.MeshBasicMaterial({
+                    color: 0x00afaf,
+                    side: THREE.DoubleSide
+                }));
+        plane.rotation.x = Math.PI / 2;
+        scene.add(plane);
+
         // setting position of the camera
         // position is a property of Object3D
         // and the value is an instance of Vector3
-        cam.position.set(350, 350, 350);
+        cam.position.set(350, 50, 350);
 
         // lookAt is also a method of Object3D
         cam.lookAt(0, 0, 0);
 
-        scene.add(mesh);
+        scene.background = new THREE.Color(.7, .7, .7);
+
+        // I need a mesh that will tie a geometry and material together
+        cube = new THREE.Mesh(
+                new THREE.BoxGeometry(200, 200, 200),
+                new THREE.MeshNormalMaterial({}));
+
+        cube.position.set(0, 100, 0);
+
+        scene.add(cube);
 
         // 16:9 aspect ratio canvas
         renderer.setSize(320, 180);
+        //renderer.gammaInput = true;
+        //renderer.gammaOutput = true;
 
     },
 
