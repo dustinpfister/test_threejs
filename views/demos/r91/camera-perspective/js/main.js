@@ -4,8 +4,12 @@
     // a scene is needed to place objects in
     var scene = new THREE.Scene(),
 
-    // for this demo I will have an array of cameras
-    cam = new THREE.PerspectiveCamera(45, 16 / 9, 1, 1000),
+    // so here I am setting the values of the perspective camera
+    fieldOfView = 45,
+    aspectRatio = 16 / 9,
+    near = 1,
+    far = 1000,
+    cam = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far),
 
     // In order to see anything I will also need a renderer
     // to use with my scene, and camera
@@ -18,7 +22,7 @@
     // initialize method
     var init = function () {
 
-        // add plane
+        // add plane to the scene
         var plane = new THREE.Mesh(
                 new THREE.PlaneBufferGeometry(500, 500, 8, 8),
                 new THREE.MeshBasicMaterial({
@@ -28,29 +32,24 @@
         plane.rotation.x = Math.PI / 2;
         scene.add(plane);
 
-        // setting position of the camera
-        // position is a property of Object3D
-        // and the value is an instance of Vector3
-        cam.position.set(350, 50, 350);
-
-        // lookAt is also a method of Object3D
-        cam.lookAt(0, 0, 0);
-
-        scene.background = new THREE.Color(.7, .7, .7);
-
-        // I need a mesh that will tie a geometry and material together
+        // add a cube to the scene
         cube = new THREE.Mesh(
                 new THREE.BoxGeometry(200, 200, 200),
                 new THREE.MeshNormalMaterial({}));
-
         cube.position.set(0, 100, 0);
-
         scene.add(cube);
+
+        // setting position of the camera
+        // position is a property of Object3D
+        // and the value is an instance of Vector3
+        cam.position.set(400, 400, 400);
+        cam.lookAt(0, 0, 0);
+
+        // setting a background color
+        scene.background = new THREE.Color(.7, .7, .7);
 
         // 16:9 aspect ratio canvas
         renderer.setSize(320, 180);
-        //renderer.gammaInput = true;
-        //renderer.gammaOutput = true;
 
     },
 
@@ -62,14 +61,16 @@
     update = function () {
 
         var per = i / iMax,
-        now = new Date();
-        var bias = 1 - Math.abs(.5 - per) / .5;
-        var r = Math.PI * 2 * per;
+        now = new Date(),
+        bias = 1 - Math.abs(.5 - per) / .5;
 
         if (now - lt >= fr) {
 
-            // changing field of view from 25 to 74 degrees
-            cam.aspect = 16 / 9;
+            // changing aspect, and field of view
+            cam.aspect = .5 + 1.5 * bias;
+            cam.fov = 50 + 25 * bias;
+
+            // I must call this to get it to work
             cam.updateProjectionMatrix();
 
             i += 1;
