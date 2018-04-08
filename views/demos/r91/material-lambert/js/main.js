@@ -20,7 +20,7 @@
         });
 
     // I need a mesh that will tie a geometry and material together
-    mesh = new THREE.Mesh(geometry, material),
+    cube = new THREE.Mesh(geometry, material),
 
     // In order to see anything I will also need a renderer
     // to use with my scene, and camera
@@ -30,25 +30,19 @@
     // that I am using.
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // now that I have everything I need I can call some methods
-    // of what I have to set up my scene, camera, and renderer.
-    // I must at least add the mesh to the scene, and position the camera
-    // in a way so that it is looking at the mesh
-    scene.add(mesh);
+    scene.add(cube);
 
     // background
-    scene.background = new THREE.Color(0xafafaf);
+    scene.background = new THREE.Color(0x000000);
 
-
+    // spotlight
     var spotLight = new THREE.SpotLight(0xffffff);
-    spotLight.position.set(300, 200, 300);
-    //spotLight.castShadow = true;
-    //spotLight.lookAt(300,0,0);
+    spotLight.position.set(200, 400, 300);
     scene.add(spotLight);
 
     // set the position of the camera away from the cube, and
     // look at the origin.
-    camera.position.set(200, 0, 200);
+    camera.position.set(180, 180, 180);
     camera.lookAt(0, 0, 0);
     renderer.setSize(320, 240);
 
