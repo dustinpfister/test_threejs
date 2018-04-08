@@ -11,9 +11,12 @@
     geometry = new THREE.BoxGeometry(200, 200, 200),
 
     // I will need a material for the cube
-    material = new THREE.MeshBasicMaterial({
+    material = new THREE.MeshLambertMaterial({
             color: 0xff0000,
-            wireframe: true
+            //transparent: true,
+            //opacity: .5,
+            //emissive: 0xffffff
+            //wireframe: true
         });
 
     // I need a mesh that will tie a geometry and material together
@@ -33,9 +36,19 @@
     // in a way so that it is looking at the mesh
     scene.add(mesh);
 
+    // background
+    scene.background = new THREE.Color(0xafafaf);
+
+
+    var spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.position.set(300, 200, 300);
+    //spotLight.castShadow = true;
+    //spotLight.lookAt(300,0,0);
+    scene.add(spotLight);
+
     // set the position of the camera away from the cube, and
     // look at the origin.
-    camera.position.set(250, 200, 250);
+    camera.position.set(200, 0, 200);
     camera.lookAt(0, 0, 0);
     renderer.setSize(320, 240);
 

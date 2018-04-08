@@ -37,7 +37,7 @@
 		var light = new THREE.PointLight( 0xff0000, 1, 100 );
 		light.position.set( 350, 350, 350 );
 		
-		light.lookAt(0,0,0)
+		light.lookAt(0,0,0);
         scene.add(light);
 
         // use scene.background to set the background color
