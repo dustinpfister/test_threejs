@@ -5,21 +5,24 @@
     var scene = new THREE.Scene(),
 
     // I will need an camera to look at objects in the scene
-    camera = new THREE.PerspectiveCamera(50, 320 / 240, 1, 3000);
+    camera = new THREE.PerspectiveCamera(50, 320 / 240, 1, 5000);
+
+    var lambert = new THREE.MeshLambertMaterial({
+            color: 0xff0000
+        });
 
     // I need a mesh that will tie a geometry and material together
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(200, 200, 200),
-            new THREE.MeshLambertMaterial({
-                color: 0xff0000
-            }));
+            lambert);
     cube.position.set(0, 100, 0);
+    cube.castShadow = true;
     scene.add(cube);
 
     // set up a render
     var renderer = new THREE.WebGLRenderer();
     renderer.shadowMap.enabled = true;
-    console.log(renderer.shadowMap.enabled);
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 
     // I must append the dom element used by the renderer to the html
     // that I am using.
@@ -30,34 +33,44 @@
 
     // spotlight
     var spotLight = new THREE.SpotLight(0xffffff);
-    spotLight.position.set(0, 350, 0);
+
     // add a cube that will serve at showing me where
     // the spotlight is
-    spotLight.add(new THREE.Mesh(
-            new THREE.BoxGeometry(10, 10, 10),
-            new THREE.MeshBasicMaterial({
-                color: 0xffffff
-            })));
-    spotLight.castShadow = true;
-    spotLight.shadow.mapSize.width = 1024;
-    spotLight.shadow.mapSize.height = 1024;
-    spotLight.shadow.camera.near = 500;
-    spotLight.shadow.camera.far = 4000;
-    spotLight.shadow.camera.fov = 30;
-    spotLight.position.set(0, 500, 500);
-	
-	spotLight.target = cube;
-	console.log(spotLight.target);
 
-    spotLight.add(new THREE.CameraHelper(spotLight.shadow.camera));
+    /*
+    spotLight.add(new THREE.Mesh(
+    new THREE.BoxGeometry(10, 10, 10),
+    new THREE.MeshBasicMaterial({
+    color: 0xff0000
+    })));
+
+     */
+
+    spotLight.castShadow = true;
+    //spotLight.shadow.mapSize.width = 1024;
+    //spotLight.shadow.mapSize.height = 1024;
+    //spotLight.shadow.camera.near = .5;
+    //spotLight.shadow.camera.far = 500;
+    //spotLight.shadow.camera.fov = 30;
+    spotLight.position.set(-250, 350, 250);
+
+    spotLight.intensity = 3;
+    spotLight.penumbra = .1;
+    spotLight.angle = Math.PI / 5;
+    spotLight.distance = 1500;
+
+    //spotLight.target = cube;
+
+    spotLight.add(new THREE.SpotLightHelper(spotLight));
+
     //spotLight.target = cube;
     //spotLight.lookAt(cube.position.x, cube.position.y, cube.position.z);
     scene.add(spotLight);
 
     // add plane to the scene
     var plane = new THREE.Mesh(
-            new THREE.PlaneBufferGeometry(1500, 1500, 8, 8),
-            new THREE.MeshBasicMaterial({
+            new THREE.PlaneBufferGeometry(3000, 3000, 8, 8),
+            new THREE.MeshStandardMaterial({
                 color: 0x00afaf,
                 side: THREE.DoubleSide
             }));
