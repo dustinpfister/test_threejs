@@ -15,7 +15,7 @@
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(200, 200, 200),
             lambert);
-    cube.position.set(0, 100, 0);
+    cube.position.set(0, 150, 0);
     cube.castShadow = true;
     scene.add(cube);
 
@@ -54,14 +54,12 @@
     //spotLight.shadow.camera.fov = 30;
     spotLight.position.set(-250, 350, 250);
 
-    spotLight.intensity = 3;
-    spotLight.penumbra = .1;
-    spotLight.angle = Math.PI / 5;
-    spotLight.distance = 1500;
+    spotLight.intensity = 2;
+    spotLight.penumbra = 1;
+    spotLight.angle = Math.PI / 3;
+    spotLight.distance = 800;
 
-    //spotLight.target = cube;
-
-    spotLight.add(new THREE.SpotLightHelper(spotLight));
+    //spotLight.add(new THREE.SpotLightHelper(spotLight));
 
     //spotLight.target = cube;
     //spotLight.lookAt(cube.position.x, cube.position.y, cube.position.z);
@@ -80,12 +78,36 @@
 
     // set the position of the camera away from the cube, and
     // look at the cube.
-    camera.position.set(1000, 1000, 1000);
+    camera.position.set(500, 500, 500);
     camera.lookAt(cube.position);
     renderer.setSize(320, 240);
 
     // render what we have
-    renderer.render(scene, camera);
+    //renderer.render(scene, camera);
+
+    var frame = 0,
+    maxFrame = 500,
+    loop = function () {
+
+        var per = frame / maxFrame,
+        bias = 1 - Math.abs(.5 - per) / .5,
+
+        r = Math.PI * 2 * per,
+        x = Math.cos(r) * 300,
+        y = Math.sin(r) * 300,
+        z = 350;
+
+        requestAnimationFrame(loop);
+
+        spotLight.position.set(x, z, y);
+        renderer.render(scene, camera);
+
+        frame += 1;
+        frame = frame % maxFrame;
+
+    };
+
+    loop();
 
 }
     ());
