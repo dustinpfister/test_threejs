@@ -6,7 +6,7 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(75, 320 / 240, .5, 1000);
-    camera.position.set(2, 2, 2);
+    camera.position.set(3, 3, 3);
     camera.lookAt(0, 0, 0);
 
     // Render
@@ -20,7 +20,7 @@
     // load a resource
     loader.load(
         // resource URL
-        'loader-buffer-geometry/js/three_1.json',
+        'loader-buffer-geometry/js/three_2.json',
 
         // onLoad callback
         function (geometry) {
@@ -33,7 +33,28 @@
                 }));
 
         scene.add(mesh);
-        renderer.render(scene, camera);
+
+        var frame = 0,
+        maxFrame = 500;
+
+        var loop = function () {
+
+            var per = frame / maxFrame,
+
+            r = Math.PI * 2 * per;
+
+            mesh.rotation.set(0, r, 0);
+
+            requestAnimationFrame(loop);
+
+            renderer.render(scene, camera);
+
+            frame += 1;
+            frame = frame % maxFrame;
+
+        };
+
+        loop();
 
     });
 
