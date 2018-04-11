@@ -13,7 +13,10 @@
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(100, 100, 100),
             new THREE.MeshLambertMaterial({
-                color: 0xff0000
+                color: 0xff0000,
+                emissive: 0x3a3a3a,
+                //transparent: true,
+                //opacity: .3
             }));
     cube.position.set(0, 100, 0);
     scene.add(cube);
@@ -31,6 +34,8 @@
             new THREE.PlaneBufferGeometry(1500, 1500, 8, 8),
             new THREE.MeshLambertMaterial({
                 color: 0x00afaf,
+                emissive: 0x2a2a2a,
+                emissiveIntensity: .5,
                 side: THREE.DoubleSide
             }));
     plane.rotation.x = Math.PI / 2;
