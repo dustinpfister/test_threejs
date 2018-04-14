@@ -13,16 +13,18 @@
 
         count = count || 6;
 
+        // generate vertices
         pane = 0;
         while (pane < count) {
 
             var i = 0,
+            per = pane / count,
             len = 4;
             while (i < len) {
 
-                x = Math.floor(i % 2);
+                x = Math.floor(i % 2) + pane * 1.5;
                 y = Math.floor(i / 2);
-                z = pane;
+                z = pane * per;
 
                 geometry.vertices.push(new THREE.Vector3(x, y, z));
 
@@ -32,7 +34,7 @@
             pane += 1;
         }
 
-
+        // generate faces
         pane = 0;
         while (pane < count) {
 
@@ -46,6 +48,7 @@
 
         // compute Normals
         geometry.computeVertexNormals();
+
         // normalize the geometry
         geometry.normalize();
 
@@ -58,13 +61,13 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(3, 3, 3);
+    camera.position.set(1, 1, 1);
     camera.lookAt(0, 0, 0);
 
     // MESH with Geometry, and Basic Material
     scene.add(new THREE.Mesh(
 
-            genPanes(),
+            genPanes(20),
 
             // Material
             new THREE.MeshNormalMaterial({
