@@ -5,49 +5,43 @@
 
         var geometry = new THREE.Geometry(),
 
-        offset = 4,
-        i = 0,
+        offset,
+        pane,
         x = 0,
         y = 0,
         z = 0;
-		
-		
 
-		/*
         count = count || 6;
-        while (z < count) {
 
-            y = 0;
-            while (y < 2) {
+        pane = 0;
+        while (pane < count) {
 
-                x = 0;
-                while (x < 2) {
+            var i = 0,
+            len = 4;
+            while (i < len) {
 
-                    geometry.vertices.push(new THREE.Vector3(x, y, z));
+                x = Math.floor(i % 2);
+                y = Math.floor(i / 2);
+                z = pane;
 
-                    x += 1;
+                geometry.vertices.push(new THREE.Vector3(x, y, z));
 
-                }
-
-                y += 1;
-
+                i += 1;
             }
 
-            z += 1;
-
+            pane += 1;
         }
-		*/
 
-        i = 0;
-        offset = 0;
-        while (i < count) {
 
-            offset = i * 4;
+        pane = 0;
+        while (pane < count) {
+
+            offset = pane * 4;
 
             geometry.faces.push(
                 new THREE.Face3(0 + offset, 1 + offset, 2 + offset),
                 new THREE.Face3(3 + offset, 2 + offset, 1 + offset));
-            i += 1;
+            pane += 1;
         }
 
         // compute Normals
