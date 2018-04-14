@@ -10,7 +10,10 @@
         x = 0,
         y = 0,
         z = 0;
+		
+		
 
+		/*
         count = count || 6;
         while (z < count) {
 
@@ -33,6 +36,7 @@
             z += 1;
 
         }
+		*/
 
         i = 0;
         offset = 0;
