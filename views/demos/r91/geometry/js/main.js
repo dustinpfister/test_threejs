@@ -9,6 +9,7 @@
     camera.position.set(3, 2, 1);
     camera.lookAt(0, 0, 0);
 
+    // GEOMETRY
     var geometry = new THREE.Geometry();
 
     // create an array of vertices by way of
@@ -25,7 +26,7 @@
         new THREE.Vector3(1, 1, -1),
         new THREE.Vector3(0, 1, -1));
 
-    // create faces by way of ann array of
+    // create faces by way of an array of
     // face3 instances. (you just play connect
     // the dots with index values from the
     // vertices array)
@@ -43,15 +44,18 @@
 
     // compute Normals
     geometry.computeVertexNormals();
+
     // normalize the geometry
     geometry.normalize();
 
-    // MESH with Geometry, and Basic Material
+
+    // MESH with GEOMETRY, and Normal MATERIAL
     scene.add(new THREE.Mesh(
 
+            // geometry as first argument
             geometry,
 
-            // Material
+            // then Material
             new THREE.MeshNormalMaterial({
                 side: THREE.DoubleSide
             })));

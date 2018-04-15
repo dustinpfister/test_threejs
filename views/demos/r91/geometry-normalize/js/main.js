@@ -9,16 +9,14 @@
     camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
 
-    // create a box geometry
+    // creating a custom geometry
     var geometry = new THREE.Geometry();
-
     geometry.vertices.push(
 
         new THREE.Vector3(0, 0, 0),
         new THREE.Vector3(5, 0, 0),
         new THREE.Vector3(5, 5, 0),
         new THREE.Vector3(0, 5, 0));
-
     geometry.faces.push(
 
         new THREE.Face3(0, 1, 2),
@@ -37,7 +35,6 @@
     // and is inside the range of one
     console.log(geometry.vertices[0].x); // -0.707...
     console.log(geometry.vertices[1].x); // 0.707...
-
 
     // MESH with Geometry, and Basic Material
     scene.add(new THREE.Mesh(
