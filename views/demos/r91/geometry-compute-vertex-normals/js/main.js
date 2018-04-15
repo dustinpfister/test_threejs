@@ -49,8 +49,8 @@
 
     // normalize
     geometry.normalize();
-    //geometry.computeVertexNormals();
-    geometry.computeFlatVertexNormals();
+    geometry.computeVertexNormals();
+    //geometry.computeFlatVertexNormals();
     
 
     //var geometry = new THREE.BoxGeometry(1, 1, 1);
