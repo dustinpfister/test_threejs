@@ -11,86 +11,102 @@
     var controls = new THREE.OrbitControls(camera);
 
     // creating a custom geometry of incomplete cube
+    
+	
     var geometry = new THREE.Geometry();
     geometry.vertices.push(
 
-        new THREE.Vector3(0, 0, 0),
-        new THREE.Vector3(5, 0, 0),
-        new THREE.Vector3(5, 5, 0),
-        new THREE.Vector3(0, 5, 0),
+    new THREE.Vector3(1, 1, 1),
+    new THREE.Vector3(1, 1, -1),
+    new THREE.Vector3(1, -1, 1),
+    new THREE.Vector3(1, -1, -1),
 
-        new THREE.Vector3(0, 0, 5),
-        new THREE.Vector3(5, 0, 5),
-        new THREE.Vector3(5, 5, 5),
-        new THREE.Vector3(0, 5, 5));
+    new THREE.Vector3(-1, 1, -1),
+    new THREE.Vector3(-1, 1, 1),
+    new THREE.Vector3(-1, -1, -1),
+    new THREE.Vector3(-1, -1, 1));
     geometry.faces.push(
 
-        new THREE.Face3(0, 1, 2),
-        new THREE.Face3(3, 0, 2),
+    new THREE.Face3(0, 2, 1),
+    new THREE.Face3(2, 3, 1),
 
-        new THREE.Face3(0, 4, 1),
-        new THREE.Face3(5, 1, 4),
+    new THREE.Face3(4, 6, 5),
+    new THREE.Face3(6, 7, 5),
 
-        new THREE.Face3(3, 7, 2),
-        new THREE.Face3(6, 2, 7),
+    new THREE.Face3(4, 5, 1),
+    new THREE.Face3(5, 0, 1),
 
-        new THREE.Face3(1, 2, 6),
-        new THREE.Face3(5, 1, 6)
+    new THREE.Face3(7, 6, 2),
+    new THREE.Face3(6, 3, 2),
+
+    new THREE.Face3(5, 7, 0),
+    new THREE.Face3(7, 2, 0),
+
+    new THREE.Face3(1, 3, 4),
+    new THREE.Face3(3, 6, 4),
+
     );
 
     // normalize
     geometry.normalize();
-    geometry.computeVertexNormals();
+    //geometry.computeVertexNormals();
+    geometry.computeFlatVertexNormals();
+    
 
-    // geometry is now centered to the origin
-    // and is inside the range of one
-    //console.log(geometry.vertices[0].x); // -0.707...
-    //console.log(geometry.vertices[1].x); // 0.707...
+    //var geometry = new THREE.BoxGeometry(1, 1, 1);
 
-    // MESH with Geometry, and Basic Material
-    scene.add(new THREE.Mesh(
+    //console.log(geometry);
+
+    var cube = new THREE.Mesh(
 
             geometry,
 
             // Material
             new THREE.MeshNormalMaterial({
                 side: THREE.DoubleSide
-            })));
+            }));
+    scene.add(cube);
 
+    /*
     // show vert helper script
     geometry.vertices.forEach(function (v, i) {
 
-        console.log(i, v.x, v.y, v.z);
+    console.log(i, v.x, v.y, v.z);
 
-        var show = [1, 2, 6],
-        si = 0,
-        len = show.length;
-        while (si < len) {
+    var show = [1, 2, 6],
+    si = 0,
+    len = show.length;
+    while (si < len) {
 
-            if (i === show[si]) {
+    if (i === show[si]) {
 
-                var mesh = new THREE.Mesh(
+    var mesh = new THREE.Mesh(
 
-                        new THREE.BoxGeometry(.1, .1, .1),
+    new THREE.BoxGeometry(.1, .1, .1),
 
-                        // Material
-                        new THREE.MeshNormalMaterial({
-                            side: THREE.DoubleSide
-                        }));
+    // Material
+    new THREE.MeshNormalMaterial({
+    side: THREE.DoubleSide
+    }));
 
-                mesh.position.set(v.x, v.y, v.z);
+    mesh.position.set(v.x, v.y, v.z);
 
-                scene.add(mesh);
+    scene.add(mesh);
 
-                break;
+    break;
 
-            }
+    }
 
-            si += 1;
+    si += 1;
 
-        }
+    }
 
     });
+     */
+
+    var helper = new THREE.VertexNormalsHelper(cube, 2, 0x00ff00, 1);
+
+    scene.add(helper);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
