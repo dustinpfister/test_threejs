@@ -15,14 +15,19 @@
     // drawing a square with lines
     var geometry = new THREE.Geometry();
     geometry.vertices.push(
-        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, .25, 0),
         new THREE.Vector3(0, 0, -1),
         new THREE.Vector3(1, 0, -1),
         new THREE.Vector3(1, 0, 0),
         new THREE.Vector3(0, 0, 0));
+
+    // adding
+    geometry.vertices[0].add(new THREE.Vector3(0, .5, 0));
+
     var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({
                 color: 0x0000ff
             }));
+
     scene.add(line);
 
     var cube = new THREE.Mesh(
