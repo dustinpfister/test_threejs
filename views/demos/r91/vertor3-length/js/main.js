@@ -19,7 +19,7 @@
     scene.add(sphere);
 
     // Orbit Controls
-    var controls = new THREE.OrbitControls(camera);
+    //var controls = new THREE.OrbitControls(camera);
 
     var v = new THREE.Vector3(1, 0, 0);
 
@@ -34,6 +34,7 @@
 
     scene.add(line);
 
+	/*
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshBasicMaterial({
@@ -42,6 +43,7 @@
 
     cube.scale.set(.1, .1, .1);
     scene.add(cube);
+	*/
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
@@ -71,7 +73,7 @@
         sphere.geometry.normalize();
         sphere.geometry.scale(s, s, s);
 
-        controls.update();
+        //controls.update();
 
         renderer.render(scene, camera);
 
