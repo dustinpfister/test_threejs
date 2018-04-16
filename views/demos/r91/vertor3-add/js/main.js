@@ -1,6 +1,11 @@
 
 (function () {
 
+    var vec = new THREE.Vector3(.25, 1, 5);
+    vec.add(new THREE.Vector3(.25, 1, 2));
+
+    console.log(vec.x, vec.y, vec.z); // 0.5 2 7
+
     // SCENE
     var scene = new THREE.Scene();
 

@@ -1,6 +1,7 @@
 
 (function () {
 
+    // length
     var r = Math.PI / 180 * 45,
     x = Math.cos(r),
     y = Math.sin(r),
@@ -11,6 +12,25 @@
     console.log(vec.x, vec.y, vec.z); // 0.70... 0.70... 0
     console.log(vec.length()); // 1
 
+    // addScalar
+    var vec = new THREE.Vector3(3, 3, 7);
+    vec.addScalar(10);
+
+    console.log(vec.x, vec.y, vec.z); // 13 13 17
+
+    // distance
+    var a = new THREE.Vector3(10, 10, 10),
+    b = new THREE.Vector3(10, 5, 10);
+    console.log(a.distanceTo(b)); // 5
+
+    // clone
+    original = new THREE.Vector3(10, 10, 10),
+    copy = original.clone();
+
+    copy.x += 5;
+
+    console.log(copy.x); // 15
+    console.log(original.x); // 10
 
     // SCENE
     var scene = new THREE.Scene();
