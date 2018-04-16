@@ -6,7 +6,8 @@
     fogColor = new THREE.Color(0xffffff);
 
     scene.background = fogColor;
-    scene.fog = new THREE.Fog(fogColor, 0.0025, 10);
+    //scene.fog = new THREE.Fog(fogColor, 0.0025, 20);
+	scene.fog = new THREE.FogExp2(fogColor, 0.1);
 
     // Camera
     var camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
@@ -20,10 +21,16 @@
     var geometry = new THREE.BoxGeometry(1, 1, 1);
 
     // Material
+    var material = new THREE.MeshNormalMaterial();
+
+    console.log(material.fog); // false
+
     var material = new THREE.MeshLambertMaterial({
             color: 0xff0000,
-            emissive: 0x000000
+            emissive: 0x080808
         });
+
+    console.log(material.fog); // true
 
     // Mesh
     var mesh = new THREE.Mesh(geometry, material);
