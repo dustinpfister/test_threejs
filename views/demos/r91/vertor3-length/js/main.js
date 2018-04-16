@@ -6,7 +6,7 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(0, 0, 3);
+    camera.position.set(0, 3, 3);
     camera.lookAt(0, 0, 0);
 
     var sphere = new THREE.Mesh(
@@ -51,24 +51,26 @@
     var frame = 0,
     maxFrame = 100,
     per = 0,
-	bias = 0;
+    bias = 0;
     var loop = function () {
 
         requestAnimationFrame(loop);
 
-        var r = Math.PI * 2 * per;
-        var x = Math.cos(r) * 1;
-        var y = Math.sin(r) * 1;
-		var z = .25 + .75 * bias;
-		var s = v.length();
-		
+        var radian = Math.PI * 2 * per,
+        radius = .25 + .75 * bias,
+        x = Math.cos(radian) * radius,
+        y = Math.sin(radian) * radius,
+        z = radius,
+        s;
+
+        v.set(x, y, z);
+        s = v.length();
+
         geometry.verticesNeedUpdate = true;
 
-        //sphere.geometry.verticesNeedUpdate = true;
-		sphere.geometry.normalize();
+        sphere.geometry.normalize();
         sphere.geometry.scale(s, s, s);
 
-        v.set(x, y,z);
         controls.update();
 
         renderer.render(scene, camera);
@@ -76,7 +78,7 @@
         frame += 1;
         frame = frame % maxFrame;
         per = frame / maxFrame;
-		bias = Math.abs(.5 - per) / .5;
+        bias = Math.abs(.5 - per) / .5;
 
     };
 
