@@ -1,6 +1,17 @@
 
 (function () {
 
+    var r = Math.PI / 180 * 45,
+    x = Math.cos(r),
+    y = Math.sin(r),
+
+    vec = new THREE.Vector3(x, y, 0);
+
+    console.log(vec.isVector3); // true
+    console.log(vec.x, vec.y, vec.z); // 0.70... 0.70... 0
+    console.log(vec.length()); // 1
+
+
     // SCENE
     var scene = new THREE.Scene();
 
@@ -33,7 +44,7 @@
                 wireframe: true
             }));
 
-    cube.scale.set(.1,.1,.1);
+    cube.scale.set(.1, .1, .1);
     scene.add(cube);
 
     // RENDER
