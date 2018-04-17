@@ -6,7 +6,7 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(50, 320 / 240, 1, 3000);
-    camera.position.set(300, 300, 300);
+    camera.position.set(250, 250, 250);
     camera.lookAt(0, 0, 0);
 
     // ORBIT CONTROLS
@@ -32,9 +32,8 @@
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(100, 100, 100),
             new THREE.MeshLambertMaterial({
-                //color: 0xff0000,
-                emissive: 0xffffff,
-                emissiveMap: texture
+                map: texture,
+                emissive: 0x000000
             }));
     cube.position.set(0, 50, 0);
     cube.castShadow = true;
@@ -68,8 +67,9 @@
     spotLight.add(spotLightHelper);
     spotLight.castShadow = true;
     spotLight.angle = Math.PI / 4;
-    spotLight.distance = 500;
+    spotLight.distance = 1000;
     scene.add(spotLight);
+    //scene.add(spotLight.target);
 
     // set position of spotLight,
     // and helper bust be updated when doing that
@@ -80,17 +80,36 @@
     maxFrame = 500,
     loop = function () {
 
-        //var per = frame / maxFrame,
-        //bias = Math.abs(.5 - per) / .5;
+        var per = frame / maxFrame,
+        bias = Math.abs(.5 - per) / .5,
+        r = Math.PI * 2 * per,
+        x = canvas.width / 2 * bias,
+        y = canvas.height / 2 * bias,
+        z,
+        w = canvas.width - canvas.width * bias,
+        h = canvas.height - canvas.height * bias;
 
         requestAnimationFrame(loop);
 
+        ctx.lineWidth = 3;
+        ctx.fillStyle = '#000000';
+        ctx.strokeStyle = '#ff00ff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeRect(x, y, w, h);
+        texture.needsUpdate = true;
+
+        x = Math.cos(r) * 200;
+        z = Math.sin(r) * 200;
+
+        spotLight.position.set(x, 200, z);
+        spotLightHelper.update();
+
         controls.update();
-        //texture.needsUpdate = true;
+
         renderer.render(scene, camera);
 
-        //frame += 1;
-        //frame = frame % maxFrame;
+        frame += 1;
+        frame = frame % maxFrame;
 
     };
 
