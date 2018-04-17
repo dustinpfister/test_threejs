@@ -26,10 +26,18 @@
     ctx.strokeStyle = '#ff00ff';
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
+    var texture = new THREE.Texture(canvas);
+    texture.needsUpdate = true;
+
     // MATERIAL
     var material = new THREE.MeshBasicMaterial({
-            map: new THREE.CanvasTexture(canvas)
+            map: texture
         });
+
+    //var material = new THREE.MeshLambertMaterial({
+    //        emissive: new THREE.Color(0xffffff),
+    //        emissiveMap: texture
+    //    });
 
     // MESH
     var mesh = new THREE.Mesh(geometry, material);

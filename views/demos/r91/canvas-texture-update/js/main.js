@@ -71,7 +71,7 @@
         ctx.strokeRect(x, y, w, h);
 
         controls.update();
-    texture.needsUpdate = true;
+        texture.needsUpdate = true;
         renderer.render(scene, camera);
 
         frame += 1;
