@@ -32,9 +32,26 @@
 
                     ctx.lineWidth = 3;
                     ctx.fillStyle = '#ffffff';
-                    ctx.strokeStyle = '#ff0000';
+                    ctx.strokeStyle = '#00ffff';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     ctx.strokeRect(x, y, w, h);
+
+                }
+
+            }, {
+
+                which: 'emissiveMap',
+
+                draw: function (canvas, ctx, data) {
+
+                    var x = Math.round(Math.random() * 6),
+                    y = Math.round(Math.random() * 6);
+
+                    ctx.lineWidth = 3;
+                    ctx.fillStyle = '#1f1f1f';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#008f8f';
+                    ctx.fillRect(x, y, 2, 2);
 
                 }
 
@@ -84,8 +101,8 @@
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(100, 100, 100),
             new THREE.MeshLambertMaterial({
-                map: mkCanvasTexture(),//texture,
-                emissive: 0x000000,
+                map: mkCanvasTexture(), //texture,
+                emissive: 0x8f8f8f,
                 emissiveMap: mkCanvasTexture()
             }));
     cube.position.set(0, 50, 0);
@@ -108,7 +125,7 @@
             new THREE.PlaneBufferGeometry(1500, 1500, 8, 8),
             new THREE.MeshLambertMaterial({
                 color: 0x00afaf,
-                emissive: 0x2a2a2a,
+                //emissive: 0x2a2a2a,
                 emissiveIntensity: .5,
                 side: THREE.DoubleSide
             }));
@@ -138,7 +155,7 @@
         var per = frame / maxFrame,
         bias = Math.abs(.5 - per) / .5,
         r = Math.PI * 2 * per,
-		x,
+        x,
         z;
 
         requestAnimationFrame(loop);
