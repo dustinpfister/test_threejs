@@ -31,8 +31,8 @@
                     h = canvas.height - canvas.height * data.bias;
 
                     ctx.lineWidth = 3;
-                    ctx.fillStyle = '#ffffff';
-                    ctx.strokeStyle = '#00ffff';
+                    ctx.fillStyle = '#00ffff';
+                    ctx.strokeStyle = '#008f8f';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     ctx.strokeRect(x, y, w, h);
 
@@ -48,9 +48,9 @@
                     y = Math.round(Math.random() * 6);
 
                     ctx.lineWidth = 3;
-                    ctx.fillStyle = '#1f1f1f';
+                    ctx.fillStyle = '#0f0f0f';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = '#008f8f';
+                    ctx.fillStyle = '#2f2f2f';
                     ctx.fillRect(x, y, 2, 2);
 
                 }
@@ -134,8 +134,8 @@
     scene.add(plane);
 
     // spotlight, and spotLight helper
-    var spotLight = new THREE.SpotLight(),
-    spotLightHelper = new THREE.SpotLightHelper(spotLight);
+    var spotLight = new THREE.SpotLight();
+    var spotLightHelper = new THREE.SpotLightHelper(spotLight);
     spotLight.add(spotLightHelper);
     spotLight.castShadow = true;
     spotLight.angle = Math.PI / 4;
@@ -146,7 +146,6 @@
     // set position of spotLight,
     // and helper bust be updated when doing that
     spotLight.position.set(100, 200, -100);
-    spotLightHelper.update();
 
     var frame = 0,
     maxFrame = 500,
@@ -164,10 +163,15 @@
             bias: bias
         });
 
+        cube.position.y = 50 + 100 * bias;
+
+        cube.rotation.set(Math.PI * per, Math.PI * 2 * per, Math.PI * 4 * per);
+
         x = Math.cos(r) * 200;
         z = Math.sin(r) * 200;
 
         spotLight.position.set(x, 200, z);
+        spotLight.angle = .01 + Math.PI / 4 * bias;
         spotLightHelper.update();
 
         controls.update();
