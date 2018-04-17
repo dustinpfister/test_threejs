@@ -24,8 +24,8 @@
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
 
-    canvas.width = 8;
-    canvas.height = 8;
+    canvas.width = 16;
+    canvas.height = 16;
 
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -57,21 +57,21 @@
 
         var per = frame / maxFrame,
         bias = Math.abs(.5 - per) / .5,
-        x = 0;
-        y = 0;
-        w = canvas.width;
-        h = canvas.height;
+        x = canvas.width / 2 * bias;
+        y = canvas.height / 2 * bias;
+        w = canvas.width - canvas.width * bias;
+        h = canvas.height - canvas.height * bias;
 
         requestAnimationFrame(loop);
 
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 3;
         ctx.fillStyle = '#000000';
         ctx.strokeStyle = '#ff00ff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.strokeRect(x, y, w, h);
 
         controls.update();
-
+    texture.needsUpdate = true;
         renderer.render(scene, camera);
 
         frame += 1;
