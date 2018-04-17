@@ -14,7 +14,6 @@
     var geometry = new THREE.BoxGeometry(1, 1, 1);
 
     // CANVAS
-
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
 
