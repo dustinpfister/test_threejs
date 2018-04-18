@@ -12,8 +12,12 @@
     // Orbit Controls
     var controls = new THREE.OrbitControls(camera);
 
-    var material = new THREE.LineBasicMaterial({
-            color: 0x0000ff
+    var material = new THREE.LineDashedMaterial({
+            color: 0x0000ff,
+            linewidth: 3,
+            scale: .1,
+            dashSize: .3,
+            gapSize: .1
         });
 
     var geometry = new THREE.Geometry();
@@ -23,6 +27,7 @@
         new THREE.Vector3(0, 10, 0));
 
     var line = new THREE.Line(geometry, material);
+    line.computeLineDistances();
     scene.add(line);
 
     // Render
