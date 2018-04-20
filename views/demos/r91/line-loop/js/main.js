@@ -22,7 +22,7 @@
         new THREE.Vector3(10, 0, 0),
         new THREE.Vector3(0, 10, 0));
 
-    var line = new THREE.Line(geometry, material);
+    var line = new THREE.LineLoop(geometry, material);
     scene.add(line);
 
     // Render

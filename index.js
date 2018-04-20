@@ -28,8 +28,17 @@ app.get('/', function (req, res) {
 
 });
 
+// img path
+app.get(/\/img\/[\s\S]+/, function (req,res) {
+
+    // just send the file
+    res.sendFile(path.join(__dirname, 'views', req.url));
+
+});
+
 app.get(/\/css\/[\s\S]+\.css/, function (req, res) {
 
+    // just send the file
     res.sendFile(path.join(__dirname, 'views', req.url));
 
 });
