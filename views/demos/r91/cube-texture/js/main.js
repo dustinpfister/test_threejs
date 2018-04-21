@@ -10,22 +10,13 @@
     camera.lookAt(0, 0, 0);
 
     // Orbit Controls
-    //var controls = new THREE.OrbitControls(camera);
+    var controls = new THREE.OrbitControls(camera);
 
     // Geometry
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    var geometry = new THREE.SphereGeometry(1, 20, 20);
 
     // Material
     var material = new THREE.MeshNormalMaterial();
-
-    console.log(material.fog); // false
-
-    var material = new THREE.MeshLambertMaterial({
-            color: 0xff0000,
-            emissive: 0x080808
-        });
-
-    console.log(material.fog); // true
 
     // Mesh
     var mesh = new THREE.Mesh(geometry, material);
@@ -46,8 +37,8 @@
 
         requestAnimationFrame(loop);
 
-        camera.position.z = 1 * 14 * bias;
-        camera.lookAt(0, 0, 0);
+        //camera.position.z = 1 * 14 * bias;
+        //camera.lookAt(0, 0, 0);
         //controls.update();
 
         renderer.render(scene, camera);
@@ -57,6 +48,23 @@
 
     };
 
-    loop();
+    new THREE.CubeTextureLoader()
+    .setPath('/img/cube/skybox/')
+    .load([
+            'px.jpg',
+            'nx.jpg',
+            'py.jpg',
+            'ny.jpg',
+            'pz.jpg',
+            'nz.jpg'
+        ],
+
+        function () {
+
+        console.log('we be good man');
+        loop();
+
+    });
+
 }
     ());
