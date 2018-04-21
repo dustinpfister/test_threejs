@@ -12,16 +12,6 @@
     // Orbit Controls
     var controls = new THREE.OrbitControls(camera);
 
-    // Geometry
-    var geometry = new THREE.SphereGeometry(1, 20, 20);
-
-    // Material
-    var material = new THREE.MeshNormalMaterial();
-
-    // Mesh
-    var mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-
     // Render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
@@ -59,9 +49,24 @@
             'nz.jpg'
         ],
 
-        function () {
+        function (cubeTexture) {
 
         console.log('we be good man');
+        //console.log(one);
+
+        // Geometry
+        var geometry = new THREE.SphereGeometry(1, 20, 20);
+
+        // Material
+        var material = new THREE.MeshBasicMaterial({
+
+                envMap: cubeTexture
+
+            });
+
+        // Mesh
+        var mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
         loop();
 
     });
