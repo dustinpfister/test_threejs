@@ -1,46 +1,26 @@
 
 (function () {
 
-    // Scene
+    // SCENE
     var scene = new THREE.Scene();
 
-    // Camera
+    // CAMERA
     var camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
     camera.position.set(1, 1, 1);
     camera.lookAt(0, 0, 0);
 
-    // Orbit Controls
-    var controls = new THREE.OrbitControls(camera);
-
-    // Render
+    // RENDER
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // Loop
-    var frame = 0,
-    maxFrame = 500,
-    loop = function () {
-
-        var per = frame / maxFrame,
-        bias = Math.abs(.5 - per) / .5;
-
-        requestAnimationFrame(loop);
-
-        //camera.position.z = 1 * 14 * bias;
-        //camera.lookAt(0, 0, 0);
-        //controls.update();
-
-        renderer.render(scene, camera);
-
-        frame += 1;
-        frame = frame % maxFrame;
-
-    };
-
+    // LOAD CUBE TEXTURE
     new THREE.CubeTextureLoader()
     .setPath('/img/cube/skybox/')
-    .load([
+    .load(
+
+        // urls of images used in the cube texture
+        [
             'px.jpg',
             'nx.jpg',
             'py.jpg',
@@ -49,10 +29,8 @@
             'nz.jpg'
         ],
 
+        // what to do when loading is over
         function (cubeTexture) {
-
-        console.log('we be good man');
-        //console.log(one);
 
         // Geometry
         var geometry = new THREE.SphereGeometry(1, 20, 20);
@@ -60,6 +38,9 @@
         // Material
         var material = new THREE.MeshBasicMaterial({
 
+                // CUBE TEXTURE can be used with
+                // the environment map property of
+                // a material.
                 envMap: cubeTexture
 
             });
@@ -67,7 +48,11 @@
         // Mesh
         var mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
-        loop();
+
+        // CUBE TEXTURE is also an option for a background
+        scene.background = cubeTexture;
+
+        renderer.render(scene, camera);
 
     });
 
