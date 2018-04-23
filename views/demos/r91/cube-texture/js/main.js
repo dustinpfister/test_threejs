@@ -1,6 +1,8 @@
 
 (function () {
 
+    console.log(new THREE.CubeTexture);
+
     // SCENE
     var scene = new THREE.Scene();
 
@@ -32,11 +34,11 @@
         // what to do when loading is over
         function (cubeTexture) {
 
-        // Geometry
-        var geometry = new THREE.SphereGeometry(1, 20, 20);
+            // Geometry
+            var geometry = new THREE.SphereGeometry(1, 20, 20);
 
-        // Material
-        var material = new THREE.MeshBasicMaterial({
+            // Material
+            var material = new THREE.MeshBasicMaterial({
 
                 // CUBE TEXTURE can be used with
                 // the environment map property of
@@ -45,16 +47,18 @@
 
             });
 
-        // Mesh
-        var mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
+            // Mesh
+            var mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
 
-        // CUBE TEXTURE is also an option for a background
-        scene.background = cubeTexture;
+            // CUBE TEXTURE is also an option for a background
+            scene.background = cubeTexture;
 
-        renderer.render(scene, camera);
+            renderer.render(scene, camera);
 
-    });
+        }
+
+    );
 
 }
     ());
