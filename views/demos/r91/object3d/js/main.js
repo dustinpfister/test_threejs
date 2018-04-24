@@ -1,12 +1,29 @@
 
 (function () {
 
+    // Object 3d position
+    var obj3d = new THREE.Object3D();
+
+    // {"x":0,"y":0,"z":0}
+    console.log(JSON.stringify(obj3d.position));
+
+    obj3d.position.set(3, 4, 5);
+
+    // {"x":3,"y":4,"z":5}
+    console.log(JSON.stringify(obj3d.position));
+
+    // {"_x":0,"_y":0,"_z":0,"_order":"XYZ"}
+    console.log(JSON.stringify(obj3d.rotation));
+
     // Scene
     var scene = new THREE.Scene();
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
     camera.position.set(3, 1, 3);
+
+    // {"x":3,"y":1,"z":3}
+    console.log(JSON.stringify(camera.position));
 
     // Orbit Controls
     var controls = new THREE.OrbitControls(camera);
@@ -23,6 +40,10 @@
                 emissive: 0x002a00
             }));
     low.position.y = -1;
+
+    // {"x":0,"y":-1,"z":0}
+    console.log(JSON.stringify(low.position));
+
     obj.add(low);
 
     var high = new THREE.Mesh(
