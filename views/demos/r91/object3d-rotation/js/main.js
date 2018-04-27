@@ -15,24 +15,13 @@
     // creating an instance of Object3D
     var obj = new THREE.Object3D();
 
-    // a mesh that inherits from Object3D
-    var low = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshStandardMaterial({
-                emissive: 0x002a00
-            }));
-    low.position.y = -1;
-    obj.add(low);
+    //{"_x":0,"_y":0,"_z":0,"_order":"XYZ"}
+    console.log(JSON.stringify(obj.rotation));
 
-    var high = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshStandardMaterial({
-                emissive: 0x00002a
-            }));
-    high.rotation.set(0, 1, 0);
-    obj.add(high);
+    obj.rotation.set(0, 0, Math.PI * 1.75);
 
-    scene.add(obj);
+    // {"_x":0,"_y":0,"_z":5.497787143782138,"_order":"XYZ"}
+    console.log(JSON.stringify(obj.rotation));
 
     // Render
     var renderer = new THREE.WebGLRenderer();
@@ -49,10 +38,6 @@
 
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
-
-        high.rotation.set(0, Math.PI * 2 * per, 0);
-        low.rotation.set(0, -Math.PI * 2 * per, 0);
-        obj.position.set(0, -1 + 2 * bias, 0);
 
         frame += 1;
         frame = frame % maxFrame;
