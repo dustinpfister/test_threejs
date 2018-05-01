@@ -13,10 +13,10 @@
     // CUBE
     var cube = new THREE.Mesh(
 
-            // box geometry
+            // box GEOMETRY
             new THREE.BoxGeometry(1, 1, 1),
 
-            // basic material
+            // basic MATERIAL
             new THREE.MeshBasicMaterial({
                 color: 0xff0000
             }));
