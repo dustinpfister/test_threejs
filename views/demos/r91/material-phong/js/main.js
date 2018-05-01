@@ -17,9 +17,15 @@
             new THREE.BoxGeometry(1, 1, 1),
 
             // basic MATERIAL
-            new THREE.MeshBasicMaterial({
-                color: 0xff0000
+            new THREE.MeshPhongMaterial({
+                color: 0x00ff00,
+                emissive: 0x00008a
             })));
+
+    // SPOTLIGHT
+    var spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.position.set(-3, 2, 3);
+    scene.add(spotLight);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();

@@ -16,10 +16,8 @@
             // box GEOMETRY
             new THREE.BoxGeometry(1, 1, 1),
 
-            // basic MATERIAL
-            new THREE.MeshBasicMaterial({
-                color: 0xff0000
-            })));
+            // Depth MATERIAL
+            new THREE.MeshDepthMaterial()));
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();

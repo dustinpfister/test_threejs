@@ -14,9 +14,7 @@
             new THREE.BoxGeometry(100, 100, 100),
             new THREE.MeshLambertMaterial({
                 color: 0xff0000,
-                emissive: 0x3a3a3a,
-                //transparent: true,
-                //opacity: .3
+                emissive: 0x3a3a3a
             }));
     cube.position.set(0, 100, 0);
     scene.add(cube);
