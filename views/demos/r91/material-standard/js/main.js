@@ -17,12 +17,9 @@
             new THREE.SphereGeometry(1, 20, 20),
 
             // phong MATERIAL
-            new THREE.MeshPhongMaterial({
+            new THREE.MeshStandardMaterial({
                 color: 0xff0000,
-                emissive: 0x2a0000,
-
-                shininess: 10,
-                specular: 0xffffff
+                emissive: 0x2a0000
             })));
 
     // SPOTLIGHT
