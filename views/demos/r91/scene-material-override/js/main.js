@@ -7,7 +7,7 @@
     scene.background = new THREE.Color(0xafafaf);
 
     // can set an override material for everything
-    //scene.overrideMaterial = new THREE.MeshDepthMaterial();
+    scene.overrideMaterial = new THREE.MeshDepthMaterial();
 
     // just adding a 1x1x1 cube with the default
     // MeshBasicMaterial and random color for faces
