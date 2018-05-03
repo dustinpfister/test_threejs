@@ -6,7 +6,7 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(5, 5, 5);
+    camera.position.set(50, 50, 50);
     camera.lookAt(0, 0, 0);
 
     // Orbit Controls
@@ -18,9 +18,9 @@
 
         var star = new THREE.Vector3();
         star.set(
-            THREE.Math.randFloatSpread(1),
-            THREE.Math.randFloatSpread(3),
-            THREE.Math.randFloatSpread(3));
+            THREE.Math.randFloatSpread(45),
+            THREE.Math.randFloatSpread(45),
+            THREE.Math.randFloatSpread(45));
 
         pointsGeometry.vertices.push(star);
 
@@ -28,13 +28,9 @@
 
     }
 
-    var starsMaterial = new THREE.PointsMaterial({
-            color: 0x00afaf
-        });
-
-    var starField = new THREE.Points(pointsGeometry, starsMaterial);
-
-    scene.add(starField);
+	scene.add(new THREE.Points(pointsGeometry, new THREE.PointsMaterial({color: 0x00afaf})));
+	
+    //scene.add(new THREE.Points(new THREE.SphereGeometry(20, 50, 50), new THREE.PointsMaterial({color: 0x00afaf})));
 
     // Render
     var renderer = new THREE.WebGLRenderer();
