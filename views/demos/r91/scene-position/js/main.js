@@ -60,8 +60,8 @@
 
         requestAnimationFrame(loop);
 
-        // using Object3D scene position, and rotation
-        // properties
+        // using Object3D properties to change
+        // the position and rotation of a scene
         scene.position.set(0, 1 * bias, 0);
         scene.rotation.set(Math.PI * 2 * per, 0, 0);
         renderer.render(scene, camera);
