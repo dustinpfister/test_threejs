@@ -28,8 +28,8 @@
 
     }
 
-	scene.add(new THREE.Points(pointsGeometry, new THREE.PointsMaterial({color: 0x00afaf})));
-	
+    scene.add(new THREE.Points(pointsGeometry, new THREE.PointsMaterial({color: 0x00afaf})));
+
     //scene.add(new THREE.Points(new THREE.SphereGeometry(20, 50, 50), new THREE.PointsMaterial({color: 0x00afaf})));
 
     // Render
