@@ -3,8 +3,18 @@
 
     // Scene
     var scene = new THREE.Scene();
-    scene.background = THREE.Color(0xffffff);
-    //scene.position.set(0, 1.5, 0);
+
+    // can set a background
+    scene.background = new THREE.Color(0xefefef);
+
+    // can set an override material for everything
+    scene.overrideMaterial = new THREE.MeshBasicMaterial({
+            color: 0x00ff00,
+            wireframe: true
+        });
+
+    // can use Object3d methods on a scene
+    scene.position.set(0, 1, 0);
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
@@ -16,11 +26,7 @@
 
     // Something to look at
     scene.add(new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
-                color: 0xff0000,
-                wireframe: true
-            })));
+            new THREE.BoxGeometry(1, 1, 1)));
 
     // Render
     var renderer = new THREE.WebGLRenderer();
@@ -28,15 +34,20 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // loop
-    function animate() {
+    var frame = 0,
+    maxFrame = 50,
+    loop = function () {
 
-        requestAnimationFrame(animate);
-        controls.update();
+        var per = frame / maxFrame,
+        bias = Math.abs(.5 - per) / .5;
+
+        requestAnimationFrame(loop);
+
         renderer.render(scene, camera);
 
     };
 
-    animate();
+    loop();
 
 }
     ());
