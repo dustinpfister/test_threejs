@@ -33,6 +33,19 @@
     redCube.position.set(-2, 0, 0);
     scene.add(redCube);
 
+    var wireCube = new THREE.Mesh(
+
+            new THREE.BoxGeometry(1, 1, 1),
+
+            new THREE.MeshBasicMaterial({
+
+                color: 0x0000ff,
+                wireframe: true
+
+            }));
+    wireCube.position.set(-2, 0, -2);
+    scene.add(wireCube);
+
     // RENDER
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
