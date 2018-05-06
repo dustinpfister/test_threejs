@@ -9,6 +9,8 @@
     camera.position.set(-1.5, 2.5, 1.5);
     camera.lookAt(0, 0, 0);
 
+    var controls = new THREE.OrbitControls(camera);
+
     // Render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
@@ -31,8 +33,16 @@
         var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({}));
         scene.add(mesh);
 
-        // render the scene
-        renderer.render(scene, camera);
+        var loop = function () {
+
+            requestAnimationFrame(loop);
+
+            // render the scene
+            renderer.render(scene, camera);
+
+        }
+
+        loop();
 
     });
 
