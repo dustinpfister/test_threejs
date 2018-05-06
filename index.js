@@ -50,6 +50,13 @@ app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
 
 });
 
+// json file path
+app.get(/\/json\/[\s\S]+\.js/, function (req, res) {
+
+    res.sendFile(path.join(__dirname, 'views', req.url));
+
+});
+
 // build an index of links to folders
 let buildIndex = function (opt) {
 
