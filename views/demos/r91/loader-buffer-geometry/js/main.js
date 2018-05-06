@@ -30,8 +30,24 @@
 
         // create a mesh with the geometry
         // and a material, and add it to the scene
-        var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({}));
+        var mesh = new THREE.Mesh(
+
+                geometry,
+                new THREE.MeshStandardMaterial({
+
+                    color: 0x00ff0000,
+                    emissive: 0x2a2a2a
+
+                }));
         scene.add(mesh);
+		
+		var light = new THREE.PointLight( 0xffffff, 1, 100 );
+		light.position.set(2,2,2);
+		scene.add(light);
+		
+		var light2 = new THREE.PointLight( 0xffffff, 1, 100 );
+		light2.position.set(-2,-2,-2);
+		scene.add(light2);
 
         var loop = function () {
 
