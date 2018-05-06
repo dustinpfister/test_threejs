@@ -23,7 +23,8 @@
     loader.load(
         // resource URL
         //'loader-buffer-geometry/js/three_2.json',
-        '/json/static/cube_thing.json',
+        //'/json/static/cube_thing.json',
+		'/json/static/wheel.json',
 
         // onLoad callback
         function (geometry) {
@@ -40,14 +41,14 @@
 
                 }));
         scene.add(mesh);
-		
-		var light = new THREE.PointLight( 0xffffff, 1, 100 );
-		light.position.set(2,2,2);
-		scene.add(light);
-		
-		var light2 = new THREE.PointLight( 0xffffff, 1, 100 );
-		light2.position.set(-2,-2,-2);
-		scene.add(light2);
+
+        var light = new THREE.PointLight(0xffffff, 1, 100);
+        light.position.set(2, 2, 2);
+        scene.add(light);
+
+        var light2 = new THREE.PointLight(0xffffff, 1, 100);
+        light2.position.set(-2, -2, -2);
+        scene.add(light2);
 
         var loop = function () {
 
