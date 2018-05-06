@@ -20,24 +20,24 @@
     // load a resource
     loader.load(
         // resource URL
-        'loader-buffer-geometry/js/three_2.json',
+        //'loader-buffer-geometry/js/three_2.json',
+        '/json/static/cube_thing.json',
 
         // onLoad callback
         function (geometry) {
 
-            // create a mesh with the geometry
-            // and a material, and add it to the scene
-            var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({}));
-            scene.add(mesh);
+        // create a mesh with the geometry
+        // and a material, and add it to the scene
+        var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({}));
+        scene.add(mesh);
 
-            // render the scene
-            renderer.render(scene, camera);
+        // render the scene
+        renderer.render(scene, camera);
 
-        }
+    });
 
-    );
-
-}());
+}
+    ());
 
 /*
 var frame = 0,
