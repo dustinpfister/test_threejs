@@ -21,27 +21,17 @@
     geometry.vertices.push(new THREE.Vector3(1, 1, 0));
 
     //create a new face using vertices 0, 1, 2
-    var normal = new THREE.Vector3(0, 0, -1); //optional
-    var color = new THREE.Color(0xffaa00); //optional
-    var materialIndex = 0; //optional
-    var face = new THREE.Face3(0, 1, 2, normal, color, materialIndex);
-	
-	/*
-	face.vertexNormals = new Array(3);
-	
-	face.vertexNormals.map(function(){
-		
-		//return new THREE.Vector3(1,1,1);
-		
-	});
-	*/
+    var normal = new THREE.Vector3(0, 0, 1), //optional
+    color = new THREE.Color(0xffaa00), //optional
+    materialIndex = 0, //optional
+
+    face = new THREE.Face3(0, 1, 2, normal, color, materialIndex);
 
     //add the face to the geometry's faces array
     geometry.faces.push(face);
 
-    //the face normals and vertex normals can be calculated automatically if not supplied above
-    //geometry.computeFaceNormals();
-    //geometry.computeFlatVertexNormals();
+    geometry.computeVertexNormals();
+    geometry.computeFaceNormals();
 
     var mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);

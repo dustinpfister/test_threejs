@@ -6,7 +6,7 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(3, 2, 1);
+    camera.position.set(0, 0, 2);
     camera.lookAt(0, 0, 0);
 
     // Orbit Controls
@@ -22,33 +22,24 @@
         new THREE.Vector3(0, 0, 0),
         new THREE.Vector3(1, 0, 0),
         new THREE.Vector3(1, 1, 0),
-        new THREE.Vector3(0, 1, 0),
 
-        new THREE.Vector3(0, 0, -1),
-        new THREE.Vector3(1, 0, -1),
-        new THREE.Vector3(1, 1, -1),
-        new THREE.Vector3(0, 1, -1));
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(-1, 0, 0),
+        new THREE.Vector3(-1, -1, 0));
 
     // create faces by way of an array of
     // face3 instances. (you just play connect
     // the dots with index values from the
     // vertices array)
-	var normal = new THREE.Vector3(0,0,0);
+    var normal = new THREE.Vector3(0, 0, 0);
     geometry.faces.push(
 
-        new THREE.Face3(0, 1, 2,new THREE.Vector3(0,0,1)),
-        new THREE.Face3(3, 0, 2,new THREE.Vector3(0,0,1)),
-        new THREE.Face3(4, 5, 6,new THREE.Vector3(0,0,-1)),
-        new THREE.Face3(7, 4, 6,new THREE.Vector3(0,0,-1)),
-
-        new THREE.Face3(0, 4, 1,new THREE.Vector3(0,-1,0)),
-        new THREE.Face3(1, 4, 5,new THREE.Vector3(0,-1,0)),
-        new THREE.Face3(3, 7, 2,new THREE.Vector3(0,1,0)),
-        new THREE.Face3(2, 7, 6,new THREE.Vector3(0,1,0)));
+        new THREE.Face3(0, 1, 2),
+        new THREE.Face3(5, 4, 3));
 
     // compute Normals
     geometry.computeVertexNormals();
-	//geometry.computeFaceNormals();
+    geometry.computeFaceNormals();
 
 
     // normalize the geometry
@@ -68,9 +59,8 @@
 
     scene.add(mesh);
 
-
     scene.add(new THREE.FaceNormalsHelper(mesh, 2, 0x00ff00, 1));
-	scene.add(new THREE.VertexNormalsHelper(mesh, 2, 0xff0000, 1));
+    scene.add(new THREE.VertexNormalsHelper(mesh, 2, 0xff0000, 1));
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
