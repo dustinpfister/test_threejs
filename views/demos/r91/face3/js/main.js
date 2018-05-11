@@ -12,30 +12,40 @@
     // Orbit Controls
     var controls = new THREE.OrbitControls(camera);
 
-    var material = new THREE.MeshNormalMaterial();
-
-    //create a triangular geometry
+    // GEOMETRY
     var geometry = new THREE.Geometry();
-    geometry.vertices.push(new THREE.Vector3(-1, -1, 0));
-    geometry.vertices.push(new THREE.Vector3(1, -1, 0));
-    geometry.vertices.push(new THREE.Vector3(1, 1, 0));
+ 
+    // vertices made with Vector3
+    geometry.vertices = [
+        new THREE.Vector3(-1, -1, 0),
+        new THREE.Vector3(1, -1, 0),
+        new THREE.Vector3(1, 1, 0)
+    ];
 
-    //create a new face using vertices 0, 1, 2
-    var normal = new THREE.Vector3(0, 0, 1), //optional
-    color = new THREE.Color(0xffaa00), //optional
-    materialIndex = 0, //optional
+    // face 3 arguments assigned to variable with comments
+    var a = 0, // vert index a
+    b = 1, // vert index b
+    c = 2, // vert index c
+    normal = new THREE.Vector3(0, 0, 1), // this sets the face normal
+    color = new THREE.Color(0xffaa00), // sets a face color
+    materialIndex = 0, // useful when working with an array of materials
 
-    face = new THREE.Face3(0, 1, 2, normal, color, materialIndex);
+    // FACE3 example
+    face = new THREE.Face3(a, b, c, normal, color, materialIndex);
 
     //add the face to the geometry's faces array
     geometry.faces.push(face);
 
+    // compute face and vertex normals
     geometry.computeVertexNormals();
     geometry.computeFaceNormals();
 
-    var mesh = new THREE.Mesh(geometry, material);
+    // create a mesh using the geometry
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
     scene.add(mesh);
 
+    // adding face and vertex normals helper so I can
+    // see what is going on with the normals
     scene.add(new THREE.FaceNormalsHelper(mesh, 2, 0x00ff00, 1));
     scene.add(new THREE.VertexNormalsHelper(mesh, 2, 0xff0000, 1));
 
@@ -53,6 +63,8 @@
     };
 
     loop();
+	
+	console.log(THREE.FrontSide);
 
 }
     ());

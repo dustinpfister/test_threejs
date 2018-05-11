@@ -27,11 +27,7 @@
         new THREE.Vector3(-1, 0, 0),
         new THREE.Vector3(-1, -1, 0));
 
-    // create faces by way of an array of
-    // face3 instances. (you just play connect
-    // the dots with index values from the
-    // vertices array)
-    var normal = new THREE.Vector3(0, 0, 0);
+    // FACE3
     geometry.faces.push(
 
         new THREE.Face3(0, 1, 2),
