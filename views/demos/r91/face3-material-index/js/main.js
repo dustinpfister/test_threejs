@@ -6,7 +6,7 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(0, 0, 2);
+    camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
 
     // Orbit Controls
@@ -14,12 +14,12 @@
 
     // GEOMETRY
     var geometry = new THREE.BoxGeometry(1, 1, 1);
-	
-	geometry.faces.forEach(function(face3,i){
-		
-		face3.materialIndex = i % 2;
-		
-	});
+
+    geometry.faces.forEach(function (face3, i) {
+
+        face3.materialIndex = Math.floor(i % 6 / 2)
+
+    });
 
     var mesh = new THREE.Mesh(
 
@@ -37,6 +37,12 @@
                 new THREE.MeshBasicMaterial({
 
                     color: 0x00ff00
+
+                }),
+
+                new THREE.MeshBasicMaterial({
+
+                    color: 0x0000ff
 
                 })
 
