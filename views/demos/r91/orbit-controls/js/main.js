@@ -1,10 +1,10 @@
 
 (function () {
 
-    // SCENE
+    // Scene
     var scene = new THREE.Scene();
 
-    // CAMERA
+    // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
     camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
@@ -20,20 +20,21 @@
                 wireframe: true
             })));
 
-    // RENDER
+    // Render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // loop
-    var loop = function() {
+    function animate() {
 
-        requestAnimationFrame(loop);
+        requestAnimationFrame(animate);
+        controls.update();
         renderer.render(scene, camera);
 
     };
 
-    loop();
+    animate();
 
 }
     ());
