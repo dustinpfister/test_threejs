@@ -33,7 +33,7 @@
 
         var g,
         i = 0,
-        count = 10;
+        count = 15 * 15 * 2;
         while (i < count) {
 
             g = Math.floor(255 / count * i);
@@ -55,11 +55,11 @@
         ());
 
     // Sphere
-    var geometry = new THREE.SphereGeometry(1, 20, 20);
+    var geometry = new THREE.SphereGeometry(1, 15, 15);
 
     geometry.faces.forEach(function (face,i) {
 
-        face.materialIndex = Math.floor(i % materialArray.length);
+        face.materialIndex = i;//Math.floor(i % materialArray.length);
 
     });
 
