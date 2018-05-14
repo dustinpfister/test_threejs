@@ -48,8 +48,6 @@
 
             ]);
 
-    console.log(mesh)
-
     scene.add(mesh);
 
     scene.add(new THREE.FaceNormalsHelper(mesh, 2, 0x00ff00, 1));
