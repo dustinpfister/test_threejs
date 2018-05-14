@@ -12,26 +12,56 @@
     // Orbit Controls
     var controls = new THREE.OrbitControls(camera);
 
+    // an Array of materials
+    /*
+    var materialArray = [
+    new THREE.MeshBasicMaterial({
+    color: 0xff0000
+    }),
+    new THREE.MeshBasicMaterial({
+    color: 0x00ff00
+    }),
+    new THREE.MeshBasicMaterial({
+    color: 0x0000ff
+    })
+    ];
+     */
+
+    materialArray = (function () {
+
+        var materials = [];
+
+        var g,
+        i = 0,
+        count = 10;
+        while (i < count) {
+
+            g = Math.floor(255 / count * i);
+
+            materials.push(
+
+                new THREE.MeshBasicMaterial({
+
+                    color: new THREE.Color('rgb(0,' + g + ',0)')
+
+                }));
+
+            i += 1;
+        }
+
+        return materials;
+
+    }
+        ());
+
     // Sphere
     var geometry = new THREE.SphereGeometry(1, 20, 20);
 
-    geometry.faces.forEach(function (face) {
+    geometry.faces.forEach(function (face,i) {
 
-        face.materialIndex = Math.floor(Math.random() * 3);
+        face.materialIndex = Math.floor(i % materialArray.length);
 
     });
-
-    var materialArray = [
-        new THREE.MeshBasicMaterial({
-            color: 0xff0000
-        }),
-        new THREE.MeshBasicMaterial({
-            color: 0x00ff00
-        }),
-        new THREE.MeshBasicMaterial({
-            color: 0x0000ff
-        })
-    ];
 
     var sphere = new THREE.Mesh(
 
