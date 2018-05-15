@@ -13,27 +13,27 @@
     var controls = new THREE.OrbitControls(camera);
 
     // an Array of materials
-    /*
-    var materialArray = [
-    new THREE.MeshBasicMaterial({
-    color: 0xff0000
-    }),
-    new THREE.MeshBasicMaterial({
-    color: 0x00ff00
-    }),
-    new THREE.MeshBasicMaterial({
-    color: 0x0000ff
-    })
-    ];
-     */
 
-    materialArray = (function () {
+    var materialArray = [
+        new THREE.MeshBasicMaterial({
+            color: 0xff0000
+        }),
+        new THREE.MeshBasicMaterial({
+            color: 0x00ff00
+        }),
+        new THREE.MeshBasicMaterial({
+            color: 0x0000ff
+        })
+    ];
+
+/*
+    var materialArray = (function () {
 
         var materials = [];
 
         var g,
         i = 0,
-        count = 15 * 15 * 2;
+        count = 10; //15 * 15 * 2;
         while (i < count) {
 
             g = Math.floor(255 / count * i);
@@ -53,13 +53,15 @@
 
     }
         ());
+*/
 
     // Sphere
     var geometry = new THREE.SphereGeometry(1, 15, 15);
 
-    geometry.faces.forEach(function (face,i) {
+    geometry.faces.forEach(function (face, i) {
 
-        face.materialIndex = i;//Math.floor(i % materialArray.length);
+        //face.materialIndex = i;
+        face.materialIndex = Math.floor(i % materialArray.length);
 
     });
 
