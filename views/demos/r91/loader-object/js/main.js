@@ -18,7 +18,21 @@
 
     new THREE.ObjectLoader().load('/json/ani/scene-animation.json', function (scene) {
 
-        renderer.render(scene,camera);
+        var animationClip = scene.animations[0],
+        mixer = new THREE.AnimationMixer(scene);
+
+        mixer.clipAction(animationClip).play();
+
+        var loop = function () {
+
+            requestAnimationFrame(loop);
+
+            mixer.update(0.01);
+            renderer.render(scene, camera);
+
+        }
+
+        loop();
 
     });
 
