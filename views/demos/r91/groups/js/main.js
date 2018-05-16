@@ -5,46 +5,38 @@
     var scene = new THREE.Scene();
 
     // Camera
-    var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 20);
-    camera.position.set(3, 3, 3);
+    var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 50);
+    camera.position.set(10, 10, 10);
 
     // Orbit Controls
     var controls = new THREE.OrbitControls(camera);
     camera.lookAt(0, 0, 0);
 
-    // creating an instance of Object3D
     var group = new THREE.Group();
 
     var i = 0,
-    iCount = 10,
+    count = 5;
+    while (i < count) {
 
-    // random x,y,z parameter
-    rndParam = function () {
+        var bx = new THREE.Mesh(
+                new THREE.BoxGeometry(1, 1, 1),
+                new THREE.MeshBasicMaterial({
+                    color: 0x00ff00,
+                    wireframe: true
+                })),
 
-        return -1 + 2 * Math.random();
+        r = Math.PI * 2 / count * i;
 
-    },
+        bx.position.set(
 
-    // random Euler angle
-    rndAng = function () {
+            Math.cos(r) * 4,
+            0,
+            Math.sin(r) * 4);
 
-        return Math.PI * 2 * Math.random();
-
-    };
-    while (i < iCount) {
-
-        var boxGeometry = new THREE.BoxGeometry(1, 1, 1),
-
-        box = new THREE.Mesh(boxGeometry, new THREE.MeshDepthMaterial({}));
-
-        box.position.set(rndParam(), rndParam(), rndParam());
-
-        box.rotation.set(rndAng(), rndAng(), rndAng());
-
-        group.add(box);
+        bx.lookAt(0, 0, 0);
+        group.add(bx);
 
         i += 1;
-
     }
 
     scene.add(group);
@@ -56,7 +48,7 @@
 
     // loop
     var frame = 0,
-    maxFrame = 100;
+    maxFrame = 1000;
     var loop = function () {
 
         var per = frame / maxFrame,
@@ -65,7 +57,10 @@
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
 
-        group.rotation.set(0, Math.PI * 2 * per, 0)
+        group.rotation.set(
+            Math.PI * 2 * per,
+            Math.PI * 16 * per,
+            0);
 
         frame += 1;
         frame = frame % maxFrame;
