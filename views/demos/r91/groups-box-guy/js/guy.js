@@ -21,33 +21,33 @@ var guy = (function () {
 
         this.arm_right = new THREE.Mesh(
                 new THREE.BoxGeometry(.5, 1.5, .5),
-                //new THREE.MeshBasicMaterial({
-
-                //    color: 0x00ff00,
-                //    wireframe: true
-
-                //})
-
                 new THREE.MeshDepthMaterial());
         this.arm_right.geometry.translate(0,  - .5, 0);
         this.arm_right.position.x = 1;
         this.arm_right.position.y = .75;
-
-        this.arm_right.rotation.set(3, 0, 0);
         this.group.add(this.arm_right);
 
         this.arm_left = new THREE.Mesh(
                 new THREE.BoxGeometry(.5, 1.5, .5),
                 new THREE.MeshDepthMaterial());
+        this.arm_left.geometry.translate(0,  - .5, 0);
         this.arm_left.position.x = -1;
-        this.arm_left.position.y = .25;
+        this.arm_left.position.y = .75;
         this.group.add(this.arm_left);
 
     };
 
-    Guy.prototype.moveArm = function (x, z) {
+    Guy.prototype.moveRightArm = function (x, z) {
 
         var arm = this.arm_right;
+
+        arm.rotation.set(Math.PI * 2 * x, 0, Math.PI / 2 * z);
+
+    };
+
+    Guy.prototype.moveLeftArm = function (x, z) {
+
+        var arm = this.arm_left;
 
         arm.rotation.set(Math.PI * 2 * x, 0, Math.PI / 2 * z);
 

@@ -6,12 +6,11 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 20);
-    camera.position.set(3, 3, 3);
+    camera.position.set(4, 4, 4);
 
     // Orbit Controls
     var controls = new THREE.OrbitControls(camera);
     camera.lookAt(0, 0, 0);
-
 
     scene.add(guy.group);
 
@@ -30,9 +29,10 @@
 
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
-		
-			guy.moveArm(per,bias * 2);
-			guy.moveHead(per);
+
+        guy.moveRightArm(per, bias * 2);
+        guy.moveLeftArm(per, 0);
+        guy.moveHead(per);
 
         frame += 1;
         frame = frame % maxFrame;
