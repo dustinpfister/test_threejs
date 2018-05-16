@@ -12,66 +12,106 @@
     // Orbit Controls
     var controls = new THREE.OrbitControls(camera);
 
-    // an Array of materials
+    // a box geometry
+    var geometry = new THREE.BoxGeometry(1, 1, 1),
 
-    var materialArray = [
+    // the materials array
+    materials = [
+        // material 0 (red basic)
         new THREE.MeshBasicMaterial({
-            color: 0xff0000
+            color: 0xff0000,
+            side: THREE.DoubleSide
         }),
+        // material 1 (green basic)
         new THREE.MeshBasicMaterial({
-            color: 0x00ff00
+            color: 0x00ff00,
+            side: THREE.DoubleSide
         }),
+
+        // material 2 (blue basic)
         new THREE.MeshBasicMaterial({
-            color: 0x0000ff
+            color: 0x0000ff,
+            side: THREE.DoubleSide
         })
     ];
 
-/*
+    // for all faces
+    geometry.faces.forEach(function (face,i) {
+
+        // use each of the three materials 2 times
+        face.materialIndex = Math.floor(i/2) % 3
+
+    });
+
+    // add to scene with the Mesh
+    scene.add(new THREE.Mesh(
+
+            geometry,
+            materials));
+
+    // an Array of materials
+    /*
+    var materialArray = [
+    new THREE.MeshBasicMaterial({
+    color: 0xff0000
+    }),
+    new THREE.MeshBasicMaterial({
+    color: 0x00ff00
+    }),
+    new THREE.MeshBasicMaterial({
+    color: 0x0000ff
+    })
+    ];
+     */
+
+    /*
     var materialArray = (function () {
 
-        var materials = [];
+    var materials = [];
 
-        var g,
-        i = 0,
-        count = 10; //15 * 15 * 2;
-        while (i < count) {
+    var g,
+    i = 0,
+    count = 10; //15 * 15 * 2;
+    while (i < count) {
 
-            g = Math.floor(255 / count * i);
+    g = Math.floor(255 / count * i);
 
-            materials.push(
+    materials.push(
 
-                new THREE.MeshBasicMaterial({
+    new THREE.MeshBasicMaterial({
 
-                    color: new THREE.Color('rgb(0,' + g + ',0)')
+    color: new THREE.Color('rgb(0,' + g + ',0)')
 
-                }));
+    }));
 
-            i += 1;
-        }
+    i += 1;
+    }
 
-        return materials;
+    return materials;
 
     }
-        ());
-*/
+    ());
+     */
 
     // Sphere
+    /*
     var geometry = new THREE.SphereGeometry(1, 15, 15);
 
     geometry.faces.forEach(function (face, i) {
 
-        //face.materialIndex = i;
-        face.materialIndex = Math.floor(i % materialArray.length);
+    //face.materialIndex = i;
+    face.materialIndex = Math.floor(i % materialArray.length);
 
     });
 
     var sphere = new THREE.Mesh(
 
-            geometry,
+    geometry,
 
-            materialArray);
+    materialArray);
 
     scene.add(sphere);
+     */
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
