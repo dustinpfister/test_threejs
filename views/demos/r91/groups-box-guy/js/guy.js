@@ -45,6 +45,7 @@ var guy = (function () {
 
     ];
 
+    // the guy constructor
     var Guy = function () {
 
         this.group = new THREE.Group();
@@ -112,6 +113,8 @@ var guy = (function () {
 
     };
 
+    // move the arm of give id ('arm_right' or 'arm_left');
+    // x and z should be a value between 0, and 1
     Guy.prototype.moveArm = function (armId, x, z) {
 
         var arm = this[armId];
@@ -119,12 +122,16 @@ var guy = (function () {
 
     };
 
+    // rotate head around
+    // y is 0 to 1
     Guy.prototype.moveHead = function (y) {
 
         this.head.rotation.set(0, Math.PI * 2 * y, 0);
 
     };
 
+    // move legs in respect to a walk cycle
+    // where per is between 0, and 1.
     Guy.prototype.moveLegs = function (per) {
 
         var bias = Math.abs(.5 - per) / .5;
@@ -134,6 +141,7 @@ var guy = (function () {
 
     };
 
+    // just return an instance of guy for now
     return new Guy();
 
 }
