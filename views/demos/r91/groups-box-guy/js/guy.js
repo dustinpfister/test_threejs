@@ -129,8 +129,8 @@ var guy = (function () {
 
         var bias = Math.abs(.5 - per) / .5;
 
-        this.leg_left.rotation.set(.5 - bias, 0, 0);
-        this.leg_right.rotation.set( - .5 + bias, 0, 0);
+        this.leg_left.rotation.set(.75 - bias * 1.5, 0, 0);
+        this.leg_right.rotation.set( - .75 + bias * 1.5, 0, 0);
 
     };
 
