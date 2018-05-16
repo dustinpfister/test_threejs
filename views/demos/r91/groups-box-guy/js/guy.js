@@ -125,7 +125,16 @@ var guy = (function () {
     Guy.prototype.moveArm = function (armId, x, z) {
 
         var arm = this[armId];
-        arm.rotation.set(Math.PI * 2 * x, 0, Math.PI / 2 * z);
+
+        z = Math.PI / 2 * z;
+
+        if (armId === 'arm_left') {
+
+            z -= z * 2;
+
+        }
+
+        arm.rotation.set(Math.PI * 2 * x, 0, z);
 
     };
 
@@ -141,8 +150,8 @@ var guy = (function () {
     // where per is between 0, and 1.
     Guy.prototype.moveLegs = function (per) {
 
-	    per %= 1;
-	
+        per %= 1;
+
         var bias = Math.abs(.5 - per) / .5;
 
         this.leg_left.rotation.set(.75 - bias * 1.5, 0, 0);

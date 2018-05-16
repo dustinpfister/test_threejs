@@ -71,8 +71,8 @@
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
 
-        guy.moveArm('arm_right', per, bias * 2);
-        guy.moveArm('arm_left', per, 0);
+        guy.moveArm('arm_right', per * 8, .5 + .5 * bias);
+        guy.moveArm('arm_left', 0, bias);
         guy.moveHead(-.1 + .2 * bias);
         guy.moveLegs(per * 8);
 
