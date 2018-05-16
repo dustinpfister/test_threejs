@@ -43,12 +43,14 @@
 
     });
 
-    floor.rotation.set(Math.PI / 2, 0, 0)
+    floor.rotation.set(Math.PI / 2, 0, 0);
+    floor.receiveShadow = true;
     scene.add(floor);
 
     // PointLIGHT
-    var light = new THREE.PointLight(0xffffff);
-    light.position.set(0, 20, -20);
+    var light = new THREE.SpotLight(0xffffff);
+    light.position.set(0, 10, 10);
+    light.castShadow = true;
     scene.add(light);
 
     // Render
@@ -71,8 +73,8 @@
 
         guy.moveArm('arm_right', per, bias * 2);
         guy.moveArm('arm_left', per, 0);
-        guy.moveHead(per);
-        guy.moveLegs(per);
+        guy.moveHead(-.1 + .2 * bias);
+        guy.moveLegs(per * 8);
 
         guy.group.position.y = 3;
         guy.group.position.x = Math.cos(r) * 5;

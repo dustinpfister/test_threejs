@@ -49,6 +49,7 @@ var guy = (function () {
     var Guy = function () {
 
         this.group = new THREE.Group();
+        //this.group.castShadow = true;
 
         // head
         this.head = new THREE.Mesh(
@@ -64,8 +65,9 @@ var guy = (function () {
 
         });
         // one side of face set to face material
-        this.head.geometry.faces[0].materialIndex = 1;
-        this.head.geometry.faces[1].materialIndex = 1;
+        this.head.geometry.faces[8].materialIndex = 1;
+        this.head.geometry.faces[9].materialIndex = 1;
+        this.head.castShadow = true;
 
         this.group.add(this.head);
 
@@ -73,6 +75,7 @@ var guy = (function () {
         this.body = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 2, 1),
                 material_body);
+        this.body.castShadow = true;
         this.group.add(this.body);
 
         // right arm
@@ -82,6 +85,7 @@ var guy = (function () {
         this.arm_right.geometry.translate(0,  - .5, 0);
         this.arm_right.position.x = 1;
         this.arm_right.position.y = .75;
+        this.arm_right.castShadow = true;
         this.group.add(this.arm_right);
 
         // left arm
@@ -91,6 +95,7 @@ var guy = (function () {
         this.arm_left.geometry.translate(0,  - .5, 0);
         this.arm_left.position.x = -1;
         this.arm_left.position.y = .75;
+        this.arm_left.castShadow = true;
         this.group.add(this.arm_left);
 
         // right leg
@@ -100,6 +105,7 @@ var guy = (function () {
         this.leg_right.geometry.translate(0, -1, 0);
         this.leg_right.position.x = .25;
         this.leg_right.position.y = -1;
+        this.leg_right.castShadow = true;
         this.group.add(this.leg_right);
 
         // left leg
@@ -109,6 +115,7 @@ var guy = (function () {
         this.leg_left.geometry.translate(0, -1, 0);
         this.leg_left.position.x =  - .25;
         this.leg_left.position.y = -1;
+        this.leg_left.castShadow = true;
         this.group.add(this.leg_left);
 
     };
@@ -134,6 +141,8 @@ var guy = (function () {
     // where per is between 0, and 1.
     Guy.prototype.moveLegs = function (per) {
 
+	    per %= 1;
+	
         var bias = Math.abs(.5 - per) / .5;
 
         this.leg_left.rotation.set(.75 - bias * 1.5, 0, 0);
