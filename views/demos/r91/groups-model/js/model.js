@@ -10,6 +10,7 @@ var Model = (function () {
         this.radius = opt.radius === undefined ? 4 : opt.radius;
         this.count = opt.count === undefined ? 5 : opt.count;
         this.bxSize = opt.bxSize === undefined ? 1 : opt.bxSize;
+        this.color = opt.color === undefined ? 0x00ff00 : opt.color;
 
         var i = 0,
         bx,
@@ -18,10 +19,32 @@ var Model = (function () {
 
             bx = new THREE.Mesh(
                     new THREE.BoxGeometry(this.bxSize, this.bxSize, this.bxSize),
-                    new THREE.MeshBasicMaterial({
-                        color: 0x00ff00,
-                        wireframe: true
+                    new THREE.MeshStandardMaterial({
+                        color: this.color,
+                        emissive: 0x0f0f0f
+
                     }));
+
+            this.group.add(bx);
+
+            i += 1;
+        }
+
+        this.update();
+
+        console.log(this.group);
+
+    };
+
+    // update the group
+    Mod.prototype.update = function () {
+
+        var i = 0,
+        bx,
+        radian;
+        while (i < this.count) {
+
+            bx = this.group.children[i];
 
             radian = Math.PI * 2 / this.count * i;
 
@@ -32,18 +55,17 @@ var Model = (function () {
                 Math.sin(radian) * this.radius);
 
             bx.lookAt(0, 0, 0);
-            this.group.add(bx);
 
             i += 1;
-        }
 
-        console.log(this.group);
+        };
 
     };
 
-    Mod.prototype.setRadius = function (r) {
+    Mod.prototype.setRadius = function (radius) {
 
-        this.r = r;
+        this.radius = radius;
+        this.update();
 
     };
 
