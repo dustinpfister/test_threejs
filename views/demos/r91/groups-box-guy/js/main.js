@@ -33,6 +33,7 @@
         guy.moveArm('arm_right', per, bias * 2);
         guy.moveArm('arm_left', per, 0);
         guy.moveHead(per);
+        guy.moveLegs(per);
 
         frame += 1;
         frame = frame % maxFrame;
