@@ -14,6 +14,11 @@
 
     scene.add(guy.group);
 
+    // SPOTLIGHT
+    var spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.position.set(5, 5, 5);
+    scene.add(spotLight);
+
     // Render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
