@@ -21,15 +21,27 @@
 
             floorGeometry,
 
-            new THREE.MeshStandardMaterial({
+            [
+                new THREE.MeshStandardMaterial({
 
-                color: 0x00afaf,
-                emissive: 0x001a1a,
-                transparent: true,
-                opacity: .5,
-                side: THREE.DoubleSide
+                    color: 0x1a1a1a,
+                    side: THREE.DoubleSide
 
-            }));
+                }),
+
+                new THREE.MeshStandardMaterial({
+
+                    color: 0xafafaf,
+                    side: THREE.DoubleSide
+
+                })
+            ]);
+
+    floor.geometry.faces.forEach(function (face, i) {
+
+        face.materialIndex = i % 2;
+
+    });
 
     floor.rotation.set(Math.PI / 2, 0, 0)
     scene.add(floor);
@@ -37,11 +49,12 @@
     // PointLIGHT
     var light = new THREE.PointLight(0xffffff);
     light.position.set(0, 20, -20);
-    scene.add(spotLight);
+    scene.add(light);
 
     // Render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
+    renderer.shadowMap.enabled = true;
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // loop
@@ -61,10 +74,10 @@
         guy.moveHead(per);
         guy.moveLegs(per);
 
-        guy.group.position.y = .5 - bias;
+        guy.group.position.y = 3;
         guy.group.position.x = Math.cos(r) * 5;
         guy.group.position.z = Math.sin(r) * 5;
-        guy.group.lookAt(0, 0, 0);
+        guy.group.lookAt(Math.cos(r + 1) * 5, 3, Math.sin(r + 1) * 5);
 
         frame += 1;
         frame = frame % maxFrame;
