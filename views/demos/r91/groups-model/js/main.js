@@ -5,11 +5,11 @@
     var scene = new THREE.Scene();
 
     // Camera
-    var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 50);
+    var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 150);
     camera.position.set(20, 20, 20);
 
     // Orbit Controls
-    var controls = new THREE.OrbitControls(camera);
+    //var controls = new THREE.OrbitControls(camera);
     camera.lookAt(0, 0, 0);
 
     var mod1 = new Model({
@@ -59,7 +59,7 @@
 
     // Render
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // loop
@@ -81,6 +81,9 @@
             Math.PI * 8 * per);
 
         light.position.set(Math.cos(r) * 15, 0, Math.sin(r) * 15);
+		
+		camera.position.set(Math.cos(r + Math.PI * bias) * 20, -50 + 100 * bias, Math.sin(r) * 20);
+		camera.lookAt(0,0,0);
 
         frame += 1;
         frame = frame % maxFrame;
