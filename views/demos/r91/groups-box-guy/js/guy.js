@@ -1,5 +1,6 @@
 var guy = (function () {
 
+    // material used for the legs
     var material_leg = new THREE.MeshLambertMaterial({
 
             color: 0x0000ff,
@@ -7,12 +8,42 @@ var guy = (function () {
 
         }),
 
+    // material used for the arms
     material_arm = new THREE.MeshLambertMaterial({
 
             color: 0x00ff00,
             emissive: 0x001a00
 
         });
+
+    // material used for the body
+    material_body = new THREE.MeshLambertMaterial({
+
+            color: 0x00ff00,
+            emissive: 0x001a00
+
+        }),
+
+    // array of materials used for the head
+    materials_head = [
+
+        // 0 default material
+        new THREE.MeshLambertMaterial({
+
+            color: 0xffff00,
+            emissive: 0x1a1a00
+
+        }),
+
+        // 1 used for the face
+        new THREE.MeshLambertMaterial({
+
+            color: 0xffffff,
+            emissive: 0x1a1a1a
+
+        })
+
+    ];
 
     var Guy = function () {
 
@@ -21,14 +52,26 @@ var guy = (function () {
         // head
         this.head = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
-                new THREE.MeshDepthMaterial());
+                materials_head);
         this.head.position.y = 1.6;
+
+        // set material index
+        this.head.geometry.faces.forEach(function (face) {
+
+            // set all to zero by default
+            face.materialIndex = 0;
+
+        });
+        // one side of face set to face material
+        this.head.geometry.faces[0].materialIndex = 1;
+        this.head.geometry.faces[1].materialIndex = 1;
+
         this.group.add(this.head);
 
         // body
         this.body = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 2, 1),
-                new THREE.MeshDepthMaterial());
+                material_body);
         this.group.add(this.body);
 
         // right arm
