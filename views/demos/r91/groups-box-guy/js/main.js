@@ -30,8 +30,8 @@
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
 
-        guy.moveRightArm(per, bias * 2);
-        guy.moveLeftArm(per, 0);
+        guy.moveArm('arm_right', per, bias * 2);
+        guy.moveArm('arm_left', per, 0);
         guy.moveHead(per);
 
         frame += 1;

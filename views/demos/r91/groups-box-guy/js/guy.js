@@ -37,18 +37,9 @@ var guy = (function () {
 
     };
 
-    Guy.prototype.moveRightArm = function (x, z) {
+    Guy.prototype.moveArm = function (armId, x, z) {
 
-        var arm = this.arm_right;
-
-        arm.rotation.set(Math.PI * 2 * x, 0, Math.PI / 2 * z);
-
-    };
-
-    Guy.prototype.moveLeftArm = function (x, z) {
-
-        var arm = this.arm_left;
-
+        var arm = this[armId];
         arm.rotation.set(Math.PI * 2 * x, 0, Math.PI / 2 * z);
 
     };
