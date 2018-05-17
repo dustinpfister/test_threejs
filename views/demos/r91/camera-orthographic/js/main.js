@@ -46,7 +46,7 @@
                 })
             ]);
 
-    var boxCount = 3,
+    var boxCount = 5,
     box
     boxIndex = 0;
     while (boxIndex < boxCount) {
@@ -64,9 +64,9 @@
 
         box.position.set(
 
-            2 - .5,
+            -2 + Math.floor(5 * Math.random()),
             0,
-             - .5);
+            -2+ Math.floor(5 * Math.random()));
         scene.add(box);
 
         boxIndex += 1;
