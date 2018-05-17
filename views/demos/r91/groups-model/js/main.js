@@ -12,6 +12,7 @@
     //var controls = new THREE.OrbitControls(camera);
     camera.lookAt(0, 0, 0);
 
+    // three instances of the model
     var mod1 = new Model({
 
             count: 8,
@@ -74,23 +75,29 @@
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
 
+        // using the setRadius method of the model to change
+        // the radius.
         mod1.setRadius(1 + 6 * bias);
+
+        // changing the rotation of the group
         mod1.group.rotation.set(
             Math.PI * 2 * per,
             Math.PI * 4 * per,
             Math.PI * 8 * per);
 
+        // change position of light, and camera
         light.position.set(Math.cos(r) * 15, 0, Math.sin(r) * 15);
-		
-		camera.position.set(Math.cos(r + Math.PI * bias) * 20, -50 + 100 * bias, Math.sin(r) * 20);
-		camera.lookAt(0,0,0);
+        camera.position.set(
+            Math.cos(r + Math.PI * bias) * 20,
+            -50 + 100 * bias,
+            Math.sin(r) * 20);
+        camera.lookAt(0, 0, 0);
 
         frame += 1;
         frame = frame % maxFrame;
 
     };
 
-    renderer.render(scene, camera);
     loop();
 
 }
