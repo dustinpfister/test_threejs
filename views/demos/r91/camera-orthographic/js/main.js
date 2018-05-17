@@ -17,16 +17,19 @@
 
     // set to same position, and look at the origin
     camera.position.set(1, 2, 2);
-    camera.zoom = .75;
-    camera.updateProjectionMatrix();
     camera.lookAt(0, 0, 0);
 
-    scene.add(camera);
+    // set zoom
+    camera.zoom = .75;
+    camera.updateProjectionMatrix();
 
     // point light above the camera
     var light = new THREE.PointLight();
     light.position.set(0, 2, 0);
     camera.add(light);
+
+    // make the camera part of the scene
+    scene.add(camera);
 
     // Plane
     var plane = new THREE.Mesh(
@@ -45,7 +48,14 @@
                     side: THREE.DoubleSide
                 })
             ]);
+    plane.position.set(0,  - .5, 0);
+    plane.rotation.set(Math.PI / 2, 0, 0);
+    plane.geometry.faces.forEach(function (face, i) {
+        face.materialIndex = i % 2;
+    });
+    scene.add(plane);
 
+    // place some boxes on the plane
     var boxCount = 5,
     box
     boxIndex = 0;
@@ -66,18 +76,11 @@
 
             -2 + Math.floor(5 * Math.random()),
             0,
-            -2+ Math.floor(5 * Math.random()));
+            -2 + Math.floor(5 * Math.random()));
         scene.add(box);
 
         boxIndex += 1;
     }
-
-    plane.position.set(0,  - .5, 0);
-    plane.rotation.set(Math.PI / 2, 0, 0);
-    plane.geometry.faces.forEach(function (face, i) {
-        face.materialIndex = i % 2;
-    });
-    scene.add(plane);
 
     // Render
     var renderer = new THREE.WebGLRenderer();
