@@ -33,12 +33,12 @@
     // make the camera part of the scene
     scene.add(camera);
 
+    // create and add the cube stack
     var stack = new CubeStack({
 
             boxCount: 25
 
         });
-
     scene.add(stack.group);
 
     // Render

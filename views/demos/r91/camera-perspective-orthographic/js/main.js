@@ -1,10 +1,10 @@
 
 (function () {
 
-    // Scene
+    // SCENE
     var scene = new THREE.Scene();
 
-    // Camera
+    // CAMERAS
     var width = 3.2,
     height = 2.4,
     cameras = [
@@ -14,10 +14,10 @@
 
         // and camera 1 will be Orthographic
         new THREE.OrthographicCamera(
-            width /  - 2,
-            width / 2,
-            height / 2,
-            height / -2,
+            -width,
+            width,
+            height,
+            -height,
             .1,
             50)
 
@@ -27,8 +27,12 @@
     cameras.forEach(function (camera) {
 
         // set to same position, and look at the origin
-        camera.position.set(2, 2, 2);
+        camera.position.set(5, 5, 5);
         camera.lookAt(0, 0, 0);
+
+        // set zoom
+        camera.zoom = .75;
+        camera.updateProjectionMatrix();
         scene.add(camera);
 
         // point light above the camera
@@ -45,59 +49,31 @@
 
     });
 
-    // Just a cube
+    // STACK
+    // create an instance of the CubeStack Model
+    // and add it to the scene
+    var stack = new CubeStack();
+    scene.add(stack.group);
 
-    scene.add(
-        new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshStandardMaterial({
-                color: 0x00ffff,
-                emissive: 0x0a0a0a
-            })));
-
-    // Plane
-    var plane = new THREE.Mesh(
-            new THREE.PlaneGeometry(10, 10, 8, 8),
-            [
-
-                //
-                new THREE.MeshStandardMaterial({
-                    color: 0x00ff00,
-                    emissive: 0x0a0a0a,
-                    side: THREE.DoubleSide
-                }),
-
-                //
-                new THREE.MeshStandardMaterial({
-                    color: 0x0000ff,
-                    emissive: 0x0a0a0a,
-                    side: THREE.DoubleSide
-                })
-
-            ]);
-    plane.rotation.set(Math.PI / 2, 0, 0);
-    plane.geometry.faces.forEach(function (face, i) {
-
-        face.materialIndex = i % 2;
-
-    });
-    scene.add(plane);
-
-    // Render
+    // RENDER
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // loop
+    // lOOP
     var frame = 0,
-    maxFrame = 100;
+    maxFrame = 1000;
     var loop = function () {
 
         var per = frame / maxFrame,
+        r = Math.PI * 2 * per,
         // camera index
-        ci = Math.floor(per * 2);
+        ci = Math.floor(per * 8 % 2);
 
         requestAnimationFrame(loop);
+
+        stack.group.rotation.set(0, Math.PI * 2 * per, 0);
+
         renderer.render(scene, cameras[ci]);
 
         frame += 1;
