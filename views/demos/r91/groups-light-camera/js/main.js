@@ -7,10 +7,11 @@
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 50);
     camera.position.set(10, 10, 10);
+    camera.lookAt(0, 0, 0);
 
     // Orbit Controls
     var controls = new THREE.OrbitControls(camera);
-    camera.lookAt(0, 0, 0);
+
 
     // positioning a light above the camera
     var light = new THREE.PointLight();
@@ -28,8 +29,6 @@
 
             }));
     withCamera.position.set( - .25, .2,  - .75);
-    console.log();
-
     camera.add(withCamera);
 
     // adding the camera to the scene
