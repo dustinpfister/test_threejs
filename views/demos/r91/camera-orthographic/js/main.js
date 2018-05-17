@@ -10,16 +10,16 @@
     cameras = [
 
         // camera 0 will be the typical Perspective Camera
-        new THREE.PerspectiveCamera(45, width / height, .5, 50),
+        new THREE.PerspectiveCamera(45, width / height, .5, 100),
 
         // and camera 1 will be Orthographic
         new THREE.OrthographicCamera(
             width /  - 2,
             width / 2,
             height / 2,
-            height /  - 2,
-            .01,
-            10)
+            height / -2,
+            .1,
+            50)
 
     ];
 
@@ -46,6 +46,7 @@
     });
 
     // Just a cube
+
     scene.add(
         new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -53,6 +54,29 @@
                 color: 0x00ffff,
                 emissive: 0x0a0a0a
             })));
+
+    // Plane
+    var plane = new THREE.Mesh(
+            new THREE.PlaneGeometry(10, 10, 8, 8),
+            [
+
+                // 
+                new THREE.MeshStandardMaterial({
+                    color: 0x00ff00,
+                    emissive: 0x0a0a0a,
+                    side: THREE.DoubleSide
+                }),
+
+                // 
+                new THREE.MeshStandardMaterial({
+                    color: 0x0000ff,
+                    emissive: 0x0a0a0a,
+                    side: THREE.DoubleSide
+                })
+
+            ]);
+    plane.rotation.set(Math.PI / 2, 0, 0);
+    scene.add(plane);
 
     // Render
     var renderer = new THREE.WebGLRenderer();
