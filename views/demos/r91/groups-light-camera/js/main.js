@@ -23,7 +23,8 @@
             new THREE.BoxGeometry(.1, .1, .1),
             new THREE.MeshStandardMaterial({
 
-                color: 0xffffff
+                color: 0xffffff,
+                emissive: 0x1a1a1a
 
             }));
     withCamera.position.set( - .25, .2,  - .75);
@@ -50,7 +51,7 @@
 
     // loop
     var frame = 0,
-    maxFrame = 1000;
+    maxFrame = 500;
     var loop = function () {
 
         var per = frame / maxFrame,
@@ -58,6 +59,9 @@
 
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
+
+        withCamera.rotation.set(Math.PI * 4 * per,
+            Math.PI * 2 * per, 0);
 
         frame += 1;
         frame = frame % maxFrame;
