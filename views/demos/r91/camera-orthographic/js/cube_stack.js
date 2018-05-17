@@ -1,9 +1,10 @@
 
 var CubeStack = (function () {
 
-    var Stack = function () {
+    // the stack constructor
+    var Stack = function (opt) {
 
-        var boxCount = 15,
+        var boxCount,
         box,
         x,
         y,
@@ -12,6 +13,10 @@ var CubeStack = (function () {
         boxArray = [],
         boxIndex = 0;
 
+        opt = opt || {};
+        this.boxCount = opt.boxCount === undefined ? 15 : opt.boxCount;
+
+        // this is what can be added to the scene
         this.group = new THREE.Group();
 
         plane = new THREE.Mesh(
@@ -38,7 +43,7 @@ var CubeStack = (function () {
         this.group.add(plane);
 
         // place some boxes on the plane
-        while (boxIndex < boxCount) {
+        while (boxIndex < this.boxCount) {
 
             box = new THREE.Mesh(
 
