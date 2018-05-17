@@ -7,46 +7,32 @@
     // Camera
     var width = 3.2,
     height = 2.4,
-    cameras = [
-
-        // camera 0 will be the typical Perspective Camera
-        new THREE.PerspectiveCamera(45, width / height, .5, 100),
-
-        // and camera 1 will be Orthographic
-        new THREE.OrthographicCamera(
-            width /  - 2,
-            width / 2,
-            height / 2,
-            height / -2,
+    camera = new THREE.OrthographicCamera(
+            width * -1,
+            width,
+            height,
+            height * -1,
             .1,
-            50)
+            50);
 
-    ];
+    // set to same position, and look at the origin
+    camera.position.set(2, 2, 2);
+    camera.lookAt(0, 0, 0);
+    scene.add(camera);
 
-    // for each camera
-    cameras.forEach(function (camera) {
+    // point light above the camera
+    var light = new THREE.PointLight();
+    light.position.set(0, 2, 0);
+    camera.add(light);
 
-        // set to same position, and look at the origin
-        camera.position.set(2, 2, 2);
-        camera.lookAt(0, 0, 0);
-        scene.add(camera);
+    // add orbit controls if there
+    if (THREE.OrbitControls) {
 
-        // point light above the camera
-        var light = new THREE.PointLight();
-        light.position.set(0, 2, 0);
-        camera.add(light);
+        new THREE.OrbitControls(camera);
 
-        // add orbit controls if there
-        if (THREE.OrbitControls) {
-
-            new THREE.OrbitControls(camera);
-
-        }
-
-    });
+    }
 
     // Just a cube
-
     scene.add(
         new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -75,6 +61,8 @@
                 })
 
             ]);
+
+    plane.position.set(0,-.5,0);
     plane.rotation.set(Math.PI / 2, 0, 0);
     plane.geometry.faces.forEach(function (face, i) {
 
@@ -98,7 +86,7 @@
         ci = Math.floor(per * 2);
 
         requestAnimationFrame(loop);
-        renderer.render(scene, cameras[ci]);
+        renderer.render(scene, camera);
 
         frame += 1;
         frame = frame % maxFrame;
