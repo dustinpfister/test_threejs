@@ -13,11 +13,14 @@
             height,
             height * -1,
             .1,
-            50);
+            100);
 
     // set to same position, and look at the origin
-    camera.position.set(2, 2, 2);
+    camera.position.set(1, 2, 2);
+    camera.zoom = .75;
+    camera.updateProjectionMatrix();
     camera.lookAt(0, 0, 0);
+
     scene.add(camera);
 
     // point light above the camera
@@ -25,75 +28,63 @@
     light.position.set(0, 2, 0);
     camera.add(light);
 
-    // add orbit controls if there
-    if (THREE.OrbitControls) {
-
-        new THREE.OrbitControls(camera);
-
-    }
-
-    // Just a cube
-    scene.add(
-        new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshStandardMaterial({
-                color: 0x00ffff,
-                emissive: 0x0a0a0a
-            })));
-
     // Plane
     var plane = new THREE.Mesh(
-            new THREE.PlaneGeometry(10, 10, 8, 8),
+            // plane geometry
+            new THREE.PlaneGeometry(5, 5, 5, 5),
+            // materials
             [
-
-                //
                 new THREE.MeshStandardMaterial({
                     color: 0x00ff00,
                     emissive: 0x0a0a0a,
                     side: THREE.DoubleSide
                 }),
-
-                //
                 new THREE.MeshStandardMaterial({
                     color: 0x0000ff,
                     emissive: 0x0a0a0a,
                     side: THREE.DoubleSide
                 })
-
             ]);
 
-    plane.position.set(0,-.5,0);
+    var boxCount = 3,
+    box
+    boxIndex = 0;
+    while (boxIndex < boxCount) {
+
+        box = new THREE.Mesh(
+
+                new THREE.BoxGeometry(1, 1, 1),
+
+                new THREE.MeshStandardMaterial({
+
+                    color: 0x00ffff,
+                    emissive: 0x0a0a0a
+
+                }));
+
+        box.position.set(
+
+            2 - .5,
+            0,
+             - .5);
+        scene.add(box);
+
+        boxIndex += 1;
+    }
+
+    plane.position.set(0,  - .5, 0);
     plane.rotation.set(Math.PI / 2, 0, 0);
     plane.geometry.faces.forEach(function (face, i) {
-
         face.materialIndex = i % 2;
-
     });
     scene.add(plane);
 
     // Render
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // loop
-    var frame = 0,
-    maxFrame = 100;
-    var loop = function () {
-
-        var per = frame / maxFrame,
-        // camera index
-        ci = Math.floor(per * 2);
-
-        requestAnimationFrame(loop);
-        renderer.render(scene, camera);
-
-        frame += 1;
-        frame = frame % maxFrame;
-
-    };
-
-    loop();
+    renderer.render(scene, camera);
 
 }
     ());
