@@ -60,14 +60,14 @@
             new THREE.PlaneGeometry(10, 10, 8, 8),
             [
 
-                // 
+                //
                 new THREE.MeshStandardMaterial({
                     color: 0x00ff00,
                     emissive: 0x0a0a0a,
                     side: THREE.DoubleSide
                 }),
 
-                // 
+                //
                 new THREE.MeshStandardMaterial({
                     color: 0x0000ff,
                     emissive: 0x0a0a0a,
@@ -76,6 +76,11 @@
 
             ]);
     plane.rotation.set(Math.PI / 2, 0, 0);
+    plane.geometry.faces.forEach(function (face, i) {
+
+        face.materialIndex = i % 2;
+
+    });
     scene.add(plane);
 
     // Render
