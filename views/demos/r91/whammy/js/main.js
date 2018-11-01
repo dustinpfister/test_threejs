@@ -54,39 +54,6 @@
     camera.lookAt(0, 0, 0);
     renderer.setSize(320, 240);
 
-    // finally I call renderer.render to draw the current
-    // state of the scene, from the perspective of the camera
-    renderer.render(scene, camera);
-
-    //
-    var canvas = renderer.domElement,
-    stream = canvas.captureStream(),
-    rec = new MediaRecorder(stream);
-
-    var chunks = [];
-    rec.ondataavailable = function (e) {
-        chunks.push(e.data);
-    };
-    rec.onstop = function (a, b) {
-        console.log('stop');
-
-        exportVid(new Blob(chunks, {
-                type: 'video/webm'
-            }));
-    };
-
-    //rec.start(1000 / 24);
-    rec.start();
-    setTimeout(() => rec.stop(), 5000);
-	
-	console.log('stream');
-	console.log(stream);
-
-    //stream.getTracks()[0].requestFrame();
-
-    //stream.getTracks()[0].requestFrame();
-
-    rec.requestData();
 
     var i = 0,
     maxI = 100;
