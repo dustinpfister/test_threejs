@@ -1,6 +1,18 @@
 
 (function () {
 
+    function exportVid(blob) {
+        const vid = document.createElement('video');
+        vid.src = URL.createObjectURL(blob);
+        vid.controls = true;
+        document.body.appendChild(vid);
+        const a = document.createElement('a');
+        a.download = 'myvid.webm';
+        a.href = vid.src;
+        a.textContent = 'download the video';
+        document.body.appendChild(a);
+    }
+
     // SCENE
     var scene = new THREE.Scene();
 
@@ -52,17 +64,20 @@
     rec = new MediaRecorder(stream);
 
     var chunks = [];
-    rec.ondataavailable = function (data) {
-        chunks.push(data);
+    rec.ondataavailable = function (e) {
+        chunks.push(e.data);
     };
     rec.onstop = function (a, b) {
         console.log('stop');
-        console.log(new Blob(chunks, {type: 'video/webm'}));
+
+        exportVid(new Blob(chunks, {
+                type: 'video/webm'
+            }));
     };
 
     //rec.start(1000 / 24);
     rec.start();
-    setTimeout(() => rec.stop(), 1000);
+    setTimeout(() => rec.stop(), 5000);
 
     //stream.getTracks()[0].requestFrame();
 
