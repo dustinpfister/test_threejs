@@ -54,6 +54,9 @@
     camera.lookAt(0, 0, 0);
     renderer.setSize(320, 240);
 
+    // Whammy
+    var encoder = new Whammy.Video(15);
+    renderer.render(scene, camera);
 
     var i = 0,
     maxI = 100;
@@ -63,14 +66,22 @@
         var per = i / maxI,
         r = Math.PI * 2 * per;
 
-        requestAnimationFrame(animate);
         renderer.render(scene, camera);
+        //encoder.add(renderer.domElement);
+        encoder.add(renderer.domElement.toDataURL('image/webp'));
+
+        if (i < maxI) {
+            requestAnimationFrame(animate);
+        }else{
+			
+			console.log('done');
+			
+		}
 
         camera.position.set(Math.cos(r) * 200, Math.sin(r) * 200, 250);
         camera.lookAt(0, 0, 0);
 
         i += 1;
-        i %= maxI;
 
     };
 
