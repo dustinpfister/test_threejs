@@ -72,11 +72,17 @@
 
         if (i < maxI) {
             requestAnimationFrame(animate);
-        }else{
-			
-			console.log('done');
-			
-		}
+        } else {
+
+            console.log('done');
+
+            encoder.compile(false, function (output) {
+
+                console.log(output);
+
+            });
+
+        }
 
         camera.position.set(Math.cos(r) * 200, Math.sin(r) * 200, 250);
         camera.lookAt(0, 0, 0);
