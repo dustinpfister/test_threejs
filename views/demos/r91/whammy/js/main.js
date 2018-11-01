@@ -1,21 +1,14 @@
 
 (function () {
 
-    function exportVid(blob) {
+    // export video
+    var exportVid = function (blob) {
         const vid = document.createElement('video');
         vid.src = URL.createObjectURL(blob);
         vid.loop = true;
         vid.controls = true;
         document.body.appendChild(vid);
-
-        /*
-        const a = document.createElement('a');
-        a.download = 'myvid.webm';
-        a.href = vid.src;
-        a.textContent = 'download the video';
-        document.body.appendChild(a);
-         */
-    }
+    };
 
     // SCENE
     var scene = new THREE.Scene();
@@ -32,67 +25,62 @@
             wireframe: true
         });
 
-    // Orbit Controls
-    var controls = new THREE.OrbitControls(camera);
-
     // I need a mesh that will tie a geometry and material together
     mesh = new THREE.Mesh(geometry, material),
 
-    // In order to see anything I will also need a renderer
-    // to use with my scene, and camera
+    // set up renderer
     renderer = new THREE.WebGLRenderer();
+    renderer.setSize(320, 240);
 
     // I must append the dom element used by the renderer to the html
     // that I am using.
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // now that I have everything I need I can call some methods
-    // of what I have to set up my scene, camera, and renderer.
-    // I must at least add the mesh to the scene, and position the camera
-    // in a way so that it is looking at the mesh
     scene.add(mesh);
 
     // set the position of the camera away from the cube, and
     // look at the origin.
-    camera.position.set(250, 200, 250);
-    camera.lookAt(0, 0, 0);
-    renderer.setSize(320, 240);
+    //camera.position.set(250, 200, 250);
+    //camera.lookAt(0, 0, 0);
 
-    // Whammy
-    var encoder = new Whammy.Video(15);
-    renderer.render(scene, camera);
+
+    // create encoder
+    var seconds = 20,
+    fps = 12,
+    encoder = new Whammy.Video(12);
 
     var i = 0,
-    maxI = 100;
-    // loop
-    function animate() {
+    maxI = 240;
 
+    // loop
+    var animate = function () {
+
+        // find current percent
+        // and set values based on that
         var per = i / maxI,
         r = Math.PI * 2 * per;
 
+        // make changes to for new frame
         camera.position.set(Math.cos(r) * 200, Math.sin(r) * 200, 250);
         camera.lookAt(0, 0, 0);
 
+        // render frame
         renderer.render(scene, camera);
-        //encoder.add(renderer.domElement);
+
+        // add frame to encoder
         encoder.add(renderer.domElement.toDataURL('image/webp'));
 
+        // if the animation is not over
         if (i < maxI) {
+
+            // request the next frame
             requestAnimationFrame(animate);
         } else {
 
-            console.log('done');
-
+            // else comple, and export
             encoder.compile(false, function (output) {
-
-                //var url = URL.createObjectURL(output);
-
-                //console.log(url);
-
                 exportVid(output);
-
             });
-
         }
 
         i += 1;
