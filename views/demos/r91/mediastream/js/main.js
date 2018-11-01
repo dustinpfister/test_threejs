@@ -51,26 +51,41 @@
     stream = canvas.captureStream(),
     rec = new MediaRecorder(stream);
 
-    rec.ondataavailable = function (a) {
-
-        console.log(a);
-
+    var chunks = [];
+    rec.ondataavailable = function (data) {
+        chunks.push(data);
+    };
+    rec.onstop = function (a, b) {
+        console.log('stop');
+        console.log(new Blob(chunks, {type: 'video/webm'}));
     };
 
-    rec.start(100);
+    //rec.start(1000 / 24);
+    rec.start();
+    setTimeout(() => rec.stop(), 1000);
 
-    setTimeout(() => rec.stop(), 500);
+    //stream.getTracks()[0].requestFrame();
 
-    stream.getTracks()[0].requestFrame();
     //stream.getTracks()[0].requestFrame();
 
     rec.requestData();
 
+    var i = 0,
+    maxI = 100;
     // loop
     function animate() {
 
+        var per = i / maxI,
+        r = Math.PI * 2 * per;
+
         requestAnimationFrame(animate);
         renderer.render(scene, camera);
+
+        camera.position.set(Math.cos(r) * 200, Math.sin(r) * 200, 250);
+        camera.lookAt(0, 0, 0);
+
+        i += 1;
+        i %= maxI;
 
     };
 
