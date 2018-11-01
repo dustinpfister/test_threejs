@@ -4,13 +4,17 @@
     function exportVid(blob) {
         const vid = document.createElement('video');
         vid.src = URL.createObjectURL(blob);
+        vid.loop = true;
         vid.controls = true;
         document.body.appendChild(vid);
+
+        /*
         const a = document.createElement('a');
         a.download = 'myvid.webm';
         a.href = vid.src;
         a.textContent = 'download the video';
         document.body.appendChild(a);
+         */
     }
 
     // SCENE
@@ -66,6 +70,9 @@
         var per = i / maxI,
         r = Math.PI * 2 * per;
 
+        camera.position.set(Math.cos(r) * 200, Math.sin(r) * 200, 250);
+        camera.lookAt(0, 0, 0);
+
         renderer.render(scene, camera);
         //encoder.add(renderer.domElement);
         encoder.add(renderer.domElement.toDataURL('image/webp'));
@@ -78,16 +85,15 @@
 
             encoder.compile(false, function (output) {
 
-                var url = URL.createObjectURL(output);
+                //var url = URL.createObjectURL(output);
 
-                console.log(url);
+                //console.log(url);
+
+                exportVid(output);
 
             });
 
         }
-
-        camera.position.set(Math.cos(r) * 200, Math.sin(r) * 200, 250);
-        camera.lookAt(0, 0, 0);
 
         i += 1;
 
