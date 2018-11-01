@@ -46,6 +46,26 @@
     // state of the scene, from the perspective of the camera
     renderer.render(scene, camera);
 
+    //
+    var canvas = renderer.domElement,
+    stream = canvas.captureStream(),
+    rec = new MediaRecorder(stream);
+
+    rec.ondataavailable = function (a) {
+
+        console.log(a);
+
+    };
+
+    rec.start(100);
+
+    setTimeout(() => rec.stop(), 500);
+
+    stream.getTracks()[0].requestFrame();
+    //stream.getTracks()[0].requestFrame();
+
+    rec.requestData();
+
     // loop
     function animate() {
 
