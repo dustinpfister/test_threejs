@@ -78,7 +78,9 @@
 
             encoder.compile(false, function (output) {
 
-                console.log(output);
+                var url = URL.createObjectURL(output);
+
+                console.log(url);
 
             });
 
