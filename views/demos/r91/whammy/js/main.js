@@ -31,6 +31,7 @@ var animate = function () {
 
         // request the next frame
         requestAnimationFrame(animate);
+
     } else {
 
         // else comple, and export
@@ -46,7 +47,7 @@ var animate = function () {
 
 // export video helper
 var exportVid = function (blob) {
-    const vid = document.createElement('video');
+    var vid = document.createElement('video');
     vid.src = URL.createObjectURL(blob);
     vid.loop = true;
     vid.controls = true;
