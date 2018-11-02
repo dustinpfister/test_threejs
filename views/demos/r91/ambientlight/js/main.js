@@ -62,16 +62,21 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
 
 // MESH
-var mesh = new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200), new THREE.MeshBasicMaterial({
-            color: 0xff0000,
-            wireframe: true
+var mesh = new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200), new THREE.MeshStandardMaterial({
+            color: 0xff0000
         }));
 scene.add(mesh);
+
+var light = new THREE.AmbientLight( 0xffffff );
+light.intensity = .4;
+scene.add(light);
 
 // RENDERER
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(320, 240);
 document.getElementById('demo').appendChild(renderer.domElement);
+
+// physicallyCorrectLights
 
 animate();
 
