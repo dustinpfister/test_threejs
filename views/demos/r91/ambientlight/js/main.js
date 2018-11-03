@@ -68,15 +68,15 @@ var mesh = new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200), new THREE.MeshSt
 scene.add(mesh);
 
 var light = new THREE.AmbientLight( 0xffffff );
-light.intensity = .4;
+light.intensity = 5;
 scene.add(light);
 
 // RENDERER
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(320, 240);
-document.getElementById('demo').appendChild(renderer.domElement);
+renderer.physicallyCorrectLights = true;
 
-// physicallyCorrectLights
+document.getElementById('demo').appendChild(renderer.domElement);
 
 animate();
 
