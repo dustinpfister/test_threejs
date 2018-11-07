@@ -30,8 +30,8 @@ function init() {
 
     // controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.minDistance = 10;
-    controls.maxDistance = 500;
+    //controls.minDistance = 10;
+    //controls.maxDistance = 500;
 
     // Position and Color Data
     var positions = [],
@@ -49,23 +49,26 @@ function init() {
 
     console.log(points)
 
-    var spline = new THREE.CatmullRomCurve3(points),
-    divisions = Math.round(12 * points.length),
+    var divisions = Math.round(12 * points.length),
     color = new THREE.Color();
 
-    console.log(spline);
-
-    var i = 0;
+    var i = 0,
+    x,
+    y,
+    z,
+    point;
     while (i < divisions) {
 
-        var point = spline.getPoint(i / divisions);
-        positions.push(point.x, point.y, point.z);
+        x = i;
+        y = 0;
+        z = i * 5;
+
+        positions.push(x, y, z);
         color.setHSL(i / divisions, 1.0, 0.5);
         colors.push(color.r, color.g, color.b);
 
         i += 1;
     }
-
 
     // THREE.Line2 ( LineGeometry, LineMaterial )
     var geometry = new THREE.LineGeometry();
