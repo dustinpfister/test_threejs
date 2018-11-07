@@ -22,6 +22,7 @@ scene.add(light);
 // RENDERER
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(320, 240);
+
 //renderer.physicallyCorrectLights = true;
 document.getElementById('demo').appendChild(renderer.domElement);
 renderer.render(scene, camera);
