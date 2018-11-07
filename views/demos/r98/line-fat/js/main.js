@@ -1,7 +1,3 @@
-var line, renderer, scene, camera, camera2, controls;
-var line1;
-var matLine, matLineBasic, matLineDashed;
-
 var createFatLineGeometry = function (opt) {
 
     opt = opt || {};
@@ -65,10 +61,10 @@ var createFatLine = function (opt) {
 
 };
 
-function init() {
+(function () {
 
-    // renderer
-    renderer = new THREE.WebGLRenderer({
+    // RENDER
+    var renderer = new THREE.WebGLRenderer({
             antialias: true
         });
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -76,17 +72,17 @@ function init() {
     renderer.setSize(320, 240);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // scene
-    scene = new THREE.Scene();
+    // SCENE
+    var scene = new THREE.Scene();
 
-    // camera
-    camera = new THREE.PerspectiveCamera(40, 320 / 240, 1, 1000);
+    // CAMERA
+    var camera = new THREE.PerspectiveCamera(40, 320 / 240, 1, 1000);
     camera.position.set(-40, 0, 60);
 
-    // controls
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    // CONTROLS
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    // create Fat Line
+    // CREATE FAT LINE
     var line = createFatLine({
             width: 8,
             geo: createFatLineGeometry({
@@ -105,31 +101,30 @@ function init() {
 
     scene.add(line);
 
-    var line = createFatLine({
+    // CREATE ANOTHER FAT LINE
+    line = createFatLine({
             width: 10,
             geo: createFatLineGeometry()
         });
-
     scene.add(line);
 
-};
+    // LOOP
+    var loop = function () {
 
-function animate() {
-    requestAnimationFrame(animate);
-    //stats.update();
-    // main scene
-    renderer.setClearColor(0x000000, 0);
-    renderer.setViewport(0, 0, 320, 240);
+        requestAnimationFrame(loop);
 
-    // renderer will set this eventually
-    //matLine.resolution.set(320, 240); // resolution of the viewport
-    renderer.render(scene, camera);
+        // main scene
+        renderer.setClearColor(0x000000, 0);
+        renderer.setViewport(0, 0, 320, 240);
 
-    // inset scene
-    renderer.setClearColor(0x222222, 1);
-    renderer.clearDepth(); // important!
+        // renderer will set this eventually
+        renderer.render(scene, camera);
+        renderer.setClearColor(0x222222, 1);
+        renderer.clearDepth();
 
-};
+    };
 
-init();
-animate();
+    loop();
+
+}
+    ());
