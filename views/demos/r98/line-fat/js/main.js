@@ -27,8 +27,6 @@ function init() {
     camera.position.set(-40, 0, 60);
     insetWidth = 320 / 4; // square
     insetHeight = 240 / 4;
-    //camera2 = new THREE.PerspectiveCamera(40, 1, 1, 1000);
-    //camera2.position.copy(camera.position);
 
     // controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -54,13 +52,16 @@ function init() {
     var geometry = new THREE.LineGeometry();
     geometry.setPositions(positions);
     geometry.setColors(colors);
+
+    // LINE MATERIAL
     matLine = new THREE.LineMaterial({
             color: 0xffffff,
-            linewidth: 5, // in pixels
+            linewidth: 10, // in pixels
             vertexColors: THREE.VertexColors,
-            //resolution:  // to be set by renderer, eventually
             dashed: false
         });
+    matLine.resolution.set(320, 240);
+
     line = new THREE.Line2(geometry, matLine);
     line.computeLineDistances();
     line.scale.set(1, 1, 1);
@@ -93,7 +94,7 @@ function animate() {
     renderer.setViewport(0, 0, 320, 240);
 
     // renderer will set this eventually
-    matLine.resolution.set(320, 240); // resolution of the viewport
+    //matLine.resolution.set(320, 240); // resolution of the viewport
     renderer.render(scene, camera);
 
     // inset scene
