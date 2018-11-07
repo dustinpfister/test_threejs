@@ -50,6 +50,23 @@ var createFatLineGeometry = function (opt) {
 
 };
 
+var createFatLine = function (opt) {
+
+    opt = opt || {};
+
+    // LINE MATERIAL
+    var matLine = new THREE.LineMaterial({
+            linewidth: opt.width, // in pixels
+            vertexColors: THREE.VertexColors
+        });
+    matLine.resolution.set(320, 240);
+
+    var line = new THREE.Line2(opt.geo, matLine);
+
+    return line;
+
+};
+
 function init() {
 
     // renderer
@@ -71,6 +88,7 @@ function init() {
     // controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+    // create Fat Line geometry
     var geometry = createFatLineGeometry({
             colorSolid: true,
             forPoint: function (i, per) {
@@ -82,18 +100,12 @@ function init() {
             }
         });
 
-    // LINE MATERIAL
-    matLine = new THREE.LineMaterial({
-            color: 0xffffff,
-            linewidth: 10, // in pixels
-            vertexColors: THREE.VertexColors,
-            dashed: false
+    var line = createFatLine({
+            width: 8,
+            geo: geometry
         });
-    matLine.resolution.set(320, 240);
 
-    line = new THREE.Line2(geometry, matLine);
-
-    scene.add(line);
+        scene.add(line);
 
 };
 
