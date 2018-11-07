@@ -88,24 +88,22 @@ function init() {
     // controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    // create Fat Line geometry
-    var geometry = createFatLineGeometry({
-            colorSolid: true,
-            forPoint: function (i, per) {
-                return {
-                    x: -50 + i * 5,
-                    y: Math.cos(Math.PI * 2 * (per)) * 10,
-                    z: Math.sin(Math.PI * 2 * (per)) * 5
-                }
-            }
-        });
-
+    // create Fat Line
     var line = createFatLine({
             width: 8,
-            geo: geometry
+            geo: createFatLineGeometry({
+                colorSolid: true,
+                forPoint: function (i, per) {
+                    return {
+                        x: -25 + i * 2,
+                        y: Math.cos(Math.PI * 2 * (per)) * 10,
+                        z: Math.sin(Math.PI * 2 * (per)) * 2
+                    }
+                }
+            })
         });
 
-        scene.add(line);
+    scene.add(line);
 
 };
 
