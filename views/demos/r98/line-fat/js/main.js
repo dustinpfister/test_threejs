@@ -2,15 +2,26 @@ var line, renderer, scene, camera, camera2, controls;
 var line1;
 var matLine, matLineBasic, matLineDashed;
 
-var createLineGeometry = function (opt) {
+var createFatLineGeometry = function (opt) {
 
     opt = opt || {};
-    opt.forPoint = opt.forPoint || function (i) {};
+    opt.forPoint = opt.forPoint || function (i, per) {
+
+        return {
+
+            x: -50 + i * 5,
+            y: Math.cos(Math.PI * 2 * (per)) * 10,
+            z: Math.sin(Math.PI * 2 * (per)) * 5
+
+        }
+    };
+
+    opt.ptCount = opt.ptCount === undefined ? 20 : opt.ptCount;
 
     // Position and Color Data
     var positions = [],
     colors = [],
-    ptCount = 20, //Math.round(12 * points.length),
+    //ptCount = opt.ptCount === undefined20, //Math.round(12 * points.length),
     color = new THREE.Color(0xff0000),
     i = 0,
     x,
@@ -20,16 +31,11 @@ var createLineGeometry = function (opt) {
     geo;
 
     // for each point
-    while (i < ptCount) {
-
-        x = -50 + i * 5;
-        y = Math.cos(Math.PI * 2 * (i / ptCount)) * 10;
-        z = Math.sin(Math.PI * 2 * (i / ptCount)) * 5;
-
-        positions.push(x, y, z);
-        color.setHSL(i / ptCount, 1.0, 0.5);
+    while (i < opt.ptCount) {
+        point = opt.forPoint(i, i / opt.ptCount);
+        positions.push(point.x, point.y, point.z);
+        color.setHSL(i / opt.ptCount, 1.0, 0.5);
         colors.push(color.r, color.g, color.b);
-
         i += 1;
     }
 
@@ -63,7 +69,7 @@ function init() {
     // controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    var geometry = createLineGeometry();
+    var geometry = createFatLineGeometry();
 
     // LINE MATERIAL
     matLine = new THREE.LineMaterial({
