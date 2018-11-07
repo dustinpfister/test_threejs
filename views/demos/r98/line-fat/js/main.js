@@ -1,29 +1,8 @@
 var line, renderer, scene, camera, camera2, controls;
 var line1;
 var matLine, matLineBasic, matLineDashed;
-init();
-animate();
-function init() {
 
-    // renderer
-    renderer = new THREE.WebGLRenderer({
-            antialias: true
-        });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0x000000, 0.0);
-    renderer.setSize(320, 240);
-    document.getElementById('demo').appendChild(renderer.domElement);
-
-    // scene
-    scene = new THREE.Scene();
-
-    // camera
-    camera = new THREE.PerspectiveCamera(40, 320 / 240, 1, 1000);
-    camera.position.set(-40, 0, 60);
-
-    // controls
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
-
+var createLineGeometry = function () {
 
     // Position and Color Data
     var positions = [],
@@ -54,6 +33,33 @@ function init() {
     geometry.setPositions(positions);
     geometry.setColors(colors);
 
+    return geometry;
+
+};
+
+function init() {
+
+    // renderer
+    renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setClearColor(0x000000, 0.0);
+    renderer.setSize(320, 240);
+    document.getElementById('demo').appendChild(renderer.domElement);
+
+    // scene
+    scene = new THREE.Scene();
+
+    // camera
+    camera = new THREE.PerspectiveCamera(40, 320 / 240, 1, 1000);
+    camera.position.set(-40, 0, 60);
+
+    // controls
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    var geometry = createLineGeometry();
+
     // LINE MATERIAL
     matLine = new THREE.LineMaterial({
             color: 0xffffff,
@@ -67,25 +73,8 @@ function init() {
     line.computeLineDistances();
     line.scale.set(1, 1, 1);
     scene.add(line);
-    // THREE.Line ( BufferGeometry, LineBasicMaterial ) - rendered with gl.LINE_STRIP
-    var geo = new THREE.BufferGeometry();
-    geo.addAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-    geo.addAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-    matLineBasic = new THREE.LineBasicMaterial({
-            vertexColors: THREE.VertexColors
-        });
-    matLineDashed = new THREE.LineDashedMaterial({
-            vertexColors: THREE.VertexColors,
-            scale: 2,
-            dashSize: 1,
-            gapSize: 1
-        });
-    line1 = new THREE.Line(geo, matLineBasic);
-    line1.computeLineDistances();
-    line1.visible = false;
-    scene.add(line1);
 
-}
+};
 
 function animate() {
     requestAnimationFrame(animate);
@@ -102,4 +91,7 @@ function animate() {
     renderer.setClearColor(0x222222, 1);
     renderer.clearDepth(); // important!
 
-}
+};
+
+init();
+animate();
