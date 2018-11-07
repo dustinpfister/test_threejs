@@ -5,11 +5,12 @@ var matLine, matLineBasic, matLineDashed;
 var createLineGeometry = function (opt) {
 
     opt = opt || {};
+    opt.forPoint = opt.forPoint || function (i) {};
 
     // Position and Color Data
     var positions = [],
     colors = [],
-    ptCount = 5, //Math.round(12 * points.length),
+    ptCount = 20, //Math.round(12 * points.length),
     color = new THREE.Color(0xff0000),
     i = 0,
     x,
@@ -21,9 +22,9 @@ var createLineGeometry = function (opt) {
     // for each point
     while (i < ptCount) {
 
-        x = i;
-        y = 0;
-        z = i * 5;
+        x = -50 + i * 5;
+        y = Math.cos(Math.PI * 2 * (i / ptCount)) * 10;
+        z = Math.sin(Math.PI * 2 * (i / ptCount)) * 5;
 
         positions.push(x, y, z);
         color.setHSL(i / ptCount, 1.0, 0.5);
