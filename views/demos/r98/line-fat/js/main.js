@@ -14,15 +14,12 @@ var createFatLineGeometry = function (opt) {
     };
     opt.ptCount = opt.ptCount === undefined ? 20 : opt.ptCount;
     opt.colorSolid = opt.colorSolid === undefined ? false : opt.colorSolid;
+    opt.color = opt.color === undefined ? new THREE.Color(0xffffff) : opt.color;
 
     // Position and Color Data
     var positions = [],
     colors = [],
-    color = new THREE.Color(0xff0000),
     i = 0,
-    x,
-    y,
-    z,
     point,
     geo;
 
@@ -35,9 +32,9 @@ var createFatLineGeometry = function (opt) {
 
         // push color
         if (!opt.colorSolid) {
-            color.setHSL(i / opt.ptCount, 1.0, 0.5);
+            opt.color.setHSL(i / opt.ptCount, 1.0, 0.5);
         }
-        colors.push(color.r, color.g, color.b);
+        colors.push(opt.color.r, opt.color.g, opt.color.b);
 
         i += 1;
     }
@@ -94,6 +91,7 @@ function init() {
             width: 8,
             geo: createFatLineGeometry({
                 colorSolid: true,
+                color: new THREE.Color(0x00ff00),
                 forPoint: function (i, per) {
                     return {
                         x: -25 + i * 2,
