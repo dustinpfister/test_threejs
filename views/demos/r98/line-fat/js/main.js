@@ -1,11 +1,6 @@
 var line, renderer, scene, camera, camera2, controls;
 var line1;
 var matLine, matLineBasic, matLineDashed;
-var stats;
-var gui;
-// viewport
-var insetWidth;
-var insetHeight;
 init();
 animate();
 function init() {
@@ -25,46 +20,30 @@ function init() {
     // camera
     camera = new THREE.PerspectiveCamera(40, 320 / 240, 1, 1000);
     camera.position.set(-40, 0, 60);
-    insetWidth = 320 / 4; // square
-    insetHeight = 240 / 4;
 
     // controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
-    //controls.minDistance = 10;
-    //controls.maxDistance = 500;
+
 
     // Position and Color Data
     var positions = [],
-    colors = [];
-    //points = hilbert3D(new THREE.Vector3(0, 0, 0), 20.0, 1, 0, 1, 2, 3, 4, 5, 6, 7);
-
-    //console.log(points[0].constructor.name);
-
-    var points = [
-
-        new THREE.Vector3(-15, -15, -15),
-        new THREE.Vector3(15, 15, 15)
-
-    ];
-
-    console.log(points)
-
-    var divisions = Math.round(12 * points.length),
-    color = new THREE.Color();
+    colors = [],
+    ptCount = 5, //Math.round(12 * points.length),
+    color = new THREE.Color(0xff0000);
 
     var i = 0,
     x,
     y,
     z,
     point;
-    while (i < divisions) {
+    while (i < ptCount) {
 
         x = i;
         y = 0;
         z = i * 5;
 
         positions.push(x, y, z);
-        color.setHSL(i / divisions, 1.0, 0.5);
+        //color.setHSL(i / ptCount, 1.0, 0.5);
         colors.push(color.r, color.g, color.b);
 
         i += 1;
