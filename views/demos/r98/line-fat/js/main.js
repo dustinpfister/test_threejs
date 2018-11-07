@@ -35,18 +35,37 @@ function init() {
 
     // Position and Color Data
     var positions = [],
-    colors = [],
-    points = hilbert3D(new THREE.Vector3(0, 0, 0), 20.0, 1, 0, 1, 2, 3, 4, 5, 6, 7),
-    spline = new THREE.CatmullRomCurve3(points),
+    colors = [];
+    //points = hilbert3D(new THREE.Vector3(0, 0, 0), 20.0, 1, 0, 1, 2, 3, 4, 5, 6, 7);
+
+    //console.log(points[0].constructor.name);
+
+    var points = [
+
+        new THREE.Vector3(-15, -15, -15),
+        new THREE.Vector3(15, 15, 15)
+
+    ];
+
+    console.log(points)
+
+    var spline = new THREE.CatmullRomCurve3(points),
     divisions = Math.round(12 * points.length),
     color = new THREE.Color();
 
-    for (var i = 0, l = divisions; i < l; i++) {
-        var point = spline.getPoint(i / l);
+    console.log(spline);
+
+    var i = 0;
+    while (i < divisions) {
+
+        var point = spline.getPoint(i / divisions);
         positions.push(point.x, point.y, point.z);
-        color.setHSL(i / l, 1.0, 0.5);
+        color.setHSL(i / divisions, 1.0, 0.5);
         colors.push(color.r, color.g, color.b);
+
+        i += 1;
     }
+
 
     // THREE.Line2 ( LineGeometry, LineMaterial )
     var geometry = new THREE.LineGeometry();
