@@ -17,6 +17,7 @@ var createFatLineGeometry = function (opt) {
     };
 
     opt.ptCount = opt.ptCount === undefined ? 20 : opt.ptCount;
+    opt.colorSolid = opt.colorSolid === undefined ? false : opt.colorSolid;
 
     // Position and Color Data
     var positions = [],
@@ -34,7 +35,10 @@ var createFatLineGeometry = function (opt) {
     while (i < opt.ptCount) {
         point = opt.forPoint(i, i / opt.ptCount);
         positions.push(point.x, point.y, point.z);
-        color.setHSL(i / opt.ptCount, 1.0, 0.5);
+
+        if (!opt.colorSolid) {
+            color.setHSL(i / opt.ptCount, 1.0, 0.5);
+        }
         colors.push(color.r, color.g, color.b);
         i += 1;
     }
@@ -69,7 +73,11 @@ function init() {
     // controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    var geometry = createFatLineGeometry();
+    var geometry = createFatLineGeometry({
+		
+		colorSolid : true
+		
+	});
 
     // LINE MATERIAL
     matLine = new THREE.LineMaterial({
