@@ -53,6 +53,7 @@ var createFatLineGeometry = function (opt) {
 var createFatLine = function (opt) {
 
     opt = opt || {};
+    opt.width = opt.width || 5;
 
     // LINE MATERIAL
     var matLine = new THREE.LineMaterial({
