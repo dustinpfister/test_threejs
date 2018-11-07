@@ -2,19 +2,23 @@ var line, renderer, scene, camera, camera2, controls;
 var line1;
 var matLine, matLineBasic, matLineDashed;
 
-var createLineGeometry = function () {
+var createLineGeometry = function (opt) {
+
+    opt = opt || {};
 
     // Position and Color Data
     var positions = [],
     colors = [],
     ptCount = 5, //Math.round(12 * points.length),
-    color = new THREE.Color(0xff0000);
-
-    var i = 0,
+    color = new THREE.Color(0xff0000),
+    i = 0,
     x,
     y,
     z,
-    point;
+    point,
+    geo;
+
+    // for each point
     while (i < ptCount) {
 
         x = i;
@@ -22,18 +26,18 @@ var createLineGeometry = function () {
         z = i * 5;
 
         positions.push(x, y, z);
-        //color.setHSL(i / ptCount, 1.0, 0.5);
+        color.setHSL(i / ptCount, 1.0, 0.5);
         colors.push(color.r, color.g, color.b);
 
         i += 1;
     }
 
     // THREE.Line2 ( LineGeometry, LineMaterial )
-    var geometry = new THREE.LineGeometry();
-    geometry.setPositions(positions);
-    geometry.setColors(colors);
+    geo = new THREE.LineGeometry();
+    geo.setPositions(positions);
+    geo.setColors(colors);
 
-    return geometry;
+    return geo;
 
 };
 
@@ -70,8 +74,7 @@ function init() {
     matLine.resolution.set(320, 240);
 
     line = new THREE.Line2(geometry, matLine);
-    line.computeLineDistances();
-    line.scale.set(1, 1, 1);
+
     scene.add(line);
 
 };
