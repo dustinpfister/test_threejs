@@ -90,16 +90,24 @@ function init() {
     var line = createFatLine({
             width: 8,
             geo: createFatLineGeometry({
+                ptCount: 80,
                 colorSolid: true,
                 color: new THREE.Color(0x00ff00),
                 forPoint: function (i, per) {
                     return {
-                        x: -25 + i * 2,
-                        y: Math.cos(Math.PI * 2 * (per)) * 10,
-                        z: Math.sin(Math.PI * 2 * (per)) * 2
+                        x: i * 1.5,
+                        y: Math.cos(Math.PI * 4 * (per)) * 10,
+                        z: Math.sin(Math.PI * 4 * (per)) * 10
                     }
                 }
             })
+        });
+
+    scene.add(line);
+
+    var line = createFatLine({
+            width: 10,
+            geo: createFatLineGeometry()
         });
 
     scene.add(line);
