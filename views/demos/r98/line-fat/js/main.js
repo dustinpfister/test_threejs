@@ -6,23 +6,18 @@ var createFatLineGeometry = function (opt) {
 
     opt = opt || {};
     opt.forPoint = opt.forPoint || function (i, per) {
-
         return {
-
-            x: -50 + i * 5,
-            y: Math.cos(Math.PI * 2 * (per)) * 10,
-            z: Math.sin(Math.PI * 2 * (per)) * 5
-
+            x: i * 5,
+            y: 0,
+            z: 0
         }
     };
-
     opt.ptCount = opt.ptCount === undefined ? 20 : opt.ptCount;
     opt.colorSolid = opt.colorSolid === undefined ? false : opt.colorSolid;
 
     // Position and Color Data
     var positions = [],
     colors = [],
-    //ptCount = opt.ptCount === undefined20, //Math.round(12 * points.length),
     color = new THREE.Color(0xff0000),
     i = 0,
     x,
@@ -33,21 +28,24 @@ var createFatLineGeometry = function (opt) {
 
     // for each point
     while (i < opt.ptCount) {
+
+        // push point
         point = opt.forPoint(i, i / opt.ptCount);
         positions.push(point.x, point.y, point.z);
 
+        // push color
         if (!opt.colorSolid) {
             color.setHSL(i / opt.ptCount, 1.0, 0.5);
         }
         colors.push(color.r, color.g, color.b);
+
         i += 1;
     }
 
-    // THREE.Line2 ( LineGeometry, LineMaterial )
+    // return geo
     geo = new THREE.LineGeometry();
     geo.setPositions(positions);
     geo.setColors(colors);
-
     return geo;
 
 };
@@ -74,10 +72,15 @@ function init() {
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     var geometry = createFatLineGeometry({
-		
-		colorSolid : true
-		
-	});
+            colorSolid: true,
+            forPoint: function (i, per) {
+                return {
+                    x: -50 + i * 5,
+                    y: Math.cos(Math.PI * 2 * (per)) * 10,
+                    z: Math.sin(Math.PI * 2 * (per)) * 5
+                }
+            }
+        });
 
     // LINE MATERIAL
     matLine = new THREE.LineMaterial({
