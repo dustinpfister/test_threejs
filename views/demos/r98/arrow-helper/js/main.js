@@ -19,13 +19,9 @@ var arrow = new THREE.ArrowHelper(
 
 scene.add(arrow);
 
-console.log(arrow);
-
 // RENDERER
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(320, 240);
-
-//renderer.physicallyCorrectLights = true;
 document.getElementById('demo').appendChild(renderer.domElement);
 
 var frame = 0,
