@@ -25,8 +25,8 @@ renderer.setSize(320, 240);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 var frame = 0,
-maxFrame = 500;
-var loop = function () {
+maxFrame = 500,
+loop = function () {
 
     requestAnimationFrame(loop);
 
