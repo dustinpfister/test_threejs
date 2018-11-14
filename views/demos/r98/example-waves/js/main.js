@@ -2,12 +2,14 @@
 
 (function () {
 
-    var makeWaveGrid = function (opt) {
+    var waveGrid = function (opt) {
 
         opt = opt || {};
         opt.width = opt.width || 5;
         opt.depth = opt.depth || 10;
         opt.height = opt.height || 1;
+        opt.forPoint = opt.forPoint || function () {};
+        opt.context = opt.context || opt;
 
         var points = [],
         x,
@@ -19,21 +21,27 @@
         while (x < opt.width) {
             z = 0;
             while (z < opt.depth) {
-
                 per = z / opt.depth + .125 * x % 1;
                 y = Math.cos(Math.PI * 4 * per) * opt.height;
-                //geometry.vertices.push(new THREE.Vector3(x, y, z));
-
-                points.push(x, y, z);
-
+                opt.forPoint.call(opt.context, x, y, z);
                 z += .25;
             }
             x += .25;
         };
 
-        return new Float32Array(points);
-
     };
+
+    // make a new Float32Array of Points to make a buffered geometry
+    makeWaveGrid = function (opt) {
+        opt = opt || {};
+        var points = [];
+        opt.forPoint = function (x, y, z) {
+            points.push(x, y, z);
+        };
+        waveGrid(opt);
+        return new Float32Array(points);
+    };
+
 
     var geometry = new THREE.BufferGeometry();
     // create a simple square shape. We duplicate the top left and bottom right
@@ -41,6 +49,8 @@
     var vertices = makeWaveGrid();
     // itemSize = 3 because there are 3 values (components) per vertex
     geometry.addAttribute('position', new THREE.BufferAttribute(vertices, 3));
+
+    console.log(geometry.getAttribute('position'));
 
     // RENDER
     var renderer = new THREE.WebGLRenderer({
