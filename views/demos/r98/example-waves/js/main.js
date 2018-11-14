@@ -18,14 +18,12 @@
 
         var points = [],
         radPer,
-        x,
-        i,
+        x = 0,
+        i = 0,
         y,
         z;
 
         // points
-        i = 0;
-        x = 0;
         while (x < opt.width) {
 
             z = 0;
@@ -50,7 +48,7 @@
     };
 
     // make a new Float32Array of Points to make a buffered geometry
-    makeWaveGrid = function (opt) {
+    var makeWaveGrid = function (opt) {
         opt = opt || {};
         var points = [];
         opt.forPoint = function (x, y, z, i) {
@@ -60,15 +58,28 @@
         return new Float32Array(points);
     };
 
-    var geometry = new THREE.BufferGeometry();
+    var makePoints = function () {
 
-    // create a simple square shape. We duplicate the top left and bottom right
-    // vertices because each vertex needs to appear once per triangle.
+        var geometry = new THREE.BufferGeometry();
 
-    var vertices = makeWaveGrid();
+        var vertices = makeWaveGrid();
 
-    // itemSize = 3 because there are 3 values (components) per vertex
-    geometry.addAttribute('position', new THREE.BufferAttribute(vertices, 3));
+        // itemSize = 3 because there are 3 values (components) per vertex
+        geometry.addAttribute('position', new THREE.BufferAttribute(vertices, 3));
+
+        return new THREE.Points(
+
+            // geometry as first argument
+            geometry,
+
+            // then Material
+            new THREE.PointsMaterial({
+
+                size: .05
+
+            }));
+
+    };
 
     // RENDER
     var renderer = new THREE.WebGLRenderer({
@@ -80,17 +91,7 @@
     // SCENE
     var scene = new THREE.Scene();
 
-    var points = new THREE.Points(
-
-            // geometry as first argument
-            geometry,
-
-            // then Material
-            new THREE.PointsMaterial({
-
-                size: .05
-
-            }));
+    var points = makePoints();
 
     scene.add(points);
 
@@ -110,7 +111,7 @@
 
         requestAnimationFrame(loop);
 
-        var position = geometry.getAttribute('position'),
+        var position = points.geometry.getAttribute('position'),
         per = frame / maxFrame,
         bias = 1 - Math.abs(per - 0.5) / .5;
 
