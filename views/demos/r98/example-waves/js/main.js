@@ -13,6 +13,7 @@
         opt.xStep = opt.xStep || 0.3;
         opt.yStep = opt.yStep || 0.075;
         opt.zStep = opt.zStep || 0.075;
+        opt.waveOffset = opt.waveOffset === undefined ? 0 : opt.waveOffset;
 
         var points = [],
         x,
@@ -26,7 +27,9 @@
         while (x < opt.width) {
             z = 0;
             while (z < opt.depth) {
-                per = z / opt.depth + .125 * x % 1;
+                //per = z / opt.depth * x + opt.waveOffset % 1;
+                per = (z / opt.depth + opt.waveOffset) % 1;
+
                 y = Math.cos(Math.PI * 4 * per) * opt.height;
                 opt.forPoint.call(opt.context, x * opt.xStep, y * opt.yStep, z * opt.zStep, i);
                 z += 1;
@@ -94,6 +97,8 @@
     // CONTROLS
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+    renderer.render(scene, camera);
+
     // LOOP
     var frame = 0,
     maxFrame = 100;
@@ -105,27 +110,16 @@
         per = frame / maxFrame,
         bias = 1 - Math.abs(per - 0.5) / .5;
 
-        //console.log()
-        //position.array[3]=1;
-
-
+        // update points
         waveGrid({
-            xStep: .1 + .4 * bias,
+            waveOffset: bias,
             forPoint: function (x, y, z, i) {
-
                 position.array[i] = x;
                 position.array[i + 1] = y;
                 position.array[i + 2] = z;
             }
-
         });
-
-        //console.log(position)
-
         position.needsUpdate = true;
-        //position.color.needsUpdate = true;
-        //geometry.attributes.position.needsUpdate = true;
-        //geometry.attributes.color.needsUpdate = true;
 
         renderer.render(scene, camera);
 
