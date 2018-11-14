@@ -2,6 +2,7 @@
 
 (function () {
 
+    // Wave grid helper
     var waveGrid = function (opt) {
 
         opt = opt || {};
@@ -16,6 +17,7 @@
         opt.waveOffset = opt.waveOffset === undefined ? 0 : opt.waveOffset;
 
         var points = [],
+        radPer,
         x,
         i,
         y,
@@ -25,11 +27,20 @@
         i = 0;
         x = 0;
         while (x < opt.width) {
+
             z = 0;
             while (z < opt.depth) {
-                per = (z / opt.depth + (1 / opt.width * x) + opt.waveOffset) % 1;
-                y = Math.cos(Math.PI * 4 * per) * opt.height;
+
+                // radian percent
+                radPer = (z / opt.depth + (1 / opt.width * x) + opt.waveOffset) % 1;
+
+                // y value of point
+                y = Math.cos(Math.PI * 4 * radPer) * opt.height;
+
+                // call forPoint
                 opt.forPoint.call(opt.context, x * opt.xStep, y * opt.yStep, z * opt.zStep, i);
+
+                // step z, and point index
                 z += 1;
                 i += 3;
             }
