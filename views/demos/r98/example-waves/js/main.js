@@ -10,23 +10,29 @@
         opt.height = opt.height || 1;
         opt.forPoint = opt.forPoint || function () {};
         opt.context = opt.context || opt;
+        opt.xStep = opt.xStep || 0.3;
+        opt.yStep = opt.yStep || 0.075;
+        opt.zStep = opt.zStep || 0.075;
 
         var points = [],
         x,
+        i,
         y,
         z;
 
         // points
+        i = 0;
         x = 0;
         while (x < opt.width) {
             z = 0;
             while (z < opt.depth) {
                 per = z / opt.depth + .125 * x % 1;
                 y = Math.cos(Math.PI * 4 * per) * opt.height;
-                opt.forPoint.call(opt.context, x, y, z);
-                z += .25;
+                opt.forPoint.call(opt.context, x * opt.xStep, y * opt.yStep, z * opt.zStep, i);
+                z += 1;
+                i += 3;
             }
-            x += .25;
+            x += 1;
         };
 
     };
@@ -35,22 +41,27 @@
     makeWaveGrid = function (opt) {
         opt = opt || {};
         var points = [];
-        opt.forPoint = function (x, y, z) {
+        opt.forPoint = function (x, y, z, i) {
             points.push(x, y, z);
         };
         waveGrid(opt);
         return new Float32Array(points);
     };
 
+    var geo = new THREE.BufferGeometry();
+    var vert = new Float32Array([1, 2, 3]);
+    geo.addAttribute('position', new THREE.BufferAttribute(vert, 3));
+
+    console.log(geo)
 
     var geometry = new THREE.BufferGeometry();
     // create a simple square shape. We duplicate the top left and bottom right
     // vertices because each vertex needs to appear once per triangle.
+
     var vertices = makeWaveGrid();
+
     // itemSize = 3 because there are 3 values (components) per vertex
     geometry.addAttribute('position', new THREE.BufferAttribute(vertices, 3));
-
-    console.log(geometry.getAttribute('position'));
 
     // RENDER
     var renderer = new THREE.WebGLRenderer({
@@ -78,17 +89,48 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 320 / 240, 1, 1000);
-    camera.position.set(10, 10, 10);
+    camera.position.set(2, 2, 2);
 
     // CONTROLS
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     // LOOP
+    var frame = 0,
+    maxFrame = 100;
     var loop = function () {
 
         requestAnimationFrame(loop);
 
+        var position = geometry.getAttribute('position'),
+        per = frame / maxFrame,
+        bias = 1 - Math.abs(per - 0.5) / .5;
+
+        //console.log()
+        //position.array[3]=1;
+
+
+        waveGrid({
+            xStep: .1 + .4 * bias,
+            forPoint: function (x, y, z, i) {
+
+                position.array[i] = x;
+                position.array[i + 1] = y;
+                position.array[i + 2] = z;
+            }
+
+        });
+
+        //console.log(position)
+
+        position.needsUpdate = true;
+        //position.color.needsUpdate = true;
+        //geometry.attributes.position.needsUpdate = true;
+        //geometry.attributes.color.needsUpdate = true;
+
         renderer.render(scene, camera);
+
+        frame += 1;
+        frame %= maxFrame;
 
     };
 
