@@ -83,10 +83,9 @@
     };
 
     // update points
-    var updatePoints = function (points) {
+    var updatePoints = function (points, per) {
 
         var position = points.geometry.getAttribute('position'),
-        per = frame / maxFrame,
         bias = 1 - Math.abs(per - 0.5) / .5;
 
         // update points
@@ -132,7 +131,7 @@
 
         requestAnimationFrame(loop);
 
-        updatePoints(points);
+        updatePoints(points, frame / maxFrame);
 
         renderer.render(scene, camera);
 
