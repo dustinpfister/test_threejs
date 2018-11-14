@@ -116,7 +116,7 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 320 / 240, .001, 1000);
-    camera.position.set(.4, .7, .4);
+    camera.position.set(3.4, 8, 3.4);
 
     // CONTROLS
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
