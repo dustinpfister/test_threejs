@@ -82,8 +82,7 @@
     // update points
     var updatePoints = function (points, per) {
 
-        var position = points.geometry.getAttribute('position'),
-        bias = 1 - Math.abs(per - 0.5) / .5;
+        var position = points.geometry.getAttribute('position');
 
         // update points
         waveGrid({
@@ -110,8 +109,8 @@
     // SCENE
     var scene = new THREE.Scene();
 
+    // POINTS
     var points = makePoints();
-
     scene.add(points);
 
     // CAMERA
@@ -125,8 +124,8 @@
 
     // LOOP
     var frame = 0,
-    maxFrame = 100;
-    var loop = function () {
+    maxFrame = 100,
+    loop = function () {
 
         requestAnimationFrame(loop);
 
