@@ -5,13 +5,13 @@
     var waveGrid = function (opt) {
 
         opt = opt || {};
-        opt.width = opt.width || 5;
-        opt.depth = opt.depth || 10;
+        opt.width = opt.width || 20;
+        opt.depth = opt.depth || 20;
         opt.height = opt.height || 1;
         opt.forPoint = opt.forPoint || function () {};
         opt.context = opt.context || opt;
-        opt.xStep = opt.xStep || 0.3;
-        opt.yStep = opt.yStep || 0.075;
+        opt.xStep = opt.xStep || 0.075;
+        opt.yStep = opt.yStep || 0.1;
         opt.zStep = opt.zStep || 0.075;
         opt.waveOffset = opt.waveOffset === undefined ? 0 : opt.waveOffset;
 
@@ -27,9 +27,7 @@
         while (x < opt.width) {
             z = 0;
             while (z < opt.depth) {
-                //per = z / opt.depth * x + opt.waveOffset % 1;
-                per = (z / opt.depth + opt.waveOffset) % 1;
-
+                per = (z / opt.depth + (1 / opt.width * x) + opt.waveOffset) % 1;
                 y = Math.cos(Math.PI * 4 * per) * opt.height;
                 opt.forPoint.call(opt.context, x * opt.xStep, y * opt.yStep, z * opt.zStep, i);
                 z += 1;
@@ -112,7 +110,7 @@
 
         // update points
         waveGrid({
-            waveOffset: bias,
+            waveOffset: per,
             forPoint: function (x, y, z, i) {
                 position.array[i] = x;
                 position.array[i + 1] = y;
