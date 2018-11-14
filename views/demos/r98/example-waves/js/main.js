@@ -49,13 +49,8 @@
         return new Float32Array(points);
     };
 
-    var geo = new THREE.BufferGeometry();
-    var vert = new Float32Array([1, 2, 3]);
-    geo.addAttribute('position', new THREE.BufferAttribute(vert, 3));
-
-    console.log(geo)
-
     var geometry = new THREE.BufferGeometry();
+
     // create a simple square shape. We duplicate the top left and bottom right
     // vertices because each vertex needs to appear once per triangle.
 
@@ -89,7 +84,7 @@
     scene.add(points);
 
     // CAMERA
-    var camera = new THREE.PerspectiveCamera(40, 320 / 240, 1, 1000);
+    var camera = new THREE.PerspectiveCamera(40, 320 / 240, .001, 1000);
     camera.position.set(2, 2, 2);
 
     // CONTROLS
@@ -112,9 +107,9 @@
         waveGrid({
             waveOffset: per,
             forPoint: function (x, y, z, i) {
-                position.array[i] = x;
-                position.array[i + 1] = y;
-                position.array[i + 2] = z;
+                position.array[i] = x - 2;
+                position.array[i + 1] = y - 2;
+                position.array[i + 2] = z - 2;
             }
         });
         position.needsUpdate = true;
