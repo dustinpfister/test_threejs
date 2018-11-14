@@ -3,6 +3,7 @@
     var geometry = new THREE.Geometry();
 
     var x = 0,
+    per,
     y,
     z;
 
@@ -10,11 +11,14 @@
     while (x < 5) {
         z = 0;
         while (z < 10) {
-            y = Math.cos(Math.PI * 4 * (z / 10)) * 1;
+
+            per = z / 10 + .125 * x % 1;
+
+            y = Math.cos(Math.PI * 4 * per) * 1;
             geometry.vertices.push(new THREE.Vector3(x, y, z));
-            z += 1;
+            z += .25;
         }
-        x += 1;
+        x += .25;
     };
 
     // RENDER
