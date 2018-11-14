@@ -6,8 +6,8 @@
     var waveGrid = function (opt) {
 
         opt = opt || {};
-        opt.width = opt.width || 20;
-        opt.depth = opt.depth || 20;
+        opt.width = opt.width || 30;
+        opt.depth = opt.depth || 30;
         opt.height = opt.height || 1;
         opt.forPoint = opt.forPoint || function () {};
         opt.context = opt.context || opt;
@@ -88,6 +88,8 @@
         // update points
         waveGrid({
             waveOffset: per,
+            xStep: 0.125,
+            zStep: 0.125,
             forPoint: function (x, y, z, i) {
                 position.array[i] = x - 2;
                 position.array[i + 1] = y - 2;
