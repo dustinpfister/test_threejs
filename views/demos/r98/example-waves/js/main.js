@@ -58,6 +58,7 @@
         return new Float32Array(points);
     };
 
+    // make a points mesh
     var makePoints = function () {
 
         var geometry = new THREE.BufferGeometry();
@@ -80,6 +81,26 @@
             }));
 
     };
+
+    // update points
+    var updatePoints = function (points) {
+
+        var position = points.geometry.getAttribute('position'),
+        per = frame / maxFrame,
+        bias = 1 - Math.abs(per - 0.5) / .5;
+
+        // update points
+        waveGrid({
+            waveOffset: per,
+            forPoint: function (x, y, z, i) {
+                position.array[i] = x - 2;
+                position.array[i + 1] = y - 2;
+                position.array[i + 2] = z - 2;
+            }
+        });
+        position.needsUpdate = true;
+
+    }
 
     // RENDER
     var renderer = new THREE.WebGLRenderer({
@@ -111,20 +132,7 @@
 
         requestAnimationFrame(loop);
 
-        var position = points.geometry.getAttribute('position'),
-        per = frame / maxFrame,
-        bias = 1 - Math.abs(per - 0.5) / .5;
-
-        // update points
-        waveGrid({
-            waveOffset: per,
-            forPoint: function (x, y, z, i) {
-                position.array[i] = x - 2;
-                position.array[i + 1] = y - 2;
-                position.array[i + 2] = z - 2;
-            }
-        });
-        position.needsUpdate = true;
+        updatePoints(points);
 
         renderer.render(scene, camera);
 
