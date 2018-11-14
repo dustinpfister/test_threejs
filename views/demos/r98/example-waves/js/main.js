@@ -1,25 +1,46 @@
+
+
 (function () {
 
-    var geometry = new THREE.Geometry();
+    var makeWaveGrid = function (opt) {
 
-    var x = 0,
-    per,
-    y,
-    z;
+        opt = opt || {};
+        opt.width = opt.width || 5;
+        opt.depth = opt.depth || 10;
+        opt.height = opt.height || 1;
 
-    // points
-    while (x < 5) {
-        z = 0;
-        while (z < 10) {
+        var points = [],
+        x,
+        y,
+        z;
 
-            per = z / 10 + .125 * x % 1;
+        // points
+        x = 0;
+        while (x < opt.width) {
+            z = 0;
+            while (z < opt.depth) {
 
-            y = Math.cos(Math.PI * 4 * per) * 1;
-            geometry.vertices.push(new THREE.Vector3(x, y, z));
-            z += .25;
-        }
-        x += .25;
+                per = z / opt.depth + .125 * x % 1;
+                y = Math.cos(Math.PI * 4 * per) * opt.height;
+                //geometry.vertices.push(new THREE.Vector3(x, y, z));
+
+                points.push(x, y, z);
+
+                z += .25;
+            }
+            x += .25;
+        };
+
+        return new Float32Array(points);
+
     };
+
+    var geometry = new THREE.BufferGeometry();
+    // create a simple square shape. We duplicate the top left and bottom right
+    // vertices because each vertex needs to appear once per triangle.
+    var vertices = makeWaveGrid();
+    // itemSize = 3 because there are 3 values (components) per vertex
+    geometry.addAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
     // RENDER
     var renderer = new THREE.WebGLRenderer({
