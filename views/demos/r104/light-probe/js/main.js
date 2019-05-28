@@ -39,6 +39,8 @@ new THREE.CubeTextureLoader()
     // what to do when loading is over
     function (cubeTexture) {
 
+    cubeTexture.encoding = THREE.sRGBEncoding;
+
     scene.background = cubeTexture;
 
     lightProbe.copy(new THREE.LightProbeGenerator.fromCubeTexture(cubeTexture));
@@ -47,7 +49,7 @@ new THREE.CubeTextureLoader()
 
     // MESH
     var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(20, 20, 20),
+            new THREE.BoxBufferGeometry(20, 20, 20),
             new THREE.MeshStandardMaterial({
                 color: 0xff0000,
                 metalness: 0,
@@ -71,10 +73,10 @@ new THREE.CubeTextureLoader()
 
         setTimeout(loop, 1000);
 
-		var r = Math.random().toFixed(2);
-		
-		console.log(r);
-		
+        var r = Math.random().toFixed(2);
+
+        console.log(r);
+
         lightProbe.intensity = r;
 
     };
