@@ -3,8 +3,8 @@
 var scene = new THREE.Scene();
 
 // CAMERA
-var camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
-camera.position.set(20, 20, 20);
+var camera = new THREE.PerspectiveCamera(50, 320 / 240, 1, 1000);
+camera.position.set(25, 25, 25);
 camera.lookAt(0, 0, 0);
 
 // add AmbientLight
@@ -51,7 +51,7 @@ new THREE.CubeTextureLoader()
     var mesh = new THREE.Mesh(
             new THREE.BoxBufferGeometry(20, 20, 20),
             new THREE.MeshStandardMaterial({
-                color: 0xff0000,
+                color: 0x0000af,
                 metalness: 0,
                 roughness: 0,
                 envMap: cubeTexture,
@@ -62,22 +62,36 @@ new THREE.CubeTextureLoader()
     camera.lookAt(mesh.position);
 
     // RENDERER
-    var renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
     renderer.setSize(320, 240);
+
+    // gama
+    renderer.gammaOutput = true;
+    renderer.gammaFactor = 2.2; // approximate sRGB
 
     //renderer.physicallyCorrectLights = true;
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
 
+    var frame = 0,
+    maxFrame = 250;
     var loop = function () {
 
-        setTimeout(loop, 1000);
+        setTimeout(loop, 33);
 
-        var r = Math.random().toFixed(2);
+        var per = frame / maxFrame,
+        bias = 1 - Math.abs(0.5 - per) / 0.5;
 
-        console.log(r);
+        console.log(per);
+        mesh.rotation.y = Math.PI * 2 * per;
 
-        lightProbe.intensity = r;
+        frame += 1;
+        frame %= maxFrame;
+        lightProbe.intensity = bias;
+
+        renderer.render(scene, camera);
 
     };
 
