@@ -51,8 +51,11 @@ var createFatLine = function (opt) {
     // LINE MATERIAL
     var matLine = new THREE.LineMaterial({
             linewidth: opt.width, // in pixels
-            vertexColors: THREE.VertexColors
+			color: 0xff0000
+            //vertexColors: THREE.VertexColors
         });
+    matLine.trasparent = true;
+    matLine.opacity = 0.4;
     matLine.resolution.set(320, 240);
 
     var line = new THREE.Line2(opt.geo, matLine);
@@ -84,7 +87,7 @@ var createFatLine = function (opt) {
 
     // CREATE FAT LINE
     var line = createFatLine({
-            width: 8,
+            width: 10,
             geo: createFatLineGeometry({
                 ptCount: 80,
                 colorSolid: true,
