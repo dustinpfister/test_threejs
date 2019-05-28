@@ -26,6 +26,8 @@ scene.add(pointLight);
 var lightProbe = new THREE.LightProbe();
 scene.add(lightProbe);
 
+console.log(lightProbe.copy);
+
 // RENDERER
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(320, 240);
