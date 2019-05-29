@@ -1,32 +1,25 @@
-
-// SCENE
 var scene = new THREE.Scene();
-
-// CAMERA
-var camera = new THREE.PerspectiveCamera(50, 320 / 240, 1, 1000);
+var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 1000);
 camera.position.set(25, 25, 25);
 camera.lookAt(0, 0, 0);
-
-// add AmbientLight
-//var light = new THREE.AmbientLight(0xffffff);
-//scene.add(light);
+var renderer = new THREE.WebGLRenderer({antialias: true});
+renderer.setSize(320, 240);
+renderer.gammaOutput = true;
+renderer.gammaFactor = 2.2; // approximate sRGB
+document.getElementById('demo').appendChild(renderer.domElement);
 
 var pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(50, 50, 50)
+pointLight.position.set(0, 50, 0)
 scene.add(pointLight);
 
+// LIGHT PROBE
 var lightProbe = new THREE.LightProbe();
-
+lightProbe.position.set(0,25,0);
 scene.add(lightProbe);
 
-console.log(lightProbe);
-
-// LOAD CUBE TEXTURE
 new THREE.CubeTextureLoader()
 .setPath('/img/cube/skybox/')
 .load(
-
-    // urls of images used in the cube texture
     [
         'px.jpg',
         'nx.jpg',
@@ -35,21 +28,15 @@ new THREE.CubeTextureLoader()
         'pz.jpg',
         'nz.jpg'
     ],
-
-    // what to do when loading is over
     function (cubeTexture) {
+        cubeTexture.encoding = THREE.sRGBEncoding;
+        scene.background = cubeTexture;
 
-    cubeTexture.encoding = THREE.sRGBEncoding;
+        // Using the lightProbe copy method with LightPropeGen
+        lightProbe.copy(new THREE.LightProbeGenerator.fromCubeTexture(cubeTexture));
 
-    scene.background = cubeTexture;
-
-    lightProbe.copy(new THREE.LightProbeGenerator.fromCubeTexture(cubeTexture));
-
-    console.log(lightProbe);
-
-    // MESH
-    var mesh = new THREE.Mesh(
-            new THREE.BoxBufferGeometry(20, 20, 20),
+        var mesh = new THREE.Mesh(
+            new THREE.SphereBufferGeometry(20, 32, 32),
             new THREE.MeshStandardMaterial({
                 color: 0x0000af,
                 metalness: 0,
@@ -57,44 +44,20 @@ new THREE.CubeTextureLoader()
                 envMap: cubeTexture,
                 envMapIntensity: 1
             }));
-    scene.add(mesh);
-    mesh.position.set(0, 0, 0);
-    camera.lookAt(mesh.position);
+        scene.add(mesh);
+        var frame = 0,
+        maxFrame = 250;
+        var loop = function () {
+            setTimeout(loop, 33);
+            var per = frame / maxFrame,
+            bias = 1 - Math.abs(0.5 - per) / 0.5;
+            frame += 1;
+            frame %= maxFrame;
 
-    // RENDERER
-    var renderer = new THREE.WebGLRenderer({
-            antialias: true
-        });
-    renderer.setSize(320, 240);
+            // Change Light Probe intensity
+            lightProbe.intensity = bias;
 
-    // gama
-    renderer.gammaOutput = true;
-    renderer.gammaFactor = 2.2; // approximate sRGB
-
-    //renderer.physicallyCorrectLights = true;
-    document.getElementById('demo').appendChild(renderer.domElement);
-    renderer.render(scene, camera);
-
-    var frame = 0,
-    maxFrame = 250;
-    var loop = function () {
-
-        setTimeout(loop, 33);
-
-        var per = frame / maxFrame,
-        bias = 1 - Math.abs(0.5 - per) / 0.5;
-
-        console.log(per);
-        mesh.rotation.y = Math.PI * 2 * per;
-
-        frame += 1;
-        frame %= maxFrame;
-        lightProbe.intensity = bias;
-
-        renderer.render(scene, camera);
-
-    };
-
-    loop();
-
+            renderer.render(scene, camera);
+        };
+        loop();
 });
