@@ -1,14 +1,22 @@
 var scene = new THREE.Scene();
 
 // create the point light and add it to the scene
-var pointLight = new THREE.PointLight(0x00ff00);
-pointLight.position.set(0, 0, 0);
-pointLight.add(new THREE.Mesh(
-        new THREE.SphereGeometry(1, 10, 10),
-        new THREE.MeshBasicMaterial({
-            color: 0xffffff
-        })));
-scene.add(pointLight);
+var addPointLight = function (scene, color, x, y, z) {
+    var pointLight = new THREE.PointLight(color);
+    pointLight.position.set(x, y, z);
+    pointLight.add(new THREE.Mesh(
+            new THREE.SphereGeometry(1, 10, 10),
+            new THREE.MeshBasicMaterial({
+                color: color
+            })));
+    scene.add(pointLight);
+    return pointLight;
+};
+
+var whitePointLight = addPointLight(scene, 0xffffff, 0, 0, 0);
+var redPointLight = addPointLight(scene, 0xff0000, 30, 0, 0);
+var greenPointLight = addPointLight(scene, 0x00ff00, 0, 30, 0);
+var bluePointLight = addPointLight(scene, 0x0000ff, 0, 0, 30);
 
 // create some cubs
 var addCube = function (scene, size, x, y, z) {
@@ -47,7 +55,7 @@ loop = function () {
     per = frame / maxFrame;
     bias = 1 - Math.abs(0.5 - per) / 0.5;
 
-    pointLight.position.y = 20 * bias;
+    whitePointLight.position.y = 20 * bias;
 
     renderer.render(scene, camera);
 
