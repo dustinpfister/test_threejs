@@ -34,7 +34,7 @@ addCube(scene, 10, 0, 0, 15);
 addCube(scene, 10, 0, 0, -15);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 1000);
-camera.position.set(40, 40, 40);
+camera.position.set(37, 37, 37);
 camera.lookAt(0, 0, 0);
 
 var renderer = new THREE.WebGLRenderer({
@@ -44,7 +44,7 @@ renderer.setSize(320, 240);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 var frame = 0,
-maxFrame = 50,
+maxFrame = 180,
 per,
 bias,
 y,
@@ -53,9 +53,16 @@ loop = function () {
     setTimeout(loop, 33);
 
     per = frame / maxFrame;
-    bias = 1 - Math.abs(0.5 - per) / 0.5;
+    bias = 1 - Math.abs(0.5 - per) / 0.5,
+    r = Math.PI * 2 * per,
+    sin = Math.sin(r) * 30,
+    cos = Math.cos(r) * 30;
 
     whitePointLight.position.y = 20 * bias;
+
+    redPointLight.position.set(cos,sin,0);
+    greenPointLight.position.set(cos,0,sin);
+    bluePointLight.position.set(0,cos,sin);
 
     renderer.render(scene, camera);
 
