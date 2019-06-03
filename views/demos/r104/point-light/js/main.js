@@ -1,31 +1,10 @@
 var scene = new THREE.Scene();
 // create some point lights and add it to the scene
-var addPointLight = function (scene, color, x, y, z) {
-    var pointLight = new THREE.PointLight(color);
-    pointLight.position.set(x, y, z);
-    pointLight.add(new THREE.Mesh(
-            new THREE.SphereGeometry(1, 10, 10),
-            new THREE.MeshBasicMaterial({
-                color: color
-            })));
-    scene.add(pointLight);
-    return pointLight;
-};
 var whitePointLight = addPointLight(scene, 0xffffff, 0, 0, 0),
 redPointLight = addPointLight(scene, 0xff0000, 30, 0, 0),
 greenPointLight = addPointLight(scene, 0x00ff00, 0, 30, 0),
 bluePointLight = addPointLight(scene, 0x0000ff, 0, 0, 30);
 // create some cubes
-var addCube = function (scene, size, x, y, z) {
-    var geometry = new THREE.BoxGeometry(size, size, size),
-    material = new THREE.MeshStandardMaterial({
-            color: 0xffffff,
-            emissive: 0x0f0f0f
-        });
-    mesh = new THREE.Mesh(geometry, material);
-    mesh.position.set(x, y, z);
-    scene.add(mesh);
-};
 addCube(scene, 10, 15, 0, 0);
 addCube(scene, 10, -15, 0, 0);
 addCube(scene, 10, 0, 0, 15);
