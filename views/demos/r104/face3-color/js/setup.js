@@ -18,12 +18,13 @@ geometry.vertices = [
     new THREE.Vector3(0, 1, 0),
     new THREE.Vector3(1, 1, 0)
 ];
-geometry.faces.push(new THREE.Face3(0, 1, 2, new THREE.Vector3(0, 0, 1), new THREE.Color(0xffaa00), 0));
+geometry.faces.push(new THREE.Face3(0, 1, 2, new THREE.Vector3(0, 0, 1), new THREE.Color(0x00ff00), 0));
 geometry.computeVertexNormals();
 geometry.computeFaceNormals();
 
-var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
-            side: THREE.DoubleSide
+var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
+            side: THREE.DoubleSide,
+            vertexColors: THREE.FaceColors
         }));
 scene.add(mesh);
 
