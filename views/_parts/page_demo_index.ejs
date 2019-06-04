@@ -16,6 +16,6 @@
 
 <% links.forEach(function(link){ %>
 
- <a href="<%= link.href %>"><%= link.href %></a><br>
+ <a href="<%= link.href %>"><%= link.name || 'no name' %></a>  <br>
 
 <% }); %>

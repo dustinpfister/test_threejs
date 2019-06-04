@@ -97,7 +97,8 @@ let buildIndex = function (opt) {
 
             links.push({
 
-                href: path.join('/', opt.source, folderName)
+                href: path.join('/', opt.source, folderName),
+				name: folderName
 
             });
 
