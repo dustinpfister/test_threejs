@@ -16,11 +16,22 @@ var geometry = new THREE.Geometry();
 geometry.vertices = [
     new THREE.Vector3(0, 0, 0),
     new THREE.Vector3(0, 1, 0),
-    new THREE.Vector3(1, 1, 0)
+    new THREE.Vector3(1, 1, 0),
+    new THREE.Vector3(1, 0, 0)
 ];
-geometry.faces.push(new THREE.Face3(0, 1, 2, new THREE.Vector3(0, 0, 1), new THREE.Color(0x00ff00), 0));
+var colors = [
+    new THREE.Color(0xff0000),
+    new THREE.Color(0x00ff00),
+    new THREE.Color(0x0000ff)];
+var normal = new THREE.Vector3(0, 0, 1);
+// set a single color for a face3 instance
+geometry.faces.push(new THREE.Face3(0, 1, 2, normal, colors[0], 0));
+// set an array of colors for each vertex
+geometry.faces.push(new THREE.Face3(3, 2, 0, normal, colors, 0));
 geometry.computeVertexNormals();
 geometry.computeFaceNormals();
+
+console.log(geometry);
 
 var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
             side: THREE.DoubleSide,
