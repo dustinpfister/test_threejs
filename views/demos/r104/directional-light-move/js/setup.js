@@ -19,7 +19,22 @@ var mesh = new THREE.Mesh(
             emissive: 0x0a0a0a
         }));
 scene.add(mesh);
-// render
-renderer.render(scene, camera);
 
-console.log(dl.position);
+var frame = 0,
+maxFrame = 100;
+var loop = function () {
+
+    setTimeout(loop, 33);
+
+    var per = frame / maxFrame,
+    r = Math.PI * 2 * per;
+
+    dl.position.set(Math.cos(r), 1, Math.sin(r));
+
+    frame = (frame + 1) % maxFrame;
+
+    // render
+    renderer.render(scene, camera);
+
+};
+loop();
