@@ -8,9 +8,30 @@ var renderer = new THREE.WebGLRenderer({
 renderer.setSize(320, 240);
 document.getElementById('demo').appendChild(renderer.domElement);
 
+var mkCheckerGeo = function (w, h, sw, sh) {
+    w = w === undefined ? 16 : w;
+    h = h === undefined ? 16 : h;
+    sw = sw === undefined ? 8 : sw;
+    sh = sh === undefined ? 8 : sh;
+    console.log(sh);
+    var planeGeo = new THREE.PlaneGeometry(w, h, sw, 8);
+    planeGeo.faces.forEach(function (face, i) {
+        var tile = Math.floor(i / 2),
+        w = planeGeo.parameters.widthSegments,
+        h = planeGeo.parameters.heightSegments,
+        y = Math.floor(tile / w);
+        if (w % 2) {
+            face.materialIndex = tile % 2;
+        } else {
+            face.materialIndex = y % 2 ? 1 - tile % 2 : tile % 2
+        }
+    });
+    return planeGeo;
+};
+
 // add a plane
 var plane = new THREE.Mesh(
-        new THREE.PlaneGeometry(12, 12, 5, 4),
+        mkCheckerGeo(),
         [
             new THREE.MeshBasicMaterial({
                 color: 0xe0e0e0
@@ -20,17 +41,6 @@ var plane = new THREE.Mesh(
             })
         ]);
 plane.rotation.set(-Math.PI / 2, 0, 0);
-
-plane.geometry.faces.forEach(function (face, i) {
-
-    console.log( Math.floor( i / 2) % 2)
-
-    if (Math.floor( i / 2 % 2)) {
-        face.materialIndex = 1;
-    }
-});
-
-console.log(plane.geometry)
 
 scene.add(plane);
 
