@@ -8,7 +8,33 @@ var renderer = new THREE.WebGLRenderer({
 renderer.setSize(320, 240);
 document.getElementById('demo').appendChild(renderer.domElement);
 
-var mesh = new THREE.Mesh(new THREE.BoxGeometry(1,1,1))
+var canvas = document.createElement('canvas'),
+ctx = canvas.getContext('2d');
+
+canvas.width = 64;
+canvas.height = 64;
+
+ctx.fillStyle = '#404040';
+ctx.fillRect(0, 0, 32, 32);
+ctx.fillStyle = '#808080';
+ctx.fillRect(32, 0, 32, 32);
+ctx.fillStyle = '#c0c0c0';
+ctx.fillRect(0, 32, 32, 32);
+ctx.fillStyle = '#f0f0f0';
+ctx.fillRect(32, 32, 32, 32);
+
+var texture = new THREE.CanvasTexture(canvas);
+
+document.body.appendChild(canvas);
+
+var mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshBasicMaterial({
+            color: 0x00ffff,
+            alphaMap: texture,
+            transparent: true,
+            side: THREE.DoubleSide
+        }));
 
 scene.add(mesh);
 
