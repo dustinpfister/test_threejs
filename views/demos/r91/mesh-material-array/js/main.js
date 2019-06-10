@@ -49,69 +49,6 @@
             geometry,
             materials));
 
-    // an Array of materials
-    /*
-    var materialArray = [
-    new THREE.MeshBasicMaterial({
-    color: 0xff0000
-    }),
-    new THREE.MeshBasicMaterial({
-    color: 0x00ff00
-    }),
-    new THREE.MeshBasicMaterial({
-    color: 0x0000ff
-    })
-    ];
-     */
-
-    /*
-    var materialArray = (function () {
-
-    var materials = [];
-
-    var g,
-    i = 0,
-    count = 10; //15 * 15 * 2;
-    while (i < count) {
-
-    g = Math.floor(255 / count * i);
-
-    materials.push(
-
-    new THREE.MeshBasicMaterial({
-
-    color: new THREE.Color('rgb(0,' + g + ',0)')
-
-    }));
-
-    i += 1;
-    }
-
-    return materials;
-
-    }
-    ());
-     */
-
-    // Sphere
-    /*
-    var geometry = new THREE.SphereGeometry(1, 15, 15);
-
-    geometry.faces.forEach(function (face, i) {
-
-    //face.materialIndex = i;
-    face.materialIndex = Math.floor(i % materialArray.length);
-
-    });
-
-    var sphere = new THREE.Mesh(
-
-    geometry,
-
-    materialArray);
-
-    scene.add(sphere);
-     */
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
