@@ -10,7 +10,6 @@ var mesh = new THREE.Mesh(new THREE.SphereGeometry(2, 30, 30), new THREE.MeshBas
             color: 0xff0000
         }));
 var box = new THREE.BoxHelper(mesh, 0xffff00);
-
 mesh.add(box);
 scene.add(mesh);
 

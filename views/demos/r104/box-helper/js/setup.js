@@ -6,10 +6,16 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(320, 240);
 document.getElementById('demo').appendChild(renderer.domElement);
 
-var sphere = new THREE.SphereGeometry();
-var object = new THREE.Mesh(sphere, new THREE.MeshBasicMaterial(0xff0000));
-var box = new THREE.BoxHelper(object, 0xffff00);
-scene.add(box);
+var mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 30, 30), new THREE.MeshStandardMaterial({
+            color: 0xff0000
+        }));
+var box = new THREE.BoxHelper(mesh, 0xffffff);
+mesh.add(box);
+scene.add(mesh);
+
+// light
+var light = new THREE.PointLight(0xffffff);
+scene.add(light);
 
 var mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1));
 scene.add(mesh);
