@@ -6,13 +6,26 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(320, 240);
 document.getElementById('demo').appendChild(renderer.domElement);
 
-var mesh = new THREE.Mesh(new THREE.SphereGeometry(2, 30, 30), new THREE.MeshStandardMaterial({
+var mesh1 = new THREE.Mesh(
+        new THREE.SphereGeometry(2, 30, 30),
+        new THREE.MeshStandardMaterial({
             color: 0xff0000,
             emissive: 0x0a0a0a
         }));
-var box = new THREE.BoxHelper(mesh, 0xffff00);
-mesh.add(box);
-scene.add(mesh);
+scene.add(mesh1);
+var mesh2 = new THREE.Mesh(
+        new THREE.SphereGeometry(2, 30, 30),
+        new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            emissive: 0x0a0a0a
+        }));
+scene.add(mesh2);
+
+// just add a helper to mesh1
+mesh1.add(new THREE.BoxHelper(mesh1, 0xffff00));
+
+var boxHelper = new THREE.BoxHelper(mesh2, 0xffffff);
+scene.add(boxHelper);
 
 // light
 var light = new THREE.PointLight(0xffffff);
@@ -27,9 +40,16 @@ var loop = function () {
     var per = frame / maxFrame,
     bias = 1 - Math.abs(0.5 - per) / 0.5;
 
-    // change position and rotation
-    mesh.position.z = 5 * bias;
-    mesh.rotation.y = Math.PI * per;
+    // change position and rotation of mesh1
+    // this also changes the position of the box helper
+    // that is relative to the mesh
+    mesh1.position.z = 5 * bias;
+    mesh1.rotation.y = Math.PI * per;
+
+    // when mesh2 is moved the boxHelper does not move
+    // the reason why is that it was added to the scene
+    // rather than mesh2
+    mesh2.position.x = 10 * bias;
 
     renderer.render(scene, camera);
 
