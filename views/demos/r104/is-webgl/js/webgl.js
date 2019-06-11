@@ -1,4 +1,17 @@
 var isWebGL = function (ctxNum) {
+    try {
+        var canvas = document.createElement('canvas');
+        return !!(window['WebGLRenderingContext'] &&
+        (canvas.getContext('webgl') ||
+        canvas.getContext('experimental-webgl')));
+    } catch (e) {
+        return false;
+    }
+};
+
+
+/*
+var isWebGL = function (ctxNum) {
     ctxNum = ctxNum === undefined ? '' : ctxNum;
     try {
         var canvas = document.createElement('canvas');
@@ -9,3 +22,4 @@ var isWebGL = function (ctxNum) {
         return false;
     }
 };
+*/
