@@ -1,19 +1,6 @@
-var isWebGL = function (ctxNum) {
-    ctxNum = ctxNum === undefined ? '' : ctxNum;
-    try {
-        var canvas = document.createElement('canvas');
-        return !!(window['WebGL' + ctxNum + 'RenderingContext'] &&
-            (canvas.getContext('webgl' + ctxNum) ||
-                canvas.getContext('experimental-webgl' + ctxNum)));
-    } catch (e) {
-        return false;
-    }
-};
-
-var container = document.getElementById('demo');
-
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+var container = document.getElementById('demo'),
+scene = new THREE.Scene(),
+camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(2, 2, 2);
 camera.lookAt(0, 0, 0);
 
