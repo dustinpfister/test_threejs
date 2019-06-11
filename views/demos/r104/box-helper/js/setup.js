@@ -15,7 +15,7 @@ scene.add(mesh);
 
 // light
 var light = new THREE.PointLight(0xffffff);
-light.position.set(0,2,2)
+light.position.set(0,2,2);
 scene.add(light);
 
 var mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1));
