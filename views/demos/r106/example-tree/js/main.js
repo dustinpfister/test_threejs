@@ -1,4 +1,20 @@
 
+var Tree = function (opt) {
+
+    opt = opt || {};
+
+    this.group = new THREE.Group();
+
+    var cone = new THREE.ConeGeometry(1, 7, 32);
+    var coneMaterial = new THREE.MeshBasicMaterial({
+            color: 0x00ff00
+        });
+    this.group.add(new THREE.Mesh(
+            cone,
+            coneMaterial));
+
+};
+
 (function () {
     // SCENE
     var scene = new THREE.Scene();
@@ -7,13 +23,8 @@
     camera.position.set(5, 5, 5);
     camera.lookAt(0, 0, 0);
 
-    var cone = new THREE.ConeGeometry(1, 7, 32);
-    var coneMaterial = new THREE.MeshBasicMaterial({
-            color: 0x00ff00
-        });
-    scene.add(new THREE.Mesh(
-            cone,
-            coneMaterial));
+    var tree = new Tree();
+	scene.add(tree.group);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
