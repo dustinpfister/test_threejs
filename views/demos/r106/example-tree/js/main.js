@@ -2,31 +2,32 @@
 var Tree = function (opt) {
 
     opt = opt || {};
-    opt.sections = opt.sections || 3;
-    opt.conesPerSection = opt.conesPerSection || 7;
-    opt.sectionRadius = opt.sectionRadius || 3;
+    this.sections = opt.sections || 3;
+    this.conesPerSection = opt.conesPerSection || 7;
+    this.sectionRadius = opt.sectionRadius || 3;
 
     this.group = new THREE.Group();
+    this.coneMaterial = new THREE.MeshBasicMaterial({
+            color: 0x00ff00
+        });
 
     var sectionIndex = 0;
-    while (sectionIndex < opt.conesPerSection) {
+    while (sectionIndex < this.conesPerSection) {
 
         var cone = new THREE.ConeGeometry(1, 7, 32),
-        per = sectionIndex / opt.conesPerSection,
+        per = sectionIndex / this.conesPerSection,
         radian = Math.PI * 2 * per,
-        x = Math.cos(radian) * opt.sectionRadius,
+        x = Math.cos(radian) * this.sectionRadius,
         y = 0,
-        z = Math.sin(radian) * opt.sectionRadius;
-        var coneMaterial = new THREE.MeshBasicMaterial({
-                color: 0x00ff00
-            });
+        z = Math.sin(radian) * this.sectionRadius;
+
         var mesh = new THREE.Mesh(
                 cone,
-                coneMaterial);
+                this.coneMaterial);
 
         mesh.position.set(x, y, z);
         mesh.rotateX(Math.PI / 2);
-        mesh.rotateZ(Math.PI * 2 / opt.conesPerSection * sectionIndex - Math.PI / 2);
+        mesh.rotateZ(Math.PI * 2 / this.conesPerSection * sectionIndex - Math.PI / 2);
         this.group.add(mesh);
 
         sectionIndex += 1;
