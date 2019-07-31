@@ -5,7 +5,7 @@
     var scene = new THREE.Scene();
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(15, 15, 15);
+    camera.position.set(-15, 15, 15);
     camera.lookAt(0, 0, 0);
     // LIGHT
     scene.add(camera);
@@ -16,9 +16,15 @@
     var treeMaterial = new THREE.MeshStandardMaterial({
             color: 0x00af00
         });
-    // TREE with custom forConeValues method
+    // BASIC TREE
     var tree = new Tree({
+            coneMaterial: treeMaterial
+        });
+    scene.add(tree.group);
+    // TREE with custom forConeValues method
+    tree = new Tree({
             coneMaterial: treeMaterial,
+            sections: 10,
             forConeValues: function (cone, section) {
 
                 cone.length = 4;
@@ -29,12 +35,7 @@
 
             }
         });
-    scene.add(tree.group);
-    // BASIC TREE
-    tree = new Tree({
-            coneMaterial: treeMaterial
-        });
-    tree.group.position.set(7, 0, 7);
+    tree.group.position.set(10, 0, 0);
     scene.add(tree.group);
 
     // RENDER

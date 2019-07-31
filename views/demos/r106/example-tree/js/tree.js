@@ -9,6 +9,9 @@ var Tree = function (opt) {
         });
     this.coneMaxRadius = opt.coneMaxRadius || 0.7;
     this.forConeValues = opt.forConeValues || function () {};
+    this.coneRadiusReduction = 0.3;
+    this.coneMaxLength = 7;
+    this.coneLengthReduction = 6;
 
     this.group = new THREE.Group();
 
@@ -19,8 +22,8 @@ var Tree = function (opt) {
 
         var groupSection = new THREE.Group();
         var coneObj = {
-            radius: this.coneMaxRadius - 0.3 * (secObj.i / this.sections),
-            length: 7 - 6 * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections),
+            radius: this.coneMaxRadius - this.coneRadiusReduction * (secObj.i / this.sections),
+            length: this.coneMaxLength - this.coneLengthReduction * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections),
             i: 0
         };
 
