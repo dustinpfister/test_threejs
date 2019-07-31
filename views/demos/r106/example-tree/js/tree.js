@@ -8,7 +8,7 @@ var Tree = function (opt) {
             color: 0x00ff00
         });
     this.coneMaxRadius = opt.coneMaxRadius || 0.7;
-    this.forCone = opt.forCone || function () {};
+    this.forConeValues = opt.forConeValues || function () {};
 
     this.group = new THREE.Group();
 
@@ -44,7 +44,7 @@ var Tree = function (opt) {
             };
 
             // call any forCone method that may be given
-            this.forCone.call(this, mesh, secObj, coneObj);
+            this.forConeValues.call(this, coneObj, secObj);
 
             // create the cone geometry
             var cone = new THREE.ConeGeometry(coneObj.radius, coneObj.length, 32, 1, false, 0, Math.PI * 2);
@@ -52,7 +52,7 @@ var Tree = function (opt) {
             // create the mesh
             var mesh = new THREE.Mesh(
                     cone,
-                    this.coneMaterial);
+                    coneObj.material || this.coneMaterial);
 
             // position and rotate
             mesh.position.set(coneObj.x, coneObj.y, coneObj.z);

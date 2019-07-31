@@ -11,12 +11,21 @@
     scene.add(camera);
     var light = new THREE.PointLight(0xffffff);
     camera.add(light);
+
     // TREE
     var tree = new Tree({
             coneMaterial: new THREE.MeshStandardMaterial({
                 color: 0x00af00
-            })
+            }),
+            forConeValues: function (cone, section) {
+
+                cone.material = new THREE.MeshBasicMaterial({
+                        color: new THREE.Color( Math.random(), Math.random(), 0 ) //0xff0000
+                    })
+
+            }
         });
+
     scene.add(tree.group);
     // RENDER
     var renderer = new THREE.WebGLRenderer();
