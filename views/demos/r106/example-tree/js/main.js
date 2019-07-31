@@ -2,34 +2,48 @@
 var Tree = function (opt) {
 
     opt = opt || {};
-    this.sections = opt.sections || 3;
+    this.sections = opt.sections || 2;
     this.conesPerSection = opt.conesPerSection || 7;
+    this.sectionYStep = opt.sectionYStep || 1;
     this.sectionRadius = opt.sectionRadius || 3;
     this.coneMaterial = opt.coneMaterial || new THREE.MeshBasicMaterial({
             color: 0x00ff00
         });
     this.group = new THREE.Group();
 
-    var coneIndex = 0;
-    while (coneIndex < this.conesPerSection) {
+    var sectionIndex = 0;
+    while (sectionIndex < this.sections) {
 
-        var cone = new THREE.ConeGeometry(1, 7, 32),
-        per = coneIndex / this.conesPerSection,
-        radian = Math.PI * 2 * per,
-        x = Math.cos(radian) * this.sectionRadius,
-        y = 0,
-        z = Math.sin(radian) * this.sectionRadius;
+        var groupSection = new THREE.Group();
 
-        var mesh = new THREE.Mesh(
-                cone,
-                this.coneMaterial);
+        var coneIndex = 0;
+        while (coneIndex < this.conesPerSection) {
 
-        mesh.position.set(x, y, z);
-        mesh.rotateX(Math.PI / 2);
-        mesh.rotateZ(Math.PI * 2 / this.conesPerSection * coneIndex - Math.PI / 2);
-        this.group.add(mesh);
+            var cone = new THREE.ConeGeometry(1, 7, 32),
+            per = coneIndex / this.conesPerSection,
+            radian = Math.PI * 2 * per,
+            x = Math.cos(radian) * this.sectionRadius,
+            y = 0,
+            z = Math.sin(radian) * this.sectionRadius;
 
-        coneIndex += 1;
+            var mesh = new THREE.Mesh(
+                    cone,
+                    this.coneMaterial);
+
+            mesh.position.set(x, y, z);
+            mesh.rotateX(Math.PI / 2);
+            mesh.rotateZ(Math.PI * 2 / this.conesPerSection * coneIndex - Math.PI / 2);
+            //this.group.add(mesh);
+            groupSection.add(mesh);
+
+            coneIndex += 1;
+
+        }
+
+        groupSection.position.y = this.sectionYStep * sectionIndex;
+        this.group.add(groupSection);
+
+        sectionIndex += 1;
 
     }
 
