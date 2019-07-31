@@ -49,12 +49,24 @@ var Tree = function (opt) {
                 y: 0,
                 z: Math.PI * 2 / this.conesPerSection * coneObj.i - Math.PI / 2
             };
+            coneObj.segRad = 32;
+            coneObj.seglength = 1;
+            coneObj.open = false;
+            coneObj.thetaStart = 0;
+            coneObj.thetaLength = Math.PI * 2;
 
             // call any forConeValues method that may be given
             this.forConeValues.call(this, coneObj, secObj);
 
             // create the cone geometry
-            var cone = new THREE.ConeGeometry(coneObj.radius, coneObj.length, 32, 1, false, 0, Math.PI * 2);
+            var cone = new THREE.ConeGeometry(
+                    coneObj.radius,
+                    coneObj.length,
+                    coneObj.segRad,
+                    coneObj.segLength,
+                    coneObj.open,
+                    coneObj.thetaStart,
+                    coneObj.thetaLength);
 
             // create the mesh
             var mesh = new THREE.Mesh(
