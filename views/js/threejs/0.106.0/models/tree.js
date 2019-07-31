@@ -33,8 +33,8 @@ var Tree = function (opt) {
         var groupSection = new THREE.Group();
 
         // standard radius and length
-        var stdRadius = this.coneMaxRadius - this.coneRadiusReduction * (secObj.i / this.sections),
-        stdLength = this.coneMaxLength - this.coneLengthReduction * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections);
+        secObj.stdRadius = this.coneMaxRadius - this.coneRadiusReduction * (secObj.i / this.sections);
+        secObj.stdLength = this.coneMaxLength - this.coneLengthReduction * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections);
 
         // cone object
         var coneObj = {
@@ -42,8 +42,8 @@ var Tree = function (opt) {
         };
 
         // set default radius and y position of section
-        secObj.radius = stdLength - stdLength / 2;
-        secObj.y = stdRadius * 2 * secObj.i;
+        secObj.radius = secObj.stdLength - secObj.stdLength / 2;
+        secObj.y = secObj.stdRadius * 2 * secObj.i;
 
         // call for section
         this.forSection.call(this, secObj);
@@ -51,23 +51,7 @@ var Tree = function (opt) {
         // loop cones
         while (coneObj.i < this.conesPerSection) {
 
-            coneObj.per = coneObj.i / this.conesPerSection;
-            coneObj.radian = Math.PI * 2 * coneObj.per;
-            coneObj.x = Math.cos(coneObj.radian) * secObj.radius;
-            coneObj.y = 0;
-            coneObj.z = Math.sin(coneObj.radian) * secObj.radius;
-            coneObj.r = {
-                x: Math.PI / 2,
-                y: 0,
-                z: Math.PI * 2 / this.conesPerSection * coneObj.i - Math.PI / 2
-            };
-            coneObj.radius = stdRadius;
-            coneObj.length = stdLength;
-            coneObj.segRad = 32;
-            coneObj.seglength = 1;
-            coneObj.open = false;
-            coneObj.thetaStart = 0;
-            coneObj.thetaLength = Math.PI * 2;
+            Tree.defaultConeObj(this, coneObj, secObj);
 
             // call any forConeValues method that may be given
             this.forConeValues.call(this, coneObj, secObj);
@@ -114,5 +98,29 @@ var Tree = function (opt) {
 
     // call on done if given
     this.onDone.call(this);
+
+};
+
+Tree.defaultConeObj = function (tree, coneObj, secObj) {
+
+    coneObj.per = coneObj.i / tree.conesPerSection;
+    coneObj.radian = Math.PI * 2 * coneObj.per;
+    coneObj.x = Math.cos(coneObj.radian) * secObj.radius;
+    coneObj.y = 0;
+    coneObj.z = Math.sin(coneObj.radian) * secObj.radius;
+    coneObj.r = {
+        x: Math.PI / 2,
+        y: 0,
+        z: Math.PI * 2 / tree.conesPerSection * coneObj.i - Math.PI / 2
+    };
+    coneObj.radius = secObj.stdRadius;
+    coneObj.length = secObj.stdLength;
+    coneObj.segRad = 32;
+    coneObj.seglength = 1;
+    coneObj.open = false;
+    coneObj.thetaStart = 0;
+    coneObj.thetaLength = Math.PI * 2;
+
+    console.log(coneObj)
 
 };
