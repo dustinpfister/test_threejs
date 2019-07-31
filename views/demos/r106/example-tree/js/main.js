@@ -37,6 +37,11 @@ var Tree = function (opt) {
             coneObj.x = Math.cos(coneObj.radian) * secObj.radius;
             coneObj.y = 0;
             coneObj.z = Math.sin(coneObj.radian) * secObj.radius;
+            coneObj.r = {
+                x: Math.PI / 2,
+                y: 0,
+                z: Math.PI * 2 / this.conesPerSection * coneObj.i - Math.PI / 2
+            };
 
             // call any forCone method that may be given
             this.forCone.call(this, mesh, secObj, coneObj);
@@ -49,11 +54,11 @@ var Tree = function (opt) {
                     cone,
                     this.coneMaterial);
 
-           // position and rotate
+            // position and rotate
             mesh.position.set(coneObj.x, coneObj.y, coneObj.z);
-            mesh.rotateX(Math.PI / 2);
-            mesh.rotateZ(Math.PI * 2 / this.conesPerSection * coneObj.i - Math.PI / 2);
+            mesh.rotation.set(coneObj.r.x, coneObj.r.y, coneObj.r.z)
 
+            // add mesh to group
             groupSection.add(mesh);
 
             coneObj.i += 1;
