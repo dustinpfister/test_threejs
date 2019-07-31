@@ -21,22 +21,6 @@
             coneMaterial: treeMaterial
         });
     scene.add(tree.group);
-    // TREE with custom forConeValues method
-    tree = new Tree({
-            coneMaterial: treeMaterial,
-            sections: 10,
-            forConeValues: function (cone, section) {
-
-                cone.length = 4;
-                cone.radius = 1.1 - 0.4 * (section.i / this.sections);
-                var radius = cone.length - cone.length * 0.80 * (section.i / this.sections);
-                cone.x = Math.cos(cone.radian) * radius;
-                cone.z = Math.sin(cone.radian) * radius;
-
-            }
-        });
-    tree.group.position.set(10, 0, 0);
-    scene.add(tree.group);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
