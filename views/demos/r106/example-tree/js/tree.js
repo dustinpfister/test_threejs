@@ -1,6 +1,7 @@
 
 var Tree = function (opt) {
 
+    // options
     opt = opt || {};
     this.sections = opt.sections || 5;
     this.conesPerSection = opt.conesPerSection || 7;
@@ -12,17 +13,21 @@ var Tree = function (opt) {
     this.coneMaxLength = opt.coneRadiusReduction || 7;
     this.coneLengthReduction = opt.coneRadiusReduction || 6;
 
+    // call backs
     this.forConeValues = opt.forConeValues || function () {};
     this.forConeMesh = opt.forConeMesh || function () {};
     this.forSection = opt.forSection || function () {};
-
     this.onDone = opt.onDone || function () {};
 
+    // the main group to add to scene
     this.group = new THREE.Group();
 
+    // section object
     var secObj = {
         i: 0
     }
+
+    // loop sections
     while (secObj.i < this.sections) {
 
         var groupSection = new THREE.Group();
@@ -85,17 +90,22 @@ var Tree = function (opt) {
             // add mesh to group
             groupSection.add(mesh);
 
+            // next cone
             coneObj.i += 1;
 
         }
 
+        // set y position of section
+        // and add the section to the group
         groupSection.position.y = secObj.y;
-        secObj.i += 1;
-
         this.group.add(groupSection);
+
+        // next section
+        secObj.i += 1;
 
     }
 
+    // call on done if given
     this.onDone.call(this);
 
 };
