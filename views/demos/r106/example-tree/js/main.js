@@ -9,7 +9,7 @@ var Tree = function (opt) {
         });
     this.coneMaxRadius = opt.coneMaxRadius || 0.7;
     this.sectionYStep = opt.sectionYStep || 1;
-    this.sectionRadius = opt.sectionRadius || 3;
+    this.sectionRadius = opt.sectionRadius || 10;
 
     this.group = new THREE.Group();
 
@@ -18,7 +18,11 @@ var Tree = function (opt) {
 
         var groupSection = new THREE.Group(),
         coneRadius = this.coneMaxRadius - 0.3 * (sectionIndex / this.sections),
-        coneLength = 7 / (sectionIndex + 1),
+        //coneRadius = this.coneMaxRadius - 0.3 * Math.pow(2, (sectionIndex / this.sections)),
+        //coneRadius = this.coneMaxRadius - Math.pow(0.3, sectionIndex / this.sections),
+
+        //coneLength = 7 / (sectionIndex + 1),
+        coneLength = 7 - 3 * (Math.pow(1.5, sectionIndex) - 1) / Math.pow(1.5, this.sections),
         secRadius = this.sectionRadius / (sectionIndex + 1),
         coneIndex = 0;
         while (coneIndex < this.conesPerSection) {
