@@ -15,7 +15,7 @@ var Tree = function (opt) {
     while (sectionIndex < this.sections) {
 
         var groupSection = new THREE.Group(),
-        coneRadius = 1 / (sectionIndex + 1),
+        coneRadius = 0.7 - 0.3 * (sectionIndex / this.sections),
         coneLength = 7 / (sectionIndex + 1),
         secRadius = this.sectionRadius / (sectionIndex + 1),
         coneIndex = 0;
@@ -42,9 +42,9 @@ var Tree = function (opt) {
         }
 
         groupSection.position.y = coneRadius * 2 * sectionIndex;
-        this.group.add(groupSection);
-
         sectionIndex += 1;
+
+        this.group.add(groupSection);
 
     }
 
