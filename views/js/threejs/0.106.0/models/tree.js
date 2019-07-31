@@ -32,17 +32,17 @@ var Tree = function (opt) {
 
         var groupSection = new THREE.Group();
 
-        var stdRadius = this.coneMaxRadius - this.coneRadiusReduction * (secObj.i / this.sections);
+        // standard radius and length
+        var stdRadius = this.coneMaxRadius - this.coneRadiusReduction * (secObj.i / this.sections),
+        stdLength = this.coneMaxLength - this.coneLengthReduction * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections);
 
         // cone object
         var coneObj = {
-            //radius: stdRadius,
-            length: this.coneMaxLength - this.coneLengthReduction * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections),
             i: 0
         };
 
         // set default radius and y position of section
-        secObj.radius = coneObj.length - coneObj.length / 2;
+        secObj.radius = stdLength - stdLength / 2;
         secObj.y = stdRadius * 2 * secObj.i;
 
         // call for section
@@ -62,6 +62,7 @@ var Tree = function (opt) {
                 z: Math.PI * 2 / this.conesPerSection * coneObj.i - Math.PI / 2
             };
             coneObj.radius = stdRadius;
+            coneObj.length = stdLength;
             coneObj.segRad = 32;
             coneObj.seglength = 1;
             coneObj.open = false;
