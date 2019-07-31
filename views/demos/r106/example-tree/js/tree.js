@@ -9,9 +9,9 @@ var Tree = function (opt) {
         });
     this.coneMaxRadius = opt.coneMaxRadius || 0.7;
     this.forConeValues = opt.forConeValues || function () {};
-    this.coneRadiusReduction = 0.3;
-    this.coneMaxLength = 7;
-    this.coneLengthReduction = 6;
+    this.coneRadiusReduction = opt.coneRadiusReduction || 0.3;
+    this.coneMaxLength = opt.coneRadiusReduction || 7;
+    this.coneLengthReduction = opt.coneRadiusReduction || 6;
 
     this.group = new THREE.Group();
 
