@@ -19,9 +19,8 @@
             }),
             forConeValues: function (cone, section) {
 
-                cone.material = new THREE.MeshBasicMaterial({
-                        color: new THREE.Color( Math.random(), Math.random(), 0 ) //0xff0000
-                    })
+
+                //cone.length = 3;
 
             }
         });

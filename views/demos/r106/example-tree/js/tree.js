@@ -17,19 +17,15 @@ var Tree = function (opt) {
     }
     while (secObj.i < this.sections) {
 
-        var groupSection = new THREE.Group(),
-        coneRadius = this.coneMaxRadius - 0.3 * (secObj.i / this.sections),
-        coneLength = 7 - 6 * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections),
-        coneIndex = 0;
-
+        var groupSection = new THREE.Group();
         var coneObj = {
             radius: this.coneMaxRadius - 0.3 * (secObj.i / this.sections),
             length: 7 - 6 * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections),
             i: 0
         };
 
-        secObj.radius = coneLength - coneLength / 2;
-        secObj.y = coneRadius * 2 * secObj.i;
+        secObj.radius = coneObj.length - coneObj.length/ 2;
+        secObj.y = coneObj.radius * 2 * secObj.i;
         while (coneObj.i < this.conesPerSection) {
 
             coneObj.per = coneObj.i / this.conesPerSection;
