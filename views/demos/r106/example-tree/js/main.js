@@ -4,18 +4,20 @@ var Tree = function (opt) {
     opt = opt || {};
     this.sections = opt.sections || 5;
     this.conesPerSection = opt.conesPerSection || 7;
-    this.sectionYStep = opt.sectionYStep || 1;
-    this.sectionRadius = opt.sectionRadius || 3;
     this.coneMaterial = opt.coneMaterial || new THREE.MeshBasicMaterial({
             color: 0x00ff00
         });
+    this.coneMaxRadius = opt.coneMaxRadius || 0.7;
+    this.sectionYStep = opt.sectionYStep || 1;
+    this.sectionRadius = opt.sectionRadius || 3;
+
     this.group = new THREE.Group();
 
     var sectionIndex = 0;
     while (sectionIndex < this.sections) {
 
         var groupSection = new THREE.Group(),
-        coneRadius = 0.7 - 0.3 * (sectionIndex / this.sections),
+        coneRadius = this.coneMaxRadius - 0.3 * (sectionIndex / this.sections),
         coneLength = 7 / (sectionIndex + 1),
         secRadius = this.sectionRadius / (sectionIndex + 1),
         coneIndex = 0;
