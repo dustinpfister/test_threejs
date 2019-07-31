@@ -2,14 +2,15 @@
 var Tree = function (opt) {
 
     opt = opt || {};
-    this.sections = opt.sections || 5;
+    this.sections = opt.sections || 4;
     this.conesPerSection = opt.conesPerSection || 7;
     this.coneMaterial = opt.coneMaterial || new THREE.MeshBasicMaterial({
             color: 0x00ff00
         });
     this.coneMaxRadius = opt.coneMaxRadius || 0.7;
     this.sectionYStep = opt.sectionYStep || 1;
-    this.sectionRadius = opt.sectionRadius || 10;
+    //this.sectionRadius = opt.sectionRadius || 10;
+	//this.sectionRadius = opt.sectionRadius || 10;
 
     this.group = new THREE.Group();
 
@@ -22,8 +23,10 @@ var Tree = function (opt) {
         //coneRadius = this.coneMaxRadius - Math.pow(0.3, sectionIndex / this.sections),
 
         //coneLength = 7 / (sectionIndex + 1),
-        coneLength = 7 - 3 * (Math.pow(1.5, sectionIndex) - 1) / Math.pow(1.5, this.sections),
-        secRadius = this.sectionRadius / (sectionIndex + 1),
+        coneLength = 7 - 6 * (Math.pow(2, sectionIndex) -1 ) / Math.pow(2, this.sections),
+        //secRadius = this.sectionRadius / (sectionIndex + 1),
+		//secRadius = this.sectionRadius / (sectionIndex + 1),
+		secRadius = coneLength - coneLength / 2,
         coneIndex = 0;
         while (coneIndex < this.conesPerSection) {
 
@@ -61,7 +64,7 @@ var Tree = function (opt) {
     var scene = new THREE.Scene();
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(5, 5, 10);
+    camera.position.set(8, 8, 10);
     camera.lookAt(0, 0, 0);
     // LIGHT
     scene.add(camera);
