@@ -24,7 +24,7 @@ var Tree = function (opt) {
             i: 0
         };
 
-        secObj.radius = coneObj.length - coneObj.length/ 2;
+        secObj.radius = coneObj.length - coneObj.length / 2;
         secObj.y = coneObj.radius * 2 * secObj.i;
         while (coneObj.i < this.conesPerSection) {
 
