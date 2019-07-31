@@ -2,7 +2,7 @@
 var Tree = function (opt) {
 
     opt = opt || {};
-    this.sections = opt.sections || 2;
+    this.sections = opt.sections || 5;
     this.conesPerSection = opt.conesPerSection || 7;
     this.sectionYStep = opt.sectionYStep || 1;
     this.sectionRadius = opt.sectionRadius || 3;
@@ -14,17 +14,20 @@ var Tree = function (opt) {
     var sectionIndex = 0;
     while (sectionIndex < this.sections) {
 
-        var groupSection = new THREE.Group();
+        var groupSection = new THREE.Group(),
+        coneRadius = 1 / (sectionIndex + 1),
+        coneLength = 7 / (sectionIndex + 1);
 
         var coneIndex = 0;
         while (coneIndex < this.conesPerSection) {
 
-            var cone = new THREE.ConeGeometry(1, 7, 32),
+            cone = new THREE.ConeGeometry(coneRadius, coneLength, 32),
             per = coneIndex / this.conesPerSection,
             radian = Math.PI * 2 * per,
-            x = Math.cos(radian) * this.sectionRadius,
+            radius = this.sectionRadius / (sectionIndex + 1),
+            x = Math.cos(radian) * radius,
             y = 0,
-            z = Math.sin(radian) * this.sectionRadius;
+            z = Math.sin(radian) * radius;
 
             var mesh = new THREE.Mesh(
                     cone,
@@ -40,7 +43,8 @@ var Tree = function (opt) {
 
         }
 
-        groupSection.position.y = this.sectionYStep * sectionIndex;
+        //groupSection.position.y = this.sectionYStep * sectionIndex;
+        groupSection.position.y = coneRadius * 2 * sectionIndex;
         this.group.add(groupSection);
 
         sectionIndex += 1;
