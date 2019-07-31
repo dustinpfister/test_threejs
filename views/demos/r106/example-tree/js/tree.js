@@ -8,10 +8,13 @@ var Tree = function (opt) {
             color: 0x00ff00
         });
     this.coneMaxRadius = opt.coneMaxRadius || 0.7;
-    this.forConeValues = opt.forConeValues || function () {};
     this.coneRadiusReduction = opt.coneRadiusReduction || 0.3;
     this.coneMaxLength = opt.coneRadiusReduction || 7;
     this.coneLengthReduction = opt.coneRadiusReduction || 6;
+
+    this.forConeValues = opt.forConeValues || function () {};
+    this.forConeMesh = opt.forConeMesh || function () {};
+    this.forSection = opt.forSection || function () {};
 
     this.group = new THREE.Group();
 
@@ -29,6 +32,11 @@ var Tree = function (opt) {
 
         secObj.radius = coneObj.length - coneObj.length / 2;
         secObj.y = coneObj.radius * 2 * secObj.i;
+
+        // call for section
+        this.forSection.call(this, secObj);
+
+        // loop cones
         while (coneObj.i < this.conesPerSection) {
 
             coneObj.per = coneObj.i / this.conesPerSection;
@@ -42,7 +50,7 @@ var Tree = function (opt) {
                 z: Math.PI * 2 / this.conesPerSection * coneObj.i - Math.PI / 2
             };
 
-            // call any forCone method that may be given
+            // call any forConeValues method that may be given
             this.forConeValues.call(this, coneObj, secObj);
 
             // create the cone geometry
@@ -56,6 +64,9 @@ var Tree = function (opt) {
             // position and rotate
             mesh.position.set(coneObj.x, coneObj.y, coneObj.z);
             mesh.rotation.set(coneObj.r.x, coneObj.r.y, coneObj.r.z)
+
+            // call forConeMesh
+            this.forConeMesh.call(this, mesh, coneObj, secObj);
 
             // add mesh to group
             groupSection.add(mesh);
