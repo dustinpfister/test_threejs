@@ -2,7 +2,7 @@
 var Tree = function (opt) {
 
     opt = opt || {};
-    this.sections = opt.sections || 4;
+    this.sections = opt.sections || 5;
     this.conesPerSection = opt.conesPerSection || 7;
     this.coneMaterial = opt.coneMaterial || new THREE.MeshBasicMaterial({
             color: 0x00ff00
@@ -16,9 +16,9 @@ var Tree = function (opt) {
     while (sectionIndex < this.sections) {
 
         var groupSection = new THREE.Group(),
-        secRadius = coneLength - coneLength / 2,
         coneRadius = this.coneMaxRadius - 0.3 * (sectionIndex / this.sections),
         coneLength = 7 - 6 * (Math.pow(2, sectionIndex) - 1) / Math.pow(2, this.sections),
+        secRadius = coneLength - coneLength / 2,
         coneIndex = 0;
         while (coneIndex < this.conesPerSection) {
 
@@ -52,6 +52,8 @@ var Tree = function (opt) {
 
             groupSection.add(mesh);
 
+            console.log(coneRadius);
+
             coneIndex += 1;
 
         }
@@ -62,6 +64,8 @@ var Tree = function (opt) {
         this.group.add(groupSection);
 
     }
+
+    console.log(this.group)
 
 };
 
