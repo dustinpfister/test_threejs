@@ -12,7 +12,6 @@ var Tree = function (opt) {
 
     this.group = new THREE.Group();
 
-    //var sectionIndex = 0;
     var secObj = {
         i: 0
     }
@@ -21,14 +20,20 @@ var Tree = function (opt) {
         var groupSection = new THREE.Group(),
         coneRadius = this.coneMaxRadius - 0.3 * (secObj.i / this.sections),
         coneLength = 7 - 6 * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections),
-        //secRadius = coneLength - coneLength / 2,
         coneIndex = 0;
+
+        var coneObj = {
+            radius: this.coneMaxRadius - 0.3 * (secObj.i / this.sections),
+            length: 7 - 6 * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections),
+            i: 0
+        };
+
         secObj.radius = coneLength - coneLength / 2;
         secObj.y = coneRadius * 2 * secObj.i;
-        while (coneIndex < this.conesPerSection) {
+        while (coneObj.i < this.conesPerSection) {
 
-            var cone = new THREE.ConeGeometry(coneRadius, coneLength, 32),
-            per = coneIndex / this.conesPerSection,
+            var cone = new THREE.ConeGeometry(coneObj.radius, coneObj.length, 32),
+            per = coneObj.i / this.conesPerSection,
             radian = Math.PI * 2 * per,
             x = Math.cos(radian) * secObj.radius,
             y = 0,
@@ -40,26 +45,13 @@ var Tree = function (opt) {
 
             mesh.position.set(x, y, z);
             mesh.rotateX(Math.PI / 2);
-            mesh.rotateZ(Math.PI * 2 / this.conesPerSection * coneIndex - Math.PI / 2);
+            mesh.rotateZ(Math.PI * 2 / this.conesPerSection * coneObj.i - Math.PI / 2);
 
-            this.forCone.call(this, mesh, {
-                sectionIndex: secObj.i,
-                coneIndex: coneIndex,
-                coneRadius: coneRadius,
-                coneLength: coneLength,
-                secRadius: secObj.radius,
-                cone: cone,
-                per: per,
-                x: x,
-                y: y,
-                z: z
-            });
+            this.forCone.call(this, mesh, secObj, coneObj);
 
             groupSection.add(mesh);
 
-            console.log(coneRadius);
-
-            coneIndex += 1;
+            coneObj.i += 1;
 
         }
 
