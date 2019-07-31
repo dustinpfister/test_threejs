@@ -12,13 +12,11 @@
     var light = new THREE.PointLight(0xffffff);
     camera.add(light);
 
-    // TREES
-    var treeMaterial = new THREE.MeshStandardMaterial({
-            color: 0x00af00
-        });
     // BASIC TREE
     var tree = new Tree({
-            coneMaterial: treeMaterial
+            coneMaterial: new THREE.MeshStandardMaterial({
+                color: 0x00af00
+            })
         });
     scene.add(tree.group);
 

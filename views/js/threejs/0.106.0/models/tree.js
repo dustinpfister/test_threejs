@@ -4,14 +4,14 @@ var Tree = function (opt) {
     // options
     opt = opt || {};
     this.sections = opt.sections || 5;
-    this.conesPerSection = opt.conesPerSection || 7;
+    this.conesPerSection = opt.conesPerSection || 9;
     this.coneMaterial = opt.coneMaterial || new THREE.MeshBasicMaterial({
             color: 0x00ff00
         });
     this.coneMaxRadius = opt.coneMaxRadius || 0.7;
     this.coneRadiusReduction = opt.coneRadiusReduction || 0.3;
-    this.coneMaxLength = opt.coneRadiusReduction || 7;
-    this.coneLengthReduction = opt.coneRadiusReduction || 6;
+    this.coneMaxLength = opt.coneRadiusReduction || 5;
+    this.coneLengthReduction = opt.coneRadiusReduction || 4.5;
 
     // call backs
     this.forConeValues = opt.forConeValues || function () {};
