@@ -5,7 +5,7 @@
     var scene = new THREE.Scene();
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(-15, 15, 15);
+    camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
     // LIGHT
     scene.add(camera);

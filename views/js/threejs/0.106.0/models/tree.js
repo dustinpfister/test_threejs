@@ -4,7 +4,7 @@ var Tree = function (opt) {
     // options
     opt = opt || {};
     this.sections = opt.sections || 5;
-    this.conesPerSection = opt.conesPerSection || 9;
+    this.conesPerSection = opt.conesPerSection || 7;
     this.coneMaterial = opt.coneMaterial || new THREE.MeshBasicMaterial({
             color: 0x00ff00
         });
@@ -31,19 +31,17 @@ var Tree = function (opt) {
     while (secObj.i < this.sections) {
 
         var groupSection = new THREE.Group();
-
-        // standard radius and length
-        secObj.stdRadius = this.coneMaxRadius - this.coneRadiusReduction * (secObj.i / this.sections);
-        secObj.stdLength = this.coneMaxLength - this.coneLengthReduction * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections);
-
         // cone object
         var coneObj = {
             i: 0
         };
-
-        // set default radius and y position of section
+        // standard radius and length
+        // and set default radius and y position of section
+        secObj.stdRadius = this.coneMaxRadius - this.coneRadiusReduction * (secObj.i / this.sections);
+        secObj.stdLength = this.coneMaxLength - this.coneLengthReduction * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections);
         secObj.radius = secObj.stdLength - secObj.stdLength / 2;
         secObj.y = secObj.stdRadius * 2 * secObj.i;
+        secObj.radOffset = (secObj.i % 2) * Math.PI;
 
         // call for section
         this.forSection.call(this, secObj);
@@ -77,6 +75,8 @@ var Tree = function (opt) {
 
             // call forConeMesh
             this.forConeMesh.call(this, mesh, coneObj, secObj);
+
+            groupSection.rotation.set(0, secObj.radOffset, 0);
 
             // add mesh to group
             groupSection.add(mesh);
@@ -120,7 +120,8 @@ Tree.defaultConeObj = function (tree, coneObj, secObj) {
 };
 
 Tree.setConePos = function (coneObj, secObj) {
-    coneObj.x = Math.cos(coneObj.radian) * secObj.radius;
+    var radian = coneObj.radian;
+    coneObj.x = Math.cos(radian) * secObj.radius;
     coneObj.y = 0;
-    coneObj.z = Math.sin(coneObj.radian) * secObj.radius;
+    coneObj.z = Math.sin(radian) * secObj.radius;
 };
