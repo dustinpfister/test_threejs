@@ -13,7 +13,19 @@
     camera.add(light);
 
     // CONE
-    var cone = new THREE.ConeGeometry(1, 5, 4, 1, false, 0, Math.PI),
+    var radius = 1,
+    height = 5,
+    radSegs = 4,
+    hightSegs = 1;
+    var cone = new THREE.ConeGeometry(
+            1, // radius
+            5, // height
+            4, //radial segments,
+            1, // height segments
+            false,
+            0, // start angle
+            Math.PI // angle length from start
+        );
     matreial = new THREE.MeshStandardMaterial({
             color: 0x00ff00,
             side: THREE.DoubleSide
