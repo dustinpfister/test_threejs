@@ -16,6 +16,8 @@ var Tree = function (opt) {
     this.forConeMesh = opt.forConeMesh || function () {};
     this.forSection = opt.forSection || function () {};
 
+    this.onDone = opt.onDone || function () {};
+
     this.group = new THREE.Group();
 
     var secObj = {
@@ -94,6 +96,6 @@ var Tree = function (opt) {
 
     }
 
-    console.log(this.group)
+    this.onDone.call(this);
 
 };
