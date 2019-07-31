@@ -32,22 +32,25 @@ var Tree = function (opt) {
         secObj.y = coneRadius * 2 * secObj.i;
         while (coneObj.i < this.conesPerSection) {
 
-            var per = coneObj.i / this.conesPerSection,
-            radian = Math.PI * 2 * per,
-            x = Math.cos(radian) * secObj.radius,
-            y = 0,
-            z = Math.sin(radian) * secObj.radius;
+            coneObj.per = coneObj.i / this.conesPerSection;
+            coneObj.radian = Math.PI * 2 * coneObj.per;
+            coneObj.x = Math.cos(coneObj.radian) * secObj.radius;
+            coneObj.y = 0;
+            coneObj.z = Math.sin(coneObj.radian) * secObj.radius;
 
             // call any forCone method that may be given
             this.forCone.call(this, mesh, secObj, coneObj);
 
+            // create the cone geometry
             var cone = new THREE.ConeGeometry(coneObj.radius, coneObj.length, 32, 1, false, 0, Math.PI * 2);
 
+            // create the mesh
             var mesh = new THREE.Mesh(
                     cone,
                     this.coneMaterial);
 
-            mesh.position.set(x, y, z);
+           // position and rotate
+            mesh.position.set(coneObj.x, coneObj.y, coneObj.z);
             mesh.rotateX(Math.PI / 2);
             mesh.rotateZ(Math.PI * 2 / this.conesPerSection * coneObj.i - Math.PI / 2);
 
