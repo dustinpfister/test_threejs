@@ -102,12 +102,9 @@ var Tree = function (opt) {
 };
 
 Tree.defaultConeObj = function (tree, coneObj, secObj) {
-
     coneObj.per = coneObj.i / tree.conesPerSection;
     coneObj.radian = Math.PI * 2 * coneObj.per;
-    coneObj.x = Math.cos(coneObj.radian) * secObj.radius;
-    coneObj.y = 0;
-    coneObj.z = Math.sin(coneObj.radian) * secObj.radius;
+    Tree.setConePos(coneObj, secObj);
     coneObj.r = {
         x: Math.PI / 2,
         y: 0,
@@ -120,7 +117,10 @@ Tree.defaultConeObj = function (tree, coneObj, secObj) {
     coneObj.open = false;
     coneObj.thetaStart = 0;
     coneObj.thetaLength = Math.PI * 2;
+};
 
-    console.log(coneObj)
-
+Tree.setConePos = function (coneObj, secObj) {
+    coneObj.x = Math.cos(coneObj.radian) * secObj.radius;
+    coneObj.y = 0;
+    coneObj.z = Math.sin(coneObj.radian) * secObj.radius;
 };
