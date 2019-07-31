@@ -56,10 +56,17 @@ var Tree = function (opt) {
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
     camera.position.set(5, 5, 10);
     camera.lookAt(0, 0, 0);
-
-    var tree = new Tree();
+    // LIGHT
+    scene.add(camera);
+    var light = new THREE.PointLight(0xffffff);
+    camera.add(light);
+    // TREE
+    var tree = new Tree({
+            coneMaterial: new THREE.MeshStandardMaterial({
+                color: 0x00af00
+            })
+        });
     scene.add(tree.group);
-
     // RENDER
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
