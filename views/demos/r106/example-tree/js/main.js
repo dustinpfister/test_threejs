@@ -12,22 +12,27 @@ var Tree = function (opt) {
 
     this.group = new THREE.Group();
 
-    var sectionIndex = 0;
-    while (sectionIndex < this.sections) {
+    //var sectionIndex = 0;
+    var secObj = {
+        i: 0
+    }
+    while (secObj.i < this.sections) {
 
         var groupSection = new THREE.Group(),
-        coneRadius = this.coneMaxRadius - 0.3 * (sectionIndex / this.sections),
-        coneLength = 7 - 6 * (Math.pow(2, sectionIndex) - 1) / Math.pow(2, this.sections),
-        secRadius = coneLength - coneLength / 2,
+        coneRadius = this.coneMaxRadius - 0.3 * (secObj.i / this.sections),
+        coneLength = 7 - 6 * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections),
+        //secRadius = coneLength - coneLength / 2,
         coneIndex = 0;
+        secObj.radius = coneLength - coneLength / 2;
+        secObj.y = coneRadius * 2 * secObj.i;
         while (coneIndex < this.conesPerSection) {
 
             var cone = new THREE.ConeGeometry(coneRadius, coneLength, 32),
             per = coneIndex / this.conesPerSection,
             radian = Math.PI * 2 * per,
-            x = Math.cos(radian) * secRadius,
+            x = Math.cos(radian) * secObj.radius,
             y = 0,
-            z = Math.sin(radian) * secRadius;
+            z = Math.sin(radian) * secObj.radius;
 
             var mesh = new THREE.Mesh(
                     cone,
@@ -38,11 +43,11 @@ var Tree = function (opt) {
             mesh.rotateZ(Math.PI * 2 / this.conesPerSection * coneIndex - Math.PI / 2);
 
             this.forCone.call(this, mesh, {
-                sectionIndex: sectionIndex,
+                sectionIndex: secObj.i,
                 coneIndex: coneIndex,
                 coneRadius: coneRadius,
                 coneLength: coneLength,
-                secRadius: secRadius,
+                secRadius: secObj.radius,
                 cone: cone,
                 per: per,
                 x: x,
@@ -58,8 +63,8 @@ var Tree = function (opt) {
 
         }
 
-        groupSection.position.y = coneRadius * 2 * sectionIndex;
-        sectionIndex += 1;
+        groupSection.position.y = secObj.y;
+        secObj.i += 1;
 
         this.group.add(groupSection);
 
