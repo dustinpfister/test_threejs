@@ -9,7 +9,7 @@ So this should be fun.
 Like all of these projects I do not intend to pollute the npmjs name space with this, so if you want to check these out, you will have to clone it in with git, and do a npm install
 
 ```
-$ git clone https://github.com/dustinpfister/test_threejs
+$ git clone --depth 1 https://github.com/dustinpfister/test_threejs
 $ cd test_threejs
 $ npm install
 ```
@@ -36,7 +36,7 @@ I have thought about making some complex system for this, but for now all the de
 
 ### How front end \*.js files are delivered
 
-I have a /js path where *.js files can be fetched like this:
+I have a /js path where \*.js files can be fetched like this:
 
 ```html
 <!-- loading three.js -->
@@ -47,7 +47,7 @@ Where the variable r is the currently set revision number that is to be used for
 
 ## How the r (revision) variable is determined
 
-As of this writing it is determined by the folder that the demo is in as that structoering follows a /demos/rXXX pattern where XXX is the revision number that is used for the demos in that path.
+As of this writing it is determined by the folder that the demo is in as that structuring follows a /demos/rXXX pattern where XXX is the revision number that is used for the demos in that path.
 
 ## Generating index of demos
 
