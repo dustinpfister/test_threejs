@@ -42,19 +42,26 @@ clock.get = function (date) {
     document.getElementById('demo').appendChild(renderer.domElement);
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    var materials = new THREE.MeshBasicMaterial({
+    var materials = [new THREE.MeshBasicMaterial({
             color: 0xff0000,
             wireframe: true
-        });
+        })];
 
     var cube = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), materials[0]);
     scene.add(cube);
 
-    camera.position.set(2, 2, 2);
+    camera.position.set(11, 11, 11);
     camera.lookAt(cube.position);
     renderer.setSize(320, 240);
 
-    console.log(clock.createFace())
+    // position face cubes
+    clock.createFace().map(function (facePoints) {
+        var cube = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), materials[0]);
+        cube.position.set(facePoints[0], facePoints[1], facePoints[2]);
+		cube.lookAt(0,0,0);
+        scene.add(cube);
+        return cube;
+    });
 
     // loop
     var loop = function () {
