@@ -42,12 +42,17 @@ clock.get = function (date) {
     document.getElementById('demo').appendChild(renderer.domElement);
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    var materials = [new THREE.MeshBasicMaterial({
+    var materials = [
+        new THREE.MeshBasicMaterial({
+            color: 0x00ff00,
+            wireframe: true
+        }),
+        new THREE.MeshBasicMaterial({
             color: 0xff0000,
             wireframe: true
         })];
 
-    var cube = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), materials[0]);
+    var cube = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), materials[1]);
     scene.add(cube);
 
     camera.position.set(11, 11, 11);
@@ -67,8 +72,8 @@ clock.get = function (date) {
     var loop = function () {
         var c = clock.get(new Date()),
         rad = Math.PI * 2 * c.minPer,
-        x = Math.cos(rad) * 9,
-        y = Math.sin(rad) * 9;
+        x = Math.cos(rad) * 8,
+        y = Math.sin(rad) * 8;
         cube.position.set(x, y, 0);
         cube.lookAt(0, 0, 0);
         requestAnimationFrame(loop);
