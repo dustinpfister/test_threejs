@@ -1,6 +1,6 @@
 # test_threejs
 
-These are my three.js demos that I intend to write about on my [github site](https://http://dustinpfister.github.io) as I wanted to write some content on the project, as it goes without saying that it's a good one to get into. Not only do I intend to write a lot of three.js related projects, I would also like to work out a well structured full stack application using express, and ejs as well.
+These are my three.js demos that I intend to write about on my [github site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/) as I wanted to write some content on the project, as it goes without saying that it's a good one to get into. Not only do I intend to write a lot of three.js related projects, I would also like to work out a well structured full stack application using express, and ejs as well.
 
 So this should be fun.
 
