@@ -58,15 +58,19 @@ clock.get = function (date) {
     clock.createFace().map(function (facePoints) {
         var cube = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), materials[0]);
         cube.position.set(facePoints[0], facePoints[1], facePoints[2]);
-		cube.lookAt(0,0,0);
+        cube.lookAt(0, 0, 0);
         scene.add(cube);
         return cube;
     });
 
     // loop
     var loop = function () {
-        var c = clock.get(new Date());
-        cube.rotation.set(0, Math.PI * 2 * c.secPer, 0);
+        var c = clock.get(new Date()),
+        rad = Math.PI * 2 * c.minPer,
+        x = Math.cos(rad) * 9,
+        y = Math.sin(rad) * 9;
+        cube.position.set(x, y, 0);
+        cube.lookAt(0, 0, 0);
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
     };
