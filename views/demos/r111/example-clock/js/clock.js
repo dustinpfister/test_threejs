@@ -1,9 +1,10 @@
 
 var clock = {};
 
-clock.createFace = function (cx, cy, radius) {
+clock.createFacePoints = function (cx, cy, cz, radius) {
     cx = cx || 0;
     cy = cy || 0;
+    cz = cz || 0;
     radius = radius || 10;
     var faceMarks = [],
     marks = 12,
@@ -15,7 +16,7 @@ clock.createFace = function (cx, cy, radius) {
         rad = Math.PI * 2 / marks * i;
         x = Math.cos(rad) * radius + cx;
         y = Math.sin(rad) * radius + cy;
-        z = 0;
+        z = cz;
         faceMarks.push([x, y, z]);
         i += 1;
     }
