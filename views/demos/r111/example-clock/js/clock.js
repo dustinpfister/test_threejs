@@ -23,6 +23,24 @@ clock.createFacePoints = function (cx, cy, cz, radius) {
     return faceMarks;
 };
 
+// create hand points array using given clockObj, origin, and radius
+clock.createHandPoints = function (clockObj, cx, cy, cz, radius) {
+    cx = cx || 0;
+    cy = cy || 0;
+    cz = cz || 0;
+    radius = radius || 10;
+    return 'sec,min,hour'.split(',').map(function (tUnit, i) {
+        var per = clockObj[tUnit + 'Per'] || 0,
+        rad = Math.PI * 2 * per,
+        x = Math.cos(rad) * (radius - (i + 2)) + cx,
+        y = Math.sin(rad) * (radius - (i + 2)) + cy,
+        z = cz;
+		console.log(tUnit,clockObj[tUnit + 'Per']);
+        return [x,y,z];
+    });
+};
+
+// get a clock object for the give date
 clock.get = function (date) {
     var c = {};
     c.now = date || new Date(0);

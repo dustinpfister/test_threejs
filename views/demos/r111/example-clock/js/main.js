@@ -2,7 +2,7 @@
 // create a THREE.Group of face marks for each hour
 var createFaceCubes = function (material) {
     var group = new THREE.Group();
-    clock.createFacePoints(0,0,0,10).map(function (facePoints) {
+    clock.createFacePoints(0, 0, 0, 10).map(function (facePoints) {
         var cube = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
         cube.position.set(facePoints[0], facePoints[1], facePoints[2]);
         cube.lookAt(0, 0, 0);
@@ -37,7 +37,9 @@ var createFaceCubes = function (material) {
     camera.lookAt(cube.position);
     renderer.setSize(320, 240);
 
-    scene.add( createFaceCubes( materials[0]) );
+    scene.add(createFaceCubes(materials[0]));
+
+    console.log(clock.createHandPoints(clock.get(new Date(2019,11,25,1,1,30, 500)), 0, 0, 0, 10));
 
     // loop
     var loop = function () {
