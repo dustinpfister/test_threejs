@@ -31,9 +31,9 @@ clock.createHandPoints = function (clockObj, cx, cy, cz, radius) {
     radius = radius || 10;
     return 'sec,min,hour'.split(',').map(function (tUnit, i) {
         var per = clockObj[tUnit + 'Per'] || 0,
-        rad = Math.PI * 2 * per,
-        x = Math.cos(rad) * (radius - (i + 2)) + cx,
-        y = Math.sin(rad) * (radius - (i + 2)) + cy,
+        rad = Math.PI * 2 * per * -1 + Math.PI / 2,
+        x = Math.cos(rad) * (radius - (i * 2 + 2)) + cx,
+        y = Math.sin(rad) * (radius - (i * 2 + 2)) + cy,
         z = cz;
         return [x,y,z];
     });
@@ -46,7 +46,7 @@ clock.get = function (date) {
     c.timeText = c.now.getTime();
     c.secPer = c.now.getMilliseconds() / 1000;
     c.minPer = c.now.getSeconds() / 60;
-    c.hourPer = c.now.getMinutes() / 24;
+    c.hourPer = c.now.getMinutes() / 60;
     var dayStart = new Date(c.now.getFullYear(), c.now.getMonth(), c.now.getDate(), 0, 0, 0, 0);
     c.dayPer = (c.now - dayStart) / 86400000;
     return c;
