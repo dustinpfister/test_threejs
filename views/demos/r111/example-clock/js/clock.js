@@ -35,7 +35,6 @@ clock.createHandPoints = function (clockObj, cx, cy, cz, radius) {
         x = Math.cos(rad) * (radius - (i + 2)) + cx,
         y = Math.sin(rad) * (radius - (i + 2)) + cy,
         z = cz;
-		console.log(tUnit,clockObj[tUnit + 'Per']);
         return [x,y,z];
     });
 };
