@@ -1,4 +1,17 @@
 
+var moveCamera = function (camera, per) {
+    var rad = Math.PI * 2 * per,
+    x = Math.cos(rad) * 3,
+    y = -3 + 6 * (1 - Math.abs(per - 0.5) / 0.5),
+    z = Math.sin(rad) * 3;
+    // position property can be used to set
+    // the position of a camera
+    camera.position.set(x, y, z);
+    // the rotation property or the lookAt method
+    // can be used to set rotation
+    camera.lookAt(0, 0, 0);
+};
+
 // Camera
 var width = 360,
 height = 180,
@@ -32,14 +45,10 @@ var loop = function () {
 
     requestAnimationFrame(loop);
 
-    var per = frame / frameMax,
-    rad = Math.PI * 2 * per,
-    x = Math.cos(rad) * 3,
-    y = -3 + 6 * (1 - Math.abs(per - 0.5) / 0.5),
-    z = Math.sin(rad) * 3;
+    var per = frame / frameMax;
 
-    camera.position.set(x, y, z);
-    camera.lookAt(0, 0, 0);
+    moveCamera(camera, per);
+
     // draw the scene
     renderer.render(scene, camera);
 
