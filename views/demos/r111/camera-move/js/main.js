@@ -12,7 +12,7 @@ var moveCamera = function (camera, per) {
     camera.lookAt(0, 0, 0);
 };
 
-// Camera
+// CAMERA
 var width = 360,
 height = 180,
 fieldOfView = 40,
@@ -37,21 +37,13 @@ scene.add(new THREE.Mesh(
             wireframe: true
         })));
 
-// position things
-
+// APP
 var frame = 0,
 frameMax = 100;
 var loop = function () {
-
     requestAnimationFrame(loop);
-
-    var per = frame / frameMax;
-
-    moveCamera(camera, per);
-
-    // draw the scene
+    moveCamera(camera, frame / frameMax);
     renderer.render(scene, camera);
-
     frame += 1;
     frame %= frameMax;
 };
