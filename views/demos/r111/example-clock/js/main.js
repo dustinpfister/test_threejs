@@ -12,12 +12,12 @@ var createFaceCubes = function (material) {
     return group;
 };
 
+// create hand cubes
 createHandCubes = function (material) {
     var group = new THREE.Group();
     group.add(new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material),
         new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material),
         new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material))
-
     var update = function (clockObj) {
         clockObj = clockObj || clock.get();
         clock.createHandPoints(clockObj, 0, 0, 0, 10).forEach(function (point, i) {
@@ -26,48 +26,46 @@ createHandCubes = function (material) {
         });
     };
     update();
-
     return {
         group: group,
         update: update
     }
-
 };
 
-(function () {
+// the demo
 
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
-    var renderer = new THREE.WebGLRenderer();
-    document.getElementById('demo').appendChild(renderer.domElement);
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
+var renderer = new THREE.WebGLRenderer();
+document.getElementById('demo').appendChild(renderer.domElement);
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    var materials = [
-        new THREE.MeshBasicMaterial({
-            color: 0x00ff00,
-            wireframe: true
-        }),
-        new THREE.MeshBasicMaterial({
-            color: 0xff0000,
-            wireframe: true
-        })];
+var materials = [
+    new THREE.MeshBasicMaterial({
+        color: 0x00ff00,
+        wireframe: true
+    }),
+    new THREE.MeshBasicMaterial({
+        color: 0xff0000,
+        wireframe: true
+    })];
 
-    camera.position.set(11, 11, 11);
-    camera.lookAt(0, 0, 0);
-    renderer.setSize(320, 240);
+// position and rotate camera
+camera.position.set(11, 11, 11);
+camera.lookAt(0, 0, 0);
+renderer.setSize(320, 240);
 
-    scene.add(createFaceCubes(materials[0]));
+// create and add face cubes
+scene.add(createFaceCubes(materials[0]));
 
-    var hands = createHandCubes(materials[1]);
-    scene.add(hands.group);
+// create hands
+var hands = createHandCubes(materials[1]);
+scene.add(hands.group);
 
-    // loop
-    var loop = function () {
-        hands.update(clock.get(new Date()));
-        requestAnimationFrame(loop);
-        renderer.render(scene, camera);
-    };
-    loop();
-
-}
-    ());
+// loop
+var loop = function () {
+    hands.update(clock.get(new Date()));
+    requestAnimationFrame(loop);
+    renderer.render(scene, camera);
+};
+loop();
