@@ -26,6 +26,6 @@ can3.createCube = function (texture) {
     return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshBasicMaterial({
-            map: createCanvasTexture()
+            map: texture
         }));
 };
