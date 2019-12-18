@@ -1,4 +1,4 @@
-
+// create and return a canvas texture
 var createCanvasTexture = function () {
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
@@ -14,6 +14,7 @@ var createCanvasTexture = function () {
     return texture;
 };
 
+// create a cube the makes use of a canvas texture
 var createCube = function () {
     return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
