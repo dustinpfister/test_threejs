@@ -9,13 +9,16 @@ var createBasicWireCube = function () {
 };
 
 // create a canvas texture
-var createCanvasTexture = function () {
+var createCanvasTexture = function (draw) {
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
     canvas.width = 16;
     canvas.height = 16;
-    ctx.strokeStyle = '#ffffff';
-    ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
+    draw = draw || function (ctx, canvas) {
+        ctx.strokeStyle = '#ffffff';
+        ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
+    };
+    draw(ctx, canvas);
     var texture = new THREE.Texture(canvas);
     texture.needsUpdate = true;
     return texture;
