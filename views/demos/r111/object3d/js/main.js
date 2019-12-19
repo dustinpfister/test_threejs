@@ -6,8 +6,20 @@ var createCubeStack = function (original) {
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial()),
     cube;
+    // the group
     stack.group = new THREE.Object3D();
-    // create cubes in the stack
+    // set method
+    stack.set = function (per) {
+        var bias = 1 - Math.abs(0.5 - per) / 0.5,
+        arr = stack.group.children,
+        len = arr.length;
+        arr.forEach(function (cube, i) {
+            var y = -len / 2 + i + 2 * bias;
+            cube.position.set(0, y, 0);
+            cube.rotation.set(0, Math.PI * 2 * (i / len) + Math.PI * 2 * per, 0);
+        });
+    };
+    // create cubes for the group
     var i = 0,
     len = 3,
     per;
@@ -19,14 +31,6 @@ var createCubeStack = function (original) {
         stack.group.add(cube)
         i += 1;
     }
-	stack.set = function(per){
-		
-		stack.group.children.forEach(function(cube){
-			
-			
-		});
-		
-	};
     return stack;
 };
 
@@ -52,15 +56,10 @@ var frame = 0,
 maxFrame = 100;
 var loop = function () {
 
-    var per = frame / maxFrame,
-    bias = Math.abs(.5 - per) / .5;
-
     requestAnimationFrame(loop);
     renderer.render(scene, camera);
 
-    //high.rotation.set(0, Math.PI * 2 * per, 0);
-    //low.rotation.set(0, -Math.PI * 2 * per, 0);
-    stack.group.position.set(0, -1 + 2 * bias, 0);
+    stack.set(frame / maxFrame);
 
     frame += 1;
     frame = frame % maxFrame;
