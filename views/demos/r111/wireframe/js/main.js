@@ -15,6 +15,9 @@ var createCanvasTexture = function (draw) {
     canvas.width = 16;
     canvas.height = 16;
     draw = draw || function (ctx, canvas) {
+        ctx.lineWidth = 1;
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = '#ffffff';
         ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
     };
@@ -25,13 +28,18 @@ var createCanvasTexture = function (draw) {
 };
 
 // create a cube with a canvas as a texture
+// the material is transparent and rendering is done on
+// both sides.
 var createCanvasWireCube = function () {
-    var texture = createCanvasTexture()
-        return new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
-                map: texture
-            }));
+    var texture = createCanvasTexture();
+    return new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshBasicMaterial({
+            transparent: true,
+            opacity: 0.2,
+            map: texture,
+            side: THREE.DoubleSide
+        }));
 };
 
 // Scene
