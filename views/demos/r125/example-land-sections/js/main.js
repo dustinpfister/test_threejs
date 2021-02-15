@@ -19,7 +19,7 @@
 
     // Render
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // Orbit Controls The DOM element must now be given as a second argument
