@@ -18,6 +18,7 @@ var Sections = (function () {
             mesh.position.x = Math.cos(radian) * 3;
             mesh.position.y = Math.sin(radian) * 3;
             mesh.position.z = 0;
+            mesh.lookAt(0,0,0);
             sections.add(mesh);
             sectionIndex += 1;
         }
