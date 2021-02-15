@@ -14,7 +14,7 @@ var Sections = (function () {
             var mesh = new THREE.Mesh(
                 new THREE.SphereGeometry(section.r / game.sectionDist, 20),
                 new THREE.MeshBasicMaterial({
-                    color: 0x00ff00,
+                    color: 'rgba(0,' + Math.round(255 * section.per) + ',0,1)',
                     wireframe: true
                 }));
             mesh.userData.type = 'section';
