@@ -5,7 +5,8 @@ var Sections = (function () {
     var createLandSections = function(){
         var sections = new THREE.Group();
         var sectionCount = 12,
-        sectionIndex = 0;
+        sectionIndex = 0,
+        radian = 0;
         while(sectionIndex < sectionCount){
             var mesh = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
@@ -13,9 +14,10 @@ var Sections = (function () {
                     color: 0x00ff00,
                     wireframe: true
                 }));
-            mesh.position.x = 0;
-            mesh.position.y = 0;
-            mesh.position.z = -6 + sectionIndex * 2;
+            radian = Math.PI * 2 / 12 * sectionIndex;
+            mesh.position.x = Math.cos(radian) * 3;
+            mesh.position.y = Math.sin(radian) * 3;
+            mesh.position.z = 0;
             sections.add(mesh);
             sectionIndex += 1;
         }
