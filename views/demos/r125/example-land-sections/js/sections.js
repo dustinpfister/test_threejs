@@ -1,6 +1,8 @@
 
 var Sections = (function () {
 
+    var THREEJS_MAX_RADIUS = 4;
+
     // create land sections objects
     var createLandSections = function(game){
         var sections = new THREE.Group();
@@ -16,8 +18,8 @@ var Sections = (function () {
                 }));
             radian = Math.PI * 2 / sectionCount * sectionIndex;
             mesh.userData.type = 'section';
-            mesh.position.x = Math.cos(radian) * 3;
-            mesh.position.y = Math.sin(radian) * 3;
+            mesh.position.x = Math.cos(radian) * THREEJS_MAX_RADIUS;
+            mesh.position.y = Math.sin(radian) * THREEJS_MAX_RADIUS;
             mesh.position.z = 0;
             mesh.lookAt(0,0,0);
             sections.add(mesh);
@@ -59,8 +61,8 @@ var Sections = (function () {
              console.log(child.userData);
              if(child.userData.type === 'sun'){
                  console.log('sun');
-                 child.position.x = game.sun.x / game.sectionDist * 3;
-                 child.position.y = game.sun.y / game.sectionDist * 3;
+                 child.position.x = game.sun.x / game.sectionDist * THREEJS_MAX_RADIUS;
+                 child.position.y = game.sun.y / game.sectionDist * THREEJS_MAX_RADIUS;
              }
         });
     };
