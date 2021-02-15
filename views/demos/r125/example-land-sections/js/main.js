@@ -14,13 +14,13 @@
     var i = 0,
     section,
     radian,
-    sectionCount = 10;
+    sectionCount = 12;
     while(i < sectionCount){
          radian = Math.PI * 2 / sectionCount * i;
          section = {
              x: Math.cos(radian) * game.sectionDist,
              y: Math.sin(radian) * game.sectionDist,
-             r: 8
+             r: 32
          };
          game.sections.push(section);
          i += 1;

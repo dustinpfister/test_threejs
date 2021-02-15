@@ -10,14 +10,14 @@ var Sections = (function () {
         sectionIndex = 0,
         section;
         while(sectionIndex < sectionCount){
+            section = game.sections[sectionIndex];
             var mesh = new THREE.Mesh(
-                new THREE.SphereGeometry(0.75, 20),
+                new THREE.SphereGeometry(section.r / game.sectionDist, 20),
                 new THREE.MeshBasicMaterial({
                     color: 0x00ff00,
                     wireframe: true
                 }));
             mesh.userData.type = 'section';
-            section = game.sections[sectionIndex];
             mesh.position.x = (section.x / game.sectionDist) * THREEJS_MAX_RADIUS;
             mesh.position.y = (section.y / game.sectionDist) * THREEJS_MAX_RADIUS;
             mesh.position.z = 0;
