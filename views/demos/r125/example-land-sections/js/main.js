@@ -4,9 +4,9 @@
     // game state object for now
     var game = {
         sun: {
-            x: 99,
-            y: 99,
-            r: 16
+            x: 25,
+            y: 25,
+            r: 64
         },
         sectionDist: 100,
         sections: []

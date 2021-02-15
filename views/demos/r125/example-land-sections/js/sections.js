@@ -30,9 +30,9 @@ var Sections = (function () {
     };
 
     // create land sections objects
-    var createSun = function(){
+    var createSun = function(game){
         var mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(0.75, 20),
+            new THREE.SphereGeometry(game.sun.r / game.sectionDist, 20),
             new THREE.MeshBasicMaterial({
                 color: 0xffff00,
                 wireframe: true
@@ -52,7 +52,7 @@ var Sections = (function () {
         // add land sections
         mainGroup.add(createLandSections(game));
         // add sun
-        mainGroup.add(createSun());
+        mainGroup.add(createSun(game));
         return mainGroup;
     };
 
