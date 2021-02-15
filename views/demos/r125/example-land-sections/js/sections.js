@@ -15,6 +15,7 @@ var Sections = (function () {
                     wireframe: true
                 }));
             radian = Math.PI * 2 / 12 * sectionIndex;
+            mesh.userData.type = 'section';
             mesh.position.x = Math.cos(radian) * 3;
             mesh.position.y = Math.sin(radian) * 3;
             mesh.position.z = 0;
@@ -22,6 +23,7 @@ var Sections = (function () {
             sections.add(mesh);
             sectionIndex += 1;
         }
+        sections.userData.type = 'sectionGroup';
         return sections;
     };
 
@@ -33,6 +35,7 @@ var Sections = (function () {
                 color: 0xffff00,
                 wireframe: true
             }));
+        mesh.userData.type = 'sun';
         mesh.position.x = 0
         mesh.position.y = 0
         mesh.position.z = 0;
@@ -49,6 +52,12 @@ var Sections = (function () {
         // add sun
         mainGroup.add(createSun());
         return mainGroup;
+    };
+
+    api.setSunPos = function(game, mainGroup){
+        mainGroup.children.forEach(function(child){
+             console.log(child.userData);
+        });
     };
 
     return api;

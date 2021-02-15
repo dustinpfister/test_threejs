@@ -9,8 +9,10 @@
     camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
 
-    var sectionsGroup = Sections.create();
-    scene.add(sectionsGroup);
+    var mainGroup = Sections.create();
+    scene.add(mainGroup);
+
+    Sections.setSunPos({}, mainGroup);
 
     // Render
     var renderer = new THREE.WebGLRenderer();
