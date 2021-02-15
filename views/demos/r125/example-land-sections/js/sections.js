@@ -9,7 +9,7 @@ var Sections = (function () {
         radian = 0;
         while(sectionIndex < sectionCount){
             var mesh = new THREE.Mesh(
-                new THREE.BoxGeometry(1, 1, 1),
+                new THREE.SphereGeometry(0.75, 20),
                 new THREE.MeshBasicMaterial({
                     color: 0x00ff00,
                     wireframe: true
@@ -30,7 +30,7 @@ var Sections = (function () {
     // create land sections objects
     var createSun = function(){
         var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.SphereGeometry(1, 20),
             new THREE.MeshBasicMaterial({
                 color: 0xffff00,
                 wireframe: true
