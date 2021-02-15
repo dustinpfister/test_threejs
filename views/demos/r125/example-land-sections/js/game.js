@@ -8,7 +8,7 @@ var game = (function () {
             y: -25,
             r: 64
         },
-        sectionDist: 100,
+        sectionDist: 75,
         sections: []
     };
     var i = 0,
@@ -20,7 +20,7 @@ var game = (function () {
          section = {
              x: Math.cos(radian) * game.sectionDist,
              y: Math.sin(radian) * game.sectionDist,
-             r: 32
+             r: 48
          };
          game.sections.push(section);
          i += 1;
