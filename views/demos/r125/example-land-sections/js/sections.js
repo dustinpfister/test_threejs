@@ -59,7 +59,6 @@ var Sections = (function () {
     api.update = function(game, mainGroup){
         mainGroup.children.forEach(function(child){
              if(child.userData.type === 'sun'){
-                 console.log('sun');
                  child.position.x = game.sun.x / game.sectionDist * THREEJS_MAX_RADIUS;
                  child.position.y = game.sun.y / game.sectionDist * THREEJS_MAX_RADIUS;
              }
