@@ -6,7 +6,7 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(2, 2, 2);
+    camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
 
     var sectionsGroup = Sections.create();
