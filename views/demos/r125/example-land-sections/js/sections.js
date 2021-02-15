@@ -2,9 +2,9 @@
 var Sections = (function () {
 
     // create land sections objects
-    var createLandSections = function(){
+    var createLandSections = function(game){
         var sections = new THREE.Group();
-        var sectionCount = 12,
+        var sectionCount = game.sections.length,
         sectionIndex = 0,
         radian = 0;
         while(sectionIndex < sectionCount){
@@ -14,7 +14,7 @@ var Sections = (function () {
                     color: 0x00ff00,
                     wireframe: true
                 }));
-            radian = Math.PI * 2 / 12 * sectionIndex;
+            radian = Math.PI * 2 / sectionCount * sectionIndex;
             mesh.userData.type = 'section';
             mesh.position.x = Math.cos(radian) * 3;
             mesh.position.y = Math.sin(radian) * 3;
@@ -45,10 +45,10 @@ var Sections = (function () {
     // PUBLIC API
     var api = {};
 
-    api.create = function(){
+    api.create = function(game){
         var mainGroup = new THREE.Group();
         // add land sections
-        mainGroup.add(createLandSections());
+        mainGroup.add(createLandSections(game));
         // add sun
         mainGroup.add(createSun());
         return mainGroup;

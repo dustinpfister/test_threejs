@@ -34,7 +34,7 @@
     camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
 
-    var mainGroup = Sections.create();
+    var mainGroup = Sections.create(game);
     scene.add(mainGroup);
 
     Sections.setSunPos(game, mainGroup);
