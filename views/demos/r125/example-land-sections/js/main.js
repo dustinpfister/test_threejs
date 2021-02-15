@@ -16,7 +16,7 @@
     radian,
     sectionCount = 10;
     while(i < sectionCount){
-         radian = Math.PI / sectionCount * i;
+         radian = Math.PI * 2 / sectionCount * i;
          section = {
              x: Math.cos(radian) * game.sectionDist,
              y: Math.sin(radian) * game.sectionDist,

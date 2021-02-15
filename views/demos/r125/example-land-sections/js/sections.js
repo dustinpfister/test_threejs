@@ -8,7 +8,7 @@ var Sections = (function () {
         var sections = new THREE.Group();
         var sectionCount = game.sections.length,
         sectionIndex = 0,
-        radian = 0;
+        section;
         while(sectionIndex < sectionCount){
             var mesh = new THREE.Mesh(
                 new THREE.SphereGeometry(0.75, 20),
@@ -16,10 +16,10 @@ var Sections = (function () {
                     color: 0x00ff00,
                     wireframe: true
                 }));
-            radian = Math.PI * 2 / sectionCount * sectionIndex;
             mesh.userData.type = 'section';
-            mesh.position.x = Math.cos(radian) * THREEJS_MAX_RADIUS;
-            mesh.position.y = Math.sin(radian) * THREEJS_MAX_RADIUS;
+            section = game.sections[sectionIndex];
+            mesh.position.x = (section.x / game.sectionDist) * THREEJS_MAX_RADIUS;
+            mesh.position.y = (section.y / game.sectionDist) * THREEJS_MAX_RADIUS;
             mesh.position.z = 0;
             mesh.lookAt(0,0,0);
             sections.add(mesh);
