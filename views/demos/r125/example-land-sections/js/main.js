@@ -1,12 +1,14 @@
 
 (function () {
 
+    // game state object for now
     var game = {
         sun: {
-            x: 0,
-            y: 0
+            x: 99,
+            y: 99,
+            r: 16
         },
-        sectionDist: 25,
+        sectionDist: 100,
         sections: []
     };
     var i = 0,
@@ -17,14 +19,12 @@
          radian = Math.PI / sectionCount * i;
          section = {
              x: Math.cos(radian) * game.sectionDist,
-             y: Math.sin(radian) * game.sectionDist
+             y: Math.sin(radian) * game.sectionDist,
+             r: 8
          };
          game.sections.push(section);
          i += 1;
     }
-
-    console.log(game);
-
 
     // Scene
     var scene = new THREE.Scene();
@@ -37,7 +37,7 @@
     var mainGroup = Sections.create(game);
     scene.add(mainGroup);
 
-    Sections.setSunPos(game, mainGroup);
+    Sections.update(game, mainGroup);
 
     // Render
     var renderer = new THREE.WebGLRenderer();

@@ -30,7 +30,7 @@ var Sections = (function () {
     // create land sections objects
     var createSun = function(){
         var mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(1, 20),
+            new THREE.SphereGeometry(0.75, 20),
             new THREE.MeshBasicMaterial({
                 color: 0xffff00,
                 wireframe: true
@@ -54,9 +54,14 @@ var Sections = (function () {
         return mainGroup;
     };
 
-    api.setSunPos = function(game, mainGroup){
+    api.update = function(game, mainGroup){
         mainGroup.children.forEach(function(child){
              console.log(child.userData);
+             if(child.userData.type === 'sun'){
+                 console.log('sun');
+                 child.position.x = game.sun.x / game.sectionDist * 3;
+                 child.position.y = game.sun.y / game.sectionDist * 3;
+             }
         });
     };
 
