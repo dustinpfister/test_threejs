@@ -9,6 +9,10 @@
         new THREE.MeshBasicMaterial({
             color: 0x00ff00,
             wireframe: true
+        }),
+        new THREE.MeshBasicMaterial({
+            color: 0x0000ff,
+            wireframe: true
         })
     ];
 
@@ -22,12 +26,12 @@
         var group = new THREE.Group();
 
         var i = 0;
-        while(i < 5){
+        while(i < 6){
             var mesh = new THREE.Mesh(
                 new THREE.SphereGeometry(1, 20),
                 materials[0]
             );
-            mesh.userData.materalIndex = 0;
+            mesh.userData.materalIndex = i % materials.length;
             mesh.userData.pitchPPS = 2;
             mesh.userData.headingPPS = 2;
             randomAngles(mesh);
