@@ -1,6 +1,10 @@
 
 (function () {
 
+    var GROUPSIZE = 9,
+    MAXDIST = 5;
+
+    // materials
     var materials = [
         new THREE.MeshBasicMaterial({
             color: 0xff0000,
@@ -15,17 +19,16 @@
             wireframe: true
         })
     ];
-
     // random angles helper
     var randomAngles = function(mesh){
         mesh.userData.pitch = Math.PI * 2 * Math.random();
         mesh.userData.heading = Math.PI * 2 * Math.random();
     };
-
+    // create a sphere group
     var createSphereGroup = function(){
         var group = new THREE.Group();
         var i = 0;
-        while(i < 6){
+        while(i < GROUPSIZE){
             var mesh = new THREE.Mesh(
                 new THREE.SphereGeometry(1, 20),
                 materials[0]
@@ -39,7 +42,7 @@
         }
         return group;
     };
-
+    // update a sphere group
     var updateSphereGroup = function(group, secs){
         group.children.forEach(function(mesh){
             var ud = mesh.userData;
@@ -48,13 +51,12 @@
             mesh.position.y += Math.sin(ud.pitch) * ud.pitchPPS * secs;
             mesh.position.z += Math.cos(ud.heading) * ud.headingPPS * secs;
             var d = mesh.position.distanceTo(new THREE.Vector3(0,0,0));
-            if(d >= 3){
+            if(d >= MAXDIST){
                 mesh.position.set(0,0,0);
                 randomAngles(mesh);
             }
         });
     };
-
 
     // Scene
     var scene = new THREE.Scene();
