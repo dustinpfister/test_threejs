@@ -59,6 +59,7 @@
             if(d >= MAXDIST){
                 mesh.position.set(0,0,0);
                 randomAngles(mesh);
+                randomSpeed(mesh);
             }
         });
     };
