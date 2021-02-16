@@ -1,6 +1,35 @@
 
 (function () {
 
+    var materials = [
+        new THREE.MeshBasicMaterial({
+            color: 0xff0000,
+            wireframe: true
+        }),
+        new THREE.MeshBasicMaterial({
+            color: 0x00ff00,
+            wireframe: true
+        })
+    ];
+
+    var createSphereGroup = function(){
+        var group = new THREE.Group();
+        var mesh = new THREE.Mesh(
+            new THREE.SphereGeometry(1, 20),
+            materials[0]
+        );
+        mesh.userData.materalIndex = 1;
+        group.add(mesh);
+        return group;
+    };
+
+    var updateSphereGroup = function(group){
+        group.children.forEach(function(mesh){
+            mesh.material = materials[mesh.userData.materalIndex];
+        });
+    };
+
+
     // Scene
     var scene = new THREE.Scene();
 
@@ -9,13 +38,10 @@
     camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
 
-    // Something to look at
-    scene.add(new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
-                color: 0xff0000,
-                wireframe: true
-            })));
+    // create and add sphere group
+    var group = createSphereGroup();
+    updateSphereGroup(group);
+    scene.add(group);
 
     // Render
     var renderer = new THREE.WebGLRenderer();
