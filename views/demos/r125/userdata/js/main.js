@@ -24,7 +24,6 @@
 
     var createSphereGroup = function(){
         var group = new THREE.Group();
-
         var i = 0;
         while(i < 6){
             var mesh = new THREE.Mesh(
@@ -43,10 +42,11 @@
 
     var updateSphereGroup = function(group, secs){
         group.children.forEach(function(mesh){
-            mesh.material = materials[mesh.userData.materalIndex];
-            mesh.position.x += Math.cos(mesh.userData.pitch) * mesh.userData.pitchPPS * secs;
-            mesh.position.y += Math.sin(mesh.userData.pitch) * mesh.userData.pitchPPS * secs;
-            mesh.position.z += Math.cos(mesh.userData.heading) * mesh.userData.headingPPS * secs;
+            var ud = mesh.userData;
+            mesh.material = materials[ud.materalIndex];
+            mesh.position.x += Math.cos(ud.pitch) * ud.pitchPPS * secs;
+            mesh.position.y += Math.sin(ud.pitch) * ud.pitchPPS * secs;
+            mesh.position.z += Math.cos(ud.heading) * ud.headingPPS * secs;
             var d = mesh.position.distanceTo(new THREE.Vector3(0,0,0));
             if(d >= 3){
                 mesh.position.set(0,0,0);
