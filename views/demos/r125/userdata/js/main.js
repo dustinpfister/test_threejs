@@ -69,7 +69,7 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(0, 0, 5);
+    camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
 
     // create and add sphere group
@@ -82,16 +82,12 @@
     renderer.setSize(320, 240);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // Orbit Controls The DOM element must now be given as a second argument
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
     // loop
     var lt = new Date();
     function animate() {
         var now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(animate);
-        controls.update();
         updateSphereGroup(group, secs);
         renderer.render(scene, camera);
         lt = now;
