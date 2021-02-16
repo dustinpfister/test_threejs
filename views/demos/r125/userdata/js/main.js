@@ -12,6 +12,9 @@
         })
     ];
 
+    var distance = function(obj1, obj2){
+    };
+
     var createSphereGroup = function(){
         var group = new THREE.Group();
         var mesh = new THREE.Mesh(
@@ -19,9 +22,10 @@
             materials[0]
         );
         mesh.userData.materalIndex = 1;
-        mesh.userData.pitchPPS = 0;
-        mesh.userData.pitch = Math.PI / 180 * 270;
-        mesh.userData.heading = Math.PI / 180 * 180;
+        mesh.userData.pitchPPS = 2;
+        mesh.userData.headingPPS = 2;
+        mesh.userData.pitch = Math.PI / 180 * 45;
+        mesh.userData.heading = Math.PI / 180 * 80;
         group.add(mesh);
         return group;
     };
@@ -29,9 +33,15 @@
     var updateSphereGroup = function(group, secs){
         group.children.forEach(function(mesh){
             mesh.material = materials[mesh.userData.materalIndex];
-            mesh.position.x += Math.cos(mesh.userData.pitch) * mesh.userData.pitchPPS;
-            mesh.position.y += Math.sin(mesh.userData.pitch) * mesh.userData.pitchPPS;
-            mesh.position.z += Math.cos(mesh.userData.heading) * mesh.userData.headingPPS;
+            mesh.position.x += Math.cos(mesh.userData.pitch) * mesh.userData.pitchPPS * secs;
+            mesh.position.y += Math.sin(mesh.userData.pitch) * mesh.userData.pitchPPS * secs;
+            mesh.position.z += Math.cos(mesh.userData.heading) * mesh.userData.headingPPS * secs;
+            var d = mesh.position.distanceTo(new THREE.Vector3(0,0,0));
+            if(d >= 3){
+                mesh.position.set(0,0,0);
+                mesh.userData.pitch = Math.PI * 2 * Math.random();
+                mesh.userData.heading = Math.PI * 2 * Math.random();
+            }
         });
     };
 
