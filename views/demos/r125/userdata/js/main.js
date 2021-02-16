@@ -12,6 +12,7 @@
         })
     ];
 
+    // random angles helper
     var randomAngles = function(mesh){
         mesh.userData.pitch = Math.PI * 2 * Math.random();
         mesh.userData.heading = Math.PI * 2 * Math.random();
@@ -19,17 +20,20 @@
 
     var createSphereGroup = function(){
         var group = new THREE.Group();
-        var mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(1, 20),
-            materials[0]
-        );
-        mesh.userData.materalIndex = 1;
-        mesh.userData.pitchPPS = 2;
-        mesh.userData.headingPPS = 2;
-        //mesh.userData.pitch = Math.PI / 180 * 45;
-        //mesh.userData.heading = Math.PI / 180 * 80;
-        randomAngles(mesh);
-        group.add(mesh);
+
+        var i = 0;
+        while(i < 5){
+            var mesh = new THREE.Mesh(
+                new THREE.SphereGeometry(1, 20),
+                materials[0]
+            );
+            mesh.userData.materalIndex = 0;
+            mesh.userData.pitchPPS = 2;
+            mesh.userData.headingPPS = 2;
+            randomAngles(mesh);
+            group.add(mesh);
+            i += 1;
+        }
         return group;
     };
 
