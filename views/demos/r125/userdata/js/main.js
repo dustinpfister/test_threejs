@@ -12,7 +12,9 @@
         })
     ];
 
-    var distance = function(obj1, obj2){
+    var randomAngles = function(mesh){
+        mesh.userData.pitch = Math.PI * 2 * Math.random();
+        mesh.userData.heading = Math.PI * 2 * Math.random();
     };
 
     var createSphereGroup = function(){
@@ -24,8 +26,9 @@
         mesh.userData.materalIndex = 1;
         mesh.userData.pitchPPS = 2;
         mesh.userData.headingPPS = 2;
-        mesh.userData.pitch = Math.PI / 180 * 45;
-        mesh.userData.heading = Math.PI / 180 * 80;
+        //mesh.userData.pitch = Math.PI / 180 * 45;
+        //mesh.userData.heading = Math.PI / 180 * 80;
+        randomAngles(mesh);
         group.add(mesh);
         return group;
     };
@@ -39,8 +42,7 @@
             var d = mesh.position.distanceTo(new THREE.Vector3(0,0,0));
             if(d >= 3){
                 mesh.position.set(0,0,0);
-                mesh.userData.pitch = Math.PI * 2 * Math.random();
-                mesh.userData.heading = Math.PI * 2 * Math.random();
+                randomAngles(mesh);
             }
         });
     };
