@@ -2,7 +2,9 @@
 (function () {
 
     var GROUPSIZE = 9,
-    MAXDIST = 5;
+    MAXDIST = 5,
+    PPS_MIN = 1,
+    PPS_MAX = 7;
 
     // materials
     var materials = [
@@ -24,6 +26,10 @@
         mesh.userData.pitch = Math.PI * 2 * Math.random();
         mesh.userData.heading = Math.PI * 2 * Math.random();
     };
+    var randomSpeed = function(mesh){
+        mesh.userData.pitchPPS = PPS_MIN + (PPS_MAX - PPS_MIN) * Math.random();
+        mesh.userData.headingPPS = PPS_MIN + (PPS_MAX - PPS_MIN) * Math.random();
+    };
     // create a sphere group
     var createSphereGroup = function(){
         var group = new THREE.Group();
@@ -34,8 +40,7 @@
                 materials[0]
             );
             mesh.userData.materalIndex = i % materials.length;
-            mesh.userData.pitchPPS = 2;
-            mesh.userData.headingPPS = 2;
+            randomSpeed(mesh);
             randomAngles(mesh);
             group.add(mesh);
             i += 1;
