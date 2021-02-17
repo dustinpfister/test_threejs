@@ -11,7 +11,7 @@
 
     // light
     var pointLight = new THREE.PointLight('white');
-    pointLight.position.set(7, 5, 10);
+    pointLight.position.set(14, 10, 20);
     pointLight.add(new THREE.Mesh(
             new THREE.SphereGeometry(1, 10, 10),
             new THREE.MeshBasicMaterial({
