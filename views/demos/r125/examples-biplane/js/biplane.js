@@ -16,30 +16,30 @@ var Biplane = (function () {
     var api = {};
 
     // create a wing
-    var createWing = function(y){
+    var createWing = function(opt, y){
         var wing = new THREE.Mesh(
             new THREE.BoxGeometry(2,1,10),
-            materials.plane
+            opt.materials.plane || materials.plane
         );
         wing.position.y = y;
         return wing;
     };
 
     // create a body
-    var createBody = function(){
+    var createBody = function(opt){
         var body = new THREE.Mesh(
             new THREE.BoxGeometry(10,2,2),
-            materials.plane
+            opt.materials.plane || materials.plane
         );
         body.position.x = -2;
         return body;
     };
 
     // create a body
-    var createTail = function(){
+    var createTail = function(opt){
         var body = new THREE.Mesh(
             new THREE.BoxGeometry(1,2,2),
-            materials.plane
+            opt.materials.plane || materials.plane
         );
         body.position.x = -6.5;
         body.position.y = 2;
@@ -69,17 +69,20 @@ var Biplane = (function () {
     };
 
     // main create method
-    api.create = function(){
+    api.create = function(opt){
+        opt = opt || {};
+        opt.materials = opt.materials || {};
+
         var plane = new THREE.Group();
         // body and tail
-        plane.add(createBody());
-        plane.add(createTail());
+        plane.add(createBody(opt));
+        plane.add(createTail(opt));
         // ref to prop
         plane.userData.prop = createProp();
         plane.add(plane.userData.prop);
         // wings
-        plane.add(createWing(-1));
-        plane.add(createWing(1));
+        plane.add(createWing(opt, -1));
+        plane.add(createWing(opt, 1));
         // guy
         plane.add(createGuy());
         // prop radian to move prop
