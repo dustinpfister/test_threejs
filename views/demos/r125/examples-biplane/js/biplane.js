@@ -6,8 +6,8 @@ var Biplane = (function () {
     api.create = function(){
         return new THREE.Mesh(
             new THREE.BoxGeometry(1,1,1),
-            new THREE.MeshStandardMaterial({
-                color: 'red'
+            new THREE.MeshLambertMaterial({
+                color: 0xff0000
             })
         );
     };

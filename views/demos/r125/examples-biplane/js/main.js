@@ -6,12 +6,12 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(8, 8, 8);
+    camera.position.set(3, 3, 3);
     camera.lookAt(0, 0, 0);
 
     // light
     var pointLight = new THREE.PointLight('white');
-    pointLight.position.set(10, 10, 10);
+    pointLight.position.set(7, 5, 10);
     pointLight.add(new THREE.Mesh(
             new THREE.SphereGeometry(1, 10, 10),
             new THREE.MeshBasicMaterial({
