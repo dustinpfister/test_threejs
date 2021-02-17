@@ -30,6 +30,7 @@
     bi2 = Biplane.create({
         materials: materials
     });
+    bi2.userData.propRPS = 2;
     bi2.position.set(0,0,15);
     scene.add(bi2);
 
@@ -39,17 +40,14 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // Orbit Controls The DOM element must now be given as a second argument
-    //var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
     // loop
     var lt = new Date();
     function animate() {
         var now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(animate);
-        //controls.update();
         Biplane.update(bi1, secs);
+        Biplane.update(bi2, secs);
         renderer.render(scene, camera);
         lt = now;
     };
