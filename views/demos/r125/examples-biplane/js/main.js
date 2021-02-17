@@ -19,7 +19,9 @@
             })));
     scene.add(pointLight);
 
-    scene.add(Biplane.create());
+    var bi1 = Biplane.create();
+    console.log(bi1);
+    scene.add(bi1);
 
     // Render
     var renderer = new THREE.WebGLRenderer();

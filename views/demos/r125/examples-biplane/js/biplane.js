@@ -68,12 +68,17 @@ var Biplane = (function () {
     // main create method
     api.create = function(){
         var plane = new THREE.Group();
+        // body and tail
         plane.add(createBody());
         plane.add(createTail());
-        plane.add(createGuy());
-        plane.add(createProp());
+        // ref to prop
+        plane.userData.prop = createProp();
+        plane.add(plane.userData.prop);
+        // wings
         plane.add(createWing(-1));
         plane.add(createWing(1));
+        // guy
+        plane.add(createGuy());
         return plane;
     };
 
