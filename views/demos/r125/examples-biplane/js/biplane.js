@@ -40,14 +40,27 @@ var Biplane = (function () {
         return body;
     };
 
+    // create guy
+    var createGuy = function(){
+        var body = new THREE.Mesh(
+            new THREE.BoxGeometry(1,1,1),
+            new THREE.MeshLambertMaterial({
+                color: 0xffffff
+            })
+        );
+        body.position.x = -2;
+        body.position.y = 1.5;
+        return body;
+    };
+
+    // main create method
     api.create = function(){
         var plane = new THREE.Group();
-
         plane.add(createBody());
         plane.add(createTail());
+        plane.add(createGuy());
         plane.add(createWing(-1));
         plane.add(createWing(1));
-
         return plane;
     };
 
