@@ -79,7 +79,17 @@ var Biplane = (function () {
         plane.add(createWing(1));
         // guy
         plane.add(createGuy());
+        // prop radian to move prop
+        plane.userData.propRadian = 0;
+        plane.userData.propRPS = 0.25;
         return plane;
+    };
+
+    api.update = function(bi, secs){
+        var ud = bi.userData;
+        ud.propRadian += (Math.PI * 2 * ud.propRPS) * secs;
+        ud.propRadian %= (Math.PI * 2);
+        ud.prop.rotation.set(ud.propRadian,0,0)
     };
 
     return api;

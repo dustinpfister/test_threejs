@@ -32,10 +32,15 @@
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     // loop
+    var lt = new Date();
     function animate() {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
         requestAnimationFrame(animate);
         controls.update();
+        Biplane.update(bi1, secs);
         renderer.render(scene, camera);
+        lt = now;
     };
 
     animate();
