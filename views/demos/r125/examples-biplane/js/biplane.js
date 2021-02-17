@@ -7,6 +7,9 @@ var Biplane = (function () {
         }),
         guy: new THREE.MeshLambertMaterial({
             color: 0xffffff
+        }),
+        prop: new THREE.MeshLambertMaterial({
+            color: 0x808080
         })
     };
 
@@ -58,7 +61,7 @@ var Biplane = (function () {
     var createProp = function(){
         var prop = new THREE.Mesh(
             new THREE.BoxGeometry(0.5,4,0.5),
-            materials.guy
+            materials.prop
         );
         
         prop.position.x = 3.25;
