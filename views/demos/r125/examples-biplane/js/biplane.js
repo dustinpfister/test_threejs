@@ -4,6 +4,9 @@ var Biplane = (function () {
     var materials = {
         plane: new THREE.MeshLambertMaterial({
             color: 0x00ff00
+        }),
+        guy: new THREE.MeshLambertMaterial({
+            color: 0xffffff
         })
     };
 
@@ -12,7 +15,7 @@ var Biplane = (function () {
     // create a wing
     var createWing = function(y){
         var wing = new THREE.Mesh(
-            new THREE.BoxGeometry(2,1,8),
+            new THREE.BoxGeometry(2,1,10),
             materials.plane
         );
         wing.position.y = y;
@@ -42,15 +45,24 @@ var Biplane = (function () {
 
     // create guy
     var createGuy = function(){
-        var body = new THREE.Mesh(
+        var guy = new THREE.Mesh(
             new THREE.BoxGeometry(1,1,1),
-            new THREE.MeshLambertMaterial({
-                color: 0xffffff
-            })
+            materials.guy
         );
-        body.position.x = -2;
-        body.position.y = 1.5;
-        return body;
+        guy.position.x = -2;
+        guy.position.y = 1.5;
+        return guy;
+    };
+
+    // create prop
+    var createProp = function(){
+        var prop = new THREE.Mesh(
+            new THREE.BoxGeometry(0.5,4,0.5),
+            materials.guy
+        );
+        
+        prop.position.x = 3.25;
+        return prop;
     };
 
     // main create method
@@ -59,6 +71,7 @@ var Biplane = (function () {
         plane.add(createBody());
         plane.add(createTail());
         plane.add(createGuy());
+        plane.add(createProp());
         plane.add(createWing(-1));
         plane.add(createWing(1));
         return plane;
