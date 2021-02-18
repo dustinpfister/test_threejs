@@ -31,8 +31,10 @@
     }
 
     group = biGroups[1];
+    group.position.x = 30;
     var bi = group.children[0];
     bi.userData.rotate = true;
+    bi.userData.rSpeed = 90;
 
     // Render
     var renderer = new THREE.WebGLRenderer();
