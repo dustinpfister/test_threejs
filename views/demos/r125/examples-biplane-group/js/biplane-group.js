@@ -47,7 +47,7 @@ var BiplaneGroup = (function () {
             var bi = Biplane.create();
             bi.userData.yFrame = Math.floor(MAX_FRAME * (i / BIPLANE_COUNT));
             bi.userData.rSpeed = 360;
-            bi.userData.rotate = true;
+            bi.userData.rotate = false;
             bi.userData.r = 0;
             group.add(bi);
             i += 1;

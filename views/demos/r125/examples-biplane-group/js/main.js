@@ -21,14 +21,18 @@
 
     var biGroups = [];
 
-    var i = 0;
+    var i = 0, group;
     while(i < 3){
-        var group = BiplaneGroup.create();
+        group = BiplaneGroup.create();
         group.position.z = 50 * i;
         biGroups.push(group);
         scene.add(group);
         i += 1;
     }
+
+    group = biGroups[1];
+    var bi = group.children[0];
+    bi.userData.rotate = true;
 
     // Render
     var renderer = new THREE.WebGLRenderer();
