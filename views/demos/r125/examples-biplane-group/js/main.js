@@ -19,6 +19,11 @@
             })));
     scene.add(pointLight);
 
+    // add AmbientLight
+    var light = new THREE.AmbientLight(0xffffff);
+    light.intensity = 0.1;
+    scene.add(light);
+
     var biGroups = [];
 
     var i = 0, group;
