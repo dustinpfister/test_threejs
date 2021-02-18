@@ -17,6 +17,7 @@ var BiplaneGroup = (function () {
             y = 0;
             z = Math.sin(radian) * 10;
             bi.position.set(x,y,z);
+            Biplane.update(bi, secs);
             i += 1;
         }
     };

@@ -37,6 +37,7 @@
         var now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(animate);
+        BiplaneGroup.update(biGroup, secs);
         controls.update();
         renderer.render(scene, camera);
         lt = now;
