@@ -25,7 +25,7 @@ var BiplaneGroup = (function () {
             z = Math.sin(radian) * 10;
             bi.position.set(x,y,z);
             // make leader roll
-            if(i === 0){
+            if(bi.userData.rotate){
                 bi.rotation.set(bi.userData.r,0,0);
                 bi.userData.r += Math.PI / 180 * bi.userData.rSpeed * secs;
                 bi.userData.r %= (Math.PI * 2);
@@ -47,6 +47,7 @@ var BiplaneGroup = (function () {
             var bi = Biplane.create();
             bi.userData.yFrame = Math.floor(MAX_FRAME * (i / BIPLANE_COUNT));
             bi.userData.rSpeed = 360;
+            bi.userData.rotate = true;
             bi.userData.r = 0;
             group.add(bi);
             i += 1;
