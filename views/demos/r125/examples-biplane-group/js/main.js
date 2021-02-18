@@ -19,20 +19,8 @@
             })));
     scene.add(pointLight);
 
-    var bi1 = Biplane.create();
-    scene.add(bi1);
-
-    var materials = {
-        plane: new THREE.MeshLambertMaterial({
-            color: 0xff0000
-        })
-    },
-    bi2 = Biplane.create({
-        materials: materials
-    });
-    bi2.userData.propRPS = 2;
-    bi2.position.set(0,0,15);
-    scene.add(bi2);
+    var biGroup = BiplaneGroup.create();
+    scene.add(biGroup);
 
 
     // Render
@@ -49,8 +37,6 @@
         var now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(animate);
-        Biplane.update(bi1, secs);
-        Biplane.update(bi2, secs);
         controls.update();
         renderer.render(scene, camera);
         lt = now;
