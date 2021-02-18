@@ -1,7 +1,8 @@
 
 var BiplaneGroup = (function () {
 
-    var BIPLANE_COUNT = 3;
+    var BIPLANE_COUNT = 3,
+    MAX_FRAME = 75;
 
     var api = {};
 
@@ -20,7 +21,7 @@ var BiplaneGroup = (function () {
             bi = group.children[i];
             radian = Math.PI * 2 / len * i;
             x = Math.cos(radian) * 10;
-            y = -5 + 10 * bias(bi.userData.yFrame / 50);
+            y = -5 + 10 * bias(bi.userData.yFrame / MAX_FRAME);
             z = Math.sin(radian) * 10;
             bi.position.set(x,y,z);
             // make leader roll
@@ -31,7 +32,7 @@ var BiplaneGroup = (function () {
             }
             Biplane.update(bi, secs);
             bi.userData.yFrame += 1;
-            bi.userData.yFrame %= 50;
+            bi.userData.yFrame %= MAX_FRAME;
             i += 1;
         }
     };
@@ -45,7 +46,7 @@ var BiplaneGroup = (function () {
         while(i < BIPLANE_COUNT){
             var bi = Biplane.create();
             //bi.userData.y = -5 + 10 * (i / 3);
-            bi.userData.yFrame = Math.floor(50 * (i / BIPLANE_COUNT));
+            bi.userData.yFrame = Math.floor(MAX_FRAME * (i / BIPLANE_COUNT));
             bi.userData.r = 0;
             group.add(bi);
             i += 1;
