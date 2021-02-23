@@ -13,25 +13,45 @@ guy.group.position.set(0,  - .4, 0);
 guy.group.rotation.set(0, Math.PI / 2, 0)
 scene.add(guy.group);
 
+
+/*
 var plane = new THREE.Mesh(
-        new THREE.PlaneGeometry(50, 50, 10, 10),
+        new THREE.PlaneGeometry(1, 1, 5, 5),
         [
-            new THREE.MeshStandardMaterial({
+            new THREE.MeshBasicMaterial({
                 color: 0x00ffff
             }),
-            new THREE.MeshStandardMaterial({
+            new THREE.MeshBasicMaterial({
                 color: 0x00afaf
             })
 
         ]);
-plane.rotation.x = -Math.PI / 2;
-plane.position.y = -2.9;
-/*
-plane.geometry.faces.forEach(function (face, i) {
-    face.materialIndex = i % 2;
+//plane.rotation.x = -Math.PI / 2;
+//plane.position.y = -2.9;
+
+plane.geometry.groups.forEach(function (face, i) {
+    //face.materialIndex = i % 2;
 });
 */
+var plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(50, 50, 10, 10),
+    [new THREE.MeshBasicMaterial({
+        color: 0x00ffff
+    })]
+);
+plane.rotation.x = -Math.PI / 2;
+plane.position.y = -2.9;
+plane.geometry.addGroup(0, 8, 0);
+/*
+plane.geometry.groups.forEach(function (face, i) {
+console.log(face);
+    //face.materialIndex = i % 2;
+});
+*/
+console.log(plane);
+
 scene.add(plane);
+
 
 // CAMERA
 var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
