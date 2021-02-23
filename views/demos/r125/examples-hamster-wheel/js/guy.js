@@ -58,15 +58,15 @@ var Guy = (function () {
         this.head.position.y = 1.6;
 
         // set material index
-        //this.head.geometry.faces.forEach(function (face) {
-
+        this.head.geometry.groups.forEach(function (face) {
             // set all to zero by default
-        //    face.materialIndex = 0;
+            face.materialIndex = 0;
 
-        //});
+        });
+        this.head.geometry.groups[4].materialIndex = 1;
         // one side of face set to face material
-        //this.head.geometry.faces[8].materialIndex = 1;
-        //this.head.geometry.faces[9].materialIndex = 1;
+        //this.head.geometry.groups[8].materialIndex = 1;
+        //this.head.geometry.groups[9].materialIndex = 1;
         this.head.castShadow = true;
         this.group.add(this.head);
 
