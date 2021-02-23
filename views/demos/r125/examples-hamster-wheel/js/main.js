@@ -40,13 +40,15 @@ camera.lookAt(0, 0, 0);
 camera.add(new THREE.PointLight());
 scene.add(camera);
 
-//var controls = new THREE.OrbitControls(camera);
-//controls.autoRotate = true;
-
 // RENDER
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(800, 600);
 document.body.appendChild(renderer.domElement);
+
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.autoRotate = true;
+
+
 
 var frame = 0, maxFrame = 200;
 var loop = function () {
@@ -60,7 +62,7 @@ var loop = function () {
     wheel.wheel.rotation.z = r;
     guy.walk(per * 4);
 
-    //controls.update();
+    controls.update();
     renderer.render(scene, camera);
 
     frame += 1;
