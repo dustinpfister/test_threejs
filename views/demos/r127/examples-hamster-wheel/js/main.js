@@ -7,8 +7,8 @@ wheel.group.position.set(0, 0, 1);
 scene.add(wheel.group);
 
 // GUY
-var guy = new Guy();
-guy.group.scale.set(.5, .5, .5);
+var guy = GuyMod.create(); //new Guy();
+guy.group.scale.set(0.5, 0.5, 0.5);
 guy.group.position.set(0,  - .4, 0);
 guy.group.rotation.set(0, Math.PI / 2, 0)
 scene.add(guy.group);
@@ -23,8 +23,6 @@ var plane = new THREE.Mesh(
 );
 plane.rotation.x = -Math.PI / 2;
 plane.position.y = -2.9;
-console.log(plane);
-
 scene.add(plane);
 
 
@@ -56,7 +54,7 @@ var loop = function () {
     requestAnimationFrame(loop);
 
     wheel.wheel.rotation.z = r;
-    guy.walk(per * 4);
+    GuyMod.walk(guy, per * 4);
 
     controls.update();
     renderer.render(scene, camera);

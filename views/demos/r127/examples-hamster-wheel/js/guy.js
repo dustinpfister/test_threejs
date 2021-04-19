@@ -1,4 +1,4 @@
-var Guy = (function () {
+(function (GuyMod) {
     // material used for the legs
     var material_leg = new THREE.MeshLambertMaterial({
             color: 0x0000ff,
@@ -28,72 +28,75 @@ var Guy = (function () {
         })
     ];
     // the guy constructor
-    var Guy = function () {
+    GuyMod.create = function () {
+        var guy = {};
         // a group that will hold all mesh objects
-        this.group = new THREE.Group();
+        guy.group = new THREE.Group();
         // HEAD
-        this.head = new THREE.Mesh(
+        guy.head = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
                 materials_head);
-        this.head.position.y = 1.6;
+        guy.head.position.y = 1.6;
         // set material index
-        this.head.geometry.groups.forEach(function (face) {
+        guy.head.geometry.groups.forEach(function (face) {
             // set all to zero by default
             face.materialIndex = 0;
         });
-        this.head.geometry.groups[4].materialIndex = 1;
+        guy.head.geometry.groups[4].materialIndex = 1;
         // one side of face set to face material
         //this.head.geometry.groups[8].materialIndex = 1;
         //this.head.geometry.groups[9].materialIndex = 1;
-        this.head.castShadow = true;
-        this.group.add(this.head);
+        guy.head.castShadow = true;
+        guy.group.add(guy.head);
         // BODY
-        this.body = new THREE.Mesh(
+        guy.body = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 2, 1),
                 material_body);
-        this.body.castShadow = true;
-        this.group.add(this.body);
+        guy.body.castShadow = true;
+        guy.group.add(guy.body);
         // RIGHT ARM
-        this.arm_right = new THREE.Mesh(
+        guy.arm_right = new THREE.Mesh(
                 new THREE.BoxGeometry(.5, 1.5, .5),
                 material_arm);
-        this.arm_right.geometry.translate(0,  - .5, 0);
-        this.arm_right.position.x = 1;
-        this.arm_right.position.y = .75;
-        this.arm_right.castShadow = true;
-        this.group.add(this.arm_right);
+        guy.arm_right.geometry.translate(0,  - .5, 0);
+        guy.arm_right.position.x = 1;
+        guy.arm_right.position.y = .75;
+        guy.arm_right.castShadow = true;
+        guy.group.add(guy.arm_right);
         // LEFT ARM
-        this.arm_left = new THREE.Mesh(
+        guy.arm_left = new THREE.Mesh(
                 new THREE.BoxGeometry(.5, 1.5, .5),
                 material_arm);
-        this.arm_left.geometry.translate(0,  - .5, 0);
-        this.arm_left.position.x = -1;
-        this.arm_left.position.y = .75;
-        this.arm_left.castShadow = true;
-        this.group.add(this.arm_left);
+        guy.arm_left.geometry.translate(0,  - .5, 0);
+        guy.arm_left.position.x = -1;
+        guy.arm_left.position.y = .75;
+        guy.arm_left.castShadow = true;
+        guy.group.add(guy.arm_left);
         // RIGHT LEG
-        this.leg_right = new THREE.Mesh(
+        guy.leg_right = new THREE.Mesh(
                 new THREE.BoxGeometry(.5, 2, .5),
                 material_leg);
-        this.leg_right.geometry.translate(0, -1, 0);
-        this.leg_right.position.x = .35;
-        this.leg_right.position.y = -1.1;
-        this.leg_right.castShadow = true;
-        this.group.add(this.leg_right);
+        guy.leg_right.geometry.translate(0, -1, 0);
+        guy.leg_right.position.x = .35;
+        guy.leg_right.position.y = -1.1;
+        guy.leg_right.castShadow = true;
+        guy.group.add(guy.leg_right);
         // LEFT LEG
-        this.leg_left = new THREE.Mesh(
+        guy.leg_left = new THREE.Mesh(
                 new THREE.BoxGeometry(.5, 2, .5),
                 material_leg);
-        this.leg_left.geometry.translate(0, -1, 0);
-        this.leg_left.position.x =  - .35;
-        this.leg_left.position.y = -1.1;
-        this.leg_left.castShadow = true;
-        this.group.add(this.leg_left);
+        guy.leg_left.geometry.translate(0, -1, 0);
+        guy.leg_left.position.x =  - .35;
+        guy.leg_left.position.y = -1.1;
+        guy.leg_left.castShadow = true;
+        guy.group.add(guy.leg_left);
+        // retun the guy object
+        return guy;
     };
     // move the arm of give id ('arm_right' or 'arm_left');
     // x and z should be a value between 0, and 1
-    Guy.prototype.moveArm = function (armId, x, z) {
-        var arm = this[armId];
+    GuyMod.moveArm = function (guy, armId, x, z) {
+        var arm = guy[armId];
         z = Math.PI / 2 * z;
         if (armId === 'arm_left') {
             z -= z * 2;
@@ -101,30 +104,29 @@ var Guy = (function () {
         arm.rotation.set(Math.PI * 2 * x, 0, z);
     };
     // rotate head around
-    // y is 0 to 1
-    Guy.prototype.moveHead = function (y) {
-        this.head.rotation.set(0, Math.PI * 2 * y, 0);
+    // per is 0 to 1
+    GuyMod.moveHead = function (guy, per) {
+        guy.head.rotation.set(0, Math.PI * 2 * per, 0);
 
     };
     // move legs in respect to a walk cycle
     // where per is between 0, and 1.
-    Guy.prototype.moveLegs = function (per) {
+    GuyMod.moveLegs = function (guy, per) {
         per %= 1;
         var bias = Math.abs(.5 - per) / .5;
-        this.leg_left.rotation.set(.75 - bias * 1.5, 0, 0);
-        this.leg_right.rotation.set( - .75 + bias * 1.5, 0, 0);
+        guy.leg_left.rotation.set(.75 - bias * 1.5, 0, 0);
+        guy.leg_right.rotation.set( - .75 + bias * 1.5, 0, 0);
     };
     // walk
-    Guy.prototype.walk = function (per, swings) {
+    GuyMod.walk = function (guy, per, swings) {
         per = per === undefined ? 0 : per;
         swings = swings === undefined ? 1 : swings;
         var r = Math.PI * 2 * per;
         var armPer = Math.cos(r * swings) + 1 / 2;
-        this.moveArm('arm_right',  - .1 + .2 * armPer, 0);
-        this.moveArm('arm_left', .1 - .2 * armPer, 0);
-        this.moveLegs(per * swings);
+        GuyMod.moveArm(guy, 'arm_right',  - .1 + .2 * armPer, 0);
+        GuyMod.moveArm(guy, 'arm_left', .1 - .2 * armPer, 0);
+        GuyMod.moveLegs(guy, per * swings);
     };
     // return the Guy Class
-    return Guy;
-}
-    ());
+    //return Guy;
+}( this['GuyMod'] = {} ) );
