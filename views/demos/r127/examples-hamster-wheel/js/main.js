@@ -43,17 +43,24 @@ controls.autoRotate = true;
 
 // LOOP
 var frame = 0, 
-maxFrame = 200;
+maxFrame = 200,
+fps_target = 24,
+lt = new Date();
 var loop = function () {
-    var per = frame / maxFrame,
-    bias = Math.abs(.5 - per) / .5,
-    r = -Math.PI * 2 * per;
+    var now = new Date(),
+    secs = ( now - lt ) / 1000;
     requestAnimationFrame(loop);
-    wheel.wheel.rotation.z = r;
-    GuyMod.walk(guy, per * 4);
-    controls.update();
-    renderer.render(scene, camera);
-    frame += 1;
-    frame %= maxFrame;
+    if(secs >= 1 / fps_target){   
+        var per = frame / maxFrame,
+        bias = Math.abs(.5 - per) / .5,
+        r = -Math.PI * 2 * per;
+        wheel.wheel.rotation.z = r;
+        GuyMod.walk(guy, per * 4);
+        controls.update();
+        renderer.render(scene, camera);
+        frame += 1;
+        frame %= maxFrame;
+        lt = now;
+    }
 };
 loop();
