@@ -5,72 +5,10 @@
         color: 0xafafaf
     });
 
-    // the Wheel constructor
-    WheelMod.create = function () {
-        var wheel = {};
-        // a group that will hold all mesh objects
-        wheel.group = new THREE.Group();
-        wheel.wheel = new THREE.Group();
+    // create a base for the given wheel object
+    var createBase = function(wheel){
         wheel.base = new THREE.Group();
-
-        // add wheel, and base to main group
-        wheel.group.add(wheel.wheel);
         wheel.group.add(wheel.base);
-
-        var geo = new THREE.TorusGeometry(2, .125, 20, 20);
-
-        // RIMS
-        var ct = 2,
-        rim,
-        i = 0;
-        while (i < ct) {
-
-            rim = new THREE.Mesh(
-
-                    geo,
-
-                    material);
-            rim.position.set(0, 0, -2 + 2 * i);
-
-            wheel.wheel.add(rim);
-
-            var bar = new THREE.Mesh(
-
-                    new THREE.CylinderGeometry(.125, .125, 4),
-
-                    material);
-            bar.position.set(0, 0, -2 + 2 * i);
-
-            wheel.wheel.add(bar);
-
-            i += 1;
-        }
-
-        var ct = 15,
-        rim,
-        i = 0;
-        while (i < ct) {
-
-            var r = Math.PI * 2 / ct * i;
-
-            // TUBES connecting rims
-            var cy = new THREE.Mesh(
-
-                    new THREE.CylinderGeometry(.125, .125, 2),
-
-                    material);
-            cy.rotation.x = Math.PI / 2;
-
-            cy.position.x = Math.cos(r) * 2;
-            cy.position.y = Math.sin(r) * 2;
-            cy.position.z = -1;
-
-            wheel.wheel.add(cy);
-
-            i += 1;
-
-        }
-
         // BASE
         var parts = [{
                 len: 1,
@@ -103,7 +41,6 @@
                 pz: 0
             }
         ];
-
         var self = wheel;
         parts.forEach(function (part) {
             var i = 0,
@@ -126,6 +63,57 @@
                 i += 1;
             }
         });
+    };
+
+
+    // the Wheel constructor
+    WheelMod.create = function () {
+        var wheel = {};
+        // a group that will hold all mesh objects
+        wheel.group = new THREE.Group();
+        wheel.wheel = new THREE.Group();
+        //wheel.base = new THREE.Group();
+
+        // add wheel, and base to main group
+        wheel.group.add(wheel.wheel);
+        //wheel.group.add(wheel.base);
+
+        var geo = new THREE.TorusGeometry(2, .125, 20, 20);
+        // RIMS
+        var ct = 2,
+        rim,
+        i = 0;
+        while (i < ct) {
+            rim = new THREE.Mesh(
+                    geo,
+                    material);
+            rim.position.set(0, 0, -2 + 2 * i);
+            wheel.wheel.add(rim);
+            var bar = new THREE.Mesh(
+                    new THREE.CylinderGeometry(.125, .125, 4),
+                    material);
+            bar.position.set(0, 0, -2 + 2 * i);
+            wheel.wheel.add(bar);
+            i += 1;
+        }
+        var ct = 15,
+        rim,
+        i = 0;
+        while (i < ct) {
+            var r = Math.PI * 2 / ct * i;
+            // TUBES connecting rims
+            var cy = new THREE.Mesh(
+                    new THREE.CylinderGeometry(.125, .125, 2),
+                    material);
+            cy.rotation.x = Math.PI / 2;
+            cy.position.x = Math.cos(r) * 2;
+            cy.position.y = Math.sin(r) * 2;
+            cy.position.z = -1;
+            wheel.wheel.add(cy);
+            i += 1;
+        }
+
+        createBase(wheel);
 
         return wheel;
     };
