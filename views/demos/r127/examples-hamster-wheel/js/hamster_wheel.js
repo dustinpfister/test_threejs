@@ -65,19 +65,10 @@
         });
     };
 
-
-    // the Wheel constructor
-    WheelMod.create = function () {
-        var wheel = {};
-        // a group that will hold all mesh objects
-        wheel.group = new THREE.Group();
+    // create the wheel with rims and tubes connected between them
+    var createWheel = function(wheel){
         wheel.wheel = new THREE.Group();
-        //wheel.base = new THREE.Group();
-
-        // add wheel, and base to main group
         wheel.group.add(wheel.wheel);
-        //wheel.group.add(wheel.base);
-
         var geo = new THREE.TorusGeometry(2, .125, 20, 20);
         // RIMS
         var ct = 2,
@@ -112,9 +103,16 @@
             wheel.wheel.add(cy);
             i += 1;
         }
+    };
 
+
+    // the Wheel constructor
+    WheelMod.create = function () {
+        var wheel = {};
+        // a group that will hold all mesh objects
+        wheel.group = new THREE.Group();
+        createWheel(wheel);
         createBase(wheel);
-
         return wheel;
     };
 
