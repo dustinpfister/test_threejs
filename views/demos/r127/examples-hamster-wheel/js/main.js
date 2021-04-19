@@ -2,7 +2,7 @@
 var scene = new THREE.Scene();
 
 // WHEEL
-var wheel = new HamsterWheel();
+var wheel = WheelMod.create(); //new HamsterWheel();
 wheel.group.position.set(0, 0, 1);
 scene.add(wheel.group);
 

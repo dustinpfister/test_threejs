@@ -1,4 +1,4 @@
-var HamsterWheel = (function () {
+(function (WheelMod) {
 
     var material = new THREE.MeshStandardMaterial({
 
@@ -6,16 +6,16 @@ var HamsterWheel = (function () {
     });
 
     // the Wheel constructor
-    var Wheel = function () {
-
+    WheelMod.create = function () {
+        var wheel = {};
         // a group that will hold all mesh objects
-        this.group = new THREE.Group();
-        this.wheel = new THREE.Group();
-        this.base = new THREE.Group();
+        wheel.group = new THREE.Group();
+        wheel.wheel = new THREE.Group();
+        wheel.base = new THREE.Group();
 
         // add wheel, and base to main group
-        this.group.add(this.wheel);
-        this.group.add(this.base);
+        wheel.group.add(wheel.wheel);
+        wheel.group.add(wheel.base);
 
         var geo = new THREE.TorusGeometry(2, .125, 20, 20);
 
@@ -32,7 +32,7 @@ var HamsterWheel = (function () {
                     material);
             rim.position.set(0, 0, -2 + 2 * i);
 
-            this.wheel.add(rim);
+            wheel.wheel.add(rim);
 
             var bar = new THREE.Mesh(
 
@@ -41,7 +41,7 @@ var HamsterWheel = (function () {
                     material);
             bar.position.set(0, 0, -2 + 2 * i);
 
-            this.wheel.add(bar);
+            wheel.wheel.add(bar);
 
             i += 1;
         }
@@ -65,7 +65,7 @@ var HamsterWheel = (function () {
             cy.position.y = Math.sin(r) * 2;
             cy.position.z = -1;
 
-            this.wheel.add(cy);
+            wheel.wheel.add(cy);
 
             i += 1;
 
@@ -79,7 +79,6 @@ var HamsterWheel = (function () {
                 px: 0,
                 py: 0,
                 pz: 0.5
-
             }, {
 
                 len: 4,
@@ -88,47 +87,34 @@ var HamsterWheel = (function () {
                 px: 1.4,
                 py: -1.4,
                 pz: 0.9
-
             }, {
-
                 len: 6,
                 rx: 0,
                 rz: Math.PI / 2,
                 px: 0,
                 py: -2.8,
                 pz: 0.9
-
             }, {
-
                 len: 2,
                 rx: Math.PI / 2,
                 rz: 0,
                 px: -2.9,
                 py: -2.8,
                 pz: 0
-
-            },
-
+            }
         ];
 
-        var self = this;
+        var self = wheel;
         parts.forEach(function (part) {
-
             var i = 0,
             len = 2;
             while (i < len) {
-
                 var neg = 1;
-
                 if (i === 1) {
-
                     neg = -1;
                 }
-
                 var cy = new THREE.Mesh(
-
                         new THREE.CylinderGeometry(.125, .125, part.len),
-
                         material);
                 cy.rotation.x = part.rx;
                 cy.rotation.z = part.rz;
@@ -137,17 +123,11 @@ var HamsterWheel = (function () {
                     part.py,
                     part.pz * neg - 2 * i);
                 self.base.add(cy);
-
                 i += 1;
-
             }
-
         });
 
+        return wheel;
     };
 
-    // just return an instance of wheel for now
-    return Wheel;
-
-}
-    ());
+}( this['WheelMod'] = {} ));
