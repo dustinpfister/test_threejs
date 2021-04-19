@@ -1,25 +1,30 @@
 body{
-
-    margin:0px;
-    padding:0px;
-
+  margin:0px;
+  padding:0px;
 }
 
 .container{
-
-    padding: 5px;
-    margin:0px;
-
+  padding: 25px;
+  margin:0px;
 }
 
 .nav_container{
-
-    background:#000000;
-    color: #ffffff;
-    text-align:center;
-
+  background:#000000;
+  color: #ffffff;
+  text-align:center;
 }
 
-
 .content_container{
+  background: gray;
+}
+
+#demo{
+  display:block;
+  background:lime;
+  width:800px;
+  /*max-width:100%;
+  max-height:100%;*/
+  /*width: 700px;*/
+  margin-right:auto;
+  margin-left:auto;
 }
