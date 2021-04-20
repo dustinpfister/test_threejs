@@ -1,6 +1,7 @@
 
 (function (utils) {
 
+    // add arrow helper method
     utils.addArrow = function (obj3d, x, y, z, len, color) {
         x = x === undefined ? 0 : x;
         y = y === undefined ? 2 : y;
@@ -16,6 +17,7 @@
         return arrow;
     };
 
+    // add cube helper method
     utils.addCube = function (obj3d, x, y, z, size, color, wireframe) {
         x = x === undefined ? 0 : x;
         y = y === undefined ? 0 : y;
@@ -30,6 +32,30 @@
         cube.position.set(x, y, z);
         obj3d.add(cube);
         return cube;
+    };
+
+    // create a basic scene
+    utils.createBasicScene = function () {
+        // scene
+        var scene = new THREE.Scene();
+        // camera
+        var camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
+        camera.position.set(2.5, 2.5, 2.5);
+        camera.lookAt(0, 0, 0);
+        // RENDERER
+        var renderer = new THREE.WebGLRenderer();
+        document.getElementById('demo').appendChild(renderer.domElement);
+        renderer.render(scene, camera);
+        // return an object with refs to scene and other items of interest
+        return {
+            scene: scene,
+            camera: camera,
+            renderer: renderer,
+            canvas: renderer.domElement,
+            draw: function () {
+                renderer.render(scene, camera);
+            }
+        };
     };
 
 }
