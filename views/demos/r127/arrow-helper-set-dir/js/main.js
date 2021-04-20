@@ -30,8 +30,9 @@ scene.add(cube);
 
 // RENDERER
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize(320, 240);
 document.getElementById('demo').appendChild(renderer.domElement);
+
+console.log(renderer.domElement);
 
 // LOOP
 var frame = 0,
