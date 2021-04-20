@@ -32,8 +32,6 @@ scene.add(cube);
 var renderer = new THREE.WebGLRenderer();
 document.getElementById('demo').appendChild(renderer.domElement);
 
-console.log(renderer.domElement);
-
 // LOOP
 var frame = 0,
 maxFrame = 500,
