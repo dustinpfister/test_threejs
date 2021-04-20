@@ -1,5 +1,5 @@
 
-( function (threeFrame) {
+(function (threeFrame) {
 
     // add arrow helper method
     threeFrame.addArrow = function (obj3d, x, y, z, len, color) {
@@ -35,7 +35,7 @@
     };
 
     // create a basic scene
-    threeFrame.createBasicScene = function () {
+    var createAPIObject = function (opt) {
         // scene
         var scene = new THREE.Scene();
         // camera
@@ -52,10 +52,40 @@
             camera: camera,
             renderer: renderer,
             canvas: renderer.domElement,
-            draw: function () {
-                renderer.render(scene, camera);
-            }
+            fps_target: 24,
+            init: opt.init,
+            update: opt.update
         };
     };
 
-}( typeof threeFrame === 'undefined' ? this['threeFrame'] = {} : threeFrame ) );
+    // create a main app loop function, for the given api object
+    var createLoopFunction = function (api) {
+        var lt = new Date();
+        var loop = function () {
+            var now = new Date(),
+            secs = (now - lt) / 1000;
+            requestAnimationFrame(loop);
+            if (secs >= 1 / api.fps_target) {
+                api.update(api, secs); ;
+                api.renderer.render(api.scene, api.camera);
+                lt = now;
+            }
+        };
+        return loop;
+    };
+
+    threeFrame.create = function (opt) {
+        opt = opt || {};
+
+        var api = createAPIObject(opt);
+
+        api.init(api);
+
+        var loop = createLoopFunction(api);
+        loop();
+
+    };
+
+}
+    (typeof threeFrame === 'undefined' ? this['threeFrame'] = {}
+        : threeFrame));
