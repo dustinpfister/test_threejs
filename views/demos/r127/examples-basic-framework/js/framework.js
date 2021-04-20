@@ -1,34 +1,14 @@
 
 (function (threeFrame) {
 
-    // add arrow helper method
-    threeFrame.addArrow = function (obj3d, x, y, z, len, color) {
-        x = x === undefined ? 0 : x;
-        y = y === undefined ? 2 : y;
-        z = z === undefined ? 0 : z;
-        len = len === undefined ? 3 : len;
-        color = color === undefined ? 0x00ff00 : color;
-        var arrow = new THREE.ArrowHelper(
-                new THREE.Vector3(x, y, z).normalize(),
-                new THREE.Vector3(0, 0, 0),
-                len,
-                color);
-        obj3d.add(arrow);
-        return arrow;
-    };
-
-    // add cube helper method
-    threeFrame.addCube = function (obj3d, x, y, z, size, color, wireframe) {
+    // Just an add cube method for now
+    threeFrame.addCube = function (api, obj3d, x, y, z, size, materialIndex) {
         x = x === undefined ? 0 : x;
         y = y === undefined ? 0 : y;
         z = z === undefined ? 0 : z;
         size = size === undefined ? 2 : size;
         var geometry = new THREE.BoxGeometry(size, size, size);
-        var material = new THREE.MeshBasicMaterial({
-                color: color === undefined ? 0x00ff00 : color,
-                wireframe: wireframe === undefined ? true : wireframe
-            });
-        var cube = new THREE.Mesh(geometry, material);
+        var cube = new THREE.Mesh(geometry, api.materials[materialIndex || 0]);
         cube.position.set(x, y, z);
         obj3d.add(cube);
         return cube;
@@ -54,7 +34,11 @@
             canvas: renderer.domElement,
             fps_target: 24,
             init: opt.init,
-            update: opt.update
+            update: opt.update,
+            materials: opt.materials || [new THREE.MeshBasicMaterial({
+                    color: 0x00ffff,
+                    wireframe: true
+                })]
         };
     };
 
