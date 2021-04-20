@@ -7,6 +7,7 @@ var camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
 camera.position.set(3, 3, 3);
 camera.lookAt(0, 0, 0);
 
+// ARROW HELPER
 var arrow = new THREE.ArrowHelper(
         // first argument is the direction
         new THREE.Vector3(2, 2, 0).normalize(),
@@ -23,12 +24,11 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(320, 240);
 document.getElementById('demo').appendChild(renderer.domElement);
 
+// LOOP
 var frame = 0,
 maxFrame = 500,
 loop = function () {
-
     requestAnimationFrame(loop);
-
     var per = frame / maxFrame,
     rad = Math.PI * 2 * per,
     x = Math.cos(rad),
@@ -39,10 +39,7 @@ loop = function () {
     arrow.setDirection(dir);
 
     renderer.render(scene, camera);
-
     frame += 1;
     frame %= maxFrame;
-
 };
-
 loop();

@@ -10,7 +10,7 @@ camera.lookAt(0, 0, 0);
 var arrow = new THREE.ArrowHelper(
         // first argument is the direction
         new THREE.Vector3(2, 2, 0).normalize(),
-        // second argument is the orgin
+        // second argument is the origin
         new THREE.Vector3(0, 0, 0),
         // length
         2.2,

@@ -2,26 +2,26 @@
 (function () {
 
     // a scene is needed to place objects in
-    var scene = new THREE.Scene(),
+    var scene = new THREE.Scene();
 
     // I will need an camera to look at objects in the scene
-    camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000),
+    var camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
 
     // I will need a geometry, in this case BoxGeometery
-    geometry = new THREE.BoxGeometry(200, 200, 200),
+    var geometry = new THREE.BoxGeometry(200, 200, 200);
 
     // I will need a material for the cube
-    material = new THREE.MeshBasicMaterial({
+    var material = new THREE.MeshBasicMaterial({
             color: 0xff0000,
             wireframe: true
         });
 
     // I need a mesh that will tie a geometry and material together
-    mesh = new THREE.Mesh(geometry, material),
+    var mesh = new THREE.Mesh(geometry, material);
 
     // In order to see anything I will also need a renderer
     // to use with my scene, and camera
-    renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer();
 
     // I must append the dom element used by the renderer to the html
     // that I am using.
