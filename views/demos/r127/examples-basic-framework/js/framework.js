@@ -58,6 +58,7 @@
         return loop;
     };
 
+    // create a main project object
     threeFrame.create = function (opt) {
         opt = opt || {};
         // create api
@@ -67,6 +68,7 @@
         // start loop
         var loop = createLoopFunction(api);
         loop();
+        return api;
     };
 
 }
