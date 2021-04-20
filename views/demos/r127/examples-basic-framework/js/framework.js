@@ -76,14 +76,13 @@
 
     threeFrame.create = function (opt) {
         opt = opt || {};
-
+        // create api
         var api = createAPIObject(opt);
-
+        // call init method
         api.init(api);
-
+        // start loop
         var loop = createLoopFunction(api);
         loop();
-
     };
 
 }
