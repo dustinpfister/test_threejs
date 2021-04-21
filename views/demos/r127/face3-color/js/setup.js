@@ -1,7 +1,6 @@
 
-
-var geometry = new THREE.BoxGeometry(1, 1, 1);
-
+// create a buffed geometry
+var geometry = new THREE.PlaneGeometry(1, 2, 1, 1);
 // add a colors prop to the geometry
 var colors = new Uint8Array([
             255, 0, 0,
@@ -10,51 +9,7 @@ var colors = new Uint8Array([
             0, 0, 255,
             0, 255, 0,
             255, 0, 0,
-
-            255, 0, 0,
-            255, 255, 0,
-            255, 0, 255,
-            255, 0, 255,
-            255, 255, 0,
-            255, 0, 0,
-
-            255, 0, 0,
-            0, 255, 0,
-            0, 0, 255,
-            0, 0, 255,
-            0, 255, 0,
-            255, 0, 0,
-
-            255, 0, 0,
-            0, 255, 0,
-            0, 0, 255,
-            0, 0, 255,
-            0, 255, 0,
-            255, 0, 0,
-
-            255, 0, 0,
-            0, 255, 0,
-            0, 0, 255,
-            0, 0, 255,
-            0, 255, 0,
-            255, 0, 0,
-
-            255, 0, 0,
-            0, 255, 0,
-            0, 0, 255,
-            0, 0, 255,
-            0, 255, 0,
-            255, 0, 0,
-
-            255, 0, 0,
-            0, 255, 0,
-            0, 0, 255,
-            0, 0, 255,
-            0, 255, 0,
-            255, 0, 0,
-
         ]);
-
 // Don't forget to normalize the array! (third param = true)
 geometry.addAttribute('color', new THREE.BufferAttribute(colors, 3, true));
 
@@ -68,6 +23,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 // MESH that uses the vertex colors
 var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
+            side: THREE.DoubleSide,
             vertexColors: true
         }));
 scene.add(mesh);
