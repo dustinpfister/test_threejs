@@ -33,15 +33,8 @@ var addSphere = function (cubeTexture) {
     scene.add(mesh);
 };
 
-// WHAT TO DO WHEN CUBE TEXTURE IS LOADED
-var cubeTextureLoaded = function (cubeTexture) {
-    cubeTexture.encoding = THREE.sRGBEncoding;
-    scene.background = cubeTexture;
-    // Using the lightProbe copy method with LightPropeGen
-    lightProbe.copy(new THREE.LightProbeGenerator.fromCubeTexture(cubeTexture));
-
-    addSphere(cubeTexture);
-
+// create loop method
+var createLoop = function () {
     var frame = 0,
     maxFrame = 250;
     var loop = function () {
@@ -54,6 +47,17 @@ var cubeTextureLoaded = function (cubeTexture) {
         lightProbe.intensity = bias;
         renderer.render(scene, camera);
     };
+    return loop;
+};
+
+// WHAT TO DO WHEN CUBE TEXTURE IS LOADED
+var cubeTextureLoaded = function (cubeTexture) {
+    cubeTexture.encoding = THREE.sRGBEncoding;
+    scene.background = cubeTexture;
+    // Using the lightProbe copy method with LightPropeGen
+    lightProbe.copy(new THREE.LightProbeGenerator.fromCubeTexture(cubeTexture));
+    addSphere(cubeTexture);
+    var loop = createLoop();
     loop();
 };
 
