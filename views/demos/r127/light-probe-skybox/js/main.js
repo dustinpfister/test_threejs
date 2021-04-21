@@ -19,12 +19,8 @@ scene.add(pointLight);
 var lightProbe = new THREE.LightProbe();
 scene.add(lightProbe);
 
-// WHA% TO DO WHEN CUBE TEXTURE IS LOADED
-var cubeTextureLoaded = function (cubeTexture) {
-    cubeTexture.encoding = THREE.sRGBEncoding;
-    scene.background = cubeTexture;
-    // Using the lightProbe copy method with LightPropeGen
-    lightProbe.copy(new THREE.LightProbeGenerator.fromCubeTexture(cubeTexture));
+// ADD SPHERE HELPER
+var addSphere = function (cubeTexture) {
     var mesh = new THREE.Mesh(
             new THREE.SphereBufferGeometry(20, 32, 32),
             new THREE.MeshStandardMaterial({
@@ -35,6 +31,17 @@ var cubeTextureLoaded = function (cubeTexture) {
                 envMapIntensity: 1
             }));
     scene.add(mesh);
+};
+
+// WHAT TO DO WHEN CUBE TEXTURE IS LOADED
+var cubeTextureLoaded = function (cubeTexture) {
+    cubeTexture.encoding = THREE.sRGBEncoding;
+    scene.background = cubeTexture;
+    // Using the lightProbe copy method with LightPropeGen
+    lightProbe.copy(new THREE.LightProbeGenerator.fromCubeTexture(cubeTexture));
+
+    addSphere(cubeTexture);
+
     var frame = 0,
     maxFrame = 250;
     var loop = function () {
