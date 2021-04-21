@@ -13,8 +13,23 @@
     material_body = new THREE.MeshLambertMaterial({
             color: 0xff0000,
             emissive: 0x001a00
-        }),
+        });
     // array of materials used for the head
+    var faceTexture = utils.createCanvasTexture(function (ctx, canvas) {
+            // face color
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // eyes
+            ctx.fillStyle = 'black';
+            ctx.fillRect(16, 16, 8, 8);
+            ctx.fillRect(64 - 24, 16, 8, 8);
+            // mouth
+            ctx.fillRect(32 - 8, 40, 16, 16);
+            // nose
+            ctx.fillStyle = 'gray';
+            ctx.fillRect(32 - 4, 20, 8, 13);
+
+        });
     materials_head = [
         // 0 default material
         new THREE.MeshLambertMaterial({
@@ -22,9 +37,8 @@
             emissive: 0x1a1a00
         }),
         // 1 used for the face
-        new THREE.MeshLambertMaterial({
-            color: 0xffffff,
-            emissive: 0x1a1a1a
+        new THREE.MeshBasicMaterial({
+            map: faceTexture
         })
     ];
     // the guy constructor
@@ -129,4 +143,5 @@
     };
     // return the Guy Class
     //return Guy;
-}( this['GuyMod'] = {} ));
+}
+    (this['GuyMod'] = {}));
