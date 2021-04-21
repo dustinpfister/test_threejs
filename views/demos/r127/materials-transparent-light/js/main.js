@@ -1,4 +1,4 @@
-
+// create a cube
 var createCube = function (size, material, x, y, z) {
     var geometry = new THREE.BoxGeometry(size, size, size),
     cube = new THREE.Mesh(geometry, material);
@@ -7,12 +7,11 @@ var createCube = function (size, material, x, y, z) {
 };
 
 var materials = {};
-
-materials.sand = new THREE.MeshBasicMaterial({
+// Using the standard material
+materials.sand = new THREE.MeshStandardMaterial({
         color: 'yellow'
     });
-
-materials.glass = new THREE.MeshBasicMaterial({
+materials.glass = new THREE.MeshStandardMaterial({
         color: 'cyan',
         transparent: true,
         opacity: 0.4
@@ -24,6 +23,12 @@ cube = createCube(1, materials.sand, 0, 0, 0);
 // scene
 var scene = new THREE.Scene();
 
+// adding a point light
+var pointLight = new THREE.PointLight(0xffffff);
+pointLight.position.set(2, -5, 5);
+scene.add(pointLight);
+
+// add cubes
 scene.add(glassCube);
 scene.add(cube);
 
