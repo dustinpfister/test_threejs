@@ -29,13 +29,13 @@ new THREE.CubeTextureLoader()
         'nz.jpg'
     ],
     function (cubeTexture) {
-    cubeTexture.encoding = THREE.sRGBEncoding;
-    scene.background = cubeTexture;
+        cubeTexture.encoding = THREE.sRGBEncoding;
+        scene.background = cubeTexture;
 
-    // Using the lightProbe copy method with LightPropeGen
-    lightProbe.copy(new THREE.LightProbeGenerator.fromCubeTexture(cubeTexture));
+        // Using the lightProbe copy method with LightPropeGen
+        lightProbe.copy(new THREE.LightProbeGenerator.fromCubeTexture(cubeTexture));
 
-    var mesh = new THREE.Mesh(
+        var mesh = new THREE.Mesh(
             new THREE.SphereBufferGeometry(20, 32, 32),
             new THREE.MeshStandardMaterial({
                 color: 0x0000af,
@@ -44,27 +44,21 @@ new THREE.CubeTextureLoader()
                 envMap: cubeTexture,
                 envMapIntensity: 1
             }));
-    scene.add(mesh);
-    var frame = 0,
-    maxFrame = 250;
-    var loop = function () {
-        setTimeout(loop, 33);
-        var per = frame / maxFrame,
-        bias = 1 - Math.abs(0.5 - per) / 0.5;
-        frame += 1;
-        frame %= maxFrame;
+        scene.add(mesh);
+        var frame = 0,
+        maxFrame = 250;
+        var loop = function () {
+            setTimeout(loop, 33);
+            var per = frame / maxFrame,
+            bias = 1 - Math.abs(0.5 - per) / 0.5;
+            frame += 1;
+            frame %= maxFrame;
 
-        // Change Light Probe intensity
-        lightProbe.intensity = bias;
+            // Change Light Probe intensity
+            lightProbe.intensity = bias;
 
-        // Change the light probe position
-        var radian = Math.PI * 2 * per;
-        pointLight.position.set(
-            Math.cos(radian) * 50,
-            Math.sin(radian) * 50,
-            0);
-
-        renderer.render(scene, camera);
-    };
-    loop();
-});
+            renderer.render(scene, camera);
+        };
+        loop();
+    }
+);
