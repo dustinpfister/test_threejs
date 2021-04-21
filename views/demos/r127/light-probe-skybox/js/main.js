@@ -5,7 +5,6 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer({
         antialias: true
     });
-renderer.setSize(320, 240);
 renderer.gammaOutput = true;
 renderer.gammaFactor = 2.2; // approximate sRGB
 document.getElementById('demo').appendChild(renderer.domElement);
