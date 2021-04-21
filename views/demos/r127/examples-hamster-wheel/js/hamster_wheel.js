@@ -1,12 +1,13 @@
 (function (WheelMod) {
 
     var material = new THREE.MeshStandardMaterial({
-
-        color: 0xafafaf
-    });
+            color: 0x00ffff,
+            transparent: true,
+            opacity: 0.4
+        });
 
     // create a base for the given wheel object
-    var createBase = function(wheel){
+    var createBase = function (wheel) {
         wheel.base = new THREE.Group();
         wheel.group.add(wheel.base);
         // BASE
@@ -66,7 +67,7 @@
     };
 
     // create the wheel with rims and tubes connected between them
-    var createWheel = function(wheel){
+    var createWheel = function (wheel) {
         wheel.wheel = new THREE.Group();
         wheel.group.add(wheel.wheel);
         var geo = new THREE.TorusGeometry(2, .125, 20, 20);
@@ -105,7 +106,6 @@
         }
     };
 
-
     // the Wheel constructor
     WheelMod.create = function () {
         var wheel = {};
@@ -116,4 +116,5 @@
         return wheel;
     };
 
-}( this['WheelMod'] = {} ));
+}
+    (this['WheelMod'] = {}));
