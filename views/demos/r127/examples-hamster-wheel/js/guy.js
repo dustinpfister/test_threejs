@@ -121,7 +121,6 @@
     // per is 0 to 1
     GuyMod.moveHead = function (guy, per) {
         guy.head.rotation.set(0, Math.PI * 2 * per, 0);
-
     };
     // move legs in respect to a walk cycle
     // where per is between 0, and 1.
