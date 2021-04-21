@@ -64,12 +64,4 @@ var cubeTextureLoaded = function (cubeTexture) {
 // LOAD CUBE TEXTURE
 new THREE.CubeTextureLoader()
 .setPath('/img/cube/skybox/')
-.load(
-    [
-        'px.jpg',
-        'nx.jpg',
-        'py.jpg',
-        'ny.jpg',
-        'pz.jpg',
-        'nz.jpg'
-    ], cubeTextureLoaded);
+.load( ['px.jpg','nx.jpg','py.jpg','ny.jpg','pz.jpg','nz.jpg'], cubeTextureLoaded);
