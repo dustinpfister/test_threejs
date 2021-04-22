@@ -72,7 +72,29 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-    renderer.render(scene, camera);
+
+    // LOOP
+    var frame = 0,
+    maxFrame = 200,
+    fps_target = 24,
+    lt = new Date();
+    var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
+        requestAnimationFrame(loop);
+        if (secs >= 1 / fps_target) {
+            var per = frame / maxFrame,
+            bias = Math.abs(.5 - per) / .5,
+            r = -Math.PI * 2 * per;
+			
+			
+            renderer.render(scene, camera);
+            frame += 1;
+            frame %= maxFrame;
+            lt = now;
+        }
+    };
+    loop();
 
 }
     ());
