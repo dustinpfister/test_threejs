@@ -4,11 +4,6 @@
     // SCENE
     var scene = new THREE.Scene();
 
-    // CAMERA
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(2, 2, 2);
-    camera.lookAt(0, 0, 0);
-
     var materials = [
         new THREE.MeshBasicMaterial({
             color: 0xff0000
@@ -35,9 +30,12 @@
             materials);
     scene.add(mesh);
 
-    // RENDER
+    // CAMERA, RENDER
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    camera.position.set(2, 2, 2);
+    camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
 
