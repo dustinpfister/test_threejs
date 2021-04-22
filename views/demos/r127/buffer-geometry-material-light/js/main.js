@@ -6,7 +6,7 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(0, 0.5, 3);
+    camera.position.set(0, 0.5, 4);
 
     var materials = [
         new THREE.MeshStandardMaterial({
@@ -45,23 +45,29 @@
             geometry,
             materials));
 
-        //var box = new
+    var box = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            materials);
 
-        // ADD A POINT LIGHT
-        var pointLight = new THREE.PointLight(0xffffff);
-        pointLight.position.set(-4, 4, 4);
-        scene.add(pointLight);
+   box.position.set(-1, 0, 0);
 
-        // add AmbientLight
-        //var light = new THREE.AmbientLight(0xffffff);
-        //light.intensity = 0.1;
-        //scene.add(light);
+    scene.add(box);
 
-        // RENDER
-        var renderer = new THREE.WebGLRenderer();
-        renderer.setSize(640, 480);
-        document.getElementById('demo').appendChild(renderer.domElement);
-        renderer.render(scene, camera);
+    // ADD A POINT LIGHT
+    var pointLight = new THREE.PointLight(0xffffff);
+    pointLight.position.set(4, 4, 4);
+    scene.add(pointLight);
 
-    }
-        ());
+    // add AmbientLight
+    //var light = new THREE.AmbientLight(0xffffff);
+    //light.intensity = 0.1;
+    //scene.add(light);
+
+    // RENDER
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
+    renderer.render(scene, camera);
+
+}
+    ());
