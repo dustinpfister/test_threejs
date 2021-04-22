@@ -8,6 +8,17 @@
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(0, 0.5, 3);
 
+    var materials = [
+        new THREE.MeshStandardMaterial({
+            color: 'red',
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 'lime',
+            side: THREE.DoubleSide
+        })
+    ];
+
     // GEOMETRY
     var geometry = new THREE.BufferGeometry();
     var vertices = new Float32Array([
@@ -32,32 +43,25 @@
     // MESH with GEOMETRY, and Normal MATERIAL
     scene.add(new THREE.Mesh(
             geometry,
-            [
-                new THREE.MeshStandardMaterial({
-                    color: 'red',
-                    side: THREE.DoubleSide
-                }),
-                new THREE.MeshStandardMaterial({
-                    color: 'lime',
-                    side: THREE.DoubleSide
-                })
-            ]));
+            materials));
 
-    // ADD A POINT LIGHT
-    var pointLight = new THREE.PointLight(0xffffff);
-    pointLight.position.set(-4, 4, 4);
-    scene.add(pointLight);
+        //var box = new
 
-    // add AmbientLight
-    //var light = new THREE.AmbientLight(0xffffff);
-    //light.intensity = 0.1;
-    //scene.add(light);
+        // ADD A POINT LIGHT
+        var pointLight = new THREE.PointLight(0xffffff);
+        pointLight.position.set(-4, 4, 4);
+        scene.add(pointLight);
 
-    // RENDER
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
-    renderer.render(scene, camera);
+        // add AmbientLight
+        //var light = new THREE.AmbientLight(0xffffff);
+        //light.intensity = 0.1;
+        //scene.add(light);
 
-}
-    ());
+        // RENDER
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(640, 480);
+        document.getElementById('demo').appendChild(renderer.domElement);
+        renderer.render(scene, camera);
+
+    }
+        ());
