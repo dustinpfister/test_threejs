@@ -19,8 +19,11 @@
     // GEOMETRY
     var geometry = new THREE.BoxGeometry(1, 1, 1);
 
-    geometry.groups.forEach(function (face3, i) {
-        face3.materialIndex = Math.floor(i % materials.length);
+    // new buffer geometries should have groups
+    console.log(geometry.groups);
+
+    geometry.groups.forEach(function (face, i) {
+        face.materialIndex = Math.floor(i % materials.length);
     });
     // MESH
     var mesh = new THREE.Mesh(
