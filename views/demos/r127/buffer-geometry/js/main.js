@@ -21,7 +21,7 @@
     // MESH with GEOMETRY, and Normal MATERIAL
     scene.add(new THREE.Mesh(
             geometry,
-            new THREE.MeshNormalMaterial({
+            new THREE.MeshBasicMaterial({
                 side: THREE.DoubleSide
             })));
 
