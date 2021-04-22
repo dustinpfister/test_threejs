@@ -6,7 +6,8 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(0, 0.5, 4);
+    camera.position.set(1, 2, 4);
+    camera.lookAt(0, 0, 0);
 
     var materials = [
         new THREE.MeshStandardMaterial({
@@ -49,13 +50,17 @@
             new THREE.BoxGeometry(1, 1, 1),
             materials);
 
-   box.position.set(-1, 0, 0);
+    box.position.set(-1, 0, 0);
+
+    box.geometry.groups.forEach(function (face, i) {
+        face.materialIndex = i % materials.length;
+    });
 
     scene.add(box);
 
     // ADD A POINT LIGHT
     var pointLight = new THREE.PointLight(0xffffff);
-    pointLight.position.set(4, 4, 4);
+    pointLight.position.set(4, 2, 4);
     scene.add(pointLight);
 
     // add AmbientLight
