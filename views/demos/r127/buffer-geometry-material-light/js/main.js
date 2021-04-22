@@ -19,15 +19,8 @@
                 0, 1, 0,
                 1, 1, 0
             ]);
-    var uvs = new Float32Array([
-                0.0, 0.0,
-                1.0, 0.0,
-                1.0, 1.0,
-                0.0, 1.0
-            ]);
     // create position property
     geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-    geometry.addAttribute('uv', new THREE.BufferAttribute(uvs, 2));
 
     // compute vertex normals
     geometry.computeVertexNormals();
@@ -40,7 +33,7 @@
     scene.add(new THREE.Mesh(
             geometry,
             [
-                new THREE.MeshBasicMaterial({
+                new THREE.MeshStandardMaterial({
                     color: 'red',
                     side: THREE.DoubleSide
                 }),
@@ -52,8 +45,13 @@
 
     // ADD A POINT LIGHT
     var pointLight = new THREE.PointLight(0xffffff);
-    pointLight.position.set(-5, -5, -5);
+    pointLight.position.set(-4, 4, 4);
     scene.add(pointLight);
+
+    // add AmbientLight
+    //var light = new THREE.AmbientLight(0xffffff);
+    //light.intensity = 0.1;
+    //scene.add(light);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
