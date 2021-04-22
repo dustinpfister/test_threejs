@@ -18,6 +18,9 @@
     // create position property
     geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
+    // compute vertex normals
+    geometry.computeVertexNormals();
+
     // MESH with GEOMETRY, and Normal MATERIAL
     scene.add(new THREE.Mesh(
             geometry,
