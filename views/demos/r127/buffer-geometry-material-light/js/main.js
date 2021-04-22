@@ -42,9 +42,10 @@
     geometry.addGroup(3, 3, 1);
 
     // MESH with GEOMETRY, and Normal MATERIAL
-    scene.add(new THREE.Mesh(
+    var custom = new THREE.Mesh(
             geometry,
-            materials));
+            materials);
+    scene.add(custom);
 
     var box = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -64,9 +65,9 @@
     scene.add(pointLight);
 
     // add AmbientLight
-    //var light = new THREE.AmbientLight(0xffffff);
-    //light.intensity = 0.1;
-    //scene.add(light);
+    var light = new THREE.AmbientLight(0xffffff);
+    light.intensity = 0.2;
+    scene.add(light);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
@@ -86,8 +87,9 @@
             var per = frame / maxFrame,
             bias = Math.abs(.5 - per) / .5,
             r = -Math.PI * 2 * per;
-			
-			
+
+            custom.rotation.set(0, Math.PI * 2 * per, 0);
+
             renderer.render(scene, camera);
             frame += 1;
             frame %= maxFrame;
