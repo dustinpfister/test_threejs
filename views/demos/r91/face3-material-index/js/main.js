@@ -12,41 +12,31 @@
     // Orbit Controls
     var controls = new THREE.OrbitControls(camera);
 
+    var materials = [
+        new THREE.MeshBasicMaterial({
+            color: 0xff0000
+        }),
+        new THREE.MeshBasicMaterial({
+            color: 0x00ff00
+        }),
+        new THREE.MeshBasicMaterial({
+            color: 0x0000ff
+        })
+    ];
+
     // GEOMETRY
     var geometry = new THREE.BoxGeometry(1, 1, 1);
 
+    var len = materials.length;
     geometry.faces.forEach(function (face3, i) {
-
-        face3.materialIndex = Math.floor(i % 6 / 2)
-
+        face3.materialIndex = Math.floor(i % (len * 2) / 2);
     });
 
     var mesh = new THREE.Mesh(
 
             // geometry as first argument
             geometry,
-
-            [
-
-                new THREE.MeshBasicMaterial({
-
-                    color: 0xff0000
-
-                }),
-
-                new THREE.MeshBasicMaterial({
-
-                    color: 0x00ff00
-
-                }),
-
-                new THREE.MeshBasicMaterial({
-
-                    color: 0x0000ff
-
-                })
-
-            ]);
+            materials);
 
     scene.add(mesh);
 
@@ -59,11 +49,8 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     var loop = function () {
-
         requestAnimationFrame(loop);
-
         renderer.render(scene, camera);
-
     };
 
     loop();
