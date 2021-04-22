@@ -1,6 +1,9 @@
 
 (function () {
 
+    // REVISION 127 was used for this example
+    console.log(THREE.REVISION);
+
     // SCENE
     var scene = new THREE.Scene();
 
@@ -18,9 +21,6 @@
 
     // GEOMETRY
     var geometry = new THREE.BoxGeometry(1, 1, 1);
-
-    // new buffer geometries should have groups
-    console.log(geometry.groups);
 
     geometry.groups.forEach(function (face, i) {
         face.materialIndex = Math.floor(i % materials.length);
