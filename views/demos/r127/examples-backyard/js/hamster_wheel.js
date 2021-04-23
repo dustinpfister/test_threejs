@@ -3,7 +3,7 @@
     var material = new THREE.MeshStandardMaterial({
             color: 0x00ffff,
             transparent: true,
-            opacity: 0.4
+            opacity: 0.6
         });
 
     // create a base for the given wheel object

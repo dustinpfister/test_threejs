@@ -41,9 +41,14 @@ ground.rotation.set(-Math.PI / 2, 0, 0);
 scene.add(ground);
 
 var wheel = WheelMod.create();
-wheel.group.scale.set(0.25,0.25,0.25);
-wheel.group.position.set(0, 0.8, 3);
+wheel.group.scale.set(0.5,0.5,0.5);
+wheel.group.position.set(2, 1.5, 3);
 scene.add(wheel.group);
+
+var guy = GuyMod.create();
+guy.group.scale.set(0.25, 0.25, 0.25);
+guy.group.position.set(0,0.8,5.5);
+scene.add(guy.group);
 
 // CONTROLS
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -57,7 +62,7 @@ var loop = function () {
     r = Math.PI * 2 * per;
 
     // change directional light position
-    //dl.position.set(Math.cos(r) * 5, 5, Math.sin(r) * 5 );
+    dl.position.set(Math.cos(r) * 5, Math.sin(r) * 5, 0);
     controls.update();
 
     frame = (frame + 1) % maxFrame;
