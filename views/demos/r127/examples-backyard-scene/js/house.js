@@ -22,7 +22,7 @@
         var geometry = new THREE.BufferGeometry();
         var vertices = new Float32Array([
                 -1, 0, 0,
-                0, 1, 0,
+                0.5, 1.5, 0,
                 2, 0, 0
             ]);
         geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
@@ -53,9 +53,9 @@
 
         // roof
         var roof1 = new THREE.Mesh(
-            new THREE.PlaneGeometry(3, 4), 
+            new THREE.PlaneGeometry(2.8, 4.5), 
             materials.roof);
-        roof1.position.set(0, 3, 0);
+        roof1.position.set(-1, 1.5, 0);
         roof1.rotation.set(Math.PI * 0.5, Math.PI * 0.25, 0);
         house.add(roof1);
 
