@@ -35,7 +35,7 @@ var mesh = new THREE.Mesh(
             transparent: true,
             // even when opacity is one the alpha map will 
             // still effect transparency this can just be used to set it even lower
-            opacity: 1,
+            opacity: 0.5,
             side: THREE.DoubleSide
         }));
 scene.add(mesh);
