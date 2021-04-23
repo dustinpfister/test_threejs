@@ -38,14 +38,12 @@ var materials = {
         side: THREE.DoubleSide
     })
 };
-//var plane = //new THREE.Mesh(new THREE.PlaneGeometry(12, 12, 8), materials.ground);
-
-var plane = new THREE.Mesh(new THREE.BoxGeometry(12, 12, 0.25), materials.ground);
-plane.position.set(0,-0.075,0);
-plane.rotation.set(-Math.PI / 2, 0, 0);
-plane.castShadow = false; //default is false
-plane.receiveShadow = true; //default
-scene.add(plane);
+var ground = new THREE.Mesh(new THREE.BoxGeometry(12, 12, 0.25), materials.ground);
+ground.position.set(0,-0.075,0);
+ground.rotation.set(-Math.PI / 2, 0, 0);
+ground.castShadow = false; //default is false
+ground.receiveShadow = true; //default
+scene.add(ground);
 
 // CONTROLS
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
