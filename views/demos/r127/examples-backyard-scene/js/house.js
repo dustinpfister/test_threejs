@@ -6,12 +6,13 @@
             color: 0xffffff,
             side: THREE.DoubleSide
         }),
-        tri: new THREE.MeshBasicMaterial({
-            color: 0x4a4a4a,
+        tri: new THREE.MeshStandardMaterial({
+            color: 0xffffff,
             side: THREE.DoubleSide
         })
     };
 
+    // create a triangle part of the house
     var HouseTriangle = function(materials){
         materials = materials || materials_default;
         var geometry = new THREE.BufferGeometry();
@@ -21,6 +22,8 @@
                 2, 0, 0
             ]);
         geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+        geometry.computeVertexNormals(); // compute vertex normals
+        geometry.addGroup(0, 3, 0); // just one group
         return new THREE.Mesh(
             geometry, 
             materials.tri);
