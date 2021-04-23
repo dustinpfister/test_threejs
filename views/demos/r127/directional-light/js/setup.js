@@ -14,7 +14,7 @@ camera.position.set(1.2, 1.2, 1.2);
 camera.lookAt(0, 0, 0);
 // Have a renderer
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize(320, 240);
+renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 // Add Something in the scene that makes use of a material
 // that will respond to light such as the standard material

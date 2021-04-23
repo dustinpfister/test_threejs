@@ -8,7 +8,7 @@ var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 1000);
 camera.position.set(10, 15, 10);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize(320, 240);
+renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 var material = new THREE.MeshStandardMaterial({color: 0xff0000,emissive: 0x0a0a0a});
 var mesh = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2),material);
