@@ -3,15 +3,15 @@
     // default materials
     var materials_default = {
         base: new THREE.MeshStandardMaterial({
-            color: 0xffffff,
+            color: 0xff0000,
             side: THREE.DoubleSide
         }),
         tri: new THREE.MeshStandardMaterial({
-            color: 0xffffff,
+            color: 0xaf0000,
             side: THREE.DoubleSide
         }),
         roof: new THREE.MeshStandardMaterial({
-            color: 0x8f8f8f,
+            color: 0x202020,
             side: THREE.DoubleSide
         })
     };
@@ -53,11 +53,17 @@
 
         // roof
         var roof1 = new THREE.Mesh(
-            new THREE.PlaneGeometry(2.8, 4.5), 
+            new THREE.PlaneGeometry(2.84, 4.5), 
             materials.roof);
-        roof1.position.set(-1, 1.5, 0);
+        roof1.position.set(-1, 1.51, 0);
         roof1.rotation.set(Math.PI * 0.5, Math.PI * 0.25, 0);
         house.add(roof1);
+        var roof2 = new THREE.Mesh(
+            new THREE.PlaneGeometry(2.84, 4.5), 
+            materials.roof);
+        roof2.position.set(1, 1.51, 0);
+        roof2.rotation.set(Math.PI * 0.5, Math.PI * -0.25, 0);
+        house.add(roof2);
 
         // house should cast a shadow
         house.castShadow = true;
