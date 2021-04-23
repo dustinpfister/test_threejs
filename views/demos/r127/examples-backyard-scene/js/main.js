@@ -26,19 +26,18 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
-var materials = {
-    house_sides: new THREE.MeshStandardMaterial({
-        color: 0xffffff
-    }),
-    ground: new THREE.MeshStandardMaterial({
-        color: 0x00ff00
-    })
-};
-
+// add the house
 var house = HouseMod.create();
-house.position.set(-2, 1, 0);
+house.position.set(-2, 1.05, 0);
 scene.add(house);
 
+// ground
+var materials = {
+    ground: new THREE.MeshStandardMaterial({
+        color: 0x00ff00,
+        side: THREE.DoubleSide
+    })
+};
 var plane = new THREE.Mesh(new THREE.PlaneGeometry(12, 12, 8), materials.ground);
 plane.rotation.set(-Math.PI / 2, 0, 0);
 plane.castShadow = false; //default is false
