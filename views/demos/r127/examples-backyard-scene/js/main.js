@@ -34,13 +34,8 @@ var materials = {
     })
 };
 
-//var house = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), materials.house_sides);
-//house.position.y = 1;
-//house.castShadow = true; //default is false
-//house.receiveShadow = false; //default
-
 var house = HouseMod.create();
-house.position.set(-2,1,0);
+house.position.set(-2, 1, 0);
 scene.add(house);
 
 var plane = new THREE.Mesh(new THREE.PlaneGeometry(12, 12, 8), materials.ground);
