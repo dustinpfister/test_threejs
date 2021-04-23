@@ -3,6 +3,7 @@ scene.background = new THREE.Color(0x00ffff);
 
 // directional light
 var dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(3,4,3);
 dl.castShadow = true;
 scene.add(dl);
 
@@ -26,6 +27,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
+
 // add the house
 var house = HouseMod.create();
 house.position.set(-3, 1.05, -3);
@@ -41,9 +43,14 @@ var materials = {
 var ground = new THREE.Mesh(new THREE.BoxGeometry(12, 12, 0.25), materials.ground);
 ground.position.set(0,-0.075,0);
 ground.rotation.set(-Math.PI / 2, 0, 0);
-ground.castShadow = false; //default is false
-ground.receiveShadow = true; //default
+ground.castShadow = false;
+ground.receiveShadow = true;
 scene.add(ground);
+
+var wheel = WheelMod.create();
+wheel.group.scale.set(0.25,0.25,0.25);
+wheel.group.position.set(0, 0.8, 3);
+scene.add(wheel.group);
 
 // CONTROLS
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
