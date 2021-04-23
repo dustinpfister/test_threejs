@@ -65,9 +65,6 @@
         roof2.rotation.set(Math.PI * 0.5, Math.PI * -0.25, 0);
         house.add(roof2);
 
-        // house should cast a shadow
-        house.castShadow = true;
-        house.receiveShadow = false;
         return house;
     };
 

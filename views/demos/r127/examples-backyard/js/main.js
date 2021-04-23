@@ -4,13 +4,8 @@ scene.background = new THREE.Color(0x00ffff);
 // directional light
 var dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(3,4,3);
-dl.castShadow = true;
 scene.add(dl);
 
-dl.shadow.mapSize.width = 256;
-dl.shadow.mapSize.height = 256;
-dl.shadow.camera.near = 0.5;
-dl.shadow.camera.far = 15;
 
 // add AmbientLight
 var light = new THREE.AmbientLight(0xffffff);
@@ -22,15 +17,13 @@ camera.position.set(7, 10, 7);
 camera.lookAt(0, 0, 0);
 
 var renderer = new THREE.WebGLRenderer();
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 
 // add the house
 var house = HouseMod.create();
-house.position.set(-3, 1.05, -3);
+house.position.set(-3, 1.05, 0);
 scene.add(house);
 
 // ground
@@ -40,11 +33,11 @@ var materials = {
         side: THREE.DoubleSide
     })
 };
+
 var ground = new THREE.Mesh(new THREE.BoxGeometry(12, 12, 0.25), materials.ground);
+
 ground.position.set(0,-0.075,0);
 ground.rotation.set(-Math.PI / 2, 0, 0);
-ground.castShadow = false;
-ground.receiveShadow = true;
 scene.add(ground);
 
 var wheel = WheelMod.create();
@@ -64,7 +57,7 @@ var loop = function () {
     r = Math.PI * 2 * per;
 
     // change directional light position
-    dl.position.set(Math.cos(r) * 5, 5, Math.sin(r) * 5 );
+    //dl.position.set(Math.cos(r) * 5, 5, Math.sin(r) * 5 );
     controls.update();
 
     frame = (frame + 1) % maxFrame;
