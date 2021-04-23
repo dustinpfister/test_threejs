@@ -1,8 +1,11 @@
 // Have a scene
 var scene = new THREE.Scene();
 
-// ADD A DIRECTIONAL LIGHT to the scene
+// ADD A DIRECTIONAL LIGHT to the scene when doing so
+// I can set a color, and intensity with optional arguments
 var dl = new THREE.DirectionalLight(0xffffff, 1);
+// set a position for the light
+dl.position.set(3,2,1);
 scene.add(dl);
 
 // have a camera

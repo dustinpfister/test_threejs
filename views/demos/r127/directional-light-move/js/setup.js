@@ -17,7 +17,6 @@ scene.add(mesh);
 var plane = new THREE.Mesh(new THREE.PlaneGeometry(12, 12, 8), material);
 plane.rotation.set(-Math.PI / 2, 0, 0);
 scene.add(plane)
-
 // Loop in which the directional light position changes
 var frame = 0,
 maxFrame = 100;
@@ -27,7 +26,7 @@ var loop = function () {
     r = Math.PI * 2 * per;
 
     // change directional light position
-    dl.position.set(Math.cos(r)*10, 2, Math.sin(r)*10);
+    dl.position.set(Math.cos(r) * 10, 2, Math.sin(r)*10);
 
     frame = (frame + 1) % maxFrame;
     renderer.render(scene, camera);
