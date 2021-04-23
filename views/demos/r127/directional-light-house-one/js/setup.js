@@ -26,9 +26,9 @@ var materials = {
     })
 };
 
-var mesh = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), materials.house_sides);
-mesh.position.y=2;
-scene.add(mesh);
+var house = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), materials.house_sides);
+house.position.y=2;
+scene.add(house);
 
 var plane = new THREE.Mesh(new THREE.PlaneGeometry(12, 12, 8), materials.ground);
 plane.rotation.set(-Math.PI / 2, 0, 0);
