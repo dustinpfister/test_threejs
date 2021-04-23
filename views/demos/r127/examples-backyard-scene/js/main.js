@@ -1,4 +1,5 @@
 var scene = new THREE.Scene();
+scene.background = new THREE.Color(0x00ffff);
 
 // directional light
 var dl = new THREE.DirectionalLight(0xffffff, 1);
