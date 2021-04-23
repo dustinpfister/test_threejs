@@ -44,6 +44,9 @@ plane.castShadow = false; //default is false
 plane.receiveShadow = true; //default
 scene.add(plane);
 
+// CONTROLS
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
 // Loop in which the directional light position changes
 var frame = 0,
 maxFrame = 100;
@@ -54,6 +57,7 @@ var loop = function () {
 
     // change directional light position
     dl.position.set(Math.cos(r) * 5, 5, Math.sin(r) * 5 );
+    controls.update();
 
     frame = (frame + 1) % maxFrame;
     renderer.render(scene, camera);
