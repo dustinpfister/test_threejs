@@ -22,7 +22,7 @@ var renderer = new THREE.WebGLRenderer();
 //renderer.width = 640;
 renderer.domElement.width = 640;
 renderer.domElement.height = 480;
-renderer.setViewport(0,0, 640, 480);
+renderer.setViewport(0, 0, 640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 // add the house
@@ -121,4 +121,26 @@ var loop = function () {
     frame = (frame + 1) % maxFrame;
     renderer.render(scene, camera);
 };
-loop();
+
+// WHAT TO DO WHEN CUBE TEXTURE IS LOADED
+var cubeTextureLoaded = function (cubeTexture) {
+    if (cubeTexture) {
+        cubeTexture.encoding = THREE.sRGBEncoding;
+        scene.background = cubeTexture;
+    }
+    loop();
+};
+
+// LOAD CUBE TEXTURE
+var loadfail = false;
+new THREE.CubeTextureLoader()
+.setPath('./../../../img/cube/skybox/')
+.load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg'],
+    cubeTextureLoaded,
+    function () {},
+    function (e, b) {
+    if (!loadfail) {
+        loadfail = true;
+        cubeTextureLoaded()
+    }
+});
