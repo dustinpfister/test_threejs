@@ -54,6 +54,20 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 // Loop in which the directional light position changes
 var frame = 0,
 maxFrame = 100;
+
+var state = {
+    minute: {
+        per: 0,
+        r: 0
+    }
+};
+
+var updateMinute = function (state, now) {
+    var ms = now.getMilliseconds() / 1000;
+    state.minute.per = (now.getSeconds() + ms) / 60;
+    state.minute.r = Math.PI * 2 * state.minute.per;
+};
+
 var loop = function () {
     setTimeout(loop, 33);
     var per = frame / maxFrame,
@@ -61,10 +75,12 @@ var loop = function () {
 
     wheel.wheel.rotation.z = r;
 
-    GuyMod.walk(guy, per, 16);
-    guy.group.position.set(Math.cos(r) * 5, 0.8 ,Math.sin(r) * 5);
-    //guy.group.rotation.set(0,1.57,0);
-   guy.group.lookAt(Math.cos(r + 1) * 5, 0.8 ,Math.sin(r + 1) * 5);
+    updateMinute(state, new Date());
+
+    GuyMod.walk(guy, state.minute.per, 16);
+    var r = state.minute.r;
+    guy.group.position.set(Math.cos(r) * 5, 0.8, Math.sin(r) * 5);
+    guy.group.lookAt(Math.cos(r + 0.5) * 5, 0.8, Math.sin(r + 0.5) * 5);
 
     // change directional light position
     //dl.position.set(Math.cos(r) * 5, Math.sin(r) * 5, 0);
