@@ -23,7 +23,29 @@ var renderer = new THREE.WebGLRenderer();
 renderer.domElement.width = 640;
 renderer.domElement.height = 480;
 renderer.setViewport(0, 0, 640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
+var container = document.getElementById('demo');
+container.appendChild(renderer.domElement);
+var full = false;
+renderer.domElement.addEventListener('click', function (e) {
+    var canvas = e.target;
+    full = !full;
+    container.style.position = 'static';
+    container.style.width = '640px';
+    canvas.style.width = '640px';
+    canvas.style.height = '480px';
+    if (full) {
+        canvas.style.width = 'auto';
+        canvas.style.height = window.innerHeight + 'px';
+        canvas.style.margin = 'auto';
+        container.style.position = 'fixed';
+        container.style.width = '100%';
+        container.style.height = '100%';
+        container.style.background = 'black';
+        container.style.left = '0px';
+        container.style.top = '0px';
+    }
+
+})
 
 // add the house
 var house = HouseMod.create();
@@ -37,9 +59,7 @@ var materials = {
         side: THREE.DoubleSide
     })
 };
-
 var ground = new THREE.Mesh(new THREE.BoxGeometry(12, 12, 0.25), materials.ground);
-
 ground.position.set(0, -0.075, 0);
 ground.rotation.set(-Math.PI / 2, 0, 0);
 scene.add(ground);
@@ -130,7 +150,6 @@ var cubeTextureLoaded = function (cubeTexture) {
     }
     loop();
 };
-
 // LOAD CUBE TEXTURE
 var loadfail = false;
 new THREE.CubeTextureLoader()
