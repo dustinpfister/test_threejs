@@ -111,7 +111,7 @@ var loop = function () {
     wheel.wheel.rotation.z = msper;
 
     // guy
-    GuyMod.walk(guy, state.minute.per, 16);
+    GuyMod.walk(guy, state.minute.per, 32);
     var r = Math.PI * 2 - state.minute.r;
     guy.group.position.set(Math.cos(r) * 5, 0.8, Math.sin(r) * 5);
     guy.group.lookAt(Math.cos(r - 0.5) * 5, 0.8, Math.sin(r - 0.5) * 5);
