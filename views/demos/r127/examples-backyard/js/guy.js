@@ -1,16 +1,16 @@
 (function (GuyMod) {
     // material used for the legs
-    var material_leg = new THREE.MeshLambertMaterial({
+    var material_leg = new THREE.MeshStandardMaterial({
             color: 0x0000ff,
             emissive: 0x00001a
         }),
     // material used for the arms
-    material_arm = new THREE.MeshLambertMaterial({
+    material_arm = new THREE.MeshStandardMaterial({
             color: 0xaf0000,
             emissive: 0x001a00
         });
     // material used for the body
-    material_body = new THREE.MeshLambertMaterial({
+    material_body = new THREE.MeshStandardMaterial({
             color: 0xff0000,
             emissive: 0x001a00
         });
@@ -32,12 +32,12 @@
         });
     materials_head = [
         // 0 default material
-        new THREE.MeshLambertMaterial({
+        new THREE.MeshStandardMaterial({
             color: 0xffff00,
             emissive: 0x1a1a00
         }),
         // 1 used for the face
-        new THREE.MeshBasicMaterial({
+        new THREE.MeshStandardMaterial({
             map: faceTexture
         })
     ];
