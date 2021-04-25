@@ -14,12 +14,15 @@ var light = new THREE.AmbientLight(0xffffff);
 light.intensity = 0.3;
 scene.add(light);
 
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 1000);
+var camera = new THREE.PerspectiveCamera(50, 640 / 480, 1, 1000);
 camera.position.set(7, 10, 7);
 camera.lookAt(0, 0, 0);
 
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
+//renderer.width = 640;
+renderer.domElement.width = 640;
+renderer.domElement.height = 480;
+renderer.setViewport(0,0, 640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 // add the house
