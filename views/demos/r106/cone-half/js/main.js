@@ -26,16 +26,16 @@
             0, // start angle
             Math.PI // angle length from start
         );
-    matreial = new THREE.MeshStandardMaterial({
+    material = new THREE.MeshStandardMaterial({
             color: 0x00ff00,
             side: THREE.DoubleSide
         }),
-    mesh = new THREE.Mesh(cone, matreial);
+    mesh = new THREE.Mesh(cone, material);
     scene.add(mesh);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
 
