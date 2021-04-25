@@ -1,7 +1,7 @@
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x00ffff);
 
-// directional light
+// sun
 var sun = new THREE.Mesh(
         new THREE.SphereGeometry(1),
         new THREE.MeshBasicMaterial());
@@ -10,9 +10,9 @@ sun.position.set(0, 8, 0);
 scene.add(sun);
 
 // add AmbientLight
-var light = new THREE.AmbientLight(0xffffff);
-light.intensity = 0.3;
-scene.add(light);
+var ambientLight = new THREE.AmbientLight(0xffffff);
+ambientLight.intensity = 0.3;
+scene.add(ambientLight);
 
 var camera = new THREE.PerspectiveCamera(50, 640 / 480, 1, 1000);
 camera.position.set(7, 10, 7);
@@ -95,7 +95,7 @@ var loop = function () {
     setTimeout(loop, 33);
 
     var now = new Date();
-    //var now = new Date(2021, 1, 1, 18, 0);
+    //var now = new Date(2021, 1, 1, 20, 0);
     var msper = Math.PI * 2 * (now.getMilliseconds() / 1000);
 
     updateMinute(state, now);
@@ -103,7 +103,8 @@ var loop = function () {
 
     // sun
     var r = state.day.r;
-    sun.position.set(Math.cos(r) * 8, Math.sin(r) * 8, 0)
+    sun.position.set(Math.cos(r) * 8, Math.sin(r) * 8, 0);
+    ambientLight.intensity = (1 - (Math.abs(state.day.per - 0.5) / 0.5)) * 0.4;
 
     // wheel
     wheel.wheel.rotation.z = msper;
