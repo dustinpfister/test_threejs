@@ -6,13 +6,13 @@ var sun = new THREE.Mesh(
         new THREE.SphereGeometry(1),
         new THREE.MeshBasicMaterial());
 sun.add(new THREE.PointLight(0xffffff, 1));
-sun.position.set(0, 7, 0);
+sun.position.set(0, 8, 0);
 scene.add(sun);
 
 // add AmbientLight
-var light = new THREE.AmbientLight(0xffffff);
-light.intensity = 0.1;
-scene.add(light);
+//var light = new THREE.AmbientLight(0xffffff);
+//light.intensity = 0.1;
+//scene.add(light);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 1000);
 camera.position.set(7, 10, 7);
@@ -82,7 +82,7 @@ var loop = function () {
     // sun
     var msper = Math.PI * 2 * (now.getMilliseconds() / 1000);
     var r = Math.PI * 2 * state.minute.per;
-    sun.position.set(Math.cos(r) * 7, Math.sin(r) * 7, 0)
+    sun.position.set(Math.cos(r) * 8, Math.sin(r) * 8, 0)
 
     // wheel
     wheel.wheel.rotation.z = msper;

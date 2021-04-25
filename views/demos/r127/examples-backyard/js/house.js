@@ -11,7 +11,7 @@
             side: THREE.DoubleSide
         }),
         roof: new THREE.MeshStandardMaterial({
-            color: 0x202020,
+            color: 0x404040,
             side: THREE.DoubleSide
         })
     };
