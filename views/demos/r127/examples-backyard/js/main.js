@@ -26,8 +26,8 @@ renderer.setViewport(0, 0, 640, 480);
 var container = document.getElementById('demo');
 container.appendChild(renderer.domElement);
 var full = false;
-renderer.domElement.addEventListener('click', function (e) {
-    var canvas = e.target;
+var toggleFull = function (canvas) {
+    var canvas = renderer.domElement;
     full = !full;
     container.style.position = 'static';
     container.style.width = '640px';
@@ -44,8 +44,13 @@ renderer.domElement.addEventListener('click', function (e) {
         container.style.left = '0px';
         container.style.top = '0px';
     }
-
-})
+};
+// press f for full screen
+window.addEventListener('keydown', function (e) {
+    if (e.key === 'f') {
+        toggleFull();
+    }
+});
 
 // add the house
 var house = HouseMod.create();
