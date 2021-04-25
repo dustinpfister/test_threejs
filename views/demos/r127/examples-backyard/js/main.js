@@ -10,9 +10,9 @@ sun.position.set(0, 8, 0);
 scene.add(sun);
 
 // add AmbientLight
-//var light = new THREE.AmbientLight(0xffffff);
-//light.intensity = 0.1;
-//scene.add(light);
+var light = new THREE.AmbientLight(0xffffff);
+light.intensity = 0.3;
+scene.add(light);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 1000);
 camera.position.set(7, 10, 7);
@@ -62,7 +62,18 @@ var state = {
     minute: {
         per: 0,
         r: 0
+    },
+    day: {
+        per: 0,
+        r: 0
     }
+};
+
+var getDayPer = function (now) {
+    return now.getHours() / 24 +
+    now.getMinutes() / 1440 +
+    now.getSeconds() / 86400 +
+    now.getMilliseconds() / 86400000;
 };
 
 // update minute object
@@ -72,16 +83,23 @@ var updateMinute = function (state, now) {
     state.minute.r = Math.PI * 2 * state.minute.per;
 };
 
+var updateDay = function (state, now) {
+    state.day.per = getDayPer(now);
+    state.day.r = Math.PI * 2 * state.day.per + Math.PI * 1.5;
+};
+
 var loop = function () {
     setTimeout(loop, 33);
 
     var now = new Date();
+    //var now = new Date(2021, 1, 1, 18, 0);
+    var msper = Math.PI * 2 * (now.getMilliseconds() / 1000);
 
     updateMinute(state, now);
+    updateDay(state, now);
 
     // sun
-    var msper = Math.PI * 2 * (now.getMilliseconds() / 1000);
-    var r = Math.PI * 2 * state.minute.per;
+    var r = state.day.r;
     sun.position.set(Math.cos(r) * 8, Math.sin(r) * 8, 0)
 
     // wheel
