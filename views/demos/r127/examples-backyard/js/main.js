@@ -2,7 +2,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x00ffff);
 
 // directional light
-var dl = new THREE.DirectionalLight(0xffffff, 1);
+var dl = new THREE.PointLight(0xffffff, 1);
 dl.position.set(3, 4, 3);
 scene.add(dl);
 
@@ -62,6 +62,7 @@ var state = {
     }
 };
 
+// update minute object
 var updateMinute = function (state, now) {
     var ms = now.getMilliseconds() / 1000;
     state.minute.per = (now.getSeconds() + ms) / 60;
@@ -70,12 +71,13 @@ var updateMinute = function (state, now) {
 
 var loop = function () {
     setTimeout(loop, 33);
-    var per = frame / maxFrame,
-    r = Math.PI * 2 * per;
 
+    var now = new Date();
+
+    var r = Math.PI * 2 * ( now.getMilliseconds() / 1000);
     wheel.wheel.rotation.z = r;
 
-    updateMinute(state, new Date());
+    updateMinute(state, now);
 
     GuyMod.walk(guy, state.minute.per, 16);
     var r = state.minute.r;
