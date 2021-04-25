@@ -11,7 +11,7 @@ scene.add(sun);
 
 // add AmbientLight
 var light = new THREE.AmbientLight(0xffffff);
-light.intensity = 0.2;
+light.intensity = 0.1;
 scene.add(light);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 1000);
@@ -77,11 +77,17 @@ var loop = function () {
 
     var now = new Date();
 
-    var r = Math.PI * 2 * (now.getMilliseconds() / 1000);
-    wheel.wheel.rotation.z = r;
-
     updateMinute(state, now);
 
+    // sun
+    var msper = Math.PI * 2 * (now.getMilliseconds() / 1000);
+    var r = Math.PI * 2 * state.minute.per;
+    sun.position.set(Math.cos(r) * 7, Math.sin(r) * 7, 0)
+
+    // wheel
+    wheel.wheel.rotation.z = msper;
+
+    // guy
     GuyMod.walk(guy, state.minute.per, 16);
     var r = state.minute.r;
     guy.group.position.set(Math.cos(r) * 5, 0.8, Math.sin(r) * 5);
