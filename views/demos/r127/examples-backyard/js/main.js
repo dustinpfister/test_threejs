@@ -56,6 +56,7 @@ scene.add(guy.group);
 
 // CONTROLS
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.autoRotate = true;
 
 // Loop in which the directional light position changes
 var frame = 0,
@@ -111,9 +112,9 @@ var loop = function () {
 
     // guy
     GuyMod.walk(guy, state.minute.per, 16);
-    var r = state.minute.r;
+    var r = Math.PI * 2 - state.minute.r;
     guy.group.position.set(Math.cos(r) * 5, 0.8, Math.sin(r) * 5);
-    guy.group.lookAt(Math.cos(r + 0.5) * 5, 0.8, Math.sin(r + 0.5) * 5);
+    guy.group.lookAt(Math.cos(r - 0.5) * 5, 0.8, Math.sin(r - 0.5) * 5);
 
     controls.update();
 
