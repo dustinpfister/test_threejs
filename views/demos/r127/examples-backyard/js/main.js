@@ -61,9 +61,10 @@ var loop = function () {
 
     wheel.wheel.rotation.z = r;
 
-    GuyMod.walk(guy, per, 4);
-    guy.group.position.set(Math.cos(r) * 5,0.8,Math.sin(r) * 5);
-    guy.group.rotation.set(0,1.57,0);
+    GuyMod.walk(guy, per, 16);
+    guy.group.position.set(Math.cos(r) * 5, 0.8 ,Math.sin(r) * 5);
+    //guy.group.rotation.set(0,1.57,0);
+   guy.group.lookAt(Math.cos(r + 1) * 5, 0.8 ,Math.sin(r + 1) * 5);
 
     // change directional light position
     //dl.position.set(Math.cos(r) * 5, Math.sin(r) * 5, 0);
