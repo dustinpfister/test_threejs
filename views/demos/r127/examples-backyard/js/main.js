@@ -31,6 +31,7 @@ var toggleFull = function (canvas) {
     full = !full;
     container.style.position = 'static';
     container.style.width = '640px';
+    container.style.height = '480px';
     canvas.style.width = '640px';
     canvas.style.height = '480px';
     if (full) {
