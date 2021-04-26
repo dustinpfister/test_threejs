@@ -21,6 +21,8 @@ var loop = function () {
     var now = new Date(),
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
+
+    // changing values
     state.r.x += 1 * secs;
     state.r.y += 2 * secs;
     state.r.z += 3 * secs;
@@ -28,6 +30,10 @@ var loop = function () {
     // copy the state of the THREE.Euler instance in the state object
     // as the new rotation value of the box
     box.rotation.copy(state.r);
+
+    // using the copy method for Vector3 also
+    box.position.copy(state.p);
+
     renderer.render(scene, camera);
     lt = now;
 };
