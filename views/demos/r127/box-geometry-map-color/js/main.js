@@ -18,7 +18,7 @@ var scene = new THREE.Scene();
 scene.add(box);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(0, 3, 0);
+camera.position.set(3, 3, 3);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
