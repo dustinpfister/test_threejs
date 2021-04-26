@@ -1,30 +1,23 @@
-
+// the array of materials that is only two materials
 var materials = [
-    new THREE.MeshBasicMaterial({
-        color: 'red'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: '#8a0000'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: 'lime'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: '#008a00'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: 'blue'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: '#00008a'
-    })
+    new THREE.MeshNormalMaterial(),
+    new THREE.MeshDepthMaterial()
 ];
-
+// create the box geometry
+var geo = new THREE.BoxGeometry(1, 1, 1);
+// The objects in the groups array is what there is to
+// use to set material index values for each face
+geo.groups.forEach(function (face, i) {
+    face.materialIndex = face.materialIndex % materials.length;
+});
+// now create the box like always passing the geometry first,
+// and the array of materials second
 var box = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
+        geo,
         materials);
 
 var scene = new THREE.Scene();
+scene.background = new THREE.Color(0xafafaf);
 scene.add(box);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
