@@ -1,29 +1,7 @@
 
-var materials = [
-    new THREE.MeshBasicMaterial({
-        color: 'red'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: '#8a0000'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: 'lime'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: '#008a00'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: 'blue'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: '#00008a'
-    })
-];
-
 var box = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
-        materials);
-
+        new THREE.MeshNormalMaterial());
 var scene = new THREE.Scene();
 scene.add(box);
 
@@ -36,18 +14,20 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 var lt = new Date(),
 state = {
-    x: 0,
-    y: 0,
-    z: 0
+    r: new THREE.Euler(0, 0, 0),
+    p: new THREE.Vector3(0, 0, 0)
 };
 var loop = function () {
     var now = new Date(),
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
-    state.x += 1 * secs;
-    state.y += 2 * secs;
-    state.z += 3 * secs;
-    box.rotation.set(state.x, state.y, state.z);
+    state.r.x += 1 * secs;
+    state.r.y += 2 * secs;
+    state.r.z += 3 * secs;
+
+    // copy the state of the THREE.Euler instance in the state object
+    // as the new rotation value of the box
+    box.rotation.copy(state.r);
     renderer.render(scene, camera);
     lt = now;
 };
