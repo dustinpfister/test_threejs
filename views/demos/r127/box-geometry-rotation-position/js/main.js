@@ -6,7 +6,7 @@ var scene = new THREE.Scene();
 scene.add(box);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(0.8, 1.3, 0.8);
+camera.position.set(3, 3, 3);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -14,13 +14,26 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 var lt = new Date(),
 state = {
+    frame: 0,
+    maxFrame: 100,
+    per: 0,
+    bias: 0,
+    radian: 0,
     r: new THREE.Euler(0, 0, 0),
     p: new THREE.Vector3(0, 0, 0)
 };
 var loop = function () {
     var now = new Date(),
     secs = (now - lt) / 1000;
+
     requestAnimationFrame(loop);
+
+    state.per = state.frame / state.maxFrame;
+    state.bias = 1 - Math.abs(state.per - 0.5) / 0.5;
+    state.radian = Math.PI * 2 * state.bias;
+
+    state.p.z = -2 * Math.cos(Math.PI * 2 * state.bias);
+    state.p.x = -2 * Math.sin(Math.PI * 8 * state.bias);
 
     // changing values
     state.r.x += 1 * secs;
@@ -35,6 +48,10 @@ var loop = function () {
     box.position.copy(state.p);
 
     renderer.render(scene, camera);
+
+    state.frame += 4 * secs;
+    state.frame %= state.maxFrame;
+
     lt = now;
 };
 loop();
