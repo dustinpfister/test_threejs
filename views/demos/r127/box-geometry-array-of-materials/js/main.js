@@ -4,16 +4,17 @@ var materials = [
         color: 'red'
     }),
     new THREE.MeshBasicMaterial({
-        color: 'lime'
-    }),
-    new THREE.MeshBasicMaterial({
-        color: 'blue'
-    }),
-    new THREE.MeshBasicMaterial({
         color: 'red'
     }),
     new THREE.MeshBasicMaterial({
         color: 'lime'
+    }),
+    new THREE.MeshBasicMaterial({
+        color: 'lime'
+    }),
+
+    new THREE.MeshBasicMaterial({
+        color: 'blue'
     }),
     new THREE.MeshBasicMaterial({
         color: 'blue'
@@ -33,4 +34,22 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
-renderer.render(scene, camera);
+
+var lt = new Date(),
+state = {
+    x: 0,
+    y: 0,
+    z: 0
+};
+var loop = function () {
+    var now = new Date(),
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    state.x += 1 * secs;
+    state.y += 2 * secs;
+    state.z += 3 * secs;
+    box.rotation.set(state.x, state.y, state.z);
+    renderer.render(scene, camera);
+    lt = now;
+};
+loop();
