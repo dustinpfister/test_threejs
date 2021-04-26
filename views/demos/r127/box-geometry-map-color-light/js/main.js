@@ -11,11 +11,19 @@ var colorMap = utils.createCanvasTexture(function (ctx, canvas) {
 
 var box = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshBasicMaterial({
+        // using the standard material
+        new THREE.MeshStandardMaterial({
             map: colorMap
         }));
 var scene = new THREE.Scene();
 scene.add(box);
+
+var sun = new THREE.Mesh(
+        new THREE.SphereGeometry(1),
+        new THREE.MeshBasicMaterial());
+sun.add(new THREE.PointLight(0xffffff, 1));
+sun.position.set(2, 8, 4);
+scene.add(sun);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(1, 1, 1);
