@@ -4,20 +4,19 @@ var materials = [
         color: 'red'
     }),
     new THREE.MeshBasicMaterial({
-        color: 'red'
+        color: '#8a0000'
     }),
     new THREE.MeshBasicMaterial({
         color: 'lime'
     }),
     new THREE.MeshBasicMaterial({
-        color: 'lime'
-    }),
-
-    new THREE.MeshBasicMaterial({
-        color: 'blue'
+        color: '#008a00'
     }),
     new THREE.MeshBasicMaterial({
         color: 'blue'
+    }),
+    new THREE.MeshBasicMaterial({
+        color: '#00008a'
     })
 ];
 
