@@ -25,7 +25,7 @@ var colorMap = utils.createCanvasTexture(function (ctx, canvas) {
 
 // creating a box with the standard material
 var box = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.BoxGeometry(3, 3, 3),
         new THREE.MeshStandardMaterial({
             map: colorMap
         }));
