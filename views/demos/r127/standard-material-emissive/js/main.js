@@ -28,9 +28,9 @@ var box = new THREE.Mesh(
         new THREE.BoxGeometry(3, 3, 3),
         new THREE.MeshStandardMaterial({
             map: colorMap,
-			emissive: 'white',
-			emissiveIntensity: 0.7,
-			emissiveMap: colorMap
+            emissive: 'white',
+            emissiveIntensity: 0.3,
+            emissiveMap: colorMap
         }));
 
 // creating a scene
