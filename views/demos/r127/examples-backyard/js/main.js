@@ -59,9 +59,24 @@ house.position.set(-2, 1.05, 0);
 scene.add(house);
 
 // ground
+var grassTexture = utils.createCanvasTexture(function (ctx, canvas) {
+        var i = 0,
+        x,
+        y,
+        len = canvas.width * canvas.height;
+        while (i < len) {
+            x = i % canvas.width;
+            y = Math.floor(i / canvas.width);
+            ctx.fillStyle = 'rgb(0,' + Math.floor(128 + 100 * Math.random()) + ',0)';
+            ctx.fillRect(x, y, 1, 1);
+            i += 1;
+        }
+
+    });
 var materials = {
     ground: new THREE.MeshStandardMaterial({
         color: 0x00ff00,
+        map: grassTexture,
         side: THREE.DoubleSide
     })
 };
