@@ -74,15 +74,25 @@ var grassTexture = utils.createCanvasTexture(function (ctx, canvas) {
 
     });
 var materials = {
-    ground: new THREE.MeshStandardMaterial({
-        color: 0x00ff00,
-        map: grassTexture,
-        side: THREE.DoubleSide
-    })
+    ground: [
+        new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            map: grassTexture,
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0xffaa00,
+            side: THREE.DoubleSide
+        })
+    ]
 };
-var ground = new THREE.Mesh(new THREE.BoxGeometry(12, 12, 0.25), materials.ground);
-ground.position.set(0, -0.075, 0);
+var ground = new THREE.Mesh(new THREE.BoxGeometry(12, 12, 1.25), materials.ground);
+ground.position.set(0, -0.575, 0);
 ground.rotation.set(-Math.PI / 2, 0, 0);
+ground.geometry.groups.forEach(function (face) {
+    face.materialIndex = 1;
+});
+ground.geometry.groups[4].materialIndex = 0;
 scene.add(ground);
 
 var wheel = WheelMod.create();
