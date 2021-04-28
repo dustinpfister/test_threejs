@@ -19,7 +19,7 @@ ambientLight.intensity = 0.3;
 scene.add(ambientLight);
 
 var camera = new THREE.PerspectiveCamera(50, 640 / 480, 1, 1000);
-camera.position.set(14, 20, 14);
+camera.position.set(8, 12, 8);
 camera.lookAt(0, 0, 0);
 
 var renderer = new THREE.WebGLRenderer();
@@ -164,7 +164,7 @@ var loop = function () {
     renderer.render(scene, camera);
 };
 
-var texture = canvasTextureMod.basicSquare(['r1', '0', 'r1'], 128, 6, 'black', 32, 64).image;
+var texture = canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 128, 6, 'black', 32, 64).image;
 var cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture));
 cubeTexture.needsUpdate = true;
 scene.background = cubeTexture;
