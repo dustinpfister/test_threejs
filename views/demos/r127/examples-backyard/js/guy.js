@@ -15,7 +15,7 @@
             emissive: 0x001a00
         });
     // array of materials used for the head
-    var faceTexture = utils.createCanvasTexture(function (ctx, canvas) {
+    var faceTexture = canvasTextureMod.createCanvasTexture(function (ctx, canvas) {
             // face color
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, canvas.width, canvas.height);

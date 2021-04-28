@@ -2,7 +2,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x00ffff);
 
 // sun
-var sunTexture = utils.createCanvasTexture(function (ctx, canvas) {
+var sunTexture = canvasTextureMod.createCanvasTexture(function (ctx, canvas) {
         var i = 0,
         n,
         x,
@@ -21,8 +21,7 @@ var sun = new THREE.Mesh(
         new THREE.SphereGeometry(1, 20, 20),
         new THREE.MeshStandardMaterial({
             emissive: 'white',
-            emissiveMap: sunTexture,
-            //wireframe:true
+            emissiveMap: sunTexture
         }));
 sun.add(new THREE.PointLight(0xffffff, 1));
 sun.position.set(0, 8, 0);
@@ -78,7 +77,7 @@ house.position.set(-2, 1.05, 0);
 scene.add(house);
 
 // ground
-var grassTexture = utils.createCanvasTexture(function (ctx, canvas) {
+var grassTexture = canvasTextureMod.createCanvasTexture(function (ctx, canvas) {
         var i = 0,
         x,
         y,
