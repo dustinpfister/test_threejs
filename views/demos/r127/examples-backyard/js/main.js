@@ -18,10 +18,12 @@ var ambientLight = new THREE.AmbientLight(0xffffff);
 ambientLight.intensity = 0.3;
 scene.add(ambientLight);
 
+// CAMERA
 var camera = new THREE.PerspectiveCamera(50, 640 / 480, 1, 1000);
-camera.position.set(16, 24, 16);
+camera.position.set(14, 6, 14);
 camera.lookAt(0, 0, 0);
 
+// RENDERER
 var renderer = new THREE.WebGLRenderer();
 //renderer.width = 640;
 renderer.domElement.width = 640;
@@ -99,7 +101,7 @@ scene.add(guy.group);
 
 // CONTROLS
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.autoRotate = true;
+//controls.autoRotate = true;
 
 // Loop in which the directional light position changes
 var frame = 0,
