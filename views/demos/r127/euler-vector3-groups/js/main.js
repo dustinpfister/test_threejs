@@ -1,16 +1,18 @@
 
 
-var setBoxRing = function (boxRing, cubeRotationPer) {
+var setBoxRing = function (boxRing, cubeRotationPer, ringRotationPer) {
     var len = boxRing.children.length;
     cubeRotationPer = cubeRotationPer === undefined ? 0 : cubeRotationPer;
+    ringRotationPer = ringRotationPer === undefined ? 0 : ringRotationPer;
     boxRing.children.forEach(function (box, i) {
         var radian = Math.PI * 2 / len * i;
         // SETTING POSITION WITH VECTOR3 SET METHOD
         box.position.set(Math.cos(radian) * 2, Math.sin(radian) * 2, 0);
-        // SETTING EULER CLASS ROTATION WITH LOOKAT METHOD
-        box.lookAt(Math.cos(radian + 0.125) * 2, Math.sin(radian + 0.125) * 2, 0);
+
+        box.rotation.set(0, 0, 0);
+
         // USING THE Z PROP OF THE EULER CLASS
-        box.rotation.z = Math.PI * 2 * cubeRotationPer + Math.PI * 2 / len * i;
+        //box.rotation.y = Math.PI * 2 * cubeRotationPer + Math.PI * 2 / len * i;
     });
 };
 
@@ -48,7 +50,8 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 var state = {
     lt: new Date(),
-    rPer: 0
+    cubePer: 0,
+    ringPer: 0
 };
 var loop = function () {
     var now = new Date(),
@@ -56,8 +59,11 @@ var loop = function () {
     requestAnimationFrame(loop);
     if (secs >= 0.075) {
         state.lt = now;
-        setBoxRing(br1, state.rPer);
-		state.rPer += 0.25 * secs;
+        setBoxRing(br1, state.cubePer, state.ringPer);
+        br1.rotation.x = Math.PI * 2 * state.ringPer;
+        state.cubePer += 0.25 * secs;
+        //state.cubePer %= Math.PI * 2;
+        state.ringPer += 0.05 * secs;
         renderer.render(scene, camera);
     }
 
