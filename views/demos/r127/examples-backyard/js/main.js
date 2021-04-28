@@ -67,11 +67,12 @@ var materials = {
     ground: [
         new THREE.MeshStandardMaterial({
             color: 0x00ff00,
-            map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 128, 96, 220),
+            map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 96, 96, 220),
             side: THREE.DoubleSide
         }),
         new THREE.MeshStandardMaterial({
             color: 0xffaa00,
+            map: canvasTextureMod.randomGrid(['r1', 'r1', '0'], 64, 96, 220),
             side: THREE.DoubleSide
         })
     ]

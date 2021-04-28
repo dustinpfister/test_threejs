@@ -14,7 +14,7 @@
         }),
         roof: new THREE.MeshStandardMaterial({
             //color: 0x404040,
-            map: canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 128, 6, 'black', 64, 128),
+            map: canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 64, 6, 'black', 64, 128),
             side: THREE.DoubleSide
         })
     };
