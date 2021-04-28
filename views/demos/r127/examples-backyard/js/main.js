@@ -19,7 +19,7 @@ ambientLight.intensity = 0.3;
 scene.add(ambientLight);
 
 var camera = new THREE.PerspectiveCamera(50, 640 / 480, 1, 1000);
-camera.position.set(8, 12, 8);
+camera.position.set(16, 24, 16);
 camera.lookAt(0, 0, 0);
 
 var renderer = new THREE.WebGLRenderer();
@@ -77,7 +77,7 @@ var materials = {
         })
     ]
 };
-var ground = new THREE.Mesh(new THREE.BoxGeometry(12, 12, 1.25), materials.ground);
+var ground = new THREE.Mesh(new THREE.BoxGeometry(14, 14, 1.25), materials.ground);
 ground.position.set(0, -0.575, 0);
 ground.rotation.set(-Math.PI / 2, 0, 0);
 ground.geometry.groups.forEach(function (face) {
@@ -151,9 +151,9 @@ var loop = function () {
     updateDay(state, now);
 
     // sun
-    var r = state.second.r;
-    var sunBias = 1 - Math.abs(state.second.per - 0.5) / 0.5;
-    sun.position.set(Math.cos(r) * 8, Math.sin(r) * 8, 16 - 32 * sunBias);
+    var r = state.day.r;
+    var sunBias = 1 - Math.abs(state.minute.per - 0.5) / 0.5;
+    sun.position.set(Math.cos(r) * 10, Math.sin(r) * 10, 16 - 32 * sunBias);
     ambientLight.intensity = (1 - (Math.abs(state.day.per - 0.5) / 0.5)) * 0.15;
 
     // wheel
