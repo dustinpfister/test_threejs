@@ -2,7 +2,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x00ffff);
 
 // sun
-var sunTexture = canvasTextureMod.randomGrid(['r1', '0', '0']);
+var sunTexture = canvasTextureMod.randomGrid(['r1', 'r1', '0']);
 var sun = new THREE.Mesh(
         new THREE.SphereGeometry(1, 20, 20),
         new THREE.MeshStandardMaterial({
@@ -164,14 +164,12 @@ var loop = function () {
     renderer.render(scene, camera);
 };
 
-
 var texture = canvasTextureMod.basicSquare().image;
-var cubeTexture =  new THREE.CubeTexture([texture, texture, texture, texture, texture, texture]);
+var cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture));
+
 cubeTexture.needsUpdate = true;
 scene.background = cubeTexture;
 loop();
-
-
 
 loop();
 
