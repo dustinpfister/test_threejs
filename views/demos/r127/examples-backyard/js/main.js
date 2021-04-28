@@ -106,6 +106,10 @@ var frame = 0,
 maxFrame = 100;
 
 var state = {
+    second: {
+        per: 0,
+        r: 0
+    },
     minute: {
         per: 0,
         r: 0
@@ -140,18 +144,20 @@ var loop = function () {
 
     var now = new Date();
     //var now = new Date(2021, 1, 1, 6, 0);
-    var msper = Math.PI * 2 * (now.getMilliseconds() / 1000);
 
+    state.second.per = now.getMilliseconds() / 1000;
+    state.second.r = Math.PI * 2 * state.second.per + Math.PI * 1.5;
     updateMinute(state, now);
     updateDay(state, now);
 
     // sun
-    var r = state.minute.r;
-    sun.position.set(Math.cos(r) * 8, Math.sin(r) * 8, 0);
+    var r = state.second.r;
+    var sunBias = 1 - Math.abs(state.second.per - 0.5) / 0.5;
+    sun.position.set(Math.cos(r) * 8, Math.sin(r) * 8, 16 - 32 * sunBias);
     ambientLight.intensity = (1 - (Math.abs(state.day.per - 0.5) / 0.5)) * 0.15;
 
     // wheel
-    wheel.wheel.rotation.z = msper;
+    wheel.wheel.rotation.z = state.second.r; //msper;
 
     // guy
     GuyMod.walk(guy, state.minute.per, 32);
