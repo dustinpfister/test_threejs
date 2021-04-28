@@ -171,22 +171,19 @@ var loop = function () {
     renderer.render(scene, camera);
 };
 
-var texture = canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 128, 6, 'black', 32, 64).image;
-var cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture));
-cubeTexture.needsUpdate = true;
-scene.background = cubeTexture;
-loop();
-
-loop();
-
 // WHAT TO DO WHEN CUBE TEXTURE IS LOADED
-/*
+
 var cubeTextureLoaded = function (cubeTexture) {
-if (cubeTexture) {
-cubeTexture.encoding = THREE.sRGBEncoding;
-scene.background = cubeTexture;
-}
-loop();
+    if (cubeTexture) {
+        cubeTexture.encoding = THREE.sRGBEncoding;
+        scene.background = cubeTexture;
+    } else {
+        var texture = canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 128, 6, 'black', 32, 64).image;
+        cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture));
+        cubeTexture.needsUpdate = true;
+        scene.background = cubeTexture;
+    }
+    loop();
 };
 // LOAD CUBE TEXTURE
 var loadfail = false;
@@ -195,12 +192,11 @@ new THREE.CubeTextureLoader()
 //.load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg'],
 //.setPath('./../../../img/cube/milky/')
 .load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg'],
-cubeTextureLoaded,
-function () {},
-function (e, b) {
-if (!loadfail) {
-loadfail = true;
-cubeTextureLoaded()
-}
+    cubeTextureLoaded,
+    function () {},
+    function (e, b) {
+    if (!loadfail) {
+        loadfail = true;
+        cubeTextureLoaded()
+    }
 });
-*/
