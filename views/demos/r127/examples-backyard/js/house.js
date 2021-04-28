@@ -4,17 +4,17 @@
     var materials_default = {
         base: new THREE.MeshStandardMaterial({
             //color: 0xff0000,
-            map: canvasTextureMod.basicSquare(['r1', '0', '0'], 64, 6, 'black', 128, 255),
+            map: canvasTextureMod.randomGrid(['r1', '0', '0'], 64, 128, 255),
             side: THREE.DoubleSide
         }),
         tri: new THREE.MeshStandardMaterial({
             //color: 0xaf0000,
-            map: canvasTextureMod.basicSquare(['r1', '0', '0'], 64, 6, 'black', 128, 255),
+            map: canvasTextureMod.randomGrid(['r1', '0', '0'], 64, 128, 255),
             side: THREE.DoubleSide
         }),
         roof: new THREE.MeshStandardMaterial({
             //color: 0x404040,
-            map: canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 64, 6, 'black', 64, 128),
+            map: canvasTextureMod.randomGrid(['r1', 'r1', 'r1'], 64, 64, 128),
             side: THREE.DoubleSide
         })
     };
