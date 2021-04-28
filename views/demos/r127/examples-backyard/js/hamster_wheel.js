@@ -1,9 +1,10 @@
 (function (WheelMod) {
 
     var material = new THREE.MeshStandardMaterial({
-            color: 0x00ffff,
-            transparent: true,
-            opacity: 0.6
+            //color: 0x00ffff,
+            map: canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 64, 6, 'black', 128, 255),
+            //transparent: true,
+            //opacity: 0.6
         });
 
     // create a base for the given wheel object
@@ -19,7 +20,6 @@
                 py: 0,
                 pz: 0.5
             }, {
-
                 len: 4,
                 rx: 0,
                 rz: Math.PI / 4,
