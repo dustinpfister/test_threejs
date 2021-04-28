@@ -164,7 +164,7 @@ var loop = function () {
     renderer.render(scene, camera);
 };
 
-var texture = canvasTextureMod.basicSquare().image;
+var texture = canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 128, 3, 'blue').image;
 var cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture));
 
 cubeTexture.needsUpdate = true;
