@@ -9,8 +9,9 @@
         return new THREE.CanvasTexture(canvas);
     };
     // create random gird texture
-    canvasTextureMod.randomGrid = function (colorsArray) {
-        colorsArray = colorsArray === undefined ? ['r1', 'r1', 'r1']: colorsArray;
+    canvasTextureMod.randomGrid = function (colorsArray, size) {
+        colorsArray = colorsArray === undefined ? ['r1', 'r1', 'r1'] : colorsArray;
+        size = size || 32;
         return canvasTextureMod.createCanvasTexture(function (ctx, canvas) {
             var i = 0,
             r1,
@@ -31,7 +32,7 @@
                 ctx.fillRect(x, y, 1, 1);
                 i += 1;
             }
-        });
+        }, size);
     };
 }
     (this['canvasTextureMod'] = {}));

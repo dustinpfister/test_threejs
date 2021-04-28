@@ -63,7 +63,7 @@ house.position.set(-2, 1.05, 0);
 scene.add(house);
 
 // ground
-var grassTexture = canvasTextureMod.randomGrid(['0','r1','0']);
+var grassTexture = canvasTextureMod.randomGrid(['0','r1','0'], 128);
 var materials = {
     ground: [
         new THREE.MeshStandardMaterial({
