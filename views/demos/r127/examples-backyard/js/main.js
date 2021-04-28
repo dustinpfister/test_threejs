@@ -155,7 +155,7 @@ var loop = function () {
     // sun
     var r = state.day.r;
     var sunBias = 1 - Math.abs(state.minute.per - 0.5) / 0.5;
-    sun.position.set(Math.cos(r) * 10, Math.sin(r) * 10, 16 - 32 * sunBias);
+    sun.position.set(Math.cos(r) * 10, Math.sin(r) * 10, 4 - 8 * sunBias);
     ambientLight.intensity = (1 - (Math.abs(state.day.per - 0.5) / 0.5)) * 0.15;
 
     // wheel
