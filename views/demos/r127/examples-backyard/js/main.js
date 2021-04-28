@@ -2,9 +2,28 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x00ffff);
 
 // sun
+var sunTexture = utils.createCanvasTexture(function (ctx, canvas) {
+        var i = 0,
+        n,
+        x,
+        y,
+        len = canvas.width * canvas.height;
+        while (i < len) {
+            x = i % canvas.width;
+            y = Math.floor(i / canvas.width);
+            n =  + Math.floor(128 + 100 * Math.random());
+            ctx.fillStyle = 'rgb(' + n + ',' + n + ',0)';
+            ctx.fillRect(x, y, 1, 1);
+            i += 1;
+        }
+    });
 var sun = new THREE.Mesh(
-        new THREE.SphereGeometry(1),
-        new THREE.MeshBasicMaterial());
+        new THREE.SphereGeometry(1, 20, 20),
+        new THREE.MeshStandardMaterial({
+            emissive: 'white',
+            emissiveMap: sunTexture,
+            //wireframe:true
+        }));
 sun.add(new THREE.PointLight(0xffffff, 1));
 sun.position.set(0, 8, 0);
 scene.add(sun);
@@ -15,7 +34,7 @@ ambientLight.intensity = 0.3;
 scene.add(ambientLight);
 
 var camera = new THREE.PerspectiveCamera(50, 640 / 480, 1, 1000);
-camera.position.set(7, 10, 7);
+camera.position.set(14, 20, 14);
 camera.lookAt(0, 0, 0);
 
 var renderer = new THREE.WebGLRenderer();
@@ -71,7 +90,6 @@ var grassTexture = utils.createCanvasTexture(function (ctx, canvas) {
             ctx.fillRect(x, y, 1, 1);
             i += 1;
         }
-
     });
 var materials = {
     ground: [
@@ -147,7 +165,7 @@ var loop = function () {
     setTimeout(loop, 33);
 
     var now = new Date();
-    //var now = new Date(2021, 1, 1, 20, 0);
+    //var now = new Date(2021, 1, 1, 6, 0);
     var msper = Math.PI * 2 * (now.getMilliseconds() / 1000);
 
     updateMinute(state, now);
