@@ -57,18 +57,17 @@ window.addEventListener('keydown', function (e) {
     }
 });
 
-// add the house
+// HOUSE
 var house = HouseMod.create();
 house.position.set(-2, 1.05, 0);
 scene.add(house);
 
-// ground
-var grassTexture = canvasTextureMod.randomGrid(['0', 'r1', '0'], 128);
+// GROUND
 var materials = {
     ground: [
         new THREE.MeshStandardMaterial({
             color: 0x00ff00,
-            map: grassTexture,
+            map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 128, 96, 220),
             side: THREE.DoubleSide
         }),
         new THREE.MeshStandardMaterial({
@@ -86,6 +85,7 @@ ground.geometry.groups.forEach(function (face) {
 ground.geometry.groups[4].materialIndex = 0;
 scene.add(ground);
 
+// WHEEL
 var wheel = WheelMod.create();
 wheel.group.scale.set(0.5, 0.5, 0.5);
 wheel.group.position.set(2, 1.5, 2);

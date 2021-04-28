@@ -21,7 +21,7 @@
         while (i < len) {
             x = i % canvas.width;
             y = Math.floor(i / canvas.width);
-            r1 = minValue + Math.floor( (maxValue - minValue) * Math.random());
+            r1 = minValue + Math.floor((maxValue - minValue) * Math.random());
             r = colorsArray[0] === 'r1' ? r1 : colorsArray[0];
             g = colorsArray[1] === 'r1' ? r1 : colorsArray[1];
             b = colorsArray[2] === 'r1' ? r1 : colorsArray[2];
@@ -32,11 +32,13 @@
     };
 
     // create random gird texture
-    canvasTextureMod.randomGrid = function (colorsArray, size) {
+    canvasTextureMod.randomGrid = function (colorsArray, size, valueMin, valueMax) {
         colorsArray = colorsArray === undefined ? ['r1', 'r1', 'r1'] : colorsArray;
         size = size || 32;
+        valueMin = valueMin === undefined ? 64 : valueMin;
+        valueMax = valueMax === undefined ? 128 : valueMax;
         return canvasTextureMod.createCanvasTexture(function (ctx, canvas) {
-            randomGridDraw(ctx, canvas, colorsArray, 64, 255);
+            randomGridDraw(ctx, canvas, colorsArray, valueMin, valueMax);
         }, size);
     };
     // create a basic square texture
