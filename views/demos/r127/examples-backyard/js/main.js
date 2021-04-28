@@ -164,20 +164,14 @@ var loop = function () {
     renderer.render(scene, camera);
 };
 
-/*
-var texture = canvasTextureMod.randomGrid(['0', '0', 'r1'], 128).image.toDataURL();
-scene.background = new THREE.CubeTexture([
-            texture,
-            texture,
-            texture,
-            texture,
-            texture,
-            texture
-        ]);
-loop();
-*/
 
-scene.background = new THREE.Color('lime');
+var texture = canvasTextureMod.randomGrid(['0', '0', 'r1'], 128).image;
+var cubeTexture =  new THREE.CubeTexture([texture, texture, texture, texture, texture, texture]);
+cubeTexture.needsUpdate = true;
+scene.background = cubeTexture;
+loop();
+
+
 
 loop();
 
