@@ -3,22 +3,10 @@
 var meshA = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
-// cloning ths mesh
-var box1 = meshA.clone(),
-box2 = meshA.clone(),
-box3 = meshA.clone();
-
-// adjusting positions
-box2.position.set(-1.5, 0, 0);
-box3.position.set(1.5, 0, 0);
-
 // creating a scene
 var scene = new THREE.Scene();
-
 // add the box mesh to the scene
-scene.add(box1);
-scene.add(box2);
-scene.add(box3);
+scene.add(meshA);
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
@@ -29,16 +17,23 @@ renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 var lt = new Date();
+var state = {
+    x: 0,
+    y: 0,
+    z: 0
+};
 var loop = function () {
     var now = new Date(),
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs >= 0.075) {
         lt = now;
-        box2.rotation.x += 1 * secs;
-        box2.rotation.x %= Math.PI * 2;
-        box3.rotation.y += 1 * secs;
-        box3.rotation.y %= Math.PI * 2;
+        state.x += 0.5 * secs;
+        state.y += 1.0 * secs;
+        state.z += 1.5 * secs;
+        state.x %= Math.PI * 2;
+        // USING EULER SET METHOD
+        meshA.rotation.set(state.x, state.y, state.z);
         renderer.render(scene, camera);
     }
 
