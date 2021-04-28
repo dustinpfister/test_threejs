@@ -35,6 +35,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if (secs >= 0.075) {
         lt = now;
+        // USING EULER XYZ PROPS
         box2.rotation.x += 1 * secs;
         box2.rotation.x %= Math.PI * 2;
         box3.rotation.y += 1 * secs;
