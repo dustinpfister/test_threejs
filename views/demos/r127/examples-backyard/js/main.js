@@ -2,21 +2,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x00ffff);
 
 // sun
-var sunTexture = canvasTextureMod.createCanvasTexture(function (ctx, canvas) {
-        var i = 0,
-        n,
-        x,
-        y,
-        len = canvas.width * canvas.height;
-        while (i < len) {
-            x = i % canvas.width;
-            y = Math.floor(i / canvas.width);
-            n =  + Math.floor(128 + 100 * Math.random());
-            ctx.fillStyle = 'rgb(' + n + ',' + n + ',0)';
-            ctx.fillRect(x, y, 1, 1);
-            i += 1;
-        }
-    });
+var sunTexture = canvasTextureMod.randomGrid(['r1','0','0']);
 var sun = new THREE.Mesh(
         new THREE.SphereGeometry(1, 20, 20),
         new THREE.MeshStandardMaterial({
