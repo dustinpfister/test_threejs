@@ -28,13 +28,20 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
+var lt = new Date();
 var loop = function () {
+    var now = new Date(),
+    secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
+    if (secs >= 0.075) {
+        lt = now;
+        box2.rotation.x += 1 * secs;
+        box2.rotation.x %= Math.PI * 2;
+        box3.rotation.y += 1 * secs;
+        box3.rotation.y %= Math.PI * 2;
+        renderer.render(scene, camera);
+    }
 
-    box2.rotation.x += 1;
-    box2.rotation.x %= Math.PI * 2;
-
-    renderer.render(scene, camera);
 };
 
 loop();
