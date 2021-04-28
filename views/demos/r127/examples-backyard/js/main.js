@@ -165,7 +165,7 @@ var loop = function () {
 };
 
 
-var texture = canvasTextureMod.randomGrid(['0', '0', 'r1'], 128).image;
+var texture = canvasTextureMod.basicSquare().image;
 var cubeTexture =  new THREE.CubeTexture([texture, texture, texture, texture, texture, texture]);
 cubeTexture.needsUpdate = true;
 scene.background = cubeTexture;
