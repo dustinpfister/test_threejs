@@ -146,9 +146,9 @@ var loop = function () {
     updateDay(state, now);
 
     // sun
-    var r = state.day.r;
+    var r = state.minute.r;
     sun.position.set(Math.cos(r) * 8, Math.sin(r) * 8, 0);
-    ambientLight.intensity = (1 - (Math.abs(state.day.per - 0.5) / 0.5)) * 0.4;
+    ambientLight.intensity = (1 - (Math.abs(state.day.per - 0.5) / 0.5)) * 0.15;
 
     // wheel
     wheel.wheel.rotation.z = msper;
