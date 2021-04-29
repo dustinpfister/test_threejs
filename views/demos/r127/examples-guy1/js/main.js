@@ -1,14 +1,12 @@
 // SCENE
 var scene = new THREE.Scene();
 
-// GUY
+// GUY Instances
 var guy1 = new Guy();
 scene.add(guy1.group);
-
 var guy2 = new Guy();
 guy2.group.position.set(5, 0, 0);
 scene.add(guy2.group);
-
 var guy3 = new Guy();
 guy3.group.position.set(-5, 0, 0);
 scene.add(guy3.group);
@@ -19,8 +17,6 @@ camera.position.set(10, 10, 10);
 camera.lookAt(0, 0, 0);
 camera.add(new THREE.PointLight());
 scene.add(camera);
-
-//new THREE.OrbitControls(camera);
 
 // RENDER
 var renderer = new THREE.WebGLRenderer();
@@ -36,7 +32,7 @@ var loop = function () {
 
     requestAnimationFrame(loop);
 
-    // guy1 walks around
+    // guy1 walks around, and moves head
     guy1.walk(per, 4);
     guy1.moveHead(.25 - .25 * bias);
     guy1.group.position.set(
@@ -44,13 +40,12 @@ var loop = function () {
         0,
         Math.sin(r) * 5);
     guy1.group.lookAt(
-        Math.cos(r + 1) * 5 - 5,
+        Math.cos(r + 0.5) * 5 - 5,
         0,
-        Math.sin(r + 1) * 5);
-
+        Math.sin(r + 0.5) * 5);
     // guy 2 shakes his head
     guy2.moveHead(.125 - .25 * bias);
-
+    // guy 3 just moves arms
     guy3.moveArm('arm_right', 0, bias * 2);
     guy3.moveArm('arm_left', 0, bias * 2);
 
