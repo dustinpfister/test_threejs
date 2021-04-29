@@ -42,6 +42,11 @@ app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
 
+// dae
+app.get(/\/dae\/[\s\S]+\.dae/, function(req, res){
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+
 // json file path
 app.get(/\/json\/[\s\S]+\.js/, function (req, res) {
     res.sendFile(path.join(__dirname, 'views', req.url));
