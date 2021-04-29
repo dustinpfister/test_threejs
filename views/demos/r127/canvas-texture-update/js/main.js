@@ -1,22 +1,6 @@
 
 (function () {
 
-    // SCENE
-    var scene = new THREE.Scene();
-    fogColor = new THREE.Color(0xffffff);
-
-    scene.background = fogColor;
-    scene.fog = new THREE.Fog(fogColor, 0.0025, 20);
-    scene.fog = new THREE.FogExp2(fogColor, 0.1);
-
-    // CAMERA
-    var camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
-    camera.position.set(1, 1, 1);
-    camera.lookAt(0, 0, 0);
-
-    // GEOMETRY
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
-
     // CANVAS
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
@@ -38,13 +22,29 @@
             map: texture
         });
 
+    // SCENE
+    var scene = new THREE.Scene();
+    fogColor = new THREE.Color(0xffffff);
+
+    scene.background = fogColor;
+    scene.fog = new THREE.Fog(fogColor, 0.0025, 20);
+    scene.fog = new THREE.FogExp2(fogColor, 0.1);
+
+    // CAMERA
+    var camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
+    camera.position.set(1, 1, 1);
+    camera.lookAt(0, 0, 0);
+
+    // GEOMETRY
+    var geometry = new THREE.BoxGeometry(1, 1, 1);
+
     // MESH using THE MATERIAL
     var mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
     // Render
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // Loop
