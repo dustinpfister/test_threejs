@@ -14,9 +14,6 @@
     camera.position.set(1, 1, 1);
     camera.lookAt(0, 0, 0);
 
-    // ORBIT CONTROLS
-    var controls = new THREE.OrbitControls(camera);
-
     // GEOMETRY
     var geometry = new THREE.BoxGeometry(1, 1, 1);
 
@@ -70,7 +67,6 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.strokeRect(x, y, w, h);
 
-        controls.update();
         texture.needsUpdate = true;
         renderer.render(scene, camera);
 
