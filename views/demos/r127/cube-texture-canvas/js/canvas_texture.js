@@ -8,7 +8,7 @@
         draw(ctx, canvas);
         return new THREE.CanvasTexture(canvas);
     };
-
+    // random grid draw helper
     var randomGridDraw = function (ctx, canvas, colorsArray, minValue, maxValue) {
         var i = 0,
         r1,
@@ -30,17 +30,6 @@
             i += 1;
         }
     };
-
-    // create random gird texture
-    canvasTextureMod.randomGrid = function (colorsArray, size, valueMin, valueMax) {
-        colorsArray = colorsArray === undefined ? ['r1', 'r1', 'r1'] : colorsArray;
-        size = size || 32;
-        valueMin = valueMin === undefined ? 64 : valueMin;
-        valueMax = valueMax === undefined ? 128 : valueMax;
-        return canvasTextureMod.createCanvasTexture(function (ctx, canvas) {
-            randomGridDraw(ctx, canvas, colorsArray, valueMin, valueMax);
-        }, size);
-    };
     // create a basic square texture
     canvasTextureMod.basicSquare = function (colorsArray, size, lineSize, lineStyle, minValue, maxValue) {
         colorsArray = colorsArray === undefined ? ['r1', 'r1', 'r1'] : colorsArray;
@@ -55,5 +44,4 @@
             ctx.stroke();
         }, size);
     };
-}
-    (this['canvasTextureMod'] = {}));
+}(this['canvasTextureMod'] = {}));
