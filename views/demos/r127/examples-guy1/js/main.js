@@ -26,36 +26,45 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     var frame = 0,
-    maxFrame = 200;
+    maxFrame = 200,
+    lt = new Date();
     var loop = function () {
 
-        var per = frame / maxFrame,
-        bias = Math.abs(.5 - per) / .5,
-        r = Math.PI * 2 * per;
+        var now = new Date(),
+        secs = (now - lt) / 1000;
 
         requestAnimationFrame(loop);
 
-        // guy1 walks around, and moves head
-        guy1.walk(per, 4);
-        guy1.moveHead(.25 - .25 * bias);
-        guy1.group.position.set(
-            Math.cos(r) * 5 - 5,
-            0,
-            Math.sin(r) * 5);
-        guy1.group.lookAt(
-            Math.cos(r + 0.5) * 5 - 5,
-            0,
-            Math.sin(r + 0.5) * 5);
-        // guy 2 shakes his head
-        guy2.moveHead(.125 - .25 * bias);
-        // guy 3 just moves arms
-        guy3.moveArm('arm_right', 0, bias * 2);
-        guy3.moveArm('arm_left', 0, bias * 2);
+        if (secs > 0.05) {
+            var per = frame / maxFrame,
+            bias = Math.abs(.5 - per) / .5,
+            r = Math.PI * 2 * per;
 
-        renderer.render(scene, camera);
+            // guy1 walks around, and moves head
+            guy1.walk(per, 8);
+            guy1.moveHead(.25 - .25 * bias);
+            guy1.group.position.set(
+                Math.cos(r) * 5 - 5,
+                0,
+                Math.sin(r) * 5);
+            guy1.group.lookAt(
+                Math.cos(r + 0.5) * 5 - 5,
+                0,
+                Math.sin(r + 0.5) * 5);
+            // guy 2 shakes his head
+            guy2.moveHead(.125 - .25 * bias);
+            // guy 3 just moves arms
+            guy3.moveArm('arm_right', 0, bias * 2);
+            guy3.moveArm('arm_left', 0, bias * 2);
 
-        frame += 1;
-        frame %= maxFrame;
+            // draw
+            renderer.render(scene, camera);
+
+            frame += 30 * secs;
+            frame %= maxFrame;
+
+            lt = now;
+        }
 
     };
 
