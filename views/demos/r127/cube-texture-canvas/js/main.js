@@ -1,21 +1,10 @@
 var scene = new THREE.Scene();
 
-// sun
-var sunTexture = canvasTextureMod.randomGrid(['r1', 'r1', '0']);
-var sun = new THREE.Mesh(
-        new THREE.SphereGeometry(1, 20, 20),
-        new THREE.MeshStandardMaterial({
-            emissive: 'white',
-            emissiveMap: sunTexture
-        }));
-sun.add(new THREE.PointLight(0xffffff, 1));
-sun.position.set(0, 8, 0);
-scene.add(sun);
-
-// add AmbientLight
-var ambientLight = new THREE.AmbientLight(0xffffff);
-ambientLight.intensity = 0.3;
-scene.add(ambientLight);
+// CREATING A CUBE TEXTURE WITH CANVAS
+var texture = canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 128, 6, 'black', 32, 64).image;
+cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture));
+cubeTexture.needsUpdate = true;
+scene.background = cubeTexture;
 
 // CAMERA
 var camera = new THREE.PerspectiveCamera(50, 640 / 480, 1, 1000);
@@ -33,16 +22,9 @@ container.appendChild(renderer.domElement);
 
 // CONTROLS
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
 var loop = function () {
     requestAnimationFrame(loop);
     controls.update();
     renderer.render(scene, camera);
 };
-
-var texture = canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 128, 6, 'black', 32, 64).image;
-cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture));
-cubeTexture.needsUpdate = true;
-scene.background = cubeTexture;
-
 loop();
