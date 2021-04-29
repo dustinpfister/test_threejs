@@ -1,59 +1,65 @@
-// SCENE
-var scene = new THREE.Scene();
+(function () {
 
-// GUY Instances
-var guy1 = new Guy();
-scene.add(guy1.group);
-var guy2 = new Guy();
-guy2.group.position.set(5, 0, 0);
-scene.add(guy2.group);
-var guy3 = new Guy();
-guy3.group.position.set(-5, 0, 0);
-scene.add(guy3.group);
+    // SCENE
+    var scene = new THREE.Scene();
 
-// CAMERA
-var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
-camera.position.set(10, 10, 10);
-camera.lookAt(0, 0, 0);
-camera.add(new THREE.PointLight());
-scene.add(camera);
+    // GUY Instances
+    var guy1 = new Guy();
+    scene.add(guy1.group);
+    var guy2 = new Guy();
+    guy2.group.position.set(5, 0, 0);
+    scene.add(guy2.group);
+    var guy3 = new Guy();
+    guy3.group.position.set(-5, 0, 0);
+    scene.add(guy3.group);
 
-// RENDER
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
+    // CAMERA
+    var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
+    camera.position.set(10, 10, 10);
+    camera.lookAt(0, 0, 0);
+    camera.add(new THREE.PointLight());
+    scene.add(camera);
 
-var frame = 0, maxFrame = 200;
-var loop = function () {
+    // RENDER
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
 
-    var per = frame / maxFrame,
-    bias = Math.abs(.5 - per) / .5,
-    r = Math.PI * 2 * per;
+    var frame = 0,
+    maxFrame = 200;
+    var loop = function () {
 
-    requestAnimationFrame(loop);
+        var per = frame / maxFrame,
+        bias = Math.abs(.5 - per) / .5,
+        r = Math.PI * 2 * per;
 
-    // guy1 walks around, and moves head
-    guy1.walk(per, 4);
-    guy1.moveHead(.25 - .25 * bias);
-    guy1.group.position.set(
-        Math.cos(r) * 5 - 5,
-        0,
-        Math.sin(r) * 5);
-    guy1.group.lookAt(
-        Math.cos(r + 0.5) * 5 - 5,
-        0,
-        Math.sin(r + 0.5) * 5);
-    // guy 2 shakes his head
-    guy2.moveHead(.125 - .25 * bias);
-    // guy 3 just moves arms
-    guy3.moveArm('arm_right', 0, bias * 2);
-    guy3.moveArm('arm_left', 0, bias * 2);
+        requestAnimationFrame(loop);
 
-    renderer.render(scene, camera);
+        // guy1 walks around, and moves head
+        guy1.walk(per, 4);
+        guy1.moveHead(.25 - .25 * bias);
+        guy1.group.position.set(
+            Math.cos(r) * 5 - 5,
+            0,
+            Math.sin(r) * 5);
+        guy1.group.lookAt(
+            Math.cos(r + 0.5) * 5 - 5,
+            0,
+            Math.sin(r + 0.5) * 5);
+        // guy 2 shakes his head
+        guy2.moveHead(.125 - .25 * bias);
+        // guy 3 just moves arms
+        guy3.moveArm('arm_right', 0, bias * 2);
+        guy3.moveArm('arm_left', 0, bias * 2);
 
-    frame += 1;
-    frame %= maxFrame;
+        renderer.render(scene, camera);
 
-};
+        frame += 1;
+        frame %= maxFrame;
 
-loop();
+    };
+
+    loop();
+
+}
+    ());
