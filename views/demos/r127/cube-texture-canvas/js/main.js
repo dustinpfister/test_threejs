@@ -33,19 +33,12 @@ container.appendChild(renderer.domElement);
 
 // CONTROLS
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
-//controls.autoRotate = true;
-
-// Loop in which the directional light position changes
 
 var loop = function () {
-    setTimeout(loop, 33);
-
+    requestAnimationFrame(loop);
     controls.update();
-
     renderer.render(scene, camera);
 };
-
-// WHAT TO DO WHEN CUBE TEXTURE IS LOADED
 
 var texture = canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 128, 6, 'black', 32, 64).image;
 cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture));
