@@ -35,6 +35,7 @@
     // TO THE *.DAE FILE AS THE FIRST ARGUMENT, AND A DONE CALLBACK
     // AS THE SECOND ARGUMENT
     loader.load("/dae/obj/obj.dae", function (result) {
+        // adding the child that I want to the scene
         scene.add(result.scene.children[2]);
         // start the app loop
         loop();
