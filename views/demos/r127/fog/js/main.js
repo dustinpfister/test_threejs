@@ -3,7 +3,7 @@
     // Scene
     var scene = new THREE.Scene();
     // ADDING BACKGROUND AND FOG
-    fogColor = new THREE.Color(0xffffff);
+    fogColor = new THREE.Color(0x00af00);
     scene.background = fogColor;
     scene.fog = new THREE.FogExp2(fogColor, 0.5);
 
@@ -31,17 +31,24 @@
     // Loop
     var frame = 0,
     maxFrame = 500,
-    loop = function () {
+    target_fps = 30;
+    lt = new Date();
+    var loop = function () {
         var per = frame / maxFrame,
-        bias = Math.abs(.5 - per) / .5;
+        bias = Math.abs(.5 - per) / .5,
+        now = new Date(),
+        secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
-        mesh.position.z = 1 * 5 * bias;
-        mesh.rotation.x = Math.PI * 2 * 4 * per;
-        mesh.rotation.y = Math.PI * 2 * 2 * per;
-        camera.lookAt(mesh.position);
-        renderer.render(scene, camera);
-        frame += 1;
-        frame = frame % maxFrame;
+        if (secs > 1 / target_fps) {
+            mesh.position.z = 1 + 4 * bias;
+            mesh.rotation.x = Math.PI * 2 * 4 * per;
+            mesh.rotation.y = Math.PI * 2 * 2 * per;
+            camera.lookAt(mesh.position);
+            renderer.render(scene, camera);
+            frame += target_fps * secs;
+            frame = frame % maxFrame;
+            lt = now;
+        }
     };
 
     loop();
