@@ -22,6 +22,15 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
+    // controls
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+   // app loop
+    var loop = function () {
+        requestAnimationFrame(loop);
+        renderer.render(scene, camera);
+        controls.update();
+    };
 
     // CREATE A COLLADALOADER INSTANCE
     var loader = new THREE.ColladaLoader();
@@ -32,7 +41,8 @@
         console.log(result);
         scene.background = new THREE.Color('cyan');
         scene.add(result.scene.children[2]);
-        renderer.render(scene, camera);
+        // start the app loop
+        loop();
     });
 
 }
