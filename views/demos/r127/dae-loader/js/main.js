@@ -6,6 +6,7 @@
     pl.position.set(2, 5, 3);
     // scene
     var scene = new THREE.Scene();
+    scene.background = new THREE.Color('cyan');
     //scene.add(pl);
     // camera
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
@@ -34,8 +35,6 @@
     // TO THE *.DAE FILE AS THE FIRST ARGUMENT, AND A DONE CALLBACK
     // AS THE SECOND ARGUMENT
     loader.load("/dae/obj/obj.dae", function (result) {
-        console.log(result);
-        scene.background = new THREE.Color('cyan');
         scene.add(result.scene.children[2]);
         // start the app loop
         loop();
