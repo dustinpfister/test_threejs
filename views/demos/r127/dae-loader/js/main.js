@@ -2,12 +2,7 @@
 (function () {
 
     // point light
-    var pl = new THREE.Mesh(
-            new THREE.SphereGeometry(1, 20, 20),
-            new THREE.MeshBasicMaterial({
-                color: 'white'
-            }));
-    pl.add(new THREE.PointLight(0xffffff));
+    var pl = new THREE.PointLight(0xffffff);
     pl.position.set(2, 5, 3);
     // scene
     var scene = new THREE.Scene();
