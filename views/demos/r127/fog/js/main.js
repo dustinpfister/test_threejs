@@ -11,18 +11,15 @@
     var camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
     camera.position.set(1, 1, 1);
     camera.lookAt(0, 0, 0);
-    // Geometry
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
 
     // A Material that DOES SUPPORT FOG
-    var material = new THREE.MeshLambertMaterial({
-            color: 0xff0000,
-            emissive: 0x080808
-        });
-    console.log(material.fog); // true
-
     // Mesh
-    var mesh = new THREE.Mesh(geometry, material);
+    var mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshLambertMaterial({
+                color: 0xff0000,
+                emissive: 0x080808
+            }));
     scene.add(mesh);
     // Render
     var renderer = new THREE.WebGLRenderer();
