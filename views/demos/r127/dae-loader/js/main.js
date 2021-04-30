@@ -11,10 +11,11 @@
     pl.position.set(2, 5, 3);
     // scene
     var scene = new THREE.Scene();
-    scene.add(pl);
+    //scene.add(pl);
     // camera
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
     camera.position.set(5, 5, 5);
+	camera.add(pl);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     // render
@@ -37,7 +38,7 @@
     // CALL THE LOAD METHOD, PASS THE ABSOLUTE OR RELATIVE PATH
     // TO THE *.DAE FILE AS THE FIRST ARGUMENT, AND A DONE CALLBACK
     // AS THE SECOND ARGUMENT
-    loader.load("/dae/box/box.dae", function (result) {
+    loader.load("/dae/obj/obj.dae", function (result) {
         console.log(result);
         scene.background = new THREE.Color('cyan');
         scene.add(result.scene.children[2]);
