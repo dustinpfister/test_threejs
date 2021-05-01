@@ -20,7 +20,7 @@
 
     // loop
     var frame = 0,
-    maxFrame = 50,
+    maxFrame = 200,
     fps = 30,
     lt = new Date();
     var loop = function () {
@@ -30,11 +30,13 @@
         r = Math.PI * 2 * per;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-            // move the mesh with Object3D.position
-            mesh.position.x = Math.cos(r) * 2;
-            mesh.position.z = Math.sin(r) * 2;
-            // a Object3D method
-            mesh.lookAt(0, 0, 0);
+
+            // MOVE the mesh with Object3D.position property that is an instance of Vector3
+            mesh.position.set(Math.cos(r) * 2, 0, Math.sin(r) * 2);
+
+            // ROTATE the mesh with the Object3d.rotation property that is an instance of Euler
+            mesh.rotation.set(0, r, r * 2);
+
             // render the scene with the camera
             renderer.render(scene, camera);
             frame += fps * secs;
