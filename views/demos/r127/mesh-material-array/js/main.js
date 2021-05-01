@@ -9,14 +9,8 @@
     camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
 
-    // Orbit Controls
-    var controls = new THREE.OrbitControls(camera);
-
-    // a box geometry
-    var geometry = new THREE.BoxGeometry(1, 1, 1),
-
     // the materials array
-    materials = [
+    var materials = [
         // material 0 (red basic)
         new THREE.MeshBasicMaterial({
             color: 0xff0000,
@@ -35,35 +29,25 @@
         })
     ];
 
+    // a box geometry
+    var geometry = new THREE.BoxGeometry(1, 1, 1);
+
     // for all faces
-    geometry.faces.forEach(function (face,i) {
-
-        // use each of the three materials 2 times
-        face.materialIndex = Math.floor(i/2) % 3
-
+    geometry.groups.forEach(function (face, i) {
+        face.materialIndex = i % materials.length;
     });
 
     // add to scene with the Mesh
     scene.add(new THREE.Mesh(
-
             geometry,
             materials));
 
-
     // RENDER
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // loop
-    var loop = function () {
-
-        requestAnimationFrame(loop);
-        renderer.render(scene, camera);
-
-    };
-
-    loop();
+    renderer.render(scene, camera);
 
 }
     ());
