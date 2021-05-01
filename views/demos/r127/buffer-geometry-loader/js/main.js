@@ -6,7 +6,7 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(65, 4 / 3, .5, 10);
-    camera.position.set(1.5, 1.5, 1.5);
+    camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
 
     // Render
@@ -23,11 +23,12 @@
     scene.add(light2);
 
     var frame = 0,
-    maxFrame = 200;
+    maxFrame = 200,
+    mesh;
     var loop = function () {
         var per = frame / maxFrame;
         requestAnimationFrame(loop);
-        //mesh.rotation.set(Math.PI / 2, Math.PI * 2 * per, 0);
+        mesh.rotation.set(Math.PI / 2, Math.PI * 2 * per, 0);
         // render the scene
         renderer.render(scene, camera);
         frame += 1;
@@ -45,7 +46,7 @@
         function (geometry) {
         // create a mesh with the geometry
         // and a material, and add it to the scene
-        var mesh = new THREE.Mesh(
+        mesh = new THREE.Mesh(
                 geometry,
                 new THREE.MeshStandardMaterial({
                     color: 0x00ff0000,
