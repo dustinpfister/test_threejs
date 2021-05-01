@@ -21,19 +21,26 @@
     // loop
     var frame = 0,
     maxFrame = 50,
-    loop = function () {
-        var per = frame / maxFrame,
+    fps = 30,
+    lt = new Date();
+    var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000,
+        per = frame / maxFrame,
         r = Math.PI * 2 * per;
         requestAnimationFrame(loop);
-        // move the mesh with Object3D.position
-        mesh.position.x = Math.cos(r) * 2;
-        mesh.position.z = Math.sin(r) * 2;
-        // a Object3D method
-        mesh.lookAt(0, 0, 0);
-        // render the scene with the camera
-        renderer.render(scene, camera);
-        frame += 1;
-        frame %= maxFrame;
+        if (secs > 1 / fps) {
+            // move the mesh with Object3D.position
+            mesh.position.x = Math.cos(r) * 2;
+            mesh.position.z = Math.sin(r) * 2;
+            // a Object3D method
+            mesh.lookAt(0, 0, 0);
+            // render the scene with the camera
+            renderer.render(scene, camera);
+            frame += fps * secs;
+            frame %= maxFrame;
+            lt = now;
+        }
     }
 
     loop();
