@@ -2,8 +2,8 @@
 (function () {
 
     // create encoder
-    var seconds = 20,
-    fps = 12,
+    var seconds = 10,
+    fps = 24,
     frame = 0,
     maxFrame = fps * seconds,
     encoder = new Whammy.Video(fps);
@@ -49,14 +49,13 @@
     var camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
     // MESH
     var mesh = new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200),
-            new THREE.MeshBasicMaterial({
-                color: 0xff0000,
-                wireframe: true
+            new THREE.MeshNormalMaterial({
+                color: 0xff0000
             }));
     scene.add(mesh);
     // RENDERER
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     animate();
