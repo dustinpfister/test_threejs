@@ -57,7 +57,7 @@
     scene.add(plane);
 
     // INIT
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
 
     // LOOP
     var frame = 0,
