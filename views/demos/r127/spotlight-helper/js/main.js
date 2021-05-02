@@ -6,19 +6,19 @@
     scene.background = new THREE.Color(0x0a0a0a);
 
     // CAMERA
-    var camera = new THREE.PerspectiveCamera(50, 320 / 240, 1, 5000);
-    camera.position.set(800, 800, 800);
+    var camera = new THREE.PerspectiveCamera(40, 320 / 240, 1, 5000);
+    camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
 
     // CUBE
     var cube = new THREE.Mesh(
-            new THREE.BoxGeometry(200, 200, 200),
+            new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshStandardMaterial({
                 color: 0xaffe00,
                 emissive: 0x0a0a0a,
                 side: THREE.DoubleSide
             }));
-    cube.position.set(0, 150, 0);
+    cube.position.set(0, 0, 0);
     cube.castShadow = true;
     scene.add(cube);
 
@@ -33,12 +33,11 @@
     spotLightHelper = new THREE.SpotLightHelper(spotLight);
 
     spotLight.castShadow = true;
-    spotLight.position.set(-250, 350, 250);
-
+    spotLight.position.set(-2.5, 3.5, 2.5);
     spotLight.intensity = 2;
-    spotLight.penumbra = .5;
-    spotLight.angle = Math.PI / 5;
-    spotLight.distance = 1500;
+    spotLight.penumbra = 0.5;
+    spotLight.angle = Math.PI * 0.15;
+    spotLight.distance = 6;
 
     spotLight.add(spotLightHelper);
     scene.add(spotLight);
@@ -46,7 +45,7 @@
 
     // add plane to the scene
     var plane = new THREE.Mesh(
-            new THREE.PlaneBufferGeometry(3000, 3000, 8, 8),
+            new THREE.PlaneBufferGeometry(300, 300, 8, 8),
             new THREE.MeshStandardMaterial({
                 color: 0x00afaf,
                 emissive: 0x202020,
@@ -70,16 +69,16 @@
         per = frame / maxFrame,
         bias = 1 - Math.abs(0.5 - per) / 0.5,
         r = Math.PI * 2 * per,
-        x = Math.cos(r) * 150,
-        y = Math.sin(r) * 150,
-        z = 300;
+        x = Math.cos(r) * 3,
+        y = Math.sin(r) * 3,
+        z = 2;
 
         requestAnimationFrame(loop);
 
         if (secs > 1 / fps) {
 
             spotLight.position.set(x, z, y);
-            spotLight.target.position.set(200 * bias, 0, 0);
+            spotLight.target.position.set(-1 * 2 * bias, 0, 0);
             spotLightHelper.update();
             renderer.render(scene, camera);
 
