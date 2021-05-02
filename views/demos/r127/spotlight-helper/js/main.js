@@ -18,7 +18,7 @@
                 emissive: 0x0a0a0a,
                 side: THREE.DoubleSide
             }));
-    cube.position.set(0, 0, 0);
+    cube.position.set(0, 0.5, 0);
     cube.castShadow = true;
     scene.add(cube);
 
@@ -45,7 +45,7 @@
 
     // add plane to the scene
     var plane = new THREE.Mesh(
-            new THREE.PlaneBufferGeometry(300, 300, 8, 8),
+            new THREE.PlaneBufferGeometry(8, 8),
             new THREE.MeshStandardMaterial({
                 color: 0x00afaf,
                 emissive: 0x202020,
