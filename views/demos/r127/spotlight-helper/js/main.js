@@ -62,11 +62,13 @@
     // LOOP
     var frame = 0,
     maxFrame = 500,
+    lt = new Date(),
+    fps = 24;
     loop = function () {
-
-        var per = frame / maxFrame,
-        bias = 1 - Math.abs(.5 - per) / .5,
-
+        var now = new Date(),
+        secs = (now - lt) / 1000,
+        per = frame / maxFrame,
+        bias = 1 - Math.abs(0.5 - per) / 0.5,
         r = Math.PI * 2 * per,
         x = Math.cos(r) * 150,
         y = Math.sin(r) * 150,
@@ -74,13 +76,17 @@
 
         requestAnimationFrame(loop);
 
-        spotLight.position.set(x, z, y);
-        spotLight.target.position.set(200 * bias, 0, 0);
-        spotLightHelper.update();
-        renderer.render(scene, camera);
+        if (secs > 1 / fps) {
 
-        frame += 1;
-        frame = frame % maxFrame;
+            spotLight.position.set(x, z, y);
+            spotLight.target.position.set(200 * bias, 0, 0);
+            spotLightHelper.update();
+            renderer.render(scene, camera);
+
+            frame += fps * secs;
+            frame = frame % maxFrame;
+            lt = now;
+        }
 
     };
 
