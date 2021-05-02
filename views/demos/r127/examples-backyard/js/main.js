@@ -1,6 +1,46 @@
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x00ffff);
 
+// HOUSE
+var house = HouseMod.create();
+house.position.set(-2, 1.05, 0);
+scene.add(house);
+
+// GROUND
+var materials = {
+    ground: [
+        new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 96, 96, 220),
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0xffaa00,
+            map: canvasTextureMod.randomGrid(['r1', 'r1', '0'], 64, 96, 220),
+            side: THREE.DoubleSide
+        })
+    ]
+};
+var ground = new THREE.Mesh(new THREE.BoxGeometry(14, 14, 1.25), materials.ground);
+ground.position.set(0, -0.575, 0);
+ground.rotation.set(-Math.PI / 2, 0, 0);
+ground.geometry.groups.forEach(function (face) {
+    face.materialIndex = 1;
+});
+ground.geometry.groups[4].materialIndex = 0;
+scene.add(ground);
+
+// WHEEL
+var wheel = WheelMod.create();
+wheel.group.scale.set(0.5, 0.5, 0.5);
+wheel.group.position.set(2, 1.5, 2);
+scene.add(wheel.group);
+// GUY
+var guy = GuyMod.create();
+guy.group.scale.set(0.25, 0.25, 0.25);
+guy.group.position.set(0, 0.8, 5.5);
+scene.add(guy.group);
+
 // sun
 var sunTexture = canvasTextureMod.randomGrid(['r1', 'r1', '0']);
 var sun = new THREE.Mesh(
@@ -20,8 +60,13 @@ scene.add(ambientLight);
 
 // CAMERA
 var camera = new THREE.PerspectiveCamera(50, 640 / 480, 1, 1000);
-camera.position.set(14, 6, 14);
-camera.lookAt(0, 0, 0);
+//camera.position.set(14, 6, 14);
+
+
+camera.position.set(-15, 10, 25);
+camera.lookAt(guy.group.position);
+
+guy.group.add(camera);
 
 // RENDERER
 var renderer = new THREE.WebGLRenderer();
@@ -59,48 +104,8 @@ window.addEventListener('keydown', function (e) {
     }
 });
 
-// HOUSE
-var house = HouseMod.create();
-house.position.set(-2, 1.05, 0);
-scene.add(house);
-
-// GROUND
-var materials = {
-    ground: [
-        new THREE.MeshStandardMaterial({
-            color: 0x00ff00,
-            map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 96, 96, 220),
-            side: THREE.DoubleSide
-        }),
-        new THREE.MeshStandardMaterial({
-            color: 0xffaa00,
-            map: canvasTextureMod.randomGrid(['r1', 'r1', '0'], 64, 96, 220),
-            side: THREE.DoubleSide
-        })
-    ]
-};
-var ground = new THREE.Mesh(new THREE.BoxGeometry(14, 14, 1.25), materials.ground);
-ground.position.set(0, -0.575, 0);
-ground.rotation.set(-Math.PI / 2, 0, 0);
-ground.geometry.groups.forEach(function (face) {
-    face.materialIndex = 1;
-});
-ground.geometry.groups[4].materialIndex = 0;
-scene.add(ground);
-
-// WHEEL
-var wheel = WheelMod.create();
-wheel.group.scale.set(0.5, 0.5, 0.5);
-wheel.group.position.set(2, 1.5, 2);
-scene.add(wheel.group);
-
-var guy = GuyMod.create();
-guy.group.scale.set(0.25, 0.25, 0.25);
-guy.group.position.set(0, 0.8, 5.5);
-scene.add(guy.group);
-
 // CONTROLS
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
+//var controls = new THREE.OrbitControls(camera, renderer.domElement);
 //controls.autoRotate = true;
 
 // Loop in which the directional light position changes
@@ -167,7 +172,7 @@ var loop = function () {
     guy.group.position.set(Math.cos(r) * 5, 0.8, Math.sin(r) * 5);
     guy.group.lookAt(Math.cos(r - 0.5) * 5, 0.8, Math.sin(r - 0.5) * 5);
 
-    controls.update();
+    //controls.update();
 
     frame = (frame + 1) % maxFrame;
     renderer.render(scene, camera);
