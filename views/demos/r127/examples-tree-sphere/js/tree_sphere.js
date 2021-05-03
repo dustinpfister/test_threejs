@@ -30,13 +30,14 @@
             new THREE.SphereGeometry(opt.sphereSize, opt.widthSegments, opt.heightSegments),
             materials.sphere
         );
+        sphere.position.set(0, opt.trunkLength / 2 + opt.sphereSize * 0.75, 0);
         tree.add(sphere);
 
         var trunk = new THREE.Mesh(
             new THREE.BoxGeometry(opt.trunkSize, opt.trunkLength, opt.trunkSize),
             materials.trunk
         );
-        trunk.position.set(0, ( 0.5 + opt.trunkLength / 2 ) * -1, 0);
+        trunk.position.set(0, 0, 0);
         tree.add(trunk);
 
         return tree;
