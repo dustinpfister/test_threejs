@@ -13,7 +13,6 @@ var randomPosition = function () {
 
 // creating a scene
 var scene = new THREE.Scene();
-var fogColor = new THREE.Color(0, 1, 0);
 
 // Box With a material that uses a color, and emissive color
 var group = new THREE.Group();
@@ -58,8 +57,9 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
-        box.position.set(0, 0, -1 - 4 * bias);
-        box.rotation.set(0, Math.PI * 2 * per, Math.PI * 4 * per);
+        group.children.forEach(function (box) {
+            box.rotation.set(0, Math.PI * 2 * per, Math.PI * 4 * per);
+        });
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
