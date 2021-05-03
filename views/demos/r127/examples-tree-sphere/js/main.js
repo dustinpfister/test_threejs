@@ -1,13 +1,13 @@
 
 var MATERIALS_TREE = {
     sphere: new THREE.MeshStandardMaterial({
-        color: 0x00ff00,
-        map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 32, 32, 150),
+        color: 0x00ff80,
+        map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 32, 32, 150),
         side: THREE.DoubleSide
     }),
     trunk: new THREE.MeshStandardMaterial({
-        color: 0xffaf00,
-        map: canvasTextureMod.randomGrid(['r1', 'r1', '0'], 32, 32, 150),
+        color: 0xffaf80,
+        map: canvasTextureMod.randomGrid(['r1', 'r1', '64'], 32, 32, 150),
         side: THREE.DoubleSide
     })
 };
@@ -42,7 +42,7 @@ var scene = new THREE.Scene();
 var world = new THREE.Mesh(
     new THREE.SphereGeometry(4,30,30),
     new THREE.MeshStandardMaterial({
-        map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 128, 125, 200),
+        map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 128, 125, 200),
     })
 );
 // add the box mesh to the scene
@@ -65,18 +65,28 @@ var sun = new THREE.Mesh(
             emissiveMap: sunTexture
         }));
 sun.add(new THREE.PointLight(0xffffff, 1));
-sun.position.set(8, 8, 0);
 scene.add(sun);
+
+var moonTexture = canvasTextureMod.randomGrid(['0', 'r1', 'r1']);
+var moon = new THREE.Mesh(
+        new THREE.SphereGeometry(0.25, 20, 20),
+        new THREE.MeshStandardMaterial({
+            emissive: 'white',
+            emissiveMap: moonTexture
+        }));
+moon.add(new THREE.PointLight(0x0040ff, 0.8));
+scene.add(moon);
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(10, 10, 10);
+camera.position.set(12, 12, 12);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 var lt = new Date(),
+sunRadian = Math.PI,
 fps = 30;
 var loop = function(){
     var now = new Date(),
@@ -87,6 +97,10 @@ var loop = function(){
         world.rotation.x %= Math.PI * 2;
         world.rotation.y += Math.PI / 180 * 40 * secs;
         world.rotation.y %= Math.PI * 2;
+        sunRadian += Math.PI / 180 * 20 * secs;
+        sunRadian %= Math.PI * 2;    
+        sun.position.set(Math.cos(sunRadian) * 11, Math.sin(sunRadian) * 11, 0);
+        moon.position.set(Math.cos(sunRadian + Math.PI) * 9, Math.sin(sunRadian + Math.PI) * 9, 0);
         renderer.render(scene, camera);
         lt = now;
     }
