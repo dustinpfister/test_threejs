@@ -81,9 +81,43 @@ scene.add(moon);
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(12, 12, 12);
 camera.lookAt(0, 0, 0);
+
+// RENDERER
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
+//renderer.width = 640;
+renderer.domElement.width = 640;
+renderer.domElement.height = 480;
+renderer.setViewport(0, 0, 640, 480);
+var container = document.getElementById('demo');
+container.appendChild(renderer.domElement);
+var full = false;
+var toggleFull = function (canvas) {
+    var canvas = renderer.domElement;
+    full = !full;
+    container.style.position = 'static';
+    container.style.width = '640px';
+    container.style.height = '480px';
+    canvas.style.width = '640px';
+    canvas.style.height = '480px';
+    if (full) {
+        canvas.style.width = 'auto';
+        canvas.style.height = window.innerHeight + 'px';
+        canvas.style.margin = 'auto';
+        container.style.position = 'fixed';
+        container.style.width = '100%';
+        container.style.height = '100%';
+        container.style.background = 'black';
+        container.style.left = '0px';
+        container.style.top = '0px';
+    }
+};
+// press f for full screen
+window.addEventListener('keydown', function (e) {
+    if (e.key === 'f') {
+        toggleFull();
+    }
+});
+
 
 var lt = new Date(),
 sunRadian = Math.PI,
