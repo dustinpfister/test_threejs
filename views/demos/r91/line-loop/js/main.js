@@ -10,7 +10,7 @@
     camera.lookAt(0, 0, 0);
 
     // Orbit Controls
-    var controls = new THREE.OrbitControls(camera);
+    //var controls = new THREE.OrbitControls(camera);
 
     var material = new THREE.LineBasicMaterial({
             color: 0x0000ff
@@ -34,7 +34,7 @@
     var loop = function () {
 
         requestAnimationFrame(loop);
-        controls.update();
+        //controls.update();
         renderer.render(scene, camera);
 
     };

@@ -4,14 +4,6 @@
     // Scene
     var scene = new THREE.Scene();
 
-    // Camera
-    var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(0, 0, -30);
-    camera.lookAt(0, 0, 0);
-
-    // Orbit Controls
-    var controls = new THREE.OrbitControls(camera);
-
     var material = new THREE.LineDashedMaterial({
             color: 0x0000ff,
             linewidth: 3,
@@ -30,21 +22,19 @@
     line.computeLineDistances();
     scene.add(line);
 
+    // Camera
+    var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
+    camera.position.set(0, 0, -30);
+    camera.lookAt(0, 0, 0);
+
+
     // Render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // loop
-    var loop = function () {
-
-        requestAnimationFrame(loop);
-        controls.update();
-        renderer.render(scene, camera);
-
-    };
-
-    loop();
+    requestAnimationFrame(loop);
+    renderer.render(scene, camera);
 
 }
     ());
