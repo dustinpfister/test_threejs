@@ -12,21 +12,21 @@ var MATERIALS_TREE = {
     })
 };
 
-var createTrees = function(){
+var createTrees = function(count){
+    count = count === undefined ? 5: count;
     var group = new THREE.Group();
-    var i = 0,
-    len = 8;
-    while(i < len){
+    var i = 0;
+    while(i < count){
         // create a tree
         var tree = TreeSphereMod.create({
             sphereSize: 0.75,
             materials: MATERIALS_TREE 
         });
         // position and rotate the tree
-        var per = i / len,
+        var per = i / count,
         radian = Math.PI * 2 * per;
         tree.position.set(Math.cos(radian) * 5, 0, Math.sin(radian) * 5);   
-        tree.rotation.set(0, Math.PI * 2 - Math.PI / (len / 2) * i, Math.PI * 1.5);
+        tree.rotation.set(0, Math.PI * 2 - Math.PI / (count / 2) * i, Math.PI * 1.5);
         group.add(tree);
         i += 1;
     }
@@ -44,8 +44,13 @@ var world = new THREE.Mesh(
     })
 );
 // add the box mesh to the scene
-var trees = createTrees(scene);
+var trees = createTrees(8);
+trees.rotation.z = Math.PI / 180 * 0;
 world.add(trees);
+var trees2 = createTrees(8);
+trees.rotation.x = Math.PI / 180 * 90;
+trees.rotation.z = Math.PI / 180 * 90;
+world.add(trees2);
 scene.add(world);
  
 // camera and renderer
