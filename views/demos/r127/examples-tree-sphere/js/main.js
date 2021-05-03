@@ -13,23 +13,20 @@ var MATERIALS_TREE = {
 };
 
 var createTrees = function(){
-
     var group = new THREE.Group();
-
     var i = 0,
-    len = 5;
+    len = 8;
     while(i < len){
         // create a tree
         var tree = TreeSphereMod.create({
             sphereSize: 0.75,
             materials: MATERIALS_TREE 
         });
+        // position and rotate the tree
         var per = i / len,
         radian = Math.PI * 2 * per;
-        tree.position.set(Math.cos(radian) * 5, 0, Math.sin(radian) * 5);
-        
-        tree.rotation.set(0, Math.PI * 2 - Math.PI / 2.5 * i, Math.PI * 1.5);
-
+        tree.position.set(Math.cos(radian) * 5, 0, Math.sin(radian) * 5);   
+        tree.rotation.set(0, Math.PI * 2 - Math.PI / (len / 2) * i, Math.PI * 1.5);
         group.add(tree);
         i += 1;
     }
@@ -38,33 +35,18 @@ var createTrees = function(){
 
 // creating a scene
 var scene = new THREE.Scene();
- 
+
+// world
+var world = new THREE.Mesh(
+    new THREE.SphereGeometry(4,30,30),
+    new THREE.MeshBasicMaterial({
+        map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 128, 125, 200),
+    })
+);
 // add the box mesh to the scene
 var trees = createTrees(scene);
-
-/*
-        trees.children[0].rotation.x = 0;
-        trees.children[0].rotation.y = 0;
-        trees.children[0].rotation.z = Math.PI * 1.5;
-
-        trees.children[1].rotation.x = 0;
-        trees.children[1].rotation.y = Math.PI * 1.7;
-        trees.children[1].rotation.z = Math.PI * 1.5;
-
-        trees.children[2].rotation.x = 0;
-        trees.children[2].rotation.y = Math.PI * 1.25;
-        trees.children[2].rotation.z = Math.PI * 1.5;
-
-        trees.children[3].rotation.x = 0;
-        trees.children[3].rotation.y = Math.PI * 0.75;
-        trees.children[3].rotation.z = Math.PI * 1.5;
-
-        trees.children[4].rotation.x = 0;
-        trees.children[4].rotation.y = Math.PI * 0.5;
-        trees.children[4].rotation.z = Math.PI * 1.5;
-*/
-
-scene.add(trees);
+world.add(trees);
+scene.add(world);
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
@@ -79,11 +61,12 @@ fps = 30;
 var loop = function(){
     var now = new Date(),
     secs = (now - lt) / 1000;
-
     requestAnimationFrame(loop);
-
     if(secs > 1 / fps){
-        //trees.children[1].rotation.y += Math.PI / 180 * 20 * secs;
+        world.rotation.x += Math.PI / 180 * 20 * secs;
+        world.rotation.x %= Math.PI * 2;
+        world.rotation.y += Math.PI / 180 * 40 * secs;
+        world.rotation.y %= Math.PI * 2;
         renderer.render(scene, camera);
         lt = now;
     }
