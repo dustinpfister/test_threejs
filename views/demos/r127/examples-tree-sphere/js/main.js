@@ -1,11 +1,11 @@
 
 var MATERIALS_TREE = {
-    sphere: new THREE.MeshBasicMaterial({
+    sphere: new THREE.MeshStandardMaterial({
         color: 0x00ff00,
         map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 32, 32, 150),
         side: THREE.DoubleSide
     }),
-    trunk: new THREE.MeshBasicMaterial({
+    trunk: new THREE.MeshStandardMaterial({
         color: 0xffaf00,
         map: canvasTextureMod.randomGrid(['r1', 'r1', '0'], 32, 32, 150),
         side: THREE.DoubleSide
@@ -41,7 +41,7 @@ var scene = new THREE.Scene();
 // world
 var world = new THREE.Mesh(
     new THREE.SphereGeometry(4,30,30),
-    new THREE.MeshBasicMaterial({
+    new THREE.MeshStandardMaterial({
         map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 128, 125, 200),
     })
 );
@@ -55,6 +55,18 @@ trees2.rotation.x = Math.PI / 180 * 0;
 trees2.rotation.z = Math.PI / 180 * 90;
 world.add(trees2);
 scene.add(world);
+
+// sun
+var sunTexture = canvasTextureMod.randomGrid(['r1', 'r1', '0']);
+var sun = new THREE.Mesh(
+        new THREE.SphereGeometry(1, 20, 20),
+        new THREE.MeshStandardMaterial({
+            emissive: 'white',
+            emissiveMap: sunTexture
+        }));
+sun.add(new THREE.PointLight(0xffffff, 1));
+sun.position.set(8, 8, 0);
+scene.add(sun);
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
