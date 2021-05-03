@@ -14,21 +14,29 @@
     };
 
     // create and return a house
-    HouseMod.create = function (materials) {
-        materials = materials || materials_default;
+    HouseMod.create = function (opt) {
+
+        opt = opt || {};
+        opt.trunkLength = opt.trunkLength === undefined ? 2 : opt.trunkLength;
+        opt.sphereSize = opt.sphereSize === undefined ? 1 : opt.sphereSize;
+        opt.trunkSize = opt.trunkSize === undefined ? 0.25 : opt.trunkSize;
+        opt.widthSegments = opt.widthSegments === undefined ? 15 : opt.widthSegments;
+        opt.heightSegments = opt.heightSegments === undefined ? 15 : opt.heightSegments;
+
+        var materials = opt.materials || materials_default;
         var tree = new THREE.Group();
 
         var sphere = new THREE.Mesh(
-            new THREE.SphereGeometry(1, 15, 15),
+            new THREE.SphereGeometry(opt.sphereSize, opt.widthSegments, opt.heightSegments),
             materials.sphere
         );
         tree.add(sphere);
 
         var trunk = new THREE.Mesh(
-            new THREE.BoxGeometry(0.5, 4, 0.5),
+            new THREE.BoxGeometry(opt.trunkSize, opt.trunkLength, opt.trunkSize),
             materials.trunk
         );
-        trunk.position.set(0, -2.5, 0);
+        trunk.position.set(0, ( 0.5 + opt.trunkLength / 2 ) * -1, 0);
         tree.add(trunk);
 
         return tree;

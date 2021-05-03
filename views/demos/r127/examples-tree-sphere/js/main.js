@@ -1,5 +1,20 @@
 
-var tree = TreeSphereMod.create();
+
+var tree = TreeSphereMod.create({
+    sphereSize: 0.75,
+    materials: {
+        sphere: new THREE.MeshBasicMaterial({
+            color: 0x00ff00,
+            map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 32, 32, 150),
+            side: THREE.DoubleSide
+        }),
+        trunk: new THREE.MeshBasicMaterial({
+            color: 0xffaf00,
+            map: canvasTextureMod.randomGrid(['r1', 'r1', '0'], 32, 32, 150),
+            side: THREE.DoubleSide
+        })
+    }
+});
 
 // creating a scene
 var scene = new THREE.Scene();
