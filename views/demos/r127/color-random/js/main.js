@@ -14,13 +14,13 @@ var randomPosition = function () {
 // creating a scene
 var scene = new THREE.Scene();
 
-// Box With a material that uses a color, and emissive color
+// creating a group of mesh object with random colors
 var group = new THREE.Group();
 var i = 0,
-len = 5;
+len = 15;
 while (i < len) {
     var box = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.BoxGeometry(0.5, 0.5, 0.5),
             new THREE.MeshStandardMaterial({
                 color: randomColor(),
                 emissiveIntensity: 0.8,
@@ -48,7 +48,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 var lt = new Date(),
 frame = 0,
-maxFrame = 100,
+maxFrame = 200,
 fps = 30;
 var loop = function () {
     var now = new Date(),
@@ -60,6 +60,7 @@ var loop = function () {
         group.children.forEach(function (box) {
             box.rotation.set(0, Math.PI * 2 * per, Math.PI * 4 * per);
         });
+        group.rotation.y = Math.PI * 2 * per;
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
