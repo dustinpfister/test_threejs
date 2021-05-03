@@ -1,13 +1,17 @@
-// creating a box mesh with the Box Geometry constructor,
-// and the normal material
+// creating a scene
+var scene = new THREE.Scene();
+var fogColor = new THREE.Color(0, 1, 0);
+scene.background = fogColor;
+scene.fog = new THREE.FogExp2(fogColor, 0.4);
+
+// Box With a material that uses a color, and emissive color
 var box = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
-            color: new THREE.Color(1, 0, 0)
+            color: fogColor,
+            emissiveIntensity: 0.8,
+            emissive: new THREE.Color(1, 0, 0)
         }));
-
-// creating a scene
-var scene = new THREE.Scene();
 
 // add the box mesh to the scene
 scene.add(box);
@@ -37,7 +41,7 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
-        box.position.set(0, 0, -1 - 5 * bias);
+        box.position.set(0, 0, -1 - 4 * bias);
         box.rotation.set(0, Math.PI * 2 * per, Math.PI * 4 * per);
         renderer.render(scene, camera);
         frame += fps * secs;
