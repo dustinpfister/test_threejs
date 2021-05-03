@@ -12,20 +12,22 @@ var MATERIALS_TREE = {
     })
 };
 
-var createTrees = function(count){
+var createTrees = function(count, radius){
     count = count === undefined ? 5: count;
+    radius = radius === undefined ? 4: radius;
     var group = new THREE.Group();
     var i = 0;
     while(i < count){
         // create a tree
         var tree = TreeSphereMod.create({
-            sphereSize: 0.75,
+            sphereSize: 0.25 + 0.75 * Math.random(),
+            trunkLength: 1 + 4 * Math.random(),
             materials: MATERIALS_TREE 
         });
         // position and rotate the tree
         var per = i / count,
         radian = Math.PI * 2 * per;
-        tree.position.set(Math.cos(radian) * 5, 0, Math.sin(radian) * 5);   
+        tree.position.set(Math.cos(radian) * radius, 0, Math.sin(radian) * radius);   
         tree.rotation.set(0, Math.PI * 2 - Math.PI / (count / 2) * i, Math.PI * 1.5);
         group.add(tree);
         i += 1;
@@ -48,8 +50,9 @@ var trees = createTrees(8);
 trees.rotation.z = Math.PI / 180 * 0;
 world.add(trees);
 var trees2 = createTrees(8);
-trees.rotation.x = Math.PI / 180 * 90;
-trees.rotation.z = Math.PI / 180 * 90;
+trees2.rotation.y = Math.PI / 180 * 20;
+trees2.rotation.x = Math.PI / 180 * 0;
+trees2.rotation.z = Math.PI / 180 * 90;
 world.add(trees2);
 scene.add(world);
  
