@@ -46,6 +46,25 @@ var createTrees = function (count, radius) {
     return group;
 };
 
+var createLights = function () {
+   
+    // sun, and moon
+    var sun = new THREE.Mesh(
+            new THREE.SphereGeometry(1, 20, 20),
+            MATERIALS_LIGHTS.sun);
+    sun.add(new THREE.PointLight(0xffff00, 1));
+    world.add(sun);
+    var moon = new THREE.Mesh(
+            new THREE.SphereGeometry(0.25, 20, 20),
+            MATERIALS_LIGHTS.moon);
+    moon.add(new THREE.PointLight(0x0040ff, 1));
+    world.add(moon);
+    // add AmbientLight
+    var ambientLight = new THREE.AmbientLight(0xffffff);
+    ambientLight.intensity = 0.1;
+    world.add(ambientLight);
+};
+
 var createWorld = function () {
     var world = new THREE.Mesh(
             new THREE.SphereGeometry(4, 30, 30),
@@ -70,21 +89,24 @@ var world = createWorld();
 scene.add(world);
 
 // sun, and moon
+var lights = new THREE.Group();
 var sun = new THREE.Mesh(
         new THREE.SphereGeometry(1, 20, 20),
         MATERIALS_LIGHTS.sun);
 sun.add(new THREE.PointLight(0xffff00, 1));
-world.add(sun);
+sun.position.set(11,0,0);
+lights.add(sun);
 var moon = new THREE.Mesh(
         new THREE.SphereGeometry(0.25, 20, 20),
         MATERIALS_LIGHTS.moon);
 moon.add(new THREE.PointLight(0x0040ff, 1));
-world.add(moon);
-
+moon.position.set(-11,0,0);
+lights.add(moon);
 // add AmbientLight
 var ambientLight = new THREE.AmbientLight(0xffffff);
 ambientLight.intensity = 0.1;
-scene.add(ambientLight);
+lights.add(ambientLight);
+world.add(lights);
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
@@ -141,8 +163,8 @@ var loop = function () {
         //world.rotation.y %= Math.PI * 2;
         sunRadian += Math.PI / 180 * 20 * secs;
         sunRadian %= Math.PI * 2;
-        sun.position.set(Math.cos(sunRadian) * 11, Math.sin(sunRadian) * 11, 0);
-        moon.position.set(Math.cos(sunRadian + Math.PI) * 9, Math.sin(sunRadian + Math.PI) * 9, 0);
+        //sun.position.set(Math.cos(sunRadian) * 11, Math.sin(sunRadian) * 11, 0);
+        //moon.position.set(Math.cos(sunRadian + Math.PI) * 9, Math.sin(sunRadian + Math.PI) * 9, 0);
         renderer.render(scene, camera);
         lt = now;
     }
