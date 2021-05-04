@@ -74,12 +74,12 @@ var sun = new THREE.Mesh(
         new THREE.SphereGeometry(1, 20, 20),
         MATERIALS_LIGHTS.sun);
 sun.add(new THREE.PointLight(0xffff00, 1));
-scene.add(sun);
+world.add(sun);
 var moon = new THREE.Mesh(
         new THREE.SphereGeometry(0.25, 20, 20),
         MATERIALS_LIGHTS.moon);
 moon.add(new THREE.PointLight(0x0040ff, 1));
-scene.add(moon);
+world.add(moon);
 
 // add AmbientLight
 var ambientLight = new THREE.AmbientLight(0xffffff);
@@ -135,10 +135,10 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
-        world.rotation.x += Math.PI / 180 * 20 * secs;
-        world.rotation.x %= Math.PI * 2;
-        world.rotation.y += Math.PI / 180 * 40 * secs;
+        world.rotation.y += Math.PI / 180 * 5 * secs;
         world.rotation.y %= Math.PI * 2;
+        //world.rotation.y += Math.PI / 180 * 40 * secs;
+        //world.rotation.y %= Math.PI * 2;
         sunRadian += Math.PI / 180 * 20 * secs;
         sunRadian %= Math.PI * 2;
         sun.position.set(Math.cos(sunRadian) * 11, Math.sin(sunRadian) * 11, 0);
