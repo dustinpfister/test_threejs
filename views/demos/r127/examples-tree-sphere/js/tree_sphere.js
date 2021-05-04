@@ -1,4 +1,4 @@
-(function (HouseMod) {
+(function (api) {
 
     // default materials
     var materials_default = {
@@ -14,7 +14,7 @@
     };
 
     // create and return a house
-    HouseMod.create = function (opt) {
+    api.create = function (opt) {
 
         opt = opt || {};
         opt.trunkLength = opt.trunkLength === undefined ? 2 : opt.trunkLength;
