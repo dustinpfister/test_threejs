@@ -85,7 +85,7 @@
             y: opt.lightsDPSY || 0,
             z: opt.LIGHTSDPSZ || 0
         };
-        world.userData.worldRotation = 10;
+        world.userData.worldRotation = opt.worldRotation || 0;
         return world;
     };
 

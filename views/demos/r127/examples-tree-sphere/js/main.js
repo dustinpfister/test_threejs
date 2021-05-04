@@ -35,7 +35,8 @@
             MATERIALS_GROUND: MATERIALS_GROUND,
             MATERIALS_TREE: MATERIALS_TREE,
             MATERIALS_LIGHTS: MATERIALS_LIGHTS,
-            lightsDPSY: 20
+            lightsDPSY: 20,
+            worldRotation: 5
         });
     scene.add(world);
 
