@@ -46,8 +46,8 @@ var createTrees = function (count, radius) {
     return group;
 };
 
+// create and return a lights group
 var createLights = function () {
-    // sun, and moon
     var lights = new THREE.Group();
     var sun = new THREE.Mesh(
             new THREE.SphereGeometry(1, 20, 20),
@@ -82,7 +82,8 @@ var createWorld = function () {
     trees2.rotation.x = Math.PI / 180 * 0;
     trees2.rotation.z = Math.PI / 180 * 90;
     world.add(trees2);
-    world.add(createLights());
+    world.userData.lights = createLights();
+    world.add(world.userData.lights);
     return world;
 };
 
@@ -147,6 +148,10 @@ var loop = function () {
         //world.rotation.y %= Math.PI * 2;
         sunRadian += Math.PI / 180 * 20 * secs;
         sunRadian %= Math.PI * 2;
+        world.userData.lights.rotation.y += Math.PI / 180 * 5 * secs;
+        world.userData.lights.rotation.z += Math.PI / 180 * 20 * secs;
+        world.userData.lights.rotation.y %= Math.PI * 2;
+        world.userData.lights.rotation.z %= Math.PI * 2;
         //sun.position.set(Math.cos(sunRadian) * 11, Math.sin(sunRadian) * 11, 0);
         //moon.position.set(Math.cos(sunRadian + Math.PI) * 9, Math.sin(sunRadian + Math.PI) * 9, 0);
         renderer.render(scene, camera);
