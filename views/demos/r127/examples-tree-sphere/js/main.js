@@ -1,25 +1,32 @@
 
 var MATERIALS_TREE = {
-    sphere: new THREE.MeshStandardMaterial({
+    sphere: new THREE.MeshBasicMaterial({
         color: 0x00ff80,
-        map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 32, 32, 150),
+        //map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 32, 32, 150),
         side: THREE.DoubleSide
     }),
-    trunk: new THREE.MeshStandardMaterial({
+    trunk: new THREE.MeshBasicMaterial({
         color: 0xffaf80,
-        map: canvasTextureMod.randomGrid(['r1', 'r1', '64'], 32, 32, 150),
+        //map: canvasTextureMod.randomGrid(['r1', 'r1', '64'], 32, 32, 150),
         side: THREE.DoubleSide
     })
 };
 
 var MATERIALS_LIGHTS = {
-    sun: new THREE.MeshStandardMaterial({
+    sun: new THREE.MeshBasicMaterial({
         emissive: 'white',
-        emissiveMap: canvasTextureMod.randomGrid(['r1', 'r1', '0'])
+        //emissiveMap: canvasTextureMod.randomGrid(['r1', 'r1', '0'])
     }),
     moon: new THREE.MeshStandardMaterial({
         emissive: 'white',
-        emissiveMap: canvasTextureMod.randomGrid(['0', 'r1', 'ri'])
+        //emissiveMap: canvasTextureMod.randomGrid(['0', 'r1', 'ri'])
+    })
+};
+
+var MATERIALS_GROUND = {
+    grass: new THREE.MeshBasicMaterial({
+        color: 'white',
+        //map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 128, 125, 200),
     })
 };
 
@@ -71,9 +78,7 @@ var createLights = function () {
 var createWorld = function () {
     var world = new THREE.Mesh(
             new THREE.SphereGeometry(4, 30, 30),
-            new THREE.MeshStandardMaterial({
-                map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 128, 125, 200),
-            }));
+            MATERIALS_GROUND.grass);
     var trees = createTrees(8);
     trees.rotation.z = Math.PI / 180 * 0;
     world.add(trees);
@@ -94,10 +99,10 @@ var world = createWorld();
 scene.add(world);
 
 var world2 = createWorld();
-world2.position.set(-28,-3,-5);
+world2.position.set(-28, -3, -5);
 scene.add(world2);
 var world3 = createWorld();
-world3.position.set(-15,-20,-50);
+world3.position.set(-15, -20, -50);
 scene.add(world3);
 
 // camera and renderer
