@@ -86,8 +86,6 @@
     api.update = function (world, secs) {
         world.rotation.y += Math.PI / 180 * 5 * secs;
         world.rotation.y %= Math.PI * 2;
-        sunRadian += Math.PI / 180 * 20 * secs;
-        sunRadian %= Math.PI * 2;
         world.userData.lights.rotation.y += Math.PI / 180 * 5 * secs;
         world.userData.lights.rotation.z += Math.PI / 180 * 20 * secs;
         world.userData.lights.rotation.y %= Math.PI * 2;
