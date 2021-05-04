@@ -95,19 +95,9 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
-		WorldMod.update(world, secs);
-        //world.rotation.y += Math.PI / 180 * 5 * secs;
-        //world.rotation.y %= Math.PI * 2;
-        //world.rotation.y += Math.PI / 180 * 40 * secs;
-        //world.rotation.y %= Math.PI * 2;
-        //sunRadian += Math.PI / 180 * 20 * secs;
-        //sunRadian %= Math.PI * 2;
-        //world.userData.lights.rotation.y += Math.PI / 180 * 5 * secs;
-        //world.userData.lights.rotation.z += Math.PI / 180 * 20 * secs;
-        //world.userData.lights.rotation.y %= Math.PI * 2;
-        //world.userData.lights.rotation.z %= Math.PI * 2;
-        //sun.position.set(Math.cos(sunRadian) * 11, Math.sin(sunRadian) * 11, 0);
-        //moon.position.set(Math.cos(sunRadian + Math.PI) * 9, Math.sin(sunRadian + Math.PI) * 9, 0);
+        WorldMod.update(world, secs);
+        WorldMod.update(world2, secs);
+        WorldMod.update(world3, secs);
         renderer.render(scene, camera);
         lt = now;
     }
