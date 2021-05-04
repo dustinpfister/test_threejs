@@ -96,6 +96,9 @@ scene.add(world);
 var world2 = createWorld();
 world2.position.set(-28,-3,-5);
 scene.add(world2);
+var world3 = createWorld();
+world3.position.set(-15,-20,-50);
+scene.add(world3);
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
