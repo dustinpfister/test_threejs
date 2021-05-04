@@ -38,7 +38,7 @@
     };
 
     // create and return a lights group
-    var createLights = function () {
+    var createLights = function (MATERIALS_LIGHTS) {
         var lights = new THREE.Group();
         var sun = new THREE.Mesh(
                 new THREE.SphereGeometry(1, 20, 20),
@@ -78,7 +78,7 @@
         trees2.rotation.x = Math.PI / 180 * 0;
         trees2.rotation.z = Math.PI / 180 * 90;
         world.add(trees2);
-        world.userData.lights = createLights();
+        world.userData.lights = createLights(opt.MATERIALS_LIGHTS);
         world.add(world.userData.lights);
         return world;
     };
