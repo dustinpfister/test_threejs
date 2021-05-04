@@ -31,24 +31,31 @@
     // creating a scene
     var scene = new THREE.Scene();
 
-    var world = WorldMod.create({
-            MATERIALS_GROUND: MATERIALS_GROUND,
-            MATERIALS_TREE: MATERIALS_TREE,
-            MATERIALS_LIGHTS: MATERIALS_LIGHTS,
-            lightsDPSY: 20,
-            worldRotation: 5
-        });
+    var worldOptions = {
+        MATERIALS_GROUND: MATERIALS_GROUND,
+        MATERIALS_TREE: MATERIALS_TREE,
+        MATERIALS_LIGHTS: MATERIALS_LIGHTS,
+        lightsDPSY: 20,
+        lightsDPSZ: 5,
+        worldRotation: 5
+    };
+    var world = WorldMod.create(worldOptions);
     scene.add(world);
 
-    var world2 = WorldMod.create({
-            lightsDPSY: 10
-        });
+    // world2
+    worldOptions.worldRotation = 65;
+    worldOptions.lightsDPSY = 75;
+    worldOptions.lightsDPSZ = 25;
+    var world2 = WorldMod.create(worldOptions);
     world2.position.set(-28, -3, -5);
     scene.add(world2);
-    var world3 = WorldMod.create({
-            lightsDPSY: 20,
-            lightsDPSZ: 5
-        });
+
+    // world3
+    worldOptions.worldRotation = 1;
+    worldOptions.lightsDPSX = 25;
+    worldOptions.lightsDPSY = 25;
+    worldOptions.lightsDPSZ = 0;
+    var world3 = WorldMod.create(worldOptions);
     world3.position.set(-15, -20, -50);
     scene.add(world3);
 
