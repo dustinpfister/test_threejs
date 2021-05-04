@@ -84,13 +84,14 @@
             x: opt.lightsDPSX || 0,
             y: opt.lightsDPSY || 0,
             z: opt.LIGHTSDPSZ || 0
-        }
+        };
+        world.userData.worldRotation = 10;
         return world;
     };
 
     api.update = function (world, secs) {
         var ud = world.userData;
-        world.rotation.y += Math.PI / 180 * 5 * secs;
+        world.rotation.y += Math.PI / 180 * ud.worldRotation * secs;
         world.rotation.y %= Math.PI * 2;
 
         var lights = ud.lights;
