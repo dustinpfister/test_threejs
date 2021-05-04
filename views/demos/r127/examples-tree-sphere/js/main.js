@@ -12,22 +12,34 @@ var MATERIALS_TREE = {
     })
 };
 
-var createTrees = function(count, radius){
-    count = count === undefined ? 5: count;
-    radius = radius === undefined ? 4: radius;
+var MATERIALS_LIGHTS = {
+
+    sun: new THREE.MeshStandardMaterial({
+        emissive: 'white',
+        emissiveMap: canvasTextureMod.randomGrid(['r1', 'r1', '0'])
+    }),
+    moon: new THREE.MeshStandardMaterial({
+        emissive: 'white',
+        emissiveMap: canvasTextureMod.randomGrid(['0', 'r1', 'ri'])
+    })
+};
+
+var createTrees = function (count, radius) {
+    count = count === undefined ? 5 : count;
+    radius = radius === undefined ? 4 : radius;
     var group = new THREE.Group();
     var i = 0;
-    while(i < count){
+    while (i < count) {
         // create a tree
         var tree = TreeSphereMod.create({
-            sphereSize: 0.25 + 0.75 * Math.random(),
-            trunkLength: 1 + 4 * Math.random(),
-            materials: MATERIALS_TREE 
-        });
+                sphereSize: 0.25 + 0.75 * Math.random(),
+                trunkLength: 1 + 4 * Math.random(),
+                materials: MATERIALS_TREE
+            });
         // position and rotate the tree
         var per = i / count,
         radian = Math.PI * 2 * per;
-        tree.position.set(Math.cos(radian) * radius, 0, Math.sin(radian) * radius);   
+        tree.position.set(Math.cos(radian) * radius, 0, Math.sin(radian) * radius);
         tree.rotation.set(0, Math.PI * 2 - Math.PI / (count / 2) * i, Math.PI * 1.5);
         group.add(tree);
         i += 1;
@@ -40,11 +52,10 @@ var scene = new THREE.Scene();
 
 // world
 var world = new THREE.Mesh(
-    new THREE.SphereGeometry(4,30,30),
-    new THREE.MeshStandardMaterial({
-        map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 128, 125, 200),
-    })
-);
+        new THREE.SphereGeometry(4, 30, 30),
+        new THREE.MeshStandardMaterial({
+            map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 128, 125, 200),
+        }));
 // add the box mesh to the scene
 var trees = createTrees(8);
 trees.rotation.z = Math.PI / 180 * 0;
@@ -59,18 +70,12 @@ scene.add(world);
 // sun, and moon
 var sun = new THREE.Mesh(
         new THREE.SphereGeometry(1, 20, 20),
-        new THREE.MeshStandardMaterial({
-            emissive: 'white',
-            emissiveMap: canvasTextureMod.randomGrid(['r1', 'r1', '0'])
-        }));
+        MATERIALS_LIGHTS.sun);
 sun.add(new THREE.PointLight(0xffff00, 1));
 scene.add(sun);
 var moon = new THREE.Mesh(
         new THREE.SphereGeometry(0.25, 20, 20),
-        new THREE.MeshStandardMaterial({
-            emissive: 'white',
-            emissiveMap: canvasTextureMod.randomGrid(['0', 'r1', 'r1'])
-        }));
+        MATERIALS_LIGHTS.moon);
 moon.add(new THREE.PointLight(0x0040ff, 1));
 scene.add(moon);
 
@@ -78,7 +83,7 @@ scene.add(moon);
 var ambientLight = new THREE.AmbientLight(0xffffff);
 ambientLight.intensity = 0.1;
 scene.add(ambientLight);
- 
+
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(12, 12, 12);
@@ -120,21 +125,20 @@ window.addEventListener('keydown', function (e) {
     }
 });
 
-
 var lt = new Date(),
 sunRadian = Math.PI,
 fps = 30;
-var loop = function(){
+var loop = function () {
     var now = new Date(),
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
-    if(secs > 1 / fps){
+    if (secs > 1 / fps) {
         world.rotation.x += Math.PI / 180 * 20 * secs;
         world.rotation.x %= Math.PI * 2;
         world.rotation.y += Math.PI / 180 * 40 * secs;
         world.rotation.y %= Math.PI * 2;
         sunRadian += Math.PI / 180 * 20 * secs;
-        sunRadian %= Math.PI * 2;    
+        sunRadian %= Math.PI * 2;
         sun.position.set(Math.cos(sunRadian) * 11, Math.sin(sunRadian) * 11, 0);
         moon.position.set(Math.cos(sunRadian + Math.PI) * 9, Math.sin(sunRadian + Math.PI) * 9, 0);
         renderer.render(scene, camera);
