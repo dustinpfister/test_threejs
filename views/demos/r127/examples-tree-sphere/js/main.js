@@ -74,8 +74,13 @@ var moon = new THREE.Mesh(
             emissive: 'white',
             emissiveMap: moonTexture
         }));
-moon.add(new THREE.PointLight(0x0040ff, 0.8));
+moon.add(new THREE.PointLight(0x0040ff, 1));
 scene.add(moon);
+
+// add AmbientLight
+var ambientLight = new THREE.AmbientLight(0xffffff);
+ambientLight.intensity = 0.1;
+scene.add(ambientLight);
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
