@@ -32,9 +32,15 @@ var loop = function () {
     requestAnimationFrame(loop);
 
     if (secs > 1 / fps) {
+        // adjusting near and far values of the camera
+        camera.near = 0.4 + 0.4 * bias;
+        camera.far = 1 + 2 * bias;
+        camera.updateProjectionMatrix();
 
         renderer.render(scene, camera);
         lt = now;
+        frame += 1;
+        frame %= maxFrame;
     }
 };
 loop();
