@@ -56,23 +56,20 @@ trees2.rotation.z = Math.PI / 180 * 90;
 world.add(trees2);
 scene.add(world);
 
-// sun
-var sunTexture = canvasTextureMod.randomGrid(['r1', 'r1', '0']);
+// sun, and moon
 var sun = new THREE.Mesh(
         new THREE.SphereGeometry(1, 20, 20),
         new THREE.MeshStandardMaterial({
             emissive: 'white',
-            emissiveMap: sunTexture
+            emissiveMap: canvasTextureMod.randomGrid(['r1', 'r1', '0'])
         }));
-sun.add(new THREE.PointLight(0xffffff, 1));
+sun.add(new THREE.PointLight(0xffff00, 1));
 scene.add(sun);
-
-var moonTexture = canvasTextureMod.randomGrid(['0', 'r1', 'r1']);
 var moon = new THREE.Mesh(
         new THREE.SphereGeometry(0.25, 20, 20),
         new THREE.MeshStandardMaterial({
             emissive: 'white',
-            emissiveMap: moonTexture
+            emissiveMap: canvasTextureMod.randomGrid(['0', 'r1', 'r1'])
         }));
 moon.add(new THREE.PointLight(0x0040ff, 1));
 scene.add(moon);
