@@ -34,14 +34,20 @@
     var world = WorldMod.create({
             MATERIALS_GROUND: MATERIALS_GROUND,
             MATERIALS_TREE: MATERIALS_TREE,
-            MATERIALS_LIGHTS: MATERIALS_LIGHTS
+            MATERIALS_LIGHTS: MATERIALS_LIGHTS,
+            lightsDPSY: 20
         });
     scene.add(world);
 
-    var world2 = WorldMod.create();
+    var world2 = WorldMod.create({
+            lightsDPSY: 10
+        });
     world2.position.set(-28, -3, -5);
     scene.add(world2);
-    var world3 = WorldMod.create();
+    var world3 = WorldMod.create({
+            lightsDPSY: 20,
+            lightsDPSZ: 5
+        });
     world3.position.set(-15, -20, -50);
     scene.add(world3);
 

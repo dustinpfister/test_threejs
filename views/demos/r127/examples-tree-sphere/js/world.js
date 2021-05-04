@@ -81,9 +81,9 @@
         world.userData.lights = createLights(opt.MATERIALS_LIGHTS);
         world.add(world.userData.lights);
         world.userData.lightsDPS = {
-            x: 0,
-            y: 20,
-            z: 5
+            x: opt.lightsDPSX || 0,
+            y: opt.lightsDPSY || 0,
+            z: opt.LIGHTSDPSZ || 0
         }
         return world;
     };
