@@ -80,16 +80,26 @@
         world.add(trees2);
         world.userData.lights = createLights(opt.MATERIALS_LIGHTS);
         world.add(world.userData.lights);
+        world.userData.lightsDPS = {
+            x: 0,
+            y: 20,
+            z: 5
+        }
         return world;
     };
 
     api.update = function (world, secs) {
+        var ud = world.userData;
         world.rotation.y += Math.PI / 180 * 5 * secs;
         world.rotation.y %= Math.PI * 2;
-        world.userData.lights.rotation.y += Math.PI / 180 * 5 * secs;
-        world.userData.lights.rotation.z += Math.PI / 180 * 20 * secs;
-        world.userData.lights.rotation.y %= Math.PI * 2;
-        world.userData.lights.rotation.z %= Math.PI * 2;
+
+        var lights = ud.lights;
+        lights.rotation.x += Math.PI / 180 * ud.lightsDPS.x * secs;
+        lights.rotation.y += Math.PI / 180 * ud.lightsDPS.y * secs;
+        lights.rotation.z += Math.PI / 180 * ud.lightsDPS.z * secs;
+        lights.rotation.x %= Math.PI * 2;
+        lights.rotation.y %= Math.PI * 2;
+        lights.rotation.z %= Math.PI * 2;
     };
 
     return api;

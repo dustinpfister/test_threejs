@@ -12,7 +12,7 @@
         })
     };
     var MATERIALS_LIGHTS = {
-        sun: new THREE.MeshBasicMaterial({
+        sun: new THREE.MeshStandardMaterial({
             emissive: 'white',
             emissiveMap: canvasTextureMod.randomGrid(['r1', 'r1', '0'])
         }),
