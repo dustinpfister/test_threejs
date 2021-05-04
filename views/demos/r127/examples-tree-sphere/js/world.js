@@ -1,37 +1,20 @@
 (function (api) {
 
     var MATERIALS_TREE = {
-        sphere: new THREE.MeshBasicMaterial({
-            color: 0x00ff80,
-            //map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 32, 32, 150),
-            side: THREE.DoubleSide
-        }),
-        trunk: new THREE.MeshBasicMaterial({
-            color: 0xffaf80,
-            //map: canvasTextureMod.randomGrid(['r1', 'r1', '64'], 32, 32, 150),
-            side: THREE.DoubleSide
-        })
+        sphere: new THREE.MeshNormalMaterial(),
+        trunk: new THREE.MeshNormalMaterial()
     };
 
     var MATERIALS_LIGHTS = {
-        sun: new THREE.MeshBasicMaterial({
-            emissive: 'white',
-            //emissiveMap: canvasTextureMod.randomGrid(['r1', 'r1', '0'])
-        }),
-        moon: new THREE.MeshStandardMaterial({
-            emissive: 'white',
-            //emissiveMap: canvasTextureMod.randomGrid(['0', 'r1', 'ri'])
-        })
+        sun: new THREE.MeshNormalMaterial(),
+        moon: new THREE.MeshNormalMaterial()
     };
 
     var MATERIALS_GROUND = {
-        grass: new THREE.MeshBasicMaterial({
-            color: 'white',
-            //map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 128, 125, 200),
-        })
+        grass: new THREE.MeshNormalMaterial()
     };
 
-    var createTrees = function (count, radius) {
+    var createTrees = function (count, radius, MATERIALS_TREE) {
         count = count === undefined ? 5 : count;
         radius = radius === undefined ? 4 : radius;
         var group = new THREE.Group();
@@ -78,13 +61,19 @@
 
     api.create = function (opt) {
         opt = opt || {};
+        opt.MATERIALS_GROUND = opt.MATERIALS_GROUND || MATERIALS_GROUND;
+        opt.MATERIALS_TREE = opt.MATERIALS_TREE || MATERIALS_TREE;
+        opt.MATERIALS_LIGHTS = opt.MATERIALS_LIGHTS || MATERIALS_LIGHTS;
+
         var world = new THREE.Mesh(
                 new THREE.SphereGeometry(4, 30, 30),
-                MATERIALS_GROUND.grass);
-        var trees = createTrees(8);
+                opt.MATERIALS_GROUND.grass);
+
+        var trees = createTrees(8, 4, opt.MATERIALS_TREE);
         trees.rotation.z = Math.PI / 180 * 0;
         world.add(trees);
-        var trees2 = createTrees(8);
+
+        var trees2 = createTrees(8, 4, opt.MATERIALS_TREE);
         trees2.rotation.y = Math.PI / 180 * 20;
         trees2.rotation.x = Math.PI / 180 * 0;
         trees2.rotation.z = Math.PI / 180 * 90;

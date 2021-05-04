@@ -4,7 +4,6 @@
     var materials_default = {
         sphere: new THREE.MeshBasicMaterial({
             color: 0x00ff00,
-            //map: canvasTextureMod.randomGrid(['r1', '0', '0'], 64, 128, 255),
             side: THREE.DoubleSide
         }),
         trunk: new THREE.MeshBasicMaterial({

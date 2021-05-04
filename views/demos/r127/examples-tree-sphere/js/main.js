@@ -1,10 +1,10 @@
 var MATERIALS_TREE = {
-    sphere: new THREE.MeshBasicMaterial({
-        color: 0x00ff80,
+    sphere: new THREE.MeshStandardMaterial({
+        //color: 0x00ff80,
         map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 32, 32, 150),
         side: THREE.DoubleSide
     }),
-    trunk: new THREE.MeshBasicMaterial({
+    trunk: new THREE.MeshStandardMaterial({
         color: 0xffaf80,
         map: canvasTextureMod.randomGrid(['r1', 'r1', '64'], 32, 32, 150),
         side: THREE.DoubleSide
@@ -23,7 +23,7 @@ var MATERIALS_LIGHTS = {
 };
 
 var MATERIALS_GROUND = {
-    grass: new THREE.MeshBasicMaterial({
+    grass: new THREE.MeshStandardMaterial({
         color: 'white',
         map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 128, 125, 200),
     })
@@ -32,7 +32,11 @@ var MATERIALS_GROUND = {
 // creating a scene
 var scene = new THREE.Scene();
 
-var world = WorldMod.create();
+var world = WorldMod.create({
+        MATERIALS_GROUND: MATERIALS_GROUND,
+        MATERIALS_TREE: MATERIALS_TREE,
+        MATERIALS_LIGHTS: MATERIALS_LIGHTS
+    });
 scene.add(world);
 
 var world2 = WorldMod.create();
