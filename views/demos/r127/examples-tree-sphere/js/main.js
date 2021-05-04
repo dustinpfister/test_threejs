@@ -47,22 +47,25 @@ var createTrees = function (count, radius) {
 };
 
 var createLights = function () {
-   
     // sun, and moon
+    var lights = new THREE.Group();
     var sun = new THREE.Mesh(
             new THREE.SphereGeometry(1, 20, 20),
             MATERIALS_LIGHTS.sun);
     sun.add(new THREE.PointLight(0xffff00, 1));
-    world.add(sun);
+    sun.position.set(11, 0, 0);
+    lights.add(sun);
     var moon = new THREE.Mesh(
             new THREE.SphereGeometry(0.25, 20, 20),
             MATERIALS_LIGHTS.moon);
     moon.add(new THREE.PointLight(0x0040ff, 1));
-    world.add(moon);
+    moon.position.set(-11, 0, 0);
+    lights.add(moon);
     // add AmbientLight
     var ambientLight = new THREE.AmbientLight(0xffffff);
     ambientLight.intensity = 0.1;
-    world.add(ambientLight);
+    lights.add(ambientLight);
+    return lights;
 };
 
 var createWorld = function () {
@@ -79,6 +82,7 @@ var createWorld = function () {
     trees2.rotation.x = Math.PI / 180 * 0;
     trees2.rotation.z = Math.PI / 180 * 90;
     world.add(trees2);
+    world.add(createLights());
     return world;
 };
 
@@ -87,26 +91,6 @@ var scene = new THREE.Scene();
 
 var world = createWorld();
 scene.add(world);
-
-// sun, and moon
-var lights = new THREE.Group();
-var sun = new THREE.Mesh(
-        new THREE.SphereGeometry(1, 20, 20),
-        MATERIALS_LIGHTS.sun);
-sun.add(new THREE.PointLight(0xffff00, 1));
-sun.position.set(11,0,0);
-lights.add(sun);
-var moon = new THREE.Mesh(
-        new THREE.SphereGeometry(0.25, 20, 20),
-        MATERIALS_LIGHTS.moon);
-moon.add(new THREE.PointLight(0x0040ff, 1));
-moon.position.set(-11,0,0);
-lights.add(moon);
-// add AmbientLight
-var ambientLight = new THREE.AmbientLight(0xffffff);
-ambientLight.intensity = 0.1;
-lights.add(ambientLight);
-world.add(lights);
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
