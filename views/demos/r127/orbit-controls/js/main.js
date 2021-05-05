@@ -23,13 +23,14 @@
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     // loop
-    function animate() {
-        requestAnimationFrame(animate);
+    var loop = function() {
+        requestAnimationFrame(loop);
+        // UPDATE CONTROLS
         controls.update();
         renderer.render(scene, camera);
     };
 
-    animate();
+    loop();
 
 }
     ());
