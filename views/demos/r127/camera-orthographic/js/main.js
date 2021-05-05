@@ -1,19 +1,20 @@
 
 (function () {
-
     // scene
     var scene = new THREE.Scene();
 
     // ORTHOGRAPHIC CAMERA
     var width = 3.2,
     height = 2.4,
+    near = 0.01,
+    far = 10,
     camera = new THREE.OrthographicCamera(
             width * -1,
             width,
             height,
             height * -1,
-            .01,
-            100);
+            near,
+            far);
     camera.position.set(4, 4, 4);
     camera.lookAt(0, 0, 0);
     camera.zoom = .75;
@@ -45,7 +46,6 @@
         var now = new Date(),
         secs = (now - lt) / 1000,
         per = frame / maxFrame;
-
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
             renderer.render(scene, camera);
