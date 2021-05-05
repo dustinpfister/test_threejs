@@ -6,13 +6,17 @@
     // ORTHOGRAPHIC CAMERA
     var width = 3.2,
     height = 2.4,
+    left = width * -1,
+    right = width,
+    top = height,
+    bottom = height * -1,
     near = 0.01,
     far = 10,
     camera = new THREE.OrthographicCamera(
-            width * -1,
-            width,
-            height,
-            height * -1,
+            left,
+            right,
+            top,
+            bottom,
             near,
             far);
     camera.position.set(4, 4, 4);
