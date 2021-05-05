@@ -7,7 +7,7 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 100);
-    camera.position.set(4, 4, 4);
+    camera.position.set(0, 0, 10);
     camera.lookAt(0, 0, 0);
 
     // Something to look at
@@ -31,12 +31,17 @@
     var flyControls = new THREE.FlyControls(camera, renderer.domElement);
     flyControls.autoForward = false;
     flyControls.dragToLook = true;
-    flyControls.rollSpeed = 0.1;
+    flyControls.movementSpeed = 10;
+    flyControls.rollSpeed = 1;
     // loop
+    var lt = new Date();
     var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
+        lt = now;
         requestAnimationFrame(loop);
         // UPDATE CONTROLS
-        flyControls.update(0.125);
+        flyControls.update(1 * secs);
         renderer.render(scene, camera);
     };
 
