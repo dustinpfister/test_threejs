@@ -20,7 +20,8 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // Orbit Controls The DOM element must now be given as a second argument
+    // FLY CONTROLS the camera is given as the first argument, and 
+    // the DOM element must now be given as a second argument
     var controls = new THREE.FlyControls(camera, renderer.domElement);
 
     // loop
