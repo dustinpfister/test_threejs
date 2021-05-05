@@ -28,15 +28,37 @@
             boxCount: 25
         });
     scene.add(stack.group);
-
     // render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-
+    // loop
+    var frame = 0,
+    maxFrame = 200,
+    fps = 30,
+    radian,
+    x,
+    y,
+    z,
+    lt = new Date();
     var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000,
+        per = frame / maxFrame;
+
         requestAnimationFrame(loop);
-        renderer.render(scene, camera);
+        if (secs > 1 / fps) {
+            renderer.render(scene, camera);
+            radian = Math.PI * 2 * per;
+            x = Math.cos(radian) * 5;
+            y = 3 + Math.sin(radian) * 2;
+            z = Math.sin(radian) * 5;
+            camera.position.set(x, y, z);
+            camera.lookAt(0, 0, 0);
+            lt = now;
+            frame += fps * secs;
+            frame %= maxFrame;
+        }
     };
 
     loop();
