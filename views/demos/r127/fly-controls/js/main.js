@@ -14,7 +14,7 @@
     var groundBox = new THREE.Mesh(
             new THREE.BoxGeometry(10, 1, 10),
             new THREE.MeshDepthMaterial());
-    groundBox.position.set(0,-1,0);
+    groundBox.position.set(0, -1, 0);
     scene.add(groundBox);
     var box = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -28,13 +28,15 @@
 
     // FLY CONTROLS the camera is given as the first argument, and
     // the DOM element must now be given as a second argument
-    var controls = new THREE.FlyControls(camera, renderer.domElement);
-
+    var flyControls = new THREE.FlyControls(camera, renderer.domElement);
+    flyControls.autoForward = false;
+    flyControls.dragToLook = true;
+    flyControls.rollSpeed = 0.1;
     // loop
     var loop = function () {
         requestAnimationFrame(loop);
         // UPDATE CONTROLS
-        controls.update(0.25);
+        flyControls.update(0.125);
         renderer.render(scene, camera);
     };
 
