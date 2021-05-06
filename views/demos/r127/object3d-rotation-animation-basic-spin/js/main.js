@@ -1,11 +1,7 @@
 (function () {
-    // scene is based OFF of Object3D
+    // scene and grid helper
     var scene = new THREE.Scene();
-
-    // GRID HELPER IS ALSO BASED OFF OF OBJECT3D
-    // so then I can use the scale property
-    var gridHelper = new THREE.GridHelper(4, 4);
-    gridHelper.scale.set(2.5, 2.5, 2.5);
+    var gridHelper = new THREE.GridHelper(5, 5);
     scene.add(gridHelper);
 
     // box is a MESH base off of OBJECT3D
@@ -14,17 +10,10 @@
             new THREE.MeshNormalMaterial());
     scene.add(box);
 
-    // sphere is a MESH base off of OBJECT3D
-    var sphere = new THREE.Mesh(
-            new THREE.SphereGeometry(0.25, 20, 20),
-            new THREE.MeshNormalMaterial());
-    scene.add(sphere);
-
-    // camera is based off of OBJECT3D
+    // camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(10, 10, 10);
+    camera.position.set(5, 5, 5);
     camera.lookAt(0, 0, 0);
-
     // render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -36,16 +25,14 @@
         maxFrame: 100,
         fps: 30,
         lt: new Date(),
-        vector: new THREE.Vector3(3, 0, 0) // and instance of vercor3
+        euler: new THREE.Euler(0, 0, 0)
     };
     // update
     var update = function (state, secs) {
-        state.vector.z = -5 + 10 * state.bias;
-        // USING THE state.vector instance of Vector3 to set the position
-        // of the sphere
-        sphere.position.copy(state.vector);
-        // and also making the box look at the state.vercor value
-        box.lookAt(state.vector);
+        // DOING A SPIN
+        state.euler.y = Math.PI * 2 * state.per;
+        state.euler.z = Math.PI * 8 * state.per;
+        box.rotation.copy(state.euler);
     };
     // loop
     var loop = function () {
