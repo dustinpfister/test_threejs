@@ -1,13 +1,14 @@
 (function () {
     // scene and grid helper
     var scene = new THREE.Scene();
-    var gridHelper = new THREE.GridHelper(6, 6);
+    var gridHelper = new THREE.GridHelper(5, 5);
     scene.add(gridHelper);
 
     // box is a MESH base off of OBJECT3D
     var box = new THREE.Mesh(
-            new THREE.BoxGeometry(3, 3, 3),
+            new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
+    box.position.set(0, 0.5, 0);
     scene.add(box);
 
     // camera
@@ -25,13 +26,22 @@
         maxFrame: 200,
         fps: 30,
         lt: new Date(),
-        euler: new THREE.Euler(0, 0, 0)
+        euler: new THREE.Euler(0, 0, 0),
+        vector: new THREE.Vector3(0, 0, 0)
+    };
+    var deg = function (deg) {
+        return Math.PI / 180 * deg;
     };
     // update
     var update = function (state, secs) {
-        // DOING A SPIN ALONG THE Z AXIS
-        state.euler.z = Math.PI * 8 * state.per;
-        box.rotation.copy(state.euler);
+
+        state.euler.x = deg(-5) + deg(10) * Math.random();
+        state.euler.y = deg(-5) + deg(10) * Math.random();
+        state.euler.z = deg(-5) + deg(10) * Math.random();
+
+        scene.rotation.copy(state.euler);
+        scene.position.copy(state.vector);
+
     };
     // loop
     var loop = function () {
