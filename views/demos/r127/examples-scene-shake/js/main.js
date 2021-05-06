@@ -29,9 +29,10 @@
         lt: new Date(),
         shake: ShakeMod.create()
     };
-    
+
     // update
     var update = function (state, secs) {
+        ShakeMod.roll(state.shake);
         ShakeMod.applyToObject3d(state.shake, scene);
 
     };
