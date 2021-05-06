@@ -19,6 +19,7 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // state object
+    var canvas = renderer.domElement;
     var state = {
         frame: 0,
         maxFrame: 3000,
@@ -27,25 +28,40 @@
         shake: ShakeMod.create({
             deg: 5.25,
             pos: 0.1,
-            active: true
+            active: false
         })
     };
 
     // events
     var pointerDown = function () {
-        state.shake.active = false;
-    };
-    var pointerUp = function () {
         state.shake.active = true;
     };
+    var pointerUp = function () {
+        state.shake.active = false;
+    };
+    var pointerMove = function (shake, canvas) {
+        return function (e) {
+            var canvas = e.target,
+            box = canvas.getBoundingClientRect(),
+            x = e.clientX - box.left,
+            y = e.clientY - box.top;
+            if (e.changedTouches) {
+                x = e.changedTouches[0].clientX - box.left;
+                y = e.changedTouches[0].clientY - box.top;
+            };
+            shake.pos = x / canvas.width * 0.95;
+            shake.deg = y / canvas.height * 18;
+        };
+    };
     renderer.domElement.addEventListener('mousedown', pointerDown);
+    renderer.domElement.addEventListener('mousemove', pointerMove(state.shake, canvas));
     renderer.domElement.addEventListener('mouseup', pointerUp);
 
     // update
     var update = function (state, secs) {
         if (state.shake.active) {
-            state.shake.pos = 0.05 + 1.9 * state.bias;
-            state.shake.deg = 0.50 + 18 * state.bias;
+            //state.shake.pos = 0.05 + 1.9 * state.bias;
+            //state.shake.deg = 0.50 + 18 * state.bias;
             ShakeMod.roll(state.shake);
         } else {
             state.frame = 0;
