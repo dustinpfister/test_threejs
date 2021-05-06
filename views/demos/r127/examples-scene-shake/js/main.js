@@ -24,12 +24,12 @@
     // state object
     var state = {
         frame: 0,
-        maxFrame: 200,
+        maxFrame: 3000,
         fps: 30,
         lt: new Date(),
         shake: ShakeMod.create({
-            deg: 0,
-            pos: 1,
+            deg: 5.25,
+            pos: 0.1,
             active: true
         })
     };
@@ -43,7 +43,14 @@
     renderer.domElement.addEventListener('mouseup', pointerUp);
     // update
     var update = function (state, secs) {
-        ShakeMod.roll(state.shake);
+
+        if (state.shake.active) {
+            state.shake.pos = 0.05 + 1.9 * state.bias;
+            state.shake.deg = 0.50 + 18 * state.bias;
+            ShakeMod.roll(state.shake);
+        } else {
+            state.frame = 0;
+        }
         //ShakeMod.update(state.shake, secs);
         ShakeMod.applyToObject3d(state.shake, scene);
     };
