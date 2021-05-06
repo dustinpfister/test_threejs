@@ -14,17 +14,13 @@
     // a mesh that inherits from Object3D
     var low = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshStandardMaterial({
-                emissive: 0x002a00
-            }));
+            new THREE.MeshNormalMaterial());
     low.position.y = -1;
     obj.add(low);
 
     var high = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshStandardMaterial({
-                emissive: 0x00002a
-            }));
+            new THREE.MeshNormalMaterial());
     high.rotation.set(0, 1, 0);
     obj.add(high);
 
