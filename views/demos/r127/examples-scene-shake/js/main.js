@@ -41,6 +41,7 @@
     };
     var pointerMove = function (shake, canvas) {
         return function (e) {
+            e.preventDefault();
             var canvas = e.target,
             box = canvas.getBoundingClientRect(),
             x = e.clientX - box.left,
@@ -49,13 +50,21 @@
                 x = e.changedTouches[0].clientX - box.left;
                 y = e.changedTouches[0].clientY - box.top;
             };
+            // Adjust pos and deg based on pointer position
             shake.pos = x / canvas.width * 0.95;
             shake.deg = y / canvas.height * 18;
         };
     };
+    // mouse
     renderer.domElement.addEventListener('mousedown', pointerDown);
     renderer.domElement.addEventListener('mousemove', pointerMove(state.shake, canvas));
     renderer.domElement.addEventListener('mouseup', pointerUp);
+    renderer.domElement.addEventListener('mouseout', pointerUp);
+    // touch
+    renderer.domElement.addEventListener('touchstart', pointerDown);
+    renderer.domElement.addEventListener('touchmove', pointerMove(state.shake, canvas));
+    renderer.domElement.addEventListener('touchend', pointerUp);
+    renderer.domElement.addEventListener('touchcancel', pointerUp);
 
     // update
     var update = function (state, secs) {
