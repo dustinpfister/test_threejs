@@ -27,7 +27,8 @@
         maxFrame: 200,
         fps: 30,
         lt: new Date(),
-        shakePos: 0.25,
+        shakePos: 0.5,
+        shakeDeg: 5,
         euler: new THREE.Euler(0, 0, 0),
         vector: new THREE.Vector3(0, 0, 0)
     };
@@ -41,12 +42,17 @@
         max = state.shakePos * 2;
         return min + max * Math.random();
     };
+    // random pos value for an axis
+    var rndDeg = function (state) {
+        var min = deg(state.shakeDeg * -1),
+        max = deg(state.shakeDeg * 2);
+        return min + max * Math.random();
+    };
     // update
     var update = function (state, secs) {
-
-        state.euler.x = deg(-10) + deg(20) * Math.random();
-        state.euler.y = deg(-10) + deg(20) * Math.random();
-        state.euler.z = deg(-10) + deg(20) * Math.random();
+        state.euler.x = rndDeg(state);
+        state.euler.y = rndDeg(state);
+        state.euler.z = rndDeg(state);
 
         state.vector.x = rndPos(state);
         state.vector.y = rndPos(state);
