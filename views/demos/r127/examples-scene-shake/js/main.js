@@ -31,8 +31,15 @@
         euler: new THREE.Euler(0, 0, 0),
         vector: new THREE.Vector3(0, 0, 0)
     };
+    // degree to radian
     var deg = function (deg) {
         return Math.PI / 180 * deg;
+    };
+    // random pos value for an axis
+    var rndPos = function (state) {
+        var min = state.shakePos * -1,
+        max = state.shakePos * 2;
+        return min + max * Math.random();
     };
     // update
     var update = function (state, secs) {
@@ -41,11 +48,9 @@
         state.euler.y = deg(-10) + deg(20) * Math.random();
         state.euler.z = deg(-10) + deg(20) * Math.random();
 
-        var min = state.shakePos * -1,
-        max = state.shakePos * 2;
-        state.vector.x = min + max * Math.random();
-        state.vector.y = min + max * Math.random();
-        state.vector.z = min + max * Math.random();
+        state.vector.x = rndPos(state);
+        state.vector.y = rndPos(state);
+        state.vector.z = rndPos(state);
 
         scene.rotation.copy(state.euler);
         scene.position.copy(state.vector);
