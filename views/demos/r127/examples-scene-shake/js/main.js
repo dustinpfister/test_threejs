@@ -35,9 +35,12 @@
     // update
     var update = function (state, secs) {
 
-        state.euler.x = deg(-5) + deg(10) * Math.random();
-        state.euler.y = deg(-5) + deg(10) * Math.random();
-        state.euler.z = deg(-5) + deg(10) * Math.random();
+        state.euler.x = deg(-2.5) + deg(5) * Math.random();
+        state.euler.y = deg(-2.5) + deg(5) * Math.random();
+        state.euler.z = deg(-2.5) + deg(5) * Math.random();
+        state.vector.x = -0.5 + 1 * Math.random();
+        state.vector.y = -0.5 + 1 * Math.random();
+        state.vector.z = -0.5 + 1 * Math.random();
 
         scene.rotation.copy(state.euler);
         scene.position.copy(state.vector);
