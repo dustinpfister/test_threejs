@@ -2,13 +2,15 @@
     // scene
     var scene = new THREE.Scene();
 
+    // grid helper
     var gridHelper = new THREE.GridHelper(10, 10);
     scene.add(gridHelper);
 
-    var mesh = new THREE.Mesh(
+    // mesh
+    var box = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
-    scene.add(mesh);
+    scene.add(box);
 
     // camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
@@ -20,6 +22,7 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
+    // state object
     var state = {
         frame: 0,
         maxFrame: 100,
@@ -27,14 +30,12 @@
         lt: new Date(),
         vector: new THREE.Vector3(3, 0, 0)
     };
-
+    // update
     var update = function (state, secs) {
-
         state.vector.z = -10 + 20 * state.bias;
-        mesh.lookAt(state.vector);
-
+        box.lookAt(state.vector);
     };
-
+    // loop
     var loop = function () {
         state.per = state.frame / state.maxFrame;
         state.bias = 1 - Math.abs(state.per - 0.5) / 0.5;
@@ -49,7 +50,6 @@
             state.lt = now;
         }
     };
-
     loop();
 }
     ());
