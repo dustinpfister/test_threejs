@@ -27,10 +27,12 @@
         maxFrame: 200,
         fps: 30,
         lt: new Date(),
-        shakePos: 0.5,
-        shakeDeg: 5,
-        euler: new THREE.Euler(0, 0, 0),
-        vector: new THREE.Vector3(0, 0, 0)
+        shake: {
+            pos: 0.5,
+            deg: 5,
+            euler: new THREE.Euler(0, 0, 0),
+            vector: new THREE.Vector3(0, 0, 0)
+        }
     };
     // degree to radian
     var deg = function (deg) {
@@ -38,28 +40,29 @@
     };
     // random pos value for an axis
     var rndPos = function (state) {
-        var min = state.shakePos * -1,
-        max = state.shakePos * 2;
+        var min = state.pos * -1,
+        max = state.pos * 2;
         return min + max * Math.random();
     };
     // random pos value for an axis
     var rndDeg = function (state) {
-        var min = deg(state.shakeDeg * -1),
-        max = deg(state.shakeDeg * 2);
+        var min = deg(state.deg * -1),
+        max = deg(state.deg * 2);
         return min + max * Math.random();
     };
     // update
     var update = function (state, secs) {
-        state.euler.x = rndDeg(state);
-        state.euler.y = rndDeg(state);
-        state.euler.z = rndDeg(state);
+        var shake = state.shake;
+        shake.euler.x = rndDeg(shake);
+        shake.euler.y = rndDeg(shake);
+        shake.euler.z = rndDeg(shake);
 
-        state.vector.x = rndPos(state);
-        state.vector.y = rndPos(state);
-        state.vector.z = rndPos(state);
+        shake.vector.x = rndPos(shake);
+        shake.vector.y = rndPos(shake);
+        shake.vector.z = rndPos(shake);
 
-        scene.rotation.copy(state.euler);
-        scene.position.copy(state.vector);
+        scene.rotation.copy(shake.euler);
+        scene.position.copy(shake.vector);
 
     };
     // loop
