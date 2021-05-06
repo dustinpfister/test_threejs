@@ -27,12 +27,7 @@
         maxFrame: 200,
         fps: 30,
         lt: new Date(),
-        shake: {
-            pos: 0.5,
-            deg: 5,
-            euler: new THREE.Euler(0, 0, 0),
-            vector: new THREE.Vector3(0, 0, 0)
-        }
+        shake: ShakeMod.create()
     };
     // degree to radian
     var deg = function (deg) {
