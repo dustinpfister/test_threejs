@@ -27,14 +27,16 @@
         maxFrame: 200,
         fps: 30,
         lt: new Date(),
-        shake: ShakeMod.create()
+        shake: ShakeMod.create({
+            deg: 0,
+            pos: 1
+        })
     };
-
     // update
     var update = function (state, secs) {
         ShakeMod.roll(state.shake);
+        //ShakeMod.update(state.shake, secs);
         ShakeMod.applyToObject3d(state.shake, scene);
-
     };
     // loop
     var loop = function () {
