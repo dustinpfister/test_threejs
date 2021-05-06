@@ -1,12 +1,12 @@
 (function () {
     // scene and grid helper
     var scene = new THREE.Scene();
-    var gridHelper = new THREE.GridHelper(5, 5);
+    var gridHelper = new THREE.GridHelper(6, 6);
     scene.add(gridHelper);
 
     // box is a MESH base off of OBJECT3D
     var box = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.BoxGeometry(3, 3, 3),
             new THREE.MeshNormalMaterial());
     scene.add(box);
 
@@ -22,15 +22,14 @@
     // state object
     var state = {
         frame: 0,
-        maxFrame: 100,
+        maxFrame: 200,
         fps: 30,
         lt: new Date(),
         euler: new THREE.Euler(0, 0, 0)
     };
     // update
     var update = function (state, secs) {
-        // DOING A SPIN
-        state.euler.y = Math.PI * 2 * state.per;
+        // DOING A SPIN ALONG THE Z AXIS
         state.euler.z = Math.PI * 8 * state.per;
         box.rotation.copy(state.euler);
     };
