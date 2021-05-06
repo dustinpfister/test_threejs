@@ -6,15 +6,21 @@
     var gridHelper = new THREE.GridHelper(10, 10);
     scene.add(gridHelper);
 
-    // mesh
+    // box
     var box = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
     scene.add(box);
 
+    // sphere
+    var sphere = new THREE.Mesh(
+            new THREE.SphereGeometry(0.25, 20, 20),
+            new THREE.MeshNormalMaterial());
+    scene.add(sphere);
+
     // camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(5, 5, 5);
+    camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
 
     // render
@@ -32,7 +38,8 @@
     };
     // update
     var update = function (state, secs) {
-        state.vector.z = -10 + 20 * state.bias;
+        state.vector.z = -5 + 10 * state.bias;
+        sphere.position.copy(state.vector);
         box.lookAt(state.vector);
     };
     // loop
