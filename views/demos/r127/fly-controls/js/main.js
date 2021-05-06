@@ -29,9 +29,8 @@
     // FLY CONTROLS the camera is given as the first argument, and
     // the DOM element must now be given as a second argument
     var flyControls = new THREE.FlyControls(camera, renderer.domElement);
-    flyControls.autoForward = false;
     flyControls.dragToLook = true;
-    flyControls.movementSpeed = 10;
+    flyControls.movementSpeed = 3;
     flyControls.rollSpeed = 1;
     // loop
     var lt = new Date();
