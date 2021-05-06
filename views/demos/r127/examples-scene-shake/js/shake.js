@@ -25,12 +25,12 @@
             deg: opt.deg === undefined ? 2.25 : opt.deg,
             euler: new THREE.Euler(0, 0, 0),
             vector: new THREE.Vector3(0, 0, 0),
-            active: false
+            active: opt.active || false
         };
         return shake;
     };
 
-    // just make a roll, setting active flag true if it is not before hand
+    // just make a roll
     api.roll = function (shake) {
         shake.euler.x = rndDeg(shake);
         shake.euler.y = rndDeg(shake);
@@ -38,7 +38,6 @@
         shake.vector.x = rndPos(shake);
         shake.vector.y = rndPos(shake);
         shake.vector.z = rndPos(shake);
-        shake.active = true;
     };
 
     // apply a new shake to object3d

@@ -29,9 +29,18 @@
         lt: new Date(),
         shake: ShakeMod.create({
             deg: 0,
-            pos: 1
+            pos: 1,
+            active: true
         })
     };
+    var pointerDown = function () {
+        state.shake.active = false;
+    };
+    var pointerUp = function () {
+        state.shake.active = true;
+    };
+    renderer.domElement.addEventListener('mousedown', pointerDown);
+    renderer.domElement.addEventListener('mouseup', pointerUp);
     // update
     var update = function (state, secs) {
         ShakeMod.roll(state.shake);
