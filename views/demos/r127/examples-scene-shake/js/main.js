@@ -11,10 +11,11 @@
     box.position.set(0, 0.5, 0);
     scene.add(box);
 
-    // camera
+    // camera DO NOT ADD TO SCENE
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
     camera.position.set(5, 5, 5);
     camera.lookAt(0, 0, 0);
+
     // render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -26,6 +27,7 @@
         maxFrame: 200,
         fps: 30,
         lt: new Date(),
+        shakePos: 0.25,
         euler: new THREE.Euler(0, 0, 0),
         vector: new THREE.Vector3(0, 0, 0)
     };
@@ -35,12 +37,15 @@
     // update
     var update = function (state, secs) {
 
-        state.euler.x = deg(-2.5) + deg(5) * Math.random();
-        state.euler.y = deg(-2.5) + deg(5) * Math.random();
-        state.euler.z = deg(-2.5) + deg(5) * Math.random();
-        state.vector.x = -0.5 + 1 * Math.random();
-        state.vector.y = -0.5 + 1 * Math.random();
-        state.vector.z = -0.5 + 1 * Math.random();
+        state.euler.x = deg(-10) + deg(20) * Math.random();
+        state.euler.y = deg(-10) + deg(20) * Math.random();
+        state.euler.z = deg(-10) + deg(20) * Math.random();
+
+        var min = state.shakePos * -1,
+        max = state.shakePos * 2;
+        state.vector.x = min + max * Math.random();
+        state.vector.y = min + max * Math.random();
+        state.vector.z = min + max * Math.random();
 
         scene.rotation.copy(state.euler);
         scene.position.copy(state.vector);
