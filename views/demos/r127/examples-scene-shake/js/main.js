@@ -29,35 +29,10 @@
         lt: new Date(),
         shake: ShakeMod.create()
     };
-    // degree to radian
-    var deg = function (deg) {
-        return Math.PI / 180 * deg;
-    };
-    // random pos value for an axis
-    var rndPos = function (state) {
-        var min = state.pos * -1,
-        max = state.pos * 2;
-        return min + max * Math.random();
-    };
-    // random pos value for an axis
-    var rndDeg = function (state) {
-        var min = deg(state.deg * -1),
-        max = deg(state.deg * 2);
-        return min + max * Math.random();
-    };
+    
     // update
     var update = function (state, secs) {
-        var shake = state.shake;
-        shake.euler.x = rndDeg(shake);
-        shake.euler.y = rndDeg(shake);
-        shake.euler.z = rndDeg(shake);
-
-        shake.vector.x = rndPos(shake);
-        shake.vector.y = rndPos(shake);
-        shake.vector.z = rndPos(shake);
-
-        scene.rotation.copy(shake.euler);
-        scene.position.copy(shake.vector);
+        ShakeMod.applyToObject3d(state.shake, scene);
 
     };
     // loop
