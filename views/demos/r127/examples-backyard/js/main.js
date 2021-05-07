@@ -195,9 +195,7 @@ var cubeTextureLoaded = function (cubeTexture) {
 // LOAD CUBE TEXTURE
 var loadfail = false;
 new THREE.CubeTextureLoader()
-.setPath('./../../../img/cube/skybox/')
-//.load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg'],
-//.setPath('./../../../img/cube/milky/')
+.setPath('/img/cube/milky/')
 .load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg'],
     cubeTextureLoaded,
     function () {},
