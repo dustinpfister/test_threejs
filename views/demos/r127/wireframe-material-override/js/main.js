@@ -4,7 +4,7 @@
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0xafafaf);
 
-    var material_override = new THREE.MeshDepthMaterial({
+    var material_override = new THREE.MeshNormalMaterial({
             wireframe: true
         });
     scene.overrideMaterial = material_override;
@@ -17,7 +17,7 @@
 
     var mesh2 = new THREE.Mesh(
             new THREE.BoxGeometry(0.5, 0.5, 0.5),
-            new THREE.MeshDepthMaterial());
+            new THREE.MeshNormalMaterial());
     mesh2.position.set(-1.5, 0, 0);
     scene.add(mesh2);
 
