@@ -2,9 +2,10 @@
 
     // Scene
     var scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xafafaf);
+    scene.background = new THREE.Color(0x2f2f2f);
 
-    var material_override = new THREE.MeshNormalMaterial({
+    var material_override = new THREE.MeshBasicMaterial({
+            color: new THREE.Color('lime'),
             wireframe: true
         });
     scene.overrideMaterial = material_override;
