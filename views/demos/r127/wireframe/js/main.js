@@ -15,9 +15,7 @@ var createCanvasTexture = function (draw) {
     canvas.width = 16;
     canvas.height = 16;
     draw = draw || function (ctx, canvas) {
-        //ctx.lineWidth = 1;
-        //ctx.fillStyle = 'blue';
-        //ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = '#ffffff';
         ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
     };
@@ -44,6 +42,7 @@ var createCanvasWireCube = function () {
 
 // Scene
 var scene = new THREE.Scene();
+scene.background = new THREE.Color('blue');
 
 // Camera
 var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
