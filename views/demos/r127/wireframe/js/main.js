@@ -17,6 +17,7 @@ var createCanvasTexture = function (draw) {
     draw = draw || function (ctx, canvas) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 3;
         ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
     };
     draw(ctx, canvas);
@@ -34,7 +35,7 @@ var createCanvasWireCube = function () {
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshBasicMaterial({
             transparent: true,
-            opacity: 0.2,
+            opacity: 0.8,
             map: texture,
             side: THREE.DoubleSide
         }));
