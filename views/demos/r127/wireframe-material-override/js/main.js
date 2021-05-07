@@ -2,7 +2,12 @@
 
     // Scene
     var scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0000ff);
+    scene.background = new THREE.Color(0xafafaf);
+
+    var material_override = new THREE.MeshDepthMaterial({
+            wireframe: true
+        });
+    scene.overrideMaterial = material_override;
 
     // mesh1
     var mesh = new THREE.Mesh(
@@ -30,12 +35,23 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     var lt = new Date(),
+    time = 0,
+    switchTime = 1.0,
     fps = 30;
     var loop = function () {
         var now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
+            time += secs;
+            if (time >= switchTime) {
+                if (scene.overrideMaterial) {
+                    scene.overrideMaterial = null;
+                } else {
+                    scene.overrideMaterial = material_override;
+                }
+                time %= switchTime;
+            }
             renderer.render(scene, camera);
             lt = now;
         }
