@@ -18,6 +18,9 @@
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
     camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
+    var light = new THREE.PointLight(0xffffff, 1);
+    camera.add(light)
+    scene.add(camera);
     // Render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
