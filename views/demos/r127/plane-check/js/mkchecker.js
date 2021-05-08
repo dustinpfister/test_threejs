@@ -26,14 +26,23 @@ var mkCheckerGeo = function (w, h, sw, sh) {
     h = h === undefined ? 16 : h;
     sw = sw === undefined ? 8 : sw;
     sh = sh === undefined ? 8 : sh;
-    console.log(sh);
     var planeGeo = new THREE.PlaneGeometry(w, h, sw, sh);
 
     var points = planeGeo.attributes.position.array;
     var i = 0;
-    while (i < points.length * 2) {
-        var tile = Math.floor(i / 2);
-        var mi = tile % 2;
+    var vertCount = points.length / 3;
+    console.log(points.length);
+    console.log(vertCount);
+    console.log(points.length * 1.201);
+    while (i < points.length * 1.201) {
+        var tileIndex = Math.floor(i / 6);
+        //console.log(tileIndex)
+        if (sw % 2) {
+            var mi = tileIndex % 2;
+        } else {
+            var y = Math.floor(tileIndex / sw);
+            var mi = y % 2 ? 1 - tileIndex % 2 : tileIndex % 2
+        }
         planeGeo.addGroup(i, 3, mi);
         planeGeo.addGroup(i + 3, 3, mi);
         i += 6;
@@ -41,11 +50,13 @@ var mkCheckerGeo = function (w, h, sw, sh) {
 
     //planeGeo.addGroup(0, 3, 0);
     //planeGeo.addGroup(3, 3, 0);
+
     //planeGeo.addGroup(6, 3, 1);
     //planeGeo.addGroup(9, 3, 1);
+
     //planeGeo.addGroup(12, 3, 0);
     //planeGeo.addGroup(15, 3, 0);
-    //planeGeo.addGroup(0, 6, 1);
+
     return planeGeo;
 };
 
