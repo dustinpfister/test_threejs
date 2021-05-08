@@ -5,8 +5,19 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer({
         antialias: true
     });
-renderer.setSize(320, 240);
+renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
+
+// add a plane
+var plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(5, 5, 1, 1),
+        new THREE.MeshBasicMaterial({
+            color: 0x0000ff,
+            side: THREE.DoubleSide
+        }));
+plane.position.set(-10, 0, 0);
+plane.rotation.set(-Math.PI * 0.5, 0, 0);
+scene.add(plane);
 
 // standard checker
 var check = mkChecker({
@@ -14,15 +25,5 @@ var check = mkChecker({
         h: 5
     });
 scene.add(check);
-
-// odd checker
-var oddCheck = mkChecker({
-        w: 4,
-        h: 5,
-        sw: 3,
-        sh: 5
-    });
-oddCheck.position.set(8, 0, 0);
-scene.add(oddCheck);
 
 renderer.render(scene, camera);
