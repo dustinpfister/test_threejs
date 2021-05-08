@@ -29,14 +29,25 @@ var mkCheckerGeo = function (w, h, sw, sh) {
     console.log(sh);
     var planeGeo = new THREE.PlaneGeometry(w, h, sw, sh);
 
-    planeGeo.addGroup(0, 3, 0);
-    planeGeo.addGroup(3, 3, 0);
+    var points = planeGeo.attributes.position.array;
 
-    planeGeo.addGroup(6, 3, 1);
-    planeGeo.addGroup(9, 3, 1);
+    var i = 0;
+    while (i < points.length + 1) {
+        var tile = Math.floor(i / 2);
+        var mi = tile % 2;
+        planeGeo.addGroup(i, 3, 0);
+        planeGeo.addGroup(i + 3, 3, 1);
+        i += 6;
+    }
 
-    planeGeo.addGroup(12, 3, 0);
-    planeGeo.addGroup(15, 3, 0);
+    //planeGeo.addGroup(0, 3, 0);
+    //planeGeo.addGroup(3, 3, 0);
+
+    //planeGeo.addGroup(6, 3, 1);
+    //planeGeo.addGroup(9, 3, 1);
+
+    //planeGeo.addGroup(12, 3, 0);
+    //planeGeo.addGroup(15, 3, 0);
 
     //planeGeo.addGroup(0, 6, 1);
     return planeGeo;
