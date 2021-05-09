@@ -85,17 +85,20 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // loop
-    var lt = new Date();
-    function animate() {
+    var lt = new Date(),
+    fps = 24;
+    function loop() {
         var now = new Date(),
         secs = (now - lt) / 1000;
-        requestAnimationFrame(animate);
-        updateSphereGroup(group, secs);
-        renderer.render(scene, camera);
-        lt = now;
+        requestAnimationFrame(loop);
+        if (secs > 1 / fps) {
+            updateSphereGroup(group, secs);
+            renderer.render(scene, camera);
+            lt = now;
+        }
     };
 
-    animate();
+    loop();
 
 }
     ());
