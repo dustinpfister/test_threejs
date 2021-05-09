@@ -10,7 +10,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 // add a plane
 var plane = new THREE.Mesh(
-        new THREE.PlaneGeometry(10, 10, 1),
+        new THREE.PlaneGeometry(10, 10, 1, 1),
         new THREE.MeshBasicMaterial({
             color: 0x0000ff
         }));

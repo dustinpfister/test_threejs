@@ -16,8 +16,10 @@ var plane = new THREE.Mesh(
         materialArray);
 // USING ADD GROUP METHOD TO SET MATERIAL
 // INDEX VLAUES
-plane.geometry.addGroup(0, 6, 0);
-plane.geometry.addGroup(6, 6, 1);
+plane.geometry.addGroup(0, 3, 0);
+plane.geometry.addGroup(3, 3, 1);
+plane.geometry.addGroup(6, 3, 1);
+plane.geometry.addGroup(9, 3, 0);
 
 plane.position.set(0, 0, 0);
 plane.rotation.set(-Math.PI * 0.5, 0, 0);
