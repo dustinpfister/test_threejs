@@ -20,7 +20,7 @@ face.materialIndex = y % 2 ? 1 - tile % 2 : tile % 2
 return planeGeo;
 };
  */
-
+/*
 var mkCheckerGeo = function (w, h, sw, sh) {
     w = w === undefined ? 16 : w;
     h = h === undefined ? 16 : h;
@@ -56,6 +56,29 @@ var mkCheckerGeo = function (w, h, sw, sh) {
 
     //planeGeo.addGroup(12, 3, 0);
     //planeGeo.addGroup(15, 3, 0);
+
+    return planeGeo;
+};
+*/
+
+var mkCheckerGeo = function (w, h, sw, sh) {
+    w = w === undefined ? 16 : w;
+    h = h === undefined ? 16 : h;
+    sw = sw === undefined ? 8 : sw;
+    sh = sh === undefined ? 8 : sh;
+    var planeGeo = new THREE.PlaneGeometry(w, h, sw, sh);
+
+    var tileIndex = 0,
+    len = sw * sh,
+    mi,
+    i;
+    while(tileIndex < len){
+        i = tileIndex * 6;
+        mi = tileIndex % 2;
+        planeGeo.addGroup(i, 3, mi);
+        planeGeo.addGroup(i + 3, 3, mi);
+        tileIndex += 1;
+    }
 
     return planeGeo;
 };
