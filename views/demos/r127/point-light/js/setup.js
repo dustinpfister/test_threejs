@@ -1,4 +1,5 @@
 var scene = new THREE.Scene();
+scene.background = new THREE.Color(0x1f1f1f);
 // create some point lights and add it to the scene
 var whitePointLight = addPointLight(scene, 0xffffff, 0, 0, 0),
 redPointLight = addPointLight(scene, 0xff0000, 30, 0, 0),
@@ -16,5 +17,5 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer({
         antialias: true
     });
-renderer.setSize(320, 240);
+renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
