@@ -1,5 +1,7 @@
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x1f1f1f);
+var gridHelper = new THREE.GridHelper(40, 10);
+scene.add(gridHelper);
 // create some point lights and add it to the scene
 var whitePointLight = addPointLight(scene, 0xffffff, 0, 0, 0),
 redPointLight = addPointLight(scene, 0xff0000, 30, 0, 0),
