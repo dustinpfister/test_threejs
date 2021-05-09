@@ -21,12 +21,15 @@ var materialArray = [
 
 
 // standard checker
-var check = TileMod.create({
+var plane = TileMod.create({
         w: 10,
         h: 10,
-        sw: 8,
-        sh: 8
+        sw: 4,
+        sh: 4
     });
-scene.add(check);
+// set checkerBoard material index values
+TileMod.setCheckerBoard(plane);
+// add to plane
+scene.add(plane);
 
 renderer.render(scene, camera);

@@ -25,14 +25,6 @@
         while (tileIndex < len) {
             i = tileIndex * 6;
             mi = 0;
-			/*
-            if (sw % 2) {
-                mi = tileIndex % 2;
-            } else {
-                y = Math.floor(tileIndex / sw);
-                mi = y % 2 ? 1 - tileIndex % 2 : tileIndex % 2
-            }
-			*/
             planeGeo.addGroup(i, 3, mi);
             planeGeo.addGroup(i + 3, 3, mi);
             tileIndex += 1;
@@ -51,6 +43,27 @@
         plane.rotation.set(-Math.PI / 2, 0, 0);
         return plane;
     };
+
+    api.setCheckerBoard = function (plane) {
+        var w = plane.geometry.parameters.widthSegments,
+        h = plane.geometry.parameters.heightSegments,
+        tileIndex = 0,
+        len = w * h,
+        mi,
+        y;
+        while (tileIndex < len) {
+            if (w % 2) {
+                mi = tileIndex % 2;
+            } else {
+                y = Math.floor(tileIndex / w);
+                mi = y % 2 ? 1 - tileIndex % 2 : tileIndex % 2
+            }
+            var gi = tileIndex * 2;
+            plane.geometry.groups[gi].materialIndex = mi;
+            plane.geometry.groups[gi + 1].materialIndex = mi;
+            tileIndex += 1;
+        }
+    }
 
 }
     (this['TileMod'] = {}));
