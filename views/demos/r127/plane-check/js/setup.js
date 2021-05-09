@@ -32,8 +32,8 @@ scene.add(plane);
 var check = mkChecker({
         w: 10,
         h: 10,
-        sw: 5,
-        sh: 4
+        sw: 4,
+        sh: 3
     });
 scene.add(check);
 
