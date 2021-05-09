@@ -32,8 +32,8 @@ scene.add(plane);
 var check = mkChecker({
         w: 10,
         h: 10,
-        sw: 4,
-        sh: 3
+        sw: 2 + Math.round(Math.random() * 18),
+        sh: 3 + Math.round(Math.random() * 17)
     });
 scene.add(check);
 
