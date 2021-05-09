@@ -1,15 +1,19 @@
 // loop
 var frame = 0,
 maxFrame = 180,
+lt = new Date(),
+fps = 30,
 per,
 bias,
 loop = function () {
-    setTimeout(loop, 33);
-    per = frame / maxFrame;
-    bias = 1 - Math.abs(0.5 - per) / 0.5,
-    r = Math.PI * 2 * per,
+    requestAnimationFrame(loop);
+    var r = Math.PI * 2 * per,
     sin = Math.sin(r) * 30,
     cos = Math.cos(r) * 30;
+
+    per = frame / maxFrame;
+    bias = 1 - Math.abs(0.5 - per) / 0.5;
+
     // update point lights
     whitePointLight.position.y = 20 * bias;
     redPointLight.position.set(cos, sin, 0);
