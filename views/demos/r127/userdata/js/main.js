@@ -22,23 +22,24 @@
         })
     ];
     // random angles helper
-    var randomAngles = function(mesh){
+    var randomAngles = function (mesh) {
         mesh.userData.pitch = Math.PI * 2 * Math.random();
         mesh.userData.heading = Math.PI * 2 * Math.random();
     };
-    var randomSpeed = function(mesh){
+    // random speed value
+    var randomSpeed = function (mesh) {
         mesh.userData.pitchPPS = PPS_MIN + (PPS_MAX - PPS_MIN) * Math.random();
         mesh.userData.headingPPS = PPS_MIN + (PPS_MAX - PPS_MIN) * Math.random();
     };
     // create a sphere group
-    var createSphereGroup = function(){
+    var createSphereGroup = function () {
         var group = new THREE.Group();
         var i = 0;
-        while(i < GROUPSIZE){
+        while (i < GROUPSIZE) {
             var mesh = new THREE.Mesh(
-                new THREE.SphereGeometry(1, 20),
-                materials[0]
-            );
+                    new THREE.SphereGeometry(1, 20),
+                    materials[0]);
+            // SETTING VALUES IN USER DATA OBJECT
             mesh.userData.materalIndex = i % materials.length;
             randomSpeed(mesh);
             randomAngles(mesh);
@@ -48,16 +49,17 @@
         return group;
     };
     // update a sphere group
-    var updateSphereGroup = function(group, secs){
-        group.children.forEach(function(mesh){
+    var updateSphereGroup = function (group, secs) {
+        group.children.forEach(function (mesh) {
+            // USING VALUES IN USER DATA OBJECT
             var ud = mesh.userData;
             mesh.material = materials[ud.materalIndex];
             mesh.position.x += Math.cos(ud.pitch) * ud.pitchPPS * secs;
             mesh.position.y += Math.sin(ud.pitch) * ud.pitchPPS * secs;
             mesh.position.z += Math.cos(ud.heading) * ud.headingPPS * secs;
-            var d = mesh.position.distanceTo(new THREE.Vector3(0,0,0));
-            if(d >= MAXDIST){
-                mesh.position.set(0,0,0);
+            var d = mesh.position.distanceTo(new THREE.Vector3(0, 0, 0));
+            if (d >= MAXDIST) {
+                mesh.position.set(0, 0, 0);
                 randomAngles(mesh);
                 randomSpeed(mesh);
             }
