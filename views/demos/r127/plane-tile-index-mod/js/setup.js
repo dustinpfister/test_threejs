@@ -10,18 +10,17 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 var materialArray = [
     new THREE.MeshBasicMaterial({
-        color: 0xe0e0e0,
+        color: 0xeffff00,
         side: THREE.DoubleSide
     }),
     new THREE.MeshBasicMaterial({
-        color: 0x505050,
+        color: 0x2f2f2f,
         side: THREE.DoubleSide
     })
 ];
 
-
-// standard checker
 var plane = TileMod.create({
+        materials: materialArray,
         w: 10,
         h: 10,
         sw: 4,
@@ -29,7 +28,18 @@ var plane = TileMod.create({
     });
 // set checkerBoard material index values
 TileMod.setCheckerBoard(plane);
-// add to plane
 scene.add(plane);
+
+var plane2 = TileMod.create({
+        materials: materialArray,
+        w: 10,
+        h: 10,
+        sw: 8,
+        sh: 8
+    });
+// set checkerBoard material index values
+TileMod.setBoxBoard(plane2);
+plane.position.set(-11, 0, 0);
+scene.add(plane2);
 
 renderer.render(scene, camera);

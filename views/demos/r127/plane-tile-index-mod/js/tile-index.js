@@ -44,10 +44,12 @@
         return plane;
     };
 
+    // set checkerBoard material index values
     api.setCheckerBoard = function (plane) {
         var w = plane.geometry.parameters.widthSegments,
         h = plane.geometry.parameters.heightSegments,
         tileIndex = 0,
+        gi,
         len = w * h,
         mi,
         y;
@@ -58,12 +60,38 @@
                 y = Math.floor(tileIndex / w);
                 mi = y % 2 ? 1 - tileIndex % 2 : tileIndex % 2
             }
-            var gi = tileIndex * 2;
+            gi = tileIndex * 2;
             plane.geometry.groups[gi].materialIndex = mi;
             plane.geometry.groups[gi + 1].materialIndex = mi;
             tileIndex += 1;
         }
-    }
+    };
+
+    // set checkerBoard material index values
+    api.setBoxBoard = function (plane) {
+        var w = plane.geometry.parameters.widthSegments,
+        h = plane.geometry.parameters.heightSegments,
+        tileIndex = 0,
+        len = w * h,
+        gi,
+        mi,
+        x,
+        y;
+        while (tileIndex < len) {
+            x = tileIndex % w;
+            y = Math.floor(tileIndex / w);
+            mi = 0;
+            if (y > 0 && y < h - 1) {
+                if (x > 0 && x < w - 1) {
+                    mi = 1;
+                }
+            }
+            gi = tileIndex * 2;
+            plane.geometry.groups[gi].materialIndex = mi;
+            plane.geometry.groups[gi + 1].materialIndex = mi;
+            tileIndex += 1;
+        }
+    };
 
 }
     (this['TileMod'] = {}));
