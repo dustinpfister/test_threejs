@@ -1,7 +1,24 @@
 
 (function (api) {
 
-  
+    var createShakeObjects = function(nud){
+        var shakeObjects = new THREE.Group();
+        // grid helper
+        var gridHelper = new THREE.GridHelper(10, 10);
+        shakeObjects.add(gridHelper);
+        // nested cube group one
+        var cubes1 = nud.cubes1 = CubeGroupMod.create({
+            anglesA:[180, 270, 90, 0],
+            yDelta: 1.25,
+            xzDelta: 0.75,
+            maxFrame: 180,
+            fps: 30,
+            cubeRotations: [],
+            rotations: [1, 1, 1]
+        });
+        shakeObjects.add(cubes1);
+        return shakeObjects;
+    };
 
     // create nested groups
     api.create = function(opt) {
@@ -14,6 +31,7 @@
         nud.cameraRadian = 0;
         // add camera to nested
         nested.add(camera);
+/*
         // grid helper
         var gridHelper = new THREE.GridHelper(10, 10);
         nested.add(gridHelper);
@@ -28,6 +46,9 @@
             rotations: [1, 1, 1]
         });
         nested.add(cubes1);
+*/
+        nud.shakeObjects = createShakeObjects(nud);
+        nested.add(nud.shakeObjects);
         // shake object
         nud.shake = ShakeMod.create({
            pos: 0.1,
@@ -48,9 +69,9 @@
        nud.camera.position.z = Math.sin(nud.cameraRadian) * 15;
        nud.camera.lookAt(0,0,0);
        // update shake
-       nud.shake.active = true;
-       ShakeMod.roll(nud.shake);
-       ShakeMod.applyToObject3d(nud.shake, nud.cubes1);
+       //nud.shake.active = true;
+       //ShakeMod.roll(nud.shake);
+       //ShakeMod.applyToObject3d(nud.shake, nud.cubes1);
        // update cube group
        CubeGroupMod.update(nud.cubes1, secs);
     };
