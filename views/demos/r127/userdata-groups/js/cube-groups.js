@@ -1,6 +1,8 @@
 
 (function (api) {
 
+
+
     var clampRadian = function (radian) {
         return radian %= Math.PI * 2;
     };
@@ -10,6 +12,8 @@
             return Math.PI / 180 * deg;
         });
     };
+
+    var ANGLES_A = toRadians([225, 315, 135, 45]);
 
     // create a single cube mesh
     var createCube = function (rotationRates, position) {
@@ -36,6 +40,8 @@
 
     // public method to create a cube group
     api.create = function(opt) {
+        opt = opt || {};
+        
         var cubes = new THREE.Group(),
         ud = cubes.userData;
         ud.frame = 0;
@@ -60,7 +66,6 @@
     };
 
     // update the group
-    var anglesA = toRadians([225, 315, 135, 45]);
     api.update = function(cubes, secs) {
         // GROUP USER DATA OBJECT
         var gud = cubes.userData;
@@ -74,7 +79,7 @@
             // adjusted
             var aIndex = i % 4,
             bIndex = Math.floor(i / 4),
-            r1 = anglesA[aIndex],
+            r1 = ANGLES_A[aIndex],
             x = sx + Math.cos(r1) * 2 * bias,
             y = sy + 2 * bias * (bIndex === 0 ? -1 : 1),
             z = sz + Math.sin(r1) * 2 * bias;
