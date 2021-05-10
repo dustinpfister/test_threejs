@@ -6,7 +6,11 @@
     var gridHelper = new THREE.GridHelper(10, 10);
     scene.add(gridHelper);
 
-    var cubes = CubeGroupMod.create({
+    var cubes1 = CubeGroupMod.create();
+    cubes1.position.set(4,0,4);
+    scene.add(cubes1);
+
+    var cubes2 = CubeGroupMod.create({
        anglesA:[180, 270, 90, 0],
        yDelta: 1.25,
        xzDelta: 0.75,
@@ -21,7 +25,7 @@
           [0, 0, 1]
        ]
     });
-    scene.add(cubes);
+    scene.add(cubes2);
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
@@ -42,7 +46,8 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-            CubeGroupMod.update(cubes, secs);
+            CubeGroupMod.update(cubes1, secs);
+            CubeGroupMod.update(cubes2, secs);
             renderer.render(scene, camera);
             lt = now;
         }
