@@ -5,7 +5,7 @@
         return radian %= Math.PI * 2;
     };
 
-    var rtoRadians = function (array) {
+    var toRadians = function (array) {
         return array.map(function(deg){
             return Math.PI / 180 * deg;
         });
@@ -53,7 +53,7 @@
     };
 
     // update the group
-    var anglesA = [225, 315, 135, 45];
+    var anglesA = toRadians([225, 315, 135, 45]);
     api.update = function(cubes, secs) {
         var gud = cubes.userData;
         var per = gud.frame / gud.maxFrame,
@@ -67,7 +67,8 @@
             var pi2 = Math.PI * 2,
             //r1 = pi2 / 4 * (i % 2) + Math.PI / 180 * ( Math.floor((i % 4) / 2) > 0 ? 135 : 225),
             aIndex = (i % 4),
-            r1 = [Math.PI / 180 * 225, Math.PI / 180 * 315, Math.PI / 180 * 135, Math.PI / 180 * 45][aIndex],
+            //r1 = [Math.PI / 180 * 225, Math.PI / 180 * 315, Math.PI / 180 * 135, Math.PI / 180 * 45][aIndex],
+            r1 = anglesA[aIndex],
             x = sx + Math.cos(r1) * 2 * bias,
             y = sy,
             z = sz + Math.sin(r1) * 2 * bias;
