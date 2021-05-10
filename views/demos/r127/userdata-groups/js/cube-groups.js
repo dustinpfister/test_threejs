@@ -41,6 +41,7 @@
     // public method to create a cube group
     api.create = function(opt) {
         opt = opt || {};
+        opt.cubeRotations = opt.cubeRotations || [];
         var cubes = new THREE.Group(),
         gud = cubes.userData;
         gud.frame = 0;
@@ -52,7 +53,7 @@
         var i = 0;
         while(i < 8){
             var cube = createCube(
-                [0.00, 0.00, 0.00], 
+                opt.cubeRotations[i] || [0.00, 0.00, 0.00], 
                 new THREE.Vector3(0, 0, 0));
             cubes.add(cube);
             i += 1;

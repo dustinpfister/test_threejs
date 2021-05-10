@@ -9,7 +9,17 @@
     var cubes = CubeGroupMod.create({
        anglesA:[180, 270, 90, 0],
        yDelta: 1.25,
-       xzDelta: 0.75
+       xzDelta: 0.75,
+       cubeRotations: [
+          [0, 1, 1],
+          [1, 0, 1],
+          [1, 1, 1],
+          [1, 0, 1],
+          [0, 1, 1],
+          [1, 0, 1],
+          [1, 1, 1],
+          [1, 0, 1]
+       ]
     });
     scene.add(cubes);
 
