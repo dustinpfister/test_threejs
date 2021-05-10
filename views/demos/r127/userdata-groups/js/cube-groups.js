@@ -32,7 +32,7 @@
     api.create = function(opt) {
         var cubes = new THREE.Group(),
         ud = cubes.userData;
-        ud.frame = 0;
+        ud.frame = 50;
         ud.maxFrame = 50;
         ud.fps = 30;
         var i = 0;
@@ -46,14 +46,28 @@
         return cubes;
     };
 
+    // update the group
     api.update = function(cubes, secs) {
+        var gud = cubes.userData;
+        var per = gud.frame / gud.maxFrame;
         cubes.children.forEach(function (cube, i) {
-            var x = i % 2,
-            z = Math.floor(i / 2) - Math.floor(i / 4) * 2,
-            y = Math.floor(i / (2 * 2));
+            // position cubes
+            var sx = i % 2,
+            sz = Math.floor(i / 2) - Math.floor(i / 4) * 2,
+            sy = Math.floor(i / (2 * 2));
+
+            var pi2 = Math.PI * 2,
+            r1 = pi2 / 4 * (i % 4),
+            x = sx + Math.cos(r1) * 2 * per,
+            y = sy,
+            z = sz + Math.sin(r1) * 2 * per;
+
             cube.position.set(x, y, z);
-            updateCube(cube, secs);
+
+            //updateCube(cube, secs);
         });
+        gud.frame += gud.fps * secs;
+        gud.frame %= gud.maxFrame; 
     };
 
 }
