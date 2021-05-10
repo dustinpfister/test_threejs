@@ -11,6 +11,7 @@
         var camera = nud.camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
         camera.position.set(0, 10, 10);
         camera.lookAt(0, 0, 0);
+        nud.cameraRadian = 0;
         // add camera to nested
         nested.add(camera);
         // grid helper
@@ -33,7 +34,14 @@
   
     // update the nested groups
     api.update = function(nested, secs) {
-       CubeGroupMod.update(nested.userData.cubes1, secs);
+       var nud = nested.userData;
+       nud.cameraRadian += Math.PI / 180 * 10 * secs;
+       nud.cameraRadian %= Math.PI * 2;
+       nud.camera.position.x = Math.cos(nud.cameraRadian) * 15;
+       nud.camera.position.y = 15;
+       nud.camera.position.z = Math.sin(nud.cameraRadian) * 15;
+       nud.camera.lookAt(0,0,0);
+       CubeGroupMod.update(nud.cubes1, secs);
     };
 
 }

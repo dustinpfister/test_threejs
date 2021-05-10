@@ -11,7 +11,7 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
    
-    var controls = new THREE.OrbitControls(nested.userData.camera, renderer.domElement);
+    //var controls = new THREE.OrbitControls(nested.userData.camera, renderer.domElement);
 
     // loop
     var lt = new Date(),
