@@ -7,8 +7,9 @@
     scene.add(gridHelper);
 
     var cubes = CubeGroupMod.create({
-       anglesA:[180, 0, 90, 90],
-       yDelta: 0.25
+       anglesA:[180, 270, 90, 0],
+       yDelta: 1.25,
+       xzDelta: 0.75
     });
     scene.add(cubes);
 

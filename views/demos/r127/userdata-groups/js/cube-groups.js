@@ -48,6 +48,7 @@
         gud.fps = 30;
         gud.anglesA = toRadians(opt.anglesA || ANGLES_A);
         gud.yDelta = opt.yDelta === undefined ? 2 : opt.yDelta;
+        gud.xzDelta = opt.xzDelta === undefined ? 2 : opt.xzDelta;
         var i = 0;
         while(i < 8){
             var cube = createCube(
@@ -82,9 +83,9 @@
             var aIndex = i % 4,
             bIndex = Math.floor(i / 4),
             r1 = gud.anglesA[aIndex],
-            x = sx + Math.cos(r1) * 2 * bias,
+            x = sx + Math.cos(r1) * gud.xzDelta * bias,
             y = sy + gud.yDelta * bias * (bIndex === 0 ? -1 : 1),
-            z = sz + Math.sin(r1) * 2 * bias;
+            z = sz + Math.sin(r1) * gud.xzDelta * bias;
             // set position of cube
             cube.position.set(x, y, z);
             // call cube update method
