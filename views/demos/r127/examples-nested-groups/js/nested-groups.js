@@ -73,7 +73,7 @@
         nud.frame = 0;
         nud.maxFrame = 600;
         // Camera
-        var camera = nud.camera = new THREE.PerspectiveCamera(45, 4 / 3, 5, 40);
+        var camera = nud.camera = new THREE.PerspectiveCamera(45, 4 / 3, 5, 60);
         camera.position.set(0, 10, 10);
         camera.lookAt(0, 0, 0);
         nud.cameraRadian = 0;
@@ -99,7 +99,7 @@
        // camera
        nud.cameraRadian = Math.PI * 2 * per;
        nud.camera.position.x = Math.cos(nud.cameraRadian) * 15;
-       nud.camera.position.y = 15;
+       nud.camera.position.y = 15 * Math.sin(nud.cameraRadian);
        nud.camera.position.z = Math.sin(nud.cameraRadian) * 15;
        nud.camera.lookAt(0,0,0);
        // update cube group
