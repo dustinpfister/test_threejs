@@ -6,7 +6,7 @@
     var gridHelper = new THREE.GridHelper(10, 10);
     scene.add(gridHelper);
 
-    var cubes1 = CubeGroupMod.create();
+    var cubes1 = CubeGroupMod.create({maxFrame: 30});
     cubes1.position.set(4,0,4);
     scene.add(cubes1);
 

@@ -1,13 +1,13 @@
 
 (function (api) {
 
+    var ANGLES_A = [225, 315, 135, 45];
+
     var toRadians = function (array) {
         return array.map(function(deg){
             return Math.PI / 180 * deg;
         });
     };
-
-    var ANGLES_A = [225, 315, 135, 45];
 
     // create a single cube mesh
     var createCube = function (rotationCounts, position) {
@@ -37,7 +37,7 @@
         var cubes = new THREE.Group(),
         gud = cubes.userData;
         gud.frame = 0;
-        gud.maxFrame = 180;
+        gud.maxFrame = opt.maxFrame || 180;
         gud.fps = 30;
         gud.anglesA = toRadians(opt.anglesA || ANGLES_A);
         gud.yDelta = opt.yDelta === undefined ? 2 : opt.yDelta;
