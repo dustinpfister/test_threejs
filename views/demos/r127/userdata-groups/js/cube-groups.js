@@ -52,36 +52,40 @@
         return cubes;
     };
 
+    var setCubesRotation = function(cubes, per){
+        var x = Math.PI * 1 * per,
+        y = Math.PI * 1 * per,
+        z = Math.PI * 1 * per;
+        cubes.rotation.set(x, y, z);
+    };
+
     // update the group
     var anglesA = toRadians([225, 315, 135, 45]);
     api.update = function(cubes, secs) {
+        // GROUP USER DATA OBJECT
         var gud = cubes.userData;
         var per = gud.frame / gud.maxFrame,
         bias = 1 - Math.abs(per - 0.5) / 0.5;
         cubes.children.forEach(function (cube, i) {
-            // position cubes
+            // start values
             var sx = i % 2 - 0.5,
             sz = Math.floor(i / 2) - Math.floor(i / 4) * 2 - 0.5,
             sy = Math.floor(i / (2 * 2)) - 0.5;
-
+            // adjusted
             var aIndex = i % 4,
             bIndex = Math.floor(i / 4),
             r1 = anglesA[aIndex],
             x = sx + Math.cos(r1) * 2 * bias,
             y = sy + 2 * bias * (bIndex === 0 ? -1 : 1),
             z = sz + Math.sin(r1) * 2 * bias;
-
+            // set position of cube
             cube.position.set(x, y, z);
-
+            // call cube update method
             updateCube(cube, secs);
-
         });
 
         // whole group rotation
-        var x = Math.PI * 1 * per,
-        y = Math.PI * 1 * per,
-        z = Math.PI * 1 * per;
-        cubes.rotation.set(x, y, z);
+        setCubesRotation(cubes, per);
 
         gud.frame += gud.fps * secs;
         gud.frame %= gud.maxFrame; 
