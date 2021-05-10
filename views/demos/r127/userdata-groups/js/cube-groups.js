@@ -44,7 +44,7 @@
         var i = 0;
         while(i < 8){
             var cube = createCube(
-                [3.14, 0.00, 0.00], 
+                [6.28, 0.00, 0.00], 
                 new THREE.Vector3(0, 0, 0));
             cubes.add(cube);
             i += 1;
@@ -73,9 +73,16 @@
 
             cube.position.set(x, y, z);
 
-            //updateCube(cube, secs);
+            updateCube(cube, secs);
 
         });
+
+        // whole group rotation
+        var x = Math.PI * 1 * per,
+        y = Math.PI * 1 * per,
+        z = Math.PI * 1 * per;
+        cubes.rotation.set(x, y, z);
+
         gud.frame += gud.fps * secs;
         gud.frame %= gud.maxFrame; 
     };
