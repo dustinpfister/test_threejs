@@ -10,10 +10,10 @@
     };
 
     // create a single cube mesh
-    var createCube = function (rotationCounts, position) {
+    var createCube = function (rotationCounts, position, materials) {
         var cube = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
-                new THREE.MeshNormalMaterial());
+                materials || new THREE.MeshNormalMaterial());
         // USER DATA OBJECT FOR A SINGLE CUBE
         var ud = cube.userData;
         ud.rotationCounts = rotationCounts || [0, 0, 0];
@@ -51,7 +51,8 @@
             var cubeRotations = opt.cubeRotations[i] || [0.00, 0.00, 0.00];
             var cube = createCube(
                 cubeRotations, 
-                new THREE.Vector3(0, 0, 0));
+                new THREE.Vector3(0, 0, 0),
+                opt.materials);
             cubes.add(cube);
             i += 1;
         };        
