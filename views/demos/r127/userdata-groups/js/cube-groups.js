@@ -38,7 +38,7 @@
         gud = cubes.userData;
         gud.frame = 0;
         gud.maxFrame = opt.maxFrame || 180;
-        gud.fps = 30;
+        gud.fps = opt.fps || 30;
         gud.anglesA = toRadians(opt.anglesA || ANGLES_A);
         gud.yDelta = opt.yDelta === undefined ? 2 : opt.yDelta;
         gud.xzDelta = opt.xzDelta === undefined ? 2 : opt.xzDelta;
