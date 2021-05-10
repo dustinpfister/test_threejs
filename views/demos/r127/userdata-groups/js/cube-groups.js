@@ -49,7 +49,8 @@
     // update the group
     api.update = function(cubes, secs) {
         var gud = cubes.userData;
-        var per = gud.frame / gud.maxFrame;
+        var per = gud.frame / gud.maxFrame,
+        bias = 1 - Math.abs(per - 0.5) / 0.5;
         cubes.children.forEach(function (cube, i) {
             // position cubes
             var sx = i % 2,
@@ -57,10 +58,10 @@
             sy = Math.floor(i / (2 * 2));
 
             var pi2 = Math.PI * 2,
-            r1 = pi2 / 4 * (i % 4),
-            x = sx + Math.cos(r1) * 2 * per,
+            r1 = pi2 / 4 * (i % 4) + Math.PI / 180 * 225,
+            x = sx + Math.cos(r1) * 2 * bias,
             y = sy,
-            z = sz + Math.sin(r1) * 2 * per;
+            z = sz + Math.sin(r1) * 2 * bias;
 
             cube.position.set(x, y, z);
 
