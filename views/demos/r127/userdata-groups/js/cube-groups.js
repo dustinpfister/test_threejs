@@ -42,6 +42,7 @@
         gud.anglesA = toRadians(opt.anglesA || ANGLES_A);
         gud.yDelta = opt.yDelta === undefined ? 2 : opt.yDelta;
         gud.xzDelta = opt.xzDelta === undefined ? 2 : opt.xzDelta;
+        gud.secs = 0;
         var i = 0;
         while(i < 8){
             var cubeRotations = opt.cubeRotations[i] || [0.00, 0.00, 0.00];
@@ -88,8 +89,12 @@
         // whole group rotation
         setCubesRotation(cubes, per);
         // step frame
-        gud.frame += gud.fps * secs;
-        gud.frame %= gud.maxFrame; 
+        gud.secs += secs;
+        if(gud.secs >= 1 / gud.fps){
+            gud.frame += 1; // gud.fps * secs;
+            gud.frame %= gud.maxFrame;
+            gud.secs %= 1 / gud.fps; 
+        }
     };
 
 }
