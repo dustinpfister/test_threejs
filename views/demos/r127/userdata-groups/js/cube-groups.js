@@ -41,13 +41,13 @@
     // public method to create a cube group
     api.create = function(opt) {
         opt = opt || {};
-        
         var cubes = new THREE.Group(),
         gud = cubes.userData;
         gud.frame = 0;
         gud.maxFrame = 90;
         gud.fps = 30;
         gud.anglesA = toRadians(opt.anglesA || ANGLES_A);
+        gud.yDelta = opt.yDelta === undefined ? 2 : opt.yDelta;
         var i = 0;
         while(i < 8){
             var cube = createCube(
@@ -72,6 +72,7 @@
         var gud = cubes.userData;
         var per = gud.frame / gud.maxFrame,
         bias = 1 - Math.abs(per - 0.5) / 0.5;
+        // update cubes
         cubes.children.forEach(function (cube, i) {
             // start values
             var sx = i % 2 - 0.5,
@@ -82,17 +83,16 @@
             bIndex = Math.floor(i / 4),
             r1 = gud.anglesA[aIndex],
             x = sx + Math.cos(r1) * 2 * bias,
-            y = sy + 2 * bias * (bIndex === 0 ? -1 : 1),
+            y = sy + gud.yDelta * bias * (bIndex === 0 ? -1 : 1),
             z = sz + Math.sin(r1) * 2 * bias;
             // set position of cube
             cube.position.set(x, y, z);
             // call cube update method
             updateCube(cube, secs);
         });
-
         // whole group rotation
         setCubesRotation(cubes, per);
-
+        // step frame
         gud.frame += gud.fps * secs;
         gud.frame %= gud.maxFrame; 
     };
