@@ -66,11 +66,12 @@
 
             var pi2 = Math.PI * 2,
             //r1 = pi2 / 4 * (i % 2) + Math.PI / 180 * ( Math.floor((i % 4) / 2) > 0 ? 135 : 225),
-            aIndex = (i % 4),
+            aIndex = i % 4,
+            bIndex = Math.floor(i / 4),
             //r1 = [Math.PI / 180 * 225, Math.PI / 180 * 315, Math.PI / 180 * 135, Math.PI / 180 * 45][aIndex],
             r1 = anglesA[aIndex],
             x = sx + Math.cos(r1) * 2 * bias,
-            y = sy,
+            y = sy + 2 * bias * (bIndex === 0 ? -1 : 1),
             z = sz + Math.sin(r1) * 2 * bias;
 
             cube.position.set(x, y, z);

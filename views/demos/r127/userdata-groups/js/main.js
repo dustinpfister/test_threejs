@@ -8,7 +8,7 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(0, 15, 0);
+    camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
     // Render
     var renderer = new THREE.WebGLRenderer();
