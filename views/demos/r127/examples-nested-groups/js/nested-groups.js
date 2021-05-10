@@ -3,6 +3,15 @@
 
     var MATERIALS_CUBE = new THREE.MeshDepthMaterial();
 
+
+    var createPointLight = function(color){
+        color = color || new THREE.Color('white');
+        var light = new THREE.Mesh(new THREE.SphereGeometry(1,30,30), new THREE.MeshBasicMaterial({color: color}));
+        light.add(new THREE.PointLight(color, 1));
+        return light;
+    };
+
+
     var createShakeObjects = function(nud){
         var shakeObjects = new THREE.Group();
         // grid helper
@@ -34,6 +43,10 @@
         nud.cameraRadian = 0;
         // add camera to nested
         nested.add(camera);
+        // lights
+        var light = createPointLight();
+        light.position.set(5, 5, 5);
+        nested.add(light);
         // shake objects
         nud.shakeObjects = createShakeObjects(nud);
         nested.add(nud.shakeObjects);
