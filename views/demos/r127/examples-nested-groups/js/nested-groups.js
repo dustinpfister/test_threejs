@@ -1,7 +1,7 @@
 
 (function (api) {
 
-    var MATERIALS_CUBE = new THREE.MeshDepthMaterial();
+    var MATERIALS_CUBE = new THREE.MeshStandardMaterial({color: 'white'});
 
 
     var createPointLight = function(color){
@@ -44,7 +44,7 @@
         // add camera to nested
         nested.add(camera);
         // lights
-        var light = createPointLight();
+        var light = createPointLight(new THREE.Color('lime'));
         light.position.set(5, 5, 5);
         nested.add(light);
         // shake objects
