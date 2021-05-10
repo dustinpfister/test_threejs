@@ -48,7 +48,10 @@
 
     api.update = function(cubes, secs) {
         cubes.children.forEach(function (cube, i) {
-            cube.position.x = i * 1.5 - 5;
+            var x = i % 2,
+            z = Math.floor(i / 2) - Math.floor(i / 4) * 2,
+            y = Math.floor(i / (2 * 2));
+            cube.position.set(x, y, z);
             updateCube(cube, secs);
         });
     };
