@@ -35,9 +35,23 @@
         // nested cube group one
         var cubes1 = nud.cubes1 = CubeGroupMod.create({
             materials: MATERIALS_CUBE,
-            rotations: [0, 0.5, 0]
+            rotations: [0, 0, 0]
         });
         worldObjects.add(cubes1);
+        var cubes2 = nud.cubes2 = CubeGroupMod.create({
+            materials: MATERIALS_CUBE,
+            anglesA: [180, 180, 90, 90],
+            rotations: [0, 1, 0]
+        });
+        cubes2.position.set(5, 0, 5);
+        worldObjects.add(cubes2);
+        var cubes3 = nud.cubes3 = CubeGroupMod.create({
+            materials: MATERIALS_CUBE,
+            anglesA: [180, 0, 0, 0],
+            rotations: [2, 0, 1]
+        });
+        cubes3.position.set(-5, 0, -5);
+        worldObjects.add(cubes3);
         return worldObjects;
     };
 
@@ -77,7 +91,13 @@
        nud.camera.position.z = Math.sin(nud.cameraRadian) * 15;
        nud.camera.lookAt(0,0,0);
        // update cube group
-       CubeGroupMod.update(nud.cubes1, secs);
+       nud.worldObjects.children.forEach(function(obj){
+           if(obj.userData.type){
+               if(obj.userData.type === 'cubegroup'){
+                   CubeGroupMod.update(obj, secs);
+               }
+           }
+       });
        // lights
        nud.lightGroup.rotation.x = Math.PI * 8 * per;
        // step frame
