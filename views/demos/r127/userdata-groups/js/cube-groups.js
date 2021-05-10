@@ -44,6 +44,7 @@
         gud.anglesA = toRadians(opt.anglesA || ANGLES_A);
         gud.yDelta = opt.yDelta === undefined ? 2 : opt.yDelta;
         gud.xzDelta = opt.xzDelta === undefined ? 2 : opt.xzDelta;
+        gud.rotations = opt.rotations || [0, 0, 0];
         gud.secs = 0;
         var i = 0;
         while(i < 8){
@@ -58,9 +59,12 @@
     };
 
     var setCubesRotation = function(cubes, per){
-        var x = Math.PI * 0 * per,
-        y = Math.PI * 0 * per,
-        z = Math.PI * 0 * per;
+        var gud = cubes.userData,
+        r = gud.rotations,
+        PI2 = Math.PI * 2;
+        var x = PI2 * r[0] * per,
+        y = PI2 * r[1] * per,
+        z = PI2 * r[2] * per;
         cubes.rotation.set(x, y, z);
     };
 
@@ -89,7 +93,7 @@
             updateCube(cube, per);
         });
         // whole group rotation
-        setCubesRotation(cubes, per);
+        setCubesRotation(cubes, bias);
         // step frame
         gud.secs += secs;
         if(gud.secs >= 1 / gud.fps){

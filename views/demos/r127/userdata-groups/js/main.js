@@ -6,7 +6,7 @@
     var gridHelper = new THREE.GridHelper(10, 10);
     scene.add(gridHelper);
 
-    var cubes1 = CubeGroupMod.create({maxFrame: 50, fps: 30});
+    var cubes1 = CubeGroupMod.create({maxFrame: 50, fps: 30, rotations:[0,1,0]});
     cubes1.position.set(4,0,4);
     scene.add(cubes1);
 
@@ -18,7 +18,7 @@
        anglesA:[180, 270, 90, 0],
        yDelta: 1.25,
        xzDelta: 0.75,
-       maxFrame: 60,
+       maxFrame: 180,
        fps: 30,
        cubeRotations: [
           [0, 0, 1],
@@ -29,7 +29,8 @@
           [1, 1, 0],
           [1, 1, 1],
           [0, 0, 1]
-       ]
+       ],
+       rotations: [1, 1, 1]
     });
     scene.add(cubes3);
 
