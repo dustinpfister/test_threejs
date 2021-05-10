@@ -46,6 +46,7 @@
         gud.xzDelta = opt.xzDelta === undefined ? 2 : opt.xzDelta;
         gud.rotations = opt.rotations || [0, 0, 0];
         gud.secs = 0;
+        gud.type = 'cubegroup';
         var i = 0;
         while(i < 8){
             var cubeRotations = opt.cubeRotations[i] || [0.00, 0.00, 0.00];

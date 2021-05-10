@@ -35,13 +35,7 @@
         // nested cube group one
         var cubes1 = nud.cubes1 = CubeGroupMod.create({
             materials: MATERIALS_CUBE,
-            anglesA:[180, 270, 90, 0],
-            yDelta: 1.25,
-            xzDelta: 0.75,
-            maxFrame: 180,
-            fps: 30,
-            cubeRotations: [],
-            rotations: [1, 1, 1]
+            rotations: [0, 0.5, 0]
         });
         worldObjects.add(cubes1);
         return worldObjects;
