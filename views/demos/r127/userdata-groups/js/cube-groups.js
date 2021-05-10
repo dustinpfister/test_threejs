@@ -60,9 +60,9 @@
         bias = 1 - Math.abs(per - 0.5) / 0.5;
         cubes.children.forEach(function (cube, i) {
             // position cubes
-            var sx = i % 2,
-            sz = Math.floor(i / 2) - Math.floor(i / 4) * 2,
-            sy = Math.floor(i / (2 * 2));
+            var sx = i % 2 - 0.5,
+            sz = Math.floor(i / 2) - Math.floor(i / 4) * 2 - 0.5,
+            sy = Math.floor(i / (2 * 2)) - 0.5;
 
             var pi2 = Math.PI * 2,
             //r1 = pi2 / 4 * (i % 2) + Math.PI / 180 * ( Math.floor((i % 4) / 2) > 0 ? 135 : 225),
