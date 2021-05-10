@@ -1,12 +1,6 @@
 
 (function (api) {
 
-
-
-    var clampRadian = function (radian) {
-        return radian %= Math.PI * 2;
-    };
-
     var toRadians = function (array) {
         return array.map(function(deg){
             return Math.PI / 180 * deg;
@@ -34,9 +28,6 @@
         cube.rotation.x = pi2 * rc[0] * per;
         cube.rotation.y = pi2 * rc[1] * per;
         cube.rotation.z = pi2 * rc[2] * per;
-        //cube.rotation.x = clampRadian(cube.rotation.x);
-        //cube.rotation.y = clampRadian(cube.rotation.y);
-        //cube.rotation.z = clampRadian(cube.rotation.z);
     };
 
     // public method to create a cube group
