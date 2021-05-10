@@ -5,6 +5,12 @@
         return radian %= Math.PI * 2;
     };
 
+    var rtoRadians = function (array) {
+        return array.map(function(deg){
+            return Math.PI / 180 * deg;
+        });
+    };
+
     // create a single cube mesh
     var createCube = function (rotationRates, position) {
         var cube = new THREE.Mesh(
