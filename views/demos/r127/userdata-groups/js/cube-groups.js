@@ -16,26 +16,27 @@
     var ANGLES_A = [225, 315, 135, 45];
 
     // create a single cube mesh
-    var createCube = function (rotationRates, position) {
+    var createCube = function (rotationCounts, position) {
         var cube = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
                 new THREE.MeshNormalMaterial());
         var ud = cube.userData;
-        ud.rotationRates = rotationRates || [0, 3.14, 0];
+        ud.rotationCounts = rotationCounts || [0, 0, 0];
         cube.position.copy(position || new THREE.Vector3(0, 0, 0));
         return cube;
     };
 
     // update a single cube
-    var updateCube = function (cube, secs) {
+    var updateCube = function (cube, per) {
         var ud = cube.userData,
-        rr = ud.rotationRates;
-        cube.rotation.x += rr[0] * secs;
-        cube.rotation.y += rr[1] * secs;
-        cube.rotation.z += rr[2] * secs;
-        cube.rotation.x = clampRadian(cube.rotation.x);
-        cube.rotation.y = clampRadian(cube.rotation.y);
-        cube.rotation.z = clampRadian(cube.rotation.z);
+        rc = ud.rotationCounts,
+        pi2 = Math.PI * 2;
+        cube.rotation.x = pi2 * rc[0] * per;
+        cube.rotation.y = pi2 * rc[1] * per;
+        cube.rotation.z = pi2 * rc[2] * per;
+        //cube.rotation.x = clampRadian(cube.rotation.x);
+        //cube.rotation.y = clampRadian(cube.rotation.y);
+        //cube.rotation.z = clampRadian(cube.rotation.z);
     };
 
     // public method to create a cube group
@@ -45,15 +46,16 @@
         var cubes = new THREE.Group(),
         gud = cubes.userData;
         gud.frame = 0;
-        gud.maxFrame = 90;
+        gud.maxFrame = 180;
         gud.fps = 30;
         gud.anglesA = toRadians(opt.anglesA || ANGLES_A);
         gud.yDelta = opt.yDelta === undefined ? 2 : opt.yDelta;
         gud.xzDelta = opt.xzDelta === undefined ? 2 : opt.xzDelta;
         var i = 0;
         while(i < 8){
+            var cubeRotations = opt.cubeRotations[i] || [0.00, 0.00, 0.00];
             var cube = createCube(
-                opt.cubeRotations[i] || [0.00, 0.00, 0.00], 
+                cubeRotations, 
                 new THREE.Vector3(0, 0, 0));
             cubes.add(cube);
             i += 1;
@@ -90,7 +92,7 @@
             // set position of cube
             cube.position.set(x, y, z);
             // call cube update method
-            updateCube(cube, secs);
+            updateCube(cube, per);
         });
         // whole group rotation
         setCubesRotation(cubes, per);
