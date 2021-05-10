@@ -3,8 +3,8 @@
 
     var scene = new THREE.Scene();
 
-var gridHelper = new THREE.GridHelper(10, 10);
-scene.add(gridHelper);
+    var gridHelper = new THREE.GridHelper(10, 10);
+    scene.add(gridHelper);
 
     var cubes = CubeGroupMod.create();
     scene.add(cubes);
@@ -17,6 +17,8 @@ scene.add(gridHelper);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
+   
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     // loop
     var lt = new Date(),
