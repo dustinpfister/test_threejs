@@ -6,7 +6,9 @@
     var gridHelper = new THREE.GridHelper(10, 10);
     scene.add(gridHelper);
 
-    var cubes = CubeGroupMod.create();
+    var cubes = CubeGroupMod.create({
+       anglesA:[180, 0, 90, 90]
+    });
     scene.add(cubes);
 
     // Camera

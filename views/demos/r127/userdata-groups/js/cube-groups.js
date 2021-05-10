@@ -13,7 +13,7 @@
         });
     };
 
-    var ANGLES_A = toRadians([225, 315, 135, 45]);
+    var ANGLES_A = [225, 315, 135, 45];
 
     // create a single cube mesh
     var createCube = function (rotationRates, position) {
@@ -43,14 +43,15 @@
         opt = opt || {};
         
         var cubes = new THREE.Group(),
-        ud = cubes.userData;
-        ud.frame = 0;
-        ud.maxFrame = 90;
-        ud.fps = 30;
+        gud = cubes.userData;
+        gud.frame = 0;
+        gud.maxFrame = 90;
+        gud.fps = 30;
+        gud.anglesA = toRadians(opt.anglesA || ANGLES_A);
         var i = 0;
         while(i < 8){
             var cube = createCube(
-                [6.28, 0.00, 0.00], 
+                [0.00, 0.00, 0.00], 
                 new THREE.Vector3(0, 0, 0));
             cubes.add(cube);
             i += 1;
@@ -59,9 +60,9 @@
     };
 
     var setCubesRotation = function(cubes, per){
-        var x = Math.PI * 1 * per,
-        y = Math.PI * 1 * per,
-        z = Math.PI * 1 * per;
+        var x = Math.PI * 0 * per,
+        y = Math.PI * 0 * per,
+        z = Math.PI * 0 * per;
         cubes.rotation.set(x, y, z);
     };
 
@@ -79,7 +80,7 @@
             // adjusted
             var aIndex = i % 4,
             bIndex = Math.floor(i / 4),
-            r1 = ANGLES_A[aIndex],
+            r1 = gud.anglesA[aIndex],
             x = sx + Math.cos(r1) * 2 * bias,
             y = sy + 2 * bias * (bIndex === 0 ? -1 : 1),
             z = sz + Math.sin(r1) * 2 * bias;
