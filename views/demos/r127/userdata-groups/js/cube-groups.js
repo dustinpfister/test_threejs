@@ -38,8 +38,8 @@
     api.create = function(opt) {
         var cubes = new THREE.Group(),
         ud = cubes.userData;
-        ud.frame = 50;
-        ud.maxFrame = 50;
+        ud.frame = 0;
+        ud.maxFrame = 90;
         ud.fps = 30;
         var i = 0;
         while(i < 8){
@@ -74,6 +74,7 @@
             cube.position.set(x, y, z);
 
             //updateCube(cube, secs);
+
         });
         gud.frame += gud.fps * secs;
         gud.frame %= gud.maxFrame; 
