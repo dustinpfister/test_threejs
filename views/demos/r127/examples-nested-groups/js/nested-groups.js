@@ -17,6 +17,7 @@
         // grid helper
         var gridHelper = new THREE.GridHelper(10, 10);
         nested.add(gridHelper);
+        // nested cube group one
         var cubes1 = nud.cubes1 = CubeGroupMod.create({
             anglesA:[180, 270, 90, 0],
             yDelta: 1.25,
@@ -27,6 +28,11 @@
             rotations: [1, 1, 1]
         });
         nested.add(cubes1);
+        // shake object
+        nud.shake = ShakeMod.create({
+           pos: 0.1,
+           deg: 0.1
+        });
         return nested;
 
     };
@@ -41,6 +47,11 @@
        nud.camera.position.y = 15;
        nud.camera.position.z = Math.sin(nud.cameraRadian) * 15;
        nud.camera.lookAt(0,0,0);
+       // update shake
+       nud.shake.active = true;
+       ShakeMod.roll(nud.shake);
+       ShakeMod.applyToObject3d(nud.shake, nud.cubes1);
+       // update cube group
        CubeGroupMod.update(nud.cubes1, secs);
     };
 
