@@ -51,6 +51,8 @@
     api.create = function(opt) {
         var nested = new THREE.Group(),
         nud = nested.userData;
+        nud.frame = 0;
+        nud.maxFrame = 300;
         // Camera
         var camera = nud.camera = new THREE.PerspectiveCamera(45, 4 / 3, 5, 40);
         camera.position.set(0, 10, 10);
@@ -81,22 +83,25 @@
   
     // update the nested groups
     api.update = function(nested, secs) {
+       var nud = nested.userData,
+       per = nud.frame / nud.maxFrame;
        // camera
-       var nud = nested.userData;
-       nud.cameraRadian += Math.PI / 180 * 10 * secs;
-       nud.cameraRadian %= Math.PI * 2;
+       nud.cameraRadian = Math.PI * 2 * per;
+       //nud.cameraRadian %= Math.PI * 2;
        nud.camera.position.x = Math.cos(nud.cameraRadian) * 15;
        nud.camera.position.y = 15;
        nud.camera.position.z = Math.sin(nud.cameraRadian) * 15;
        nud.camera.lookAt(0,0,0);
        // update shake
-       nud.shake.active = true;
-       ShakeMod.roll(nud.shake);
-       ShakeMod.applyToObject3d(nud.shake, nud.shakeObjects);
+       //nud.shake.active = true;
+       //ShakeMod.roll(nud.shake);
+       //ShakeMod.applyToObject3d(nud.shake, nud.shakeObjects);
        // update cube group
        CubeGroupMod.update(nud.cubes1, secs);
        // lights
-       nud.lightGroup.rotation.x += Math.PI / 180 * 45 * secs;
+       nud.lightGroup.rotation.x = Math.PI * 8 * per;
+       nud.frame += 30 * secs;
+       nud.frame %= nud.maxFrame;
     };
 
 }
