@@ -14,6 +14,7 @@
         var cube = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
                 new THREE.MeshNormalMaterial());
+        // USER DATA OBJECT FOR A SINGLE CUBE
         var ud = cube.userData;
         ud.rotationCounts = rotationCounts || [0, 0, 0];
         cube.position.copy(position || new THREE.Vector3(0, 0, 0));
@@ -35,6 +36,7 @@
         opt = opt || {};
         opt.cubeRotations = opt.cubeRotations || [];
         var cubes = new THREE.Group(),
+        // USER DATA OBJECT FOR A GROUP OF CUBES
         gud = cubes.userData;
         gud.frame = 0;
         gud.maxFrame = opt.maxFrame || 180;
