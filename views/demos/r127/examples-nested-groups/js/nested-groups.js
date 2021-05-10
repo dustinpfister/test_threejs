@@ -27,11 +27,11 @@
     };
 
 
-    var createShakeObjects = function(nud){
-        var shakeObjects = new THREE.Group();
+    var createWorldObjects = function(nud){
+        var worldObjects = new THREE.Group();
         // grid helper
         var gridHelper = new THREE.GridHelper(10, 10);
-        shakeObjects.add(gridHelper);
+        worldObjects.add(gridHelper);
         // nested cube group one
         var cubes1 = nud.cubes1 = CubeGroupMod.create({
             materials: MATERIALS_CUBE,
@@ -43,8 +43,8 @@
             cubeRotations: [],
             rotations: [1, 1, 1]
         });
-        shakeObjects.add(cubes1);
-        return shakeObjects;
+        worldObjects.add(cubes1);
+        return worldObjects;
     };
 
     // create nested groups
@@ -63,19 +63,10 @@
         // lights
         var lightGroup = nud.lightGroup = createPointLightGroup();
         nested.add(lightGroup);
-/*
-        var light = createPointLight(new THREE.Color('lime'));
-        light.position.set(5, 5, 5);
-        nested.add(light);
-*/
-        // shake objects
-        nud.shakeObjects = createShakeObjects(nud);
-        nested.add(nud.shakeObjects);
-        // shake object
-        nud.shake = ShakeMod.create({
-           pos: 0.05,
-           deg: 2.00
-        });
+
+        // world objects
+        nud.worldObjects = createWorldObjects(nud);
+        nested.add(nud.worldObjects);
         return nested;
 
     };
@@ -87,19 +78,15 @@
        per = nud.frame / nud.maxFrame;
        // camera
        nud.cameraRadian = Math.PI * 2 * per;
-       //nud.cameraRadian %= Math.PI * 2;
        nud.camera.position.x = Math.cos(nud.cameraRadian) * 15;
        nud.camera.position.y = 15;
        nud.camera.position.z = Math.sin(nud.cameraRadian) * 15;
        nud.camera.lookAt(0,0,0);
-       // update shake
-       //nud.shake.active = true;
-       //ShakeMod.roll(nud.shake);
-       //ShakeMod.applyToObject3d(nud.shake, nud.shakeObjects);
        // update cube group
        CubeGroupMod.update(nud.cubes1, secs);
        // lights
        nud.lightGroup.rotation.x = Math.PI * 8 * per;
+       // step frame
        nud.frame += 30 * secs;
        nud.frame %= nud.maxFrame;
     };
