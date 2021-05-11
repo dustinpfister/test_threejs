@@ -3,6 +3,8 @@
 
     var utils = {};
 
+    utils.pi2 = Math.PI * 2;
+
     utils.getPerValues = function (frame, maxFrame, base) {
         frame = frame === undefined ? 0 : frame;
         maxFrame = maxFrame === undefined ? 100 : maxFrame;
@@ -20,13 +22,34 @@
         };
     };
 
+    // mathematical modulo
+    utils.mod = function (x, m) {
+        return (x % m + m) % m;
+    };
+
+    utils.normalizeRadian = function (radian) {
+        return utils.mod(radian, utils.pi2);
+    };
+
     var worldMod = {};
 
     worldMod.update = function (world, frame, maxFrame) {
         var wud = world.userData;
         wud.perObj = utils.getPerValues(frame, maxFrame);
-
         Biplane.update(wud.bp, wud.perObj.per);
+
+        var radian1 = utils.normalizeRadian(utils.pi2 * wud.perObj.per),
+        radian2 = utils.normalizeRadian(radian1 + Math.PI / 180 * 1 + Math.PI * 1.5);
+
+        wud.bp.position.set(
+            Math.cos(radian1) * 30,
+            5,
+            Math.sin(radian1) * 30);
+        wud.bp.lookAt(new THREE.Vector3(
+                Math.cos(radian2) * 30,
+                5,
+                Math.sin(radian2) * 30));
+        wud.camera.lookAt(bp.position);
     };
 
     // Scene
@@ -37,7 +60,7 @@
         lt: new Date(),
         fps: 30,
         frame: 0,
-        maxFrame: 180,
+        maxFrame: 600,
         world: new THREE.Group()
     };
     scene.add(state.world);
@@ -45,6 +68,12 @@
     // CREATING A BIPLANE and adding it to the world
     var bp = state.world.userData.bp = Biplane.create();
     state.world.add(bp);
+
+    // Camera
+    var camera = state.world.userData.camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
+    camera.position.set(-15, 10, 0);
+    //camera.lookAt(bp.position);
+    bp.add(camera);
 
     // update for first time
     worldMod.update(state.world, state.frame, state.maxFrame);
@@ -56,12 +85,6 @@
     ground.position.set(0, -5, 0);
     TileMod.setCheckerBoard(ground);
     state.world.add(ground);
-
-    // Camera
-    var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(-15, 10, 10);
-    camera.lookAt(bp.position);
-    bp.add(camera);
 
     // light
     var pointLight = new THREE.PointLight('white');
@@ -85,7 +108,7 @@
         requestAnimationFrame(animate);
         if (secs > 1 / state.fps) {
             worldMod.update(state.world, state.frame, state.maxFrame);
-            renderer.render(scene, camera);
+            renderer.render(scene, state.world.userData.camera);
             state.lt = now;
             state.frame += state.fps * secs;
             state.frame %= state.maxFrame;
