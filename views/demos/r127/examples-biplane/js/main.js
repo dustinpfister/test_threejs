@@ -36,19 +36,19 @@
     worldMod.update = function (world, frame, maxFrame) {
         var wud = world.userData;
         wud.perObj = utils.getPerValues(frame, maxFrame);
+        // biplane
         Biplane.update(wud.bp, wud.perObj.per);
-
         var radian1 = utils.normalizeRadian(utils.pi2 * wud.perObj.per),
         radian2 = utils.normalizeRadian(radian1 + Math.PI / 180 * 1 + Math.PI * 1.5);
-
         wud.bp.position.set(
             Math.cos(radian1) * 30,
             5,
             Math.sin(radian1) * 30);
         wud.bp.lookAt(new THREE.Vector3(
-                Math.cos(radian2) * 30,
-                5,
-                Math.sin(radian2) * 30));
+                Math.cos(radian2) * 10,
+                0,
+                Math.sin(radian2) * 10));
+        // camrea
         wud.camera.lookAt(bp.position);
     };
 
@@ -79,8 +79,8 @@
     worldMod.update(state.world, state.frame, state.maxFrame);
 
     var ground = TileMod.create({
-            w: 50,
-            h: 50
+            w: 80,
+            h: 80
         });
     ground.position.set(0, -5, 0);
     TileMod.setCheckerBoard(ground);
