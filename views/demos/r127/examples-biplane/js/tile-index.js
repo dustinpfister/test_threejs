@@ -1,11 +1,11 @@
 (function (api) {
 
     var MATERIALS = [
-        new THREE.MeshBasicMaterial({
+        new THREE.MeshStandardMaterial({
             color: 0xe0e0e0,
             side: THREE.DoubleSide
         }),
-        new THREE.MeshBasicMaterial({
+        new THREE.MeshStandardMaterial({
             color: 0x505050,
             side: THREE.DoubleSide
         })

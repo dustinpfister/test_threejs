@@ -48,7 +48,8 @@
                 Math.cos(radian2) * 10,
                 0,
                 Math.sin(radian2) * 10));
-        // camrea
+        // camera
+        wud.camera.position.set(-20, 10, -20 + 40 * wud.perObj.biasLog);
         wud.camera.lookAt(bp.position);
     };
 
@@ -70,7 +71,7 @@
     state.world.add(bp);
 
     // Camera
-    var camera = state.world.userData.camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
+    var camera = state.world.userData.camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 150);
     camera.position.set(-15, 10, 0);
     //camera.lookAt(bp.position);
     bp.add(camera);
@@ -79,8 +80,8 @@
     worldMod.update(state.world, state.frame, state.maxFrame);
 
     var ground = TileMod.create({
-            w: 80,
-            h: 80
+            w: 100,
+            h: 100
         });
     ground.position.set(0, -5, 0);
     TileMod.setCheckerBoard(ground);
