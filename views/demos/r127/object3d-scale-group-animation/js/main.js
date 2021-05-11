@@ -4,14 +4,24 @@ var scene = new THREE.Scene();
 var state = {
     lt: new Date,
     fps: 30,
-    groups: []
+    groups: new THREE.Group()
 };
+scene.add(state.groups);
 
 // a group created with the cube group module
-var group1 = CubeGroup.create();
-state.groups.push(group1);
-group1.position.set(0, 0, 0);
-scene.add(group1);
+var i = 0,
+len = 4, 
+radius = 3,
+radian, x, z;
+while (i < len) {
+    radian = Math.PI * 2 / 4 * i;
+    x = Math.cos(radian) * radius;
+    z = Math.sin(radian) * radius;
+    var group = CubeGroup.create();
+    state.groups.add(group);
+    group.position.set(x, 0, z);
+    i += 1;
+}
 
 var grid = new THREE.GridHelper(7, 7);
 scene.add(grid);
@@ -29,7 +39,7 @@ var loop = function () {
     secs = (now - state.lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / state.fps) {
-        state.groups.forEach(function (group) {
+        state.groups.children.forEach(function (group) {
             CubeGroup.update(group, secs);
         });
         renderer.render(scene, camera);
