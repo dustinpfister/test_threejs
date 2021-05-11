@@ -1,3 +1,18 @@
+var getPerValues = function (frame, maxFrame, base) {
+    frame = frame === undefined ? 0 : frame;
+    maxFrame = maxFrame === undefined ? 100 : maxFrame;
+    base = base || 2;
+    var per = frame / maxFrame,
+    bias = 1 - Math.abs(per - 0.5) / 0.5;
+    return {
+        frame: frame,
+        maxFrame: maxFrame,
+        per: per,
+        bias: bias,
+        base: base,
+        biasLog: Math.log(1 + bias * (base - 1)) / Math.log(base)
+    };
+};
 
 var createCubeGroup = function () {
     var size = 1,
@@ -58,8 +73,10 @@ var loop = function () {
     requestAnimationFrame(loop);
 
     if (secs > 1 / fps) {
+
         s = 0.25 + 1.75 * biasLog;
         group1.scale.set(s, s, s);
+
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
