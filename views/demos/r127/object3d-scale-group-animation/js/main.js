@@ -51,11 +51,14 @@ var loop = function () {
     var now = new Date(),
     secs = (now - lt) / 1000,
     per = frame / maxFrame,
+    bias = 1 - Math.abs(per - 0.5) / 0.5,
+    base = 4,
+    biasLog = Math.log(1 + bias * (base - 1)) / Math.log(base),
     s;
     requestAnimationFrame(loop);
 
     if (secs > 1 / fps) {
-        s = 1 + 2 * per;
+        s = 0.25 + 1.75 * biasLog;
         group1.scale.set(s, s, s);
         renderer.render(scene, camera);
         frame += fps * secs;
