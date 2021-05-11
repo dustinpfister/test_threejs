@@ -40,21 +40,21 @@
         }
         return group;
     };
-
+    // create the full group object with user data
     api.create = function () {
         var group = createGroup(),
         ud = group.userData;
         ud.perObj = getPerValues(0, 50);
         return group;
     };
-
+    // update
     api.update = function (cubeGroup, secs) {
         var ud = cubeGroup.userData,
         perObj = ud.perObj,
         s = perObj.biasLog;
-
+        // SET CURRENT SCALE
         cubeGroup.scale.set(s, s, s);
-
+        // update frame and perObj
         perObj.frame += perObj.fps * secs;
         perObj.frame %= perObj.maxFrame;
         ud.perObj = getPerValues(perObj.frame, perObj.maxFrame);
