@@ -45,6 +45,8 @@ var loop = function () {
         state.groups.children.forEach(function (group, i) {
             CubeGroup.update(group, secs);
         });
+        state.groups.rotation.x += Math.PI / 180 * 5 * secs;
+        state.groups.rotation.x %= Math.PI * 2;
         state.groups.rotation.y += Math.PI / 180 * 10 * secs;
         state.groups.rotation.y %= Math.PI * 2;
         renderer.render(scene, camera);
