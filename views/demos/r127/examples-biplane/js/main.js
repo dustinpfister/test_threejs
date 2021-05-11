@@ -1,6 +1,7 @@
 (function () {
     // Scene
     var scene = new THREE.Scene();
+    scene.background = new THREE.Color('cyan');
     // create state
     var state = {
         lt: new Date(),

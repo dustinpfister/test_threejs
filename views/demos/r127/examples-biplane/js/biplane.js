@@ -2,14 +2,14 @@
 var Biplane = (function () {
 
     var materials = {
-        plane: new THREE.MeshLambertMaterial({
-            color: 0x00ff00
+        plane: new THREE.MeshStandardMaterial({
+            color: 0x88afaf
         }),
-        guy: new THREE.MeshLambertMaterial({
+        guy: new THREE.MeshStandardMaterial({
             color: 0xffffff
         }),
-        prop: new THREE.MeshLambertMaterial({
-            color: 0x808080
+        prop: new THREE.MeshStandardMaterial({
+            color: 0x404040
         })
     };
 
