@@ -58,6 +58,7 @@
         s = 0.25 + 0.75 * perObj.biasLog;
         // SET CURRENT SCALE
         cubeGroup.scale.set(s, s, s);
+        cubeGroup.rotation.z = Math.PI * 2 * perObj.per;
         // update frame and perObj
         perObj.frame += perObj.fps * secs;
         perObj.frame %= perObj.maxFrame;
