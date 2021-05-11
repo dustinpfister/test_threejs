@@ -7,16 +7,25 @@
     var state = {
         lt: new Date(),
         fps: 24,
-        bp: null
+        world: new THREE.Group()
     };
+    scene.add(state.world);
 
-    // CREATING A BIPLANE
-    var bp = state.bp = Biplane.create();
-    scene.add(bp);
+    // CREATING A BIPLANE and adding it to the world
+    var bp = state.world.userData.bp = Biplane.create();
+    state.world.add(bp);
+
+    var ground = TileMod.create({
+            w: 50,
+            h: 50
+        });
+    ground.position.set(0, -5, 0);
+    TileMod.setCheckerBoard(ground);
+    state.world.add(ground);
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(-15, 15, 0);
+    camera.position.set(-15, 10, 10);
     camera.lookAt(bp.position);
     bp.add(camera);
 
@@ -37,10 +46,11 @@
     // loop
     function animate() {
         var now = new Date(),
-        secs = (now - state.lt) / 1000;
+        secs = (now - state.lt) / 1000,
+        wud = state.world.userData;
         requestAnimationFrame(animate);
         if (secs > 1 / state.fps) {
-            Biplane.update(state.bp, secs);
+            Biplane.update(wud.bp, secs);
             renderer.render(scene, camera);
             state.lt = now;
         }
