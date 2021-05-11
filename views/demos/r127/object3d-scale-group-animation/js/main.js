@@ -32,10 +32,12 @@ var loop = function () {
         //perObj = getPerValues(frame, maxFrame, 2);
         //s = 0.25 + 1.75 * perObj.biasLog;
         //group1.scale.set(s, s, s);
+		
+		CubeGroup.update(group1, secs);
 
         renderer.render(scene, camera);
-        frame += fps * secs;
-        frame %= maxFrame;
+        //frame += fps * secs;
+        //frame %= maxFrame;
         lt = now;
     }
 };

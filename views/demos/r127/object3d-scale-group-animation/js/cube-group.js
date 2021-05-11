@@ -8,6 +8,7 @@
         return {
             frame: frame,
             maxFrame: maxFrame,
+            fps: 30,
             per: per,
             bias: bias,
             base: base,
@@ -41,11 +42,23 @@
     };
 
     api.create = function () {
-        var group = createGroup();
+        var group = createGroup(),
+        ud = group.userData;
+        ud.perObj = getPerValues(0, 50);
         return group;
     };
 
-    api.update = function (cubeGroup, secs) {};
+    api.update = function (cubeGroup, secs) {
+        var ud = cubeGroup.userData,
+        perObj = ud.perObj,
+        s = perObj.biasLog;
+
+        cubeGroup.scale.set(s, s, s);
+
+        perObj.frame += perObj.fps * secs;
+        perObj.frame %= perObj.maxFrame;
+        ud.perObj = getPerValues(perObj.frame, perObj.maxFrame);
+    };
 
 }
     (this['CubeGroup'] = {}));
