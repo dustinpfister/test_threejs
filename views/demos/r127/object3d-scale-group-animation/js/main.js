@@ -10,7 +10,7 @@ scene.add(state.groups);
 
 // a group created with the cube group module
 var i = 0,
-len = 4, 
+len = 4,
 radius = 3,
 radian, x, z;
 while (i < len) {
@@ -42,6 +42,8 @@ var loop = function () {
         state.groups.children.forEach(function (group) {
             CubeGroup.update(group, secs);
         });
+        state.groups.rotation.y += Math.PI / 180 * 20 * secs;
+        state.groups.rotation.y %= Math.PI * 2;
         renderer.render(scene, camera);
         state.lt = now;
     }
