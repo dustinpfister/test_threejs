@@ -4,7 +4,7 @@ var grid = new THREE.GridHelper(7, 7);
 scene.add(grid);
 
 // group1 with DEFAULT SCALE
-var group1 = createCubeGroup();
+var group1 = CubeGroup.create();
 group1.position.set(0, 0, 0);
 scene.add(group1);
 
@@ -29,9 +29,9 @@ var loop = function () {
     requestAnimationFrame(loop);
 
     if (secs > 1 / fps) {
-        perObj = getPerValues(frame, maxFrame, 2);
-        s = 0.25 + 1.75 * perObj.biasLog;
-        group1.scale.set(s, s, s);
+        //perObj = getPerValues(frame, maxFrame, 2);
+        //s = 0.25 + 1.75 * perObj.biasLog;
+        //group1.scale.set(s, s, s);
 
         renderer.render(scene, camera);
         frame += fps * secs;
