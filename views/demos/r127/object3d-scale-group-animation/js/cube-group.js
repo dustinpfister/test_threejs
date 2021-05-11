@@ -1,4 +1,5 @@
 (function (api) {
+
     var getPerValues = function (frame, maxFrame, base) {
         frame = frame === undefined ? 0 : frame;
         maxFrame = maxFrame === undefined ? 100 : maxFrame;
@@ -54,7 +55,7 @@
     api.update = function (cubeGroup, secs) {
         var ud = cubeGroup.userData,
         perObj = ud.perObj,
-        s = perObj.biasLog;
+        s = 0.25 + 0.75 * perObj.biasLog;
         // SET CURRENT SCALE
         cubeGroup.scale.set(s, s, s);
         // update frame and perObj
