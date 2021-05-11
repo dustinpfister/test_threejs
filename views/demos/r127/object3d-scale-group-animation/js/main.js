@@ -3,12 +3,13 @@ var scene = new THREE.Scene();
 
 var state = {
     lt: new Date,
-    fps: 30
+    fps: 30,
+    groups: []
 };
 
 // a group created with the cube group module
-
 var group1 = CubeGroup.create();
+state.groups.push(group1);
 group1.position.set(0, 0, 0);
 scene.add(group1);
 
@@ -26,13 +27,11 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var loop = function () {
     var now = new Date(),
     secs = (now - state.lt) / 1000;
-
     requestAnimationFrame(loop);
-
     if (secs > 1 / state.fps) {
-
-        CubeGroup.update(group1, secs);
-
+        state.groups.forEach(function (group) {
+            CubeGroup.update(group, secs);
+        });
         renderer.render(scene, camera);
         state.lt = now;
     }
