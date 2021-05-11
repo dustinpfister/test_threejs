@@ -7,7 +7,7 @@
         var bp = world.userData.bp = Biplane.create();
         world.add(bp);
         // Camera
-        var camera = world.userData.camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 150);
+        var camera = world.userData.camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 250);
         camera.position.set(-15, 10, 0);
         bp.add(camera);
         // ground
@@ -49,7 +49,7 @@
                 0,
                 Math.sin(radian2) * 10));
         // camera
-        wud.camera.position.set(-20, 10, -20 + 40 * wud.perObj.biasLog);
+        wud.camera.position.set(50 - 40 * wud.perObj.biasLog, 10, -20 + 40 * wud.perObj.biasLog);
         wud.camera.lookAt(wud.bp.position);
     };
 }
