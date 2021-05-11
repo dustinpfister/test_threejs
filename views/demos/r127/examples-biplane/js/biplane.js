@@ -91,10 +91,9 @@ var Biplane = (function () {
         return plane;
     };
 
-    api.update = function(bi, secs){
+    api.update = function(bi, per){
         var ud = bi.userData;
-        ud.propRadian += (Math.PI * 2 * ud.propRPS) * secs;
-        ud.propRadian %= (Math.PI * 2);
+        ud.propRadian = Math.PI * 24 * per;
         ud.prop.rotation.set(ud.propRadian,0,0)
     };
 
