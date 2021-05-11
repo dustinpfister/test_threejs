@@ -45,7 +45,9 @@
         opt = opt || {};
         var group = createGroup(),
         ud = group.userData;
-        ud.perObj = getPerValues(opt.frame === undefined ? 0 : opt.frame, opt.maxFrame === undefined ? 0 : opt.maxFrame);
+        ud.perObj = getPerValues(
+                opt.frame === undefined ? 0 : opt.frame,
+                opt.maxFrame === undefined ? 0 : opt.maxFrame);
         return group;
     };
     // update

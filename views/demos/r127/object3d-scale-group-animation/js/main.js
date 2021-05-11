@@ -10,14 +10,17 @@ scene.add(state.groups);
 
 // a group created with the cube group module
 var i = 0,
-len = 4,
+len = 6,
 radius = 3,
 radian, x, z;
 while (i < len) {
-    radian = Math.PI * 2 / 4 * i;
+    radian = Math.PI * 2 / len * i;
     x = Math.cos(radian) * radius;
     z = Math.sin(radian) * radius;
-    var group = CubeGroup.create({frame:0 , maxFrame: 100, fps: 30});
+    var group = CubeGroup.create({
+            frame: Math.floor(100 * (i / len)),
+            maxFrame: 60
+        });
     state.groups.add(group);
     group.position.set(x, 0, z);
     i += 1;
