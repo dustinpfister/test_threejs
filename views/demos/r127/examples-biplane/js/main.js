@@ -4,10 +4,21 @@
     // Scene
     var scene = new THREE.Scene();
 
+    var state = {
+        lt: new Date(),
+        fps: 24,
+        bp: null
+    };
+
+    // CREATING A BIPLANE
+    var bp = state.bp = Biplane.create();
+    scene.add(bp);
+
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(20, 20, 20);
-    camera.lookAt(0, 0, 10);
+    camera.position.set(-15, 15, 0);
+    camera.lookAt(bp.position);
+    bp.add(camera);
 
     // light
     var pointLight = new THREE.PointLight('white');
@@ -18,38 +29,21 @@
                 color: 'white'
             })));
     scene.add(pointLight);
-
-    var bi1 = Biplane.create();
-    scene.add(bi1);
-
-    var materials = {
-        plane: new THREE.MeshLambertMaterial({
-            color: 0xff0000
-        })
-    },
-    bi2 = Biplane.create({
-        materials: materials
-    });
-    bi2.userData.propRPS = 2;
-    bi2.position.set(0,0,15);
-    scene.add(bi2);
-
-
     // Render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // loop
-    var lt = new Date();
     function animate() {
         var now = new Date(),
-        secs = (now - lt) / 1000;
+        secs = (now - state.lt) / 1000;
         requestAnimationFrame(animate);
-        Biplane.update(bi1, secs);
-        Biplane.update(bi2, secs);
-        renderer.render(scene, camera);
-        lt = now;
+        if (secs > 1 / state.fps) {
+            Biplane.update(state.bp, secs);
+            renderer.render(scene, camera);
+            state.lt = now;
+        }
     };
 
     animate();
