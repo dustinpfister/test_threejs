@@ -15,7 +15,7 @@
         };
     };
 
-    api.create = function () {
+    var createGroup = function () {
         var size = 1,
         scale = 1 / 2,
         halfScale = scale / 2;
@@ -39,6 +39,13 @@
         }
         return group;
     };
+
+    api.create = function () {
+        var group = createGroup();
+        return group;
+    };
+
+    api.update = function (cubeGroup, secs) {};
 
 }
     (this['CubeGroup'] = {}));
