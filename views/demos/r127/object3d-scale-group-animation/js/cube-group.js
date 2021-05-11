@@ -41,10 +41,11 @@
         return group;
     };
     // create the full group object with user data
-    api.create = function () {
+    api.create = function (opt) {
+        opt = opt || {};
         var group = createGroup(),
         ud = group.userData;
-        ud.perObj = getPerValues(0, 50);
+        ud.perObj = getPerValues(opt.frame === undefined ? 0 : opt.frame, opt.maxFrame === undefined ? 0 : opt.maxFrame);
         return group;
     };
     // update

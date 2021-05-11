@@ -17,7 +17,7 @@ while (i < len) {
     radian = Math.PI * 2 / 4 * i;
     x = Math.cos(radian) * radius;
     z = Math.sin(radian) * radius;
-    var group = CubeGroup.create();
+    var group = CubeGroup.create({frame:0 , maxFrame: 100, fps: 30});
     state.groups.add(group);
     group.position.set(x, 0, z);
     i += 1;
@@ -39,7 +39,7 @@ var loop = function () {
     secs = (now - state.lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / state.fps) {
-        state.groups.children.forEach(function (group) {
+        state.groups.children.forEach(function (group, i) {
             CubeGroup.update(group, secs);
         });
         state.groups.rotation.y += Math.PI / 180 * 20 * secs;
