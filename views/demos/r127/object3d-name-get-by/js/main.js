@@ -1,6 +1,7 @@
+// creating a group
 var group = new THREE.Group();
 group.name = 'boxGroup';
-// adding teo boxes to the group with names
+// adding two boxes to the group with names
 var box = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
@@ -23,6 +24,7 @@ var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(5, 5));
 scene.add(group);
 
+// GETTING BOX1 BY THE NAME
 var box = group.getObjectByName('box1');
 box.rotation.set(Math.PI / 180 * 45, 0, 0);
 
