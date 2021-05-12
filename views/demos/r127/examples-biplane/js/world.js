@@ -19,7 +19,7 @@
         TileMod.setCheckerBoard(ground);
         world.add(ground);
         // point light
-        var pointLight = new THREE.PointLight(0xffffff, 1);
+        var pointLight = new THREE.PointLight(0xffffff, 0.8);
         pointLight.position.set(28, 20, 40);
         pointLight.add(new THREE.Mesh(
                 new THREE.SphereGeometry(0, 100, 10),
@@ -28,7 +28,7 @@
                 })));
         world.add(pointLight);
         // ambient light
-        //world.add(new THREE.AmbientLight(0xffffff, 0.00))
+        world.add(new THREE.AmbientLight(0xffffff, 0.2))
         // return world group
         return world;
     };
