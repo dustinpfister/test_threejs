@@ -1,9 +1,9 @@
 // creating a group
-var createCircleGroup = function(){
+var createCubeGroup = function(){
     var group = new THREE.Group();
     group.name = 'boxGroup';
     var i = 0,
-    len = 5;
+    len = 4;
     while(i < len){
         var box = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -16,7 +16,19 @@ var createCircleGroup = function(){
     return group;
 };
 
-var group = createCircleGroup();
+var toCircleGroup = function(cubeGroup){
+    var len = cubeGroup.children.length;
+    cubeGroup.children.forEach(function(cube, i){
+        var radian = Math.PI * 2 / len * i,
+        x = Math.cos(radian) * 2,
+        z = Math.sin(radian) * 2;
+        cube.position.set(x, 0, z);
+    });
+    return cubeGroup;
+};
+
+var group = createCubeGroup();
+toCircleGroup(group);
 
 // box helper
 group.add(new THREE.BoxHelper(group));
@@ -26,10 +38,6 @@ group.position.set(0, 0, 0);
 var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(5, 5));
 scene.add(group);
-
-// GETTING BOX1 BY THE NAME
-var box = group.getObjectByName('box0');
-box.rotation.set(Math.PI / 180 * 45, 0, 0);
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
