@@ -50,5 +50,25 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
+var lt = new Date(),
+r = 0,
+x, 
+z,
+v = new THREE.Vector3(5, 0, 0),
+fps = 30;
+var loop = function(){
+    var now = new Date(),
+    secs = (now - lt) / 1000;
 
-renderer.render(scene, camera);
+    requestAnimationFrame(loop);
+    if(secs > 1 / fps){
+        r += Math.PI / 180 * 5 * secs;
+        x = Math.cos(r) * 5;
+        z = Math.sin(r) * 5;
+        v.set(x, 0, z);
+        group.lookAt(v);
+        renderer.render(scene, camera);
+        lt = now;
+    }
+};
+loop();
