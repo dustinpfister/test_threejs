@@ -9,7 +9,7 @@
         // Camera
         var camera = world.userData.camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 250);
         camera.position.set(-15, 10, 0);
-        bp.add(camera);
+        world.add(camera);
         // ground
         var ground = TileMod.create({
                 w: 100,
@@ -28,7 +28,8 @@
                 })));
         world.add(pointLight);
         // ambient light
-        world.add(new THREE.AmbientLight(0xffffff, 0.2))
+        world.add(new THREE.AmbientLight(0xffffff, 0.2));
+
         // return world group
         return world;
     };
@@ -41,23 +42,19 @@
         var radian1 = utils.normalizeRadian(utils.pi2 * wud.perObj.per),
         radian2 = utils.normalizeRadian(radian1 + Math.PI / 180 * 1 + Math.PI * 1.5);
 
-        wud.camera.position.set(20, 0, 20);
-        wud.camera.lookAt(wud.bp.position);
-        wud.bp.lookAt(wud.camera.position);
-
-        /*
         wud.bp.position.set(
-        Math.cos(radian1) * 30,
-        5,
-        Math.sin(radian1) * 30);
+            Math.cos(radian1) * 30,
+            10,
+            Math.sin(radian1) * 30);
         wud.bp.lookAt(new THREE.Vector3(
-        Math.cos(radian2) * 10,
-        0,
-        Math.sin(radian2) * 10));
-        // camera
+                Math.cos(radian2) * 10,
+                0,
+                Math.sin(radian2) * 10));
+
         wud.camera.position.set(50 - 40 * wud.perObj.biasLog, 10, -20 + 40 * wud.perObj.biasLog);
+        //wud.camera.position.set(0,20,0);
         wud.camera.lookAt(wud.bp.position);
-         */
+
     };
 }
     (this['worldMod'] = {}));
