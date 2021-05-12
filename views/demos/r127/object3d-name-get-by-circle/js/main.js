@@ -53,25 +53,32 @@ renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 var lt = new Date(),
+frame = 0,
+maxFrame = 600,
 r = 0,
 x, 
 z,
-v = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.25, 0.25), new THREE.MeshBasicMaterial()),
+v = new THREE.Mesh(
+    new THREE.BoxGeometry(0.25, 0.25, 0.25), 
+    new THREE.MeshBasicMaterial()),
 fps = 30;
 scene.add(v);
 var loop = function(){
     var now = new Date(),
+    per = frame / maxFrame,
+    bias = 1 - Math.abs(per - 0.5) / 0.5,
     secs = (now - lt) / 1000;
-
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-        r += Math.PI / 180 * 5 * secs;
+        r = Math.PI  * 2 * per;
         x = Math.cos(r) * 5;
         z = Math.sin(r) * 5;
-        v.position.set(x, 0, z);
+        v.position.set(x, 5 * Math.sin(Math.PI * 4 * per), z);
         group.lookAt(v.position);
         renderer.render(scene, camera);
         lt = now;
+        frame += fps * secs;
+        frame %= maxFrame;
     }
 };
 loop();
