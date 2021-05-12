@@ -16,25 +16,11 @@ var createBoxGroup = function(count){
     }
     return group;
 };
-// set group of box objects into a circular position
-var toCircleGroup = function(boxGroup, radianAdjust){
-    // RADIAN ADJUST SET TO MATH.PI * 0.5 BY DEFAULT
-    radianAdjust = radianAdjust === undefined ? Math.PI * 0.5 : radianAdjust;
-    var len = boxGroup.children.length;
-    boxGroup.children.forEach(function(box, i){
-        var radian = Math.PI * 2 / len * i + radianAdjust,
-        x = Math.cos(radian) * 2,
-        z = Math.sin(radian) * 2;
-        box.position.set(x, 0, z);
-    });
-    return boxGroup;
-};
 
 // SETTING SCALE OF BOX GROUP AND GETTING BOX OBJECTS BY NAME
 // WHEN DOING SO
 var createObject1 = function(){
     var group = createBoxGroup(4);
-    toCircleGroup(group);
     // set cube zero to a bigger scale than the others
     // this should be the front
     var box = group.getObjectByName('box_0');
@@ -61,7 +47,7 @@ group.add(new THREE.BoxHelper(group));
 // scene
 var scene = new THREE.Scene();
 // grid helper
-scene.add(new THREE.GridHelper(9, 9));
+scene.add(new THREE.GridHelper(7, 7));
 // add group
 scene.add(group);
 // dir mesh
