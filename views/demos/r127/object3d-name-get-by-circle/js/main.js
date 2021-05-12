@@ -33,7 +33,16 @@ var toCircleGroup = function(cubeGroup, radianAdjust){
 var group = createCubeGroup();
 toCircleGroup(group);
 var cube = group.getObjectByName('cube_0');
-cube.scale.set(2, 2, 2);
+cube.scale.set(3, 3, 4);
+// side box objects
+var cube = group.getObjectByName('cube_1');
+cube.scale.set(8, 1, 1);
+var cube = group.getObjectByName('cube_3');
+cube.scale.set(8, 1, 1);
+// rear box object
+var cube = group.getObjectByName('cube_2');
+cube.scale.set(1, 1, 12);
+
 
 // box helper
 group.add(new THREE.BoxHelper(group));
