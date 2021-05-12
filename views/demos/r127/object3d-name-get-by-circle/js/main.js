@@ -5,17 +5,17 @@ var createCubeGroup = function(){
     var i = 0,
     len = 4;
     while(i < len){
-        var box = new THREE.Mesh(
+        var cube = new THREE.Mesh(
             new THREE.BoxGeometry(0.5, 0.5, 0.5),
             new THREE.MeshNormalMaterial());
-        box.position.set(0, 0, 0);
-        box.name = 'box_' + i;
-        group.add(box);
+        cube.position.set(0, 0, 0);
+        cube.name = 'cube_' + i;
+        group.add(cube);
         i += 1;
     }
     return group;
 };
-
+// set group of box objects into a circular position
 var toCircleGroup = function(cubeGroup){
     var len = cubeGroup.children.length;
     cubeGroup.children.forEach(function(cube, i){
@@ -27,10 +27,11 @@ var toCircleGroup = function(cubeGroup){
     return cubeGroup;
 };
 
+// set cube zero to a bigger scale than the others
 var group = createCubeGroup();
 toCircleGroup(group);
-var box = group.getObjectByName('box_0');
-box.scale.set(2, 2, 2);
+var cube = group.getObjectByName('cube_0');
+cube.scale.set(2, 2, 2);
 
 // box helper
 group.add(new THREE.BoxHelper(group));
@@ -48,4 +49,6 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
+
+
 renderer.render(scene, camera);
