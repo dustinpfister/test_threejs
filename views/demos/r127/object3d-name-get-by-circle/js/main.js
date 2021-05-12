@@ -1,17 +1,22 @@
 // creating a group
-var group = new THREE.Group();
-group.name = 'boxGroup';
-var i = 0,
-len = 5;
-while(i < len){
-    var box = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial());
-    box.position.set(0, 0, 0);
-    box.name = 'box' + i;
-    group.add(box);
-    i += 1;
-}
+var createCircleGroup = function(){
+    var group = new THREE.Group();
+    group.name = 'boxGroup';
+    var i = 0,
+    len = 5;
+    while(i < len){
+        var box = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshNormalMaterial());
+        box.position.set(0, 0, 0);
+        box.name = 'box' + i;
+        group.add(box);
+        i += 1;
+    }
+    return group;
+};
+
+var group = createCircleGroup();
 
 // box helper
 group.add(new THREE.BoxHelper(group));
