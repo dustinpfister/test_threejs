@@ -40,17 +40,24 @@
         Biplane.update(wud.bp, wud.perObj.per);
         var radian1 = utils.normalizeRadian(utils.pi2 * wud.perObj.per),
         radian2 = utils.normalizeRadian(radian1 + Math.PI / 180 * 1 + Math.PI * 1.5);
+
+        wud.camera.position.set(20, 0, 20);
+        wud.camera.lookAt(wud.bp.position);
+        wud.bp.lookAt(wud.camera.position);
+
+        /*
         wud.bp.position.set(
-            Math.cos(radian1) * 30,
-            5,
-            Math.sin(radian1) * 30);
+        Math.cos(radian1) * 30,
+        5,
+        Math.sin(radian1) * 30);
         wud.bp.lookAt(new THREE.Vector3(
-                Math.cos(radian2) * 10,
-                0,
-                Math.sin(radian2) * 10));
+        Math.cos(radian2) * 10,
+        0,
+        Math.sin(radian2) * 10));
         // camera
         wud.camera.position.set(50 - 40 * wud.perObj.biasLog, 10, -20 + 40 * wud.perObj.biasLog);
         wud.camera.lookAt(wud.bp.position);
+         */
     };
 }
     (this['worldMod'] = {}));

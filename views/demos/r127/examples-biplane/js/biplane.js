@@ -88,6 +88,9 @@ var Biplane = (function () {
         // prop radian to move prop
         plane.userData.propRadian = 0;
         plane.userData.propRPS = 0.25;
+		
+		plane.add(new THREE.BoxHelper(plane));
+		
         return plane;
     };
 
