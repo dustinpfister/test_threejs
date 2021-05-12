@@ -4,29 +4,21 @@ scene.add(new THREE.GridHelper(5, 5)); // grid helper
 
 
 // create a group
-var group = BoxGroup.create();
-group.position.set(-7, 0, 0);
-console.log(group.name);
-scene.add(group);
+var group1 = BoxGroup.create();
+group1.position.set(-15, 0, 0);
+scene.add(group1);
 
 // create a group
-var group = BoxGroup.create();
-group.position.set(0, 0, -7);
-console.log(group.name);
-scene.add(group);
+var group2 = BoxGroup.create();
+group2.position.set(0, 0, -15);
+scene.add(group2);
 
 // create a group
-var group = BoxGroup.create();
-group.add(new THREE.BoxHelper(group)); // box helper for this group
-console.log(group.name);
-scene.add(group); // add group
+var group3 = BoxGroup.create();
+console.log(group3.name);
+scene.add(group3); // add group
 
 
-// dir mesh
-var dir = new THREE.Mesh(
-    new THREE.BoxGeometry(0.25, 0.25, 0.25), 
-    new THREE.MeshBasicMaterial());
-scene.add(dir);
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(5, 5, 5);
@@ -41,9 +33,6 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 var lt = new Date(),
 frame = 0,
 maxFrame = 600,
-r = 0,
-x, 
-z,
 fps = 30;
 var loop = function(){
     var now = new Date(),
@@ -52,11 +41,14 @@ var loop = function(){
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-        r = Math.PI  * 2 * per;
-        x = Math.cos(r) * 5;
-        z = Math.sin(r) * 5;
-        dir.position.set(x, 5 * Math.sin(Math.PI * 4 * per), z);
-        group.lookAt(dir.position);
+
+        group1.userData.heading = 360 * per;
+        BoxGroup.update(group1);
+
+        group3.userData.heading = 360 * per;
+        group3.userData.pitch = 180 * Math.sin(Math.PI * 4 * per);
+        BoxGroup.update(group3);
+
         renderer.render(scene, camera);
         lt = now;
         frame += fps * secs;
