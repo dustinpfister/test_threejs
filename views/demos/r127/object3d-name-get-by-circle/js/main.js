@@ -30,6 +30,7 @@ var toCircleGroup = function(cubeGroup, radianAdjust){
 };
 
 // set cube zero to a bigger scale than the others
+// this should be the front
 var group = createCubeGroup();
 toCircleGroup(group);
 var cube = group.getObjectByName('cube_0');
@@ -50,8 +51,14 @@ group.position.set(0, 0, 0);
 
 // scene
 var scene = new THREE.Scene();
+
 scene.add(new THREE.GridHelper(5, 5));
 scene.add(group);
+
+var dir = new THREE.Mesh(
+    new THREE.BoxGeometry(0.25, 0.25, 0.25), 
+    new THREE.MeshBasicMaterial());
+scene.add(dir);
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
@@ -67,11 +74,7 @@ maxFrame = 600,
 r = 0,
 x, 
 z,
-v = new THREE.Mesh(
-    new THREE.BoxGeometry(0.25, 0.25, 0.25), 
-    new THREE.MeshBasicMaterial()),
 fps = 30;
-scene.add(v);
 var loop = function(){
     var now = new Date(),
     per = frame / maxFrame,
@@ -82,8 +85,8 @@ var loop = function(){
         r = Math.PI  * 2 * per;
         x = Math.cos(r) * 5;
         z = Math.sin(r) * 5;
-        v.position.set(x, 5 * Math.sin(Math.PI * 4 * per), z);
-        group.lookAt(v.position);
+        dir.position.set(x, 5 * Math.sin(Math.PI * 4 * per), z);
+        group.lookAt(dir.position);
         renderer.render(scene, camera);
         lt = now;
         frame += fps * secs;
