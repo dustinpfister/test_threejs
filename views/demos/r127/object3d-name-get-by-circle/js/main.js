@@ -1,48 +1,49 @@
 // creating a group
-var createCubeGroup = function(){
+var createBoxGroup = function(){
     var group = new THREE.Group();
     group.name = 'boxGroup';
     var i = 0,
+    box,
     len = 4;
     while(i < len){
-        var cube = new THREE.Mesh(
+        box = new THREE.Mesh(
             new THREE.BoxGeometry(0.5, 0.5, 0.5),
             new THREE.MeshNormalMaterial());
-        cube.position.set(0, 0, 0);
-        cube.name = 'cube_' + i;
-        group.add(cube);
+        box.position.set(0, 0, 0);
+        box.name = 'box_' + i;
+        group.add(box);
         i += 1;
     }
     return group;
 };
 // set group of box objects into a circular position
-var toCircleGroup = function(cubeGroup, radianAdjust){
+var toCircleGroup = function(boxGroup, radianAdjust){
     // RADIAN ADJUST SET TO MATH.PI * 0.5 BY DEFAULT
     radianAdjust = radianAdjust === undefined ? Math.PI * 0.5 : radianAdjust;
-    var len = cubeGroup.children.length;
-    cubeGroup.children.forEach(function(cube, i){
+    var len = boxGroup.children.length;
+    boxGroup.children.forEach(function(box, i){
         var radian = Math.PI * 2 / len * i + radianAdjust,
         x = Math.cos(radian) * 2,
         z = Math.sin(radian) * 2;
-        cube.position.set(x, 0, z);
+        box.position.set(x, 0, z);
     });
-    return cubeGroup;
+    return boxGroup;
 };
 
 // set cube zero to a bigger scale than the others
 // this should be the front
-var group = createCubeGroup();
+var group = createBoxGroup();
 toCircleGroup(group);
-var cube = group.getObjectByName('cube_0');
-cube.scale.set(3, 3, 4);
+var box = group.getObjectByName('box_0');
+box.scale.set(3, 3, 4);
 // side box objects
-var cube = group.getObjectByName('cube_1');
-cube.scale.set(8, 1, 1);
-var cube = group.getObjectByName('cube_3');
-cube.scale.set(8, 1, 1);
+var box = group.getObjectByName('box_1');
+box.scale.set(8, 1, 1);
+var box = group.getObjectByName('box_3');
+box.scale.set(8, 1, 1);
 // rear box object
-var cube = group.getObjectByName('cube_2');
-cube.scale.set(1, 1, 12);
+var box = group.getObjectByName('box_2');
+box.scale.set(1, 1, 12);
 
 
 // box helper
