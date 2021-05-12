@@ -7,7 +7,7 @@ var createBoxGroup = function(count){
     len = count;
     while(i < len){
         box = new THREE.Mesh(
-            new THREE.BoxGeometry(0.5, 0.5, 0.5),
+            new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
         box.position.set(0, 0, 0);
         box.name = 'box_' + i;
@@ -38,15 +38,19 @@ var createObject1 = function(){
     // set cube zero to a bigger scale than the others
     // this should be the front
     var box = group.getObjectByName('box_0');
-    box.scale.set(3, 3, 4);
+    box.scale.set(1, 1, 3);
+    box.position.set(0, 0, 1);
     // side box objects
-    var box = group.getObjectByName('box_1');
-    box.scale.set(8, 1, 1);
-    var box = group.getObjectByName('box_3');
-    box.scale.set(8, 1, 1);
-    // rear box object
-    var box = group.getObjectByName('box_2');
-    box.scale.set(1, 1, 12);
+    box = group.getObjectByName('box_1');
+    box.scale.set(1, 1, 1);
+    box.position.set(2, 0, 0);
+    box = group.getObjectByName('box_2');
+    box.scale.set(1, 1, 1);
+    box.position.set(-2, 0, 0);
+    // rear
+    box = group.getObjectByName('box_3');
+    box.scale.set(1, 1, 1);
+    box.position.set(0, 0, -2);
     return group
 };
 
@@ -57,7 +61,7 @@ group.add(new THREE.BoxHelper(group));
 // scene
 var scene = new THREE.Scene();
 // grid helper
-scene.add(new THREE.GridHelper(5, 5));
+scene.add(new THREE.GridHelper(9, 9));
 // add group
 scene.add(group);
 // dir mesh
@@ -67,11 +71,14 @@ var dir = new THREE.Mesh(
 scene.add(dir);
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(6, 6, 6);
+camera.position.set(5, 5, 5);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
+
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
 // loop
 var lt = new Date(),
 frame = 0,
