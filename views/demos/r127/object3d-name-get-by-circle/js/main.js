@@ -6,10 +6,10 @@ var createCubeGroup = function(){
     len = 4;
     while(i < len){
         var box = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.BoxGeometry(0.5, 0.5, 0.5),
             new THREE.MeshNormalMaterial());
         box.position.set(0, 0, 0);
-        box.name = 'box' + i;
+        box.name = 'box_' + i;
         group.add(box);
         i += 1;
     }
@@ -29,6 +29,8 @@ var toCircleGroup = function(cubeGroup){
 
 var group = createCubeGroup();
 toCircleGroup(group);
+var box = group.getObjectByName('box_0');
+box.scale.set(2, 2, 2);
 
 // box helper
 group.add(new THREE.BoxHelper(group));
