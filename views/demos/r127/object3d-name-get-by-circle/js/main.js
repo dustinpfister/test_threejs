@@ -50,23 +50,21 @@ var createObject1 = function(){
     return group
 };
 
+// create a group
 var group = createObject1();
-
 // box helper
 group.add(new THREE.BoxHelper(group));
-group.position.set(0, 0, 0);
-
 // scene
 var scene = new THREE.Scene();
-
+// grid helper
 scene.add(new THREE.GridHelper(5, 5));
+// add group
 scene.add(group);
-
+// dir mesh
 var dir = new THREE.Mesh(
     new THREE.BoxGeometry(0.25, 0.25, 0.25), 
     new THREE.MeshBasicMaterial());
 scene.add(dir);
-
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(6, 6, 6);
@@ -74,7 +72,7 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
-
+// loop
 var lt = new Date(),
 frame = 0,
 maxFrame = 600,
