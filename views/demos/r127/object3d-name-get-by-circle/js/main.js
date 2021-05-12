@@ -1,10 +1,10 @@
 // creating a group
-var createBoxGroup = function(){
+var createBoxGroup = function(count){
     var group = new THREE.Group();
     group.name = 'boxGroup';
     var i = 0,
     box,
-    len = 4;
+    len = count;
     while(i < len){
         box = new THREE.Mesh(
             new THREE.BoxGeometry(0.5, 0.5, 0.5),
@@ -30,21 +30,27 @@ var toCircleGroup = function(boxGroup, radianAdjust){
     return boxGroup;
 };
 
-// set cube zero to a bigger scale than the others
-// this should be the front
-var group = createBoxGroup();
-toCircleGroup(group);
-var box = group.getObjectByName('box_0');
-box.scale.set(3, 3, 4);
-// side box objects
-var box = group.getObjectByName('box_1');
-box.scale.set(8, 1, 1);
-var box = group.getObjectByName('box_3');
-box.scale.set(8, 1, 1);
-// rear box object
-var box = group.getObjectByName('box_2');
-box.scale.set(1, 1, 12);
+// SETTING SCALE OF BOX GROUP AND GETTING BOX OBJECTS BY NAME
+// WHEN DOING SO
+var createObject1 = function(){
+    var group = createBoxGroup(4);
+    toCircleGroup(group);
+    // set cube zero to a bigger scale than the others
+    // this should be the front
+    var box = group.getObjectByName('box_0');
+    box.scale.set(3, 3, 4);
+    // side box objects
+    var box = group.getObjectByName('box_1');
+    box.scale.set(8, 1, 1);
+    var box = group.getObjectByName('box_3');
+    box.scale.set(8, 1, 1);
+    // rear box object
+    var box = group.getObjectByName('box_2');
+    box.scale.set(1, 1, 12);
+    return group
+};
 
+var group = createObject1();
 
 // box helper
 group.add(new THREE.BoxHelper(group));
