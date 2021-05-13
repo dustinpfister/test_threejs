@@ -27,15 +27,9 @@ group.position.set(-2.0, 0, -2.0);
 scene.add(group);
 
 // IF I WANT TO HAVE THE POINTER LOOK AT THE CUBE
-// THEN I WILL WANT TO ADJUST FOR THAT
-var vg = group.position,
-vc = cube.position;
-var v = new THREE.Vector3(
-   vg.x - vc.x,
-   vg.y - vc.y,
-   vg.z + vc.z
-);
-pointer.lookAt(v);
+// THAT IS A CHILD OF THE GROUP, THEN I WILL WANT TO ADJUST 
+// FOR THAT FOR THIS THERE IS THE getWorldPosition Method
+pointer.lookAt(cube.getWorldPosition());
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 100);
