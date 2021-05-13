@@ -44,7 +44,7 @@ var loop = function () {
 
         group3.userData.heading = 360 * per;
         group3.userData.pitch = 180 * Math.sin(Math.PI * 4 * per);
-        group3.position.z = -5 + 5 * bias;
+        group3.position.z = -5 + 10 * bias;
         BoxGroup.update(group3);
 
         renderer.render(scene, camera);

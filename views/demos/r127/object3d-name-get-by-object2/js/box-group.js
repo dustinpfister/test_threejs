@@ -46,16 +46,13 @@
     var createUserData = function (wrap, group) {
         var ud = wrap.userData;
         ud.group = group;
-
         ud.heading = 0; // heading 0 - 359
         ud.pitch = 0; // pitch -180 - 180
-
         // direction object
         ud.dir = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
                 new THREE.MeshNormalMaterial());
         wrap.add(ud.dir);
-
     };
 
     // CREATE A BOX GROUP
@@ -67,7 +64,6 @@
         positionChildren(group);
         createUserData(wrap, group);
         api.update(wrap);
-        wrap.add(new THREE.BoxHelper(wrap, 0xffff00));
         group.add(new THREE.BoxHelper(group, 0xffffff));
         // step group count
         groupCount += 1;
@@ -75,6 +71,7 @@
     };
 
     // UPDATE A BOX GROUP
+
     api.update = function (wrap) {
         var ud = wrap.userData,
         group = ud.group;
