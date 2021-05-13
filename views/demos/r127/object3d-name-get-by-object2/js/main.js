@@ -2,7 +2,6 @@
 var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(5, 5)); // grid helper
 
-
 // create some of these groups with the BoxGroup Module
 var group1 = BoxGroup.create();
 group1.position.set(-15, 0, 0);
@@ -34,19 +33,15 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
-
         group1.userData.heading = 360 * per;
         BoxGroup.update(group1);
-
         group2.userData.heading = 90;
         group2.userData.pitch = 180 * Math.sin(Math.PI * 4 * per);
         BoxGroup.update(group2);
-
         group3.userData.heading = 360 * per;
         group3.userData.pitch = 180 * Math.sin(Math.PI * 4 * per);
         group3.position.z = -5 + 10 * bias;
         BoxGroup.update(group3);
-
         renderer.render(scene, camera);
         lt = now;
         frame += fps * secs;
