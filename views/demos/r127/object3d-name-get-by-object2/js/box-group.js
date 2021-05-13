@@ -67,10 +67,8 @@
         positionChildren(group);
         createUserData(wrap, group);
         api.update(wrap);
-
-        //wrap.add(new THREE.BoxHelper(wrap, 0xffff00));
+        wrap.add(new THREE.BoxHelper(wrap, 0xffff00));
         group.add(new THREE.BoxHelper(group, 0xffffff));
-
         // step group count
         groupCount += 1;
         return wrap;
@@ -86,14 +84,12 @@
         // might light to work out a better expression for pitch
         y = Math.abs(ud.pitch) / 180 * 5 * (ud.pitch < 0 ? -1 : 1);
         ud.dir.position.set(x, y, z);
-
         // look at is relative to world space, so this needs to be adjusted for that
         var v = new THREE.Vector3(
                 wrap.position.x - ud.dir.position.x,
                 wrap.position.y - ud.dir.position.y,
                 wrap.position.z - ud.dir.position.z);
         group.lookAt(v);
-
     };
 
 }

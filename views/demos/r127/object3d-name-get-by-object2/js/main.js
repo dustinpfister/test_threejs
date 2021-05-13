@@ -3,21 +3,16 @@ var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(5, 5)); // grid helper
 
 
-// create a group
+// create some of these groups with the BoxGroup Module
 var group1 = BoxGroup.create();
 group1.position.set(-15, 0, 0);
 scene.add(group1);
-
-// create a group
 var group2 = BoxGroup.create();
 group2.position.set(-15, 0, -15);
 scene.add(group2);
-
-// create a group
 var group3 = BoxGroup.create();
 console.log(group3.name);
 scene.add(group3); // add group
-
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
@@ -26,8 +21,6 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
-
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // loop
 var lt = new Date(),
@@ -51,6 +44,7 @@ var loop = function () {
 
         group3.userData.heading = 360 * per;
         group3.userData.pitch = 180 * Math.sin(Math.PI * 4 * per);
+        group3.position.z = -5 + 5 * bias;
         BoxGroup.update(group3);
 
         renderer.render(scene, camera);
