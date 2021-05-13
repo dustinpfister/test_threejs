@@ -22,25 +22,31 @@ var cube = new THREE.Mesh(
         new THREE.MeshNormalMaterial({
             wireframe: false
         }));
+cube.name = 'cube';
 wrap.userData.cube = cube;
 wrap.userData.surface.add(cube);
+
 
 // distance, lat, and long values
 var d = 1.25, // radius + half of mesh height
 lat = 0.75,   // 0 - 1
 long = 0.5;   // 0 - 1
 
-// set lat
-var radian = Math.PI * -0.5 + Math.PI * lat,
-x = Math.cos(radian) * d,
-y = Math.sin(radian) * d;
-cube.position.set(x, y, 0);
+var setObjToLatLong = function(wrap, childName, lat, long){
+    var child = wrap.getObjectByName(childName),
+    d = 1.25;
+    // set lat
+    var radian = Math.PI * -0.5 + Math.PI * lat,
+    x = Math.cos(radian) * d,
+    y = Math.sin(radian) * d;
+    child.position.set(x, y, 0);
+    // set long
+    surface.rotation.y = Math.PI * 2 * long;
+    // look at origin
+    child.lookAt(0,0,0);
+};
 
-// set long
-surface.rotation.y = Math.PI * 2 * long;
-
-// look at origin
-cube.lookAt(0,0,0);
+setObjToLatLong(wrap, 'cube', 0.7, 0.1);
 
 
 // add wrap the the scene
@@ -56,9 +62,19 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 var controls = new THREE.OrbitControls(camera, renderer.domElement)
 
-
+var lt = new Date(),
+fps = 30;
 var loop = function(){
+    var now = new Date(),
+    secs = (now - lt) / 1000;
+
     requestAnimationFrame(loop);
-    renderer.render(scene, camera);
+
+    if(secs > 1 / fps){
+        lat += 0.1 * secs;
+        lat %= 1;
+        renderer.render(scene, camera);
+        lt =  now;
+    }
 }
 loop();
