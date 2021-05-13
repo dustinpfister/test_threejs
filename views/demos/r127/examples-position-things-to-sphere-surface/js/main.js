@@ -1,8 +1,10 @@
 var scene = new THREE.Scene();
+scene.add(new THREE.GridHelper(10, 10));
+
+var createWrap = function(){
 
 // create a wrap group
 var wrap = new THREE.Group();
-
 // add a sphere to the wrap
 var sphere = new THREE.Mesh(
         new THREE.SphereGeometry(1, 40, 40),
@@ -11,12 +13,11 @@ var sphere = new THREE.Mesh(
         }));
 wrap.userData.sphere = sphere;
 wrap.add(sphere);
-
+// create a surface group and add to wrap
 var surface = new THREE.Group();
 wrap.userData.surface = surface;
 wrap.add(surface);
-
-// create a cube
+// create a cube and add to surface group
 var cube = new THREE.Mesh(
         new THREE.BoxGeometry(0.5, 0.5, 0.5),
         new THREE.MeshNormalMaterial({
@@ -25,6 +26,10 @@ var cube = new THREE.Mesh(
 cube.name = 'cube';
 wrap.userData.cube = cube;
 wrap.userData.surface.add(cube);
+return wrap;
+};
+
+var wrap = createWrap();
 
 
 // distance, lat, and long values
@@ -34,6 +39,7 @@ long = 0.5;   // 0 - 1
 
 var setObjToLatLong = function(wrap, childName, lat, long){
     var child = wrap.getObjectByName(childName),
+    surface = wrap.userData.surface,
     d = 1.25;
     // set lat
     var radian = Math.PI * -0.5 + Math.PI * lat,
@@ -54,7 +60,7 @@ scene.add(wrap);
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(3.0, 0.0, 0.0);
+camera.position.set(3.0, 3.0, 3.0);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
