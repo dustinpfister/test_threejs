@@ -46,7 +46,7 @@ var setObjToLatLong = function(wrap, childName, lat, long){
     child.lookAt(0,0,0);
 };
 
-setObjToLatLong(wrap, 'cube', 0.7, 0.1);
+setObjToLatLong(wrap, 'cube', lat, long);
 
 
 // add wrap the the scene
@@ -63,17 +63,24 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var controls = new THREE.OrbitControls(camera, renderer.domElement)
 
 var lt = new Date(),
+frame = 0,
+maxFrame = 600,
 fps = 30;
 var loop = function(){
     var now = new Date(),
+    per = frame / maxFrame,
+    bias = 1 - Math.abs(per - 0.5) / 0.5,
     secs = (now - lt) / 1000;
 
     requestAnimationFrame(loop);
 
     if(secs > 1 / fps){
-        lat += 0.1 * secs;
-        lat %= 1;
+        lat = Math.sin(Math.PI * bias);
+        long = per;
+        setObjToLatLong(wrap, 'cube', lat, long);
         renderer.render(scene, camera);
+        frame += fps * secs;
+        frame %= maxFrame;
         lt =  now;
     }
 }
