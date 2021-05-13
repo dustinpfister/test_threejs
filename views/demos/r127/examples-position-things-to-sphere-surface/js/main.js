@@ -25,18 +25,21 @@ var cube = new THREE.Mesh(
 wrap.userData.cube = cube;
 wrap.userData.surface.add(cube);
 
+// distance, lat, and long values
+var d = 1.25, // radius + half of mesh height
+lat = 0.75,   // 0 - 1
+long = 0.5;   // 0 - 1
 
-var d = 1.25,
-lat = 0.75,
-long = 0
-
+// set lat
 var radian = Math.PI * -0.5 + Math.PI * lat,
 x = Math.cos(radian) * d,
 y = Math.sin(radian) * d;
 cube.position.set(x, y, 0);
 
-surface.rotation.y = Math.PI * 1.5;
+// set long
+surface.rotation.y = Math.PI * 2 * long;
 
+// look at origin
 cube.lookAt(0,0,0);
 
 
