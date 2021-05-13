@@ -33,7 +33,7 @@ vc = cube.position;
 var v = new THREE.Vector3(
    vg.x - vc.x,
    vg.y - vc.y,
-   vg.z - vc.z
+   vg.z + vc.z
 );
 pointer.lookAt(v);
 
