@@ -7,7 +7,7 @@ scene.add(new THREE.GridHelper(5, 5));
 var group = new THREE.Group();
 // creating and adding a pointer mesh to the group
 var geo = new THREE.CylinderGeometry(0, 0.5, 1, 12);
-geo.rotateX(Math.PI / 2);
+geo.rotateX(Math.PI * 0.5);
 var pointer = new THREE.Mesh(
         geo,
         new THREE.MeshNormalMaterial());
@@ -26,8 +26,16 @@ group.position.set(-2.0, 0, -2.0);
 // add group to the scene
 scene.add(group);
 
-// POINTER LOOKS AT CUBE POSITION RELATIVE TO THE SCENE, BUT NOT RELATIVE TO THE GROUP
-pointer.lookAt(cube.position);
+// IF I WANT TO HAVE THE POINTER LOOK AT THE CUBE
+// THEN I WILL WANT TO ADJUST FOR THAT
+var vg = group.position,
+vc = cube.position;
+var v = new THREE.Vector3(
+   vg.x - vc.x,
+   vg.y - vc.y,
+   vg.z - vc.z
+);
+pointer.lookAt(v);
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 100);

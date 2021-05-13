@@ -7,7 +7,7 @@ scene.add(new THREE.GridHelper(5, 5));
 var group = new THREE.Group();
 // creating and adding a pointer mesh to the group
 var geo = new THREE.CylinderGeometry(0, 0.5, 1, 12);
-geo.rotateX(Math.PI / 2);
+geo.rotateX(Math.PI * 0.5);
 var pointer = new THREE.Mesh(
         geo,
         new THREE.MeshNormalMaterial());
