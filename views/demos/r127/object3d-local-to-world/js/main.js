@@ -3,6 +3,7 @@
 
     // SCENE
     var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(10, 10));
 
     var box = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -10,8 +11,8 @@
     scene.add(box);
 
     // CAMERA
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(3, 3, 3);
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 100);
+    camera.position.set(9, 12, 9);
     camera.lookAt(box.position);
 
     // RENDER
