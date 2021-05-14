@@ -20,20 +20,24 @@ var createWrap = function () {
     return wrap;
 };
 
-var addObjectToWrap = function (wrap) {
+var addObjectToWrap = function (wrap, objectName) {
     // create a cube and add to surface group
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(0.5, 0.5, 0.5),
             new THREE.MeshNormalMaterial({
                 wireframe: false
             }));
-    cube.name = 'cube';
-    wrap.userData.cube = cube;
-    wrap.userData.surface.add(cube);
+    cube.name = objectName;
+    //wrap.userData.cube = cube;
+    var childWrap = new THREE.Group();
+    childWrap.name = 'childwrap_' + objectName;
+    childWrap.add(cube);
+    wrap.userData.surface.add(childWrap);
 };
 
 var setObjToLatLong = function (wrap, childName, latPer, longPer, dist) {
-    var child = wrap.getObjectByName(childName),
+    var childWrap = wrap.getObjectByName('childwrap_' + childName),
+    child = wrap.getObjectByName(childName),
     surface = wrap.userData.surface;
     // set lat
     var radian = Math.PI * -0.5 + Math.PI * latPer,
@@ -41,7 +45,7 @@ var setObjToLatLong = function (wrap, childName, latPer, longPer, dist) {
     y = Math.sin(radian) * dist;
     child.position.set(x, y, 0);
     // set long
-    surface.rotation.y = Math.PI * 2 * longPer;
+    childWrap.rotation.y = Math.PI * 2 * longPer;
     // look at origin
     child.lookAt(0, 0, 0);
 };
@@ -56,10 +60,10 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-
 // add wrap the the scene
 var wrap = createWrap();
-addObjectToWrap(wrap);
+addObjectToWrap(wrap, 'cube');
+addObjectToWrap(wrap, 'cube2');
 scene.add(wrap);
 
 // distance, lat, and long values
@@ -68,7 +72,7 @@ latPer = 0.75, // 0 - 1
 longPer = 0.5; // 0 - 1
 
 setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
-
+setObjToLatLong(wrap, 'cube2', 0, 0, dist);
 
 var lt = new Date(),
 frame = 0,
