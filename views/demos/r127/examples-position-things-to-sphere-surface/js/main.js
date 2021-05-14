@@ -20,21 +20,6 @@ var createWrap = function () {
     return wrap;
 };
 
-var addObjectToWrap = function (wrap, objectName) {
-    // create a cube and add to surface group
-    var cube = new THREE.Mesh(
-            new THREE.BoxGeometry(0.5, 0.5, 0.5),
-            new THREE.MeshNormalMaterial({
-                wireframe: false
-            }));
-    cube.name = objectName;
-    //wrap.userData.cube = cube;
-    var childWrap = new THREE.Group();
-    childWrap.name = 'childwrap_' + objectName;
-    childWrap.add(cube);
-    wrap.userData.surface.add(childWrap);
-};
-
 var setObjToLatLong = function (wrap, childName, latPer, longPer, dist) {
     var childWrap = wrap.getObjectByName('childwrap_' + childName),
     child = wrap.getObjectByName(childName),
@@ -50,6 +35,29 @@ var setObjToLatLong = function (wrap, childName, latPer, longPer, dist) {
     child.lookAt(0, 0, 0);
 };
 
+var addObjectToWrap = function (wrap, objectName) {
+    // create a cube and add to surface group
+    var cube = new THREE.Mesh(
+            new THREE.BoxGeometry(0.5, 0.5, 0.5),
+            new THREE.MeshNormalMaterial({
+                wireframe: false
+            }));
+    cube.name = objectName;
+    //wrap.userData.cube = cube;
+    var childWrap = new THREE.Group();
+    childWrap.name = 'childwrap_' + objectName;
+    childWrap.add(cube);
+    // child wrap user data object
+    var ud = childWrap.userData;
+    ud.latPer = 0;
+    ud.longPer = 0;
+    ud.dist = 1.25;
+    // add the childWrap group to the surface group
+    wrap.userData.surface.add(childWrap);
+
+    setObjToLatLong(wrap, objectName, ud.latPer, ud.longPer, ud.dist);
+};
+
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(3.0, 3.0, 3.0);
@@ -62,18 +70,15 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // add wrap the the scene
 var wrap = createWrap();
+scene.add(wrap);
 addObjectToWrap(wrap, 'cube');
 addObjectToWrap(wrap, 'cube2');
-scene.add(wrap);
-
-// distance, lat, and long values
+// dist and lat log values
 var dist = 1.25, // radius + half of mesh height
 latPer = 0.75, // 0 - 1
 longPer = 0.5; // 0 - 1
-
 setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
-setObjToLatLong(wrap, 'cube2', 0, 0, dist);
-
+// loop
 var lt = new Date(),
 frame = 0,
 maxFrame = 600,
@@ -83,9 +88,7 @@ var loop = function () {
     per = frame / maxFrame,
     bias = 1 - Math.abs(per - 0.5) / 0.5,
     secs = (now - lt) / 1000;
-
     requestAnimationFrame(loop);
-
     if (secs > 1 / fps) {
         latPer = 0.25 + Math.sin(Math.PI * bias) * 0.5;
         longPer = per;
