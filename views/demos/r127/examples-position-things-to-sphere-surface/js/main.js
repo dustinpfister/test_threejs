@@ -50,13 +50,16 @@ var loop = function () {
     if (secs > 1 / fps) {
 
         // setting lat and long for 'cube'
-        latPer = 0.25 + Math.sin(Math.PI * bias) * 0.5;
+        latPer = 0.25 + Math.sin(Math.PI * bias) * 0.25;
         longPer = per;
         SphereWrap.setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
 
         // rotating cube2
         var obj = wrap.getObjectByName('cube2');
         obj.geometry.rotateZ(Math.PI / 180 * 20 * secs);
+
+        // cone
+        SphereWrap.setObjToLatLong(wrap, 'cone', 1 - 0.25 * bias, 1 - 1* per, dist);
 
         renderer.render(scene, camera);
         frame += fps * secs;
