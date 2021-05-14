@@ -29,6 +29,10 @@ var cone = new THREE.Mesh(
 cone.geometry.rotateX(Math.PI * 1.5);
 SphereWrap.addObjectToWrap(wrap, 'cone', cone);
 
+var wrap2 = SphereWrap.createWrap();
+wrap2.position.set(-4, 0, -4);
+scene.add(wrap2);
+
 // dist and lat log values
 var dist = 1.25, // radius + half of mesh height
 latPer = 0.75, // 0 - 1
