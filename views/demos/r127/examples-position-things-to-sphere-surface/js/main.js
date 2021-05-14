@@ -16,6 +16,11 @@ var createWrap = function () {
     var surface = new THREE.Group();
     wrap.userData.surface = surface;
     wrap.add(surface);
+
+    return wrap;
+};
+
+var addObjectToWrap = function (wrap) {
     // create a cube and add to surface group
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(0.5, 0.5, 0.5),
@@ -25,7 +30,6 @@ var createWrap = function () {
     cube.name = 'cube';
     wrap.userData.cube = cube;
     wrap.userData.surface.add(cube);
-    return wrap;
 };
 
 var setObjToLatLong = function (wrap, childName, latPer, longPer) {
@@ -45,6 +49,7 @@ var setObjToLatLong = function (wrap, childName, latPer, longPer) {
 
 // add wrap the the scene
 var wrap = createWrap();
+addObjectToWrap(wrap);
 scene.add(wrap);
 
 // distance, lat, and long values
@@ -53,7 +58,6 @@ latPer = 0.75, // 0 - 1
 longPer = 0.5; // 0 - 1
 
 setObjToLatLong(wrap, 'cube', latPer, longPer);
-
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
