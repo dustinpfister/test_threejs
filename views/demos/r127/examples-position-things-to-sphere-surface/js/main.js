@@ -11,11 +11,16 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-// add wrap the the scene
+// add wrap the the scene, and some cube objects
 var wrap = SphereWrap.createWrap();
 scene.add(wrap);
 SphereWrap.addObjectToWrap(wrap, 'cube');
 SphereWrap.addObjectToWrap(wrap, 'cube2');
+
+// adding a cone rather than the default cube
+// some times I might want to rotate the geometry when doing so
+// rather than Object3d as I will always have that looking at the origin of the
+// sphere wrap group
 var cone = new THREE.Mesh(
         new THREE.ConeGeometry(0.25, 0.5, 30, 30),
         new THREE.MeshNormalMaterial({
@@ -23,6 +28,7 @@ var cone = new THREE.Mesh(
         }));
 cone.geometry.rotateX(Math.PI * 1.5);
 SphereWrap.addObjectToWrap(wrap, 'cone', cone);
+
 // dist and lat log values
 var dist = 1.25, // radius + half of mesh height
 latPer = 0.75, // 0 - 1
