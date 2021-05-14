@@ -36,9 +36,9 @@
     };
 
     // Add an Object to a Sphere Wrap Group
-    api.addObjectToWrap = function (wrap, objectName) {
+    api.addObjectToWrap = function (wrap, objectName, obj) {
         // create an obj
-        var obj = new THREE.Mesh(
+        obj = obj || new THREE.Mesh(
                 new THREE.BoxGeometry(0.5, 0.5, 0.5),
                 new THREE.MeshNormalMaterial({
                     wireframe: false
@@ -51,7 +51,8 @@
         var ud = objWrap.userData;
         ud.latPer = 0;
         ud.longPer = 0;
-        ud.dist = 1.25;
+        var radius = wrap.userData.sphere.geometry.parameters.radius;
+        ud.dist = radius + 0.25;
         // add the objWrap group to the surface group
         wrap.userData.surface.add(objWrap);
         //set position for the first time
