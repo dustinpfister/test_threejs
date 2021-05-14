@@ -35,25 +35,26 @@
         child.lookAt(0, 0, 0);
     };
 
+    // Add an Object to a Sphere Wrap Group
     api.addObjectToWrap = function (wrap, objectName) {
-        // create a cube and add to surface group
-        var cube = new THREE.Mesh(
+        // create an obj
+        var obj = new THREE.Mesh(
                 new THREE.BoxGeometry(0.5, 0.5, 0.5),
                 new THREE.MeshNormalMaterial({
                     wireframe: false
                 }));
-        cube.name = objectName;
-        //wrap.userData.cube = cube;
-        var childWrap = new THREE.Group();
-        childWrap.name = 'childwrap_' + objectName;
-        childWrap.add(cube);
-        // child wrap user data object
-        var ud = childWrap.userData;
+        obj.name = objectName;
+        var objWrap = new THREE.Group();
+        objWrap.name = 'childwrap_' + objectName;
+        objWrap.add(obj);
+        // obj wrap user data object
+        var ud = objWrap.userData;
         ud.latPer = 0;
         ud.longPer = 0;
         ud.dist = 1.25;
-        // add the childWrap group to the surface group
-        wrap.userData.surface.add(childWrap);
+        // add the objWrap group to the surface group
+        wrap.userData.surface.add(objWrap);
+        //set position for the first time
         api.setObjToLatLong(wrap, objectName, ud.latPer, ud.longPer, ud.dist);
     };
 
