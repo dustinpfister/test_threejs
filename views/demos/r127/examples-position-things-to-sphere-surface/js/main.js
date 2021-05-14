@@ -12,15 +12,15 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // add wrap the the scene
-var wrap = createWrap();
+var wrap = SphereWrap.createWrap();
 scene.add(wrap);
-addObjectToWrap(wrap, 'cube');
-addObjectToWrap(wrap, 'cube2');
+SphereWrap.addObjectToWrap(wrap, 'cube');
+SphereWrap.addObjectToWrap(wrap, 'cube2');
 // dist and lat log values
 var dist = 1.25, // radius + half of mesh height
 latPer = 0.75, // 0 - 1
 longPer = 0.5; // 0 - 1
-setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
+SphereWrap.setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
 // loop
 var lt = new Date(),
 frame = 0,
@@ -35,7 +35,7 @@ var loop = function () {
     if (secs > 1 / fps) {
         latPer = 0.25 + Math.sin(Math.PI * bias) * 0.5;
         longPer = per;
-        setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
+        SphereWrap.setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
