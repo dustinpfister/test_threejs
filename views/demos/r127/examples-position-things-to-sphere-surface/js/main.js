@@ -16,11 +16,20 @@ var wrap = SphereWrap.createWrap();
 scene.add(wrap);
 SphereWrap.addObjectToWrap(wrap, 'cube');
 SphereWrap.addObjectToWrap(wrap, 'cube2');
+var cone = new THREE.Mesh(
+        new THREE.ConeGeometry(0.25, 0.5, 30, 30),
+        new THREE.MeshNormalMaterial({
+            wireframe: true
+        }));
+cone.geometry.rotateX(Math.PI * 1.5);
+SphereWrap.addObjectToWrap(wrap, 'cone', cone);
 // dist and lat log values
 var dist = 1.25, // radius + half of mesh height
 latPer = 0.75, // 0 - 1
 longPer = 0.5; // 0 - 1
 SphereWrap.setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
+SphereWrap.setObjToLatLong(wrap, 'cube2', 0, 0, 1.25);
+SphereWrap.setObjToLatLong(wrap, 'cone', 0.9, 1, 1.25);
 // loop
 var lt = new Date(),
 frame = 0,

@@ -22,8 +22,7 @@
     // set to lat and long helper
     api.setObjToLatLong = function (wrap, childName, latPer, longPer, dist) {
         var childWrap = wrap.getObjectByName('childwrap_' + childName),
-        child = wrap.getObjectByName(childName),
-        surface = wrap.userData.surface;
+        child = childWrap.children[0]; //wrap.getObjectByName(childName),
         // set lat
         var radian = Math.PI * -0.5 + Math.PI * latPer,
         x = Math.cos(radian) * dist,
