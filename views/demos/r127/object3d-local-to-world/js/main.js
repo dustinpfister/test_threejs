@@ -16,9 +16,10 @@
     // to 2,0,0 and I pass the vector 0,0,0 to the localToWorld
     // method I would expect 2,0,0 returned, but the result is 0,0,0
     group.position.set(2, 0, 0);
+    box.position.set(1, 0, 0);
     var v = new THREE.Vector3(0, 0, 0);
-    console.log(box.localToWorld(v));
-    console.log(v.x);
+    console.log(group.localToWorld(v.clone()));
+    console.log(v);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 100);
