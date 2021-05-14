@@ -32,32 +32,19 @@ var addObjectToWrap = function (wrap) {
     wrap.userData.surface.add(cube);
 };
 
-var setObjToLatLong = function (wrap, childName, latPer, longPer) {
+var setObjToLatLong = function (wrap, childName, latPer, longPer, dist) {
     var child = wrap.getObjectByName(childName),
-    surface = wrap.userData.surface,
-    d = 1.25;
+    surface = wrap.userData.surface;
     // set lat
     var radian = Math.PI * -0.5 + Math.PI * latPer,
-    x = Math.cos(radian) * d,
-    y = Math.sin(radian) * d;
+    x = Math.cos(radian) * dist,
+    y = Math.sin(radian) * dist;
     child.position.set(x, y, 0);
     // set long
     surface.rotation.y = Math.PI * 2 * longPer;
     // look at origin
     child.lookAt(0, 0, 0);
 };
-
-// add wrap the the scene
-var wrap = createWrap();
-addObjectToWrap(wrap);
-scene.add(wrap);
-
-// distance, lat, and long values
-var d = 1.25, // radius + half of mesh height
-latPer = 0.75, // 0 - 1
-longPer = 0.5; // 0 - 1
-
-setObjToLatLong(wrap, 'cube', latPer, longPer);
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
@@ -68,6 +55,20 @@ renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+
+// add wrap the the scene
+var wrap = createWrap();
+addObjectToWrap(wrap);
+scene.add(wrap);
+
+// distance, lat, and long values
+var dist = 1.25, // radius + half of mesh height
+latPer = 0.75, // 0 - 1
+longPer = 0.5; // 0 - 1
+
+setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
+
 
 var lt = new Date(),
 frame = 0,
@@ -84,7 +85,7 @@ var loop = function () {
     if (secs > 1 / fps) {
         latPer = Math.sin(Math.PI * bias);
         longPer = per;
-        setObjToLatLong(wrap, 'cube', latPer, longPer);
+        setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
