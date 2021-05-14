@@ -59,7 +59,10 @@ var loop = function () {
         obj.geometry.rotateZ(Math.PI / 180 * 20 * secs);
 
         // cone
-        SphereWrap.setObjToLatLong(wrap, 'cone', 1 - 0.25 * bias, 1 - 1* per, dist);
+        SphereWrap.setObjToLatLong(wrap, 'cone', 1 - 0.25 * bias, 1 - 1 * per, dist);
+
+        // whole group
+        wrap.position.x = 1;
 
         renderer.render(scene, camera);
         frame += fps * secs;

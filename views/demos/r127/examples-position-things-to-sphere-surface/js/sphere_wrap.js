@@ -31,7 +31,7 @@
         // set long
         childWrap.rotation.y = Math.PI * 2 * longPer;
         // look at origin
-        child.lookAt(0, 0, 0);
+        child.lookAt(wrap.getWorldPosition());
     };
 
     // Add an Object to a Sphere Wrap Group
