@@ -21,7 +21,7 @@
 
     // set to lat and long helper
     api.setObjToLatLong = function (wrap, childName, latPer, longPer, dist) {
-        var childWrap = wrap.getObjectByName('childwrap_' + childName),
+        var childWrap = wrap.getObjectByName('objwrap_' + childName),
         child = childWrap.children[0]; //wrap.getObjectByName(childName),
         // set lat
         var radian = Math.PI * -0.5 + Math.PI * latPer,
@@ -44,7 +44,7 @@
                 }));
         obj.name = objectName;
         var objWrap = new THREE.Group();
-        objWrap.name = 'childwrap_' + objectName;
+        objWrap.name = 'objwrap_' + objectName;
         objWrap.add(obj);
         // obj wrap user data object
         var ud = objWrap.userData;
