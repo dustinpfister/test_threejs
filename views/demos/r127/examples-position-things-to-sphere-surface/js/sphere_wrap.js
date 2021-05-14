@@ -31,7 +31,9 @@
         // set long
         childWrap.rotation.y = Math.PI * 2 * longPer;
         // look at origin of wrap
-        child.lookAt(wrap.getWorldPosition(new THREE.Vector3( 1, 0, 0 )));
+		var v = new THREE.Vector3();
+		wrap.getWorldPosition(v);
+        child.lookAt(v);
     };
 
     // Add an Object to a Sphere Wrap Group

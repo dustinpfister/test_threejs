@@ -62,7 +62,8 @@ var loop = function () {
         SphereWrap.setObjToLatLong(wrap, 'cone', 1 - 0.25 * bias, 1 - 1 * per, dist);
 
         // whole group
-        //wrap.position.x = 0;
+        wrap.position.x = 1 - 2 * bias;
+        wrap.position.z = Math.sin(Math.PI * 2 * bias) * 2;
 
         renderer.render(scene, camera);
         frame += fps * secs;
