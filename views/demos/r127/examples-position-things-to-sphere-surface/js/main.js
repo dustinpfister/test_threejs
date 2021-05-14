@@ -87,7 +87,7 @@ var loop = function () {
     requestAnimationFrame(loop);
 
     if (secs > 1 / fps) {
-        latPer = Math.sin(Math.PI * bias);
+        latPer = 0.25 + Math.sin(Math.PI * bias) * 0.5;
         longPer = per;
         setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
         renderer.render(scene, camera);
