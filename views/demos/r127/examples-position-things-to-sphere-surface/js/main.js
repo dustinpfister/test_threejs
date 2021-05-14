@@ -30,6 +30,8 @@ cone.geometry.rotateX(Math.PI * 1.5);
 SphereWrap.addObjectToWrap(wrap, 'cone', cone);
 
 var wrap2 = SphereWrap.createWrap();
+SphereWrap.addObjectToWrap(wrap2, 'box');
+SphereWrap.setObjToLatLong(wrap2, 'box', 0.75, 0.9, 1.25);
 wrap2.position.set(-4, 0, -4);
 scene.add(wrap2);
 
