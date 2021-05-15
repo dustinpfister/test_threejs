@@ -5,12 +5,12 @@
     var scene = new THREE.Scene();
 
     // GEOMETRY
-    var geometry = new THREE.SphereGeometry(1, 30, 30);
+    var geometry = new THREE.SphereGeometry(1, 10, 60);
     var pt = new THREE.Points(
             geometry,
             new THREE.PointsMaterial({
                 color: 0x00afaf,
-                size: 0.05
+                size: 0.025
             }));
     scene.add(pt);
 
