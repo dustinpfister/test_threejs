@@ -6,7 +6,7 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(10, 10, 10);
+    camera.position.set(50, 50, 50);
     camera.lookAt(0, 0, 0);
 
     var i = 0,
