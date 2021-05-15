@@ -1,14 +1,8 @@
-
 (function () {
-
-    // SCENE
+    // scene
     var scene = new THREE.Scene();
 
-    // CAMERA
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(50, 50, 50);
-    camera.lookAt(0, 0, 0);
-
+    // geometry
     var i = 0,
     verts = [];
     while (i < 500) {
@@ -20,10 +14,9 @@
         verts.push(pt.x, pt.y, pt.z);
         i += 1;
     }
-    // GEOMETRY
     var geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
-    // MESH with GEOMETRY, and Normal MATERIAL
+    // THREE.Points INSTANCE UISNG THREE.PointsMaterial
     scene.add(
         new THREE.Points(
             geometry,
@@ -31,17 +24,14 @@
                 color: 0x00afaf
             })));
 
-    // RENDER
+    // renderer and camera
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    camera.position.set(50, 50, 50);
+    camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-
-    var loop = function () {
-        requestAnimationFrame(loop);
-        renderer.render(scene, camera);
-    };
-
-    loop();
+    renderer.render(scene, camera);
 
 }
     ());
