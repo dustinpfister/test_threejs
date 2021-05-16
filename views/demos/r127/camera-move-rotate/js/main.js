@@ -1,6 +1,6 @@
 // CAMERA
-var width = 360,
-height = 180,
+var width = 640,
+height = 480,
 fieldOfView = 40,
 aspectRatio = width / height,
 near = 0.1,
@@ -21,18 +21,15 @@ scene.add(new THREE.Mesh(
         new THREE.MeshNormalMaterial()));
 
 // APP
-camera.position.set(3, 0, 0);
+camera.position.set(3, 1, 0);
 camera.lookAt(0, 0, 0);
-console.log(camera.rotation)
+
 var frame = 0,
 frameMax = 250;
 var loop = function () {
-    requestAnimationFrame(loop);
     var per = frame / frameMax;
-
-    camera.position.set(3, 0, 0);
+    requestAnimationFrame(loop);
     camera.rotation.set(Math.PI * 2 * per, Math.PI / 2, 0);
-
     renderer.render(scene, camera);
     frame += 1;
     frame %= frameMax;
