@@ -3,7 +3,7 @@ var Biplane = (function () {
 
     var materials = {
         plane: new THREE.MeshStandardMaterial({
-            color: 0x88afaf
+            color: 0x0000af
         }),
         guy: new THREE.MeshStandardMaterial({
             color: 0xffffff
@@ -58,7 +58,6 @@ var Biplane = (function () {
         var prop = new THREE.Mesh(
                 new THREE.BoxGeometry(0.5, 4, 0.5),
                 materials.prop);
-
         prop.position.x = 3.25;
         return prop;
     };
