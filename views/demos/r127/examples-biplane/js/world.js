@@ -10,7 +10,7 @@
         world.add(bp);
         // Camera
         var camera = world.userData.camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 250);
-        camera.position.set(-35, 35, -35);
+        camera.position.set(50, 50, 50);
         camera.lookAt(bp.position);
         bp.add(camera);
         // ground
@@ -54,6 +54,7 @@
         var radian1 = utils.normalizeRadian(utils.pi2 * wud.perObj.per),
         radian2 = utils.normalizeRadian(radian1 + Math.PI / 180 * 10);
 
+        var pitch = Math.sin( Math.PI * 16 * wud.perObj.per)
         wud.bp.position.set(
             Math.cos(radian1) * 40,
             5,
@@ -62,10 +63,10 @@
 
         var target = new THREE.Vector3(
             Math.cos(radian2) * 40,
-            5,
+            7 + 5 * pitch,
             Math.sin(radian2) * 40);
-        wud.bp.lookAt(target);
 
+        wud.bp.lookAt(target);
 
     };
 }
