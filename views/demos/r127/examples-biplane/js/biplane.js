@@ -18,9 +18,10 @@ var Biplane = (function () {
     // create a wing
     var createWing = function (opt, y) {
         var wing = new THREE.Mesh(
-                new THREE.BoxGeometry(2, 1, 10),
+                new THREE.BoxGeometry(10, 1, 2),
                 opt.materials.plane || materials.plane);
         wing.position.y = y;
+        wing.position.z = 2.5;
         //wing.geometry.rotateY(Math.PI * 0.5);
         return wing;
     };
@@ -51,7 +52,7 @@ var Biplane = (function () {
         var guy = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
                 materials.guy);
-        guy.position.x = -2;
+        guy.position.z = 0;
         guy.position.y = 1.5;
         return guy;
     };
@@ -81,10 +82,10 @@ var Biplane = (function () {
         plane.userData.prop = createProp();
         plane.add(plane.userData.prop);
         // wings
-        //plane.add(createWing(opt, -1));
-        //plane.add(createWing(opt, 1));
+        plane.add(createWing(opt, -1));
+        plane.add(createWing(opt, 1));
         // guy
-        //plane.add(createGuy());
+        plane.add(createGuy());
         // prop radian to move prop
         plane.userData.propRadian = 0;
         plane.userData.propRPS = 0.25;
