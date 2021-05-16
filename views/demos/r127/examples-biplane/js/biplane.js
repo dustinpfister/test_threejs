@@ -40,7 +40,7 @@ var Biplane = (function () {
         var body = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 2, 2),
                 opt.materials.plane || materials.plane);
-        body.position.x = -6.5;
+        body.position.z = -4.5;
         body.position.y = 2;
         //body.geometry.rotateY(Math.PI * 0.5);
         return body;
@@ -76,7 +76,7 @@ var Biplane = (function () {
         var plane = new THREE.Group();
         // body and tail
         plane.add(createBody(opt));
-        //plane.add(createTail(opt));
+        plane.add(createTail(opt));
         // ref to prop
         plane.userData.prop = createProp();
         plane.add(plane.userData.prop);
