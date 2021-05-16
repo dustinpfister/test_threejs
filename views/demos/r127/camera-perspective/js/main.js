@@ -17,7 +17,7 @@
 
     // I must append the dom element used by the renderer to the html
     // that I am using.
-    document.getElementById('cube').appendChild(renderer.domElement);
+    document.getElementById('demo').appendChild(renderer.domElement);
 
     // initialize method
     var init = function () {
@@ -49,7 +49,7 @@
         scene.background = new THREE.Color(.7, .7, .7);
 
         // 16:9 aspect ratio canvas
-        renderer.setSize(320, 180);
+        renderer.setSize(640, 480);
 
     },
 
