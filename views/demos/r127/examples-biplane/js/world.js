@@ -10,9 +10,9 @@
         world.add(bp);
         // Camera
         var camera = world.userData.camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 250);
-        camera.position.set(50, 50, 50);
+        camera.position.set(70, 70, 70);
         camera.lookAt(bp.position);
-        bp.add(camera);
+        world.add(camera);
         // ground
 
 
