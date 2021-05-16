@@ -13,8 +13,8 @@ var moveCamera = function (camera, per) {
 };
 
 // CAMERA
-var width = 360,
-height = 180,
+var width = 640,
+height = 480,
 fieldOfView = 40,
 aspectRatio = width / height,
 near = 0.1,
