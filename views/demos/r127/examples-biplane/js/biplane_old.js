@@ -28,9 +28,9 @@ var Biplane = (function () {
     // create a body
     var createBody = function (opt) {
         var body = new THREE.Mesh(
-                new THREE.BoxGeometry(2, 2, 10),
+                new THREE.BoxGeometry(10, 2, 2),
                 opt.materials.plane || materials.plane);
-        //body.position.x = -2;
+        body.position.x = -2;
         //body.geometry.rotateY(Math.PI * 0.5);
         return body;
     };
@@ -61,9 +61,7 @@ var Biplane = (function () {
         var prop = new THREE.Mesh(
                 new THREE.BoxGeometry(0.5, 4, 0.5),
                 materials.prop);
-        prop.position.set(0, 0, 5.5);
-        //prop.position.x = 3.25;
-        //prop.rotation.t = Math.PI * 0.5;
+        prop.position.x = 3.25;
         //prop.geometry.rotateY(Math.PI * 0.5);
         return prop;
     };
@@ -76,15 +74,15 @@ var Biplane = (function () {
         var plane = new THREE.Group();
         // body and tail
         plane.add(createBody(opt));
-        //plane.add(createTail(opt));
+        plane.add(createTail(opt));
         // ref to prop
         plane.userData.prop = createProp();
         plane.add(plane.userData.prop);
         // wings
-        //plane.add(createWing(opt, -1));
-        //plane.add(createWing(opt, 1));
+        plane.add(createWing(opt, -1));
+        plane.add(createWing(opt, 1));
         // guy
-        //plane.add(createGuy());
+        plane.add(createGuy());
         // prop radian to move prop
         plane.userData.propRadian = 0;
         plane.userData.propRPS = 0.25;
@@ -97,7 +95,7 @@ var Biplane = (function () {
     api.update = function (bi, per) {
         var ud = bi.userData;
         ud.propRadian = Math.PI * 64 * per;
-        ud.prop.rotation.set(0, 0, ud.propRadian)
+        ud.prop.rotation.set(ud.propRadian, 0, 0)
     };
 
     return api;
