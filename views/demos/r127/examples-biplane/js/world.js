@@ -52,19 +52,18 @@
         // biplane
         Biplane.update(wud.bp, wud.perObj.per);
         var radian1 = utils.normalizeRadian(utils.pi2 * wud.perObj.per),
-        radian2 = utils.normalizeRadian(radian1 + Math.PI / 180 * 1 + Math.PI * 1.5);
-
-
+        radian2 = utils.normalizeRadian(radian1 + Math.PI / 180 * 10);
 
         wud.bp.position.set(
-            Math.cos(radian1) * 20,
+            Math.cos(radian1) * 40,
             5,
-            Math.sin(radian1) * 20);
+            Math.sin(radian1) * 40);
+
 
         var target = new THREE.Vector3(
-            0, //Math.cos(radian2) * 10,
-            0,
-            0) //Math.sin(radian2) * 10);
+            Math.cos(radian2) * 40,
+            5,
+            Math.sin(radian2) * 40);
         wud.bp.lookAt(target);
 
 
