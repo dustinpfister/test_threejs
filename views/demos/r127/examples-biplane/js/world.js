@@ -10,15 +10,11 @@
         world.add(bp);
         // Camera
         var camera = world.userData.camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 250);
-
-        world.add(camera);
+        camera.position.set(-35, 35, -35);
+        camera.lookAt(bp.position);
+        bp.add(camera);
         // ground
 
-        var cube = new THREE.Mesh(
-            new THREE.BoxGeometry(1,1,1),
-            new THREE.MeshNormalMaterial()
-        );
-        world.add(cube);
 
         var ground = TileMod.create({
                 w: 100,
@@ -26,6 +22,12 @@
             });
         ground.position.set(0, -5, 0);
         TileMod.setCheckerBoard(ground);
+        var cube = new THREE.Mesh(
+            new THREE.BoxGeometry(1,1,1),
+            new THREE.MeshNormalMaterial()
+        );
+        cube.position.set(0, -4, 0);
+        world.add(cube);
         world.add(ground);
 
         // point light
@@ -53,20 +55,11 @@
         radian2 = utils.normalizeRadian(radian1 + Math.PI / 180 * 1 + Math.PI * 1.5);
 
 
-/*
+
         wud.bp.position.set(
-            Math.cos(radian1) * 30,
-            10,
-            Math.sin(radian1) * 30);
-
-        var target = new THREE.Vector3(
-            0, //Math.cos(radian2) * 10,
-            10,
-            0) //Math.sin(radian2) * 10);
-        wud.bp.lookAt(target);
-*/
-
-        wud.bp.position.set(10, 10, 10);
+            Math.cos(radian1) * 20,
+            5,
+            Math.sin(radian1) * 20);
 
         var target = new THREE.Vector3(
             0, //Math.cos(radian2) * 10,
@@ -74,9 +67,6 @@
             0) //Math.sin(radian2) * 10);
         wud.bp.lookAt(target);
 
-
-        wud.camera.position.set(-35, 35, 35);
-        wud.camera.lookAt(0,0,0);
 
     };
 }

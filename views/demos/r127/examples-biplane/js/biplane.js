@@ -21,6 +21,7 @@ var Biplane = (function () {
                 new THREE.BoxGeometry(2, 1, 10),
                 opt.materials.plane || materials.plane);
         wing.position.y = y;
+        //wing.geometry.rotateY(Math.PI * 0.5);
         return wing;
     };
 
@@ -30,6 +31,7 @@ var Biplane = (function () {
                 new THREE.BoxGeometry(10, 2, 2),
                 opt.materials.plane || materials.plane);
         body.position.x = -2;
+        //body.geometry.rotateY(Math.PI * 0.5);
         return body;
     };
 
@@ -40,6 +42,7 @@ var Biplane = (function () {
                 opt.materials.plane || materials.plane);
         body.position.x = -6.5;
         body.position.y = 2;
+        //body.geometry.rotateY(Math.PI * 0.5);
         return body;
     };
 
@@ -59,6 +62,7 @@ var Biplane = (function () {
                 new THREE.BoxGeometry(0.5, 4, 0.5),
                 materials.prop);
         prop.position.x = 3.25;
+        //prop.geometry.rotateY(Math.PI * 0.5);
         return prop;
     };
 
