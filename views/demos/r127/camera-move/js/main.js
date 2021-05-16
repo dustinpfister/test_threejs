@@ -39,12 +39,20 @@ scene.add(new THREE.Mesh(
 
 // APP
 var frame = 0,
-frameMax = 100;
+frameMax = 30 * 5,
+fps = 30,
+lt = new Date();
 var loop = function () {
+    var now = new Date(),
+    secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
-    moveCamera(camera, frame / frameMax);
-    renderer.render(scene, camera);
-    frame += 1;
-    frame %= frameMax;
+    if (secs > 1 / fps) {
+        // calling move camera
+        moveCamera(camera, frame / frameMax);
+        renderer.render(scene, camera);
+        frame += fps * secs;
+        frame %= frameMax;
+        lt = now;
+    }
 };
 loop();
