@@ -31,53 +31,42 @@
 
     // initialize method
     var init = function () {
-
         scene.add(mesh);
         camera.position.z = 250;
         camera.position.x = 250;
         camera.lookAt(0, 0, 0);
         renderer.setSize(320, 240);
-
-    },
+    };
 
     // update method
-    i = 0,
-    iMax = 100,
-    lt = new Date(),
-    fr = 100,
-    update = function () {
-
-        var per = i / iMax,
-        now = new Date();
+    var update = function (per) {
+        var now = new Date();
         var bias = 1 - Math.abs(.5 - per) / .5;
         var r = Math.PI * 2 * per;
+        // move the position of the camera
+        camera.position.x = Math.cos(r) * 300;
+        camera.position.z = Math.sin(r) * 300;
+        // set the point that the camera is looking at
+        camera.lookAt(0, -125 + 250 * bias, 0);
 
-        if (now - lt >= fr) {
-
-            // move the position of the camera
-            camera.position.x = Math.cos(r) * 300;
-            camera.position.z = Math.sin(r) * 300;
-
-            // set the point that the camera is looking at
-            camera.lookAt(0, -125 + 250 * bias, 0);
-
-            i += 1;
-            i = i % iMax;
-
-            lt = now;
-
-        }
-
-    },
+    };
 
     // loop
-    loop = function () {
-
+    var frame = 0,
+    frameMax = 30 * 5,
+    fps = 30,
+    lt = new Date();
+    var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
-
-        update();
-        renderer.render(scene, camera);
-
+        if (secs > 1 / fps) {
+            update(frame / frameMax);
+            renderer.render(scene, camera);
+            frame += fps * secs;
+            frame %= frameMax;
+            lt = now;
+        }
     };
 
     // call init, and start loop
