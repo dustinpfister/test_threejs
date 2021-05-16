@@ -2,14 +2,14 @@
 (function () {
 
     // a scene is needed to place objects in
-    var scene = new THREE.Scene(),
+    var scene = new THREE.Scene();
 
     // so here I am setting the values of the perspective camera
-    fieldOfView = 45,
+    var fieldOfView = 45,
     aspectRatio = 16 / 9,
     near = 1,
     far = 1000,
-    cam = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far),
+    camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far),
 
     // In order to see anything I will also need a renderer
     // to use with my scene, and camera
@@ -42,8 +42,8 @@
         // setting position of the camera
         // position is a property of Object3D
         // and the value is an instance of Vector3
-        cam.position.set(400, 400, 400);
-        cam.lookAt(0, 0, 0);
+        camera.position.set(400, 400, 400);
+        camera.lookAt(0, 0, 0);
 
         // setting a background color
         scene.background = new THREE.Color(.7, .7, .7);
@@ -67,11 +67,11 @@
         if (now - lt >= fr) {
 
             // changing aspect, and field of view
-            cam.aspect = .5 + 1.5 * bias;
-            cam.fov = 50 + 25 * bias;
+            camera.aspect = .5 + 1.5 * bias;
+            camera.fov = 50 + 25 * bias;
 
             // I must call this to get it to work
-            cam.updateProjectionMatrix();
+            camera.updateProjectionMatrix();
 
             i += 1;
             i = i % iMax;
@@ -88,7 +88,7 @@
         requestAnimationFrame(loop);
 
         update();
-        renderer.render(scene, cam);
+        renderer.render(scene, camera);
 
     };
 
