@@ -9,11 +9,18 @@
     };
 
     var rotations = [
+       [0,0,0],
        [1.57,0,0],
        [1.57,0,0],
-       [0,1.57,0],
-       [0,1.57,0],
-       [0,0,0]
+       [0,0,1.57],
+       [0,0,1.57]
+    ];
+    var positions = [
+       [0, 0, 0],
+       [0, 0, 1],
+       [0, 0, -1],
+       [1, 0, 0],
+       [-1, 0, 0]
     ];
 
     // create a box group
@@ -31,6 +38,10 @@
                 })
             );
             boardCut.rotation.set(rotations[i][0], rotations[i][1], rotations[i][2]);
+            boardCut.position.set(
+                positions[i][0] * cutLen, 
+                positions[i][1] * cutLen, 
+                positions[i][2] * cutLen);
             box.add(boardCut);
             i += 1;
         }
