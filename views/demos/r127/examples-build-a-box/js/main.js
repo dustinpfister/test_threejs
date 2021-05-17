@@ -24,15 +24,7 @@
        [-1, 0, 0]
     ];
 
-    // create a box group
-    api.create = function(){
-        var box = new THREE.Group(),
-        positions = default_positions;
-
-        var i = 0,
-        len = 5,
-        cutLen = board.len / (len * 1);
-
+    var adjustPositions = function(positions, cutLen){
         // sides x and z adjust
         positions[1][2] = board.width / 2 - board.height / 2 + 0;
         positions[2][2] = (board.width / 2 - board.height / 2 + 0) * -1;
@@ -45,7 +37,18 @@
         positions[2][1] = board.width / 2 - board.height / 2;
         positions[3][1] = cutLen / 2 - board.height / 2;
         positions[4][1] = cutLen / 2 - board.height / 2;
+    };
 
+    // create a box group
+    api.create = function(){
+        var box = new THREE.Group(),
+        positions = default_positions;
+
+        var i = 0,
+        len = 5,
+        cutLen = board.len / (len * 1);
+
+        adjustPositions(positions, cutLen);
 
         while(i < len){       
             var boardCut = new THREE.Mesh(
