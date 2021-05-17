@@ -25,12 +25,15 @@
     ];
 
     var adjustPositions = function(positions, cutLen){
-        // sides x and z adjust
-        positions[1][2] = board.width / 2 - board.height / 2 + 0;
-        positions[2][2] = (board.width / 2 - board.height / 2 + 0) * -1;
 
-        positions[3][0] = cutLen / 2 - board.height / 2 + 0;
-        positions[4][0] = (cutLen / 2 - board.height / 2 + 0) * -1;
+        var dist = 4;
+
+        // sides x and z adjust
+        positions[1][2] = board.width / 2 - board.height / 2 + dist;
+        positions[2][2] = (board.width / 2 - board.height / 2 + dist) * -1;
+
+        positions[3][0] = cutLen / 2 - board.height / 2 + dist;
+        positions[4][0] = (cutLen / 2 - board.height / 2 + dist) * -1;
 
         // sides y adjust
         positions[1][1] = board.width / 2 - board.height / 2;
