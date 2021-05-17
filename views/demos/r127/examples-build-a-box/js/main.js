@@ -8,16 +8,32 @@
         width : 7.25
     };
 
+    var rotations = [
+       [1.57,0,0],
+       [1.57,0,0],
+       [0,1.57,0],
+       [0,1.57,0],
+       [0,0,0]
+    ];
+
     // create a box group
     api.create = function(){
         var box = new THREE.Group();
-            var bottom = new THREE.Mesh(
-                new THREE.BoxGeometry(board.len, board.height, board.width),
+
+        var i = 0,
+        len = 5,
+        cutLen = board.len / len;
+        while(i < len){       
+            var boardCut = new THREE.Mesh(
+                new THREE.BoxGeometry(cutLen, board.height, board.width),
                 new THREE.MeshNormalMaterial({
                     side: THREE.DoubleSide
                 })
             );
-        box.add(bottom);
+            boardCut.rotation.set(rotations[i][0], rotations[i][1], rotations[i][2]);
+            box.add(boardCut);
+            i += 1;
+        }
         return box;
     };
 
