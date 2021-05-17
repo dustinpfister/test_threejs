@@ -25,16 +25,12 @@
     ];
 
     var adjustPositions = function(positions, cutLen, dist){
-
         dist = dist === undefined ? 4: dist;
-
         // sides x and z adjust
         positions[1][2] = board.width / 2 - board.height / 2 + dist;
         positions[2][2] = (board.width / 2 - board.height / 2 + dist) * -1;
-
         positions[3][0] = cutLen / 2 - board.height / 2 + dist;
         positions[4][0] = (cutLen / 2 - board.height / 2 + dist) * -1;
-
         // sides y adjust
         positions[1][1] = board.width / 2 - board.height / 2;
         positions[2][1] = board.width / 2 - board.height / 2;
@@ -54,14 +50,21 @@
         }
     };
 
+    // update
+    api.update = function(box, dist, per){
+        var positions = JSON.parse(JSON.stringify(default_positions));
+        adjustPositions(positions, box.userData.cutLen, dist * per);
+        setPositions(box, positions);
+    };
+
     // create a box group
     api.create = function(){
         var box = new THREE.Group(),
         positions = JSON.parse(JSON.stringify(default_positions));
         var i = 0,
         len = 5,
-        cutLen = board.len / (len * 1);
-        adjustPositions(positions, cutLen, 0);
+        cutLen = box.userData.cutLen = board.len / (len * 1);
+        //adjustPositions(positions, cutLen, 0);
         while(i < len){       
             var boardCut = new THREE.Mesh(
                 new THREE.BoxGeometry(cutLen, board.height, board.width),
@@ -73,13 +76,10 @@
             box.add(boardCut);
             i += 1;
         }
-        setPositions(box, positions);
+        api.update(box, 0, 0);
         return box;
     };
 
-    api.update = function(box, dist, per){
-
-    };
 
 }(this['buildBox'] = {}));
 
