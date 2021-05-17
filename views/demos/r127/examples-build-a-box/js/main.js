@@ -64,7 +64,6 @@
         var i = 0,
         len = 5,
         cutLen = box.userData.cutLen = board.len / (len * 1);
-        //adjustPositions(positions, cutLen, 0);
         while(i < len){       
             var boardCut = new THREE.Mesh(
                 new THREE.BoxGeometry(cutLen, board.height, board.width),
@@ -85,7 +84,9 @@
 
 var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(10, 10));
-scene.add(buildBox.create());
+
+var box = buildBox.create();
+scene.add(box);
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
@@ -101,7 +102,7 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 // loop
 var lt = new Date(),
 frame = 0,
-maxFrame = 600,
+maxFrame = 300,
 fps = 30;
 var loop = function () {
     var now = new Date(),
@@ -110,6 +111,7 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
+        buildBox.update(box, 4, bias);
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
