@@ -101,12 +101,22 @@
     // LOOP
     var frame = 0,
     maxFrame = 100,
+    lt = new Date(),
+    fps = 24,
     loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000,
+        per = frame / maxFrame;
+
         requestAnimationFrame(loop);
-        updatePoints(points, frame / maxFrame);
-        renderer.render(scene, camera);
-        frame += 1;
-        frame %= maxFrame;
+
+        if (secs > 1 / fps) {
+            updatePoints(points, per);
+            renderer.render(scene, camera);
+            frame += fps * secs;
+            frame %= maxFrame;
+            lt = now;
+        }
     };
 
     loop();
