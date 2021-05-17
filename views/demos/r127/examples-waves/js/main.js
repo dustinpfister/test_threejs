@@ -117,8 +117,9 @@
 
         if (secs > 1 / fps) {
             updatePoints(points, per * 8 % 1);
-            camera.position.set(2.5, -0.5 + 5 * bias, 2.5);
-            camera.lookAt(0, 0, 0);
+            var d = 0.8 + 2.5 * (1 - bias);
+            camera.position.set(d, 2.5, d);
+            //camera.lookAt(0, 0, 0);
             renderer.render(scene, camera);
             frame += fps * secs;
             frame %= maxFrame;
