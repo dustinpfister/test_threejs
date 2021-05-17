@@ -57,14 +57,11 @@
     // create a box group
     api.create = function(){
         var box = new THREE.Group(),
-        positions = default_positions;
-
+        positions = JSON.parse(JSON.stringify(default_positions));
         var i = 0,
         len = 5,
         cutLen = board.len / (len * 1);
-
         adjustPositions(positions, cutLen, 0);
-
         while(i < len){       
             var boardCut = new THREE.Mesh(
                 new THREE.BoxGeometry(cutLen, board.height, board.width),
@@ -78,6 +75,10 @@
         }
         setPositions(box, positions);
         return box;
+    };
+
+    api.update = function(box, dist, per){
+
     };
 
 }(this['buildBox'] = {}));
