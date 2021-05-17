@@ -53,7 +53,8 @@
             geometry,
             // then Material
             new THREE.PointsMaterial({
-                size: .05
+                size: .125,
+                color: new THREE.Color(0, 0.7, 0.7)
             }));
     };
 
@@ -83,6 +84,7 @@
 
     // SCENE
     var scene = new THREE.Scene();
+    scene.background = new THREE.Color(1.0, 0.25, 0.0);
 
     // POINTS
     var points = makePoints();
@@ -93,7 +95,7 @@
 
     // position of points an camera
     points.position.set(0, 2.5, 0);
-    camera.position.set(3.5, 3.5, 3.5);
+    camera.position.set(2.5, 2.5, 2.5);
 
     // CONTROLS
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
