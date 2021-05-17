@@ -5,7 +5,7 @@
         opt = opt || {};
         opt.width = opt.width || 30;
         opt.depth = opt.depth || 30;
-        opt.height = opt.height || 1;
+        opt.height = opt.height || 2;
         opt.forPoint = opt.forPoint || function () {};
         opt.context = opt.context || opt;
         opt.xStep = opt.xStep || 0.075;
