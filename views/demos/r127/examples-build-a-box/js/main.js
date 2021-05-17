@@ -15,7 +15,8 @@
        [0,0,1.57],
        [0,0,1.57]
     ];
-    var positions = [
+
+    var default_positions = [
        [0, 0, 0],
        [0, 0, 1],
        [0, 0, -1],
@@ -25,7 +26,8 @@
 
     // create a box group
     api.create = function(){
-        var box = new THREE.Group();
+        var box = new THREE.Group(),
+        positions = default_positions;
 
         var i = 0,
         len = 5,
