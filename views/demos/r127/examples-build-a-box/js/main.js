@@ -43,17 +43,17 @@
         cutLen = board.len / len;
 
         // sides x and z adjust
-        positions[1][2] = board.width / 2 - board.height / 2;
-        positions[2][2] = (board.width / 2 - board.height / 2) * -1;
+        positions[1][2] = board.width / 2 - board.height / 2 + 1;
+        positions[2][2] = (board.width / 2 - board.height / 2 + 1) * -1;
 
-        positions[3][0] = cutLen / 2 - board.height / 2;
-        positions[4][0] = (cutLen / 2 - board.height / 2) * -1;
+        positions[3][0] = cutLen / 2 - board.height / 2 + 1;
+        positions[4][0] = (cutLen / 2 - board.height / 2 + 1) * -1;
 
         // sides y adjust
-        positions[1][1] = board.width / 2;
-        positions[2][1] = board.width / 2;
-        positions[3][1] = cutLen / 2;
-        positions[4][1] = cutLen / 2;
+        positions[1][1] = board.width / 2 - board.height / 2;
+        positions[2][1] = board.width / 2 - board.height / 2;
+        positions[3][1] = cutLen / 2 - board.height / 2;
+        positions[4][1] = cutLen / 2 - board.height / 2;
 
 
         while(i < len){       
