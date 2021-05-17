@@ -54,7 +54,7 @@
             // then Material
             new THREE.PointsMaterial({
                 size: .125,
-                color: new THREE.Color(0, 0.7, 0.7)
+                color: new THREE.Color(0.0, 0.0, 0.0)
             }));
     };
 
@@ -84,7 +84,9 @@
 
     // SCENE
     var scene = new THREE.Scene();
-    scene.background = new THREE.Color(1.0, 0.25, 0.0);
+    var fogColor = new THREE.Color(1.0, 0.25, 0.0);
+    scene.background = fogColor;
+    scene.fog = new THREE.FogExp2(fogColor, 0.35);
 
     // POINTS
     var points = makePoints();
