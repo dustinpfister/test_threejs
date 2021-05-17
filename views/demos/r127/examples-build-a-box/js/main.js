@@ -24,15 +24,6 @@
        [-1, 0, 0]
     ];
 
-/*
-    var default_positions = [
-       '',
-       'z_1',
-       'z_-1',
-       'x_1',
-       'x_-1',
-    ];
-*/
     // create a box group
     api.create = function(){
         var box = new THREE.Group(),
@@ -40,14 +31,14 @@
 
         var i = 0,
         len = 5,
-        cutLen = board.len / len;
+        cutLen = board.len / (len * 1);
 
         // sides x and z adjust
-        positions[1][2] = board.width / 2 - board.height / 2 + 1;
-        positions[2][2] = (board.width / 2 - board.height / 2 + 1) * -1;
+        positions[1][2] = board.width / 2 - board.height / 2 + 0;
+        positions[2][2] = (board.width / 2 - board.height / 2 + 0) * -1;
 
-        positions[3][0] = cutLen / 2 - board.height / 2 + 1;
-        positions[4][0] = (cutLen / 2 - board.height / 2 + 1) * -1;
+        positions[3][0] = cutLen / 2 - board.height / 2 + 0;
+        positions[4][0] = (cutLen / 2 - board.height / 2 + 0) * -1;
 
         // sides y adjust
         positions[1][1] = board.width / 2 - board.height / 2;
@@ -77,6 +68,7 @@
 }(this['buildBox'] = {}));
 
 var scene = new THREE.Scene();
+scene.add(new THREE.GridHelper(10, 10));
 scene.add(buildBox.create());
 
 // camera and renderer
