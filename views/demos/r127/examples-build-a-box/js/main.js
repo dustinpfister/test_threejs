@@ -2,12 +2,14 @@
 (function(api){
 
     api.create = function(){
-        var box = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshNormalMaterial({
-                side: THREE.DoubleSide
-            })
-        );
+        var box = new THREE.Group();
+            var bottom = new THREE.Mesh(
+                new THREE.BoxGeometry(7.25, 0.75, 24.25),
+                new THREE.MeshNormalMaterial({
+                    side: THREE.DoubleSide
+                })
+            );
+        box.add(bottom);
         return box;
     };
 
@@ -18,7 +20,7 @@ scene.add(buildBox.create());
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(1.0, 1.5, 1.0);
+camera.position.set(15, 15, 15);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
