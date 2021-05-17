@@ -24,9 +24,9 @@
        [-1, 0, 0]
     ];
 
-    var adjustPositions = function(positions, cutLen){
+    var adjustPositions = function(positions, cutLen, dist){
 
-        var dist = 4;
+        dist = dist === undefined ? 4: dist;
 
         // sides x and z adjust
         positions[1][2] = board.width / 2 - board.height / 2 + dist;
@@ -42,6 +42,18 @@
         positions[4][1] = cutLen / 2 - board.height / 2;
     };
 
+    var setPositions = function(box, positions){
+        var i = 0,
+        len = 5;
+        while(i < len){
+            box.children[i].position.set(
+                positions[i][0], 
+                positions[i][1], 
+                positions[i][2]);
+           i += 1; 
+        }
+    };
+
     // create a box group
     api.create = function(){
         var box = new THREE.Group(),
@@ -51,7 +63,7 @@
         len = 5,
         cutLen = board.len / (len * 1);
 
-        adjustPositions(positions, cutLen);
+        adjustPositions(positions, cutLen, 0);
 
         while(i < len){       
             var boardCut = new THREE.Mesh(
@@ -61,13 +73,10 @@
                 })
             );
             boardCut.rotation.set(rotations[i][0], rotations[i][1], rotations[i][2]);
-            boardCut.position.set(
-                positions[i][0], 
-                positions[i][1], 
-                positions[i][2]);
             box.add(boardCut);
             i += 1;
         }
+        setPositions(box, positions);
         return box;
     };
 
