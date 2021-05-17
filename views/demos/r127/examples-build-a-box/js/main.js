@@ -42,7 +42,7 @@
         len = 5,
         cutLen = board.len / len;
 
-        // sides
+        // sides x and z adjust
         positions[1][2] = board.width / 2 - board.height / 2;
         positions[2][2] = (board.width / 2 - board.height / 2) * -1;
 
