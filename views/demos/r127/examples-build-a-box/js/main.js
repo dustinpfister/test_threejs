@@ -1,10 +1,18 @@
 
 (function(api){
 
+    // the board to work with
+    var board = {
+        len: 24.25,
+        height: 0.75,
+        width : 7.25
+    };
+
+    // create a box group
     api.create = function(){
         var box = new THREE.Group();
             var bottom = new THREE.Mesh(
-                new THREE.BoxGeometry(7.25, 0.75, 24.25),
+                new THREE.BoxGeometry(board.len, board.height, board.width),
                 new THREE.MeshNormalMaterial({
                     side: THREE.DoubleSide
                 })
