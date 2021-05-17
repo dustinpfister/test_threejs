@@ -54,7 +54,7 @@
             // then Material
             new THREE.PointsMaterial({
                 size: .125,
-                color: new THREE.Color(0.0, 0.0, 0.0)
+                color: new THREE.Color(0.0, 0.5, 0.5)
             }));
     };
 
@@ -86,7 +86,7 @@
     var scene = new THREE.Scene();
     var fogColor = new THREE.Color(1.0, 0.25, 0.0);
     scene.background = fogColor;
-    scene.fog = new THREE.FogExp2(fogColor, 0.35);
+    scene.fog = new THREE.FogExp2(fogColor, 0.3);
 
     // POINTS
     var points = makePoints();
@@ -104,18 +104,21 @@
 
     // LOOP
     var frame = 0,
-    maxFrame = 100,
+    maxFrame = 300,
     lt = new Date(),
-    fps = 24,
+    fps = 30,
     loop = function () {
         var now = new Date(),
         secs = (now - lt) / 1000,
-        per = frame / maxFrame;
+        per = frame / maxFrame,
+        bias = 1 - Math.abs(per - 0.5) / 0.5;
 
         requestAnimationFrame(loop);
 
         if (secs > 1 / fps) {
-            updatePoints(points, per);
+            updatePoints(points, per * 8 % 1);
+            camera.position.set(2.5, -0.5 + 5 * bias, 2.5);
+            camera.lookAt(0, 0, 0);
             renderer.render(scene, camera);
             frame += fps * secs;
             frame %= maxFrame;
