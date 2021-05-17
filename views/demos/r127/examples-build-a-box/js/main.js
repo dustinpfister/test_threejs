@@ -49,6 +49,12 @@
         positions[3][0] = cutLen / 2 - board.height / 2;
         positions[4][0] = (cutLen / 2 - board.height / 2) * -1;
 
+        // sides y adjust
+        positions[1][1] = board.width / 2;
+        positions[2][1] = board.width / 2;
+        positions[3][1] = cutLen / 2;
+        positions[4][1] = cutLen / 2;
+
 
         while(i < len){       
             var boardCut = new THREE.Mesh(
