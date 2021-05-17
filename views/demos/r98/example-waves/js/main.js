@@ -103,7 +103,7 @@
     var renderer = new THREE.WebGLRenderer({
             antialias: true
         });
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // SCENE
