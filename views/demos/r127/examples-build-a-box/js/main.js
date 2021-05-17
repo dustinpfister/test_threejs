@@ -24,6 +24,15 @@
        [-1, 0, 0]
     ];
 
+/*
+    var default_positions = [
+       '',
+       'z_1',
+       'z_-1',
+       'x_1',
+       'x_-1',
+    ];
+*/
     // create a box group
     api.create = function(){
         var box = new THREE.Group(),
@@ -32,6 +41,15 @@
         var i = 0,
         len = 5,
         cutLen = board.len / len;
+
+        // sides
+        positions[1][2] = board.width / 2 - board.height / 2;
+        positions[2][2] = (board.width / 2 - board.height / 2) * -1;
+
+        positions[3][0] = cutLen / 2 - board.height / 2;
+        positions[4][0] = (cutLen / 2 - board.height / 2) * -1;
+
+
         while(i < len){       
             var boardCut = new THREE.Mesh(
                 new THREE.BoxGeometry(cutLen, board.height, board.width),
@@ -41,9 +59,9 @@
             );
             boardCut.rotation.set(rotations[i][0], rotations[i][1], rotations[i][2]);
             boardCut.position.set(
-                positions[i][0] * cutLen, 
-                positions[i][1] * cutLen, 
-                positions[i][2] * cutLen);
+                positions[i][0], 
+                positions[i][1], 
+                positions[i][2]);
             box.add(boardCut);
             i += 1;
         }
