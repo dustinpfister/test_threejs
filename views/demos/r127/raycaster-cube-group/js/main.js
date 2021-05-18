@@ -50,7 +50,7 @@ var loop = function () {
 
         if(intersects.length > 0){
             var mesh = intersects[0].object,
-            group = mesh.parent
+            group = mesh.parent;
             console.log(group.userData); 
         }
 

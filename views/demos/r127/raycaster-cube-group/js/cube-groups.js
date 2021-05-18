@@ -70,12 +70,8 @@
         cubes.rotation.set(x, y, z);
     };
 
-    // update the group
-    api.update = function(cubes, secs) {
-        // GROUP USER DATA OBJECT
+    var updateCubes = function(cubes, per, bias){
         var gud = cubes.userData;
-        var per = gud.frame / gud.maxFrame,
-        bias = 1 - Math.abs(per - 0.5) / 0.5;
         // update cubes
         cubes.children.forEach(function (cube, i) {
             // start values
@@ -94,6 +90,17 @@
             // call cube update method
             updateCube(cube, per);
         });
+    };
+
+    // update the group
+    api.update = function(cubes, secs) {
+        // GROUP USER DATA OBJECT
+        var gud = cubes.userData;
+        var per = gud.frame / gud.maxFrame,
+        bias = 1 - Math.abs(per - 0.5) / 0.5;
+
+        updateCubes(cubes, per, bias);
+
         // whole group rotation
         setCubesRotation(cubes, bias);
         // step frame
