@@ -19,7 +19,9 @@ var cubeGroup = CubeGroupMod.create();
 cubeGroup.position.x = 0;
 scene.add(cubeGroup);
 
-
+var cubeGroup2 = CubeGroupMod.create();
+cubeGroup2.position.x = 3;
+scene.add(cubeGroup2);
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
@@ -60,6 +62,7 @@ var loop = function () {
         }
 
         CubeGroupMod.update(cubeGroup, secs);
+        CubeGroupMod.update(cubeGroup2, secs);
 
         renderer.render(scene, camera);
         frame += fps * secs;
