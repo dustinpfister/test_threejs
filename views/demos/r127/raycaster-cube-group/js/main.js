@@ -12,11 +12,14 @@ function onMouseMove( event ) {
 
 // creating a scene
 var scene = new THREE.Scene();
+scene.add(new THREE.GridHelper(9, 9));
 
 
 var cubeGroup = CubeGroupMod.create();
 cubeGroup.position.x = 0;
 scene.add(cubeGroup);
+
+
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
