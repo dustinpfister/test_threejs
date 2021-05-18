@@ -39,7 +39,7 @@
         // USER DATA OBJECT FOR A GROUP OF CUBES
         gud = cubes.userData;
         gud.frame = 0;
-        gud.maxFrame = opt.maxFrame || 180;
+        gud.maxFrame = opt.maxFrame || 60;
         gud.fps = opt.fps || 30;
         gud.anglesA = toRadians(opt.anglesA || ANGLES_A);
         gud.yDelta = opt.yDelta === undefined ? 2 : opt.yDelta;
@@ -47,6 +47,7 @@
         gud.rotations = opt.rotations || [0, 0, 0];
         gud.secs = 0;
         gud.type = 'cubegroup';
+        gud.active = false;
         var i = 0;
         while(i < 8){
             var cubeRotations = opt.cubeRotations[i] || [0.00, 0.00, 0.00];
@@ -99,16 +100,22 @@
         var per = gud.frame / gud.maxFrame,
         bias = 1 - Math.abs(per - 0.5) / 0.5;
 
-        updateCubes(cubes, per, bias);
+        if(gud.active){
 
-        // whole group rotation
-        setCubesRotation(cubes, bias);
-        // step frame
-        gud.secs += secs;
-        if(gud.secs >= 1 / gud.fps){
-            gud.frame += 1; // gud.fps * secs;
-            gud.frame %= gud.maxFrame;
-            gud.secs %= 1 / gud.fps; 
+            updateCubes(cubes, per, bias);
+
+            // whole group rotation
+            setCubesRotation(cubes, bias);
+            // step frame
+            gud.secs += secs;
+            if(gud.secs >= 1 / gud.fps){
+                gud.frame += 1; // gud.fps * secs;
+                gud.frame %= gud.maxFrame;
+                gud.secs %= 1 / gud.fps;
+                if(gud.frame === 0){
+                    gud.active = false;
+                }
+            }
         }
     };
 

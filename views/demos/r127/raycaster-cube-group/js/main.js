@@ -51,6 +51,7 @@ var loop = function () {
         if(intersects.length > 0){
             var mesh = intersects[0].object,
             group = mesh.parent;
+            group.userData.active = true;
             console.log(group.userData); 
         }
 
