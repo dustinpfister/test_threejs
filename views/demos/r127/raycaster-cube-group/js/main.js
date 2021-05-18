@@ -10,6 +10,20 @@ function onMouseMove( event ) {
     mouse.y = - ( y / canvas.scrollHeight ) * 2 + 1;
 };
 
+var update = function(cubeGroups, secs){
+        // update the picking ray with the camera and mouse position
+	raycaster.setFromCamera( mouse, camera );
+            cubeGroups.children.forEach(function(cubeGroup){
+            var intersects = raycaster.intersectObjects( cubeGroup.children, true );
+            if(intersects.length > 0){
+                var mesh = intersects[0].object,
+                group = mesh.parent;
+                group.userData.active = true;
+            }
+            CubeGroupMod.update(cubeGroup, secs);
+        });
+};
+
 // creating a scene
 var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(9, 9));
@@ -53,17 +67,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
 
-        // update the picking ray with the camera and mouse position
-	raycaster.setFromCamera( mouse, camera );
-            cubeGroups.children.forEach(function(cubeGroup){
-            var intersects = raycaster.intersectObjects( cubeGroup.children, true );
-            if(intersects.length > 0){
-                var mesh = intersects[0].object,
-                group = mesh.parent;
-                group.userData.active = true;
-            }
-            CubeGroupMod.update(cubeGroup, secs);
-        });
+        update(cubeGroups, secs);
 
         renderer.render(scene, camera);
         frame += fps * secs;
