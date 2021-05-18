@@ -1,7 +1,8 @@
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2(1, 1);
 
-function onMouseMove( event ) {
+// on mouse move
+var onMouseMove = function( event ) {
     var canvas = event.target,
     box = canvas.getBoundingClientRect(),
     x = event.clientX - box.left,
@@ -10,18 +11,18 @@ function onMouseMove( event ) {
     mouse.y = - ( y / canvas.scrollHeight ) * 2 + 1;
 };
 
+// update the picking ray with the camera and mouse position
 var update = function(cubeGroups, secs){
-        // update the picking ray with the camera and mouse position
-	raycaster.setFromCamera( mouse, camera );
-            cubeGroups.children.forEach(function(cubeGroup){
-            var intersects = raycaster.intersectObjects( cubeGroup.children, true );
-            if(intersects.length > 0){
-                var mesh = intersects[0].object,
-                group = mesh.parent;
-                group.userData.active = true;
-            }
-            CubeGroupMod.update(cubeGroup, secs);
-        });
+    raycaster.setFromCamera( mouse, camera );
+    cubeGroups.children.forEach(function(cubeGroup){
+        var intersects = raycaster.intersectObjects( cubeGroup.children, true );
+        if(intersects.length > 0){
+            var mesh = intersects[0].object,
+            group = mesh.parent;
+            group.userData.active = true;
+        }
+        CubeGroupMod.update(cubeGroup, secs);
+    });
 };
 
 // creating a scene
