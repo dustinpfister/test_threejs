@@ -33,12 +33,28 @@ scene.add(new THREE.GridHelper(9, 9));
 var cubeGroups = new THREE.Group();
 scene.add(cubeGroups);
 
-var cg = CubeGroupMod.create();
+var cg = CubeGroupMod.create({
+   maxFrame: 30,
+   yDelta: 0.5,
+   xzDelta: 0.5
+});
 cg.position.x = 0;
 cubeGroups.add(cg);
 
-var cg = CubeGroupMod.create();
+var cg = CubeGroupMod.create({
+   maxFrame: 30,
+   yDelta: 0.5,
+   xzDelta: 0.5
+});
 cg.position.x = 3;
+cubeGroups.add(cg);
+
+var cg = CubeGroupMod.create({
+   maxFrame: 30,
+   yDelta: 0.5,
+   xzDelta: 0.5
+});
+cg.position.x = -3;
 cubeGroups.add(cg);
  
 // camera and renderer
