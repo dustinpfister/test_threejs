@@ -15,13 +15,16 @@ var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(9, 9));
 
 
-var cubeGroup = CubeGroupMod.create();
-cubeGroup.position.x = 0;
-scene.add(cubeGroup);
+var cubeGroups = new THREE.Group();
+scene.add(cubeGroups);
 
-var cubeGroup2 = CubeGroupMod.create();
-cubeGroup2.position.x = 3;
-scene.add(cubeGroup2);
+var cg = CubeGroupMod.create();
+cg.position.x = 0;
+cubeGroups.add(cg);
+
+var cg = CubeGroupMod.create();
+cg.position.x = 3;
+cubeGroups.add(cg);
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
@@ -52,17 +55,15 @@ var loop = function () {
 
         // update the picking ray with the camera and mouse position
 	raycaster.setFromCamera( mouse, camera );
-
-        var intersects = raycaster.intersectObjects( cubeGroup.children, true );
-
-        if(intersects.length > 0){
-            var mesh = intersects[0].object,
-            group = mesh.parent;
-            group.userData.active = true;
-        }
-
-        CubeGroupMod.update(cubeGroup, secs);
-        CubeGroupMod.update(cubeGroup2, secs);
+            cubeGroups.children.forEach(function(cubeGroup){
+            var intersects = raycaster.intersectObjects( cubeGroup.children, true );
+            if(intersects.length > 0){
+                var mesh = intersects[0].object,
+                group = mesh.parent;
+                group.userData.active = true;
+            }
+            CubeGroupMod.update(cubeGroup, secs);
+        });
 
         renderer.render(scene, camera);
         frame += fps * secs;
