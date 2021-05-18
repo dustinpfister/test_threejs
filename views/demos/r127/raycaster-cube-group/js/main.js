@@ -2,35 +2,20 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2(1, 1);
 
 function onMouseMove( event ) {
-    // calculate mouse position in normalized device coordinates
-    // (-1 to +1) for both components
     var canvas = event.target,
     box = canvas.getBoundingClientRect(),
     x = event.clientX - box.left,
     y = event.clientY - box.top;
-    // set mouse Vector2 values
     mouse.x = ( x / canvas.scrollWidth ) * 2 - 1;
     mouse.y = - ( y / canvas.scrollHeight ) * 2 + 1;
-    //console.log(mouse.x.toFixed(2), mouse.y.toFixed(2));
 };
-
-// creating a box mesh with the Box Geometry constructor,
-// and the normal material
-
 
 // creating a scene
 var scene = new THREE.Scene();
 
-/*
-var box = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial());
-scene.add(box);
-*/
 
-// add the box mesh to the scene
 var cubeGroup = CubeGroupMod.create();
-cubeGroup.position.x = 3;
+cubeGroup.position.x = 0;
 scene.add(cubeGroup);
  
 // camera and renderer
@@ -49,7 +34,7 @@ renderer.domElement.addEventListener( 'mousemove', onMouseMove, false );
 var lt = new Date(),
 frame = 0,
 maxFrame = 300,
-fps = 5;
+fps = 30;
 var loop = function () {
     var now = new Date(),
     per = frame / maxFrame,
@@ -64,9 +49,12 @@ var loop = function () {
         var intersects = raycaster.intersectObjects( cubeGroup.children, true );
 
         if(intersects.length > 0){
-            console.log(intersects[0].object.parent); 
+            var mesh = intersects[0].object,
+            group = mesh.parent
+            console.log(group.userData); 
         }
 
+        CubeGroupMod.update(cubeGroup, secs);
 
         renderer.render(scene, camera);
         frame += fps * secs;
