@@ -30,6 +30,8 @@ document.getElementById('demo').appendChild(renderer.domElement);
 renderer.domElement.addEventListener( 'mousemove', onMouseMove, false );
 
 
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
 // loop
 var lt = new Date(),
 frame = 0,
