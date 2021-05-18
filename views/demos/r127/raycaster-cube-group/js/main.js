@@ -20,7 +20,7 @@ scene.add(cubeGroup);
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(3, 3, 3);
+camera.position.set(5, 5, 5);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -52,7 +52,6 @@ var loop = function () {
             var mesh = intersects[0].object,
             group = mesh.parent;
             group.userData.active = true;
-            console.log(group.userData); 
         }
 
         CubeGroupMod.update(cubeGroup, secs);
