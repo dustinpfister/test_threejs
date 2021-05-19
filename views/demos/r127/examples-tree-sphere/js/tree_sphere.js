@@ -14,6 +14,15 @@
         })
     };
 
+    var createSphere = function (opt, materials) {
+        var sphere = new THREE.Mesh(
+                new THREE.SphereGeometry(opt.sphereSize, opt.widthSegments, opt.heightSegments),
+                materials.sphere);
+        var adjust = (opt.trunkLength / 2 + opt.sphereSize * 0.75);
+        sphere.position.set(0, 0, adjust * -1);
+        return sphere;
+    };
+
     // create and return a house
     api.create = function (opt) {
 
@@ -27,11 +36,7 @@
         var materials = opt.materials || materials_default;
         var tree = new THREE.Group();
 
-        var sphere = new THREE.Mesh(
-                new THREE.SphereGeometry(opt.sphereSize, opt.widthSegments, opt.heightSegments),
-                materials.sphere);
-        var adjust = (opt.trunkLength / 2 + opt.sphereSize * 0.75);
-        sphere.position.set(0, 0, adjust * -1);
+        var sphere = createSphere(opt, materials);
         tree.add(sphere);
 
         var trunk = new THREE.Mesh(
