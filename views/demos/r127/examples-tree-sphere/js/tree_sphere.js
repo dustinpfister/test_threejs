@@ -23,6 +23,15 @@
         return sphere;
     };
 
+    var createTrunk = function (opt, materials) {
+        var trunk = new THREE.Mesh(
+                new THREE.BoxGeometry(opt.trunkSize, opt.trunkLength, opt.trunkSize),
+                materials.trunk);
+        trunk.position.set(0, 0, 0);
+        trunk.rotation.set(1.57, 0, 0);
+        return trunk;
+    };
+
     // create and return a house
     api.create = function (opt) {
 
@@ -38,12 +47,7 @@
 
         var sphere = createSphere(opt, materials);
         tree.add(sphere);
-
-        var trunk = new THREE.Mesh(
-                new THREE.BoxGeometry(opt.trunkSize, opt.trunkLength, opt.trunkSize),
-                materials.trunk);
-        trunk.position.set(0, 0, 0);
-        trunk.rotation.set(1.57, 0, 0);
+        var trunk = createTrunk(opt, materials);
         tree.add(trunk);
 
         return tree;
