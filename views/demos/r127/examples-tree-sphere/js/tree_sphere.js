@@ -2,12 +2,14 @@
 
     // default materials
     var materials_default = {
-        sphere: new THREE.MeshBasicMaterial({
+        sphere: new THREE.MeshStandardMaterial({
             color: 0x00ff00,
+            emissive: 0x004f00,
             side: THREE.DoubleSide
         }),
-        trunk: new THREE.MeshBasicMaterial({
+        trunk: new THREE.MeshStandardMaterial({
             color: 0xffaf00,
+            emissive: 0x442200,
             side: THREE.DoubleSide
         })
     };
@@ -26,16 +28,14 @@
         var tree = new THREE.Group();
 
         var sphere = new THREE.Mesh(
-            new THREE.SphereGeometry(opt.sphereSize, opt.widthSegments, opt.heightSegments),
-            materials.sphere
-        );
+                new THREE.SphereGeometry(opt.sphereSize, opt.widthSegments, opt.heightSegments),
+                materials.sphere);
         sphere.position.set(0, opt.trunkLength / 2 + opt.sphereSize * 0.75, 0);
         tree.add(sphere);
 
         var trunk = new THREE.Mesh(
-            new THREE.BoxGeometry(opt.trunkSize, opt.trunkLength, opt.trunkSize),
-            materials.trunk
-        );
+                new THREE.BoxGeometry(opt.trunkSize, opt.trunkLength, opt.trunkSize),
+                materials.trunk);
         trunk.position.set(0, 0, 0);
         tree.add(trunk);
 
