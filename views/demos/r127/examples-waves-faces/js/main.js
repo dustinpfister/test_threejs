@@ -91,9 +91,9 @@
 
     // SCENE
     var scene = new THREE.Scene();
-    var fogColor = new THREE.Color(1.0, 0.25, 0.0);
+    var fogColor = new THREE.Color(1.0, 1.0, 1.0);
     scene.background = fogColor;
-    scene.fog = new THREE.FogExp2(fogColor, 0.3);
+    //scene.fog = new THREE.FogExp2(fogColor, 0.3);
 
     // POINTS
     var points = makePoints();
@@ -125,9 +125,9 @@
         if (secs > 1 / fps) {
             updatePoints(points, per * 8 % 1);
             var d = 0.5 + 2.5 * (1 - bias);
-            camera.position.set(d, 2.5, d);
-            camera.lookAt(-10, -10, -10);
-            camera.rotation.z = Math.PI * 2 * per;
+            //camera.position.set(d, 2.5, d);
+            //camera.lookAt(-10, -10, -10);
+            //camera.rotation.z = Math.PI * 2 * per;
             renderer.render(scene, camera);
             frame += fps * secs;
             frame %= maxFrame;
