@@ -8,6 +8,7 @@
             sphereSize: 1,
             trunkLength: 4
         });
+    tree.add(new THREE.BoxHelper(tree));
     scene.add(tree);
 
     // camera and renderer
