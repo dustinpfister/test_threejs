@@ -3,8 +3,8 @@
     // Wave grid helper
     var waveGrid = function (opt) {
         opt = opt || {};
-        opt.width = opt.width || 30;
-        opt.depth = opt.depth || 30;
+        opt.width = opt.width || 18;
+        opt.depth = opt.depth || 18;
         opt.height = opt.height || 2;
         opt.forPoint = opt.forPoint || function () {};
         opt.context = opt.context || opt;
@@ -74,8 +74,10 @@
         return new THREE.Mesh(
             // geometry as first argument
             geometry,
-            // basic Material
-            new THREE.MeshDepthMaterial());
+            // Material
+            new THREE.MeshNormalMaterial({
+                side: THREE.DoubleSide
+            }));
     };
 
     // update points
@@ -108,16 +110,19 @@
     scene.background = fogColor;
     //scene.fog = new THREE.FogExp2(fogColor, 0.3);
 
-    // POINTS
-    var points = makeMesh();
-    scene.add(points);
+    // mesh
+    var mesh = makeMesh();
+
+    mesh.geometry.addGroup(0, 3, 0);
+
+    scene.add(mesh);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 320 / 240, .001, 1000);
 
-    // position of points an camera
-    points.position.set(0, 2.5, 0);
-    camera.position.set(2.5, 2.5, 2.5);
+    // position of mesh an camera
+    mesh.position.set(0, 1, 0);
+    camera.position.set(4, 4, 3);
 
     // CONTROLS
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -136,7 +141,7 @@
         requestAnimationFrame(loop);
 
         if (secs > 1 / fps) {
-            updatePositions(points, per * 8 % 1);
+            //updatePositions(mesh, per * 8 % 1);
             var d = 0.5 + 2.5 * (1 - bias);
             //camera.position.set(d, 2.5, d);
             //camera.lookAt(-10, -10, -10);
@@ -147,6 +152,8 @@
             lt = now;
         }
     };
+
+    console.log(new THREE.BoxGeometry());
 
     loop();
 
