@@ -29,7 +29,6 @@
 
     // RENDERER
     var renderer = new THREE.WebGLRenderer();
-    //renderer.width = 640;
     renderer.domElement.width = 640;
     renderer.domElement.height = 480;
     renderer.setViewport(0, 0, 640, 480);
@@ -44,6 +43,9 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
+            sunRadian += Math.PI / 180 * 45 * secs;
+            sunRadian %= Math.PI * 2;
+            sun.position.set(Math.cos(sunRadian) * 3, 4, Math.sin(sunRadian) * 3);
             renderer.render(scene, camera);
             lt = now;
         }
