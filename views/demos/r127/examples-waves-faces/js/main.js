@@ -36,10 +36,9 @@
         };
     };
 
-    // make a points mesh
-    var makePoints = function () {
-        var geometry = new THREE.BufferGeometry();
-        var points = [],
+    // make and add just the 'positions' attribute for the given buffer geometry
+    var makePositions = function (geometry, opt) {
+        var points = [];
         opt = {};
         opt.forPoint = function (x, y, z, i) {
             points.push(x, y, z);
@@ -47,7 +46,15 @@
         waveGrid(opt);
         var vertices = new Float32Array(points);
         // itemSize = 3 because there are 3 values (components) per vertex
-        geometry.addAttribute('position', new THREE.BufferAttribute(vertices, 3));
+        geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+    };
+
+    // make a points mesh
+    var makePoints = function (opt) {
+        opt = opt || {};
+        var geometry = new THREE.BufferGeometry();
+        // add positions
+        makePositions(geometry, opt);
         return new THREE.Points(
             // geometry as first argument
             geometry,
