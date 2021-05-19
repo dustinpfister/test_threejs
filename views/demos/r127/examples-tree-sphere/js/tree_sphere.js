@@ -30,7 +30,8 @@
         var sphere = new THREE.Mesh(
                 new THREE.SphereGeometry(opt.sphereSize, opt.widthSegments, opt.heightSegments),
                 materials.sphere);
-        sphere.position.set(0, opt.trunkLength / 2 + opt.sphereSize * 0.75, 0);
+        var adjust = (opt.trunkLength / 2 + opt.sphereSize * 0.75);
+        sphere.position.set(0, 0, adjust * -1);
         tree.add(sphere);
 
         var trunk = new THREE.Mesh(
