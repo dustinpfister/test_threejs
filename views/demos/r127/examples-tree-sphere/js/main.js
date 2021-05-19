@@ -31,9 +31,6 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-            //WorldMod.update(world, secs);
-            //WorldMod.update(world2, secs);
-            //WorldMod.update(world3, secs);
             renderer.render(scene, camera);
             lt = now;
         }
