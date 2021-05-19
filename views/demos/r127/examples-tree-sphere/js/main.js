@@ -2,6 +2,7 @@
 
     // creating a scene
     var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(10, 10));
 
     var tree = TreeSphereMod.create({
             sphereSize: 1,
