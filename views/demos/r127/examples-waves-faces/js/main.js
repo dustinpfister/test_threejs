@@ -65,6 +65,19 @@
             }));
     };
 
+    // make a points mesh
+    var makeMesh = function (opt) {
+        opt = opt || {};
+        var geometry = new THREE.BufferGeometry();
+        // add positions
+        makePositions(geometry, opt);
+        return new THREE.Mesh(
+            // geometry as first argument
+            geometry,
+            // basic Material
+            new THREE.MeshDepthMaterial());
+    };
+
     // update points
     var updatePoints = function (points, per) {
         var position = points.geometry.getAttribute('position');
@@ -96,7 +109,7 @@
     //scene.fog = new THREE.FogExp2(fogColor, 0.3);
 
     // POINTS
-    var points = makePoints();
+    var points = makeMesh();
     scene.add(points);
 
     // CAMERA
