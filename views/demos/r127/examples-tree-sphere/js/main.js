@@ -2,7 +2,7 @@
 
     // creating a scene
     var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(10, 10));
+    scene.add(new THREE.GridHelper(4, 4));
 
     // creating a tree
     var tree = TreeSphereMod.create({
@@ -10,6 +10,7 @@
             trunkLength: 4
         });
     tree.add(new THREE.BoxHelper(tree));
+    tree.position.set(0, 2, 0);
 
     tree.lookAt(0, -10, 0);
     scene.add(tree);
@@ -23,7 +24,7 @@
 
     // camera and renderer
     var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-    camera.position.set(5, 5, 5);
+    camera.position.set(5, 8, 5);
     camera.lookAt(tree.position);
 
     // RENDERER
