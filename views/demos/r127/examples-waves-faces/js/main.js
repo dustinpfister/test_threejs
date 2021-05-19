@@ -79,7 +79,7 @@
     };
 
     // update points
-    var updatePoints = function (points, per) {
+    var updatePositions = function (points, per) {
         var position = points.geometry.getAttribute('position');
         // update points
         waveGrid({
@@ -136,7 +136,7 @@
         requestAnimationFrame(loop);
 
         if (secs > 1 / fps) {
-            updatePoints(points, per * 8 % 1);
+            updatePositions(points, per * 8 % 1);
             var d = 0.5 + 2.5 * (1 - bias);
             //camera.position.set(d, 2.5, d);
             //camera.lookAt(-10, -10, -10);
