@@ -4,15 +4,15 @@
     var scene = new THREE.Scene();
 
     var tree = TreeSphereMod.create({
-            sphereSize: 0.25 + 0.75 * Math.random(),
-            trunkLength: 1 + 4 * Math.random()
+            sphereSize: 1,
+            trunkLength: 4
         });
     scene.add(tree);
 
     // camera and renderer
     var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-    camera.position.set(12, 12, 12);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(5, 5, 5);
+    camera.lookAt(tree.position);
 
     // RENDERER
     var renderer = new THREE.WebGLRenderer();
