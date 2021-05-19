@@ -37,6 +37,7 @@
                 new THREE.BoxGeometry(opt.trunkSize, opt.trunkLength, opt.trunkSize),
                 materials.trunk);
         trunk.position.set(0, 0, 0);
+        trunk.rotation.set(1.57, 0, 0);
         tree.add(trunk);
 
         return tree;

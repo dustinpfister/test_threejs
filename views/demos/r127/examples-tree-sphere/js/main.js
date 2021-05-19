@@ -4,11 +4,14 @@
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(10, 10));
 
+    // creating a tree
     var tree = TreeSphereMod.create({
             sphereSize: 1,
             trunkLength: 4
         });
     tree.add(new THREE.BoxHelper(tree));
+
+    tree.lookAt(0, -10, 0);
     scene.add(tree);
 
     // camera and renderer
