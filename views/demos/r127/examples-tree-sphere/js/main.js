@@ -14,6 +14,13 @@
     tree.lookAt(0, -10, 0);
     scene.add(tree);
 
+    var sun = new THREE.Mesh(
+            new THREE.SphereGeometry(0.25, 20, 20),
+            new THREE.MeshBasicMaterial());
+    sun.add(new THREE.PointLight(0xffff00, 1));
+    sun.position.set(3, 3, -2);
+    scene.add(sun);
+
     // camera and renderer
     var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
     camera.position.set(5, 5, 5);
