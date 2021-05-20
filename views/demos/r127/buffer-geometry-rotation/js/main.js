@@ -22,7 +22,7 @@
     cube.position.set(3, 0, 3);
     scene.add(cube)
 
-    //cone.lookAt(-3, 0, 3); // using Object3d (base class of Mesh) lookAt
+    cone.lookAt(cube.position); // using Object3d (base class of Mesh) lookAt
 
     // camera render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
