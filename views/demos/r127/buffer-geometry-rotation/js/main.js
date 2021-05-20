@@ -6,17 +6,19 @@
 
     // GEOMETRY
     var geometry = new THREE.ConeGeometry(1, 3, 30, 30);
-    // MESH with GEOMETRY, and Basic MATERIAL
-    var custom = new THREE.Mesh(
+    // Mesh
+    var cone = new THREE.Mesh(
             geometry,
             new THREE.MeshNormalMaterial());
+    // adding a box helper
+    cone.add(new THREE.BoxHelper(cone));
 
     // add custom to the scene
-    scene.add(custom);
+    scene.add(cone);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(0, 0.5, 3);
+    camera.position.set(5, 5, 5);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
