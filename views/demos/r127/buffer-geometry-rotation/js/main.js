@@ -11,12 +11,18 @@
     var cone = new THREE.Mesh(
             geometry,
             new THREE.MeshNormalMaterial());
-    // adding a box helper
-    cone.add(new THREE.BoxHelper(cone));
-    scene.add(cone); // add custom to the scene
+
+    // USING BUFFER GEOMERTY ROTATEX METHOD
+    cone.geometry.rotateX(Math.PI * 0.5);
 
     // using Object3d (base class of Mesh) lookAt
     cone.lookAt(-3, 0, 3);
+
+    // adding a box helper
+    cone.add(new THREE.BoxHelper(cone));
+
+    scene.add(cone); // add custom to the scene
+
 
     // camera render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
