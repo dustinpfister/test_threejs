@@ -13,15 +13,14 @@
             new THREE.MeshNormalMaterial());
     // adding a box helper
     cone.add(new THREE.BoxHelper(cone));
+    scene.add(cone); // add custom to the scene
 
-    // add custom to the scene
-    scene.add(cone);
+    // using Object3d (base class of Mesh) lookAt
+    cone.lookAt(-3, 0, 3);
 
-    // camera
+    // camera render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(5, 5, 5);
-
-    // render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
