@@ -3,9 +3,10 @@
 
     // SCENE
     var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(7, 7));
 
     // GEOMETRY
-    var geometry = new THREE.ConeGeometry(1, 3, 30, 30);
+    var geometry = new THREE.ConeGeometry(0.5, 03, 30, 30);
     // Mesh
     var cone = new THREE.Mesh(
             geometry,
