@@ -1,6 +1,9 @@
 
 (function () {
 
+    // SCENE
+    var scene = new THREE.Scene();
+
     // GEOMETRY
     var geometry = new THREE.BufferGeometry();
     var vertices = new Float32Array([
@@ -18,21 +21,24 @@
                 side: THREE.DoubleSide
             }));
 
-    // SCENE
-    var scene = new THREE.Scene();
+    // add custom to the scene
+    scene.add(custom);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(0, 0.5, 3);
 
-    // add custom to the scene
-    scene.add(custom);
-
     // RENDER
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-    renderer.render(scene, camera);
 
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    var loop = function () {
+        requestAnimationFrame(loop);
+        renderer.render(scene, camera);
+    };
+    loop();
 }
     ());
