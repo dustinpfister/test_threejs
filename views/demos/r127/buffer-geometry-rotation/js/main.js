@@ -1,11 +1,11 @@
 
 (function () {
 
-    // SCENE
+    // scene
     var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(7, 7));
+    scene.add(new THREE.GridHelper(7, 7)); // grid helper for the scene
 
-    // GEOMETRY
+    // geometry
     var geometry = new THREE.ConeGeometry(0.5, 03, 30, 30);
     // Mesh
     var cone = new THREE.Mesh(
@@ -17,17 +17,16 @@
     // add custom to the scene
     scene.add(cone);
 
-    // CAMERA
+    // camera
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(5, 5, 5);
 
-    // RENDER
+    // render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
     var loop = function () {
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
