@@ -32,13 +32,7 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
+    renderer.render(scene, camera);
 
-    //var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-    var loop = function () {
-        requestAnimationFrame(loop);
-        renderer.render(scene, camera);
-    };
-    loop();
 }
     ());
