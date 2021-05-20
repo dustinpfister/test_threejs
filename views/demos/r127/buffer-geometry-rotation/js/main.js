@@ -5,21 +5,11 @@
     var scene = new THREE.Scene();
 
     // GEOMETRY
-    var geometry = new THREE.BufferGeometry();
-    var vertices = new Float32Array([
-                0, 0, 0,
-                1, 0, 0,
-                1, 1, 0
-            ]);
-    // create position property
-    geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-
+    var geometry = new THREE.ConeGeometry(1, 3, 30, 30);
     // MESH with GEOMETRY, and Basic MATERIAL
     var custom = new THREE.Mesh(
             geometry,
-            new THREE.MeshBasicMaterial({
-                side: THREE.DoubleSide
-            }));
+            new THREE.MeshNormalMaterial());
 
     // add custom to the scene
     scene.add(custom);
