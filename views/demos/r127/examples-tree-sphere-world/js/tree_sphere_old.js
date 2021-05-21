@@ -2,34 +2,14 @@
 
     // default materials
     var materials_default = {
-        sphere: new THREE.MeshStandardMaterial({
+        sphere: new THREE.MeshBasicMaterial({
             color: 0x00ff00,
-            emissive: 0x004f00,
             side: THREE.DoubleSide
         }),
-        trunk: new THREE.MeshStandardMaterial({
+        trunk: new THREE.MeshBasicMaterial({
             color: 0xffaf00,
-            emissive: 0x442200,
             side: THREE.DoubleSide
         })
-    };
-
-    var createSphere = function (opt, materials) {
-        var sphere = new THREE.Mesh(
-                new THREE.SphereGeometry(opt.sphereSize, opt.widthSegments, opt.heightSegments),
-                materials.sphere);
-        var adjust = (opt.trunkLength / 2 + opt.sphereSize * 0.75);
-        sphere.position.set(0, 0, adjust * -1);
-        return sphere;
-    };
-
-    var createTrunk = function (opt, materials) {
-        var trunk = new THREE.Mesh(
-                new THREE.BoxGeometry(opt.trunkSize, opt.trunkLength, opt.trunkSize),
-                materials.trunk);
-        trunk.position.set(0, 0, 0);
-        trunk.rotation.set(1.57, 0, 0);
-        return trunk;
     };
 
     // create and return a house
@@ -45,9 +25,18 @@
         var materials = opt.materials || materials_default;
         var tree = new THREE.Group();
 
-        var sphere = createSphere(opt, materials);
+        var sphere = new THREE.Mesh(
+            new THREE.SphereGeometry(opt.sphereSize, opt.widthSegments, opt.heightSegments),
+            materials.sphere
+        );
+        sphere.position.set(0, opt.trunkLength / 2 + opt.sphereSize * 0.75, 0);
         tree.add(sphere);
-        var trunk = createTrunk(opt, materials);
+
+        var trunk = new THREE.Mesh(
+            new THREE.BoxGeometry(opt.trunkSize, opt.trunkLength, opt.trunkSize),
+            materials.trunk
+        );
+        trunk.position.set(0, 0, 0);
         tree.add(trunk);
 
         return tree;

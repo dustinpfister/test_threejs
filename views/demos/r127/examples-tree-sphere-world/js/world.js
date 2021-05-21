@@ -30,7 +30,8 @@
             var per = i / count,
             radian = Math.PI * 2 * per;
             tree.position.set(Math.cos(radian) * radius, 0, Math.sin(radian) * radius);
-            tree.rotation.set(0, Math.PI * 2 - Math.PI / (count / 2) * i, Math.PI * 1.5);
+            tree.lookAt(0, 0, 0);
+            //tree.rotation.set(0, Math.PI * 2 - Math.PI / (count / 2) * i, Math.PI * 1.5);
             group.add(tree);
             i += 1;
         }
@@ -68,7 +69,7 @@
         var world = new THREE.Mesh(
                 new THREE.SphereGeometry(4, 30, 30),
                 opt.MATERIALS_GROUND.grass);
-
+        world.position.set(0, 0, 0);
         var trees = createTrees(8, 4, opt.MATERIALS_TREE);
         trees.rotation.z = Math.PI / 180 * 0;
         world.add(trees);
