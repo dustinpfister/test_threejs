@@ -10,7 +10,6 @@
         frame: 0,
         maxFrame: 600,
         bp: Biplane.create()
-        //world: worldMod.create() // create the world
     };
     scene.add(state.bp);
     // camera
@@ -28,7 +27,9 @@
         secs = (now - state.lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / state.fps) {
-            //worldMod.update(state.world, state.frame, state.maxFrame);
+
+            Biplane.update(state.bp, state.frame / state.maxFrame);
+
             renderer.render(scene, camera);
             state.lt = now;
             state.frame += state.fps * secs;
