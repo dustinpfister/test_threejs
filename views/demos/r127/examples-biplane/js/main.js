@@ -38,7 +38,12 @@
 
             Biplane.update(state.bp, state.per);
 
-            state.bp.lookAt(x, y, 0);
+            // the look at method will not work so great for all situations
+            // such as doing a loop
+            //state.bp.lookAt(x, y, 0);
+
+            // so the rotation properties are often what needs to be used
+            state.bp.rotation.x = radian;
 
             renderer.render(scene, camera);
             state.lt = now;
