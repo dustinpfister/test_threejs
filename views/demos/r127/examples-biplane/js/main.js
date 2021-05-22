@@ -16,6 +16,7 @@
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 500);
     camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
+    camera.add(new THREE.PointLight(0xffffff)); // point light added to camera
     scene.add(camera);
     // Render
     var renderer = new THREE.WebGLRenderer();
