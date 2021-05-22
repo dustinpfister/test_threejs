@@ -12,6 +12,7 @@
         bp: Biplane.create()
     };
     scene.add(state.bp);
+    state.bp.lookAt(0, -20, -10);
     // camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 500);
     camera.position.set(10, 10, 10);
