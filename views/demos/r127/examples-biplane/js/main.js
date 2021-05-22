@@ -9,10 +9,10 @@
         fps: 30,
         frame: 0,
         maxFrame: 600,
+        per: 0,
         bp: Biplane.create()
     };
     scene.add(state.bp);
-    state.bp.lookAt(0, -20, -10);
     // camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 500);
     camera.position.set(10, 10, 10);
@@ -30,7 +30,15 @@
         requestAnimationFrame(loop);
         if (secs > 1 / state.fps) {
 
-            Biplane.update(state.bp, state.frame / state.maxFrame);
+            state.per = state.frame / state.maxFrame;
+
+            var radian = Math.PI * 2 * state.per,
+            x = Math.cos(radian) * 10,
+            y = Math.sin(radian) * 10;
+
+            Biplane.update(state.bp, state.per);
+
+            state.bp.lookAt(x, y, 0);
 
             renderer.render(scene, camera);
             state.lt = now;
