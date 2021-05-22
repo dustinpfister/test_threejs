@@ -3,13 +3,16 @@ var Biplane = (function () {
 
     var materials = {
         plane: new THREE.MeshStandardMaterial({
-            color: 0x0000af
+            color: 0x0000af,
+            emissive: 0x000044
         }),
         guy: new THREE.MeshStandardMaterial({
-            color: 0xffffff
+            color: 0xffffff,
+            emissive: 0x444444
         }),
         prop: new THREE.MeshStandardMaterial({
-            color: 0x404040
+            color: 0x404040,
+            emissive: 0x202020
         })
     };
 
@@ -41,7 +44,7 @@ var Biplane = (function () {
         var body = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 2, 2),
                 opt.materials.plane || materials.plane);
-        body.position.z = -4.5;
+        body.position.z = -4.0;
         body.position.y = 2;
         //body.geometry.rotateY(Math.PI * 0.5);
         return body;
@@ -62,7 +65,7 @@ var Biplane = (function () {
         var prop = new THREE.Mesh(
                 new THREE.BoxGeometry(0.5, 4, 0.5),
                 materials.prop);
-        prop.position.set(0, 0, 5.5);
+        prop.position.set(0, 0, 5.25);
         //prop.position.x = 3.25;
         //prop.rotation.t = Math.PI * 0.5;
         //prop.geometry.rotateY(Math.PI * 0.5);
