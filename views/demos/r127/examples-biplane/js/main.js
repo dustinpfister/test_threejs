@@ -44,6 +44,7 @@
 
             // so the rotation properties are often what needs to be used
             state.bp.rotation.x = radian;
+            state.bp.rotation.z = radian * 4;
 
             renderer.render(scene, camera);
             state.lt = now;
