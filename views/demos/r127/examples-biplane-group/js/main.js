@@ -24,7 +24,8 @@
     light.intensity = 0.1;
     scene.add(light);
 
-    var biGroups = [];
+    var biGroups = new THREE.Group();
+    scene.add(biGroups);
 
     var i = 0,
     group;
@@ -33,18 +34,9 @@
         group.position.z = -50 + 50 * (i % 3);
         group.position.y = 50 - 50 * Math.floor(i / 3);
         group.rotation.y = Math.PI * 0.5;
-        biGroups.push(group);
-        scene.add(group);
+        biGroups.add(group);
         i += 1;
     }
-
-    /*
-    group = biGroups[1];
-    group.position.x = 30;
-    var bi = group.children[0];
-    bi.userData.rotate = true;
-    bi.userData.rSpeed = 90;
-     */
 
     // Render
     var renderer = new THREE.WebGLRenderer();
@@ -60,7 +52,7 @@
         var now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(animate);
-        biGroups.forEach(function (biGroup) {
+        biGroups.children.forEach(function (biGroup) {
             BiplaneGroup.update(biGroup, secs);
             if (!biGroup.userData.active) {
                 biGroup.position.x = -200;
