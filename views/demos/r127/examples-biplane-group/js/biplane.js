@@ -98,7 +98,7 @@ var Biplane = (function () {
         // guy
         plane.add(createGuy());
         // box helper
-        plane.add(new THREE.BoxHelper(plane));
+        plane.add(new THREE.BoxHelper(plane, 0xffffff));
         // create user data object
         createUserData(plane, opt);
         return plane;

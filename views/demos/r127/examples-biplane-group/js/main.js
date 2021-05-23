@@ -3,6 +3,7 @@
 
     // Scene
     var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(1000, 100, 0xff0000, 0x4a4a00));
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 1000);
@@ -26,8 +27,9 @@
 
     var biGroups = [];
 
-    var i = 0, group;
-    while(i < 3){
+    var i = 0,
+    group;
+    while (i < 3) {
         group = BiplaneGroup.create();
         group.position.z = 50 * i;
         biGroups.push(group);
@@ -55,7 +57,7 @@
         var now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(animate);
-        biGroups.forEach(function(biGroup){
+        biGroups.forEach(function (biGroup) {
             BiplaneGroup.update(biGroup, secs);
         });
         controls.update();
