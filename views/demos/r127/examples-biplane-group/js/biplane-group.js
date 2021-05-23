@@ -56,9 +56,10 @@ var BiplaneGroup = (function () {
         opt = opt || {};
         var group = new THREE.Group(),
         gud = group.userData;
-        var i = 0;
+        var i = 0,
+        bi;
         while (i < BIPLANE_COUNT) {
-            var bi = Biplane.create();
+            bi = Biplane.create();
             bi.userData.yFrame = Math.floor(MAX_FRAME * (i / BIPLANE_COUNT));
             bi.userData.rSpeed = 360;
             bi.userData.rotate = false;
@@ -66,6 +67,10 @@ var BiplaneGroup = (function () {
             group.add(bi);
             i += 1;
         }
+        bi = group.children[0];
+        bi.userData.rotate = true;
+        bi.userData.rSpeed = 180;
+
         gud.active = true;
         api.update(group, 0);
         gud.active = false;
