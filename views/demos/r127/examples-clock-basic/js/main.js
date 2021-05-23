@@ -53,7 +53,7 @@ var materials = [
 // position and rotate camera
 camera.position.set(11, 11, 11);
 camera.lookAt(0, 0, 0);
-renderer.setSize(320, 240);
+renderer.setSize(640, 480);
 
 // create and add face cubes
 scene.add(createFaceCubes(materials[0]));
