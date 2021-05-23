@@ -46,7 +46,8 @@ var BiplaneGroup = (function () {
     // main create method
     api.create = function (opt) {
         opt = opt || {};
-        var group = new THREE.Group();
+        var group = new THREE.Group(),
+        gud = group.userData;
         var i = 0;
         while (i < BIPLANE_COUNT) {
             var bi = Biplane.create();
@@ -57,6 +58,7 @@ var BiplaneGroup = (function () {
             group.add(bi);
             i += 1;
         }
+        gud.active = false;
         api.update(group, 0);
         return group;
     };

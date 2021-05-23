@@ -57,7 +57,10 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(animate);
         biGroups.forEach(function (biGroup) {
-            BiplaneGroup.update(biGroup, secs);
+            var gud = biGroup.userData;
+            if (gud.active) {
+                BiplaneGroup.update(biGroup, secs);
+            }
         });
         controls.update();
         renderer.render(scene, camera);
