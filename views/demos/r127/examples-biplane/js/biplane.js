@@ -72,6 +72,13 @@ var Biplane = (function () {
         return prop;
     };
 
+    var createUserData = function (bp, opt) {
+        var ud = bp.userData;
+        // prop radian to move prop
+        ud.propRadian = 0;
+        ud.propRPS = 0.25;
+    };
+
     // main create method
     api.create = function (opt) {
         opt = opt || {};
@@ -89,11 +96,10 @@ var Biplane = (function () {
         plane.add(createWing(opt, 1));
         // guy
         plane.add(createGuy());
-        // prop radian to move prop
-        plane.userData.propRadian = 0;
-        plane.userData.propRPS = 0.25;
 
         plane.add(new THREE.BoxHelper(plane));
+
+        createUserData(plane, opt);
 
         return plane;
     };
