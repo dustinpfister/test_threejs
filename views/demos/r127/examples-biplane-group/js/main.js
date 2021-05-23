@@ -8,7 +8,6 @@
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 1000);
     camera.position.set(40, 40, 180);
-    //camera.lookAt(0, 0, 30);
 
     // light
     var pointLight = new THREE.PointLight('white');

@@ -40,9 +40,7 @@ var BiplaneGroup = (function () {
 
     // update
     api.update = function (group, secs) {
-
         updateChildPositions(group, secs);
-
     };
 
     // main create method
