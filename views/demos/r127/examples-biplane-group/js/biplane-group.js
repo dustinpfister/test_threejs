@@ -40,7 +40,10 @@ var BiplaneGroup = (function () {
 
     // update
     api.update = function (group, secs) {
-        updateChildPositions(group, secs);
+        var gud = group.userData;
+        if (gud.active) {
+            updateChildPositions(group, secs);
+        }
     };
 
     // main create method
@@ -58,8 +61,9 @@ var BiplaneGroup = (function () {
             group.add(bi);
             i += 1;
         }
-        gud.active = false;
+        gud.active = true;
         api.update(group, 0);
+        gud.active = false;
         return group;
     };
 
