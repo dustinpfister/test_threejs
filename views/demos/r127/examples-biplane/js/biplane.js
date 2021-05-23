@@ -115,7 +115,12 @@ var Biplane = (function () {
         dir = dir === undefined ? 1 : dir;
         // rotate whole group
         bp.rotation.z = Math.PI * 2 * per * dir;
+    };
 
+    api.updatePitch = function (bp, per, dir) {
+        dir = dir === undefined ? 1 : dir;
+        // rotate whole group
+        bp.rotation.x = Math.PI * 2 * per * dir;
     };
 
     return api;

@@ -38,7 +38,9 @@
 
             Biplane.updateProp(state.bp, state.per);
 
-            Biplane.updateRoll(state.bp, state.per * 8 % 1, 1);
+            // roll and pitch
+            Biplane.updateRoll(state.bp, state.per * 0 % 1, 1);
+            Biplane.updatePitch(state.bp, state.per * 4, 1);
 
             // the look at method will not work so great for all situations
             // such as doing a loop
