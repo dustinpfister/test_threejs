@@ -6,27 +6,29 @@ var BiplaneGroup = (function () {
 
     var api = {};
 
-    var bias = function(per){
+    var bias = function (per) {
         return Math.abs(0.5 - per) / 0.5;
     };
 
     // update
-    api.update = function(group, secs){
+    api.update = function (group, secs) {
         var i = 0,
         bi,
         radian,
-        x,y,z,
+        x,
+        y,
+        z,
         len = group.children.length;
-        while(i < len){
+        while (i < len) {
             bi = group.children[i];
             radian = Math.PI * 2 / len * i;
             x = Math.cos(radian) * 10;
             y = -5 + 10 * bias(bi.userData.yFrame / MAX_FRAME);
             z = Math.sin(radian) * 10;
-            bi.position.set(x,y,z);
+            bi.position.set(x, y, z);
             // make leader roll
-            if(bi.userData.rotate){
-                bi.rotation.set(bi.userData.r,0,0);
+            if (bi.userData.rotate) {
+                bi.rotation.set(0, 0, bi.userData.r);
                 bi.userData.r += Math.PI / 180 * bi.userData.rSpeed * secs;
                 bi.userData.r %= (Math.PI * 2);
             }
@@ -37,13 +39,12 @@ var BiplaneGroup = (function () {
         }
     };
 
-
     // main create method
-    api.create = function(opt){
+    api.create = function (opt) {
         opt = opt || {};
         var group = new THREE.Group();
         var i = 0;
-        while(i < BIPLANE_COUNT){
+        while (i < BIPLANE_COUNT) {
             var bi = Biplane.create();
             bi.userData.yFrame = Math.floor(MAX_FRAME * (i / BIPLANE_COUNT));
             bi.userData.rSpeed = 360;
