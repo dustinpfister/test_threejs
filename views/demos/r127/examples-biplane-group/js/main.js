@@ -62,7 +62,7 @@
             BiplaneGroup.update(biGroup, secs);
             if (!biGroup.userData.active) {
                 biGroup.position.x = -200;
-                biGroup.userData.pps = 16 + Math.round(16 * Math.random());
+                biGroup.userData.pps = 32 + Math.round(64 * Math.random());
                 biGroup.userData.active = true;
             } else {
                 biGroup.position.x += biGroup.userData.pps * secs;

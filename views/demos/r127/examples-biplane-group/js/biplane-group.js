@@ -12,6 +12,7 @@ var BiplaneGroup = (function () {
 
     var updateChildPositions = function (group, secs) {
         var i = 0,
+        gud = group.userData,
         bi,
         radian,
         x,
@@ -31,7 +32,7 @@ var BiplaneGroup = (function () {
                 bi.userData.r += Math.PI / 180 * bi.userData.rSpeed * secs;
                 bi.userData.r %= (Math.PI * 2);
             }
-            Biplane.updateProp(bi, secs);
+            Biplane.updateProp(bi, gud.propPer);
             bi.userData.yFrame += 1;
             bi.userData.yFrame %= MAX_FRAME;
             i += 1;
@@ -44,6 +45,8 @@ var BiplaneGroup = (function () {
         group.visible = false;
         if (gud.active) {
             group.visible = true;
+            gud.propPer += 0.8 * secs;
+            gud.propPer %= 1;
             updateChildPositions(group, secs);
         }
     };
@@ -66,6 +69,7 @@ var BiplaneGroup = (function () {
         gud.active = true;
         api.update(group, 0);
         gud.active = false;
+        gud.propPer = 0;
         gud.pps = 32;
         return group;
     };
