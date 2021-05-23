@@ -42,8 +42,12 @@
             Biplane.updateRoll(state.bp, state.per * 8 % 1, 1);
             Biplane.updatePitch(state.bp, state.per * 4, 1);
 
+            // setting position thus far is something that just needs to be done outside
+            // of the model for now I think
             state.bp.position.set(
-                0, Math.cos(state.bp.rotation.x) * 5, Math.sin(state.bp.rotation.x) * 5);
+                0,
+                Math.cos(state.bp.rotation.x) * 5,
+                Math.sin(state.bp.rotation.x) * 5);
 
             renderer.render(scene, camera);
             state.lt = now;
