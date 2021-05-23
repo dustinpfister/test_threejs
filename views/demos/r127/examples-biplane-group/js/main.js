@@ -62,6 +62,11 @@
             if (!biGroup.userData.active) {
                 biGroup.position.x = -100;
                 biGroup.userData.active = true;
+            } else {
+                biGroup.position.x += 50 * secs;
+                if (biGroup.position.x >= 100) {
+                    biGroup.userData.active = false;
+                }
             }
         });
         controls.update();
