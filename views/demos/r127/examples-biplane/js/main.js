@@ -10,6 +10,7 @@
         frame: 0,
         maxFrame: 600,
         per: 0,
+        bias: 0,
         bp: Biplane.create()
     };
     scene.add(state.bp);
@@ -31,6 +32,7 @@
         if (secs > 1 / state.fps) {
 
             state.per = state.frame / state.maxFrame;
+            state.bias = 1 - Math.abs(state.per - 0.5) / 0.5;
 
             var radian = Math.PI * 2 * state.per,
             x = Math.cos(radian) * 10,
@@ -39,15 +41,17 @@
             Biplane.updateProp(state.bp, state.per);
 
             // roll and pitch
-            Biplane.updateRoll(state.bp, state.per * 8 % 1, 1);
-            Biplane.updatePitch(state.bp, state.per * 4, 1);
+            Biplane.updateRoll(state.bp, -0.125 + state.bias * 0.25, 1);
+            //Biplane.updatePitch(state.bp, state.per * 4, 1);
 
             // setting position thus far is something that just needs to be done outside
             // of the model for now I think
+			/*
             state.bp.position.set(
                 0,
                 Math.cos(state.bp.rotation.x) * 5,
                 Math.sin(state.bp.rotation.x) * 5);
+				*/
 
             renderer.render(scene, camera);
             state.lt = now;
