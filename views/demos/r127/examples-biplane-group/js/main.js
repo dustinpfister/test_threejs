@@ -31,6 +31,7 @@
     while (i < 9) {
         group = BiplaneGroup.create();
         group.position.z = -50 + 50 * (i % 3);
+        group.position.y = 50 - 50 * Math.floor(i / 3);
         group.rotation.y = Math.PI * 0.5;
         biGroups.push(group);
         scene.add(group);
@@ -61,7 +62,7 @@
             BiplaneGroup.update(biGroup, secs);
             if (!biGroup.userData.active) {
                 biGroup.position.x = -200;
-                biGroup.userData.pps = 32 + Math.round(64 * Math.random());
+                biGroup.userData.pps = 16 + Math.round(16 * Math.random());
                 biGroup.userData.active = true;
             } else {
                 biGroup.position.x += biGroup.userData.pps * secs;
