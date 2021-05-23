@@ -72,6 +72,14 @@ var Biplane = (function () {
         return prop;
     };
 
+    var createUserData = function (bp, opt) {
+        var ud = bp.userData;
+        ud.propData = {
+            rotations: 80, // number of rotations
+            radian: 0 // current radian of prop
+        };
+    };
+
     // main create method
     api.create = function (opt) {
         opt = opt || {};
@@ -89,19 +97,30 @@ var Biplane = (function () {
         plane.add(createWing(opt, 1));
         // guy
         plane.add(createGuy());
-        // prop radian to move prop
-        plane.userData.propRadian = 0;
-        plane.userData.propRPS = 0.25;
-
+        // box helper
         plane.add(new THREE.BoxHelper(plane));
-
+        // create user data object
+        createUserData(plane, opt);
         return plane;
     };
 
-    api.update = function (bi, per) {
-        var ud = bi.userData;
-        ud.propRadian = Math.PI * 64 * per;
-        ud.prop.rotation.set(0, 0, ud.propRadian)
+    // set the prop for the given biplane using a (0 - 1) value
+    api.updateProp = function (bp, per) {
+        var ud = bp.userData;
+        ud.propData.radian = Math.PI * ud.propData.rotations * per;
+        ud.prop.rotation.set(0, 0, ud.propData.radian);
+    };
+
+    api.updateRoll = function (bp, per, dir) {
+        dir = dir === undefined ? 1 : dir;
+        // rotate whole group
+        bp.rotation.z = Math.PI * 2 * per * dir;
+    };
+
+    api.updatePitch = function (bp, per, dir) {
+        dir = dir === undefined ? 1 : dir;
+        // rotate whole group
+        bp.rotation.x = Math.PI * 2 * per * dir;
     };
 
     return api;

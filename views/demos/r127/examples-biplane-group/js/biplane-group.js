@@ -30,7 +30,7 @@ var BiplaneGroup = (function () {
                 bi.userData.r += Math.PI / 180 * bi.userData.rSpeed * secs;
                 bi.userData.r %= (Math.PI * 2);
             }
-            Biplane.update(bi, secs);
+            Biplane.updateProp(bi, secs);
             bi.userData.yFrame += 1;
             bi.userData.yFrame %= MAX_FRAME;
             i += 1;
