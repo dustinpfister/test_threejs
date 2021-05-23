@@ -60,11 +60,12 @@
         biGroups.forEach(function (biGroup) {
             BiplaneGroup.update(biGroup, secs);
             if (!biGroup.userData.active) {
-                biGroup.position.x = -100;
+                biGroup.position.x = -200;
+                biGroup.userData.pps = 32 + Math.round(64 * Math.random());
                 biGroup.userData.active = true;
             } else {
-                biGroup.position.x += 50 * secs;
-                if (biGroup.position.x >= 100) {
+                biGroup.position.x += biGroup.userData.pps * secs;
+                if (biGroup.position.x >= 200) {
                     biGroup.userData.active = false;
                 }
             }

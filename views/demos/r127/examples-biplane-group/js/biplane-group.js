@@ -66,6 +66,7 @@ var BiplaneGroup = (function () {
         gud.active = true;
         api.update(group, 0);
         gud.active = false;
+        gud.pps = 32;
         return group;
     };
 
