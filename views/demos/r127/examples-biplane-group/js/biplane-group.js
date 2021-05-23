@@ -41,7 +41,9 @@ var BiplaneGroup = (function () {
     // update
     api.update = function (group, secs) {
         var gud = group.userData;
+        group.visible = false;
         if (gud.active) {
+            group.visible = true;
             updateChildPositions(group, secs);
         }
     };
