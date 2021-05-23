@@ -10,8 +10,7 @@ var BiplaneGroup = (function () {
         return Math.abs(0.5 - per) / 0.5;
     };
 
-    // update
-    api.update = function (group, secs) {
+    var updateChildPositions = function (group, secs) {
         var i = 0,
         bi,
         radian,
@@ -37,6 +36,13 @@ var BiplaneGroup = (function () {
             bi.userData.yFrame %= MAX_FRAME;
             i += 1;
         }
+    };
+
+    // update
+    api.update = function (group, secs) {
+
+        updateChildPositions(group, secs);
+
     };
 
     // main create method
