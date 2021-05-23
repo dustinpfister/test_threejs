@@ -75,7 +75,8 @@ var Biplane = (function () {
     var createUserData = function (bp, opt) {
         var ud = bp.userData;
         ud.propData = {
-            radian: 0
+            rotations: 80, // number of rotations
+            radian: 0      // current radian of prop
         };
     };
 
@@ -104,15 +105,9 @@ var Biplane = (function () {
     };
 
     // set the prop for the given biplane using a (0 - 1) value
-    api.setProp = function (bi, per) {
-        var ud = bi.userData;
-        ud.propData.radian = Math.PI * 2 * per;
-        ud.prop.rotation.set(0, 0, ud.propData.radian);
-    };
-
     api.updateProp = function (bi, per) {
         var ud = bi.userData;
-        ud.propData.radian = Math.PI * 64 * per;
+        ud.propData.radian = Math.PI * ud.propData.rotations * per;
         ud.prop.rotation.set(0, 0, ud.propData.radian);
     };
 
