@@ -28,9 +28,9 @@
 
     var i = 0,
     group;
-    while (i < 3) {
+    while (i < 9) {
         group = BiplaneGroup.create();
-        group.position.z = -50 + 50 * i;
+        group.position.z = -50 + 50 * (i % 3);
         group.rotation.y = Math.PI * 0.5;
         biGroups.push(group);
         scene.add(group);
