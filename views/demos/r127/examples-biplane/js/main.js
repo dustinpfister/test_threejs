@@ -38,13 +38,15 @@
 
             Biplane.updateProp(state.bp, state.per);
 
+            Biplane.updateRoll(state.bp, state.per * 8 % 1, 1);
+
             // the look at method will not work so great for all situations
             // such as doing a loop
             //state.bp.lookAt(x, y, 0);
 
             // so the rotation properties are often what needs to be used
-            state.bp.rotation.x = radian;
-            state.bp.rotation.z = radian * 4;
+            //state.bp.rotation.x = radian;
+            //state.bp.rotation.z = radian * 4;
 
             renderer.render(scene, camera);
             state.lt = now;
