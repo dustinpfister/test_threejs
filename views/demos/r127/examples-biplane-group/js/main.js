@@ -7,7 +7,7 @@
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 1000);
-    camera.position.set(40, 40, 180);
+    camera.position.set(80, 80, 80);
 
     // light
     var pointLight = new THREE.PointLight('white');
@@ -30,7 +30,8 @@
     group;
     while (i < 3) {
         group = BiplaneGroup.create();
-        group.position.z = 50 * i;
+        group.position.z = -50 + 50 * i;
+        group.rotation.y = Math.PI * 0.5;
         biGroups.push(group);
         scene.add(group);
         i += 1;
@@ -57,9 +58,11 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(animate);
         biGroups.forEach(function (biGroup) {
-
-                BiplaneGroup.update(biGroup, secs);
-            
+            BiplaneGroup.update(biGroup, secs);
+            if (!biGroup.userData.active) {
+                biGroup.position.x = -100;
+                biGroup.userData.active = true;
+            }
         });
         controls.update();
         renderer.render(scene, camera);
