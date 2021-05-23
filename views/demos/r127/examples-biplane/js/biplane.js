@@ -96,15 +96,14 @@ var Biplane = (function () {
         plane.add(createWing(opt, 1));
         // guy
         plane.add(createGuy());
-
+        // box helper
         plane.add(new THREE.BoxHelper(plane));
-
+        // create user data object
         createUserData(plane, opt);
-
         return plane;
     };
 
-    api.update = function (bi, per) {
+    api.updateProp = function (bi, per) {
         var ud = bi.userData;
         ud.propRadian = Math.PI * 64 * per;
         ud.prop.rotation.set(0, 0, ud.propRadian)

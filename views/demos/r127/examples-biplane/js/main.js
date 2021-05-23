@@ -36,7 +36,7 @@
             x = Math.cos(radian) * 10,
             y = Math.sin(radian) * 10;
 
-            Biplane.update(state.bp, state.per);
+            Biplane.updateProp(state.bp, state.per);
 
             // the look at method will not work so great for all situations
             // such as doing a loop
