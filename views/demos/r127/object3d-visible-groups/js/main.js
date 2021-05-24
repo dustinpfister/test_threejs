@@ -3,7 +3,6 @@ var scene = new THREE.Scene();
 var box = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
-box.visible = false;
 scene.add(box);
 
 // camera and renderer
@@ -21,7 +20,14 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
-        box.visible = !box.visible;
+        // ADDING AND REMOVING CHILD
+        var child = scene.getObjectById(box.id);
+        if (child) {
+            scene.remove(box);
+        } else {
+            scene.add(box);
+        }
+
         renderer.render(scene, camera);
         lt = now;
     }
