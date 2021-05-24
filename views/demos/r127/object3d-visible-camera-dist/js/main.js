@@ -7,7 +7,9 @@ var box = new THREE.Mesh(
 scene.add(box);
 
 // camera and renderer
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 20);
+var far = 20,
+maxDist = 7;
+var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, far);
 camera.position.set(8, 8, 8);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
@@ -21,8 +23,9 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
-        box.position.x = -1;
-        box.position.z = -1;
+        var dist = maxDist;
+        box.position.x = dist * -1;
+        box.position.z = dist * -1;
         renderer.render(scene, camera);
         lt = now;
     }
