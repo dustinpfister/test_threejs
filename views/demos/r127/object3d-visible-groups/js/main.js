@@ -1,10 +1,9 @@
 var scene = new THREE.Scene();
-
+// Creating and adding the box to the scene
 var box = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
 scene.add(box);
-
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(1, 1, 1);
@@ -27,7 +26,6 @@ var loop = function () {
         } else {
             scene.add(box);
         }
-
         renderer.render(scene, camera);
         lt = now;
     }
