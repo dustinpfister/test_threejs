@@ -154,7 +154,7 @@ app.get(/\/videos\/([\s\S]*?)/, function (req, res) {
     res.render('index', {
         page: 'video',
         r: r,
-        videoName: 'foo'
+        videoName: req.url.replace(/\/videos\/([\s\S]*?)/, '').replace(/\//, '').split('/')[0]
     });
 });
 
