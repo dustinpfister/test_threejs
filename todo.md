@@ -6,7 +6,11 @@
     * start a /node/make-pkg folder that will be a build tool to help create pkg.js files to use in a web page
 
 ## VIDEOS PATH
-    * start a /views/videos/[videoName] path
+    * ( done 5/25/2021 ) start a /views/videos/[videoName] path
+    * ( done 5/25/2021 ) I can choose what version of three.js I want to use in the index.ejs file
+    * ( done 5/25/2021 ) update /index.js so that I can view projects that are videos
+    * add a videos link in nav bar
+
     * projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
     * whammy.js will always be part of the stack for each index.ejs file
     * make vuejs part of the stack ( /views/js/vuejs/x.x.x/vue.min.js )
@@ -14,8 +18,6 @@
     * start a /views/js/videos/ui.js file and use vuejs to help move things along.
     * vuejs, forframe.js, and ui.js should provide a standard interface that allows for me to set the number of frames and to loop forward and backward when it comes to setting the current frame index.
     * the front end ui should also provide a way to create a webm file and save it to a location on the local file system.
-    * I can choose what version of three.js I want to use in the index.ejs file
-    * update /index.js so that I can view projects that are videos
 
 ## PROBLEM: find out what they deal is with Object3d.localToWorld
 
