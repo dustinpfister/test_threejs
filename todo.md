@@ -1,6 +1,11 @@
 # todo list for test_three.js
 
-## VDEOS FOLDER
+## NODE folder
+    * start a /node folder
+    * make index.js /node/server/index.js
+    * start a /node/make-pkg folder that will be a build tool to help create pkg.js files to use in a web page
+
+## VIDEOS PATH
     * start a /views/videos/[videoName] path
     * projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
     * whammy.js will always be part of the stack for each index.ejs file
@@ -11,6 +16,10 @@
     * the front end ui should also provide a way to create a webm file and save it to a location on the local file system.
     * I can choose what version of three.js I want to use in the index.ejs file
     * update /index.js so that I can view projects that are videos
+
+## PROBLEM: find out what they deal is with Object3d.localToWorld
+
+The localToWorld method of Object3d does not seem to do anything in r127 of three.js. If I pass a vector that is relative to an object rather than world space to this method I would expect a new vector that is the equivalent location in world space. However the result is the same vector that was passed to the method. In other words the method seems to do absolutely nothing.
 
 ## DEMOS: threejs-object3d-parent
     * start a basic parent example of a mesh
@@ -23,6 +32,3 @@
     * (done) start a basic r127 example of object3d-visible
     * start an example that makes use of object3d visible and transparency
     * start an example that makes use of distance from a point for a mesh that moves
-
-## - find out what they deal is with Object3d.localToWorld
-The localToWorld method of Object3d does not seem to do anything in r127 of three.js. If I pass a vector that is relative to an object rather than world space to this method I would expect a new vector that is the equivalent location in world space. However the result is the same vector that was passed to the method. In other words the method seems to do absolutely nothing.
