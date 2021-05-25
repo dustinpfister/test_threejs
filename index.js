@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
 });
 
 // img path
-app.get(/\/img\/[\s\S]+/, function (req,res) {
+app.get(/\/img\/[\s\S]+/, function (req, res) {
     // just send the file
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
@@ -43,7 +43,7 @@ app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
 });
 
 // dae
-app.get(/\/dae\/[\s\S]+\.dae/, function(req, res){
+app.get(/\/dae\/[\s\S]+\.dae/, function (req, res) {
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
 
@@ -128,6 +128,19 @@ app.get(/\/demos\/r\d{1,3}/, function (req, res) {
         page: 'demo',
         r: r,
         demoName: req.url.replace(/\/demos\/r\d{1,3}/, '').replace(/\//, '').split('/')[0]
+    });
+});
+
+// VIDEOS PATH
+// demo index
+app.get('/videos', function (req, res) {
+    buildIndex({
+        source: 'videos'
+    }).then(function (links) {
+        res.render('index', {
+            page: 'demo_index',
+            links: links
+        });
     });
 });
 
