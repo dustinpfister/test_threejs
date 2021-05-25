@@ -26,18 +26,23 @@ var createGroup = function () {
 var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(5, 5));
 
-var group = createGroup();
+var group = createGroup(); // group 1
 scene.add(group);
-group.position.set(-2.0, 0, -2.0); // changing the position of the group to something other that 0,0,0
-
-var group2 = createGroup();
+group.position.set(-2.0, 0, -2.0);
+var group2 = createGroup(); // group2
 scene.add(group2);
 group2.position.set(2.0, 0, -2.0);
+
+// the first group in am just using the look at method, and passing
+// the value of the cube.position instance of vector3. THIS RESULTS IN THE
+// CONE NOT POINTING AT THE CUBE, but at the location of the cube if it where
+// positioned relative to world space rather than a location relative to the group
+group.userData.pointer.lookAt(group.userData.cube.position);
 
 // IF I WANT TO HAVE THE POINTER LOOK AT THE CUBE
 // THAT IS A CHILD OF THE GROUP, THEN I WILL WANT TO ADJUST
 // FOR THAT FOR THIS THERE IS THE getWorldPosition Method
-group.userData.pointer.lookAt(group.userData.cube.getWorldPosition());
+group2.userData.pointer.lookAt(group2.userData.cube.getWorldPosition());
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 100);
