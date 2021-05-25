@@ -1,13 +1,8 @@
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(6, 6, 6);
-camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
+scene.add(new THREE.GridHelper(9, 9));
 
 var mesh1 = new THREE.Mesh(
-        new THREE.SphereGeometry(2, 30, 30),
+        new THREE.SphereGeometry(0.5, 30, 30),
         new THREE.MeshStandardMaterial({
             color: 0xff0000,
             emissive: 0x0a0a0a
@@ -16,7 +11,7 @@ var mesh1 = new THREE.Mesh(
 mesh1.add(new THREE.BoxHelper(mesh1, 0xffff00));
 scene.add(mesh1);
 var mesh2 = new THREE.Mesh(
-        new THREE.SphereGeometry(2, 30, 30),
+        new THREE.SphereGeometry(0.5, 30, 30),
         new THREE.MeshStandardMaterial({
             color: 0x00ff00,
             emissive: 0x0a0a0a
@@ -34,6 +29,14 @@ scene.add(group);
 var light = new THREE.PointLight(0xffffff);
 light.position.set(0, 3, 0);
 scene.add(light);
+
+// camera renderer
+var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+camera.position.set(6, 6, 6);
+camera.lookAt(0, 0, 0);
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize(640, 480);
+document.getElementById('demo').appendChild(renderer.domElement);
 
 var frame = 0, maxFrame = 48;
 var loop = function () {
