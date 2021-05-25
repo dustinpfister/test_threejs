@@ -138,7 +138,7 @@ app.get('/videos', function (req, res) {
         source: 'videos'
     }).then(function (links) {
         res.render('index', {
-            page: 'demo_index',
+            page: 'videos_index',
             links: links
         });
     });

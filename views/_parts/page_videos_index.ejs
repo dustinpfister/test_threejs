@@ -1,0 +1,10 @@
+<%
+   if(!links){
+       links = [];
+   }
+%>
+
+<h3>Video Projects:</h3>
+<% links.forEach(function(link){ %>
+ <a href="<%= link.href %>"><%= '' + link.name.replace(/-/g,'_') + '' || 'no name' %></a>  <br><br>
+<% }); %>
