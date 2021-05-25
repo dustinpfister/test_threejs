@@ -12,6 +12,8 @@ var mesh1 = new THREE.Mesh(
             color: 0xff0000,
             emissive: 0x0a0a0a
         }));
+// adding a helper to mesh1
+mesh1.add(new THREE.BoxHelper(mesh1, 0xffff00));
 scene.add(mesh1);
 var mesh2 = new THREE.Mesh(
         new THREE.SphereGeometry(2, 30, 30),
@@ -20,9 +22,8 @@ var mesh2 = new THREE.Mesh(
             emissive: 0x0a0a0a
         }));
 scene.add(mesh2);
-
-// just add a helper to mesh1
-mesh1.add(new THREE.BoxHelper(mesh1, 0xffff00));
+// adding a helper to mesh2
+mesh2.add(new THREE.BoxHelper(mesh1, 0xffff00));
 
 var boxHelper = new THREE.BoxHelper(mesh2, 0xffffff);
 scene.add(boxHelper);
