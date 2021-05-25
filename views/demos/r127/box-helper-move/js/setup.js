@@ -32,35 +32,35 @@ scene.add(light);
 
 // camera renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(6, 6, 6);
-camera.lookAt(0, 0, 0);
+camera.position.set(6, 8, 6);
+camera.lookAt(1, 0, 1);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
-var frame = 0, maxFrame = 48;
+var frame = 0,
+maxFrame = 90,
+fps = 30,
+lt = new Date();
 var loop = function () {
-
-    setTimeout(loop, 1000 / 12);
-
-    var per = frame / maxFrame,
+    var now = new Date(),
+    secs = (now - lt) / 1000,
+    per = frame / maxFrame,
     bias = 1 - Math.abs(0.5 - per) / 0.5;
-
-    // change position and rotation of mesh1
-    // this also changes the position of the box helper
-    // that is relative to the mesh
-    mesh1.position.z = 5 * bias;
-    mesh1.rotation.y = Math.PI * per;
-
-    // when mesh2 is moved the boxHelper does not move
-    // the reason why is that it was added to the scene
-    // rather than mesh2
-    mesh2.position.x = 10 * bias;
-
-    renderer.render(scene, camera);
-
-    frame += 1;
-    frame %= maxFrame
+    requestAnimationFrame(loop);
+    if (secs > 1 / fps) {
+        // change position and rotation of mesh1
+        // this also changes the position of the box helper
+        // that is relative to the mesh
+        mesh1.position.z = 5 * bias;
+        mesh1.rotation.y = Math.PI * per;
+        // moving mesh2 also
+        mesh2.position.x = 5 * bias;
+        renderer.render(scene, camera);
+        frame += fps * secs;
+        frame %= maxFrame;
+        lt = now;
+    }
 
 };
 loop();
