@@ -9,10 +9,15 @@
     * ( done 5/25/2021 ) start a /views/videos/[videoName] path
     * ( done 5/25/2021 ) I can choose what version of three.js I want to use in the index.ejs file
     * ( done 5/25/2021 ) update /index.js so that I can view projects that are videos
-    * add a videos link in nav bar
+    * ( done 5/25/2021 ) add a videos link in nav bar
+    * ( done 5/25/2021 ) making first video project based off of my hamster-wheel example
 
-    * projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
+    * have simple frame forward and backward buttons
+
     * whammy.js will always be part of the stack for each index.ejs file
+    * projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
+
+### vuejs client for videos path
     * make vuejs part of the stack ( /views/js/vuejs/x.x.x/vue.min.js )
     * start a /views/js/videos/forframe.js file
     * start a /views/js/videos/ui.js file and use vuejs to help move things along.
