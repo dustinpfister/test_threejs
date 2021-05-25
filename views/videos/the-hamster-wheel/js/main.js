@@ -28,6 +28,7 @@
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
     camera.position.set(5, 6, 5);
+    camera.lookAt(0, 0, 0);
     camera.add(new THREE.PointLight());
     scene.add(camera);
 
@@ -37,14 +38,10 @@
     var container = document.getElementById('video') || document.body;
     container.appendChild(renderer.domElement);
 
-    // CONTROLS
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
-    //controls.autoRotate = true;
-
     // LOOP
     var frame = 0,
     maxFrame = 200,
-    fps_target = 24,
+    fps_target = 12,
     lt = new Date();
     var loop = function () {
         var now = new Date(),
@@ -57,7 +54,6 @@
             wheel.wheel.rotation.z = r;
             GuyMod.walk(guy, per * 4);
             GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
-            controls.update();
             renderer.render(scene, camera);
             frame += 1;
             frame %= maxFrame;

@@ -1,7 +1,7 @@
 <%
 
    // demo *.ejs file relative to this template
-   //let demoIndex = '../demos/r' + r + '/' + demoName + '/index'
+   let videoIndex = '../videos/' + videoName + '/index'
 
 %>
 
@@ -11,6 +11,8 @@
   <li>arr : <%= arr %></li>
   <li>videoName : <%= videoName %></li>
 </ul>
+
+<%- include(videoIndex, this) %>
 
 <br>
 <br>
