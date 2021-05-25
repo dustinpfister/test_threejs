@@ -12,12 +12,12 @@
     * I can choose what version of three.js I want to use in the index.ejs file
     * update /index.js so that I can view projects that are videos
 
-## DEMOS: threejs-object3d-get-world-position
-    * basic world position example that gets the world position of a mesh in a group
-
-## DEMOS: threejs-object3d-parent ( 5/25/2021 )
+## DEMOS: threejs-object3d-parent
     * start a basic parent example of a mesh
     * start an example that involves raycaster and getting the group of a mesh
+
+## (started 5/25/2021 ) DEMOS: threejs-object3d-get-world-position
+    * basic world position example that gets the world position of a mesh in a group
 
 ## ( started 5/24/2021 ) DEMOS: threejs-object3d-visible
     * (done) start a basic r127 example of object3d-visible
