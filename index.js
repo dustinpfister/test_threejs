@@ -146,14 +146,8 @@ app.get('/videos', function (req, res) {
 });
 
 app.get(/\/videos\/([\s\S]*?)/, function (req, res) {
-    let r = 91,
-    m = req.url.match(/r\d{1,3}/);
-    if (m) {
-        r = m[0].split('r')[1];
-    }
     res.render('index', {
         page: 'video',
-        r: r,
         videoName: req.url.replace(/\/videos\/([\s\S]*?)/, '').replace(/\//, '').split('/')[0]
     });
 });
