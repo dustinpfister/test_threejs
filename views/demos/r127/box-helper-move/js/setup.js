@@ -25,8 +25,10 @@ scene.add(mesh2);
 // adding a helper to mesh2
 mesh2.add(new THREE.BoxHelper(mesh1, 0xffff00));
 
-var boxHelper = new THREE.BoxHelper(mesh2, 0xffffff);
-scene.add(boxHelper);
+var group = new THREE.Group();
+// adding a box helper for the group
+group.add(new THREE.BoxHelper(mesh2, 0xffffff));
+scene.add(group);
 
 // light
 var light = new THREE.PointLight(0xffffff);
