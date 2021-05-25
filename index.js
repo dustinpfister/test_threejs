@@ -147,7 +147,8 @@ app.get('/videos', function (req, res) {
 
 app.get(/\/videos\/([\s\S]*?)/, function (req, res) {
     let arr = req.url.replace(/\/videos\/([\s\S]*?)/, '').split('/');
-
+    // if something like '/videos/the-hamster-wheel' or '/videos/the-hamster-wheel/'
+    // I will want to render an index of videos
     if (arr.length === 1 || arr[1] === '') {
         res.render('index', {
             page: 'video',
@@ -155,8 +156,9 @@ app.get(/\/videos\/([\s\S]*?)/, function (req, res) {
             videoName: arr[0]
         });
     } else {
-
-        res.send(req.url);
+        // the file is some other local resource such as a javaScript file
+        let resource = path.join(__dirname, 'views', req.url);
+        res.send(resource);
     }
 });
 
