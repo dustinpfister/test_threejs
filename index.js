@@ -146,10 +146,18 @@ app.get('/videos', function (req, res) {
 });
 
 app.get(/\/videos\/([\s\S]*?)/, function (req, res) {
-    res.render('index', {
-        page: 'video',
-        videoName: req.url.replace(/\/videos\/([\s\S]*?)/, '').replace(/\//, '').split('/')[0]
-    });
+    let arr = req.url.replace(/\/videos\/([\s\S]*?)/, '').split('/');
+
+    if (arr.length === 1 || arr[1] === '') {
+        res.render('index', {
+            page: 'video',
+            arr: arr,
+            videoName: arr[0]
+        });
+    } else {
+
+        res.send(req.url);
+    }
 });
 
 app.listen(port, function () {
