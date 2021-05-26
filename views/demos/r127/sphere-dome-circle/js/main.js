@@ -22,10 +22,11 @@
                     new THREE.CircleGeometry(r, 30),
                     // standard material
                     material);
+            circle.geometry.rotateX(Math.PI * 0.5);
             mesh.add(circle);
         }
         mesh.position.set(x, 0, z);
-        mesh.rotateX(Math.PI * 2 * rPer);
+        mesh.geometry.rotateX(Math.PI * 2 * rPer);
         return mesh;
     };
 
@@ -50,7 +51,15 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-    renderer.render(scene, camera);
+
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    var loop = function () {
+        requestAnimationFrame(loop);
+        renderer.render(scene, camera);
+
+    };
+    loop();
 
 }
     ());
