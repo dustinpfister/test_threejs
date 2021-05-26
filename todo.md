@@ -8,13 +8,14 @@ General todo list for test_threejs
     * start a /node/make-pkg folder that will be a build tool to help create pkg.js files to use in a web page
 
 ## VIDEOS PATH
-    * ( done 5/25/2021 ) start a /views/videos/[videoName] path
+    * ( done 5/25/2021 ) start a /views/videos/\[videoName\] path
     * ( done 5/25/2021 ) I can choose what version of three.js I want to use in the index.ejs file
     * ( done 5/25/2021 ) update /index.js so that I can view projects that are videos
     * ( done 5/25/2021 ) add a videos link in nav bar
     * ( done 5/25/2021 ) making first video project based off of my hamster-wheel example
+    * ( done 5/26/2021 ) have simple frame forward button working
 
-    * have simple frame forward and backward buttons
+    * have simple frame backward button working
 
     * whammy.js will always be part of the stack for each index.ejs file
     * projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
