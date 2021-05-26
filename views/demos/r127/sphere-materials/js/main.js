@@ -13,14 +13,13 @@
     var geometry = new THREE.SphereGeometry(0.5, 15, 15);
 
     var position = geometry.attributes.position,
-    len = position.array.lengh,
+    len = position.array.length,
+    mi = 0,
     i = 0;
     while (i < len) {
-        geometry.addGroup(i, 3, 0)
+        geometry.addGroup(i, 3, mi);
         i += 3;
     }
-
-    console.log(position);
 
     // mesh
     var mesh = new THREE.Mesh(
@@ -28,9 +27,6 @@
             geometry,
             // PASSING AN ARRAY OF MATERIALS
             materials);
-
-    console.log(mesh.geometry.groups);
-
     scene.add(mesh); // add the mesh to the scene
 
     // camera
