@@ -46,9 +46,9 @@
         forFrame: function(frame, maxFrame){
             var per = frame / maxFrame,
             bias = Math.abs(.5 - per) / .5,
-            r = -Math.PI * 2 * per;
+            r = -Math.PI * 4 * per;
             wheel.wheel.rotation.z = r;
-            GuyMod.walk(guy, per * 4);
+            GuyMod.walk(guy, per * 8);
             GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
             renderer.render(scene, camera);
         }

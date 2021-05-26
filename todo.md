@@ -7,7 +7,7 @@ General todo list for test_threejs
     * make index.js /node/server/index.js
     * start a /node/make-pkg folder that will be a build tool to help create pkg.js files to use in a web page
 
-## VIDEOS PATH
+## VIDEOS PATH and videoUi
     * ( done 5/25/2021 ) start a /views/videos/\[videoName\] path
     * ( done 5/25/2021 ) I can choose what version of three.js I want to use in the index.ejs file
     * ( done 5/25/2021 ) update /index.js so that I can view projects that are videos
@@ -16,10 +16,11 @@ General todo list for test_threejs
     * ( done 5/26/2021 ) have simple frame forward button working
     * ( done 5/26/2021 ) have simple frame backward button working
     * ( done 5/26/2021 ) whammy.js will always be part of the stack for each index.ejs file
+    * ( done 5/26/2021 ) have a 'create video' button as part of the video ui
+    * ( done 5/26/2021 ) projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
 
-    * have a 'create video' button as part of the video ui
-
-    * projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
+    * forFrame as an array does not make sense it should just be a single main object
+    * per, bias, and logBias should be part of ffObj
 
 ### vuejs client for videos path
     * make vuejs part of the stack ( /views/js/vuejs/x.x.x/vue.min.js )

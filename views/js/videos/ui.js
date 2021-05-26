@@ -67,13 +67,14 @@ var videoUI = (function(){
             forFrame.forEach(function(ffObj){
                 ffObj.frame = frame;
                 ffObj.forFrame(ffObj.frame, ffObj.maxFrame);
+                console.log(ffObj.frame + '/' + ffObj.maxFrame);
                 encoder.add(ffObj.canvas.toDataURL('image/webp'));
             });
             frame += 1;
         }
-        console.log('okay');
+        console.log('encoder frames added');
         encoder.compile(false, function (output) {
-        console.log('yeah');
+            console.log('compile');
             exportVid(output);
         });
     };
