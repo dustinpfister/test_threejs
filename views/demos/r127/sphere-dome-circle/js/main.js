@@ -53,14 +53,5 @@
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
 
-    //var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-    //var loop = function () {
-    //    requestAnimationFrame(loop);
-
-
-    //};
-    //loop();
-
 }
     ());

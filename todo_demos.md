@@ -14,8 +14,9 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * (done) start a basic example on the sphere geometry
     * (done) start and example on width and height segments
     * (done) start an example of a dome
-    * start and example that makes use of the circle geometry to cap a dome created with the sphere geometry
+    * (done) start and example that makes use of the circle geometry to cap a dome created with the sphere geometry
     * start and example that has to do with using more than one material with the sphere geometry
+    * start a demo that makes use of bounding sphere
 
 ## (started 5/25/2021 ) DEMOS: threejs-object3d-get-world-position
     * basic world position example that gets the world position of a mesh in a group
