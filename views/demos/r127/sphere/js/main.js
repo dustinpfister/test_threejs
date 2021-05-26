@@ -10,9 +10,7 @@
                 color: 0xff0000,
                 emissive: 0x404040
             }));
-
-    // add the box mesh to the scene
-    scene.add(mesh);
+    scene.add(mesh); // add the box mesh to the scene
 
     // camera and renderer
     var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
