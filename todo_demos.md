@@ -10,9 +10,9 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * start a basic parent example of a mesh
     * start an example that involves raycaster and getting the group of a mesh
 
-## DEMOS: threejs-sphere
-    * start a basic example on the sphere geometry
-    * start and example on width and height segments
+## (started 5/26/2021 ) DEMOS: threejs-sphere
+    * (done) start a basic example on the sphere geometry
+    * (done) start and example on width and height segments
     * start an example of a dome
 
 ## (started 5/25/2021 ) DEMOS: threejs-object3d-get-world-position
