@@ -55,6 +55,14 @@
     };
     renderFrame();
 
+    videoUI.load({
+        frame: 0,
+        maxFrame: 10,
+        forFrame: function(frame, maxFrame){
+            console.log(frame + '/' + maxFrame);
+        }
+    });
+
     /*
     var loop = function () {
     var now = new Date(),

@@ -1,11 +1,32 @@
-console.log('I am the video ui');
+var videoUI = (function(){
 
-var videoUI = {};
+    var forFrame = [];
 
-videoUI.onFrameUp
+    var api = {};
 
-var onFrameUp = function () {
-    console.log('frame+');
-};
+    // load a for frame method
+    api.load = function(opt){
+        opt = opt || {};
+        // push object to for frame array
+        forFrame.push({
+            frame: opt.frame === undefined ? 0 : opt.frame,
+            maxFrame: opt.maxFrame === undefined ? 50 : opt.maxFrame,
+            forFrame: opt.forFrame || function(){}
+        });
+    };
 
-document.getElementById('ui_frame_+').addEventListener('click', onFrameUp);
+    var onFrameUp = function () {
+        console.log('frame+');
+        console.log(forFrame);
+        forFrame.forEach(function(obj){
+              obj.frame += 1;
+              obj.frame %= obj.maxFrame;
+              obj.forFrame(obj.frame, obj.maxFrame);
+        });
+    };
+
+    document.getElementById('ui_frame_+').addEventListener('click', onFrameUp);
+
+    return api;
+
+}());
