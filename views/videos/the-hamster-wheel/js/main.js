@@ -15,7 +15,7 @@
     guy.group.rotation.set(0, Math.PI / 2, 0)
     scene.add(guy.group);
 
-    // Plane
+    // PLANE
     var plane = new THREE.Mesh(
             new THREE.PlaneGeometry(20, 30, 8, 8),
             new THREE.MeshBasicMaterial({
