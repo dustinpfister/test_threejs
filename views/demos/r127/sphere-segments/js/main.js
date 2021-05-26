@@ -1,6 +1,7 @@
 
 (function () {
 
+    // create a sphere at helper
     var createSphereAt = function (x, z, w, h, r) {
         w = w === undefined ? 30 : w;
         h = h === undefined ? 15 : h;
