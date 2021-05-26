@@ -7,7 +7,11 @@
     var materials = [
         new THREE.MeshStandardMaterial({
             color: 0xff0000,
-            emissive: 0x404040
+            emissive: 0x101010
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            emissive: 0x202020
         })];
 
     var geometry = new THREE.SphereGeometry(0.5, 15, 15);
@@ -17,6 +21,7 @@
     mi = 0,
     i = 0;
     while (i < len) {
+        mi = i / 3 % 2 === 0 ? 0 : 1;
         geometry.addGroup(i, 3, mi);
         i += 3;
     }
