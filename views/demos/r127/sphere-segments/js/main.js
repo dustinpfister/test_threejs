@@ -22,12 +22,13 @@
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(8, 8, 0xff0000));
 
-    var sphere = createSphereAt(0, 0);
-    scene.add(sphere);
+    scene.add(createSphereAt(-2, 0, 20, 20));
+    scene.add(createSphereAt(0, 0, 10, 10));
+    scene.add(createSphereAt(2, 0, 5, 5));
 
     // camera
     var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-    camera.position.set(3, 3, 3);
+    camera.position.set(2.5, 2.5, 2.5);
     camera.lookAt(0, 0, 0);
     var light = new THREE.PointLight(0xffffff); // point light
     light.position.x = 1;
