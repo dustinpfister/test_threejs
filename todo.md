@@ -21,6 +21,8 @@ General todo list for test_threejs
 
     * forFrame as an array does not make sense it should just be a single main object
     * per, bias, and logBias should be part of ffObj
+    * play button
+    * ffObj.perObj method
 
 ### vuejs client for videos path
     * make vuejs part of the stack ( /views/js/vuejs/x.x.x/vue.min.js )
