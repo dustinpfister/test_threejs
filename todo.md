@@ -14,10 +14,11 @@ General todo list for test_threejs
     * ( done 5/25/2021 ) add a videos link in nav bar
     * ( done 5/25/2021 ) making first video project based off of my hamster-wheel example
     * ( done 5/26/2021 ) have simple frame forward button working
+    * ( done 5/26/2021 ) have simple frame backward button working
+    * ( done 5/26/2021 ) whammy.js will always be part of the stack for each index.ejs file
 
-    * have simple frame backward button working
+    * have a 'create video' button as part of the video ui
 
-    * whammy.js will always be part of the stack for each index.ejs file
     * projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
 
 ### vuejs client for videos path

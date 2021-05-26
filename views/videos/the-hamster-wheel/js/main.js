@@ -38,9 +38,10 @@
     var container = document.getElementById('video') || document.body;
     container.appendChild(renderer.domElement);
 
+    // load VIDEO UI Object
     videoUI.load({
         frame: 0,
-        maxFrame: 30,
+        maxFrame: 300,
         canvas: renderer.domElement,
         forFrame: function(frame, maxFrame){
             var per = frame / maxFrame,
@@ -53,45 +54,5 @@
         }
     });
 
-    // LOOP
-/*
-    var frame = 0,
-    maxFrame = 24,
-    fps_target = 12,
-    lt = new Date();
-    var renderFrame = function () {
-        var per = frame / maxFrame,
-        bias = Math.abs(.5 - per) / .5,
-        r = -Math.PI * 2 * per;
-        wheel.wheel.rotation.z = r;
-        GuyMod.walk(guy, per * 4);
-        GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
-        renderer.render(scene, camera);
-    };
-*/
-    //renderFrame();
-
-
-
-    /*
-    var loop = function () {
-    var now = new Date(),
-    secs = (now - lt) / 1000;
-    requestAnimationFrame(loop);
-    if (secs >= 1 / fps_target) {
-    var per = frame / maxFrame,
-    bias = Math.abs(.5 - per) / .5,
-    r = -Math.PI * 2 * per;
-    wheel.wheel.rotation.z = r;
-    GuyMod.walk(guy, per * 4);
-    GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
-    renderer.render(scene, camera);
-    frame += 1;
-    frame %= maxFrame;
-    lt = now;
-    }
-    };
-    loop();
-     */
 }
     ());
