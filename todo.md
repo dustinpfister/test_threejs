@@ -22,9 +22,11 @@ General todo list for test_threejs
     * ( done 5/26/2021 ) have a 'create video' button as part of the video ui
     * ( done 5/26/2021 ) projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
 
+    * get play button working
+
     * forFrame as an array does not make sense it should just be a single main object
     * per, bias, and logBias should be part of ffObj
-    * play button
+
     * ffObj.perObj method
 
 ### vuejs client for videos path

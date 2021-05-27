@@ -80,7 +80,23 @@ var videoUI = (function () {
         }
     };
 
-    var loop = function () {};
+    var lt = new Date();
+    var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000,
+        ffObj = forFrame[0];
+        requestAnimationFrame(loop);
+        if(secs > 1 / FPS){
+            if(ffObj){
+                if(ffObj.play){
+                    ffObj.frame += FPS * secs;
+                    ffObj.frame %= ffObj.maxFrame;
+                    ffObj.forFrame(ffObj.frame, ffObj.maxFrame);
+                }
+            }
+            lt = now;
+        }
+    };
     loop();
 
     document.getElementById('ui_frame_+').addEventListener('click', onFrameUp);
