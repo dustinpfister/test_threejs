@@ -2,6 +2,9 @@
 
 General todo list for test_threejs
 
+## /views/forpost folder
+    * start a /forpost folder to start creating collections of demos for specific blog posts
+
 ## NODE folder
     * start a /node folder
     * make index.js /node/server/index.js

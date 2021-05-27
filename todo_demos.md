@@ -17,7 +17,7 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 ## (started 5/27/2021 ) TorusGeometry
     * (done) start a basic TorusGeometry demo
     * (done) start a group example where I increase segment counts as child index goes up
-    * make an example that is a bunch of TorusGeometry mesh objects in a ring like position, and have a camera move threw the holes
+    * (done) make an example that is a bunch of TorusGeometry mesh objects in a ring like position, and have a camera move threw the holes
 
 ## (started 5/26/2021 ) threejs-sphere
     * (done) start a basic example on the sphere geometry
