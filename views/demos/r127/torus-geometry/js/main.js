@@ -1,7 +1,11 @@
 // creating a donut mesh with the Torus Geometry constructor,
 // and the normal material
+var radius = 1,
+tubeRadius = 0.25,
+radialSegments = 16,
+tubeSegments = 32;
 var donut = new THREE.Mesh(
-        new THREE.TorusGeometry(1, 0.25, 16, 32),
+        new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
         new THREE.MeshNormalMaterial());
  
 // creating a scene
