@@ -29,7 +29,7 @@ var createDonutGroup = function(){
 
 // creating a scene
 var scene = new THREE.Scene();
-scene.add(new THREE.GridHelper(10, 10));
+//scene.add(new THREE.GridHelper(10, 10));
 
 var group = createDonutGroup();
 scene.add(group);
@@ -41,4 +41,25 @@ camera.lookAt(0, 0, 0.5);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
-renderer.render(scene, camera);
+
+// loop
+var lt = new Date(),
+frame = 0,
+maxFrame = 1200,
+fps = 30;
+var loop = function(){
+    var now = new Date(),
+    per = frame / maxFrame,
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / fps){
+        var radian = Math.PI * 2 * per;
+        camera.position.set(Math.cos(radian) * 4, 0, Math.sin(radian) * 4);
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+        frame += fps * secs;
+        frame %= maxFrame;
+        lt = now;
+    }
+};
+loop();
