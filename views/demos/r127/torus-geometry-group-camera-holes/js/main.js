@@ -7,18 +7,20 @@ var createDonutChild = function(index, len){
     var donut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
         new THREE.MeshNormalMaterial());
+    donut.geometry.rotateY(Math.PI * 0.5);
     return donut;
 };
 
 var createDonutGroup = function(){
     var i = 0,
-    len = 10,
+    len = 20,
     group = new THREE.Group();
     while(i < len){
         var per = i / len,
         radian = Math.PI * 2 * per;
         var donut = createDonutChild(i, len);
         donut.position.set(Math.cos(radian) * 4, 0, Math.sin(radian) * 4);
+        donut.lookAt(0, 0, 0);
         group.add(donut);
         i += 1;
     }
