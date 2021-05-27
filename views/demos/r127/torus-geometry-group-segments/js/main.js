@@ -6,7 +6,7 @@ var createDonutChild = function(index, len){
     tubeSegments = 4 + Math.round(20 * per);
     var donut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
-        new THREE.MeshNormalMaterial());
+        new THREE.MeshNormalMaterial({wireframe:true}));
     return donut;
 };
 
@@ -16,7 +16,7 @@ var createDonutGroup = function(){
     group = new THREE.Group();
     while(i < len){
         var donut = createDonutChild(i, len);
-        donut.position.set(0, 0, 3 - i * 0.75);
+        donut.position.set(0, 0, 4 - i * 1.125);
         group.add(donut);
         i += 1;
     }
@@ -32,7 +32,7 @@ scene.add(group);
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(3, 3, 3.5);
+camera.position.set(6, 4, 4.5);
 camera.lookAt(0, 0, 0.5);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
