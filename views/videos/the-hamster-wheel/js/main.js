@@ -41,7 +41,7 @@
     // load VIDEO UI Object
     videoUI.load({
         frame: 0,
-        maxFrame: 300,
+        maxFrame: 30,
         canvas: renderer.domElement,
         forFrame: function(frame, maxFrame){
             var per = frame / maxFrame,

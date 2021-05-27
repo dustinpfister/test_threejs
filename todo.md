@@ -22,7 +22,9 @@ General todo list for test_threejs
     * ( done 5/26/2021 ) have a 'create video' button as part of the video ui
     * ( done 5/26/2021 ) projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
 
-    * get play button working
+    * ( done 5/27/2021 ) get play button working
+    * ( done 5/27/2021 ) main setFrame method in ui.js
+    * display fame/maxFrame in ui
 
     * forFrame as an array does not make sense it should just be a single main object
     * per, bias, and logBias should be part of ffObj

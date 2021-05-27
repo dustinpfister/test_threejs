@@ -16,6 +16,13 @@ var videoUI = (function () {
         document.body.appendChild(vid);
     };
 
+    // set the current frame
+    var setFrame = function(ffObj, frame, maxFrame){
+        ffObj.frame = frame;
+        ffObj.maxFrame = maxFrame;
+        ffObj.forFrame(frame, maxFrame);
+    };
+
     var api = {};
 
     // load a for frame method
@@ -28,16 +35,19 @@ var videoUI = (function () {
             forFrame: opt.forFrame || function () {},
             canvas: opt.canvas || null
         };
-        ffObj.forFrame(opt.frame, opt.maxFrame);
+        setFrame(ffObj, ffObj.frame, ffObj.maxFrame);
+        //ffObj.forFrame(opt.frame, opt.maxFrame);
         forFrame.push(ffObj);
     };
+
 
     // on frame+ button click
     var onFrameUp = function () {
         forFrame.forEach(function (obj) {
             obj.frame += 1;
             obj.frame %= obj.maxFrame;
-            obj.forFrame(obj.frame, obj.maxFrame);
+            setFrame(obj, obj.frame, obj.maxFrame);
+            //obj.forFrame(obj.frame, obj.maxFrame);
         });
     };
 
@@ -46,7 +56,8 @@ var videoUI = (function () {
         forFrame.forEach(function (obj) {
             obj.frame -= 1;
             obj.frame = obj.frame <= -1 ? obj.maxFrame - 1 : obj.frame;
-            obj.forFrame(obj.frame, obj.maxFrame);
+            setFrame(obj, obj.frame, obj.maxFrame);
+            //obj.forFrame(obj.frame, obj.maxFrame);
         });
     };
 
@@ -59,7 +70,8 @@ var videoUI = (function () {
         while (frame < maxFrame) {
             forFrame.forEach(function (ffObj) {
                 ffObj.frame = frame;
-                ffObj.forFrame(ffObj.frame, ffObj.maxFrame);
+                setFrame(ffObj, ffObj.frame, ffObj.maxFrame);
+                //ffObj.forFrame(ffObj.frame, ffObj.maxFrame);
                 console.log(ffObj.frame + '/' + ffObj.maxFrame);
                 encoder.add(ffObj.canvas.toDataURL('image/webp'));
             });
@@ -91,7 +103,8 @@ var videoUI = (function () {
                 if(ffObj.play){
                     ffObj.frame += FPS * secs;
                     ffObj.frame %= ffObj.maxFrame;
-                    ffObj.forFrame(ffObj.frame, ffObj.maxFrame);
+                    setFrame(ffObj, ffObj.frame, ffObj.maxFrame);
+                    //ffObj.forFrame(ffObj.frame, ffObj.maxFrame);
                 }
             }
             lt = now;
