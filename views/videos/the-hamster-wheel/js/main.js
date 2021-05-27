@@ -26,9 +26,7 @@
     scene.add(plane);
 
     // CAMERA
-    var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
-    camera.position.set(5, 6, 5);
-    camera.lookAt(0, 0, 0);
+    var camera = new THREE.PerspectiveCamera(50, 8 / 6, 0.05, 100);
     camera.add(new THREE.PointLight());
     scene.add(camera);
 
@@ -44,12 +42,22 @@
         maxFrame: 300,
         canvas: renderer.domElement,
         forFrame: function(frame, maxFrame){
-            var per = frame / maxFrame,
-            bias = Math.abs(.5 - per) / .5,
-            r = -Math.PI * 4 * per;
+            var per = frame / maxFrame;
+
+            // move wheel
+            var r = -Math.PI * 8 * per;
             wheel.wheel.rotation.z = r;
+
+            // update guy
             GuyMod.walk(guy, per * 8);
+            var bias = Math.abs(0.5 - (per * 8 % 1)) / 0.5;
             GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
+
+            // move camera
+            var a = 7 - 5 * per;
+            camera.position.set(a, a, a);
+            camera.lookAt(0, 0, 0);
+
             renderer.render(scene, camera);
         }
     });
