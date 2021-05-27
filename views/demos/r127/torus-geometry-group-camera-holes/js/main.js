@@ -15,8 +15,10 @@ var createDonutGroup = function(){
     len = 10,
     group = new THREE.Group();
     while(i < len){
+        var per = i / len,
+        radian = Math.PI * 2 * per;
         var donut = createDonutChild(i, len);
-        donut.position.set(0, 0, 0);
+        donut.position.set(Math.cos(radian) * 4, 0, Math.sin(radian) * 4);
         group.add(donut);
         i += 1;
     }
