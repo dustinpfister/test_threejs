@@ -7,7 +7,10 @@ var createDonutChild = function(index, len){
     tubeSegments = 32;
     var donut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
-        new THREE.MeshNormalMaterial());
+        new THREE.MeshStandardMaterial({
+           color: 0xffffff,
+           emissive: 0x2a0000
+        }));
     donut.geometry.rotateY(Math.PI * 0.5);
     return donut;
 };
@@ -41,6 +44,10 @@ scene.add(group);
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(6, 4, 4.5);
 camera.lookAt(0, 0, 0.5);
+var light = new THREE.PointLight(0xffffff, 0.5);
+light.position.set(2, 0, 0);
+camera.add(light);
+scene.add(camera);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
