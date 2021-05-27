@@ -33,9 +33,10 @@ var createDonutGroup = function(){
 
 // creating a scene
 var scene = new THREE.Scene();
-var grid = new THREE.GridHelper(10, 100);
-grid.rotation.z = Math.PI * 0.5;
-scene.add(grid);
+scene.background = new THREE.Color(0xafafaf);
+//var grid = new THREE.GridHelper(10, 100);
+//grid.rotation.z = Math.PI * 0.5;
+//scene.add(grid);
 
 var group = createDonutGroup();
 scene.add(group);
@@ -55,8 +56,8 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // loop
 var lt = new Date(),
 frame = 0,
-maxFrame = 300,
-fps = 30;
+maxFrame = 1200,
+fps = 12;
 var loop = function(){
     var now = new Date(),
     per = frame / maxFrame,
