@@ -1,9 +1,9 @@
 var createDonutChild = function(index, len){
     var per = index / len,
     radius = 0.6,
-    tubeRadius = 0.25,
+    tubeRadius = 0.125,
     radialSegments = 16,
-    tubeSegments = 30;
+    tubeSegments = 20;
     var donut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
         new THREE.MeshNormalMaterial());
@@ -55,7 +55,7 @@ var loop = function(){
     if(secs > 1 / fps){
         var radian = Math.PI * 2 * per;
         camera.position.set(Math.cos(radian) * 4, 0, Math.sin(radian) * 4);
-        camera.lookAt(0, 0, 0);
+        camera.lookAt(Math.cos(radian + 0.5) * 4, Math.sin(radian) * 0.5, Math.sin(radian + 0.5) * 4);
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
