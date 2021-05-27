@@ -1,7 +1,10 @@
+var MAIN_RADIUS = 8,
+DONUT_COUNT = 30;
+
 var createDonutChild = function(index, len){
     var per = index / len,
     bias = 1 - Math.abs(per - 0.5) / 0.5,
-    radius = 0.6 + 0.3 * bias,
+    radius = 0.6 + 2.3 * bias,
     tubeRadius = 0.125 + 0.25 * bias,
     radialSegments = 32,
     tubeSegments = 32;
@@ -17,13 +20,13 @@ var createDonutChild = function(index, len){
 
 var createDonutGroup = function(){
     var i = 0,
-    len = 20,
+    len = DONUT_COUNT,
     group = new THREE.Group();
     while(i < len){
         var per = i / len,
         radian = Math.PI * 2 * per;
         var donut = createDonutChild(i, len);
-        donut.position.set(Math.cos(radian) * 4, 0, Math.sin(radian) * 4);
+        donut.position.set(Math.cos(radian) * MAIN_RADIUS, 0, Math.sin(radian) * MAIN_RADIUS);
         donut.lookAt(0, 0, 0);
         group.add(donut);
         i += 1;
@@ -42,7 +45,7 @@ var group = createDonutGroup();
 scene.add(group);
  
 // camera and renderer
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+var camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.1, 100);
 camera.position.set(6, 4, 4.5);
 camera.lookAt(0, 0, 0.5);
 var light = new THREE.PointLight(0xffffff, 0.5);
@@ -57,7 +60,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var lt = new Date(),
 frame = 0,
 maxFrame = 1200,
-fps = 12;
+fps = 24;
 var loop = function(){
     var now = new Date(),
     per = frame / maxFrame,
@@ -65,8 +68,8 @@ var loop = function(){
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         var radian = Math.PI * 2 * per;
-        camera.position.set(Math.cos(radian) * 4, 0, Math.sin(radian) * 4);
-        camera.lookAt(Math.cos(radian + 0.5) * 4, Math.sin(radian) * 0.5, Math.sin(radian + 0.5) * 4);
+        camera.position.set(Math.cos(radian) * MAIN_RADIUS, 0, Math.sin(radian) * MAIN_RADIUS);
+        camera.lookAt(Math.cos(radian + 0.5) * MAIN_RADIUS, Math.sin(radian) * 0.5, Math.sin(radian - 0.5) * MAIN_RADIUS);
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
