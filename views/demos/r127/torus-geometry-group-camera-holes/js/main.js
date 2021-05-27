@@ -1,9 +1,10 @@
 var createDonutChild = function(index, len){
     var per = index / len,
-    radius = 0.6,
-    tubeRadius = 0.125,
-    radialSegments = 16,
-    tubeSegments = 20;
+    bias = 1 - Math.abs(per - 0.5) / 0.5,
+    radius = 0.6 + 0.3 * bias,
+    tubeRadius = 0.125 + 0.25 * bias,
+    radialSegments = 32,
+    tubeSegments = 32;
     var donut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
         new THREE.MeshNormalMaterial());
@@ -29,7 +30,9 @@ var createDonutGroup = function(){
 
 // creating a scene
 var scene = new THREE.Scene();
-//scene.add(new THREE.GridHelper(10, 10));
+var grid = new THREE.GridHelper(10, 100);
+grid.rotation.z = Math.PI * 0.5;
+scene.add(grid);
 
 var group = createDonutGroup();
 scene.add(group);
@@ -45,7 +48,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // loop
 var lt = new Date(),
 frame = 0,
-maxFrame = 1200,
+maxFrame = 300,
 fps = 30;
 var loop = function(){
     var now = new Date(),
