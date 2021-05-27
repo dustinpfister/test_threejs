@@ -21,15 +21,13 @@ General todo list for test_threejs
     * ( done 5/26/2021 ) whammy.js will always be part of the stack for each index.ejs file
     * ( done 5/26/2021 ) have a 'create video' button as part of the video ui
     * ( done 5/26/2021 ) projects in /views/videos folder will be designed in a way to make use of whammy to create webm files
-
     * ( done 5/27/2021 ) get play button working
     * ( done 5/27/2021 ) main setFrame method in ui.js
-    * display fame/maxFrame in ui
+    * ( done 5/27/2021 ) display fame/maxFrame in ui
 
     * forFrame as an array does not make sense it should just be a single main object
     * per, bias, and logBias should be part of ffObj
-
-    * ffObj.perObj method
+    * have a video ui method that can be used to create and return an object that gives percent info
 
 ### vuejs client for videos path
     * make vuejs part of the stack ( /views/js/vuejs/x.x.x/vue.min.js )
