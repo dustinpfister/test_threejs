@@ -7,6 +7,9 @@ var videoUI = (function () {
     var FPS = 30;
     var encoder = new Whammy.Video(FPS);
 
+    // ui info div
+    var uiInfo = document.getElementById('ui_info');
+
     // export video helper
     var exportVid = function (blob) {
         var vid = document.createElement('video');
@@ -21,8 +24,10 @@ var videoUI = (function () {
         ffObj.frame = frame;
         ffObj.maxFrame = maxFrame;
         ffObj.forFrame(frame, maxFrame);
+        uiInfo.innerText = 'frame: ' + ffObj.frame + '/' + ffObj.maxFrame;
     };
 
+    // public api
     var api = {};
 
     // load a for frame method
@@ -35,8 +40,8 @@ var videoUI = (function () {
             forFrame: opt.forFrame || function () {},
             canvas: opt.canvas || null
         };
+        // set the frame and call forframe
         setFrame(ffObj, ffObj.frame, ffObj.maxFrame);
-        //ffObj.forFrame(opt.frame, opt.maxFrame);
         forFrame.push(ffObj);
     };
 
@@ -46,8 +51,8 @@ var videoUI = (function () {
         forFrame.forEach(function (obj) {
             obj.frame += 1;
             obj.frame %= obj.maxFrame;
+            // set the frame and call forframe
             setFrame(obj, obj.frame, obj.maxFrame);
-            //obj.forFrame(obj.frame, obj.maxFrame);
         });
     };
 
@@ -56,8 +61,8 @@ var videoUI = (function () {
         forFrame.forEach(function (obj) {
             obj.frame -= 1;
             obj.frame = obj.frame <= -1 ? obj.maxFrame - 1 : obj.frame;
+            // set the frame and call forframe
             setFrame(obj, obj.frame, obj.maxFrame);
-            //obj.forFrame(obj.frame, obj.maxFrame);
         });
     };
 
@@ -71,7 +76,7 @@ var videoUI = (function () {
             forFrame.forEach(function (ffObj) {
                 ffObj.frame = frame;
                 setFrame(ffObj, ffObj.frame, ffObj.maxFrame);
-                //ffObj.forFrame(ffObj.frame, ffObj.maxFrame);
+                // set the frame and call forframe
                 console.log(ffObj.frame + '/' + ffObj.maxFrame);
                 encoder.add(ffObj.canvas.toDataURL('image/webp'));
             });
@@ -103,8 +108,8 @@ var videoUI = (function () {
                 if(ffObj.play){
                     ffObj.frame += FPS * secs;
                     ffObj.frame %= ffObj.maxFrame;
+                    // set the frame and call forframe
                     setFrame(ffObj, ffObj.frame, ffObj.maxFrame);
-                    //ffObj.forFrame(ffObj.frame, ffObj.maxFrame);
                 }
             }
             lt = now;
