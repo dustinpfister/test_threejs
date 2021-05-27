@@ -14,8 +14,8 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * start a basic parent example of a mesh
     * start an example that involves raycaster and getting the group of a mesh
 
-## TorusGeometry
-    * start a basic TorusGeometry demo
+## (started 5/27/2021 ) TorusGeometry
+    * (done) start a basic TorusGeometry demo
     * make an example that is a bunch of TorusGeometry mesh objects in a ring like position, and have a camera move threw the holes
 
 ## (started 5/26/2021 ) threejs-sphere

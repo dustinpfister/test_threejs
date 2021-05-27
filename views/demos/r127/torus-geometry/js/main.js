@@ -1,14 +1,14 @@
-// creating a box mesh with the Box Geometry constructor,
+// creating a donut mesh with the Torus Geometry constructor,
 // and the normal material
-var box = new THREE.Mesh(
+var donut = new THREE.Mesh(
         new THREE.TorusGeometry(1, 0.25, 16, 32),
         new THREE.MeshNormalMaterial());
  
 // creating a scene
 var scene = new THREE.Scene();
  
-// add the box mesh to the scene
-scene.add(box);
+// add the donut mesh to the scene
+scene.add(donut);
  
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
