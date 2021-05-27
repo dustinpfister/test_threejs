@@ -97,6 +97,7 @@ var videoUI = (function () {
         }
     };
 
+    // loop
     var lt = new Date();
     var loop = function () {
         var now = new Date(),
@@ -106,7 +107,7 @@ var videoUI = (function () {
         if(secs > 1 / FPS){
             if(ffObj){
                 if(ffObj.play){
-                    ffObj.frame += FPS * secs;
+                    ffObj.frame += 1;
                     ffObj.frame %= ffObj.maxFrame;
                     // set the frame and call forframe
                     setFrame(ffObj, ffObj.frame, ffObj.maxFrame);
