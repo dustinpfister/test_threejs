@@ -11,9 +11,13 @@
     var scene = new THREE.Scene();
 
     // CAMERA
-    var camera = new THREE.PerspectiveCamera(40, 320 / 240, .5, 1000);
-    camera.position.set(3, 3, 3);
+    var camera = new THREE.PerspectiveCamera(40, 4 / 3, 0.5, 100);
+    camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
+    var light = new THREE.PointLight(0xffffff, 0.5);
+    light.position.set(2, 0, 2);
+    camera.add(light);
+    scene.add(camera);
 
     // add something to the scene
     var cube = new THREE.Mesh(
