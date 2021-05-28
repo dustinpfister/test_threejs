@@ -24,26 +24,30 @@
             }));
     scene.add(cube);
 
-    // render the scene with the camera
-    var frame = 0,
-    frameMax = 50;
-
+    var state = {
+        clock: new THREE.Clock(),
+        frame: 0,
+        maxFrame: 90,
+        fps: 20, // capping at 12 fps
+        per: 0
+    };
     var loop = function () {
-
+        var wSecs = performance.now() - state.clock.oldTime,
+        secs;
         requestAnimationFrame(loop);
-
-        var per = frame / frameMax,
-        a = Math.PI * 2 * per;
-
-        cube.rotation.y = a;
-
-        renderer.render(scene, camera);
-
-        frame += 1;
-        frame %= frameMax;
-
+        if (wSecs > 1 / state.fps) {
+            secs = state.clock.getDelta();
+            state.per = state.frame / state.maxFrame;
+            // update
+            cube.rotation.y = Math.PI * 2 * state.per;
+            // RENDER
+            renderer.render(scene, camera);
+            state.frame += state.fps * secs;
+            state.frame %= state.maxFrame;
+        }
     };
 
+    state.clock.start();
     loop();
 
 }
