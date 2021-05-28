@@ -47,7 +47,8 @@ var videoUI = (function () {
         sequence.forFrame(sequence.frame, sequence.maxFrame);
         // update info
         uiInfo.innerText = 'sequence: ' + LoadedVideo.currentSequence + '/' + LoadedVideo.sequence.length + 
-            ', frame: ' + sequence.frame + '/' + sequence.maxFrame;
+            ', frame: ' + sequence.frame + '/' + sequence.maxFrame + 
+            ', totalFrames: ' + LoadedVideo.frame + '/' + LoadedVideo.maxFrame;
     };
 
     // public api
