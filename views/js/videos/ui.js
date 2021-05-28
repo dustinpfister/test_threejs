@@ -1,7 +1,7 @@
 var videoUI = (function () {
 
-    // the array of forFrame objects ( see the api.load method)
-    var forFrame = [];
+    // the single main For Frame Object loaded with the videoUI.load method
+    var ForFrameObj = [];
 
     // single whammy encoder
     var FPS = 30;
@@ -20,11 +20,11 @@ var videoUI = (function () {
     };
 
     // set the current frame
-    var setFrame = function(ffObj, frame, maxFrame){
-        ffObj.frame = frame;
-        ffObj.maxFrame = maxFrame;
-        ffObj.forFrame(frame, maxFrame);
-        uiInfo.innerText = 'frame: ' + ffObj.frame + '/' + ffObj.maxFrame;
+    var setFrame = function(frame, maxFrame){
+        ForFrameObj.frame = frame;
+        ForFrameObj.maxFrame = maxFrame;
+        ForFrameObj.forFrame(frame, maxFrame);
+        uiInfo.innerText = 'frame: ' + ForFrameObj.frame + '/' + ForFrameObj.maxFrame;
     };
 
     // public api
@@ -34,52 +34,51 @@ var videoUI = (function () {
     api.load = function (opt) {
         opt = opt || {};
         // push object to for frame array
-        var ffObj = {
+        ForFrameObj = {
             frame: opt.frame === undefined ? 0 : opt.frame,
             maxFrame: opt.maxFrame === undefined ? 50 : opt.maxFrame,
             forFrame: opt.forFrame || function () {},
             canvas: opt.canvas || null
         };
         // set the frame and call forframe
-        setFrame(ffObj, ffObj.frame, ffObj.maxFrame);
-        forFrame.push(ffObj);
+        setFrame(ForFrameObj.frame, ForFrameObj.maxFrame);
     };
 
 
     // on frame+ button click
     var onFrameUp = function () {
-        forFrame.forEach(function (obj) {
-            obj.frame += 1;
-            obj.frame %= obj.maxFrame;
+        //forFrame.forEach(function (obj) {
+           ForFrameObj.frame += 1;
+            ForFrameObj.frame %= ForFrameObj.maxFrame;
             // set the frame and call forframe
-            setFrame(obj, obj.frame, obj.maxFrame);
-        });
+            setFrame(ForFrameObj.frame, ForFrameObj.maxFrame);
+        //});
     };
 
     // on frame+ button click
     var onFrameDown = function () {
-        forFrame.forEach(function (obj) {
-            obj.frame -= 1;
-            obj.frame = obj.frame <= -1 ? obj.maxFrame - 1 : obj.frame;
+        //forFrame.forEach(function (obj) {
+            ForFrameObj.frame -= 1;
+            ForFrameObj.frame = ForFrameObj.frame <= -1 ? ForFrameObj.maxFrame - 1 : ForFrameObj.frame;
             // set the frame and call forframe
-            setFrame(obj, obj.frame, obj.maxFrame);
-        });
+            setFrame(ForFrameObj.frame, ForFrameObj.maxFrame);
+        //});
     };
 
     // on create video
     var onCreateVideo = function () {
         console.log('create video');
         var frame = 0,
-        maxFrame = forFrame[0].maxFrame;
-        forFrame[0].play = false;
+        maxFrame = ForFrameObj.maxFrame;
+        ForFrameObj.play = false;
         while (frame < maxFrame) {
-            forFrame.forEach(function (ffObj) {
-                ffObj.frame = frame;
-                setFrame(ffObj, ffObj.frame, ffObj.maxFrame);
+            //forFrame.forEach(function (ffObj) {
+                ForFrameObj.frame = frame;
+                setFrame(ForFrameObj.frame, ForFrameObj.maxFrame);
                 // set the frame and call forframe
-                console.log(ffObj.frame + '/' + ffObj.maxFrame);
-                encoder.add(ffObj.canvas.toDataURL('image/webp'));
-            });
+                console.log(ForFrameObj.frame + '/' + ForFrameObj.maxFrame);
+                encoder.add(ForFrameObj.canvas.toDataURL('image/webp'));
+            //});
             frame += 1;
         }
         console.log('encoder frames added');
@@ -90,10 +89,10 @@ var videoUI = (function () {
     };
 
     var onPlay = function () {
-        var ffObj = forFrame[0];
+        //var ffObj = forFrame[0];
         console.log('play');
-        if (ffObj) {
-            ffObj.play = !ffObj.play;
+        if (ForFrameObj) {
+            ForFrameObj.play = !ForFrameObj.play;
         }
     };
 
@@ -101,16 +100,15 @@ var videoUI = (function () {
     var lt = new Date();
     var loop = function () {
         var now = new Date(),
-        secs = (now - lt) / 1000,
-        ffObj = forFrame[0];
+        secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if(secs > 1 / FPS){
-            if(ffObj){
-                if(ffObj.play){
-                    ffObj.frame += 1;
-                    ffObj.frame %= ffObj.maxFrame;
+            if(ForFrameObj){
+                if(ForFrameObj.play){
+                    ForFrameObj.frame += 1;
+                    ForFrameObj.frame %= ForFrameObj.maxFrame;
                     // set the frame and call forframe
-                    setFrame(ffObj, ffObj.frame, ffObj.maxFrame);
+                    setFrame(ForFrameObj.frame, ForFrameObj.maxFrame);
                 }
             }
             lt = now;
