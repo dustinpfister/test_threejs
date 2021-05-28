@@ -23,9 +23,7 @@ var videoUI = (function () {
     var setFrame = function(frame, maxFrame){
         LoadedVideo.frame = frame;
         LoadedVideo.maxFrame = maxFrame;
-
-        LoadedVideo.sequence[LoadedVideo.currentSequence].forFrame(frame, maxFrame);
-
+        LoadedVideo.forFrame(frame, maxFrame);
         uiInfo.innerText = 'frame: ' + LoadedVideo.frame + '/' + LoadedVideo.maxFrame;
     };
 
@@ -37,11 +35,9 @@ var videoUI = (function () {
         opt = opt || {};
         // push object to for frame array
         LoadedVideo = {
-            sequence: opt.sequence || [],
-            currentSequence: 0,
             frame: opt.frame === undefined ? 0 : opt.frame,
             maxFrame: opt.maxFrame === undefined ? 50 : opt.maxFrame,
-            //forFrame: opt.forFrame || function () {},
+            forFrame: opt.forFrame || function () {},
             canvas: opt.canvas || null
         };
         // set the frame and call forframe
