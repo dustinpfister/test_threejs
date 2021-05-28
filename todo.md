@@ -31,10 +31,12 @@ https://github.com/mrdoob/three.js/wiki/Migration-Guide#r128--r129
     * ( done 5/27/2021 ) get play button working
     * ( done 5/27/2021 ) main setFrame method in ui.js
     * ( done 5/27/2021 ) display fame/maxFrame in ui
+    * ( done 5/28/2021 ) forFrame as an array does not make sense it should just be a single main object
+    * ( done 5/29/2021 ) rename main ForFrame object to LoadedVideo
+    * I am going to want to have some way to have more than one sequence, so there should maybe to a sequence array for the Main object
 
-    * forFrame as an array does not make sense it should just be a single main object
     * per, bias, and logBias should be part of ffObj
-    * have a video ui method that can be used to create and return an object that gives percent info
+    
 
 ### vuejs client for videos path
     * make vuejs part of the stack ( /views/js/vuejs/x.x.x/vue.min.js )

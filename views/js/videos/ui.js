@@ -1,7 +1,7 @@
 var videoUI = (function () {
 
-    // the single main For Frame Object loaded with the videoUI.load method
-    var ForFrameObj = [];
+    // the single main LoadedVideo Object loaded with the videoUI.load method
+    var LoadedVideo = [];
 
     // single whammy encoder
     var FPS = 30;
@@ -21,10 +21,10 @@ var videoUI = (function () {
 
     // set the current frame
     var setFrame = function(frame, maxFrame){
-        ForFrameObj.frame = frame;
-        ForFrameObj.maxFrame = maxFrame;
-        ForFrameObj.forFrame(frame, maxFrame);
-        uiInfo.innerText = 'frame: ' + ForFrameObj.frame + '/' + ForFrameObj.maxFrame;
+        LoadedVideo.frame = frame;
+        LoadedVideo.maxFrame = maxFrame;
+        LoadedVideo.forFrame(frame, maxFrame);
+        uiInfo.innerText = 'frame: ' + LoadedVideo.frame + '/' + LoadedVideo.maxFrame;
     };
 
     // public api
@@ -34,34 +34,34 @@ var videoUI = (function () {
     api.load = function (opt) {
         opt = opt || {};
         // push object to for frame array
-        ForFrameObj = {
+        LoadedVideo = {
             frame: opt.frame === undefined ? 0 : opt.frame,
             maxFrame: opt.maxFrame === undefined ? 50 : opt.maxFrame,
             forFrame: opt.forFrame || function () {},
             canvas: opt.canvas || null
         };
         // set the frame and call forframe
-        setFrame(ForFrameObj.frame, ForFrameObj.maxFrame);
+        setFrame(LoadedVideo.frame, LoadedVideo.maxFrame);
     };
 
 
     // on frame+ button click
     var onFrameUp = function () {
         //forFrame.forEach(function (obj) {
-           ForFrameObj.frame += 1;
-            ForFrameObj.frame %= ForFrameObj.maxFrame;
+           LoadedVideo.frame += 1;
+            LoadedVideo.frame %= LoadedVideo.maxFrame;
             // set the frame and call forframe
-            setFrame(ForFrameObj.frame, ForFrameObj.maxFrame);
+            setFrame(LoadedVideo.frame, LoadedVideo.maxFrame);
         //});
     };
 
     // on frame+ button click
     var onFrameDown = function () {
         //forFrame.forEach(function (obj) {
-            ForFrameObj.frame -= 1;
-            ForFrameObj.frame = ForFrameObj.frame <= -1 ? ForFrameObj.maxFrame - 1 : ForFrameObj.frame;
+            LoadedVideo.frame -= 1;
+            LoadedVideo.frame = LoadedVideo.frame <= -1 ? LoadedVideo.maxFrame - 1 : LoadedVideo.frame;
             // set the frame and call forframe
-            setFrame(ForFrameObj.frame, ForFrameObj.maxFrame);
+            setFrame(LoadedVideo.frame, LoadedVideo.maxFrame);
         //});
     };
 
@@ -69,15 +69,15 @@ var videoUI = (function () {
     var onCreateVideo = function () {
         console.log('create video');
         var frame = 0,
-        maxFrame = ForFrameObj.maxFrame;
-        ForFrameObj.play = false;
+        maxFrame = LoadedVideo.maxFrame;
+        LoadedVideo.play = false;
         while (frame < maxFrame) {
             //forFrame.forEach(function (ffObj) {
-                ForFrameObj.frame = frame;
-                setFrame(ForFrameObj.frame, ForFrameObj.maxFrame);
+                LoadedVideo.frame = frame;
+                setFrame(LoadedVideo.frame, LoadedVideo.maxFrame);
                 // set the frame and call forframe
-                console.log(ForFrameObj.frame + '/' + ForFrameObj.maxFrame);
-                encoder.add(ForFrameObj.canvas.toDataURL('image/webp'));
+                console.log(LoadedVideo.frame + '/' + LoadedVideo.maxFrame);
+                encoder.add(LoadedVideo.canvas.toDataURL('image/webp'));
             //});
             frame += 1;
         }
@@ -91,8 +91,8 @@ var videoUI = (function () {
     var onPlay = function () {
         //var ffObj = forFrame[0];
         console.log('play');
-        if (ForFrameObj) {
-            ForFrameObj.play = !ForFrameObj.play;
+        if (LoadedVideo) {
+            LoadedVideo.play = !LoadedVideo.play;
         }
     };
 
@@ -103,12 +103,12 @@ var videoUI = (function () {
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if(secs > 1 / FPS){
-            if(ForFrameObj){
-                if(ForFrameObj.play){
-                    ForFrameObj.frame += 1;
-                    ForFrameObj.frame %= ForFrameObj.maxFrame;
+            if(LoadedVideo){
+                if(LoadedVideo.play){
+                    LoadedVideo.frame += 1;
+                    LoadedVideo.frame %= LoadedVideo.maxFrame;
                     // set the frame and call forframe
-                    setFrame(ForFrameObj.frame, ForFrameObj.maxFrame);
+                    setFrame(LoadedVideo.frame, LoadedVideo.maxFrame);
                 }
             }
             lt = now;
