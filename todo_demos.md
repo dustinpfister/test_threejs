@@ -14,9 +14,9 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * start a basic parent example of a mesh
     * start an example that involves raycaster and getting the group of a mesh
 
-## threejs-clock
-    * start a basic demo of THREE.Clock
-    * https://threejs.org/docs/index.html#api/en/core/Clock
+## (started 5/28/2021 ) threejs-clock
+    * (done) start a basic demo of THREE.Clock
+    * start an example for elapsed time
 
 ## (started 5/27/2021 ) TorusGeometry
     * (done) start a basic TorusGeometry demo
