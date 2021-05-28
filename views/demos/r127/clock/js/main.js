@@ -14,11 +14,15 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 state = {
     lt: new Date(),
+    clock: new THREE.Clock(),
     frame: 0,
     maxFrame: 90,
     fps: 30,
     per: 0
 };
+
+state.clock.start();
+
 var loop = function () {
     var now = new Date(),
     secs = (now - state.lt) / 1000;
@@ -27,7 +31,8 @@ var loop = function () {
 
     requestAnimationFrame(loop);
 
-    box.rotation.y = Math.PI * 2 * state.per;
+    var clockSecs = state.clock.getDelta();
+    box.rotation.y += Math.PI / 180 * 90 * clockSecs;
 
     renderer.render(scene, camera);
 
