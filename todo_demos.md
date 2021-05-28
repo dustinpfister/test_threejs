@@ -23,6 +23,7 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 
 ## threejs-edges-geometry
     * (done) start a basic demo on the EdgesGeometry constructor
+    * start a box-edges-geometry demo, and update post threejs-box-geometry
 
 ## (started 5/28/2021 ) threejs-clock
     * (done) start a basic demo of THREE.Clock
