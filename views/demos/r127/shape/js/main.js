@@ -14,6 +14,7 @@ var geometry = new THREE.ExtrudeGeometry( tri, extrudeSettings );
 geometry.rotateX(Math.PI * 1);
 // mesh
 var mesh = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial() );
+mesh.add(new THREE.BoxHelper(mesh));
 // add the mesh to the scene
 scene.add(mesh);
  
