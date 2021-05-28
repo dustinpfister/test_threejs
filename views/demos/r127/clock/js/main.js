@@ -15,20 +15,23 @@ document.getElementById('demo').appendChild(renderer.domElement);
 state = {
     lt: new Date(),
     frame: 0,
-    maxFrame: 100,
-    per: 0,
-    bias: 0,
-    radian: 0
+    maxFrame: 90,
+    fps: 30,
+    per: 0
 };
 var loop = function () {
     var now = new Date(),
     secs = (now - state.lt) / 1000;
 
+    state.per = state.frame / state.maxFrame;
+
     requestAnimationFrame(loop);
+
+    box.rotation.y = Math.PI * 2 * state.per;
 
     renderer.render(scene, camera);
 
-    state.frame += 4 * secs;
+    state.frame += state.fps * secs;
     state.frame %= state.maxFrame;
 
     state.lt = now;
