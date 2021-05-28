@@ -22,7 +22,7 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * have an example that makes use of ExtrudeGeometry
 
 ## threejs-edges-geometry
-    * start a basic demo on the EdgesGeometry constructor
+    * (done) start a basic demo on the EdgesGeometry constructor
 
 ## (started 5/28/2021 ) threejs-clock
     * (done) start a basic demo of THREE.Clock
