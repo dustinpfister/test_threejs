@@ -14,9 +14,19 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * start a basic parent example of a mesh
     * start an example that involves raycaster and getting the group of a mesh
 
+## threejs-extrude-geometry
+    * start a basic example of THREE.ExtrudeGeometry
+
+## threejs-shape
+    * start a basic example of THREE.Shape
+    * have an example that makes use of ExtrudeGeometry
+
+## threejs-edges-geometry
+    * start a basic demo on the EdgesGeometry constructor
+
 ## (started 5/28/2021 ) threejs-clock
     * (done) start a basic demo of THREE.Clock
-    * start an example for elapsed time
+    * (done) start an example for elapsed time
 
 ## (started 5/27/2021 ) TorusGeometry
     * (done) start a basic TorusGeometry demo
