@@ -2,25 +2,25 @@
 
 (function () {
 
-    // RENDER
+    // CREATING A WEBL RENDER
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // SCENE
+    // scene
     var scene = new THREE.Scene();
-
-    // CAMERA
+    // camera
     var camera = new THREE.PerspectiveCamera(40, 320 / 240, .5, 1000);
     camera.position.set(3, 3, 3);
     camera.lookAt(0, 0, 0);
-
     // add something to the scene
-    scene.add(new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1), new THREE.MeshBasicMaterial({
+    scene.add(new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshBasicMaterial({
                 color: 0xff0000
             })));
 
-    // render the scene with the camera
+    // RENDERING
     renderer.render(scene, camera);
 
 }
