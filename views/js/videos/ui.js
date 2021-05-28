@@ -20,13 +20,15 @@ var videoUI = (function () {
     };
 
     // set the current frame
-    var setFrame = function(frame, maxFrame){
+    var setFrame = function(frame){
         LoadedVideo.frame = frame;
-        LoadedVideo.maxFrame = maxFrame;
 
-        LoadedVideo.sequence[LoadedVideo.currentSequence].forFrame(frame, maxFrame);
+        var sequence = LoadedVideo.sequence[LoadedVideo.currentSequence];
 
-        uiInfo.innerText = 'frame: ' + LoadedVideo.frame + '/' + LoadedVideo.maxFrame;
+        sequence.forFrame(frame, LoadedVideo.maxFrame);
+
+        uiInfo.innerText = 'sequence: ' + LoadedVideo.currentSequence + 
+            ', frame: ' + LoadedVideo.frame + '/' + LoadedVideo.maxFrame;
     };
 
     // public api
@@ -40,12 +42,16 @@ var videoUI = (function () {
             sequence: opt.sequence || [],
             currentSequence: 0,
             frame: opt.frame === undefined ? 0 : opt.frame,
-            maxFrame: opt.maxFrame === undefined ? 50 : opt.maxFrame,
-            //forFrame: opt.forFrame || function () {},
+            maxFrame: 0,
             canvas: opt.canvas || null
         };
+        // loop all sequences
+        LoadedVideo.sequence.forEach(function(seqObj){
+           LoadedVideo.maxFrame += seqObj.maxFrame;
+           seqObj.frame = 0;
+        });
         // set the frame and call forframe
-        setFrame(LoadedVideo.frame, LoadedVideo.maxFrame);
+        setFrame(LoadedVideo.frame);
     };
 
 
@@ -54,7 +60,7 @@ var videoUI = (function () {
         LoadedVideo.frame += 1;
         LoadedVideo.frame %= LoadedVideo.maxFrame;
         // set the frame and call forframe
-        setFrame(LoadedVideo.frame, LoadedVideo.maxFrame);
+        setFrame(LoadedVideo.frame);
     };
 
     // on frame+ button click
@@ -62,7 +68,7 @@ var videoUI = (function () {
         LoadedVideo.frame -= 1;
         LoadedVideo.frame = LoadedVideo.frame <= -1 ? LoadedVideo.maxFrame - 1 : LoadedVideo.frame;
         // set the frame and call forframe
-        setFrame(LoadedVideo.frame, LoadedVideo.maxFrame);
+        setFrame(LoadedVideo.frame);
     };
 
     // on create video
@@ -73,7 +79,7 @@ var videoUI = (function () {
         LoadedVideo.play = false;
         while (frame < maxFrame) {
                 LoadedVideo.frame = frame;
-                setFrame(LoadedVideo.frame, LoadedVideo.maxFrame);
+                setFrame(LoadedVideo.frame);
                 // set the frame and call forframe
                 console.log(LoadedVideo.frame + '/' + LoadedVideo.maxFrame);
                 encoder.add(LoadedVideo.canvas.toDataURL('image/webp'));
@@ -105,7 +111,7 @@ var videoUI = (function () {
                     LoadedVideo.frame += 1;
                     LoadedVideo.frame %= LoadedVideo.maxFrame;
                     // set the frame and call forframe
-                    setFrame(LoadedVideo.frame, LoadedVideo.maxFrame);
+                    setFrame(LoadedVideo.frame);
                 }
             }
             lt = now;
