@@ -13,7 +13,6 @@ renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 state = {
-    lt: new Date(),
     clock: new THREE.Clock(),
     frame: 0,
     maxFrame: 90,
@@ -24,21 +23,16 @@ state = {
 state.clock.start();
 
 var loop = function () {
-    var now = new Date(),
-    secs = (now - state.lt) / 1000;
-
+    var secs = state.clock.getDelta();
     state.per = state.frame / state.maxFrame;
 
     requestAnimationFrame(loop);
 
-    var clockSecs = state.clock.getDelta();
-    box.rotation.y += Math.PI / 180 * 90 * clockSecs;
+    box.rotation.y = Math.PI * 2 * state.per;
 
     renderer.render(scene, camera);
 
     state.frame += state.fps * secs;
     state.frame %= state.maxFrame;
-
-    state.lt = now;
 };
 loop();
