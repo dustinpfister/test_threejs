@@ -18,8 +18,7 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * start a basic example of THREE.ExtrudeGeometry
 
 ## threejs-shape
-    * start a basic example of THREE.Shape
-    * have an example that makes use of ExtrudeGeometry
+    * (done) start a basic example of THREE.Shape that makes use of ExtrudeGeometry
 
 ## threejs-edges-geometry
     * (done) start a basic demo on the EdgesGeometry constructor
