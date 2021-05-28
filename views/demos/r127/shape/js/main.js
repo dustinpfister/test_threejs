@@ -26,4 +26,23 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
-renderer.render(scene, camera);
+
+// loop
+var state = {
+    clock: new THREE.Clock(),
+    frame: 0,
+    maxFrame: 120,
+    fps: 30,
+    per: 0
+};
+var loop = function () {
+    // USING THE GET DELTA METHOD
+    var secs = state.clock.getDelta();
+    state.per = state.frame / state.maxFrame;
+    requestAnimationFrame(loop);
+    mesh.rotation.y = Math.PI * 2 * state.per;
+    state.frame += state.fps * secs;
+    state.frame %= state.maxFrame;
+    renderer.render(scene, camera);
+};
+loop();
