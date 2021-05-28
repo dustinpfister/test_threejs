@@ -2,8 +2,8 @@
 // creating a scene
 var scene = new THREE.Scene();
 
+// SHAPE
 var heartShape = new THREE.Shape();
-
 heartShape.moveTo( 25, 25 );
 heartShape.bezierCurveTo( 25, 25, 20, 0, 0, 0 );
 heartShape.bezierCurveTo( - 30, 0, - 30, 35, - 30, 35 );
@@ -12,13 +12,13 @@ heartShape.bezierCurveTo( 60, 77, 80, 55, 80, 35 );
 heartShape.bezierCurveTo( 80, 35, 80, 0, 50, 0 );
 heartShape.bezierCurveTo( 35, 0, 25, 25, 25, 25 );
 
+// geomerty
 var extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
-
 var geometry = new THREE.ExtrudeGeometry( heartShape, extrudeSettings );
 geometry.rotateX(Math.PI * 1)
+// mesh
 var mesh = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial() );
-
-// add the box mesh to the scene
+// add the mesh to the scene
 scene.add(mesh);
  
 // camera and renderer
