@@ -19,13 +19,34 @@ var videoUI = (function () {
         document.body.appendChild(vid);
     };
 
+    // set the current sequence, and set the proper frame index for the current sequence
+    var setCurrentSequence = function(){
+        var i = 0,
+        frameTotal = 0,
+        sequence,
+        len = LoadedVideo.sequence.length;
+        while(i < len){
+           sequence = LoadedVideo.sequence[i];
+           if(LoadedVideo.frame < frameTotal + sequence.maxFrame){
+               LoadedVideo.currentSequence = i;
+               sequence.frame = LoadedVideo.frame - frameTotal;
+               break;
+           }
+           frameTotal += sequence.maxFrame;
+           i += 1;
+        }
+    };
+
     // set the current frame
     var setFrame = function(frame){
         LoadedVideo.frame = frame;
 
+        setCurrentSequence();
+
+        // current sequence
         var sequence = LoadedVideo.sequence[LoadedVideo.currentSequence];
 
-        sequence.forFrame(frame, LoadedVideo.maxFrame);
+        sequence.forFrame(sequence.frame, LoadedVideo.maxFrame);
 
         uiInfo.innerText = 'sequence: ' + LoadedVideo.currentSequence + 
             ', frame: ' + LoadedVideo.frame + '/' + LoadedVideo.maxFrame;

@@ -63,6 +63,29 @@
 
                     renderer.render(scene, camera);
                 }
+            },
+            {
+                maxFrame: 30,
+                forFrame: function(frame, maxFrame){
+                    var per = frame / maxFrame;
+
+                    // move wheel
+                    var r = -Math.PI * 8 * per;
+                    wheel.wheel.rotation.z = r;
+
+                    // update guy
+                    GuyMod.walk(guy, per * 8);
+                    var bias = Math.abs(0.5 - (per * 8 % 1)) / 0.5;
+                    GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
+                    guy.group.position.y = 0.125 * bias;
+
+                    // move camera
+                    var a = 7 - 5 * per;
+                    camera.position.set(a, a, a - 3 * per);
+                    camera.lookAt(0, 0, 0);
+
+                    renderer.render(scene, camera);
+                }
             }
         ]
     });
