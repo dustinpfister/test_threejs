@@ -4,7 +4,7 @@
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // SCENE
@@ -16,8 +16,11 @@
     camera.lookAt(0, 0, 0);
 
     // add something to the scene
-    var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1), new THREE.MeshBasicMaterial({
-                color: 0xff0000
+    var cube = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshStandardMaterial({
+                color: 0xff0000,
+                emissive: 0x2a0000
             }));
     scene.add(cube);
 
