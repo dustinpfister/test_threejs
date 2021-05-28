@@ -11,7 +11,8 @@ tri.lineTo( -1, -1 );
 // geometry
 var extrudeSettings = { depth: 1, bevelEnabled: false};
 var geometry = new THREE.ExtrudeGeometry( tri, extrudeSettings );
-geometry.rotateX(Math.PI * 1);
+geometry.rotateX(Math.PI * 1);  // might want to center
+geometry.center();
 // mesh
 var mesh = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial() );
 mesh.add(new THREE.BoxHelper(mesh));
