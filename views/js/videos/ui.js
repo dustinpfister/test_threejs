@@ -40,16 +40,14 @@ var videoUI = (function () {
     // set the current frame
     var setFrame = function(frame){
         LoadedVideo.frame = frame;
-
+        // current sequence     
         setCurrentSequence();
-
-        // current sequence
         var sequence = LoadedVideo.sequence[LoadedVideo.currentSequence];
-
-        sequence.forFrame(sequence.frame, LoadedVideo.maxFrame);
-
-        uiInfo.innerText = 'sequence: ' + LoadedVideo.currentSequence + 
-            ', frame: ' + LoadedVideo.frame + '/' + LoadedVideo.maxFrame;
+        // call for frame
+        sequence.forFrame(sequence.frame, sequence.maxFrame);
+        // update info
+        uiInfo.innerText = 'sequence: ' + LoadedVideo.currentSequence + '/' + LoadedVideo.sequence.length + 
+            ', frame: ' + sequence.frame + '/' + sequence.maxFrame;
     };
 
     // public api

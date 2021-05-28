@@ -34,8 +34,7 @@ https://github.com/mrdoob/three.js/wiki/Migration-Guide#r128--r129
     * ( done 5/28/2021 ) forFrame as an array does not make sense it should just be a single main object
     * ( done 5/29/2021 ) rename main ForFrame object to LoadedVideo
     * ( done 5/29/2021 ) I am going to want to have some way to have more than one sequence, so there should be a sequence array
-
-    * setFrame needs to set the current sequence index, and then the correct sequence frame index
+    * ( done 5/29/2021 ) setFrame needs to set the current sequence index, and then the correct sequence frame index
 
     * per, bias, and logBias should be part of ffObj
     
