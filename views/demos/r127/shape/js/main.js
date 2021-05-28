@@ -2,19 +2,18 @@
 // creating a scene
 var scene = new THREE.Scene();
 
+// make the shape
 var tri = new THREE.Shape();
-
 tri.moveTo( 0, 25 );
 tri.lineTo( 25, -25 );
 tri.lineTo( -25, -25 );
-
+// geometry
 var extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
-
 var geometry = new THREE.ExtrudeGeometry( tri, extrudeSettings );
-geometry.rotateX(Math.PI * 1)
+geometry.rotateX(Math.PI * 1);
+// mesh
 var mesh = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial() );
-
-// add the box mesh to the scene
+// add the mesh to the scene
 scene.add(mesh);
  
 // camera and renderer
