@@ -67,7 +67,7 @@
                 forFrame: forFrame1
             },
             {
-                maxFrame: 120,
+                maxFrame: 600,
                 forFrame: forFrame1
             }
         ]
