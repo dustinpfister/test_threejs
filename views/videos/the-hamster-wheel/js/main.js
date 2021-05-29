@@ -39,15 +39,13 @@
     var forFrame1 = function(seq){
         var per = seq.per;
 
-        console.log(seq.secs, '/', seq.secsTotal);
-
         // move wheel
-        var r = -Math.PI * 8 * per;
+        var r = -Math.PI * seq.secsTotal * seq.per;
         wheel.wheel.rotation.z = r;
 
         // update guy
-        GuyMod.walk(guy, per * 8);
-        var bias = Math.abs(0.5 - (per * 8 % 1)) / 0.5;
+        GuyMod.walk(guy, per * seq.secsTotal * 2 % 1);
+        var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
         GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
         guy.group.position.y = 0.125 * bias;
 
