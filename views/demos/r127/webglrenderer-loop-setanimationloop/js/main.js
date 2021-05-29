@@ -1,11 +1,6 @@
 
 (function () {
 
-    // RENDERER
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
-
     // scene
     var scene = new THREE.Scene();
     // camera
@@ -25,6 +20,12 @@
             }));
     scene.add(cube);
 
+    // RENDERER
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
+
+    // USING SET ANIMATION LOOP
     var state = {
         clock: new THREE.Clock(),
         frame: 0,
@@ -32,10 +33,8 @@
         fps: 12,
         per: 0
     };
-
     state.clock.start();
-    // USING SET ANIMATION LOOP
-    renderer.setAnimationLoop(function () {
+    var loop = function () {
         var wSecs = performance.now() - state.clock.oldTime,
         secs;
         if (wSecs > 1 / state.fps) {
@@ -48,7 +47,9 @@
             state.frame += state.fps * secs;
             state.frame %= state.maxFrame;
         }
-    });
+    };
+    // start
+    renderer.setAnimationLoop(loop);
 
 }
     ());
