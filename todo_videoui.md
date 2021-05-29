@@ -23,7 +23,6 @@
     * ( done 5/30/2021 ) forFrame method of current sequence gets the sequence object passed to it as the first argument
     * ( done 5/30/2021 ) have a sequence.secsTotal value that is just maxFrame / FPS;
     * ( done 5/30/2021 ) have a sequence.secs value that is sequence.totalSecs * sequence.per
-
-    * per, bias, and logBias should be part of sequence object
+    * ( done 5/30/2021 ) per, bias should be part of sequence object
 
 

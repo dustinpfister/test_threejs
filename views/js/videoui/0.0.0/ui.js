@@ -31,6 +31,7 @@ var videoUI = (function () {
                LoadedVideo.currentSequence = i;
                sequence.frame = LoadedVideo.frame - frameTotal;
                sequence.per = sequence.frame / sequence.maxFrame;
+               sequence.bias = 1 - Math.abs(sequence.per - 0.5) / 0.5;
                // secs
                sequence.secsTotal = sequence.maxFrame / FPS;
                sequence.secs = sequence.secsTotal * sequence.per;
