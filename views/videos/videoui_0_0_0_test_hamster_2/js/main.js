@@ -36,42 +36,40 @@
     var container = document.getElementById('video') || document.body;
     container.appendChild(renderer.domElement);
 
-    var forFrame1 = function(seq){
-        var per = seq.per;
-
-        // move wheel
-        var r = -Math.PI * seq.secsTotal * seq.per;
-        wheel.wheel.rotation.z = r;
-
-        // update guy
-        GuyMod.walk(guy, per * seq.secsTotal * 2 % 1);
-        var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
-        GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
-        guy.group.position.y = 0.125 * bias;
-
-        // move camera
-        var a = 7 - 5 * per;
-        camera.position.set(a, a, a - 3 * per);
-        camera.lookAt(0, 0, 0);
-
-        renderer.render(scene, camera);
-    };
-
-    // load VIDEO UI Object
-    videoUI.load({
+    var video = {
         frame: 0,
         canvas: renderer.domElement,
-        sequence: [
-            {
-                maxFrame: 30,
-                forFrame: forFrame1
-            },
-            {
-                maxFrame: 600,
-                forFrame: forFrame1
-            }
-        ]
+        sequence: []
+    };
+
+    // sequence 0
+    video.sequence.push({
+        maxFrame: 30,
+        forFrame: function(seq){
+            var per = seq.per;
+
+            // move wheel
+            var r = -Math.PI * seq.secsTotal * seq.per;
+            wheel.wheel.rotation.z = r;
+
+            // update guy
+            GuyMod.walk(guy, per * seq.secsTotal * 2 % 1);
+            var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
+            GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
+            guy.group.position.y = 0.125 * bias;
+
+            // move camera
+            var a = 7 - 5 * per;
+            camera.position.set(a, a, a - 3 * per);
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
     });
+
+
+    // load VIDEO UI Object
+    videoUI.load(video);
 
 }
     ());
