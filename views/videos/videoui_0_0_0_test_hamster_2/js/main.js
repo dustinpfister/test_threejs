@@ -44,7 +44,7 @@
 
     // sequence 0
     video.sequence.push({
-        maxFrame: 30,
+        maxFrame: 90,
         forFrame: function(seq){
             var per = seq.per;
 
@@ -61,6 +61,31 @@
             // move camera
             var a = 7 - 5 * per;
             camera.position.set(a, a, a - 3 * per);
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+    // sequence 1
+    video.sequence.push({
+        maxFrame: 90,
+        forFrame: function(seq){
+            var per = seq.per;
+
+            // move wheel
+            var r = -Math.PI * seq.secsTotal * seq.per;
+            wheel.wheel.rotation.z = r;
+
+            // update guy
+            GuyMod.walk(guy, 0.25);
+            var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
+            GuyMod.moveHead(guy, 8 * seq.per);
+            guy.group.position.y = 0.125 * bias;
+
+            // move camera
+            //var a = 7 - 5 * per;
+            camera.position.set(4, 4, -4);
             camera.lookAt(0, 0, 0);
 
             renderer.render(scene, camera);
