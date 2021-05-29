@@ -20,9 +20,10 @@
     * ( done 5/29/2021 ) setFrame needs to set the current sequence index, and then the correct sequence frame index
     * ( done 5/30/2021 ) have a todo_videoui.md file
     * ( done 5/30/2021 ) start and use a /js/videoui/0.0.0/ui.js path for this version of videoui
-
     * ( done 5/30/2021 ) forFrame method of current sequence gets the sequence object passed to it as the first argument
+    * ( done 5/30/2021 ) have a sequence.secsTotal value that is just maxFrame / FPS;
+    * ( done 5/30/2021 ) have a sequence.secs value that is sequence.totalSecs * sequence.per
 
-    * per, bias, and logBias should be part of ffObj
-    * have a section.secs value that is section.totalSecs * section.per
+    * per, bias, and logBias should be part of sequence object
+
 

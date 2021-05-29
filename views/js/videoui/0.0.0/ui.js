@@ -33,6 +33,7 @@ var videoUI = (function () {
                sequence.per = sequence.frame / sequence.maxFrame;
                // secs
                sequence.secsTotal = sequence.maxFrame / FPS;
+               sequence.secs = sequence.secsTotal * sequence.per;
                break;
            }
            frameTotal += sequence.maxFrame;
