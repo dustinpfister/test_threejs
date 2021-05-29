@@ -1,3 +1,3 @@
 # threejs_hamster_wheel
 
-First video project based on my hamster wheel example
+First video project test for videoui 0.0.0
