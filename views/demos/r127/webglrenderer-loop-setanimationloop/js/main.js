@@ -51,5 +51,10 @@
     // start
     renderer.setAnimationLoop(loop);
 
+    // stop after 3 secs
+    setTimeout(function () {
+        renderer.setAnimationLoop(null);
+    }, 3000);
+
 }
     ());
