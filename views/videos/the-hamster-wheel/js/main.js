@@ -39,6 +39,8 @@
     var forFrame1 = function(seq){
         var per = seq.per;
 
+        console.log(seq.secsTotal);
+
         // move wheel
         var r = -Math.PI * 8 * per;
         wheel.wheel.rotation.z = r;
