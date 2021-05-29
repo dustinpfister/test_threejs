@@ -36,8 +36,8 @@
     var container = document.getElementById('video') || document.body;
     container.appendChild(renderer.domElement);
 
-    var forFrame1 = function(frame, maxFrame){
-        var per = frame / maxFrame;
+    var forFrame1 = function(seq){
+        var per = seq.per;
 
         // move wheel
         var r = -Math.PI * 8 * per;

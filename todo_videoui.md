@@ -21,6 +21,8 @@
     * ( done 5/30/2021 ) have a todo_videoui.md file
     * ( done 5/30/2021 ) start and use a /js/videoui/0.0.0/ui.js path for this version of videoui
 
+    * ( done 5/30/2021 ) forFrame method of current sequence gets the sequence object passed to it as the first argument
+
     * per, bias, and logBias should be part of ffObj
     * have a section.secs value that is section.totalSecs * section.per
 

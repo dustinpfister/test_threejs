@@ -30,6 +30,7 @@ var videoUI = (function () {
            if(LoadedVideo.frame < frameTotal + sequence.maxFrame){
                LoadedVideo.currentSequence = i;
                sequence.frame = LoadedVideo.frame - frameTotal;
+               sequence.per = sequence.frame / sequence.maxFrame;
                break;
            }
            frameTotal += sequence.maxFrame;
@@ -44,7 +45,7 @@ var videoUI = (function () {
         setCurrentSequence();
         var sequence = LoadedVideo.sequence[LoadedVideo.currentSequence];
         // call for frame
-        sequence.forFrame(sequence.frame, sequence.maxFrame);
+        sequence.forFrame(sequence);
         // update info
         uiInfo.innerText = 'sequence: ' + LoadedVideo.currentSequence + '/' + LoadedVideo.sequence.length + 
             ', frame: ' + sequence.frame + '/' + sequence.maxFrame + 
