@@ -44,7 +44,7 @@
 
     // sequence 0
     video.sequence.push({
-        maxFrame: 90,
+        maxFrame: 150,
         forFrame: function(seq){
             var per = seq.per;
 
@@ -69,7 +69,7 @@
 
     // sequence 1
     video.sequence.push({
-        maxFrame: 90,
+        maxFrame: 150,
         forFrame: function(seq){
             var per = seq.per;
 
