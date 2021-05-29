@@ -1,15 +1,14 @@
 
 (function () {
 
-    // RENDER
+    // RENDERER
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    // SCENE
+    // scene
     var scene = new THREE.Scene();
-
-    // CAMERA
+    // camera
     var camera = new THREE.PerspectiveCamera(40, 4 / 3, 0.5, 100);
     camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
@@ -17,7 +16,6 @@
     light.position.set(2, 0, 2);
     camera.add(light);
     scene.add(camera);
-
     // add something to the scene
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -36,6 +34,7 @@
     };
 
     state.clock.start();
+    // USING SET ANIMATION LOOP
     renderer.setAnimationLoop(function () {
         var wSecs = performance.now() - state.clock.oldTime,
         secs;
