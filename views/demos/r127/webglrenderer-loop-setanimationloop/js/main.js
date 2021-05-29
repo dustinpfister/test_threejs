@@ -1,5 +1,4 @@
 
-
 (function () {
 
     // RENDER
@@ -32,13 +31,14 @@
         clock: new THREE.Clock(),
         frame: 0,
         maxFrame: 90,
-        fps: 20, // capping at 12 fps
+        fps: 12,
         per: 0
     };
-    var loop = function () {
+
+    state.clock.start();
+    renderer.setAnimationLoop(function () {
         var wSecs = performance.now() - state.clock.oldTime,
         secs;
-        requestAnimationFrame(loop);
         if (wSecs > 1 / state.fps) {
             secs = state.clock.getDelta();
             state.per = state.frame / state.maxFrame;
@@ -49,10 +49,7 @@
             state.frame += state.fps * secs;
             state.frame %= state.maxFrame;
         }
-    };
-
-    state.clock.start();
-    loop();
+    });
 
 }
     ());
