@@ -44,15 +44,14 @@
 
     // guy is looping around in the wheel that is not in motion
     video.sequence.push({
-        maxFrame: 150,
+        maxFrame: 30,
         forFrame: function (seq) {
             var per = seq.per;
 
             // move wheel
-            //var r = -Math.PI * seq.secsTotal * seq.per;
-            wheel.wheel.rotation.z = 0;
             wheel.group.position.set(1, 0, 0);
             wheel.group.rotation.y = 1.57;
+            wheel.wheel.rotation.z = 0;
 
             // update guy
             GuyMod.walk(guy, per * seq.secsTotal * 2 % 1);
@@ -80,6 +79,8 @@
             var per = seq.per;
 
             // move wheel
+            wheel.group.position.set(1, 0, 0);
+            wheel.group.rotation.y = 1.57;
             var r = -Math.PI * seq.secsTotal * seq.per;
             wheel.wheel.rotation.z = r;
 
@@ -104,7 +105,9 @@
         forFrame: function (seq) {
             var per = seq.per;
 
-            // move wheel
+            // wheel
+            wheel.group.position.set(1, 0, 0);
+            wheel.group.rotation.y = 1.57;
             var r = -Math.PI * seq.secsTotal * seq.per;
             wheel.wheel.rotation.z = r;
 
