@@ -58,15 +58,13 @@
             var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
             GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
             //guy.group.position.y = 0.125 * bias;
-            guy.group.rotation.y = 0;
+            guy.group.rotation.set(0, 0, 0);
             guy.group.rotation.x = Math.PI * 2 * (per * seq.secsTotal % 1) * -1;
-
-            //guy.group.rotation.set(1.57, 0, 0);
 
             // move camera
             //var a = 7 - 5 * per;
-            camera.position.set(4, 4, -4);
-            camera.lookAt(0, 0, 0);
+            camera.position.set(5, 5, -5);
+            camera.lookAt(1, 0, -1);
 
             renderer.render(scene, camera);
         }
@@ -88,6 +86,7 @@
             GuyMod.walk(guy, per * seq.secsTotal * 2 % 1);
             var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
             GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
+            guy.group.rotation.set(0, 0, 0);
             guy.group.position.y = 0.125 * bias;
 
             // move camera
@@ -115,12 +114,12 @@
             GuyMod.walk(guy, 0.25);
             var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
             GuyMod.moveHead(guy, 8 * seq.per);
+            guy.group.rotation.set(0, 0, 0);
             guy.group.position.y = 0.125 * bias;
 
-            // move camera
-            //var a = 7 - 5 * per;
-            camera.position.set(4, 4, -4);
-            camera.lookAt(0, 0, 0);
+            // camera
+            camera.position.set(5, 5, -5);
+            camera.lookAt(1, 0, -1);
 
             renderer.render(scene, camera);
         }
