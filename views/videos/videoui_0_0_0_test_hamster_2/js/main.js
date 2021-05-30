@@ -61,34 +61,9 @@
             guy.group.rotation.set(0, 0, 0);
             guy.group.position.y = 0.125 * bias;
 
-            // camera
-            camera.position.set(5, 5, 5);
-            camera.lookAt(0, 0, 0);
-
-            renderer.render(scene, camera);
-        }
-    });
-
-    // move camera in on guy walking and moving head
-    video.sequence.push({
-        maxFrame: 150,
-        forFrame: function (seq) {
-            var per = seq.per;
-
-            // move wheel
-            wheel.group.position.set(1, 0, 0);
-            wheel.group.rotation.y = 1.57;
-            var r = -Math.PI * seq.secsTotal * seq.per;
-            wheel.wheel.rotation.z = r;
-
-            // update guy
-            GuyMod.walk(guy, per * seq.secsTotal * 2 % 1);
-            var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
-            GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
-            guy.group.rotation.set(0, 0, 0);
-            guy.group.position.y = 0.125 * bias;
-
             // move camera
+            guy.group.remove(camera);
+            scene.add(camera);
             var a = 7 - 5 * per;
             camera.position.set(a, a, a - 3 * per);
             camera.lookAt(0, 0, 0);
@@ -117,8 +92,41 @@
             guy.group.position.y = 0.125 * bias;
 
             // camera
+            guy.group.remove(camera);
+            scene.add(camera);
             camera.position.set(5, 5, -5);
             camera.lookAt(1, 0, -1);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+    // camera from guys perspective
+    video.sequence.push({
+        maxFrame: 150,
+        forFrame: function (seq) {
+            var per = seq.per;
+
+            // move wheel
+            wheel.group.position.set(1, 0, 0);
+            wheel.group.rotation.y = 1.57;
+            var r = -Math.PI * seq.secsTotal * seq.per;
+            wheel.wheel.rotation.z = r;
+
+            // update guy
+            GuyMod.walk(guy, per * seq.secsTotal * 2 % 1);
+            var bias = Math.abs(0.5 - (per * seq.secsTotal * 0.125 % 1)) / 0.5;
+            //GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
+            GuyMod.moveHead(guy, 0);
+            guy.group.rotation.set(0, 0, 0);
+            guy.group.position.y = 0.125 * bias;
+
+            // camera
+            guy.group.remove(camera);
+            scene.add(camera);
+            guy.head.add(camera);
+            camera.position.set(0, 0, 0);
+            camera.lookAt(0, 0.25 + 0.75 * bias, 1)
 
             renderer.render(scene, camera);
         }
@@ -146,13 +154,14 @@
             guy.group.rotation.x = Math.PI * 2 * (per * seq.secsTotal * rotationsPerSecond % 1) * -1;
 
             // camera
+            guy.group.remove(camera);
+            scene.add(camera);
             camera.position.set(-7, 4, 4);
             camera.lookAt(0, -1, 0);
 
             renderer.render(scene, camera);
         }
     });
-
 
     // load VIDEO UI Object
     videoUI.load(video);
