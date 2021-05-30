@@ -42,30 +42,28 @@
         sequence: []
     };
 
-    // guy is looping around in the wheel that is not in motion
+    // move camera in on guy walking and moving head
     video.sequence.push({
-        maxFrame: 90,
+        maxFrame: 150,
         forFrame: function (seq) {
             var per = seq.per;
 
             // move wheel
             wheel.group.position.set(1, 0, 0);
             wheel.group.rotation.y = 1.57;
-            wheel.wheel.rotation.z = 0;
+            var r = -Math.PI * seq.secsTotal * seq.per;
+            wheel.wheel.rotation.z = r;
 
             // update guy
-            var walksPerSecond = 4;
-            GuyMod.walk(guy, per * seq.secsTotal * walksPerSecond % 1);
+            GuyMod.walk(guy, per * seq.secsTotal * 2 % 1);
             var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
             GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
-            //guy.group.position.y = 0.125 * bias;
             guy.group.rotation.set(0, 0, 0);
-            var rotationsPerSecond = 1;
-            guy.group.rotation.x = Math.PI * 2 * (per * seq.secsTotal * rotationsPerSecond % 1) * -1;
+            guy.group.position.y = 0.125 * bias;
 
             // camera
-            camera.position.set(-7, 4, 4);
-            camera.lookAt(0, -1, 0);
+            camera.position.set(5, 5, 5);
+            camera.lookAt(0, 0, 0);
 
             renderer.render(scene, camera);
         }
@@ -126,6 +124,34 @@
         }
     });
 
+    // guy is looping around in the wheel that is not in motion
+    video.sequence.push({
+        maxFrame: 90,
+        forFrame: function (seq) {
+            var per = seq.per;
+
+            // move wheel
+            wheel.group.position.set(1, 0, 0);
+            wheel.group.rotation.y = 1.57;
+            wheel.wheel.rotation.z = 0;
+
+            // update guy
+            var walksPerSecond = 4;
+            GuyMod.walk(guy, per * seq.secsTotal * walksPerSecond % 1);
+            var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
+            GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
+            //guy.group.position.y = 0.125 * bias;
+            guy.group.rotation.set(0, 0, 0);
+            var rotationsPerSecond = 1;
+            guy.group.rotation.x = Math.PI * 2 * (per * seq.secsTotal * rotationsPerSecond % 1) * -1;
+
+            // camera
+            camera.position.set(-7, 4, 4);
+            camera.lookAt(0, -1, 0);
+
+            renderer.render(scene, camera);
+        }
+    });
 
 
     // load VIDEO UI Object
