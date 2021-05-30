@@ -63,10 +63,9 @@
             var rotationsPerSecond = 1;
             guy.group.rotation.x = Math.PI * 2 * (per * seq.secsTotal * rotationsPerSecond % 1) * -1;
 
-            // move camera
-            //var a = 7 - 5 * per;
-            camera.position.set(-5, 5, 5);
-            camera.lookAt(-1, 0, 1);
+            // camera
+            camera.position.set(-7, 4, 4);
+            camera.lookAt(0, -1, 0);
 
             renderer.render(scene, camera);
         }
@@ -126,6 +125,8 @@
             renderer.render(scene, camera);
         }
     });
+
+
 
     // load VIDEO UI Object
     videoUI.load(video);
