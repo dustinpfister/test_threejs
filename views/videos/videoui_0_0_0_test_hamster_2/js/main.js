@@ -44,7 +44,7 @@
 
     // guy is looping around in the wheel that is not in motion
     video.sequence.push({
-        maxFrame: 30,
+        maxFrame: 90,
         forFrame: function (seq) {
             var per = seq.per;
 
@@ -54,17 +54,19 @@
             wheel.wheel.rotation.z = 0;
 
             // update guy
-            GuyMod.walk(guy, per * seq.secsTotal * 2 % 1);
+            var walksPerSecond = 4;
+            GuyMod.walk(guy, per * seq.secsTotal * walksPerSecond % 1);
             var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
             GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
             //guy.group.position.y = 0.125 * bias;
             guy.group.rotation.set(0, 0, 0);
-            guy.group.rotation.x = Math.PI * 2 * (per * seq.secsTotal % 1) * -1;
+            var rotationsPerSecond = 1;
+            guy.group.rotation.x = Math.PI * 2 * (per * seq.secsTotal * rotationsPerSecond % 1) * -1;
 
             // move camera
             //var a = 7 - 5 * per;
-            camera.position.set(5, 5, -5);
-            camera.lookAt(1, 0, -1);
+            camera.position.set(-5, 5, 5);
+            camera.lookAt(-1, 0, 1);
 
             renderer.render(scene, camera);
         }
