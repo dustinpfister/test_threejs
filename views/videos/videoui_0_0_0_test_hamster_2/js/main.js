@@ -42,10 +42,41 @@
         sequence: []
     };
 
-    // sequence 0
+    // guy is looping around in the wheel that is not in motion
     video.sequence.push({
         maxFrame: 150,
-        forFrame: function(seq){
+        forFrame: function (seq) {
+            var per = seq.per;
+
+            // move wheel
+            //var r = -Math.PI * seq.secsTotal * seq.per;
+            wheel.wheel.rotation.z = 0;
+            wheel.group.position.set(1, 0, 0);
+            wheel.group.rotation.y = 1.57;
+
+            // update guy
+            GuyMod.walk(guy, per * seq.secsTotal * 2 % 1);
+            var bias = Math.abs(0.5 - (per * seq.secsTotal * 4 % 1)) / 0.5;
+            GuyMod.moveHead(guy, 0.8 + 0.2 * bias);
+            //guy.group.position.y = 0.125 * bias;
+            guy.group.rotation.y = 0;
+            guy.group.rotation.x = Math.PI * 2 * (per * seq.secsTotal % 1) * -1;
+
+            //guy.group.rotation.set(1.57, 0, 0);
+
+            // move camera
+            //var a = 7 - 5 * per;
+            camera.position.set(4, 4, -4);
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+    // move camera in on guy walking and moving head
+    video.sequence.push({
+        maxFrame: 150,
+        forFrame: function (seq) {
             var per = seq.per;
 
             // move wheel
@@ -67,10 +98,10 @@
         }
     });
 
-    // sequence 1
+    // camera is fixed and guy is just jumping up and down, with head spinning around in circles
     video.sequence.push({
         maxFrame: 150,
-        forFrame: function(seq){
+        forFrame: function (seq) {
             var per = seq.per;
 
             // move wheel
@@ -91,7 +122,6 @@
             renderer.render(scene, camera);
         }
     });
-
 
     // load VIDEO UI Object
     videoUI.load(video);
