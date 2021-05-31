@@ -7,7 +7,7 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * guy2 will have 3 mesh objects for each arm rather than just one
     * guy2 will have 3 mesh objects for each leg rather than just one
     * have a Guy2Mod.setWalk method but have it so that it will just move the legs, or that the movement of arms is an option
-    * have a method that can be used to move a single arm in many differt ways within set range limits
+    * have a method that can be used to move a single arm in many different ways within set range limits
     * do some reading an animation clips and see if they can be used to help with tweening from one state to another
 
 ## threejs-object3d-parent
@@ -23,8 +23,8 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 ## (started 5/31/2021 ) threejs-edges-geometry
     * (done) start a basic demo on the EdgesGeometry constructor
     * (done) start a edges geometry loop example
-    * start a new example with sphere geometry, and play around with that second argument
-    * start a box-edges-geometry demo, and update post threejs-box-geometry
+    * (done) start a new example with sphere geometry, and play around with that second argument
+    * (done) start a box-edges-geometry demo, and update post threejs-box-geometry
 
 ## (started 5/28/2021 ) threejs-clock
     * (done) start a basic demo of THREE.Clock
