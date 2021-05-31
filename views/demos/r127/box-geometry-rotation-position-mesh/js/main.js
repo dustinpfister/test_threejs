@@ -10,6 +10,16 @@ var box = new THREE.Mesh(
 box.add(new THREE.BoxHelper(box, new THREE.Color('red'))); // box helper
 scene.add(box);
 
+var box2 = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshBasicMaterial({
+            color: new THREE.Color('lime')
+        }));
+box2.add(new THREE.BoxHelper(box2, new THREE.Color('red'))); // box helper
+
+box2.position.set(-2, 0, 0);
+scene.add(box2);
+
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(3, 3, 3);
 camera.lookAt(0, 0, 0);
@@ -35,7 +45,7 @@ var loop = function () {
     state.bias = 1 - Math.abs(state.per - 0.5) / 0.5;
     state.radian = Math.PI * 2 * state.bias;
     state.p.z = -2 * Math.cos(Math.PI * 2 * state.bias);
-    state.p.x = -2 * Math.sin(Math.PI * 8 * state.bias);
+    state.p.x = 1 + -1 * Math.sin(Math.PI * 8 * state.bias);
     // changing values
     state.r.x += 1 * secs;
     state.r.y += 2 * secs;
