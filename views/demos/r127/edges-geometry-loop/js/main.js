@@ -15,7 +15,7 @@
     scene.background = new THREE.Color('blue');
     scene.add(line);
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(2, 2, 2);
+    camera.position.set(1.25, 1.75, 1.25);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -29,6 +29,9 @@
         fps: 12, // capping at 12 fps
         per: 0
     };
+    var update = function (state) {
+        line.rotation.y = Math.PI * 2 * state.per;
+    };
     var loop = function () {
         var wSecs = performance.now() - state.clock.oldTime,
         secs;
@@ -36,7 +39,7 @@
         if (wSecs > 1 / state.fps) {
             secs = state.clock.getDelta();
             state.per = state.frame / state.maxFrame;
-            line.rotation.y = Math.PI * 2 * state.per;
+            update(state);
             state.frame += state.fps * secs;
             state.frame %= state.maxFrame;
             renderer.render(scene, camera);
