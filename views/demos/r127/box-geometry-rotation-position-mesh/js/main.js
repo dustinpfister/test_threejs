@@ -15,6 +15,7 @@ var box2 = new THREE.Mesh(
         new THREE.MeshBasicMaterial({
             color: new THREE.Color('lime')
         }));
+box2.geometry.rotateY(Math.PI * 0.25); // Rotating geometry
 box2.add(new THREE.BoxHelper(box2, new THREE.Color('red'))); // box helper
 
 box2.position.set(-2, 0, 0);
