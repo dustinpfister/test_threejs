@@ -8,7 +8,7 @@ through2 = require('through2'),
 express = require('express'),
 
 // heroku/local friendly port variable
-port = process.env.PORT || process.argv[2] || 3000,
+port = process.env.PORT || process.argv[2] || 8030,
 
 // patterns
 //pat_jsfile = /\/js\/[\s\S]+\.js/,
