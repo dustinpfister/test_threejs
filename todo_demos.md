@@ -18,10 +18,12 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * start a basic example of THREE.ExtrudeGeometry
 
 ## threejs-shape
-    * (done) start a basic example of THREE.Shape that makes use of ExtrudeGeometry
+    * (done) start a basic example of THREE.Shape that makes use of THREE.ExtrudeGeometry
 
-## threejs-edges-geometry
+## (started 5/31/2021 ) threejs-edges-geometry
     * (done) start a basic demo on the EdgesGeometry constructor
+    * (done) start a edges geometry loop example
+    * start a new example with sphere geometry, and play around with that second argument
     * start a box-edges-geometry demo, and update post threejs-box-geometry
 
 ## (started 5/28/2021 ) threejs-clock
