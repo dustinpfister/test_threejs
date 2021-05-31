@@ -1,19 +1,27 @@
 (function () {
     // sphere geometry and...
-    var sphereGeo = new THREE.SphereGeometry(0.5, 15, 20),
-    // AN EDGE GEOMETRY CREATED FROM IT WITH thresholdAngle of 10
-    edgeGeo = new THREE.EdgesGeometry(sphereGeo, 10),
-    line = new THREE.LineSegments(
-            edgeGeo,
+    var sphereGeo = new THREE.SphereGeometry(0.5, 15, 20);
+    // AN EDGE GEOMETRY CREATED FROM IT WITH THRESHOLD ANGLE of 10
+    var line1 = new THREE.LineSegments(
+            new THREE.EdgesGeometry(sphereGeo, 10),
             new THREE.LineBasicMaterial({
                 color: new THREE.Color('white')
             }));
+    line1.position.set(-0.75, 0, 0);
+    // SAME EDGE GEOMETRY BUT WITH DEFULT THRESHOLD ANGLE
+    var line2 = new THREE.LineSegments(
+            new THREE.EdgesGeometry(sphereGeo, 1),
+            new THREE.LineBasicMaterial({
+                color: new THREE.Color('white')
+            }));
+    line2.position.set(0.75, 0, 0);
     // Scene, camera renderer
     var scene = new THREE.Scene();
     scene.background = new THREE.Color('blue');
-    scene.add(line);
+    scene.add(line1);
+    scene.add(line2);
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(0.75, 1.00, 0.75);
+    camera.position.set(1.75, 2.00, 1.75);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
