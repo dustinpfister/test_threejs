@@ -1,10 +1,13 @@
 
 var scene = new THREE.Scene();
-scene.add(new THREE.GridHelper(10, 10));
+scene.add(new THREE.GridHelper(10, 10)); // grid helper
 
 var box = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial());
+        new THREE.MeshBasicMaterial({
+            color: new THREE.Color('gray')
+        }));
+box.add(new THREE.BoxHelper(box, new THREE.Color('red'))); // box helper
 scene.add(box);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
