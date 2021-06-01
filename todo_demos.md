@@ -21,7 +21,7 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * (done) start an example of THREE.Shape that makes use of THREE.ShapeGeometry
     * (done) start an example of THREE.Shape that makes use of THREE.ExtrudeGeometry
     * (done) have a heart example of Shape
-    * shape holes demo
+    * (done) shape holes demo
     * Group object that contains shapes
     * make a tri force animation example with Shape and THREE.ExtrudeGeometry
 
