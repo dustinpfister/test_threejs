@@ -5,9 +5,15 @@ scene.add(new THREE.GridHelper(4, 4));
 
 // make the shape
 var tri = new THREE.Shape();
-tri.moveTo(0, 1);
-tri.lineTo(1, -1);
-tri.lineTo(-1, -1);
+tri.moveTo(0, 2);
+tri.lineTo(2, -2);
+tri.lineTo(-2, -2);
+// add the hole
+var hole = new THREE.Shape();
+hole.arc(0, -0.8, 1.0, 0, Math.PI * 2);
+// push to the shapes holes array
+tri.holes.push(hole);
+
 // geometry
 var extrudeSettings = {
     depth: 1,
