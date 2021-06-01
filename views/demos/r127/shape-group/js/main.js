@@ -3,12 +3,19 @@
 var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(4, 4));
 
-// make the shape
+// GROUP
+var group = new THREE.Group();
+scene.add(group);
+
+// BOX
+var mesh = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 1), new THREE.MeshNormalMaterial());
+group.add(mesh)
+
+// SHAPE
 var tri = new THREE.Shape();
-tri.moveTo(0, 1);
+tri.moveTo(-1, 1);
 tri.lineTo(1, -1);
 tri.lineTo(-1, -1);
-// geometry
 var extrudeSettings = {
     depth: 1,
     bevelEnabled: false
@@ -16,11 +23,13 @@ var extrudeSettings = {
 var geometry = new THREE.ExtrudeGeometry(tri, extrudeSettings);
 geometry.rotateX(Math.PI * 1); // might want to center
 geometry.center();
-// mesh
 var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
-mesh.add(new THREE.BoxHelper(mesh));
-// add the mesh to the scene
-scene.add(mesh);
+mesh.position.set(0, 2.0, 0);
+mesh.rotation.set(0, 0, Math.PI * 0.5);
+
+// add the mesh to the group
+group.add(mesh);
+group.add(new THREE.BoxHelper(group));
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
