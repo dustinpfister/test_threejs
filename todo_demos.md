@@ -37,7 +37,7 @@ https://threejs.org/docs/index.html#api/en/core/Object3D.traverse
 
 ## (started 6/02/2021 ) threejs-object3d-parent
     * (done) start a basic parent example of a mesh object added to the scene
-    * start an example that involves a function that creates a group of mesh objects
+    * (done) start an example that involves a function that creates a group of mesh objects
     * start an example that involves raycaster and getting the group of a mesh
 
 ## (started 6/01/2021 ) threejs-shape
