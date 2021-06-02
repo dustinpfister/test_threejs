@@ -28,9 +28,9 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 ## threejs-extrude-geometry
     * start a basic example of THREE.ExtrudeGeometry
 
-## (started 6/01/2021 ) threejs-object3d-parent
-    * start a basic parent example of a mesh object added to the scene
-
+## (started 6/02/2021 ) threejs-object3d-parent
+    * (done) start a basic parent example of a mesh object added to the scene
+    * start an example that involves a function that creates a group of mesh objects
     * start an example that involves raycaster and getting the group of a mesh
 
 ## (started 6/01/2021 ) threejs-shape
