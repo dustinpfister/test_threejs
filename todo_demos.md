@@ -28,11 +28,12 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 ## threejs-extrude-geometry
     * start a basic example of THREE.ExtrudeGeometry
 
-## threejs-object3d-parent
-    * start a basic parent example of a mesh
+## (started 6/01/2021 ) threejs-object3d-parent
+    * start a basic parent example of a mesh object added to the scene
+
     * start an example that involves raycaster and getting the group of a mesh
 
-## threejs-shape
+## (started 6/01/2021 ) threejs-shape
     * (done) start an example of THREE.Shape that makes use of THREE.ShapeGeometry
     * (done) start an example of THREE.Shape that makes use of THREE.ExtrudeGeometry
     * (done) have a heart example of Shape
