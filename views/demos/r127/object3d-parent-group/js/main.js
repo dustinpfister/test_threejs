@@ -19,10 +19,20 @@ var createGroup = function(gid){
     return group;
 };
 
+var rndRad = function(){
+    return Math.PI * 2 * Math.random();
+};
+
 var processObject = function(obj){
 
     var nameArray = obj.name.split('_');
-    console.log(nameArray);
+    if(nameArray[0] === 'mesh'){
+       // USING OBJECT3D parent prop to get Group
+       var mesh = obj,
+       group = mesh.parent;
+       console.log(group.name);
+       group.rotation.set(rndRad(), rndRad(), rndRad());
+    }
 
 };
 
@@ -53,9 +63,8 @@ document.getElementById('demo').appendChild(renderer.domElement);
 renderer.render(scene, camera);
 
 renderer.domElement.addEventListener('click', function(){
-
     scene.traverse( function(obj){
         processObject(obj);
     });
-
+    renderer.render(scene, camera);
 });
