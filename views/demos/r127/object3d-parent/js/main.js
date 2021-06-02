@@ -9,7 +9,7 @@ var mesh = new THREE.Mesh(
 mesh.position.set(0, 0.5, 0);
 scene.add(mesh);
 
-// getting the parent of the mesh, and prefroming an action on it
+// getting the parent of the mesh, and preforming an action on it
 var parent = mesh.parent;
 parent.rotation.x = Math.PI * 2 * Math.random();
 
