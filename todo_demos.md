@@ -2,10 +2,17 @@
 
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
+## threejs-animation-mixer
+    * basic animation mixer example
 
+## threejs-animation-clip
+    * basic animation clip example
 
 ## threejs-skinned-mesh
     * see about making a basic example of a skinned mesh
+
+## threejs-skeleton
+    * basic skeleton example
 
 ## threejs-bones
     * see about making a basic example of a bone
