@@ -19,11 +19,20 @@ var createGroup = function(gid){
     return group;
 };
 
+var processObject = function(obj){
+
+    var nameArray = obj.name.split('_');
+    console.log(nameArray);
+
+};
+
 
 // scene
 var scene = new THREE.Scene();
-scene.name = 'scene_myWorld';
-scene.add(new THREE.GridHelper(9, 9));
+scene.name = 'scene_myworld';
+var grid = new THREE.GridHelper(9, 9);
+grid.name = 'helper_grid_1';
+scene.add(grid);
 
 var group = createGroup('0');
 scene.add(group);
@@ -42,3 +51,11 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 renderer.render(scene, camera);
+
+renderer.domElement.addEventListener('click', function(){
+
+    scene.traverse( function(obj){
+        processObject(obj);
+    });
+
+});
