@@ -28,6 +28,13 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 ## threejs-extrude-geometry
     * start a basic example of THREE.ExtrudeGeometry
 
+## threejs-object3d-traverse
+    * basic example of traverse
+```
+https://discourse.threejs.org/t/to-get-array-of-all-meshes/17458/2
+https://threejs.org/docs/index.html#api/en/core/Object3D.traverse
+```
+
 ## (started 6/02/2021 ) threejs-object3d-parent
     * (done) start a basic parent example of a mesh object added to the scene
     * start an example that involves a function that creates a group of mesh objects
