@@ -2,6 +2,14 @@
 
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
+
+
+## threejs-skinned-mesh
+    * see about making a basic example of a skinned mesh
+
+## threejs-bones
+    * see about making a basic example of a bone
+
 ## threejs-examples-guy2
     * start a new guy2 model that will have a few more mesh objects compared to guy1
     * guy2 will have 3 mesh objects for each arm rather than just one
@@ -10,12 +18,12 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * have a method that can be used to move a single arm in many different ways within set range limits
     * do some reading an animation clips and see if they can be used to help with tweening from one state to another
 
+## threejs-extrude-geometry
+    * start a basic example of THREE.ExtrudeGeometry
+
 ## threejs-object3d-parent
     * start a basic parent example of a mesh
     * start an example that involves raycaster and getting the group of a mesh
-
-## threejs-extrude-geometry
-    * start a basic example of THREE.ExtrudeGeometry
 
 ## threejs-shape
     * (done) start an example of THREE.Shape that makes use of THREE.ShapeGeometry
