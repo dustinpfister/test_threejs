@@ -1,12 +1,16 @@
 
 (function () {
 
+    var createCube = function(){
+        return new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1),new THREE.MeshNormalMaterial());
+    };
+
     var createCubeGroup = function(id){
         var group = new THREE.Group();
         id = id || group.id;
         var i = 3;
         while(i--){
-            group.add( new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial() ));
+            group.add( createCube() );
         }
         group.name = 'cubegroup:' + id;
         return group;
