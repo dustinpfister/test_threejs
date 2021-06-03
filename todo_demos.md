@@ -17,7 +17,7 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 ## threejs-bones
     * see about making a basic example of a bone
 
-## threejs-examples-guy2
+## threejs-examples-guy-two
     * start a new guy2 model that will have a few more mesh objects compared to guy1
     * guy2 will have 3 mesh objects for each arm rather than just one
     * guy2 will have 3 mesh objects for each leg rather than just one
