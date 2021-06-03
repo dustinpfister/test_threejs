@@ -6,7 +6,7 @@
         id = id || group.id;
         var i = 3;
         while(i--){
-            group.add( new THREE.Mesh( new THREE.BoxGeometry(1,1, 1), new THREE.MeshNormalMaterial() ));
+            group.add( new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial() ));
         }
         group.name = 'cubegroup:' + id;
         return group;
@@ -15,14 +15,16 @@
     var setNamesForScene = function(scene){
         // TRAVERSING ALL OBJECTS IN THE SCENE
         scene.traverse(function(obj){
-
+            var nameArray = obj.name.split('_');
             if(obj.type === 'Mesh'){
             }
+            // set names for mesh objects of groups
             if(obj.type === 'Group'){
-                if(group.name.split(':')[0] === 'cubegroup'){
+                if(nameArray[0].split(':')[0] === 'cubegroup'){
                     var len = obj.children.length;
                     obj.children.forEach(function(child, i){
-                        console.log(child);
+                        child.name = 'mesh:' + i + '_' + nameArray[0];
+                        console.log(child.name);
                     });
                 }
             }
