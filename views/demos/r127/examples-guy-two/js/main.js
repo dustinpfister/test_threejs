@@ -2,7 +2,7 @@
 var scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10, 'white', 'lime') );
 
-var guy = Guy2.create();
+var guy = Guy2.create({spacing: 0.1});
 scene.add(guy);
 
 // camera and renderer
