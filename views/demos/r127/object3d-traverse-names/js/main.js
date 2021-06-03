@@ -7,14 +7,16 @@
         return mesh;
     };
 
-    var createCubeGroup = function(id){
+    var createCubeGroup = function(id, count){
         var group = new THREE.Group();
         id = id || group.id;
-        var i = 10;
+        count = count || 10;
+        var i = count;
         while(i--){
             group.add( createCube() );
         }
         group.userData.id = id;
+        group.userData.count = count;
         group.userData.cubeGroupType = 'Group';
         return group;
     };
@@ -37,6 +39,7 @@
             // SET NAMES FOR GROUPS AND MESH OBJECTS OF GROUPS
             if(obj.userData.cubeGroupType === 'Group'){
                 obj.name = 'cubegroup:' + obj.userData.id;
+                console.log(obj.name);
                 obj.children.forEach(function(child, i){
                     if(child.userData.cubeGroupType === 'Mesh'){
                         child.name = 'mesh:' + i + '_' + obj.name
@@ -47,12 +50,13 @@
         });     
     };
 
-    var positionGroup = function(groupId, y){
-        var len = 10,
-        i = len;
+    var positionGroup = function(scene, groupId, y){
+        var group = scene.getObjectByName('cubegroup:' + groupId), i, len;
         y = y === undefined ? 0 : y;
+        len = group.userData.count;
+        i = len;
         while(i--){
-            var mesh = scene.getObjectByName('mesh:' + i + '_cubegroup:' + groupId),
+            var mesh = group.getObjectByName('mesh:' + i + '_cubegroup:' + groupId),
             rad = Math.PI * 2 * ( i / len ),
             x = Math.cos(rad) * 5,
             z = Math.sin(rad) * 5;
@@ -96,8 +100,8 @@
     setNamesForScene(scene);
 
     // position groups
-    positionGroup('one', -1);
-    positionGroup('two', 1);
+    positionGroup(scene, 'one', -1);
+    positionGroup(scene, 'two', 1);
 
     // render
     renderer.render(scene, camera);
