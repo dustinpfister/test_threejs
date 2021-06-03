@@ -11,8 +11,13 @@
     helper.rotation.z = Math.PI * 0.5;
     scene.add(helper);
 
-    // ADDING A MESH
-    scene.add( new THREE.Mesh( new THREE.BoxGeometry(1,1, 1), new THREE.MeshNormalMaterial() ) )
+    // ADDING A GROUP OF MESH OBJECTS
+    var group = new THREE.Group();
+    var i = 10;
+    while(i--){
+        group.add( new THREE.Mesh( new THREE.BoxGeometry(1,1, 1), new THREE.MeshNormalMaterial() ));
+    }
+    scene.add( group );
 
     // camera, renderer
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 25);
@@ -29,7 +34,7 @@
             obj.material.color = new THREE.Color(0, 1, 0);
         }
         if(obj.type === 'Mesh'){
-            obj.material = new THREE.MeshDepthMaterial();
+            obj.rotation.y = Math.PI * 2 * Math.random();
         }
     });
 
