@@ -15,8 +15,8 @@
     scene.add( new THREE.Mesh( new THREE.BoxGeometry(1,1, 1), new THREE.MeshNormalMaterial() ) )
 
     // camera, renderer
-    var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(10, 8, 10);
+    var camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 25);
+    camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
     scene.add(camera); // ADDING CAMERA OBJECT TO THE SCENE
 
@@ -26,7 +26,10 @@
 
     scene.traverse(function(obj){
         if(obj.type === 'GridHelper'){
-            console.log(obj.material.color = new THREE.Color(0, 1, 0));
+            obj.material.color = new THREE.Color(0, 1, 0);
+        }
+        if(obj.type === 'Mesh'){
+            obj.material = new THREE.MeshDepthMaterial();
         }
     });
 
