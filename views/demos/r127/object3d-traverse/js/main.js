@@ -29,6 +29,7 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
+    // TRAVERSING ALL OBJECTS IN THE SCENE
     scene.traverse(function(obj){
         if(obj.type === 'GridHelper'){
             obj.material.color = new THREE.Color(0, 1, 0);
