@@ -35,6 +35,8 @@
             obj.material.color = new THREE.Color(0, 1, 0);
         }
         if(obj.type === 'Mesh'){
+            obj.position.x = -5 + Math.floor(10 * Math.random());
+            obj.position.z = -5 + Math.floor(10 * Math.random());
             obj.rotation.y = Math.PI * 2 * Math.random();
         }
     });
