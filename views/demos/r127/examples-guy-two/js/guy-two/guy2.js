@@ -9,6 +9,11 @@
         arm: HARD_MATERIAL
     };
 
+    var createArm = function(opt){
+        var arm = new THREE.Mesh(new THREE.BoxGeometry(0.5, 1, 0.5), opt.materials.arm);
+        return arm;
+    };
+
     api.create = function(opt){
         opt = opt || {};
         opt.materials = opt.materials || DEFAULT_MATERIALS;
@@ -27,9 +32,14 @@
         group.add(head);
 
         // left arm
-        var leftArm = new THREE.Mesh(new THREE.BoxGeometry(0.5, 1, 0.5), opt.materials.arm);
+        var leftArm = createArm(opt);
         leftArm.position.set(0.75 + opt.spacing, 0, 0);
         group.add(leftArm);
+
+        // right arm
+        var rightArm = createArm(opt);
+        rightArm.position.set( (0.75 + opt.spacing ) * -1, 0, 0);
+        group.add(rightArm);
 
         return group;
 
