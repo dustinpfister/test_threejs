@@ -29,7 +29,7 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * start a basic example of THREE.ExtrudeGeometry
 
 ## (started 6/03/2021 ) threejs-object3d-traverse
-    * basic example of traverse
+    * (done) basic example of traverse
 ```
 https://discourse.threejs.org/t/to-get-array-of-all-meshes/17458/2
 https://threejs.org/docs/index.html#api/en/core/Object3D.traverse
