@@ -1,15 +1,6 @@
 // SCENE
 var scene = new THREE.Scene();
-
-// CAMERA
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(10, 6, 10);
-camera.lookAt(0, 0, 0);
-
-// RENDER
-var renderer = new THREE.WebGLRenderer();
-document.getElementById('demo').appendChild(renderer.domElement);
-renderer.setSize(640, 480);
+scene.add(new THREE.GridHelper(10, 10));
 
 // MESH original
 var original = new THREE.Mesh(
@@ -44,5 +35,15 @@ while (i < 10) {
 
 // a change to the color of the original will effect all the clones also
 original.material.color.setRGB(0, 1, 0);
+
+// CAMERA
+var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+camera.position.set(8, 5, 8);
+camera.lookAt(0, 0, 0);
+
+// RENDER
+var renderer = new THREE.WebGLRenderer();
+document.getElementById('demo').appendChild(renderer.domElement);
+renderer.setSize(640, 480);
 
 renderer.render(scene, camera);
