@@ -5,21 +5,22 @@ scene.add(new THREE.GridHelper(10, 10));
 var group = new THREE.Group();
 scene.add(group);
 
-var createBox = function(){
+var createBox = function(w, h, d){
     var box = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.BoxGeometry(w, h, d),
         new THREE.MeshStandardMaterial({
             color: 'red'
         }));
     return box;
 };
-var mainBox = createBox();
+var mainBox = createBox(1, 1, 1);
 group.add(mainBox);
 
 // Mesh cloned a bunch of times from original
-var i = 0, mesh, rad, x, z;
+var i = 0, mesh, rad, s, x, z;
 while (i < 10) {
-    mesh = createBox();
+    s = 0.25 + 0.25 * ( Math.random() * 5 );
+    mesh = createBox(s, s, s);
     // changes made to position and rotation to not effect original
     rad = Math.PI * 2 * (i / 10);
     x = Math.cos(rad) * 3;
