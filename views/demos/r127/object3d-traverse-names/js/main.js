@@ -2,7 +2,9 @@
 (function () {
 
     var createCube = function(){
-        return new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1),new THREE.MeshNormalMaterial());
+        var mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1),new THREE.MeshNormalMaterial());
+        mesh.userData.cubeGroupType = 'Mesh';
+        return mesh;
     };
 
     var createCubeGroup = function(id){
@@ -12,25 +14,36 @@
         while(i--){
             group.add( createCube() );
         }
-        group.name = 'cubegroup:' + id;
+        group.userData.id = id;
+        group.userData.cubeGroupType = 'Group';
         return group;
     };
 
     var setNamesForScene = function(scene){
+        var standAloneCount = 0;
         // TRAVERSING ALL OBJECTS IN THE SCENE
         scene.traverse(function(obj){
-            var nameArray = obj.name.split('_');
-            if(obj.type === 'Mesh'){
-            }
-            // set names for mesh objects of groups
-            if(obj.type === 'Group'){
-                if(nameArray[0].split(':')[0] === 'cubegroup'){
-                    var len = obj.children.length;
-                    obj.children.forEach(function(child, i){
-                        child.name = 'mesh:' + i + '_' + nameArray[0];
-                        console.log(child.name);
-                    });
+            
+            // SET NAMES FOR STAND ALONE MESH CUBES
+            if(obj.userData.cubeGroupType === 'Mesh'){
+                var parent = obj.parent;
+                if(parent.type != 'Group'){
+                    if(obj.userData.cubeGroupType === 'Mesh'){
+                        obj.name = 'mesh:' + standAloneCount;
+                        standAloneCount += 1;
+                        console.log(obj.name);
+                    }
                 }
+            }
+            // SET NAMES FOR GROUPS AND MESH OBJECTS OF GROUPS
+            if(obj.userData.cubeGroupType === 'Group'){
+                obj.name = 'cubegroup:' + obj.userData.id;
+                obj.children.forEach(function(child, i){
+                    if(child.userData.cubeGroupType === 'Mesh'){
+                        child.name = 'mesh:' + i + '_' + obj.name
+                        console.log(child.name);
+                    }
+                }); 
             }
         });     
     };
@@ -45,8 +58,15 @@
     helper.rotation.z = Math.PI * 0.5;
     scene.add(helper);
 
+    // adding a group
     var group = createCubeGroup('one');
     scene.add( group );
+    var group = createCubeGroup('two');
+    scene.add( group );
+
+    // stand alone mesh
+    var mesh = createCube();
+    scene.add( mesh );
 
     // camera, renderer
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 25);
@@ -58,8 +78,10 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
+    // calling set names
     setNamesForScene(scene);
 
+    // render
     renderer.render(scene, camera);
 
 }
