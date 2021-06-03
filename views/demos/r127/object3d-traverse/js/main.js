@@ -13,7 +13,7 @@
 
     // ADDING A GROUP OF MESH OBJECTS
     var group = new THREE.Group();
-    var i = 10;
+    var i = 20;
     while(i--){
         group.add( new THREE.Mesh( new THREE.BoxGeometry(1,1, 1), new THREE.MeshNormalMaterial() ));
     }
@@ -43,6 +43,8 @@
             var len = obj.children.length;
             obj.children.forEach(function(child, i){
                 child.position.y = -5 + Math.floor( 10 * (i / len) );
+                var s = 0.25 + 1.75 * (1 - i / len);
+                child.scale.set(s, s, s);
             });
         }
     });
