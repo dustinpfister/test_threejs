@@ -39,6 +39,12 @@
             obj.position.z = -5 + Math.floor(10 * Math.random());
             obj.rotation.y = Math.PI * 2 * Math.random();
         }
+        if(obj.type === 'Group'){
+            var len = obj.children.length;
+            obj.children.forEach(function(child, i){
+                child.position.y = -5 + Math.floor( 10 * (i / len) );
+            });
+        }
     });
 
     renderer.render(scene, camera);
