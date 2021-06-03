@@ -10,7 +10,7 @@
     var createCubeGroup = function(id){
         var group = new THREE.Group();
         id = id || group.id;
-        var i = 3;
+        var i = 10;
         while(i--){
             group.add( createCube() );
         }
@@ -22,8 +22,7 @@
     var setNamesForScene = function(scene){
         var standAloneCount = 0;
         // TRAVERSING ALL OBJECTS IN THE SCENE
-        scene.traverse(function(obj){
-            
+        scene.traverse(function(obj){        
             // SET NAMES FOR STAND ALONE MESH CUBES
             if(obj.userData.cubeGroupType === 'Mesh'){
                 var parent = obj.parent;
@@ -46,6 +45,21 @@
                 }); 
             }
         });     
+    };
+
+    var positionGroup = function(groupId, y){
+        var len = 10,
+        i = len;
+        y = y === undefined ? 0 : y;
+        while(i--){
+            var mesh = scene.getObjectByName('mesh:' + i + '_cubegroup:' + groupId),
+            rad = Math.PI * 2 * ( i / len ),
+            x = Math.cos(rad) * 5,
+            z = Math.sin(rad) * 5;
+            if(mesh){
+                mesh.position.set(x, y, z);
+            }
+        }
     };
 
     // Scene
@@ -80,6 +94,10 @@
 
     // calling set names
     setNamesForScene(scene);
+
+    // position groups
+    positionGroup('one', -1);
+    positionGroup('two', 1);
 
     // render
     renderer.render(scene, camera);
