@@ -17,6 +17,9 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 ## threejs-bones
     * see about making a basic example of a bone
 
+## threejs-extrude-geometry
+    * start a basic example of THREE.ExtrudeGeometry
+
 ## threejs-examples-guy-two
     * start a new guy2 model that will have a few more mesh objects compared to guy1
     * guy2 will have 3 mesh objects for each arm rather than just one
@@ -25,8 +28,8 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * have a method that can be used to move a single arm in many different ways within set range limits
     * do some reading an animation clips and see if they can be used to help with tweening from one state to another
 
-## threejs-extrude-geometry
-    * start a basic example of THREE.ExtrudeGeometry
+## threejs-object3d-layers
+    * basic example of object3d layers using 2 cameras, and 2 mesh objects
 
 ## (started 6/03/2021 ) threejs-object3d-traverse
     * (done) basic example of traverse
