@@ -1,7 +1,7 @@
 
 (function () {
 
-    var layerModes = [[0], [1], [0, 1]],
+    var layerModes = [[0], [1], [2], [0, 1]],
     layerModeIndex = 0;
 
     var setToLayerMode = function (obj, index) {
@@ -18,7 +18,7 @@
                     color: color
                 }));
         var boxHelper = new THREE.BoxHelper(mesh);
-        setToLayerMode(boxHelper, 2);
+        setToLayerMode(boxHelper, 3);
         mesh.add(boxHelper);
         mesh.position.set(x, 0, 0);
         setToLayerMode(mesh, layerMode);
@@ -36,6 +36,8 @@
     scene.add(createBoxForLayer(0, 'red', 2));
     // ADDING A MESH FOR LAYER MODE 1 ONLY
     scene.add(createBoxForLayer(1, 'lime', -2));
+    // ADDING A MESH FOR LAYER MODE 2 ONLY
+    scene.add(createBoxForLayer(2, 'white', 0));
 
     // camera, and renderer
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
