@@ -1,6 +1,5 @@
 
 (function () {
-
     // scene
     var scene = new THREE.Scene();
 
@@ -23,27 +22,15 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-
-    // loop
-    var lt = new Date(),
-    cameraLayer = 0;
+    // update
+    var cameraLayer = 0;
     var update = function () {
         camera.layers.set(cameraLayer);
+        renderer.render(scene, camera);
         cameraLayer += 1;
         cameraLayer %= 2;
-        renderer.render(scene, camera);
-    };
-    var loop = function () {
-        var now = new Date(),
-        secs = (now - lt) / 1000;
-        requestAnimationFrame(loop);
-        if (secs > 1) {
-            update();
-            lt = now;
-        }
     };
     update();
-    loop();
-
+    setInterval(update, 1000);
 }
     ());
