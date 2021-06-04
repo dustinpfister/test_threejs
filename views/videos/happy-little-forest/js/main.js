@@ -67,7 +67,8 @@
     video.sequence.push({
         maxFrame: 120,
         forFrame: function (seq) {
-            var radian = Math.PI * 0.25 + seq.per * Math.PI * 2;
+            var camPer = (seq.per * 4) % 1;
+            var radian = Math.PI * 0.25 + camPer * Math.PI * 2;
             var x = Math.cos(radian) * 20,
             z = Math.sin(radian) * 20;
             camera.position.set(x, 15, z);
