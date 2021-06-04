@@ -29,6 +29,7 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * do some reading an animation clips and see if they can be used to help with tweening from one state to another
 
 ## threejs-object3d-layers
+    * basic example with one camera and two mesh objects, where layers are being switched for the camera
     * basic example of object3d layers using 2 cameras, and 2 mesh objects
 
 ## (started 6/03/2021 ) threejs-object3d-traverse
