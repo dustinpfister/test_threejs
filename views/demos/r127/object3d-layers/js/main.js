@@ -14,6 +14,9 @@
             new THREE.MeshBasicMaterial({
                 color: 'red'
             }));
+
+    mesh.add(new THREE.BoxHelper(mesh));
+    mesh.position.set(-2, 0, 0);
     mesh.layers.set(0); // this is the default actually just making it explicit
     scene.add(mesh);
 
@@ -23,6 +26,7 @@
             new THREE.MeshBasicMaterial({
                 color: 'lime'
             }));
+    mesh.add(new THREE.BoxHelper(mesh));
     mesh.position.set(2, 0, 0);
     mesh.layers.set(1); // setting to player 1 only
     scene.add(mesh);
