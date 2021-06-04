@@ -3,9 +3,29 @@
 
     // Scene
     var scene = new THREE.Scene();
+    // ADDING A GRID THAT I AM ENABLING FOR ALL LAYERS
     var grid = new THREE.GridHelper(10, 10);
-    grid.layers.set(0);
+    grid.layers.enableAll(); // enable all will set all layers true
     scene.add(grid);
+
+    // ADDING A MESH FOR LAYER 0 ONLY
+    var mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshBasicMaterial({
+                color: 'red'
+            }));
+    mesh.layers.set(0); // this is the default actually just making it explicit
+    scene.add(mesh);
+
+    // ADDING A MESH FOR LAYER 1 ONLY
+    var mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshBasicMaterial({
+                color: 'lime'
+            }));
+    mesh.position.set(2, 0, 0);
+    mesh.layers.set(1); // setting to player 1 only
+    scene.add(mesh);
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
