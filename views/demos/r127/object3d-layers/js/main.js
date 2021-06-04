@@ -3,13 +3,10 @@
     // scene
     var scene = new THREE.Scene();
 
-    // ADDING A GRID THAT I AM ENABLING FOR ALL LAYERS
-    var grid = new THREE.GridHelper(10, 10);
-    grid.layers.enableAll(); // enable all will set all layers true
+    var grid = new THREE.GridHelper(10, 10);  // ADDING A GRID THAT I AM ENABLING FOR ALL LAYERS
+    grid.layers.enableAll();
     scene.add(grid);
-
-    // SINGLE MESH FOR LAYER 1
-    var mesh = new THREE.Mesh(
+    var mesh = new THREE.Mesh(  // SINGLE MESH FOR LAYER 1
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
     mesh.layers.set(1);
