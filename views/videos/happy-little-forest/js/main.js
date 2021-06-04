@@ -56,9 +56,30 @@
 
     // first sequence
     video.sequence.push({
+        maxFrame: 60,
+        forFrame: function (seq) {
+            camera.position.set(15, 0.2 + 14.8 * seq.per, 15);
+            camera.lookAt(guy.group.position)
+            renderer.render(scene, camera);
+        }
+    });
+
+    video.sequence.push({
         maxFrame: 120,
         forFrame: function (seq) {
-            camera.position.set(15, 0.2 + 14 * seq.per, 15);
+            var radian = Math.PI * 0.25 + seq.per * Math.PI * 2;
+            var x = Math.cos(radian) * 20,
+            z = Math.sin(radian) * 20;
+            camera.position.set(x, 15, z);
+            camera.lookAt(guy.group.position)
+            renderer.render(scene, camera);
+        }
+    });
+
+    video.sequence.push({
+        maxFrame: 60,
+        forFrame: function (seq) {
+            camera.position.set(15, 15 - 14.8 * seq.per, 15);
             camera.lookAt(guy.group.position)
             renderer.render(scene, camera);
         }
