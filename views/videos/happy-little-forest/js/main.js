@@ -56,7 +56,7 @@
 
     // first sequence
     video.sequence.push({
-        maxFrame: 60,
+        maxFrame: Math.ceil(30 * 6.75),
         forFrame: function (seq) {
             camera.position.set(15, 0.2 + 14.8 * seq.per, 15);
             camera.lookAt(guy.group.position)
@@ -65,7 +65,7 @@
     });
 
     video.sequence.push({
-        maxFrame: 120,
+        maxFrame: Math.ceil(30 * 4.3),
         forFrame: function (seq) {
             var camPer = (seq.per * 4) % 1;
             var radian = Math.PI * 0.25 + camPer * Math.PI * 2;
