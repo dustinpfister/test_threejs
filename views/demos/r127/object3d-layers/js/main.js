@@ -1,6 +1,20 @@
 
 (function () {
 
+    var createBoxForLayer = function (layerNum, color, x) {
+        var mesh = new THREE.Mesh(
+                new THREE.BoxGeometry(1, 1, 1),
+                new THREE.MeshBasicMaterial({
+                    color: color
+                }));
+        var boxHelper = new THREE.BoxHelper(mesh);
+        boxHelper.layers.set(layerNum);
+        mesh.add(boxHelper);
+        mesh.position.set(x, 0, 0);
+        mesh.layers.set(layerNum);
+        return mesh;
+    };
+
     // Scene
     var scene = new THREE.Scene();
     // ADDING A GRID THAT I AM ENABLING FOR ALL LAYERS
@@ -9,27 +23,9 @@
     scene.add(grid);
 
     // ADDING A MESH FOR LAYER 0 ONLY
-    var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
-                color: 'red'
-            }));
-
-    mesh.add(new THREE.BoxHelper(mesh));
-    mesh.position.set(-2, 0, 0);
-    mesh.layers.set(0); // this is the default actually just making it explicit
-    scene.add(mesh);
-
+    scene.add(createBoxForLayer(0, 'red', 2));
     // ADDING A MESH FOR LAYER 1 ONLY
-    var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
-                color: 'lime'
-            }));
-    mesh.add(new THREE.BoxHelper(mesh));
-    mesh.position.set(2, 0, 0);
-    mesh.layers.set(1); // setting to player 1 only
-    scene.add(mesh);
+    scene.add(createBoxForLayer(1, 'lime', -2));
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
