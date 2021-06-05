@@ -10,12 +10,18 @@
 
     // GROUND
     var ground = TileMod.create({
-            w: 100,
-            h: 100,
-            sw: 32,
-            sh: 32
+            w: 20,
+            h: 20,
+            sw: 4,
+            sh: 4
         });
     TileMod.setCheckerBoard(ground);
+	
+	TileModPositioner.forCells(ground, {
+		
+		
+	});
+	
     scene.add(ground);
 
     // GUY
@@ -23,6 +29,7 @@
     guy.group.position.set(0, 3, 0);
     scene.add(guy.group);
 
+/*
     // trees
     var tree = new Tree({
             coneMaterial: MATERIALS_CONE_TREE
@@ -36,6 +43,7 @@
     tree2.scale.set(4, 4, 4);
     tree2.position.set(0, 4, -5);
     scene.add(tree2);
+*/
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 100);
@@ -49,7 +57,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 0,
+        frame: 100,
         canvas: renderer.domElement,
         sequence: []
     };
