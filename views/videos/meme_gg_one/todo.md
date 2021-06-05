@@ -11,8 +11,8 @@
 * make it so that the face textures sink up with what is being said
 
 ### tree grid position system
-* start a system where threes are created and positioned positioned on the plane following a grid of values
-* each gird value where each value is a model index at that grid location
+* (done) start a system where threes are created and positioned positioned on the plane following a grid of values
+* (done) each gird value where each value is a model index at that grid location
 
 ### - ( done 6/4/2021 ) started sequences
 * (done) sequence one where the camera goes from the ground up to a set height started
