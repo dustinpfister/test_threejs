@@ -187,9 +187,9 @@
             // camera
             var camPer = (seq.per * 4) % 1;
             var radian = Math.PI * 0.25 + camPer * Math.PI * 2;
-            var x = Math.cos(radian) * 35,
-            z = Math.sin(radian) * 35;
-            camera.position.set(x, 25, z);
+            var x = Math.cos(radian) * (35 - 30 * seq.bias),
+            z = Math.sin(radian) * (35 - 30 * seq.bias);
+            camera.position.set(x, 25 - 20 * seq.bias, z);
             camera.lookAt(guy.group.position)
             renderer.render(scene, camera);
         }
