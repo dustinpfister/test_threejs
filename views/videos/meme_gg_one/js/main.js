@@ -127,7 +127,7 @@
         forFrame: function (seq) {
 
             // scene
-            scene.background = new THREE.Color('#00ffff');
+            scene.background = new THREE.Color(0, 1, 1);
 
             // light
             wpl.intensity = 0.75;
@@ -157,7 +157,7 @@
         forFrame: function (seq) {
 
             // scene
-            scene.background = new THREE.Color('#000000');
+            scene.background = new THREE.Color(0, 0, 0);
 
             // light
             wpl.intensity = 0;
@@ -201,7 +201,7 @@
         forFrame: function (seq) {
 
             // scene
-            scene.background = new THREE.Color('#00ffff');
+            scene.background = new THREE.Color(0, seq.per, seq.per);
 
             // light
             wpl.intensity = 0.75 * seq.per;
