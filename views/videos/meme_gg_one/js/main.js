@@ -94,9 +94,16 @@
     var wpl = new THREE.PointLight(0xffffff, 0.75); // point light
     wpl.position.set(20, 40, 10);
     scene.add(wpl);
+    // spot lights
     var sl_red = new THREE.SpotLight(0xff0000, 1, 0, Math.PI / 180 * 10, 0.25); // spot light red
     sl_red.position.set(20, 30, -20);
     scene.add(sl_red);
+    var sl_green = new THREE.SpotLight(0x00ff00, 1, 0, Math.PI / 180 * 10, 0.25); // spot light green
+    sl_green.position.set(0, 30, -20);
+    scene.add(sl_green);
+    var sl_blue = new THREE.SpotLight(0x0000ff, 1, 0, Math.PI / 180 * 10, 0.25); // spot light blue
+    sl_blue.position.set(-20, 30, -20);
+    scene.add(sl_blue);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
@@ -123,6 +130,8 @@
             wpl.intensity = 0.75;
             al.intensity = 0.125;
             sl_red.intensity = 0;
+            sl_green.intensity = 0;
+            sl_blue.intensity = 0;
 
             // guy
             guy.head.rotation.y = Math.PI * 0.25 * seq.per;
@@ -147,8 +156,17 @@
             wpl.intensity = 0;
             al.intensity = 0.075;
             sl_red.intensity = 1;
-            sl_red.position.set(Math.sin(Math.PI * 2 * (seq.per * 4 % 1)) * 20, 30, -20);
+            sl_green.intensity = 1;
+            sl_blue.intensity = 1;
+            var radian = Math.PI * 2 * (seq.per * 8 % 1);
+            sl_red.position.set(Math.cos(radian) * 20, 30, Math.sin(radian) * 20);
             sl_red.target = guy.group;
+            var radian = Math.PI * 2 * (seq.per * 16 % 1);
+            sl_green.position.set(Math.cos(radian) * -20, 30, Math.sin(radian) * 20);
+            sl_green.target = guy.group;
+            var radian = Math.PI * 2 * (seq.per * 32 % 1);
+            sl_blue.position.set(Math.cos(radian) * 20, 30, Math.sin(radian) * 20);
+            sl_blue.target = guy.group;
 
             // guy
             guy.head.rotation.y = Math.PI * 0.25 + Math.PI * 2 * seq.per;
@@ -177,6 +195,8 @@
             wpl.intensity = 0.75 * seq.per;
             al.intensity = 0.125 * seq.per;
             sl_red.intensity = 0;
+            sl_green.intensity = 0;
+            sl_blue.intensity = 0;
 
             // guy
             guy.head.rotation.y = Math.PI * 0.25;

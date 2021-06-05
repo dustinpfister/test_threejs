@@ -8,7 +8,7 @@
 ### raw3 () sequence two disco effects
 * (done) point light removed from camera and added to scene
 * (done) custom materials for trees
-* custom materials for group 
+* (done) custom materials for ground 
 
 * have a group of spot lights using different colors
 
