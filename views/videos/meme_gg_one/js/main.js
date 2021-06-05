@@ -80,6 +80,7 @@
         forFrame: function (seq) {
             // guy
             guy.head.rotation.y = Math.PI * 0.25 * seq.per;
+            guy.group.position.y = 3;
             // camera
             camera.position.set(25, 0.2 + 24.8 * seq.per, 25);
             camera.lookAt(guy.group.position)
@@ -93,6 +94,7 @@
         forFrame: function (seq) {
             // guy
             guy.head.rotation.y = Math.PI * 0.25 - Math.PI * 8 * seq.per;
+            guy.group.position.y = 3 + 12 * seq.per;
             // camera
             var camPer = (seq.per * 2) % 1;
             var radian = Math.PI * 0.25 + camPer * Math.PI * 2;
@@ -110,6 +112,7 @@
         forFrame: function (seq) {
             // guy
             guy.head.rotation.y = Math.PI * 0.25;
+            guy.group.position.y = 15 - 12 * seq.per;
             // camera
             camera.position.set(25, 25 - 24.8 * seq.per, 25);
             camera.lookAt(guy.group.position)
