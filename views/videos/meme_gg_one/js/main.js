@@ -16,12 +16,20 @@
             sh: 4
         });
     TileMod.setCheckerBoard(ground);
-	
-	TileModPositioner.forCells(ground, {
-		
-		
-	});
-	
+
+    TileModPositioner.forCells(ground, {
+        forCell: function (ground, x, z, tileX, tileZ, i) {
+            if (tileX === 1 && tileZ === 2) {
+                var tree2 = TreeSphereMod.create();
+                tree2.lookAt(0, -10, 0);
+                tree2.scale.set(4, 4, 4);
+                tree2.position.set(x, 4, z);
+                scene.add(tree2);
+            }
+        }
+
+    });
+
     scene.add(ground);
 
     // GUY
@@ -29,11 +37,11 @@
     guy.group.position.set(0, 3, 0);
     scene.add(guy.group);
 
-/*
+    /*
     // trees
     var tree = new Tree({
-            coneMaterial: MATERIALS_CONE_TREE
-        });
+    coneMaterial: MATERIALS_CONE_TREE
+    });
     tree.group.scale.set(2, 2, 2);
     tree.group.position.set(-13, 1.2, 0);
     scene.add(tree.group);
@@ -43,7 +51,7 @@
     tree2.scale.set(4, 4, 4);
     tree2.position.set(0, 4, -5);
     scene.add(tree2);
-*/
+     */
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 100);

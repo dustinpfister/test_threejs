@@ -2,7 +2,7 @@
 
     api.forCells = function (plane, opt) {
         opt = opt || {};
-        opt.forCell = opt.forCell || function (plane, x, y, tileX, tileZ, i) {
+        opt.forCell = opt.forCell || function (plane, x, z, tileX, tileZ, i) {
             console.log(i, tileX, tileZ);
         };
 
@@ -16,9 +16,11 @@
         while (i < len) {
             tileX = i % param.widthSegments;
             tileZ = Math.floor(i / param.widthSegments);
-            x = 0;
-            y = 0;
-            opt.forCell(plane, x, y, tileX, tileZ, i);
+            var segW = param.width / param.widthSegments,
+            segH = param.height / param.heightSegments;
+            x = plane.position.x - param.width / 2 + segW * tileX + segW / 2;
+            z = plane.position.z - param.height / 2 + segH * tileZ + segH / 2;
+            opt.forCell(plane, x, z, tileX, tileZ, i);
             i += 1;
         }
     };
