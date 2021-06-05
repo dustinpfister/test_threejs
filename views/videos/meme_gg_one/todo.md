@@ -10,7 +10,7 @@
 * work out a system where and array of seq.secs values are used to set the current texture for the guys face
 * make it so that the face textures sink up with what is being said
 
-### tree grid position system
+### ( done 6/5/2021 ) tree grid position system
 * (done) start a system where threes are created and positioned positioned on the plane following a grid of values
 * (done) each gird value where each value is a model index at that grid location
 
