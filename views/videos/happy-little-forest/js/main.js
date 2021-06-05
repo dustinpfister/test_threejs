@@ -58,12 +58,14 @@
     video.sequence.push({
         maxFrame: Math.ceil(30 * 6.75),
         forFrame: function (seq) {
+            // camera
             camera.position.set(15, 0.2 + 14.8 * seq.per, 15);
             camera.lookAt(guy.group.position)
             renderer.render(scene, camera);
         }
     });
 
+    // spinning around
     video.sequence.push({
         maxFrame: Math.ceil(30 * 4.3),
         forFrame: function (seq) {
@@ -77,6 +79,7 @@
         }
     });
 
+    // back down
     video.sequence.push({
         maxFrame: 60,
         forFrame: function (seq) {
