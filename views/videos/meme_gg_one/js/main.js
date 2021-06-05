@@ -10,14 +10,21 @@
 
     // GROUND
     var ground = TileMod.create({
-            w: 20,
-            h: 20,
-            sw: 4,
-            sh: 4
+            w: 80,
+            h: 80,
+            sw: 8,
+            sh: 8
         });
     TileMod.setCheckerBoard(ground);
     TileModPositioner.processObjectIndexString(ground, {
-        string: '0001000010000000',
+        string: '10000100' +
+        '00010000' +
+        '01000010' +
+        '00000000' +
+        '10000001' +
+        '00010000' +
+        '10000000' +
+        '00100000',
         forIndex: [
             // 0
             function () {},
@@ -31,19 +38,6 @@
             }
         ]
     });
-    /*
-    TileModPositioner.forCells(ground, {
-    forCell: function (ground, x, z, tileX, tileZ, i) {
-    if (tileX === 1 && tileZ === 2) {
-    var tree2 = TreeSphereMod.create();
-    tree2.lookAt(0, -10, 0);
-    tree2.scale.set(4, 4, 4);
-    tree2.position.set(x, 4, z);
-    scene.add(tree2);
-    }
-    }
-    });
-     */
 
     scene.add(ground);
 
@@ -69,7 +63,7 @@
      */
 
     // CAMERA
-    var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 100);
+    var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
     camera.add(new THREE.PointLight());
     scene.add(camera);
 
@@ -80,7 +74,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 100,
+        frame: 0, //202,
         canvas: renderer.domElement,
         sequence: []
     };
@@ -90,7 +84,7 @@
         maxFrame: Math.ceil(30 * 6.75),
         forFrame: function (seq) {
             // camera
-            camera.position.set(15, 0.2 + 14.8 * seq.per, 15);
+            camera.position.set(25, 0.2 + 24.8 * seq.per, 25);
             camera.lookAt(guy.group.position)
             renderer.render(scene, camera);
         }
@@ -102,9 +96,9 @@
         forFrame: function (seq) {
             var camPer = (seq.per * 4) % 1;
             var radian = Math.PI * 0.25 + camPer * Math.PI * 2;
-            var x = Math.cos(radian) * 20,
-            z = Math.sin(radian) * 20;
-            camera.position.set(x, 15, z);
+            var x = Math.cos(radian) * 35,
+            z = Math.sin(radian) * 35;
+            camera.position.set(x, 25, z);
             camera.lookAt(guy.group.position)
             renderer.render(scene, camera);
         }
@@ -114,7 +108,7 @@
     video.sequence.push({
         maxFrame: 60,
         forFrame: function (seq) {
-            camera.position.set(15, 15 - 14.8 * seq.per, 15);
+            camera.position.set(25, 25 - 24.8 * seq.per, 25);
             camera.lookAt(guy.group.position)
             renderer.render(scene, camera);
         }
