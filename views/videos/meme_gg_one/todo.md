@@ -7,7 +7,11 @@
 
 ### raw3 () sequence two disco effects
 * (done) point light removed from camera and added to scene
-* have spot lights using different colors and make them animated
+* (done) custom materials for trees
+* custom materials for group 
+
+* have a group of spot lights using different colors
+
 * guy raises arms up into the air during sq1
 * guy moves arms and legs during s12
 

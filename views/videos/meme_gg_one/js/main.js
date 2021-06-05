@@ -6,14 +6,33 @@
         });
     var MATERIALS_TREE_SPHERE = {
         sphere: new THREE.MeshStandardMaterial({
-            color: 0x00ff00,
-            side: THREE.DoubleSide
+            color: 0x00ff00
         }),
         trunk: new THREE.MeshStandardMaterial({
-            color: 0xffaf00,
-            side: THREE.DoubleSide
+            color: 0xffaf00
         })
     };
+
+    var MATERIALS_GROUND = [
+        new THREE.MeshStandardMaterial({
+            color: 0x00dd00,
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0x008800,
+            side: THREE.DoubleSide
+        })
+    ];
+    var MATERIALS_GROUND_DISCO = [
+        new THREE.MeshStandardMaterial({
+            color: 0xdddddd,
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0x888888,
+            side: THREE.DoubleSide
+        })
+    ];
 
     // SCENE
     var scene = new THREE.Scene();
@@ -21,6 +40,7 @@
 
     // GROUND
     var ground = TileMod.create({
+            materials: MATERIALS_GROUND,
             w: 100,
             h: 100,
             sw: 8,
@@ -108,6 +128,9 @@
             guy.head.rotation.y = Math.PI * 0.25 * seq.per;
             guy.group.position.y = 3;
 
+            // ground
+            ground.material = MATERIALS_GROUND;
+
             // camera
             camera.position.set(25, 0.2 + 24.8 * seq.per, 25);
             camera.lookAt(guy.group.position)
@@ -131,6 +154,9 @@
             guy.head.rotation.y = Math.PI * 0.25 + Math.PI * 2 * seq.per;
             guy.group.position.y = 3 + 12 * seq.per;
 
+            // ground
+            ground.material = MATERIALS_GROUND_DISCO;
+
             // camera
             var camPer = (seq.per * 4) % 1;
             var radian = Math.PI * 0.25 + camPer * Math.PI * 2;
@@ -146,13 +172,19 @@
     video.sequence.push({
         maxFrame: 30 * 5,
         forFrame: function (seq) {
+
             // light
             wpl.intensity = 0.75 * seq.per;
             al.intensity = 0.125 * seq.per;
             sl_red.intensity = 0;
+
             // guy
             guy.head.rotation.y = Math.PI * 0.25;
             guy.group.position.y = 15 - 12 * seq.per;
+
+            // ground
+            ground.material = MATERIALS_GROUND;
+
             // camera
             camera.position.set(25, 25 - 24.8 * seq.per, 25);
             camera.lookAt(guy.group.position)
