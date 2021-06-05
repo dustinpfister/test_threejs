@@ -116,7 +116,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 202, //202,
+        frame: 0, //202,
         canvas: renderer.domElement,
         sequence: []
     };
@@ -125,6 +125,9 @@
     video.sequence.push({
         maxFrame: Math.ceil(30 * 6.75),
         forFrame: function (seq) {
+
+            // scene
+            scene.background = new THREE.Color('#00ffff');
 
             // light
             wpl.intensity = 0.75;
@@ -151,6 +154,9 @@
     video.sequence.push({
         maxFrame: 30 * 15, //Math.ceil(30 * 4.3),
         forFrame: function (seq) {
+
+            // scene
+            scene.background = new THREE.Color('#000000');
 
             // light
             wpl.intensity = 0;
@@ -190,6 +196,9 @@
     video.sequence.push({
         maxFrame: 30 * 5,
         forFrame: function (seq) {
+
+            // scene
+            scene.background = new THREE.Color('#00ffff');
 
             // light
             wpl.intensity = 0.75 * seq.per;
