@@ -211,7 +211,7 @@
             sl_blue.intensity = 0;
 
             // guy
-            guy.head.rotation.y = Math.PI * 0.25;
+            guy.head.rotation.y = Math.PI * 0.25 - Math.PI * 0.25 * seq.per;
             guy.group.position.y = 15 - 12 * seq.per;
             GuyMod.walk(guy, 0.25 / 4, 4);
 
