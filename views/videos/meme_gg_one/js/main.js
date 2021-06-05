@@ -58,6 +58,8 @@
     scene.add(guy.group);
 
     // Light
+    var al = new THREE.AmbientLight(0xffffff, 0.125);
+    scene.add(al);
     var wpl = new THREE.PointLight(0xffffff, 0.75);
     wpl.position.set(20, 40, 10);
     scene.add(wpl);
@@ -82,6 +84,9 @@
     video.sequence.push({
         maxFrame: Math.ceil(30 * 6.75),
         forFrame: function (seq) {
+            // light
+            wpl.intensity = 0.75 * (1 - seq.per);
+            al.intensity = 0.125 * (1 - seq.per);
             // guy
             guy.head.rotation.y = Math.PI * 0.25 * seq.per;
             guy.group.position.y = 3;
@@ -96,6 +101,9 @@
     video.sequence.push({
         maxFrame: 30 * 15, //Math.ceil(30 * 4.3),
         forFrame: function (seq) {
+            // light
+            wpl.intensity = 0;
+            al.intensity = 0;
             // guy
             guy.head.rotation.y = Math.PI * 0.25 + Math.PI * 2 * seq.per;
             guy.group.position.y = 3 + 12 * seq.per;
@@ -114,8 +122,11 @@
     video.sequence.push({
         maxFrame: 30 * 5,
         forFrame: function (seq) {
-            // guy
-            guy.head.rotation.y = Math.PI * 0.25;
+            // light
+            wpl.intensity = 0.75 * seq.per;
+            al.intensity = 0.125 * seq.per
+                // guy
+                guy.head.rotation.y = Math.PI * 0.25;
             guy.group.position.y = 15 - 12 * seq.per;
             // camera
             camera.position.set(25, 25 - 24.8 * seq.per, 25);
