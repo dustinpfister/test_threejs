@@ -1,9 +1,19 @@
 (function () {
 
+    // MATERIALS FOR TREES
     var MATERIALS_CONE_TREE = new THREE.MeshStandardMaterial({
-            color: '#008f00',
-            emissive: '#002f00'
+            color: '#008f00'
         });
+    var MATERIALS_TREE_SPHERE = {
+        sphere: new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            side: THREE.DoubleSide
+        }),
+        trunk: new THREE.MeshStandardMaterial({
+            color: 0xffaf00,
+            side: THREE.DoubleSide
+        })
+    };
 
     // SCENE
     var scene = new THREE.Scene();
@@ -31,7 +41,9 @@
             function () {},
             // 1 - tree sphere
             function (ground, x, z, tileX, tileZ, i) {
-                var tree2 = TreeSphereMod.create();
+                var tree2 = TreeSphereMod.create({
+                   materials: MATERIALS_TREE_SPHERE
+                });
                 tree2.lookAt(0, -10, 0);
                 tree2.scale.set(4, 4, 4);
                 tree2.position.set(x, 4, z);
@@ -88,15 +100,14 @@
         forFrame: function (seq) {
 
             // light
-            wpl.intensity = 0.75 * (1 - seq.per);
-            al.intensity = 0.125 * (1 - seq.per);
+            wpl.intensity = 0.75;
+            al.intensity = 0.125;
             sl_red.intensity = 0;
-
-            console.log(sl_red.intensity);
 
             // guy
             guy.head.rotation.y = Math.PI * 0.25 * seq.per;
             guy.group.position.y = 3;
+
             // camera
             camera.position.set(25, 0.2 + 24.8 * seq.per, 25);
             camera.lookAt(guy.group.position)
@@ -108,15 +119,18 @@
     video.sequence.push({
         maxFrame: 30 * 15, //Math.ceil(30 * 4.3),
         forFrame: function (seq) {
+
             // light
             wpl.intensity = 0;
-            al.intensity = 0;
+            al.intensity = 0.075;
             sl_red.intensity = 1;
             sl_red.position.set(Math.sin(Math.PI * 2 * (seq.per * 4 % 1)) * 20, 30, -20);
             sl_red.target = guy.group;
+
             // guy
             guy.head.rotation.y = Math.PI * 0.25 + Math.PI * 2 * seq.per;
             guy.group.position.y = 3 + 12 * seq.per;
+
             // camera
             var camPer = (seq.per * 4) % 1;
             var radian = Math.PI * 0.25 + camPer * Math.PI * 2;
