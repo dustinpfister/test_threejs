@@ -5,14 +5,12 @@
 * work out a system where and array of seq.secs values are used to set the current texture for the guys face
 * make it so that the face textures sink up with what is being said
 
-### raw3 () sequence two disco effects
+### raw3 ( done 6/5/2021 ) sequence two disco effects
 * (done) point light removed from camera and added to scene
 * (done) custom materials for trees
 * (done) custom materials for ground 
 * (done) have a group of spot lights using different colors
-
-* guy raises arms up into the air during sq1
-* guy moves arms and legs during s12
+* (done) guy moves arms and legs during sq2
 
 ### raw2 ( done 6/5/2021 ) tree grid position system
 * (done) start a system where threes are created and positioned positioned on the plane following a grid of values
