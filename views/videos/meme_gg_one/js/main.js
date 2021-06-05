@@ -16,19 +16,34 @@
             sh: 4
         });
     TileMod.setCheckerBoard(ground);
-
-    TileModPositioner.forCells(ground, {
-        forCell: function (ground, x, z, tileX, tileZ, i) {
-            if (tileX === 1 && tileZ === 2) {
+    TileModPositioner.processObjectIndexString(ground, {
+        string: '0001000010000000',
+        forIndex: [
+            // 0
+            function () {},
+            // 1
+            function (ground, x, z, tileX, tileZ, i) {
                 var tree2 = TreeSphereMod.create();
                 tree2.lookAt(0, -10, 0);
                 tree2.scale.set(4, 4, 4);
                 tree2.position.set(x, 4, z);
                 scene.add(tree2);
             }
-        }
-
+        ]
     });
+    /*
+    TileModPositioner.forCells(ground, {
+    forCell: function (ground, x, z, tileX, tileZ, i) {
+    if (tileX === 1 && tileZ === 2) {
+    var tree2 = TreeSphereMod.create();
+    tree2.lookAt(0, -10, 0);
+    tree2.scale.set(4, 4, 4);
+    tree2.position.set(x, 4, z);
+    scene.add(tree2);
+    }
+    }
+    });
+     */
 
     scene.add(ground);
 
