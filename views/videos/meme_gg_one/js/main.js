@@ -90,13 +90,13 @@
 
     // spinning around
     video.sequence.push({
-        maxFrame: Math.ceil(30 * 4.3),
+        maxFrame: 30 * 15, //Math.ceil(30 * 4.3),
         forFrame: function (seq) {
             // guy
-            guy.head.rotation.y = Math.PI * 0.25 - Math.PI * 8 * seq.per;
+            guy.head.rotation.y = Math.PI * 0.25 + Math.PI * 2 * seq.per;
             guy.group.position.y = 3 + 12 * seq.per;
             // camera
-            var camPer = (seq.per * 2) % 1;
+            var camPer = (seq.per * 4) % 1;
             var radian = Math.PI * 0.25 + camPer * Math.PI * 2;
             var x = Math.cos(radian) * 35,
             z = Math.sin(radian) * 35;
@@ -108,7 +108,7 @@
 
     // back down
     video.sequence.push({
-        maxFrame: 60,
+        maxFrame: 30 * 5,
         forFrame: function (seq) {
             // guy
             guy.head.rotation.y = Math.PI * 0.25;
