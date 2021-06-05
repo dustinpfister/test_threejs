@@ -116,7 +116,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 0, //202,
+        frame: 202, //202,
         canvas: renderer.domElement,
         sequence: []
     };
@@ -139,6 +139,7 @@
             // guy
             guy.head.rotation.y = Math.PI * 0.25 * seq.per;
             guy.group.position.y = 3;
+            GuyMod.walk(guy, 0.25 / 4, 4);
 
             // ground
             ground.material = MATERIALS_GROUND;
@@ -175,8 +176,10 @@
             sl_blue.target = guy.group;
 
             // guy
-            guy.head.rotation.y = Math.PI * 0.25 + Math.PI * 2 * seq.per;
+            var bias = 1 - Math.abs((seq.per * 24 % 1) - 0.5) / 0.5;
+            guy.head.rotation.y = Math.PI / 180 * 45 * (1 - 2 * bias);
             guy.group.position.y = 3 + 12 * seq.per;
+            GuyMod.walk(guy, (0.25 / 8 + seq.per) % 1, 8);
 
             // ground
             ground.material = MATERIALS_GROUND_DISCO;
@@ -210,6 +213,7 @@
             // guy
             guy.head.rotation.y = Math.PI * 0.25;
             guy.group.position.y = 15 - 12 * seq.per;
+            GuyMod.walk(guy, 0.25 / 4, 4);
 
             // ground
             ground.material = MATERIALS_GROUND;

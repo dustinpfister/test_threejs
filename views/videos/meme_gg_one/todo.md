@@ -9,8 +9,7 @@
 * (done) point light removed from camera and added to scene
 * (done) custom materials for trees
 * (done) custom materials for ground 
-
-* have a group of spot lights using different colors
+* (done) have a group of spot lights using different colors
 
 * guy raises arms up into the air during sq1
 * guy moves arms and legs during s12
