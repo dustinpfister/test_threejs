@@ -8,7 +8,6 @@
     // SCENE
     var scene = new THREE.Scene();
     scene.background = new THREE.Color('#00afaf');
-    //scene.fog = new THREE.FogExp2(new THREE.Color('#ffffff', 20));
 
     // GROUND
     var ground = TileMod.create({
@@ -58,11 +57,14 @@
     scene.add(guy.group);
 
     // Light
-    var al = new THREE.AmbientLight(0xffffff, 0.125);
+    var al = new THREE.AmbientLight(0xffffff, 0.125); // ambient light
     scene.add(al);
-    var wpl = new THREE.PointLight(0xffffff, 0.75);
+    var wpl = new THREE.PointLight(0xffffff, 0.75); // point light
     wpl.position.set(20, 40, 10);
     scene.add(wpl);
+    var sl_red = new THREE.SpotLight(0xff0000, 1, 0, Math.PI / 180 * 10, 0.25); // spot light red
+    sl_red.position.set(20, 30, -20);
+    scene.add(sl_red);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
@@ -75,7 +77,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 0, //202,
+        frame: 202, //202,
         canvas: renderer.domElement,
         sequence: []
     };
@@ -84,9 +86,14 @@
     video.sequence.push({
         maxFrame: Math.ceil(30 * 6.75),
         forFrame: function (seq) {
+
             // light
             wpl.intensity = 0.75 * (1 - seq.per);
             al.intensity = 0.125 * (1 - seq.per);
+            sl_red.intensity = 0;
+
+            console.log(sl_red.intensity);
+
             // guy
             guy.head.rotation.y = Math.PI * 0.25 * seq.per;
             guy.group.position.y = 3;
@@ -104,6 +111,9 @@
             // light
             wpl.intensity = 0;
             al.intensity = 0;
+            sl_red.intensity = 1;
+            sl_red.position.set(Math.sin(Math.PI * 2 * (seq.per * 4 % 1)) * 20, 30, -20);
+            sl_red.target = guy.group;
             // guy
             guy.head.rotation.y = Math.PI * 0.25 + Math.PI * 2 * seq.per;
             guy.group.position.y = 3 + 12 * seq.per;
@@ -124,9 +134,10 @@
         forFrame: function (seq) {
             // light
             wpl.intensity = 0.75 * seq.per;
-            al.intensity = 0.125 * seq.per
-                // guy
-                guy.head.rotation.y = Math.PI * 0.25;
+            al.intensity = 0.125 * seq.per;
+            sl_red.intensity = 0;
+            // guy
+            guy.head.rotation.y = Math.PI * 0.25;
             guy.group.position.y = 15 - 12 * seq.per;
             // camera
             camera.position.set(25, 25 - 24.8 * seq.per, 25);

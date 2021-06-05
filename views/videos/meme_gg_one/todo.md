@@ -7,9 +7,7 @@
 
 ### raw3 () sequence two disco effects
 * (done) point light removed from camera and added to scene
-* when sequence two comes change the material and lighting situation
-* have more than one light source using different colors and make them animated
-* use spot lights
+* have spot lights using different colors and make them animated
 * guy raises arms up into the air during sq1
 * guy moves arms and legs during s12
 
