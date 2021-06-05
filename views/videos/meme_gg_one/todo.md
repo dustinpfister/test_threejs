@@ -1,14 +1,14 @@
 # meme_gg_one todo
 
-### sequence two disco effects
-* when sequence two comes change the material and lighting situation
-* have more than one light source using different colors and make them animated
-* use spot lights
-
 ### more than one sheet for texture used for the guys face
 * have a set of three textures for the guys face
 * work out a system where and array of seq.secs values are used to set the current texture for the guys face
 * make it so that the face textures sink up with what is being said
+
+### sequence two disco effects
+* when sequence two comes change the material and lighting situation
+* have more than one light source using different colors and make them animated
+* use spot lights
 * guy raises arms up into the air during sq1
 * guy moves arms and legs during s12
 

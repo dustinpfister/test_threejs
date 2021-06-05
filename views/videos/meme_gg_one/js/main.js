@@ -57,9 +57,13 @@
     guy.group.position.set(0, 3, 0);
     scene.add(guy.group);
 
+    // Light
+    var wpl = new THREE.PointLight(0xffffff, 0.75);
+    wpl.position.set(20, 40, 10);
+    scene.add(wpl);
+
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
-    camera.add(new THREE.PointLight());
     scene.add(camera);
 
     // RENDER
