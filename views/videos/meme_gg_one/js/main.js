@@ -7,11 +7,13 @@
 
     // SCENE
     var scene = new THREE.Scene();
+    scene.background = new THREE.Color('#00afaf');
+    //scene.fog = new THREE.FogExp2(new THREE.Color('#ffffff', 20));
 
     // GROUND
     var ground = TileMod.create({
-            w: 80,
-            h: 80,
+            w: 100,
+            h: 100,
             sw: 8,
             sh: 8
         });
