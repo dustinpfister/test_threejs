@@ -116,7 +116,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 202, //202,
+        frame: 0, //202,
         canvas: renderer.domElement,
         sequence: []
     };
@@ -145,7 +145,7 @@
             ground.material = MATERIALS_GROUND;
 
             // camera
-            camera.position.set(25, 0.2 + 24.8 * seq.per, 25);
+            camera.position.set(5 + 20 * seq.per, 0.2 + 24.8 * seq.per, 5 + 20 * seq.per);
             camera.lookAt(guy.group.position)
             renderer.render(scene, camera);
         }
