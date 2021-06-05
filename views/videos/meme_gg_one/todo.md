@@ -11,6 +11,7 @@
 * (done) custom materials for ground 
 * (done) have a group of spot lights using different colors
 * (done) guy moves arms and legs during sq2
+* (done) standard materials for guy
 
 ### raw2 ( done 6/5/2021 ) tree grid position system
 * (done) start a system where threes are created and positioned positioned on the plane following a grid of values
