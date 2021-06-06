@@ -145,6 +145,9 @@
     var sl_blue = new THREE.SpotLight(0x0000ff, 1, 0, Math.PI / 180 * 10, 0.25); // spot light blue
     sl_blue.position.set(-20, 30, -20);
     scene.add(sl_blue);
+    // light ring
+    var lightRing = PointLightRing.create();
+    scene.add(lightRing);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
@@ -240,7 +243,7 @@
             var groundPer = 1 - Math.abs((seq.per * 8 % 1) - 0.5) / 0.5;
             ground.material = MATERIALS_GROUND_DISCO;
             MATERIALS_GROUND_DISCO[0].emissiveIntensity = 0.25 + (0.75 * groundPer);
-            MATERIALS_GROUND_DISCO[1].emissiveIntensity = 0.25 + (0.25 - 0.25 * groundPer);;
+            MATERIALS_GROUND_DISCO[1].emissiveIntensity = 0.25 + (0.25 - 0.25 * groundPer); ;
 
             // camera
             var camPer = (seq.per * 4) % 1;

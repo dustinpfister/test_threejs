@@ -10,12 +10,22 @@
 
         var group = new THREE.Group(),
         i = 0,
-        x,
-        z;
+        radius
+        ud = group.userData;
+        ud.radius = opt.radiusMin;
         while (i < opt.lightCount) {
-            var pointLight = new THREE.PointLight(0xffffff, 1);
-            pointLight.position.set(0, 0, 0);
-            group.add(pointLight);
+            var pointLightSphere = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.5, 30, 30),
+                    new THREE.MeshBasicMaterial({
+                        color: 0xffffff,
+                        transparent: true,
+                        opacity: 0.5
+                    })),
+            pointLight = new THREE.PointLight(0xffffff, 0.5);
+            pointLightSphere.add(pointLight);
+            radian = Math.PI * 2 / opt.lightCount * i;
+            pointLightSphere.position.set(Math.cos(radian) * ud.radius, 0, Math.sin(radian) * ud.radius);
+            group.add(pointLightSphere);
             i += 1;
         }
 
