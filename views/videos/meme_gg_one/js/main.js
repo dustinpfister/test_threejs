@@ -66,7 +66,7 @@
         }),
         new THREE.MeshStandardMaterial({
             color: 0x888888,
-            emissive: 0xffffff,
+            emissive: 0x00ff00,
             emissiveIntensity: 0,
             emissiveMap: emissiveMap,
             side: THREE.DoubleSide
@@ -237,11 +237,13 @@
             GuyMod.walk(guy, (0.25 / 8 + seq.per) % 1, 8);
 
             // ground
+            var groundPer = 1 - Math.abs((seq.per * 8 % 1) - 0.5) / 0.5;
             ground.material = MATERIALS_GROUND_DISCO;
-            MATERIALS_GROUND_DISCO[0].emissiveIntensity = 0.75
+            MATERIALS_GROUND_DISCO[0].emissiveIntensity = 0.25 + (0.75 * groundPer);
+            MATERIALS_GROUND_DISCO[1].emissiveIntensity = 0.25 + (0.25 - 0.25 * groundPer);;
 
-                // camera
-                var camPer = (seq.per * 4) % 1;
+            // camera
+            var camPer = (seq.per * 4) % 1;
             var radian = Math.PI * 0.25 + camPer * Math.PI * 2;
             var x = Math.cos(radian) * (35 - 30 * seq.bias),
             z = Math.sin(radian) * (35 - 30 * seq.bias);
