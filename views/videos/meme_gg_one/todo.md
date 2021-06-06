@@ -10,10 +10,11 @@
 * have the radius of the point lights expand and contract
 * have the intensity of the point lights adjust over time following a sine wave pattern
 
-## raw4 () - tree improvements
+## raw4 () - Emissive color effects and tree improvements
 * (done) have ten sections of cones for each tree made with the tree rather than tree_sphere model
-* emissve maps, NOT COLORS for materials used for trees
-* adjust emissive intensity values for tree materials for each sequence
+* (done) emissve maps, NOT JUST COLORS for materials used for trees
+* (done) adjust emissive intensity values for tree materials for each sequence
+* 
 
 ### raw3 ( done 6/5/2021 ) - sequence two disco effects
 * (done) point light removed from camera and added to scene
