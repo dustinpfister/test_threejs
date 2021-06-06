@@ -136,7 +136,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 0, //202,
+        frame: 200, //202,
         canvas: renderer.domElement,
         sequence: []
     };
@@ -150,6 +150,7 @@
             scene.background = new THREE.Color(0, 1, 1);
 
             // trees
+            MATERIALS_CONE_TREE.emissiveIntensity = 0;
             MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = 0;
             MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 0;
 
@@ -185,8 +186,9 @@
 
             // trees
             var treeEffectPer = 1 - Math.abs((seq.per * 8 % 1) - 0.5) / 0.5;
-            MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = treeEffectPer;
-            MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = treeEffectPer;
+            MATERIALS_CONE_TREE.emissiveIntensity = 0.25 + 0.75 * treeEffectPer;
+            MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = 0.25 + (0.75 - 0.75 * treeEffectPer);
+            MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 0.25 + 0.75 * treeEffectPer;
 
             // light
             wpl.intensity = 0;
@@ -233,6 +235,7 @@
             scene.background = new THREE.Color(0, seq.per, seq.per);
 
             // trees
+            MATERIALS_CONE_TREE.emissiveIntensity = 0;
             MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = 0;
             MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 0;
 
