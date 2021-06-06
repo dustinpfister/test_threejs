@@ -187,10 +187,10 @@
             // trees
             var treeEffectPer = 1 - Math.abs((seq.per * 8 % 1) - 0.5) / 0.5;
             MATERIALS_CONE_TREE.emissive.setRGB(1, 1, 1);
-            MATERIALS_CONE_TREE.emissiveIntensity = 0.25 + 0.75 * treeEffectPer;
             MATERIALS_TREE_SPHERE.sphere.emissive.setRGB(1, 1, 1);
-            MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = 0.25 + (0.75 - 0.75 * treeEffectPer);
             MATERIALS_TREE_SPHERE.trunk.emissive.setRGB(1, 1, 1);
+            MATERIALS_CONE_TREE.emissiveIntensity = 0.25 + 0.75 * treeEffectPer;
+            MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = 0.25 + (0.75 - 0.75 * treeEffectPer);
             MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 0.25 + 0.75 * treeEffectPer;
 
             // light
