@@ -17,3 +17,7 @@ In this video I made use of the tree model that I made for my [threejs examples 
 ### 1.3 - Emissive map effects
 
 In this video I am making use of emissive map effects. This includes setting the emissive intensity values to 0 for sequences 1 and 3, but having variable intensity for sequence 1.
+
+### 1.4 - Point Light RIng
+
+Another feature of this video is a point light ring module that I am using for additional lighting effects in sq2
