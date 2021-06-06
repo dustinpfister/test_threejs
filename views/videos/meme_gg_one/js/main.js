@@ -62,8 +62,8 @@
             // 1 - tree sphere
             function (ground, x, z, tileX, tileZ, i) {
                 var tree2 = TreeSphereMod.create({
-                   materials: MATERIALS_TREE_SPHERE
-                });
+                        materials: MATERIALS_TREE_SPHERE
+                    });
                 tree2.lookAt(0, -10, 0);
                 tree2.scale.set(4, 4, 4);
                 tree2.position.set(x, 4, z);
@@ -72,7 +72,9 @@
             // 2 - tree
             function (ground, x, z, tileX, tileZ, i) {
                 var tree = new Tree({
-                        coneMaterial: MATERIALS_CONE_TREE
+                        coneMaterial: MATERIALS_CONE_TREE,
+                        sections: 10,
+                        coneLengthReduction: 4.5
                     });
                 tree.group.scale.set(2, 2, 2);
                 tree.group.position.set(x, 1.2, z);

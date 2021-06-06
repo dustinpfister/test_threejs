@@ -9,3 +9,7 @@ This is an attempt at making my first real project video that I might publish, o
 ### 1.1 - The tile-positioner.js module
 
 This is a module that allows for me to create a string of index values where each index value is an object to place at a location in a plane. For this video I am using it as a way to position trees in various locations.
+
+### 1.2 - Improvements to my tree model
+
+In this video I made use of the tree model that I made for my [threejs examples tree](https://dustinpfister.github.io/2019/07/30/threejs-examples-tree/) post.

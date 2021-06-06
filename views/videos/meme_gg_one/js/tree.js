@@ -11,7 +11,7 @@ var Tree = function (opt) {
     this.coneMaxRadius = opt.coneMaxRadius || 0.7;
     this.coneRadiusReduction = opt.coneRadiusReduction || 0.3;
     this.coneMaxLength = opt.coneRadiusReduction || 5;
-    this.coneLengthReduction = opt.coneRadiusReduction || 4.5;
+    this.coneLengthReduction = opt.coneLengthReduction || 4.5;
 
     // call backs
     this.forConeValues = opt.forConeValues || function () {};
@@ -38,7 +38,8 @@ var Tree = function (opt) {
         // standard radius and length
         // and set default radius and y position of section
         secObj.stdRadius = this.coneMaxRadius - this.coneRadiusReduction * (secObj.i / this.sections);
-        secObj.stdLength = this.coneMaxLength - this.coneLengthReduction * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections);
+        //secObj.stdLength = this.coneMaxLength - this.coneLengthReduction * (Math.pow(2, secObj.i) - 1) / Math.pow(2, this.sections);
+        secObj.stdLength = this.coneMaxLength - (this.coneLengthReduction * (secObj.i / this.sections) );
         secObj.radius = secObj.stdLength - secObj.stdLength / 2;
         secObj.y = secObj.stdRadius * 2 * secObj.i;
         secObj.radOffset = (secObj.i % 2) * Math.PI;
