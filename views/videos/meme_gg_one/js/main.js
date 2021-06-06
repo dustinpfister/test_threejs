@@ -147,6 +147,7 @@
     scene.add(sl_blue);
     // light ring
     var lightRing = PointLightRing.create();
+    lightRing.position.y = 10;
     scene.add(lightRing);
 
     // CAMERA
