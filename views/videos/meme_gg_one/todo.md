@@ -14,7 +14,8 @@
 * (done) have ten sections of cones for each tree made with the tree rather than tree_sphere model
 * (done) emissve maps, NOT JUST COLORS for materials used for trees
 * (done) adjust emissive intensity values for tree materials for each sequence
-* 
+* emissive map effect for ground
+* color switch effect for emissive colors
 
 ### raw3 ( done 6/5/2021 ) - sequence two disco effects
 * (done) point light removed from camera and added to scene

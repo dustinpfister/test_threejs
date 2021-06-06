@@ -41,13 +41,34 @@
             side: THREE.DoubleSide
         })
     ];
+    var emissiveMap = utils.createCanvasTexture(function (ctx, canvas) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 1;
+            var x = 0,
+            y = 0;
+            while (y < 8) {
+                x = 0;
+                while (x < 8) {
+                    ctx.strokeRect(x * 20, y * 20, 20, 20);
+                    x += 1;
+                }
+                y += 1;
+            }
+        }, 160);
     var MATERIALS_GROUND_DISCO = [
         new THREE.MeshStandardMaterial({
             color: 0xdddddd,
+            emissive: 0xffffff,
+            emissiveIntensity: 0,
+            emissiveMap: emissiveMap,
             side: THREE.DoubleSide
         }),
         new THREE.MeshStandardMaterial({
             color: 0x888888,
+            emissive: 0xffffff,
+            emissiveIntensity: 0,
+            emissiveMap: emissiveMap,
             side: THREE.DoubleSide
         })
     ];
@@ -217,9 +238,10 @@
 
             // ground
             ground.material = MATERIALS_GROUND_DISCO;
+            MATERIALS_GROUND_DISCO[0].emissiveIntensity = 0.75
 
-            // camera
-            var camPer = (seq.per * 4) % 1;
+                // camera
+                var camPer = (seq.per * 4) % 1;
             var radian = Math.PI * 0.25 + camPer * Math.PI * 2;
             var x = Math.cos(radian) * (35 - 30 * seq.bias),
             z = Math.sin(radian) * (35 - 30 * seq.bias);
