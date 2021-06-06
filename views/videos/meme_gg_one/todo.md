@@ -5,17 +5,17 @@
 * work out a system where and array of seq.secs values are used to set the current texture for the guys face
 * make it so that the face textures sink up with what is being said
 
-## point light ring
-* add a ring or white point lights that become active during section sq2
-* have the radius of the point lights expand and contract
-* have the intensity of the point lights adjust over time following a sine wave pattern
+## raw5 () - canvas texture module
+* make use of canvas texture module used in 'example backyard'
 
-## raw4 () - Emissive color effects and tree improvements
+## raw4 () - Emissive color effects, Minor tree improvements, and point light ring
 * (done) have ten sections of cones for each tree made with the tree rather than tree_sphere model
 * (done) emissve maps, NOT JUST COLORS for materials used for trees
 * (done) adjust emissive intensity values for tree materials for each sequence
-* emissive map effect for ground
-* color switch effect for emissive colors
+* (done) emissive map effect for ground
+* add a ring or white point lights that become active during section sq2
+* have the radius of the point lights expand and contract
+* have the intensity of the point lights adjust over time following a sine wave pattern
 
 ### raw3 ( done 6/5/2021 ) - sequence two disco effects
 * (done) point light removed from camera and added to scene
