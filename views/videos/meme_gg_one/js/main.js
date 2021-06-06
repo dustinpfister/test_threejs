@@ -221,7 +221,7 @@
             MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 0.25 + 0.75 * treeEffectPer;
 
             // light
-            PointLightRing.setRingIntensity(lightRing, seq.per);
+            PointLightRing.setRingIntensity(lightRing, Math.sin(Math.PI * 2 * seq.per * 16 % 1));
             wpl.intensity = 0;
             al.intensity = 0.075;
             sl_red.intensity = 1;

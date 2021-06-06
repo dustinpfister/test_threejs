@@ -13,9 +13,8 @@
 * (done) emissve maps, NOT JUST COLORS for materials used for trees
 * (done) adjust emissive intensity values for tree materials for each sequence
 * (done) emissive map effect for ground
-* add a ring or white point lights that become active during section sq2
-* have the radius of the point lights expand and contract
-* have the intensity of the point lights adjust over time following a sine wave pattern
+* (done) add a ring or white point lights that become active during section sq2
+* (done) have the intensity of the point lights adjust over time
 
 ### raw3 ( done 6/5/2021 ) - sequence two disco effects
 * (done) point light removed from camera and added to scene
