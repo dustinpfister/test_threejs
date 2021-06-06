@@ -148,6 +148,7 @@
     // light ring
     var lightRing = PointLightRing.create();
     lightRing.position.y = 10;
+    PointLightRing.setRingIntensity(lightRing, 0);
     scene.add(lightRing);
 
     // CAMERA
@@ -180,6 +181,7 @@
             MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 0;
 
             // light
+            PointLightRing.setRingIntensity(lightRing, 0);
             wpl.intensity = 0.75;
             al.intensity = 0.125;
             sl_red.intensity = 0;
@@ -219,6 +221,7 @@
             MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 0.25 + 0.75 * treeEffectPer;
 
             // light
+            PointLightRing.setRingIntensity(lightRing, seq.per);
             wpl.intensity = 0;
             al.intensity = 0.075;
             sl_red.intensity = 1;
@@ -271,6 +274,7 @@
             MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 0;
 
             // light
+            PointLightRing.setRingIntensity(lightRing, 0);
             wpl.intensity = 0.75 * seq.per;
             al.intensity = 0.125 * seq.per;
             sl_red.intensity = 0;

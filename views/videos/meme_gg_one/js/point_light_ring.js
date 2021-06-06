@@ -1,6 +1,6 @@
 (function (api) {
 
-    var setRingIntensity = function (pointLightRing, intensity) {
+    api.setRingIntensity = function (pointLightRing, intensity) {
         pointLightRing.children.forEach(function (pointLightSphere) {
             pointLightSphere.material.opacity = intensity;
             pointLightSphere.children[0].intensity = intensity;
@@ -34,7 +34,7 @@
             group.add(pointLightSphere);
             i += 1;
         }
-        setRingIntensity(group, 1);
+        api.setRingIntensity(group, 0.25);
         return group;
     };
 
