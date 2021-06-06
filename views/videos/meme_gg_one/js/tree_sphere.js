@@ -32,7 +32,7 @@
         return trunk;
     };
 
-    // create and return a house
+    // create and return a tree sphere
     api.create = function (opt) {
 
         opt = opt || {};
