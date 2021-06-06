@@ -5,8 +5,15 @@
 * work out a system where and array of seq.secs values are used to set the current texture for the guys face
 * make it so that the face textures sink up with what is being said
 
+## point light ring
+* add a ring or white point lights that become active during section sq2
+* have the radius of the point lights expand and contract
+* have the intensity of the point lights adjust over time following a sine wave pattern
+
 ## raw4 () - tree improvements
-* have ten layers of cone for each tree
+* (done) have ten sections of cones for each tree made with the tree rather than tree_sphere model
+* emissve maps, NOT COLORS for materials used for trees
+* adjust emissive intensity values for tree materials for each sequence
 
 ### raw3 ( done 6/5/2021 ) - sequence two disco effects
 * (done) point light removed from camera and added to scene

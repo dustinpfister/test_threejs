@@ -12,4 +12,4 @@ This is a module that allows for me to create a string of index values where eac
 
 ### 1.2 - Improvements to my tree model
 
-In this video I made use of the tree model that I made for my [threejs examples tree](https://dustinpfister.github.io/2019/07/30/threejs-examples-tree/) post.
+In this video I made use of the tree model that I made for my [threejs examples tree](https://dustinpfister.github.io/2019/07/30/threejs-examples-tree/) post. WHen doing so I made a few minor improvements to the module when it comes to setting the lengths of the cones.
