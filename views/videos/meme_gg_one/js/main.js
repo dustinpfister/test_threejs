@@ -184,8 +184,9 @@
             scene.background = new THREE.Color(0, 0, 0);
 
             // trees
-            MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = 1;
-            MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 1;
+            var treeEffectPer = 1 - Math.abs((seq.per * 8 % 1) - 0.5) / 0.5;
+            MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = treeEffectPer;
+            MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = treeEffectPer;
 
             // light
             wpl.intensity = 0;
