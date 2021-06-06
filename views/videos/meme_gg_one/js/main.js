@@ -12,17 +12,20 @@
     var MATERIALS_CONE_TREE = new THREE.MeshStandardMaterial({
             color: '#008f00',
             emissive: 0x008f00,
+            emissiveIntensity: 0,
             emissiveMap: emissiveMap
         });
     var MATERIALS_TREE_SPHERE = {
         sphere: new THREE.MeshStandardMaterial({
-            color: 0xffffff,
+            color: 0x00af00,
             emissive: 0x00ff00,
+            emissiveIntensity: 0,
             emissiveMap: emissiveMap
         }),
         trunk: new THREE.MeshStandardMaterial({
             color: 0xffaf00,
             emissive: 0xffff00,
+            emissiveIntensity: 0,
             emissiveMap: emissiveMap
         })
     };
@@ -146,6 +149,10 @@
             // scene
             scene.background = new THREE.Color(0, 1, 1);
 
+            // trees
+            MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = 0;
+            MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 0;
+
             // light
             wpl.intensity = 0.75;
             al.intensity = 0.125;
@@ -175,6 +182,10 @@
 
             // scene
             scene.background = new THREE.Color(0, 0, 0);
+
+            // trees
+            MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = 1;
+            MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 1;
 
             // light
             wpl.intensity = 0;
@@ -219,6 +230,10 @@
 
             // scene
             scene.background = new THREE.Color(0, seq.per, seq.per);
+
+            // trees
+            MATERIALS_TREE_SPHERE.sphere.emissiveIntensity = 0;
+            MATERIALS_TREE_SPHERE.trunk.emissiveIntensity = 0;
 
             // light
             wpl.intensity = 0.75 * seq.per;
