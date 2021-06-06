@@ -1,18 +1,33 @@
 (function () {
 
     // MATERIALS FOR TREES
+    var emissiveMap = utils.createCanvasTexture(function (ctx, canvas) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'white';
+            ctx.fillStyle = 'white';
+            ctx.lineWidth = 1;
+            ctx.rect(0, 0, canvas.width, canvas.height);
+            ctx.stroke();
+        }, 5);
     var MATERIALS_CONE_TREE = new THREE.MeshStandardMaterial({
-            color: '#008f00'
+            color: '#008f00',
+            emissive: 0x008f00,
+            emissiveMap: emissiveMap
         });
     var MATERIALS_TREE_SPHERE = {
         sphere: new THREE.MeshStandardMaterial({
-            color: 0x00ff00
+            color: 0xffffff,
+            emissive: 0x00ff00,
+            emissiveMap: emissiveMap
         }),
         trunk: new THREE.MeshStandardMaterial({
-            color: 0xffaf00
+            color: 0xffaf00,
+            emissive: 0xffff00,
+            emissiveMap: emissiveMap
         })
     };
 
+    // MATERIALS FOR GROUND
     var MATERIALS_GROUND = [
         new THREE.MeshStandardMaterial({
             color: 0x00dd00,
