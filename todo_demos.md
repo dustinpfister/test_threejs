@@ -37,19 +37,35 @@ I can always just make more example posts using my current understaing of threej
     * do some reading an animation clips and see if they can be used to help with tweening from one state to another
 
 
-## 3 - More on shapes, extrude Gemoerty
-
-There is maybe a git more to cover when it comes to using the extrude geometry constructor. This can also involve example type posts.
-
-## 3.1 - threejs-extrude-geometry
-    * start a basic example of THREE.ExtrudeGeometry
 
 
 ## 3 - More on the Buffer Geometry Constructor.
 
+I should make a series of posts where I am covering more about the buffer geomerty class in detail when it comes to attributes, and
+various additional features of the class. So the focus here should be on making custom geometry from the ground up, as well as 
+messing around with built in geomerties such as the THREE.BoxGeomerty, and THREE.Plane geometry
+
 ### 3.1 - threejs-buffer-geometry-attributes-position
+    * (done) start a basic example on the position property
 
 ### 3.2 - threejs-buffer-geometry-attributes-normals
+
+
+
+
+
+## 4 - More on shapes, extrude Gemoerty
+
+There is maybe a git more to cover when it comes to using the extrude geometry constructor. This can also involve example type posts.
+
+## 4.1 - threejs-extrude-geometry
+    * start a basic example of THREE.ExtrudeGeometry
+
+
+
+
+
+
 
 ## (started 6/04/2021 ) threejs-object3d-layers
     * (done) basic example with just a grid and single mesh
