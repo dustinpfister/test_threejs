@@ -2,6 +2,9 @@
 
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
+
+
+
 ## 1 - Bones, Animation, and External Files
 
 In order to create a collection of posts on animation it might have to involve creating external files in blender.
@@ -49,7 +52,6 @@ There is maybe a git more to cover when it comes to using the extrude geometry c
 
 
 
-
 ## 3 - More on the Buffer Geometry Constructor.
 
 I should make a series of posts where I am covering more about the buffer geomerty class in detail when it comes to attributes, and
@@ -63,29 +65,44 @@ messing around with built in geomerties such as the THREE.BoxGeomerty, and THREE
     * (done) animation loop example using tri helper and position.needsUpdate
 
 ### 3.2 - threejs-buffer-geometry-attributes-normals
+    * basic example of normals
+
+### 3.3 - threejs-buffer-geometry-attributes-uis
+    * basic example of uis.
+
+### 3.4 - threejs-examples-sphere-mutate
+    * create an example where I am just muttaing the positions of a sphere geometry
+    * have some texture maps for the sphere
+
+### 3.5 - threejs-examples-plane-mutate
+    * create an example where I am mutataing the positions of a plane geometry
+    * have some texture maps for the plane(s)
 
 
 
 
+## - Random new content
 
-## (started 6/04/2021 ) threejs-object3d-layers
+From this point back I was not planing things out on a week by week, or subject basis
+
+### (started 6/04/2021 ) threejs-object3d-layers
     * (done) basic example with just a grid and single mesh
     * (done) example with one camera and two mesh objects, where layers are being switched for the camera
     * basic example of object3d layers using 2 cameras, and 2 mesh objects
 
-## (started 6/03/2021 ) threejs-object3d-traverse
+### (started 6/03/2021 ) threejs-object3d-traverse
     * (done) basic example of traverse
 ```
 https://discourse.threejs.org/t/to-get-array-of-all-meshes/17458/2
 https://threejs.org/docs/index.html#api/en/core/Object3D.traverse
 ```
 
-## (started 6/02/2021 ) threejs-object3d-parent
+### (started 6/02/2021 ) threejs-object3d-parent
     * (done) start a basic parent example of a mesh object added to the scene
     * (done) start an example that involves a function that creates a group of mesh objects
     * (done) start an example that involves raycaster and getting the group of a mesh
 
-## (started 6/01/2021 ) threejs-shape
+### (started 6/01/2021 ) threejs-shape
     * (done) start an example of THREE.Shape that makes use of THREE.ShapeGeometry
     * (done) start an example of THREE.Shape that makes use of THREE.ExtrudeGeometry
     * (done) have a heart example of Shape
@@ -93,22 +110,22 @@ https://threejs.org/docs/index.html#api/en/core/Object3D.traverse
     * (done) Group object that contains shapes
     * make a tri force animation example with Shape and THREE.ExtrudeGeometry
 
-## (started 5/31/2021 ) threejs-edges-geometry
+### (started 5/31/2021 ) threejs-edges-geometry
     * (done) start a basic demo on the EdgesGeometry constructor
     * (done) start a edges geometry loop example
     * (done) start a new example with sphere geometry, and play around with that second argument
     * (done) start a box-edges-geometry demo, and update post threejs-box-geometry
 
-## (started 5/28/2021 ) threejs-clock
+### (started 5/28/2021 ) threejs-clock
     * (done) start a basic demo of THREE.Clock
     * (done) start an example for elapsed time
 
-## (started 5/27/2021 ) TorusGeometry
+### (started 5/27/2021 ) TorusGeometry
     * (done) start a basic TorusGeometry demo
     * (done) start a group example where I increase segment counts as child index goes up
     * (done) make an example that is a bunch of TorusGeometry mesh objects in a ring like position, and have a camera move threw the holes
 
-## (started 5/26/2021 ) threejs-sphere
+### (started 5/26/2021 ) threejs-sphere
     * (done) start a basic example on the sphere geometry
     * (done) start and example on width and height segments
     * (done) start an example of a dome
@@ -116,10 +133,10 @@ https://threejs.org/docs/index.html#api/en/core/Object3D.traverse
     * (done) start and example that has to do with using more than one material with the sphere geometry
     * start a demo that makes use of bounding sphere
 
-## (started 5/25/2021 ) threejs-object3d-get-world-position
+### (started 5/25/2021 ) threejs-object3d-get-world-position
     * (done) basic world position example that gets the world position of a mesh in a group
 
-## ( started 5/24/2021 ) threejs-object3d-visible
+### ( started 5/24/2021 ) threejs-object3d-visible
     * (done) start a basic r127 example of object3d-visible
     * start an example that makes use of object3d visible and transparency
     * start an example that makes use of distance from a point for a mesh that moves
