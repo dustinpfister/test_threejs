@@ -6,7 +6,11 @@
     scene.add( new THREE.GridHelper(100, 100) );
 
     var MATERIALS_CONE_TREE = new THREE.MeshStandardMaterial({
-            color: '#008f00'
+            color: '#008a00',
+            map: canvasTextureMod.randomGrid([0, 'r1', 0], 8),
+            emissive: '#aaffaa',
+            emissiveIntensity: 0.35,
+            emissiveMap: canvasTextureMod.basicSquare([0, 'r1', 0], 8)
         });
 
     var tree = new Tree({
@@ -15,7 +19,7 @@
         sections: 10,
         coneLengthReduction: 4.5
     });
-    tree.group.scale.set(2, 2, 2);
+    tree.group.scale.set(2.25, 2.25, 2.25);
     tree.group.position.set(0, 0, 0);
     scene.add(tree.group);
 
