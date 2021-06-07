@@ -2,10 +2,33 @@
 
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
-## threejs-extrude-geometry
-    * start a basic example of THREE.ExtrudeGeometry
+## 1 - Bones, Animation, and External Files
 
-## threejs-examples-guy-two
+In order to create a collection of posts on animation it might have to involve creating external files in blender.
+
+### 1.1 - threejs-animation-mixer
+    * basic animation mixer example
+
+### 1.2 - threejs-animation-clip
+    * basic animation clip example
+
+### 1.3 - threejs-skinned-mesh
+    * see about making a basic example of a skinned mesh
+
+### 1.4 - threejs-skeleton
+    * basic skeleton example
+
+### 1.5 - threejs-bones
+    * (done) see about starting a basic example of a bones created from the examples on the threejs website
+    * (done) rename bones demo folder to bones-threejs-site-example.
+    * make an actually working basic example of THREE.Bone
+
+
+## 2 - New example posts
+
+I can always just make more example posts using my current understaing of threejs, and javascript alone.
+
+### 2.1 - threejs-examples-guy-two
     * start a new guy2 model that will have a few more mesh objects compared to guy1
     * guy2 will have 3 mesh objects for each arm rather than just one
     * guy2 will have 3 mesh objects for each leg rather than just one
@@ -13,22 +36,20 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * have a method that can be used to move a single arm in many different ways within set range limits
     * do some reading an animation clips and see if they can be used to help with tweening from one state to another
 
-## threejs-animation-mixer
-    * basic animation mixer example
 
-## threejs-animation-clip
-    * basic animation clip example
+## 3 - More on shapes, extrude Gemoerty
 
-## threejs-skinned-mesh
-    * see about making a basic example of a skinned mesh
+There is maybe a git more to cover when it comes to using the extrude geometry constructor. This can also involve example type posts.
 
-## threejs-skeleton
-    * basic skeleton example
+## 3.1 - threejs-extrude-geometry
+    * start a basic example of THREE.ExtrudeGeometry
 
-## threejs-bones
-    * (done) see about starting a basic example of a bones created from the examples on the threejs website
-    * (done) rename bones demo folder to bones-threejs-site-example.
-    * make an actually working basic example of THREE.Bone
+
+## 3 - More on the Buffer Geometry Constructor.
+
+### 3.1 - threejs-buffer-geometry-attributes-position
+
+### 3.2 - threejs-buffer-geometry-attributes-normals
 
 ## (started 6/04/2021 ) threejs-object3d-layers
     * (done) basic example with just a grid and single mesh
