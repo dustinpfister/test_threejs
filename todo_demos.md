@@ -39,21 +39,6 @@ I can always just make more example posts using my current understaing of threej
 
 
 
-## 3 - More on the Buffer Geometry Constructor.
-
-I should make a series of posts where I am covering more about the buffer geomerty class in detail when it comes to attributes, and
-various additional features of the class. So the focus here should be on making custom geometry from the ground up, as well as 
-messing around with built in geomerties such as the THREE.BoxGeomerty, and THREE.Plane geometry
-
-### 3.1 - threejs-buffer-geometry-attributes-position
-    * (done) start a basic example on the position property
-
-### 3.2 - threejs-buffer-geometry-attributes-normals
-
-
-
-
-
 ## 4 - More on shapes, extrude Gemoerty
 
 There is maybe a git more to cover when it comes to using the extrude geometry constructor. This can also involve example type posts.
@@ -62,6 +47,22 @@ There is maybe a git more to cover when it comes to using the extrude geometry c
     * start a basic example of THREE.ExtrudeGeometry
 
 
+
+
+
+## 3 - More on the Buffer Geometry Constructor.
+
+I should make a series of posts where I am covering more about the buffer geomerty class in detail when it comes to attributes, and
+various additional features of the class. So the focus here should be on making custom geometry from the ground up, as well as 
+messing around with built in geomerties such as the THREE.BoxGeomerty, and THREE.Plane geometry
+
+### (started 6/07/2021 ) 3.1 - threejs-buffer-geometry-attributes-position
+    * (done) start a basic example on the position property
+    * (done) vert helper demo
+    * (done) tri helper demo
+    * (done) animation loop example using tri helper and position.needsUpdate
+
+### 3.2 - threejs-buffer-geometry-attributes-normals
 
 
 
