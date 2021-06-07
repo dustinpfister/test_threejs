@@ -21,7 +21,19 @@
 
     var updateBoxGeo = function(geometry, per){
         var bias = 1 - Math.abs(per - 0.5) / 0.5;
-        var size = 0.5 + 1 * bias;
+        var size = 0.5 + 1 * bias,
+        position = geometry.getAttribute('position'),
+        triCount = geometry.getIndex().count / 3,
+        i = 0, pos, axis;
+        while(i < triCount){
+            axis = ['x', 'y', 'z'][Math.floor(i / 4)];
+            pos = {};
+            pos[axis] = size * ( i % 4 < 2 ? 1: -1);
+            setTri(geometry, i, pos);
+            i += 1;
+        }
+   
+/*
         setTri(geometry, 0, {x: size});
         setTri(geometry, 1, {x: size});
         setTri(geometry, 2, {x: size * -1});
@@ -36,7 +48,9 @@
         setTri(geometry, 9, {z: size});
         setTri(geometry, 10, {z: size * -1});
         setTri(geometry, 11, {z: size * -1});
-        geometry.getAttribute('position').needsUpdate = true;
+*/
+        // MUST SET THE needsUpdate prop of position to true
+        position.needsUpdate = true;
     };
 
     // scene

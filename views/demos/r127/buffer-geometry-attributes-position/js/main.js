@@ -24,7 +24,7 @@
     var geometry = new THREE.BoxGeometry(1, 1, 1);
 
     // check out the position attribute of a cube
-    position = geometry.getAttribute('position');
+    var position = geometry.getAttribute('position');
     console.log( position.count ); // 24
     console.log( position.array.length ); // 72
     console.log( position.count * 3 === position.array.length); // true
