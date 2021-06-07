@@ -5,8 +5,15 @@
     var scene = new THREE.Scene();
 
 
-    // GEOMETRY
+    // GEOMETRY - starting with a cube
     var geometry = new THREE.BoxGeometry(1, 1, 1);
+
+    // check out the position attribute of a cube
+    position = geometry.getAttribute('position');
+    console.log( position.count ); // 24
+    console.log( position.array.length ); // 72
+    console.log( position.count * 3 === position.array.length); // true
+
     var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
     scene.add(mesh);
 
