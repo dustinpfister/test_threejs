@@ -19,9 +19,13 @@
     tree.group.position.set(0, 0, 0);
     scene.add(tree.group);
 
+    // light
+    var pointLight = new THREE.PointLight(0xffffff);
+    pointLight.position.set(25, 25, 0);
+    scene.add(pointLight);
+
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 8 / 6, 0.05, 100);
-    camera.add(new THREE.PointLight());
     camera.position.set(20, 20, 20);
     camera.lookAt(0, 6, 0);
     scene.add(camera);
@@ -35,12 +39,10 @@
     var sequence = [];
 
     sequence.push({
-        maxFrame: 60,
+        maxFrame: 300,
         forFrame: function(seq){
-
             camera.position.set(20, 20, 20);
             camera.lookAt(0, 6, 0);
-
             tree.group.children.forEach(function(section, i){
                section.rotation.y = Math.PI / 180 * (45 + 45 * seq.bias) * ( i + 1 ) * seq.bias;
             });
@@ -49,7 +51,7 @@
     });
 
     sequence.push({
-        maxFrame: 120,
+        maxFrame: 300,
         forFrame: function(seq){
 
             var radian = Math.PI * 0.25 + Math.PI * 2 * seq.per;
