@@ -2,6 +2,17 @@
 
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
+## threejs-extrude-geometry
+    * start a basic example of THREE.ExtrudeGeometry
+
+## threejs-examples-guy-two
+    * start a new guy2 model that will have a few more mesh objects compared to guy1
+    * guy2 will have 3 mesh objects for each arm rather than just one
+    * guy2 will have 3 mesh objects for each leg rather than just one
+    * have a Guy2Mod.setWalk method but have it so that it will just move the legs, or that the movement of arms is an option
+    * have a method that can be used to move a single arm in many different ways within set range limits
+    * do some reading an animation clips and see if they can be used to help with tweening from one state to another
+
 ## threejs-animation-mixer
     * basic animation mixer example
 
@@ -16,17 +27,6 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 
 ## threejs-bones
     * see about making a basic example of a bone
-
-## threejs-extrude-geometry
-    * start a basic example of THREE.ExtrudeGeometry
-
-## threejs-examples-guy-two
-    * start a new guy2 model that will have a few more mesh objects compared to guy1
-    * guy2 will have 3 mesh objects for each arm rather than just one
-    * guy2 will have 3 mesh objects for each leg rather than just one
-    * have a Guy2Mod.setWalk method but have it so that it will just move the legs, or that the movement of arms is an option
-    * have a method that can be used to move a single arm in many different ways within set range limits
-    * do some reading an animation clips and see if they can be used to help with tweening from one state to another
 
 ## (started 6/04/2021 ) threejs-object3d-layers
     * (done) basic example with just a grid and single mesh
