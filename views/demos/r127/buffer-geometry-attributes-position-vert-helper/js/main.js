@@ -13,7 +13,7 @@
     // scene
     var scene = new THREE.Scene();
 
-    // GEOMETRY - starting with a cube
+    // GEOMETRY
     var geometry = new THREE.BoxGeometry(1, 1, 1);
 
     var pos = {

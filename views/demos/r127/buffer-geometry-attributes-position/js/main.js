@@ -18,13 +18,13 @@
     console.log( 2 * 6 );            // 12 ( number of triangles )
     console.log( index.count / 3);   /* 12 (index.count / 3 === number of triangles ) */
 
-    // mutatating a position
+    // mutating a position
     var vertIndex = index.array[0] * 3;
     position.array[vertIndex] = 1;
     position.needsUpdate = true;
 
     
-    // use the geo with a mesh
+    // use the geometry with a mesh
     var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
         side: THREE.DoubleSide
     }));
@@ -36,7 +36,6 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-
 
     renderer.render(scene, camera);
  

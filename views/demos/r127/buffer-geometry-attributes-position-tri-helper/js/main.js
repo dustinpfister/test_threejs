@@ -23,7 +23,7 @@
     var scene = new THREE.Scene();
 
 
-    // GEOMETRY - starting with a cube
+    // GEOMETRY
     var geometry = new THREE.BoxGeometry(1, 1, 1);
 
     // example 2 on set tri helper
