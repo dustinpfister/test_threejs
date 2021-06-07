@@ -11,6 +11,7 @@
         position.array[posIndex + 2] = pos.z === undefined ? position.array[posIndex + 2]: pos.z;
     };
 
+    // set pos for tri index
     var setTri = function(geometry, triIndex, pos){
         pos = pos || {};
         var vertIndex = triIndex * 3;
@@ -19,6 +20,7 @@
         setVert(geometry, vertIndex + 2, pos);
     };
 
+    // update method for a box geo
     var updateBoxGeo = function(geometry, per){
         var bias = 1 - Math.abs(per - 0.5) / 0.5;
         var size = 0.5 + 1 * bias,
@@ -32,23 +34,6 @@
             setTri(geometry, i, pos);
             i += 1;
         }
-   
-/*
-        setTri(geometry, 0, {x: size});
-        setTri(geometry, 1, {x: size});
-        setTri(geometry, 2, {x: size * -1});
-        setTri(geometry, 3, {x: size * -1});
-
-        setTri(geometry, 4, {y: size});
-        setTri(geometry, 5, {y: size});
-        setTri(geometry, 6, {y: size * -1});
-        setTri(geometry, 7, {y: size * -1});
-
-        setTri(geometry, 8, {z: size});
-        setTri(geometry, 9, {z: size});
-        setTri(geometry, 10, {z: size * -1});
-        setTri(geometry, 11, {z: size * -1});
-*/
         // MUST SET THE needsUpdate prop of position to true
         position.needsUpdate = true;
     };
@@ -56,20 +41,16 @@
     // scene
     var scene = new THREE.Scene();
 
-
-    // GEOMETRY - starting with a cube
+    // GEOMETRY
     var geometry = new THREE.BoxGeometry(1, 1, 1);
-
-
     var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
         side: THREE.DoubleSide
     }));
     scene.add(mesh);
 
-
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(2, 2, 2);
+    camera.position.set(3, 3, 3);
     camera.lookAt(mesh.position);
 
     // RENDER
@@ -77,15 +58,21 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-    var per = 0;
+    var per = 0,
+    lt = new Date(),
+    maxFrames = 300,
+    FPS = 30;
     var loop = function(){
+        var now = new Date(),
+        secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
-        per += 0.0125;
-        per %= 1;
-        updateBoxGeo(geometry, per);
-        renderer.render(scene, camera);
+        if(secs > 1 / FPS){
+            per += 1 / (maxFrames / FPS) * secs;
+            per %= 1;
+            updateBoxGeo(geometry, per);
+            renderer.render(scene, camera);
+            lt = now;
+        }
     };
     loop();
 
