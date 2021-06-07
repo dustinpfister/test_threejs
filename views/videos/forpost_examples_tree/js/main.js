@@ -2,25 +2,27 @@
 
     // SCENE
     var scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(10, 10) );
 
     var MATERIALS_CONE_TREE = new THREE.MeshStandardMaterial({
             color: '#008f00'
         });
 
     var tree = new Tree({
+        conesPerSection: 14,
         coneMaterial: MATERIALS_CONE_TREE,
         sections: 10,
         coneLengthReduction: 4.5
     });
     tree.group.scale.set(2, 2, 2);
-    tree.group.position.set(0, -10, 0);
+    tree.group.position.set(0, 0, 0);
     scene.add(tree.group);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 8 / 6, 0.05, 100);
     camera.add(new THREE.PointLight());
     camera.position.set(20, 20, 20);
-    camera.lookAt(tree.group.position);
+    camera.lookAt(0, 6, 0);
     scene.add(camera);
 
     // RENDER
@@ -32,8 +34,13 @@
     var sequence = [];
 
     sequence.push({
-        maxFrame: 30,
+        maxFrame: 300,
         forFrame: function(seq){
+
+            tree.group.children.forEach(function(section, i){
+               section.rotation.y = Math.PI / 180 * 45 * ( i + 1 ) * seq.per;
+            });
+
             renderer.render(scene, camera);
         }
     });
