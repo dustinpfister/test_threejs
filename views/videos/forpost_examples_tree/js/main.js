@@ -36,11 +36,9 @@
     sequence.push({
         maxFrame: 300,
         forFrame: function(seq){
-
             tree.group.children.forEach(function(section, i){
-               section.rotation.y = Math.PI / 180 * 45 * ( i + 1 ) * seq.per;
+               section.rotation.y = Math.PI / 180 * (45 + 45 * seq.bias) * ( i + 1 ) * seq.bias;
             });
-
             renderer.render(scene, camera);
         }
     });
