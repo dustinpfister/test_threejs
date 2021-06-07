@@ -2,7 +2,8 @@
 
     // SCENE
     var scene = new THREE.Scene();
-    scene.add( new THREE.GridHelper(10, 10) );
+    scene.background =  new THREE.Color(0, 0.25, 0.25);
+    scene.add( new THREE.GridHelper(100, 100) );
 
     var MATERIALS_CONE_TREE = new THREE.MeshStandardMaterial({
             color: '#008f00'
@@ -34,11 +35,27 @@
     var sequence = [];
 
     sequence.push({
-        maxFrame: 300,
+        maxFrame: 60,
         forFrame: function(seq){
+
+            camera.position.set(20, 20, 20);
+            camera.lookAt(0, 6, 0);
+
             tree.group.children.forEach(function(section, i){
                section.rotation.y = Math.PI / 180 * (45 + 45 * seq.bias) * ( i + 1 ) * seq.bias;
             });
+            renderer.render(scene, camera);
+        }
+    });
+
+    sequence.push({
+        maxFrame: 120,
+        forFrame: function(seq){
+
+            var radian = Math.PI * 0.25 + Math.PI * 2 * seq.per;
+            camera.position.set(Math.cos(radian) * 27, 20 - 15 * seq.bias, Math.sin(radian) * 27);
+            camera.lookAt(0, 6, 0);
+
             renderer.render(scene, camera);
         }
     });
