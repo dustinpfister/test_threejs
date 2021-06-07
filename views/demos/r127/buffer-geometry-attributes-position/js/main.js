@@ -14,7 +14,16 @@
     console.log( position.array.length ); // 72
     console.log( position.count * 3 === position.array.length); // true
 
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+    var index = geometry.getIndex();
+    console.log( index.count );      // 36
+    console.log( 2 * 6 );            // 12 ( number of triangles )
+    console.log( index.count / 3);   /* 12 (index.count / 3 === number of triangles ) */
+
+    position.array[1] = 0.75;
+    console.log( position.array[0] );
+
+
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({side: THREE.DoubleSide}));
     scene.add(mesh);
 
 
@@ -27,7 +36,14 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-    renderer.render(scene, camera);
+
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    var loop = function(){
+        requestAnimationFrame(loop);
+        renderer.render(scene, camera);
+    };
+    loop();
 
 }
     ());
