@@ -26,7 +26,9 @@ This is a todo list where I am drafting out ideas for demos that I will include 
     * basic skeleton example
 
 ## threejs-bones
-    * see about making a basic example of a bone
+    * (done) see about starting a basic example of a bones created from the examples on the threejs website
+    * (done) rename bones demo folder to bones-threejs-site-example.
+    * make an actually working basic example of THREE.Bone
 
 ## (started 6/04/2021 ) threejs-object3d-layers
     * (done) basic example with just a grid and single mesh
