@@ -19,11 +19,19 @@
     console.log( 2 * 6 );            // 12 ( number of triangles )
     console.log( index.count / 3);   /* 12 (index.count / 3 === number of triangles ) */
 
-    position.array[1] = 0.75;
-    console.log( position.array[0] );
+    var setVert = function(geometry, vertIndex, x){
+        var posIndex = geometry.index.array[vertIndex] * 3;
+        position.array[posIndex] = x;
+    };
+
+    setVert(geometry, 0, 1);
+    setVert(geometry, 16, 1);
+    setVert(geometry, 26, 1);
 
 
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({side: THREE.DoubleSide}));
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
+        side: THREE.DoubleSide
+    }));
     scene.add(mesh);
 
 
