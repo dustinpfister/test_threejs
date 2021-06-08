@@ -27,7 +27,7 @@
     var scene = new THREE.Scene();
 
     var light = new THREE.PointLight(0xffffff);
-    light.position.set(2, 1, 0);
+    light.position.set(2, 1, 0.75);
     scene.add(light);
 
     // GEOMETRY - starting with a cube

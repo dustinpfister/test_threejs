@@ -67,6 +67,7 @@ messing around with built in geometries such as the THREE.BoxGeomerty, and THREE
 ### (started 6/08/2021 ) 3.2 - threejs-buffer-geometry-attributes-normals
     * (done) basic example of the normals attribute
     * (done) make a setNormalArrow, and setNormal helper function and create an animation loop
+    * example that has to do with light and improved helper methods for attaching arrows for all normals
 
 ### 3.3 - threejs-buffer-geometry-attributes-uis
     * basic example of uis.
