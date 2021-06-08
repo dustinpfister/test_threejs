@@ -8,6 +8,17 @@
         normal.array[normalIndex * 3 + 2] = pos.z;
     };
 
+    // set a given arrow helper to the given normal index
+    var setArrowHelperToNormal = function (geometry, arrowHelper, normalIndex) {
+        // check out the normal attribute of a cube
+        var normal = geometry.getAttribute('normal');
+        var position = geometry.getAttribute('position');
+        var dir = new THREE.Vector3(normal.array[0], normal.array[1], normal.array[2]);
+        var origin = new THREE.Vector3(position.array[0], position.array[1], position.array[2]);
+        arrowHelper.setDirection(dir);
+        helper.position.copy(origin);
+    };
+
     // scene
     var scene = new THREE.Scene();
 
@@ -19,8 +30,16 @@
                 side: THREE.FrontSide //THREE.DoubleSide
             }));
 
-    setNormal(geometry, 0, {x: -1, y: 0.5, z: 0});
+    setNormal(geometry, 0, {
+        x: -1,
+        y: 0.5,
+        z: 0
+    });
 
+    var helper = new THREE.ArrowHelper();
+    setArrowHelperToNormal(geometry, helper, 0);
+
+    /*
     // check out the normal attribute of a cube
     var normal = geometry.getAttribute('normal');
     var position = geometry.getAttribute('position');
@@ -29,6 +48,7 @@
     origin = new THREE.Vector3(position.array[0], position.array[1], position.array[2]);
     var helper = new THREE.ArrowHelper(dir, origin, 1, 0x00ff00);
     helper.position.copy(origin);
+     */
 
     scene.add(mesh);
     scene.add(helper);
