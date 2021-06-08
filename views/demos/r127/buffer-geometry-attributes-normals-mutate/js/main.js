@@ -16,7 +16,8 @@
         var dir = new THREE.Vector3(normal.array[0], normal.array[1], normal.array[2]);
         var origin = new THREE.Vector3(position.array[0], position.array[1], position.array[2]);
         arrowHelper.setDirection(dir);
-        helper.position.copy(origin);
+        arrowHelper.position.copy(origin);
+        arrowHelper.setColor(0x00ff00);
     };
 
     // scene
