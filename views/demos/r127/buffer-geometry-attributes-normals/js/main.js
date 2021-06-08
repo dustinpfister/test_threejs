@@ -9,14 +9,19 @@
 
     // check out the normal attribute of a cube
     var normal = geometry.getAttribute('normal');
+    var position = geometry.getAttribute('position');
     console.log(normal);
+	console.log(position);
 
     // use the geometry with a mesh
     var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
-                side: THREE.DoubleSide
+                side: THREE.FrontSide //THREE.DoubleSide
             }));
-    // Vertex Normals Helper
-    var helper = new THREE.VertexNormalsHelper(mesh, 2, 0x00ff00, 1);
+
+    var dir = new THREE.Vector3(normal.array[0], normal.array[1], normal.array[2]),
+    origin = new THREE.Vector3(position.array[0], position.array[1], position.array[2]);
+    var helper = new THREE.ArrowHelper(dir, origin, 1, 0x00ff00);
+    helper.position.copy(origin);
 
     scene.add(mesh);
     scene.add(helper);
