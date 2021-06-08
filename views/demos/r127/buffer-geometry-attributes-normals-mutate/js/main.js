@@ -49,16 +49,16 @@
     var helper2 = new THREE.ArrowHelper();
     var helper3 = new THREE.ArrowHelper();
     scene.add(helper1);
-    //scene.add(helper2);
-    //scene.add(helper3);
+    scene.add(helper2);
+    scene.add(helper3);
 
     var update = function () {
         setNormal(geometry, 0, pos);
-        //setNormal(geometry, 1, pos);
-        //setNormal(geometry, 2, pos);
+        setNormal(geometry, 1, pos);
+        setNormal(geometry, 2, pos);
         setArrowHelperToNormal(geometry, helper1, 0);
-        //setArrowHelperToNormal(geometry, helper2, 1);
-        //setArrowHelperToNormal(geometry, helper3, 2);
+        setArrowHelperToNormal(geometry, helper2, 1);
+        setArrowHelperToNormal(geometry, helper3, 2);
     };
     //update();
 
