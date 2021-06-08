@@ -29,9 +29,6 @@
     // GEOMETRY - starting with a cube
     var geometry = new THREE.BoxGeometry(1, 1, 1);
 
-    var normal = geometry.getAttribute('normal');
-    console.log(normal);
-
     // use the geometry with a mesh
     var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
                 side: THREE.FrontSide //THREE.DoubleSide
@@ -60,7 +57,7 @@
         setArrowHelperToNormal(geometry, helper2, 1);
         setArrowHelperToNormal(geometry, helper3, 2);
     };
-    //update();
+    update();
 
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
