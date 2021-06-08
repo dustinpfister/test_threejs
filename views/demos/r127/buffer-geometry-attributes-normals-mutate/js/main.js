@@ -35,11 +35,14 @@
 
     scene.add(mesh);
 
-    setNormal(geometry, 0, {
+    var pos = {
         x: -1,
-        y: 0.5,
+        y: 0,
         z: 0
-    });
+    };
+    setNormal(geometry, 0, pos);
+    setNormal(geometry, 1, pos);
+    setNormal(geometry, 2, pos);
     var helper1 = new THREE.ArrowHelper();
     var helper2 = new THREE.ArrowHelper();
     var helper3 = new THREE.ArrowHelper();
