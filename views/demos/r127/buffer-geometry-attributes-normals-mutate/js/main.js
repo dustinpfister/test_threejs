@@ -40,18 +40,24 @@
         y: 0,
         z: 0
     };
-    setNormal(geometry, 0, pos);
-    setNormal(geometry, 1, pos);
-    setNormal(geometry, 2, pos);
+
     var helper1 = new THREE.ArrowHelper();
     var helper2 = new THREE.ArrowHelper();
     var helper3 = new THREE.ArrowHelper();
-    setArrowHelperToNormal(geometry, helper1, 0);
-    setArrowHelperToNormal(geometry, helper2, 1);
-    setArrowHelperToNormal(geometry, helper3, 2);
     scene.add(helper1);
     scene.add(helper2);
     scene.add(helper3);
+
+    var update = function () {
+        setNormal(geometry, 0, pos);
+        setNormal(geometry, 1, pos);
+        setNormal(geometry, 2, pos);
+        setArrowHelperToNormal(geometry, helper1, 0);
+        setArrowHelperToNormal(geometry, helper2, 1);
+        setArrowHelperToNormal(geometry, helper3, 2);
+    };
+    update();
+
 
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
