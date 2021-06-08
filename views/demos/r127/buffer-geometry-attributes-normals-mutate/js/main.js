@@ -1,6 +1,13 @@
 
 (function () {
 
+    var setNormal = function (geometry, normalIndex, pos) {
+        var normal = geometry.getAttribute('normal');
+        normal.array[normalIndex * 3] = pos.x;
+        normal.array[normalIndex * 3 + 1] = pos.y;
+        normal.array[normalIndex * 3 + 2] = pos.z;
+    };
+
     // scene
     var scene = new THREE.Scene();
 
@@ -12,14 +19,11 @@
                 side: THREE.FrontSide //THREE.DoubleSide
             }));
 
+    setNormal(geometry, 0, {x: -1, y: 0.5, z: 0});
+
     // check out the normal attribute of a cube
     var normal = geometry.getAttribute('normal');
     var position = geometry.getAttribute('position');
-
-    normal.array[0] = 1;
-    normal.array[1] = 0.5;
-    normal.array[2] = 0;
-
     // create and set up an arrow helper to find the direction of the first normal value
     var dir = new THREE.Vector3(normal.array[0], normal.array[1], normal.array[2]),
     origin = new THREE.Vector3(position.array[0], position.array[1], position.array[2]);
