@@ -13,8 +13,10 @@
         // check out the normal attribute of a cube
         var normal = geometry.getAttribute('normal');
         var position = geometry.getAttribute('position');
-        var dir = new THREE.Vector3(normal.array[0], normal.array[1], normal.array[2]);
-        var origin = new THREE.Vector3(position.array[0], position.array[1], position.array[2]);
+        var values = normal.array.slice(normalIndex * 3, normalIndex * 3 + 3);
+        var dir = new THREE.Vector3(values[0], values[1], values[2]);
+        var values = position.array.slice(normalIndex * 3, normalIndex * 3 + 3);
+        var origin = new THREE.Vector3(values[0], values[1], values[2]);
         arrowHelper.setDirection(dir);
         arrowHelper.position.copy(origin);
         arrowHelper.setColor(0x00ff00);
@@ -31,28 +33,22 @@
                 side: THREE.FrontSide //THREE.DoubleSide
             }));
 
+    scene.add(mesh);
+
     setNormal(geometry, 0, {
         x: -1,
         y: 0.5,
         z: 0
     });
-
-    var helper = new THREE.ArrowHelper();
-    setArrowHelperToNormal(geometry, helper, 0);
-
-    /*
-    // check out the normal attribute of a cube
-    var normal = geometry.getAttribute('normal');
-    var position = geometry.getAttribute('position');
-    // create and set up an arrow helper to find the direction of the first normal value
-    var dir = new THREE.Vector3(normal.array[0], normal.array[1], normal.array[2]),
-    origin = new THREE.Vector3(position.array[0], position.array[1], position.array[2]);
-    var helper = new THREE.ArrowHelper(dir, origin, 1, 0x00ff00);
-    helper.position.copy(origin);
-     */
-
-    scene.add(mesh);
-    scene.add(helper);
+    var helper1 = new THREE.ArrowHelper();
+    var helper2 = new THREE.ArrowHelper();
+    var helper3 = new THREE.ArrowHelper();
+    setArrowHelperToNormal(geometry, helper1, 0);
+    setArrowHelperToNormal(geometry, helper2, 1);
+    setArrowHelperToNormal(geometry, helper3, 2);
+    scene.add(helper1);
+    scene.add(helper2);
+    scene.add(helper3);
 
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
