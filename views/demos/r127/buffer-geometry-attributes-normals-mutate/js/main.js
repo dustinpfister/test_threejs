@@ -73,9 +73,9 @@
     var radian = 0;
     var loop = function () {
         requestAnimationFrame(loop);
-        pos.y += 0.05;
-        pos.y = pos.y > 1 ? -1 + pos.y % 1 : pos.y;
-        pos.z = 0;
+        radian += Math.PI * 2 / 180 * 1;
+        pos.y = Math.sin(radian);
+        pos.x = Math.cos(radian);
         update();
         renderer.render(scene, camera);
     };
