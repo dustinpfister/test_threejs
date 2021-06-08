@@ -33,7 +33,6 @@
     var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
                 side: THREE.FrontSide //THREE.DoubleSide
             }));
-
     scene.add(mesh);
 
     var pos = {
@@ -67,14 +66,21 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    var radian = 0;
+    var radian = 0,
+    dps = 22.5,
+    lt = new Date();
     var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
-        radian += Math.PI * 2 / 180 * 1;
-        pos.y = Math.sin(radian);
-        pos.x = Math.cos(radian);
-        update();
-        renderer.render(scene, camera);
+        if (secs > 1 / 30) {
+            radian += Math.PI * 2 / 180 * dps * secs;
+            pos.y = Math.sin(radian);
+            pos.x = Math.cos(radian);
+            update();
+            renderer.render(scene, camera);
+            lt = now;
+        }
     };
     loop();
 
