@@ -6,7 +6,6 @@
         normal.array[normalIndex * 3] = pos.x;
         normal.array[normalIndex * 3 + 1] = pos.y;
         normal.array[normalIndex * 3 + 2] = pos.z;
-        //normal.needsUpdate = true;
     };
 
     // set a given arrow helper to the given normal index
@@ -49,18 +48,18 @@
     var helper2 = new THREE.ArrowHelper();
     var helper3 = new THREE.ArrowHelper();
     scene.add(helper1);
-    scene.add(helper2);
-    scene.add(helper3);
+    //scene.add(helper2);
+    //scene.add(helper3);
 
     var update = function () {
         setNormal(geometry, 0, pos);
-        setNormal(geometry, 1, pos);
-        setNormal(geometry, 2, pos);
+        //setNormal(geometry, 1, pos);
+        //setNormal(geometry, 2, pos);
         setArrowHelperToNormal(geometry, helper1, 0);
-        setArrowHelperToNormal(geometry, helper2, 1);
-        setArrowHelperToNormal(geometry, helper3, 2);
+        //setArrowHelperToNormal(geometry, helper2, 1);
+        //setArrowHelperToNormal(geometry, helper3, 2);
     };
-    update();
+    //update();
 
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
@@ -73,10 +72,13 @@
     var radian = 0;
     var loop = function () {
         requestAnimationFrame(loop);
-        radian += Math.PI / 180 * 5;
-        pos.y = Math.sin(radian);
-        pos.x = Math.cos(radian);
+        radian += Math.PI / 180 * 5 + Math.PI;
+        pos.y += 0.05;
+        pos.y = pos.y > 1 ? -1 + pos.y % 1 : pos.y;
+        //pos.x = Math.cos(radian) * 1;
+        pos.z = 0;
         update();
+        //mesh.material.needsUpdate = true;
         renderer.render(scene, camera);
     };
     loop();
