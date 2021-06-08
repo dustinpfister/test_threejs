@@ -29,7 +29,7 @@ In order to create a collection of posts on animation it might have to involve c
 
 ## 2 - New example posts
 
-I can always just make more example posts using my current understaing of threejs, and javascript alone.
+I can always just make more example posts using my current understating of threejs, and JavaScript alone, as well as expand into other libraries and new concepts when it comes to making modules, videos, and applications with threejs as part of the stack.
 
 ### 2.1 - threejs-examples-guy-two
     * start a new guy2 model that will have a few more mesh objects compared to guy1
