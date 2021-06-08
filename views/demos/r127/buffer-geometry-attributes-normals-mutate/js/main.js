@@ -6,6 +6,7 @@
         normal.array[normalIndex * 3] = pos.x;
         normal.array[normalIndex * 3 + 1] = pos.y;
         normal.array[normalIndex * 3 + 2] = pos.z;
+        normal.needsUpdate = true;
     };
 
     // set a given arrow helper to the given normal index
@@ -40,7 +41,7 @@
 
     var pos = {
         x: -1,
-        y: 0,
+        y: -1,
         z: 0
     };
 
@@ -72,13 +73,10 @@
     var radian = 0;
     var loop = function () {
         requestAnimationFrame(loop);
-        radian += Math.PI / 180 * 5 + Math.PI;
         pos.y += 0.05;
         pos.y = pos.y > 1 ? -1 + pos.y % 1 : pos.y;
-        //pos.x = Math.cos(radian) * 1;
         pos.z = 0;
         update();
-        //mesh.material.needsUpdate = true;
         renderer.render(scene, camera);
     };
     loop();
