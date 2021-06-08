@@ -54,7 +54,7 @@ There is maybe a git more to cover when it comes to using the extrude geometry c
 
 ## 3 - More on the Buffer Geometry Constructor.
 
-I should make a series of posts where I am covering more about the buffer geomerty class in detail when it comes to attributes, and
+I should make a series of posts where I am covering more about the buffer geometry class in detail when it comes to attributes, and
 various additional features of the class. So the focus here should be on making custom geometry from the ground up, as well as 
 messing around with built in geometries such as the THREE.BoxGeomerty, and THREE.Plane geometry
 
@@ -64,8 +64,9 @@ messing around with built in geometries such as the THREE.BoxGeomerty, and THREE
     * (done) tri helper demo
     * (done) animation loop example using tri helper and position.needsUpdate
 
-### 3.2 - threejs-buffer-geometry-attributes-normals
-    * basic example of the normals attribute
+### (started 6/08/2021 ) 3.2 - threejs-buffer-geometry-attributes-normals
+    * (done) basic example of the normals attribute
+    * make a setNormalArrow, and setNormal helper function and create an animation loop
 
 ### 3.3 - threejs-buffer-geometry-attributes-uis
     * basic example of uis.
