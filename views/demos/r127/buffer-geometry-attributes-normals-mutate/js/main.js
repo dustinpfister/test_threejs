@@ -6,6 +6,7 @@
         normal.array[normalIndex * 3] = pos.x;
         normal.array[normalIndex * 3 + 1] = pos.y;
         normal.array[normalIndex * 3 + 2] = pos.z;
+        //normal.needsUpdate = true;
     };
 
     // set a given arrow helper to the given normal index
@@ -27,6 +28,9 @@
 
     // GEOMETRY - starting with a cube
     var geometry = new THREE.BoxGeometry(1, 1, 1);
+
+    var normal = geometry.getAttribute('normal');
+    console.log(normal);
 
     // use the geometry with a mesh
     var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
@@ -58,7 +62,6 @@
     };
     update();
 
-
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(2, 2, 2);
@@ -67,8 +70,13 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
+    var radian = 0;
     var loop = function () {
         requestAnimationFrame(loop);
+        radian += Math.PI / 180 * 5;
+        pos.y = Math.sin(radian);
+        pos.x = Math.cos(radian);
+        update();
         renderer.render(scene, camera);
     };
     loop();
