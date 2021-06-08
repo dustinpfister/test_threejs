@@ -56,7 +56,7 @@ There is maybe a git more to cover when it comes to using the extrude geometry c
 
 I should make a series of posts where I am covering more about the buffer geomerty class in detail when it comes to attributes, and
 various additional features of the class. So the focus here should be on making custom geometry from the ground up, as well as 
-messing around with built in geomerties such as the THREE.BoxGeomerty, and THREE.Plane geometry
+messing around with built in geometries such as the THREE.BoxGeomerty, and THREE.Plane geometry
 
 ### (started 6/07/2021 ) 3.1 - threejs-buffer-geometry-attributes-position
     * (done) start a basic example on the position property
@@ -65,17 +65,17 @@ messing around with built in geomerties such as the THREE.BoxGeomerty, and THREE
     * (done) animation loop example using tri helper and position.needsUpdate
 
 ### 3.2 - threejs-buffer-geometry-attributes-normals
-    * basic example of normals
+    * basic example of the normals attribute
 
 ### 3.3 - threejs-buffer-geometry-attributes-uis
     * basic example of uis.
 
 ### 3.4 - threejs-examples-sphere-mutate
-    * create an example where I am just muttaing the positions of a sphere geometry
+    * create an example where I am just mutating the positions of a sphere geometry
     * have some texture maps for the sphere
 
 ### 3.5 - threejs-examples-plane-mutate
-    * create an example where I am mutataing the positions of a plane geometry
+    * create an example where I am mutating the positions of a plane geometry
     * have some texture maps for the plane(s)
 
 
