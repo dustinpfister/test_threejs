@@ -3,10 +3,11 @@
 
     // Scene
     var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(7, 7));
 
     // Camera
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 50);
-    camera.position.set(10, 10, 10);
+    camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
     scene.add(camera); // adding the camera to the scene
 
@@ -22,19 +23,19 @@
                 color: 0xffffff,
                 emissive: 0x1a1a1a
             }));
-    withCamera.position.set( - .25, .2,  - .75);
+    withCamera.position.set(-0.25, .2, -0.75);
     camera.add(withCamera);
 
     // adding another mesh object directly to the scene
     scene.add(new THREE.Mesh(
-            new THREE.BoxGeometry(5, 5, 5),
+            new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshStandardMaterial({
                 color: 0x00ff00
             })));
 
     // Render
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // loop
@@ -42,13 +43,15 @@
     maxFrame = 500;
     var loop = function () {
         var per = frame / maxFrame,
-        bias = Math.abs(.5 - per) / .5;
+        bias = 1 - Math.abs(0.5 - per) / 0.5;
         requestAnimationFrame(loop);
-        renderer.render(scene, camera);
         withCamera.rotation.set(Math.PI * 4 * per,
             Math.PI * 2 * per, 0);
+        camera.position.set(-2 + 8 * bias, 8, 8);
+        camera.lookAt(0, 0, 0);
         frame += 1;
         frame = frame % maxFrame;
+        renderer.render(scene, camera);
     };
     loop();
 
