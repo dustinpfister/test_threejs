@@ -24,8 +24,19 @@
     var scene = new THREE.Scene();
 
     // GEOMETRY - starting with a plane
-    var geometry = new THREE.PlaneGeometry(1, 1);
-    var uv = geometry.getAttribute('uv');
+    var geometry = new THREE.PlaneGeometry(1, 1, 1, 1);
+
+    var uv = geometry.getAttribute('uv'),
+    position = geometry.getAttribute('position');
+
+    // the position attribute
+    console.log(position.count); // 4 ( the are points or vertices )
+    console.log(position.array.length); // 12 ( x, y, and z for each point )
+
+    // THE UV ATTRIBUTE
+    console.log(uv.count); // 4 ( the are points or vertices )
+    console.log(uv.array.length); // 8 ( there is a u and v value for each point )
+
     // MUTATING THE UV VALUES
     uv.array[0] = 0.27;
     uv.array[1] = 0.73;
