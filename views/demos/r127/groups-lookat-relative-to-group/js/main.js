@@ -29,7 +29,10 @@ scene.add(group);
 // IF I WANT TO HAVE THE POINTER LOOK AT THE CUBE
 // THAT IS A CHILD OF THE GROUP, THEN I WILL WANT TO ADJUST 
 // FOR THAT FOR THIS THERE IS THE getWorldPosition Method
-pointer.lookAt(cube.getWorldPosition());
+var v = new THREE.Vector3(0, 0, 0);
+cube.getWorldPosition(v);
+console.log(Object.values(v)); [-2, 0, 2];
+pointer.lookAt(v);
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 100);
