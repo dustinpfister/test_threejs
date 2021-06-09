@@ -39,15 +39,14 @@
     mesh.position.set(1, 0, 0);
     scene.add(mesh);
 
-
+    // another mesh where I am not doing anything to the uv values
     var geometry = new THREE.PlaneGeometry(1, 1);
-    // use the geometry with a mesh
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
+    var mesh2 = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
                 side: THREE.DoubleSide,
                 map: texture
             }));
-    mesh.position.set(-1, 0, 0);
-    scene.add(mesh);
+    mesh2.position.set(-1, 0, 0);
+    scene.add(mesh2);
 
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
