@@ -9,15 +9,12 @@
     var group = new THREE.Group();
     var i = 0,
     radius = 2,
-    count = 5;
+    count = 8;
     while (i < count) {
         // creating a mesh
         var bx = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
-                new THREE.MeshBasicMaterial({
-                    color: 0x00ff00,
-                    wireframe: true
-                })),
+                new THREE.MeshNormalMaterial()),
         r = Math.PI * 2 / count * i;
         // set position of mesh
         bx.position.set(
@@ -29,6 +26,10 @@
         i += 1;
     }
     scene.add(group);
+
+    // changing position and rotation of the group
+    group.position.set(-4, 0, -4);
+    group.rotation.z = Math.PI / 180 * 90;
 
     // Camera and Render
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 50);
