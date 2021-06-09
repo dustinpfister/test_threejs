@@ -6,16 +6,15 @@
     ctx = canvas.getContext('2d');
     canvas.width = 32;
     canvas.height = 32;
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = '#004040'; // fill
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     ctx.strokeStyle = 'white';
     ctx.fillStyle = 'red';
-    ctx.beginPath();
+    ctx.beginPath(); // draw red and white circle
     ctx.arc(16, 16, 12, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
-    	ctx.beginPath();
+    ctx.beginPath(); // draw white square
     ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.stroke();
     var texture = new THREE.Texture(canvas);
