@@ -11,24 +11,7 @@
     material_body = new THREE.MeshStandardMaterial({
             color: 0xff0000
         });
-/*
-    // array of materials used for the head
-    var faceTexture = utils.createCanvasTexture(function (ctx, canvas) {
-            // face color
-            ctx.fillStyle = 'white';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            // eyes
-            ctx.fillStyle = 'black';
-            ctx.fillRect(16, 16, 8, 8);
-            ctx.fillRect(64 - 24, 16, 8, 8);
-            // mouth
-            ctx.fillRect(32 - 8, 40, 16, 16);
-            // nose
-            ctx.fillStyle = 'gray';
-            ctx.fillRect(32 - 4, 20, 8, 13);
 
-        });
-*/
     materials_head = [
         // 0 default material
         new THREE.MeshStandardMaterial({
@@ -36,7 +19,7 @@
         }),
         // 1 used for the face
         new THREE.MeshStandardMaterial({
-            //map: faceTexture
+            color: 0xffffff
         })
     ];
     // the guy constructor
