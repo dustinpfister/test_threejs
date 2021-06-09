@@ -1,6 +1,20 @@
 
 (function () {
 
+    var canvas = document.createElement('canvas'),
+    ctx = canvas.getContext('2d');
+    canvas.width = 32;
+    canvas.height = 32;
+
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.strokeStyle = 'white';
+    ctx.fillStyle = 'red';
+    ctx.arc(16, 16, 7, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
     // scene
     var scene = new THREE.Scene();
 
