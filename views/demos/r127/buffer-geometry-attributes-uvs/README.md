@@ -1,2 +1,2 @@
-# buffer-geometry-attributes-normals
+# buffer-geometry-attributes-uvs
 
