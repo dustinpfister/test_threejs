@@ -69,8 +69,8 @@ messing around with built in geometries such as the THREE.BoxGeomerty, and THREE
     * (done) make a setNormalArrow, and setNormal helper function and create an animation loop
     * example that has to do with light and improved helper methods for attaching arrows for all normals
 
-### 3.3 - threejs-buffer-geometry-attributes-uis
-    * basic example of uis.
+### 3.3 - threejs-buffer-geometry-attributes-uvs
+    * basic example of uvs using a canvas generated texture
 
 ### 3.4 - threejs-examples-sphere-mutate
     * create an example where I am just mutating the positions of a sphere geometry
