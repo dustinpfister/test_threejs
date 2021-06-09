@@ -23,7 +23,7 @@
     scene.add(guy2.group);
 
     var light = new THREE.PointLight(0xffffff);
-    light.position.set(10, 10, 20);
+    light.position.set(0, 5, 2);
     scene.add(light);
 
     // CAMERA
@@ -46,8 +46,13 @@
 
     // sequence 1 zooming in to guy 2
     video.sequence.push({
-        maxFrame: Math.ceil(30 * 2),
+        maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
+
+            // GUY1
+            guy1.head.rotation.y = 0;
+            guy1.head.scale.set(1, 1, 1);
+            guy1.head.position.x = 0;
 
             // GUY2
             guy2.head.rotation.y = 0;
@@ -66,8 +71,13 @@
 
     // sequence 2 - guy2 rotates head to face guy1
     video.sequence.push({
-        maxFrame: Math.ceil(30 * 2),
+        maxFrame: Math.ceil(30 * 3),
         forFrame: function (seq) {
+
+            // GUY1
+            guy1.head.rotation.y = 0;
+            guy1.head.scale.set(1, 1, 1);
+            guy1.head.position.x = 0;
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * seq.per * -1;
@@ -82,15 +92,152 @@
 
     // sequence 2.1 - guy2 asks if guy1 is okay
     video.sequence.push({
-        maxFrame: Math.ceil(30 * 2),
+        maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
 
+            // GUY1
+            guy1.head.rotation.y = 0;
+            guy1.head.scale.set(1, 1, 1);
+            guy1.head.position.x = 0;
+
             // GUY2
-            guy2.head.rotation.y = Math.PI / 180 * 90;
+            guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
 
             // CAMERA
             camera.position.set(0, 5, 5);
             camera.lookAt(guy2.group.position);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+    // sequence 2.2 - quick camera move to guy1
+    video.sequence.push({
+        maxFrame: Math.ceil(30 * 1),
+        forFrame: function (seq) {
+
+            // GUY1
+            guy1.head.rotation.y = 0;
+            guy1.head.scale.set(1, 1, 1);
+            guy1.head.position.x = 0;
+
+            // GUY2
+            guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+
+            // CAMERA
+            camera.position.set(0, 5, 5);
+            var v = new THREE.Vector3()
+            v.copy(guy2.group.position);
+            v.x = guy2.group.position.x - 4 * seq.per
+            camera.lookAt(v);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+    // sequence 3 - guy1 rotates head to face guy2
+    video.sequence.push({
+        maxFrame: Math.ceil(30 * 5),
+        forFrame: function (seq) {
+
+            // GUY1
+            guy1.head.rotation.y = Math.PI / 180 * 90 * seq.per;
+            guy1.head.scale.set(1, 1, 1);
+            guy1.head.position.x = 0;
+
+            // GUY2
+            guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+
+            // CAMERA
+            camera.position.set(0, 5, 5);
+            camera.lookAt(guy1.group.position);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+    // sequence 4 - the depth of the head of guy1 gets longer
+    video.sequence.push({
+        maxFrame: Math.ceil(30 * 5),
+        forFrame: function (seq) {
+
+            // GUY1
+            guy1.head.rotation.y = Math.PI / 180 * 90;
+            guy1.head.scale.set(1, 1, 1 + 5 * seq.per);
+            guy1.head.position.x = ( 6 / 2 - 0.5) * seq.per;
+
+            // GUY2
+            guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+
+            // CAMERA
+            var x = 5 * seq.per,
+            y = 5,
+            z = 5 - 5 * seq.per;
+            camera.position.set(x, 5, z);
+            camera.lookAt(guy1.group.position);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+    // sequence 5 - guy1 responds with 'no'
+    video.sequence.push({
+        maxFrame: Math.ceil(30 * 5),
+        forFrame: function (seq) {
+
+            // GUY1
+            guy1.head.rotation.y = Math.PI / 180 * 90;
+            guy1.head.scale.set(1, 1, 1 + 5);
+            guy1.head.position.x = ( 6 / 2 - 0.5);
+
+            // GUY2
+            guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+
+            // CAMERA
+            camera.position.set(5, 5, 0);
+            camera.lookAt(guy1.group.position);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+    // sequence 6 - guy1 head depth returns to 1
+    video.sequence.push({
+        maxFrame: Math.ceil(30 * 5),
+        forFrame: function (seq) {
+
+            // GUY1
+            guy1.head.rotation.y = Math.PI / 180 * 90;
+            guy1.head.scale.set(1, 1, 6 - 5 * seq.per);
+            guy1.head.position.x = 2.5 - 2.5 * seq.per;
+
+            // GUY2
+            guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+
+            // CAMERA
+            camera.position.set(5, 5, 0);
+            camera.lookAt(guy1.group.position);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+    // sequence 7 - 
+    video.sequence.push({
+        maxFrame: Math.ceil(30 * 5),
+        forFrame: function (seq) {
+
+            // GUY1
+            guy1.head.rotation.y = Math.PI / 180 * 90;
+            guy1.head.scale.set(1, 1, 1);
+            guy1.head.position.x = 0;
+
+            // GUY2
+            guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+
+            // CAMERA
+            camera.position.set(5, 5, 0);
+            camera.lookAt(guy1.group.position);
 
             renderer.render(scene, camera);
         }
