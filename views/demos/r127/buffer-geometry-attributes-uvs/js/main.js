@@ -26,24 +26,33 @@
     // GEOMETRY - starting with a plane
     var geometry = new THREE.PlaneGeometry(1, 1);
     var uv = geometry.getAttribute('uv');
+    // MUTATING THE UV VALUES
     uv.array[0] = 0.27;
     uv.array[1] = 0.73;
     uv.array[6] = 0.27;
     uv.array[7] = 0.73;
-    console.log(uv.array);
-
     // use the geometry with a mesh
     var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
                 side: THREE.DoubleSide,
                 map: texture
             }));
+    mesh.position.set(1, 0, 0);
+    scene.add(mesh);
 
+
+    var geometry = new THREE.PlaneGeometry(1, 1);
+    // use the geometry with a mesh
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
+                side: THREE.DoubleSide,
+                map: texture
+            }));
+    mesh.position.set(-1, 0, 0);
     scene.add(mesh);
 
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(2, 2, 2);
-    camera.lookAt(mesh.position);
+    camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
