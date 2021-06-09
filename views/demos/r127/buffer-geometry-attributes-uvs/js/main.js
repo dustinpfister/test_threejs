@@ -1,19 +1,25 @@
 
 (function () {
 
+    // creating a simple canvas generated texture
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
     canvas.width = 32;
     canvas.height = 32;
-
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.beginPath();
+
     ctx.strokeStyle = 'white';
     ctx.fillStyle = 'red';
-    ctx.arc(16, 16, 7, 0, Math.PI * 2);
+    ctx.beginPath();
+    ctx.arc(16, 16, 12, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
+    	ctx.beginPath();
+    ctx.rect(0, 0, canvas.width, canvas.height);
+    ctx.stroke();
+    var texture = new THREE.Texture(canvas);
+    texture.needsUpdate = true;
 
     // scene
     var scene = new THREE.Scene();
@@ -24,8 +30,9 @@
     console.log(geometry.getAttribute('uv').array);
 
     // use the geometry with a mesh
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
-                side: THREE.DoubleSide
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
+                side: THREE.DoubleSide,
+                map: texture
             }));
 
     scene.add(mesh);
