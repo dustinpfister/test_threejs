@@ -11,7 +11,7 @@
     ctx.strokeStyle = 'white';
     ctx.fillStyle = 'red';
     ctx.beginPath(); // draw red and white circle
-    ctx.arc(16, 16, 8, 0, Math.PI * 2);
+    ctx.arc(10, 10, 8, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
     ctx.beginPath(); // draw white square
@@ -27,10 +27,26 @@
     var geometry = new THREE.PlaneGeometry(1, 1);
     var uv = geometry.getAttribute('uv');
     // MUTATING THE UV VALUES
-    uv.array[0] = 0.27;
-    uv.array[1] = 0.73;
-    uv.array[6] = 0.27;
-    uv.array[7] = 0.73;
+    //uv.array[0] = 0.27;
+    //uv.array[1] = 0.73;
+    //uv.array[6] = 0.27;
+    //uv.array[7] = 0.73;
+    console.log(uv.array);
+    uv.array.forEach(function (n, i) {
+        uv.array[i] = 0;
+    });
+    uv.array[0] = 0;
+    uv.array[1] = 1;
+
+    uv.array[2] = 1;
+    uv.array[3] = 1;
+
+    uv.array[4] = 0;
+    uv.array[5] = 0;
+
+    uv.array[6] = 1;
+    uv.array[7] = 0;
+
     // use the geometry with a mesh
     var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
                 side: THREE.DoubleSide,
