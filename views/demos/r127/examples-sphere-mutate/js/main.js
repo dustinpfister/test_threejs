@@ -12,12 +12,13 @@
         position.needsUpdate = true;
     };
 
+    // update top of sphere
     var updateSphereTopPoint = function (geometry, topPoint) {
         topPoint = topPoint === undefined ? 0.5 : topPoint;
         var position = geometry.getAttribute('position');
         var pos = {
             x: position.array[0],
-            y: position.array[1] + topPoint,
+            y: topPoint,
             z: position.array[2]
         };
         // getting width segments of sphere
@@ -35,12 +36,11 @@
     // GEOMETRY
     var geometry = new THREE.SphereGeometry(0.5, 30, 5);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-                wireframe: true,
+                //wireframe: true,
                 color: 'red',
                 side: THREE.DoubleSide
             }));
     scene.add(mesh);
-    updateSphereTopPoint(geometry, 0.25);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
@@ -64,7 +64,7 @@
     var per = 0,
     lt = new Date(),
     maxFrames = 300,
-    FPS = 5;
+    FPS = 30;
     var loop = function () {
         var now = new Date(),
         secs = (now - lt) / 1000;
@@ -72,6 +72,8 @@
         if (secs > 1 / FPS) {
             per += 1 / (maxFrames / FPS) * secs;
             per %= 1;
+
+            updateSphereTopPoint(geometry, 1 - 1 * per);
 
             renderer.render(scene, camera);
             lt = now;
