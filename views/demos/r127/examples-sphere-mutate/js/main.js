@@ -1,12 +1,6 @@
 
 (function () {
 
-    var getNormalPos = function (geometry, normalIndex) {
-        var normal = geometry.getAttribute('normal');
-        var position = geometry.getAttribute('position');
-        return normal.array.slice(normalIndex * 3, normalIndex * 3 + 3);
-    };
-
     // set location of a vert given an index value in geometry.index
     var setVert = function (geometry, vertIndex, pos) {
         pos = pos || {};
