@@ -35,30 +35,14 @@
     var updateSphere = function (geometry) {
         var pos = {
             x: position.array[0],
-            y: position.array[1] + 0.25,
+            y: position.array[1] + 0.5,
             z: position.array[2]
         };
-        setVert(geometry, 0, pos);
-        setVert(geometry, 1, pos);
-        setVert(geometry, 2, pos);
-        setVert(geometry, 3, pos);
-        setVert(geometry, 4, pos);
-        setVert(geometry, 5, pos);
-        setVert(geometry, 6, pos);
-        setVert(geometry, 7, pos);
-        setVert(geometry, 8, pos);
-        setVert(geometry, 9, pos);
-        setVert(geometry, 10, pos);
-        setVert(geometry, 11, pos);
-        setVert(geometry, 12, pos);
-        setVert(geometry, 13, pos);
-        setVert(geometry, 14, pos);
-        setVert(geometry, 15, pos);
-        setVert(geometry, 16, pos);
-        setVert(geometry, 17, pos);
-        setVert(geometry, 18, pos);
-        setVert(geometry, 19, pos);
-        setVert(geometry, 20, pos);
+        var i = 0;
+        while (i < 8 * 8) {
+            setVert(geometry, i, pos);
+            i += 1;
+        }
     }
 
     updateSphere(geometry);
