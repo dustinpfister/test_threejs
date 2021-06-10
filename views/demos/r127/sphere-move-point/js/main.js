@@ -13,24 +13,46 @@
         }
     };
 
+    // return an array of index values for points that are the same
+    // for the given vert index
+    var getAllForVert = function (geometry, vertIndex) {
+        var position = geometry.getAttribute('position');
+        var compareSlice = position.array.slice(vertIndex * 3, vertIndex * 3 + 3);
+        var compareStr = compareSlice.join(',');
+        var index = [];
+        forAllVerts(mesh.geometry, function (slice, i) {
+            //console.log(i, slice.join());
+            if (compareStr === slice.join(',')) {
+                index.push(i);
+            }
+
+        });
+        return index;
+    };
+
     // creating a scene
     var scene = new THREE.Scene();
 
     // mesh
     var mesh = new THREE.Mesh(
             // USING A SPHERE GEOMETRY WITH A RADIUS OF 0.5
-            new THREE.SphereGeometry(0.5, 10, 8),
+            new THREE.SphereGeometry(0.5, 8, 8),
             // standard material
             new THREE.MeshStandardMaterial({
                 color: 0xff0000,
                 emissive: 0x404040
             }));
 
-    forAllVerts(mesh.geometry, function (slice, i) {
+    //forAllVerts(mesh.geometry, function (slice, i) {
+    //    console.log(i, slice.join());
+    //});
 
-        console.log(i, slice.join());
-
-    });
+    var i = 0;
+    var position = mesh.geometry.getAttribute('position');
+    while (i < position.count) {
+        console.log(getAllForVert(mesh.geometry, i).length);
+        i += 1;
+    }
 
     scene.add(mesh); // add the mesh to the scene
 
