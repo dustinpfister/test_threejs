@@ -48,7 +48,7 @@
     // GEOMETRY
     var geometry = new THREE.SphereGeometry(0.5, 10, 10);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-                //wireframe: true,
+                wireframe: true,
                 color: 'red',
                 side: THREE.DoubleSide
             }));
@@ -58,10 +58,23 @@
     normal = geometry.getAttribute('normal');
     console.log(position.count);
     console.log(position.array.length / 3);
-	console.log(normal.count);
-	
-	
-	
+    console.log(normal.count);
+
+    var position = geometry.getAttribute('position');
+    var vertIndex = 20; //Math.floor(position.count * Math.random());
+    var normalPos = getNormalPos(geometry, vertIndex);
+
+    var helper = new THREE.ArrowHelper();
+    scene.add(helper);
+    setArrowHelperToNormal(geometry, helper, vertIndex);
+
+    var pos = {
+        x: position.array[vertIndex * 3] + normalPos[0] * 0.1,
+        y: position.array[vertIndex * 3 + 1] + normalPos[1] * 0.1,
+        z: position.array[vertIndex * 3 + 2] + normalPos[2] * 0.1
+    };
+
+    setVert(geometry, vertIndex, pos);
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.25));
 
@@ -92,18 +105,6 @@
         if (secs > 1 / FPS) {
             per += 1 / (maxFrames / FPS) * secs;
             per %= 1;
-
-            var position = geometry.getAttribute('position')
-            var triIndex = Math.floor(position.count * Math.random());
-            var normalPos = getNormalPos(geometry, triIndex);
-
-            var pos = {
-                x: normalPos[0] * 0.45,
-                y: normalPos[1] * 0.45,
-                z: normalPos[2] * 0.45
-            };
-
-            setTri(geometry, triIndex, pos);
 
             renderer.render(scene, camera);
             lt = now;
