@@ -56,23 +56,6 @@
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.25));
 
-    var helper = new THREE.ArrowHelper();
-    scene.add(helper);
-
-    var vertIndex = 10;
-
-    setArrowHelperToNormal(geometry, helper, vertIndex);
-
-    console.log(getNormalPos(geometry, vertIndex));
-
-    var pos = {
-        x: 0.25,
-        y: 0.25,
-        z: 0.25
-    };
-    var triIndex = 4;
-    //setTri(geometry, triIndex, pos);
-
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(0.7, 0.75, 1);
@@ -101,13 +84,17 @@
             per += 1 / (maxFrames / FPS) * secs;
             per %= 1;
 
-            var pos = {
-                x: 0.25 * Math.random(),
-                y: 0.25 * Math.random(),
-                z: 0.25 * Math.random()
-            };
             var index = geometry.getIndex();
             var triIndex = Math.floor((index.count / 3) * Math.random());
+            var normalIndex = triIndex;
+            var normalPos = getNormalPos(geometry, normalIndex);
+
+            var pos = {
+                x: 0,//noramlPos[0] * 0.5,
+                y: 0,//noramlPos[1] * 0.5,
+                z: 0//noramlPos[2] * 0.5
+            };
+
             setTri(geometry, triIndex, pos);
 
             renderer.render(scene, camera);
