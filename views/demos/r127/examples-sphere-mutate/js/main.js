@@ -20,29 +20,11 @@
         setVert(geometry, vertIndex + 2, pos);
     };
 
-    // update method for a box geo
-    var updateBoxGeo = function(geometry, per){
-        var bias = 1 - Math.abs(per - 0.5) / 0.5;
-        var size = 0.5 + 1 * bias,
-        position = geometry.getAttribute('position'),
-        triCount = geometry.getIndex().count / 3,
-        i = 0, pos, axis;
-        while(i < triCount){
-            axis = ['x', 'y', 'z'][Math.floor(i / 4)];
-            pos = {};
-            pos[axis] = size * ( i % 4 < 2 ? 1: -1);
-            setTri(geometry, i, pos);
-            i += 1;
-        }
-        // MUST SET THE needsUpdate prop of position to true
-        position.needsUpdate = true;
-    };
-
     // scene
     var scene = new THREE.Scene();
 
     // GEOMETRY
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    var geometry = new THREE.SphereGeometry(0.5, 15, 15);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
         side: THREE.DoubleSide
     }));
@@ -50,7 +32,7 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(3, 3, 3);
+    camera.position.set(1, 1, 1);
     camera.lookAt(mesh.position);
 
     // RENDER
@@ -69,7 +51,6 @@
         if(secs > 1 / FPS){
             per += 1 / (maxFrames / FPS) * secs;
             per %= 1;
-            updateBoxGeo(geometry, per);
             renderer.render(scene, camera);
             lt = now;
         }
