@@ -45,7 +45,7 @@
     var scene = new THREE.Scene();
 
     // GEOMETRY
-    var geometry = new THREE.SphereGeometry(0.5, 15, 15);
+    var geometry = new THREE.SphereGeometry(0.5, 10, 10);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
                 //wireframe: true,
                 side: THREE.DoubleSide
@@ -55,7 +55,7 @@
     var helper = new THREE.ArrowHelper();
     scene.add(helper);
 
-    var vertIndex = 100;
+    var vertIndex = 50;
 
     setArrowHelperToNormal(geometry, helper, vertIndex);
 
@@ -67,17 +67,19 @@
         z: 0
     };
 
-    setVert(geometry, vertIndex, pos);
+    //setVert(geometry, vertIndex, pos);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(-2, 2, 2);
+    camera.position.set(0.7, 0.75, 1);
     camera.lookAt(mesh.position);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
+
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     var per = 0,
     lt = new Date(),
