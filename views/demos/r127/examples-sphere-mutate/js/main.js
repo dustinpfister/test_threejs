@@ -30,6 +30,7 @@
         position.array[posIndex] = pos.x === undefined ? position.array[posIndex] : pos.x;
         position.array[posIndex + 1] = pos.y === undefined ? position.array[posIndex + 1] : pos.y;
         position.array[posIndex + 2] = pos.z === undefined ? position.array[posIndex + 2] : pos.z;
+        position.needsUpdate = true;
     };
 
     // set pos for tri index
@@ -46,33 +47,40 @@
 
     // GEOMETRY
     var geometry = new THREE.SphereGeometry(0.5, 10, 10);
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
                 //wireframe: true,
+                color: 'red',
                 side: THREE.DoubleSide
             }));
     scene.add(mesh);
 
+    scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+
     var helper = new THREE.ArrowHelper();
     scene.add(helper);
 
-    var vertIndex = 50;
+    var vertIndex = 10;
 
     setArrowHelperToNormal(geometry, helper, vertIndex);
 
     console.log(getNormalPos(geometry, vertIndex));
 
     var pos = {
-        x: 0,
-        y: 0,
-        z: 0
+        x: 0.25,
+        y: 0.25,
+        z: 0.25
     };
-
-    //setVert(geometry, vertIndex, pos);
+    var triIndex = 4;
+    //setTri(geometry, triIndex, pos);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(0.7, 0.75, 1);
     camera.lookAt(mesh.position);
+    var light = new THREE.PointLight(0xffffff, 1);
+    light.position.set(1, 1, 0);
+    camera.add(light);
+    scene.add(camera);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
@@ -84,7 +92,7 @@
     var per = 0,
     lt = new Date(),
     maxFrames = 300,
-    FPS = 30;
+    FPS = 5;
     var loop = function () {
         var now = new Date(),
         secs = (now - lt) / 1000;
@@ -92,6 +100,16 @@
         if (secs > 1 / FPS) {
             per += 1 / (maxFrames / FPS) * secs;
             per %= 1;
+
+            var pos = {
+                x: 0.25 * Math.random(),
+                y: 0.25 * Math.random(),
+                z: 0.25 * Math.random()
+            };
+            var index = geometry.getIndex();
+            var triIndex = Math.floor((index.count / 3) * Math.random());
+            setTri(geometry, triIndex, pos);
+
             renderer.render(scene, camera);
             lt = now;
         }
