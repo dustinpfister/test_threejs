@@ -1,6 +1,12 @@
 
 (function () {
 
+    var getNormalPos = function (geometry, normalIndex) {
+        var normal = geometry.getAttribute('normal');
+        var position = geometry.getAttribute('position');
+        return normal.array.slice(normalIndex * 3, normalIndex * 3 + 3);
+    };
+
     // set a given arrow helper to the given normal index
     var setArrowHelperToNormal = function (geometry, arrowHelper, normalIndex) {
         // check out the normal attribute of a cube
@@ -54,9 +60,13 @@
     var helper = new THREE.ArrowHelper();
     scene.add(helper);
 
-    setArrowHelperToNormal(geometry, helper, 3);
+    var vertIndex = 100;
 
-    setVert(geometry, 3, pos);
+    setArrowHelperToNormal(geometry, helper, vertIndex);
+
+    console.log(getNormalPos(geometry, vertIndex));
+
+    setVert(geometry, vertIndex, pos);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
