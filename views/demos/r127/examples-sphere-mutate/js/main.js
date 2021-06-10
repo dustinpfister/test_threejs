@@ -46,7 +46,7 @@
     var scene = new THREE.Scene();
 
     // GEOMETRY
-    var geometry = new THREE.SphereGeometry(0.5, 10, 10);
+    var geometry = new THREE.SphereGeometry(0.5, 8, 8);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
                 //wireframe: true,
                 color: 'red',
@@ -62,7 +62,7 @@
 
     var position = geometry.getAttribute('position');
     var normal = geometry.getAttribute('normal');
-    var vertIndex = 15;
+    var vertIndex = 9;
     var normalPos = getNormalPos(geometry, vertIndex);
 
     var helper = new THREE.ArrowHelper();

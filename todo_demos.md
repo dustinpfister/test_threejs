@@ -74,7 +74,7 @@ messing around with built in geometries such as the THREE.BoxGeomerty, and THREE
     * (done) basic loop example of mutation of uvs
 
 ### ( started 6/10/2021 ) 3.4 - threejs-examples-sphere-mutate
-    * create an example where I am just mutating the positions of a sphere geometry
+    * (done) start an example where I am just mutating the positions of a sphere geometry
     * have some texture maps for the sphere
 
 ### 3.5 - threejs-examples-plane-mutate
