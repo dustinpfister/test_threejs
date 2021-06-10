@@ -3,7 +3,8 @@
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
 
-
+## !!! in progess
+* see about finishing /r127/sphere-move-point demo
 
 ## 1 - Bones, Animation, and External Files
 
