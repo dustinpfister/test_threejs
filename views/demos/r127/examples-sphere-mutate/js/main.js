@@ -72,8 +72,8 @@
         if (secs > 1 / FPS) {
             per += 1 / (maxFrames / FPS) * secs;
             per %= 1;
-
-            updateSphereTopPoint(geometry, 1 - 1 * per);
+            // calling update sphere helper
+            updateSphereTopPoint(geometry, 0.5 - 0.75 * per);
 
             renderer.render(scene, camera);
             lt = now;
