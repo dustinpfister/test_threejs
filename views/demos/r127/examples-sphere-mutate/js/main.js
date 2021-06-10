@@ -32,7 +32,8 @@
 
     var position = geometry.getAttribute('position');
 
-    var updateSphere = function (geometry) {
+    var updateSphereTopPoint = function (geometry, topPoint) {
+        topPoint = topPoint === undefined ? 0.5 : topPoint;
         var pos = {
             x: position.array[0],
             y: position.array[1] + 0.5,
@@ -45,7 +46,7 @@
         }
     }
 
-    updateSphere(geometry);
+    updateSphereTopPoint(geometry);
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.25));
 
