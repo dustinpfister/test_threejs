@@ -81,9 +81,6 @@ messing around with built in geometries such as the THREE.BoxGeomerty, and THREE
     * create an example where I am mutating the positions of a plane geometry
     * have some texture maps for the plane(s)
 
-
-
-
 ## - Random new content
 
 From this point back I was not planing things out on a week by week, or subject basis
