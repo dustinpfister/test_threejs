@@ -34,9 +34,8 @@
     var scene = new THREE.Scene();
 
     // GEOMETRY
-    var geometry = new THREE.SphereGeometry(0.5, 30, 5);
+    var geometry = new THREE.SphereGeometry(0.5, 30, 10);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-                //wireframe: true,
                 color: 'red',
                 side: THREE.DoubleSide
             }));
@@ -44,7 +43,7 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(2, 2, 2);
+    camera.position.set(1, 1, 1);
     camera.lookAt(mesh.position);
     scene.add(camera);
 
@@ -59,9 +58,9 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     var per = 0,
+    bias,
     lt = new Date(),
     maxFrames = 300,
     FPS = 30;
@@ -72,8 +71,9 @@
         if (secs > 1 / FPS) {
             per += 1 / (maxFrames / FPS) * secs;
             per %= 1;
+            bias = 1 - Math.abs(per - 0.5) / 0.5;
             // calling update sphere helper
-            updateSphereTopPoint(geometry, 0.5 - 0.75 * per);
+            updateSphereTopPoint(geometry, 0.75 - 0.75 * bias);
 
             renderer.render(scene, camera);
             lt = now;
