@@ -20,8 +20,10 @@
             y: position.array[1] + topPoint,
             z: position.array[2]
         };
+        // getting width segments of sphere
+        var ws = geometry.parameters.widthSegments;
         var i = 0;
-        while (i < 30 * 3) {
+        while (i < ws * 3) {
             setVert(geometry, i, pos);
             i += 1;
         }
