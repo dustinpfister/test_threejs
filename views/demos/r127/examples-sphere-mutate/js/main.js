@@ -48,7 +48,7 @@
     // GEOMETRY
     var geometry = new THREE.SphereGeometry(0.5, 10, 10);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-                wireframe: true,
+                //wireframe: true,
                 color: 'red',
                 side: THREE.DoubleSide
             }));
@@ -61,7 +61,8 @@
     console.log(normal.count);
 
     var position = geometry.getAttribute('position');
-    var vertIndex = 20; //Math.floor(position.count * Math.random());
+    var normal = geometry.getAttribute('normal');
+    var vertIndex = 15;
     var normalPos = getNormalPos(geometry, vertIndex);
 
     var helper = new THREE.ArrowHelper();
