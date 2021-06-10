@@ -54,6 +54,15 @@
             }));
     scene.add(mesh);
 
+    var position = geometry.getAttribute('position'),
+    normal = geometry.getAttribute('normal');
+    console.log(position.count);
+    console.log(position.array.length / 3);
+	console.log(normal.count);
+	
+	
+	
+
     scene.add(new THREE.AmbientLight(0xffffff, 0.25));
 
     // CAMERA
@@ -84,15 +93,14 @@
             per += 1 / (maxFrames / FPS) * secs;
             per %= 1;
 
-            var index = geometry.getIndex();
-            var triIndex = Math.floor((index.count / 3) * Math.random());
-            var normalIndex = triIndex;
-            var normalPos = getNormalPos(geometry, normalIndex);
+            var position = geometry.getAttribute('position')
+            var triIndex = Math.floor(position.count * Math.random());
+            var normalPos = getNormalPos(geometry, triIndex);
 
             var pos = {
-                x: 0,//noramlPos[0] * 0.5,
-                y: 0,//noramlPos[1] * 0.5,
-                z: 0//noramlPos[2] * 0.5
+                x: normalPos[0] * 0.45,
+                y: normalPos[1] * 0.45,
+                z: normalPos[2] * 0.45
             };
 
             setTri(geometry, triIndex, pos);
