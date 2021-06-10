@@ -17,39 +17,40 @@
         var position = geometry.getAttribute('position');
         var pos = {
             x: position.array[0],
-            y: position.array[1] + 0.5,
+            y: position.array[1] + topPoint,
             z: position.array[2]
         };
         var i = 0;
-        while (i < 8 * 8) {
+        while (i < 30 * 3) {
             setVert(geometry, i, pos);
             i += 1;
         }
-    }
+    };
 
     // scene
     var scene = new THREE.Scene();
 
     // GEOMETRY
-    var geometry = new THREE.SphereGeometry(0.5, 8, 8);
+    var geometry = new THREE.SphereGeometry(0.5, 30, 5);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-                //wireframe: true,
+                wireframe: true,
                 color: 'red',
                 side: THREE.DoubleSide
             }));
     scene.add(mesh);
-    updateSphereTopPoint(geometry, 1);
-
-    scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+    updateSphereTopPoint(geometry, 0.25);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(2, 2, 2);
     camera.lookAt(mesh.position);
+    scene.add(camera);
+
+    // LIGHT
     var light = new THREE.PointLight(0xffffff, 1);
     light.position.set(1, 1, 0);
     camera.add(light);
-    scene.add(camera);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.25));
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
