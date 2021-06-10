@@ -18,20 +18,6 @@
         position.needsUpdate = true;
     };
 
-    // scene
-    var scene = new THREE.Scene();
-
-    // GEOMETRY
-    var geometry = new THREE.SphereGeometry(0.5, 8, 8);
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-                //wireframe: true,
-                color: 'red',
-                side: THREE.DoubleSide
-            }));
-    scene.add(mesh);
-
-    var position = geometry.getAttribute('position');
-
     var updateSphereTopPoint = function (geometry, topPoint) {
         topPoint = topPoint === undefined ? 0.5 : topPoint;
         var pos = {
@@ -45,6 +31,20 @@
             i += 1;
         }
     }
+
+    // scene
+    var scene = new THREE.Scene();
+
+    // GEOMETRY
+    var geometry = new THREE.SphereGeometry(0.5, 8, 8);
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
+                //wireframe: true,
+                color: 'red',
+                side: THREE.DoubleSide
+            }));
+    scene.add(mesh);
+
+    var position = geometry.getAttribute('position');
 
     updateSphereTopPoint(geometry);
 
