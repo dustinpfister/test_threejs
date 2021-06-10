@@ -17,6 +17,7 @@
         var values = position.array.slice(normalIndex * 3, normalIndex * 3 + 3);
         var origin = new THREE.Vector3(values[0], values[1], values[2]);
         arrowHelper.setDirection(dir);
+        arrowHelper.setLength(0.25);
         arrowHelper.position.copy(origin);
         arrowHelper.setColor(0x00ff00);
     };
@@ -51,12 +52,6 @@
             }));
     scene.add(mesh);
 
-    var pos = {
-        x: 0,
-        y: 0.25,
-        z: 0
-    };
-
     var helper = new THREE.ArrowHelper();
     scene.add(helper);
 
@@ -65,6 +60,12 @@
     setArrowHelperToNormal(geometry, helper, vertIndex);
 
     console.log(getNormalPos(geometry, vertIndex));
+
+    var pos = {
+        x: 0,
+        y: 0,
+        z: 0
+    };
 
     setVert(geometry, vertIndex, pos);
 
