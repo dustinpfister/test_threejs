@@ -22,9 +22,12 @@
     guy2.group.lookAt(2, 1.55, 1);
     scene.add(guy2.group);
 
+    // LIGHT
     var light = new THREE.PointLight(0xffffff);
     light.position.set(0, 5, 2);
     scene.add(light);
+    var light_ambient = new THREE.AmbientLight(0xffffff, 0.25);
+    scene.add(light_ambient);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
