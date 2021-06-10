@@ -7,21 +7,6 @@
         return normal.array.slice(normalIndex * 3, normalIndex * 3 + 3);
     };
 
-    // set a given arrow helper to the given normal index
-    var setArrowHelperToNormal = function (geometry, arrowHelper, normalIndex) {
-        // check out the normal attribute of a cube
-        var normal = geometry.getAttribute('normal');
-        var position = geometry.getAttribute('position');
-        var values = normal.array.slice(normalIndex * 3, normalIndex * 3 + 3);
-        var dir = new THREE.Vector3(values[0], values[1], values[2]);
-        var values = position.array.slice(normalIndex * 3, normalIndex * 3 + 3);
-        var origin = new THREE.Vector3(values[0], values[1], values[2]);
-        arrowHelper.setDirection(dir);
-        arrowHelper.setLength(0.25);
-        arrowHelper.position.copy(origin);
-        arrowHelper.setColor(0x00ff00);
-    };
-
     // set location of a vert given an index value in geometry.index
     var setVert = function (geometry, vertIndex, pos) {
         pos = pos || {};
@@ -31,15 +16,6 @@
         position.array[posIndex + 1] = pos.y === undefined ? position.array[posIndex + 1] : pos.y;
         position.array[posIndex + 2] = pos.z === undefined ? position.array[posIndex + 2] : pos.z;
         position.needsUpdate = true;
-    };
-
-    // set pos for tri index
-    var setTri = function (geometry, triIndex, pos) {
-        pos = pos || {};
-        var vertIndex = triIndex * 3;
-        setVert(geometry, vertIndex, pos);
-        setVert(geometry, vertIndex + 1, pos);
-        setVert(geometry, vertIndex + 2, pos);
     };
 
     // scene
@@ -54,34 +30,44 @@
             }));
     scene.add(mesh);
 
-    var position = geometry.getAttribute('position'),
-    normal = geometry.getAttribute('normal');
-    console.log(position.count);
-    console.log(position.array.length / 3);
-    console.log(normal.count);
-
     var position = geometry.getAttribute('position');
-    var normal = geometry.getAttribute('normal');
-    var vertIndex = 9;
-    var normalPos = getNormalPos(geometry, vertIndex);
 
-    var helper = new THREE.ArrowHelper();
-    scene.add(helper);
-    setArrowHelperToNormal(geometry, helper, vertIndex);
+    var updateSphere = function (geometry) {
+        var pos = {
+            x: position.array[0],
+            y: position.array[1] + 0.25,
+            z: position.array[2]
+        };
+        setVert(geometry, 0, pos);
+        setVert(geometry, 1, pos);
+        setVert(geometry, 2, pos);
+        setVert(geometry, 3, pos);
+        setVert(geometry, 4, pos);
+        setVert(geometry, 5, pos);
+        setVert(geometry, 6, pos);
+        setVert(geometry, 7, pos);
+        setVert(geometry, 8, pos);
+        setVert(geometry, 9, pos);
+        setVert(geometry, 10, pos);
+        setVert(geometry, 11, pos);
+        setVert(geometry, 12, pos);
+        setVert(geometry, 13, pos);
+        setVert(geometry, 14, pos);
+        setVert(geometry, 15, pos);
+        setVert(geometry, 16, pos);
+        setVert(geometry, 17, pos);
+        setVert(geometry, 18, pos);
+        setVert(geometry, 19, pos);
+        setVert(geometry, 20, pos);
+    }
 
-    var pos = {
-        x: position.array[vertIndex * 3] + normalPos[0] * 0.1,
-        y: position.array[vertIndex * 3 + 1] + normalPos[1] * 0.1,
-        z: position.array[vertIndex * 3 + 2] + normalPos[2] * 0.1
-    };
-
-    setVert(geometry, vertIndex, pos);
+    updateSphere(geometry);
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.25));
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(0.7, 0.75, 1);
+    camera.position.set(2, 2, 2);
     camera.lookAt(mesh.position);
     var light = new THREE.PointLight(0xffffff, 1);
     light.position.set(1, 1, 0);
