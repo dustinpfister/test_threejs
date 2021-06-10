@@ -58,22 +58,22 @@ I should make a series of posts where I am covering more about the buffer geomet
 various additional features of the class. So the focus here should be on making custom geometry from the ground up, as well as 
 messing around with built in geometries such as the THREE.BoxGeomerty, and THREE.Plane geometry
 
-### (started 6/07/2021 ) 3.1 - threejs-buffer-geometry-attributes-position
+### ( started 6/07/2021 ) 3.1 - threejs-buffer-geometry-attributes-position
     * (done) start a basic example on the position property
     * (done) vert helper demo
     * (done) tri helper demo
     * (done) animation loop example using tri helper and position.needsUpdate
 
-### (started 6/08/2021 ) 3.2 - threejs-buffer-geometry-attributes-normals
+### ( started 6/08/2021 ) 3.2 - threejs-buffer-geometry-attributes-normals
     * (done) basic example of the normals attribute
     * (done) make a setNormalArrow, and setNormal helper function and create an animation loop
     * example that has to do with light and improved helper methods for attaching arrows for all normals
 
-### (started 6/09/2021 ) 3.3 - threejs-buffer-geometry-attributes-uvs
+### ( started 6/09/2021 ) 3.3 - threejs-buffer-geometry-attributes-uvs
     * (done) basic example of uvs using a canvas generated texture
     * (done) basic loop example of mutation of uvs
 
-### 3.4 - threejs-examples-sphere-mutate
+### ( started 6/10/2021 ) 3.4 - threejs-examples-sphere-mutate
     * create an example where I am just mutating the positions of a sphere geometry
     * have some texture maps for the sphere
 
