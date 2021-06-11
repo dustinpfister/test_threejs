@@ -1,6 +1,7 @@
 
 // NORAMIZED DIRECTION AS UNIT VECTOR
-var DIR = new THREE.Vector3(1, 1, 0).normalize(),
+var V = new THREE.Vector3(1, 1, 0),
+DIR = V.normalize(),
 LENGTH = 3;
 
 // scene
@@ -18,7 +19,6 @@ var arrow = new THREE.ArrowHelper(
         // color
         0x00ff00);
 scene.add(arrow);
-
 
 // cube
 var cube = new THREE.Mesh(
@@ -38,7 +38,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 // LOOP
 var frame = 0,
-maxFrame = 500;
+maxFrame = 60;
 
 var loop = function () {
     requestAnimationFrame(loop);
@@ -49,6 +49,11 @@ var loop = function () {
     z = DIR.z * LENGTH * per;
 
     cube.position.set(x, y, z);
+
+    V.z = 5 * per;
+    console.log(V.z);
+    DIR = V.normalize();
+    arrow.setDirection(DIR);
 
     renderer.render(scene, camera);
     frame += 1;
