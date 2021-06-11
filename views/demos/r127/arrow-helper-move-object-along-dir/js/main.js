@@ -1,6 +1,7 @@
 
 // NORAMIZED DIRECTION AS UNIT VECTOR
-var DIR = new THREE.Vector3(1, 1, 0).normalize();
+var DIR = new THREE.Vector3(1, 1, 0).normalize(),
+LENGTH = 3;
 
 // scene
 var scene = new THREE.Scene();
@@ -13,15 +14,11 @@ var arrow = new THREE.ArrowHelper(
         // second argument is the origin
         new THREE.Vector3(0, 0, 0),
         // length
-        1.5,
+        LENGTH,
         // color
         0x00ff00);
 scene.add(arrow);
 
-// camera
-var camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.1, 1000);
-camera.position.set(0.25, 1.5, 1.5);
-camera.lookAt(0, 0, 0);
 
 // cube
 var cube = new THREE.Mesh(
@@ -32,7 +29,10 @@ var cube = new THREE.Mesh(
         }));
 scene.add(cube);
 
-// RENDERER
+// camera, render
+var camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.1, 1000);
+camera.position.set(1.75, 2.5, 2.5);
+camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 document.getElementById('demo').appendChild(renderer.domElement);
 
@@ -44,8 +44,11 @@ var loop = function () {
     requestAnimationFrame(loop);
     var per = frame / maxFrame,
     rad = Math.PI * 2 * per,
-    x = Math.cos(rad),
-    y = Math.sin(rad);
+    x = DIR.x * LENGTH * per,
+    y = DIR.y * LENGTH * per,
+    z = DIR.z * LENGTH * per;
+
+    cube.position.set(x, y, z);
 
     renderer.render(scene, camera);
     frame += 1;
