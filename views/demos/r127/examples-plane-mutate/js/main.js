@@ -3,13 +3,14 @@ var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
     // get position and normal
     var position = geo.getAttribute('position');
     var normal = geo.getAttribute('normal');
-    // ADJUSTING POSITION
-    position.array[1] = yAdjust;
+    var i = vertIndex * 3;
+    // ADJUSTING POSITION ( Y Only for now )
+    position.array[i + 1] = yAdjust;
     // ADJUSTING NORMAL
-    var v = new THREE.Vector3(1, 1, 1).normalize(); ;
-    normal.array[0] = v.x;
-    normal.array[1] = v.y;
-    normal.array[2] = v.z;
+    var v = new THREE.Vector3(1, 1, 1).normalize();
+    normal.array[i] = v.x;
+    normal.array[i + 1] = v.y;
+    normal.array[i + 2] = v.z;
 };
 
 var scene = new THREE.Scene();
@@ -18,7 +19,7 @@ var geo = new THREE.PlaneGeometry(1, 1, 2, 2);
 geo.rotateX(Math.PI * 1.5);
 
 // using the adjust plane point method
-adjustPlanePoint(geo, 0, 0.125);
+adjustPlanePoint(geo, 4, 0.125);
 
 var plane = new THREE.Mesh(
         geo,
@@ -39,6 +40,8 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
+
+
 
 var lt = new Date(),
 state = {
