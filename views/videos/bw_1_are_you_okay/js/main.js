@@ -42,7 +42,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 1020,
+        frame: 1171,
         canvas: renderer.domElement,
         sequence: []
     };
@@ -262,6 +262,58 @@
             guy1.arm_left.rotation.z = Math.PI * 0.5 * -1 * seq.per;
             guy1.arm_right.rotation.z = Math.PI * 0.5 * seq.per;
             guy1.body.rotation.y = Math.PI * 0.5 * seq.per;
+
+            // GUY2
+            guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+
+            // CAMERA
+            camera.position.set(5, 5, 0);
+            camera.lookAt(guy1.group.position);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+    // sequence 8 - guy1 starts to spin body but not head and legs
+    video.sequence.push({
+        maxFrame: Math.ceil(30 * 10),
+        forFrame: function (seq) {
+
+            // GUY1
+            guy1.head.rotation.y = Math.PI / 180 * 90;
+            guy1.head.scale.set(1, 1, 1);
+            guy1.head.position.x = 0;
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_left.rotation.z = Math.PI * 0.5 * -1;
+            guy1.arm_right.rotation.z = Math.PI * 0.5;
+            var a = Math.pow(seq.per * 4, 2);
+            guy1.body.rotation.y = Math.PI * 0.5 + Math.PI * 2 * a;
+
+            // GUY2
+            guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+
+            // CAMERA
+            camera.position.set(5, 5, 0);
+            camera.lookAt(guy1.group.position);
+
+            renderer.render(scene, camera);
+        }
+    });
+
+   // sequence 9 - guy1 starts to lift off
+    video.sequence.push({
+        maxFrame: Math.ceil(30 * 20),
+        forFrame: function (seq) {
+
+            // GUY1
+            guy1.head.rotation.y = Math.PI / 180 * 90;
+            guy1.head.scale.set(1, 1, 1);
+            guy1.head.position.x = 0;
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_left.rotation.z = Math.PI * 0.5 * -1;
+            guy1.arm_right.rotation.z = Math.PI * 0.5;
+            var a = (seq.secsTotal / 10 * 16) * seq.secs;
+            guy1.body.rotation.y = Math.PI * 0.5 + Math.PI * 2 * a;
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
