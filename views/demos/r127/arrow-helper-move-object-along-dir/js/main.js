@@ -1,4 +1,7 @@
 
+// NORAMIZED DIRECTION AS UNIT VECTOR
+var DIR = new THREE.Vector3(1, 1, 0).normalize();
+
 // scene
 var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(9, 9));
@@ -6,7 +9,7 @@ scene.add(new THREE.GridHelper(9, 9));
 // ARROW HELPER
 var arrow = new THREE.ArrowHelper(
         // first argument is the direction
-        new THREE.Vector3(1, 1, 0).normalize(),
+        DIR,
         // second argument is the origin
         new THREE.Vector3(0, 0, 0),
         // length
