@@ -6,18 +6,18 @@ var position = geo.getAttribute('position');
 geo.rotateX(Math.PI * 0.5);
 position.array[1] = 0.125;
 
-//geo.setAttribute('position', position);
-
-
-
 var plane = new THREE.Mesh(
         geo,
-        new THREE.MeshNormalMaterial({side: THREE.DoubleSide}));
+        new THREE.MeshStandardMaterial({
+            color: 'red',
+            emissive: 'gray',
+            side: THREE.DoubleSide
+        }));
 scene.add(plane);
 
-
-
-
+var light = new THREE.PointLight(0xffffff, 1);
+light.position.set(-2, 1, 0);
+scene.add(light);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 100);
 camera.position.set(1, 1, 1);
