@@ -42,32 +42,28 @@ maxFrame = 90,
 fps = 30,
 lt = new Date();
 
+var update = function (secs, per, bias) {
+    var x = DIR.x * LENGTH * per,
+    y = DIR.y * LENGTH * per,
+    z = DIR.z * LENGTH * per;
+    cube.position.set(x, y, z);
+    V.z = 5 * per; ;
+    DIR = V.clone().normalize();
+    arrow.setDirection(DIR);
+};
+
 var loop = function () {
     var now = new Date(),
     secs = (now - lt) / 1000,
     per = frame / maxFrame,
-    rad = Math.PI * 2 * per,
-    x = DIR.x * LENGTH * per,
-    y = DIR.y * LENGTH * per,
-    z = DIR.z * LENGTH * per;
-
+    bias;
     requestAnimationFrame(loop);
-
     if (secs > 1 / fps) {
-
-        cube.position.set(x, y, z);
-
-        V.z = 5 * per;
-        console.log(V.z);
-        DIR = V.clone().normalize();
-        arrow.setDirection(DIR);
-
+        update(secs, per, bias)
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
-
         lt = now;
-
     }
 };
 loop();
