@@ -42,7 +42,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 0, //202,
+        frame: 1020,
         canvas: renderer.domElement,
         sequence: []
     };
@@ -56,6 +56,9 @@
             guy1.head.rotation.y = 0;
             guy1.head.scale.set(1, 1, 1);
             guy1.head.position.x = 0;
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_right.rotation.z = 0;
+            guy1.body.rotation.y = 0;
 
             // GUY2
             guy2.head.rotation.y = 0;
@@ -81,6 +84,9 @@
             guy1.head.rotation.y = 0;
             guy1.head.scale.set(1, 1, 1);
             guy1.head.position.x = 0;
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_right.rotation.z = 0;
+            guy1.body.rotation.y = 0;
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * seq.per * -1;
@@ -102,6 +108,9 @@
             guy1.head.rotation.y = 0;
             guy1.head.scale.set(1, 1, 1);
             guy1.head.position.x = 0;
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_right.rotation.z = 0;
+            guy1.body.rotation.y = 0;
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
@@ -123,6 +132,9 @@
             guy1.head.rotation.y = 0;
             guy1.head.scale.set(1, 1, 1);
             guy1.head.position.x = 0;
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_right.rotation.z = 0;
+            guy1.body.rotation.y = 0;
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
@@ -147,6 +159,9 @@
             guy1.head.rotation.y = Math.PI / 180 * 90 * seq.per;
             guy1.head.scale.set(1, 1, 1);
             guy1.head.position.x = 0;
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_right.rotation.z = 0;
+            guy1.body.rotation.y = 0;
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
@@ -168,6 +183,9 @@
             guy1.head.rotation.y = Math.PI / 180 * 90;
             guy1.head.scale.set(1, 1, 1 + 5 * seq.per);
             guy1.head.position.x = ( 6 / 2 - 0.5) * seq.per;
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_right.rotation.z = 0;
+            guy1.body.rotation.y = 0;
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
@@ -192,6 +210,9 @@
             guy1.head.rotation.y = Math.PI / 180 * 90;
             guy1.head.scale.set(1, 1, 1 + 5);
             guy1.head.position.x = ( 6 / 2 - 0.5);
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_right.rotation.z = 0;
+            guy1.body.rotation.y = 0;
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
@@ -213,6 +234,9 @@
             guy1.head.rotation.y = Math.PI / 180 * 90;
             guy1.head.scale.set(1, 1, 6 - 5 * seq.per);
             guy1.head.position.x = 2.5 - 2.5 * seq.per;
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_right.rotation.z = 0;
+            guy1.body.rotation.y = 0;
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
@@ -225,7 +249,7 @@
         }
     });
 
-    // sequence 7 - 
+    // sequence 7 - guy1 extends arms out into t-pose
     video.sequence.push({
         maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
@@ -234,6 +258,10 @@
             guy1.head.rotation.y = Math.PI / 180 * 90;
             guy1.head.scale.set(1, 1, 1);
             guy1.head.position.x = 0;
+            guy1.arm_left.rotation.z = 0;
+            guy1.arm_left.rotation.z = Math.PI * 0.5 * -1 * seq.per;
+            guy1.arm_right.rotation.z = Math.PI * 0.5 * seq.per;
+            guy1.body.rotation.y = Math.PI * 0.5 * seq.per;
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
