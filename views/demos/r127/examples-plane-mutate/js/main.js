@@ -6,11 +6,14 @@ var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
     var i = vertIndex * 3;
     // ADJUSTING POSITION ( Y Only for now )
     position.array[i + 1] = yAdjust;
+    position.needsUpdate = true;
     // ADJUSTING NORMAL
     var v = new THREE.Vector3(1, 1, 1).normalize();
     normal.array[i] = v.x;
     normal.array[i + 1] = v.y;
     normal.array[i + 2] = v.z;
+
+    normal.needsUpdate = true;
 };
 
 var scene = new THREE.Scene();
@@ -48,12 +51,16 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 var lt = new Date(),
 state = {
     frame: 0,
-    maxFrame: 100,
+    maxFrame: 90,
     per: 0,
     bias: 0
 };
 
-var update = function (secs, per, bias, state) {};
+var update = function (secs, per, bias, state) {
+
+    adjustPlanePoint(geo, 4, 0 + 0.75 * bias);
+
+};
 
 var loop = function () {
     var now = new Date(),
