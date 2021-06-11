@@ -3,12 +3,12 @@
 ## raw3 () - beta_world.js started
 * create a beta_world.js model that is based off the example that I made that has to do with positioning things on a sphere
 
-## raw2 () - start sq7 - sq9
-* start sq7
-* start sq8
-* start sq9
+## raw2 ( done 06/11/2021 ) - start sq7 - sq9
+* (done) start sq7
+* (done) start sq8
+* (done) start sq9
 
-## raw1 () - added guy models, started first few sequences
+## raw1 ( done 06/09/2021 ) - added guy models, started first few sequences
 * (done) have two guy1 models
 * (done) start sq1   
 * (done) start sq2
