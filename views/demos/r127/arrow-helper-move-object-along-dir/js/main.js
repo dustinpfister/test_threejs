@@ -41,7 +41,7 @@ var frame = 0,
 maxFrame = 90,
 fps = 30,
 lt = new Date();
-
+// update
 var update = function (secs, per, bias) {
     var x = DIR.x * LENGTH * per,
     y = DIR.y * LENGTH * per,
@@ -51,7 +51,7 @@ var update = function (secs, per, bias) {
     DIR = V.clone().normalize();
     arrow.setDirection(DIR);
 };
-
+// loop function
 var loop = function () {
     var now = new Date(),
     secs = (now - lt) / 1000,
@@ -66,4 +66,5 @@ var loop = function () {
         lt = now;
     }
 };
+// start loop
 loop();
