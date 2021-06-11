@@ -38,25 +38,36 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 // LOOP
 var frame = 0,
-maxFrame = 60;
+maxFrame = 90,
+fps = 30,
+lt = new Date();
 
 var loop = function () {
-    requestAnimationFrame(loop);
-    var per = frame / maxFrame,
+    var now = new Date(),
+    secs = (now - lt) / 1000,
+    per = frame / maxFrame,
     rad = Math.PI * 2 * per,
     x = DIR.x * LENGTH * per,
     y = DIR.y * LENGTH * per,
     z = DIR.z * LENGTH * per;
 
-    cube.position.set(x, y, z);
+    requestAnimationFrame(loop);
 
-    V.z = 5 * per;
-    console.log(V.z);
-    DIR = V.normalize();
-    arrow.setDirection(DIR);
+    if (secs > 1 / fps) {
 
-    renderer.render(scene, camera);
-    frame += 1;
-    frame %= maxFrame;
+        cube.position.set(x, y, z);
+
+        V.z = 5 * per;
+        console.log(V.z);
+        DIR = V.clone().normalize();
+        arrow.setDirection(DIR);
+
+        renderer.render(scene, camera);
+        frame += fps * secs;
+        frame %= maxFrame;
+
+        lt = now;
+
+    }
 };
 loop();
