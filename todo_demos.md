@@ -2,8 +2,9 @@
 
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
-## !!! in progess
+## what to finish that is in Process
 * see about finishing /r127/sphere-move-point demo
+* update post on Vector3 class to include what was worked out in the post on arrow helpers when moving a mesh
 
 
 
