@@ -3,8 +3,16 @@ var scene = new THREE.Scene();
 
 var geo = new THREE.PlaneGeometry(1, 1, 2, 2);
 var position = geo.getAttribute('position');
-geo.rotateX(Math.PI * 0.5);
+var normal = geo.getAttribute('normal');
+geo.rotateX(Math.PI * 1.5);
 position.array[1] = 0.125;
+
+console.log(normal.array[0], normal.array[1], normal.array[2]);
+
+var v = new THREE.Vector3(1, 1, 1).normalize();;
+normal.array[0] = v.x;
+normal.array[1] = v.y;
+normal.array[2] = v.z;
 
 var plane = new THREE.Mesh(
         geo,
@@ -16,7 +24,7 @@ var plane = new THREE.Mesh(
 scene.add(plane);
 
 var light = new THREE.PointLight(0xffffff, 1);
-light.position.set(-2, 1, 0);
+light.position.set(3, 1, 0);
 scene.add(light);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 100);
