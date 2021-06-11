@@ -85,9 +85,8 @@ messing around with built in geometries such as the THREE.BoxGeomerty, and THREE
     * (done) start an example where I am just mutating the positions of a sphere geometry
     * have some texture maps for the sphere
 
-### 3.5 - threejs-examples-plane-mutate
-    * create an example where I am mutating the positions of a plane geometry
-    * have some texture maps for the plane(s)
+### ( started 6/11/2021 ) 3.5 - threejs-examples-plane-mutate
+    * (done) create an example where I am mutating the positions of a plane geometry
 
 ## - Random new content
 
