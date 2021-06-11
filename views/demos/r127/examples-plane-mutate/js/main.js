@@ -19,7 +19,7 @@ var geo = new THREE.PlaneGeometry(1, 1, 2, 2);
 geo.rotateX(Math.PI * 1.5);
 
 // using the adjust plane point method
-adjustPlanePoint(geo, 4, 0.125);
+adjustPlanePoint(geo, 0, 0.5);
 
 var plane = new THREE.Mesh(
         geo,
@@ -30,18 +30,20 @@ var plane = new THREE.Mesh(
         }));
 scene.add(plane);
 
-var light = new THREE.PointLight(0xffffff, 1);
+var light = new THREE.PointLight(0xffffff, 0.5);
 light.position.set(3, 1, 0);
-scene.add(light);
+//scene.add(light);
 
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 100);
 camera.position.set(1, 1, 1);
 camera.lookAt(0, 0, 0);
+camera.add(light);
+scene.add(camera);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
-
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 var lt = new Date(),
 state = {
