@@ -34,8 +34,9 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 // LOOP
 var frame = 0,
-maxFrame = 500,
-loop = function () {
+maxFrame = 500;
+
+var loop = function () {
     requestAnimationFrame(loop);
     var per = frame / maxFrame,
     rad = Math.PI * 2 * per,
