@@ -1,13 +1,25 @@
 
 var scene = new THREE.Scene();
 
+var geo = new THREE.PlaneGeometry(1, 1, 2, 2);
+var position = geo.getAttribute('position');
+geo.rotateX(Math.PI * 0.5);
+position.array[1] = 0.125;
+
+//geo.setAttribute('position', position);
+
+
+
 var plane = new THREE.Mesh(
-        new THREE.PlaneGeometry(1, 1, 1, 1),
+        geo,
         new THREE.MeshNormalMaterial({side: THREE.DoubleSide}));
-plane.geometry.rotateX(Math.PI * 0.5);
 scene.add(plane);
 
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+
+
+
+
+var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 100);
 camera.position.set(1, 1, 1);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
