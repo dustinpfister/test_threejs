@@ -32,7 +32,7 @@
     var light = new THREE.PointLight(0xffffff, 1);
     light_sphere.add(light);
     scene.add(light_sphere);
-    var light_ambient = new THREE.AmbientLight(0xffffff, 0.125);
+    var light_ambient = new THREE.AmbientLight(0xffffff, 0.25);
     scene.add(light_ambient);
 
     // CAMERA
@@ -48,7 +48,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 1470,
+        frame: 0, //1470,
         canvas: renderer.domElement,
         sequence: []
     };
