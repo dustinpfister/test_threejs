@@ -27,6 +27,7 @@
     scene.add(guy2.group);
 
     // LIGHT
+/*
     var light_sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 30, 30));
     light_sphere.position.set(0, 10, -5);
     var light = new THREE.PointLight(0xffffff, 1);
@@ -34,6 +35,7 @@
     scene.add(light_sphere);
     var light_ambient = new THREE.AmbientLight(0xffffff, 0.25);
     scene.add(light_ambient);
+*/
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);

@@ -7,6 +7,8 @@
 * (done) create a beta_world.js model that just creates and returns a sphere for now
 * (done) use the sphere in place of the grid helper as the object that the two guys are standing on
 * (done) new camera movement for sq9
+* (done) added a light sphere in main.js of bw1
+* (done) make light sphere part of bw.js
 
 ## raw2 ( done 06/11/2021 ) - start sq7 - sq9
 * (done) start sq7
