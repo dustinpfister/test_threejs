@@ -5,7 +5,7 @@
     var MATERIALS = {
        ground: new THREE.MeshStandardMaterial({
            color: new THREE.Color(0, 1, 0),
-           emissive: new THREE.Color(0, 0.15, 0)
+           emissive: new THREE.Color(0, 0.1, 0)
        })
     };
 
