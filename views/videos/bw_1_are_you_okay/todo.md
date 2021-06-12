@@ -1,8 +1,12 @@
 # meme_gg_one todo
 
-## raw3 () - beta_world.js v0.0.0 started
-* create a beta_world.js model that just creates and returns a sphere for now
-* use the sphere in place of the grid helper as the object that the two guys are standing on
+## raw4 () beta_world.js v0.0.1 position objects
+* system for positioning objects in the beta world
+
+## raw3 ( done 06/12/2021 ) - beta_world.js v0.0.0 started
+* (done) create a beta_world.js model that just creates and returns a sphere for now
+* (done) use the sphere in place of the grid helper as the object that the two guys are standing on
+* (done) new camera movement for sq9
 
 ## raw2 ( done 06/11/2021 ) - start sq7 - sq9
 * (done) start sq7
