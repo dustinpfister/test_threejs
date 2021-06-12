@@ -334,7 +334,7 @@
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
 
             // CAMERA
-            camera.position.set(5 + 10 * seq.per, 5 - 5 * seq.per, 40 * seq.per);
+            camera.position.set(5 + 10 * seq.per, 5 - 10 * seq.per, 60 * seq.per);
             camera.lookAt(guy1.group.position);
 
             renderer.render(scene, camera);
