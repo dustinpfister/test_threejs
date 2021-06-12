@@ -5,8 +5,12 @@
     // SCENE
     var scene = new THREE.Scene();
     scene.background = new THREE.Color('#00afaf');
-    scene.add(new THREE.GridHelper(7, 7));
+    //scene.add(new THREE.GridHelper(7, 7));
 
+    // WORLD
+    var world = BetaWorld.create();
+    world.position.set(0, -30, 0);
+    scene.add(world);
 
     // GUY1
     var guy1 = GuyMod.create();
