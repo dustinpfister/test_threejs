@@ -9,19 +9,22 @@
         return cube;
     };
 
-    var createCubeSphere = function(){
-        var i = 0,
-        len = 10;
-        while(i < len){
-            cube = createCube();
-            i += 1;
-        }
-        return group;
+    var setOnSphere = function(mesh, sphereRadius, lat, long){
+
+         var vec = new THREE.Vector3(sphereRadius, lat, long).normalize();
+
+         mesh.position.copy(vec.);
+
     };
 
     // scene
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(9, 9));
+
+    var sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(1.5, 30, 30),
+        new THREE.MeshNormalMaterial());
+    scene.add(sphere);
 
 
     // CAMERA
