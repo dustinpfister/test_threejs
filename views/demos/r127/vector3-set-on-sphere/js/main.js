@@ -20,12 +20,12 @@
     };
 
     var setOnSphere = function(mesh, lat, long, alt){
-        var yDist = alt * 8; // Math.pow(2, 16);
+        var yDist = Math.pow(2, 8); // Math.pow(2, 16);
         var radian = Math.PI * 2 * long,
         x = Math.cos(radian) * alt,
         z = Math.sin(radian) * alt,
         //y = yDist * -1 + yDist * 2 * lat;
-        y = yDist * (-1 + 2 * lat);
+        y = 0; //yDist * (-1 + 2 * lat);
 
         setOnSphereFromPos(cube, x, y, z, alt);
     };
@@ -43,7 +43,7 @@
     scene.add(cube);
 
     //setOnSphereFromPos(cube, 5, 0, 0, 2);
-    setOnSphere(cube, 1, 0.25, 2);
+    setOnSphere(cube, 0.75, 0.25, 2);
 
 
     cube.lookAt(0, 0, 0);
