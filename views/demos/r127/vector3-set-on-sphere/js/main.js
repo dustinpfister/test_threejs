@@ -54,7 +54,16 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-    renderer.render(scene, camera);
 
+    var lat = 0.1;
+    var loop = function(){
+        requestAnimationFrame(loop);
+        setOnSphere(cube, lat, 0, 2);
+        lat += 0.1;
+        lat %= 1;
+        cube.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+    };
+    loop();
 }
     ());
