@@ -10,13 +10,24 @@
     };
 
     // set on sphere helper
-    var setOnSphere = function(mesh, x, y, z, alt){
+    var setOnSphereFromPos = function(mesh, x, y, z, alt){
          var dir = new THREE.Vector3(x, y, z).normalize();
          var pos = new THREE.Vector3();
          pos.x = dir.x * alt;
          pos.y = dir.y * alt;
          pos.z = dir.z * alt;
          mesh.position.copy(pos);
+    };
+
+    var setOnSphere = function(mesh, lat, long, alt){
+        var yDist = alt * 8; // Math.pow(2, 16);
+        var radian = Math.PI * 2 * long,
+        x = Math.cos(radian) * alt,
+        z = Math.sin(radian) * alt,
+        //y = yDist * -1 + yDist * 2 * lat;
+        y = yDist * (-1 + 2 * lat);
+
+        setOnSphereFromPos(cube, x, y, z, alt);
     };
 
     // scene
@@ -31,7 +42,9 @@
     var cube = createCube();
     scene.add(cube);
 
-    setOnSphere(cube, 5, 0, 0, 2);
+    //setOnSphereFromPos(cube, 5, 0, 0, 2);
+    setOnSphere(cube, 1, 0.25, 2);
+
 
     cube.lookAt(0, 0, 0);
 
