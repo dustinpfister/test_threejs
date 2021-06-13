@@ -9,10 +9,13 @@
         return cube;
     };
 
-    var setOnSphere = function(mesh, alt, lat, long){
-         var vec = new THREE.Vector3(1, lat, long);
-         var pos = vec.normalize();
-         console.log(pos);
+    // set on sphere helper
+    var setOnSphere = function(mesh, x, y, z, alt){
+         var dir = new THREE.Vector3(x, y, z).normalize();
+         var pos = new THREE.Vector3();
+         pos.x = dir.x * alt;
+         pos.y = dir.y * alt;
+         pos.z = dir.z * alt;
          mesh.position.copy(pos);
     };
 
@@ -22,12 +25,15 @@
 
     var sphere = new THREE.Mesh(
         new THREE.SphereGeometry(1.5, 30, 30),
-        new THREE.MeshNormalMaterial());
+        new THREE.MeshNormalMaterial({wireframe:true}));
     scene.add(sphere);
 
     var cube = createCube();
     scene.add(cube);
-    setOnSphere(cube, 1.5 + 0.5, 200, 0);
+
+    setOnSphere(cube, 5, 0, 0, 2);
+
+    cube.lookAt(0, 0, 0);
 
 
     // CAMERA
