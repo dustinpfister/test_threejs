@@ -5,13 +5,14 @@
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(9, 9));
 
-    // length
+    // CREATING AN INSTANCE OF Vector3 WITH
+    // THE THREE.Vector3 CONSTRUCTOR
     var r = Math.PI / 180 * 90,
     x = Math.cos(r) * 2,
-    z = Math.sin(r) * 2,
+    z = Math.sin(r) * 2;
+    var vec = new THREE.Vector3(x, 0, z);
 
-    vec = new THREE.Vector3(x, 0, z);
-
+    // PROPERTIES OF Vector3
     console.log(vec.isVector3); // true
     console.log(vec.x, vec.y, vec.z); // 0.70... 0.70... 0
     console.log(vec.length()); // 1
