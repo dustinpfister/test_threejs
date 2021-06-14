@@ -9,43 +9,20 @@
         return cube;
     };
 
-    // set on sphere helper
-    var setOnSphereFromPos = function(mesh, x, y, z, alt){
-         var dir = new THREE.Vector3(x, y, z).normalize();
-         var pos = new THREE.Vector3();
-         pos.x = dir.x * alt;
-         pos.y = dir.y * alt;
-         pos.z = dir.z * alt;
-         mesh.position.copy(pos);
-    };
-
-    var setOnSphere = function(mesh, lat, long, alt){
-        var latBias = Math.abs(lat - 0.5) / 0.5;
-        var radian = Math.PI * 2 * long,
-        x = Math.cos(radian) * (alt - alt * latBias),
-        z = Math.sin(radian) * (alt - alt * latBias),
-        y = alt * latBias * (lat > 0.5 ? -1 : 1);
-        setOnSphereFromPos(cube, x, y, z, alt);
+    var setPosByDirAndLength = function(obj, dir, len){
+        var v = dir.normalize().multiplyScalar(len);
+        return obj.position.copy(v);
     };
 
     // scene
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(9, 9));
 
-    var sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(1.5, 30, 30),
-        new THREE.MeshNormalMaterial({wireframe:true}));
-    scene.add(sphere);
-
     var cube = createCube();
     scene.add(cube);
-
-    //setOnSphereFromPos(cube, 5, 0, 0, 2);
-    setOnSphere(cube, 0.1, 0.3, 2);
-
-
-    cube.lookAt(0, 0, 0);
-
+    var dir = new THREE.Vector3(-5, 5, -5);
+    setPosByDirAndLength(cube, dir, 4);
+    console.log( cube.position.length() ); // 4
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
@@ -54,41 +31,7 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
+    renderer.render(scene, camera);
 
-    var lat = 0.1,
-    long = 0,
-    latDir = 1,
-    lt = new Date(),
-    fps = 30;
-    var loop = function(){
-        var now = new Date(),
-        secs = ( now - lt ) / 1000;
-
-        requestAnimationFrame(loop);
-
-        if(secs > 1 / fps){
-            // call set on sphere for cube
-            setOnSphere(cube, lat, long, 2);
-
-            lat += 0.25 * secs * latDir;
-            if(lat >= 1){
-                lat = 1;
-                latDir = -1;
-                long += 1 / 30;
-            }
-            if(lat <= 0){
-                lat = 0;
-                latDir = 1;
-                long += 1 / 30;
-            }
-            long %= 1;
-
-            cube.lookAt(0, 0, 0);
-
-            lt = now;
-            renderer.render(scene, camera);
-        }
-    };
-    loop();
 }
     ());
