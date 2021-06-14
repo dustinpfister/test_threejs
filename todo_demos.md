@@ -6,10 +6,17 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 * see about finishing /r127/sphere-move-point demo
 * update post on Vector3 class to include what was worked out in the post on arrow helpers when moving a mesh
 
+
+
+
+
 ## x - More general posts on threejs features
 
 ### x.1 - threejs-emissive-map
     * start a basic example on the use of an emissive map
+
+
+
 
 ## x - Expand on the Vector3 class just like with Object3d
 
