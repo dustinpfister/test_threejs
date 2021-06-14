@@ -11,34 +11,54 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 ### x.1 - threejs-emissive-map
     * start a basic example on the use of an emissive map
 
+## x - Expand on the Vector3 class just like with Object3d
 
-## 1 - Bones, Animation, and External Files
+The Vector3 class is also a major part of working with theejs, as there is the position property of the Object3d class that is a bug deal when it comes to setting the position of objects. However a Vector can also be used as a way to store direction in the from of a set of numbers between 0, and one for each axis. This normalized vector as it is often called can then be scaled up to any value that is along that direction. There is a lot more than can be written when it comes to just the Vector3 class, and not just with the prototype methods, but all kinds of use case examples involving direction and magnitude.
+
+### x.1 - threejs-vector3-normalize
+    * start a basic example of vector3-normalize
+
+### x.2 - threejs-vector3-apply-euler
+    * start a basic example of vector3 apply euler method
+
+### x.3 - threejs-vector3-angle-to
+   * start a basic example of vector3 angle to
+
+### x.4 - threejs-vector3-clamp
+   * start a basic example of vector3 clamp
+   * create a wrap example
+
+### x.5 - threejs-vector3-distance-to
+    * start a basic distance to example
+
+
+## x - Bones, Animation, and External Files
 
 In order to create a collection of posts on animation it might have to involve creating external files in blender.
 
-### 1.1 - threejs-animation-mixer
+### x.1 - threejs-animation-mixer
     * basic animation mixer example
 
-### 1.2 - threejs-animation-clip
+### x.2 - threejs-animation-clip
     * basic animation clip example
 
-### 1.3 - threejs-skinned-mesh
+### x.3 - threejs-skinned-mesh
     * see about making a basic example of a skinned mesh
 
-### 1.4 - threejs-skeleton
+### x.4 - threejs-skeleton
     * basic skeleton example
 
-### 1.5 - threejs-bones
+### x.5 - threejs-bones
     * (done) see about starting a basic example of a bones created from the examples on the threejs website
     * (done) rename bones demo folder to bones-threejs-site-example.
     * make an actually working basic example of THREE.Bone
 
 
-## 2 - New example posts
+## x - New example posts
 
 I can always just make more example posts using my current understating of threejs, and JavaScript alone, as well as expand into other libraries and new concepts when it comes to making modules, videos, and applications with threejs as part of the stack. I am thinking that I should mainly stick to just using threejs and vanilla javaScript, however I might want to make use or other libraries on the open web too now and then when doing so is called for.
 
-### 2.1 - threejs-examples-guy-two
+### x.1 - threejs-examples-guy-two
     * start a new guy2 model that will have a few more mesh objects compared to guy1
     * guy2 will have 3 mesh objects for each arm rather than just one
     * guy2 will have 3 mesh objects for each leg rather than just one
@@ -46,18 +66,18 @@ I can always just make more example posts using my current understating of three
     * have a method that can be used to move a single arm in many different ways within set range limits
     * do some reading an animation clips and see if they can be used to help with tweening from one state to another
 
-### 2.2 - threejs-examples-unit-vector-system
+### x.2 - threejs-examples-unit-vector-system
     * start an example that is based off of the concept of a unit vector 
     * ( see moving a mesh example in post on arrow helpers )
 
 
 
 
-## 4 - More on shapes, extrude Gemoerty
+## x - More on shapes, extrude Gemoerty
 
 There is maybe a git more to cover when it comes to using the extrude geometry constructor. This can also involve example type posts.
 
-## 4.1 - threejs-extrude-geometry
+## x.1 - threejs-extrude-geometry
     * start a basic example of THREE.ExtrudeGeometry
 
 
