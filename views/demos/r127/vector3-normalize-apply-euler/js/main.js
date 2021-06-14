@@ -11,13 +11,14 @@
 
     var vectorFromAngles = function(a, b, c, len){
         len = len = undefined ? 1 : len;
-        var e = new THREE.Euler(a, b, c);
-        var v = new THREE.Vector3(1, 0, 0).applyEuler(e).normalize();
+        var e = new THREE.Euler(
+            THREE.MathUtils.degToRad(a),
+            THREE.MathUtils.degToRad(b), 
+            THREE.MathUtils.degToRad(c));
+        var v = new THREE.Vector3(0, 1, 0).applyEuler(e).normalize();
         return v.multiplyScalar(len);
     };
 
-
-    console.log( vectorFromAngles(0, 0, 0, 1) );
 
 
     // scene
@@ -29,6 +30,9 @@
     var cube = createCube();
     scene.add(cube);
 
+    var v = vectorFromAngles(90, 0, 0, 1);
+    console.log(v);
+    cube.position.copy(v);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
@@ -40,6 +44,9 @@
 
 
     var lt = new Date(),
+    a = 0,
+    b = 0,
+    c = 0,
     fps = 30;
     var loop = function(){
         var now = new Date(),
@@ -48,6 +55,10 @@
         requestAnimationFrame(loop);
 
         if(secs > 1 / fps){
+            a += 180 * secs;
+            a %= 360;
+            var v = vectorFromAngles(a, b, c, 1);
+            cube.position.copy(v);
 
             lt = now;
             renderer.render(scene, camera);
