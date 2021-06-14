@@ -67,17 +67,21 @@
         requestAnimationFrame(loop);
 
         if(secs > 1 / fps){
+            // call set on sphere for cube
             setOnSphere(cube, lat, long, 2);
 
-            lat += 1 / 5 * secs * latDir;
+            lat += 0.25 * secs * latDir;
             if(lat >= 1){
                 lat = 1;
                 latDir = -1;
+                long += 1 / 30;
             }
             if(lat <= 0){
                 lat = 0;
                 latDir = 1;
+                long += 1 / 30;
             }
+            long %= 1;
 
             cube.lookAt(0, 0, 0);
 
