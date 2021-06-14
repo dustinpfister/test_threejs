@@ -46,7 +46,7 @@
     var lt = new Date(),
     a = 0,
     b = 0,
-    c = 0,
+    c = 90,
     fps = 30;
     var loop = function(){
         var now = new Date(),
@@ -55,9 +55,9 @@
         requestAnimationFrame(loop);
 
         if(secs > 1 / fps){
-            a += 180 * secs;
-            a %= 360;
-            var v = vectorFromAngles(a, b, c, 1);
+            b += 90 * secs;
+            b %= 360;
+            var v = vectorFromAngles(a, b, c, 1.5);
             cube.position.copy(v);
 
             lt = now;
