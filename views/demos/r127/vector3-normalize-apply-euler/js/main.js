@@ -9,13 +9,14 @@
         return cube;
     };
 
-    var vectorFromAngles = function(a, b, c, len){
+    var vectorFromAngles = function(a, b, c, len, start){
         len = len = undefined ? 1 : len;
         var e = new THREE.Euler(
             THREE.MathUtils.degToRad(a),
             THREE.MathUtils.degToRad(b), 
             THREE.MathUtils.degToRad(c));
-        var v = new THREE.Vector3(0, 1, 0).applyEuler(e).normalize();
+        var v = start || new THREE.Vector3(0, 1, 0);
+        v.applyEuler(e).normalize();
         return v.multiplyScalar(len);
     };
 
