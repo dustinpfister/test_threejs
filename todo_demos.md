@@ -26,7 +26,7 @@ The Vector3 class is also a major part of working with theejs, as there is the p
     * (done) start a basic example of vector3-normalize
     * (done) another example that has to do with length
     * (done) place on sphere example
-    * example that allows for change of direction by euler
+    * (done) example that allows for change of direction by euler
 
 ### x.2 - threejs-vector3-apply-euler
     * start a basic example of vector3 apply euler method
