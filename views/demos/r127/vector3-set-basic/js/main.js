@@ -24,7 +24,10 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+ 
+    // USING THE SET METHOD TO SET THE POSITION OF THE CAMERA
     camera.position.set(3, 3, 3);
+ 
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
