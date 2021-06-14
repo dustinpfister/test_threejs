@@ -55,14 +55,35 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    var lat = 0.1;
+    var lat = 0.1,
+    long = 0,
+    latDir = 1,
+    lt = new Date(),
+    fps = 30;
     var loop = function(){
+        var now = new Date(),
+        secs = ( now - lt ) / 1000;
+
         requestAnimationFrame(loop);
-        setOnSphere(cube, lat, 0, 2);
-        lat += 0.1;
-        lat %= 1;
-        cube.lookAt(0, 0, 0);
-        renderer.render(scene, camera);
+
+        if(secs > 1 / fps){
+            setOnSphere(cube, lat, long, 2);
+
+            lat += 1 / 5 * secs * latDir;
+            if(lat >= 1){
+                lat = 1;
+                latDir = -1;
+            }
+            if(lat <= 0){
+                lat = 0;
+                latDir = 1;
+            }
+
+            cube.lookAt(0, 0, 0);
+
+            lt = now;
+            renderer.render(scene, camera);
+        }
     };
     loop();
 }
