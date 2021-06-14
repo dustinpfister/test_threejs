@@ -24,16 +24,17 @@ The Vector3 class is also a major part of working with theejs, as there is the p
 
 ### x.1 - threejs-vector3-normalize
     * start a basic example of vector3-normalize
+    
 
 ### x.2 - threejs-vector3-apply-euler
     * start a basic example of vector3 apply euler method
 
 ### x.3 - threejs-vector3-angle-to
-   * start a basic example of vector3 angle to
+    * start a basic example of vector3 angle to
 
 ### x.4 - threejs-vector3-clamp
-   * start a basic example of vector3 clamp
-   * create a wrap example
+    * start a basic example of vector3 clamp
+    * create a wrap example
 
 ### x.5 - threejs-vector3-distance-to
     * start a basic distance to example
