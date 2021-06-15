@@ -9,15 +9,25 @@
         return cube;
     };
 
-    var moveCube = function (cube, pos, per) {
+    // move cube by difference and percent
+    var moveObjByDiff = function (obj, pos, per) {
+        per = per === undefined ? 1 : per;
+        per = per > 1 ? per % 1 : per;
+        var diff = obj.position.clone().sub(pos);
+        obj.position.sub(diff.multiplyScalar(per));
+    };
 
-        var diff = cube.position.clone().sub(pos);
-
-        cube.position.sub(diff);
-
-        console.log(cube.position.angleTo(pos)); // angle to
-
-    }
+    var moveObjByDistDiff = function (obj, pos, maxDist, maxPer) {
+        maxDist = maxDist === undefined ? 5 : maxDist;
+        maxPer = maxPer === undefined ? 0.25 : maxPer;
+        var d = obj.position.distanceTo(pos),
+        per = maxPer;
+        if (d <= maxDist) {
+            per = d / maxDist * maxPer;
+        }
+        console.log(per);
+        moveObjByDiff(obj, pos, per);
+    };
 
     // scene
     var scene = new THREE.Scene();
@@ -28,10 +38,11 @@
     cube1.position.set(0.001, 0, 0);
     scene.add(cube1);
     var cube2 = createCube();
-    cube2.position.set(0, 0, -2);
+    cube2.position.set(0, 0, 1.8);
     scene.add(cube2);
 
-    moveCube(cube1, cube2.position, 1);
+    //moveObjByDiff(cube2, cube1.position, 1);
+    moveObjByDistDiff(cube2, cube1.position, 2);
 
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
