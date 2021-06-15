@@ -11,8 +11,11 @@
 
     var moveCube = function (cube, pos, per) {
 
+        var diff = cube.position.clone().sub(pos);
+
+        cube.position.sub(diff);
+
         console.log(cube.position.angleTo(pos)); // angle to
-        console.log(cube.position.clone().sub(pos)); // sub
 
     }
 

@@ -29,7 +29,7 @@ The Vector3 class is also a major part of working with theejs, as there is the p
     * (done) example that allows for change of direction by euler
 
 ### x.2 - threejs-vector3-distance-to
-    * start a basic distance to example of the method
+    * (done) start a basic distance to example of the method
     * start a basic example that involves distance to, and angle to
     * start an example where a mesh moves from one point in space to another, and use distance to and angle to to set speeds
 
