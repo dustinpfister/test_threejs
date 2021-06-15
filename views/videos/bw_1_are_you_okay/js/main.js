@@ -249,10 +249,12 @@
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
-            guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
             var x = 5 * seq.per,
@@ -277,10 +279,12 @@
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
-            guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
             camera.position.set(5, 5, 0);
@@ -302,10 +306,12 @@
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
-            guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
             camera.position.set(5, 5, 0);
@@ -328,10 +334,12 @@
             guy1.arm_left.rotation.z = Math.PI * 0.5 * -1 * seq.per;
             guy1.arm_right.rotation.z = Math.PI * 0.5 * seq.per;
             guy1.body.rotation.y = Math.PI * 0.5 * seq.per;
-            guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
             camera.position.set(5, 5, 0);
@@ -355,10 +363,12 @@
             guy1.arm_right.rotation.z = Math.PI * 0.5;
             var a = Math.pow(seq.per * 4, 2);
             guy1.body.rotation.y = Math.PI * 0.5 + Math.PI * 2 * a;
-            guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
             camera.position.set(5, 5, 0);
@@ -382,10 +392,13 @@
             guy1.arm_right.rotation.z = Math.PI * 0.5;
             var a = (seq.secsTotal / 10 * 16) * seq.secs;
             guy1.body.rotation.y = Math.PI * 0.5 + Math.PI * 2 * a;
-            guy1.group.position.set(-2, 1.55 + 8 * seq.per, 0);
+
+//            guy1.group.position.set(-2, 1.55 + 8 * seq.per, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55 + 8 * seq.per);
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
             camera.position.set(5 + 10 * seq.per, 5 - 10 * seq.per, 60 * seq.per);
