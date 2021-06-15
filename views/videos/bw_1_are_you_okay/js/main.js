@@ -196,8 +196,10 @@
             d = guy2.group.position.distanceTo(guy1.group.position);
 
             v.x = guy2.group.position.x - d * seq.per;
+            v.y = guy2.group.position.y + 0.2 * seq.per;
             
-            
+            //console.log(v);
+            //console.log(guy1.group.position)
 
             camera.lookAt(v);
 
