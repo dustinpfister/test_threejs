@@ -55,8 +55,8 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    var lat = 0.1,
-    long = 0,
+    var latPos = 0.1,
+    longPos = 0,
     latDir = 1,
     lt = new Date(),
     fps = 30;
@@ -68,20 +68,20 @@
 
         if(secs > 1 / fps){
             // call set on sphere for cube
-            setOnSphere(cube, lat, long, 2);
+            setOnSphere(cube, latPos, longPos, 2);
 
-            lat += 0.25 * secs * latDir;
-            if(lat >= 1){
-                lat = 1;
+            latPos += 0.25 * secs * latDir;
+            if(latPos >= 1){
+                latPos = 1;
                 latDir = -1;
-                long += 1 / 30;
+                longPos += 1 / 30;
             }
-            if(lat <= 0){
-                lat = 0;
+            if(latPos <= 0){
+                latPos = 0;
                 latDir = 1;
-                long += 1 / 30;
+                longPos += 1 / 30;
             }
-            long %= 1;
+            longPos %= 1;
 
             cube.lookAt(0, 0, 0);
 
