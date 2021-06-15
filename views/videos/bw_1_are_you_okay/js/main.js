@@ -18,15 +18,13 @@
     // GUY1
     var guy1 = GuyMod.create();
     guy1.group.scale.set(0.5, 0.5, 0.5);
-    guy1.group.position.set(-2, 1.55, 0);
-    guy1.group.lookAt(-2, 1.55, 1);
+    BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
     scene.add(guy1.group);
 
     // GUY2
     var guy2 = GuyMod.create();
     guy2.group.scale.set(0.5, 0.5, 0.5);
-    guy2.group.position.set(2, 1.55, 0);
-    guy2.group.lookAt(2, 1.55, 1);
+    BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
     scene.add(guy2.group);
 
     // CAMERA
