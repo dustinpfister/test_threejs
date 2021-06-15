@@ -192,10 +192,13 @@
             camAlt = 5;
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
 
-            var v = guy2.group.position.clone();
+            var v = guy2.group.position.clone(),
+            d = guy2.group.position.distanceTo(guy1.group.position);
 
-            v.x = guy2.group.position.x - 4 * seq.per;
+            v.x = guy2.group.position.x - d * seq.per;
             
+            
+
             camera.lookAt(v);
 
             renderer.render(scene, camera);
@@ -214,13 +217,18 @@
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
-            guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
-            camera.position.set(0, 5, 5);
+            var camLat = 0.07,
+            camLong = 0.15,
+            camAlt = 5;
+            BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy1.group.position);
 
             renderer.render(scene, camera);
