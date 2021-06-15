@@ -83,9 +83,9 @@
             camera.position.set(x, y, z);
 */
 
-            var camLat = 0.15,
+            var camLat = 0.14 - 0.07 * seq.per,
             camLong = 0.15,
-            camAlt = 10;
+            camAlt = 10 - 5 * seq.per;
 
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy2.group.position);
