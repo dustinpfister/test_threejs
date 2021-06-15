@@ -60,13 +60,11 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     var update = function () {
-
         moveObjByDistDiff(cube2, cube1.position, 2);
-
-        if (minDistCheck(cube2, cube1.position, 0.0625)) {
-            cube2.position.set(5, 0, 0);
+        if (minDistCheck(cube2, cube1.position, 0.25)) {
+            var v = new THREE.Vector3().random().multiplyScalar(5);
+            cube2.position.copy(v);
         }
-
     };
 
     var lt = new Date(),
