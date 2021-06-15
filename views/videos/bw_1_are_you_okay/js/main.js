@@ -327,8 +327,14 @@
             BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
-            camera.position.set(5, 5, 0);
+            //camera.position.set(5, 5, 0);
+            //camera.lookAt(guy1.group.position);
+            var camLat = 0.09,
+            camLong = 0,
+            camAlt = 6;
+            BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy1.group.position);
+
 
             renderer.render(scene, camera);
         }
@@ -355,8 +361,14 @@
             BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
-            camera.position.set(5, 5, 0);
+            //camera.position.set(5, 5, 0);
+            //camera.lookAt(guy1.group.position);
+            var camLat = 0.09,
+            camLong = 0,
+            camAlt = 6;
+            BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy1.group.position);
+
 
             renderer.render(scene, camera);
         }
@@ -384,7 +396,12 @@
             BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
-            camera.position.set(5, 5, 0);
+            //camera.position.set(5, 5, 0);
+            //camera.lookAt(guy1.group.position);
+            var camLat = 0.09,
+            camLong = 0,
+            camAlt = 6;
+            BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy1.group.position);
 
             renderer.render(scene, camera);
@@ -414,8 +431,14 @@
             BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
-            camera.position.set(5 + 10 * seq.per, 5 - 10 * seq.per, 60 * seq.per);
+            //camera.position.set(5 + 10 * seq.per, 5 - 10 * seq.per, 60 * seq.per);
+            //camera.lookAt(guy1.group.position);
+            var camLat = 0.09,
+            camLong = 0,
+            camAlt = 6;
+            BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy1.group.position);
+
 
             renderer.render(scene, camera);
         }
