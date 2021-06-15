@@ -67,7 +67,9 @@
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
-            guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(0, 0, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, -30);
 
             // GUY2
             guy2.head.rotation.y = 0;
