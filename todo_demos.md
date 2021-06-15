@@ -28,7 +28,7 @@ The Vector3 class is also a major part of working with theejs, as there is the p
     * (done) place on sphere example
     * (done) example that allows for change of direction by euler
 
-### x.2 - threejs-vector3-distance-to
+### ( started 6/15/2021 ) x.2 - threejs-vector3-distance-to
     * (done) start a basic distance to example of the method
     * (done) start a basic example that involves distance to, and a move object method
 
