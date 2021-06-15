@@ -1,5 +1,12 @@
 (function () {
 
+    var texture = canvasTextureMod.randomGrid([0,'r1',0], 128);
+    var MATERIAL_WORLD = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(1, 1, 1),
+        map: texture
+    });
+
+    var MATERIAL_TREE = MATERIAL_WORLD;
 
 
     // SCENE
@@ -8,11 +15,7 @@
 
     // WORLD
     var world = BetaWorld.create();
-    var texture = canvasTextureMod.randomGrid([0,'r1',0], 128);
-    world.userData.worldSphere.material = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(1, 1, 1),
-        map: texture
-    });
+    world.userData.worldSphere.material = MATERIAL_WORLD;
     scene.add(world);
 
     // GUY1
@@ -27,6 +30,25 @@
     BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
     scene.add(guy2.group);
 
+    // TREE
+    var tree = new Tree({
+        coneMaterial: MATERIAL_TREE,
+        sections: 8
+    });
+    BetaWorld.positionObject(world, tree.group, 0.12, 0.9, 0.5);
+    tree.group.lookAt(0,0,0);
+    tree.group.rotateX(Math.PI * 1.5);
+    scene.add(tree.group);
+
+    var tree = new Tree({
+        coneMaterial: MATERIAL_TREE,
+        sections: 7
+    });
+    BetaWorld.positionObject(world, tree.group, 0.12, 0.6, 0.5);
+    tree.group.lookAt(0,0,0);
+    tree.group.rotateX(Math.PI * 1.5);
+    scene.add(tree.group);
+
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
     camera.position.set(10, 10, 10);
@@ -40,7 +62,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 0, // 1470 - sq10
+        frame: 1470, // 1470 - sq10
         canvas: renderer.domElement,
         sequence: []
     };
