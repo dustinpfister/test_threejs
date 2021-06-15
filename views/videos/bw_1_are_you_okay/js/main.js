@@ -9,7 +9,7 @@
 
     // WORLD
     var world = BetaWorld.create();
-    world.position.set(0, -30, 0);
+    //world.position.set(0, -30, 0);
     scene.add(world);
 
     // GUY1
@@ -67,19 +67,27 @@
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
-            guy1.group.position.set(-2, 1.55, 0);
-            guy1.group.position.set(0, 1.55, 0);
-            //BetaWorld.positionObject(world, guy1.group, 0, 0, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(0, 1.55, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // GUY2
             guy2.head.rotation.y = 0;
-            //BetaWorld.positionObject(world, guy2.group, 0.05, 0, 0);
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
+/*
             var x = 10 - 10 * seq.per,
             y = 10 - 5 * seq.per,
             z = 10 - 5 * seq.per;
             camera.position.set(x, y, z);
+*/
+
+            var camLat = 0.15,
+            camLong = 0.15,
+            camAlt = 10;
+
+            BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy2.group.position);
 
 
