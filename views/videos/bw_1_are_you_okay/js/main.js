@@ -50,7 +50,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 570, 
+        frame: 1470, 
         canvas: renderer.domElement,
         sequence: []
     };
@@ -433,9 +433,9 @@
             // CAMERA
             //camera.position.set(5 + 10 * seq.per, 5 - 10 * seq.per, 60 * seq.per);
             //camera.lookAt(guy1.group.position);
-            var camLat = 0.09,
-            camLong = 0,
-            camAlt = 6;
+            var camLat = 0.09 + 0.2 * seq.per,
+            camLong = 0.25 * seq.per,
+            camAlt = 6;  //+ 14 * seq.per;
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy1.group.position);
 
