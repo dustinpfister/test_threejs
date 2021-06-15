@@ -1,22 +1,26 @@
 
 (function () {
 
+    // simple create cube helper
+    var createCube = function () {
+        var cube = new THREE.Mesh(
+                new THREE.BoxGeometry(1, 1, 1),
+                new THREE.MeshNormalMaterial());
+        return cube;
+    };
+
     // scene
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(7, 7));
 
-    var dir = new THREE.Vector3(-20, 0, 0);
-    // NORMALIZING DIR FROM -20,0,0 to -1,0,0
-    dir.normalize();
-    console.log(Object.values(dir)); // [-1, 0, 0]
+    // cubes
+    var cube1 = createCube();
+    scene.add(cube1);
+    var cube2 = createCube();
+    cube2.position.set(3, 0, 0);
+    scene.add(cube2);
 
-    // cube
-    var cube = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshNormalMaterial());
-    // MULTIPLYING DIR BY 2
-    cube.position.copy( dir.multiplyScalar(2) );
-    scene.add(cube);
+    console.log(cube1.position.distanceTo(cube2.position)); // 3
 
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
