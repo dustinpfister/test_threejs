@@ -37,6 +37,11 @@
         return false;
     };
 
+    var newRandomStartPos = function (maxLength) {
+        maxLength = maxLength === undefined ? 10 : maxLength;
+        return new THREE.Vector3().random().multiplyScalar(maxLength);
+    };
+
     // scene
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(7, 7));
@@ -65,8 +70,8 @@
         // check distance
         if (minDistCheck(cube2, cube1.position, 0.25)) {
             // if below min dist set new pos
-            var v = new THREE.Vector3().random().multiplyScalar(5);
-            cube2.position.copy(v);
+
+            cube2.position.copy(newRandomStartPos());
         }
     };
 
@@ -75,9 +80,7 @@
     var loop = function () {
         var now = new Date(),
         secs = (now - lt) / 1000;
-
         requestAnimationFrame(loop);
-
         if (secs > 1 / fps) {
             update();
             lt = now;
