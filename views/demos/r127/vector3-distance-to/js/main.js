@@ -17,10 +17,13 @@
     var cube1 = createCube();
     scene.add(cube1);
     var cube2 = createCube();
-    cube2.position.set(3, 0, 0);
+    cube2.position.set(0, 0, 0);
     scene.add(cube2);
 
-    console.log(cube1.position.distanceTo(cube2.position)); // 3
+    // USING Vector3.distanceTo TO ADJUST THE POSITION OF CUBE2
+    if (cube2.position.distanceTo(cube1.position) < 2) {
+        cube2.position.set(2, 0, 0)
+    }
 
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
