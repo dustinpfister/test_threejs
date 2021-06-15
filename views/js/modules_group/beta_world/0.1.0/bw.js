@@ -50,7 +50,8 @@
 
     // position object relative to the surface of the beta world
     api.positionObject = function(world, obj, latPer, longPer, alt){
-        var surfaceAlt = 30 + alt;
+        var radius = world.userData.worldSphere.geometry.parameters.radius;
+        var surfaceAlt = radius + alt;
         setOnSphere(obj, latPer, longPer, surfaceAlt);
     };
 

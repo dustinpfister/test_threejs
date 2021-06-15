@@ -62,7 +62,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 1470, // 1470 - sq10
+        frame: 0, // 1470 - sq10
         canvas: renderer.domElement,
         sequence: []
     };
