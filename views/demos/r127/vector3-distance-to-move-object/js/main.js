@@ -39,7 +39,7 @@
 
     var newRandomStartPos = function (maxLength) {
         maxLength = maxLength === undefined ? 10 : maxLength;
-        return new THREE.Vector3().random().multiplyScalar(maxLength);
+        return new THREE.Vector3().random().subScalar(0.5).normalize().multiplyScalar(maxLength);
     };
 
     // scene
