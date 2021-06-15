@@ -55,7 +55,7 @@
         sequence: []
     };
 
-    // sequence 1 zooming in to guy 2
+    // sequence 0 zooming in to guy 2
     video.sequence.push({
         maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
@@ -86,7 +86,6 @@
             var camLat = 0.14 - 0.07 * seq.per,
             camLong = 0.15,
             camAlt = 10 - 5 * seq.per;
-
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy2.group.position);
 
@@ -95,7 +94,7 @@
         }
     });
 
-    // sequence 2 - guy2 rotates head to face guy1
+    // sequence 1 - guy2 rotates head to face guy1
     video.sequence.push({
         maxFrame: Math.ceil(30 * 3),
         forFrame: function (seq) {
@@ -107,20 +106,28 @@
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
-            guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * seq.per * -1;
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
-            camera.position.set(0, 5, 5);
+            //camera.position.set(0, 5, 5);
+            //camera.lookAt(guy2.group.position);
+
+            var camLat = 0.07,
+            camLong = 0.15,
+            camAlt = 5;
+            BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy2.group.position);
 
             renderer.render(scene, camera);
         }
     });
 
-    // sequence 2.1 - guy2 asks if guy1 is okay
+    // sequence 2 - guy2 asks if guy1 is okay
     video.sequence.push({
         maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
@@ -132,20 +139,29 @@
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
-            guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
-            camera.position.set(0, 5, 5);
+            //camera.position.set(0, 5, 5);
+            //camera.lookAt(guy2.group.position);
+
+            var camLat = 0.07,
+            camLong = 0.15,
+            camAlt = 5;
+            BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy2.group.position);
+
 
             renderer.render(scene, camera);
         }
     });
 
-    // sequence 2.2 - quick camera move to guy1
+    // sequence 3 - quick camera move to guy1
     video.sequence.push({
         maxFrame: Math.ceil(30 * 1),
         forFrame: function (seq) {
@@ -157,23 +173,31 @@
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
-            guy1.group.position.set(-2, 1.55, 0);
+            //guy1.group.position.set(-2, 1.55, 0);
+            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // GUY2
             guy2.head.rotation.y = Math.PI / 180 * 90 * -1;
+            BetaWorld.positionObject(world, guy2.group, 0.05, 0, 1.55);
 
             // CAMERA
-            camera.position.set(0, 5, 5);
+            //camera.position.set(0, 5, 5);
             var v = new THREE.Vector3()
             v.copy(guy2.group.position);
             v.x = guy2.group.position.x - 4 * seq.per
             camera.lookAt(v);
 
+            var camLat = 0.07,
+            camLong = 0.15,
+            camAlt = 5;
+            BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
+            camera.lookAt(guy2.group.position);
+
             renderer.render(scene, camera);
         }
     });
 
-    // sequence 3 - guy1 rotates head to face guy2
+    // sequence 4 - guy1 rotates head to face guy2
     video.sequence.push({
         maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
@@ -198,7 +222,7 @@
         }
     });
 
-    // sequence 4 - the depth of the head of guy1 gets longer
+    // sequence 5 - the depth of the head of guy1 gets longer
     video.sequence.push({
         maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
@@ -226,7 +250,7 @@
         }
     });
 
-    // sequence 5 - guy1 responds with 'no'
+    // sequence 6 - guy1 responds with 'no'
     video.sequence.push({
         maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
@@ -251,7 +275,7 @@
         }
     });
 
-    // sequence 6 - guy1 head depth returns to 1
+    // sequence 7 - guy1 head depth returns to 1
     video.sequence.push({
         maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
@@ -276,7 +300,7 @@
         }
     });
 
-    // sequence 7 - guy1 extends arms out into t-pose
+    // sequence 8 - guy1 extends arms out into t-pose
     video.sequence.push({
         maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
@@ -302,7 +326,7 @@
         }
     });
 
-    // sequence 8 - guy1 starts to spin body but not head and legs
+    // sequence 9 - guy1 starts to spin body but not head and legs
     video.sequence.push({
         maxFrame: Math.ceil(30 * 10),
         forFrame: function (seq) {
@@ -329,7 +353,7 @@
         }
     });
 
-   // sequence 9 - guy1 starts to lift off
+   // sequence 10 - guy1 starts to lift off
     video.sequence.push({
         maxFrame: Math.ceil(30 * 20),
         forFrame: function (seq) {
