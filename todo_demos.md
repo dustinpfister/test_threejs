@@ -31,7 +31,6 @@ The Vector3 class is also a major part of working with theejs, as there is the p
 ### x.2 - threejs-vector3-distance-to
     * (done) start a basic distance to example of the method
     * (done) start a basic example that involves distance to, and a move object method
-    * start an example where a mesh moves from one point in space to another, and use distance to and angle to to set speeds
 
 ### x.3 - threejs-vector3-angle-to
     * start a basic example of vector3 angle to
