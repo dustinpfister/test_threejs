@@ -8,7 +8,11 @@
 
     // WORLD
     var world = BetaWorld.create();
-    var texture = canvasTextureMod.randomGrid();
+    var texture = canvasTextureMod.randomGrid([0,'r1',0], 128);
+    world.userData.worldSphere.material = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(1, 1, 1),
+        map: texture
+    });
     scene.add(world);
 
     // GUY1
