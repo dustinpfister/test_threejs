@@ -15,6 +15,8 @@
         var world = new THREE.Group();
         // world sphere
         var worldSphere = new THREE.Mesh(new THREE.SphereGeometry(WORLD_RADIUS, 30, 30), MATERIALS.ground);
+        // ref to worldSphere in ud
+        world.userData.worldSphere = worldSphere;
         world.add(worldSphere);
         // LIGHT
         var light_sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 30, 30));

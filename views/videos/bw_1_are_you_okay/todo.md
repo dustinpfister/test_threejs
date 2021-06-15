@@ -1,7 +1,8 @@
 # meme_gg_one todo
 
 ## raw4 () beta_world.js v0.0.1 position objects
-* system for positioning objects in the beta world
+* (done) use new beta_world 0.0.1 system for positioning objects in the beta world
+* start new canvas_textures 0.0.0 and use the lib to skin the world sphere
 
 ## raw3 ( done 06/12/2021 ) - beta_world.js v0.0.0 started
 * (done) create a beta_world.js model that just creates and returns a sphere for now

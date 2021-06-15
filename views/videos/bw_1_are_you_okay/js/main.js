@@ -8,6 +8,7 @@
 
     // WORLD
     var world = BetaWorld.create();
+    var texture = canvasTextureMod.randomGrid();
     scene.add(world);
 
     // GUY1
