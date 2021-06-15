@@ -25,8 +25,16 @@
         if (d <= maxDist) {
             per = d / maxDist * maxPer;
         }
-        console.log(per);
         moveObjByDiff(obj, pos, per);
+    };
+
+    var minDistCheck = function (obj, pos, minDist) {
+        minDist = minDist === undefined ? 0.125 : minDist;
+        var d = obj.position.distanceTo(pos);
+        if (d < minDist) {
+            return true;
+        }
+        return false;
     };
 
     // scene
@@ -42,7 +50,6 @@
     scene.add(cube2);
 
     //moveObjByDiff(cube2, cube1.position, 1);
-    moveObjByDistDiff(cube2, cube1.position, 2);
 
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
@@ -51,7 +58,32 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-    renderer.render(scene, camera);
+
+    var update = function () {
+
+        moveObjByDistDiff(cube2, cube1.position, 2);
+
+        if (minDistCheck(cube2, cube1.position, 0.0625)) {
+            cube2.position.set(5, 0, 0);
+        }
+
+    };
+
+    var lt = new Date(),
+    fps = 30;
+    var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
+
+        requestAnimationFrame(loop);
+
+        if (secs > 1 / fps) {
+            update();
+            lt = now;
+            renderer.render(scene, camera);
+        }
+    };
+    loop();
 
 }
     ());
