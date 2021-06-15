@@ -51,7 +51,7 @@
     cube1.position.set(0.001, 0, 0);
     scene.add(cube1);
     var cube2 = createCube();
-    cube2.position.set(0, 0, 1.8);
+    cube2.position.copy(newRandomStartPos());
     scene.add(cube2);
 
     //moveObjByDiff(cube2, cube1.position, 1);
