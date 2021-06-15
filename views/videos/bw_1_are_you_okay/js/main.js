@@ -50,7 +50,7 @@
     container.appendChild(renderer.domElement);
 
     var video = {
-        frame: 0, //1470,
+        frame: 390, 
         canvas: renderer.domElement,
         sequence: []
     };
@@ -182,16 +182,21 @@
 
             // CAMERA
             //camera.position.set(0, 5, 5);
-            var v = new THREE.Vector3()
-            v.copy(guy2.group.position);
-            v.x = guy2.group.position.x - 4 * seq.per
-            camera.lookAt(v);
+            //var v = new THREE.Vector3()
+            //v.copy(guy2.group.position);
+            //v.x = guy2.group.position.x - 4 * seq.per
+            //camera.lookAt(guy1.group.position);
 
             var camLat = 0.07,
             camLong = 0.15,
             camAlt = 5;
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
-            camera.lookAt(guy2.group.position);
+
+            var v = guy2.group.position.clone();
+
+            v.x = guy2.group.position.x - 4 * seq.per;
+            
+            camera.lookAt(v);
 
             renderer.render(scene, camera);
         }
