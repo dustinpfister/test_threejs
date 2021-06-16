@@ -5,10 +5,16 @@
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(5, 5));
 
-    var cube = new THREE.Mesh(
+    // creating a mesh
+    var mesh = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
-    scene.add(cube);
+    scene.add(mesh);
+
+    mesh.position.set(0, 0, -5);
+    mesh.position.clamp(
+        new THREE.Vector3(-2, 0, -2),
+        new THREE.Vector3(2, 0, 2));
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
