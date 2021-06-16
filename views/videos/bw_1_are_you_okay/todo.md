@@ -9,7 +9,7 @@
 * load and use an external texture for ground
 
 ## raw5 - tree-sphere added
-* make tree sphere a lib in /js folder and use it in the scene
+* (done) make tree sphere a lib in /js folder and use it in the scene
 
 ## raw4 ( done 06/15/2021 ) - beta_world.js v0.1.0 position objects
 * (done) use new beta_world 0.0.1 system for positioning objects in the beta world
