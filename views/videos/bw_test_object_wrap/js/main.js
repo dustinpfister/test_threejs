@@ -17,11 +17,13 @@
     world.userData.worldSphere.material = MATERIAL_WORLD;
     scene.add(world);
 
-    // GUY1
+    // GUY
     var guy1 = GuyMod.create();
     guy1.group.scale.set(0.5, 0.5, 0.5);
-    BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
-    scene.add(guy1.group);
+    var guy1_wrap = BetaWorld.createObjectWrapper(world, guy1.group);
+    BetaWorld.positionObject(world, guy1_wrap, 0.05, 0.02, 1.55);
+    guy1_wrap.lookAt(world.position);
+    scene.add(guy1_wrap);
     
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
@@ -47,20 +49,14 @@
         forFrame: function (seq) {
 
             // GUY1
-            guy1.head.rotation.y = 0;
-            guy1.head.scale.set(1, 1, 1);
-            guy1.head.position.x = 0;
-            guy1.arm_left.rotation.z = 0;
-            guy1.arm_right.rotation.z = 0;
-            guy1.body.rotation.y = 0;
-            BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
+            //BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
 
             // CAMERA
             var camLat = 0.14 - 0.07 * seq.per,
             camLong = 0.15,
             camAlt = 10 - 5 * seq.per;
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
-            camera.lookAt(guy1.group.position);
+            camera.lookAt(guy1_wrap.position);
 
             renderer.render(scene, camera);
         }

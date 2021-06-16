@@ -57,8 +57,10 @@
 
     api.createObjectWrapper = function (world, obj) {
         var group = new THREE.Group();
+
         group.add(obj);
-        group.lookAt(world.getWorldPosition());
+console.log(obj);
+        //group.lookAt(world.getWorldPosition());
         return group;
     };
 
