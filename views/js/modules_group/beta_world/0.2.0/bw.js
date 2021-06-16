@@ -3,10 +3,10 @@
     var WORLD_RADIUS = 30;
 
     var MATERIALS = {
-       ground: new THREE.MeshStandardMaterial({
-           color: new THREE.Color(0, 1, 0),
-           emissive: new THREE.Color(0, 0.1, 0)
-       })
+        ground: new THREE.MeshStandardMaterial({
+            color: new THREE.Color(0, 1, 0),
+            emissive: new THREE.Color(0, 0.1, 0)
+        })
     };
 
     // create and return the beta world
@@ -30,16 +30,16 @@
     };
 
     // set on sphere helper
-    var setOnSphereFromPos = function(mesh, x, y, z, alt){
-         var dir = new THREE.Vector3(x, y, z).normalize();
-         var pos = new THREE.Vector3();
-         pos.x = dir.x * alt;
-         pos.y = dir.y * alt;
-         pos.z = dir.z * alt;
-         mesh.position.copy(pos);
+    var setOnSphereFromPos = function (mesh, x, y, z, alt) {
+        var dir = new THREE.Vector3(x, y, z).normalize();
+        var pos = new THREE.Vector3();
+        pos.x = dir.x * alt;
+        pos.y = dir.y * alt;
+        pos.z = dir.z * alt;
+        mesh.position.copy(pos);
     };
 
-    var setOnSphere = function(mesh, lat, long, alt){
+    var setOnSphere = function (mesh, lat, long, alt) {
         var latBias = Math.abs(lat - 0.5) / 0.5;
         var radian = Math.PI * 2 * long,
         x = Math.cos(radian) * (alt - alt * latBias),
@@ -49,10 +49,17 @@
     };
 
     // position object relative to the surface of the beta world
-    api.positionObject = function(world, obj, latPer, longPer, alt){
+    api.positionObject = function (world, obj, latPer, longPer, alt) {
         var radius = world.userData.worldSphere.geometry.parameters.radius;
         var surfaceAlt = radius + alt;
         setOnSphere(obj, latPer, longPer, surfaceAlt);
+    };
+
+    api.createObjectWrapper = function (world, obj) {
+        var group = new THREE.Group();
+        group.add(obj);
+        group.lookAt(world.getWorldPosition());
+        return group;
     };
 
 }
