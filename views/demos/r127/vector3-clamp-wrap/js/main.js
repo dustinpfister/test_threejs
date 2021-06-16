@@ -1,6 +1,12 @@
 
 (function () {
 
+    var mod = function (a, b) {
+        return THREE.MathUtils.euclideanModulo(a, b);
+    };
+
+    console.log(mod(-3, 5)); // 2
+
     var wrapVector = function (vec, vecMin, vecMax) {
         vecMin = vecMin || new THREE.Vector3(0, 0, 0);
         vecMax = vecMax || new THREE.Vector3(1, 1, 1);
