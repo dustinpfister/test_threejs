@@ -32,15 +32,18 @@ The Vector3 class is also a major part of working with theejs, as there is the p
     * (done) start a basic distance to example of the method
     * (done) start a basic example that involves distance to, and a move object method
 
-### x.3 - threejs-vector3-angle-to
-    * start a basic example of vector3 angle to
+### x.3 - threejs-vector3-clamp
+    * start a basic example of vector3 clamp
+    * create a wrap example
+    * create a simple animation example
 
 ### x.4 - threejs-vector3-apply-euler
     * start a basic example of vector3 apply euler method
 
-### x.5 - threejs-vector3-clamp
-    * start a basic example of vector3 clamp
-    * create a wrap example
+### x.5 - threejs-vector3-angle-to
+    * start a basic example of vector3 angle to
+
+
 
 
 ## x - Bones, Animation, and External Files
