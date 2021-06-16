@@ -2,7 +2,11 @@
 
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
-## what to finish that is in Process
+## x - what to finish that is in Process, random notes
+
+* When it comes to other ways to position something on a sphere, another solution might involve ray casting
+    https://stackoverflow.com/questions/54491088/wrap-threejs-mesh-on-another-mesh
+
 * see about finishing /r127/sphere-move-point demo
 * update post on Vector3 class to include what was worked out in the post on arrow helpers when moving a mesh
 
@@ -32,7 +36,7 @@ The Vector3 class is also a major part of working with theejs, as there is the p
     * (done) start a basic distance to example of the method
     * (done) start a basic example that involves distance to, and a move object method
 
-### x.3 - threejs-vector3-clamp
+### ( started 6/16/2021 ) x.3 - threejs-vector3-clamp
     * start a basic example of vector3 clamp
     * create a wrap example
     * create a simple animation example
