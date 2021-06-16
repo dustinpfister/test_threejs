@@ -1,10 +1,10 @@
 (function () {
 
-    var texture = canvasTextureMod.randomGrid([0,'r1',0], 128);
+    var texture = canvasTextureMod.randomGrid([0, 'r1', 0], 128);
     var MATERIAL_WORLD = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(1, 1, 1),
-        map: texture
-    });
+            color: new THREE.Color(1, 1, 1),
+            map: texture
+        });
 
     var MATERIAL_TREE = MATERIAL_WORLD;
 
@@ -31,22 +31,28 @@
 
     // TREE
     var tree = new Tree({
-        coneMaterial: MATERIAL_TREE,
-        sections: 8
-    });
+            coneMaterial: MATERIAL_TREE,
+            sections: 8
+        });
     BetaWorld.positionObject(world, tree.group, 0.12, 0.9, 0.5);
-    tree.group.lookAt(0,0,0);
+    tree.group.lookAt(0, 0, 0);
+    tree.group.rotateX(Math.PI * 1.5);
+    scene.add(tree.group);
+    // tree 2
+    var tree = new Tree({
+            coneMaterial: MATERIAL_TREE,
+            sections: 7
+        });
+    BetaWorld.positionObject(world, tree.group, 0.12, 0.6, 0.5);
+    tree.group.lookAt(0, 0, 0);
     tree.group.rotateX(Math.PI * 1.5);
     scene.add(tree.group);
 
-    var tree = new Tree({
-        coneMaterial: MATERIAL_TREE,
-        sections: 7
-    });
-    BetaWorld.positionObject(world, tree.group, 0.12, 0.6, 0.5);
-    tree.group.lookAt(0,0,0);
-    tree.group.rotateX(Math.PI * 1.5);
-    scene.add(tree.group);
+    // TREE SPHERE
+    var treeSphere = TreeSphereMod.create({trunkLength: 4});
+    BetaWorld.positionObject(world, treeSphere, 0.20, 0.73, 0.5);
+    treeSphere.lookAt(0, 0, 0);
+    scene.add(treeSphere);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
@@ -90,7 +96,6 @@
             camAlt = 10 - 5 * seq.per;
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy2.group.position);
-
 
             renderer.render(scene, camera);
         }
@@ -149,7 +154,6 @@
             camAlt = 5;
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy2.group.position);
-
 
             renderer.render(scene, camera);
         }
@@ -225,7 +229,7 @@
             // GUY1
             guy1.head.rotation.y = Math.PI / 180 * 90;
             guy1.head.scale.set(1, 1, 1 + 5 * seq.per);
-            guy1.head.position.x = ( 6 / 2 - 0.5) * seq.per;
+            guy1.head.position.x = (6 / 2 - 0.5) * seq.per;
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
@@ -254,7 +258,7 @@
             // GUY1
             guy1.head.rotation.y = Math.PI / 180 * 90;
             guy1.head.scale.set(1, 1, 1 + 5);
-            guy1.head.position.x = ( 6 / 2 - 0.5);
+            guy1.head.position.x = (6 / 2 - 0.5);
             guy1.arm_left.rotation.z = 0;
             guy1.arm_right.rotation.z = 0;
             guy1.body.rotation.y = 0;
@@ -300,7 +304,6 @@
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy1.group.position);
 
-
             renderer.render(scene, camera);
         }
     });
@@ -330,7 +333,6 @@
             camAlt = 6;
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy1.group.position);
-
 
             renderer.render(scene, camera);
         }
@@ -367,7 +369,7 @@
         }
     });
 
-   // sequence 10 - guy1 starts to lift off
+    // sequence 10 - guy1 starts to lift off
     video.sequence.push({
         maxFrame: Math.ceil(30 * 20),
         forFrame: function (seq) {
@@ -390,10 +392,9 @@
             // CAMERA
             var camLat = 0.09 + 0.2 * seq.per,
             camLong = 0.25 * seq.per,
-            camAlt = 6;  //+ 14 * seq.per;
+            camAlt = 6; //+ 14 * seq.per;
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy1.group.position);
-
 
             renderer.render(scene, camera);
         }
