@@ -8,7 +8,6 @@
 
     var MATERIAL_TREE = MATERIAL_WORLD;
 
-
     // SCENE
     var scene = new THREE.Scene();
     scene.background = new THREE.Color('#00afaf');

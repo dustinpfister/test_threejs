@@ -1,12 +1,12 @@
 # meme_gg_one todo
 
-## rawX - External texture files
-* load and use an external texture for ground
-
 ## rawX beta_world.js v0.2.0 - object wrapper method
 * use new createObjectWrapper method for guy1, and guy2.
 * have wrapper objects for guy1 ad guy to look at the center of the world.
 * have guy1 and guy2 groups positioned as they should be
+
+## rawX - External texture files
+* load and use an external texture for ground
 
 ## raw4 ( done 06/15/2021 ) - beta_world.js v0.1.0 position objects
 * (done) use new beta_world 0.0.1 system for positioning objects in the beta world
