@@ -5,14 +5,10 @@
         return THREE.MathUtils.euclideanModulo(a, b);
     };
 
-    console.log(mod(-3, 5)); // 2
 
     var wrapVector = function (vec, vecMin, vecMax) {
         vecMin = vecMin || new THREE.Vector3(0, 0, 0);
         vecMax = vecMax || new THREE.Vector3(1, 1, 1);
-
-        //vec.x = vec.x
-
     };
 
     // scene
@@ -25,8 +21,9 @@
             new THREE.MeshNormalMaterial());
     scene.add(mesh);
 
-    mesh.position.set(0, 0, -5);
-    mesh.position.clamp(
+    mesh.position.set(2, 0, 0);
+    wrapVector(
+        mesh.position,
         new THREE.Vector3(-2, 0, -2),
         new THREE.Vector3(2, 0, 2));
 

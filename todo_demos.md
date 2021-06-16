@@ -37,7 +37,9 @@ The Vector3 class is also a major part of working with theejs, as there is the p
     * (done) start a basic example that involves distance to, and a move object method
 
 ### ( started 6/16/2021 ) x.3 - threejs-vector3-clamp
-    * start a basic example of vector3 clamp
+    * (done) start a basic example of vector3 clamp
+    * start a basic wrap length example
+
     * create a wrap example
     * create a simple animation example
 
