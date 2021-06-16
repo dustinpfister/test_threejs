@@ -11,10 +11,9 @@
             new THREE.MeshNormalMaterial());
     scene.add(mesh);
 
-    mesh.position.set(0, 0, -5);
-    mesh.position.clamp(
-        new THREE.Vector3(-2, 0, -2),
-        new THREE.Vector3(2, 0, 2));
+    mesh.position.set(0, 5, -5);
+    mesh.position.clampLength(0.5, 1);
+    console.log(mesh.position);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
