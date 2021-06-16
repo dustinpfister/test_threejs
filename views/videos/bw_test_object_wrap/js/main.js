@@ -48,8 +48,8 @@
         maxFrame: Math.ceil(30 * 2),
         forFrame: function (seq) {
 
-            // GUY1
-            //BetaWorld.positionObject(world, guy1.group, 0, 0, 1.55);
+            // GUY2
+            BetaWorld.positionObject(world, guy1_wrap, 0, 0, 1.55);
 
             // CAMERA
             var camLat = 0.14 - 0.07 * seq.per,
