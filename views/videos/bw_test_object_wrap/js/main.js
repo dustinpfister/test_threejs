@@ -61,13 +61,6 @@
             BetaWorld.positionObject(world, guy1_wrap, latPer, longPer, 1.55);
             guy1_wrap.lookAt(world.position);
 
-            // CAMERA
-            //var camLat = 0.14 + 0.75 * seq.bias,
-            //camLong = 0.05,
-            //camAlt = 10;
-            //BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
-            //camera.lookAt(guy1_wrap.position);
-
             renderer.render(scene, camera);
         }
     });
