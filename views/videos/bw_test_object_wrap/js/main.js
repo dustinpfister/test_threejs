@@ -20,8 +20,13 @@
     // GUY
     var guy1 = GuyMod.create();
     guy1.group.scale.set(0.5, 0.5, 0.5);
+    // CAN ROTATE guy1.group THREE.Group INSTANCE INDEPENDANT OF AN OBJECT WRAP
+    guy1.group.lookAt(0, 1.55, 0);
+    guy1.group.rotateY(Math.PI * 0.5);
+    // CREATING AND ADDING A WRAP FOR GUY1
     var guy1_wrap = BetaWorld.createObjectWrapper(world, guy1.group);
     BetaWorld.positionObject(world, guy1_wrap, 0.05, 0.02, 1.55);
+    // CAN ROTATE THE WRAP THREE.Group RATHER THAN guy1.group
     guy1_wrap.lookAt(world.position);
     scene.add(guy1_wrap);
 
@@ -50,6 +55,7 @@
 
             // GUY1
             var latPer = 0.01 + 0.25 * seq.bias;
+            // POSITIONING THE WRAP GROUP SO THAT IT ALWAYS FACES TO THE GROUND
             BetaWorld.positionObject(world, guy1_wrap, latPer, 0, 1.55);
             guy1_wrap.lookAt(world.position);
 
