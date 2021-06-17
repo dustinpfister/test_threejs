@@ -30,7 +30,8 @@
     fps = 30;
     // update method
     var update = function (secs) {
-        
+        v.x += 0.05 * secs;
+        v.x %= 1;
         degree = 45 * secs;
         mesh.position.applyAxisAngle(v, Math.PI / 180 * degree);
     };
