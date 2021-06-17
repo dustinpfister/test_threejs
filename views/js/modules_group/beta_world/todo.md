@@ -7,13 +7,23 @@ A major part of the beta world has to do with just positioning objects relative 
 * When it comes to other ways to position something on a sphere, another solution might involve ray casting
     https://stackoverflow.com/questions/54491088/wrap-threejs-mesh-on-another-mesh
 
-### 0.2.0 - Create Object wrapper method
+### 0.x.0 - System for setting position of LIGHT SPHERE
+
+As of this writing there is the main world sphere, and then there is also the light sphere that acts as a kind of sun for the beta world. So there should be some kind of system that allows for setting what the time of day is to say the least, if not also the time of year. So I am thinking of a system where the position object method is used internally in the module, and I will want some kind of public method that will set what the time of day is.
+
+* have a SUN_LAT const that is set to 0.5. (for now the sun will just always be at this lat)
+* have a world.userData.worldTime prop that will be an object
+* for now just have a world.userData.worldTime.dayPer value with a 0 - 1 range
+* start a BetaWorld.setTime method that can be passed a world object, and a javaScript date as arguments
+* BetaWorld.setTime can be used to set the beta world time, and as such change the position of the light sphere
+
+### ( 06/17/21 ) - 0.2.0 - Create Object wrapper method
 
 One problem that I seem to be running into so far has to do with setting the orientation of a Mesh, or group in relation to the world. One way might be to rethink how I am making my models to begin with, but I think a better solution might be to have a kind of object wrapper method that creates and returns a special kind of group. One function of this special kind of group would be that I can always call the look at method of the group to have the group point to the center of the world. It is then just a question of setting the proper orientation of what is inside the group as a child, just once, or as needed, independent of the object wrapper group.
 
 * see about creating an object wrapper method
 
-### (6/16/21) 0.1.0 - method for position objects
+### (6/15/21) 0.1.0 - method for position objects
 
 When it comes to making this project something more than a fancy way to create and return a Sphere, one majot method that I am going to want to have is a position object method. In time I might want to have a few options and abstractions when it comes to this, but I have to start somewhere.
 
