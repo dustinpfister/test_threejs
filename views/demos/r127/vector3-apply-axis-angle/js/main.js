@@ -7,14 +7,11 @@
 
     // creating a mesh
     var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.ConeGeometry(0.5, 1, 30, 30),
             new THREE.MeshNormalMaterial());
     scene.add(mesh);
-
-    mesh.position.set(0, 0, -5);
-    mesh.position.clamp(
-        new THREE.Vector3(-2, 0, -2),
-        new THREE.Vector3(2, 0, 2));
+    mesh.geometry.rotateX(Math.PI * 0.5);
+    mesh.lookAt(0, 1, 0);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
