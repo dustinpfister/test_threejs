@@ -61,10 +61,14 @@
             BetaWorld.positionObject(world, guy1_wrap, latPer, longPer, 1.5);
             guy1_wrap.lookAt(world.position);
 
+            // I CAN THEN ALSO ADJUST THE ROTATION OF THE INNER GROUP
+            // INDEPENDENTLY FROM THE OUTER WRAP GROUP
             guy1.group.rotation.y = Math.PI * 4 * seq.bias;
 
+            // MAKE SURE THAT WHEN USING LOOK AT, LOOK AT THE WRAP
+            // IF YOU WANT TO LOOK AT THE guy1.group IT WILL BE CALLED FOR
+            // TO GET THE WORLD RELATIVE POSTION OF THAT GROUP
             camera.lookAt(guy1_wrap.position);
-
             renderer.render(scene, camera);
         }
     });
