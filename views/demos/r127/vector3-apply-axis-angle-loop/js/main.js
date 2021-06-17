@@ -25,12 +25,12 @@
 
     // LOOP
     var degree = 0,
-    v,
+    v = new THREE.Vector3(0, 1, 0),
     lt = new Date(),
     fps = 30;
     // update method
     var update = function (secs) {
-        v = new THREE.Vector3(0, 1, 0);
+        
         degree = 45 * secs;
         mesh.position.applyAxisAngle(v, Math.PI / 180 * degree);
     };
