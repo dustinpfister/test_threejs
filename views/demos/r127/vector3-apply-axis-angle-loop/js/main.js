@@ -25,18 +25,20 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     var degree = 0,
+    v,
     lt = new Date(),
     fps = 30;
+    var update = function (secs) {
+        v = new THREE.Vector3(0, 1, 0);
+        degree = 45 * secs;
+        mesh.position.applyAxisAngle(v, Math.PI / 180 * degree);
+    };
     var loop = function () {
         var now = new Date(),
         secs = (now - lt) / 1000;
-
         requestAnimationFrame(loop);
-
         if (secs > 1 / fps) {
-            var v = new THREE.Vector3(0, 1, 0);
-            degree = 45 * secs;
-            mesh.position.applyAxisAngle(v, Math.PI / 180 * degree);
+            update(secs);
             renderer.render(scene, camera);
             lt = now;
         }
