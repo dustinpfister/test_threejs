@@ -55,7 +55,7 @@
         forFrame: function (seq) {
 
             // GUY1
-            var latPer = 0.5;
+            var latPer = 0.125;
             var longPer = 0.01 + 0.98 * seq.per;
             // POSITIONING THE WRAP GROUP SO THAT IT ALWAYS FACES TO THE GROUND
             BetaWorld.positionObject(world, guy1_wrap, latPer, longPer, 1.55);
