@@ -32,10 +32,9 @@
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
-    camera.position.set(10, 10, 10);
-    camera.lookAt(0, 0, 0);
     scene.add(camera);
     BetaWorld.positionObject(world, camera, 0.15, 0.5, 7.5);
+    camera.lookAt(world.position);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
