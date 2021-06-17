@@ -34,8 +34,8 @@
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
     camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
-    // FOR THIS TEST I AM ADDING THE CAMERA TO THE guy1.GROUP
-    guy1.group.add(camera);
+    scene.add(camera);
+    BetaWorld.positionObject(world, camera, 0.15, 0.5, 7.5);
 
     // RENDER
     var renderer = new THREE.WebGLRenderer();
@@ -51,15 +51,19 @@
 
     // sequence 0
     video.sequence.push({
-        maxFrame: Math.ceil(30 * 4),
+        maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
 
             // GUY1
             var latPer = 0.125;
             var longPer = 0.01 + 0.98 * seq.per;
             // POSITIONING THE WRAP GROUP SO THAT IT ALWAYS FACES TO THE GROUND
-            BetaWorld.positionObject(world, guy1_wrap, latPer, longPer, 1.55);
+            BetaWorld.positionObject(world, guy1_wrap, latPer, longPer, 1.5);
             guy1_wrap.lookAt(world.position);
+
+            guy1.group.rotation.y = Math.PI * 4 * seq.bias;
+
+            camera.lookAt(guy1_wrap.position);
 
             renderer.render(scene, camera);
         }
