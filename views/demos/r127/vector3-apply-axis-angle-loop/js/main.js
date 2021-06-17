@@ -24,13 +24,22 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    var degree = 0;
+    var degree = 0,
+    lt = new Date(),
+    fps = 30;
     var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
+
         requestAnimationFrame(loop);
 
-        var v = new THREE.Vector3(0, 1, 0);
-        mesh.position.applyAxisAngle(v, Math.PI / 180 * 1);
-        renderer.render(scene, camera);
+        if (secs > 1 / fps) {
+            var v = new THREE.Vector3(0, 1, 0);
+            degree = 45 * secs;
+            mesh.position.applyAxisAngle(v, Math.PI / 180 * degree);
+            renderer.render(scene, camera);
+            lt = now;
+        }
     };
     loop();
 
