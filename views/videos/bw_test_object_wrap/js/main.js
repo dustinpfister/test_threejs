@@ -24,7 +24,7 @@
     BetaWorld.positionObject(world, guy1_wrap, 0.05, 0.02, 1.55);
     guy1_wrap.lookAt(world.position);
     scene.add(guy1_wrap);
-    
+
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
     camera.position.set(10, 10, 10);
@@ -43,18 +43,20 @@
         sequence: []
     };
 
-    // sequence 0 zooming in to guy 2
+    // sequence 0
     video.sequence.push({
         maxFrame: Math.ceil(30 * 2),
         forFrame: function (seq) {
 
-            // GUY2
-            BetaWorld.positionObject(world, guy1_wrap, 0, 0, 1.55);
+            // GUY1
+            var latPer = 0.01 + 0.25 * seq.bias;
+            BetaWorld.positionObject(world, guy1_wrap, latPer, 0, 1.55);
+            guy1_wrap.lookAt(world.position);
 
             // CAMERA
-            var camLat = 0.14 - 0.07 * seq.per,
+            var camLat = 0.14,
             camLong = 0.15,
-            camAlt = 10 - 5 * seq.per;
+            camAlt = 10;
             BetaWorld.positionObject(world, camera, camLat, camLong, camAlt);
             camera.lookAt(guy1_wrap.position);
 
