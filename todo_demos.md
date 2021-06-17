@@ -43,8 +43,9 @@ The Vector3 class is also a major part of working with theejs, as there is the p
     * create a wrap example
     * create a simple animation example
 
-### x.4 - threejs-apply-axis-angle
-    * basic example of threejs apply axis angle
+### ( started 6/16/2021 ) x.4 - threejs-apply-axis-angle
+    * (done) basic example of threejs apply axis angle
+    * start an animation for this
 
 ### x.5 - threejs-vector3-apply-euler
     * start a basic example of vector3 apply euler method
