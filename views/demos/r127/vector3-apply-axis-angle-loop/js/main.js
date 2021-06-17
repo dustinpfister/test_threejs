@@ -13,8 +13,6 @@
     mesh.position.set(1, 0, 1);
     scene.add(mesh);
 
-    console.log(mesh.position.clone().round()); // {x: -1, y: 0, z: -1}
-
     // camera, render
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
     camera.position.set(5, 5, 5);
