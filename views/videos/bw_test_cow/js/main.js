@@ -31,11 +31,14 @@
     guy1_wrap.lookAt(world.position);
     scene.add(guy1_wrap);
 */
+    var cow = CowMod.create();
+    BetaWorld.positionObject(world, cow, 0, 0, 0.5);
+    scene.add(cow);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
     scene.add(camera);
-    BetaWorld.positionObject(world, camera, 0.12, 0, 3);
+    BetaWorld.positionObject(world, camera, 0.08, 0.95, 4);
     camera.lookAt(world.position);
 
     // RENDER
