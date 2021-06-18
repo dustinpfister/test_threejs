@@ -17,28 +17,14 @@
     world.userData.worldSphere.material = MATERIAL_WORLD;
     scene.add(world);
 
-    // GUY
-/*
-    var guy1 = GuyMod.create();
-    guy1.group.scale.set(0.5, 0.5, 0.5);
-    // CAN ROTATE guy1.group THREE.Group INSTANCE INDEPENDANT OF AN OBJECT WRAP
-    guy1.group.lookAt(0, 1.55, 0);
-    guy1.group.rotateY(Math.PI * 0.5);
-    // CREATING AND ADDING A WRAP FOR GUY1
-    var guy1_wrap = BetaWorld.createObjectWrapper(world, guy1.group);
-    BetaWorld.positionObject(world, guy1_wrap, 0.05, 0.02, 1.55);
-    // CAN ROTATE THE WRAP THREE.Group RATHER THAN guy1.group
-    guy1_wrap.lookAt(world.position);
-    scene.add(guy1_wrap);
-*/
     var cow = CowMod.create();
-    BetaWorld.positionObject(world, cow, 0, 0, 0.5);
+    BetaWorld.positionObject(world, cow, 0, 0, 3);
     scene.add(cow);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
     scene.add(camera);
-    BetaWorld.positionObject(world, camera, 0.08, 0.95, 4);
+    BetaWorld.positionObject(world, camera, 0.20, 0.95, 15);
     camera.lookAt(world.position);
 
     // RENDER

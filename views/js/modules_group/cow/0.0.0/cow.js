@@ -9,22 +9,21 @@
 
     var createBodyGroup = function(opt){
         var group = new THREE.Group();
-        var body = new THREE.Mesh(new THREE.BoxGeometry(1, 0.5, 0.5), opt.materials.body);
+        var body = new THREE.Mesh(new THREE.BoxGeometry(5, 2, 2), opt.materials.body);
         body.position.set(0, 0.5, 0);
         group.add(body);
         return group;
     };
 
     var createLeg = function(opt){
-        var leg = new THREE.Mesh(new THREE.BoxGeometry(0.125, 0.5, 0.125), opt.materials.body);
+        var leg = new THREE.Mesh(new THREE.BoxGeometry(1, 3, 1), opt.materials.body);
         return leg;
     };
 
     var createLegsGroup = function(opt){
         var group = new THREE.Group();
-
         var leg1 = createLeg(opt);
-        leg1.position.set(0.9, 0.25, 0);
+        leg1.position.set(2, -2, 1);
         group.add(leg1);
         var leg2 = createLeg(opt);
         group.add(leg2);
