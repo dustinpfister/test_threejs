@@ -1,0 +1,3 @@
+## box house 1
+
+This is what might prove to be just the first of many DAE files created from a blender project. The goal here is to make a 'house', if it can even be called that composed of just a few objects slaped togeather. I am thinking just haveing box geomerties that will some pillers and a singel platfrom over the pillers. It time I might add walls, a slanted roof, and some windows, however this is not a serious attept at ank kind of real house model.
