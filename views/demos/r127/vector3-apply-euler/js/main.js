@@ -18,10 +18,10 @@
     scene.add(cube);
     // USING THE APPLY EULER Vector3 METHOD
     var e = new THREE.Euler(
-        THREE.MathUtils.degToRad(45),
-        THREE.MathUtils.degToRad(0), 
+        THREE.MathUtils.degToRad(0),
+        THREE.MathUtils.degToRad(45), 
         THREE.MathUtils.degToRad(0));
-    var v = new THREE.Vector3(1, 0, 0).applyEuler(e).normalize().multiplyScalar(3);
+    var v = new THREE.Vector3(2, 0, 0).applyEuler(e);
     cube.position.copy(v);
 
     // camera, render
