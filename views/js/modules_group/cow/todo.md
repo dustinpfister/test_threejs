@@ -1,9 +1,9 @@
 ## todo list for cow
 
 ### 0.0.0 - Basic shape togetaher
-* have a create method
-* have a main group that is returned by create
-* have a body group
+* (done) have a create method
+* (done) have a main group that is returned by create
+* (done) have a body group
+* (done) have a legs group
 * have a head group
-* have a legs group
 * create mesh objects for all groups

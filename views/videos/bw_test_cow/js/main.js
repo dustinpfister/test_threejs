@@ -27,8 +27,8 @@
     // guy
     var guy1 = GuyMod.create();
     guy1.group.scale.set(0.5, 0.5, 0.5);
-    guy1.group.lookAt(0, 1.55, 0);
-    guy1.group.rotateY(Math.PI * 0.5);
+    guy1.group.lookAt(cow_wrap.position);
+    //guy1.group.rotateY(Math.PI / 180 * 0);
     var guy1_wrap = BetaWorld.createObjectWrapper(world, guy1.group);
     BetaWorld.positionObject(world, guy1_wrap, 0.10, 0.15, 1.55);
     guy1_wrap.lookAt(world.position);
@@ -60,7 +60,7 @@
             // camera
             var latPer = 0.18;
             var longPer = 1 * seq.per;
-            BetaWorld.positionObject(world, camera, latPer, longPer, 18);
+            BetaWorld.positionObject(world, camera, latPer, longPer, 16);
             camera.lookAt(cow_wrap.position);
 
             renderer.render(scene, camera);
