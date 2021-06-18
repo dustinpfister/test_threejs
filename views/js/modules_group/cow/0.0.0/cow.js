@@ -55,6 +55,12 @@
         var eye1 = new THREE.Mesh(new THREE.SphereGeometry(0.25, 30, 30), opt.materials.eyes);
         eye1.position.set(1, 0, -0.5);
         head.add(eye1);
+        var mouth_top = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.25, 1), opt.materials.eyes);
+        mouth_top .position.set(1, -0.45, 0);
+        head.add(mouth_top );
+        var mouth_bottom  = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.25, 1), opt.materials.eyes);
+        mouth_bottom.position.set(1, -0.70 - 0.025, 0);
+        head.add(mouth_bottom);
         // add head to group
         group.add(head);
         return group;
