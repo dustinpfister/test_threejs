@@ -8,31 +8,29 @@
 
     var MATERIAL_TREE = MATERIAL_WORLD;
 
-    // SCENE
+    // scene
     var scene = new THREE.Scene();
     scene.background = new THREE.Color('#00afaf');
 
-    // WORLD
+    // world
     var world = BetaWorld.create();
     world.userData.worldSphere.material = MATERIAL_WORLD;
     scene.add(world);
 
+    // COW
     var cow = CowMod.create();
     cow.scale.set(0.5, 0.5, 0.5);
     var cow_wrap = BetaWorld.createObjectWrapper(world, cow);
     BetaWorld.positionObject(world, cow_wrap, 0, 0, 1.5);
     scene.add(cow_wrap);
 
-
+    // guy
     var guy1 = GuyMod.create();
     guy1.group.scale.set(0.5, 0.5, 0.5);
-    // CAN ROTATE guy1.group THREE.Group INSTANCE INDEPENDANT OF AN OBJECT WRAP
     guy1.group.lookAt(0, 1.55, 0);
     guy1.group.rotateY(Math.PI * 0.5);
-    // CREATING AND ADDING A WRAP FOR GUY1
     var guy1_wrap = BetaWorld.createObjectWrapper(world, guy1.group);
     BetaWorld.positionObject(world, guy1_wrap, 0.10, 0.15, 1.55);
-    // CAN ROTATE THE WRAP THREE.Group RATHER THAN guy1.group
     guy1_wrap.lookAt(world.position);
     scene.add(guy1_wrap);
 
@@ -59,14 +57,12 @@
         maxFrame: Math.ceil(30 * 5),
         forFrame: function (seq) {
 
-            // GUY1
-            //var latPer = 0.125;
-            //var longPer = 0.01 + 0.98 * seq.per;
-            // POSITIONING THE WRAP GROUP SO THAT IT ALWAYS FACES TO THE GROUND
-            //BetaWorld.positionObject(world, guy1_wrap, latPer, longPer, 1.5);
-            //guy1_wrap.lookAt(world.position);
+            // camera
+            var latPer = 0.18;
+            var longPer = 1 * seq.per;
+            BetaWorld.positionObject(world, camera, latPer, longPer, 18);
+            camera.lookAt(cow_wrap.position);
 
-            camera.lookAt(0, 30, 0);
             renderer.render(scene, camera);
         }
     });
