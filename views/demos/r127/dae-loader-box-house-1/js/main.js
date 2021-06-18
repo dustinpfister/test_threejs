@@ -3,7 +3,7 @@
 
     // scene
     var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(10, 10));
+    scene.add(new THREE.GridHelper(20, 20));
     scene.background = new THREE.Color('cyan');
 
     // point light
@@ -13,7 +13,7 @@
 
     // camera
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(5, 5, 5);
+    camera.position.set(15, 15, 15);
     camera.add(pl);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
@@ -40,7 +40,6 @@
         // copy mesh objects only
         result.scene.children.forEach(function(obj){
             if(obj.type === 'Mesh'){
-                console.log(obj.type);
                 group.add(obj.clone());
             }
         });
