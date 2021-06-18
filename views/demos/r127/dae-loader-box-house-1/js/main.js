@@ -3,6 +3,7 @@
 
     // scene
     var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(10, 10));
     scene.background = new THREE.Color('cyan');
 
     // point light
@@ -34,10 +35,9 @@
     // CREATE A COLLADALOADER INSTANCE
     var loader = new THREE.ColladaLoader();
     loader.load("/dae/box_house_1/box_house1.dae", function (result) {
-        // adding what I want from the result
-        //scene.add(result.scene);
-
+        // create group
         var group = new THREE.Group();
+        // copy mesh objects only
         result.scene.children.forEach(function(obj){
             if(obj.type === 'Mesh'){
                 console.log(obj.type);
@@ -45,11 +45,8 @@
             }
         });
         scene.add(group);
+        // copy result.scene rotation to group
         group.rotation.copy(result.scene.rotation);
-
-        console.log(result)
-
-
         // start the app loop
         loop();
     });
