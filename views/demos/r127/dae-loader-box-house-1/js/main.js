@@ -33,12 +33,23 @@
 
     // CREATE A COLLADALOADER INSTANCE
     var loader = new THREE.ColladaLoader();
-    // CALL THE LOAD METHOD, PASS THE ABSOLUTE OR RELATIVE PATH
-    // TO THE *.DAE FILE AS THE FIRST ARGUMENT, AND A DONE CALLBACK
-    // AS THE SECOND ARGUMENT
     loader.load("/dae/box_house_1/box_house1.dae", function (result) {
-        // adding the child that I want to the scene
-        scene.add(result.scene);
+        // adding what I want from the result
+        //scene.add(result.scene);
+
+        var group = new THREE.Group();
+        result.scene.children.forEach(function(obj){
+            if(obj.type === 'Mesh'){
+                console.log(obj.type);
+                group.add(obj.clone());
+            }
+        });
+        scene.add(group);
+        group.rotation.copy(result.scene.rotation);
+
+        console.log(result)
+
+
         // start the app loop
         loop();
     });
