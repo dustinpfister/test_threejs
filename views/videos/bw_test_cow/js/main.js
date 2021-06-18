@@ -14,6 +14,9 @@
             }),
             eyes: new THREE.MeshStandardMaterial({
                 color: new THREE.Color(1, 1, 1)
+            }),
+            mouth: new THREE.MeshStandardMaterial({
+                color: new THREE.Color(1, 0, 0)
             })
      };
 

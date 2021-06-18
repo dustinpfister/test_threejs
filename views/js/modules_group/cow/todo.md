@@ -10,4 +10,4 @@
 * (done) have a head group
 * (done) create basic mesh objects for all groups
 * (done) have eyes in the head
-* have libs on the head
+* (done) have libs on the head
