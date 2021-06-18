@@ -21,11 +21,14 @@
     };
 
     var createLegsGroup = function(opt){
+        opt = opt || {};
+        opt.legSpace = opt.legSpace === undefined ? 0.1 : opt.legSpace;
         var group = new THREE.Group();
         var leg1 = createLeg(opt);
-        leg1.position.set(2, -2, 1);
+        leg1.position.set(2, -2, 0.5 + opt.legSpace);
         group.add(leg1);
         var leg2 = createLeg(opt);
+        leg2.position.set(2, -2, (0.5 + opt.legSpace) * -1);
         group.add(leg2);
         var leg3 = createLeg(opt);
         group.add(leg3);
