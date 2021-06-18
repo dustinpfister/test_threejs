@@ -55,6 +55,7 @@
     api.create = function (opt) {
         opt = opt || {};
         opt.materials = opt.materials || MATERIALS;
+        opt.headSpace = opt.headSpace === undefined ? 0.1 : opt.headSpace;
         var group = new THREE.Group();
         
         var body = createBodyGroup(opt);
@@ -65,7 +66,7 @@
         group.add(legs);
 
         var head = createHead(opt);
-        head.position.set(0, 2, 0);
+        head.position.set(2, 2.5 + opt.headSpace, 0);
         group.add(head);
 
         return group;
