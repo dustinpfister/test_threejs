@@ -31,8 +31,10 @@
         leg2.position.set(2, -2, (0.5 + opt.legSpace) * -1);
         group.add(leg2);
         var leg3 = createLeg(opt);
+        leg3.position.set(-2, -2, 0.5 + opt.legSpace);
         group.add(leg3);
         var leg4 = createLeg(opt);
+        leg4.position.set(-2, -2, (0.5 + opt.legSpace) * -1);
         group.add(leg4);
         return group;
     };
