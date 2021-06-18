@@ -18,8 +18,23 @@
     scene.add(world);
 
     var cow = CowMod.create();
-    BetaWorld.positionObject(world, cow, 0, 0, 3);
-    scene.add(cow);
+    cow.scale.set(0.5, 0.5, 0.5);
+    var cow_wrap = BetaWorld.createObjectWrapper(world, cow);
+    BetaWorld.positionObject(world, cow_wrap, 0, 0, 1.5);
+    scene.add(cow_wrap);
+
+
+    var guy1 = GuyMod.create();
+    guy1.group.scale.set(0.5, 0.5, 0.5);
+    // CAN ROTATE guy1.group THREE.Group INSTANCE INDEPENDANT OF AN OBJECT WRAP
+    guy1.group.lookAt(0, 1.55, 0);
+    guy1.group.rotateY(Math.PI * 0.5);
+    // CREATING AND ADDING A WRAP FOR GUY1
+    var guy1_wrap = BetaWorld.createObjectWrapper(world, guy1.group);
+    BetaWorld.positionObject(world, guy1_wrap, 0.10, 0.15, 1.55);
+    // CAN ROTATE THE WRAP THREE.Group RATHER THAN guy1.group
+    guy1_wrap.lookAt(world.position);
+    scene.add(guy1_wrap);
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 8 / 6, 0.05, 150);
@@ -51,13 +66,6 @@
             //BetaWorld.positionObject(world, guy1_wrap, latPer, longPer, 1.5);
             //guy1_wrap.lookAt(world.position);
 
-            // I CAN THEN ALSO ADJUST THE ROTATION OF THE INNER GROUP
-            // INDEPENDENTLY FROM THE OUTER WRAP GROUP
-            //guy1.group.rotation.y = Math.PI * 4 * seq.bias;
-
-            // MAKE SURE THAT WHEN USING LOOK AT, LOOK AT THE WRAP
-            // IF YOU WANT TO LOOK AT THE guy1.group IT WILL BE CALLED FOR
-            // TO GET THE WORLD RELATIVE POSTION OF THAT GROUP
             camera.lookAt(0, 30, 0);
             renderer.render(scene, camera);
         }
