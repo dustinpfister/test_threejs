@@ -46,7 +46,16 @@
 
     var createHead = function(opt){
         var group = new THREE.Group();
+        // main head cube
         var head = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), opt.materials.body);
+        // eyes
+        var eye1 = new THREE.Mesh(new THREE.SphereGeometry(0.25, 30, 30), opt.materials.eyes);
+        eye1.position.set(1, 0, 0.5);
+        head.add(eye1);
+        var eye1 = new THREE.Mesh(new THREE.SphereGeometry(0.25, 30, 30), opt.materials.eyes);
+        eye1.position.set(1, 0, -0.5);
+        head.add(eye1);
+        // add head to group
         group.add(head);
         return group;
     };

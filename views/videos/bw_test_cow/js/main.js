@@ -9,9 +9,13 @@
     var texture = canvasTextureMod.randomGrid(['r1', 'r1', 0], 32, 200, 255);
     var MATERIAL_COW = {
             body: new THREE.MeshStandardMaterial({
-            color: new THREE.Color(1, 1, 0),
-            map: texture
-        })};
+                color: new THREE.Color(1, 1, 0),
+                map: texture
+            }),
+            eyes: new THREE.MeshStandardMaterial({
+                color: new THREE.Color(1, 1, 1)
+            })
+     };
 
 
 
@@ -67,7 +71,7 @@
             // camera
             var latPer = 0.18;
             var longPer = 1 * seq.per;
-            BetaWorld.positionObject(world, camera, latPer, longPer, 16);
+            BetaWorld.positionObject(world, camera, latPer, longPer, 12);
             camera.lookAt(cow_wrap.position);
 
             renderer.render(scene, camera);
