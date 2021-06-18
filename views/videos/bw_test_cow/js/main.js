@@ -6,7 +6,14 @@
             map: texture
         });
 
-    var MATERIAL_TREE = MATERIAL_WORLD;
+    var texture = canvasTextureMod.randomGrid(['r1', 'r1', 0], 32, 200, 255);
+    var MATERIAL_COW = {
+            body: new THREE.MeshStandardMaterial({
+            color: new THREE.Color(1, 1, 0),
+            map: texture
+        })};
+
+
 
     // scene
     var scene = new THREE.Scene();
@@ -18,7 +25,7 @@
     scene.add(world);
 
     // COW
-    var cow = CowMod.create();
+    var cow = CowMod.create({materials: MATERIAL_COW});
     cow.scale.set(0.5, 0.5, 0.5);
     var cow_wrap = BetaWorld.createObjectWrapper(world, cow);
     BetaWorld.positionObject(world, cow_wrap, 0, 0, 1.5);
