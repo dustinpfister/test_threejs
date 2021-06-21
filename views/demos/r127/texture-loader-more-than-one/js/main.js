@@ -31,7 +31,7 @@ var scene = new THREE.Scene();
 
 // camera and renderer
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(0.8, 1.3, 0.8);
+camera.position.set(2, 2, 2);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -43,9 +43,8 @@ var urlArray = [
 ];
 
 loadTextureCollection(urlArray).then(function (textures) {
-    console.log(textures);
-    var box = createTextureCube(textures[0])
-    // add the box mesh to the scene
+    var box = createTextureCube(textures[0]);
+    box.position.set(1, 0, 0);
     scene.add(box);
     renderer.render(scene, camera);
 
