@@ -1,5 +1,5 @@
 
-var loadTexure = function (url) {
+var loadTexture = function (url) {
     var loader = new THREE.TextureLoader();
     return new Promise(function (resolve, reject) {
         var onDone = function (texture) {
@@ -12,6 +12,12 @@ var loadTexure = function (url) {
     });
 };
 
+var loadTextureCollection = function (urlArray) {
+    return Promise.all(urlArray.map(function (url) {
+            return loadTexture(url);
+        }));
+};
+
 // creating a scene
 var scene = new THREE.Scene();
 
@@ -22,6 +28,14 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
+
+var urlArray = [
+    '/img/smile-face/smile_face.png'
+];
+
+loadTextureCollection(urlArray).then(function (textures) {
+    console.log(textures[0]);
+});
 
 /*
 var loader = new THREE.TextureLoader();
