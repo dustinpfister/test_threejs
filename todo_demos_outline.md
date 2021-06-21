@@ -7,6 +7,61 @@
 * update post on Vector3 class to include what was worked out in the post on arrow helpers when moving a mesh
 
 
+## x - More on the various types of loaders to work with
+
+I have wrote some posts on the various loaders there are to work with in threejs. However there are still a number of additional loaders to write about bolth built in loaders as well as the many type of loaders in the examples folder.
+
+### x.x - threejs-texture-loader
+    * load an external image that can be used for the various maps of a material
+
+### x.x - threejs-loader
+    * the base loader class
+
+
+
+
+## x - More on the various options when it comes to maps
+
+I have wrote a number of posts on the various types of maps that can be used with one or more materials, but there are a number of additional maps that I have not wrote content on just yet.
+
+### x.1 - threejs-emissive-map
+    * start a basic example on the use of an emissive map
+
+### x.x - threejs-ambient-occlusion-map
+
+### x.x - threejs-environment-map
+
+### x.x - threejs-light-map
+
+### x.x - threejs-specular-map
+
+### x.x - threejs-normal-map
+
+### x.x - threejs-bump-map
+
+### x.x - threejs-metalness-map
+
+### x.x - threejs-roughness-map
+
+### x.x - threejs-clearcoat-map
+
+
+
+## x - More on materials and maps in threejs
+
+I have wrote a number of posts on various options when it comes to materials in threejs, but there is still a few more than I have not wrote posts on
+
+### x.x - threejs-normal-material
+
+### x.x - threejs-phong-material
+
+### x.x - threejs-toon-material
+
+### x.x - threejs-matcap-material
+
+### x.x - threejs-physical-material
+
+
 
 
 ## x - More on shapes, extrude Gemoerty

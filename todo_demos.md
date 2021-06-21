@@ -5,14 +5,6 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 
 
 
-## x - More general posts on threejs features
-
-### x.1 - threejs-emissive-map
-    * start a basic example on the use of an emissive map
-
-
-
-
 ## x - Expand on the Vector3 class just like with Object3d
 
 The Vector3 class is also a major part of working with theejs, as there is the position property of the Object3d class that is a bug deal when it comes to setting the position of objects. However a Vector can also be used as a way to store direction in the from of a set of numbers between 0, and one for each axis. This normalized vector as it is often called can then be scaled up to any value that is along that direction. There is a lot more than can be written when it comes to just the Vector3 class, and not just with the prototype methods, but all kinds of use case examples involving direction and magnitude.
