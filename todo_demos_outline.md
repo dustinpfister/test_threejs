@@ -11,7 +11,7 @@
 
 I have wrote some posts on the various loaders there are to work with in threejs. However there are still a number of additional loaders to write about bolth built in loaders as well as the many type of loaders in the examples folder.
 
-### x.x - threejs-texture-loader
+### x.x - ( for 6/21/21 ) threejs-texture-loader
     * load an external image that can be used for the various maps of a material
 
 ### x.x - threejs-loader
@@ -24,20 +24,20 @@ I have wrote some posts on the various loaders there are to work with in threejs
 
 I have wrote a number of posts on the various types of maps that can be used with one or more materials, but there are a number of additional maps that I have not wrote content on just yet.
 
-### x.1 - threejs-emissive-map
+### x.1 - ( for 6/22/21 ) threejs-emissive-map
     * start a basic example on the use of an emissive map
 
 ### x.x - threejs-ambient-occlusion-map
 
-### x.x - threejs-environment-map
+### x.x - (for 6/23/21 ) threejs-environment-map
 
 ### x.x - threejs-light-map
 
 ### x.x - threejs-specular-map
 
-### x.x - threejs-normal-map
+### x.x - (for 6/24/21 ) threejs-normal-map
 
-### x.x - threejs-bump-map
+### x.x - (for 6/25/21 ) threejs-bump-map
 
 ### x.x - threejs-metalness-map
 

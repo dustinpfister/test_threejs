@@ -2,6 +2,20 @@
 
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
+## x - new posts on texures and maps
+
+I have not wrote a post on the texture loader, maybe manily becuase I prefer to create textures with canvas up to this point. I think that will be chaging for me now it I am going to continue with threejs though. So this week I think I will be writing posts on the texture loader, and a whole bunch of additional kinds of maps that can be used with various materials. 
+
+### x.x - threejs-texture-loader
+    
+
+### x.x - threejs-emissive-map
+
+### x.x - threejs-environment-map
+
+### x.x - threejs-normal-map
+
+### x.x - threejs-bump-map
 
 
 
