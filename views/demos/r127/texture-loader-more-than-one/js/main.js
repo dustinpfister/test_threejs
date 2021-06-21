@@ -18,6 +18,14 @@ var loadTextureCollection = function (urlArray) {
         }));
 };
 
+var createTextureCube = function (texture) {
+    return new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshBasicMaterial({
+            map: texture
+        }))
+};
+
 // creating a scene
 var scene = new THREE.Scene();
 
@@ -36,12 +44,7 @@ var urlArray = [
 
 loadTextureCollection(urlArray).then(function (textures) {
     console.log(textures);
-
-    var box = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
-                map: textures[1]
-            }));
+    var box = createTextureCube(textures[0])
     // add the box mesh to the scene
     scene.add(box);
     renderer.render(scene, camera);
