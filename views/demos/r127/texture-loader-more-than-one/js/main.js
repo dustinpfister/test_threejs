@@ -43,8 +43,11 @@ var urlArray = [
 ];
 
 loadTextureCollection(urlArray).then(function (textures) {
-    var box = createTextureCube(textures[0]);
+    var box = createTextureCube(textures[1]);
     box.position.set(1, 0, 0);
+    scene.add(box);
+    var box = createTextureCube(textures[0]);
+    box.position.set(-1, 0, 0);
     scene.add(box);
     renderer.render(scene, camera);
 
