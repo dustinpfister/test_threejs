@@ -47,24 +47,3 @@ loadTextureCollection(urlArray).then(function (textures) {
     renderer.render(scene, camera);
 
 });
-
-/*
-var loader = new THREE.TextureLoader();
-
-loader.load(
-// the first argument is the relative or absolute path of the file
-'/img/smile-face/smile_face.png',
-// the second argument is an on done call back
-function (texture) {
-// using the texture for a material and a Mesh
-var box = new THREE.Mesh(
-new THREE.BoxGeometry(1, 1, 1),
-new THREE.MeshBasicMaterial({
-map: texture
-}));
-// add the box mesh to the scene
-scene.add(box);
-renderer.render(scene, camera);
-}
-);
-*/
