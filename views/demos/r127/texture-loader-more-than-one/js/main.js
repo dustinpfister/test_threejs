@@ -30,11 +30,22 @@ renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 var urlArray = [
-    '/img/smile-face/smile_face.png'
+    '/img/smile-face/smile_face_128_128.png',
+    '/img/smile-face/smile_face_32_32.png'
 ];
 
 loadTextureCollection(urlArray).then(function (textures) {
-    console.log(textures[0]);
+    console.log(textures);
+
+    var box = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshBasicMaterial({
+                map: textures[1]
+            }));
+    // add the box mesh to the scene
+    scene.add(box);
+    renderer.render(scene, camera);
+
 });
 
 /*
