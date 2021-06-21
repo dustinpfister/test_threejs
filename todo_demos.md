@@ -9,6 +9,8 @@ I have not wrote a post on the texture loader, maybe manily becuase I prefer to 
 ### x.x - (done 6/21/2021 ) threejs-texture-loader
     * (done) create a basic example of the texture loader
     * have an example that makes use of the additional call backs of the loader
+    * have an example that involves loading more than one texture
+       https://stackoverflow.com/questions/35015251/how-do-i-load-multiple-textures-with-the-new-three-textureloader
     * have a canvas texture example, and make use to link to the post on canvas textures
     * an example where I am using the Texture constructor directly and loading an image by some other means
 
