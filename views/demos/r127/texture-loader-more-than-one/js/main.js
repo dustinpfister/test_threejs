@@ -23,7 +23,7 @@ var createTextureCube = function (texture) {
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshBasicMaterial({
             map: texture
-        }))
+        }));
 };
 
 // creating a scene
@@ -42,7 +42,9 @@ var urlArray = [
     '/img/smile-face/smile_face_32_32.png'
 ];
 
-loadTextureCollection(urlArray).then(function (textures) {
+loadTextureCollection(urlArray)
+// then if all images load
+.then(function (textures) {
     var box = createTextureCube(textures[1]);
     box.position.set(1, 0, 0);
     scene.add(box);
@@ -51,4 +53,12 @@ loadTextureCollection(urlArray).then(function (textures) {
     scene.add(box);
     renderer.render(scene, camera);
 
+})
+// if there is a problem
+.catch(function () {
+    var box = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshNormalMaterial());
+    scene.add(box);
+    renderer.render(scene, camera);
 });
