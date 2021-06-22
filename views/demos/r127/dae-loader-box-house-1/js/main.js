@@ -44,7 +44,7 @@
         // copy mesh objects only
         result.scene.children.forEach(function(obj){
             if(obj.type === 'Mesh'){
-                obj.material = MATERIAL_DAE_OVERRIDE;
+                //obj.material = MATERIAL_DAE_OVERRIDE;
                 group.add(obj.clone());
             }
         });
