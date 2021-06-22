@@ -6,12 +6,13 @@ var createCanvasTexture = function (draw) {
     return new THREE.CanvasTexture(canvas);
 };
 
-var COLOR_EMISSIVE_MAP_FRONT = new THREE.Color(1, 1, 1);
-
-var texture = createCanvasTexture(function (ctx, canvas) {
+var createEmissiveMap = function(){
+    var COLOR_EMISSIVE_MAP_FRONT = new THREE.Color(1, 1, 1);
+    return createCanvasTexture(function (ctx, canvas) {
         ctx.strokeStyle = COLOR_EMISSIVE_MAP_FRONT.getStyle();
         ctx.strokeRect(1, 1, canvas.width - 1, canvas.height - 1);
     });
+};
 
 // scene
 var scene = new THREE.Scene();
@@ -20,16 +21,16 @@ var scene = new THREE.Scene();
 var box = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
-            color: new THREE.Color(0, 1, 0),
-            emissiveIntensity: 4,
-            emissive: new THREE.Color(1, 0.5, 0),
-            emissiveMap: texture
+            color: new THREE.Color(1, 1, 1),
+            emissiveIntensity: 1,
+            emissive: new THREE.Color(1, 0, 0),
+            emissiveMap: createEmissiveMap()
         }));
 scene.add(box);
 
 // light
 var light = new THREE.PointLight(new THREE.Color(1, 1, 1), 1);
-light.position.set(1, 3, 2);
+light.position.set(8, 6, 2);
 scene.add(light);
 
 // camera, render
