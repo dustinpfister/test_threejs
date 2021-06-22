@@ -33,13 +33,18 @@
     };
 
     // CREATE A COLLADALOADER INSTANCE
+    var MATERIAL_DAE_OVERRIDE = new THREE.MeshStandardMaterial({
+        color: 'red'
+    });
     var loader = new THREE.ColladaLoader();
     loader.load("/dae/box_house_1/box_house1.dae", function (result) {
+        console.log(result.library);
         // create group
         var group = new THREE.Group();
         // copy mesh objects only
         result.scene.children.forEach(function(obj){
             if(obj.type === 'Mesh'){
+                obj.material = MATERIAL_DAE_OVERRIDE;
                 group.add(obj.clone());
             }
         });
