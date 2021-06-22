@@ -13,7 +13,8 @@ I have not wrote a post on the texture loader, maybe manily becuase I prefer to 
     * have a canvas texture example, or make use to link to the post on canvas textures
     * an example where I am using the Texture constructor directly and loading an image by some other means
 
-### x.x - threejs-emissive-map
+### x.x - (done 6/21/2021 ) threejs-emissive-map
+    * start a basic emmisive map demo
 
 ### x.x - threejs-environment-map
 
