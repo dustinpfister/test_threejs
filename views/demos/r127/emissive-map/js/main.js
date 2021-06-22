@@ -14,11 +14,8 @@ var createEmissiveMap = function(){
     });
 };
 
-// scene
-var scene = new THREE.Scene();
-
-// mesh
-var box = new THREE.Mesh(
+var createEmissiveCube = function(){
+    return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
             color: new THREE.Color(1, 1, 1),
@@ -26,6 +23,13 @@ var box = new THREE.Mesh(
             emissive: new THREE.Color(1, 0, 0),
             emissiveMap: createEmissiveMap()
         }));
+};
+
+// scene
+var scene = new THREE.Scene();
+
+// mesh
+var box = createEmissiveCube();
 scene.add(box);
 
 // light
