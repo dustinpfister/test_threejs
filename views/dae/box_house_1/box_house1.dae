@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.79.0</authoring_tool>
     </contributor>
-    <created>2021-06-22T17:38:36</created>
-    <modified>2021-06-22T17:38:36</modified>
+    <created>2021-06-22T17:50:51</created>
+    <modified>2021-06-22T17:50:51</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -101,10 +101,24 @@
       </extra>
     </light>
   </library_lights>
-  <library_images/>
+  <library_images>
+    <image id="wood1_jpeg" name="wood1_jpeg">
+      <init_from>wood1.jpeg</init_from>
+    </image>
+  </library_images>
   <library_effects>
     <effect id="house_material-effect">
       <profile_COMMON>
+        <newparam sid="wood1_jpeg-surface">
+          <surface type="2D">
+            <init_from>wood1_jpeg</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="wood1_jpeg-sampler">
+          <sampler2D>
+            <source>wood1_jpeg-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -114,7 +128,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.2236565 0.02690823 1</color>
+              <texture texture="wood1_jpeg-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
