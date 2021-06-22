@@ -45,6 +45,7 @@
         result.scene.children.forEach(function(obj){
             if(obj.type === 'Mesh'){
                 //obj.material = MATERIAL_DAE_OVERRIDE;
+                console.log(obj.geometry);
                 group.add(obj.clone());
             }
         });
