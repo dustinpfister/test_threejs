@@ -1,6 +1,6 @@
 # todo list for test_three.js
 
-## 0.0.0 - Basic idea working with VIDEOS PATH and videoUI
+## ( done 05/30/2021 ) 0.0.0 - Basic idea working with VIDEOS PATH and videoUI
     * ( done 5/25/2021 ) start a /views/videos/\[videoName\] path
     * ( done 5/25/2021 ) I can choose what version of three.js I want to use in the index.ejs file
     * ( done 5/25/2021 ) update /index.js so that I can view projects that are videos
