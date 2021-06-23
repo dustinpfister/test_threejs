@@ -32,9 +32,9 @@
         controls.update();
     };
 
-    // CREATE A COLLADALOADER INSTANCE
-    var loader = new THREE.ColladaLoader();
-    loader.load("/dae/rpi4/rpi4_start_box.dae", function (result) {
+    var daeObjects = DAE.create();
+
+    var onDone = function(result, allResults, daeObjects){
         console.log(result.library);
         // create group
         var group = new THREE.Group();
@@ -50,7 +50,10 @@
         group.rotation.copy(result.scene.rotation);
         // start the app loop
         loop();
-    });
+    };
+
+    DAE.loadOne(daeObjects, "/dae/rpi4/rpi4_start_box.dae", onDone);
+
 
 }
     ());
