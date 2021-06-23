@@ -29,15 +29,15 @@ I have wrote a number of posts on the various types of maps that can be used wit
 
 ### x.x - threejs-ambient-occlusion-map
 
-### x.x - (for 6/23/21 ) threejs-environment-map
+### x.x - threejs-environment-map
 
 ### x.x - threejs-light-map
 
 ### x.x - threejs-specular-map
 
-### x.x - (for 6/24/21 ) threejs-normal-map
+### x.x - (for 6/23/21 ) threejs-normal-map
 
-### x.x - (for 6/25/21 ) threejs-bump-map
+### x.x - threejs-bump-map
 
 ### x.x - threejs-metalness-map
 
