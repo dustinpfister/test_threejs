@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.79.0</authoring_tool>
     </contributor>
-    <created>2021-06-23T10:26:23</created>
-    <modified>2021-06-23T10:26:23</modified>
+    <created>2021-06-23T11:35:10</created>
+    <modified>2021-06-23T11:35:10</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -102,21 +102,21 @@
     </light>
   </library_lights>
   <library_images>
-    <image id="test_image" name="test_image">
-      <init_from>test_image.png</init_from>
+    <image id="rpi4_top_down_png" name="rpi4_top_down_png">
+      <init_from>rpi4_top_down.png</init_from>
     </image>
   </library_images>
   <library_effects>
     <effect id="Material-effect">
       <profile_COMMON>
-        <newparam sid="test_image-surface">
+        <newparam sid="rpi4_top_down_png-surface">
           <surface type="2D">
-            <init_from>test_image</init_from>
+            <init_from>rpi4_top_down_png</init_from>
           </surface>
         </newparam>
-        <newparam sid="test_image-sampler">
+        <newparam sid="rpi4_top_down_png-sampler">
           <sampler2D>
-            <source>test_image-surface</source>
+            <source>rpi4_top_down_png-surface</source>
           </sampler2D>
         </newparam>
         <technique sid="common">
@@ -128,7 +128,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <texture texture="test_image-sampler"/>
+              <texture texture="rpi4_top_down_png-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -173,7 +173,7 @@
           </technique_common>
         </source>
         <source id="Cube-mesh-map-0">
-          <float_array id="Cube-mesh-map-0-array" count="72">1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 1 1 0 1 1 0 1 1 0 1 1 0 1 1 0 1 1 0 1 1 0 1 1 0 1 1 0 1 1 0 1 1 0 1</float_array>
+          <float_array id="Cube-mesh-map-0-array" count="72">0.4479671 0.2454715 0.2547613 0.4386774 0.2547613 0.2454715 0.9541125 0.05564117 0.00687313 1.002881 0.00687313 0.05564117 0.4416834 0.2254344 0.2734314 0.3936863 0.2734314 0.2254344 0.2826201 0.4247532 0.4572674 0.250106 0.4572674 0.4247532 0.4251122 0.2512953 0.2714231 0.4049844 0.2714231 0.2512953 0.4427663 0.2630587 0.3033143 0.4025107 0.3033143 0.2630587 0.4479671 0.2454715 0.4479671 0.4386774 0.2547613 0.4386774 0.9541125 0.05564117 0.9541125 1.002881 0.00687313 1.002881 0.4416834 0.2254344 0.4416834 0.3936863 0.2734314 0.3936863 0.2826201 0.4247532 0.2826201 0.250106 0.4572674 0.250106 0.4251122 0.2512953 0.4251122 0.4049844 0.2714231 0.4049844 0.4427663 0.2630587 0.4427663 0.4025107 0.3033143 0.4025107</float_array>
           <technique_common>
             <accessor source="#Cube-mesh-map-0-array" count="36" stride="2">
               <param name="S" type="float"/>
