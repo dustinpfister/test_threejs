@@ -8,9 +8,6 @@ normal = geo.getAttribute('normal');
 normal.array[0] = -1;
 normal.array[1] = -1;
 normal.array[2] = -1;
-console.log(normal.array);
-
-console.log();
 
 var box = new THREE.Mesh(
         geo,
