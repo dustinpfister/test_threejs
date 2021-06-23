@@ -31,7 +31,7 @@
         renderer.render(scene, camera);
         controls.update();
     };
-
+    // USING DAE TOOLS TO LOAD THE *.dae file
     var daeObjects = DAE.create();
     DAE.loadOne(daeObjects, "/dae/rpi4/rpi4_start_box.dae")
     .then(function(daeObjects){
@@ -41,6 +41,7 @@
     })
     .catch(function(e){
         console.log(e);
+        loop();
     });
 
 
