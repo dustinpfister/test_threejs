@@ -17,7 +17,9 @@ I have not wrote a post on the texture loader, maybe mainly because I prefer to 
     * (done) start a basic emissive map demo
 
 ### x.3 - threejs-normal-map
-    * just a basic normal material example
+    * (done) have a basic normal material example
+    * (done) have an example that involves mutating the normal array
+    * an animation example that involves mutating normals over time, and also an additional mesh the uses the standard material.
 
 ### x.4 - threejs-normal-material
 
