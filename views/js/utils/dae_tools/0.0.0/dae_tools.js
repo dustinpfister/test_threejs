@@ -10,9 +10,24 @@
 
     api.loadOne = function(daeObjects, url, onDone){
         var loader = new THREE.ColladaLoader();
-        loader.load("/dae/rpi4/rpi4_start_box.dae", function (result) {
-            daeObjects.results.push(result);
-            onDone(result, daeObjects.results, daeObjects);
+        onDone = onDone || function(){};
+        return new Promise(function(resolve, reject){
+            loader.load(url,
+                // done
+                function (result) {
+                    daeObjects.results.push(result);
+                    onDone(result, daeObjects.results, daeObjects);
+                    resolve(daeObjects);
+                },
+                // progress
+                function(xhr){
+                  
+                },
+                // error
+                function(e){
+                    reject(e);
+                }
+             );
         });
     };
 

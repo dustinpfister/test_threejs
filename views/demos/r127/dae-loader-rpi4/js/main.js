@@ -33,13 +33,15 @@
     };
 
     var daeObjects = DAE.create();
-    var onDone = function(result, allResults, daeObjects){
-        var group = DAE.createGroup(daeObjects, result);
-        scene.add(group);   
-        // start the app loop
+    DAE.loadOne(daeObjects, "/dae/rpi4/rpi4_start_box.dae")
+    .then(function(daeObjects){
+        var group = DAE.createGroup(daeObjects, 0);
+        scene.add(group);
         loop();
-    };
-    DAE.loadOne(daeObjects, "/dae/rpi4/rpi4_start_box.dae", onDone);
+    })
+    .catch(function(e){
+        console.log(e);
+    });
 
 
 }
