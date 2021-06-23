@@ -51,7 +51,7 @@ I have wrote a number of posts on the various types of maps that can be used wit
 
 I have wrote a number of posts on various options when it comes to materials in threejs, but there is still a few more than I have not wrote posts on
 
-### x.x - threejs-normal-material
+### x.x - (for 6/24/21 ) threejs-normal-material
 
 ### x.x - threejs-phong-material
 
@@ -113,3 +113,6 @@ I can always just make more example posts using my current understating of three
 ### x.2 - threejs-examples-unit-vector-system
     * start an example that is based off of the concept of a unit vector 
     * ( see moving a mesh example in post on arrow helpers )
+
+### x.3 - ( for 6/25/21 ) threej-examples-dae-file-lib
+    * start a dea file lib

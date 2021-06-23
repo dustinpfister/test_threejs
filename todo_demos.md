@@ -6,19 +6,21 @@ This is a todo list where I am drafting out ideas for demos that I will include 
 
 I have not wrote a post on the texture loader, maybe mainly because I prefer to create textures with canvas up to this point. I think that will be changing for me now it I am going to continue with threejs though. So this week I think I will be writing posts on the texture loader, and a whole bunch of additional kinds of maps that can be used with various materials. 
 
-### x.x - (done 6/21/2021 ) threejs-texture-loader
+### x.1 - (done 6/21/2021 ) threejs-texture-loader
     * (done) create a basic example of the texture loader
     * (done) have an example that involves loading more than one texture
     * have an example that makes use of the additional call backs of the loader
     * have a canvas texture example, or make use to link to the post on canvas textures
     * an example where I am using the Texture constructor directly and loading an image by some other means
 
-### x.x - (done 6/22/2021 ) threejs-emissive-map
+### x.2 - (done 6/22/2021 ) threejs-emissive-map
     * (done) start a basic emmisive map demo
 
-### x.x - (done 6/23/2021 ) threejs-normal-map
+### x.3 - threejs-normal-map
 
+### x.4 - threejs-normal-material
 
+### x.5 - threej-examples-dae-file-lib
 
 
 ## x - Expand on the Vector3 class just like with Object3d
