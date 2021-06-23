@@ -14,9 +14,10 @@ I have not wrote a post on the texture loader, maybe mainly because I prefer to 
     * an example where I am using the Texture constructor directly and loading an image by some other means
 
 ### x.2 - (done 6/22/2021 ) threejs-emissive-map
-    * (done) start a basic emmisive map demo
+    * (done) start a basic emissive map demo
 
 ### x.3 - threejs-normal-map
+    * just a basic normal material example
 
 ### x.4 - threejs-normal-material
 
