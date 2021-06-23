@@ -16,8 +16,8 @@
         });
     };
 
-    api.createGroup = function(daeObjects, resultIndex){
-        var result = daeObjects.results[resultIndex];
+    api.createGroup = function(daeObjects, what){
+        var result = typeof what === 'object' ? what : daeObjects.results[what];
         var group = new THREE.Group();
         // copy mesh objects only
         result.scene.children.forEach(function(obj){

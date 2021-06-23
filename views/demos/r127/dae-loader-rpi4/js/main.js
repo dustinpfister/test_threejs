@@ -34,7 +34,7 @@
 
     var daeObjects = DAE.create();
     var onDone = function(result, allResults, daeObjects){
-        var group = DAE.createGroup(daeObjects, 0);
+        var group = DAE.createGroup(daeObjects, result);
         scene.add(group);   
         // start the app loop
         loop();
