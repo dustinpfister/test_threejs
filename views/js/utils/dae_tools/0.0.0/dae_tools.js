@@ -8,27 +8,26 @@
         return state;
     };
 
-    api.loadOne = function(deaObjects, url, onDone){
-
+    api.loadOne = function(daeObjects, url, onDone){
         var loader = new THREE.ColladaLoader();
         loader.load("/dae/rpi4/rpi4_start_box.dae", function (result) {
-            deaObjects.results.push(result);
-            onDone(result, deaObjects.results, deaObjects);
-            // create group
-            //var group = new THREE.Group();
-            // copy mesh objects only
-            //result.scene.children.forEach(function(obj){
-            //    if(obj.type === 'Mesh'){
-            //        console.log(obj.geometry);
-            //        group.add(obj.clone());
-            //    }
-            //});
-            //scene.add(group);
-            // copy result.scene rotation to group
-            //group.rotation.copy(result.scene.rotation);
-            // start the app loop
-            //loop();
+            daeObjects.results.push(result);
+            onDone(result, daeObjects.results, daeObjects);
         });
+    };
+
+    api.createGroup = function(daeObjects, resultIndex){
+        var result = daeObjects.results[resultIndex];
+        var group = new THREE.Group();
+        // copy mesh objects only
+        result.scene.children.forEach(function(obj){
+            if(obj.type === 'Mesh'){
+                group.add(obj.clone());
+            }
+        });
+        // copy result.scene rotation to group
+        group.rotation.copy(result.scene.rotation);
+        return group;
     };
 
 
