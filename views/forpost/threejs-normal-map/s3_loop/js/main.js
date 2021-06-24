@@ -26,8 +26,6 @@ var draw = function (ctx, canvas, x, y, color) {
 
 var canvasObj = createCanvasTexture(draw);
 
-canvasObj.texture.needsUpdate = true;
-
 var createNormalMapCube = function(){
     return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
@@ -56,4 +54,11 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
+
+renderer.render(scene, camera);
+
+
+canvasObj.texture.needsUpdate = true;
+draw(canvasObj.ctx, canvasObj.canvas, 3, 3, new THREE.Color(1.0, 1.0, 0.0));
+
 renderer.render(scene, camera);
