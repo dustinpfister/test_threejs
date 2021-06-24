@@ -13,8 +13,7 @@ https://github.com/mrdoob/three.js/wiki/Migration-Guide#r128--r129
     * (done) start a /forpost folder to start creating collections of demos for specific blog posts
     * (done) a forpost folder can also contain a todo list for additional demos to create for a post
     * (done) a README file can be placed in the for post folder that will contain a link to the blog post
-
-    * I will want to have nested folders in a for post folder for example in need the main index.js file to
+    * (done) I will want to have nested folders in a for post folder for example in need the main index.js file to
       work with a situation such as this:
 
         /views/forpost/threejs-normal-material/s2_basic/index.ejs
