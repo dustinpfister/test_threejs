@@ -62,24 +62,43 @@ app.get('/', function (req, res) {
     });
 });
 
-// img path
-app.get(/\/img\/[\s\S]+/, function (req, res) {
+// CATCH ALL FILES (this should serve any files in the views path with the set extentions)
+
+// IMAGE FILE CATCH ALL
+//app.get(/\/img\/[\s\S]+/, function (req, res) {
     // just send the file
+//    res.sendFile(path.join(__dirname, 'views', req.url));
+//});
+
+app.get(/[\s\S]+\.jpeg/, function (req, res) {
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+app.get(/[\s\S]+\.jpg/, function (req, res) {
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+app.get(/[\s\S]+\.png/, function (req, res) {
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
 
+// CSS FILE CATCH ALL
 app.get(/\/css\/[\s\S]+\.css/, function (req, res) {
     // just send the file
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
 
-// javaScript file path (this should serve and *.js file in the views path)
+// JS FILE CATCH ALL
 //app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
 app.get(/[\s\S]+\.js/, function (req, res) {
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
 
-// dae path
+// dae files catch all
+app.get(/[\s\S]+\.dae/, function (req, res) {
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+
+
+/*
 app.get(/\/dae\/[\s\S]+\.dae/, function (req, res) {
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
@@ -89,6 +108,7 @@ app.get(/\/dae\/[\s\S]+\.jpeg/, function (req, res) {
 app.get(/\/dae\/[\s\S]+\.png/, function (req, res) {
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
+*/
 
 // json file path
 app.get(/\/json\/[\s\S]+\.js/, function (req, res) {
