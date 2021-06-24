@@ -179,16 +179,32 @@ app.get('/forpost', function (req, res) {
 // render local index.ejs file, or send local resource
 app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
     let arr = req.url.replace(/\/forpost\/([\s\S]*?)/, '').split('/');
-    if (arr.length === 1 || arr[1] === '') {
+    // render an index.ejs for a given section folder
+    // ( /views/forpost/threejs-examples-tree/basic/index.ejs )
+    if (arr.length === 2 || arr[2] === '') {
         res.render('index', {
             page: 'forpost',
             arr: arr,
             folderName: arr[0]
         });
     } else {
-        // the file is some other local resource such as a javaScript file
-        let resource = path.join(__dirname, 'views', req.url);
-        res.send(resource);
+        // build an index of section folders if we have something like
+        // /views/forpost/threejs-examples-tree
+        if (arr.length === 1 || arr[1] === '') {
+            buildIndex({
+                source: 'forpost/' + arr[0]
+            }).then(function (links) {
+                res.render('index', {
+                    page: 'forpost_index',
+                    links: links
+                });
+            });
+        }else{
+            // the url should then just be some other local resource 
+            // assume that is the case and just send the file
+            let resource = path.join(__dirname, 'views', req.url);
+            res.send(resource);
+        }
     }
 });
 
