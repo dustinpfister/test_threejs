@@ -2,8 +2,9 @@
 
     // CONE
     var coneGeo = new THREE.ConeGeometry(2, 4,
-            60 // radian segments,
-            20 // height segments),
+            60, // radian segments,
+            20 // height segments
+    ),
     coneMaterial = new THREE.MeshStandardMaterial({
             color: 0x00ff00
         }),
