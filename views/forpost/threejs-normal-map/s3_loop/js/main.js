@@ -5,30 +5,35 @@ var createCanvasTexture = function (draw) {
     canvas.width = 32;
     canvas.height = 32;
     draw(ctx, canvas);
-    return new THREE.CanvasTexture(canvas);
+    return {
+        texture: new THREE.CanvasTexture(canvas),
+        canvas: canvas,
+        ctx: ctx
+    };
 };
 
-var createNormalMap = function(){
-    return createCanvasTexture(function (ctx, canvas) {
-        ctx.lineWidth = 1;
-        ctx.fillStyle = new THREE.Color(1.0, 1.0, 1.0).getStyle();
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+var draw = function (ctx, canvas, x, y, color) {
+    x = x === undefined ? 1 : x;
+    y = y === undefined ? 1 : y;
+    color = color === undefined ? new THREE.Color(1.0, 1.0, 0.0) : color;
+    ctx.lineWidth = 1;
+    ctx.fillStyle = new THREE.Color(1.0, 1.0, 1.0).getStyle();
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.strokeStyle = new THREE.Color(1.0, 1.0, 0.0).getStyle();
-        ctx.strokeRect(1, 1, canvas.width - 2, canvas.height - 2);
-
-        ctx.strokeStyle = new THREE.Color(0.0, 1.0, 1.0).getStyle();
-        ctx.strokeRect(4, 4, canvas.width - 8, canvas.height - 8);
-
-    });
+    ctx.strokeStyle = color.getStyle();
+    ctx.strokeRect(x, y, canvas.width - ( x * 2 ), canvas.height - ( y * 2));
 };
+
+var canvasObj = createCanvasTexture(draw);
+
+canvasObj.texture.needsUpdate = true;
 
 var createNormalMapCube = function(){
     return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
             color: new THREE.Color(1, 1, 1),
-            normalMap: createNormalMap()
+            normalMap: canvasObj.texture
         }));
 };
 
