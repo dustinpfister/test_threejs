@@ -56,12 +56,11 @@ renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
 // UPDATE
-var update = function(secs, per, frame, maxFrame){
-
-    var a = 1 + Math.round(15 * per);
-    draw(canvasObj.ctx, canvasObj.canvas, a, a, new THREE.Color(1.0, 1.0, 0.0));
+var update = function(secs, per, bias, frame, maxFrame){
+    var a = 1 + Math.round(15 * bias),
+    color = new THREE.Color(1.0, bias, 0.0);
+    draw(canvasObj.ctx, canvasObj.canvas, a, a, color);
     canvasObj.texture.needsUpdate = true;
-
     renderer.render(scene, camera);
 };
 
@@ -73,10 +72,11 @@ maxFrame = 90;
 var loop = function () {
     var now = new Date(),
     per = frame / maxFrame,
+    bias = 1 - Math.abs(per - 0.5) / 0.5,
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-        update(secs, per, frame, maxFrame);
+        update(secs, per, bias, frame, maxFrame);
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
