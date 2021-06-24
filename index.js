@@ -73,8 +73,9 @@ app.get(/\/css\/[\s\S]+\.css/, function (req, res) {
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
 
-// javaScript file path
-app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
+// javaScript file path (this should serve and *.js file in the views path)
+//app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
+app.get(/[\s\S]+\.js/, function (req, res) {
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
 
@@ -188,7 +189,6 @@ app.get('/forpost', function (req, res) {
 // render local index.ejs file, or send local resource
 app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
     let arr = req.url.replace(/\/forpost\/([\s\S]*?)/, '').split('/');
-
     if (arr.length === 1 || arr[1] === '') {
         res.render('index', {
             page: 'forpost',
