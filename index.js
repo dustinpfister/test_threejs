@@ -52,6 +52,16 @@ let buildIndex = function (opt) {
     });
 };
 
+let serveAll = function(fileExt){
+    let router = express.Router(),
+    //patt = /[\s\S]+\.jpeg/;
+    patt = new RegExp('[\\s\\S]+\\.' + fileExt);
+    router.get(patt, function (req, res) {
+        res.sendFile(path.join(__dirname, 'views', req.url));
+    });
+    return router;
+};
+
 // using ejs for a template engine
 app.set('view engine', 'ejs');
 
@@ -82,10 +92,12 @@ app.get(/\/css\/[\s\S]+\.css/, function (req, res) {
     res.sendFile(path.join(__dirname, 'views', req.url));
 });
 
+app.use(serveAll('js'));
+
 // JS FILE CATCH ALL
-app.get(/[\s\S]+\.js/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
+//app.get(/[\s\S]+\.js/, function (req, res) {
+//    res.sendFile(path.join(__dirname, 'views', req.url));
+//});
 
 // dae files catch all
 app.get(/[\s\S]+\.dae/, function (req, res) {
