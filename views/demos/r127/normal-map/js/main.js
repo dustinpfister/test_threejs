@@ -2,15 +2,19 @@
 var createCanvasTexture = function (draw) {
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
+    canvas.width = 32;
+    canvas.height = 32;
     draw(ctx, canvas);
     return new THREE.CanvasTexture(canvas);
 };
 
-var createEmissiveMap = function(){
-    var COLOR_EMISSIVE_MAP_FRONT = new THREE.Color(1, 1, 1);
+var createNormalMap = function(){
     return createCanvasTexture(function (ctx, canvas) {
-        ctx.strokeStyle = COLOR_EMISSIVE_MAP_FRONT.getStyle();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = new THREE.Color(1.0, 1.0, 1.0).getStyle();
         ctx.strokeRect(1, 1, canvas.width - 1, canvas.height - 1);
+        ctx.strokeStyle = new THREE.Color(0.5, 0.5, 0.5).getStyle();
+        ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
     });
 };
 
@@ -19,9 +23,7 @@ var createEmissiveCube = function(){
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
             color: new THREE.Color(1, 1, 1),
-            emissiveIntensity: 1,
-            emissive: new THREE.Color(1, 0, 0),
-            emissiveMap: createEmissiveMap()
+            normalMap: createNormalMap()
         }));
 };
 
