@@ -11,14 +11,19 @@ var createCanvasTexture = function (draw) {
 var createNormalMap = function(){
     return createCanvasTexture(function (ctx, canvas) {
         ctx.lineWidth = 1;
-        ctx.strokeStyle = new THREE.Color(1.0, 1.0, 1.0).getStyle();
-        ctx.strokeRect(1, 1, canvas.width - 1, canvas.height - 1);
-        ctx.strokeStyle = new THREE.Color(0.5, 0.5, 0.5).getStyle();
-        ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
+        ctx.fillStyle = new THREE.Color(1.0, 1.0, 1.0).getStyle();
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = new THREE.Color(1.0, 1.0, 0.0).getStyle();
+        ctx.strokeRect(1, 1, canvas.width - 2, canvas.height - 2);
+
+        ctx.strokeStyle = new THREE.Color(0.0, 1.0, 1.0).getStyle();
+        ctx.strokeRect(4, 4, canvas.width - 8, canvas.height - 8);
+
     });
 };
 
-var createEmissiveCube = function(){
+var createNormalMapCube = function(){
     return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
@@ -31,7 +36,7 @@ var createEmissiveCube = function(){
 var scene = new THREE.Scene();
 
 // mesh
-var box = createEmissiveCube();
+var box = createNormalMapCube();
 scene.add(box);
 
 // light
