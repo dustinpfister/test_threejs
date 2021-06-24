@@ -2,8 +2,9 @@
 (function () {
     // SCENE
     var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(15, 15));
     // CAMERA
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(10, 10, 10);
 
     // LIGHT
@@ -29,7 +30,7 @@
     // LOOP
     var loop = function () {
         requestAnimationFrame(loop);
-        camera.lookAt(tree.group.position);
+        camera.lookAt(0, 2, 0);
         renderer.render(scene, camera);
     };
     loop();
