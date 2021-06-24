@@ -4,8 +4,8 @@
     var scene = new THREE.Scene();
     // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(8, 8, 8);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(10, 10, 10);
+
     // LIGHT
     scene.add(camera);
     var light = new THREE.PointLight(0xffffff);
@@ -13,6 +13,8 @@
 
     // BASIC TREE
     var tree = new Tree({
+            sections: 8,
+            conesPerSection: 16,
             coneMaterial: new THREE.MeshStandardMaterial({
                 color: 0x00af00
             })
@@ -27,6 +29,7 @@
     // LOOP
     var loop = function () {
         requestAnimationFrame(loop);
+        camera.lookAt(tree.group.position);
         renderer.render(scene, camera);
     };
     loop();
