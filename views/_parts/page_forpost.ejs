@@ -1,0 +1,17 @@
+<%
+
+   // demo *.ejs file relative to this template
+   let folderIndex = '../forpost/' + folderName + '/index'
+
+%>
+
+<h1>ForPost: <%= folderName %></h1>
+<div id="demo"></div>
+<br>
+
+
+<%- include(folderIndex, this) %>
+
+<br>
+<br>
+<br>

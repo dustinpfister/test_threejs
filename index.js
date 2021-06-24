@@ -16,48 +16,6 @@ port = process.env.PORT || process.argv[2] || 8030,
 // create the express app instance
 app = express();
 
-// using ejs for a template engine
-app.set('view engine', 'ejs');
-
-// root path
-app.get('/', function (req, res) {
-    res.render('index', {
-        page: 'main'
-    });
-});
-
-// img path
-app.get(/\/img\/[\s\S]+/, function (req, res) {
-    // just send the file
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-
-app.get(/\/css\/[\s\S]+\.css/, function (req, res) {
-    // just send the file
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-
-// javaScript file path
-app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-
-// dae
-app.get(/\/dae\/[\s\S]+\.dae/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-app.get(/\/dae\/[\s\S]+\.jpeg/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-app.get(/\/dae\/[\s\S]+\.png/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-
-// json file path
-app.get(/\/json\/[\s\S]+\.js/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-
 // build an index of links to folders
 let buildIndex = function (opt) {
     opt = opt || {};
@@ -93,6 +51,50 @@ let buildIndex = function (opt) {
         });
     });
 };
+
+// using ejs for a template engine
+app.set('view engine', 'ejs');
+
+// root path
+app.get('/', function (req, res) {
+    res.render('index', {
+        page: 'main'
+    });
+});
+
+// img path
+app.get(/\/img\/[\s\S]+/, function (req, res) {
+    // just send the file
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+
+app.get(/\/css\/[\s\S]+\.css/, function (req, res) {
+    // just send the file
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+
+// javaScript file path
+app.get(/\/js\/[\s\S]+\.js/, function (req, res) {
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+
+// dae path
+app.get(/\/dae\/[\s\S]+\.dae/, function (req, res) {
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+app.get(/\/dae\/[\s\S]+\.jpeg/, function (req, res) {
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+app.get(/\/dae\/[\s\S]+\.png/, function (req, res) {
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+
+// json file path
+app.get(/\/json\/[\s\S]+\.js/, function (req, res) {
+    res.sendFile(path.join(__dirname, 'views', req.url));
+});
+
+// DEMO PATH
 
 // demo index
 app.get('/demos', function (req, res) {
@@ -151,15 +153,47 @@ app.get('/videos', function (req, res) {
     });
 });
 
+// if something like '/videos/the-hamster-wheel' or '/videos/the-hamster-wheel/'
+// I will want to render an index of videos
 app.get(/\/videos\/([\s\S]*?)/, function (req, res) {
     let arr = req.url.replace(/\/videos\/([\s\S]*?)/, '').split('/');
-    // if something like '/videos/the-hamster-wheel' or '/videos/the-hamster-wheel/'
-    // I will want to render an index of videos
+
     if (arr.length === 1 || arr[1] === '') {
         res.render('index', {
             page: 'video',
             arr: arr,
             videoName: arr[0]
+        });
+    } else {
+        // the file is some other local resource such as a javaScript file
+        let resource = path.join(__dirname, 'views', req.url);
+        res.send(resource);
+    }
+});
+
+// FORPOST PATH
+
+// the main /videos index page
+app.get('/forpost', function (req, res) {
+    buildIndex({
+        source: 'forpost'
+    }).then(function (links) {
+        res.render('index', {
+            page: 'forpost_index',
+            links: links
+        });
+    });
+});
+
+// render local index.ejs file, or send local resource
+app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
+    let arr = req.url.replace(/\/forpost\/([\s\S]*?)/, '').split('/');
+
+    if (arr.length === 1 || arr[1] === '') {
+        res.render('index', {
+            page: 'forpost',
+            arr: arr,
+            folderName: arr[0]
         });
     } else {
         // the file is some other local resource such as a javaScript file
