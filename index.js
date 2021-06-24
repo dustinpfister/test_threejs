@@ -52,7 +52,7 @@ let buildIndex = function (opt) {
     });
 };
 
-let serveAll = function(fileExt){
+let serveAllFiles = function(fileExt){
     let router = express.Router(),
     //patt = /[\s\S]+\.jpeg/;
     patt = new RegExp('[\\s\\S]+\\.' + fileExt);
@@ -72,43 +72,18 @@ app.get('/', function (req, res) {
     });
 });
 
-// CATCH ALL FILES (this should serve any files in the views path with the set extentions)
+// SERVE ALL FILES (this should serve any files in the views path with the set extentions)
 
-// IMAGE FILE CATCH ALL
+// text
+app.use(serveAllFiles('js'));
+app.use(serveAllFiles('json'));
+app.use(serveAllFiles('css'));
+app.use(serveAllFiles('dae'));
 
-app.get(/[\s\S]+\.jpeg/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-app.get(/[\s\S]+\.jpg/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-app.get(/[\s\S]+\.png/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-
-// CSS FILE CATCH ALL
-app.get(/\/css\/[\s\S]+\.css/, function (req, res) {
-    // just send the file
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-
-app.use(serveAll('js'));
-
-// JS FILE CATCH ALL
-//app.get(/[\s\S]+\.js/, function (req, res) {
-//    res.sendFile(path.join(__dirname, 'views', req.url));
-//});
-
-// dae files catch all
-app.get(/[\s\S]+\.dae/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
-
-
-// json file path
-app.get(/[\s\S]+\.json/, function (req, res) {
-    res.sendFile(path.join(__dirname, 'views', req.url));
-});
+// image files
+app.use(serveAllFiles('jpg'));
+app.use(serveAllFiles('jpeg'));
+app.use(serveAllFiles('png'));
 
 // DEMO PATH
 
