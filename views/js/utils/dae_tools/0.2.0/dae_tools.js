@@ -5,7 +5,7 @@
         opt = opt || {};
         var state = {
            results: [],
-           onProgress : opt.onProgress || function(){},
+           onItemProgress : opt.onItemProgress || function(){},
            onFileLoad : opt.onFileLoad || function(){},
            onLoad : opt.onLoad || function(){}
         };
@@ -38,7 +38,7 @@
                 },
                 // progress
                 function(xhr){
-                  
+                  //console.log(xhr);
                 },
                 // error
                 function(e){
@@ -63,8 +63,13 @@
         });
 
         // create and return Promise.all of load one method called for each file
-        return Promise.all(urls.map(function(url){
-            return api.loadOne(daeObjects, url, daeObjects.onFileLoad);
+        var n = 0,
+        d = urls.length;
+        return Promise.all(urls.map(function(url, i){
+            return api.loadOne(daeObjects, url, daeObjects.onFileLoad).then(function(){
+                n += 1;
+                daeObjects.onItemProgress(n / d, n , d);
+            });
         })).then(function(){
             daeObjects.onLoad(daeObjects, daeObjects.results);
         });

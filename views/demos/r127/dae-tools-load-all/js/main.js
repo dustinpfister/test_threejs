@@ -26,7 +26,8 @@
     // when creating daeObjects state object
     var i = 0;
     var daeObjects = DAE.create({
-        onProgress: function(){
+        onItemProgress: function(per, n, d){
+            console.log('progress: ' + per.toFixed(2) + ' ( ' + n + '/' + d + ' )');
         },
         onFileLoad: function(result, allResults, daeObjects){
             console.log('fileLoad');
