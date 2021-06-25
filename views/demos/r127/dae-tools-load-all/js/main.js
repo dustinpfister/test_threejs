@@ -27,6 +27,9 @@
     var daeObjects = DAE.create({
         onProgress: function(){
         },
+        onFileLoad: function(){
+            console.log('fileLoad');
+        },
         onLoad: function(){
             renderer.render(scene, camera);
         }
@@ -41,17 +44,7 @@
         relUrls: [
             'rpi4/rpi4_start_box.dae',
             'obj/obj.dae'
-        ],
-        onFileLoad: function(deaObjects){
-            console.log('for each dea file');
-        },
-        onLoad: function(daeObjects){
-            console.log('files loaded');
-        }
-    }).then(function(deaObjects){
-        console.log(deaObjects);
-    }).catch(function(e){
-        console.log(e);
+        ]
     });
 
 

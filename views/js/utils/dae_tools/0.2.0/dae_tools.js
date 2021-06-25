@@ -6,6 +6,7 @@
         var state = {
            results: [],
            onProgress : opt.onProgress || function(){},
+           onFileLoad : opt.onFileLoad || function(){},
            onLoad : opt.onLoad || function(){}
         };
         return state;
@@ -58,10 +59,12 @@
             return url_obj_file.href;
         });
 
-        console.log(urls);
-
-
-        return Promise.resolve(url_obj_base);
+        // create and return Promise.all of load one method called for each file
+        return Promise.all(urls.map(function(url){
+            return api.loadOne(daeObjects, url, daeObjects.onFileLoad);
+        })).then(function(){
+            daeObjects.onLoad();
+        });
 
     };
 
