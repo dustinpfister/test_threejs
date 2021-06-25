@@ -54,14 +54,12 @@
         opt.baseUrl = opt.baseUrl === undefined ? '/' : opt.baseUrl;
         opt.relUrls = opt.relUrls === undefined ? [] : opt.relUrls;
         opt.origin = opt.origin === undefined ? document.location.origin : opt.origin;
-
         // resolve urls
         var url_obj_base = new URL(opt.baseUrl, document.location.origin);
         var urls = opt.relUrls.map(function(relUrl){
             var url_obj_file = new URL(relUrl, url_obj_base.href + '/');
             return url_obj_file.href;
         });
-
         // create and return Promise.all of load one method called for each file
         var n = 0,
         d = urls.length;
@@ -73,7 +71,6 @@
         })).then(function(){
             daeObjects.onLoad(daeObjects, daeObjects.results);
         });
-
     };
 
     // create a group from a dae result object
