@@ -51,10 +51,15 @@
         opt.relUrls = opt.relUrls === undefined ? [] : opt.relUrls;
         opt.origin = opt.origin === undefined ? document.location.origin : opt.origin;
 
+        // resolve urls
         var url_obj_base = new URL(opt.baseUrl, document.location.origin);
-        console.log(url_obj_base.href); // resolved base url
-        var url_obj_file = new URL(opt.relUrls[0], url_obj_base.href + '/');
-        console.log(url_obj_file.href);
+        var urls = opt.relUrls.map(function(relUrl){
+            var url_obj_file = new URL(relUrl, url_obj_base.href + '/');
+            return url_obj_file.href;
+        });
+
+        console.log(urls);
+
 
         return Promise.resolve(url_obj_base);
 
