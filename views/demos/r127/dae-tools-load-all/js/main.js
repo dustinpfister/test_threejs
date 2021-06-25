@@ -24,11 +24,16 @@
 
     // can set an on onProgress, and onLoad callbacks 
     // when creating daeObjects state object
+    var i = 0;
     var daeObjects = DAE.create({
         onProgress: function(){
         },
-        onFileLoad: function(){
+        onFileLoad: function(a, b, c){
             console.log('fileLoad');
+            var group = DAE.createGroup(daeObjects, a);
+            group.position.z = 3 - 6 * i;
+            i += 1;
+            scene.add(group);
         },
         onLoad: function(){
             renderer.render(scene, camera);

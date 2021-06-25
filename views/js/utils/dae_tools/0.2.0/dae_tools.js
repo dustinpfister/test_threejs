@@ -22,9 +22,9 @@
         // return a promise
         return new Promise(function(resolve, reject){
             // call on done, and resolve the promise only when the dae file AND all textures load
+            var len = daeObjects.results.length;
             manager.onLoad = function(){
-                var len = daeObjects.results.length;
-                onFileLoad(daeObjects[len -1 ], daeObjects.results, daeObjects);
+                onFileLoad(daeObjects.results[len], daeObjects.results, daeObjects);
                 resolve(daeObjects);
             };
             // load the dae file and any textures
