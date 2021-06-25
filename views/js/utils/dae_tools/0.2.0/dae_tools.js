@@ -18,19 +18,22 @@
         var manager = new THREE.LoadingManager();
         // the collada loader instance
         var loader = new THREE.ColladaLoader(manager);
+        // result value to pass to onFileLoad
+        var resultValue = {};
         onFileLoad = onFileLoad || function(){};
         // return a promise
         return new Promise(function(resolve, reject){
             // call on done, and resolve the promise only when the dae file AND all textures load
             var len = daeObjects.results.length;
             manager.onLoad = function(){
-                onFileLoad(daeObjects.results[len], daeObjects.results, daeObjects);
+                onFileLoad(resultValue, daeObjects.results, daeObjects);
                 resolve(daeObjects);
             };
             // load the dae file and any textures
             loader.load(url,
                 // done
                 function (result) {
+                    resultValue = result;
                     daeObjects.results.push(result);
                 },
                 // progress

@@ -28,9 +28,9 @@
     var daeObjects = DAE.create({
         onProgress: function(){
         },
-        onFileLoad: function(a, b, c){
+        onFileLoad: function(result, allResults, daeObjects){
             console.log('fileLoad');
-            var group = DAE.createGroup(daeObjects, a);
+            var group = DAE.createGroup(daeObjects, result);
             group.position.z = 3 - 6 * i;
             i += 1;
             scene.add(group);
