@@ -23,15 +23,35 @@
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
 
-    // USING DAE TOOLS TO LOAD THE *.dae file
-    var daeObjects = DAE.create();
-    DAE.loadOne(daeObjects, "/dae/rpi4/rpi4_start_box.dae")
-    .then(function(daeObjects){
-        var group = DAE.createGroup(daeObjects, 0);
-        scene.add(group);
-        renderer.render(scene, camera);
-    })
-    .catch(function(e){
+    // can set an on onProgress, and onLoad callbacks 
+    // when creating daeObjects state object
+    var daeObjects = DAE.create({
+        onProgress: function(){
+        },
+        onLoad: function(){
+            renderer.render(scene, camera);
+        }
+    });
+
+    // load all should work like this
+    // when doing so the onLoad method
+    // will be called after any additional 
+    // callbacks used here
+    DAE.loadAll(daeObjects, {
+        baseUrl: '/dae',
+        relUrls: [
+            'rpi4/rpi4_start_box.dae',
+            'obj/obj.dae'
+        ],
+        onFileLoad: function(deaObjects){
+            console.log('for each dea file');
+        },
+        onLoad: function(daeObjects){
+            console.log('files loaded');
+        }
+    }).then(function(deaObjects){
+        console.log('A promise can be used');
+    }).catch(function(e){
         console.log(e);
     });
 
