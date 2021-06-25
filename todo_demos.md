@@ -16,16 +16,16 @@ I have not wrote a post on the texture loader, maybe mainly because I prefer to 
 ### x.2 - (done 6/22/2021 ) threejs-emissive-map
     * (done) start a basic emissive map demo
 
-### x.3 - threejs-normal-material
+### x.3 - (done 6/23/2021 ) threejs-normal-material
     * (done) have a basic normal material example
     * (done) have an example that involves mutating the normal array
     * an animation example that involves mutating normals over time, and also an additional mesh the uses the standard material.
 
-### x.4 - threejs-normal-map
-    * start a basic normal-map demo
+### x.4 - (done 6/24/2021 ) threejs-normal-map
+    * (done) start a basic normal-map demo
 
-### x.5 - threej-examples-dae-file-lib
-
+### x.5 - threej-examples-dae-tools
+    * (done) some basic dae tools examples
 
 ## x - Expand on the Vector3 class just like with Object3d
 
