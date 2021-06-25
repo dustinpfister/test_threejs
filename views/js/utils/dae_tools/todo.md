@@ -1,8 +1,8 @@
 # todo list for dae_tools.js
 
-## 0.x.0 - () - load all method
+## 0.2.0 - () - load all method, and progress bar
 * have a DAE.loadAll method that can be used to load a collection of dea loader results into a dae object
-* a base
+* a base url can be set for loadAll along with an array or relative paths
 
 ## 0.1.0 - ( done 6/25/21 ) - onDone callback fires when textures load
 * (done) The DAE.loadOne method on done callback/promise resolve should happen when the dea file loads AND all textures are laoded too. 
