@@ -30,12 +30,13 @@
         },
         onFileLoad: function(result, allResults, daeObjects){
             console.log('fileLoad');
-            var group = DAE.createGroup(daeObjects, result);
-            group.position.z = 3 - 6 * i;
-            i += 1;
-            scene.add(group);
         },
-        onLoad: function(){
+        onLoad: function(daeObjects, results){
+            results.forEach(function(result, i){
+                var group = DAE.createGroup(daeObjects, result);
+                group.position.z = 3 - 6 * i;
+                scene.add(group);
+            });
             renderer.render(scene, camera);
         }
     });

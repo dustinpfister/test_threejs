@@ -66,7 +66,7 @@
         return Promise.all(urls.map(function(url){
             return api.loadOne(daeObjects, url, daeObjects.onFileLoad);
         })).then(function(){
-            daeObjects.onLoad();
+            daeObjects.onLoad(daeObjects, daeObjects.results);
         });
 
     };
