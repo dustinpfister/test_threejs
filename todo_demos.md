@@ -26,6 +26,7 @@ I have not wrote a post on the texture loader, maybe mainly because I prefer to 
 
 ### x.5 - threej-examples-dae-tools
     * (done) some basic dae tools examples
+    * a dae tools when done example that does not involve a loop.
 
 ## x - Expand on the Vector3 class just like with Object3d
 
