@@ -41,6 +41,14 @@
         });
     };
 
+    // load a collection of dea files
+    api.loadAll = function(daeObjects, opt){
+        opt = opt || {};
+        opt.baseUrl = opt.baseUrl === undefined ? '/' : opt.baseUrl;
+        return Promise.resolve('foo');
+
+    };
+
     // create a group from a dae result object
     api.createGroup = function(daeObjects, what){
         var result = typeof what === 'object' ? what : daeObjects.results[what];
