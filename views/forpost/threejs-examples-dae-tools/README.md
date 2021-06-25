@@ -1,5 +1,6 @@
 # threejs-examples-dae-tools
 
+These are source code examples that have to do with a dae tools module that I write about in detail in my blog post on this. The dae tools file was at first just an abstrction of the dae loader, and the loder manager that is built into threejs itself. The aim is to have something that is a bit more than just an abstraction though by adding some additional features that have to do with processing the results, and providing a progress bar, however I think this module will remain fairly minimal.
 
 ## Files needed
 
