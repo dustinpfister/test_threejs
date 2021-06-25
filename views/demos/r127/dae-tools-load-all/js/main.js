@@ -49,7 +49,7 @@
             console.log('files loaded');
         }
     }).then(function(deaObjects){
-        console.log('A promise can be used');
+        console.log(deaObjects);
     }).catch(function(e){
         console.log(e);
     });
