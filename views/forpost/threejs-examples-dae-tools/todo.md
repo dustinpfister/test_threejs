@@ -3,8 +3,8 @@
 ## () - progress bar demo
 * when I have a version of dae tools that provides a progress bar feature I will want a demo of that
 
-## () - loadAll demo
-* when I have a version of dae tools that provides a load all feature I will want a demo of that
+## ( 06/25/2021 ) - loadAll demo
+* (done) when I have a version of dae tools that provides a load all feature I will want a demo of that
 
 ## ( 06/25/2021 ) - first state of for post folder
 * (done) s1 will be the typical what to kniw first section
