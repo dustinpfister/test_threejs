@@ -12,7 +12,7 @@
     api.loadOne = function(daeObjects, url, onDone){
         // I will want a manager for this
         var manager = new THREE.LoadingManager();
-        // 
+        // the collada loader instance
         var loader = new THREE.ColladaLoader(manager);
         onDone = onDone || function(){};
         // return a promise
