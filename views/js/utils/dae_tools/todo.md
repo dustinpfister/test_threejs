@@ -1,5 +1,9 @@
 # todo list for dae_tools.js
 
+## 0.3.0 - daeObjects.progressObj
+* have a daeObjects.progressObj that will be a group that is updated with item progress
+* create a DAE.createProgressBarGroup method that can eb used to create a custom progress bar object
+
 ## 0.2.0 - ( done 06/25/21 ) - load all method, and progress bar
 * (done) have a DAE.loadAll method that can be used to load a collection of dea loader results into a dae object
 * (done) a base url can be set for loadAll along with an array or relative paths
