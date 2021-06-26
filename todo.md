@@ -4,10 +4,13 @@ General todo list for this test_threejs repo.
 
 
 ## Check out the Migration-Guide when it comes to making choices about what to work on
-
 ```
 https://github.com/mrdoob/three.js/wiki/Migration-Guide#r128--r129
 ```
+
+## /views/js/modules_group_dae
+    * I will want to have a modules\_group\_dae folder in the js folder
+    * this modules\_group\_dae folder will contain modules like the ones in modules\_group only they depend on one or more dae files 
 
 ## /views/forpost folder
     * (done) start a /forpost folder to start creating collections of demos for specific blog posts
