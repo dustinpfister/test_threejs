@@ -2,15 +2,12 @@
 var createCanvasTexture = function () {
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
-    canvas.width = 16;
-    canvas.height = 16;
-    ctx.fillStyle = '#000000';
+    canvas.width = 32;
+    canvas.height = 32;
     ctx.lineWidth = 1;
-    ctx.fillRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
     ctx.strokeStyle = '#ff0000';
-    ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
-    var texture = new THREE.Texture(canvas);
-    texture.needsUpdate = true;
+    ctx.strokeRect(2.5, 2.5, canvas.width - 4, canvas.height - 4);
+    var texture = new THREE.CanvasTexture(canvas);
     return texture;
 };
 
@@ -19,6 +16,7 @@ var createCube = function () {
     return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshBasicMaterial({
+            
             map: createCanvasTexture()
         }));
 };
