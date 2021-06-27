@@ -16,13 +16,13 @@ var createCube = function () {
     return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshBasicMaterial({
-            
             map: createCanvasTexture()
         }));
 };
 
 // Scene
 var scene = new THREE.Scene();
+scene.add( new THREE.GridHelper(10, 10) );
 
 // Camera
 var camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
