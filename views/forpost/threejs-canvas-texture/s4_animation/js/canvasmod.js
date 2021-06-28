@@ -1,13 +1,5 @@
 (function(api){
 
-    api.draw = function (ctx, canvas) {
-        ctx.fillStyle = '#000000';
-        ctx.lineWidth = 1;
-        ctx.fillRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
-        ctx.strokeStyle = '#00ff00';
-        ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
-    };
- 
     // create and return a canvasObj with texture
     api.createCanvasObject = function (state, drawFunc) {
         drawFunc = drawFunc || canvasMod.draw;
@@ -24,6 +16,7 @@
             state: state,
             draw: function(){
                 drawFunc.call(state, ctx, canvas, state);
+                // making sure I am setting this to true each time
                 texture.needsUpdate = true;
             }
         };
