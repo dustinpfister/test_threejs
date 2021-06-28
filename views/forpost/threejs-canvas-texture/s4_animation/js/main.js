@@ -1,25 +1,35 @@
 
 (function () {
 
-    // CANVAS
-    var canvas = document.createElement('canvas'),
-    ctx = canvas.getContext('2d');
+    // state object
+    var state = {
+       frame: 0,
+       maxFrame: 300
+    };
+    // draw function
+    var draw = function(ctx, canvas, state){
+        var per = state.frame / state.maxFrame,
+        bias = Math.abs(0.5 - per) / 0.5,
+        x = canvas.width / 2 * bias;
+        y = canvas.height / 2 * bias;
+        w = canvas.width - canvas.width * bias;
+        h = canvas.height - canvas.height * bias;
 
-    canvas.width = 16;
-    canvas.height = 16;
+        ctx.lineWidth = 3;
+        ctx.fillStyle = '#000000';
+        ctx.strokeStyle = '#ff00ff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeRect(x, y, w, h);
+    };
+    // create canvas obj
+    var canvasObj = canvasMod.createCanvasObject(state, draw);
 
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = '#ff00ff';
-    ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
-    // TEXTURE
-    var texture = new THREE.CanvasTexture(canvas);
-    texture.magFilter = THREE.NearestFilter;
+    // filter
+    canvasObj.texture.magFilter = THREE.NearestFilter;
 
     // Basic MATERIAL using TEXTURE
     var material = new THREE.MeshBasicMaterial({
-            map: texture
+            map: canvasObj.texture
         });
 
     // SCENE
@@ -51,16 +61,22 @@
     var frame = 0,
     maxFrame = 500,
     loop = function () {
-
+/*
         var per = frame / maxFrame,
         bias = Math.abs(.5 - per) / .5,
         x = canvas.width / 2 * bias;
         y = canvas.height / 2 * bias;
         w = canvas.width - canvas.width * bias;
         h = canvas.height - canvas.height * bias;
+*/
+
+
+        canvasObj.draw();
 
         requestAnimationFrame(loop);
 
+
+/*
         ctx.lineWidth = 3;
         ctx.fillStyle = '#000000';
         ctx.strokeStyle = '#ff00ff';
@@ -68,10 +84,11 @@
         ctx.strokeRect(x, y, w, h);
 
         texture.needsUpdate = true;
+*/
         renderer.render(scene, camera);
 
-        frame += 1;
-        frame = frame % maxFrame;
+        state.frame += 1;
+        state.frame = state.frame % state.maxFrame;
 
     };
 

@@ -8,8 +8,8 @@
         ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
     };
  
-    // create and return a canvas texture
-    api.createCanvasTexture = function (state, drawFunc) {
+    // create and return a canvasObj with texture
+    api.createCanvasObject = function (state, drawFunc) {
         drawFunc = drawFunc || canvasMod.draw;
         var canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
@@ -24,6 +24,7 @@
             state: state,
             draw: function(){
                 drawFunc.call(state, ctx, canvas, state);
+                texture.needsUpdate = true;
             }
         };
         canvasObj.draw();
