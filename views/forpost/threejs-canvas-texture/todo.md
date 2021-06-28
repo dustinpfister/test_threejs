@@ -5,12 +5,12 @@
 * have one Mesh canvas texture example that is Stochastic \(random\)
 * have both kinds of mesh objects with texture that are updated in diferent ways in the same scene
 
-## () - needed improvements of s3, and s4 examples
-* (done) The create canvas helper functionin s3 should return an object that contains references to the canvas, and context.
+## ( done 06/28/2021 ) - needed improvements of s3, and s4 examples
+* (done) The create canvas helper function in s3 should return an object that contains references to the canvas, and context.
 * (done) s3 example should show a basic example of the state object
-* The s4 example should also make use of a caanvas helper function.
+* (done) The s4 example should also make use of a canvas helper function.
 
 ## ( done 06/27/2021 ) - first state of for post folder
 * (done) copy over current source code examples to new section folders for them
-* (done) just make some quick simple chnages to current section examples
+* (done) just make some quick simple changes to current section examples
 * (done) update post to reflect current state of this forpost folder
