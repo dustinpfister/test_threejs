@@ -57,33 +57,11 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // Loop
-    var frame = 0,
-    maxFrame = 500,
-    loop = function () {
-/*
-        var per = frame / maxFrame,
-        bias = Math.abs(.5 - per) / .5,
-        x = canvas.width / 2 * bias;
-        y = canvas.height / 2 * bias;
-        w = canvas.width - canvas.width * bias;
-        h = canvas.height - canvas.height * bias;
-*/
-
-
-        canvasObj.draw();
+    var loop = function () {
 
         requestAnimationFrame(loop);
 
-
-/*
-        ctx.lineWidth = 3;
-        ctx.fillStyle = '#000000';
-        ctx.strokeStyle = '#ff00ff';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeRect(x, y, w, h);
-
-        texture.needsUpdate = true;
-*/
+        canvasObj.draw();
         renderer.render(scene, camera);
 
         state.frame += 1;
