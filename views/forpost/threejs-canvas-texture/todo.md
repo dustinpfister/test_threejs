@@ -7,7 +7,7 @@
 
 ## () - needed improvements of s3, and s4 examples
 * (done) The create canvas helper functionin s3 should return an object that contains references to the canvas, and context.
-* s3 example should show a basic example of the state object
+* (done) s3 example should show a basic example of the state object
 * The s4 example should also make use of a caanvas helper function.
 
 ## ( done 06/27/2021 ) - first state of for post folder
