@@ -2,6 +2,8 @@
 
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
+## (06/28/21 - 07/02/21) - new posts
+
 ## (6/21/21 - 6/25/21) - new posts on texures and maps
 
 I have not wrote a post on the texture loader, maybe mainly because I prefer to create textures with canvas up to this point. I think that will be changing for me now it I am going to continue with threejs though. So this week I think I will be writing posts on the texture loader, and a whole bunch of additional kinds of maps that can be used with various materials. 
@@ -24,9 +26,9 @@ I have not wrote a post on the texture loader, maybe mainly because I prefer to 
 ### x.4 - (done 6/24/2021 ) threejs-normal-map
     * (done) start a basic normal-map demo
 
-### x.5 - threej-examples-dae-tools
-    * (done) some basic dae tools examples
-    * a dae tools when done example that does not involve a loop.
+### x.5 - (done 6/25/2021 ) threej-examples-dae-tools
+    * (done) s3 will a basic load one example
+    * (done) s3 will be a load all example
 
 ## x - Expand on the Vector3 class just like with Object3d
 

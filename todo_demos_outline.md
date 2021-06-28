@@ -6,6 +6,17 @@
 * see about finishing /r127/sphere-move-point demo
 * update post on Vector3 class to include what was worked out in the post on arrow helpers when moving a mesh
 
+## x - A series of examples on the raycaster class
+
+Onw idea that comes to mind would be to write a collection of posts where I am expanding on the raycaster class and how this class can prove to be very useful. I have all ready wrote one post on this subject, but that was just a general overview type post. In any case what I would work out with this is to write new posts that will explore more use case examples of the raycaster. This can include projects that are composed of objects with custom geometry.
+
+### x.x - threejs-examples-raycaster-world
+    * in this example there is having a sphere, and using raucaster as a way to position objects on the sphere
+    * there is also haveing an object that moves along the surface of there sphere.
+    * raycaster can also be used to set the alt of the object.
+    * moving object will gain alt if it raycatser alt is higher by just setting the hight higher
+    * moving object will loose alt alowly over time when the raycaster hight is lower
+
 
 ## x - More on the various types of loaders to work with
 
@@ -16,8 +27,6 @@ I have wrote some posts on the various loaders there are to work with in threejs
 
 ### x.x - threejs-loader
     * the base loader class
-
-
 
 
 ## x - More on the various options when it comes to maps
