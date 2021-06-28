@@ -4,7 +4,9 @@
     // state object
     var state = {
        frame: 0,
-       maxFrame: 300
+       maxFrame: 90,
+       fps: 30,
+       lt: new Date()
     };
     // draw function
     var draw = function(ctx, canvas, state){
@@ -58,14 +60,20 @@
 
     // Loop
     var loop = function () {
+        var now = new Date(),
+        secs = (now - state.lt) / 1000;
 
         requestAnimationFrame(loop);
 
-        canvasObj.draw();
-        renderer.render(scene, camera);
+        if(secs > 1 / state.fps){
+            canvasObj.draw();
+            renderer.render(scene, camera);
 
-        state.frame += 1;
-        state.frame = state.frame % state.maxFrame;
+            state.frame += state.fps * secs;
+            state.frame = state.frame % state.maxFrame;
+            state.lt = now;
+
+        }
 
     };
 
