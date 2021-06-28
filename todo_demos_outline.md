@@ -10,6 +10,14 @@
 
 Onw idea that comes to mind would be to write a collection of posts where I am expanding on the raycaster class and how this class can prove to be very useful. I have all ready wrote one post on this subject, but that was just a general overview type post. In any case what I would work out with this is to write new posts that will explore more use case examples of the raycaster. This can include projects that are composed of objects with custom geometry.
 
+### x.x - threejs-examples-raycaster-plane
+    * have a plane mesh, and have a cube mesh that will move around
+    * have one or more additional cube objects positioned on the plane
+    * use raycaster to check the front position of the cube that is moving
+    * set y position of the cube up and down based on raycaster info
+    * cube can fall of the plane
+    * cube will respawn on top of the plane if y value gets to low
+
 ### x.x - threejs-examples-raycaster-world
     * in this example there is having a sphere, and using raucaster as a way to position objects on the sphere
     * there is also haveing an object that moves along the surface of there sphere.
