@@ -14,16 +14,20 @@ var cube = canvasMod.createCube(canvasObj.texture);
 scene.add(cube);
 
 
-// create texture with custom draw method
+// create texture with custom draw method that makes use of a state object
 var draw = function (ctx, canvas, state) {
     ctx.fillStyle = 'red';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'black';
     ctx.beginPath();
-    ctx.arc(canvas.width / 2 + 0.5, canvas.height / 2 + 0.5, canvas.width / 2 - 2, 0, Math.PI * 2);
+    var hw = canvas.width / 2,
+    sx = hw,
+    sy = canvas.height / 2,
+    radius = hw - hw * state.rPer;
+    ctx.arc(sx, sy, radius, 0, Math.PI * 2);
     ctx.fill();
 };
-var canvasObj = canvasMod.createCanvasTexture({}, draw);
+var canvasObj = canvasMod.createCanvasTexture({rPer: 0.1}, draw);
 cube = canvasMod.createCube(canvasObj.texture);
 cube.position.set(0, 0, 2)
 scene.add(cube);
