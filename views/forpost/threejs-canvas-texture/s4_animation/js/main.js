@@ -28,9 +28,11 @@
     canvasObj.texture.magFilter = THREE.NearestFilter;
 
     // Basic MATERIAL using TEXTURE
+/*
     var material = new THREE.MeshBasicMaterial({
             map: canvasObj.texture
         });
+*/
 
     // SCENE
     var scene = new THREE.Scene();
@@ -45,11 +47,8 @@
     camera.position.set(1, 1, 1);
     camera.lookAt(0, 0, 0);
 
-    // GEOMETRY
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
-
-    // MESH using THE MATERIAL
-    var mesh = new THREE.Mesh(geometry, material);
+    // using create cube method
+    var mesh = canvasMod.createCube(canvasObj);
     scene.add(mesh);
 
     // Render

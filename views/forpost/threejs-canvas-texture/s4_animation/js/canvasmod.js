@@ -25,11 +25,11 @@
     };
  
     // create a cube the makes use of a canvas texture
-    api.createCube = function (texture) {
+    api.createCube = function (canvasObj) {
         return new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshBasicMaterial({
-                map: texture
+                map: canvasObj.texture
             }));
     };
 
