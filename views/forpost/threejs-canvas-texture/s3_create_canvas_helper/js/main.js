@@ -23,7 +23,7 @@ var draw = function (ctx, canvas, state) {
     ctx.arc(canvas.width / 2 + 0.5, canvas.height / 2 + 0.5, canvas.width / 2 - 2, 0, Math.PI * 2);
     ctx.fill();
 };
-var canvasObj = canvasMod.createCanvasTexture({}, );
+var canvasObj = canvasMod.createCanvasTexture({}, draw);
 cube = canvasMod.createCube(canvasObj.texture);
 cube.position.set(0, 0, 2)
 scene.add(cube);
