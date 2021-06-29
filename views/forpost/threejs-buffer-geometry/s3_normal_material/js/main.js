@@ -20,17 +20,23 @@
     // compute vertex normals
     geometry.computeVertexNormals();
 
+console.log()
+
 console.log(geometry.attributes);
  
     // MESH with GEOMETRY, and Normal MATERIAL
-var mesh = new THREE.Mesh(
+     var mesh = new THREE.Mesh(
             geometry,
             new THREE.MeshNormalMaterial({
                 side: THREE.DoubleSide
             }));
-mesh.rotateY(Math.PI * 0.25);
+    mesh.rotateY(Math.PI * 0.25);
     scene.add(mesh);
- 
+
+    var vertHelper = new THREE.VertexNormalsHelper(mesh, 0.5, 0x00ff00);
+    scene.add(vertHelper) 
+
+
     // RENDER
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
