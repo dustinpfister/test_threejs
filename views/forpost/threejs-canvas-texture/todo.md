@@ -1,5 +1,8 @@
 # threejs-canvas-texture todo list
 
+## () - Video for threejs-canvas-texture
+* start a video project for threejs-canvas-texture
+
 ## () - Start a s5 Stochastic and Deterministic examples section
 * have one Mesh canvas texture example that makes use of a pure function to create a state that is then rendered to a canvas
 * have one Mesh canvas texture example that is Stochastic \(random\)
