@@ -3,6 +3,13 @@
 ## () - Video for threejs-buffer-geometry
 * start a video project for buffer-geometry
 
+## new s8 section on loading extreal geometry file in the form od dae files
+* the dae loader, and any additonal files will need to be added to needed files in the readme
+* have a dae loader example
+
+## new s7 section on uv attribute
+* I am going to want a section on creating a uv attribute for a custom geometry
+* use a canvas texture soution to generate the texture to use for the uv example
 
 ## new s6 section on rotation of geometry
 * (done) start a new s6 section that has to do with rotation of a buffer geomerty
