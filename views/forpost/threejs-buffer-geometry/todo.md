@@ -3,7 +3,7 @@
 ## () - Video for threejs-buffer-geometry
 * start a video project for buffer-geometry
 
-## new s8 section on loading extreal geometry file in the form od dae files
+## new s8 section on loading extreal geometry file in the form of dae files
 * the dae loader, and any additonal files will need to be added to needed files in the readme
 * have a dae loader example
 
@@ -13,7 +13,7 @@
 
 ## new s6 section on rotation of geometry
 * (done) start a new s6 section that has to do with rotation of a buffer geomerty
-* the example should make use of one of the buffer geometry proto methods that have to do with rotation of geometry
+* (done) the example should make use of one of the buffer geometry proto methods that have to do with rotation of geometry
 
 ## ( done 06/29/21 ) look into use the threejs normal helper for s3 and any other demos
 * (done) see about just using the threejs normal helper in the threejs github repo
