@@ -27,24 +27,14 @@
 
     // TRANSLATE AND ROTATE
     geometry.rotateZ(Math.PI / 180 * 135);
+    geometry.translate(0.75, 0, 0);
+
  
- 
-    // MESH with GEOMETRY, and Normal MATERIAL
+    // mesh
     var custom = new THREE.Mesh(
             geometry,
             materials);
     scene.add(custom);
- 
-
-    // ADD A POINT LIGHT
-    var pointLight = new THREE.PointLight(0xffffff);
-    pointLight.position.set(4, 2, 4);
-    scene.add(pointLight);
- 
-    // add AmbientLight
-    var light = new THREE.AmbientLight(0xffffff);
-    light.intensity = 0.2;
-    scene.add(light);
  
     // RENDER
     var renderer = new THREE.WebGLRenderer();
