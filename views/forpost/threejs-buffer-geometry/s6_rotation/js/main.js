@@ -9,37 +9,25 @@
     camera.position.set(1, 2, 4);
     camera.lookAt(0, 0, 0);
  
-    var materials = [
-        new THREE.MeshStandardMaterial({
-            color: 'red',
-            side: THREE.DoubleSide
-        }),
-        new THREE.MeshStandardMaterial({
-            color: 'lime',
-            side: THREE.DoubleSide
-        })
-    ];
+    var materials = new THREE.MeshBasicMaterial({
+        color: 'red',
+        side: THREE.DoubleSide
+    });
+   
  
     // GEOMETRY
     var geometry = new THREE.BufferGeometry();
     var vertices = new Float32Array([
                 0, 0, 0, // triangle 1
                 1, 0, 0,
-                1, 1, 0,
- 
-                0, 0, 0, // triangle 2
-                0, 1, 0,
                 1, 1, 0
             ]);
     // create position property
     geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+
+    // TRANSLATE AND ROTATE
+    geometry.rotateZ(Math.PI / 180 * 135);
  
-    // compute vertex normals
-    geometry.computeVertexNormals();
- 
-    // add groups, and set material index values
-    geometry.addGroup(0, 3, 0);
-    geometry.addGroup(3, 3, 1);
  
     // MESH with GEOMETRY, and Normal MATERIAL
     var custom = new THREE.Mesh(
