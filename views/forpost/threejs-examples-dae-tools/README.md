@@ -13,5 +13,5 @@ These are source code examples that have to do with a dae tools module that I wr
 
 For this post I would like to create a demo video, however as of this writing it is very much a work in progress.
 
-* [forpost_examples_dae_tools](https://github.com/dustinpfister/test_threejs/tree/master/views/videos/forpost_examples_dae_tools)
+* [forpost_threejs_examples_dae_tools](https://github.com/dustinpfister/test_threejs/tree/master/views/videos/forpost_threejs_examples_dae_tools)
 
