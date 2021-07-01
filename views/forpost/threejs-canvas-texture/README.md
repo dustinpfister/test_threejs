@@ -8,5 +8,5 @@ These are the source code examples for my [post on using canvas elements to crea
 
 ## Videos for this post
 
-none
+* [forpost_threejs_canvas_texture](https://github.com/dustinpfister/test_threejs/tree/master/views/videos/forpost_threejs_canvas_texture)
 
