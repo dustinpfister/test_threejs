@@ -1,5 +1,5 @@
 # threejs-geometry todo list
 
 
-## ( ) - first state of for post folder
-* just start a forpost folder that reflects the current state of the post
+## ( done 07/02/2021 ) - first state of for post folder
+* (done) just start a forpost folder that reflects the current state of the post
