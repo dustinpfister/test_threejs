@@ -18,9 +18,7 @@
                 x = Math.floor(i % 2) + pane * 1.5;
                 y = Math.floor(i / 2);
                 z = pane * per;
- 
                 geometry.vertices.push(new THREE.Vector3(x, y, z));
- 
                 i += 1;
             }
             pane += 1;
@@ -40,21 +38,19 @@
         geometry.normalize();
         return geometry;
     };
- 
     // SCENE
     var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(10, 10));
     // MESH with Geometry, and Basic Material
     scene.add(new THREE.Mesh(
- 
             genPanes(20),
- 
             // Material
             new THREE.MeshNormalMaterial({
                 side: THREE.DoubleSide
             })));
     // RENDER, CAMERA
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(1, 1, 1);
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
+    camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
