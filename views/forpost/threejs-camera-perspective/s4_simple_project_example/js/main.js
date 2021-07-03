@@ -1,9 +1,7 @@
 (function () {
- 
     // a scene is needed to place objects in
     var scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10) );
- 
     // so here I am setting the values of the perspective camera
     var fieldOfView = 45,
     aspectRatio = 4 / 3,
@@ -17,7 +15,6 @@
     // I must append the dom element used by the renderer to the html
     // that I am using.
     document.getElementById('demo').appendChild(renderer.domElement);
- 
     // initialize method
     var init = function () {
         // add plane to the scene
@@ -33,7 +30,7 @@
         var cube = new THREE.Mesh(
                 new THREE.BoxGeometry(2, 2, 2),
                 new THREE.MeshNormalMaterial({}));
-        cube.position.set(0, 1, 0);
+        cube.position.set(0, 1.1, 0);
         scene.add(cube);
         // setting position of the camera
         // position is a property of Object3D
@@ -41,14 +38,20 @@
         camera.position.set(4, 4, 4);
         camera.lookAt(0, 0, 0);
     };
- 
     // update method
     var update = function (per, bias, secs) {
+        // update aspect and fov
         camera.aspect = .5 + 1.5 * bias;
         camera.fov = 50 + 25 * bias;
         camera.updateProjectionMatrix();
+        // change position
+        var radian = Math.PI * 2 * per;
+        camera.position.set(
+            Math.cos(radian) * 5, 
+            5 * Math.sin(Math.PI * 4 * per), 
+            Math.sin(radian) * 5);
+        camera.lookAt(0, 0, 0);
     };
- 
     // loop
     var per = 0,
     bias = 0,
@@ -72,10 +75,8 @@
             lt = now;
         }
     };
- 
     // call init, and start loop
     init();
     loop();
- 
 }
     ());
