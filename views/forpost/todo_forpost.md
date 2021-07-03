@@ -34,14 +34,16 @@ I should start making for post folders for older posts as part of the process of
 ## threejs-camera-perspective
 * start folder
 
-## ( done 07/03/2021 ) threejs-materials
-* start folder
+## ( started 07/03/2021 ) threejs-materials
+* (done) start folder
+* still need folders for all examples in post
 
 ## ( done 07/02/2021 ) threejs-geometry
 * (done) start the folder.
 
-## ( done 07/02/2021 ) threejs-orbit-controls
+## ( started 07/02/2021 ) threejs-orbit-controls
 * (done) start a for post folder for the post on orbit controls
+* still need folders for all examples in post
 
 ## ( done 07/01/2021 ) threejs-face3
 * (done) start a folder for face3
