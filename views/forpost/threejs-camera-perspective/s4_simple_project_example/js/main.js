@@ -9,10 +9,11 @@
     aspectRatio = 4 / 3,
     near = 1,
     far = 1000,
-    camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far),
+    camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far);
     // In order to see anything I will also need a renderer
     // to use with my scene, and camera
-    renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
     // I must append the dom element used by the renderer to the html
     // that I am using.
     document.getElementById('demo').appendChild(renderer.domElement);
@@ -39,33 +40,13 @@
         // and the value is an instance of Vector3
         camera.position.set(4, 4, 4);
         camera.lookAt(0, 0, 0);
-        // setting a background color
-        //scene.background = new THREE.Color(.7, .7, .7);
-        // 16:9 aspect ratio canvas
-        renderer.setSize(640, 480);
     };
  
     // update method
-/*
-    var i = 0,
-    iMax = 100,
-    lt = new Date(),
-    fr = 100,
-*/
     var update = function (per, bias, secs) {
-        //var per = i / iMax,
-        //now = new Date(),
-        //bias = 1 - Math.abs(.5 - per) / .5;
-        //if (now - lt >= fr) {
-            // changing aspect, and field of view
-            camera.aspect = .5 + 1.5 * bias;
-            camera.fov = 50 + 25 * bias;
-            // I must call this to get it to work
-            camera.updateProjectionMatrix();
-           // i += 1;
-           // i = i % iMax;
-           // lt = now;
-        //}
+        camera.aspect = .5 + 1.5 * bias;
+        camera.fov = 50 + 25 * bias;
+        camera.updateProjectionMatrix();
     };
  
     // loop
@@ -82,9 +63,7 @@
         secs = (now - lt) / 1000;
         per = frame / frameMax;
         bias = 1 - Math.abs(0.5 - per) / 0.5;
-
         requestAnimationFrame(loop);
-
         if(secs > 1 / fps){
             update(per, bias, secs);
             renderer.render(scene, camera);
