@@ -6,7 +6,7 @@
     var fieldOfView = 45,
     aspectRatio = 4 / 3,
     near = 1,
-    far = 1000,
+    far = 15,
     camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far);
     // In order to see anything I will also need a renderer
     // to use with my scene, and camera
@@ -20,8 +20,7 @@
         // add plane to the scene
         var plane = new THREE.Mesh(
                 new THREE.PlaneBufferGeometry(5, 5, 8, 8),
-                new THREE.MeshBasicMaterial({
-                    color: 0x00afaf,
+                new THREE.MeshDepthMaterial({
                     side: THREE.DoubleSide
                 }));
         plane.rotation.x = Math.PI / 2;
@@ -29,7 +28,7 @@
         // add a cube to the scene
         var cube = new THREE.Mesh(
                 new THREE.BoxGeometry(2, 2, 2),
-                new THREE.MeshNormalMaterial({}));
+                new THREE.MeshDepthMaterial({}));
         cube.position.set(0, 1.1, 0);
         scene.add(cube);
         // setting position of the camera
