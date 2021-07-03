@@ -31,8 +31,9 @@ I should start making for post folders for older posts as part of the process of
 ## threejs-grouping-mesh-objects
 * start folder
 
-## ( started 07/03/2021 ) threejs-camera-perspective
-* start folder
+## ( done 07/03/2021 ) threejs-camera-perspective
+* (done) start folder
+* (done) s2, s3, and s4 demo folders
 
 ## ( started 07/03/2021 ) threejs-materials
 * (done) start folder
