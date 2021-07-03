@@ -2,9 +2,11 @@
 
 This is a todo list where I am drafting out ideas for demos that I will include in blog posts on three.js on my website here at github pages.
 
-## (06/28/21 - 07/02/21) - new posts
 
-## (6/21/21 - 6/25/21) - new posts on texures and maps
+
+
+
+## - new posts on texures and maps
 
 I have not wrote a post on the texture loader, maybe mainly because I prefer to create textures with canvas up to this point. I think that will be changing for me now it I am going to continue with threejs though. So this week I think I will be writing posts on the texture loader, and a whole bunch of additional kinds of maps that can be used with various materials. 
 
@@ -30,32 +32,35 @@ I have not wrote a post on the texture loader, maybe mainly because I prefer to 
     * (done) s3 will a basic load one example
     * (done) s3 will be a load all example
 
+
+
+
+
 ## x - Expand on the Vector3 class just like with Object3d
 
 The Vector3 class is also a major part of working with theejs, as there is the position property of the Object3d class that is a bug deal when it comes to setting the position of objects. However a Vector can also be used as a way to store direction in the from of a set of numbers between 0, and one for each axis. This normalized vector as it is often called can then be scaled up to any value that is along that direction. There is a lot more than can be written when it comes to just the Vector3 class, and not just with the prototype methods, but all kinds of use case examples involving direction and magnitude.
 
-### ( started 6/14/2021 ) x.1 - threejs-vector3-normalize
+### ( done 6/14/2021 ) x.1 - threejs-vector3-normalize
     * (done) start a basic example of vector3-normalize
     * (done) another example that has to do with length
     * (done) place on sphere example
     * (done) example that allows for change of direction by euler
 
-### ( started 6/15/2021 ) x.2 - threejs-vector3-distance-to
+### ( done 6/15/2021 ) x.2 - threejs-vector3-distance-to
     * (done) start a basic distance to example of the method
     * (done) start a basic example that involves distance to, and a move object method
 
-### ( started 6/16/2021 ) x.3 - threejs-vector3-clamp
+### ( done 6/16/2021 ) x.3 - threejs-vector3-clamp
     * (done) start a basic example of vector3 clamp
     * start a basic wrap length example
-
     * create a wrap example
     * create a simple animation example
 
-### ( started 6/16/2021 ) x.4 - threejs-vector3-apply-axis-angle
+### ( done 6/16/2021 ) x.4 - threejs-vector3-apply-axis-angle
     * (done) basic example of threejs apply axis angle
     * (done) start an animation for this
 
-### ( started 6/17/2021 ) x.5 - threejs-vector3-apply-euler
+### ( done 6/17/2021 ) x.5 - threejs-vector3-apply-euler
     * (done) start a basic example of vector3 apply euler method
     * (done) start an animation example for apply euler
 
@@ -90,9 +95,13 @@ messing around with built in geometries such as the THREE.BoxGeomerty, and THREE
 ### ( started 6/11/2021 ) 3.5 - threejs-examples-plane-mutate
     * (done) create an example where I am mutating the positions of a plane geometry
 
-## - Random new content
 
-From this point back I was not planing things out on a week by week, or subject basis
+
+
+
+## - Various new posts on threejs basics
+
+From this point back I was not planing things out on a week by week, or subject basis. There is just an awfule lot to write about in threejs that I should write about I just never got around to it before.
 
 ### (started 6/04/2021 ) threejs-object3d-layers
     * (done) basic example with just a grid and single mesh
