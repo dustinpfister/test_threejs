@@ -75,7 +75,8 @@
     secs = 0,
     lt = now,
     frame = 0,
-    frameMax = 300;
+    frameMax = 300,
+    fps = 30;
     var loop = function () {
         now = new Date();
         secs = (now - lt) / 1000;
@@ -83,10 +84,14 @@
         bias = 1 - Math.abs(0.5 - per) / 0.5;
 
         requestAnimationFrame(loop);
-        update(per, bias, secs);
-        renderer.render(scene, camera);
-        frame += 1;
-        frame %= maxFrame;
+
+        if(secs > 1 / fps){
+            update(per, bias, secs);
+            renderer.render(scene, camera);
+            frame += fps * secs;
+            frame %= frameMax;
+            lt = now;
+        }
     };
  
     // call init, and start loop
