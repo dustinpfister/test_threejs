@@ -43,34 +43,50 @@
         //scene.background = new THREE.Color(.7, .7, .7);
         // 16:9 aspect ratio canvas
         renderer.setSize(640, 480);
-    },
+    };
  
     // update method
-    i = 0,
+/*
+    var i = 0,
     iMax = 100,
     lt = new Date(),
     fr = 100,
-    update = function () {
-        var per = i / iMax,
-        now = new Date(),
-        bias = 1 - Math.abs(.5 - per) / .5;
-        if (now - lt >= fr) {
+*/
+    var update = function (per, bias, secs) {
+        //var per = i / iMax,
+        //now = new Date(),
+        //bias = 1 - Math.abs(.5 - per) / .5;
+        //if (now - lt >= fr) {
             // changing aspect, and field of view
             camera.aspect = .5 + 1.5 * bias;
             camera.fov = 50 + 25 * bias;
             // I must call this to get it to work
             camera.updateProjectionMatrix();
-            i += 1;
-            i = i % iMax;
-            lt = now;
-        }
-    },
+           // i += 1;
+           // i = i % iMax;
+           // lt = now;
+        //}
+    };
  
     // loop
-    loop = function () {
+    var per = 0,
+    bias = 0,
+    now = new Date(),
+    secs = 0,
+    lt = now,
+    frame = 0,
+    frameMax = 300;
+    var loop = function () {
+        now = new Date();
+        secs = (now - lt) / 1000;
+        per = frame / frameMax;
+        bias = 1 - Math.abs(0.5 - per) / 0.5;
+
         requestAnimationFrame(loop);
-        update();
+        update(per, bias, secs);
         renderer.render(scene, camera);
+        frame += 1;
+        frame %= maxFrame;
     };
  
     // call init, and start loop
