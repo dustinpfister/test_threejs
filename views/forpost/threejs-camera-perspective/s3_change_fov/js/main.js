@@ -21,16 +21,27 @@
 
     // loop
     var state = {
-        per: 0
+        per: 0,
+        bias: 0,
+        frame: 0,
+        maxFrame: 600,
+        fps: 30,
+        lt: new Date()
     };
     var loop = function(){
-        var bias = 1 - Math.abs(state.per - 0.5) / 0.5;
+        var now = new Date(),
+        secs = (now - state.lt) / 1000;
+        state.per = state.frame / state.maxFrame;
+        state.bias = 1 - Math.abs(state.per - 0.5) / 0.5;
         requestAnimationFrame(loop);
-        camera.fov = Math.floor(25 + 75 * bias);
-        camera.updateProjectionMatrix();
-        state.per += 0.0125;
-        state.per %= 1;
-        renderer.render(scene, camera);
+        if(secs > 1 / state.fps){
+            camera.fov = Math.floor(25 + 75 * state.bias);
+            camera.updateProjectionMatrix();
+            state.frame += state.fps * secs;
+            state.frame %= state.maxFrame;
+            renderer.render(scene, camera);
+            state.lt = new Date();
+        }
     };
     loop();
 
