@@ -25,9 +25,9 @@ I should start making for post folders for older posts as part of the process of
 ## threejs-fog
 * start folder
 
-## ( started 07/04/2021 ) threejs-lambert-material
+## ( done 07/04/2021 ) threejs-lambert-material
 * (done) start folder
-* all section folders needed
+* (done) all section folders needed
 
 ## ( 07/04/2021 ) threejs-grouping-mesh-objects
 * (done) start folder
