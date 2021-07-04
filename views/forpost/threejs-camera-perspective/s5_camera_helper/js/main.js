@@ -15,7 +15,7 @@
     var helper = new THREE.CameraHelper(camera1);
     scene.add(helper);
 
-    var camera2 = new THREE.PerspectiveCamera(45, 4 / 3, 0.1, 20);
+    var camera2 = new THREE.PerspectiveCamera(45, 4 / 3, 0.1, 50);
     scene.add(camera2);
 
     var renderer = new THREE.WebGLRenderer();
@@ -35,10 +35,9 @@
     };
     // update method
     var update = function (per, bias, secs) {
-        // update aspect and fov
-        //camera.near = 0.1 + 3 * bias;
-        //camera.far = 15 - 13 * bias;
-        //camera.updateProjectionMatrix();
+        camera2.position.x = 2 + 10 * bias;
+        camera2.position.z = 2 - 5 * bias;
+        camera2.lookAt(0, 0.5, 0);
     };
     // loop
     var per = 0,
@@ -47,7 +46,7 @@
     secs = 0,
     lt = now,
     frame = 0,
-    frameMax = 90,
+    frameMax = 300,
     fps = 30;
     var loop = function () {
         now = new Date();
