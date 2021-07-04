@@ -8,9 +8,12 @@
     near = 1,
     far = 15,
     camera1 = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far);
-    scene.add(camera1);
     camera1.position.set(2, 2, 2);
     camera1.lookAt(0, 0.5, 0);
+    scene.add(camera1);
+    // CAMERA HELPER FOR CAM1
+    var helper = new THREE.CameraHelper(camera1);
+    scene.add(helper);
 
     var camera2 = new THREE.PerspectiveCamera(45, 4 / 3, 0.1, 20);
     scene.add(camera2);
