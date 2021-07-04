@@ -1,5 +1,8 @@
 # threejs-materials todo list
 
+## () - Video on Perspective camera
+* start a forpost_... video on Perspective camera
+
 ## () - new example that makes use of the depth material, and muation of near and far values
 * current s4 example should now be the new s5 example
 * start new s4 example that mutates near and far values and uses the depth material
