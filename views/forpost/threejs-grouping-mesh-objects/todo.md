@@ -6,5 +6,5 @@
 * (done) s2 folder on basic example in post
 * (done) s3 folder on rotation of geometry in mesh
 * (done) s4 folder on getting world postion
-* s5 on grouping with camera
-* s6 folder on group model
+* (done) s5 on grouping with camera
+* (done) s6 folder on group model
