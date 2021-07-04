@@ -1,38 +1,42 @@
 (function () {
- 
     // Scene
     var scene = new THREE.Scene();
-    scene.background = new THREE.Color('blue');
+    scene.add(new THREE.GridHelper(10, 10));
  
-
+    // CREATING A GROUP
+    var group = new THREE.Group();
+    var i = 0,
+    radius = 2,
+    count = 8;
+    while (i < count) {
+        // creating a mesh
+        var bx = new THREE.Mesh(
+                new THREE.BoxGeometry(1, 1, 1),
+                new THREE.MeshNormalMaterial()),
+        r = Math.PI * 2 / count * i;
+        // set position of mesh
+        bx.position.set(
+            Math.cos(r) * radius,
+            0,
+            Math.sin(r) * radius);
+        // add mesh to the group
+        group.add(bx);
+        i += 1;
+    }
+    scene.add(group);
  
-    // Something to look at
-    scene.add(new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshDepthMaterial()));
+    // changing position and rotation of the group
+    group.position.set(-4, 0, -4);
+    group.rotation.z = Math.PI / 180 * 90;
  
-    // Render
+    // Camera and Render
+    var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 50);
+    camera.position.set(8, 8, 8);
+    camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
- 
-    // Camera
-    var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1.4, 2.8);
-    camera.position.set(1.3, 1.5, 1.3);
-    camera.lookAt(0, 0, 0);
-
-// add controls for the camera
-var controls = new THREE.OrbitControls(camera);
- 
-    // loop
-    var loop = function () {
-        requestAnimationFrame(loop);
-        // UPDATE CONTROLS
-        controls.update();
-        renderer.render(scene, camera);
-    };
- 
-    loop();
+    renderer.render(scene, camera);
  
 }
     ());
