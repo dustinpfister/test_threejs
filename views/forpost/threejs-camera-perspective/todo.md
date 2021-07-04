@@ -4,7 +4,7 @@
 * start a forpost_... video on Perspective camera
 
 ## () Update all features example
-* make it so the s5 "all features example" also mutates near and far along with everything else
+* make it so the s6 "all features example" also mutates near and far along with everything else
 
 ## () new example on a camera helper
 * have one camera that makes use of the camera helper, and another that can be used to gain an outside perspective
