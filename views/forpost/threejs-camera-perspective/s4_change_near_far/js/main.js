@@ -8,48 +8,28 @@
     near = 1,
     far = 15,
     camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far);
-    // In order to see anything I will also need a renderer
-    // to use with my scene, and camera
+
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
-    // I must append the dom element used by the renderer to the html
-    // that I am using.
     document.getElementById('demo').appendChild(renderer.domElement);
     // initialize method
     var init = function () {
-        // add plane to the scene
-        var plane = new THREE.Mesh(
-                new THREE.PlaneBufferGeometry(5, 5, 8, 8),
-                new THREE.MeshDepthMaterial({
-                    side: THREE.DoubleSide
-                }));
-        plane.rotation.x = Math.PI / 2;
-        scene.add(plane);
         // add a cube to the scene
         var cube = new THREE.Mesh(
-                new THREE.BoxGeometry(2, 2, 2),
+                new THREE.BoxGeometry(1, 1, 1),
                 new THREE.MeshDepthMaterial({}));
-        cube.position.set(0, 1.1, 0);
+        cube.position.set(0, 0.5, 0);
         scene.add(cube);
-        // setting position of the camera
-        // position is a property of Object3D
-        // and the value is an instance of Vector3
-        camera.position.set(4, 4, 4);
-        camera.lookAt(0, 0, 0);
+        // camera pos
+        camera.position.set(2, 2, 2);
+        camera.lookAt(0, 0.5, 0);
     };
     // update method
     var update = function (per, bias, secs) {
         // update aspect and fov
-        camera.aspect = .5 + 1.5 * bias;
-        camera.fov = 50 + 25 * bias;
+        camera.near = 0.1 + 3 * bias;
+        camera.far = 15 - 13 * bias;
         camera.updateProjectionMatrix();
-        // change position
-        var radian = Math.PI * 2 * per;
-        camera.position.set(
-            Math.cos(radian) * 5, 
-            5 * Math.sin(Math.PI * 4 * per), 
-            Math.sin(radian) * 5);
-        camera.lookAt(0, 0, 0);
     };
     // loop
     var per = 0,
@@ -58,7 +38,7 @@
     secs = 0,
     lt = now,
     frame = 0,
-    frameMax = 300,
+    frameMax = 90,
     fps = 30;
     var loop = function () {
         now = new Date();
