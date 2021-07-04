@@ -25,12 +25,13 @@ I should start making for post folders for older posts as part of the process of
 ## threejs-fog
 * start folder
 
-## threejs-lambert-material
-* start folder
-
-## ( started 07/04/2021 ) threejs-grouping-mesh-objects
+## ( started 07/04/2021 ) threejs-lambert-material
 * (done) start folder
-* still need folders for all examples in post
+* all section folders needed
+
+## ( 07/04/2021 ) threejs-grouping-mesh-objects
+* (done) start folder
+* (done) still need folders for all examples in post
 
 ## ( done 07/03/2021 ) threejs-camera-perspective
 * (done) start folder
