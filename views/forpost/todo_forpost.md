@@ -22,8 +22,8 @@ I should start making for post folders for older posts as part of the process of
 ## threejs-line-fat-width
 * start folder
 
-## threejs-fog
-* start folder
+## ( done 07/05/2021 ) threejs-fog
+* (done) start folder
 
 ## ( done 07/04/2021 ) threejs-lambert-material
 * (done) start folder
