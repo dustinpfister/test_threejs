@@ -6,7 +6,7 @@ In the views folder there is the demos folder, and in that folder I have folders
 
 ## 1 - Install
 
-Like all of these projects I do not intend to pollute the npmjs name space with this, so if you want to check these out, you will have to clone it in with git, and do a npm install
+I do not have any intention to make this project an npm package or anything to that effect. So for now the best way to set things up with this would be to clone it down with git, cd into the folder, and then do an npm install. After that the main server script can be started as a way to navigate and view all the various demos, videos, and post related source code examples.
 
 ```
 $ git clone --depth 1 https://github.com/dustinpfister/test_threejs
