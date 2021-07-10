@@ -11,8 +11,8 @@
     right = width,
     top = height,
     bottom = height * -1,
-    near = 0.01,
-    far = 10,
+    near = 1,
+    far = 20,
     camera = new THREE.OrthographicCamera(
             left,
             right,
@@ -33,6 +33,7 @@
     var stack = new CubeStack({
             boxCount: 25
         });
+    stack.group.position.set(0, 0.5, 0);
     scene.add(stack.group);
     // render
     var renderer = new THREE.WebGLRenderer();
