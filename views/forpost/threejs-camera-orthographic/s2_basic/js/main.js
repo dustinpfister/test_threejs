@@ -1,10 +1,18 @@
 (function () {
     // CAMERA
-    var fieldOfView = 40,
-    aspectRatio = 4 / 3,
-    near = 0.1,
-    far = 1000,
-    camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far);
+    var left = -3.2,
+    right = 3.2,
+    top = 2.4,
+    bottom = -2.4,
+    near = 0.01,
+    far = 100,
+    camera = new THREE.OrthographicCamera(
+            left,
+            right,
+            top,
+            bottom,
+            near,
+            far);
     camera.position.set(2, 2, 2); // position camera
     camera.lookAt(0, 0, 0);       // have camera look at 0,0,0
  
