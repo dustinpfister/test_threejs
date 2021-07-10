@@ -19,8 +19,8 @@ I should start making for post folders for older posts as part of the process of
 ## threejs-camera-orthographic
 * start folder
 
-## threejs-line-fat-width
-* start folder
+## ( done 07/05/2021 ) threejs-line-fat-width
+* (done) start folder
 
 ## ( done 07/05/2021 ) threejs-fog
 * (done) start folder
