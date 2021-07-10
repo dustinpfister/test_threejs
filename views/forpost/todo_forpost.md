@@ -16,8 +16,8 @@ I should start making for post folders for older posts as part of the process of
 ## threejs-vector3
 * start folder
 
-## threejs-camera-orthographic
-* start folder
+## ( done 07/10/2021 ) threejs-camera-orthographic
+* (done) start folder
 
 ## ( done 07/05/2021 ) threejs-line-fat-width
 * (done) start folder
