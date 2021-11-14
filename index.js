@@ -130,6 +130,39 @@ app.get(/\/demos\/r\d{1,3}/, function (req, res) {
     });
 });
 
+
+// SPRITE SHEETS PATH
+
+// the main /videos index page
+app.get('/sprite-sheets', function (req, res) {
+    buildIndex({
+        source: 'sprite-sheets'
+    }).then(function (links) {
+        res.render('index', {
+            page: 'sprite_sheets_index',
+            links: links
+        });
+    });
+});
+
+// if something like '/videos/the-hamster-wheel' or '/videos/the-hamster-wheel/'
+// I will want to render an index of videos
+app.get(/\/sprite-sheets\/([\s\S]*?)/, function (req, res) {
+    let arr = req.url.replace(/\/sprite-sheets\/([\s\S]*?)/, '').split('/');
+
+    if (arr.length === 1 || arr[1] === '') {
+        res.render('index', {
+            page: 'sprite_sheets',
+            arr: arr,
+            sheetName: arr[0]
+        });
+    } else {
+        // the file is some other local resource such as a javaScript file
+        let resource = path.join(__dirname, 'views', req.url);
+        res.send(resource);
+    }
+});
+
 // VIDEOS PATH
 
 // the main /videos index page

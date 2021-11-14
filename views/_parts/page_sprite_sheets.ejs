@@ -1,0 +1,19 @@
+<%
+
+   // demo *.ejs file relative to this template
+   let sheetIndex = '../sprite-sheets/' + sheetName + '/index'
+
+%>
+
+
+<h2>three.js sprite sheet page: </h2>
+<p><%- sheetIndex %></p>
+
+<div id="sheet"></div>
+
+
+<%- include(sheetIndex, this) %>
+
+<br>
+<br>
+<br>
