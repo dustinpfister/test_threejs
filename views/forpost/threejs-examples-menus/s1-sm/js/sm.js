@@ -4,17 +4,18 @@ var smMod = (function(){
     var api = {};
 
     var checkButtons = function(sm){
-        console.log(sm.pointer.x + ', ' + sm.pointer.y);
+
         // set raycaster
         sm.raycaster.setFromCamera( sm.pointer, sm.camera );
 
         // check buttons group
         var intersects = sm.raycaster.intersectObjects( sm.buttons.children, true );
-        console.log(intersects);
-
-    //var intersects = raycaster.intersectObjects( cubeGroup.children, true );
-    // intersects.length > 0){
-    // var mesh = intersects[0].object
+        // if button clicked
+        if(intersects.length > 0){
+            var button = intersects[0].object,
+            data = button.userData;
+            data.onClick(sm, button, sm.pointer.x, sm.pointer.y);
+        }
     };
 
     // create and return a pointer down hander for the given sm object
@@ -27,13 +28,13 @@ var smMod = (function(){
             // update sm.pointer values
             sm.pointer.x = ( x / canvas.scrollWidth ) * 2 - 1;
             sm.pointer.y = - ( y / canvas.scrollHeight ) * 2 + 1;
-
             checkButtons(sm);
         };
     };
 
     // create a button group;
-    var createButtonGroup = function(){
+    var createButtonGroup = function(opt){
+        opt = opt || {};
         var group = new THREE.Group();
         var i = 0;
         while(i < 3){
@@ -41,6 +42,11 @@ var smMod = (function(){
                 new THREE.BoxGeometry(1, 1, 2),
                 new THREE.MeshNormalMaterial());
             button.position.y = 1 - 1.25 * i;
+            var data = button.userData;
+            data.i = i;
+            data.onClick = opt.onClick || function(sm, button, x, y){
+                 console.log('button ' + button.userData.i + ' clicked')
+            };
             group.add(button);
             i += 1;
         }
