@@ -13,6 +13,21 @@ var createPointerDownHandler = function(sm){
     };
 };
 
+// create a button group;
+var createButtonGroup = function(){
+    var group = new THREE.Group();
+    var i = 0;
+    while(i < 3){
+        var button = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 2),
+            new THREE.MeshNormalMaterial());
+        button.position.y = 1 - 1.25 * i;
+        group.add(button);
+        i += 1;
+    }
+    return group;
+};
+
 // STATE MACHINE (sm) OBJECT
 var createSMObject = function(){
     var sm = {
@@ -26,13 +41,10 @@ var createSMObject = function(){
     };
     // add grid helper to the scene
     sm.scene.add(new THREE.GridHelper(9, 9));
-    // adding a box to the scene
-    var box = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial());
-    sm.scene.add(box);
+    // adding a button group to the scene
+    sm.scene.add(createButtonGroup());
     // starting positon and look at for camera
-    sm.camera.position.set(5, 5, 5);
+    sm.camera.position.set(4, 2, 2);
     sm.camera.lookAt(0, 0, 0);
     // renderer
     sm.renderer.setSize(640, 480);
@@ -63,7 +75,7 @@ var update = function(state, secs){
 
 
 // ORBIT CONTROLS
-var controls = new THREE.OrbitControls(sm.camera, sm.renderer.domElement);
+//var controls = new THREE.OrbitControls(sm.camera, sm.renderer.domElement);
 
 // LOOP
 var loop = function () {
