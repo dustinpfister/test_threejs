@@ -3,6 +3,20 @@ var smMod = (function(){
 
     var api = {};
 
+    var checkButtons = function(sm){
+        console.log(sm.pointer.x + ', ' + sm.pointer.y);
+        // set raycaster
+        sm.raycaster.setFromCamera( sm.pointer, sm.camera );
+
+        // check buttons group
+        var intersects = sm.raycaster.intersectObjects( sm.buttons.children, true );
+        console.log(intersects);
+
+    //var intersects = raycaster.intersectObjects( cubeGroup.children, true );
+    // intersects.length > 0){
+    // var mesh = intersects[0].object
+    };
+
     // create and return a pointer down hander for the given sm object
     var createPointerDownHandler = function(sm){
         return function(event) {
@@ -13,7 +27,8 @@ var smMod = (function(){
             // update sm.pointer values
             sm.pointer.x = ( x / canvas.scrollWidth ) * 2 - 1;
             sm.pointer.y = - ( y / canvas.scrollHeight ) * 2 + 1;
-            console.log(sm.pointer);
+
+            checkButtons(sm);
         };
     };
 
@@ -41,12 +56,13 @@ var smMod = (function(){
             pointer: new THREE.Vector2(1, 1),
             camera : new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000),
             renderer : new THREE.WebGLRenderer(),
-            scene : new THREE.Scene()
+            scene : new THREE.Scene(),
+            buttons: createButtonGroup()
         };
         // add grid helper to the scene
         sm.scene.add(new THREE.GridHelper(9, 9));
         // adding a button group to the scene
-        sm.scene.add(createButtonGroup());
+        sm.scene.add(sm.buttons);
         // starting positon and look at for camera
         sm.camera.position.set(4, 2, 2);
         sm.camera.lookAt(0, 0, 0);
