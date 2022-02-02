@@ -62,12 +62,27 @@ console.log(results)
     // source later UI
     new Vue({
         el:'#source-layer-ui',
-        template: '<div><input v-model="zoom" type="range" min="0" max="300" step="0.25"></div>',
+        template: '<div>'+
+            '<span> zoom: <input v-model="zoom" type="range" min="2" max="30" step="0.25"></span>' + 
+        '</div>',
+        mounted: function () {
+            this.setZoom();
+        },
         updated: function () {
-            console.log(this.$data.zoom)
+            this.setZoom();
         },
         data: {
-            zoom: 10
+            zoom: 30
+        },
+        methods: {
+            setZoom: function(){
+                var dat = this.$data,
+                x = dat.zoom * -1,
+                y = dat.zoom,
+                z = dat.zoom * -1;
+                camera.position.set(x, y, z);
+                renderer.render(scene, camera);
+            }
         }
     });
 
