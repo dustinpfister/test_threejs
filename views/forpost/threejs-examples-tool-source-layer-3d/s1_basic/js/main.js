@@ -19,8 +19,10 @@
     scene.add(camera);
     // render
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
+    renderer.setSize(320, 240);
+    var container = document.getElementById('demo');
+    container.style.width = "320px";
+    container.appendChild(renderer.domElement);
 
     // can set an on onProgress, and onLoad callbacks 
     // when creating daeObjects state object
