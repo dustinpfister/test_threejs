@@ -30,7 +30,6 @@
     container.style.height = "240px";
     container.appendChild(renderer.domElement);
 
- 
     // source later UI
     var vm = new Vue({
         el:'#source-layer-ui',
@@ -61,15 +60,22 @@
         },
         data: {
             zoom: 20,
+            r1: Math.PI / 180 * 120,
+            r2: Math.PI / 180 * 45,
             daeObjects: null
         },
         methods: {
             setZoom: function(){
-                var dat = this.$data,
-                x = dat.zoom * -1,
-                y = dat.zoom,
-                z = dat.zoom * -1;
-                camera.position.set(x, y, z);
+                //var dat = this.$data,
+                //x = dat.zoom * -1,
+                //y = dat.zoom,
+               // z = dat.zoom * -1;
+                //camera.position.set(x, y, z);
+
+var dat = this.$data;
+camera.position.setFromSphericalCoords(dat.zoom, dat.r1, dat.r2);
+camera.lookAt(0,0,0)
+
                 renderer.render(scene, camera);
             },
             loadDEAFiles: function(){
@@ -83,6 +89,7 @@
             }
         }
     });
+
 
 }
     ());
