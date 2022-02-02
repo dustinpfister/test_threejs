@@ -35,9 +35,9 @@
         el:'#source-layer-ui',
         template: '<div>'+
             '<h4>SOURCE LAYER UI: </h4>'+
-            '<span> zoom:  <input v-model="zoom" type="range" min="2" max="20" step="0.25"></span>' + 
-            '<span> phi:   <input v-model="phi" type="range" min="0" max="360" step="1"></span>' + 
-            '<span> theta: <input v-model="theta" type="range" min="0" max="360" step="1"></span>' + 
+            '<span> zoom:  <input v-model="zoom" type="range" min="2" max="20" step="0.25"></span> {{ zoom }} <br> ' + 
+            '<span> phi:   <input v-model="phi" type="range" min="0" max="360" step="1"></span> {{ phi }} <br>' + 
+            '<span> theta: <input v-model="theta" type="range" min="0" max="360" step="1"></span> {{ theta }} <br>' + 
         '</div>',
         mounted: function () {
             this.setZoom();
