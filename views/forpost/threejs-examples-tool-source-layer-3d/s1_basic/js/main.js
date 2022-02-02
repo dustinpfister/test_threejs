@@ -22,7 +22,12 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
     var container = document.getElementById('demo');
+
+    renderer.domElement.style.position = 'absolute';
+
+
     container.style.width = "320px";
+    container.style.height = "240px";
     container.appendChild(renderer.domElement);
 
  
