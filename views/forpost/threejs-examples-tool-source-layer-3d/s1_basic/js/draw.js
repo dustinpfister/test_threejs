@@ -10,8 +10,8 @@
     canvas.style.position = 'absolute';
     canvas.style.width = '320px';
     canvas.style.height = '240px';
-    ctx.fillStyle = 'rgba(0,0,0, 0.5)'
-    ctx.fillRect(0,0, canvas.width, canvas.height)
+    //ctx.fillStyle = 'rgba(0,0,0, 0.5)'
+    //ctx.fillRect(0,0, canvas.width, canvas.height)
     container.appendChild(canvas);
  
     // source later UI
@@ -19,8 +19,9 @@
         el:'#draw-layer-ui',
         template: '<div>'+
             '<h4>DRAW UI: </h4>'+
-            ' Color: <span> Color: <input v-model="color" type="color" ></span><br>' +
-            ' Size: <span> Size: <input v-model="size" type="range" min="0.5" max="20" step="0.25"></span> {{ size }} <br>' +
+            '<span> Color: <input v-model="color" type="color" ></span><br>' +
+            '<span> Size:  <input v-model="size" type="range" min="0.5" max="20" step="0.25"></span> {{ size }} <br>' +
+            '<span> Clear: <input type="button" value="Clear" v-on:click="clear" ></span><br>' +
         '</div>',
         mounted: function () {
             
@@ -33,7 +34,8 @@
             size: 1
         },
         methods: {
-            draw: function(){
+            clear: function(){
+                ctx.clearRect(-1, -1, canvas.width + 2, canvas.height + 2)
             }
         }
     });

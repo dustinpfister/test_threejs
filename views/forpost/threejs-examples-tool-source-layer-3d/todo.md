@@ -16,6 +16,6 @@
 
 * (done) start a draw.js file that will be a simple draw app for this project
 * (done) use vuejs for a ui for the draw canvas layer
-* set color with draw ui
-* set size with draw ui
+* (done) set color with draw ui
+* (done) set size with draw ui
 * clear button for draw ui
