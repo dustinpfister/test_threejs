@@ -43,7 +43,13 @@
        down: false
     };
     canvas.addEventListener('pointerdown', (e) => {
-        drawState.down = true;
+        if(e.pointerType === 'mouse'){
+            if(e.button === 0){
+                drawState.down = true;
+            }
+        }else{
+            drawState.down = true;
+        }
     });
     canvas.addEventListener('pointerup', (e) => {
         drawState.down = false;
