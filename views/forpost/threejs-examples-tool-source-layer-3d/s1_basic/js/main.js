@@ -26,7 +26,9 @@
 
     // can set an on onProgress, and onLoad callbacks 
     // when creating daeObjects state object
-    var i = 0;
+    //var i = 0;
+
+/*
     var daeObjects = DAE.create({
         onItemProgress: function(per, n, d){
             //console.log('progress: ' + per.toFixed(2) + ' ( ' + n + '/' + d + ' )');
@@ -45,6 +47,7 @@
             renderer.render(scene, camera);
         }
     });
+*/
 
 	
 /*
@@ -66,13 +69,28 @@
         '</div>',
         mounted: function () {
             this.setZoom();
+            // cretaing dea objects
+            this.$data.daeObjects = DAE.create({
+                onItemProgress: function(per, n, d){},
+                onFileLoad: function(result, allResults, daeObjects){},
+                onLoad: function(daeObjects, results){
+                    results.forEach(function(result, i){
+                        var group = DAE.createGroup(daeObjects, result);
+                        //group.position.z = 3 - 6 * i;
+                        group.z = 0;
+                        scene.add(group);
+                    });
+                    renderer.render(scene, camera);
+                }
+            });
             this.loadDEAFiles();
         },
         updated: function () {
             this.setZoom();
         },
         data: {
-            zoom: 20
+            zoom: 20,
+            daeObjects: null
         },
         methods: {
             setZoom: function(){
@@ -84,7 +102,7 @@
                 renderer.render(scene, camera);
             },
             loadDEAFiles: function(){
-                DAE.loadAll(daeObjects, {
+                DAE.loadAll(this.$data.daeObjects, {
                     baseUrl: '/dae',
                     relUrls: [
                         //'rpi4/rpi4_start_box.dae',
