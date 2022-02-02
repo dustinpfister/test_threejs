@@ -35,7 +35,9 @@
         el:'#source-layer-ui',
         template: '<div>'+
             '<h4>SOURCE LAYER UI: </h4>'+
-            '<span> zoom: <input v-model="zoom" type="range" min="2" max="20" step="0.25"></span>' + 
+            '<span> zoom:  <input v-model="zoom" type="range" min="2" max="20" step="0.25"></span>' + 
+            '<span> phi:   <input v-model="phi" type="range" min="0" max="360" step="1"></span>' + 
+            '<span> theta: <input v-model="theta" type="range" min="0" max="360" step="1"></span>' + 
         '</div>',
         mounted: function () {
             this.setZoom();
@@ -66,18 +68,11 @@
         },
         methods: {
             setZoom: function(){
-                //var dat = this.$data,
-                //x = dat.zoom * -1,
-                //y = dat.zoom,
-               // z = dat.zoom * -1;
-                //camera.position.set(x, y, z);
-
-var dat = this.$data,
-phi = dat.phi / 380 * (Math.PI * 2),
-theta = dat.theta / 380 * (Math.PI * 2);
-camera.position.setFromSphericalCoords(dat.zoom, phi, theta);
-camera.lookAt(0,0,0)
-
+                var dat = this.$data,
+                phi = dat.phi / 360 * (Math.PI * 2),
+                theta = dat.theta / 360 * (Math.PI * 2);
+                camera.position.setFromSphericalCoords(dat.zoom, phi, theta);
+                camera.lookAt(0,0,0);
                 renderer.render(scene, camera);
             },
             loadDEAFiles: function(){
