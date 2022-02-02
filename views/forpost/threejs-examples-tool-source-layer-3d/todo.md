@@ -1,6 +1,9 @@
 # threejs-examples-dae-tools todo list
 
 
+## () - r2 - orbit controls
+* set things up so orbit controls can be used with a center click of the top canvas
+
 ## () - r1 - load dea by File element
 * add support for loading dea files by way of a File element rather than HTTP in dae_tools.
 
