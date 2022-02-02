@@ -36,8 +36,6 @@
         },
         onLoad: function(daeObjects, results){
 
-console.log(results)
-
             results.forEach(function(result, i){
                 var group = DAE.createGroup(daeObjects, result);
                 //group.position.z = 3 - 6 * i;
@@ -49,7 +47,7 @@ console.log(results)
     });
 
 	
-
+/*
     DAE.loadAll(daeObjects, {
         baseUrl: '/dae',
         relUrls: [
@@ -57,22 +55,24 @@ console.log(results)
             'obj/obj.dae'
         ]
     });
+*/
 
 
     // source later UI
-    new Vue({
+    var vm = new Vue({
         el:'#source-layer-ui',
         template: '<div>'+
-            '<span> zoom: <input v-model="zoom" type="range" min="2" max="30" step="0.25"></span>' + 
+            '<span> zoom: <input v-model="zoom" type="range" min="2" max="20" step="0.25"></span>' + 
         '</div>',
         mounted: function () {
             this.setZoom();
+            this.loadDEAFiles();
         },
         updated: function () {
             this.setZoom();
         },
         data: {
-            zoom: 30
+            zoom: 20
         },
         methods: {
             setZoom: function(){
@@ -82,10 +82,18 @@ console.log(results)
                 z = dat.zoom * -1;
                 camera.position.set(x, y, z);
                 renderer.render(scene, camera);
+            },
+            loadDEAFiles: function(){
+                DAE.loadAll(daeObjects, {
+                    baseUrl: '/dae',
+                    relUrls: [
+                        //'rpi4/rpi4_start_box.dae',
+                       'obj/obj.dae'
+                    ]
+                });
             }
         }
     });
-
 
 }
     ());
