@@ -29,11 +29,38 @@
          
         },
         data: {
-            color: '#000000'
+            color: '#000000',
+            size: 1
         },
         methods: {
             draw: function(){
             }
+        }
+    });
+
+    var drawState = {
+       down: false
+    };
+
+    canvas.addEventListener('pointerdown', (e) => {
+        drawState.down = true;
+    });
+
+    canvas.addEventListener('pointerup', (e) => {
+        drawState.down = false;
+    });
+
+    canvas.addEventListener('pointermove', (e) => {
+        e.preventDefault();
+        if(drawState.down){
+            var bx = canvas.getBoundingClientRect(),
+            dat = vm.$data,
+            x = e.clientX - bx.left,
+            y = e.clientY - bx.top;
+            ctx.fillStyle = dat.color;
+            ctx.beginPath();
+            ctx.arc(x, y, dat.size, 0, Math.PI * 2);
+            ctx.fill();
         }
     });
 
