@@ -4,6 +4,9 @@ This aim for this project example is to make a simple source layer applaction fo
 
 
 ## Files needed
+* three.js r127+
+* ColladaLoader.js from three.js r127 repo on github
+* vue.min.js 2.6.14
 
 
 ## Videos for this post
