@@ -48,6 +48,9 @@
     canvas.addEventListener('pointerup', (e) => {
         drawState.down = false;
     });
+    canvas.addEventListener('pointerout', (e) => {
+        drawState.down = false;
+    });
     canvas.addEventListener('pointermove', (e) => {
         e.preventDefault();
         if(drawState.down){
