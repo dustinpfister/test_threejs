@@ -60,8 +60,8 @@
         },
         data: {
             zoom: 20,
-            r1: Math.PI / 180 * 120,
-            r2: Math.PI / 180 * 45,
+            phi: 65,
+            theta: 45,
             daeObjects: null
         },
         methods: {
@@ -72,8 +72,10 @@
                // z = dat.zoom * -1;
                 //camera.position.set(x, y, z);
 
-var dat = this.$data;
-camera.position.setFromSphericalCoords(dat.zoom, dat.r1, dat.r2);
+var dat = this.$data,
+phi = dat.phi / 380 * (Math.PI * 2),
+theta = dat.theta / 380 * (Math.PI * 2);
+camera.position.setFromSphericalCoords(dat.zoom, phi, theta);
 camera.lookAt(0,0,0)
 
                 renderer.render(scene, camera);
