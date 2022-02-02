@@ -35,6 +35,7 @@
     var vm = new Vue({
         el:'#source-layer-ui',
         template: '<div>'+
+            '<h4>SOURCE LAYER UI: </h4>'+
             '<span> zoom: <input v-model="zoom" type="range" min="2" max="20" step="0.25"></span>' + 
         '</div>',
         mounted: function () {

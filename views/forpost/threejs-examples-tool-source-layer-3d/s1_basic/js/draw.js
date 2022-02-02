@@ -19,6 +19,7 @@
     var vm = new Vue({
         el:'#draw-layer-ui',
         template: '<div>'+
+            '<h4>DRAW UI: </h4>'+
             '<span> Color: <input v-model="color" type="color" ></span>' + 
         '</div>',
         mounted: function () {
