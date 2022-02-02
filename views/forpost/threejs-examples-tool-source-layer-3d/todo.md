@@ -11,5 +11,8 @@
 * (done) have a zoom range input element for now
 * (done) use dea tools object as part of vue data object
 
-* start a draw.js file that will be a simple draw app for this project
-* use vuejs for a ui for the draw canvas layer
+* (done) start a draw.js file that will be a simple draw app for this project
+* (done) use vuejs for a ui for the draw canvas layer
+* set color with draw ui
+* set size with draw ui
+* clear button for draw ui

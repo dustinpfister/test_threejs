@@ -19,7 +19,8 @@
         el:'#draw-layer-ui',
         template: '<div>'+
             '<h4>DRAW UI: </h4>'+
-            '<span> Color: <input v-model="color" type="color" ></span>' +
+            ' Color: <span> Color: <input v-model="color" type="color" ></span><br>' +
+            ' Size: <span> Size: <input v-model="size" type="range" min="0.5" max="20" step="0.25"></span> {{ size }} <br>' +
         '</div>',
         mounted: function () {
             
