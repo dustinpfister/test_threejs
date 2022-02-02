@@ -4,5 +4,5 @@
 ## ( ) - r0 - start with source from dae tools
 * (done) start with the source code from daeTools
 * (done) make the dae tools part of the source code of this example
-* start using vuejs for this project, starting with a simple UI for adjusting things like the camera
+* start using vuejs for this project in the main.js file
 

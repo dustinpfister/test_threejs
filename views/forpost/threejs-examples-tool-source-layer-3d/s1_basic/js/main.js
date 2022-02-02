@@ -29,31 +29,46 @@
     var i = 0;
     var daeObjects = DAE.create({
         onItemProgress: function(per, n, d){
-            console.log('progress: ' + per.toFixed(2) + ' ( ' + n + '/' + d + ' )');
+            //console.log('progress: ' + per.toFixed(2) + ' ( ' + n + '/' + d + ' )');
         },
         onFileLoad: function(result, allResults, daeObjects){
-            console.log('fileLoad');
+            
         },
         onLoad: function(daeObjects, results){
+
+console.log(results)
+
             results.forEach(function(result, i){
                 var group = DAE.createGroup(daeObjects, result);
-                group.position.z = 3 - 6 * i;
+                //group.position.z = 3 - 6 * i;
+                group.z = 0;
                 scene.add(group);
             });
             renderer.render(scene, camera);
         }
     });
 
-    // load all should work like this
-    // when doing so the onLoad method
-    // will be called after any additional 
-    // callbacks used here
+	
+
     DAE.loadAll(daeObjects, {
         baseUrl: '/dae',
         relUrls: [
-            'rpi4/rpi4_start_box.dae',
+            //'rpi4/rpi4_start_box.dae',
             'obj/obj.dae'
         ]
+    });
+
+
+    // source later UI
+    new Vue({
+        el:'#source-layer-ui',
+        template: '<div><input v-model="zoom" type="range" min="0" max="300" step="0.25"></div>',
+        updated: function () {
+            console.log(this.$data.zoom)
+        },
+        data: {
+            zoom: 10
+        }
     });
 
 
