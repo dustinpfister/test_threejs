@@ -9,5 +9,7 @@
 * (done) make the dae tools part of the source code of this example
 * (done) start using vuejs for this project in the main.js file
 * (done) have a zoom range input element for now
+* (done) use dea tools object as part of vue data object
 
-* see about having a data.files array in the vue instance to be used for a methods.loadDeaFiles method
+* start a draw.js file that will be a simple draw app for this project
+* use vuejs for a ui for the draw canvas layer

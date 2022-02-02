@@ -17,6 +17,7 @@
     camera.add(pl);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
+
     // render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(320, 240);
@@ -24,43 +25,7 @@
     container.style.width = "320px";
     container.appendChild(renderer.domElement);
 
-    // can set an on onProgress, and onLoad callbacks 
-    // when creating daeObjects state object
-    //var i = 0;
-
-/*
-    var daeObjects = DAE.create({
-        onItemProgress: function(per, n, d){
-            //console.log('progress: ' + per.toFixed(2) + ' ( ' + n + '/' + d + ' )');
-        },
-        onFileLoad: function(result, allResults, daeObjects){
-            
-        },
-        onLoad: function(daeObjects, results){
-
-            results.forEach(function(result, i){
-                var group = DAE.createGroup(daeObjects, result);
-                //group.position.z = 3 - 6 * i;
-                group.z = 0;
-                scene.add(group);
-            });
-            renderer.render(scene, camera);
-        }
-    });
-*/
-
-	
-/*
-    DAE.loadAll(daeObjects, {
-        baseUrl: '/dae',
-        relUrls: [
-            //'rpi4/rpi4_start_box.dae',
-            'obj/obj.dae'
-        ]
-    });
-*/
-
-
+ 
     // source later UI
     var vm = new Vue({
         el:'#source-layer-ui',
