@@ -1,6 +1,6 @@
 (function (api) {
 
-    // create aa daeObjects state object
+    // create a daeObjects state object
     api.create = function (opt) {
         opt = opt || {};
         var state = {
@@ -13,7 +13,7 @@
     };
 
     // load one dae file
-    api.loadOne = function(daeObjects, url, onFileLoad){
+    var loadOne = function(daeObjects, url, onFileLoad){
         // I will want a manager for this
         var manager = new THREE.LoadingManager();
         // the collada loader instance
@@ -64,7 +64,7 @@
         var n = 0,
         d = urls.length;
         return Promise.all(urls.map(function(url, i){
-            return api.loadOne(daeObjects, url, daeObjects.onFileLoad).then(function(){
+            return loadOne(daeObjects, url, daeObjects.onFileLoad).then(function(){
                 n += 1;
                 daeObjects.onItemProgress(n / d, n , d);
             });
