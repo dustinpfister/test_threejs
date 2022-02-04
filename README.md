@@ -1,6 +1,6 @@
 # test_threejs
 
-This is a collection of work using three.js to create simple demos of threejs features, simple project examples, and videos. I then I intend to write about the state of the source code worked out here in blog posts that I will then publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). 
+This is a collection of work using three.js to create simple demos of threejs features, simple project examples, videos, and so forth. In other words I am just simply testing out threejs, and what can be done with threejs along with other javaScript libraries apparitions like blender, and a little vanilla javaScript code here and there. I then I intend to write about the state of the source code worked out here in blog posts that I will then publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). 
 
 In the views folder there is the demos folder, and in that folder I have folders for each revision number that I have made demos for. Whenever I need to update the source code for one or more examples on a blog post, I will just copy a demo from one revision folder to another and make any changes that need to be made. I have also started ad additional folder that has to do with the creation of simple video projects that make use of my video ui script that I worked out here.
 
