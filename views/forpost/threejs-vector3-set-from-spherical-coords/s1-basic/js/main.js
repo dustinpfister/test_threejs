@@ -1,11 +1,14 @@
 
 (function () {
 
-	var v = new THREE.Vector3(0,0,0);
-	
-	v.setFromSphericalCoords(10, 1.57, 1.57)
-	
-	console.log(v);
+    var v = new THREE.Vector3(0,0,0);
+
+    var phi = THREE.MathUtils.degToRad(90),
+   theta = THREE.MathUtils.degToRad(90);
+
+    v.setFromSphericalCoords(10, phi, theta);
+
+    console.log(v);
 
 /*
     // scene
