@@ -22,7 +22,13 @@
     renderer.setSize(640, 480);
     var container = document.getElementById('demo');
     container.appendChild(renderer.domElement);
-
+ 
+    // point light
+    //var pl = new THREE.PointLight(0xffffff);
+    //pl.position.set(2, 5, 3);
+    //camera.add(pl);
+    //scene.add(pl);
+ 
     // A Mesh with a Sphere for geometry and using the Standard Material
     var mesh = new THREE.Mesh(
         new THREE.SphereGeometry(3, 30, 30),
