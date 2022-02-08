@@ -1,4 +1,4 @@
-# threejs-vector3-set-from-spherical-coords
+# threejs-getting-started
 
 ## Files needed
 
