@@ -23,6 +23,7 @@
     // ---------- ----------
     var state = {
         lt: new Date(),
+        fps: 12,
         radian : 0,
         euler : new THREE.Euler(0, 0, 0)
     };
@@ -30,7 +31,7 @@
         var now = new Date(),
         secs = (now - state.lt) / 1000;
         requestAnimationFrame(loop);
-        if (secs >= 0.075) {
+        if (secs >= 1 / state.fps) {
             state.euler.z += THREE.MathUtils.degToRad(90) * secs;
             state.euler.z = THREE.MathUtils.euclideanModulo(state.euler.z, Math.PI * 2);
             mesh.position.set(1, 0, 0);
