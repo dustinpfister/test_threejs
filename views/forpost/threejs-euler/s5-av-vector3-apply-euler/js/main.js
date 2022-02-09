@@ -23,18 +23,18 @@
     // ---------- ----------
     var state = {
         lt: new Date(),
-        radian : 0
+        radian : 0,
+        euler : new THREE.Euler(0, 0, 0)
     };
     var loop = function () {
         var now = new Date(),
         secs = (now - state.lt) / 1000;
         requestAnimationFrame(loop);
         if (secs >= 0.075) {
-            state.radian += THREE.MathUtils.degToRad(90) * secs;
-            state.radian = THREE.MathUtils.euclideanModulo(state.radian, Math.PI * 2);
-            var e = new THREE.Euler(0, state.radian, 0);
-            mesh.position.set(1, 0, 0)
-            mesh.position.applyEuler(e);
+            state.euler.z += THREE.MathUtils.degToRad(90) * secs;
+            state.euler.z = THREE.MathUtils.euclideanModulo(state.euler.z, Math.PI * 2);
+            mesh.position.set(1, 0, 0);
+            mesh.position.applyEuler(state.euler);
             renderer.render(scene, camera);
             state.lt = now;
         }
