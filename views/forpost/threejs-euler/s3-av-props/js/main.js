@@ -1,46 +1,44 @@
 
 (function () {
- 
-    // scene
+    // a Mesh
+    var meshA = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshNormalMaterial());
+    // cloning ths mesh
+    var box1 = meshA.clone(),
+    box2 = meshA.clone(),
+    box3 = meshA.clone();
+    // adjusting positions
+    box2.position.set(-1.5, 0, 0);
+    box3.position.set(1.5, 0, 0);
+    // creating a scene
     var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(20, 20));
-    scene.background = new THREE.Color('black');
- 
-    // camera
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    //camera.position.set(-17, 10, -17);
-    camera.position.setFromSphericalCoords(
-        25,
-        THREE.MathUtils.degToRad(70),
-        THREE.MathUtils.degToRad(225)
-    );
+    // add the box mesh to the scene
+    scene.add(box1);
+    scene.add(box2);
+    scene.add(box3);
+    // camera and renderer
+    var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+    camera.position.set(3, 3, 3);
     camera.lookAt(0, 0, 0);
-    scene.add(camera);
- 
-    // render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
-    var container = document.getElementById('demo');
-    container.appendChild(renderer.domElement);
-
-    // A Mesh with a Sphere for geometry and using the Standard Material
-    var mesh = new THREE.Mesh(
-        new THREE.SphereGeometry(3, 30, 30),
-        new THREE.MeshBasicMaterial({
-            color: new THREE.Color('red'),
-            wireframe: true
-        })
-    );
-    scene.add(mesh);
- 
-    // USING setFromSphericalCoords to set position of the Mesh
-    var radius = 10,
-    phi = THREE.MathUtils.degToRad(90),
-    theta = THREE.MathUtils.degToRad(270);
-    mesh.position.setFromSphericalCoords(radius, phi, theta);
- 
-    // render
-    renderer.render(scene, camera);
- 
-}
-    ());
+    document.getElementById('demo').appendChild(renderer.domElement);
+    // loop
+    var lt = new Date();
+    var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
+        requestAnimationFrame(loop);
+        if (secs >= 0.075) {
+            lt = now;
+            // USING EULER XYZ PROPS
+            box2.rotation.x += 1 * secs;
+            box2.rotation.x %= Math.PI * 2;
+            box3.rotation.y += 1 * secs;
+            box3.rotation.y %= Math.PI * 2;
+            renderer.render(scene, camera);
+        }
+    };
+    loop();
+}());
