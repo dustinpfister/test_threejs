@@ -1,6 +1,3 @@
-# threejs-vector3-set-from-spherical-coords
-
-## Files needed
+# threejs-euler
 
 
-## Videos for this post
