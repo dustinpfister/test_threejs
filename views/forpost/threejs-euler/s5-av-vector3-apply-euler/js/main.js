@@ -23,7 +23,7 @@
     // ---------- ----------
     var state = {
         lt: new Date(),
-        fps: 12,
+        fps: 24,
         radian : 0,
         euler : new THREE.Euler(0, 0, 0)
     };
@@ -32,10 +32,16 @@
         secs = (now - state.lt) / 1000;
         requestAnimationFrame(loop);
         if (secs >= 1 / state.fps) {
+            // updating state.euler, and using Vector3.applyEuler with state.euler
+            // by way of mesh.position which is an instance of Vector3
             state.euler.z += THREE.MathUtils.degToRad(90) * secs;
             state.euler.z = THREE.MathUtils.euclideanModulo(state.euler.z, Math.PI * 2);
             mesh.position.set(1, 0, 0);
             mesh.position.applyEuler(state.euler);
+            // doing a spin also
+            mesh.rotation.y += THREE.MathUtils.degToRad(360) * secs;
+            mesh.rotation.y = THREE.MathUtils.euclideanModulo(mesh.rotation.y, Math.PI * 2);
+            // render
             renderer.render(scene, camera);
             state.lt = now;
         }
