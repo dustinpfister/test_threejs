@@ -5,5 +5,5 @@
 * revise s3-av-props example
 * revise s4-av-set-method example
 
-## () - new av-vector3-apply-euler example
-* new example on the apply euler method of the vector3 class
+## ( done 02/09/2022 ) - new av-vector3-apply-euler example
+* (done) new example on the apply euler method of the vector3 class
