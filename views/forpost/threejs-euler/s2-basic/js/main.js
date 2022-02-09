@@ -1,26 +1,33 @@
-
 (function () {
-    // creating a vector3 instance
-    var a = new THREE.Vector3();
-    // getting radian values for phi and theta with the help
-    // of the MathUtils.degToRad method
-    var phi = THREE.MathUtils.degToRad(54.74),
-    theta = THREE.MathUtils.degToRad(45);
-    // setting to position of the vector3 with a radius and two angles
-    a.setFromSphericalCoords(10, phi, theta);
-    console.log(a);
-
-    // distnaceTo
-    var radius = new THREE.Vector3(0, 0, 0).distanceTo( new THREE.Vector3(10, 10, 10));
-    var b = new THREE.Vector3().setFromSphericalCoords(radius, 
-        THREE.MathUtils.degToRad(45),
-        THREE.MathUtils.degToRad(0));
-    console.log(b);
- 
- 
-    // output
-    var p = document.createElement('p');
-    p.innerText = a.x.toFixed(2) + ', ' + a.y.toFixed(2) + ',' + a.z.toFixed(2);
-    document.body.appendChild(p); // 5.77, 5.77,5.77
-}
-    ());
+    // AN INSTANCE OF THREE.Euler
+    var euler = new THREE.Euler(Math.PI / 180 * 45, 0, 0)
+    // a Mesh
+    var meshA = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial());
+    // cloning this mesh
+    var box1 = meshA.clone(),
+    box2 = meshA.clone(),
+    box3 = meshA.clone();
+    // USING THE INSTANCE OF EULER TO SET THE STATE
+    // OF THE EULER INSTANCES OF THESE MESH CLONES
+    box2.rotation.copy(euler);
+    box3.rotation.copy(euler);
+    // adjusting positions
+    box2.position.set(-1,0,0);
+    box3.position.set(1,0,0);
+    // creating a scene
+    var scene = new THREE.Scene();
+    // add the box mesh to the scene
+    scene.add(box1);
+    scene.add(box2);
+    scene.add(box3);
+    // camera and renderer
+    var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+    camera.position.set(2, 2, 2);
+    camera.lookAt(0, 0, 0);
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
+    renderer.render(scene, camera);
+}());
