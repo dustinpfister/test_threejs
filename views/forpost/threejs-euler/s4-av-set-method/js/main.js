@@ -1,52 +1,42 @@
 
 (function () {
- 
-    // scene
+    // a Mesh
+    var meshA = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshNormalMaterial());
+    // creating a scene
     var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(20, 20));
-    scene.background = new THREE.Color('black');
- 
-    // camera
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    //camera.position.set(-17, 10, -17);
-    camera.position.setFromSphericalCoords(
-        25,
-        THREE.MathUtils.degToRad(70),
-        THREE.MathUtils.degToRad(225)
-    );
+    // add the box mesh to the scene
+    scene.add(meshA);
+    // camera and renderer
+    var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+    camera.position.set(3, 3, 3);
     camera.lookAt(0, 0, 0);
-    scene.add(camera);
- 
-    // render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
-    var container = document.getElementById('demo');
-    container.appendChild(renderer.domElement);
- 
-    // point light
-    //var pl = new THREE.PointLight(0xffffff);
-    //pl.position.set(2, 5, 3);
-    //camera.add(pl);
-    //scene.add(pl);
- 
-    // A Mesh with a Sphere for geometry and using the Standard Material
-    var mesh = new THREE.Mesh(
-        new THREE.SphereGeometry(3, 30, 30),
-        new THREE.MeshBasicMaterial({
-            color: new THREE.Color('red'),
-            wireframe: true
-        })
-    );
-    scene.add(mesh);
- 
-    // USING setFromSphericalCoords to set position of the Mesh
-    var radius = 10,
-    phi = THREE.MathUtils.degToRad(90),
-    theta = THREE.MathUtils.degToRad(270);
-    mesh.position.setFromSphericalCoords(radius, phi, theta);
- 
-    // render
-    renderer.render(scene, camera);
- 
+    document.getElementById('demo').appendChild(renderer.domElement);
+    // loop
+    var lt = new Date();
+    var state = {
+        x: 0,
+        y: 0,
+        z: 0
+    };
+    var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
+        requestAnimationFrame(loop);
+        if (secs >= 0.075) {
+            lt = now;
+            state.x += 0.5 * secs;
+            state.y += 1.0 * secs;
+            state.z += 1.5 * secs;
+            state.x %= Math.PI * 2;
+            // USING EULER SET METHOD
+            meshA.rotation.set(state.x, state.y, state.z);
+            renderer.render(scene, camera);
+        }
+    };
+    loop();
 }
     ());
