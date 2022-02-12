@@ -9,18 +9,19 @@
     canvas.width = 640;
     canvas.height = 480;
     canvas.style.position = 'absolute';
-	canvas.style.top = '-20px';
+    canvas.style.top = '0px';
+    canvas.style.left = '0px';
     canvas.style.width = '640px';
     canvas.style.height = '480px';
-	
-	ctx.fillRect(0,0, canvas.width, canvas.height);
-	
+
+    //ctx.fillRect(0,0, canvas.width, canvas.height);
+
     canvas.onselectstart = function () { return false; }
     container.appendChild(canvas);
 
-	var div_dl = document.createElement('div');
-	div_dl.id = 'draw-layer-ui';
-	container.appendChild(div_dl);
+    var div_dl = document.createElement('div');
+    div_dl.id = 'draw-layer-ui';
+    container.appendChild(div_dl);
 
 
     // ---------- ----------
