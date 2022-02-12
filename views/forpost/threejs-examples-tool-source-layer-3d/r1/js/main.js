@@ -38,7 +38,8 @@
             '<h4>SOURCE LAYER 3D <span>{{ version }}</span> UI: </h4>' +
             '<h5>Model</h5>' +
             '<span> <input type="button" value="clear" v-on:click="clear"> </span><br> ' +
-            '<span> <input type="file" v-on:change="loadFile"> </span><br> ' +
+            '<span> dea file: <input type="file" v-on:change="loadFile"> </span><br> ' +
+            '<span> dae path: <input type="text" v-model="path" > </span><br> ' +
             '<h5>Zoom and Rotate</h5>' +
             '<span> zoom:  <input v-model="zoom" type="range" min="2" max="20" step="0.25"></span> {{ zoom }} <br> ' +
             '<span> phi:   <input v-model="phi" type="range" min="0" max="360" step="1"></span> {{ phi }} <br>' +
