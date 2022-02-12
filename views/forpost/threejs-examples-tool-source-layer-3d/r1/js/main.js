@@ -71,6 +71,7 @@
             daeObjects: null
         },
         methods: {
+            // set zoom and rotation
             setZoom: function(){
                 var dat = this.$data,
                 phi = dat.phi / 360 * (Math.PI * 2),
@@ -79,6 +80,7 @@
                 camera.lookAt(0,0,0);
                 renderer.render(scene, camera);
             },
+            // clear the source layer
             clear: function(){
                 console.log('clear');
                 this.$data.daeObjects = DAE.create({});
@@ -90,6 +92,7 @@
                 })
                 renderer.render(scene, camera);
             },
+            // load dea files
             loadDEAFiles: function(){
                 DAE.loadAll(this.$data.daeObjects, {
                     baseUrl: '/dae',
