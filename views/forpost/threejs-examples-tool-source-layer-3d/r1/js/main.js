@@ -95,7 +95,25 @@
             },
 			// load a single file by file input element
             loadFile: function(e){
-				console.log(e)
+				e.target.files[0].text()
+				.then(function(text){
+					
+					
+				console.log(text);
+				//var obj = THREE.ColladaLoader.parse(text)
+					
+					        var manager = new THREE.LoadingManager();
+        // the collada loader instance
+        var loader = new THREE.ColladaLoader(manager);
+		
+		//console.log(e.target.files[0])
+		var path = '/dae/rpi4/';
+		var obj = loader.parse(text, path)
+		
+		console.log(obj)
+					
+					
+				})
 			},
             // load dea files
             loadDEAFiles: function(){

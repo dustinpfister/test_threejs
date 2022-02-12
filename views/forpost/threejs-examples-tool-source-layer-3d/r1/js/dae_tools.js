@@ -33,6 +33,9 @@
             loader.load(url,
                 // done
                 function (result) {
+					
+					console.log(result)
+					
                     resultValue = result;
                     daeObjects.results.push(result);
                 },
