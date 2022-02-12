@@ -66,6 +66,7 @@
             },
             data: {
                 version: 'r1',
+                path: '/dae/rpi4/',
                 zoom: 20,
                 phi: 65,
                 theta: 45,
@@ -95,15 +96,14 @@
                 },
                 // load a single file by file input element
                 loadFile: function (e) {
-                    var daeObjects = this.$data.daeObjects;
+                    var data = this.$data;
+                    var daeObjects = data.daeObjects;
                     e.target.files[0].text()
                     .then(function (text) {
                         var manager = new THREE.LoadingManager();
                         // the collada loader instance
                         var loader = new THREE.ColladaLoader(manager);
-                        //console.log(e.target.files[0])
-                        var path = '/dae/rpi4/';
-                        var result = loader.parse(text, path)
+                        var result = loader.parse(text, data.path)
                         manager.onLoad = function(){
                             renderer.render(scene, camera);
                         }

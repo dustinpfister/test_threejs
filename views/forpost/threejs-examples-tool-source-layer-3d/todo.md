@@ -6,7 +6,8 @@
 
 ## () - r1 - load dea by File element
 * (done) add a clear source layer button in source layer ui
-* add support for loading dea files by way of a File element rather than HTTP in dae_tools.
+* (done) add support for loading dea files by way of a File element rather than HTTP in dae_tools.
+* I am going to need a dae files text input path element
 
 ## ( 02/12/2022 ) - r0 - start with source from dae tools
 * (done) start with the source code from daeTools
