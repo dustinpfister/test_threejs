@@ -48,17 +48,17 @@
                 this.setZoom();
                 // creating dea objects
                 this.$data.daeObjects = DAE.create({
-                        onItemProgress: function (per, n, d) {},
-                        onFileLoad: function (result, allResults, daeObjects) {},
-                        onLoad: function (daeObjects, results) {
-                            results.forEach(function (result, i) {
-                                var group = DAE.createGroup(daeObjects, result);
-                                group.z = 0;
-                                scene.add(group);
-                            });
-                            renderer.render(scene, camera);
-                        }
-                    });
+                    onItemProgress: function (per, n, d) {},
+                    onFileLoad: function (result, allResults, daeObjects) {},
+                    onLoad: function (daeObjects, results) {
+                        results.forEach(function (result, i) {
+                            var group = DAE.createGroup(daeObjects, result);
+                            group.z = 0;
+                            scene.add(group);
+                        });
+                        renderer.render(scene, camera);
+                    }
+                });
                 this.loadDEAFiles();
             },
             updated: function () {
@@ -95,9 +95,7 @@
                 },
                 // load a single file by file input element
                 loadFile: function (e) {
-					
-					var daeObjects = this.$data.daeObjects;
-					
+                    var daeObjects = this.$data.daeObjects;
                     e.target.files[0].text()
                     .then(function (text) {
                         var manager = new THREE.LoadingManager();
@@ -105,14 +103,12 @@
                         var loader = new THREE.ColladaLoader(manager);
                         //console.log(e.target.files[0])
                         var path = '/dae/rpi4/';
-                        var result = loader.parse(text, path);
-						
-					    var group = DAE.createGroup(daeObjects, result);
-						console.log(result);
-						console.log
-						scene.add(group);
-						
-                    renderer.render(scene, camera);
+                        var result = loader.parse(text, path)
+                        manager.onLoad = function(){
+                            renderer.render(scene, camera);
+                        }
+                        var group = DAE.createGroup(daeObjects, result);
+                        scene.add(group);
                     })
                 },
                 // load dea files
