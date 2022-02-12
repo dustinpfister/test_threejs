@@ -18,4 +18,5 @@
 * (done) set color with draw ui
 * (done) set size with draw ui
 * (done) clear button for draw ui
-* display revision number
+* (done) display revision number
+* (done) fixed a problem with touch by using touch action none css
