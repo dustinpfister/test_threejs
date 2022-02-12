@@ -1,7 +1,8 @@
-
 (function () {
 
-    // create and append canvae element
+    // ---------- ----------
+    // CANVAS
+    // ---------- ----------
     var container = document.getElementById('demo'),
     canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
@@ -13,8 +14,10 @@
     //ctx.fillStyle = 'rgba(0,0,0, 0.5)'
     //ctx.fillRect(0,0, canvas.width, canvas.height)
     container.appendChild(canvas);
- 
-    // source later UI
+
+    // ---------- ----------
+    // DRAW LAYER UI
+    // ---------- ----------
     var vm = new Vue({
         el:'#draw-layer-ui',
         template: '<div>'+
@@ -35,12 +38,14 @@
         },
         methods: {
             clear: function(){
-                ctx.clearRect(-1, -1, canvas.width + 2, canvas.height + 2)
+                ctx.clearRect(-1, -1, canvas.width + 2, canvas.height + 2);
             }
         }
     });
-
-    // draw later events
+ 
+    // ---------- ----------
+    // DRAW LAYER EVENTS
+    // ---------- ----------
     var drawState = {
        down: false
     };

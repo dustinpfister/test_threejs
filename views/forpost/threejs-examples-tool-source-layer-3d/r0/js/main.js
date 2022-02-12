@@ -1,47 +1,42 @@
 
 (function () {
 
-    // scene
-    var scene = new THREE.Scene();
+    // ---------- ----------
+    // SCENE CAMERA LIGHT, RENDERER, and CONTAINER
+    // ---------- ----------
+    var scene = new THREE.Scene();  // scene
     scene.add(new THREE.GridHelper(20, 20));
     scene.background = new THREE.Color('cyan');
-
-    // point light
-    var pl = new THREE.PointLight(0xffffff);
+    var pl = new THREE.PointLight(0xffffff); // point light
     pl.position.set(2, 5, 3);
     scene.add(pl);
-
-    // camera
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);  // camera
     camera.position.set(-15, 15, -15);
     camera.add(pl);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
-
-    // render
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    var renderer = new THREE.WebGLRenderer(); // render
+    renderer.setSize(640, 480);
     var container = document.getElementById('demo');
-
     renderer.domElement.style.position = 'absolute';
-
-
-    container.style.width = "320px";
-    container.style.height = "240px";
+    //container.style.width = "640px";
+    container.style.height = "480px";
     container.appendChild(renderer.domElement);
 
-    // source later UI
+    // ---------- ----------
+    // SOURCE LAYER UI
+    // ---------- ----------
     var vm = new Vue({
         el:'#source-layer-ui',
         template: '<div>'+
-            '<h4>SOURCE LAYER UI: </h4>'+
+            '<h4>SOURCE LAYER 3D <span>{{ version }}<span> UI: </h4>' +
             '<span> zoom:  <input v-model="zoom" type="range" min="2" max="20" step="0.25"></span> {{ zoom }} <br> ' + 
             '<span> phi:   <input v-model="phi" type="range" min="0" max="360" step="1"></span> {{ phi }} <br>' + 
             '<span> theta: <input v-model="theta" type="range" min="0" max="360" step="1"></span> {{ theta }} <br>' + 
         '</div>',
         mounted: function () {
             this.setZoom();
-            // cretaing dea objects
+            // creating dea objects
             this.$data.daeObjects = DAE.create({
                 onItemProgress: function(per, n, d){},
                 onFileLoad: function(result, allResults, daeObjects){},
@@ -60,6 +55,7 @@
             this.setZoom();
         },
         data: {
+            version: 'r0',
             zoom: 20,
             phi: 65,
             theta: 45,
