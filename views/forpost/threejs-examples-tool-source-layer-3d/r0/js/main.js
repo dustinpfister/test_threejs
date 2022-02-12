@@ -31,6 +31,7 @@
     // ---------- ----------
     // SOURCE LAYER UI
     // ---------- ----------
+
     var vm = new Vue({
         el:'#source-layer-ui',
         template: '<div style="background:#00afaf;position:relative;left:640px;width:280px;padding:10px;">'+
@@ -87,6 +88,7 @@
             }
         }
     });
+
 
 }
     ());

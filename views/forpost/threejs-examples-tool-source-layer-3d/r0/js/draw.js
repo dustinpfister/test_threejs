@@ -6,21 +6,29 @@
     var container = document.getElementById('demo'),
     canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
-    canvas.width = 320;
-    canvas.height = 240;
+    canvas.width = 640;
+    canvas.height = 480;
     canvas.style.position = 'absolute';
-    canvas.style.width = '320px';
-    canvas.style.height = '240px';
-    //ctx.fillStyle = 'rgba(0,0,0, 0.5)'
-    //ctx.fillRect(0,0, canvas.width, canvas.height)
+	canvas.style.top = '-20px';
+    canvas.style.width = '640px';
+    canvas.style.height = '480px';
+	
+	ctx.fillRect(0,0, canvas.width, canvas.height);
+	
+    canvas.onselectstart = function () { return false; }
     container.appendChild(canvas);
+
+	var div_dl = document.createElement('div');
+	div_dl.id = 'draw-layer-ui';
+	container.appendChild(div_dl);
+
 
     // ---------- ----------
     // DRAW LAYER UI
     // ---------- ----------
     var vm = new Vue({
         el:'#draw-layer-ui',
-        template: '<div>'+
+        template: '<div style="background:#4faf00;position:relative;left:640px;width:280px;padding:10px;">'+
             '<h4>DRAW UI: </h4>'+
             '<span> Color: <input v-model="color" type="color" ></span><br>' +
             '<span> Size:  <input v-model="size" type="range" min="0.5" max="20" step="0.25"></span> {{ size }} <br>' +
