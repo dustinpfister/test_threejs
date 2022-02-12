@@ -48,7 +48,6 @@
                 onLoad: function(daeObjects, results){
                     results.forEach(function(result, i){
                         var group = DAE.createGroup(daeObjects, result);
-                        //group.position.z = 3 - 6 * i;
                         group.z = 0;
                         scene.add(group);
                     });
@@ -79,7 +78,7 @@
                 DAE.loadAll(this.$data.daeObjects, {
                     baseUrl: '/dae',
                     relUrls: [
-                        //'rpi4/rpi4_start_box.dae',
+                       //'rpi4/rpi4_start_box.dae',
                        'obj/obj.dae'
                     ]
                 });
