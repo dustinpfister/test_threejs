@@ -59,6 +59,8 @@
        down: false
     };
     canvas.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+		e.stopPropagation();
         if(e.pointerType === 'mouse'){
             if(e.button === 0){
                 drawState.down = true;
@@ -75,6 +77,8 @@
     });
     canvas.addEventListener('pointermove', (e) => {
         e.preventDefault();
+		
+		e.stopPropagation();
         if(drawState.down){
             var bx = canvas.getBoundingClientRect(),
             dat = vm.$data,
