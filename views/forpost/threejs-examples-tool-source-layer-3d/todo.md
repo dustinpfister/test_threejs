@@ -14,6 +14,7 @@
 * start a pan feature by just setting what the lookAt position is
 
 ## () - r2 - normalize and scale object
+* see about adding a having a loadFromFileInput method to the dea tools file
 * I am going to want to have controls to set a scale of the model
 * will need to normalize then set the the current scale set by controls
 
