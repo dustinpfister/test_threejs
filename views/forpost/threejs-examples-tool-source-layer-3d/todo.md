@@ -5,6 +5,7 @@
 * set things up so orbit controls can be used with a center click of the top canvas
 
 ## () - r1 - load dea by File element
+* add a clear source layer button in source layer ui
 * add support for loading dea files by way of a File element rather than HTTP in dae_tools.
 
 ## ( 02/12/2022 ) - r0 - start with source from dae tools
