@@ -1,7 +1,7 @@
 # threejs-box-helper todo list
 
-## ( ) - s4 scale example
-* start an example like the move example only using the scale method
+## ( done 02/16/2022 ) - s4 scale example
+* (done) start an example like the move example only using the scale method
 
 ## ( done 02/16/2022 ) - revise old examples
 * (done) make s2-move example less complex by just having one mesh object
