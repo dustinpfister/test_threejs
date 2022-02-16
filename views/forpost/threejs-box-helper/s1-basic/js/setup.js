@@ -4,12 +4,10 @@ var mesh = new THREE.Mesh(
     new THREE.MeshNormalMaterial());
 // add a box helper
 mesh.add(new THREE.BoxHelper(mesh, 0xffffff));
-
 // start a scene
 var scene = new THREE.Scene();
 // add the mesh to the scene
 scene.add(mesh);
-
 // everything else
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(2, 2, 2);
