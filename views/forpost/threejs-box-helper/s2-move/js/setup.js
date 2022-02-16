@@ -6,24 +6,18 @@ scene.add(new THREE.GridHelper(9, 9));
 // ADDED AS A CHILD OF THE MESH
 var mesh1 = new THREE.Mesh(
         new THREE.SphereGeometry(0.5, 30, 30),
-        new THREE.MeshStandardMaterial({
-            color: 0xff0000,
-            emissive: 0x0a0a0a
-        }));
+        new THREE.MeshNormalMaterial());
 mesh1.add(new THREE.BoxHelper(mesh1, 0xffff00));
 scene.add(mesh1);
  
 // ADDING A BOX HELPER DIRECTLY TO THE SCENE
 scene.add(new THREE.BoxHelper(mesh1, 0xffffff));
- 
-// light
-var light = new THREE.PointLight(0xffffff);
-light.position.set(0, 3, 0);
-scene.add(light);
-// camera renderer
+
+// camera
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(5, 5, 5);
 camera.lookAt(1, 0, 1);
+// render
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
