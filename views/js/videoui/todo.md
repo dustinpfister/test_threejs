@@ -1,7 +1,7 @@
 # todo list for test_three.js
 
-## () - 0.1.0 - Fix whatever is wrong
-* for one reason or another this no longer seems to work in any browser
+## () - 0.1.0 - Fix for ui.js
+* see about fidning a fix for using whammy again
 
 ## ( done 05/30/2021 ) 0.0.0 - Basic idea working with VIDEOS PATH and videoUI
     * ( done 5/25/2021 ) start a /views/videos/\[videoName\] path

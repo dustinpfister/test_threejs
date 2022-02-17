@@ -14,22 +14,22 @@ var videoUI = (function () {
     var exportVid = function (blob) {
         console.log('exporting from blob')
         var vid = document.createElement('video');
+
+
+        // using URL.createObjectURL to create a url and setting that to vid.src NO LONGER WORKS
         //vid.src = URL.createObjectURL(blob);
 
+        // setting the blob as vid.srcObject DOS NOT WORK
+        //vid.srcObject = blob;
 
-        var sourceObject = new MediaStream();
+        // CAN NOT GET ANYTHING TO WORK WITH MEDIASTREAM
+        //var sourceObject = new MediaStream();
+        //vid.srcObject = sourceObject;
 
-//sourceObject.addTrack();
 
-console.log(blob.stream());
-
-console.log(sourceObject)
-
-        vid.srcObject = sourceObject // blob;
         vid.loop = true;
         vid.controls = true;
         vid.addEventListener('canplay', function(){
-            console.log('yes');
             document.body.appendChild(vid);
         });
 
@@ -114,6 +114,7 @@ console.log(sourceObject)
 
     // on create video
     var onCreateVideo = function () {
+
         console.log('create video');
         var frame = 0,
         maxFrame = LoadedVideo.maxFrame;
@@ -131,6 +132,7 @@ console.log(sourceObject)
             console.log('compile');
             exportVid(output);
         });
+
     };
 
     var onPlay = function () {
