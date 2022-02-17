@@ -1,11 +1,15 @@
 # threejs-camera-move
 
+## () - improve 2-move-camera-helper
+* yet another camera move method this time one that is fixed at the back of the mesh
+* have constants at the top of the file
+
 ## () - new event based movement section
 * start a new section example that has to do with event driven movement
 
-## () - improve 2-move-camera-helper
+## ( done 02/17/2022 ) - improve 2-move-camera-helper
 * (done) have more than one move function to use with the move camera helper
-* switch between move functions
+* (done) switch between move functions
 
 ## ( done 02/17/2022 ) - new basic example
 * (done) create new 2-move-camera-helper example based off of the current basic example
