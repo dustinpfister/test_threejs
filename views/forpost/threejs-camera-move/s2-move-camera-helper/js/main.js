@@ -68,6 +68,9 @@
 
     // APP LOOP
     var secs = 0,
+    methodSecs = 0,
+    methodIndex = 0,
+    methodName = '',
     fps_update = 30,   // fps rate to update ( low fps for low CPU use, but chopy video )
     fps_movement = 60, // fps rate to move camera
     frame = 0,
@@ -80,8 +83,15 @@
         bias = getBias(per);
         requestAnimationFrame(loop);
         if(secs > 1 / fps_update){
+            methodSecs += secs;
+            if(methodSecs >= 5){
+                methodSecs = 0;
+                methodIndex += 1;
+                methodIndex %= Object.keys(camMoveMethod).length;
+            }
             // calling camera update method
-            moveCamera(camera, per, camMoveMethod.followSubject1);
+            methodName = Object.keys(camMoveMethod)[methodIndex];
+            moveCamera(camera, per, camMoveMethod[methodName]);
             // moving mesh
             mesh.position.x = -2 + 4 * bias;
             renderer.render(scene, camera);
