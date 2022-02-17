@@ -47,7 +47,7 @@
     // create sequences
     var sequence = [];
     sequence.push({
-        maxFrame: 90,
+        maxFrame: 30,
         forFrame: function(seq){
             camera.position.set(20 - 40 * seq.bias, 20, 20);
             camera.lookAt(0, 0, 0);
