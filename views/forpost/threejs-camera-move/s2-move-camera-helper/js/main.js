@@ -11,8 +11,10 @@
         return camera;
     };
 
+    var camMoveMethod = {};
+
     // follow subject1 method
-    var followSubject1 = function(camera, per){
+    camMoveMethod.followSubject1 = function(camera, per){
         var bias = 1 - Math.abs(per - 0.5) / 0.5;
         return {
             position: new THREE.Vector3(-8, 5, -8 + 16 * bias), 
@@ -21,7 +23,7 @@
     };
 
     // follow subject2 method
-    var followSubject2 = function(camera, per){
+    camMoveMethod.followSubject2 = function(camera, per){
         var rad = Math.PI * 2 * per,
         x = Math.cos(rad) * 6,
         y = -4 + 8 * (1 - Math.abs(per - 0.5) / 0.5),
@@ -35,11 +37,9 @@
     // move camera update helper
     var moveCamera = function (camera, per, moveFunc) {
         var camState = moveFunc(camera, per);
-        // position property can be used to set
-        // the position of a camera
+        // set the position and lookAt values with the
+        // data in the returned camState object
         camera.position.copy(camState.position)
-        // the rotation property or the lookAt method
-        // can be used to set rotation
         camera.lookAt(camState.lookAt);
     };
 
@@ -77,7 +77,7 @@
         requestAnimationFrame(loop);
         if(secs > 1 / fps_update){
             // calling camera update method
-            moveCamera(camera, per, followSubject1);
+            moveCamera(camera, per, camMoveMethod.followSubject1);
             // moving mesh
             mesh.position.x = -2 + 4 * bias;
             renderer.render(scene, camera);
