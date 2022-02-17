@@ -15,6 +15,8 @@ var videoUI = (function () {
         console.log('exporting from blob')
         var vid = document.createElement('video');
 
+console.log('I can get the blob at least');
+console.log(blob)
 
         // using URL.createObjectURL to create a url and setting that to vid.src NO LONGER WORKS
         //vid.src = URL.createObjectURL(blob);
@@ -26,12 +28,20 @@ var videoUI = (function () {
         //var sourceObject = new MediaStream();
         //vid.srcObject = sourceObject;
 
+        // CREATING A LINK DOES NOT WORK
+        //var url = URL.createObjectURL(blob),
+        //a = document.createElement('a');
+        //a.href = url;
+        //a.innerText = 'video';
+        //document.body.appendChild(a);
+
 
         vid.loop = true;
         vid.controls = true;
         vid.addEventListener('canplay', function(){
-            document.body.appendChild(vid);
+            //document.body.appendChild(vid);
         });
+
 
     };
 
