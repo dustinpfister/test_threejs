@@ -71,7 +71,7 @@
     methodSecs = 0,
     methodIndex = 0,
     methodName = '',
-    fps_update = 30,   // fps rate to update ( low fps for low CPU use, but chopy video )
+    fps_update = 30,   // fps rate to update ( low fps for low CPU use, but choppy video )
     fps_movement = 60, // fps rate to move camera
     frame = 0,
     frameMax = 600,

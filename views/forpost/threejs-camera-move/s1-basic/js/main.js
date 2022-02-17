@@ -16,12 +16,12 @@
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
     scene.add(mesh);
-    // starting pos for cameare
+    // starting pos for camera
     camera.position.set(10, 0, 0);
     camera.lookAt(mesh.position);
     // APP LOOP
     var secs = 0,
-    fps_update = 20,   // fps rate to update ( low fps for low CPU use, but chopy video )
+    fps_update = 20,   // fps rate to update ( low fps for low CPU use, but choppy video )
     fps_movement = 30, // fps rate to move camera
     frame = 0,
     frameMax = 90,
