@@ -12,11 +12,27 @@ var videoUI = (function () {
 
     // export video helper
     var exportVid = function (blob) {
+        console.log('exporting from blob')
         var vid = document.createElement('video');
-        vid.src = URL.createObjectURL(blob);
+        //vid.src = URL.createObjectURL(blob);
+
+
+        var sourceObject = new MediaStream();
+
+//sourceObject.addTrack();
+
+console.log(blob.stream());
+
+console.log(sourceObject)
+
+        vid.srcObject = sourceObject // blob;
         vid.loop = true;
         vid.controls = true;
-        document.body.appendChild(vid);
+        vid.addEventListener('canplay', function(){
+            console.log('yes');
+            document.body.appendChild(vid);
+        });
+
     };
 
     // set the current sequence, and set the proper frame index for the current sequence
