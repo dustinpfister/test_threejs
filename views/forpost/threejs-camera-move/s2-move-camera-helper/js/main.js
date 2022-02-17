@@ -1,5 +1,9 @@
 (function () {
 
+    var getBias = function(per){
+        return 1 - Math.abs(per - 0.5) / 0.5;
+    };
+
     // create camera helper
     var createCamera = function(opt){
         opt = opt || {};
@@ -15,7 +19,7 @@
 
     // follow subject1 method
     camMoveMethod.followSubject1 = function(camera, per){
-        var bias = 1 - Math.abs(per - 0.5) / 0.5;
+        var bias = getBias(per);
         return {
             position: new THREE.Vector3(-8, 5, -8 + 16 * bias), 
             lookAt: camera.userData.subject
@@ -26,7 +30,7 @@
     camMoveMethod.followSubject2 = function(camera, per){
         var rad = Math.PI * 2 * per,
         x = Math.cos(rad) * 6,
-        y = -4 + 8 * (1 - Math.abs(per - 0.5) / 0.5),
+        y = -4 + 8 * getBias(per),
         z = Math.sin(rad) * 6;
         return {
             position: new THREE.Vector3(x, y, z), 
@@ -73,7 +77,7 @@
         var now = new Date(),
         secs = (now - lt) / 1000,
         per = Math.round(frame) / frameMax,
-        bias = (1 - Math.abs(per - 0.5) / 0.5);
+        bias = getBias(per);
         requestAnimationFrame(loop);
         if(secs > 1 / fps_update){
             // calling camera update method
