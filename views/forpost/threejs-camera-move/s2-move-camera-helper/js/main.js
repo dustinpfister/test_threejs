@@ -34,14 +34,23 @@
         }));
     scene.add(mesh);
     // APP LOOP
-    var frame = 0,
-    frameMax = 100;
+    var secs = 0,
+    fps_update = 20,   // fps rate to update ( low fps for low CPU use, but chopy video )
+    fps_movement = 60, // fps rate to move camera
+    frame = 0,
+    frameMax = 600,
+    lt = new Date();
     var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
-        moveCamera(camera, mesh.position, frame / frameMax);
-        renderer.render(scene, camera);
-        frame += 1;
-        frame %= frameMax;
+        if(secs > 1 / fps_update){
+            moveCamera(camera, mesh.position, Math.round(frame) / frameMax);
+            renderer.render(scene, camera);
+            frame += fps_movement * secs;
+            frame %= frameMax;
+            lt = now;
+        }
     };
     loop();
 }
