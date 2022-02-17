@@ -2,9 +2,9 @@
     // move camera helper
     var moveCamera = function (camera, subject, per) {
         var rad = Math.PI * 2 * per,
-        x = Math.cos(rad) * 3,
-        y = -3 + 6 * (1 - Math.abs(per - 0.5) / 0.5),
-        z = Math.sin(rad) * 3;
+        x = Math.cos(rad) * 6,
+        y = -4 + 8 * (1 - Math.abs(per - 0.5) / 0.5),
+        z = Math.sin(rad) * 6;
         // position property can be used to set
         // the position of a camera
         camera.position.set(x, y, z);
