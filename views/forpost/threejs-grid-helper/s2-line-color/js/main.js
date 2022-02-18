@@ -5,7 +5,10 @@
     // GRID HELPER
     var size = 8;
     var divisions = 8;
-    scene.add(new THREE.GridHelper(size, divisions))
+    var colorLinesCenter = 0xffffff;
+    var colorLinesGrid = new THREE.Color('lime');
+    var helper = new THREE.GridHelper(size, divisions, colorLinesCenter, colorLinesGrid);
+    scene.add(helper)
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.1, 100);
