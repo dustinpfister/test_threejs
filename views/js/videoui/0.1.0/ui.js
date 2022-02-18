@@ -19,14 +19,14 @@ var videoUI = (function () {
         console.log(blob)
 
         // using URL.createObjectURL to create a url and setting that to vid.src NO LONGER WORKS
-        //vid.src = URL.createObjectURL(blob);
+        vid.src = URL.createObjectURL(blob);
 
         // setting the blob as vid.srcObject DOS NOT WORK
         //vid.srcObject = blob;
 
         // CAN NOT GET ANYTHING TO WORK WITH MEDIASTREAM
-        var sourceObject = new MediaStream([blob.stream()]);
-        vid.srcObject = sourceObject;
+        //var sourceObject = new MediaStream([blob.stream()]);
+        //vid.srcObject = sourceObject;
 
         // CREATING A LINK DOES NOT WORK
         //var url = URL.createObjectURL(blob),
