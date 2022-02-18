@@ -18,10 +18,14 @@
     var camMoveMethod = {};
 
     // follow subject1 method
-    camMoveMethod.followSubject1 = function(camera, per){
-        var bias = getBias(per);
+    camMoveMethod.flyAround = function(camera, per){
+        var bias = getBias(per),
+        radian = Math.PI * 2 * per,
+        x = Math.cos(radian) * 10,
+        y = 10 - 5 * bias,
+        z = Math.sin(radian) * 10;
         return {
-            position: new THREE.Vector3(-8, 5, -8 + 16 * bias), 
+            position: new THREE.Vector3(x, y, z), 
             lookAt: camera.userData.subject
         };
     };
@@ -81,7 +85,7 @@
             methodName = Object.keys(camMoveMethod)[methodIndex];
             moveCamera(camera, per, camMoveMethod[methodName]);
             // moving mesh
-            mesh.position.x = -2 + 4 * bias;
+            mesh.position.x = -4 + 8 * bias;
             renderer.render(scene, camera);
             frame += fps_movement * secs;
             frame %= frameMax;

@@ -1,6 +1,6 @@
 # threejs-grid-helper
 
-## () - first set of examples
+## ( done 02/18/2022 ) - first set of examples
 * (done) have a s1-basic basic example that is just a simple starting point for using the gird helper
 * (done) have a s2-line-color example
-* have a s3-animation-loop example
+* (done) have a s3-animation-loop example
