@@ -142,6 +142,11 @@ var videoUI = (function () {
                 //encoder.add(LoadedVideo.canvas.toDataURL('image/webm'));
 
                 //encoder.add(LoadedVideo.canvas.toDataURL('image/webp'));
+
+
+console.log(LoadedVideo.canvas.getImageData)
+encoder.add(LoadedVideo.canvas.getContext('webgl'));
+
             frame += 1;
         }
         console.log('encoder frames added');

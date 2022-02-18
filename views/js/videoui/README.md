@@ -23,3 +23,6 @@ var url = canvas.toDataURL('video/webm;codecs="vp8"');
 encoder.add(url)
 ```
 
+### Can only pass DATA URL to whammy encoder
+
+The whammy documation stats that I can pass a canvas element or a context to the encoder my way of the add method. This is not true passing anything other than a data url will case an error.
