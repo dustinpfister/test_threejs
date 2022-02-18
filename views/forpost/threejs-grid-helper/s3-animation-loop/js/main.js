@@ -26,18 +26,6 @@
         };
     };
 
-    // follow subject2 method
-    camMoveMethod.followSubject2 = function(camera, per){
-        var rad = Math.PI * 2 * per,
-        x = Math.cos(rad) * 6,
-        y = -4 + 8 * getBias(per),
-        z = Math.sin(rad) * 6;
-        return {
-            position: new THREE.Vector3(x, y, z), 
-            lookAt: camera.userData.subject
-        };
-    };
-
     // move camera update helper
     var moveCamera = function (camera, per, moveFunc) {
         var camState = moveFunc(camera, per);
