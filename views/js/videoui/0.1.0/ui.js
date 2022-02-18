@@ -15,11 +15,11 @@ var videoUI = (function () {
         console.log('exporting from blob')
         var vid = document.createElement('video');
 
-console.log('I can get the blob at least');
-console.log(blob)
+        console.log('I can get the blob at least');
+        console.log(blob)
 
         // using URL.createObjectURL to create a url and setting that to vid.src NO LONGER WORKS
-        //vid.src = URL.createObjectURL(blob);
+        vid.src = URL.createObjectURL(blob);
 
         // setting the blob as vid.srcObject DOS NOT WORK
         //vid.srcObject = blob;
@@ -39,7 +39,7 @@ console.log(blob)
         vid.loop = true;
         vid.controls = true;
         vid.addEventListener('canplay', function(){
-            //document.body.appendChild(vid);
+            document.body.appendChild(vid);
         });
 
 
@@ -134,7 +134,14 @@ console.log(blob)
                 setFrame(LoadedVideo.frame);
                 // set the frame and call forframe
                 console.log(LoadedVideo.frame + '/' + LoadedVideo.maxFrame);
-                encoder.add(LoadedVideo.canvas.toDataURL('image/webp'));
+
+                // CAN NOT SET PARAMETERS doing so will case an Error in whammy
+                // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter
+                //encoder.add(LoadedVideo.canvas.toDataURL('image/webp;codecs=vp8'));
+                //encoder.add(LoadedVideo.canvas.toDataURL('image/webp;codecs=\"vp8\"'));
+                //encoder.add(LoadedVideo.canvas.toDataURL('image/webm'));
+
+                //encoder.add(LoadedVideo.canvas.toDataURL('image/webp'));
             frame += 1;
         }
         console.log('encoder frames added');
