@@ -141,11 +141,11 @@ var videoUI = (function () {
                 //encoder.add(LoadedVideo.canvas.toDataURL('image/webp;codecs=\"vp8\"'));
                 //encoder.add(LoadedVideo.canvas.toDataURL('image/webm'));
 
-                //encoder.add(LoadedVideo.canvas.toDataURL('image/webp'));
+                // CAN NOT PASS A CANVAS OR CONTEXT that will case an error
+                //encoder.add(LoadedVideo.canvas.getContext('webgl'));
 
-
-console.log(LoadedVideo.canvas.getImageData)
-encoder.add(LoadedVideo.canvas.getContext('webgl'));
+                // So I am still using what worked before the code braking changes where made
+                encoder.add(LoadedVideo.canvas.toDataURL('image/webp'));
 
             frame += 1;
         }
