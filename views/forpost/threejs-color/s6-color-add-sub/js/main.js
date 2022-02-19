@@ -25,11 +25,11 @@ var createBoxGroup = function(){
                 //emissive: randomColor()
             }));
         // random position
-		
-		
-		
-		console.log( box.material.color );
-		
+        
+        
+        
+        console.log( box.material.color );
+        
         box.position.copy(randomPosition());
         group.add(box);
         i += 1;
@@ -39,11 +39,9 @@ var createBoxGroup = function(){
 
 // creating a scene
 var scene = new THREE.Scene();
-
+scene.add(new THREE.GridHelper(8,8))
 var group = createBoxGroup();
-
 scene.add(group);
-
 // ADD A LIGHT BECUASE THIS IS THE STANDARD MATERIAL
 var light = new THREE.PointLight(new THREE.Color(1, 1, 1));
 light.position.set(1, 3, 2);
@@ -70,18 +68,16 @@ var loop = function () {
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
         group.children.forEach(function (box) {
-
-            var r = 0.1 * per,
+            var r = 0.05 * per,
             g = r, b = r,
-			color = box.material.color;
+            color = box.material.color;
             color.add( new THREE.Color(r, g, b) );
-			color.r = color.r > 1 ? 1 : color.r;
-			color.g = color.g > 1 ? 1 : color.g;
-			color.b = color.b > 1 ? 1 : color.b;
-			//color.g = color.g % 1;
-			//color.b = color.b % 1;
-			console.log(color.r)
-
+            color.r = color.r > 1 ? 1 : color.r;
+            color.g = color.g > 1 ? 1 : color.g;
+            color.b = color.b > 1 ? 1 : color.b;
+            if(color.equals(new THREE.Color(1,1,1))){
+                box.material.color = randomColor();
+            }
         });
         group.rotation.y = Math.PI * 2 * per;
         renderer.render(scene, camera);
