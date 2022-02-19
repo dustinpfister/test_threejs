@@ -21,15 +21,7 @@ var createBoxGroup = function(){
             new THREE.BoxGeometry(0.5, 0.5, 0.5),
             new THREE.MeshStandardMaterial({
                 color: randomColor()
-                //emissiveIntensity: 0.8,
-                //emissive: randomColor()
             }));
-        // random position
-        
-        
-        
-        console.log( box.material.color );
-        
         box.position.copy(randomPosition());
         group.add(box);
         i += 1;
