@@ -4,8 +4,8 @@
     scene.add( new THREE.GridHelper(8, 8, 0xffffff, 0x000000))
  
     // ADDING BACKGROUND AND FOG
-    var fogColor = new THREE.Color(0x00af00);
-    scene.background = fogColor;
+    var fogColor = new THREE.Color(0xffffff);
+    scene.background = fogColor; // Setting fogColor as the background color also
     scene.fog = new THREE.Fog(fogColor, 0.25, 4);
  
     // Use a Material that SUPPORTS FOG
