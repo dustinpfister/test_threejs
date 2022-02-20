@@ -27,29 +27,6 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
  
-    // Loop
-    var frame = 0,
-    maxFrame = 500,
-    target_fps = 30;
-    lt = new Date();
-    var loop = function () {
-        var per = frame / maxFrame,
-        bias = Math.abs(.5 - per) / .5,
-        now = new Date(),
-        secs = (now - lt) / 1000;
-        requestAnimationFrame(loop);
-        if (secs > 1 / target_fps) {
-            mesh.position.z = 1 + 4 * bias;
-            mesh.rotation.x = Math.PI * 2 * 4 * per;
-            mesh.rotation.y = Math.PI * 2 * 2 * per;
-            camera.lookAt(mesh.position);
-            renderer.render(scene, camera);
-            frame += target_fps * secs;
-            frame = frame % maxFrame;
-            lt = now;
-        }
-    };
- 
-    loop();
+    renderer.render(scene, camera);
 }
     ());
