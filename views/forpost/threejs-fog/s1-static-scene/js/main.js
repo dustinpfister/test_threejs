@@ -1,6 +1,7 @@
 (function () {
     // SCNEN
     var scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(8, 8, 0xffffff, 0x000000))
 
     // ADDING BACKGROUND AND FOG
     fogColor = new THREE.Color(0x00af00);
@@ -18,7 +19,7 @@
  
     // Camera
     var camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
-    camera.position.set(1, 0.75, 1);
+    camera.position.set(2, 0.75, 2);
     camera.lookAt(0, 0, 0);
     // adding a point light to the camera
     var light = new THREE.PointLight(0xffffff);
