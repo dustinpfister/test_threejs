@@ -1,5 +1,8 @@
 # threejs-fog todo list
 
+## () - see about having a custom fog with at least a height value
+* Having at least a hight argument would be nice
+* check it: https://www.youtube.com/watch?v=k1zGz55EqfU
 
 ## () section on material fog property
 * have a section on the material fog boolean
