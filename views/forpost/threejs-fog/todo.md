@@ -1,7 +1,11 @@
 # threejs-fog todo list
 
+
 ## () section on material fog property
 * have a section on the material fog boolean
+
+## () linear vs exponential fog
+* have an example that will helper show the difference between the two for constructors
 
 ## () - new examples for check materials section
 * start an example that involves a few mesh objects using different materials
@@ -11,8 +15,6 @@
 * have a mesh that uses the basic material
 * have a mesh that uses the normal material
 * have a mesh that uses the depth material
-
-
 
 ## ( done 02/20/2022 ) - new basic example
 * (done) start a new s1-static-scene example that is just a single static scene
