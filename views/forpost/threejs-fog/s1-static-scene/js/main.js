@@ -2,7 +2,7 @@
     // SCNEN
     var scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(8, 8, 0xffffff, 0x000000))
-
+ 
     // ADDING BACKGROUND AND FOG
     fogColor = new THREE.Color(0x00af00);
     scene.background = fogColor;

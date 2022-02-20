@@ -1,26 +1,31 @@
 (function () {
-    // Scene
+ 
+    // SCNEN
     var scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(8, 8, 0xffffff, 0x000000))
+ 
     // ADDING BACKGROUND AND FOG
     fogColor = new THREE.Color(0x00af00);
     scene.background = fogColor;
     scene.fog = new THREE.FogExp2(fogColor, 0.5);
  
-    // A Material that DOES SUPPORT FOG
-    // being use in a Mesh
+    // Use a Material that SUPPORTS FOG
+    // when making a Mesh such as the standard material
     var mesh = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshStandardMaterial({
-                color: 0xff0000,
-                emissive: 0x080808
+                color: 0xff0000
             }));
     scene.add(mesh);
  
     // Camera
     var camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
-    camera.position.set(1, 1, 1);
+    camera.position.set(2, 0.75, 2);
     camera.lookAt(0, 0, 0);
-    camera.add(new THREE.PointLight(0xffffff));
+    // adding a point light to the camera
+    var light = new THREE.PointLight(0xffffff);
+    light.position.y = 0.5;
+    camera.add(light);
     scene.add(camera);
     // Render
     var renderer = new THREE.WebGLRenderer();
