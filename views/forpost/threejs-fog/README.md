@@ -11,6 +11,10 @@ I am going to do something different with this post that I think I might start d
 [THREE.fog](https://threejs.org/docs/#api/en/scenes/Fog)
 [THREE.FogExp2](https://threejs.org/docs/#api/en/scenes/FogExp2)
 
+### - Confusion with scene.fog, and scene.background
+
+It would seem that there is [some confusion when it comes to the background color, and the fog color](https://discourse.threejs.org/t/is-there-a-way-to-apply-fog-to-mesh-only-and-not-be-visible/12511/3). The thing about fog is that it will only effect the materials of mesh objects, not the background. As such this is something that I should write about right away in the basic section, and maybe even go so far is to have a whole section and examples on this topic.
+
 ### - Youtube
 
 [SimonDev - Fog, Basic Fog, and Better Fog](https://www.youtube.com/watch?v=k1zGz55EqfU)
