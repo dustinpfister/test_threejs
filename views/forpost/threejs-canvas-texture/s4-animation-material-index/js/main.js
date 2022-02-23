@@ -1,18 +1,15 @@
 
 (function () {
-    // SCENE
+    // SCENE, CAMERA, LIGHT, RENDERER
     var scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10));
-    // CAMERA
     var camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
     camera.position.set(1.75, 1.75, 1.75);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
-    // light
     var light = new THREE.PointLight();
     light.position.set(0, 1, 0)
     camera.add(light);
-    // Render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
@@ -20,18 +17,18 @@
     // state object
     var state = {
        frame: 0,
-       maxFrame: 90,
+       maxFrame: 180,
+       per: 0,
+       bias: 0,
        fps: 30,
        lt: new Date()
     };
     // draw function
     var draw = function(ctx, canvas, state){
-        var per = state.frame / state.maxFrame,
-        bias = Math.abs(0.5 - per) / 0.5,
-        x = canvas.width / 2 * bias;
-        y = canvas.height / 2 * bias;
-        w = canvas.width - canvas.width * bias;
-        h = canvas.height - canvas.height * bias;
+        var x = canvas.width / 2 * state.bias;
+        y = canvas.height / 2 * state.bias;
+        w = canvas.width - canvas.width * state.bias;
+        h = canvas.height - canvas.height * state.bias;
         ctx.lineWidth = 3;
         ctx.fillStyle = '#00ff00';
         ctx.strokeStyle = '#ff00ff';
@@ -56,8 +53,13 @@
         secs = (now - state.lt) / 1000;
         requestAnimationFrame(loop);
         if(secs > 1 / state.fps){
+
+            state.per = state.frame / state.maxFrame,
+            state.bias = 1 - Math.abs(0.5 - state.per) / 0.5;
+
             canvasObj.draw();
             renderer.render(scene, camera);
+
             state.frame += state.fps * secs;
             state.frame = state.frame % state.maxFrame;
             state.lt = now;

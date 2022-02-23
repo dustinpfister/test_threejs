@@ -4,8 +4,8 @@
         drawFunc = drawFunc || canvasMod.draw;
         var canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
-        canvas.width = 16;
-        canvas.height = 16;
+        canvas.width = 64;
+        canvas.height = 64;
         var texture = new THREE.Texture(canvas);
         texture.needsUpdate = true;
         var canvasObj = {
