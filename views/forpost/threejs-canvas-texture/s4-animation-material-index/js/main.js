@@ -23,20 +23,25 @@
        fps: 30,
        lt: new Date()
     };
+    var drawBackground = function(ctx, canvas, state){
+        ctx.fillStyle = '#1a1a1a';
+        ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#afafaf';
+        ctx.strokeRect(0,0, canvas.width, canvas.height);
+    };
     // drawBox function
     var drawBox = function(ctx, canvas, state){
         var x = canvas.width / 2 * state.bias, y = canvas.height / 2 * state.bias,
         w = canvas.width - canvas.width * state.bias, h = canvas.height - canvas.height * state.bias;
+        drawBackground(ctx, canvas, state);
         ctx.lineWidth = 3;
-        ctx.fillStyle = '#2a2a2a';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = '#00ff00';
         ctx.strokeRect(x, y, w, h);
     };
     var drawCircle = function(ctx, canvas, state){
         ctx.lineWidth = 3;
-        ctx.fillStyle = '#2a2a2a';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        drawBackground(ctx, canvas, state);
         ctx.strokeStyle = '#ff0000';
         ctx.beginPath();
         ctx.arc(
