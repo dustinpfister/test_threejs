@@ -4,11 +4,11 @@
     var scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10));
     var camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
-    camera.position.set(1.75, 1.75, 1.75);
+    camera.position.set(1, 1, 1);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     var light = new THREE.PointLight();
-    light.position.set(0, 1, 0)
+    light.position.set(0, 0, 0)
     camera.add(light);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -17,7 +17,7 @@
     // state object
     var state = {
        frame: 0,
-       maxFrame: 180,
+       maxFrame: 300,
        per: 0,
        bias: 0,
        fps: 30,
@@ -46,14 +46,18 @@
         );
         ctx.stroke();
     };
-    // create canvas obj
-    var canvasObj = canvasMod.createCanvasObject(state, drawCircle);
+    // create canvas objs
+    var canvasObjBox = canvasMod.createCanvasObject(state, drawBox);
+    var canvasObjCircle = canvasMod.createCanvasObject(state, drawCircle);
     
-
     // using create cube method
     var mesh = canvasMod.createCube([
-        canvasObj.texture,
-        canvasObj.texture]);
+        canvasObjBox.texture,
+        canvasObjBox.texture,
+        canvasObjCircle.texture,
+        canvasObjCircle.texture,
+        canvasObjBox.texture,
+        canvasObjCircle.texture,]);
     scene.add(mesh);
 
 
@@ -67,8 +71,11 @@
 
             state.per = state.frame / state.maxFrame,
             state.bias = 1 - Math.abs(0.5 - state.per) / 0.5;
+            canvasObjBox.draw();
+            canvasObjCircle.draw();
 
-            canvasObj.draw();
+            mesh.rotation.y = Math.PI * 2 * state.per;
+
             renderer.render(scene, camera);
 
             state.frame += state.fps * secs;
