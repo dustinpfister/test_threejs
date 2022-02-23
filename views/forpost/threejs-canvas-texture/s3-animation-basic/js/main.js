@@ -16,7 +16,7 @@
         w = canvas.width - canvas.width * bias;
         h = canvas.height - canvas.height * bias;
         ctx.lineWidth = 3;
-        ctx.fillStyle = '#000000';
+        ctx.fillStyle = '#00ff00';
         ctx.strokeStyle = '#ff00ff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.strokeRect(x, y, w, h);
@@ -27,17 +27,28 @@
     canvasObj.texture.magFilter = THREE.NearestFilter;
     // SCENE
     var scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(10, 10))
     fogColor = new THREE.Color(0xffffff);
     scene.background = fogColor;
-    scene.fog = new THREE.Fog(fogColor, 0.0025, 20);
-    scene.fog = new THREE.FogExp2(fogColor, 0.1);
+    scene.fog = new THREE.FogExp2(fogColor, 0.35);
     // CAMERA
-    var camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
-    camera.position.set(1, 1, 1);
+    var camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
+    camera.position.set(1.75, 1.75, 1.75);
     camera.lookAt(0, 0, 0);
+    scene.add(camera);
+    // light
+    var light = new THREE.PointLight();
+    light.position.set(0,0.5,0)
+    camera.add(light);
+
     // using create cube method
-    var mesh = canvasMod.createCube(canvasObj);
+    var mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshStandardMaterial({
+                map: canvasObj.texture
+            }));
     scene.add(mesh);
+
     // Render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);

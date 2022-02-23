@@ -1,5 +1,4 @@
 (function(api){
-
     // create and return a canvasObj with texture
     api.createCanvasObject = function (state, drawFunc) {
         drawFunc = drawFunc || canvasMod.draw;
@@ -23,7 +22,7 @@
         canvasObj.draw();
         return canvasObj;
     };
- 
+/*
     // create a cube the makes use of a canvas texture
     api.createCube = function (canvasObj) {
         return new THREE.Mesh(
@@ -32,5 +31,5 @@
                 map: canvasObj.texture
             }));
     };
-
+*/
 }( this['canvasMod'] = {} ));
