@@ -3,10 +3,11 @@
 ## () - Video for threejs-canvas-texture
 * start a video project for threejs-canvas-texture
 
-## () - Start a s5 Stochastic and Deterministic examples section
-* have one Mesh canvas texture example that makes use of a pure function to create a state that is then rendered to a canvas
+## () - start a deterministic example section
+* have an example that involves creating a start state and then updating over time from that start state
+
+## () - Start a stochastic example section
 * have one Mesh canvas texture example that is Stochastic \(random\)
-* have both kinds of mesh objects with texture that are updated in different ways in the same scene
 
 ## ( done 06/28/2021 ) - needed improvements of s3, and s4 examples
 * (done) The create canvas helper function in s3 should return an object that contains references to the canvas, and context.
