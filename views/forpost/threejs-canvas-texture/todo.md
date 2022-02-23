@@ -9,6 +9,9 @@
 ## () - Start a stochastic example section
 * have one Mesh canvas texture example that is Stochastic \(random\)
 
+## () - animation and material index
+* start another example based off of the animation example but now have more than one texture for the same cube
+
 ## ( done 06/28/2021 ) - needed improvements of s3, and s4 examples
 * (done) The create canvas helper function in s3 should return an object that contains references to the canvas, and context.
 * (done) s3 example should show a basic example of the state object
