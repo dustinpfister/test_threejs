@@ -1,23 +1,21 @@
 // create and return a canvas texture
-var createCanvasTexture = function () {
+var createCanvasTexture = function (draw) {
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
     canvas.width = 32;
     canvas.height = 32;
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = '#ff0000';
-    ctx.strokeRect(2.5, 2.5, canvas.width - 4, canvas.height - 4);
+    draw(ctx, canvas);
     var texture = new THREE.CanvasTexture(canvas);
     return texture;
 };
-
 // create a cube the makes use of a canvas texture
-var createCube = function () {
+var createCanvasCube = function (draw) {
     return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshBasicMaterial({
-            map: createCanvasTexture()
-        }));
+            map: createCanvasTexture(draw)
+        })
+    );
 };
 
 // Scene
@@ -31,7 +29,13 @@ camera.lookAt(0, 0, 0);
 
 // add cube to scene that makes use
 // of the canvas texture
-scene.add(createCube());
+scene.add(createCanvasCube(function(ctx, canvas){
+    ctx.fillStyle = '#222222';
+    ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#af0000';
+    ctx.strokeRect(2.5, 2.5, canvas.width - 4, canvas.height - 4);
+}));
 
 // RENDER
 var renderer = new THREE.WebGLRenderer();
