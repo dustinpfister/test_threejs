@@ -28,6 +28,7 @@
         var materials = [];
         if(texture instanceof Array){
             texture.forEach(function(t){
+                t.magFilter = THREE.NearestFilter;
                 materials.push(new THREE.MeshStandardMaterial({
                     map: t,
                     side: THREE.DoubleSide

@@ -1,5 +1,22 @@
 
 (function () {
+    // SCENE
+    var scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(10, 10));
+    // CAMERA
+    var camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
+    camera.position.set(1.75, 1.75, 1.75);
+    camera.lookAt(0, 0, 0);
+    scene.add(camera);
+    // light
+    var light = new THREE.PointLight();
+    light.position.set(0, 1, 0)
+    camera.add(light);
+    // Render
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
+
     // state object
     var state = {
        frame: 0,
@@ -23,20 +40,7 @@
     };
     // create canvas obj
     var canvasObj = canvasMod.createCanvasObject(state, draw);
-    // filter
-    canvasObj.texture.magFilter = THREE.NearestFilter;
-    // SCENE
-    var scene = new THREE.Scene();
-    scene.add( new THREE.GridHelper(10, 10));
-    // CAMERA
-    var camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
-    camera.position.set(1.75, 1.75, 1.75);
-    camera.lookAt(0, 0, 0);
-    scene.add(camera);
-    // light
-    var light = new THREE.PointLight();
-    light.position.set(0,0.5,0)
-    camera.add(light);
+    
 
     // using create cube method
     var mesh = canvasMod.createCube([
@@ -44,10 +48,7 @@
         canvasObj.texture]);
     scene.add(mesh);
 
-    // Render
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
+
 
     // Loop
     var loop = function () {
