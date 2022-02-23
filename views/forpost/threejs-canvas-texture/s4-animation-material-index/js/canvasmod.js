@@ -22,14 +22,14 @@
         canvasObj.draw();
         return canvasObj;
     };
-/*
-    // create a cube the makes use of a canvas texture
-    api.createCube = function (canvasObj) {
-        return new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
-                map: canvasObj.texture
-            }));
+
+    // create a cube the makes use of one or more textures
+    api.createCube = function (texture) {
+        var materials = [];
+        materials.push(new THREE.MeshStandardMaterial({
+            map: texture
+        }));
+        return new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), materials);
     };
-*/
+
 }( this['canvasMod'] = {} ));

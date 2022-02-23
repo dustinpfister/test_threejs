@@ -39,11 +39,7 @@
     camera.add(light);
 
     // using create cube method
-    var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshStandardMaterial({
-                map: canvasObj.texture
-            }));
+    var mesh = canvasMod.createCube(canvasObj.texture);
     scene.add(mesh);
 
     // Render
