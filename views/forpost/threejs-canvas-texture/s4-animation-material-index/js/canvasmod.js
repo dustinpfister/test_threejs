@@ -26,9 +26,18 @@
     // create a cube the makes use of one or more textures
     api.createCube = function (texture) {
         var materials = [];
-        materials.push(new THREE.MeshStandardMaterial({
-            map: texture
-        }));
+        if(texture instanceof Array){
+            texture.forEach(function(t){
+                materials.push(new THREE.MeshStandardMaterial({
+                    map: t,
+                    side: THREE.DoubleSide
+                }));
+            });
+        }else{
+            materials = new THREE.MeshStandardMaterial({
+                map: texture
+            });
+        }
         return new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), materials);
     };
 

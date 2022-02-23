@@ -39,7 +39,9 @@
     camera.add(light);
 
     // using create cube method
-    var mesh = canvasMod.createCube(canvasObj.texture);
+    var mesh = canvasMod.createCube([
+        canvasObj.texture,
+        canvasObj.texture]);
     scene.add(mesh);
 
     // Render
