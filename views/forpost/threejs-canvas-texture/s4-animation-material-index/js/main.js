@@ -27,10 +27,7 @@
     canvasObj.texture.magFilter = THREE.NearestFilter;
     // SCENE
     var scene = new THREE.Scene();
-    scene.add( new THREE.GridHelper(10, 10))
-    var fogColor = new THREE.Color(0xffffff);
-    scene.background = fogColor;
-    scene.fog = new THREE.FogExp2(fogColor, 0.35);
+    scene.add( new THREE.GridHelper(10, 10));
     // CAMERA
     var camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
     camera.position.set(1.75, 1.75, 1.75);
