@@ -30,14 +30,14 @@
         ctx.lineWidth = 3;
         ctx.fillStyle = '#2a2a2a';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeStyle = '#ff00ff';
+        ctx.strokeStyle = '#00ff00';
         ctx.strokeRect(x, y, w, h);
     };
     var drawCircle = function(ctx, canvas, state){
         ctx.lineWidth = 3;
         ctx.fillStyle = '#2a2a2a';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeStyle = '#ff00ff';
+        ctx.strokeStyle = '#ff0000';
         ctx.beginPath();
         ctx.arc(
            canvas.width / 2, canvas.height / 2,
@@ -69,12 +69,12 @@
         requestAnimationFrame(loop);
         if(secs > 1 / state.fps){
 
-            state.per = state.frame / state.maxFrame,
+            state.per = state.frame / state.maxFrame * 4 % 1,
             state.bias = 1 - Math.abs(0.5 - state.per) / 0.5;
             canvasObjBox.draw();
             canvasObjCircle.draw();
 
-            mesh.rotation.y = Math.PI * 2 * state.per;
+            mesh.rotation.y = Math.PI * 2 * (state.per / 4 % 1);
 
             renderer.render(scene, camera);
 
