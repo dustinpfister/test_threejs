@@ -9,10 +9,9 @@ camera.lookAt(0, 0, 1);
  
 // create texture with default draw method
 var canvasObj = canvasMod.createCanvasTexture();
-
+// create cube with the texture
 var cube = canvasMod.createCube(canvasObj.texture);
 scene.add(cube);
-
 
 // create texture with custom draw method that makes use of a state object
 var draw = function (ctx, canvas, state) {
@@ -35,7 +34,6 @@ cube = canvasMod.createCube(canvasObj.texture);
 cube.position.set(0, 0, 2)
 scene.add(cube);
 
- 
 // RENDER
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);

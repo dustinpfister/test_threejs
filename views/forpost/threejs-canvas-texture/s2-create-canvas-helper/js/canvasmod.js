@@ -1,5 +1,4 @@
 (function(api){
-
     api.draw = function (ctx, canvas) {
         ctx.fillStyle = '#000000';
         ctx.lineWidth = 1;
@@ -7,7 +6,6 @@
         ctx.strokeStyle = '#00ff00';
         ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
     };
- 
     // create and return a canvas texture
     api.createCanvasTexture = function (state, drawFunc) {
         drawFunc = drawFunc || canvasMod.draw;
@@ -29,7 +27,6 @@
         canvasObj.draw();
         return canvasObj;
     };
- 
     // create a cube the makes use of a canvas texture
     api.createCube = function (texture) {
         return new THREE.Mesh(
@@ -38,5 +35,4 @@
                 map: texture
             }));
     };
-
 }( this['canvasMod'] = {} ));
