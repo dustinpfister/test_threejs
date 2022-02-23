@@ -23,20 +23,31 @@
        fps: 30,
        lt: new Date()
     };
-    // draw function
-    var draw = function(ctx, canvas, state){
-        var x = canvas.width / 2 * state.bias;
-        y = canvas.height / 2 * state.bias;
-        w = canvas.width - canvas.width * state.bias;
-        h = canvas.height - canvas.height * state.bias;
+    // drawBox function
+    var drawBox = function(ctx, canvas, state){
+        var x = canvas.width / 2 * state.bias, y = canvas.height / 2 * state.bias,
+        w = canvas.width - canvas.width * state.bias, h = canvas.height - canvas.height * state.bias;
         ctx.lineWidth = 3;
-        ctx.fillStyle = '#00ff00';
-        ctx.strokeStyle = '#ff00ff';
+        ctx.fillStyle = '#2a2a2a';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = '#ff00ff';
         ctx.strokeRect(x, y, w, h);
     };
+    var drawCircle = function(ctx, canvas, state){
+        ctx.lineWidth = 3;
+        ctx.fillStyle = '#2a2a2a';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = '#ff00ff';
+        ctx.beginPath();
+        ctx.arc(
+           canvas.width / 2, canvas.height / 2,
+           32 * state.bias,
+           0, Math.PI * 2
+        );
+        ctx.stroke();
+    };
     // create canvas obj
-    var canvasObj = canvasMod.createCanvasObject(state, draw);
+    var canvasObj = canvasMod.createCanvasObject(state, drawCircle);
     
 
     // using create cube method
