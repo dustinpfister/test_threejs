@@ -1,5 +1,7 @@
 (function () {
- 
+    // ---------- ----------
+    // SCENE, CAMERA, AND RENDERER SETUP
+    // ---------- ----------
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
     camera.position.set(0.75, 1, 0.75);
@@ -11,7 +13,9 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
- 
+    // ---------- ----------
+    // THE SPHERE
+    // ---------- ----------
     var materials = [
         new THREE.MeshStandardMaterial({
             color: 0xff0000,
@@ -32,13 +36,11 @@
         i += 3;
     }
     var mesh = new THREE.Mesh(
-            // USING A SPHERE GEOMETRY
-            geometry,
-            // PASSING AN ARRAY OF MATERIALS
-            materials);
-    scene.add(mesh); // add the mesh to the scene
-
+            geometry, // USING A SPHERE GEOMETRY
+            materials // PASSING AN ARRAY OF MATERIALS
+    );
+    // ---------- ----------
+    // CALLING RENDER OF RENDERER
+    // ---------- ----------
     renderer.render(scene, camera);
- 
-}
-    ());
+}());
