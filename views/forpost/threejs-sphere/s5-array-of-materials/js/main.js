@@ -3,8 +3,9 @@
     // SCENE, CAMERA, AND RENDERER SETUP
     // ---------- ----------
     var scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(10, 10))
     var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-    camera.position.set(0.75, 1, 0.75);
+    camera.position.set(2, 2, 2);
     var light = new THREE.PointLight(0xffffff); // point light
     light.position.set(1, 1, 0);
     camera.add(light);
@@ -34,9 +35,9 @@
             emissive: 0x404040
         })
     ];
-    var geometry = new THREE.SphereGeometry(0.5, 21, 22);
+    var geometry = new THREE.SphereGeometry(0.5, 15, 15);
     var position = geometry.attributes.position,
-    len = position.array.length,
+    len = position.array.length * 2, //!!! this is not a good way to get len it would seem
     mi = 0,
     i = 0;
     while (i < len) {
@@ -48,6 +49,7 @@
             geometry, // USING A SPHERE GEOMETRY
             materials // PASSING AN ARRAY OF MATERIALS
     );
+    mesh.position.set(0, 1, 0);
     scene.add(mesh);
     // ---------- ----------
     // CALLING RENDER OF RENDERER
