@@ -38,10 +38,12 @@
     var geometry = new THREE.SphereGeometry(0.5, 15, 15);
     var position = geometry.attributes.position,
     //len = position.array.length * 2, //!!! this is not a good way to get len it would seem
-    len = position.count * 4, // this seems to work for now, but I should still look into this more
+    len = Math.floor(position.count * 5), // this seems to work for now, but I should still look into this more
     mi = 0,
     i = 0;
 // looking at the state of things here
+len = 1259;
+console.log(len)
 console.log(geometry);
 console.log(position);
     while (i < len) {
@@ -58,5 +60,14 @@ console.log(position);
     // ---------- ----------
     // CALLING RENDER OF RENDERER
     // ---------- ----------
-    renderer.render(scene, camera);
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    // loop
+    var loop = function () {
+        requestAnimationFrame(loop);
+        // UPDATE CONTROLS
+        controls.update();
+        renderer.render(scene, camera);
+    };
+ 
+    loop();
 }());
