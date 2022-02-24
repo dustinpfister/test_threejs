@@ -1,5 +1,8 @@
 # threejs-sphere todo list
 
+### () - see about len isshue with array-of-materials example
+* look into how to go about getting a true len value for this example as position.array.length does not seem to work
+
 ### () - new basic animation loop example
 * start a new example that is a basic animation loop example using spheres
 
