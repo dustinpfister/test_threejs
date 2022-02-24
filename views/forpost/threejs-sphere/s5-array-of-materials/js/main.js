@@ -37,12 +37,12 @@
     ];
     var geometry = new THREE.SphereGeometry(0.5, 15, 15);
     var position = geometry.attributes.position,
-    len = position.array.length * 2, //!!! this is not a good way to get len it would seem
+    //len = position.array.length * 2, //!!! this is not a good way to get len it would seem
+    len = 256 * 4, // this seems to work for now, but I should still look into this more
     mi = 0,
     i = 0;
-
-
-
+// looking at the state of things here
+console.log(geometry);
     while (i < len) {
         mi = i / 3 % 4;
         geometry.addGroup(i, 3, mi);
