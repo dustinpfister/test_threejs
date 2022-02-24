@@ -15,7 +15,9 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
- 
+    // ---------- ----------
+    // ADDING A MESH OBJECTS TO SCENE
+    // ---------- ----------
     var createSphereAt = function (x, z, w, h, r) {
         w = w === undefined ? 30 : w;
         h = h === undefined ? 15 : h;
@@ -35,8 +37,8 @@
     scene.add(createSphereAt(-1.25, 0, 20, 20));
     scene.add(createSphereAt(0, 0, 10, 10));
     scene.add(createSphereAt(1.25, 0, 5, 5));
-
+     // ---------- ----------
+    // CALLING RENDER OF RENDERER
+    // ---------- ----------
     renderer.render(scene, camera);
- 
-}
-    ());
+}());
