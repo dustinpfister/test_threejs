@@ -39,6 +39,7 @@
             geometry, // USING A SPHERE GEOMETRY
             materials // PASSING AN ARRAY OF MATERIALS
     );
+    scene.add(mesh);
     // ---------- ----------
     // CALLING RENDER OF RENDERER
     // ---------- ----------
