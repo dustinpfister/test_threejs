@@ -19,21 +19,38 @@
     var materials = [
         new THREE.MeshStandardMaterial({
             color: 0xff0000,
-            emissive: 0x101010
+            emissive: 0x202020
         }),
         new THREE.MeshStandardMaterial({
             color: 0x00ff00,
             emissive: 0x202020
-        })];
-    var geometry = new THREE.SphereGeometry(0.5, 15, 15);
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            emissive: 0x202020
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0xff0000,
+            emissive: 0x202020
+        })
+    ];
+
+    var geometry = new THREE.SphereGeometry(0.5, 21, 22);
     var position = geometry.attributes.position,
     len = position.array.length,
     mi = 0,
     i = 0;
     while (i < len) {
-        mi = i / 3 % 2 === 0 ? 0 : 1;
+        //mi = i / 3 % 2 === 0 ? 0 : 1;
+        mi = i / 3 % 4;
         geometry.addGroup(i, 3, mi);
         i += 3;
+
+        //i += 6;
+        //mi = (i - 6) / 3 % 2 === 0 ? 0 : 1;
+        //geometry.addGroup((i - 6), 3, mi);
+        //geometry.addGroup((i - 3), 3, 1);
+
     }
     var mesh = new THREE.Mesh(
             geometry, // USING A SPHERE GEOMETRY
