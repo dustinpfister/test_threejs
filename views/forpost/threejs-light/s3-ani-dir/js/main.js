@@ -38,14 +38,9 @@
     frame = 0,
     frameMax = 600,
     lt = new Date();
-    // get bias helper
-    var getBias = function(per){
-        return 1 - Math.abs(per - 0.5) / 0.5;
-    };
     // update
     var update = function(){
         var per = Math.round(frame) / frameMax,
-        bias = getBias(per),
         radian = Math.PI * 2 * per,
         x = Math.cos(radian) * 25, 
         y = 0,
