@@ -1,5 +1,4 @@
 (function () {
-
     // ********** **********
     // SCENE, CAMERA, RENDERER, and LIGHT
     // ********** **********
