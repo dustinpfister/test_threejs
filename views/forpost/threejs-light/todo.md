@@ -6,6 +6,8 @@
 
 ## () - first set of examples done
 * (done) simple static scene example on ambient light
-* () simple static scene example with ambient light + directional light
+* (done) simple static scene example with ambient light + directional light
+* (done) animation example of directional light
+
 * () animation example on point lights
 * () snimation example on spot lights
