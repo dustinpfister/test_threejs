@@ -1,5 +1,4 @@
 var Guy = (function () {
-
     // material used for the legs
     var material_leg = new THREE.MeshLambertMaterial({
             color: 0x0000ff,
@@ -28,7 +27,6 @@ var Guy = (function () {
             emissive: 0x1a1a1a
         })
     ];
-
     // the guy constructor
     var Guy = function () {
         // a group that will hold all mesh objects
@@ -90,7 +88,6 @@ var Guy = (function () {
         this.leg_left.castShadow = true;
         this.group.add(this.leg_left);
     };
-
     // move the arm of give id ('arm_right' or 'arm_left');
     // x and z should be a value between 0, and 1
     Guy.prototype.moveArm = function (armId, x, z) {
@@ -101,13 +98,11 @@ var Guy = (function () {
         }
         arm.rotation.set(Math.PI * 2 * x, 0, z);
     };
-
     // rotate head around
     // y is 0 to 1
     Guy.prototype.moveHead = function (y) {
         this.head.rotation.set(0, Math.PI * 2 * y, 0);
     };
-
     // move legs in respect to a walk cycle
     // where per is between 0, and 1.
     Guy.prototype.moveLegs = function (per) {
@@ -116,7 +111,7 @@ var Guy = (function () {
         this.leg_left.rotation.set(.75 - bias * 1.5, 0, 0);
         this.leg_right.rotation.set( - .75 + bias * 1.5, 0, 0);
     };
-
+    // walk
     Guy.prototype.walk = function (per, swings) {
         per = per === undefined ? 0 : per;
         swings = swings === undefined ? 1 : swings;
@@ -126,9 +121,7 @@ var Guy = (function () {
         this.moveArm('arm_left', .1 - .2 * armPer, 0);
         this.moveLegs(per * swings);
     }
-
     // just return an instance of guy for now
     return Guy;
-
 }
     ());
