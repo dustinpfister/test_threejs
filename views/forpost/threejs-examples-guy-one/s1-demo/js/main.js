@@ -3,6 +3,7 @@
     // SCENE, CAMERA, and RENDERER
     // ********** **********
     var scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(28, 7) );
     var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
     var renderer = new THREE.WebGLRenderer();
     camera.position.set(10, 10, 10);
@@ -15,12 +16,13 @@
     // ADDING GUY OBJECTS TO SCENE
     // ********** **********
     var guy1 = new Guy();
+    guy1.group.position.set(0, 3, 0)
     scene.add(guy1.group);
     var guy2 = new Guy();
-    guy2.group.position.set(5, 0, 0);
+    guy2.group.position.set(5, 3, 0);
     scene.add(guy2.group);
     var guy3 = new Guy();
-    guy3.group.position.set(-5, 0, 0);
+    guy3.group.position.set(-5, 3, 0);
     scene.add(guy3.group);
     // ********** **********
     // ANIMATION LOOP
@@ -41,11 +43,11 @@
             guy1.moveHead(.25 - .25 * bias);
             guy1.group.position.set(
                 Math.cos(r) * 5 - 5,
-                0,
+                3,
                 Math.sin(r) * 5);
             guy1.group.lookAt(
                 Math.cos(r + 0.5) * 5 - 5,
-                0,
+                3,
                 Math.sin(r + 0.5) * 5);
             // guy 2 shakes his head
             guy2.moveHead(.125 - .25 * bias);
