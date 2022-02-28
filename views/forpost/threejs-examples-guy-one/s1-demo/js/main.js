@@ -1,6 +1,7 @@
 (function () {
-
+    // ********** **********
     // SCENE, CAMERA, and RENDERER
+    // ********** **********
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
     var renderer = new THREE.WebGLRenderer();
@@ -10,22 +11,20 @@
     scene.add(camera);
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-
-    // GUY Instances
+    // ********** **********
+    // ADDING GUY OBJECTS TO SCENE
+    // ********** **********
     var guy1 = new Guy();
     scene.add(guy1.group);
-
     var guy2 = new Guy();
     guy2.group.position.set(5, 0, 0);
     scene.add(guy2.group);
-
     var guy3 = new Guy();
     guy3.group.position.set(-5, 0, 0);
     scene.add(guy3.group);
-
-
+    // ********** **********
     // ANIMATION LOOP
-
+    // ********** **********
     var frame = 0,
     maxFrame = 200,
     lt = new Date();
