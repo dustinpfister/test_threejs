@@ -20,7 +20,7 @@
     penumbra = 0.25,
     decay = 0.5;
     var spotLight = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
-    spotLight.position.set(8, 8, 0);
+    spotLight.position.set(5, 20, 0);
     scene.add(spotLight);
     scene.add( new THREE.AmbientLight(0xffffff, 0.07));
     // ---------- ----------
@@ -56,12 +56,10 @@
     var update = function(){
         var per = Math.round(frame) / frameMax,
         bias = 1 - Math.abs(0.5 - per) / 0.5,
-        radian = Math.PI * 2 * per,
-        x = Math.cos(radian) * 8, 
-        y = 10,
-        z = Math.sin(radian) * 8;
-        spotLight.position.set(x, y, z);
-        spotTarget.position.set(0, 0, -3 + 6 * bias);
+        radian = Math.PI * 2 * per;
+        spotLight.intensity = 0.1 + bias;
+        spotLight.angle = 0.05 + 0.15 * bias;
+        spotTarget.position.set( Math.cos(radian) * 3, 0, Math.sin(radian) * 3);
     };
     // loop
     var loop = function () {
