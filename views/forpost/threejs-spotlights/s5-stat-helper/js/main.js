@@ -8,17 +8,13 @@
     var renderer = new THREE.WebGLRenderer();
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.setSize(640, 480);
-    // SPOTLIGHT
-    var color = new THREE.Color('white'),
-    intensity = 1,
-    distance = 30,
-    angle = Math.PI * 0.05,
-    penumbra = 0.25,
-    decay = 0.5;
-    var spotLight = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
-    spotLight.position.set(8, 8, 0);
+    // ---------- ----------
+    // SPOTLIGHT WITH HELPER
+    // ---------- ----------
+    var spotLight = new THREE.SpotLight(new THREE.Color('white'), 0.5, 10, 0.5, 1);
+    spotLight.position.set(3, 3, 0);
+    spotLight.add(new THREE.SpotLightHelper(spotLight))
     scene.add(spotLight);
-    scene.add( new THREE.AmbientLight(0xffffff, 0.07));
    // MESH OBJECTS
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -35,6 +31,4 @@
     scene.add(floor);
     // RENDER
     renderer.render(scene, camera);
- 
-}
-    ());
+}());
