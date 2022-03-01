@@ -4,3 +4,5 @@ These are the source code examples that I have together for my [post on spotligh
 
 ## Resources
 
+[Three.js docs on spotlights ](https://threejs.org/docs/#api/en/lights/SpotLight)
+
