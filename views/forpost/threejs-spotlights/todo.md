@@ -1,5 +1,10 @@
 # threejs-spotlights todo list
 
-## () - basic example folder
+## () - examples for each section
+* (done) new basic example
+* (done) new target example
+* new shadow example
+* new values example
+* new helper example
 
 
