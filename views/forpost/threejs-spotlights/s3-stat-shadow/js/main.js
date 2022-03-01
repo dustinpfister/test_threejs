@@ -1,6 +1,7 @@
 (function () {
- 
-    // Scene
+    // ---------- ----------
+    // SCENE, CAMERA, RENDERER
+    // ---------- ----------
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0x0f0f0f);
     camera = new THREE.PerspectiveCamera(50, 320 / 240, 1, 5000);
@@ -10,8 +11,9 @@
     renderer.shadowMap.enabled = true;
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.setSize(640, 480);
-
+    // ---------- ----------
     // MESH OBJECTS
+    // ---------- ----------
     var cube = new THREE.Mesh(
             new THREE.BoxGeometry(200, 200, 200),
             new THREE.MeshStandardMaterial({
@@ -29,9 +31,9 @@
     plane.rotation.x = Math.PI / 2;
     plane.receiveShadow = true; // the plane will receive a shadow
     scene.add(plane);
- 
- 
-    // SpotLight
+    // ---------- ----------
+    // SPOTLIGHT
+    // ---------- ----------
     var spotLight = new THREE.SpotLight(0xffffff);
     // I must at least set the caseShadow boolean
     // of the spotLight to true
@@ -48,10 +50,8 @@
     spotLight.distance = 1000;
     spotLight.position.set(-250, 350, 250);
     scene.add(spotLight);
- 
- 
-    // render what we have
+    // ---------- ----------
+    // CALLING RENDER OF RENDERER
+    // ---------- ----------
     renderer.render(scene, camera);
- 
-}
-    ());
+}());
