@@ -1,11 +1,11 @@
 # threejs-spotlights todo list
 
 
-## () - examples for each section
+## ( done 03/01/2022 ) - examples for each section
 * (done) new basic example
 * (done) new target example
 * (done) new shadow example
-* new values example
+* (done) new values example
 * (done) new helper example
-* new ani helper example
+* (done) new ani helper example
 
