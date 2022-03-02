@@ -20,10 +20,12 @@
     var distance = 10,
     angle = Math.PI / 180 * 20,
     penumbra = 1,
-    decay = 1;
+    decay = 0.5;
     var light = new THREE.SpotLight(0xffffff, 1, distance, angle, penumbra, decay);
     var target = new THREE.Object3D();
+    var lightHelper = new THREE.SpotLightHelper(light);
     light.target = target;
+    light.add( lightHelper );
     scene.add(target);
     scene.add(light);
     scene.add(new THREE.AmbientLight(0x2a2a2a, 0.3));
@@ -49,12 +51,13 @@
     // update
     var update = function(){
         var per = Math.round(frame) / frameMax,
-		bias = 1 - Math.abs(0.5 - per) / 0.5,
+        bias = 1 - Math.abs(0.5 - per) / 0.5,
         radian = Math.PI * 2 * per;
         // setting target position
-        target.position.set(Math.cos(radian) * 2, 0, Math.sin(radian) * 2);
+        target.position.set(Math.cos(radian) * 1.5, 0, Math.sin(radian) * 1.5);
         // setting spot light position
-        light.position.set(0, 1 + 6 * bias, 0);
+        light.position.set(-2 + 4 * bias, 0.25 + 1.25 * bias, 0);
+        lightHelper.update();
     };
     // loop
     var loop = function () {
