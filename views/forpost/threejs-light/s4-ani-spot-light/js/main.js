@@ -15,11 +15,12 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     // ---------- ----------
-    // ADDING LIGHTS TO THE SCENE
+    // SPORTLIGHT
     // ---------- ----------
-    var light = new THREE.DirectionalLight(0x2a2a2a, 2.5);
+    var light = new THREE.SpotLight(0xffffff, 1, 4, 0.25, 1, 0.5);
+    light.position.set(0, 3, 0);
     scene.add(light);
-    scene.add(new THREE.AmbientLight(0x2a2a2a, 0.5));
+    scene.add(new THREE.AmbientLight(0x2a2a2a, 0.3));
     // ---------- ----------
     // ADDING A FEW MESH OBJECTS TO THE SCENE
     // ---------- ----------
