@@ -25,7 +25,6 @@
     var target = new THREE.Object3D();
     light.target = target;
     scene.add(target);
-    light.position.set(0, 3, 0);
     scene.add(light);
     scene.add(new THREE.AmbientLight(0x2a2a2a, 0.3));
     // ---------- ----------
@@ -50,12 +49,12 @@
     // update
     var update = function(){
         var per = Math.round(frame) / frameMax,
-        radian = Math.PI * 2 * per,
-        x = Math.cos(radian) * 2, 
-        y = 0,
-        z = Math.sin(radian) * 2;
+		bias = 1 - Math.abs(0.5 - per) / 0.5,
+        radian = Math.PI * 2 * per;
         // setting target position
-        target.position.set(x, 0, z);
+        target.position.set(Math.cos(radian) * 2, 0, Math.sin(radian) * 2);
+        // setting spot light position
+        light.position.set(0, 1 + 6 * bias, 0);
     };
     // loop
     var loop = function () {

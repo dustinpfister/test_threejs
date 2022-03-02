@@ -7,10 +7,9 @@
 
 ## - spot light animation example
 * (done) start animation example on spot lights
-* (done) have a plane geometry 
-* and one or more mesh object placed on top of it
-* have one spot light that is moving around and focused on a fixed target
+* (done) have a plane geometry
 * (done) have one spot light that is moving and also chaining what the target is
+* add a spot light helper
 
 ## ( done 02/25/2022 ) - first set of examples done
 * (done) simple static scene example on ambient light
