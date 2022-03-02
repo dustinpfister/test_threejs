@@ -17,11 +17,14 @@
     // ---------- ----------
     // SPORTLIGHT
     // ---------- ----------
-    var distance = 4,
+    var distance = 10,
     angle = Math.PI / 180 * 20,
     penumbra = 1,
-    decay = 0.5;
+    decay = 1;
     var light = new THREE.SpotLight(0xffffff, 1, distance, angle, penumbra, decay);
+    var target = new THREE.Object3D();
+    light.target = target;
+    scene.add(target);
     light.position.set(0, 3, 0);
     scene.add(light);
     scene.add(new THREE.AmbientLight(0x2a2a2a, 0.3));
@@ -40,17 +43,19 @@
     // APP LOOP
     var secs = 0,
     fps_update = 30,   // fps rate to update ( low fps for low CPU use, but choppy video )
-    fps_movement = 60, // fps rate to move camera
+    fps_movement = 30, // fps rate to move camera
     frame = 0,
-    frameMax = 60,
+    frameMax = 120,
     lt = new Date();
     // update
     var update = function(){
         var per = Math.round(frame) / frameMax,
         radian = Math.PI * 2 * per,
-        x = Math.cos(radian) * 25, 
-        y = 3,
-        z = Math.sin(radian) * 25;
+        x = Math.cos(radian) * 2, 
+        y = 0,
+        z = Math.sin(radian) * 2;
+        // setting target position
+        target.position.set(x, 0, z);
     };
     // loop
     var loop = function () {
