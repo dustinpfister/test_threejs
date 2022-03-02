@@ -17,7 +17,11 @@
     // ---------- ----------
     // SPORTLIGHT
     // ---------- ----------
-    var light = new THREE.SpotLight(0xffffff, 1, 4, 0.25, 1, 0.5);
+    var distance = 4,
+    angle = Math.PI / 180 * 20,
+    penumbra = 1,
+    decay = 0.5;
+    var light = new THREE.SpotLight(0xffffff, 1, distance, angle, penumbra, decay);
     light.position.set(0, 3, 0);
     scene.add(light);
     scene.add(new THREE.AmbientLight(0x2a2a2a, 0.3));
@@ -26,7 +30,7 @@
     // ---------- ----------
     var mesh1 = new THREE.Mesh(
             new THREE.PlaneGeometry(5,5),
-            new THREE.MeshPhongMaterial( { color: new THREE.Color('lime') } )
+            new THREE.MeshPhongMaterial( { color: new THREE.Color('cyan') } )
     );
     mesh1.rotation.x = -1.57;
     scene.add(mesh1);
