@@ -3,7 +3,7 @@
 ## () - for post folders for current set of examples
 * (done) s1-basic example
 * (done) s2-set-method
-* s3-in-circle
+* (done) s3-in-circle
 * s4-to-sphere
 * s5-object3d
 * s6-add-div-sub
