@@ -52,35 +52,29 @@
     // LOOP
     // ---------- ----------
     var sm = {
-		lat: 0,
-		frame: 0,
-		maxFrame: 90,
-		fps: 30,
-		lt: new Date()
-	};
+        lat: 0,
+        frame: 0,
+        maxFrame: 180,
+        fps: 30,
+        lt: new Date(),
+        per: 0,
+        bias: 0
+    };
     var loop = function(){
         var now = new Date(),
-		secs = (now - sm.lt) / 1000;
-
+        secs = (now - sm.lt) / 1000;
         requestAnimationFrame(loop);
-
         if(secs >= 1 / sm.fps){
-			
-			sm.frame += sm.fps * secs;
-			sm.frame %= sm.maxFrame;
-			sm.per = sm.frame / sm.maxFrame;
-			sm.lat = 1 * sm.per;
-
-        setOnSphere(cube, sm.lat, 0, 2);
-        //sm.lat += 0.01;
-        //sm.lat %= 1;
-        cube.lookAt(0, 0, 0);
-        renderer.render(scene, camera);
-		
-		sm.lt = new Date();
-		
-		}
-		
+            sm.frame += sm.fps * secs;
+            sm.frame %= sm.maxFrame;
+            sm.per = sm.frame / sm.maxFrame;
+            sm.bias = 1 - Math.abs(0.5 - sm.per) / 0.5;
+            sm.lat = sm.bias;
+            setOnSphere(cube, sm.lat, 0, 2);
+            cube.lookAt(0, 0, 0);
+            renderer.render(scene, camera);
+            sm.lt = new Date();
+        }
     };
     loop();
 }
