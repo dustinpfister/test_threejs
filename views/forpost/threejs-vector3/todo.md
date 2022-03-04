@@ -5,7 +5,7 @@
 * (done) s2-set-method
 * (done) s3-in-circle
 * (done) s4-to-sphere
-* s5-object3d
+* (done) s5-object3d
 * s6-add-div-sub
 * s7-distance
 * s8-clone-copy
