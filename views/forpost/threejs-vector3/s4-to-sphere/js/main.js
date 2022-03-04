@@ -51,14 +51,36 @@
     // ---------- ----------
     // LOOP
     // ---------- ----------
-    var lat = 0.1;
+    var sm = {
+		lat: 0,
+		frame: 0,
+		maxFrame: 90,
+		fps: 30,
+		lt: new Date()
+	};
     var loop = function(){
+        var now = new Date(),
+		secs = (now - sm.lt) / 1000;
+
         requestAnimationFrame(loop);
-        setOnSphere(cube, lat, 0, 2);
-        lat += 0.01;
-        lat %= 1;
+
+        if(secs >= 1 / sm.fps){
+			
+			sm.frame += sm.fps * secs;
+			sm.frame %= sm.maxFrame;
+			sm.per = sm.frame / sm.maxFrame;
+			sm.lat = 1 * sm.per;
+
+        setOnSphere(cube, sm.lat, 0, 2);
+        //sm.lat += 0.01;
+        //sm.lat %= 1;
         cube.lookAt(0, 0, 0);
         renderer.render(scene, camera);
+		
+		sm.lt = new Date();
+		
+		}
+		
     };
     loop();
 }
