@@ -1,4 +1,18 @@
 (function () {
+    // ---------- ----------
+    // SCENE, CAMERA, RENDERER
+    // ---------- ----------
+    var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(9, 9));
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    camera.position.set(5, 5, 5);
+    camera.lookAt(0, 0, 0);
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
+    // ---------- ----------
+    // HELPER FUNCTIONS
+    // ---------- ----------
     // simple create cube helper
     var createCube = function(){
         var cube = new THREE.Mesh(
@@ -23,9 +37,9 @@
         y = alt * latBias * (lat > 0.5 ? -1 : 1);
         setOnSphereFromPos(cube, x, y, z, alt);
     };
-    // scene
-    var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(9, 9));
+    // ---------- ----------
+    // ADDING MESH OBJECTS TO SCENE
+    // ---------- ----------
     var sphere = new THREE.Mesh(
         new THREE.SphereGeometry(1.5, 30, 30),
         new THREE.MeshNormalMaterial({wireframe:true}));
@@ -34,13 +48,9 @@
     scene.add(cube);
     setOnSphere(cube, 0.1, 0.3, 2);
     cube.lookAt(0, 0, 0);
-    // CAMERA
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(5, 5, 5);
-    camera.lookAt(0, 0, 0);
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
+    // ---------- ----------
+    // LOOP
+    // ---------- ----------
     var lat = 0.1;
     var loop = function(){
         requestAnimationFrame(loop);
