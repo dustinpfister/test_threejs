@@ -9,7 +9,7 @@
 * (done) s3-in-circle
 * (done) s4-to-sphere
 * (done) s5-object3d
-* s6-add-div-sub
+* (done) s6-multi
 * s7-distance
 * s8-clone-copy
 * s9-normalize
