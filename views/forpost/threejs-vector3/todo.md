@@ -1,4 +1,4 @@
-# threejs-vector3-set-from-spherical-coords todo list
+# threejs-vector3 todo list
 
 ## () - scale demo in s5-object3d example
 * the example should also make use of the scale property of object3d objects
