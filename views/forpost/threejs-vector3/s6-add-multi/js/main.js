@@ -27,6 +27,7 @@
    // using set, normalize, and multiplyScalar
     var mesh2 = mkMesh();
     mesh2.position.set(-1,0,-1).normalize().multiplyScalar(6);
+    console.log( new THREE.Vector3(0,0,3).normalize().multiplyScalar(6)  )
     scene.add(mesh2);
     // ---------- ----------
     // RENDER
