@@ -10,7 +10,7 @@
 * (done) s4-to-sphere
 * (done) s5-object3d
 * (done) s6-multi
-* s7-distance
+* (done) s7-distance
 * s8-clone-copy
 * s9-normalize
 * s10-custom-geometry
