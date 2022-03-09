@@ -18,6 +18,7 @@
     // POINT LIGHT
     // ---------- ----------
     var light = new THREE.PointLight(0xffffff, 1);
+    light.add(new THREE.Mesh(new THREE.SphereGeometry(0.05, 20, 20)));
     scene.add(light);
     scene.add(new THREE.AmbientLight(0x2a2a2a, 0.3));
     // ---------- ----------
