@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 
 // node.js modules
 let path = require('path'),
