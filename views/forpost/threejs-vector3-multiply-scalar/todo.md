@@ -9,6 +9,6 @@
 ## ( ) - copy, normalize and multiply-scalar
 * have one mesh that is positioned using copy, normalize, and multiply sclar
 
-## ( ) - basic example
-* start with a basic static example of multiply-scalar
+## ( done 03/23/2022 ) - basic example
+* (done) start with a basic static example of multiply-scalar
 
