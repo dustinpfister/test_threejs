@@ -34,7 +34,7 @@
     cube2.lookAt(0, 0, 0);
     cube3.lookAt(cube1.position);
  
-    // redner static scene
+    // render static scene
     renderer.render(scene, camera);
 }
     ());

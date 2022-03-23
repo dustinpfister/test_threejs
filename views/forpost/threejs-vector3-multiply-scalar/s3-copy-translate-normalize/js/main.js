@@ -27,7 +27,7 @@
     });
     scene.children[1].lookAt(scene.children[2].position)
  
-    // redner static scene
+    // render static scene
     renderer.render(scene, camera);
 }
     ());

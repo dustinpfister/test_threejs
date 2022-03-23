@@ -19,7 +19,7 @@
     // SETTING POSITION WITH Vector3.set and Vector3.multiplyScalar
     cube1.position.set(-1, 0, -1).multiplyScalar(4);
  
-    // redner static scene
+    // render static scene
     renderer.render(scene, camera);
 }
     ());
