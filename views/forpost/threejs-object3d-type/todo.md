@@ -9,4 +9,7 @@
 * have an example that involves a collection of mesh objects that are children of an instance of object3d
 
 ## first s1-basic section
-* just start a basic example in which an instance of Object3d is used with other types of objects based on Object3d
+* Just start a basic example in which an instance of Object3d is used
+* have other types of objects based on Object3d of course such as Mesh
+* loop over all children of the main scene object
+* use the type prop of the scene object to know if certain things should change 
