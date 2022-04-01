@@ -21,9 +21,29 @@
         THREE.Vector3.prototype.set.apply(mesh.position, meshData)
         obj.add(mesh);
     });
+
+    scene.children.forEach(function(obj){
+		
+		if(obj.type === 'PerspectiveCamera'){
+            obj.position.set(8, 8, 8);
+            obj.lookAt(0,0,0)
+		}
+		
+		if(obj.type === 'Object3D'){
+			obj.children.forEach(function(obj){
+				
+				if(obj.type === 'Mesh'){
+					console.log(obj);
+				}
+				
+			});
+			
+		}
+		
+	});
+
     // render static scene
-    camera.position.set(10, 10, 10);
-    camera.lookAt(0,0,0)
+
     renderer.render(scene, camera);
  
 }
