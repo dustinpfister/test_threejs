@@ -2,7 +2,7 @@
     // SCENE TYPE OBJECT, CAMERA TYPE OBJECT, and RENDERER
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(9, 9));
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 5, 20);
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -21,30 +21,24 @@
         THREE.Vector3.prototype.set.apply(mesh.position, meshData)
         obj.add(mesh);
     });
-
+    // LOOPING OVER ALL CHILDREN OF THE SCENE AND USING THE TYPE
+    // PROPERTY OF EACH OBJECT TO PREFORM AN ACTION FOR THAT TYPE
+    var depth = new THREE.MeshDepthMaterial();
     scene.children.forEach(function(obj){
-		
-		if(obj.type === 'PerspectiveCamera'){
+        if(obj.type === 'PerspectiveCamera'){
             obj.position.set(8, 8, 8);
             obj.lookAt(0,0,0)
-		}
-		
-		if(obj.type === 'Object3D'){
-			obj.children.forEach(function(obj){
-				
-				if(obj.type === 'Mesh'){
-					console.log(obj);
-				}
-				
-			});
-			
-		}
-		
-	});
-
+        }
+        if(obj.type === 'Object3D'){
+            obj.children.forEach(function(obj){
+                if(obj.type === 'Mesh'){
+                    obj.material = depth;
+                }
+            });
+            
+        }
+    });
     // render static scene
-
     renderer.render(scene, camera);
- 
 }
     ());
