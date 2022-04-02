@@ -41,7 +41,7 @@
     // load a resource
     loader.load(
         // resource URL
-        '/forpost/threejs-buffer-geometry-loader/s1-basic/js/three_2.json',
+        '/forpost/threejs-buffer-geometry-loader/buffer-geo/three_2.json',
         // onLoad callback
         function (geometry) {
         // create a mesh with the geometry
