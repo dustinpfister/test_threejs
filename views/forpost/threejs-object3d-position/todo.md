@@ -14,5 +14,5 @@
 * set the position of each child
 * set the position of the group
 
-## () first s1-basic section
-* just have a static scene example where a single mesh is being positioned
+## ( done 04/04/2022 ) first s1-basic section
+* (done) just have a static scene example where a single mesh is being positioned
