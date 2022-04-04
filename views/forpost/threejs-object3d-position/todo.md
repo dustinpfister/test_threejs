@@ -1,5 +1,9 @@
 # threejs-object3d-position todo list
 
+
+## () s6-world-space
+* have an example that has to do with parent and world space relative positions
+
 ## () s5-loop
 * have an animation loop example
 
