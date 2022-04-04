@@ -9,10 +9,10 @@
 ## () s3-rotation
 * more advanced example of the s2-children example but using rotation also
 
-## () s2-children
-* have an example that involves a group of mesh objects
-* set the position of each child
-* set the position of the group
+## ( done 04/04 2022 ) s2-children
+* (done) have an example that involves a group of mesh objects
+* (done) set the position of each child
+* (done) set the position of the group
 
 ## ( done 04/04/2022 ) first s1-basic section
 * (done) just have a static scene example where a single mesh is being positioned
