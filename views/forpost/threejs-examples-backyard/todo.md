@@ -1,4 +1,4 @@
 # threejs-examples-backyard todo list
 
-## () - s1-backyard
-* just have a folder for the current state of the example
+## ( done 04/05/2022 ) - s1-backyard
+* (done) just have a folder for the current state of the example
