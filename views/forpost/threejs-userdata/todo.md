@@ -1,4 +1,5 @@
 # threejs-userdata todo list
 
-## basic example folder
-* have a basic example folder for the post
+## ( done 04/07/2022 ) basic example folder
+* (done) have folders for all current examples in the post
+* (done) make sure they are all working with r135
