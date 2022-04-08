@@ -44,7 +44,10 @@
         bias = 1 - Math.abs(0.5 - per) / 0.5;
         // rotating the group of cubes
         theCubes.rotation.y = Math.PI * 2 * per;
-        //
+        // rotation of each child
+        theCubes.children.forEach(function(cube, i){
+            cube.rotation.x = Math.PI * 2 * ( 1 + i * 2) * per;
+        });
     };
     // loop
     var loop = function () {
