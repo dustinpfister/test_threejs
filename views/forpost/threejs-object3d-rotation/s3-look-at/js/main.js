@@ -22,7 +22,7 @@
     // creating and positioning mesh objects
     var theCubes = new THREE.Group();
     scene.add(theCubes);
-    var i = 0, len = 8;
+    var i = 0, len = 7;
     while(i < len){
         var cube = mkCube(),
         p = i / (len - 1 );
