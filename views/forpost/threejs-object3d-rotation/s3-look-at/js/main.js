@@ -19,16 +19,18 @@
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
     };
-    [0, 0, 0, 0, 0, 0].forEach(function(d, i, arr){
+    var i = 0, len = 6;
+    while(i < len){
         var cube = mkCube(),
-        p = i / (arr.length - 1 );
-        // position of each cube
+        p = i / (len - 1 );
+        //position of each cube
         var x = -3 + 6 * p,
         y = -1.5 + 3 * p,
         z = Math.sin(Math.PI * p) * 4;
         cube.position.set(x, y, z);
         scene.add(cube);
-    });
+        i += 1;
+    }
     // ---------- ----------
     // CALLING RENDER OF RENDERER
     // ---------- ----------
