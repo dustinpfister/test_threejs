@@ -6,7 +6,7 @@
     scene.background = new THREE.Color('#0f0f0f');
     scene.add(new THREE.GridHelper(10, 10));
     var camera = new THREE.PerspectiveCamera(50, 320 / 240, 0.1, 1000);
-    camera.position.set(5, 5, 5);
+    camera.position.set(2, 4, 8);
     camera.lookAt(0,0,0);
     var renderer = new THREE.WebGLRenderer();
     document.getElementById('demo').appendChild(renderer.domElement);
@@ -22,14 +22,14 @@
     // creating and positioning mesh objects
     var theCubes = new THREE.Group();
     scene.add(theCubes);
-    var i = 0, len = 6;
+    var i = 0, len = 8;
     while(i < len){
         var cube = mkCube(),
         p = i / (len - 1 );
         //position of each cube
         var x = -3 + 6 * p,
         y = -1.5 + 3 * p,
-        z = Math.sin(Math.PI * p) * 4;
+        z = -4 + Math.sin(Math.PI * p) * 6;
         cube.position.set(x, y, z);
         theCubes.add(cube);
         i += 1;
