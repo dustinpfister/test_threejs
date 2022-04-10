@@ -1,8 +1,10 @@
 # threejs-object3d-rotation todo list
 
+## () - s5-object-children
+* have an example involving object children
 
-## () - s4-rotate-geo
-* example showing that geo can also be rotated
+## ( done 04/10/2022 ) - s4-rotate-geo
+* (done) example showing that geo can also be rotated
 
 ## ( done 04/09/2022 ) - s3 - look at example
 * (done) have an animation example of the look at method
