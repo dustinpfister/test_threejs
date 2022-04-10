@@ -16,7 +16,7 @@
     // ---------- ----------
     var mkCone = function(){
         var cone = new THREE.Mesh(
-            new THREE.ConeGeometry(0.25, 1, 30, 30),
+            new THREE.ConeGeometry(0.125, 0.66, 30, 30),
             new THREE.MeshNormalMaterial());
         // Rotating the geometry of each cone once
         cone.geometry.rotateX(1.57);
@@ -25,15 +25,15 @@
     // get position helper
     var getPos = function(i, len){
         var p = i / (len - 1 ),
-        x = -3 + 6 * p,
+        x = -8 + 15 * p,
         y = -1.5 + 3 * p,
-        z = -4 + Math.sin(Math.PI * p) * 6;
+        z = -8 + Math.sin(Math.PI * p) * 12;
         return new THREE.Vector3(x, y, z);
     };
     // creating and positioning mesh objects
     var theCones = new THREE.Group();
     scene.add(theCones);
-    var i = 0, len = 7;
+    var i = 0, len = 20;
     while(i < len){
         var cone = mkCone();
         //cone.position.set(x, y, z);
@@ -43,15 +43,17 @@
     }
     // using look at for each cube to set rotation of each cube
     theCones.children.forEach(function(cone, i, arr){
-        var i2 = i + 1, cone2;
+        var i2 = i + 1, 
+        cone2, vec;
         if(i === 0){
             i2 = 1;
         }
         if(i >= arr.length - 1){
-            i2 = arr.length - 2;
+            vec = getPos(len, len);
+        }else{
+            vec = arr[i2].position;
         }
-        cone2 = arr[i2];
-        cone.lookAt(cone2.position);
+        cone.lookAt(vec);
     });
     // ---------- ----------
     // CALLING RENDER OF RENDERER
