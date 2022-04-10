@@ -22,17 +22,22 @@
         cone.geometry.rotateX(1.57);
         return cone;
     };
+    // get position helper
+    var getPos = function(i, len){
+        var p = i / (len - 1 ),
+        x = -3 + 6 * p,
+        y = -1.5 + 3 * p,
+        z = -4 + Math.sin(Math.PI * p) * 6;
+        return new THREE.Vector3(x, y, z);
+    };
     // creating and positioning mesh objects
     var theCones = new THREE.Group();
     scene.add(theCones);
     var i = 0, len = 7;
     while(i < len){
-        var cone = mkCone(),
-        p = i / (len - 1 );
-        var x = -3 + 6 * p,
-        y = -1.5 + 3 * p,
-        z = -4 + Math.sin(Math.PI * p) * 6;
-        cone.position.set(x, y, z);
+        var cone = mkCone();
+        //cone.position.set(x, y, z);
+        cone.position.copy(getPos(i , len))
         theCones.add(cone);
         i += 1;
     }
