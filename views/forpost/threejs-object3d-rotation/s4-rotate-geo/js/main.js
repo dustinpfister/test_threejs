@@ -14,17 +14,19 @@
     // ---------- ----------
     // MESH OBJECTS
     // ---------- ----------
-    var mkCube = function(){
-        return new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
+    var mkCone = function(){
+        var cone = new THREE.Mesh(
+            new THREE.ConeGeometry(0.25, 1, 30, 30),
             new THREE.MeshNormalMaterial());
+       cone.geometry.rotateX(1.57);
+       return cone;
     };
     // creating and positioning mesh objects
     var theCubes = new THREE.Group();
     scene.add(theCubes);
     var i = 0, len = 7;
     while(i < len){
-        var cube = mkCube(),
+        var cube = mkCone(),
         p = i / (len - 1 );
         //position of each cube
         var x = -3 + 6 * p,
