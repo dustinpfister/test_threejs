@@ -1,7 +1,7 @@
 (function () {
     // SCENE TYPE OBJECT, CAMERA TYPE OBJECT, and RENDERER
     var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(9, 9));
+    scene.add(new THREE.GridHelper(10, 10));
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 20);
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer();
@@ -13,11 +13,12 @@
             new THREE.MeshNormalMaterial());
     scene.add(mesh);
     // SETTING POSITION OF THE MESH OBJECT
-    mesh.position.set(-3, 0.5, 1);
-    // SETTNG POSITION OF THE CAMERA
-    camera.position.set(8, 4, 0);
-    // setting Rotation of the camera using clone, and add Vector3 methods off 
-    camera.lookAt( mesh.position.clone().add( new THREE.Vector3(0,-2,0) ) );
+    var radian = THREE.MathUtils.degToRad(20);
+    var x = Math.cos(radian) * 5,
+    z = Math.sin(radian) * 5;
+    mesh.position.set(x, 0, z);
+    camera.position.set(8, 8, 8);
+    camera.lookAt( 0, 0, 0 );
     // render static scene
     renderer.render(scene, camera);
 }
