@@ -2,8 +2,9 @@
 
 ## () - s4-seededRandom
 
-## () - s3-euclidean-modulo
-
+## ( done 04/12/2022 ) - s3-euclidean-modulo
+* (done) simple example based off of the clamp one
+ 
 ## ( done 04/12/2022) - s2-clamp
 * (done) have a an example that uses clamp and randfloat
 
