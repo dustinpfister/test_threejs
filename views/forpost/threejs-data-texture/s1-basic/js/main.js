@@ -12,15 +12,15 @@ var size = width * height;
 var data = new Uint8Array( 4 * size );
 var per,r,g,b,a = 255;
 for ( let i = 0; i < size; i ++ ) {
-	const stride = i * 4;
-        per = i / size;
-        // set r, g, b, and alpha data values
-	data[ stride ] = 32 + Math.floor(128 * per); // red
-	data[ stride + 1 ] = 255 - 200 * per;        // green
-	data[ stride + 2 ] = 255;                    // blue
-	data[ stride + 3 ] = 255;                    // alpha
+    var stride = i * 4;
+    per = i / size;
+    // set r, g, b, and alpha data values
+    data[ stride ] = 32 + Math.floor(128 * per); // red
+    data[ stride + 1 ] = 255 - 200 * per;        // green
+    data[ stride + 2 ] = 255;                    // blue
+    data[ stride + 3 ] = 255;                    // alpha
 }
-const texture = new THREE.DataTexture( data, width, height );
+var texture = new THREE.DataTexture( data, width, height );
 texture.needsUpdate = true;
 // creating a mesh with this texture as a color map
 var box = new THREE.Mesh(
