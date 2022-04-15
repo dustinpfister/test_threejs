@@ -3,8 +3,8 @@
 ## () - s5-from-canvas
 * use canvas data?
 
-## () - s4-psydo-random
-* psudo random example
+## (done 04/15/2022 ) - s4-psydo-random
+* (done) psudo random example
 
 ## ( done 04/15/2022 ) - s3-random
 * (done) random example
