@@ -6,8 +6,8 @@
 ## () - s4-psydo-random
 * psudo random example
 
-## () - s3-random
-* random example
+## ( done 04/15/2022 ) - s3-random
+* (done) random example
 
 ## ( done 04/15/2022 ) - s2-distance
 * (done) have an example that makes use of the distance formual to make a gradiant
