@@ -10,9 +10,8 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var width = 512, height = 512;
 var size = width * height;
 var data = new Uint8Array( 4 * size );
-var per,r,g,b,a = 255;
 for ( let i = 0; i < size; i ++ ) {
-    var stride = i * 4;
+    var stride = i * 4,
     per = i / size;
     // set r, g, b, and alpha data values
     data[ stride ] = 32 + Math.floor(128 * per); // red
