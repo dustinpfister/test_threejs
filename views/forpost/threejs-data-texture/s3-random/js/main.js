@@ -7,6 +7,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
+// To create a texture using the Math.random method
 var width = 16, height = 16;
 var size = width * height;
 var data = new Uint8Array( 4 * size );
