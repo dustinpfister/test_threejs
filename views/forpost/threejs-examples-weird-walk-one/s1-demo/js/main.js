@@ -56,7 +56,15 @@
                 innerEye.position.set(0, 0, 0.125);
                 eye.add(innerEye);
                 body.add(eye);
-            });          
+            });
+            // ADD MOUTH
+            var mouth = new THREE.Mesh(
+                new THREE.BoxGeometry(0.5, 0.125, 0.25),
+                materials[3]
+            );
+            mouth.name = guy.name + '_mouth';
+            mouth.position.set(0, -0.3, 0.5);
+            body.add(mouth);
             // ADD ARMS
             ['arm1', 'arm2'].forEach(function(nameStr, i){
                 var arm = new THREE.Mesh(
