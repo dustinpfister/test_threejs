@@ -95,9 +95,8 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 0.05) {
-            var per = frame / maxFrame,
-            bias = Math.abs(.5 - per) / .5,
-            r = Math.PI * 2 * per;
+            var per = frame / maxFrame * 5 % 1,
+            bias = Math.abs(0.5 - per) / 0.5;
 
             weirdGuy.setWalk(guy, bias);
 
