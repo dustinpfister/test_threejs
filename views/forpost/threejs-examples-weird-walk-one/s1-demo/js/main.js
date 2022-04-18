@@ -21,7 +21,7 @@
     var weirdGuy = (function(){
 
         var materials = [
-            new THREE.MeshStandardMaterial( { emissive: 0xff0000, emissiveIntensity: 0.2, wireframe:false } ),
+            new THREE.MeshStandardMaterial( { emissive: 0xffaf00, emissiveIntensity: 0.2, wireframe:false } ),
             new THREE.MeshStandardMaterial( { emissive: 0x0000ff, emissiveIntensity: 0.2 } ),
             new THREE.MeshStandardMaterial( { emissive: 0xffffff, emissiveIntensity: 0.2 } ),
             new THREE.MeshStandardMaterial( { emissive: 0x2a2a2a, emissiveIntensity: 0.2 } )
