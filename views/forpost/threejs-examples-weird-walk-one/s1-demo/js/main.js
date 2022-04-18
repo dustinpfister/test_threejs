@@ -131,7 +131,7 @@
 
             var per = frame / maxFrame * 1 % 1,
             bias = Math.abs(0.5 - per) / 0.5;
-            guy.rotation.y = 1 * bias;
+            guy.rotation.y = -0.5 + 2.5 * bias;
 
             // draw
             renderer.render(scene, camera);
