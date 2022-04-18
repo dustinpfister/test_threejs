@@ -13,43 +13,48 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     // ********** **********
-    // ADDING OBJECTS
+    // WEIRD GUY MODULE
     // ********** **********
 
-    var guy = new THREE.Group();
-    var materials = [
-       new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe:true } ),
-       new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe:true } )
-    ];
+    var weirdGuy = (function(){
+        var api = {};
+        // create a new weird guy
+        api.create = function(){
+            var guy = new THREE.Group();
+            var materials = [
+                new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe:true } ),
+                new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe:true } )
+            ];
+            scene.add(guy);
+            // body mesh
+            var body = new THREE.Mesh(
+                new THREE.BoxGeometry(1, 1.5, 1),
+                materials[0]
+            );
+            guy.add(body);
+            // ADD PELVIS
+            var pelvis = new THREE.Mesh(
+                new THREE.BoxGeometry(1, 0.5, 1),
+                materials[1]
+            );
+            pelvis.position.set(0, -1.0, 0);
+            guy.add(pelvis);
+            // ADD LEGS
+            ['leg1', 'leg2'].forEach(function(nameStr, i){
+                var leg = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.25, 1.5, 1),
+                    materials[0]
+                );
+                leg.position.set(-0.25 + 0.5 * i, -1, 0);
+                pelvis.add(leg);
+            });
+        };
+        // return the api
+        return api;
+    }());
+
+    var guy = weirdGuy.create();
     scene.add(guy);
-    // body mesh
-    var body = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1.5, 1),
-        materials[0]
-    );
-    guy.add(body);
-    
-    // ADD PELVIS
-    var pelvis = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 0.5, 1),
-        materials[1]
-    );
-    pelvis.position.set(0, -1.0, 0);
-    guy.add(pelvis);
-
-    // ADD LEGS
-    ['leg1', 'leg2'].forEach(function(nameStr, i){
-        var leg = new THREE.Mesh(
-            new THREE.BoxGeometry(0.25, 1.5, 1),
-            materials[0]
-        );
-        leg.position.set(-0.25 + 0.5 * i, -1, 0);
-        pelvis.add(leg);
-    });
-
-    guy.position.y = 1.5;
-
-    
 
     // ********** **********
     // ANIMATION LOOP
