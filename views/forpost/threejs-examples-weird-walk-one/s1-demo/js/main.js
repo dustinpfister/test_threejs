@@ -82,11 +82,8 @@
     // ********** **********
     // ANIMATION LOOP
     // ********** **********
-	
-            renderer.render(scene, camera);
-	/*
     var frame = 0,
-    maxFrame = 200,
+    maxFrame = 60,
     lt = new Date();
     var loop = function () {
         var now = new Date(),
@@ -96,6 +93,9 @@
             var per = frame / maxFrame,
             bias = Math.abs(.5 - per) / .5,
             r = Math.PI * 2 * per;
+
+    weirdGuy.setWalk(guy, bias);
+
             // draw
             renderer.render(scene, camera);
             frame += 30 * secs;
@@ -104,7 +104,7 @@
         }
     };
     loop();
-	*/
+	
 
 }
     ());
