@@ -16,9 +16,21 @@
     // ADDING OBJECTS
     // ********** **********
 
+var guy = new THREE.Group();
+scene.add(guy);
+// body mesh
+var body = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1.5, 1),
+    new THREE.MeshNormalMaterial()
+);
+guy.add(body)
+
     // ********** **********
     // ANIMATION LOOP
     // ********** **********
+	
+            renderer.render(scene, camera);
+	/*
     var frame = 0,
     maxFrame = 200,
     lt = new Date();
@@ -38,6 +50,7 @@
         }
     };
     loop();
+	*/
 
 }
     ());
