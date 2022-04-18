@@ -1,14 +1,17 @@
 (function () {
     // ********** **********
-    // SCENE, CAMERA, and RENDERER
+    // SCENE, CAMERA, LIGHT, and RENDERER
     // ********** **********
     var scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10) );
-    var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
-    var renderer = new THREE.WebGLRenderer();
+    var camera = new THREE.PerspectiveCamera(50, 8 / 9, 0.05, 100);
     camera.position.set(4, 2, 4);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
+    var dl = new THREE.DirectionalLight(0xffffff, 0.8);
+    dl.position.set(0.1, 1.0, 0);
+    scene.add(dl);
+    var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     // ********** **********
