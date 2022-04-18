@@ -8,7 +8,6 @@
     var renderer = new THREE.WebGLRenderer();
     camera.position.set(4, 2, 4);
     camera.lookAt(0, 0, 0);
-    camera.add(new THREE.PointLight());
     scene.add(camera);
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
@@ -26,8 +25,8 @@
             var guy = new THREE.Group();
             guy.name = opt.guyID || 'guy';
             var materials = [
-                new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe:true } ),
-                new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe:true } )
+                new THREE.MeshStandardMaterial( { emissive: 0xff0000, emissiveIntensity: 0.2 } ),
+                new THREE.MeshStandardMaterial( { emissive: 0x0000ff, emissiveIntensity: 0.2 } )
             ];
             // body mesh
             var body = new THREE.Mesh(
@@ -48,7 +47,7 @@
             ['leg1', 'leg2'].forEach(function(nameStr, i){
                 var leg = new THREE.Mesh(
                     new THREE.BoxGeometry(0.25, 1.5, 1),
-                    materials[0]
+                    materials[1]
                 );
                 leg.name = guy.name + '_' + nameStr;
                 leg.position.set(-0.25 + 0.5 * i, -1, 0);
