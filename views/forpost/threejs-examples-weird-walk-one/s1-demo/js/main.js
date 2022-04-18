@@ -6,7 +6,7 @@
     scene.add( new THREE.GridHelper(10, 10) );
     var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
     var renderer = new THREE.WebGLRenderer();
-    camera.position.set(10, 10, 10);
+    camera.position.set(3, 0, 3);
     camera.lookAt(0, 0, 0);
     camera.add(new THREE.PointLight());
     scene.add(camera);
@@ -16,14 +16,29 @@
     // ADDING OBJECTS
     // ********** **********
 
-var guy = new THREE.Group();
-scene.add(guy);
-// body mesh
-var body = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1.5, 1),
-    new THREE.MeshNormalMaterial()
-);
-guy.add(body)
+    var guy = new THREE.Group();
+    var materials = [
+       new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe:true } ),
+       new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe:true } )
+    ]
+    scene.add(guy);
+    // body mesh
+    var body = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1.5, 1),
+        materials[0]
+    );
+    // var pelvis
+    var pelvis = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 0.5, 1),
+        materials[1]
+    );
+    pelvis.position.set(0, -1.0, 0);
+    body.add(pelvis);
+
+
+    guy.add(body);
+    
+    
 
     // ********** **********
     // ANIMATION LOOP
