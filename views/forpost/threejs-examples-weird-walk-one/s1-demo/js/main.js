@@ -20,6 +20,11 @@
 
     var weirdGuy = (function(){
 
+        var materials = [
+            new THREE.MeshStandardMaterial( { emissive: 0xff0000, emissiveIntensity: 0.2 } ),
+            new THREE.MeshStandardMaterial( { emissive: 0x0000ff, emissiveIntensity: 0.2 } )
+        ];
+
         var api = {};
 
         // create a new weird guy
@@ -27,17 +32,24 @@
             opt = opt || {};
             var guy = new THREE.Group();
             guy.name = opt.guyID || 'guy';
-            var materials = [
-                new THREE.MeshStandardMaterial( { emissive: 0xff0000, emissiveIntensity: 0.2 } ),
-                new THREE.MeshStandardMaterial( { emissive: 0x0000ff, emissiveIntensity: 0.2 } )
-            ];
-            // body mesh
+            // BODY
             var body = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1.5, 1),
                 materials[0]
             );
             body.name = guy.name + '_body';
             guy.add(body);
+            // ADD ARMS
+            ['arm1', 'arm2'].forEach(function(nameStr, i){
+                var arm = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.25, 1.5, 0.25),
+                    materials[0]
+                );
+                arm.name = guy.name + '_' + nameStr;
+                //arm.position.set(-1.125 + 2 * i, -0.5, 0);
+arm.position.set(-0.625 + 1.25 * i, -0.5, 0);
+                body.add(arm);
+            });
             // ADD PELVIS
             var pelvis = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 0.5, 1),
