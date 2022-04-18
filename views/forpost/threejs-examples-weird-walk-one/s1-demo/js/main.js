@@ -6,7 +6,7 @@
     scene.add( new THREE.GridHelper(10, 10) );
     var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
     var renderer = new THREE.WebGLRenderer();
-    camera.position.set(4, 4, 4);
+    camera.position.set(4, 2, 4);
     camera.lookAt(0, 0, 0);
     camera.add(new THREE.PointLight());
     scene.add(camera);
@@ -59,8 +59,11 @@
 
         // setWalk
         api.setWalk = function(guy, walkPer){
-
-console.log(guy)
+            var leg1 = guy.getObjectByName(guy.name + '_leg1'),
+            leg2 = guy.getObjectByName(guy.name + '_leg2')
+            // set scale of legs
+            leg1.scale.y = walkPer;
+            leg2.scale.y = 1 - walkPer;
 
         };
 
