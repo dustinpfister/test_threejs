@@ -17,15 +17,18 @@
     // ********** **********
 
     var weirdGuy = (function(){
+
         var api = {};
+
         // create a new weird guy
-        api.create = function(){
+        api.create = function(opt){
+            opt = opt || {};
             var guy = new THREE.Group();
+            //guy.name = opt.guyID || 'guy';
             var materials = [
                 new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe:true } ),
                 new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe:true } )
             ];
-            scene.add(guy);
             // body mesh
             var body = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1.5, 1),
@@ -45,12 +48,21 @@
                     new THREE.BoxGeometry(0.25, 1.5, 1),
                     materials[0]
                 );
+                //leg.name = guy.name + '_' + nameStr;
                 leg.position.set(-0.25 + 0.5 * i, -1, 0);
                 pelvis.add(leg);
             });
+            return guy;
         };
+
+        // setWalk
+        api.walk = function(guy, walkPer){
+
+        };
+
         // return the api
         return api;
+
     }());
 
     var guy = weirdGuy.create();
