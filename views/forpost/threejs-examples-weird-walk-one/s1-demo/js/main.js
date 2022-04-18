@@ -69,7 +69,9 @@ console.log(guy)
 
     }());
 
-    var guy = weirdGuy.create();
+    var guy = weirdGuy.create({
+        guyID: 'mrguy1'
+    });
     scene.add(guy);
 
     weirdGuy.setWalk(guy, 0);
