@@ -5,8 +5,8 @@
     var scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10) );
     var camera = new THREE.PerspectiveCamera(50, 8 / 9, 0.05, 100);
-    camera.position.set(4, 2, 4);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(4, 4, 4);
+    camera.lookAt(0, 1, 0);
     scene.add(camera);
     var dl = new THREE.DirectionalLight(0xffffff, 0.8);
     dl.position.set(0.1, 1.0, 0);
@@ -79,6 +79,7 @@
     var guy = weirdGuy.create({
         guyID: 'mrguy1'
     });
+    guy.position.y = 2.75;
     scene.add(guy);
 
     weirdGuy.setWalk(guy, 0);
