@@ -89,8 +89,8 @@
             leg1.scale.y = walkPer;
             leg2.scale.y = 1 - walkPer;
             // adjust position of legs
-            leg1.position.y = -1 + 0.75 * (1 - walkPer);
-            leg2.position.y = -1 + 0.75 * walkPer;   
+            leg1.position.y = -1.0 + 0.75 * (1 - walkPer);
+            leg2.position.y = -1.0 + 0.75 * walkPer;   
         };
 
         // return the api
@@ -121,6 +121,10 @@
             bias = Math.abs(0.5 - per) / 0.5;
 
             weirdGuy.setWalk(guy, bias);
+
+            var per = frame / maxFrame * 1 % 1,
+            bias = Math.abs(0.5 - per) / 0.5;
+            guy.rotation.y = 1 * bias;
 
             // draw
             renderer.render(scene, camera);
