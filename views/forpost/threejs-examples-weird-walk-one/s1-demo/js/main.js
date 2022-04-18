@@ -34,12 +34,14 @@
                 new THREE.BoxGeometry(1, 1.5, 1),
                 materials[0]
             );
+            body.name = guy.name + '_body';
             guy.add(body);
             // ADD PELVIS
             var pelvis = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 0.5, 1),
                 materials[1]
             );
+            pelvis.name = guy.name + '_pelvis';
             pelvis.position.set(0, -1.0, 0);
             guy.add(pelvis);
             // ADD LEGS
