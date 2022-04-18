@@ -21,8 +21,9 @@
     var weirdGuy = (function(){
 
         var materials = [
-            new THREE.MeshStandardMaterial( { emissive: 0xff0000, emissiveIntensity: 0.2 } ),
-            new THREE.MeshStandardMaterial( { emissive: 0x0000ff, emissiveIntensity: 0.2 } )
+            new THREE.MeshStandardMaterial( { emissive: 0xff0000, emissiveIntensity: 0.2, wireframe:false } ),
+            new THREE.MeshStandardMaterial( { emissive: 0x0000ff, emissiveIntensity: 0.2 } ),
+            new THREE.MeshStandardMaterial( { emissive: 0xffffff, emissiveIntensity: 0.2 } )
         ];
 
         var api = {};
@@ -39,6 +40,16 @@
             );
             body.name = guy.name + '_body';
             guy.add(body);
+            // EYES
+            ['eye1', 'eye2'].forEach(function(nameStr, i){
+                var eye = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.2, 30, 30),
+                    materials[2]
+                );
+                eye.name = guy.name + '_' + nameStr;
+                eye.position.set(-0.2 + 0.4 * i, 0.2, 0.5);
+                body.add(eye);
+            });          
             // ADD ARMS
             ['arm1', 'arm2'].forEach(function(nameStr, i){
                 var arm = new THREE.Mesh(
@@ -46,8 +57,7 @@
                     materials[0]
                 );
                 arm.name = guy.name + '_' + nameStr;
-                //arm.position.set(-1.125 + 2 * i, -0.5, 0);
-arm.position.set(-0.625 + 1.25 * i, -0.5, 0);
+                arm.position.set(-0.625 + 1.25 * i, -0.5, 0);
                 body.add(arm);
             });
             // ADD PELVIS
