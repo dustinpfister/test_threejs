@@ -1,5 +1,6 @@
 # threejs-material-index todo list
 
 
-### ( ) - update basic example
-* () just have the current set of examples in the post for now and make sure they still work okay with r135
+### ( done 04/18/2022 ) - update basic example
+* (done) make sure groups example still works with r135
+* (done) Leave old example with r91 for now
