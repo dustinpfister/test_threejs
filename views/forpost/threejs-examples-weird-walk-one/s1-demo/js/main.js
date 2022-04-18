@@ -47,6 +47,8 @@
         pelvis.add(leg);
     });
 
+    guy.position.y = 1.5;
+
     
 
     // ********** **********
