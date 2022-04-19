@@ -70,30 +70,26 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / 24) {
-            //var per = frame / maxFrame * 1 % 1,
-            //bias = Math.abs(0.5 - per) / 0.5;
-
 
             // update guy position over mesh
             var v = getFrameValues(frame, maxFrame, 1);
-            guy.position.z = -5 + 10 * v.per;
+            guy.position.z = -10 + 20 * v.per;
+
             // set walk
             var v = getFrameValues(frame, maxFrame, 40);
             weirdGuy.setWalk(guy, v.bias);
+
             // setting arms
-            weirdGuy.setArm(guy, 1, 180, 0);
-            weirdGuy.setArm(guy, 2, 180, 0);
+            var v = getFrameValues(frame, maxFrame, 20);
+            weirdGuy.setArm(guy, 1, 180 - 90 * v.bias, 0);
+            weirdGuy.setArm(guy, 2, 90 + 90 * v.bias, 0);
 
             // update camera
+            var v = getFrameValues(frame, maxFrame, 1);
             camera.position.copy(guy.position).add(new THREE.Vector3(4, 2, 4));
             var a = new THREE.Vector3(0, 0, 0);
             guy.getWorldPosition(a);
-            camera.lookAt(a.add(new THREE.Vector3( 0, -1, 0)));
-
-
-            //var per = frame / maxFrame * 1 % 1,
-            //bias = Math.abs(0.5 - per) / 0.5;
-            //guy.rotation.y = -0.5 + 2.5 * bias;
+            camera.lookAt(a.add(new THREE.Vector3( 1 - 2 * v.bias, -1, 0)));
 
             // draw
             renderer.render(scene, camera);
