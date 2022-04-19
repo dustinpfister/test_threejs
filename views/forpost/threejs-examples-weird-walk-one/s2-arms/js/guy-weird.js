@@ -117,11 +117,15 @@ var weirdGuy = (function(){
         leg2.position.y = -1.0 + 0.75 * walkPer;   
     };
     // set arms method
-    api.setArm = function(guy, armNum, a1){
+    api.setArm = function(guy, armNum, a1, a2){
         armNum = armNum === undefined ? 1 : armNum;
         armNum = armNum <= 0 ? 1: armNum;
+        a1 = a1 === undefined ? 0 : a1;
+        a2 = a2 === undefined ? 0 : a2;
         var arm = guy.getObjectByName(guy.name + '_arm' + armNum);
         arm.rotation.x = Math.PI / 180 * a1;
+        // set tri rotation
+        arm.children[0].rotation.x = Math.PI / 180 * a2;
     };
     // return the api
     return api;

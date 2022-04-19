@@ -83,9 +83,15 @@
             weirdGuy.setWalk(guy, v.bias);
 
             // setting arms
-            var v = getFrameValues(frame, maxFrame, 20);
-            weirdGuy.setArm(guy, 1, 180 - 90 * v.bias, 0);
-            weirdGuy.setArm(guy, 2, 90 + 90 * v.bias, 0);
+            var v1 = getFrameValues(frame, maxFrame, 10);
+            var v2 = getFrameValues(frame, maxFrame, 80);
+            var a2 = 360 - (80 + 20 * v2.bias);
+            weirdGuy.setArm(guy, 1, 185 - 10 * v1.bias, a2 );
+            weirdGuy.setArm(guy, 2, 175 + 10 * v1.bias, a2 );
+
+            //var v = getFrameValues(frame, maxFrame, 40);
+            //weirdGuy.setArm(guy, 1, 180 - 90 * v.bias, 300 );
+            //weirdGuy.setArm(guy, 2, 90 + 90 * v.bias, 300 );
 
             // update camera
             var v = getFrameValues(frame, maxFrame, 1);
