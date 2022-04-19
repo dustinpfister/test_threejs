@@ -89,6 +89,11 @@
             weirdGuy.setArm(guy, 1, 185 - 10 * v1.bias, a2 );
             weirdGuy.setArm(guy, 2, 175 + 10 * v1.bias, a2 );
 
+            // body rotation
+            var v = getFrameValues(frame, maxFrame, 1);
+            var body = guy.getObjectByName(guy.name + '_body');
+            body.rotation.y = -0.5 + 1 * v.bias;
+
             //var v = getFrameValues(frame, maxFrame, 40);
             //weirdGuy.setArm(guy, 1, 180 - 90 * v.bias, 300 );
             //weirdGuy.setArm(guy, 2, 90 + 90 * v.bias, 300 );
