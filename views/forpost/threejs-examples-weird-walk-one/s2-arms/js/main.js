@@ -5,8 +5,8 @@
     var scene = new THREE.Scene();
     //scene.add( new THREE.GridHelper(10, 10) );
     var camera = new THREE.PerspectiveCamera(50, 8 / 9, 0.05, 100);
-    camera.position.set(4, 4, 7);
-    camera.lookAt(0, 1.75, 0);
+    camera.position.set(5, 5, 5);
+    camera.lookAt(0, 1.5, 0);
     scene.add(camera);
     var dl = new THREE.DirectionalLight(0xffffff, 0.8);
     dl.position.set(5, 10, 1);
@@ -14,6 +14,12 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
+    // ********** **********
+    // GROUND MESH
+    // ********** **********
+    var ground = new THREE.Mesh( new THREE.BoxGeometry(15, 1, 100), new THREE.MeshNormalMaterial() );
+    ground.position.y = -0.5;
+    scene.add(ground);
     // ********** **********
     // WEIRD GUY INSTANCE
     // ********** **********
@@ -39,6 +45,7 @@
 
             weirdGuy.setWalk(guy, bias);
 
+            // setting arms
             weirdGuy.setArm(guy, 1, 180, 0);
             weirdGuy.setArm(guy, 2, 180, 0);
 
