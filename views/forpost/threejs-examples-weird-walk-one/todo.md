@@ -14,8 +14,8 @@
 * (done) I would like to have a looping walk effect
 * (done) data textures for weird guy
 * (done) increase height of body and move arms up
+* (done) have arms be two mesh objects each
 
-* () have arms be two mesh objects each
 * () can give three angles to set state of arms
 
 ## ( done 04/19/2022 ) - stand alone file for guy

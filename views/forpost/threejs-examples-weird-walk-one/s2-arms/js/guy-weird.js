@@ -79,6 +79,7 @@ var weirdGuy = (function(){
                 materials[0]
             );
             tri.geometry.translate( 0, 0.5, 0 );
+            tri.name = guy.name + '_' + nameStr + '_tri';
             tri.position.set(0, 1, 0);
             tri.rotation.set(-1, 0, 0);
             arm.add(tri); 
