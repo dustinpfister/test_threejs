@@ -3,7 +3,7 @@
     // SCENE, CAMERA, LIGHT, and RENDERER
     // ********** **********
     var scene = new THREE.Scene();
-    //scene.add( new THREE.GridHelper(10, 10) );
+    scene.background = new THREE.Color('cyan');
     var camera = new THREE.PerspectiveCamera(50, 8 / 9, 0.05, 100);
     camera.position.set(5, 5, 5);
     camera.lookAt(0, 1.5, 0);
