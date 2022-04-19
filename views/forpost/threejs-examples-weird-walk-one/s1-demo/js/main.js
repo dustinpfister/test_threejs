@@ -17,6 +17,7 @@
     // ********** **********
     // WEIRD GUY MODULE
     // ********** **********
+/*
     var weirdGuy = (function(){
 
         var materials = [
@@ -114,6 +115,7 @@
         return api;
 
     }());
+*/
     // ********** **********
     // WEIRD GUY INSTANCE
     // ********** **********
