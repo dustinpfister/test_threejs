@@ -17,7 +17,6 @@
     // ********** **********
     // WEIRD GUY MODULE
     // ********** **********
-
     var weirdGuy = (function(){
 
         var materials = [
@@ -115,13 +114,14 @@
         return api;
 
     }());
-
+    // ********** **********
+    // WEIRD GUY INSTANCE
+    // ********** **********
     var guy = weirdGuy.create({
         guyID: 'mrguy1'
     });
     guy.position.y = 2.75;
     scene.add(guy);
-
     weirdGuy.setWalk(guy, 0);
 
     // ********** **********
