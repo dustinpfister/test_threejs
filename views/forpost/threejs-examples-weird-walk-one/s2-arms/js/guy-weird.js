@@ -68,12 +68,20 @@ var weirdGuy = (function(){
         // ADD ARMS
         ['arm1', 'arm2'].forEach(function(nameStr, i){
             var arm = new THREE.Mesh(
-                new THREE.BoxGeometry(0.25, 1.5, 0.25),
+                new THREE.BoxGeometry(0.25, 1.0, 0.25),
                 materials[0]
             );
-            arm.geometry.translate( 0, 0.75, 0 );
+            arm.geometry.translate( 0, 0.5, 0 );
             arm.name = guy.name + '_' + nameStr;
             arm.position.set(-0.625 + 1.25 * i, 0.5, 0);
+            var tri = new THREE.Mesh(
+                new THREE.BoxGeometry(0.25, 1.0, 0.25),
+                materials[0]
+            );
+            tri.geometry.translate( 0, 0.5, 0 );
+            tri.position.set(0, 1, 0);
+            tri.rotation.set(-1, 0, 0);
+            arm.add(tri); 
             body.add(arm);
         });
         // ADD PELVIS
