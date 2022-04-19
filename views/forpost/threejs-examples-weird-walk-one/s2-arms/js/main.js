@@ -59,16 +59,20 @@
             var per = frame / maxFrame * 5 % 1,
             bias = Math.abs(0.5 - per) / 0.5;
 
-            weirdGuy.setWalk(guy, bias);
-
+            // update guy position over mesh
             guy.position.z = -5 + 10 * per;
-
+            // set walk
+            weirdGuy.setWalk(guy, bias);
             // setting arms
             weirdGuy.setArm(guy, 1, 180, 0);
             weirdGuy.setArm(guy, 2, 180, 0);
 
-            var per = frame / maxFrame * 1 % 1,
-            bias = Math.abs(0.5 - per) / 0.5;
+            // update camera
+            camera.position.copy(guy.position).add(new THREE.Vector3(4, 2, 4));
+
+
+            //var per = frame / maxFrame * 1 % 1,
+            //bias = Math.abs(0.5 - per) / 0.5;
             //guy.rotation.y = -0.5 + 2.5 * bias;
 
             // draw
