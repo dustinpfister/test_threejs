@@ -1,11 +1,12 @@
 # threejs-examples-weird-walk-one
 
-## () - have ground mesh in demo
-* have a ground mesh with a testure
-* move guy around on mesh
+## () - have a s2-ground mesh in demo
+* () have a ground mesh with a texture
+* () move guy on top of mesh
+* () I would like to have a looping walk effect
 
-## () - stand alone file for guy
-* the guy module should be in a start alone javaScript file
+## ( done 04/19/2022 ) - stand alone file for guy
+* (done) the guy module should be in a start alone javaScript file
 
-## ( 04/18/2022 ) - start example
+## ( done 04/18/2022 ) - start example
 * (done) just start the example
