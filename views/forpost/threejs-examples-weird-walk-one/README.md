@@ -1,1 +1,3 @@
 # threejs-examples-weird-walk-one
+
+I wanted to make another one of my threejs projects that creates a model by just making a group of mesh objects. One of the oldest examples of this kind of project would be my guy one model that I made a few years ago now. Although I now know how to make models that are a little more professional that this kind of approach I have come to enjoy making these kinds of projects.
