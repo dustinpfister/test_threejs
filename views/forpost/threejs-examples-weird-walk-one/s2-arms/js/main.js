@@ -15,6 +15,20 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     // ********** **********
+    // HELPER METHODS
+    // ********** **********
+    // give frame, maxframe, and count to get values like per, bias, ect
+    var getFrameValues = function(frame, maxFrame, count){
+        count = count === undefined ? 1 : count;
+        var values = {
+            frame: frame, 
+            maxFrame: maxFrame
+        };
+        values.per = frame / maxFrame * count % 1;
+        values.bias = 1 - Math.abs(0.5 - values.per) / 0.5;
+        return values;
+    };
+    // ********** **********
     // GROUND MESH
     // ********** **********
     var width = 10, height = 50;
@@ -56,13 +70,16 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / 24) {
-            var per = frame / maxFrame * 5 % 1,
-            bias = Math.abs(0.5 - per) / 0.5;
+            //var per = frame / maxFrame * 1 % 1,
+            //bias = Math.abs(0.5 - per) / 0.5;
+
 
             // update guy position over mesh
-            guy.position.z = -5 + 10 * per;
+            var v = getFrameValues(frame, maxFrame, 1);
+            guy.position.z = -5 + 10 * v.per;
             // set walk
-            weirdGuy.setWalk(guy, bias);
+            var v = getFrameValues(frame, maxFrame, 40);
+            weirdGuy.setWalk(guy, v.bias);
             // setting arms
             weirdGuy.setArm(guy, 1, 180, 0);
             weirdGuy.setArm(guy, 2, 180, 0);
