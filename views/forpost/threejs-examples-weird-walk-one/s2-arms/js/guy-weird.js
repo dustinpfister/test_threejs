@@ -1,10 +1,9 @@
 // ********** **********
 // WEIRD GUY MODULE
-// r1 - adding a setArms method
+// r1 - adding a setArms method, and data textures
 // ********** **********
 var weirdGuy = (function(){
-
-
+    // DATA TEXTURE FOR MATERIALS
     var width = 20, height = 100;
     var size = width * height;
     var data = new Uint8Array( 4 * size );
@@ -21,7 +20,7 @@ var weirdGuy = (function(){
     }
     var texture = new THREE.DataTexture( data, width, height );
     texture.needsUpdate = true;
-
+    // MATERIALS
     var materials = [
         new THREE.MeshStandardMaterial( { map: texture, emissive: 0x9a8800, emissiveIntensity: 0.9, wireframe:false } ),
         new THREE.MeshStandardMaterial( { map: texture, emissive: 0x00aaff, emissiveIntensity: 0.4 } ),
@@ -36,9 +35,10 @@ var weirdGuy = (function(){
         guy.name = opt.guyID || 'guy';
         // BODY
         var body = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1.5, 1),
+            new THREE.BoxGeometry(1, 2.0, 1),
             materials[0]
         );
+        body.position.y = 0.25;
         body.name = guy.name + '_body';
         guy.add(body);
         // EYES
@@ -73,7 +73,7 @@ var weirdGuy = (function(){
             );
             arm.geometry.translate( 0, 0.75, 0 );
             arm.name = guy.name + '_' + nameStr;
-            arm.position.set(-0.625 + 1.25 * i, 0.0, 0);
+            arm.position.set(-0.625 + 1.25 * i, 0.5, 0);
             body.add(arm);
         });
         // ADD PELVIS
