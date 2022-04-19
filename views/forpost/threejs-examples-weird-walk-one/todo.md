@@ -17,6 +17,8 @@
 * () have arms be two mesh objects each
 * () cam give three angles to set state of arms
 
+* data textures using math utils seeded random
+
 ## ( done 04/19/2022 ) - stand alone file for guy
 * (done) the guy module should be in a start alone javaScript file
 
