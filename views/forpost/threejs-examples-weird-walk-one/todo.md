@@ -11,16 +11,12 @@
 * (done) have a ground mesh with a texture
 * (done) I will want texture for the ground mesh
 * (done) move guy on top of mesh
-
+* (done) I would like to have a looping walk effect
+* (done) data textures for weird guy
 
 * () increase height of body and move arms up
 * () have arms be two mesh objects each
-* () cam give three angles to set state of arms
-
-
-* () I would like to have a looping walk effect
-* () data textures for weird guy
-
+* () can give three angles to set state of arms
 
 ## ( done 04/19/2022 ) - stand alone file for guy
 * (done) the guy module should be in a start alone javaScript file

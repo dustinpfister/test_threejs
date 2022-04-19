@@ -3,11 +3,30 @@
 // r1 - adding a setArms method
 // ********** **********
 var weirdGuy = (function(){
+
+
+    var width = 20, height = 100;
+    var size = width * height;
+    var data = new Uint8Array( 4 * size );
+    for ( let i = 0; i < size; i ++ ) {
+        var stride = i * 4;
+        //var x = i % width;
+        //var y = Math.floor(i / width);
+        var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
+        //var v = y % 2 === 0 ? 255 - 200 * (x / width) : 55 + 200 * (x / width);
+        data[ stride ] = v;
+        data[ stride + 1 ] = v;
+        data[ stride + 2 ] = v;
+        data[ stride + 3 ] = 255;
+    }
+    var texture = new THREE.DataTexture( data, width, height );
+    texture.needsUpdate = true;
+
     var materials = [
-        new THREE.MeshStandardMaterial( { emissive: 0x9a8800, emissiveIntensity: 0.5, wireframe:false } ),
-        new THREE.MeshStandardMaterial( { emissive: 0x00aaff, emissiveIntensity: 0.5 } ),
-        new THREE.MeshStandardMaterial( { emissive: 0xffffff, emissiveIntensity: 0.5 } ),
-        new THREE.MeshStandardMaterial( { emissive: 0x1a1a1a, emissiveIntensity: 0.5 } )
+        new THREE.MeshStandardMaterial( { map: texture, emissive: 0x9a8800, emissiveIntensity: 0.9, wireframe:false } ),
+        new THREE.MeshStandardMaterial( { map: texture, emissive: 0x00aaff, emissiveIntensity: 0.4 } ),
+        new THREE.MeshStandardMaterial( { map: texture, emissive: 0xffffff, emissiveIntensity: 0.8 } ),
+        new THREE.MeshStandardMaterial( { map: texture, emissive: 0x1a1a1a, emissiveIntensity: 0.1 } )
     ];
     var api = {};
     // create a new weird guy
