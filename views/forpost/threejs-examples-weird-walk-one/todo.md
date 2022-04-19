@@ -9,7 +9,9 @@
 ## () - have a s2-arms-ground mesh in demo
 * (done) new setArm method for weird guy module
  
-* () have a ground mesh with a texture
+* (done) have a ground mesh with a texture
+* () I will want texture for the ground mesh
+
 * () move guy on top of mesh
 * () I would like to have a looping walk effect
 

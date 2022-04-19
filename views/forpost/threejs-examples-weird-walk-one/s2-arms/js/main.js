@@ -17,7 +17,23 @@
     // ********** **********
     // GROUND MESH
     // ********** **********
-    var ground = new THREE.Mesh( new THREE.BoxGeometry(15, 1, 100), new THREE.MeshNormalMaterial() );
+    var width = 10, height = 50;
+    var size = width * height;
+    var data = new Uint8Array( 4 * size );
+    for ( let i = 0; i < size; i ++ ) {
+        var stride = i * 4;
+        var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
+        data[ stride ] = v;
+        data[ stride + 1 ] = v;
+        data[ stride + 2 ] = v;
+        data[ stride + 3 ] = 255;
+    }
+    var texture = new THREE.DataTexture( data, width, height );
+    texture.needsUpdate = true;
+
+    var ground = new THREE.Mesh( new THREE.BoxGeometry(20, 1, 100), new THREE.MeshStandardMaterial({
+        map: texture
+    }) );
     ground.position.y = -0.5;
     scene.add(ground);
     // ********** **********
