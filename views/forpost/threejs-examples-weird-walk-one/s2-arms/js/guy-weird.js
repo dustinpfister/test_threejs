@@ -1,5 +1,6 @@
 // ********** **********
 // WEIRD GUY MODULE
+// r1 - adding a setArms method
 // ********** **********
 var weirdGuy = (function(){
     var materials = [
@@ -86,6 +87,13 @@ var weirdGuy = (function(){
         // adjust position of legs
         leg1.position.y = -1.0 + 0.75 * (1 - walkPer);
         leg2.position.y = -1.0 + 0.75 * walkPer;   
+    };
+    // set arms method
+    api.setArm = function(guy, armNum, a1){
+        armNum = armNum === undefined ? 1 : armNum;
+        armNum = armNum <= 0 ? 1: armNum;
+        var arm = guy.getObjectByName(guy.name + '_arm' + armNum);
+        arm.rotation.x = Math.PI / 180 * a1;
     };
     // return the api
     return api;

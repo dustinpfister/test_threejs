@@ -5,11 +5,11 @@
     var scene = new THREE.Scene();
     //scene.add( new THREE.GridHelper(10, 10) );
     var camera = new THREE.PerspectiveCamera(50, 8 / 9, 0.05, 100);
-    camera.position.set(3, 3, 3);
+    camera.position.set(4, 4, 7);
     camera.lookAt(0, 1.75, 0);
     scene.add(camera);
     var dl = new THREE.DirectionalLight(0xffffff, 0.8);
-    dl.position.set(0.1, 1.0, 0);
+    dl.position.set(5, 10, 1);
     scene.add(dl);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -39,15 +39,12 @@
 
             weirdGuy.setWalk(guy, bias);
 
-            var arm1 = guy.getObjectByName(guy.name + '_arm1'),
-            arm2 = guy.getObjectByName(guy.name + '_arm2');
-            arm1.rotation.x = Math.PI / 180 * (180 - 20 + 40 * bias);
-            arm2.rotation.x = Math.PI / 180 * (180 + 20 - 40 * bias);
-
+            weirdGuy.setArm(guy, 1, 180, 0);
+            weirdGuy.setArm(guy, 2, 180, 0);
 
             var per = frame / maxFrame * 1 % 1,
             bias = Math.abs(0.5 - per) / 0.5;
-            guy.rotation.y = -0.5 + 2.5 * bias;
+            //guy.rotation.y = -0.5 + 2.5 * bias;
 
             // draw
             renderer.render(scene, camera);
