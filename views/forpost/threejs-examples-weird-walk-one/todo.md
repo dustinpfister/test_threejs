@@ -8,18 +8,19 @@
 
 ## () - have a s2-arms-ground mesh in demo
 * (done) new setArm method for weird guy module
- 
 * (done) have a ground mesh with a texture
-* () I will want texture for the ground mesh
+* (done) I will want texture for the ground mesh
+* (done) move guy on top of mesh
 
-* () move guy on top of mesh
-* () I would like to have a looping walk effect
 
 * () increase height of body and move arms up
 * () have arms be two mesh objects each
 * () cam give three angles to set state of arms
 
-* data textures using math utils seeded random
+
+* () I would like to have a looping walk effect
+* () data textures for weird guy
+
 
 ## ( done 04/19/2022 ) - stand alone file for guy
 * (done) the guy module should be in a start alone javaScript file
