@@ -1,6 +1,14 @@
 # threejs-examples-weird-walk-one
 
-## () - have a s2-ground mesh in demo
+## () - s3-more-than-one
+* () start a demo that will be more than one instance of this weird guy module
+* () new materials created for each guy or not depeding on create options
+* () new setTalk method
+* () new setEyes method
+
+## () - have a s2-arms-ground mesh in demo
+* () new setArms method for weird guy module
+ 
 * () have a ground mesh with a texture
 * () move guy on top of mesh
 * () I would like to have a looping walk effect
