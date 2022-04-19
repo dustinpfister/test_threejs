@@ -49,7 +49,7 @@
     // ANIMATION LOOP
     // ********** **********
     var frame = 0,
-    maxFrame = 60,
+    maxFrame = 300,
     lt = new Date();
     var loop = function () {
         var now = new Date(),
@@ -60,6 +60,8 @@
             bias = Math.abs(0.5 - per) / 0.5;
 
             weirdGuy.setWalk(guy, bias);
+
+            guy.position.z = -5 + 10 * per;
 
             // setting arms
             weirdGuy.setArm(guy, 1, 180, 0);
