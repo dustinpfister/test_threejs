@@ -1,4 +1,4 @@
 # threejs-arrow-helper todo list
 
-## (  ) - start point
-* () just have set of examples from post
+## ( done 04/20/2022 ) - start point
+* (done) just have set of examples from post
