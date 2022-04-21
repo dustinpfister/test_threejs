@@ -1,7 +1,7 @@
 // SCENE, LIGHT, CAMERA, RENDERER, and CONTROLS
 var scene = new THREE.Scene();
-var light = new THREE.PointLight(0xffffff, 0.5);
-light.position.set(3, 3, 3);
+var light = new THREE.PointLight(0xffffff, 1);
+light.position.set(5, 3, 0);
 scene.add(light);
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 100);
 camera.position.set(1, 1, 1);
@@ -27,9 +27,25 @@ var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
 // MESH
 var geo = new THREE.PlaneGeometry(1, 1, 2, 2);
 geo.rotateX(Math.PI * 1.5);
+document.getElementById('demo').appendChild(renderer.domElement);
+// USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
+// Using the seeded random method of the MathUtils object
+var width = 16, height = 16;
+var size = width * height;
+var data = new Uint8Array( 4 * size );
+for ( let i = 0; i < size; i ++ ) {
+    var stride = i * 4;
+    var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
+    data[ stride ] = v;
+    data[ stride + 1 ] = v;
+    data[ stride + 2 ] = v;
+    data[ stride + 3 ] = 255;
+}
+var texture = new THREE.DataTexture( data, width, height );
+texture.needsUpdate = true;
 var plane = new THREE.Mesh(
         geo,
-        new THREE.MeshStandardMaterial({ color: 0xffffff }));
+        new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture }));
 scene.add(plane);
 // USING THE THREE.VertexNormalsHelper method
 const helper = new THREE.VertexNormalsHelper( plane, 2, 0x00ff00, 1 );
