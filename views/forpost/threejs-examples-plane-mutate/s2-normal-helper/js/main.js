@@ -21,22 +21,17 @@ var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
     // ADJUSTING POSITION ( Y Only for now )
     position.array[i + 1] = yAdjust;
     position.needsUpdate = true;
-    // ADJUSTING NORMAL
-    //var v = new THREE.Vector3(1, 1, 1).normalize();
-    //normal.array[i] = v.x;
-    //normal.array[i + 1] = v.y;
-    //normal.array[i + 2] = v.z;
-    //normal.needsUpdate = true;
+    // ADJUSTING NORMALS USING computeVertexNormals method
+    geo.computeVertexNormals();
 };
 // MESH
 var geo = new THREE.PlaneGeometry(1, 1, 2, 2);
 geo.rotateX(Math.PI * 1.5);
 var plane = new THREE.Mesh(
         geo,
-        new THREE.MeshStandardMaterial({
-            color: 0xffffff
-        }));
+        new THREE.MeshStandardMaterial({ color: 0xffffff }));
 scene.add(plane);
+// USING THE THREE.VertexNormalsHelper method
 const helper = new THREE.VertexNormalsHelper( plane, 2, 0x00ff00, 1 );
 scene.add(helper);
 // LOOP
@@ -50,7 +45,6 @@ state = {
 var update = function (secs, per, bias, state) {
     adjustPlanePoint(geo, 1, 0.75 - 1.00 * bias);
     adjustPlanePoint(geo, 0, 0 + 0.75 * bias);
-    geo. computeVertexNormals();
     helper.update();
 };
 var loop = function () {
