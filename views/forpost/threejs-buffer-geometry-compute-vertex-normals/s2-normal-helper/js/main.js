@@ -1,7 +1,7 @@
 // SCENE, LIGHT, CAMERA, RENDERER, and CONTROLS
 var scene = new THREE.Scene();
 var light = new THREE.PointLight(0xffffff, 1);
-light.position.set(5, 3, 0);
+light.position.set(7, 3, 0);
 scene.add(light);
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 100);
 camera.position.set(1, 1, 1);
@@ -12,6 +12,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
+document.getElementById('demo').appendChild(renderer.domElement);
 
 // ADJUST PLANE POINT HELPER
 var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
@@ -49,7 +50,6 @@ var createDataTexture = function () {
 // MESH
 var geo = new THREE.PlaneGeometry(1, 1, 2, 2);
 geo.rotateX(Math.PI * 1.5);
-document.getElementById('demo').appendChild(renderer.domElement);
 var plane = new THREE.Mesh(
         geo,
         new THREE.MeshStandardMaterial({
@@ -70,8 +70,10 @@ state = {
     bias: 0
 };
 var update = function (secs, per, bias, state) {
-    adjustPlanePoint(geo, 1, 0.75 - 1.00 * bias);
     adjustPlanePoint(geo, 0, 0 + 0.75 * bias);
+    adjustPlanePoint(geo, 1, 0.75 - 1.00 * bias);
+    adjustPlanePoint(geo, 2, 0.1);
+    adjustPlanePoint(geo, 8, -0.4 * bias);
     helper.update();
 };
 var loop = function () {
