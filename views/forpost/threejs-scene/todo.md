@@ -1,4 +1,8 @@
 # threejs-scene todo list
 
 ### () - post sections
-* () just have the examples in the post thus far
+* (done) basic section
+* (done) fog section
+* () background
+* () overrideMaterial
+* () object3d
