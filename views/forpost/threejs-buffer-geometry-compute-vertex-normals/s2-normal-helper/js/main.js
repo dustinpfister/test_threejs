@@ -23,8 +23,18 @@ var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
     // ADJUSTING POSITION ( Y Only for now )
     position.array[i + 1] = yAdjust;
     position.needsUpdate = true;
+};
+
+var updatePlaneGeo = function(geo, bias, computeNormals){
+    computeNormals = computeNormals || false;
+    adjustPlanePoint(geo, 0, 0 + 0.75 * bias);
+    adjustPlanePoint(geo, 1, 0.75 - 1.00 * bias);
+    adjustPlanePoint(geo, 2, 0.1);
+    adjustPlanePoint(geo, 8, -0.4 * bias);
     // ADJUSTING NORMALS USING computeVertexNormals method
-    geo.computeVertexNormals();
+    if(computeNormals){
+        geo.computeVertexNormals();
+    }
 };
 
 var createDataTexture = function () {
@@ -70,10 +80,7 @@ state = {
     bias: 0
 };
 var update = function (secs, per, bias, state) {
-    adjustPlanePoint(geo, 0, 0 + 0.75 * bias);
-    adjustPlanePoint(geo, 1, 0.75 - 1.00 * bias);
-    adjustPlanePoint(geo, 2, 0.1);
-    adjustPlanePoint(geo, 8, -0.4 * bias);
+    updatePlaneGeo(geo, bias, true)
     helper.update();
 };
 var loop = function () {
