@@ -20,13 +20,14 @@
             ]);
     // create position property
     geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+    // COMPUTE VERTEX NORMALS FOR THE GEMOERTY
     geometry.computeVertexNormals();
     // MESH with GEOMETRY, and STANDARD MATERIAL
     var custom = new THREE.Mesh(
             geometry,
             new THREE.MeshStandardMaterial({
                 color: 0xff0000,
-                //side: THREE.DoubleSide
+                side: THREE.DoubleSide
             }));
     scene.add(custom);
     // RENDER
