@@ -13,7 +13,6 @@ renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 document.getElementById('demo').appendChild(renderer.domElement);
-
 // ADJUST PLANE POINT HELPER
 var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
     // get position and normal
@@ -24,7 +23,7 @@ var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
     position.array[i + 1] = yAdjust;
     position.needsUpdate = true;
 };
-
+// update a geo
 var updatePlaneGeo = function(geo, bias, computeNormals){
     computeNormals = computeNormals || false;
     adjustPlanePoint(geo, 0, 0 + 0.75 * bias);
@@ -36,8 +35,8 @@ var updatePlaneGeo = function(geo, bias, computeNormals){
         geo.computeVertexNormals();
     }
 };
-
-var createDataTexture = function () {
+// create a data texture
+var createDataTexture = function (pr, pg, pb) {
     // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
     // Using the seeded random method of the MathUtils object
     var width = 16,
@@ -47,16 +46,15 @@ var createDataTexture = function () {
     for (let i = 0; i < size; i++) {
         var stride = i * 4;
         var v = Math.floor(THREE.MathUtils.seededRandom() * 255);
-        data[stride] = 0;
-        data[stride + 1] = v;
-        data[stride + 2] = 0;
+        data[stride] = v * pr;
+        data[stride + 1] = v * pg;
+        data[stride + 2] = v * pb;
         data[stride + 3] = 255;
     }
     var texture = new THREE.DataTexture(data, width, height);
     texture.needsUpdate = true;
     return texture;
 };
-
 // MESH
 var geo1 = new THREE.PlaneGeometry(1, 1, 2, 2);
 geo1.rotateX(Math.PI * 1.5);
@@ -64,7 +62,7 @@ var plane1 = new THREE.Mesh(
         geo1,
         new THREE.MeshStandardMaterial({
             color: 0xffffff,
-            map: createDataTexture(),
+            map: createDataTexture(0,1,0),
             side: THREE.DoubleSide
         }));
 scene.add(plane1);
@@ -74,12 +72,11 @@ var plane2 = new THREE.Mesh(
         geo2,
         new THREE.MeshStandardMaterial({
             color: 0xffffff,
-            map: createDataTexture(),
+            map: createDataTexture(0,1,1),
             side: THREE.DoubleSide
         }));
 plane2.position.x = -1.1;
 scene.add(plane2);
-
 // USING THE THREE.VertexNormalsHelper method
 const helper1 = new THREE.VertexNormalsHelper(plane1, 2, 0x00ff00, 1);
 scene.add(helper1);
