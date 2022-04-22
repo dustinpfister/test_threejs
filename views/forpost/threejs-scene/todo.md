@@ -1,8 +1,8 @@
 # threejs-scene todo list
 
-### () - post sections
+### ( done 04/22/2022 ) - post sections
 * (done) basic section
 * (done) fog section
-* () background
-* () overrideMaterial
-* () object3d
+* (done) background
+* (done) overrideMaterial
+* (done) object3d
