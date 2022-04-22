@@ -58,19 +58,33 @@ var createDataTexture = function () {
 };
 
 // MESH
-var geo = new THREE.PlaneGeometry(1, 1, 2, 2);
-geo.rotateX(Math.PI * 1.5);
-var plane = new THREE.Mesh(
-        geo,
+var geo1 = new THREE.PlaneGeometry(1, 1, 2, 2);
+geo1.rotateX(Math.PI * 1.5);
+var plane1 = new THREE.Mesh(
+        geo1,
         new THREE.MeshStandardMaterial({
             color: 0xffffff,
             map: createDataTexture(),
             side: THREE.DoubleSide
         }));
-scene.add(plane);
+scene.add(plane1);
+var geo2 = new THREE.PlaneGeometry(1, 1, 2, 2);
+geo2.rotateX(Math.PI * 1.5);
+var plane2 = new THREE.Mesh(
+        geo2,
+        new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            map: createDataTexture(),
+            side: THREE.DoubleSide
+        }));
+plane2.position.x = -1.1;
+scene.add(plane2);
+
 // USING THE THREE.VertexNormalsHelper method
-const helper = new THREE.VertexNormalsHelper(plane, 2, 0x00ff00, 1);
-scene.add(helper);
+const helper1 = new THREE.VertexNormalsHelper(plane1, 2, 0x00ff00, 1);
+scene.add(helper1);
+const helper2 = new THREE.VertexNormalsHelper(plane2, 2, 0x00ffff, 1);
+scene.add(helper2);
 // LOOP
 var lt = new Date(),
 state = {
@@ -80,8 +94,9 @@ state = {
     bias: 0
 };
 var update = function (secs, per, bias, state) {
-    updatePlaneGeo(geo, bias, true)
-    helper.update();
+    updatePlaneGeo(geo1, bias, true);
+    updatePlaneGeo(geo2, bias, false);
+    helper1.update();
 };
 var loop = function () {
     var now = new Date(),
