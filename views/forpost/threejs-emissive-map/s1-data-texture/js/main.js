@@ -1,3 +1,4 @@
+// create data texture helper
 var createDataTexture = function () {
     var width = 16,
     height = 16;
@@ -16,20 +17,21 @@ var createDataTexture = function () {
     return texture;
 };
 // create emissive cube helper
-var createEmissiveCube = function () {
+var createEmissiveCube = function (emissiveMap, map) {
     return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
             color: new THREE.Color(1, 1, 1),
+            map: map || null,
             emissiveIntensity: 1,
             emissive: new THREE.Color(1, 0, 0),
-            emissiveMap: createDataTexture()
+            emissiveMap: emissiveMap || null
         }));
 };
 // scene
 var scene = new THREE.Scene();
 // mesh
-var box = createEmissiveCube();
+var box = createEmissiveCube(createDataTexture());
 scene.add(box);
 // light
 var light = new THREE.PointLight(new THREE.Color(1, 1, 1), 1);
