@@ -17,7 +17,7 @@ var createDataTexture = function () {
     return texture;
 };
 // create emissive cube helper
-var createEmissiveCube = function (emissiveMap, map) {
+var createCube = function (emissiveMap, map) {
     return new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
@@ -30,8 +30,9 @@ var createEmissiveCube = function (emissiveMap, map) {
 };
 // scene
 var scene = new THREE.Scene();
+scene.add( new THREE.GridHelper(10, 10));
 // mesh
-var box = createEmissiveCube(createDataTexture());
+var box = createCube(createDataTexture());
 scene.add(box);
 // light
 var light = new THREE.PointLight(new THREE.Color(1, 1, 1), 1);
