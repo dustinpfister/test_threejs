@@ -43,9 +43,9 @@ scene.add( new THREE.GridHelper(10, 10));
     scene.add(box);
 });
 // light
-//var light = new THREE.PointLight(new THREE.Color(1, 1, 1), 1);
-//light.position.set(8, 10, 2);
-//scene.add(light);
+var light = new THREE.PointLight(new THREE.Color(1, 1, 1), 0.25);
+light.position.set(8, 10, 2);
+scene.add(light);
 // camera, render
 var camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.1, 1000);
 camera.position.set(4, 4, 4);
