@@ -1,4 +1,4 @@
 # threejs-emissive-map todo list
 
-## (  ) - start point
-* () just have example from post
+## ( done 04/23/2022 ) - start point
+* (done) just have example from post
