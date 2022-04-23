@@ -1,5 +1,8 @@
 // create data texture helper
-var createDataTexture = function () {
+var createDataTexture = function (rPer, gPer, bPer) {
+    rPer = rPer || 0;
+    gPer = gPer || 0;
+    bPer = bPer || 0;
     var width = 16,
     height = 16;
     var size = width * height;
@@ -7,9 +10,9 @@ var createDataTexture = function () {
     for (let i = 0; i < size; i++) {
         var stride = i * 4;
         var v = Math.floor(THREE.MathUtils.seededRandom() * 255);
-        data[stride] = v;
-        data[stride + 1] = v;
-        data[stride + 2] = v;
+        data[stride] = v * rPer;
+        data[stride + 1] = v * gPer;
+        data[stride + 2] = v * bPer;
         data[stride + 3] = 255;
     }
     var texture = new THREE.DataTexture(data, width, height);
@@ -32,7 +35,7 @@ var createCube = function (emissiveMap, map) {
 var scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10));
 // mesh
-var box = createCube(createDataTexture());
+var box = createCube(createDataTexture(1,1,1));
 scene.add(box);
 // light
 var light = new THREE.PointLight(new THREE.Color(1, 1, 1), 1);
