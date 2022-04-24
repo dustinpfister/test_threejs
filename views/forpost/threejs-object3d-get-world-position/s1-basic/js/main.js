@@ -1,4 +1,5 @@
-var createGroup = function () {
+var createGroup = function (color) {
+    color = color || new THREE.Color(1, 1, 1);
     // creating a group
     var group = new THREE.Group();
     // creating and adding a pointer mesh to the group
@@ -13,8 +14,8 @@ var createGroup = function () {
     // creating and adding a cube
     var cube = group.userData.cube = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshNormalMaterial());
-    cube.position.set(0, 0, 4);
+            new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.5 }));
+    cube.position.set(0, 0, 1);
     group.add(cube);
     // box helper for the group
     group.add(new THREE.BoxHelper(group));
@@ -25,12 +26,12 @@ var createGroup = function () {
 var scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(5, 5));
  
-var group = createGroup(); // group 1
+var group = createGroup(0xff0000); // group 1
 scene.add(group);
-group.position.set(-2.0, 0, -2.0);
-var group2 = createGroup(); // group2
+group.position.set(-2.0, 0, 0.0);
+var group2 = createGroup(0x00ff00); // group2
 scene.add(group2);
-group2.position.set(2.0, 0, -2.0);
+group2.position.set(2.0, 0, 0.0);
  
 // the first group in am just using the look at method, and passing
 // the value of the cube.position instance of vector3. THIS RESULTS IN THE
