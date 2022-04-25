@@ -3,23 +3,37 @@
 // r1 - adding a setArms method, and data textures
 // ********** **********
 var weirdGuy = (function(){
-    // DATA TEXTURE FOR MATERIALS
-    var width = 20, height = 100;
-    var size = width * height;
-    var data = new Uint8Array( 4 * size );
-    for ( let i = 0; i < size; i ++ ) {
-        var stride = i * 4;
-        //var x = i % width;
-        //var y = Math.floor(i / width);
-        var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
-        //var v = y % 2 === 0 ? 255 - 200 * (x / width) : 55 + 200 * (x / width);
-        data[ stride ] = v;
-        data[ stride + 1 ] = v;
-        data[ stride + 2 ] = v;
-        data[ stride + 3 ] = 255;
-    }
-    var texture = new THREE.DataTexture( data, width, height );
-    texture.needsUpdate = true;
+
+    // mk data texture helper
+    var mkDataTexture = function(data, w){
+        data = data || [];
+        w = w || 0;
+        var width = w, //20, 
+        height = data.length / 4 / w;
+        var texture = new THREE.DataTexture( data, width, height );
+        texture.needsUpdate = true;
+        return texture;
+    };
+
+var width = 20, 
+height = 20;
+var size = width * height;
+
+var data = new Uint8Array( 4 * size );
+
+        for ( let i = 0; i < size; i ++ ) {
+            var stride = i * 4;
+            //var x = i % width;
+            //var y = Math.floor(i / width);
+            var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
+            data[ stride ] = v;
+            data[ stride + 1 ] = v;
+            data[ stride + 2 ] = v;
+            data[ stride + 3 ] = 255;
+        }
+
+var texture = mkDataTexture(data, width);
+
     // MATERIALS
     var materials = [
         new THREE.MeshStandardMaterial( { map: texture, emissive: 0x9a8800, emissiveIntensity: 0.9, wireframe:false } ),
