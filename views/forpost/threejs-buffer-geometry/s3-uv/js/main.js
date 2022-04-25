@@ -8,7 +8,7 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(1, 1, 1)
+    dl.position.set(1, 3, 2)
     scene.add(dl);
     // MESH with GEOMETRY, and Normal MATERIAL
     var geometry = new THREE.BufferGeometry();
@@ -21,11 +21,16 @@
     geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
     // compute vertex normals
     geometry.computeVertexNormals();
+    // creating a uv
+    var uvs = new Float32Array([
+                0, 1, 1, 1
+            ]);
+    geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
 
 console.log(geometry);
 
     // data texture
-var width = 16, height = 16;
+var width = 4, height = 4;
 var size = width * height;
 var data = new Uint8Array( 4 * size );
 for ( let i = 0; i < size; i ++ ) {
