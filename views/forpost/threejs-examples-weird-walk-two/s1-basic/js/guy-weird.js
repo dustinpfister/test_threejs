@@ -100,10 +100,10 @@ var weirdGuy2 = (function(){
             leg.name = guy.name + '_' + nameStr;
             // thigh
             var thigh = new THREE.Mesh(
-                new THREE.BoxGeometry(0.25, 1.5, 0.5),
+                new THREE.BoxGeometry(0.25, 3.0, 0.5),
                 materials[1]
             );
-            thigh.position.set(-0.37 + 0.75 * i, 0, 1.25);
+            thigh.position.set(-0.37 + 0.75 * i, 0, 2.0);
             thigh.rotation.set(Math.PI * 0.5, 0, 0);
             // caff
             var caff = new THREE.Mesh(
@@ -111,7 +111,7 @@ var weirdGuy2 = (function(){
                 materials[1]
             );
             caff.rotation.x = Math.PI * 1.5;
-            caff.position.y = 0.5;
+            caff.position.y = 1.25;
             caff.position.z = 1;
             thigh.add(caff);
             leg.add(thigh);

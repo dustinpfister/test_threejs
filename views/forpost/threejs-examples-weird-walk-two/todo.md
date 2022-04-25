@@ -8,8 +8,7 @@
 * (done) data texture javaScript file
 * (done) use data texture methods for ground in main.js
 * (done) make data textures with array data rather than random data
-
-* () make the legs longer;
-* () have a total of three mesh objects for each leg
-* () have the general idea done
+* (done) make the legs longer;
+* (done) have a total of two mesh objects for each leg
+* (done) have the general idea done
 
