@@ -56,12 +56,12 @@
     // ********** **********
     // WEIRD GUY INSTANCE
     // ********** **********
-    var guy = weirdGuy.create({
+    var guy = weirdGuy2.create({
         guyID: 'mrguy1'
     });
     guy.position.y = 2.75;
     scene.add(guy);
-    weirdGuy.setWalk(guy, 0);
+    weirdGuy2.setWalk(guy, 0);
     // ********** **********
     // ANIMATION LOOP
     // ********** **********
@@ -80,14 +80,14 @@
 
             // set walk
             var v = getFrameValues(frame, maxFrame, 40);
-            weirdGuy.setWalk(guy, v.bias);
+            weirdGuy2.setWalk(guy, v.bias);
 
             // setting arms
             var v1 = getFrameValues(frame, maxFrame, 10);
             var v2 = getFrameValues(frame, maxFrame, 80);
             var a2 = 360 - (80 + 20 * v2.bias);
-            weirdGuy.setArm(guy, 1, 185 - 10 * v1.bias, a2 );
-            weirdGuy.setArm(guy, 2, 175 + 10 * v1.bias, a2 );
+            weirdGuy2.setArm(guy, 1, 185 - 10 * v1.bias, a2 );
+            weirdGuy2.setArm(guy, 2, 175 + 10 * v1.bias, a2 );
 
             // body rotation
             var v = getFrameValues(frame, maxFrame, 1);
@@ -95,8 +95,8 @@
             body.rotation.y = -0.5 + 1 * v.bias;
 
             //var v = getFrameValues(frame, maxFrame, 40);
-            //weirdGuy.setArm(guy, 1, 180 - 90 * v.bias, 300 );
-            //weirdGuy.setArm(guy, 2, 90 + 90 * v.bias, 300 );
+            //weirdGuy2.setArm(guy, 1, 180 - 90 * v.bias, 300 );
+            //weirdGuy2.setArm(guy, 2, 90 + 90 * v.bias, 300 );
 
             // update camera
             var v = getFrameValues(frame, maxFrame, 1);
