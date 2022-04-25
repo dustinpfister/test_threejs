@@ -93,7 +93,7 @@
             camera.position.copy(guy.position).add(new THREE.Vector3(4, 2, 4));
             var a = new THREE.Vector3(0, 0, 0);
             guy.getWorldPosition(a);
-            camera.lookAt(a.add(new THREE.Vector3( 1 - 2 * v.bias, -1, 0)));
+            camera.lookAt(a.add(new THREE.Vector3( 0, -0.5, 0)));
 
             // draw
             renderer.render(scene, camera);
