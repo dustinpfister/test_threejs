@@ -5,6 +5,7 @@
 var weirdGuy = (function(){
 
     // mk data texture helper
+	/*
     var mkDataTexture = function(data, w){
         data = data || [];
         w = w || 0;
@@ -28,6 +29,9 @@ var data = new Uint8Array( 4 * size );
             data[ stride + 3 ] = 255;
         }
 var texture = mkDataTexture(data, width);
+*/
+
+var texture = datatex.seededRandom(100, 100);
 
     // MATERIALS
     var materials = [
