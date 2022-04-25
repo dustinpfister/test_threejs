@@ -87,11 +87,11 @@ var weirdGuy2 = (function(){
         });
         // ADD PELVIS
         var pelvis = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 0.5, 1),
+            new THREE.BoxGeometry(1, 1.0, 1),
             materials[1]
         );
         pelvis.name = guy.name + '_pelvis';
-        pelvis.position.set(0, -1.0, 0);
+        pelvis.position.set(0, -1.25, 0);
         guy.add(pelvis);
         // ADD LEGS
         ['leg1', 'leg2'].forEach(function(nameStr, i){
@@ -100,13 +100,16 @@ var weirdGuy2 = (function(){
                 materials[1]
             );
             leg.name = guy.name + '_' + nameStr;
-            leg.position.set(-0.25 + 0.5 * i, -1, 0);
+            
+            leg.position.set(-0.4 + 0.77 * i, 0, 1.25);
+            leg.rotation.set(Math.PI * 0.5, 0, 0);
             pelvis.add(leg);
         });
         return guy;
     };
     // setWalk
     api.setWalk = function(guy, walkPer){
+		/*
         var leg1 = guy.getObjectByName(guy.name + '_leg1'),
         leg2 = guy.getObjectByName(guy.name + '_leg2')
         // set scale of legs
@@ -114,7 +117,8 @@ var weirdGuy2 = (function(){
         leg2.scale.y = 1 - walkPer;
         // adjust position of legs
         leg1.position.y = -1.0 + 0.75 * (1 - walkPer);
-        leg2.position.y = -1.0 + 0.75 * walkPer;   
+        leg2.position.y = -1.0 + 0.75 * walkPer; 
+*/		
     };
     // set arms method
     api.setArm = function(guy, armNum, a1, a2){
