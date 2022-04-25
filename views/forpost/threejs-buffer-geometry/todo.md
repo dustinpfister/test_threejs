@@ -12,9 +12,9 @@
 * update s5-light with texture
 * update s6-rotation with texture
 
-## () new s3 section on uv attribute
-* I am going to want a section on creating a uv attribute for a custom geometry
-* use a data texture solution to generate the texture to use for the uv example
+## ( done 04/25/2022 ) new s3 section on uv attribute
+* (done) I am going to want a section on creating a uv attribute for a custom geometry
+* (done) use a data texture solution to generate the texture to use for the uv example
 
 ## ( done 06/29/21 ) new s6 section on rotation of geometry
 * (done) start a new s6 section that has to do with rotation of a buffer geomerty
