@@ -5,7 +5,7 @@
     var scene = new THREE.Scene();
     scene.background = new THREE.Color('cyan');
     var camera = new THREE.PerspectiveCamera(50, 8 / 9, 0.05, 100);
-    camera.position.set(5, 5, 5);
+    camera.position.set(7, 7, 7);
     camera.lookAt(0, 1.5, 0);
     scene.add(camera);
     var dl = new THREE.DirectionalLight(0xffffff, 0.8);
@@ -90,7 +90,7 @@
 
             // update camera
             var v = getFrameValues(frame, maxFrame, 1);
-            camera.position.copy(guy.position).add(new THREE.Vector3(4, 2, 4));
+            camera.position.copy(guy.position).add(new THREE.Vector3(5, 3, 5));
             var a = new THREE.Vector3(0, 0, 0);
             guy.getWorldPosition(a);
             camera.lookAt(a.add(new THREE.Vector3( 0, -0.5, 0)));

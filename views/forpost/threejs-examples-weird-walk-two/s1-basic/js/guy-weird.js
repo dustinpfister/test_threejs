@@ -101,7 +101,7 @@ var weirdGuy2 = (function(){
             );
             leg.name = guy.name + '_' + nameStr;
             
-            leg.position.set(-0.4 + 0.77 * i, 0, 1.25);
+            leg.position.set(-0.37 + 0.75 * i, 0, 1.25);
             leg.rotation.set(Math.PI * 0.5, 0, 0);
             pelvis.add(leg);
         });
