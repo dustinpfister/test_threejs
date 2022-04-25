@@ -6,9 +6,8 @@
 ## () - start example with s1-basic section
 * (done) just start the example based off of weird-walk-one
 * (done) data texture javaScript file
+* (done) use data texture methods for ground in main.js
 * () make data textures with array data rather than random data
-
-* use data texture methods for ground in main.js
 
 * () make the legs longer;
 * () have a total of three mesh objects for each leg

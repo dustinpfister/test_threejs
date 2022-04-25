@@ -3,13 +3,29 @@
 // 
 // ********** **********
 var weirdGuy2 = (function(){
-    var texture = datatex.seededRandom(100, 100);
+
+    // simple random texture
+    var textureRND = datatex.seededRandom(10, 10);
+
+   var pxData = [
+        1,1,1,1,
+        1,0,0,1,
+        1,0,0,1,
+        1,1,1,1
+    ];
+    var width = 4;
+    var palette = [
+        [0,0,0,255],
+        [255,255,255,255]
+    ];
+    var texturePants = datatex.fromPXDATA(pxData, width, palette);
+
     // MATERIALS
     var materials = [
-        new THREE.MeshStandardMaterial( { map: texture, emissive: 0x9a8800, emissiveIntensity: 0.9, wireframe:false } ),
-        new THREE.MeshStandardMaterial( { map: texture, emissive: 0x00aaff, emissiveIntensity: 0.4 } ),
-        new THREE.MeshStandardMaterial( { map: texture, emissive: 0xffffff, emissiveIntensity: 0.8 } ),
-        new THREE.MeshStandardMaterial( { map: texture, emissive: 0x1a1a1a, emissiveIntensity: 0.1 } )
+        new THREE.MeshStandardMaterial( { map: textureRND, emissive: 0x9a8800, emissiveIntensity: 0.9, wireframe:false } ),
+        new THREE.MeshStandardMaterial( { map: texturePants, emissive: 0x00aaff, emissiveIntensity: 0.4 } ),
+        new THREE.MeshStandardMaterial( { map: textureRND, emissive: 0xffffff, emissiveIntensity: 0.8 } ),
+        new THREE.MeshStandardMaterial( { map: textureRND, emissive: 0x1a1a1a, emissiveIntensity: 0.1 } )
     ];
     var api = {};
     // create a new weird guy

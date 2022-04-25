@@ -37,6 +37,25 @@ var datatex = (function () {
         return api.mkDataTexture(data, width)
     };
 
+    // from px data method
+    api.fromPXDATA = function(pxData, width, palette){
+        palette = palette || [
+            [0,0,0,255],
+            [255,255,255,255]
+        ];
+        var height = Math.floor(pxData.length / width);
+        return api.forEachPix(width, height, function(x, y, w, h, i){
+            var obj = {};
+            var colorIndex = pxData[i];
+            var color = palette[colorIndex];
+            obj.r = color[0];
+            obj.g = color[1];
+            obj.b = color[2];
+            obj.a = color[3];
+            return obj;
+        });
+    };
+
     // simple gray scale seeded random texture
     api.seededRandom = function (w, h) {
         var width = w === undefined ? 5 : w,
