@@ -15,23 +15,18 @@ var weirdGuy = (function(){
         return texture;
     };
 
-var width = 20, 
-height = 20;
+var width = 5, 
+height = 5;
 var size = width * height;
-
 var data = new Uint8Array( 4 * size );
-
         for ( let i = 0; i < size; i ++ ) {
             var stride = i * 4;
-            //var x = i % width;
-            //var y = Math.floor(i / width);
             var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
             data[ stride ] = v;
             data[ stride + 1 ] = v;
             data[ stride + 2 ] = v;
             data[ stride + 3 ] = 255;
         }
-
 var texture = mkDataTexture(data, width);
 
     // MATERIALS
