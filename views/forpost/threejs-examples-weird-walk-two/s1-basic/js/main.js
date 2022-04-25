@@ -31,23 +31,13 @@
     // ********** **********
     // GROUND MESH
     // ********** **********
-    var width = 20, height = 100;
-    var size = width * height;
-    var data = new Uint8Array( 4 * size );
-    for ( let i = 0; i < size; i ++ ) {
-        var stride = i * 4;
-        var x = i % width;
-        var y = Math.floor(i / width);
-        //var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
-        var v = y % 2 === 0 ? 255 - 200 * (x / width) : 55 + 200 * (x / width);
-        data[ stride ] = 0;
-        data[ stride + 1 ] = v;
-        data[ stride + 2 ] = 0;
-        data[ stride + 3 ] = 255;
-    }
-    var texture = new THREE.DataTexture( data, width, height );
-    texture.needsUpdate = true;
-
+    var texture = datatex.forEachPix(20, 100, function(x, y, w, h, i){
+        var obj = {};
+        var v = y % 2 === 0 ? 255 - 200 * (x / w) : 55 + 200 * (x / w);
+        obj.r = v;
+        obj.b = v;
+        return obj;
+    });
     var ground = new THREE.Mesh( new THREE.BoxGeometry(20, 1, 100), new THREE.MeshStandardMaterial({
         map: texture
     }) );
