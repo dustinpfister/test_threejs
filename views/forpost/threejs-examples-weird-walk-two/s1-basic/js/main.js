@@ -41,7 +41,7 @@
     var ground = new THREE.Mesh( new THREE.BoxGeometry(20, 1, 100), new THREE.MeshStandardMaterial({
         map: texture
     }) );
-    ground.position.y = -0.5;
+    ground.position.y = -1.0;
     scene.add(ground);
     // ********** **********
     // WEIRD GUY INSTANCE
