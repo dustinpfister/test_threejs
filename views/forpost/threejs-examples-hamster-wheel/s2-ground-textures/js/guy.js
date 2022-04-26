@@ -1,20 +1,24 @@
 // guy.js file used in threejs-examples-hamster-wheel s2-ground-textures
 (function (GuyMod) {
+
+    var texture_rnd = utils.seededRandom(10, 10);
+
     // material used for the legs
     var material_leg = new THREE.MeshStandardMaterial({
             color: 0x0000ff,
-            emissive: 0x00001a
+            map: texture_rnd
         }),
     // material used for the arms
     material_arm = new THREE.MeshStandardMaterial({
             color: 0xaf0000,
-            emissive: 0x001a00
+            map: texture_rnd
         });
     // material used for the body
     material_body = new THREE.MeshStandardMaterial({
             color: 0xff0000,
-            emissive: 0x001a00
+            map: texture_rnd
         });
+ 
     // array of materials used for the head
     var faceTexture = utils.createCanvasTexture(function (ctx, canvas) {
             // face color
@@ -29,19 +33,20 @@
             // nose
             ctx.fillStyle = 'gray';
             ctx.fillRect(32 - 4, 20, 8, 13);
-
         });
-    materials_head = [
+ 
+    var materials_head = [
         // 0 default material
         new THREE.MeshStandardMaterial({
-            color: 0xffff00,
-            emissive: 0x1a1a00
+            color: 0xffffff,
+            map: texture_rnd
         }),
         // 1 used for the face
         new THREE.MeshStandardMaterial({
             map: faceTexture
         })
     ];
+ 
     // the guy constructor
     GuyMod.create = function () {
         var guy = {};
