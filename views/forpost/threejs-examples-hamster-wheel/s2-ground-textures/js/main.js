@@ -4,7 +4,9 @@
     scene.background = new THREE.Color(0, 0.6, 0.6);
     var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
     camera.position.set(7, 2, 7);
-    camera.add(new THREE.PointLight());
+    var pl = new THREE.PointLight();
+    pl.position.set(0, 3, 3);
+    camera.add( pl );
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -25,7 +27,7 @@
     var texture_ground = utils.seededRandom(20, 20);
     var plane = new THREE.Mesh(
             new THREE.PlaneGeometry(50, 50, 1, 1),
-            new THREE.MeshBasicMaterial({
+            new THREE.MeshStandardMaterial({
                 map: texture_ground,
                 color: 0x00ff00
             }));

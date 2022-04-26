@@ -1,9 +1,12 @@
 (function (WheelMod) {
 
+    var texture_color = utils.seededRandom(100, 100);
+
     var material = new THREE.MeshStandardMaterial({
-            color: 0x00ffff,
+            color: 0xffffff,
+            map: texture_color,
             transparent: true,
-            opacity: 0.4
+            opacity: 1.0
         });
 
     // create a base for the given wheel object
