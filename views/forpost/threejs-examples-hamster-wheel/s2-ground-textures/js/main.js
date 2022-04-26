@@ -1,6 +1,7 @@
 (function () {
     // SCENE, CAMERA, RENDERER, CONTROLS
     var scene = new THREE.Scene();
+    scene.background = new THREE.Color(0, 0.6, 0.6);
     var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
     camera.position.set(7, 2, 7);
     camera.add(new THREE.PointLight());
@@ -21,9 +22,9 @@
     guy.group.rotation.set(0, Math.PI / 2, 0)
     scene.add(guy.group);
     // GROUND
-    var texture_ground = utils.seededRandom(10,10);
+    var texture_ground = utils.seededRandom(20, 20);
     var plane = new THREE.Mesh(
-            new THREE.PlaneGeometry(20, 30, 8, 8),
+            new THREE.PlaneGeometry(50, 50, 1, 1),
             new THREE.MeshBasicMaterial({
                 map: texture_ground,
                 color: 0x00ff00
