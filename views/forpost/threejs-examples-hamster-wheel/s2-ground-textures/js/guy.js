@@ -1,3 +1,4 @@
+// guy.js file used in threejs-examples-hamster-wheel s2-ground-textures
 (function (GuyMod) {
     // material used for the legs
     var material_leg = new THREE.MeshLambertMaterial({
