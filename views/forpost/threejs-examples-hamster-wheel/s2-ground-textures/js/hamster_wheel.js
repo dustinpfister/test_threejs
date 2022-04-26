@@ -1,6 +1,6 @@
 (function (WheelMod) {
 
-    var texture_color = utils.seededRandom(100, 100);
+    var texture_color = utils.seededRandom(100, 100, 1, 1, 1, [100, 200]);
 
     var material = new THREE.MeshStandardMaterial({
             color: 0xffffff,
