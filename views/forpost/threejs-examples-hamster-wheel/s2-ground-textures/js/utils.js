@@ -62,17 +62,21 @@
     };
 
     // simple gray scale seeded random texture
-    utils.seededRandom = function (w, h) {
+    utils.seededRandom = function (w, h, rPer, gPer, bPer, range) {
         var width = w === undefined ? 5 : w,
         height = h === undefined ? 5 : h;
+        rPer = rPer === undefined ? 1 : rPer;
+        gPer = gPer === undefined ? 1 : gPer;
+        bPer = bPer === undefined ? 1 : bPer;
+        range = range || [0, 255]
         var size = width * height;
         var data = new Uint8Array(4 * size);
         for (let i = 0; i < size; i++) {
             var stride = i * 4;
-            var v = Math.floor(THREE.MathUtils.seededRandom() * 255);
-            data[stride] = v;
-            data[stride + 1] = v;
-            data[stride + 2] = v;
+            var v = Math.floor( range[0] + THREE.MathUtils.seededRandom() * ( range[1] - range[0] ) );
+            data[stride] = v * rPer;
+            data[stride + 1] = v * gPer;
+            data[stride + 2] = v * bPer;
             data[stride + 3] = 255;
         }
         return utils.mkDataTexture(data, width);

@@ -1,7 +1,7 @@
 // guy.js file used in threejs-examples-hamster-wheel s2-ground-textures
 (function (GuyMod) {
 
-    var texture_rnd = utils.seededRandom(10, 10);
+    var texture_rnd = utils.seededRandom(10, 10, 1, 1, 1, [128, 250]);
 
     // material used for the legs
     var material_leg = new THREE.MeshStandardMaterial({
