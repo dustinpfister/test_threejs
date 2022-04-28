@@ -15,14 +15,14 @@
 ## () - s5-mesh-phong
 * () section folder for this
 
-## () - s4-mesh-normal
-* () section folder for this
+## ( done 04/28/2022 ) - s4-mesh-normal
+* (done) section folder for this
 
-## () - s3-mesh-lambert folder
-* () section folder for this
+## ( done 04/28/2022 ) - s3-mesh-lambert folder
+* (done) section folder for this
 
 ## ( done 04/28/2022 ) - s2-mesh-depth material
 * (done) section folder for this
 
 ## ( done 04/28/2022 ) - basic material section folder
-*  (done) the basic material section folder
+* (done) the basic material section folder
