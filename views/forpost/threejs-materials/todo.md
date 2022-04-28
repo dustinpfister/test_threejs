@@ -12,8 +12,8 @@
 ## () - s6-mesh-standard
 * () section folder for this
 
-## () - s5-mesh-phong
-* () section folder for this
+## ( done 04/28/2022 ) - s5-mesh-phong
+* (done) section folder for this
 
 ## ( done 04/28/2022 ) - s4-mesh-normal
 * (done) section folder for this
