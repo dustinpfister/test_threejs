@@ -6,11 +6,11 @@
 ## () - s8-points
 * () section folder for this
 
-## () - s7-mesh-physical-toon
-* () section folder for this
+## ( done 04/28/2022 ) - s7-mesh-physical-toon
+* (done) section folder for this
 
-## () - s6-mesh-standard
-* () section folder for this
+## ( done 04/28/2022 ) - s6-mesh-standard
+* (done) section folder for this
 
 ## ( done 04/28/2022 ) - s5-mesh-phong
 * (done) section folder for this
