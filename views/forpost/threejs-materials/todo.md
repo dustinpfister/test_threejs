@@ -3,8 +3,8 @@
 ## () - s9-line
 * () section folder for this
 
-## () - s8-points
-* () section folder for this
+## ( done 04/28/2022 ) - s8-points
+* (done) section folder for this
 
 ## ( done 04/28/2022 ) - s7-mesh-physical-toon
 * (done) section folder for this
