@@ -1,5 +1,28 @@
 # threejs-materials todo list
 
+## () - s9-line
+* () section folder for this
 
-## ( ) - first state of for post folder
-*  just start a forpost folder that reflects the current state of the post
+## () - s8-points
+* () section folder for this
+
+## () - s7-mesh-physical-toon
+* () section folder for this
+
+## () - s6-mesh-standard
+* () section folder for this
+
+## () - s5-mesh-phong
+* () section folder for this
+
+## () - s4-mesh-normal
+* () section folder for this
+
+## () - s3-mesh-lambert folder
+* () section folder for this
+
+## ( done 04/28/2022 ) - s2-mesh-depth material
+* (done) section folder for this
+
+## ( done 04/28/2022 ) - basic material section folder
+*  (done) the basic material section folder
