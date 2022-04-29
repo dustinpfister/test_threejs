@@ -11,7 +11,8 @@ var CubeStack = (function () {
                 // materials
                 new THREE.MeshStandardMaterial({
                     color: 0xffffff,
-                    map: datatex.seededRandom(opt.gx * 4, opt.gy * 4, 0, 1, 0, [64, 255]),
+                    //map: datatex.seededRandom(opt.gx * 4, opt.gy * 4, 0, 1, 0, [64, 255]),
+                    map: datatex.seededRandom.apply(null, [opt.gx * 4, opt.gy * 4].concat( opt.colors[1] ) ),
                     emissive: 0x0a0a0a,
                     side: THREE.DoubleSide
                 }));
@@ -35,7 +36,8 @@ var CubeStack = (function () {
                     new THREE.BoxGeometry(1, 1, 1),
                     new THREE.MeshStandardMaterial({
                         color: 0xffffff,
-                        map: datatex.seededRandom(8, 8, 1, 1, 1, [180, 255]),
+                        //map: datatex.seededRandom(8, 8, 1, 1, 1, [180, 255]),
+                        map: datatex.seededRandom.apply(null, [8,8].concat( opt.colors[0] ) ),
                         emissive: 0x1a1a1a
                     }));
             x = Math.floor(opt.gx * Math.random());
@@ -59,10 +61,14 @@ var CubeStack = (function () {
     };
     // public create method
     api.create = function (opt) {
+        var stack = new THREE.Group();
         opt = opt || {};
         opt.gx = opt.gx === undefined ? 5 : opt.gx;
         opt.gy = opt.gy === undefined ? 5 : opt.gy;
-        var stack = new THREE.Group();
+        opt.colors = stack.userData.colors = opt.colors || [
+            [1, 1, 1, [0, 255]],
+            [0, 1, 0, [200, 255]]
+        ];
         var cubes = stack.cubes = new THREE.Group();
         // scale cubes effect
 
