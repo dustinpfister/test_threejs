@@ -40,8 +40,10 @@
     // STACK
     // create an instance of the CubeStack Model
     // and add it to the scene
-    var stack = new CubeStack();
-    scene.add(stack.group);
+    //var stack = new CubeStack();
+    //scene.add(stack.group);
+    var stack = CubeStack.create();
+    scene.add(stack);
     // lOOP
     var frame = 0,
     maxFrame = 1000;
@@ -51,7 +53,8 @@
         // camera index
         ci = Math.floor(per * 8 % 2);
         requestAnimationFrame(loop);
-        stack.group.rotation.set(0, Math.PI * 2 * per, 0);
+        //stack.group.rotation.set(0, Math.PI * 2 * per, 0);
+        stack.rotation.set(0, Math.PI * 2 * per, 0);
         renderer.render(scene, cameras[ci]);
         frame += 1;
         frame = frame % maxFrame;
