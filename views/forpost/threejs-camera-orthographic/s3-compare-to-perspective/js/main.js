@@ -1,12 +1,13 @@
 (function () {
     // SCENE, RENDERER, LIGHT
     var scene = new THREE.Scene();
-    // RENDER
+    scene.background = new THREE.Color(0.25, 0.25, 0.25);
+    scene.add(new THREE.GridHelper(10,10));
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     var light = new THREE.PointLight();
-    light.position.set(0, 3, 1);
+    light.position.set(0, 3, 6);
     scene.add(light);
     // CAMERAS
     var width = 3.2,
@@ -39,7 +40,7 @@
     });
     // STACK
     var stack = CubeStack.create({gx: 7, gy: 4, boxCount: 35});
-    stack.position.set(0,0,0)
+    stack.position.set(0, 0.6, 0)
     scene.add(stack);
     // lOOP
     var frame = 0,
