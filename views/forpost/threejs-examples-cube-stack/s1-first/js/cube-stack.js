@@ -33,12 +33,13 @@ var CubeStack = (function () {
         box;
         // place some boxes on the plane
         while (boxIndex < opt.boxCount) {
+           var cubeColor = opt.colors[Math.floor(opt.colors.length * Math.random())];
             box = new THREE.Mesh(
                     new THREE.BoxGeometry(1, 1, 1),
                     new THREE.MeshStandardMaterial({
                         color: 0xffffff,
                         //map: datatex.seededRandom(8, 8, 1, 1, 1, [180, 255]),
-                        map: datatex.seededRandom.apply(null, [8,8].concat( opt.colors[0] ) ),
+                        map: datatex.seededRandom.apply(null, [8,8].concat( cubeColor ) ),
                         emissive: 0x1a1a1a
                     }));
             x = Math.floor(opt.gx * Math.random());
