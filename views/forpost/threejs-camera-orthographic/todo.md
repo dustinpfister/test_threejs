@@ -3,8 +3,10 @@
 ## () - s3 - update method
 
 ## () - s3 - data textures, and create method
-* have a create method for the cube stack file
-* use data textures in the cube stack module
+* (done) have a create method for the cube stack file
+* (done) fix bug because of number lits with setting cube positions
+* (done) arguments for create method
+* (done) use data textures in the cube stack module
 
 ## ( 07/10/2021 ) - first state of for post folder
 * (done) start for post folder
