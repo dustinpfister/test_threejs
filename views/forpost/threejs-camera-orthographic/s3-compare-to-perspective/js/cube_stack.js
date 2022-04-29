@@ -1,7 +1,26 @@
 // Cube Stack example for s3-compare-to-perspective example in threejs-camera-orthographic
 var CubeStack = (function () {
-    // the stack constructor
+    // the public api
     var api = {};
+    // create data texture helper
+    var createDataTexture = function (width, height) {
+        // data texture
+        width = width || 16,
+        height = height || 16;
+        var size = width * height;
+        var data = new Uint8Array(4 * size);
+        for (let i = 0; i < size; i++) {
+            var stride = i * 4;
+            var v = Math.floor(THREE.MathUtils.seededRandom() * 255);
+            data[stride] = v;
+            data[stride + 1] = v;
+            data[stride + 2] = v;
+            data[stride + 3] = 255;
+        }
+        var texture = new THREE.DataTexture(data, width, height);
+        texture.needsUpdate = true;
+        return texture;
+    };
     // create the plane
     var createPlane = function (opt) {
         opt = opt || {};
@@ -11,6 +30,7 @@ var CubeStack = (function () {
                 // materials
                 new THREE.MeshStandardMaterial({
                     color: 0x00ff00,
+                    map: createDataTexture(opt.gx * 4, opt.gy * 4),
                     emissive: 0x0a0a0a,
                     side: THREE.DoubleSide
                 }));
@@ -22,14 +42,20 @@ var CubeStack = (function () {
     var appendBoxMeshObjects = function (group, opt) {
         opt = opt || {};
         opt.boxCount = opt.boxCount === undefined ? 30 : opt.boxCount;
-        var boxIndex = 0, boxArray = [], x, y, z, box;
+        var boxIndex = 0,
+        boxArray = [],
+        x,
+        y,
+        z,
+        box;
         // place some boxes on the plane
         while (boxIndex < opt.boxCount) {
             box = new THREE.Mesh(
                     new THREE.BoxGeometry(1, 1, 1),
                     new THREE.MeshStandardMaterial({
                         color: 0x00ffff,
-                        emissive: 0x0a0a0a
+                        map: createDataTexture(8, 8),
+                        emissive: 0x1a1a1a
                     }));
             x = Math.floor(opt.gx * Math.random());
             y = 0;
@@ -43,11 +69,9 @@ var CubeStack = (function () {
             boxArray[z][x].push(box);
             y = boxArray[z][x].length - 1;
             box.position.set(
-                //-2 + x,
-				(opt.gx / 2 * -1 + 0.5) + x,
+                (opt.gx / 2 * -1 + 0.5) + x,
                 y,
-				(opt.gy / 2 * -1 + 0.5) + z)
-                //-2 + z);
+                (opt.gy / 2 * -1 + 0.5) + z)
             group.add(box);
             boxIndex += 1;
         }
@@ -55,8 +79,8 @@ var CubeStack = (function () {
     // public create method
     api.create = function (opt) {
         opt = opt || {};
-        opt.gx = opt.gx === undefined ? 5: opt.gx;
-        opt.gy = opt.gy === undefined ? 5: opt.gy;
+        opt.gx = opt.gx === undefined ? 5 : opt.gx;
+        opt.gy = opt.gy === undefined ? 5 : opt.gy;
         var group = new THREE.Group();
         appendBoxMeshObjects(group, opt)
         var plane = createPlane(opt);
