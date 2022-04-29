@@ -81,8 +81,17 @@ var CubeStack = (function () {
         opt = opt || {};
         opt.gx = opt.gx === undefined ? 5 : opt.gx;
         opt.gy = opt.gy === undefined ? 5 : opt.gy;
+
         var group = new THREE.Group();
-        appendBoxMeshObjects(group, opt)
+        var cubes = new THREE.Group();
+
+        // scale cubes effect
+        //cubes.scale.set(1, 0.25 ,1);
+        //cubes.position.set(0, -0.75 / 2,0);
+
+        group.add(cubes)
+        appendBoxMeshObjects(cubes, opt);
+
         var plane = createPlane(opt);
         group.add(plane);
         return group;
