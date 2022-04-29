@@ -51,7 +51,8 @@ var CubeStack = (function () {
                 // materials
                 new THREE.MeshStandardMaterial({
                     color: 0x00ff00,
-                    emissive: 0x0a0a0a
+                    emissive: 0x0a0a0a,
+					side: THREE.DoubleSide
                 }));
         plane.position.set(0, -0.5, 0);
         plane.rotation.set(-Math.PI / 2, 0, 0);
