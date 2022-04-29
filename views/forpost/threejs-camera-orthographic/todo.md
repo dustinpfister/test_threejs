@@ -2,7 +2,7 @@
 
 ## () - s3 - update method
 
-## () - s3 - data textures, and create method
+## ( done 04/29/2022 ) - s3 - data textures, and create method
 * (done) have a create method for the cube stack file
 * (done) fix bug because of number lits with setting cube positions
 * (done) arguments for create method
