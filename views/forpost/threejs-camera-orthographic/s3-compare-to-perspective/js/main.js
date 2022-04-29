@@ -38,11 +38,8 @@
         }
     });
     // STACK
-    // create an instance of the CubeStack Model
-    // and add it to the scene
-    //var stack = new CubeStack();
-    //scene.add(stack.group);
-    var stack = CubeStack.create();
+    var stack = CubeStack.create({gx: 7, gy: 4, boxCount: 35});
+    stack.position.set(0,0,0)
     scene.add(stack);
     // lOOP
     var frame = 0,

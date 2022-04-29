@@ -43,9 +43,11 @@ var CubeStack = (function () {
             boxArray[z][x].push(box);
             y = boxArray[z][x].length - 1;
             box.position.set(
-                -2 + x,
+                //-2 + x,
+				(opt.gx / 2 * -1 + 0.5) + x,
                 y,
-                -2 + z);
+				(opt.gy / 2 * -1 + 0.5) + z)
+                //-2 + z);
             group.add(box);
             boxIndex += 1;
         }
