@@ -1,9 +1,7 @@
-
+// Cube Stack example for s3-compare-to-perspective example in threejs-camera-orthographic
 var CubeStack = (function () {
-
     // the stack constructor
     return function (opt) {
-
         var boxCount,
         box,
         x,
@@ -12,15 +10,12 @@ var CubeStack = (function () {
         plane,
         boxArray = [],
         boxIndex = 0;
-
         opt = opt || {};
         this.boxCount = opt.boxCount === undefined ? 15 : opt.boxCount;
         this.gx = 5;
         this.gy = 5;
-
         // this is what can be added to the scene
         this.group = new THREE.Group();
-
         plane = new THREE.Mesh(
                 // plane geometry
                 new THREE.PlaneGeometry(this.gx, this.gy, this.gx, this.gy),
@@ -32,7 +27,6 @@ var CubeStack = (function () {
         plane.position.set(0, -0.5, 0);
         plane.rotation.set(-Math.PI / 2, 0, 0);
         this.group.add(plane);
-
         // place some boxes on the plane
         while (boxIndex < this.boxCount) {
             box = new THREE.Mesh(
@@ -59,8 +53,6 @@ var CubeStack = (function () {
             this.group.add(box);
             boxIndex += 1;
         }
-
     };
-
 }
     ());
