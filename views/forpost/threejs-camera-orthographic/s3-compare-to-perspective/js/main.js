@@ -2,6 +2,11 @@
  
     // SCENE
     var scene = new THREE.Scene();
+    // RENDER
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
+ 
  
     // CAMERAS
     var width = 3.2,
@@ -42,7 +47,7 @@
         // add orbit controls if there
         if (THREE.OrbitControls) {
  
-            new THREE.OrbitControls(camera);
+            new THREE.OrbitControls(camera, renderer.domElement);
  
         }
  
@@ -53,11 +58,6 @@
     // and add it to the scene
     var stack = new CubeStack();
     scene.add(stack.group);
- 
-    // RENDER
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
-    document.getElementById('demo').appendChild(renderer.domElement);
  
     // lOOP
     var frame = 0,
