@@ -2,7 +2,7 @@
 var CubeStack = (function () {
     // the stack constructor
     var api = {};
-
+    // create the plane
     var createPlane = function (opt) {
         opt = opt || {};
         var plane = new THREE.Mesh(
@@ -18,24 +18,13 @@ var CubeStack = (function () {
         plane.rotation.set(-Math.PI / 2, 0, 0);
         return plane;
     };
-
-    api.create = function (opt) {
-        var boxCount = 20,
-        box,
-        x,
-        y,
-        z,
-        boxArray = [],
-        boxIndex = 0;
+    // append mesh objects
+    var appendBoxMeshObjects = function (group, opt) {
         opt = opt || {};
-
-        opt.gx = 5,
-        opt.gy = 5;
-
-        var group = new THREE.Group();
-
+        opt.boxCount = opt.boxCount === undefined ? 30 : opt.boxCount;
+        var boxIndex = 0, boxArray = [], x, y, z, box;
         // place some boxes on the plane
-        while (boxIndex < boxCount) {
+        while (boxIndex < opt.boxCount) {
             box = new THREE.Mesh(
                     new THREE.BoxGeometry(1, 1, 1),
                     new THREE.MeshStandardMaterial({
@@ -60,13 +49,19 @@ var CubeStack = (function () {
             group.add(box);
             boxIndex += 1;
         }
-
+    };
+    // public create method
+    api.create = function (opt) {
+        opt = opt || {};
+        opt.gx = opt.gx === undefined ? 5: opt.gx;
+        opt.gy = opt.gy === undefined ? 5: opt.gy;
+        var group = new THREE.Group();
+        appendBoxMeshObjects(group, opt)
         var plane = createPlane(opt);
         group.add(plane);
-
         return group;
     };
-
+    // retrun public api
     return api;
 }
     ());
