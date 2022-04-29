@@ -6,7 +6,7 @@
     scene.background = new THREE.Color(0.1, 0.1, 0.1);
     var camera = new THREE.PerspectiveCamera(50, 8 / 9, 0.05, 100);
     camera.position.set(7, 7, 7);
-    camera.lookAt(0, 1.5, 0);
+    camera.lookAt(0, 0, 0);
     scene.add(camera);
     var dl = new THREE.DirectionalLight(0xffffff, 0.8);
     dl.position.set(5, 10, 1);
@@ -39,6 +39,7 @@
             CubeStack.applyEffect(stack, 'scaleCubes', {
                 yPer: bias
             });
+            stack.rotation.y = Math.PI * 2 * per;
             // draw
             renderer.render(scene, camera);
             frame += 20 * secs;
