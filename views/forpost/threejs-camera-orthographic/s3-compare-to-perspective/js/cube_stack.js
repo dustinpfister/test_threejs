@@ -3,6 +3,22 @@ var CubeStack = (function () {
     // the stack constructor
     var api = {};
 
+    var createPlane = function (opt) {
+        opt = opt || {};
+        var plane = new THREE.Mesh(
+                // plane geometry
+                new THREE.PlaneGeometry(opt.gx, opt.gy, opt.gx, opt.gy),
+                // materials
+                new THREE.MeshStandardMaterial({
+                    color: 0x00ff00,
+                    emissive: 0x0a0a0a,
+                    side: THREE.DoubleSide
+                }));
+        plane.position.set(0, -0.5, 0);
+        plane.rotation.set(-Math.PI / 2, 0, 0);
+        return plane;
+    };
+
     api.create = function (opt) {
         var boxCount = 20,
         box,
@@ -13,8 +29,8 @@ var CubeStack = (function () {
         boxIndex = 0;
         opt = opt || {};
 
-        var gx = 5,
-        gy = 5;
+        opt.gx = 5,
+        opt.gy = 5;
 
         var group = new THREE.Group();
 
@@ -26,9 +42,9 @@ var CubeStack = (function () {
                         color: 0x00ffff,
                         emissive: 0x0a0a0a
                     }));
-            x = Math.floor(gx * Math.random());
+            x = Math.floor(opt.gx * Math.random());
             y = 0;
-            z = Math.floor(gy * Math.random());
+            z = Math.floor(opt.gy * Math.random());
             if (boxArray[z] === undefined) {
                 boxArray[z] = [];
             }
@@ -45,21 +61,10 @@ var CubeStack = (function () {
             boxIndex += 1;
         }
 
-        var plane = new THREE.Mesh(
-                // plane geometry
-                new THREE.PlaneGeometry(gx, gy, gx, gy),
-                // materials
-                new THREE.MeshStandardMaterial({
-                    color: 0x00ff00,
-                    emissive: 0x0a0a0a,
-					side: THREE.DoubleSide
-                }));
-        plane.position.set(0, -0.5, 0);
-        plane.rotation.set(-Math.PI / 2, 0, 0);
+        var plane = createPlane(opt);
         group.add(plane);
 
         return group;
-
     };
 
     return api;
