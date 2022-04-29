@@ -81,21 +81,33 @@ var CubeStack = (function () {
         opt = opt || {};
         opt.gx = opt.gx === undefined ? 5 : opt.gx;
         opt.gy = opt.gy === undefined ? 5 : opt.gy;
-        var group = new THREE.Group();
-        var cubes = new THREE.Group();
+        var stack = new THREE.Group();
+        var cubes = stack.cubes = new THREE.Group();
         // scale cubes effect
-        //cubes.scale.set(1, 0.25 ,1);
-        //cubes.position.set(0, -0.75 / 2,0);
-        group.add(cubes)
+
+        stack.add(cubes)
         appendBoxMeshObjects(cubes, opt);
-        var plane = createPlane(opt);
-        group.add(plane);
-        return group;
+        var plane = stack.plane = createPlane(opt);
+        stack.add(plane);
+        return stack;
     };
     var EFFECTS = {};
-    // apply effect method
-    api.applyEffect = function(stack, effect, opt){
 
+    // effect to scale all cubes up and down by scaling the y value of the cubes group
+    EFFECTS.scaleCubes = function(stack, opt){
+        opt = opt || {};
+        opt.yMax = opt.yMax === undefined ? 1 : opt.yMax;
+        opt.yPer = opt.yPer === undefined ? 1 : opt.yPer;
+        var cubes = stack.cubes;
+        var y = opt.yMax * opt.yPer;
+        cubes.scale.set(1, y ,1);
+        cubes.position.set(0, (opt.yMax - y) * -1 / 2,0);
+        //cubes.scale.set(1, 0.25 ,1);
+        //cubes.position.set(0, -0.75 / 2,0);
+    };
+    // apply effect method
+    api.applyEffect = function(stack, effectKey, opt){
+        EFFECTS[effectKey](stack, opt);
     };
     // return public api
     return api;
