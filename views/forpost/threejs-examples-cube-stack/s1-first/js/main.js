@@ -18,7 +18,11 @@
     var stack = CubeStack.create({
             gx: 7,
             gy: 4,
-            boxCount: 35
+            boxCount: 35,
+            colors: [
+                [1,1,0, [0, 255]],
+                [0,1,0, [128, 255]]
+            ]
         });
     stack.position.set(0, 0.6, 0);
     scene.add(stack);
