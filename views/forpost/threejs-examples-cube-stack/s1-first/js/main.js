@@ -21,8 +21,10 @@
             boxCount: 35,
             colors: [
                 [1,1,0, [0, 255]],
-                [0,1,0, [128, 255]]
-            ]
+                [0,1,0, [128, 255]],
+                [0,1,0.5, [128, 255]]
+            ],
+            planeColor: 2
         });
     stack.position.set(0, 0.6, 0);
     scene.add(stack);

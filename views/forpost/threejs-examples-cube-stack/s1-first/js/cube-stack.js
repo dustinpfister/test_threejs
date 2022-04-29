@@ -5,6 +5,7 @@ var CubeStack = (function () {
     // create the plane
     var createPlane = function (opt) {
         opt = opt || {};
+        var planeColor = opt.colors[opt.planeColor === undefined ? 1: opt.planeColor];
         var plane = new THREE.Mesh(
                 // plane geometry
                 new THREE.PlaneGeometry(opt.gx, opt.gy, opt.gx, opt.gy),
@@ -12,7 +13,7 @@ var CubeStack = (function () {
                 new THREE.MeshStandardMaterial({
                     color: 0xffffff,
                     //map: datatex.seededRandom(opt.gx * 4, opt.gy * 4, 0, 1, 0, [64, 255]),
-                    map: datatex.seededRandom.apply(null, [opt.gx * 4, opt.gy * 4].concat( opt.colors[1] ) ),
+                    map: datatex.seededRandom.apply(null, [opt.gx * 4, opt.gy * 4].concat( planeColor ) ),
                     emissive: 0x0a0a0a,
                     side: THREE.DoubleSide
                 }));
