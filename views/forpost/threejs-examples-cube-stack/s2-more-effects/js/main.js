@@ -34,7 +34,7 @@
     // ANIMATION LOOP
     // ********** **********
     var frame = 0,
-    maxFrame = 90,
+    maxFrame = 300,
     lt = new Date();
     var loop = function () {
         var now = new Date(),
@@ -49,7 +49,7 @@
                 scale: 0.15 + 0.85 * bias
             });
 
-            //stack.rotation.y = Math.PI * 2 * per;
+            stack.rotation.y = Math.PI * 2 * per;
             // draw
             renderer.render(scene, camera);
             frame += 20 * secs;

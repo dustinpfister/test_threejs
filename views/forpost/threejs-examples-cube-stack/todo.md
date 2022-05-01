@@ -5,6 +5,7 @@
 * (done) new EFFECTS.scaleCubes effect that will scale each cube in one or more stacks
 * (done) opt.gx should be opt.gw, and opt.gy should be opt.gh
 * (done) new system where there is a group for each tile location
+* (done) can scale cubes in a way in which the scale changes with stack height
 
 * main id for a stack object
 * better control over textures for the plane

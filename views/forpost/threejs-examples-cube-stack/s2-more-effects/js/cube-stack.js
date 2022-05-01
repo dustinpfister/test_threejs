@@ -131,15 +131,8 @@ var CubeStack = (function () {
         // scale all cubes
         stack.userData.cubeGroups.children.forEach(function(cubeStack){
             var len = cubeStack.children.length;
-            var y = 0;
             cubeStack.children.forEach(function(cube, i){
-
-                var h = opt.scale - opt.scale / len * i;
-                cube.scale.set(opt.scale, h, opt.scale);
-                cube.position.y = y - (opt.scale - h / 2) + opt.scale / 2;
-                cube.position.x = (1 - opt.scale) / 2;
-                cube.position.z = (1 - opt.scale) / 2;
-                y += h;
+                cube.scale.set(opt.scale, opt.scale, opt.scale);
             });
         });
     };
