@@ -11,10 +11,9 @@
 * (done) have a getPos.seededRandom method
 * (done) let getPos.seededRandom be the default getPos method
 * (done) have an opt.getPos option for the create method
-
-* have an opt.posArray option that can be used to set positions that way with an array of index values
-* getPos can be used as a fallback for any undefined elements in posArray
-* posArray can default to an empty array
+* (done) have an opt.posArray option that can be used to set positions that way with an array of index values
+* (done) getPos can be used as a fallback for any undefined elements in posArray
+* (done) posArray can default to an empty array
 
 * main id for a stack object
 * uname for groups (with main id)
