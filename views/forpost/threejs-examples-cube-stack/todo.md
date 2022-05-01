@@ -6,13 +6,12 @@
 * (done) opt.gx should be opt.gw, and opt.gy should be opt.gh
 * (done) new system where there is a group for each tile location
 * (done) can scale cubes in a way in which the scale changes with stack height
+* (done) add hard coded 'get position methods' with a getPOS object like that of effects
+* (done) have current getPos method with Math.random be called getPos.random
+* (done) have a getPos.seededRandom method
+* (done) let getPos.seededRandom be the default getPos method
+* (done) have an opt.getPos option for the create method
 
-
-* add hard coded 'get position methods' with a getPOS object like that of effects
-* have current getPos method with Math.random be called getPos.random
-* have a getPos.seededRandom method
-* let getPos.seededRandom be the default getPos method
-* have an opt.getPos option for the create method
 * have an opt.posArray option that can be used to set positions that way with an array of index values
 * getPos can be used as a fallback for any undefined elements in posArray
 * posArray can default to an empty array

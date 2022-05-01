@@ -18,7 +18,11 @@
     var stack = CubeStack.create({
             gw: 5,
             gh: 4,
-            boxCount: 50,
+            boxCount: 30,
+            getPos: 'seededRandom',
+            //getPos: function(){
+            //    return {x: 0, z: 0 };
+            //},
             colors: [
                 [1,1,0, [0, 255]],
                 [0,1,0, [128, 255]],

@@ -70,16 +70,31 @@ var CubeStack = (function () {
             z: Math.floor(opt.gh * Math.random())
         };
     };
+    // random get pos method
+    getPos.seededRandom = function(stack, opt, i){
+        return {
+            x: Math.floor(opt.gw * THREE.MathUtils.seededRandom()),
+            z: Math.floor(opt.gh * THREE.MathUtils.seededRandom())
+        };
+    };
     var appendBoxMeshObjects = function (stack, opt) {
         opt = opt || {};
         opt.boxCount = opt.boxCount === undefined ? 30 : opt.boxCount;
+
+        // default get pos method
+        var getPosMethod = getPos.seededRandom;
+        // if getPos option is a string
+        if(typeof opt.getPos === 'string'){
+            getPosMethod = getPos[opt.getPos];
+        }
+        if(typeof opt.getPos === 'function'){
+            getPosMethod = opt.getPos;
+        }
         var boxIndex = 0;
         while (boxIndex < opt.boxCount) {
             boxIndex += 1;
             // get the cube stack group to place the new mesh
-            //var x = Math.floor(opt.gw * Math.random());
-            //var z = Math.floor(opt.gh * Math.random());
-            var pos = getPos.random(stack, opt, boxIndex);
+            var pos = getPosMethod(stack, opt, boxIndex);
 
             var cubeStack = getCubeStack(stack, pos.x, pos.z);
             // if we have a cube stack
