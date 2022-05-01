@@ -1,11 +1,10 @@
 # threejs-examples-cube-stack todo list
 
-## () - sx - groups for each stack
-
-## () - s2 - New effects, EFFECTS.scaleCubes, and EFFECTS.scaleCubeGroup
-* rename EFFECTS.scaleCubes to EFFECTS.scaleCubeGroup
-* new EFFECTS.scaleCubes effect that will scale each cube in one or more stacks
-* by default EFFECTS.scaleCubes
+## () - s2 - groups for each stack, new effects
+* (done) rename EFFECTS.scaleCubes to EFFECTS.scaleCubeGroup
+* (done) new EFFECTS.scaleCubes effect that will scale each cube in one or more stacks
+* new system where there is a group for each tile location
+* opt.gx should be opt.gw, and opt.gy should be opt.gh
 
 ## ( done 04/29/2022 ) - s1-first
 * (done) start with the source code from camera-orthographic

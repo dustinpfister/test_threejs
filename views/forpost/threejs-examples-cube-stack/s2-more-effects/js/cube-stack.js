@@ -8,6 +8,25 @@ var CubeStack = (function () {
         var planeColor = opt.colors[opt.planeColor === undefined ? 1: opt.planeColor];
         var plane = new THREE.Mesh(
                 // plane geometry
+                new THREE.PlaneGeometry(opt.gw, opt.gh, opt.gw, opt.gh),
+                // materials
+                new THREE.MeshStandardMaterial({
+                    color: 0xffffff,
+                    //map: datatex.seededRandom(opt.gx * 4, opt.gy * 4, 0, 1, 0, [64, 255]),
+                    map: datatex.seededRandom.apply(null, [opt.gw * 4, opt.gh * 4].concat( planeColor ) ),
+                    emissive: 0x0a0a0a,
+                    side: THREE.DoubleSide
+                }));
+        plane.position.set(0, -0.5, 0);
+        plane.rotation.set(-Math.PI / 2, 0, 0);
+        return plane;
+    };
+/*
+    var createPlane = function (opt) {
+        opt = opt || {};
+        var planeColor = opt.colors[opt.planeColor === undefined ? 1: opt.planeColor];
+        var plane = new THREE.Mesh(
+                // plane geometry
                 new THREE.PlaneGeometry(opt.gx, opt.gy, opt.gx, opt.gy),
                 // materials
                 new THREE.MeshStandardMaterial({
@@ -21,20 +40,22 @@ var CubeStack = (function () {
         plane.rotation.set(-Math.PI / 2, 0, 0);
         return plane;
     };
+*/
     // append mesh objects
+    var appendBoxMeshObjects = function (group, opt) {
+        opt = opt || {};
+  
+    };
+/*
     var appendBoxMeshObjects = function (group, opt) {
         opt = opt || {};
         opt.boxCount = opt.boxCount === undefined ? 30 : opt.boxCount;
         var boxIndex = 0,
-        boxArray = [],
-        x,
-        y,
-        z,
-        box;
+        boxArray = [];
         // place some boxes on the plane
         while (boxIndex < opt.boxCount) {
-           var cubeColor = opt.colors[Math.floor(opt.colors.length * Math.random())];
-            box = new THREE.Mesh(
+            var cubeColor = opt.colors[Math.floor(opt.colors.length * Math.random())];
+            var box = new THREE.Mesh(
                     new THREE.BoxGeometry(1, 1, 1),
                     new THREE.MeshStandardMaterial({
                         color: 0xffffff,
@@ -42,9 +63,9 @@ var CubeStack = (function () {
                         map: datatex.seededRandom.apply(null, [8,8].concat( cubeColor ) ),
                         emissive: 0x1a1a1a
                     }));
-            x = Math.floor(opt.gx * Math.random());
-            y = 0;
-            z = Math.floor(opt.gy * Math.random());
+            var x = Math.floor(opt.gx * Math.random());
+            var y = 0;
+            var z = Math.floor(opt.gy * Math.random());
             if (boxArray[z] === undefined) {
                 boxArray[z] = [];
             }
@@ -61,20 +82,22 @@ var CubeStack = (function () {
             boxIndex += 1;
         }
     };
+*/
     // public create method
     api.create = function (opt) {
         var stack = new THREE.Group();
         opt = opt || {};
-        opt.gx = opt.gx === undefined ? 5 : opt.gx;
-        opt.gy = opt.gy === undefined ? 5 : opt.gy;
+        opt.gw = opt.gw === undefined ? 5 : opt.gw;
+        opt.gh = opt.gh === undefined ? 5 : opt.gh;
         opt.colors = stack.userData.colors = opt.colors || [
             [1, 1, 1, [0, 255]],
             [0, 1, 0, [200, 255]]
         ];
         var cubes = stack.cubes = new THREE.Group();
-        // scale cubes effect
+        // main cubes group
+        stack.add(cubes);
+        // append mesh objects for cube groups
 
-        stack.add(cubes)
         appendBoxMeshObjects(cubes, opt);
         var plane = stack.plane = createPlane(opt);
         stack.add(plane);
