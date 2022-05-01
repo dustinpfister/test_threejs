@@ -15,15 +15,16 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     // STACK
-    var stack = CubeStack.create({
+
+    var w = 3;
+    [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function(stackOptions, i){
+
+        var stack = CubeStack.create({
             gw: 5,
             gh: 4,
             boxCount: 30,
             getPos: 'seededRandom',
             posArray: [ 0, 0, 0, 0, 1, 1, 1, 5, 5, 5, 6, 6, 14, 14, 14, 18, 18, 19, 19, 19, 19, 19],
-            //getPos: function(){
-            //    return {x: 0, z: 0 };
-            //},
             colors: [
                 [1,1,0, [0, 255]],
                 [0,1,0, [128, 255]],
@@ -33,8 +34,34 @@
             ],
             planeColor: 2
         });
-    stack.position.set(0, 0.6, 0);
-    scene.add(stack);
+        var x = i % w;
+        var y = Math.floor(i / w);
+        stack.position.set(-5 + 5 * x, 0.6, -5 + 5 * y);
+        scene.add(stack);
+
+    });
+
+/*
+    var stack = CubeStack.create({
+            gw: 5,
+            gh: 4,
+            boxCount: 30,
+            getPos: 'seededRandom',
+            posArray: [ 0, 0, 0, 0, 1, 1, 1, 5, 5, 5, 6, 6, 14, 14, 14, 18, 18, 19, 19, 19, 19, 19],
+            colors: [
+                [1,1,0, [0, 255]],
+                [0,1,0, [128, 255]],
+                [0,1,0.5, [128, 255]],
+                [1,0,0, [128, 255]],
+                [0,1,1, [128, 255]]
+            ],
+            planeColor: 2
+        });
+*/
+    //stack.position.set(0, 0.6, 0);
+    //scene.add(stack);
+
+
     // ********** **********
     // ANIMATION LOOP
     // ********** **********
@@ -50,12 +77,12 @@
         if (secs > 1 / 24) {
             // apply effect
 
-            CubeStack.applyEffect(stack, 'scaleCubes', {
-                scale: 0.85,
-                per: bias
-            });
+            //CubeStack.applyEffect(stack, 'scaleCubes', {
+            //    scale: 0.85,
+            //    per: bias
+            //});
 
-            stack.rotation.y = Math.PI * 2 * per;
+            //stack.rotation.y = Math.PI * 2 * per;
             // draw
             renderer.render(scene, camera);
             frame += 20 * secs;
