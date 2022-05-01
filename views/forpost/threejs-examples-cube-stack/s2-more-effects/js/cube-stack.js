@@ -72,6 +72,7 @@ var CubeStack = (function () {
             var x = Math.floor(opt.gw * Math.random());
             var z = Math.floor(opt.gh * Math.random());
             var cubeStack = getCubeStack(stack, x, z);
+            // if we have a cube stack
             if(cubeStack){
                 var y = cubeStack.children.length;
                 var cubeColor = opt.colors[Math.floor(opt.colors.length * Math.random())];
@@ -128,7 +129,7 @@ var CubeStack = (function () {
     EFFECTS.scaleCubes = function(stack, opt){
         opt = opt || {};
         opt.scale = opt.scale === undefined ? 1: opt.scale;
-opt.per = opt.per === undefined ? 1: opt.per;
+        opt.per = opt.per === undefined ? 1: opt.per;
         // scale all cubes
         stack.userData.cubeGroups.children.forEach(function(cubeStack){
             var len = cubeStack.children.length;

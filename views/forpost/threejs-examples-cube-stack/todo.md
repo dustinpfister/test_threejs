@@ -7,9 +7,25 @@
 * (done) new system where there is a group for each tile location
 * (done) can scale cubes in a way in which the scale changes with stack height
 
+
+* add hard coded 'get position methods' with a getPOS object like that of effects
+* have current getPos method with Math.random be called getPos.random
+* have a getPos.seededRandom method
+* let getPos.seededRandom be the default getPos method
+* have an opt.getPos option for the create method
+* have an opt.posArray option that can be used to set positions that way with an array of index values
+* getPos can be used as a fallback for any undefined elements in posArray
+* posArray can default to an empty array
+
 * main id for a stack object
+* uname for groups (with main id)
+* uname for mesh obejcts (with main id)
+
 * better control over textures for the plane
-* names for stack, cube groups, mesh objects
+* better control over textures for each mesh
+
+
+* start at least one more effect
 
 ## ( done 04/29/2022 ) - s1-first
 * (done) start with the source code from camera-orthographic
