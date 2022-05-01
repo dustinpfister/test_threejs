@@ -1,6 +1,6 @@
 # threejs-examples-cube-stack todo list
 
-## () - s2 - groups for each stack, new effects
+## () - s2 - groups for each stack, pos methods, texture control, and new effects
 * (done) rename EFFECTS.scaleCubes to EFFECTS.scaleCubeGroup
 * (done) new EFFECTS.scaleCubes effect that will scale each cube in one or more stacks
 * (done) opt.gx should be opt.gw, and opt.gy should be opt.gh
