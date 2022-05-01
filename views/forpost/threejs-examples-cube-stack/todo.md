@@ -20,7 +20,10 @@
 * uname for mesh obejcts (with main id)
 
 * better control over textures for the plane
-* better control over textures for each mesh
+* have a getCubeTexture object like that of getPos
+* have current texture method then be getCubeTexture.seededRandom which can also remain the default
+* have a getCubeTexture.square method
+* I will want a simular option to that if the posArray but with texture methods
 
 
 * start at least one more effect

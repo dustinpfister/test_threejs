@@ -52,8 +52,10 @@ var CubeStack = (function () {
             i += 1;
         }
     };
+    //******** **********
+    //  APPEND MESH METHOD AND HELPERS
+    //******** **********
 
-    // append mesh objects
     var getPos = {};
     // random get pos method
     getPos.random = function(stack, opt, i){
@@ -105,7 +107,6 @@ var CubeStack = (function () {
                     new THREE.BoxGeometry(1, 1, 1),
                     new THREE.MeshStandardMaterial({
                         color: 0xffffff,
-                        //map: datatex.seededRandom(8, 8, 1, 1, 1, [180, 255]),
                         map: datatex.seededRandom.apply(null, [8,8].concat( cubeColor ) ),
                         emissive: 0x1a1a1a
                     }));
