@@ -16,9 +16,9 @@
     document.getElementById('demo').appendChild(renderer.domElement);
     // STACK
     var stack = CubeStack.create({
-            gw: 7,
+            gw: 5,
             gh: 4,
-            boxCount: 15,
+            boxCount: 50,
             colors: [
                 [1,1,0, [0, 255]],
                 [0,1,0, [128, 255]],
@@ -44,12 +44,12 @@
         requestAnimationFrame(loop);
         if (secs > 1 / 24) {
             // apply effect
-/*
+
             CubeStack.applyEffect(stack, 'scaleCubes', {
-                scale: 0.85
+                scale: 0.15 + 0.85 * bias
             });
-*/
-            stack.rotation.y = Math.PI * 2 * per;
+
+            //stack.rotation.y = Math.PI * 2 * per;
             // draw
             renderer.render(scene, camera);
             frame += 20 * secs;

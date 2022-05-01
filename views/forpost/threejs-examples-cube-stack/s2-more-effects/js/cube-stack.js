@@ -88,43 +88,7 @@ var CubeStack = (function () {
             }
         }
     };
-/*
-    var appendBoxMeshObjects = function (group, opt) {
-        opt = opt || {};
-        opt.boxCount = opt.boxCount === undefined ? 30 : opt.boxCount;
-        var boxIndex = 0,
-        boxArray = [];
-        // place some boxes on the plane
-        while (boxIndex < opt.boxCount) {
-            var cubeColor = opt.colors[Math.floor(opt.colors.length * Math.random())];
-            var box = new THREE.Mesh(
-                    new THREE.BoxGeometry(1, 1, 1),
-                    new THREE.MeshStandardMaterial({
-                        color: 0xffffff,
-                        //map: datatex.seededRandom(8, 8, 1, 1, 1, [180, 255]),
-                        map: datatex.seededRandom.apply(null, [8,8].concat( cubeColor ) ),
-                        emissive: 0x1a1a1a
-                    }));
-            var x = Math.floor(opt.gx * Math.random());
-            var y = 0;
-            var z = Math.floor(opt.gy * Math.random());
-            if (boxArray[z] === undefined) {
-                boxArray[z] = [];
-            }
-            if (boxArray[z][x] === undefined) {
-                boxArray[z][x] = [];
-            }
-            boxArray[z][x].push(box);
-            y = boxArray[z][x].length - 1;
-            box.position.set(
-                (opt.gx / 2 * -1 + 0.5) + x,
-                y,
-                (opt.gy / 2 * -1 + 0.5) + z)
-            group.add(box);
-            boxIndex += 1;
-        }
-    };
-*/
+
     // public create method
     api.create = function (opt) {
         var stack = new THREE.Group();
@@ -135,14 +99,14 @@ var CubeStack = (function () {
             [1, 1, 1, [0, 255]],
             [0, 1, 0, [200, 255]]
         ];
+        // main cube groups
         var cubes = stack.userData.cubeGroups = new THREE.Group();
-        // main cubes group
         stack.add(cubes);
-
-appendCubeGroups(stack, opt);
-
+        // appedn cube groups
+        appendCubeGroups(stack, opt);
         // append mesh objects for cube groups
         appendBoxMeshObjects(stack, opt);
+        // create and app the plane
         var plane = stack.userData.plane = createPlane(opt);
         stack.add(plane);
         return stack;
@@ -164,12 +128,20 @@ appendCubeGroups(stack, opt);
     EFFECTS.scaleCubes = function(stack, opt){
         opt = opt || {};
         opt.scale = opt.scale === undefined ? 1: opt.scale;
+        // scale all cubes
+        stack.userData.cubeGroups.children.forEach(function(cubeStack){
+            var len = cubeStack.children.length;
+            var y = 0;
+            cubeStack.children.forEach(function(cube, i){
 
-
-        stack.userData.cubes.children.forEach(function(cubeStack){
-            cubeStack.scale.set(opt.scale, opt.scale, opt.scale);
+                var h = opt.scale - opt.scale / len * i;
+                cube.scale.set(opt.scale, h, opt.scale);
+                cube.position.y = y - (opt.scale - h / 2) + opt.scale / 2;
+                cube.position.x = (1 - opt.scale) / 2;
+                cube.position.z = (1 - opt.scale) / 2;
+                y += h;
+            });
         });
-
     };
 
 
