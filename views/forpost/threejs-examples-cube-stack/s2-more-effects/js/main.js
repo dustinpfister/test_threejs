@@ -38,7 +38,7 @@
             gh: 4,
             boxCount: stackOpt.boxCount || 0,
             getPos: 'seededRandom',
-            posArray: [],
+            posArray: stackOpt.posArray || [],
             colors: [
                 [1,1,0, [0, 255]],
                 [0,1,0, [128, 255]],
