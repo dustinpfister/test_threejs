@@ -17,15 +17,28 @@
     // STACK
 
     var w = 3,
-    space = 2,
+    space = 0.5,
     stacks = [];
-    [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function(stackOptions, i){
+
+    var stackOptionPalette = [
+        {
+            boxCount: 5
+        },
+        {
+            boxCount: 30,
+            posArray: [ 0, 0, 0, 0, 1, 1, 1, 5, 5, 5, 6, 6, 14, 14, 14, 18, 18, 19, 19, 19, 19, 19]
+        },
+    ];
+
+
+    [ 0, 0, 0, 0, 1, 0, 0, 0, 0].forEach(function(sopIndex, i){
+        var stackOpt = stackOptionPalette[sopIndex];
         var stack = CubeStack.create({
             gw: 5,
             gh: 4,
-            boxCount: 30,
+            boxCount: stackOpt.boxCount || 0,
             getPos: 'seededRandom',
-            posArray: [ 0, 0, 0, 0, 1, 1, 1, 5, 5, 5, 6, 6, 14, 14, 14, 18, 18, 19, 19, 19, 19, 19],
+            posArray: [],
             colors: [
                 [1,1,0, [0, 255]],
                 [0,1,0, [128, 255]],
