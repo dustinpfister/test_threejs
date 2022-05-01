@@ -128,11 +128,13 @@ var CubeStack = (function () {
     EFFECTS.scaleCubes = function(stack, opt){
         opt = opt || {};
         opt.scale = opt.scale === undefined ? 1: opt.scale;
+opt.per = opt.per === undefined ? 1: opt.per;
         // scale all cubes
         stack.userData.cubeGroups.children.forEach(function(cubeStack){
             var len = cubeStack.children.length;
             cubeStack.children.forEach(function(cube, i){
                 cube.scale.set(opt.scale, opt.scale, opt.scale);
+                cube.rotation.y = Math.PI * 4 * ( i / len) * opt.per;
             });
         });
     };
