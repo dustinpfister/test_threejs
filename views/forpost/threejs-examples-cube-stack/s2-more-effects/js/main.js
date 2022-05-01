@@ -16,9 +16,9 @@
     document.getElementById('demo').appendChild(renderer.domElement);
     // STACK
     var stack = CubeStack.create({
-            gw: 2,
-            gh: 2,
-            boxCount: 5,
+            gw: 7,
+            gh: 4,
+            boxCount: 15,
             colors: [
                 [1,1,0, [0, 255]],
                 [0,1,0, [128, 255]],

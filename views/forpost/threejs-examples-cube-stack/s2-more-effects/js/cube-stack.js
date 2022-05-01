@@ -59,9 +59,6 @@ var CubeStack = (function () {
 
             i += 1;
         }
-
-//console.log(  getCubeStack(stack, 1, 1) );
-
     };
 
     // append mesh objects
@@ -74,14 +71,11 @@ var CubeStack = (function () {
             // get the cube stack group to place the new mesh
             var x = Math.floor(opt.gw * Math.random());
             var z = Math.floor(opt.gh * Math.random());
-
-var cubeStack = getCubeStack(stack, x, z);
-if(cubeStack){
-
-   var y = cubeStack.children.length;
-
-var cubeColor = opt.colors[Math.floor(opt.colors.length * Math.random())];
-            var box = new THREE.Mesh(
+            var cubeStack = getCubeStack(stack, x, z);
+            if(cubeStack){
+                var y = cubeStack.children.length;
+                var cubeColor = opt.colors[Math.floor(opt.colors.length * Math.random())];
+                var box = new THREE.Mesh(
                     new THREE.BoxGeometry(1, 1, 1),
                     new THREE.MeshStandardMaterial({
                         color: 0xffffff,
@@ -89,17 +83,10 @@ var cubeColor = opt.colors[Math.floor(opt.colors.length * Math.random())];
                         map: datatex.seededRandom.apply(null, [8,8].concat( cubeColor ) ),
                         emissive: 0x1a1a1a
                     }));
-            box.position.set(0,y,0);
-
-            cubeStack.add(box);
-
-console.log(x, y, z)
-
-}
-
-
+                box.position.set(0,y,0);
+                cubeStack.add(box);
+            }
         }
-  
     };
 /*
     var appendBoxMeshObjects = function (group, opt) {

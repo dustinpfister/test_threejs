@@ -4,8 +4,9 @@
 * (done) rename EFFECTS.scaleCubes to EFFECTS.scaleCubeGroup
 * (done) new EFFECTS.scaleCubes effect that will scale each cube in one or more stacks
 * (done) opt.gx should be opt.gw, and opt.gy should be opt.gh
-* new system where there is a group for each tile location
+* (done) new system where there is a group for each tile location
 
+* main id for a stack object
 * better control over textures for the plane
 * names for stack, cube groups, mesh objects
 
