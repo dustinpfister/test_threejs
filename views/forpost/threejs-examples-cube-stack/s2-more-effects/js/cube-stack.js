@@ -23,40 +23,32 @@ var CubeStack = (function () {
     };
 
     var getCubeStack = function(stack, x, y){
-
         var name = 'cubestack_' + x + '_' + y;
         return stack.userData.cubeGroups.getObjectByName(name);
-
     };
 
     // append cube groups for what should be a new stack group
     var appendCubeGroups = function(stack, opt){
-
         var i = 0,
         len = opt.gw * opt.gh;
         while(i < len){
             var x = i % opt.gw,
             y = Math.floor(i / opt.gw);
-
             // start new cube stack, set userData for it
             var cubeStack = new THREE.Group(),
             ud = cubeStack.userData;
             ud.x = x;
             ud.y = y;
             ud.i = i;
-
             // name for this cubeStack
             cubeStack.name = 'cubestack_' + x + '_' + y;
-
             // set postion of this cube stack group
             var px = (opt.gw / 2 * -1 + 0.5) + x,
             py = 0,
             pz = (opt.gh / 2 * -1 + 0.5) + y;
             cubeStack.position.set(px, py, pz);
-
             // add to cubeGroups group
             stack.userData.cubeGroups.add(cubeStack)
-
             i += 1;
         }
     };
@@ -80,6 +72,7 @@ var CubeStack = (function () {
     var appendBoxMeshObjects = function (stack, opt) {
         opt = opt || {};
         opt.boxCount = opt.boxCount === undefined ? 30 : opt.boxCount;
+        opt.posArray = opt.posArray || [];
 
         // default get pos method
         var getPosMethod = getPos.seededRandom;
@@ -93,9 +86,16 @@ var CubeStack = (function () {
         var boxIndex = 0;
         while (boxIndex < opt.boxCount) {
             boxIndex += 1;
-            // get the cube stack group to place the new mesh
-            var pos = getPosMethod(stack, opt, boxIndex);
-
+            // get the cube stack group to place the new mesh by checking the posArray first
+            var a = opt.posArray[boxIndex], pos;
+            if(typeof a === 'number'){
+                pos = {
+                    x: a % opt.gw,
+                    z: Math.floor(a / opt.gw)
+                };
+            }else{
+                pos = getPosMethod(stack, opt, boxIndex);
+            }
             var cubeStack = getCubeStack(stack, pos.x, pos.z);
             // if we have a cube stack
             if(cubeStack){
