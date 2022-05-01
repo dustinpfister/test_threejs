@@ -16,7 +16,7 @@
     document.getElementById('demo').appendChild(renderer.domElement);
     // STACK
 
-    var w = 3,
+    var w = 5,
     space = 0.5,
     stacks = [];
 
@@ -25,13 +25,21 @@
             boxCount: 5
         },
         {
-            boxCount: 30,
+            boxCount: 20
+        },
+        {
+            boxCount: 45,
             posArray: [ 0, 0, 0, 0, 1, 1, 1, 5, 5, 5, 6, 6, 14, 14, 14, 18, 18, 19, 19, 19, 19, 19]
         },
     ];
 
 
-    [ 0, 0, 0, 0, 1, 0, 0, 0, 0].forEach(function(sopIndex, i){
+    [ 0, 0, 0, 0, 0,
+      0, 0, 1, 0, 0, 
+      0, 1, 2, 1, 0,
+      0, 0, 1, 0, 0,
+      0, 0, 0, 0, 0
+    ].forEach(function(sopIndex, i){
         var stackOpt = stackOptionPalette[sopIndex];
         var stack = CubeStack.create({
             gw: 5,
@@ -50,7 +58,7 @@
         });
         var x = i % w;
         var y = Math.floor(i / w);
-        stack.position.set(-5 + (5 + space) * x, 0.6, -5 + (4 + space) * y);
+        stack.position.set(-10 + (5 + space) * x, 0.6, -10 + (4 + space) * y);
         scene.add(stack);
         stacks.push(stack)
     });
@@ -71,14 +79,14 @@
         if (secs > 1 / 24) {
             // apply effect
 
-            CubeStack.applyEffect(stacks[4], 'scaleCubes', {
+            CubeStack.applyEffect(stacks[12], 'scaleCubes', {
                 scale: 0.85,
                 per: bias
             });
 
             var r = Math.PI * 2 * per,
-            x = Math.cos(r) * 15,
-            z = Math.sin(r) * 15;
+            x = Math.cos(r) * 25,
+            z = Math.sin(r) * 25;
             camera.position.set(x, 10, z);
             camera.lookAt(0, 0, 0);
 
