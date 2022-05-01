@@ -62,6 +62,14 @@ var CubeStack = (function () {
     };
 
     // append mesh objects
+    var getPos = {};
+    // random get pos method
+    getPos.random = function(stack, opt, i){
+        return {
+            x: Math.floor(opt.gw * Math.random()),
+            z: Math.floor(opt.gh * Math.random())
+        };
+    };
     var appendBoxMeshObjects = function (stack, opt) {
         opt = opt || {};
         opt.boxCount = opt.boxCount === undefined ? 30 : opt.boxCount;
@@ -69,9 +77,11 @@ var CubeStack = (function () {
         while (boxIndex < opt.boxCount) {
             boxIndex += 1;
             // get the cube stack group to place the new mesh
-            var x = Math.floor(opt.gw * Math.random());
-            var z = Math.floor(opt.gh * Math.random());
-            var cubeStack = getCubeStack(stack, x, z);
+            //var x = Math.floor(opt.gw * Math.random());
+            //var z = Math.floor(opt.gh * Math.random());
+            var pos = getPos.random(stack, opt, boxIndex);
+
+            var cubeStack = getCubeStack(stack, pos.x, pos.z);
             // if we have a cube stack
             if(cubeStack){
                 var y = cubeStack.children.length;
@@ -84,7 +94,7 @@ var CubeStack = (function () {
                         map: datatex.seededRandom.apply(null, [8,8].concat( cubeColor ) ),
                         emissive: 0x1a1a1a
                     }));
-                box.position.set(0,y,0);
+                box.position.set(0, y , 0);
                 cubeStack.add(box);
             }
         }
