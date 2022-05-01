@@ -5,7 +5,7 @@
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0.1, 0.1, 0.1);
     var camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.05, 100);
-    camera.position.set(10, 10, 10);
+    camera.position.set(15, 10, 15);
     camera.lookAt(0, 2, 0);
     scene.add(camera);
     var dl = new THREE.DirectionalLight(0xffffff, 0.8);
@@ -42,26 +42,6 @@
         stacks.push(stack)
     });
 
-/*
-    var stack = CubeStack.create({
-            gw: 5,
-            gh: 4,
-            boxCount: 30,
-            getPos: 'seededRandom',
-            posArray: [ 0, 0, 0, 0, 1, 1, 1, 5, 5, 5, 6, 6, 14, 14, 14, 18, 18, 19, 19, 19, 19, 19],
-            colors: [
-                [1,1,0, [0, 255]],
-                [0,1,0, [128, 255]],
-                [0,1,0.5, [128, 255]],
-                [1,0,0, [128, 255]],
-                [0,1,1, [128, 255]]
-            ],
-            planeColor: 2
-        });
-*/
-    //stack.position.set(0, 0.6, 0);
-    //scene.add(stack);
-
 
     // ********** **********
     // ANIMATION LOOP
@@ -82,6 +62,12 @@
                 scale: 0.85,
                 per: bias
             });
+
+            var r = Math.PI * 2 * per,
+            x = Math.cos(r) * 15,
+            z = Math.sin(r) * 15;
+            camera.position.set(x, 10, z);
+            camera.lookAt(0, 0, 0);
 
             //stack.rotation.y = Math.PI * 2 * per;
             // draw
