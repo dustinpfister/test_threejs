@@ -85,7 +85,7 @@ var CubeStack = (function () {
         }
         var boxIndex = 0;
         while (boxIndex < opt.boxCount) {
-            boxIndex += 1;
+
             // get the cube stack group to place the new mesh by checking the posArray first
             var a = opt.posArray[boxIndex], pos;
             if(typeof a === 'number'){
@@ -110,8 +110,9 @@ var CubeStack = (function () {
                         emissive: 0x1a1a1a
                     }));
                 box.position.set(0, y , 0);
-                cubeStack.add(box);
+                cubeStack.add(box);    
             }
+            boxIndex += 1;
         }
     };
 

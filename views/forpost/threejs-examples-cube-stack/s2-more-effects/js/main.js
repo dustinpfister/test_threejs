@@ -18,9 +18,9 @@
     var stack = CubeStack.create({
             gw: 5,
             gh: 4,
-            boxCount: 15,
+            boxCount: 30,
             getPos: 'seededRandom',
-            posArray: [ 0, 0, 0, 0, 0],
+            posArray: [ 0, 0, 0, 0, 1, 1, 1, 5, 5, 5, 6, 6, 14, 14, 14, 18, 18, 19, 19, 19, 19, 19],
             //getPos: function(){
             //    return {x: 0, z: 0 };
             //},
