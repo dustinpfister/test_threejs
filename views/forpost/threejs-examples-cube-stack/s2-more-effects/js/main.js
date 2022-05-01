@@ -5,7 +5,7 @@
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0.1, 0.1, 0.1);
     var camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.05, 100);
-    camera.position.set(7, 7, 7);
+    camera.position.set(10, 10, 10);
     camera.lookAt(0, 2, 0);
     scene.add(camera);
     var dl = new THREE.DirectionalLight(0xffffff, 0.8);
@@ -16,9 +16,10 @@
     document.getElementById('demo').appendChild(renderer.domElement);
     // STACK
 
-    var w = 3;
+    var w = 3,
+    space = 2,
+    stacks = [];
     [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function(stackOptions, i){
-
         var stack = CubeStack.create({
             gw: 5,
             gh: 4,
@@ -36,9 +37,9 @@
         });
         var x = i % w;
         var y = Math.floor(i / w);
-        stack.position.set(-5 + 5 * x, 0.6, -5 + 5 * y);
+        stack.position.set(-5 + (5 + space) * x, 0.6, -5 + (4 + space) * y);
         scene.add(stack);
-
+        stacks.push(stack)
     });
 
 /*
@@ -77,10 +78,10 @@
         if (secs > 1 / 24) {
             // apply effect
 
-            //CubeStack.applyEffect(stack, 'scaleCubes', {
-            //    scale: 0.85,
-            //    per: bias
-            //});
+            CubeStack.applyEffect(stacks[4], 'scaleCubes', {
+                scale: 0.85,
+                per: bias
+            });
 
             //stack.rotation.y = Math.PI * 2 * per;
             // draw
