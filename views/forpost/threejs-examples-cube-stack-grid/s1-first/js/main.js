@@ -16,6 +16,7 @@
     document.getElementById('demo').appendChild(renderer.domElement);
     // STACK
 
+/*
     var w = 5,
     space = 0.5,
     stacks = [];
@@ -62,11 +63,19 @@
         scene.add(stack);
         stacks.push(stack)
     });
+*/
+
+    var csg = CubeStackGrid.create();
+    scene.add(csg);
+
+console.log(csg)
 
 
     // ********** **********
     // ANIMATION LOOP
     // ********** **********
+    renderer.render(scene, camera);
+/*
     var frame = 0,
     maxFrame = 300,
     lt = new Date();
@@ -78,19 +87,6 @@
         requestAnimationFrame(loop);
         if (secs > 1 / 24) {
             // apply effect
-
-            CubeStack.applyEffect(stacks[12], 'scaleCubes', {
-                scale: 0.85,
-                per: bias
-            });
-
-            var r = Math.PI * 2 * per,
-            x = Math.cos(r) * 25,
-            z = Math.sin(r) * 25;
-            camera.position.set(x, 10, z);
-            camera.lookAt(0, 0, 0);
-
-            //stack.rotation.y = Math.PI * 2 * per;
             // draw
             renderer.render(scene, camera);
             frame += 20 * secs;
@@ -99,6 +95,7 @@
         }
     };
     loop();
+*/
 
 }
     ());

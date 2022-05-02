@@ -12,5 +12,11 @@
 * (done) have options in the userData of cubeGrid object
 * (done) have a forEachTile option for CubeStackGrid.create
 
+* have a default value for stackOptionPalette
+* have a defaul option for generating a sopIncices array uisng seeded random
+
+* I will want to give a stackOptionPalette option for CubeStackGrid.create
+* I will want a sopIndices option for CubeStackGrid.create
+
 * use the cube-stack-grid.js module in main.js
 
