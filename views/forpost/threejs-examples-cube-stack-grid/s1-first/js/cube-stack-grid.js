@@ -43,14 +43,16 @@ var CubeStackGrid = (function () {
         ud.forEachTile = opt.forEachTile === undefined ? DEFAULT_FOR_EACH_TILE : opt.forEachTile;
         ud.stackOptionPalette = opt.stackOptionPalette === undefined ? DEFAULT_STACK_OPTION_PALETTE : opt.stackOptionPalette;
         ud.sopArray = opt.sopArray === undefined ? DEFAULT_SOP_INDICES : opt.sopArray;
+        ud.stackGW = opt.stackGW === undefined ? 2 : opt.stackGW;
+        ud.stackGH = opt.stackGH === undefined ? 2 : opt.stackGH;
         // create the CubeStacks
         var w = ud.gw;
         var sopArray = parseSOPIndices(csg, opt.sopArray);
         sopArray.forEach(function(sopIndex, i){
             var stackOpt = ud.stackOptionPalette[sopIndex];
             var stack = CubeStack.create({
-                gw: 5,
-                gh: 4,
+                gw: ud.stackGW,
+                gh: ud.stackGH,
                 boxCount: stackOpt.boxCount || 0,
                 getPos: stackOpt.getPos || 'seededRandom',
                 posArray: stackOpt.posArray || [],
@@ -61,7 +63,10 @@ var CubeStackGrid = (function () {
             });
             var x = i % w;
             var y = Math.floor(i / w);
-            stack.position.set(-10 + (5 + ud.space) * x, 0.6, -10 + (4 + ud.space) * y);
+            stack.position.set(
+                -10 + (ud.stackGW + ud.space) * x, 
+                0.6, 
+                -10 + (ud.stackGH + ud.space) * y);
             csg.add(stack);
         });
         // return the csg object

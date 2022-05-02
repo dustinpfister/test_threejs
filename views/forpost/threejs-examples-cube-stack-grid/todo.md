@@ -18,7 +18,7 @@
 * (done) I will want to give a stackOptionPalette option for CubeStackGrid.create
 * (done) I will want a sopIndices option for CubeStackGrid.create
 * (done) options for colors
+* (done) options for setting size of CubeStacks
 
-* options for setting size of CubeStacks
 * fix deal with the position of the cube stacks
 

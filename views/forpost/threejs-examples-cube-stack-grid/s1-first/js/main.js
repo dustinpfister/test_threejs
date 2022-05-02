@@ -29,7 +29,7 @@
         0,1,2,1,0,
         0,0,0,0,0
     ];
-    var csg = CubeStackGrid.create({ gw: 5, gh: 5, stackOptionPalette: soPalette, sopArray: sopArray});
+    var csg = CubeStackGrid.create({ gw: 2, gh: 2, stackGW: 4, stackGH: 4, stackOptionPalette: soPalette, sopArray: sopArray});
     scene.add(csg);
     console.log(csg)
 
