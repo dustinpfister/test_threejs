@@ -4,6 +4,7 @@
     // ********** **********
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0.1, 0.1, 0.1);
+    scene.add(new THREE.GridHelper(10, 10));
     var camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.05, 100);
     camera.position.set(25, 25, 25);
     camera.lookAt(0, -5, 0);
@@ -16,10 +17,10 @@
     document.getElementById('demo').appendChild(renderer.domElement);
     // CUBE STACK GRID
     var soPalette = [
-        { boxCount: 3 },
+        { boxCount: 3, colors: [ [0,1,0, [64, 255]], [0,1,1, [64, 255]] ], planeColor: 1 },
         { boxCount: 10 },
         { boxCount: 15 },
-        { boxCount: 20 }
+        { boxCount: 20, colors: [ [1,0,0, [64, 255]], [1,1,0, [64, 255]] ] }
     ];
     var sopArray = [
         0,0,0,0,0,

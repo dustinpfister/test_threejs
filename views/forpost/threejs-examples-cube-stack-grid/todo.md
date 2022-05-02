@@ -17,5 +17,8 @@
 * (done) have a default option for generating a sopIncices array
 * (done) I will want to give a stackOptionPalette option for CubeStackGrid.create
 * (done) I will want a sopIndices option for CubeStackGrid.create
+* (done) options for colors
 
+* options for setting size of CubeStacks
+* fix deal with the position of the cube stacks
 
