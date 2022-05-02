@@ -1,5 +1,16 @@
 # threejs-examples-cube-stack todo list
 
+## () - s3
+* main id for a stack object
+* uname for groups (with main id)
+* uname for mesh obejcts (with main id)
+* better control over textures for the plane
+* have a getCubeTexture object like that of getPos
+* have current texture method then be getCubeTexture.seededRandom which can also remain the default
+* have a getCubeTexture.square method
+* I will want a simular option to that if the posArray but with texture methods
+* start at least one more effect
+
 ## () - s2 - groups for each stack, pos methods, texture control, and new effects
 * (done) rename EFFECTS.scaleCubes to EFFECTS.scaleCubeGroup
 * (done) new EFFECTS.scaleCubes effect that will scale each cube in one or more stacks
@@ -14,19 +25,6 @@
 * (done) have an opt.posArray option that can be used to set positions that way with an array of index values
 * (done) getPos can be used as a fallback for any undefined elements in posArray
 * (done) posArray can default to an empty array
-
-* main id for a stack object
-* uname for groups (with main id)
-* uname for mesh obejcts (with main id)
-
-* better control over textures for the plane
-* have a getCubeTexture object like that of getPos
-* have current texture method then be getCubeTexture.seededRandom which can also remain the default
-* have a getCubeTexture.square method
-* I will want a simular option to that if the posArray but with texture methods
-
-
-* start at least one more effect
 
 ## ( done 04/29/2022 ) - s1-first
 * (done) start with the source code from camera-orthographic
