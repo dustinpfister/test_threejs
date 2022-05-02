@@ -1,5 +1,7 @@
 # threejs-examples-cube-stack-grid todo list
 
+## ( ) - s2 -
+* use THREE.MathUtils.seededRandom for parseSOPIndices helper
 
 ## ( ) - s1-first
 * (done) start with source code from s2 section of cube-stack example
@@ -12,10 +14,8 @@
 * (done) have a forEachTile option for CubeStackGrid.create
 * (done) have a default value for stackOptionPalette
 * (done) use the cube-stack-grid.js module in main.js
-
-* have a default option for generating a sopIncices array uisng seeded random
-
-* I will want to give a stackOptionPalette option for CubeStackGrid.create
-* I will want a sopIndices option for CubeStackGrid.create
+* (done) have a default option for generating a sopIncices array
+* (done) I will want to give a stackOptionPalette option for CubeStackGrid.create
+* (done) I will want a sopIndices option for CubeStackGrid.create
 
 
