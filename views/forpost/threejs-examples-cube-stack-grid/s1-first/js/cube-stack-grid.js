@@ -63,10 +63,34 @@ var CubeStackGrid = (function () {
             });
             var x = i % w;
             var y = Math.floor(i / w);
+
+            //var sx = (ud.stackGW + ud.space) * ud.gw / 2 * -1, 
+            //sy = (ud.stackGH + ud.space) * ud.gh / 2 * -1;
+
+//console.log(sx, sy)
+
+//sx = -3;
+//sy = -3;
+//console.log( ((ud.stackGW + ud.space) * ud.gw - 1) / 2 )
+//console.log( ( ud.stackGW / 2 * ud.space ) * ud.gw - 1  )
+
+/*
+var sx = (( ud.stackGW / 2 * ud.space) * ud.gw - 0.5) * -1 ,
+sy = (( ud.stackGH / 2 * ud.space) * ud.gh - 0.5) * -1;
+
+console.log(sx, sy)
+*/
+
+
+
+
+var sx = ( ( ud.stackGW + ud.space) * ud.gw - ud.stackGW - ud.space ) / 2 * -1,
+sy = ( (ud.stackGH + ud.space) * ud.gh - ud.stackGH - ud.space) / 2 * -1;
+
             stack.position.set(
-                -10 + (ud.stackGW + ud.space) * x, 
-                0.6, 
-                -10 + (ud.stackGH + ud.space) * y);
+                sx + (ud.stackGW + ud.space) * x, 
+                0.3, 
+                sy + (ud.stackGH + ud.space) * y);
             csg.add(stack);
         });
         // return the csg object

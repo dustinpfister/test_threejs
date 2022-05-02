@@ -4,10 +4,10 @@
     // ********** **********
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0.1, 0.1, 0.1);
-    scene.add(new THREE.GridHelper(10, 10));
+    scene.add(new THREE.GridHelper(14, 14));
     var camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.05, 100);
-    camera.position.set(25, 25, 25);
-    camera.lookAt(0, -5, 0);
+    camera.position.set(25, 25, 0);
+    camera.lookAt(0, 0, 0);
     scene.add(camera);
     var dl = new THREE.DirectionalLight(0xffffff, 0.8);
     dl.position.set(5, 10, 1);
@@ -29,7 +29,7 @@
         0,1,2,1,0,
         0,0,0,0,0
     ];
-    var csg = CubeStackGrid.create({ gw: 2, gh: 2, stackGW: 4, stackGH: 4, stackOptionPalette: soPalette, sopArray: sopArray});
+    var csg = CubeStackGrid.create({ gw: 5, gh: 5, stackGW: 7, stackGH: 5, stackOptionPalette: soPalette, sopArray: sopArray});
     scene.add(csg);
     console.log(csg)
 

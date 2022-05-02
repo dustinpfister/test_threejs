@@ -3,7 +3,7 @@
 ## ( ) - s2 -
 * use THREE.MathUtils.seededRandom for parseSOPIndices helper
 
-## ( ) - s1-first
+## ( done 05/02/2022 ) - s1-first
 * (done) start with source code from s2 section of cube-stack example
 * (done) start a cube-stack-grid.js module
 * (done) have a CubeStackGrid.create method with options object
@@ -19,6 +19,5 @@
 * (done) I will want a sopIndices option for CubeStackGrid.create
 * (done) options for colors
 * (done) options for setting size of CubeStacks
-
-* fix deal with the position of the cube stacks
+* (done) fix deal with the position of the cube stacks
 
