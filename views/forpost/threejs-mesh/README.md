@@ -1,3 +1,3 @@
 # threejs-mesh
 
-This is the for post folder for my [blog post on mesh objects](https://dustinpfister.github.io/2018/05/04/threejs-mesh/) in the javaScript library known as threejs.
+This is the for post folder for my [blog post on mesh objects](https://dustinpfister.github.io/2018/05/04/threejs-mesh/) in the javaScript library known as threejs. Many of the examples here also double as basic hello world style examples of threejs in general, but this is still not a getting started with threejs kind of collection of examples. There is also the Object3d class in threejs that I think should be looked into more before getting into details surrounding just mesh objects alone. A great deal of what will apply for a Mesh objects will also ally to many other objects in threejs such as camears and groups, the reason why is because all of these objects and many more are based off of this object3d class.
