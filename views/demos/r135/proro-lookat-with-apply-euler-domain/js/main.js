@@ -12,15 +12,16 @@ document.getElementById('demo').appendChild(renderer.domElement);
 
 // materuials to use for mesh objects
 var materials = [
-    new THREE.MeshNormalMaterial()
+    new THREE.MeshNormalMaterial(),
+    new THREE.MeshStandardMaterial({color: new THREE.Color('red')})
 ];
 
 // make a part of the object
-var mkPart = function(g, partName, w, h, d, x, y, z){
+var mkPart = function(g, partName, w, h, d, x, y, z, mi){
     // the mesh object
     var m = new THREE.Mesh(
     new THREE.BoxGeometry(w, h, d),
-    materials[0]);
+    materials[mi === undefined ? 0 : mi]);
     // name of part
     m.name = g.name + '_' + partName;
     // position it
@@ -34,7 +35,7 @@ var mkModel = function(gName){
     g.name = gName || 'g-' + g.uuid;
     // add parts
     g.add( mkPart(g, 'body', 1, 1, 4, 0, 0, 0) );
-    g.add( mkPart(g, 'tain', 0.5, 1, 1, 0, 1, -1.5) );
+    g.add( mkPart(g, 'tail', 0.5, 1, 1, 0, 1, -1.5, 1) );
     g.add( mkPart(g, 'rwing', 2, 0.5, 1, -1.5, 0, 0) );
     g.add( mkPart(g, 'lwing', 2, 0.5, 1, 1.5, 0, 0) );
     return g;
@@ -53,6 +54,7 @@ var createWrap = function(){
     return wrap;
 };
 
+// position a wrap object
 var positionWrap = function(wrap, bias, ringCount){
 
     bias = bias === undefined ? 1 : bias;
@@ -62,7 +64,6 @@ var positionWrap = function(wrap, bias, ringCount){
     i = 0;
     perRing = count / ringCount,
     radius = 15; 
-
 
     var yaStep = 90 / ringCount;
     while(i < count){
