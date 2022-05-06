@@ -53,14 +53,16 @@ var createWrap = function(){
     return wrap;
 };
 
-var positionWrap = function(wrap, bias){
-    var count = 50, 
-    i = 0;
-    perRing = 10,
-    radius = 15,
-    ringCount = count / perRing;
+var positionWrap = function(wrap, bias, ringCount){
 
     bias = bias === undefined ? 1 : bias;
+    ringCount = ringCount === undefined ? 5 : ringCount;
+
+    var count = wrap.children.length,
+    i = 0;
+    perRing = count / ringCount,
+    radius = 15; 
+
 
     var yaStep = 90 / ringCount;
     while(i < count){
