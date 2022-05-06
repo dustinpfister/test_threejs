@@ -116,9 +116,14 @@ maxFrame = 300;
 var loop = function () {
     var now = new Date(),
     per = frame / maxFrame,
+    bias = 1 - Math.abs(0.5 - per) / 0.5,
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
+
+positionWrap(wrapA, 1 - 1 + bias);
+positionWrap(wrapB, -1);
+
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
