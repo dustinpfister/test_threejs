@@ -4,7 +4,7 @@
 var scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10, 0x00ff00) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(4, 4, 4);
+camera.position.set(10, 10, 10);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -42,15 +42,30 @@ var mkModel = function(gName){
 
 // make a collection of them
 
-var count = 10, i = 0;
+var count = 20, i = 0;
 var wrap = new THREE.Group();
 scene.add(wrap);
+wrap.scale.set(0.5, 0.5, 0.5);
 while(i < count){
+   var per = i / count;
    var g = mkModel('g' + i);
-   g.position.x = -3 + 6 * (i / count);
+
+   var ring = Math.floor( i / 10 );
+
+   var rPer = ( i - 10 * ring) / 10;
+
+   var x = Math.PI * 2 * rPer, 
+   y = Math.PI / 180 * 50 * ring, 
+   z = 0;
+   var e = new THREE.Euler(x, y, z);
+   g.position.set(0, 0, 10).applyEuler( e );
+
+   g.lookAt(0, 0, 0);
+
    wrap.add(  g );
    i += 1;
 }
+
 
 //******** **********
 //
