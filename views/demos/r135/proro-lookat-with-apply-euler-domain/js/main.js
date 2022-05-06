@@ -70,4 +70,24 @@ while(i < count){
 //******** **********
 //
 //******** **********
-renderer.render(scene, camera);
+
+new THREE.OrbitControls(camera, renderer.domElement);
+
+
+    var fps = 30,
+    lt = new Date(),
+    frame = 0,
+    maxFrame = 300;
+    var loop = function () {
+        var now = new Date(),
+        per = frame / maxFrame,
+        secs = (now - lt) / 1000;
+        requestAnimationFrame(loop);
+        if(secs > 1 / fps){
+            renderer.render(scene, camera);
+            frame += fps * secs;
+            frame %= maxFrame;
+            lt = now;
+        }
+    };
+    loop();
