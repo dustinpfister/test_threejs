@@ -41,21 +41,34 @@ var mkModel = function(gName){
 };
 
 // make a collection of them
+var createWrap = function(){
+    var wrap = new THREE.Group();
+    var i = 0, count = 50;
+    while(i < count){
+        var g = mkModel('g' + i);
+        wrap.add(  g );
+        i += 1;
+    }
+    wrap.scale.set(0.5, 0.5, 0.5);
+    return wrap;
+};
 
-var count = 50, i = 0;
-var wrap = new THREE.Group();
+
+var wrap = createWrap();
 scene.add(wrap);
-wrap.scale.set(0.5, 0.5, 0.5);
 
-var perRing = 20,
+var count = 50, 
+i = 0;
+perRing = 20,
 radius = 15,
 ringCount = count / perRing,
 bias = -1
-
 var yaStep = 90 / ringCount;
 while(i < count){
    var per = i / count;
-   var g = mkModel('g' + i);
+   var g = wrap.children[i];
+console.log();
+   //var g = mkModel('g' + i);
 
    var ring = Math.floor( i / perRing );
 
@@ -70,7 +83,7 @@ while(i < count){
 
    g.lookAt(0, 0, 0);
 
-   wrap.add(  g );
+   //wrap.add(  g );
    i += 1;
 }
 
