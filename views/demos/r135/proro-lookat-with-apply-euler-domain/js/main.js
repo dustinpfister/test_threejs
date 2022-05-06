@@ -10,10 +10,12 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
+// materuials to use for mesh objects
 var materials = [
     new THREE.MeshNormalMaterial()
 ];
 
+// make a part of the object
 var mkPart = function(g, partName, w, h, d, x, y, z){
     // the mesh object
     var m = new THREE.Mesh(
@@ -26,6 +28,7 @@ var mkPart = function(g, partName, w, h, d, x, y, z){
     return m;
 };
 
+// make the whole group with all parts
 var mkModel = function(gName){
     var g = new THREE.Group();
     g.name = gName || 'g-' + g.uuid;
@@ -37,11 +40,17 @@ var mkModel = function(gName){
     return g;
 };
 
-var g = mkModel('g1');
-scene.add(  g );
-g.lookAt(1, 0, 0)
+// make a collection of them
 
-console.log(g)
+var count = 10, i = 0;
+var wrap = new THREE.Group();
+scene.add(wrap);
+while(i < count){
+   var g = mkModel('g' + i);
+   g.position.x = -3 + 6 * (i / count);
+   wrap.add(  g );
+   i += 1;
+}
 
 //******** **********
 //
