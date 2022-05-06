@@ -121,8 +121,8 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
 
-positionWrap(wrapA, 1 - 1 + bias);
-positionWrap(wrapB, -1);
+        positionWrap(wrapA, 1 - 1 * bias, 5);
+        positionWrap(wrapB, -1 + 1 * bias, 5 );
 
         renderer.render(scene, camera);
         frame += fps * secs;
