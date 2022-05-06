@@ -53,39 +53,42 @@ var createWrap = function(){
     return wrap;
 };
 
+var positionWrap = function(wrap, bias){
+    var count = 50, 
+    i = 0;
+    perRing = 10,
+    radius = 15,
+    ringCount = count / perRing;
 
-var wrap = createWrap();
-scene.add(wrap);
+    bias = bias === undefined ? 1 : bias;
 
-var count = 50, 
-i = 0;
-perRing = 20,
-radius = 15,
-ringCount = count / perRing,
-bias = -1
-var yaStep = 90 / ringCount;
-while(i < count){
-   var per = i / count;
-   var g = wrap.children[i];
-console.log();
-   //var g = mkModel('g' + i);
+    var yaStep = 90 / ringCount;
+    while(i < count){
+        var per = i / count;
+        var g = wrap.children[i];
+        var ring = Math.floor( i / perRing );
+        var rPer = ( i - perRing * ring) / perRing;
+        var x = Math.PI * 2 * rPer, 
+        s = ring < ringCount / 2 ? 0 : 1;
+        y = Math.PI / 180 * yaStep * ring * bias, 
+        z = 0;
+        var e = new THREE.Euler(x, y, z);
+        g.position.set(0, 0, radius).applyEuler( e );
+        g.lookAt(0, 0, 0);
+        i += 1;
+    }
+};
 
-   var ring = Math.floor( i / perRing );
+//
+var wrapA = createWrap();
+positionWrap(wrapA, 1);
+scene.add(wrapA);
 
-   var rPer = ( i - perRing * ring) / perRing;
+var wrapB = createWrap();
+positionWrap(wrapB, -1);
+scene.add(wrapB);
 
-   var x = Math.PI * 2 * rPer, 
-   s = ring < ringCount / 2 ? 0 : 1;
-   y = Math.PI / 180 * yaStep * ring * bias, 
-   z = 0;
-   var e = new THREE.Euler(x, y, z);
-   g.position.set(0, 0, radius).applyEuler( e );
 
-   g.lookAt(0, 0, 0);
-
-   //wrap.add(  g );
-   i += 1;
-}
 
 
 //******** **********
