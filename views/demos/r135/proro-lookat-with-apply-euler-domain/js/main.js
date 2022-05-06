@@ -10,6 +10,10 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 
+var materials = [
+    new THREE.MeshNormalMaterial()
+];
+
 var mkPart = function(gid, partName, w, h, d, x, y, z){
     // the mesh object
     var m = new THREE.Mesh(
@@ -22,20 +26,18 @@ var mkPart = function(gid, partName, w, h, d, x, y, z){
     return m;
 };
 
-var materials = [
-    new THREE.MeshNormalMaterial()
-];
+var mkModel = function(){
+    var g = new THREE.Group();
+    // add parts
+    g.add( mkPart('g1', 'body', 1, 1, 4, 0, 0, 0) );
+    g.add( mkPart('g1', 'tain', 0.5, 1, 1, 0, 1, -1.5) );
+    g.add( mkPart('g1', 'rwing', 2, 0.5, 1, -1.5, 0, 0) );
+    g.add( mkPart('g1', 'lwing', 2, 0.5, 1, 1.5, 0, 0) );
+    return g;
+};
 
-var g = new THREE.Group();
-
-// add parts
-g.add( mkPart('g1', 'body', 1, 1, 4, 0, 0, 0) );
-g.add( mkPart('g1', 'tain', 0.5, 1, 1, 0, 1, -1.5) );
-g.add( mkPart('g1', 'rwing', 2, 0.5, 1, -1.5, 0, 0) );
-g.add( mkPart('g1', 'lwing', 2, 0.5, 1, 1.5, 0, 0) );
-
-
-scene.add(g);
+var g = mkModel();
+scene.add(  g );
 
 g.lookAt(1, 0, 0)
 
