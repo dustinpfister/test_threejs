@@ -42,23 +42,31 @@ var mkModel = function(gName){
 
 // make a collection of them
 
-var count = 20, i = 0;
+var count = 50, i = 0;
 var wrap = new THREE.Group();
 scene.add(wrap);
 wrap.scale.set(0.5, 0.5, 0.5);
+
+var perRing = 20,
+radius = 15,
+ringCount = count / perRing,
+bias = -1
+
+var yaStep = 90 / ringCount;
 while(i < count){
    var per = i / count;
    var g = mkModel('g' + i);
 
-   var ring = Math.floor( i / 10 );
+   var ring = Math.floor( i / perRing );
 
-   var rPer = ( i - 10 * ring) / 10;
+   var rPer = ( i - perRing * ring) / perRing;
 
    var x = Math.PI * 2 * rPer, 
-   y = Math.PI / 180 * 50 * ring, 
+   s = ring < ringCount / 2 ? 0 : 1;
+   y = Math.PI / 180 * yaStep * ring * bias, 
    z = 0;
    var e = new THREE.Euler(x, y, z);
-   g.position.set(0, 0, 10).applyEuler( e );
+   g.position.set(0, 0, radius).applyEuler( e );
 
    g.lookAt(0, 0, 0);
 
@@ -73,21 +81,20 @@ while(i < count){
 
 new THREE.OrbitControls(camera, renderer.domElement);
 
-
-    var fps = 30,
-    lt = new Date(),
-    frame = 0,
-    maxFrame = 300;
-    var loop = function () {
-        var now = new Date(),
-        per = frame / maxFrame,
-        secs = (now - lt) / 1000;
-        requestAnimationFrame(loop);
-        if(secs > 1 / fps){
-            renderer.render(scene, camera);
-            frame += fps * secs;
-            frame %= maxFrame;
-            lt = now;
-        }
-    };
-    loop();
+var fps = 30,
+lt = new Date(),
+frame = 0,
+maxFrame = 300;
+var loop = function () {
+    var now = new Date(),
+    per = frame / maxFrame,
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / fps){
+        renderer.render(scene, camera);
+        frame += fps * secs;
+        frame %= maxFrame;
+        lt = now;
+    }
+};
+loop();
