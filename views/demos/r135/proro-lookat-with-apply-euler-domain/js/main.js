@@ -2,17 +2,26 @@
 // SCENE, CAMERA, RENDERER
 //******** **********
 var scene = new THREE.Scene();
-scene.add( new THREE.GridHelper(10, 10, 0x00ff00) )
+scene.background = new THREE.Color('#8a8a8a');
+scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(10, 10, 10);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
-
+//******** **********
+// LIGHT
+//******** **********
+var dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(1,3,2);
+scene.add(dl);
+//******** **********
+// HELPER FUNCTIONS
+//******** **********
 // materuials to use for mesh objects
 var materials = [
-    new THREE.MeshNormalMaterial(),
+    new THREE.MeshStandardMaterial({color: new THREE.Color('cyan')}),
     new THREE.MeshStandardMaterial({color: new THREE.Color('red')})
 ];
 
