@@ -41,7 +41,7 @@ var createPoints1 = function(maxRadius, circleCount, perCircle, randomDelta){
 
             // other cool ideas with deltas
             //var a = v.clone().normalize().multiplyScalar( maxRadius * 1 * (i / (perCircle - 1)) );
-            var a = v.clone().normalize().multiplyScalar( maxRadius * 1 * (i / (perCircle - 1)) );
+            var a = v.clone().normalize().multiplyScalar( maxRadius * ( (cPer + sPer)) );
 
             points.push(a);
             i += 1;
