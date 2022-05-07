@@ -17,11 +17,16 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var createPoints1 = function(){
     var points = [];
     // for each circle
-    var c = 0, circleCount = 3;
+    var c = 0, circleCount = 20;
     while(c < circleCount){
-        var y = 0;
-        var radius = 3 - (c / circleCount);
-        var i = 0, len = 10;
+
+        //var radius = 5 - (c / circleCount);
+        //var radius = 5 - Math.cos( Math.PI * 0.52 * (1 - ( c / circleCount)) ) * 5;
+
+        var radius = Math.sin( Math.PI * 0.5 * (c / circleCount) ) * 5;
+
+        var y = 5 - 5 * ( (c + 1) / circleCount );
+        var i = 0, len = 20;
         while(i < len){
             var radian = Math.PI * 2 * ( i / len );
             var v = new THREE.Vector3();
