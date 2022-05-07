@@ -20,12 +20,10 @@ var createPoints1 = function(){
     var c = 0, circleCount = 20;
     while(c < circleCount){
 
-        //var radius = 5 - (c / circleCount);
-        //var radius = 5 - Math.cos( Math.PI * 0.52 * (1 - ( c / circleCount)) ) * 5;
-
         var radius = Math.sin( Math.PI * 0.5 * (c / circleCount) ) * 5;
-
-        var y = 5 - 5 * ( (c + 1) / circleCount );
+        // might just be the y value now
+        //var y = 5 - 5 * ( (c + 1) / circleCount );
+        var y = Math.cos( Math.PI * 0.5 * (c / circleCount) ) * 5;
         var i = 0, len = 20;
         while(i < len){
             var radian = Math.PI * 2 * ( i / len );
