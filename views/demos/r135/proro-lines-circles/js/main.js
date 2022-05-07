@@ -14,28 +14,36 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LINES
 //******** **********
 
-var createPoints1 = function(maxRadius, circleCount, perCircle){
-
+var createPoints1 = function(maxRadius, circleCount, perCircle, randomDelta){
     maxRadius = maxRadius === undefined ? 5 : maxRadius;
     circleCount = circleCount === undefined ? 5 : circleCount;
     perCircle = perCircle === undefined ? 5 : perCircle;
-
+    randomDelta = randomDelta === undefined ? 1 : randomDelta;
     var points = [];
     // for each circle
     var c = 0;
     while(c < circleCount){
-
-        var radius = Math.sin( Math.PI * 1.0 * (c / circleCount) ) * maxRadius;
-        var y = Math.cos( Math.PI * 1.0 * (c / circleCount) ) * maxRadius;
+        var sPer = c / circleCount;
+        var radius = Math.sin( Math.PI * 1.0 * sPer ) * maxRadius;
+        var y = Math.cos( Math.PI * 1.0 * sPer ) * maxRadius;
         var i = 0;
+        // buch points for the current circle
         while(i < perCircle){
-            var radian = Math.PI * 2 * ( i / perCircle );
+            // might want to subtract 1 or 0 for this cPer expression
+            var cPer =  i / (perCircle - 1);
+            var radian = Math.PI * 2 * cPer;
             var v = new THREE.Vector3();
             v.x = Math.cos(radian) * radius;
             v.y = y;
             v.z = Math.sin(radian) * radius;
 
-            points.push(v);
+            //var a = v.clone().normalize().multiplyScalar( maxRadius - randomDelta * THREE.MathUtils.seededRandom() );
+
+            // other cool ideas with deltas
+            //var a = v.clone().normalize().multiplyScalar( maxRadius * 1 * (i / (perCircle - 1)) );
+            var a = v.clone().normalize().multiplyScalar( maxRadius * 1 * (i / (perCircle - 1)) );
+
+            points.push(a);
             i += 1;
         }
         c += 1;
@@ -43,7 +51,7 @@ var createPoints1 = function(maxRadius, circleCount, perCircle){
     return points;
 };
 
-var p = createPoints1(5, 6, 20);
+var p = createPoints1(5, 40, 20, 2.5);
 console.log(p)
 
 var geometry = new THREE.BufferGeometry().setFromPoints( p);
@@ -51,7 +59,7 @@ var line = scene.userData.line = new THREE.Line(
     geometry,
     new THREE.LineBasicMaterial({
        color: 0x00ff00,
-        linewidth: 6
+        linewidth: 2
     })
 );
 scene.add(line);
