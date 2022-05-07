@@ -14,16 +14,20 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LINES
 //******** **********
 
-var createPoints1 = function(){
+var createPoints1 = function(maxRadius, circleCount){
+
+    maxRadius = maxRadius === undefined ? 5 : maxRadius;
+    circleCount = circleCount === undefined ? 5 : circleCount;
+
     var points = [];
     // for each circle
-    var c = 0, circleCount = 20;
+    var c = 0;
     while(c < circleCount){
 
-        var radius = Math.sin( Math.PI * 0.5 * (c / circleCount) ) * 5;
+        var radius = Math.sin( Math.PI * 2.0 * (c / circleCount) ) * maxRadius;
         // might just be the y value now
         //var y = 5 - 5 * ( (c + 1) / circleCount );
-        var y = Math.cos( Math.PI * 0.5 * (c / circleCount) ) * 5;
+        var y = Math.cos( Math.PI * 2.0 * (c / circleCount) ) * maxRadius;
         var i = 0, len = 20;
         while(i < len){
             var radian = Math.PI * 2 * ( i / len );
@@ -40,7 +44,7 @@ var createPoints1 = function(){
     return points;
 };
 
-var p = createPoints1();
+var p = createPoints1(5, 40);
 console.log(p)
 
 var geometry = new THREE.BufferGeometry().setFromPoints( p);
