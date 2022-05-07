@@ -14,17 +14,13 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LINES
 //******** **********
 
-var createPoints = function(){
-
+var createPoints1 = function(){
     var points = [];
-
     // for each circle
     var c = 0, circleCount = 3;
     while(c < circleCount){
-
         var y = 0;
         var radius = 3 - (c / circleCount);
-
         var i = 0, len = 10;
         while(i < len){
             var radian = Math.PI * 2 * ( i / len );
@@ -36,15 +32,23 @@ var createPoints = function(){
             points.push(v);
             i += 1;
         }
-
-
         c += 1;
     }
     return points;
 };
 
-var p = createPoints();
+var p = createPoints1();
 console.log(p)
+
+var geometry = new THREE.BufferGeometry().setFromPoints( p);
+var line = scene.userData.line = new THREE.Line(
+    geometry,
+    new THREE.LineBasicMaterial({
+       color: 0x00ff00,
+        linewidth: 6
+    })
+);
+scene.add(line);
 
 //******** **********
 // LOOP
