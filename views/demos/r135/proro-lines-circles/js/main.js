@@ -37,11 +37,11 @@ var createPoints1 = function(maxRadius, circleCount, perCircle, randomDelta){
             v.y = y;
             v.z = Math.sin(radian) * radius;
 
-            //var a = v.clone().normalize().multiplyScalar( maxRadius - randomDelta * THREE.MathUtils.seededRandom() );
+            var a = v.clone().normalize().multiplyScalar( maxRadius - randomDelta * THREE.MathUtils.seededRandom() );
 
             // other cool ideas with deltas
-            //var a = v.clone().normalize().multiplyScalar( maxRadius * 1 * (i / (perCircle - 1)) );
-            var a = v.clone().normalize().multiplyScalar( maxRadius * ( (cPer + sPer)) );
+            //var a = v.clone().normalize().multiplyScalar( 1 + maxRadius * (i / (perCircle - 1)) );
+            //var a = v.clone().normalize().multiplyScalar( (maxRadius * (cPer * 1.25 + sPer * 5)) * 0.25 );
 
             points.push(a);
             i += 1;
@@ -51,10 +51,12 @@ var createPoints1 = function(maxRadius, circleCount, perCircle, randomDelta){
     return points;
 };
 
-var p = createPoints1(5, 40, 20, 2.5);
+var p = createPoints1(5, 20, 20, 0);
 console.log(p)
 
 var geometry = new THREE.BufferGeometry().setFromPoints( p);
+
+
 var line = scene.userData.line = new THREE.Line(
     geometry,
     new THREE.LineBasicMaterial({
@@ -63,6 +65,17 @@ var line = scene.userData.line = new THREE.Line(
     })
 );
 scene.add(line);
+
+/*
+var mesh = scene.userData.mesh = new THREE.Mesh(
+    geometry,
+    new THREE.MeshBasicMaterial({
+        color: 0x00ff00,
+        side: THREE.DoubleSide
+    })
+);
+scene.add(mesh);
+*/
 
 //******** **********
 // LOOP
