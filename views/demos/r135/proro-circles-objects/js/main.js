@@ -2,7 +2,7 @@
 // SCENE, CAMERA, RENDERER
 //******** **********
 var scene = new THREE.Scene();
-scene.background = new THREE.Color('#000000');
+scene.background = new THREE.Color('#4a4a4a');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0x4a4a4a) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(10, 10, 10);
@@ -11,12 +11,20 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
+// LIGHT
+//******** **********
+var dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(2, -1, -1.5);
+scene.add(dl);
+
+
+//******** **********
 // LINES
 //******** **********
 
 // just create one circle for a set of circles that form a sphere like shape
 // createSphereCirclePoints(maxRadius, circleCount, circleIndex, pointsPerCircle)
-var createSphereCirclePoints = function(maxRadius, circleCount, circleIndex, pointsPerCircle, randomDelta){
+var createSphereCirclePoints = function(maxRadius, circleCount, circleIndex, pointsPerCircle){
     var points = [];
     var sPer = circleIndex / circleCount;
     var radius = Math.sin( Math.PI * 1.0 * sPer ) * maxRadius;
@@ -31,40 +39,44 @@ var createSphereCirclePoints = function(maxRadius, circleCount, circleIndex, poi
         v.x = Math.cos(radian) * radius;
         v.y = y;
         v.z = Math.sin(radian) * radius;
-        var a = v.clone().normalize().multiplyScalar( maxRadius - randomDelta * THREE.MathUtils.seededRandom() );
-        // other cool ideas with deltas
-        //var a = v.clone().normalize().multiplyScalar( 1 + maxRadius * (i / (perCircle - 1)) );
-        //var a = v.clone().normalize().multiplyScalar( (maxRadius * (cPer * 1.25 + sPer * 5)) * 0.25 );
-        points.push(a);
+        points.push(v);
         i += 1;
     }
     return points;
 };
 
-var createSphereObjects = function(maxRadius, circleCount, pointsPerCircle, randomDelta,){
+var createSphereObjects = function(maxRadius, circleCount, pointsPerCircle, colors){
+    colors = colors || [0xff0000, 0x00ff00, 0x0000ff, 0x00ffff, 0xff00ff, 0xffff00]
     var wrap = new THREE.Group();
     var i = 1;
     while(i < circleCount + 1){
-        var p = createSphereCirclePoints(maxRadius, circleCount + 1, i, pointsPerCircle, randomDelta);
+        var cPer = i / (circleCount + 1);
+        var p = createSphereCirclePoints(maxRadius, circleCount + 1, i, pointsPerCircle);
+        p.forEach(function(v, vi){
+            //var geo = new THREE.BoxGeometry(0.5, 0.25 + 3.0 * cPer, 0.5)
+            var len = 4 - Math.random() * 3;
+            var geo = new THREE.ConeGeometry(0.25, len, 30);
+            geo.translate(0, len / 2,0)
+            geo.rotateX(Math.PI * 1.5);
 
-        p.forEach(function(v){
-
-            var geo = new THREE.BoxGeometry(0.5, 0.5, 0.5)
-            var mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial());
+            var mesh = new THREE.Mesh(geo, new THREE.MeshPhongMaterial({
+                color: colors[vi % colors.length]
+            }));
             mesh.position.copy(v);
             mesh.lookAt(0, 0, 0);
-
             wrap.add(mesh);
-
         });
-
         i += 1;
     };
     return wrap;
 };
 
-var g = createSphereObjects(10, 10, 20, 0.0);
-console.log(g);
+var g = createSphereObjects(5, 10, 25);
+var geo = new THREE.SphereGeometry(5.0, 20, 20);
+var mesh = new THREE.Mesh(geo, new THREE.MeshPhongMaterial({
+    color: 0xffffff
+}));
+g.add(mesh)
 scene.add(g);
 
 
@@ -86,7 +98,12 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
 
+        g.rotation.y = Math.PI * 2 * per;
+
         renderer.render(scene, camera);
+
+       
+
         frame += fps * secs;
         frame %= maxFrame;
         lt = now;
