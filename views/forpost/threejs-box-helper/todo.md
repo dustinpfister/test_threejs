@@ -1,7 +1,7 @@
 # threejs-box-helper todo list
 
-## () - s5-set-from-object
-* I will want a set from object helper example
+## ( done 05/08/2022 ) - s5-set-from-object
+* (done) I will want a set from object helper example
 
 ## ( done 02/16/2022 ) - s4 scale example
 * (done) start an example like the move example only using the scale method
