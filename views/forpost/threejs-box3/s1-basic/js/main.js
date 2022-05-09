@@ -20,5 +20,5 @@ var mesh = new THREE.Mesh(
         new THREE.MeshNormalMaterial());
 scene.add(mesh);
 mesh.scale.copy(s);
-// redner
+// render
 renderer.render(scene, camera);
