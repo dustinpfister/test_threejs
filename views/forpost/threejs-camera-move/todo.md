@@ -17,8 +17,8 @@
 * sq1 - start with a fixed position looking at a mesh in motion
 * sq2 - move to a new location while still looking at mesh object in motion
 
-## () - s3-relative-pos-example
-* () example about having a camera relative to an object in motion
+## ( done 05/10/2022 ) - s3-relative-pos-example
+* (done) example about having a camera relative to an object in motion
 
 ## ( done 05/10/2022 ) - s2-look-at
 * (done) have an example where an object is moving
