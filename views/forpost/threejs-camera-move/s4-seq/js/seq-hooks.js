@@ -36,9 +36,13 @@ var seqHooks = (function () {
             }
             i += 1;
         }
+        // call before hook
+        seq.beforeObjects(seq);
         // call update for current object
         var obj = seq.objects[seq.objectIndex];
         obj.update(seq, seq.partPer, seq.partBias);
+        // call after objects hook
+        seq.afterObjects(seq);
     };
 
     return api;

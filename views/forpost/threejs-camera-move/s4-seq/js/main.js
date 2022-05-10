@@ -23,26 +23,29 @@
         bias: 0,
         frame: 0,
         frameMax: 300,
+        beforeObjects: function(seq){
+            
+        },
+        afterObjects: function(seq){
+            camera.lookAt(mesh.position);
+        },
         objects: [
             {
                 per: 0,
                 update: function(seq, partPer, partBias){
                     camera.position.set(10, 10, 10);
-                    camera.lookAt(mesh.position);
                 }
             },
             {
                 per: 0.25,
                 update: function(seq, partPer, partBias){
                     camera.position.set(10 - 20 * partPer, 10, 10);
-                    camera.lookAt(mesh.position);
                 }
             },
             {
                 per: 0.30,
                 update: function(seq, partPer, partBias){
                     camera.position.set(-10, 10 - 7 * partPer, 10);
-                    camera.lookAt(mesh.position);
                 }
             },
             {
@@ -57,7 +60,6 @@
                 per: 0.75,
                 update: function(seq, partPer, partBias){
                     camera.position.set(-10, 3 - 10 * partPer, 10 - 30 * partPer);
-                    camera.lookAt(mesh.position);
                 }
             }
         ]
