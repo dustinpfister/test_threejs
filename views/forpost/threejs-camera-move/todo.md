@@ -7,10 +7,15 @@
 ## () - new event based movement section
 * () start a new section example that has to do with event driven movement
 
-## () - s4-world-to-relative
+## () - s5-world-to-relative
 * () start a new demo that has to do with changing a camera position form a fixed point to an object relative position
 * () switch from world relative to object relative
 * () switch from object relative to world relative
+
+## () - s4-sequences
+* have an example with a collection of update methods
+* sq1 - start with a fixed position looking at a mesh in motion
+* sq2 - move to a new location while still looking at mesh object in motion
 
 ## () - s3-relative-pos-example
 * () example about having a camera relative to an object in motion
