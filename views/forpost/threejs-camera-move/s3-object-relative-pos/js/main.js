@@ -14,8 +14,6 @@
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
     scene.add(mesh);
-    // SETTING CAMERA POSITION ONCE HERE
-    camera.position.set(0, 5, 5);
     // APP LOOP
     var secs = 0,
     fps_update = 20,
@@ -30,10 +28,15 @@
         bias = (1 - Math.abs(per - 0.5) / 0.5);
         requestAnimationFrame(loop);
         if(secs > 1 / fps_update){
+            // MOVEING THE MESH OBJECT
+            mesh.position.x = -5 + 10 * bias
+
+            // SETTING POSITION OF THE CAMERA RELATIVE TO THE POSITION OF THE MESH
+            camera.position.copy(mesh.position).add( new THREE.Vector3(3, 3 - 6 * bias, 3) );
+
             // CALLING THE LOOKAT METHOD OF THE CAMERA
             camera.lookAt(mesh.position);
-            // MOVEING THE MESH OBJECT BUT NOT THE CAMERA
-            mesh.position.x = -5 + 10 * bias
+
             renderer.render(scene, camera);
             frame += fps_movement * secs;
             frame %= frameMax;
