@@ -9,6 +9,7 @@
     var renderer = new THREE.WebGLRenderer();
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.setSize(width, height);
+
     // MESH
     var mesh = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
@@ -21,70 +22,47 @@
         per: 0,
         bias: 0,
         frame: 0,
-        frameMax: 100,
+        frameMax: 300,
         objects: [
             {
                 per: 0,
                 update: function(seq, partPer, partBias){
-
+                    camera.position.set(10, 10, 10);
+                    camera.lookAt(mesh.position);
                 }
             },
             {
                 per: 0.25,
                 update: function(seq, partPer, partBias){
-
+                    camera.position.set(10 - 20 * partPer, 10, 10);
+                    camera.lookAt(mesh.position);
+                }
+            },
+            {
+                per: 0.30,
+                update: function(seq, partPer, partBias){
+                    camera.position.set(-10, 10 - 7 * partPer, 10);
+                    camera.lookAt(mesh.position);
+                }
+            },
+            {
+                per: 0.35,
+                update: function(seq, partPer, partBias){
+                    camera.position.set(-10, 3, 10);
+                    var x = 10 * partBias;
+                    camera.lookAt(mesh.position.clone().add(new THREE.Vector3(x, 0, 0)));
+                }
+            },
+            {
+                per: 0.75,
+                update: function(seq, partPer, partBias){
+                    camera.position.set(-10, 3 - 10 * partPer, 10 - 30 * partPer);
+                    camera.lookAt(mesh.position);
                 }
             }
         ]
     };
 
-    var getPer = function(a, b){
-        return a / b;
-    };
-
-    var getBias = function(per){
-        return 1 - Math.abs( 0.5 - per ) / 0.5;
-    };
-
-    var setFrame = function(seq, frame){
-
-        seq.frame = frame;
-        seq.per = getPer(seq.frame, seq.frameMax);
-        seq.bias = getBias(seq.per);
-
-        // update object index
-        seq.objectIndex = 0;
-        var i = 0, len = seq.objects.length;
-        while(i < len){
-            var obj = seq.objects[i];
-            var per2 = 1;
-            if(seq.objects[i + 1] != undefined){
-                per2 = seq.objects[i + 1].per;
-            }
-            // if this is the current object update object 
-            // index as well as other relavent values
-            if(seq.per >= obj.per && seq.per < per2){
-                seq.objectIndex = i;
-                seq.partFrameMax = Math.floor( (per2 - obj.per) * seq.frameMax );
-                seq.partFrame = seq.frame - Math.floor(seq.frameMax * obj.per);
-                seq.partPer = getPer(seq.partFrame, seq.partFrameMax);
-                seq.partBias = getBias(seq.partPer);
-                break;
-            }
-            i += 1;
-        }
-
-        //console.log(seq.objectIndex, seq.partPer.toFixed(2), seq.partBias.toFixed(2))
-
-        // call update for current object
-        var obj = seq.objects[seq.objectIndex];
-
-        obj.update(seq, seq.partPer, seq.partBias);
-
-    };
-
-
-setFrame(seq, 0)
 
 
     // APP LOOP
@@ -97,19 +75,11 @@ setFrame(seq, 0)
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if(secs > 1 / fps_update){
-            // MOVEING THE MESH OBJECT
-            //mesh.position.x = -5 + 10 * bias
-
-            // SETTING POSITION OF THE CAMERA RELATIVE TO THE POSITION OF THE MESH
-            //camera.position.copy(mesh.position).add( new THREE.Vector3(3, 3 - 6 * bias, 3) );
-
-//setFrame(seq, seq.frame)
-
-            // CALLING THE LOOKAT METHOD OF THE CAMERA
-            camera.lookAt(mesh.position);
+            
+            seqHooks.setFrame(seq, seq.frame)
 
             renderer.render(scene, camera);
-            seq.frame += 1; //fps_movement * secs;
+            seq.frame += fps_movement * secs;
             seq.frame %= seq.frameMax;
             lt = now;
         }
