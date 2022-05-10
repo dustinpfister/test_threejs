@@ -16,6 +16,11 @@
         new THREE.MeshNormalMaterial());
     scene.add(mesh);
 
+    var mesh2 = new THREE.Mesh(
+        new THREE.SphereGeometry(0.5, 30, 30),
+        new THREE.MeshNormalMaterial());
+    scene.add(mesh2);
+
     // a sequnces object
     var seq = {
         objectIndex: 0,
@@ -24,7 +29,10 @@
         frame: 0,
         frameMax: 300,
         beforeObjects: function(seq){
-            
+            var r = Math.PI * 2 * seq.per;
+            var x = Math.cos(r) * 4;
+            var z = Math.sin(r) * 4;
+            mesh2.position.set(x, 0, z);
         },
         afterObjects: function(seq){
             camera.lookAt(mesh.position);
