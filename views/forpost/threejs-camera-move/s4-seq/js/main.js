@@ -74,14 +74,17 @@
             i += 1;
         }
 
-console.log(seq.objectIndex, seq.partPer.toFixed(2), seq.partBias.toFixed(2))
+        //console.log(seq.objectIndex, seq.partPer.toFixed(2), seq.partBias.toFixed(2))
 
         // call update for current object
-        //var obj = seq.objects[seq.objectIndex];
-        //obj(seq, seq.partPer, seq.partBias);
+        var obj = seq.objects[seq.objectIndex];
+
+        obj.update(seq, seq.partPer, seq.partBias);
 
     };
 
+
+setFrame(seq, 0)
 
 
     // APP LOOP
@@ -100,7 +103,7 @@ console.log(seq.objectIndex, seq.partPer.toFixed(2), seq.partBias.toFixed(2))
             // SETTING POSITION OF THE CAMERA RELATIVE TO THE POSITION OF THE MESH
             //camera.position.copy(mesh.position).add( new THREE.Vector3(3, 3 - 6 * bias, 3) );
 
-setFrame(seq, seq.frame)
+//setFrame(seq, seq.frame)
 
             // CALLING THE LOOKAT METHOD OF THE CAMERA
             camera.lookAt(mesh.position);
