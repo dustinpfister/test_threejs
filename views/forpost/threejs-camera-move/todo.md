@@ -7,10 +7,10 @@
 ## () - new event based movement section
 * () start a new section example that has to do with event driven movement
 
-## () - s5-world-to-relative
+## () - s5-world-to-relative (lerp)
 * () start a new demo that has to do with changing a camera position form a fixed point to an object relative position
-* () switch from world relative to object relative
-* () switch from object relative to world relative
+* () switch from world relative to object relative using Vector3 lerp
+* () switch from object relative to world relative using Vector3 lerp
 
 ## ( done 05/10/2022 ) - s4-sequences
 * (done) have an example with a collection of update methods
