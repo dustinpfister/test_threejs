@@ -66,6 +66,7 @@
             if(seq.per >= obj.per && seq.per < per2){
                 seq.objectIndex = i;
                 seq.partFrameMax = Math.floor( (per2 - obj.per) * seq.frameMax );
+                seq.partFrame = seq.frame - Math.floor(seq.frameMax * obj.per);
                 break;
             }
             i += 1;
@@ -79,7 +80,7 @@ console.log(seq)
 
     };
 
-setFrame(seq, 25)
+setFrame(seq, 26)
 
     // APP LOOP
     var secs = 0,
