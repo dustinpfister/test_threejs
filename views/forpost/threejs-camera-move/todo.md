@@ -12,10 +12,8 @@
 * () switch from world relative to object relative
 * () switch from object relative to world relative
 
-## () - s4-sequences
-* () have an example with a collection of update methods
-* () sq1 - start with a fixed position looking at a mesh in motion
-* () sq2 - move to a new location while still looking at mesh object in motion
+## ( done 05/10/2022 ) - s4-sequences
+* (done) have an example with a collection of update methods
 
 ## ( done 05/10/2022 ) - s3-relative-pos-example
 * (done) example about having a camera relative to an object in motion
