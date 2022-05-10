@@ -19,20 +19,28 @@ var setAxis = function(mesh, box3, axis, per){
 
     mesh.position[axis] = box3.min[axis] + meshSize[axis] / 2  + ( boxSize[axis] - meshSize[axis] ) * per;
 };
-
+var rnd1 = function(){
+    return Math.random();
+};
+var rnd2 = function(){
+    return THREE.MathUtils.seededRandom();
+};
 // CREATE AND POSITION MESH OBJECTS IN THE BOX
-var i = 0, len = 3;
+var i = 0, len = 10;
 while(i < len){
-    var mesh = new THREE.Mesh( new THREE.BoxGeometry(0.2, 0.2, 0.2), new THREE.MeshNormalMaterial() );
+    var w = 0.2 + 0.3 * rnd2(),
+    h = 0.2,
+    d = 0.2 + 0.8 * rnd2()
+    var mesh = new THREE.Mesh( new THREE.BoxGeometry(w, h, d), new THREE.MeshNormalMaterial() );
     // get box size
     var boxSize = new THREE.Vector3();
     box3.getSize(boxSize);
     // get mesh size
     mesh.geometry.computeBoundingBox();
 
-    setAxis(mesh, box3, 'x', THREE.MathUtils.seededRandom());
-    setAxis(mesh, box3, 'y', THREE.MathUtils.seededRandom());
-    setAxis(mesh, box3, 'z', Math.random());
+    setAxis(mesh, box3, 'x', rnd2());
+    setAxis(mesh, box3, 'y', rnd2());
+    setAxis(mesh, box3, 'z', rnd1());
 
     scene.add(mesh);
     i += 1;
