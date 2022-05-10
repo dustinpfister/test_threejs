@@ -12,6 +12,14 @@ var box3 = new THREE.Box3(min, max);
 var box3Helper = new THREE.Box3Helper(box3, 0x00ff00);
 box3Helper.material.linewidth = 3;
 scene.add(box3Helper);
+// HELPER FUNCTIONS
+var setAxis = function(mesh, box3, axis, per){
+    var meshSize = new THREE.Vector3()
+    mesh.geometry.boundingBox.getSize(meshSize);
+
+    mesh.position[axis] = box3.min[axis] + meshSize[axis] / 2  + ( boxSize[axis] - meshSize[axis] ) * per;
+};
+
 // CREATE AND POSITION MESH OBJECTS IN THE BOX
 var i = 0, len = 3;
 while(i < len){
@@ -21,10 +29,10 @@ while(i < len){
     box3.getSize(boxSize);
     // get mesh size
     mesh.geometry.computeBoundingBox();
-    var meshSize = new THREE.Vector3()
-    mesh.geometry.boundingBox.getSize(meshSize); 
 
-    mesh.position.x = box3.min.x + meshSize.x / 2  + ( boxSize.x - meshSize.x ) * 0;
+    setAxis(mesh, box3, 'x', THREE.MathUtils.seededRandom());
+    setAxis(mesh, box3, 'y', THREE.MathUtils.seededRandom());
+    setAxis(mesh, box3, 'z', Math.random());
 
     scene.add(mesh);
     i += 1;
