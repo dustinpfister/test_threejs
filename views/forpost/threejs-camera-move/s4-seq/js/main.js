@@ -49,7 +49,7 @@
     var setFrame = function(seq, frame){
 
         seq.frame = frame;
-        seq.per = getPer(frame, seq.frameMax);
+        seq.per = getPer(seq.frame, seq.frameMax);
         seq.bias = getBias(seq.per);
 
         // update object index
@@ -67,12 +67,14 @@
                 seq.objectIndex = i;
                 seq.partFrameMax = Math.floor( (per2 - obj.per) * seq.frameMax );
                 seq.partFrame = seq.frame - Math.floor(seq.frameMax * obj.per);
+                seq.partPer = getPer(seq.partFrame, seq.partFrameMax);
+                seq.partBias = getBias(seq.partPer);
                 break;
             }
             i += 1;
         }
 
-console.log(seq)
+console.log(seq.objectIndex, seq.partPer.toFixed(2), seq.partBias.toFixed(2))
 
         // call update for current object
         //var obj = seq.objects[seq.objectIndex];
@@ -80,11 +82,11 @@ console.log(seq)
 
     };
 
-setFrame(seq, 26)
+
 
     // APP LOOP
     var secs = 0,
-    fps_update = 30,
+    fps_update = 10,
     fps_movement = 30,
     lt = new Date();
     var loop = function () {
@@ -98,11 +100,13 @@ setFrame(seq, 26)
             // SETTING POSITION OF THE CAMERA RELATIVE TO THE POSITION OF THE MESH
             //camera.position.copy(mesh.position).add( new THREE.Vector3(3, 3 - 6 * bias, 3) );
 
+setFrame(seq, seq.frame)
+
             // CALLING THE LOOKAT METHOD OF THE CAMERA
             camera.lookAt(mesh.position);
 
             renderer.render(scene, camera);
-            seq.frame += fps_movement * secs;
+            seq.frame += 1; //fps_movement * secs;
             seq.frame %= seq.frameMax;
             lt = now;
         }
