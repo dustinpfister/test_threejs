@@ -1,21 +1,23 @@
 # threejs-camera-move
 
 ## () - improve 2-move-camera-helper
-* yet another camera move method this time one that is fixed at the back of the mesh
-* have constants at the top of the file
+* () yet another camera move method this time one that is fixed at the back of the mesh
+* () have constants at the top of the file
 
 ## () - new event based movement section
-* start a new section example that has to do with event driven movement
+* () start a new section example that has to do with event driven movement
 
-## () - s3-world-to-relative
-* start a new demo that has to do with changing a camera position form a fixed point to an object relative position
-* switch from world relative to object relative
-* switch from object relative to world relative
+## () - s4-world-to-relative
+* () start a new demo that has to do with changing a camera position form a fixed point to an object relative position
+* () switch from world relative to object relative
+* () switch from object relative to world relative
 
-## () - s2-relative-pos-example
-* example about having a camera relative to an object in motion
+## () - s3-relative-pos-example
+* () example about having a camera relative to an object in motion
 
-
+## ( done 05/10/2022 ) - s2-look-at
+* (done) have an example where an object is moving
+* (done) camera position is fixed, but lookAt is being used to track movement
 
 ## ( done 02/17/2022 ) - improve 2-move-camera-helper
 * (done) have more than one move function to use with the move camera helper
