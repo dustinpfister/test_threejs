@@ -31,7 +31,13 @@ while(i < len){
     var w = 0.2 + 0.3 * rnd2(),
     h = 0.2,
     d = 0.2 + 0.8 * rnd2()
-    var mesh = new THREE.Mesh( new THREE.BoxGeometry(w, h, d), new THREE.MeshNormalMaterial() );
+    var mesh = new THREE.Mesh( 
+        new THREE.BoxGeometry(w, h, d), 
+        new THREE.MeshNormalMaterial({
+            transparent: true,
+            opacity: 0.25
+        }) 
+    );
     // get box size
     var boxSize = new THREE.Vector3();
     box3.getSize(boxSize);
