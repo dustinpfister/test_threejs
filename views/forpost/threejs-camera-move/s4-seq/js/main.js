@@ -65,7 +65,7 @@
             // index as well as other relavent values
             if(seq.per >= obj.per && seq.per < per2){
                 seq.objectIndex = i;
-                seq.partFrameMax = Math.floor( (per2 - obj.per) * seq.frameMax )
+                seq.partFrameMax = Math.floor( (per2 - obj.per) * seq.frameMax );
                 break;
             }
             i += 1;
