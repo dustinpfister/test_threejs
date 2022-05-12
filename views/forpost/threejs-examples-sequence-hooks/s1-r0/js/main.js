@@ -70,7 +70,7 @@
             },
             {
                 per: 0.75,
-                secs: 3,
+                secs: 10,
                 update: function(seq, partPer, partBias){
                     camera.position.set(-10, 3 - 10 * partPer, 10 - 30 * partPer);
                 }
@@ -78,7 +78,7 @@
         ]
     };
 
-    seqHooks.setPerValues(seq);
+    console.log( seqHooks.getPerValues(seq) );
 
 
 

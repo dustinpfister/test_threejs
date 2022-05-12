@@ -49,32 +49,27 @@ var seqHooks = (function () {
         seq.afterObjects(seq);
     };
 
-/*
-var array = [3,2,2,5,2,3,3,10];
-var secsTotal = array.reduce(function(acc, secs){ return acc + secs }, 0);
-var perValues = [];
-var i = 0, len = array.length;
-while(i < len){
-    var per = perValues[i - 1];
-    if( per === undefined ){
-        perValues.push(0);
-    }else{
-        var perDelta = array[i - 1] / secsTotal;
-        perValues.push( parseFloat( ( per + perDelta ).toFixed(4) ) );         
-    }
-    i += 1;
-}
-console.log(perValues);
-[0, 0.1, 0.1667, 0.2334, 0.4001, 0.4668, 0.5668, 0.6668]
-*/
+    // get total secs value helper
+    var getTotalSecs = function(seq){
+        return seq.objects.reduce(function(acc, obj){ return acc + (obj.secs || 0) }, 0);
+    };
 
-    // set per values for each seq object by way of a secs propery for each object
-    api.setPerValues = function(seq){
-
-        seq.secsTotal = seq.objects.reduce(function(acc, obj){ return acc + (obj.secs || 0) }, 0);
-
-console.log(seq.secsTotal);
-
+    // just get an array of per values based on sec values for each object, and DO NOT MUTATE the seq object
+    api.getPerValues = function(seq){
+        var secsTotal = getTotalSecs(seq);
+        var perValues = [];
+        var i = 0, len = seq.objects.length;
+        while(i < len){
+            var per = perValues[i - 1];
+            if( per === undefined ){
+                perValues.push(0);
+            }else{
+                var perDelta = seq.objects[i - 1].secs / secsTotal;
+                perValues.push( parseFloat( ( per + perDelta ).toFixed(4) ) );         
+            }
+            i += 1;
+        }
+        return perValues;
     };
 
     return api;
