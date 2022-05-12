@@ -72,6 +72,14 @@ var seqHooks = (function () {
         return perValues;
     };
 
+    api.setPerValues = function(seq){
+        seq.totalSecs = getTotalSecs(seq);
+        api.getPerValues(seq).forEach(function(per, i){
+            seq.objects[i].per = per;
+        });
+        return seq;
+    };
+
     return api;
 
 }

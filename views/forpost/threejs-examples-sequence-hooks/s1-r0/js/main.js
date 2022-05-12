@@ -78,9 +78,9 @@
         ]
     };
 
-    console.log( seqHooks.getPerValues(seq) );
+    //console.log( seqHooks.getPerValues(seq) );
 
-
+seqHooks.setPerValues(seq);
 
     // APP LOOP
     var secs = 0,
