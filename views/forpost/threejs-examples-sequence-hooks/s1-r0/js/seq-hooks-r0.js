@@ -1,9 +1,7 @@
 // seq-hooks-r0.js
-// seqeunce hooks librrary from threejs-examples-sequence-hooks
+// sequence hooks library from threejs-examples-sequence-hooks
 var seqHooks = (function () {
-
     var api = {};
-
     // HELPERS
     var getPer = function(a, b){
         return a / b;
@@ -11,7 +9,6 @@ var seqHooks = (function () {
     var getBias = function(per){
         return 1 - Math.abs( 0.5 - per ) / 0.5;
     };
-
     // update the given seq object by way of a frame, and maxFrame value
     api.setFrame = function(seq, frame, frameMax){
         seq.frame = frame === undefined ? 0 : frame;
@@ -29,7 +26,7 @@ var seqHooks = (function () {
                 per2 = seq.objects[i + 1].per;
             }
             // if this is the current object update object 
-            // index as well as other relavent values
+            // index as well as other relevant values
             if(seq.per >= obj.per && seq.per < per2){
                 seq.objectIndex = i;
                 seq.partFrameMax = Math.floor( (per2 - obj.per) * seq.frameMax );
@@ -51,12 +48,10 @@ var seqHooks = (function () {
         // call after objects hook
         seq.afterObjects(seq);
     };
-
     // get total secs value helper
     var getTotalSecs = function(seq){
         return seq.objects.reduce(function(acc, obj){ return acc + (obj.secs || 0) }, 0);
     };
-
     // just get an array of per values based on sec values for each object, and DO NOT MUTATE the seq object
     api.getPerValues = function(seq){
         var secsTotal = getTotalSecs(seq);
@@ -74,13 +69,12 @@ var seqHooks = (function () {
         }
         return perValues;
     };
-
+    // get a target frames value
     api.getTargetFrames = function(seq, fps){
         fps = fps === undefined ? 30 : fps;
         var secsTotal = getTotalSecs(seq);
         return Math.ceil(secsTotal * fps);
     };
-
     // set per values
     api.setPerValues = function(seq, fps){
         // set seq.totalSecs
@@ -93,11 +87,8 @@ var seqHooks = (function () {
         seq.frameMax = api.getTargetFrames(seq, fps);
         return seq;
     };
-
-
-    var noop = function(){};
-
     // create new seq object method
+    var noop = function(){};
     api.create = function(opt){
         opt = opt || {};
         opt.setPerValues = opt.setPerValues === undefined ? true : false;
@@ -107,11 +98,9 @@ var seqHooks = (function () {
         seq.bias = 0;
         seq.frame = 0;
         seq.frameMax = 100;
-
         // parse hooks
         seq.beforeObjects = opt.beforeObjects || noop;
         seq.afterObjects = opt.afterObjects || noop;
-
         // parse objects
         seq.objects = opt.objects || [];
         seq.objects = seq.objects.map(function(obj){
@@ -121,15 +110,12 @@ var seqHooks = (function () {
             obj.update = obj.update || noop;
             return obj;
         });
-
         // set per values is part of the create process
         if(opt.setPerValues){
             api.setPerValues(seq, opt.fps === undefined ? 30: opt.fps);
         }
         return seq;
     };
-
+    // return public api
     return api;
-
-}
-    ());
+}());
