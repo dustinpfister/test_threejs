@@ -86,7 +86,8 @@
         requestAnimationFrame(loop);
         if(secs > 1 / fps_update){
             
-            seqHooks.setFrame(seq, seq.frame)
+            // update by hooks
+            seqHooks.setFrame(seq, seq.frame, seq.frameMax);
 
             renderer.render(scene, camera);
             seq.frame += fps_movement * secs;

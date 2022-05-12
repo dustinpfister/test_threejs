@@ -1,3 +1,5 @@
+// seq-hooks-r0.js
+// seqeunce hooks librrary from threejs-examples-sequence-hooks
 var seqHooks = (function () {
 
     var api = {};
@@ -10,9 +12,11 @@ var seqHooks = (function () {
         return 1 - Math.abs( 0.5 - per ) / 0.5;
     };
 
-    // set frame method
-    api.setFrame = function(seq, frame){
-        seq.frame = frame;
+    // update the given seq object by way of a frame, and maxFrame value
+    api.setFrame = function(seq, frame, frameMax){
+        seq.frame = frame === undefined ? 0 : frame;
+        seq.frameMax = frameMax === undefined ? 100 : frameMax;
+        // set main per and bias values
         seq.per = getPer(seq.frame, seq.frameMax);
         seq.bias = getBias(seq.per);
         // update object index
