@@ -44,7 +44,10 @@ var seqHooks = (function () {
         seq.beforeObjects(seq);
         // call update for current object
         var obj = seq.objects[seq.objectIndex];
-        obj.update(seq, seq.partPer, seq.partBias);
+        if(obj){
+            seq.obj = obj;
+            obj.update(seq, seq.partPer, seq.partBias, obj);
+        }
         // call after objects hook
         seq.afterObjects(seq);
     };

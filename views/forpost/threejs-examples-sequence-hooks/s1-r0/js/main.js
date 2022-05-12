@@ -11,26 +11,48 @@
     renderer.setSize(width, height);
 
     // MESH
-    var mesh = new THREE.Mesh(
+    var mesh1 = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
-    scene.add(mesh);
+    scene.add(mesh1);
 
     var mesh2 = new THREE.Mesh(
         new THREE.SphereGeometry(0.5, 30, 30),
         new THREE.MeshNormalMaterial());
     scene.add(mesh2);
 
-    // a sequnces object
+    // a seq object for mesh
+    var seq_mesh1 = seqHooks.create({
+        beforeObjects: function(seq){
+            mesh1.rotation.set(0, Math.PI * 4 * seq.per, 0);
+        },
+        objects: [
+
+            {
+                per: 0,
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    //camera.position.set(10, 10, 10);
+                }
+            }
+
+        ]
+    });
+
+
+    // A MAIN SEQ OBJECT
     var seq = seqHooks.create({
         beforeObjects: function(seq){
+
+            seqHooks.setFrame(seq_mesh1, seq.frame, seq.frameMax);
+
             var r = Math.PI * 2 * seq.per;
             var x = Math.cos(r) * 4;
             var z = Math.sin(r) * 4;
             mesh2.position.set(x, 0, z);
         },
         afterObjects: function(seq){
-            camera.lookAt(mesh.position);
+            camera.lookAt(mesh1.position);
         },
         objects: [
             {
@@ -57,7 +79,7 @@
                 update: function(seq, partPer, partBias){
                     camera.position.set(-10, 3, 10);
                     var x = 10 * partBias;
-                    camera.lookAt(mesh.position.clone().add(new THREE.Vector3(x, 0, 0)));
+                    camera.lookAt(mesh1.position.clone().add(new THREE.Vector3(x, 0, 0)));
                 }
             },
             {
@@ -68,12 +90,6 @@
             }
         ]
     });
-
-    // set per values based on secs values for each object
-    //seqHooks.setPerValues(seq, 30);
-
-console.log(seq)
-
 
     // APP LOOP
     var secs = 0,
