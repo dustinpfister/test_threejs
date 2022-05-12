@@ -110,6 +110,16 @@ var seqHooks = (function () {
 
         // parse objects
         seq.objects = opt.objects || [];
+        seq.objects = seq.objects.map(function(obj){
+            obj.per = obj.per === undefined ? 0 : obj.per;
+            obj.secs = obj.secs === undefined ? 0 : obj.secs;
+            obj.data = obj.data || {};
+            obj.update = obj.update || noop;
+            return obj;
+        });
+
+        // set per values is part of the create process
+        api.setPerValues(seq, opt.fps === undefined ? 30: opt.fps);
 
         return seq;
     };

@@ -70,7 +70,9 @@
     });
 
     // set per values based on secs values for each object
-    seqHooks.setPerValues(seq, 30);
+    //seqHooks.setPerValues(seq, 30);
+
+console.log(seq)
 
 
     // APP LOOP
