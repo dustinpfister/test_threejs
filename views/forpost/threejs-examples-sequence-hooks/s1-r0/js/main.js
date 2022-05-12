@@ -9,19 +9,16 @@
     var renderer = new THREE.WebGLRenderer();
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.setSize(width, height);
-
     // MESH
     var mesh1 = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
     scene.add(mesh1);
-
     var mesh2 = new THREE.Mesh(
         new THREE.SphereGeometry(0.5, 30, 30),
         new THREE.MeshNormalMaterial());
     scene.add(mesh2);
-
-    // seq object for mesh1 that rotates the mesh
+    // seq object for mesh1 that scales the mesh
     var seq_mesh1_scale = seqHooks.create({
         setPerValues: false,
         beforeObjects: function(seq){
@@ -50,7 +47,6 @@
             }
         ]
     });
-
     // seq object for mesh1 that rotates the mesh
     var seq_mesh1_rotate = seqHooks.create({
         setPerValues: false,
@@ -74,8 +70,6 @@
             }
         ]
     });
-
-
     // A MAIN SEQ OBJECT
     var seq = seqHooks.create({
         beforeObjects: function(seq){
@@ -132,7 +126,6 @@
             }
         ]
     });
-
     // APP LOOP
     var secs = 0,
     fps_update = 10,
@@ -143,10 +136,8 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if(secs > 1 / fps_update){
-            
             // update by hooks
             seqHooks.setFrame(seq, seq.frame, seq.frameMax);
-
             renderer.render(scene, camera);
             seq.frame += fps_movement * secs;
             seq.frame %= seq.frameMax;
@@ -154,5 +145,4 @@
         }
     };
     loop();
-}
-    ());
+}());
