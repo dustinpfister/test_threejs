@@ -82,6 +82,11 @@
 
 seqHooks.setPerValues(seq);
 
+seq.frameMax = seqHooks.getTargetFrames(seq, 30);
+
+console.log();
+console.log(seq.frameMax)
+
     // APP LOOP
     var secs = 0,
     fps_update = 10,

@@ -72,6 +72,13 @@ var seqHooks = (function () {
         return perValues;
     };
 
+    api.getTargetFrames = function(seq, fps){
+        fps = fps === undefined ? 30 : fps;
+        var secsTotal = getTotalSecs(seq);
+        return Math.ceil(secsTotal * fps);
+    };
+
+    // set per values
     api.setPerValues = function(seq){
         seq.totalSecs = getTotalSecs(seq);
         api.getPerValues(seq).forEach(function(per, i){
