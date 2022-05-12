@@ -49,6 +49,34 @@ var seqHooks = (function () {
         seq.afterObjects(seq);
     };
 
+/*
+var array = [3,2,2,5,2,3,3,10];
+var secsTotal = array.reduce(function(acc, secs){ return acc + secs }, 0);
+var perValues = [];
+var i = 0, len = array.length;
+while(i < len){
+    var per = perValues[i - 1];
+    if( per === undefined ){
+        perValues.push(0);
+    }else{
+        var perDelta = array[i - 1] / secsTotal;
+        perValues.push( parseFloat( ( per + perDelta ).toFixed(4) ) );         
+    }
+    i += 1;
+}
+console.log(perValues);
+[0, 0.1, 0.1667, 0.2334, 0.4001, 0.4668, 0.5668, 0.6668]
+*/
+
+    // set per values for each seq object by way of a secs propery for each object
+    api.setPerValues = function(seq){
+
+        seq.secsTotal = seq.objects.reduce(function(acc, obj){ return acc + (obj.secs || 0) }, 0);
+
+console.log(seq.secsTotal);
+
+    };
+
     return api;
 
 }

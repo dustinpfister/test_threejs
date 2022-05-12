@@ -40,24 +40,28 @@
         objects: [
             {
                 per: 0,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     camera.position.set(10, 10, 10);
                 }
             },
             {
                 per: 0.25,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     camera.position.set(10 - 20 * partPer, 10, 10);
                 }
             },
             {
                 per: 0.30,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     camera.position.set(-10, 10 - 7 * partPer, 10);
                 }
             },
             {
                 per: 0.35,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     camera.position.set(-10, 3, 10);
                     var x = 10 * partBias;
@@ -66,12 +70,15 @@
             },
             {
                 per: 0.75,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     camera.position.set(-10, 3 - 10 * partPer, 10 - 30 * partPer);
                 }
             }
         ]
     };
+
+    seqHooks.setPerValues(seq);
 
 
 
