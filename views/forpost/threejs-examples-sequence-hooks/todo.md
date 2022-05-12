@@ -6,6 +6,6 @@
 * (done) seqHooks.setFrame method will now take a seq, frame, and maxFrame arguments as a way to update
 * (done) add a seqHooks.setPerValues method that can be used to set per values from secs values
 * (done) I will want a create method for this
+* (done) see about adding data objects that can be created for each seq object
 
-* () see about adding data objects that can be created for each seq object
 * () in the demo have an effect where I am using nested seq objects
