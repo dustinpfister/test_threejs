@@ -24,7 +24,8 @@
     // a seq object for mesh
     var seq_mesh1 = seqHooks.create({
         beforeObjects: function(seq){
-            mesh1.rotation.set(0, Math.PI * 4 * seq.per, 0);
+            mesh1.rotation.set(0, 0, 0);
+            mesh1.rotation.y = Math.PI * 4 * seq.per;
         },
         objects: [
 
@@ -32,7 +33,14 @@
                 per: 0,
                 secs: 3,
                 update: function(seq, partPer, partBias){
-                    //camera.position.set(10, 10, 10);
+                    mesh1.rotation.x = Math.PI * 1.5;
+                }
+            },
+            {
+                per: 0,
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    mesh1.rotation.x = Math.PI;
                 }
             }
 
