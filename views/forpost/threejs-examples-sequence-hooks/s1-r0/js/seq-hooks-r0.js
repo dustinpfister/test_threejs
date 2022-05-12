@@ -91,6 +91,29 @@ var seqHooks = (function () {
         return seq;
     };
 
+
+    var noop = function(){};
+
+    // create new seq object method
+    api.create = function(opt){
+        opt = opt || {};
+        var seq = {};
+        seq.objectIndex = 0;
+        seq.per = 0;
+        seq.bias = 0;
+        seq.frame = 0;
+        seq.frameMax = 100;
+
+        // parse hooks
+        seq.beforeObjects = opt.beforeObjects || noop;
+        seq.afterObjects = opt.afterObjects || noop;
+
+        // parse objects
+        seq.objects = opt.objects || [];
+
+        return seq;
+    };
+
     return api;
 
 }
