@@ -100,6 +100,7 @@ var seqHooks = (function () {
     // create new seq object method
     api.create = function(opt){
         opt = opt || {};
+        opt.setPerValues = opt.setPerValues === undefined ? true : false;
         var seq = {};
         seq.objectIndex = 0;
         seq.per = 0;
@@ -122,8 +123,9 @@ var seqHooks = (function () {
         });
 
         // set per values is part of the create process
-        api.setPerValues(seq, opt.fps === undefined ? 30: opt.fps);
-
+        if(opt.setPerValues){
+            api.setPerValues(seq, opt.fps === undefined ? 30: opt.fps);
+        }
         return seq;
     };
 
