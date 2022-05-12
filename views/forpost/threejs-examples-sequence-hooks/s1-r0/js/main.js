@@ -80,11 +80,10 @@
 
     //console.log( seqHooks.getPerValues(seq) );
 
-seqHooks.setPerValues(seq);
+seqHooks.setPerValues(seq, 30);
+//seq.frameMax = seqHooks.getTargetFrames(seq, 30);
 
-seq.frameMax = seqHooks.getTargetFrames(seq, 30);
-
-console.log();
+//console.log();
 console.log(seq.frameMax)
 
     // APP LOOP

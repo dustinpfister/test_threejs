@@ -79,11 +79,15 @@ var seqHooks = (function () {
     };
 
     // set per values
-    api.setPerValues = function(seq){
+    api.setPerValues = function(seq, fps){
+        // set seq.totalSecs
         seq.totalSecs = getTotalSecs(seq);
+        // set per values
         api.getPerValues(seq).forEach(function(per, i){
             seq.objects[i].per = per;
         });
+        // set frameMax
+        seq.frameMax = api.getTargetFrames(seq, fps);
         return seq;
     };
 
