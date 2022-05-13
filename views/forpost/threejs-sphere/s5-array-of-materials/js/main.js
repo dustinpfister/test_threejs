@@ -41,11 +41,11 @@
     len = Math.floor(position.count * 5), // this seems to work for now, but I should still look into this more
     mi = 0,
     i = 0;
-// looking at the state of things here
-len = 1259;
-console.log(len)
-console.log(geometry);
-console.log(position);
+    // looking at the state of things here
+    len = 1259;
+    console.log(len)
+    console.log(geometry);
+    console.log(position);
     while (i < len) {
         mi = i / 3 % 4;
         geometry.addGroup(i, 3, mi);
