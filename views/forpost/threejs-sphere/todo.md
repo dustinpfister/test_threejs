@@ -3,11 +3,13 @@
 ### () - see about len issue with array-of-materials example
 * look into how to go about getting a true len value for this example as position.array.length does not seem to work
 
+### () How about an example on bounding sphere
+
 ### () - new example using Lines
 * I made an r135 demo using Lines to creates rings that from a sphere
 
-### () - new section on Vector3 Length
-* have an animation loop example that has to do with Vector3 length and direction
+### (done 05/13/2022 ) - new section on Vector3 Length
+* (done) have an animation loop example that has to do with Vector3 length and direction
 
 ### ( done 02/24/2022 ) - have section folder for all current examples in post
 * (done) have section folders for each current example in the post
