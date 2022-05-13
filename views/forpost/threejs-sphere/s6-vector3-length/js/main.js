@@ -25,7 +25,6 @@
     // ---------- ----------
     // Vector3
     // ---------- ----------
-
     // using apply Euler method to change direction and length
     var setMeshPos = function(mesh, deg1, deg2, vecLength){
         deg1 = deg1 === undefined ? 0 : deg1;
@@ -36,21 +35,31 @@
         b = THREE.MathUtils.degToRad(deg2);
         mesh.position.copy(homeVec).applyEuler( new THREE.Euler(0, a, b) );
     };
-
     // ---------- ----------
     // CALLING RENDER OF RENDERER
     // ---------- ----------
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
     // loop
-    var deg1 = 0;
+    var deg1 = 0,
+    deg2 = 45,
+    degPerSec = 90,
+    a = 0,
+    aMax = 30,
+    lt = new Date();
     var loop = function () {
+        var now = new Date(),
+        secs = ( now - lt ) / 1000;
         requestAnimationFrame(loop);
-        setMeshPos(sphere2, deg1, 45, 1.1);
-        deg1 += 1;
+        deg2 = Math.sin(Math.PI * 2 * ( a / aMax )) / Math.PI * 90;
+        setMeshPos(sphere2, deg1, deg2, 1.1);
+        deg1 += degPerSec * secs;
         deg1 %= 360;
+        a += 1;
+        a %= aMax;
         // UPDATE CONTROLS
         controls.update();
         renderer.render(scene, camera);
+        lt = now;
     };
  
     loop();
