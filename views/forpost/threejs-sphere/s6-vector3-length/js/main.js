@@ -16,17 +16,38 @@
     scene.add(light);
     scene.add(new THREE.AmbientLight(0xafafaf, 0.15));
     // ---------- ----------
-    // A MESH USING SPHERE GEOMERTY
+    // MESH OBJECTS USING SPHERE GEOMERTY
     // ---------- ----------
     var sphere = new THREE.Mesh(new THREE.SphereGeometry(1, 30,30), new THREE.MeshStandardMaterial());
     scene.add(sphere);
+    var sphere2 = new THREE.Mesh(new THREE.SphereGeometry(0.1, 30,30), new THREE.MeshStandardMaterial({color: 0xff0000}));
+    scene.add(sphere2);
+    // ---------- ----------
+    // Vector3
+    // ---------- ----------
+
+    // using apply Euler method to change direction and length
+    var setMeshPos = function(mesh, deg1, deg2, vecLength){
+        deg1 = deg1 === undefined ? 0 : deg1;
+        deh2 = deg2 === undefined ? 0 : deg2;
+        vecLength = vecLength === undefined ? 1.1: vecLength;
+        var homeVec = new THREE.Vector3(vecLength, 0, 0);
+        var a = THREE.MathUtils.degToRad(deg1),
+        b = THREE.MathUtils.degToRad(deg2);
+        mesh.position.copy(homeVec).applyEuler( new THREE.Euler(0, a, b) );
+    };
+
     // ---------- ----------
     // CALLING RENDER OF RENDERER
     // ---------- ----------
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
     // loop
+    var deg1 = 0;
     var loop = function () {
         requestAnimationFrame(loop);
+        setMeshPos(sphere2, deg1, 45, 1.1);
+        deg1 += 1;
+        deg1 %= 360;
         // UPDATE CONTROLS
         controls.update();
         renderer.render(scene, camera);
