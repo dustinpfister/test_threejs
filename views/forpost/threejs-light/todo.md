@@ -5,6 +5,12 @@
 ## () - point light animation example
 * () animation example on point lights
 
+## () - RectAreaLight example
+* just a basic example of this kind of light
+
+## () - HemisphereLight example
+* just a basic example of this kind of light
+
 ## ( done 03/02/2022 ) - spot light animation example
 * (done) start animation example on spot lights
 * (done) have a plane geometry
