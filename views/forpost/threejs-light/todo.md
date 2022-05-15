@@ -8,8 +8,8 @@
 ## () - RectAreaLight example
 * just a basic example of this kind of light
 
-## () - HemisphereLight example
-* just a basic example of this kind of light
+## ( done 05/15/2022 ) - HemisphereLight example
+* (done) just a basic example of this kind of light
 
 ## ( done 03/02/2022 ) - spot light animation example
 * (done) start animation example on spot lights
