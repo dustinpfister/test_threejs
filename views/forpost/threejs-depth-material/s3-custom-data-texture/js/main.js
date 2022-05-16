@@ -42,25 +42,35 @@ var createDepthData = function(mesh, camera, maxDist, width, height){
     return data;
 };
 
-var maxDist = 10;
-var box = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({
-       color: 0xffffff,
-       transparent: true,
-       opacity: 1
-    })
-);
-box.position.set(-1.5, 0, -1.5);
-// texture
-var width = 16, height = 16;
-var data = createDepthData(box, camera, maxDist, width, height);
-var texture = new THREE.DataTexture( data, width, height );
-texture.needsUpdate = true;
-box.material.map = texture;
-// transparency
-box.material.opacity = 1 - parseFloat( getMeshDPer(box, camera, maxDist).toFixed(2) );
+var createDistBox = function(camera, x, y, z, maxDist){
+    var maxDist = 10;
+    var box = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshBasicMaterial({
+           color: 0xffffff,
+           transparent: true,
+           opacity: 1
+        })
+    );
+    box.position.set(x, y, z);
+    // texture
+    var width = 16, height = 16;
+    var data = createDepthData(box, camera, maxDist, width, height);
+    var texture = new THREE.DataTexture( data, width, height );
+    texture.needsUpdate = true;
+    box.material.map = texture;
+    // transparency
+    box.material.opacity = 1 - parseFloat( getMeshDPer(box, camera, maxDist).toFixed(2) );
+    return box;
+};
+var box1 = createDistBox(camera, 0, 0, 0, 10);
+scene.add(box1);
+var box2 = createDistBox(camera, -2, 0, -3.25, 10);
+scene.add(box2);
+var box2 = createDistBox(camera, -5.5, 0, -3.25, 10);
+scene.add(box2);
+var box3 = createDistBox(camera, 2.15, 1.15, 1.1, 10);
+scene.add(box3);
 
-scene.add(box);
 // render
 renderer.render(scene, camera);
