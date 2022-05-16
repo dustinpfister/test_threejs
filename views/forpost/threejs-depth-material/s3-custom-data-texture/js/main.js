@@ -1,23 +1,28 @@
 // scene, camera, and renderer
 var scene = new THREE.Scene();
+scene.background = new THREE.Color(0.1,0.1,0.1)
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(2, 2, 2);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
-// USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-// Using the distanceTo method of the Vector2 class
+// HELPER FUNCTIONS
+
+var getMeshDPer = function(mesh, camera, maxDist){
+    var d1 = mesh.position.distanceTo( camera.position );
+    d1 = d1 > maxDist ? maxDist : d1;
+    return d1 / maxDist;
+};
 
 var createDepthData = function(mesh, camera, maxDist, width, height){
     var size = width * height;
     var data = new Uint8Array( 4 * size );
 
     // d1 - distance from mesh to camera
-    var d1 = mesh.position.distanceTo( camera.position );
-    d1 = d1 > maxDist ? maxDist : d1;
-    var d1Per = d1 / maxDist;
-   console.log(d1Per)
+    //var d1 = mesh.position.distanceTo( camera.position );
+    //d1 = d1 > maxDist ? maxDist : d1;
+    var d1Per = getMeshDPer(mesh, camera, maxDist);
     for ( let i = 0; i < size; i ++ ) {
         var stride = i * 4,
         x = i % width,
@@ -37,7 +42,7 @@ var createDepthData = function(mesh, camera, maxDist, width, height){
     return data;
 };
 
-// creating a mesh with this texture as a color map
+var maxDist = 10;
 var box = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
     new THREE.MeshBasicMaterial({
@@ -47,12 +52,14 @@ var box = new THREE.Mesh(
     })
 );
 box.position.set(-1.5, 0, -1.5);
+// texture
 var width = 16, height = 16;
-var data = createDepthData(box, camera, 10, width, height);
+var data = createDepthData(box, camera, maxDist, width, height);
 var texture = new THREE.DataTexture( data, width, height );
 texture.needsUpdate = true;
 box.material.map = texture;
-
+// transparency
+box.material.opacity = 1 - parseFloat( getMeshDPer(box, camera, maxDist).toFixed(2) );
 
 scene.add(box);
 // render
