@@ -1,3 +1,4 @@
 # threejs-cone
-## ( ) - start for post folder
-* current set of examples in post
+
+## ( done 05/17/2022 ) - start for post folder
+* (done) current set of examples in post
