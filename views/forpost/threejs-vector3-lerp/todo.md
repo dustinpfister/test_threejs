@@ -6,8 +6,8 @@
 ## ( ) - s3-math-cos
 * () an example using the Math cos method and the Vector3 add method with lerp
 
-## ( ) - s2-alpha-math-pow
-* () using math-pow expression for the alpha value
+## ( done 05/17/2022 ) - s2-alpha-math-pow
+* (done) using math-pow expression for the alpha value
 
 ## ( done 05/17/2022 ) - s1-basic example
 * (done) have a simple hello world example of vector3 lerp
