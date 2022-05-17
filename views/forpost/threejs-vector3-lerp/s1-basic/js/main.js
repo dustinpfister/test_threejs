@@ -29,9 +29,8 @@
         let p = f / fm,
         b = 1 - Math.abs(0.5 - p) / 0.5;
         requestAnimationFrame(loop);
-        
+        // BASIC LERP EXPRESSION between 5,0,0 and -5,0,0
         mesh.position.set(5,0,0).lerp( new THREE.Vector3(-5, 0, 0), b );
-
         // render
         renderer.render(scene, camera);
         f += 30 * secs;
