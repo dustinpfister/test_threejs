@@ -7,7 +7,7 @@
 * () an example using the Math cos method and the Vector3 add method with lerp
 
 ## () - s4-apply-euler-line
-* () another line example using apply euler and add
+* ( done 05/18/2022 ) another line example using apply euler and add
 
 ## ( done 05/18/2022 ) - s3-add-line
 * (done) create a line using vector3 lerp and add

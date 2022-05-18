@@ -15,6 +15,12 @@
 
 ## ( done 05/18/2022 ) - s4-example-group
 
+## () - s4-6-scene
+* scene object example
+
+## () - s4-5-line
+* line example
+
 ## () - s4-4-point-light
 * point light example
 
