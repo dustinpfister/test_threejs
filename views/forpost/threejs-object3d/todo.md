@@ -21,7 +21,7 @@
 ## () - s3-3-group folder
 * group example
 
-## () - s3-2-mesh folder
+## ( done 05/18/2022 ) - s3-2-mesh folder
 * mesh object example
 
 ## ( done 05/18/2022 ) - s3-1-cameras folder
