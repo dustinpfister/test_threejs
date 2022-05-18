@@ -20,7 +20,7 @@
 
 ## () - s2-2-lookat folder
 
-## () - s2-1-rotation folder
+## (done 05/18/2022 ) - s2-1-rotation folder
 
 ## ( done 05/18/2022 ) - s1-basic example
 * (done) have an s1-basic example section folder
