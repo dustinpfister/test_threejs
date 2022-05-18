@@ -18,9 +18,9 @@
 
 ## () - s2-3-spin-ani folder
 
-## () - s2-2-lookat folder
+## ( done 05/18/2022 ) - s2-2-lookat folder
 
-## (done 05/18/2022 ) - s2-1-rotation folder
+## ( done 05/18/2022 ) - s2-1-rotation folder
 
 ## ( done 05/18/2022 ) - s1-basic example
 * (done) have an s1-basic example section folder
