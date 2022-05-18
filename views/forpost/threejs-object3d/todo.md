@@ -12,11 +12,19 @@
 
 ## () - s4-example-group
 
+
+## () - s4-4-point-light
+
+## () - s3-3-group folder
+
+## () - s3-2-mesh folder
+
+
 ## () - s3-1-cameras folder
 
-## () - s2-4-spin-move folder
+## ( done 05/18/2022 ) - s2-4-spin-move folder
 
-## () - s2-3-spin-ani folder
+## ( done 05/18/2022 ) - s2-3-spin-ani folder
 
 ## ( done 05/18/2022 ) - s2-2-lookat folder
 
