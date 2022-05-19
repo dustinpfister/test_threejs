@@ -197,6 +197,6 @@ ObjectGridWrap.update(grid);
     }
 };
 
-        renderer.render(scene, camera);
+//        renderer.render(scene, camera);
 
-//loop();
+loop();
