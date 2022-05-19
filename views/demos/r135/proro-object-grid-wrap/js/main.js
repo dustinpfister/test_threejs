@@ -38,22 +38,31 @@ var ObjectGridWrap = (function(){
             grid.add(mesh);
             i += 1;
         };
-        api.setGridToAlphas(grid);
+        api.update(grid);
         return grid;
     };
 
     // set grid to alphas helper
-    api.setGridToAlphas = function(grid){
+    var setGridToAlphas = function(grid){
         var ud = grid.userData;
         grid.children.forEach(function(obj, i){
             // true positions
             var trueX = i % ud.tw,
             trueZ = Math.floor(i / ud.tw);
             // adjusted by alphas
-            var x = (trueX + ud.tw * ud.alphaX) % ud.tw;
-            var z = (trueZ + ud.th * ud.alphaZ) % ud.th;
+            var ax = (trueX + ud.tw * ud.alphaX) % ud.tw;
+            var az = (trueZ + ud.th * ud.alphaZ) % ud.th;
+            // scaled
+            var x = ax * 5;
+            var z = az * 5;
             obj.position.set(x, 0, z);
         });
+    };
+
+    api.update = function(grid){
+
+        setGridToAlphas(grid);
+
     };
 
 
@@ -114,7 +123,7 @@ grid.userData.alphaX %= 1;
 grid.userData.alphaZ += 0.05 * secs;
 grid.userData.alphaZ %= 1;
 
-ObjectGridWrap.setGridToAlphas(grid);
+ObjectGridWrap.update(grid);
 
         
         renderer.render(scene, camera);
