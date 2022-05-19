@@ -46,8 +46,12 @@ var ObjectGridWrap = (function(){
     api.setGridToAlphas = function(grid){
         var ud = grid.userData;
         grid.children.forEach(function(obj, i){
-            var x = i % ud.tw,
-            z = Math.floor(i / ud.tw);
+            // true positions
+            var trueX = i % ud.tw,
+            trueZ = Math.floor(i / ud.tw);
+            // adjusted by alphas
+            var x = (trueX + ud.tw * ud.alphaX) % ud.tw;
+            var z = (trueZ + ud.th * ud.alphaZ) % ud.th;
             obj.position.set(x, 0, z);
         });
     };
@@ -102,6 +106,15 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
+
+
+grid.userData.alphaX += 0.1 * secs;
+grid.userData.alphaX %= 1;
+
+grid.userData.alphaZ += 0.05 * secs;
+grid.userData.alphaZ %= 1;
+
+ObjectGridWrap.setGridToAlphas(grid);
 
         
         renderer.render(scene, camera);
