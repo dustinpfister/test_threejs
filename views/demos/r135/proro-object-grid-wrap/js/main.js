@@ -15,24 +15,43 @@ var ObjectGridWrap = (function(){
 
     var api = {};
 
+    // The create method will create and return a new THREE.Group with desired source objects
+    // and induces for where clones of these objects shall be placed
     api.create = function(opt){
         opt = opt || {};
         opt.sourceObjects = opt.sourceObjects || DEFAULT_SOURCE_OBJECTS;
         opt.objectIndices = opt.objectIndices || DEFAULT_OBJECT_INDICES;
-        opt.w = 4;
-        opt.h = 4;
+        opt.tw = 4; // tile width and height
+        opt.th = 4;
         opt.alphaX = 0; // alpha x and z values
         opt.alphaZ = 0;
         var grid = new THREE.Group();
-        var i = 0, len = opt.w * opt.h;
+        var ud = grid.userData; 
+        ud.alphaX = opt.alphaX;
+        ud.alphaZ = opt.alphaZ;
+        ud.tw = opt.tw;
+        ud.th = opt.th;
+        var i = 0, len = opt.tw * opt.th;
         while(i < len){
             var objIndex = opt.objectIndices[i];
             var mesh = opt.sourceObjects[objIndex].clone();
             grid.add(mesh);
             i += 1;
         };
+        api.setGridToAlphas(grid);
         return grid;
     };
+
+    // set grid to alphas helper
+    api.setGridToAlphas = function(grid){
+        var ud = grid.userData;
+        grid.children.forEach(function(obj, i){
+            var x = i % ud.tw,
+            z = Math.floor(i / ud.tw);
+            obj.position.set(x, 0, z);
+        });
+    };
+
 
 
     return api;
@@ -61,7 +80,7 @@ scene.add(dl);
 
 
 var grid = ObjectGridWrap.create();
-scene.add(grid)
+scene.add(grid);
 
 
 //******** **********
