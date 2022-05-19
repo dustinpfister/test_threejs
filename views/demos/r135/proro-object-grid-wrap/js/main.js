@@ -8,10 +8,12 @@ var ObjectGridWrap = (function(){
         new THREE.Mesh( new THREE.SphereGeometry( 0.5, 30, 30), new THREE.MeshNormalMaterial())
     ];
 
-    var DEFAULT_OBJECT_INDICES = [0,0,0,0,
-                                  0,1,1,0,
-                                  0,1,1,0,
-                                  0,0,0,0];
+    var DEFAULT_OBJECT_INDICES = [
+                                  1,0,1,0,1,
+                                  0,0,0,0,0,
+                                  1,0,1,0,1,
+                                  0,0,0,0,0,
+                                  1,0,1,0,1];
 
     var api = {};
 
@@ -21,8 +23,8 @@ var ObjectGridWrap = (function(){
         opt = opt || {};
         opt.sourceObjects = opt.sourceObjects || DEFAULT_SOURCE_OBJECTS;
         opt.objectIndices = opt.objectIndices || DEFAULT_OBJECT_INDICES;
-        opt.tw = 4; // tile width and height
-        opt.th = 4;
+        opt.tw = 5; // tile width and height
+        opt.th = 5;
         opt.alphaX = 0; // alpha x and z values
         opt.alphaZ = 0;
         var grid = new THREE.Group();
@@ -53,8 +55,11 @@ var ObjectGridWrap = (function(){
             var ax = (trueX + ud.tw * ud.alphaX) % ud.tw;
             var az = (trueZ + ud.th * ud.alphaZ) % ud.th;
             // scaled
-            var x = ax * 5;
-            var z = az * 5;
+            var x = ax * 2;
+            var z = az * 2;
+            // subtract half of over all grid size
+            //x -= ud.tw * ((2 ) / 2);
+            //z -= ud.th * ((2 ) / 2);
             obj.position.set(x, 0, z);
         });
     };
@@ -79,7 +84,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#4a4a4a');
 scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-10, 10, 0);
+camera.position.set(-10, 5, 0);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -117,11 +122,11 @@ var loop = function () {
     if(secs > 1 / fps){
 
 
-grid.userData.alphaX += 0.1 * secs;
-grid.userData.alphaX %= 1;
+grid.userData.alphaX -= 0.1 * secs;
+grid.userData.alphaX = THREE.MathUtils.euclideanModulo(grid.userData.alphaX, 1);
 
-grid.userData.alphaZ += 0.05 * secs;
-grid.userData.alphaZ %= 1;
+grid.userData.alphaZ -= 0.00 * secs;
+grid.userData.alphaZ = THREE.MathUtils.euclideanModulo(grid.userData.alphaZ, 1);
 
 ObjectGridWrap.update(grid);
 
