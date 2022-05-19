@@ -28,7 +28,8 @@ var ObjectGridWrap = (function(){
         opt.alphaX = 0; // alpha x and z values
         opt.alphaZ = 0;
         var grid = new THREE.Group();
-        var ud = grid.userData; 
+        var ud = grid.userData;
+        ud.space = opt.space === undefined ? 1 : opt.space;
         ud.alphaX = opt.alphaX;
         ud.alphaZ = opt.alphaZ;
         ud.tw = opt.tw;
@@ -54,12 +55,12 @@ var ObjectGridWrap = (function(){
             // adjusted by alphas
             var ax = (trueX + ud.tw * ud.alphaX) % ud.tw;
             var az = (trueZ + ud.th * ud.alphaZ) % ud.th;
-            // scaled
-            var x = ax * 2;
-            var z = az * 2;
+            // use spacing
+            var x = ax * ud.space;
+            var z = az * ud.space;
             // subtract half of over all grid size
-            //x -= ud.tw * ((2 ) / 2);
-            //z -= ud.th * ((2 ) / 2);
+            //x -= ud.tw * ((ud.space - 1 ) / 2);
+            //z -= ud.th * ((ud.space - 1 ) / 2);
             obj.position.set(x, 0, z);
         });
     };
@@ -97,7 +98,9 @@ dl.position.set(2, -1, -1.5);
 scene.add(dl);
 
 
-var grid = ObjectGridWrap.create();
+var grid = ObjectGridWrap.create({
+    space: 2
+});
 scene.add(grid);
 
 
