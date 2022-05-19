@@ -37,8 +37,11 @@ var ObjectGridWrap = (function(){
         var i = 0, len = opt.tw * opt.th;
         while(i < len){
             var objIndex = opt.objectIndices[i];
-            var mesh = opt.sourceObjects[objIndex].clone();
-            grid.add(mesh);
+            var obj = opt.sourceObjects[objIndex].clone();
+            if(obj.material){
+                obj.material = obj.material.clone();
+            }
+            grid.add(obj);
             i += 1;
         };
         api.update(grid);
@@ -46,28 +49,78 @@ var ObjectGridWrap = (function(){
     };
 
     // set grid to alphas helper
-    var setGridToAlphas = function(grid){
+    var setGridToAlphas = function(grid, objectIndex){
         var ud = grid.userData;
-        grid.children.forEach(function(obj, i){
-            // true positions
-            var trueX = i % ud.tw,
-            trueZ = Math.floor(i / ud.tw);
-            // adjusted by alphas
-            var ax = (trueX + ud.tw * ud.alphaX) % ud.tw;
-            var az = (trueZ + ud.th * ud.alphaZ) % ud.th;
-            // use spacing
-            var x = ax * ud.space;
-            var z = az * ud.space;
-            // subtract half of over all grid size
-            //x -= ud.tw * ((ud.space - 1 ) / 2);
-            //z -= ud.th * ((ud.space - 1 ) / 2);
-            obj.position.set(x, 0, z);
-        });
+        var obj = grid.children[objectIndex];
+        // true positions
+        var trueX = objectIndex % ud.tw,
+        trueZ = Math.floor(objectIndex / ud.tw);
+        // adjusted by alphas
+        var ax = (trueX + ud.tw * ud.alphaX) % ud.tw;
+        var az = (trueZ + ud.th * ud.alphaZ) % ud.th;
+        // use spacing
+        var x = ax * ud.space;
+        var z = az * ud.space;
+        // subtract half of over all grid size
+        //x -= ud.tw * ((ud.space - 1 ) / 2);
+        //z -= ud.th * ((ud.space - 1 ) / 2);
+        obj.position.set(x, 0, z);
     };
 
+    // set grid to alphas helper
+    var setOpacity = function(grid, objectIndex){
+        var ud = grid.userData;
+        var obj = grid.children[objectIndex];
+        // true positions
+        var trueX = objectIndex % ud.tw,
+        trueZ = Math.floor(objectIndex / ud.tw);
+        var v2 = new THREE.Vector2(trueX, trueZ),
+        d = v2.distanceTo( new THREE.Vector2(ud.tw / 2, ud.th / 2) ),
+        a = new THREE.Vector2(0, 0).distanceTo( new THREE.Vector2(ud.tw / 2, ud.th / 2) ),
+        b = d / a;
+        b =  parseFloat(1 - b);
+
+console.log(objectIndex, b);
+
+        //b = b > 1 ? 1 : b;
+        //b = b < 0 ? 0 : b;
+
+
+        if(obj.type === 'Mesh'){
+            obj.material.transparent = true;
+            obj.material.opacity = 0.17;
+        }
+        
+        //obj.position.set(x, 0, z);
+    };
+
+    // main update method
     api.update = function(grid){
 
-        setGridToAlphas(grid);
+
+        var ud = grid.userData;
+
+
+        grid.children.forEach(function(obj, i){
+            setGridToAlphas(grid, i);
+            //setOpacity(grid, 1);
+
+        var trueX = i % ud.tw,
+        trueZ = Math.floor(i / ud.tw);
+        var v2 = new THREE.Vector2(trueX, trueZ),
+        d = v2.distanceTo( new THREE.Vector2(ud.tw / 2, ud.th / 2) ),
+        v3 = new THREE.Vector2(ud.tw / 2, ud.th / 2),
+        a = v3.distanceTo( new THREE.Vector2(0, 0) ),
+        b = d / a;
+        b =  parseFloat(1 - b);
+
+
+console.log(i, b)
+
+            obj.material.transparent = true;
+            obj.material.opacity = b;
+
+        });
 
     };
 
@@ -143,4 +196,7 @@ ObjectGridWrap.update(grid);
         lt = now;
     }
 };
-loop();
+
+        renderer.render(scene, camera);
+
+//loop();
