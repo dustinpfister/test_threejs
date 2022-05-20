@@ -20,22 +20,29 @@ scene.add(dl);
 
 // tile width and height
 var tw = 20,
-th = 20;
+th = 20,
+space = 1.25;
 // source obejcts
 var mkBox = function(color, h){
+    var box = new THREE.Group();
     var mesh = new THREE.Mesh(
         new THREE.BoxGeometry( 1, h, 0.25),
         new THREE.MeshStandardMaterial({ color: color}) );
     mesh.position.y = h / 2;
-    mesh.rotation.y = Math.PI / 180 * -45;
-    return mesh;
+    var ground = new THREE.Mesh(
+        new THREE.BoxGeometry( space, 0.1, space),
+        new THREE.MeshStandardMaterial({ color: 0xffffff}) );
+    ground.position.y = 0.05 * -1;
+    box.add(mesh)  
+    box.add(ground);
+    return box;
 };
 var array_source_objects = [
-    mkBox(0xff0000, 2),
-    mkBox(0x00ff00, 1),
-    mkBox(0x0000ff, 3),
-    mkBox(0x00ffff, 4),
-    mkBox(0xff00ff, 2.5)
+    mkBox(0xff0000, 1),
+    mkBox(0x00ff00, 2),
+    //mkBox(0x0000ff, 1),
+    //mkBox(0x00ffff, 1),
+    //mkBox(0xff00ff, 1)
 ];
 // indices for source objects
 var array_oi = [],
@@ -46,7 +53,7 @@ while(i < len){
 }
 
 var grid = ObjectGridWrap.create({
-    space: 1.25,
+    space: space,
     tw: tw,
     th: th,
     aOpacity: 1.25,
