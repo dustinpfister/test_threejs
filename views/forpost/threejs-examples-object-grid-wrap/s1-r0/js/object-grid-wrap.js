@@ -9,12 +9,7 @@ var ObjectGridWrap = (function(){
         new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial()),
         new THREE.Mesh( new THREE.SphereGeometry( 0.5, 30, 30), new THREE.MeshNormalMaterial())
     ];
-    var DEFAULT_OBJECT_INDICES = [
-                                  1,0,1,0,1,
-                                  0,0,0,0,0,
-                                  1,0,1,0,1,
-                                  0,0,0,0,0,
-                                  1,0,1,0,1];
+    var DEFAULT_OBJECT_INDICES = [1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1];
     // default cloner method
     var DEFAULT_CLONER = function(opt, objectIndex){
         var obj_root = opt.sourceObjects[objectIndex].clone();

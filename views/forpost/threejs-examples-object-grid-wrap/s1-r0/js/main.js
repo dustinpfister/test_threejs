@@ -1,4 +1,3 @@
-
 //******** **********
 // SCENE, CAMERA, RENDERER
 //******** **********
@@ -17,12 +16,13 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(-2, 1, 3);
 scene.add(dl);
-
-// tile width and height
+//******** **********
+// GRID OPTIONS
+//******** **********
 var tw = 20,
 th = 20,
 space = 1.25;
-// source obejcts
+// source objects
 var mkBox = function(color, h){
     var box = new THREE.Group();
     var mesh = new THREE.Mesh(
@@ -45,14 +45,15 @@ var array_source_objects = [
     mkBox(0x00ffff, 2),
     mkBox(0xff00ff, 2.5)
 ];
-// indices for source objects
 var array_oi = [],
 len = tw * th, i = 0;
 while(i < len){
     array_oi.push( Math.floor( array_source_objects.length * THREE.MathUtils.seededRandom() ) );
     i += 1;
 }
-
+//******** **********
+// CREATE GRID
+//******** **********
 var grid = ObjectGridWrap.create({
     space: space,
     tw: tw,
@@ -62,16 +63,10 @@ var grid = ObjectGridWrap.create({
     objectIndices: array_oi
 });
 scene.add(grid);
-
-
 //******** **********
 // LOOP
 //******** **********
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-controls.addEventListener('change', function(a, b){
-})
-
 var fps = 30,
 lt = new Date(),
 frame = 0,
@@ -83,21 +78,13 @@ var loop = function () {
     secs = (now - lt) / 1000,
     ud = grid.userData;
     requestAnimationFrame(loop);
-
     if(secs > 1 / fps){
-
-        
         ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
-
         ObjectGridWrap.update(grid);
-
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
         lt = now;
     }
 };
-
-//renderer.render(scene, camera);
-
 loop();
