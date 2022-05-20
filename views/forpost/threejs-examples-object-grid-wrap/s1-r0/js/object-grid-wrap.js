@@ -5,12 +5,8 @@ var ObjectGridWrap = (function(){
     // public API
     var api = {};
     // some defaults
-    var mesh = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial());
-    var mesh2 = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial());
-    mesh2.position.y += 1.01;
-    mesh.add(mesh2);
     var  DEFAULT_SOURCE_OBJECTS = [
-        mesh,
+        new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial()),
         new THREE.Mesh( new THREE.SphereGeometry( 0.5, 30, 30), new THREE.MeshNormalMaterial())
     ];
     var DEFAULT_OBJECT_INDICES = [
