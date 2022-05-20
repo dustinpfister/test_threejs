@@ -6,8 +6,12 @@ var ObjectGridWrap = (function(){
     // public API
     var api = {};
 
+    var mesh = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial());
+    var mesh2 = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial());
+    mesh2.position.y += 1.5;
+    mesh.add(mesh2);
     var  DEFAULT_SOURCE_OBJECTS = [
-        new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial()),
+        mesh,
         new THREE.Mesh( new THREE.SphereGeometry( 0.5, 30, 30), new THREE.MeshNormalMaterial())
     ];
 
@@ -20,11 +24,13 @@ var ObjectGridWrap = (function(){
 
     // default cloner method
     var DEFAULT_CLONER = function(opt, objectIndex){
-        var obj = opt.sourceObjects[objectIndex].clone();
-        if(obj.material){
-            obj.material = obj.material.clone();
-        }
-        return obj;
+        var obj_root = opt.sourceObjects[objectIndex].clone();
+        obj_root.traverse(function(obj){
+            if(obj.material){
+                obj.material = obj.material.clone();
+            }
+        });
+        return obj_root;
     };
 
     // get a 'true' position in the form of a Vector2 for the given object index
