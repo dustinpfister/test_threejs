@@ -56,10 +56,9 @@ var loop = function () {
 
     if(secs > 1 / fps){
 
-        ud.alphaX -= 0.1 * secs;
-        ud.alphaX = THREE.MathUtils.euclideanModulo(ud.alphaX, 1);
-        ud.alphaZ -= -0.05 * secs;
-        ud.alphaZ = THREE.MathUtils.euclideanModulo(ud.alphaZ, 1);
+        
+        ObjectGridWrap.setPos(grid, (1 - per) * 4, Math.cos(Math.PI * bias));
+
         ObjectGridWrap.update(grid);
 
         renderer.render(scene, camera);

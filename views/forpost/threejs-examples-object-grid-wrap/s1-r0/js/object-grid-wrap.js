@@ -119,6 +119,12 @@ var ObjectGridWrap = (function(){
         setOpacity(obj, b);
         //console.log(i, '(' + trueX + ',' + trueZ + ')', 'd=' + d.toFixed(2), distMax.toFixed(2), b);
     };
+    // set position
+    api.setPos = function(grid, x, z){
+        var ud = grid.userData;
+        ud.alphaX = THREE.MathUtils.euclideanModulo(x, 1);
+        ud.alphaZ = THREE.MathUtils.euclideanModulo(z, 1);
+    };
     // main update method
     api.update = function(grid){
         grid.children.forEach(function(obj, i){
