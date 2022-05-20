@@ -62,6 +62,7 @@ var ObjectGridWrap = (function(){
         ud.alphaZ = opt.alphaZ;
         ud.tw = opt.tw;
         ud.th = opt.th;
+        ud.aOpacity = opt.aOpacity === undefined ? 1.0 : opt.aOpacity;
         var i = 0, len = opt.tw * opt.th;
         while(i < len){
             var objIndex = opt.objectIndices[i];
@@ -84,20 +85,15 @@ var ObjectGridWrap = (function(){
         // use spacing
         var x = v_adjust.x * ud.space;
         var z = v_adjust.y * ud.space;
-        // subtract half of over all grid size
-        //x -= ud.tw * ((ud.space - 1 ) / 2);
-        //z -= ud.th * ((ud.space - 1 ) / 2);
-
+        // subtract so that objects are centered
         x -= (ud.tw - 1) * ud.space / 2;
         z -= (ud.th - 1) * ud.space / 2;
-
-
+        // set position
         obj.position.set(x, 0, z);
     };
 
     // set opacity for object and any and all nested objects
     var setOpacity = function(obj_root, alpha){
-
         obj_root.traverse(function(obj){
             // any object with a material
             if(obj.material){
@@ -105,7 +101,6 @@ var ObjectGridWrap = (function(){
                 obj.material.opacity = alpha;
             }
         });
-
     };
 
     // Object opacity check
@@ -114,22 +109,14 @@ var ObjectGridWrap = (function(){
         obj = grid.children[objectIndex],
         v_center = new THREE.Vector2(ud.tw / 2, ud.th / 2),
         distMax = v_center.distanceTo( new THREE.Vector2(0.5, 0.5) );
-
-        // start with true pos
-        //var trueX = objectIndex % ud.tw,
-        //trueZ = Math.floor(objectIndex / ud.tw);
-
-        //var ax = (trueX + ud.tw * ud.alphaX) % ud.tw;
-        //var az = (trueZ + ud.th * ud.alphaZ) % ud.th;
-
         var v_adjust = getAdjustedPos(grid, objectIndex);
-
-
         var v2 = new THREE.Vector2(v_adjust.x + 0.5, v_adjust.y + 0.5),
-        d = v2.distanceTo( v_center ),        
+        d = v2.distanceTo( v_center );
+        d *= ud.aOpacity;        
         d = d < 0 ? 0 : d;
         d = d > distMax ? distMax : d;
-        b = d / distMax;
+
+        var b = d / distMax;
         b = 1 - b;
         b = parseFloat(b.toFixed(2));
         // call set opacity helper
@@ -178,6 +165,7 @@ var grid = ObjectGridWrap.create({
     space: 1.5,
     tw: 6,
     th: 5,
+    aOpacity: 1.25,
     objectIndices: [
         1,1,1,1,1,0,
         1,0,0,0,1,0,
