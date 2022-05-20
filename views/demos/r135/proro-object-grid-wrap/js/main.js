@@ -51,8 +51,8 @@ var ObjectGridWrap = (function(){
         opt = opt || {};
         opt.sourceObjects = opt.sourceObjects || DEFAULT_SOURCE_OBJECTS;
         opt.objectIndices = opt.objectIndices || DEFAULT_OBJECT_INDICES;
-        opt.tw = 5; // tile width and height
-        opt.th = 5;
+        opt.tw = opt.tw === undefined ? 5: opt.tw; // tile width and height
+        opt.th = opt.th === undefined ? 5: opt.th;
         opt.alphaX = 0; // alpha x and z values
         opt.alphaZ = 0;
         var grid = new THREE.Group();
@@ -175,7 +175,15 @@ scene.add(dl);
 
 
 var grid = ObjectGridWrap.create({
-    space: 1.5
+    space: 1.5,
+    tw: 6,
+    th: 5,
+    objectIndices: [
+        1,1,1,1,1,0,
+        1,0,0,0,1,0,
+        1,0,1,0,1,0,
+        1,0,0,0,1,0,
+        1,1,1,1,1,0]
 });
 scene.add(grid);
 
