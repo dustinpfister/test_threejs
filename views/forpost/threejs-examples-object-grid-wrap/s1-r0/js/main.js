@@ -19,17 +19,21 @@ dl.position.set(2, -1, -1.5);
 scene.add(dl);
 
 
+var tw = 20,
+th = 20;
+var array_oi = [],
+len = tw * th, i = 0;
+while(i < len){
+    array_oi.push(0);
+    i += 1;
+}
+
 var grid = ObjectGridWrap.create({
-    space: 1.5,
-    tw: 6,
-    th: 5,
+    space: 2,
+    tw: tw,
+    th: th,
     aOpacity: 1.25,
-    objectIndices: [
-        1,1,1,1,1,0,
-        1,0,0,0,1,0,
-        1,0,1,0,1,0,
-        1,0,0,0,1,0,
-        1,1,1,1,1,0]
+    objectIndices: array_oi
 });
 scene.add(grid);
 
@@ -57,7 +61,7 @@ var loop = function () {
     if(secs > 1 / fps){
 
         
-        ObjectGridWrap.setPos(grid, (1 - per) * 4, Math.cos(Math.PI * bias));
+        ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
 
         ObjectGridWrap.update(grid);
 
