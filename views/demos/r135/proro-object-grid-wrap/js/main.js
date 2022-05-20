@@ -76,29 +76,22 @@ var v1 = new THREE.Vector2(s / 2, s / 2);
         obj.position.set(x, 0, z);
     };
 
-    // set grid to alphas helper
-/*
-    var setOpacity = function(grid, objectIndex){
-        var ud = grid.userData;
-        var obj = grid.children[objectIndex];
-        // true positions
-        var trueX = objectIndex % ud.tw,
-        trueZ = Math.floor(objectIndex / ud.tw);
-        var v2 = new THREE.Vector2(trueX, trueZ),
-        d = v2.distanceTo( new THREE.Vector2(ud.tw / 2, ud.th / 2) ),
-        a = new THREE.Vector2(0.5, 0.5).distanceTo( new THREE.Vector2(ud.tw / 2, ud.th / 2) ),
-        b = d / a;
-        b =  parseFloat(1 - b);
-        b = b > 1 ? 1 : b;
-        b = b < 0 ? 0 : b;
-        if(obj.type === 'Mesh'){
-            obj.material.transparent = true;
-            obj.material.opacity = 0.17;
-        }
-    };
-*/
+    // set opacity for object and any and all nested objects
+    var setOpacity = function(obj_root, alpha){
 
-    var setOpacity = function(grid, objectIndex){
+        obj_root.traverse(function(obj){
+
+            // any object with a material
+            if(obj.material){
+                obj.material.transparent = true;
+                obj.material.opacity = alpha;
+            }
+        });
+
+    };
+
+    // Object opacity check
+    var objectOpacityCheck = function(grid, objectIndex){
         var ud = grid.userData,
         obj = grid.children[objectIndex],
         v_center = new THREE.Vector2(ud.tw / 2, ud.th / 2),
@@ -108,20 +101,19 @@ var v1 = new THREE.Vector2(s / 2, s / 2);
         trueZ = Math.floor(objectIndex / ud.tw);
 
 
-
         var v2 = new THREE.Vector2(trueX + 0.5, trueZ + 0.5),
-        d = v2.distanceTo( v_center ),
-        
+        d = v2.distanceTo( v_center ),        
         d = d < 0 ? 0 : d;
         d = d > distMax ? distMax : d;
-
         b = d / distMax;
         b = 1 - b;
         b = parseFloat(b.toFixed(2));
 
 
-        obj.material.transparent = true;
-        obj.material.opacity = b;
+setOpacity(obj, b);
+
+        //obj.material.transparent = true;
+        //obj.material.opacity = b;
 
        //console.log(i, '(' + trueX + ',' + trueZ + ')', 'd=' + d.toFixed(2), distMax.toFixed(2), b);
 
@@ -130,41 +122,9 @@ var v1 = new THREE.Vector2(s / 2, s / 2);
     // main update method
     api.update = function(grid){
 
-
-        //var ud = grid.userData;
-        //v_center = new THREE.Vector2(ud.tw / 2, ud.th / 2),
-        //distMax = v_center.distanceTo( new THREE.Vector2(0.5, 0.5) );
-        //distMax = 2;
-
-
         grid.children.forEach(function(obj, i){
             setGridToAlphas(grid, i);
-            setOpacity(grid, i);
-
-/*
-        var trueX = i % ud.tw,
-        trueZ = Math.floor(i / ud.tw);
-
-
-
-        var v2 = new THREE.Vector2(trueX + 0.5, trueZ + 0.5),
-        d = v2.distanceTo( v_center ),
-        
-        d = d < 0 ? 0 : d;
-        d = d > distMax ? distMax : d;
-
-        b = d / distMax;
-        b = 1 - b;
-        b = parseFloat(b.toFixed(2));
-
-
-            obj.material.transparent = true;
-            obj.material.opacity = b;
-*/
-
-       //console.log(i, '(' + trueX + ',' + trueZ + ')', 'd=' + d.toFixed(2), distMax.toFixed(2), b);
-
-
+            objectOpacityCheck(grid, i);
         });
 
     };
