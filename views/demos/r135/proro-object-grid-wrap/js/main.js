@@ -80,7 +80,6 @@ var v1 = new THREE.Vector2(s / 2, s / 2);
     var setOpacity = function(obj_root, alpha){
 
         obj_root.traverse(function(obj){
-
             // any object with a material
             if(obj.material){
                 obj.material.transparent = true;
@@ -96,27 +95,24 @@ var v1 = new THREE.Vector2(s / 2, s / 2);
         obj = grid.children[objectIndex],
         v_center = new THREE.Vector2(ud.tw / 2, ud.th / 2),
         distMax = v_center.distanceTo( new THREE.Vector2(0.5, 0.5) );
-
+        // start with true pos
         var trueX = objectIndex % ud.tw,
         trueZ = Math.floor(objectIndex / ud.tw);
 
+        var ax = (trueX + ud.tw * ud.alphaX) % ud.tw;
+        var az = (trueZ + ud.th * ud.alphaZ) % ud.th;
 
-        var v2 = new THREE.Vector2(trueX + 0.5, trueZ + 0.5),
+
+        var v2 = new THREE.Vector2(ax + 0.5, az + 0.5),
         d = v2.distanceTo( v_center ),        
         d = d < 0 ? 0 : d;
         d = d > distMax ? distMax : d;
         b = d / distMax;
         b = 1 - b;
         b = parseFloat(b.toFixed(2));
-
-
-setOpacity(obj, b);
-
-        //obj.material.transparent = true;
-        //obj.material.opacity = b;
-
-       //console.log(i, '(' + trueX + ',' + trueZ + ')', 'd=' + d.toFixed(2), distMax.toFixed(2), b);
-
+        // call set opacity helper
+        setOpacity(obj, b);
+        //console.log(i, '(' + trueX + ',' + trueZ + ')', 'd=' + d.toFixed(2), distMax.toFixed(2), b);
     };
 
     // main update method
@@ -157,7 +153,7 @@ scene.add(dl);
 
 
 var grid = ObjectGridWrap.create({
-    space: 2
+    space: 5
 });
 scene.add(grid);
 
@@ -178,30 +174,25 @@ var loop = function () {
     var now = new Date(),
     per = frame / maxFrame,
     bias = 1 - Math.abs(0.5 - per) / 0.5,
-    secs = (now - lt) / 1000;
+    secs = (now - lt) / 1000,
+    ud = grid.userData;
     requestAnimationFrame(loop);
+
     if(secs > 1 / fps){
 
+        ud.alphaX -= 0.1 * secs;
+        ud.alphaX = THREE.MathUtils.euclideanModulo(ud.alphaX, 1);
+        ud.alphaZ -= 0.05 * secs;
+        ud.alphaZ = THREE.MathUtils.euclideanModulo(ud.alphaZ, 1);
+        ObjectGridWrap.update(grid);
 
-grid.userData.alphaX -= 0.1 * secs;
-grid.userData.alphaX = THREE.MathUtils.euclideanModulo(grid.userData.alphaX, 1);
-
-grid.userData.alphaZ -= 0.00 * secs;
-grid.userData.alphaZ = THREE.MathUtils.euclideanModulo(grid.userData.alphaZ, 1);
-
-ObjectGridWrap.update(grid);
-
-        
         renderer.render(scene, camera);
-
-       
-
         frame += fps * secs;
         frame %= maxFrame;
         lt = now;
     }
 };
 
-renderer.render(scene, camera);
+//renderer.render(scene, camera);
 
-//loop();
+loop();
