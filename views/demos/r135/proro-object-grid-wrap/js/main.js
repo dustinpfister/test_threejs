@@ -3,13 +3,8 @@
 //******** **********
 var ObjectGridWrap = (function(){
 
-
-    var s = 5;
-    var v1 = new THREE.Vector2(s / 2, s / 2);
-    //console.log(v1.distanceTo( new THREE.Vector2( 0.5 , 0) ))
-    //console.log(v1.distanceTo( new THREE.Vector2( s - 1 + 0.5, 0) ))
-
-
+    // public API
+    var api = {};
 
     var  DEFAULT_SOURCE_OBJECTS = [
         new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial()),
@@ -31,8 +26,6 @@ var ObjectGridWrap = (function(){
         }
         return obj;
     };
-
-    var api = {};
 
     // get a 'true' position in the form of a Vector2 for the given object index
     // by true position I mean how things are with the state of the objectIndices array
