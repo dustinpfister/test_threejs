@@ -26,11 +26,22 @@ var ObjectGridWrap = (function(){
     var api = {};
 
     // get a 'true' position in the form of a Vector2 for the given object index
+    // by true position I mean how things are with the state of the objectIndices array
+    // it can also be thought of as a kind of 'home position' as well
     var getTruePos = function(grid, objectIndex){
         var ud = grid.userData,
         trueX = objectIndex % ud.tw,
         trueZ = Math.floor(objectIndex / ud.tw);
         return new THREE.Vector2(trueX, trueZ);
+    };
+
+    var getAdjustedPos = function(grid, objectIndex){
+        var ud = grid.userData,
+        v_true = getTruePos(grid, objectIndex);
+        // adjusted by alphas
+        var ax = (v_true.x + ud.tw * ud.alphaX) % ud.tw;
+        var az = (v_true.y + ud.th * ud.alphaZ) % ud.th;
+        return new THREE.Vector2(ax, az);        
     };
 
 
@@ -73,14 +84,17 @@ var ObjectGridWrap = (function(){
         //var trueX = objectIndex % ud.tw,
         //trueZ = Math.floor(objectIndex / ud.tw);
 
-        var v_true = getTruePos(grid, objectIndex);
+        //var v_true = getTruePos(grid, objectIndex);
 
         // adjusted by alphas
-        var ax = (v_true.x + ud.tw * ud.alphaX) % ud.tw;
-        var az = (v_true.y + ud.th * ud.alphaZ) % ud.th;
+        //var ax = (v_true.x + ud.tw * ud.alphaX) % ud.tw;
+        //var az = (v_true.y + ud.th * ud.alphaZ) % ud.th;
+
+        var v_adjust = getAdjustedPos(grid, objectIndex);
+
         // use spacing
-        var x = ax * ud.space;
-        var z = az * ud.space;
+        var x = v_adjust.x * ud.space;
+        var z = v_adjust.y * ud.space;
         // subtract half of over all grid size
         //x -= ud.tw * ((ud.space - 1 ) / 2);
         //z -= ud.th * ((ud.space - 1 ) / 2);
@@ -164,7 +178,7 @@ scene.add(dl);
 
 
 var grid = ObjectGridWrap.create({
-    space: 5
+    space: 1.5
 });
 scene.add(grid);
 
@@ -193,7 +207,7 @@ var loop = function () {
 
         ud.alphaX -= 0.1 * secs;
         ud.alphaX = THREE.MathUtils.euclideanModulo(ud.alphaX, 1);
-        ud.alphaZ -= 0.05 * secs;
+        ud.alphaZ -= -0.05 * secs;
         ud.alphaZ = THREE.MathUtils.euclideanModulo(ud.alphaZ, 1);
         ObjectGridWrap.update(grid);
 
