@@ -3,6 +3,15 @@
 //******** **********
 var ObjectGridWrap = (function(){
 
+
+var s = 5;
+var v1 = new THREE.Vector2(s / 2, s / 2);
+
+//console.log(v1.distanceTo( new THREE.Vector2( 0.5 , 0) ))
+//console.log(v1.distanceTo( new THREE.Vector2( s - 1 + 0.5, 0) ))
+
+
+
     var  DEFAULT_SOURCE_OBJECTS = [
         new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial()),
         new THREE.Mesh( new THREE.SphereGeometry( 0.5, 30, 30), new THREE.MeshNormalMaterial())
@@ -68,6 +77,7 @@ var ObjectGridWrap = (function(){
     };
 
     // set grid to alphas helper
+/*
     var setOpacity = function(grid, objectIndex){
         var ud = grid.userData;
         var obj = grid.children[objectIndex];
@@ -76,29 +86,25 @@ var ObjectGridWrap = (function(){
         trueZ = Math.floor(objectIndex / ud.tw);
         var v2 = new THREE.Vector2(trueX, trueZ),
         d = v2.distanceTo( new THREE.Vector2(ud.tw / 2, ud.th / 2) ),
-        a = new THREE.Vector2(0, 0).distanceTo( new THREE.Vector2(ud.tw / 2, ud.th / 2) ),
+        a = new THREE.Vector2(0.5, 0.5).distanceTo( new THREE.Vector2(ud.tw / 2, ud.th / 2) ),
         b = d / a;
         b =  parseFloat(1 - b);
-
-console.log(objectIndex, b);
-
-        //b = b > 1 ? 1 : b;
-        //b = b < 0 ? 0 : b;
-
-
+        b = b > 1 ? 1 : b;
+        b = b < 0 ? 0 : b;
         if(obj.type === 'Mesh'){
             obj.material.transparent = true;
             obj.material.opacity = 0.17;
         }
-        
-        //obj.position.set(x, 0, z);
     };
-
+*/
     // main update method
     api.update = function(grid){
 
 
         var ud = grid.userData;
+        v_center = new THREE.Vector2(ud.tw / 2, ud.th / 2),
+        distMax = v_center.distanceTo( new THREE.Vector2(0.5, 0.5) );
+        //distMax = 2;
 
 
         grid.children.forEach(function(obj, i){
@@ -107,15 +113,22 @@ console.log(objectIndex, b);
 
         var trueX = i % ud.tw,
         trueZ = Math.floor(i / ud.tw);
-        var v2 = new THREE.Vector2(trueX, trueZ),
-        d = v2.distanceTo( new THREE.Vector2(ud.tw / 2, ud.th / 2) ),
-        v3 = new THREE.Vector2(ud.tw / 2, ud.th / 2),
-        a = v3.distanceTo( new THREE.Vector2(0, 0) ),
-        b = d / a;
-        b =  parseFloat(1 - b);
 
 
-console.log(i, b)
+
+        var v2 = new THREE.Vector2(trueX + 0.5, trueZ + 0.5),
+        d = v2.distanceTo( v_center ),
+        
+        d = d < 0 ? 0 : d;
+        d = d > distMax ? distMax : d;
+
+        b = d / distMax;
+        b = 1 - b;
+        b = parseFloat(b.toFixed(2));
+
+
+//console.log(i, '(' + trueX + ',' + trueZ + ')', 'd=' + d.toFixed(2), distMax.toFixed(2), b);
+//console.log('')
 
             obj.material.transparent = true;
             obj.material.opacity = b;
@@ -197,6 +210,6 @@ ObjectGridWrap.update(grid);
     }
 };
 
-//        renderer.render(scene, camera);
+renderer.render(scene, camera);
 
-loop();
+//loop();
