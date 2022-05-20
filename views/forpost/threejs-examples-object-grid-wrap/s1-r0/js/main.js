@@ -26,9 +26,10 @@ space = 1.25;
 var mkBox = function(color, h){
     var box = new THREE.Group();
     var mesh = new THREE.Mesh(
-        new THREE.BoxGeometry( 1, h, 0.25),
+        new THREE.BoxGeometry( 1, h, 0.25 + 0.25),
         new THREE.MeshStandardMaterial({ color: color}) );
     mesh.position.y = h / 2;
+    mesh.rotation.y = Math.PI / 180 * 20 * -1;
     var ground = new THREE.Mesh(
         new THREE.BoxGeometry( space, 0.1, space),
         new THREE.MeshStandardMaterial({ color: 0xffffff}) );
@@ -38,11 +39,11 @@ var mkBox = function(color, h){
     return box;
 };
 var array_source_objects = [
-    mkBox(0xff0000, 1),
-    mkBox(0x00ff00, 2),
-    //mkBox(0x0000ff, 1),
-    //mkBox(0x00ffff, 1),
-    //mkBox(0xff00ff, 1)
+    mkBox(0xff0000, 0.5),
+    mkBox(0x00ff00, 1),
+    mkBox(0x0000ff, 1.5),
+    mkBox(0x00ffff, 2),
+    mkBox(0xff00ff, 2.5)
 ];
 // indices for source objects
 var array_oi = [],
