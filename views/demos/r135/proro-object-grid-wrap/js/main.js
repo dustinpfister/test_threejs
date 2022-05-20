@@ -2,26 +2,23 @@
 // ObjectGridWrap module
 //******** **********
 var ObjectGridWrap = (function(){
-
     // public API
     var api = {};
-
+    // some defaults
     var mesh = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial());
     var mesh2 = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial());
-    mesh2.position.y += 1.5;
+    mesh2.position.y += 1.01;
     mesh.add(mesh2);
     var  DEFAULT_SOURCE_OBJECTS = [
         mesh,
         new THREE.Mesh( new THREE.SphereGeometry( 0.5, 30, 30), new THREE.MeshNormalMaterial())
     ];
-
     var DEFAULT_OBJECT_INDICES = [
                                   1,0,1,0,1,
                                   0,0,0,0,0,
                                   1,0,1,0,1,
                                   0,0,0,0,0,
                                   1,0,1,0,1];
-
     // default cloner method
     var DEFAULT_CLONER = function(opt, objectIndex){
         var obj_root = opt.sourceObjects[objectIndex].clone();
@@ -32,7 +29,6 @@ var ObjectGridWrap = (function(){
         });
         return obj_root;
     };
-
     // get a 'true' position in the form of a Vector2 for the given object index
     // by true position I mean how things are with the state of the objectIndices array
     // it can also be thought of as a kind of 'home position' as well
@@ -42,7 +38,6 @@ var ObjectGridWrap = (function(){
         trueZ = Math.floor(objectIndex / ud.tw);
         return new THREE.Vector2(trueX, trueZ);
     };
-
     // get the adjusted position in which alphaX, and alphaZ values are applyed
     var getAdjustedPos = function(grid, objectIndex){
         var ud = grid.userData,
@@ -52,7 +47,6 @@ var ObjectGridWrap = (function(){
         var az = (v_true.y + ud.th * ud.alphaZ) % ud.th;
         return new THREE.Vector2(ax, az);        
     };
-
     // The create method will create and return a new THREE.Group with desired source objects
     // and induces for where clones of these objects shall be placed
     api.create = function(opt){
@@ -75,20 +69,13 @@ var ObjectGridWrap = (function(){
         var i = 0, len = opt.tw * opt.th;
         while(i < len){
             var objIndex = opt.objectIndices[i];
-
-            //var obj = opt.sourceObjects[objIndex].clone();
-            //if(obj.material){
-            //    obj.material = obj.material.clone();
-            //}
             var obj = opt.cloner(opt, objIndex);
-
             grid.add(obj);
             i += 1;
         };
         api.update(grid);
         return grid;
     };
-
     // set grid to alphas helper
     var setGridToAlphas = function(grid, objectIndex){
         var ud = grid.userData;
@@ -103,7 +90,6 @@ var ObjectGridWrap = (function(){
         // set position
         obj.position.set(x, 0, z);
     };
-
     // set opacity for object and any and all nested objects
     var setOpacity = function(obj_root, alpha){
         obj_root.traverse(function(obj){
@@ -114,7 +100,6 @@ var ObjectGridWrap = (function(){
             }
         });
     };
-
     // Object opacity check
     var objectOpacityCheck = function(grid, objectIndex){
         var ud = grid.userData,
@@ -127,7 +112,6 @@ var ObjectGridWrap = (function(){
         d *= ud.aOpacity;        
         d = d < 0 ? 0 : d;
         d = d > distMax ? distMax : d;
-
         var b = d / distMax;
         b = 1 - b;
         b = parseFloat(b.toFixed(2));
@@ -135,19 +119,14 @@ var ObjectGridWrap = (function(){
         setOpacity(obj, b);
         //console.log(i, '(' + trueX + ',' + trueZ + ')', 'd=' + d.toFixed(2), distMax.toFixed(2), b);
     };
-
     // main update method
     api.update = function(grid){
-
         grid.children.forEach(function(obj, i){
             setGridToAlphas(grid, i);
             objectOpacityCheck(grid, i);
         });
-
     };
-
-
-
+    // return public API
     return api;
 
 }());
