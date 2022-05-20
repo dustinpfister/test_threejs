@@ -23,6 +23,15 @@ var ObjectGridWrap = (function(){
                                   0,0,0,0,0,
                                   1,0,1,0,1];
 
+    // default cloner method
+    var DEFAULT_CLONER = function(opt, objectIndex){
+        var obj = opt.sourceObjects[objectIndex].clone();
+        if(obj.material){
+            obj.material = obj.material.clone();
+        }
+        return obj;
+    };
+
     var api = {};
 
     // get a 'true' position in the form of a Vector2 for the given object index
@@ -35,6 +44,7 @@ var ObjectGridWrap = (function(){
         return new THREE.Vector2(trueX, trueZ);
     };
 
+    // get the adjusted position in which alphaX, and alphaZ values are applyed
     var getAdjustedPos = function(grid, objectIndex){
         var ud = grid.userData,
         v_true = getTruePos(grid, objectIndex);
@@ -43,7 +53,6 @@ var ObjectGridWrap = (function(){
         var az = (v_true.y + ud.th * ud.alphaZ) % ud.th;
         return new THREE.Vector2(ax, az);        
     };
-
 
     // The create method will create and return a new THREE.Group with desired source objects
     // and induces for where clones of these objects shall be placed
@@ -55,6 +64,7 @@ var ObjectGridWrap = (function(){
         opt.th = opt.th === undefined ? 5: opt.th;
         opt.alphaX = 0; // alpha x and z values
         opt.alphaZ = 0;
+        opt.cloner = opt.cloner || DEFAULT_CLONER;
         var grid = new THREE.Group();
         var ud = grid.userData;
         ud.space = opt.space === undefined ? 1 : opt.space;
@@ -66,10 +76,13 @@ var ObjectGridWrap = (function(){
         var i = 0, len = opt.tw * opt.th;
         while(i < len){
             var objIndex = opt.objectIndices[i];
-            var obj = opt.sourceObjects[objIndex].clone();
-            if(obj.material){
-                obj.material = obj.material.clone();
-            }
+
+            //var obj = opt.sourceObjects[objIndex].clone();
+            //if(obj.material){
+            //    obj.material = obj.material.clone();
+            //}
+            var obj = opt.cloner(opt, objIndex);
+
             grid.add(obj);
             i += 1;
         };
