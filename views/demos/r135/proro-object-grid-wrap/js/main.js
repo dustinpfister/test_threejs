@@ -4,11 +4,10 @@
 var ObjectGridWrap = (function(){
 
 
-var s = 5;
-var v1 = new THREE.Vector2(s / 2, s / 2);
-
-//console.log(v1.distanceTo( new THREE.Vector2( 0.5 , 0) ))
-//console.log(v1.distanceTo( new THREE.Vector2( s - 1 + 0.5, 0) ))
+    var s = 5;
+    var v1 = new THREE.Vector2(s / 2, s / 2);
+    //console.log(v1.distanceTo( new THREE.Vector2( 0.5 , 0) ))
+    //console.log(v1.distanceTo( new THREE.Vector2( s - 1 + 0.5, 0) ))
 
 
 
@@ -25,6 +24,15 @@ var v1 = new THREE.Vector2(s / 2, s / 2);
                                   1,0,1,0,1];
 
     var api = {};
+
+    // get a 'true' position in the form of a Vector2 for the given object index
+    var getTruePos = function(grid, objectIndex){
+        var ud = grid.userData,
+        trueX = objectIndex % ud.tw,
+        trueZ = Math.floor(objectIndex / ud.tw);
+        return new THREE.Vector2(trueX, trueZ);
+    };
+
 
     // The create method will create and return a new THREE.Group with desired source objects
     // and induces for where clones of these objects shall be placed
@@ -62,11 +70,14 @@ var v1 = new THREE.Vector2(s / 2, s / 2);
         var ud = grid.userData;
         var obj = grid.children[objectIndex];
         // true positions
-        var trueX = objectIndex % ud.tw,
-        trueZ = Math.floor(objectIndex / ud.tw);
+        //var trueX = objectIndex % ud.tw,
+        //trueZ = Math.floor(objectIndex / ud.tw);
+
+        var v_true = getTruePos(grid, objectIndex);
+
         // adjusted by alphas
-        var ax = (trueX + ud.tw * ud.alphaX) % ud.tw;
-        var az = (trueZ + ud.th * ud.alphaZ) % ud.th;
+        var ax = (v_true.x + ud.tw * ud.alphaX) % ud.tw;
+        var az = (v_true.y + ud.th * ud.alphaZ) % ud.th;
         // use spacing
         var x = ax * ud.space;
         var z = az * ud.space;
