@@ -1,5 +1,5 @@
 //******** **********
-// ObjectGridWrap module
+// ObjectGridWrap module - from threejs-examples-object-grid-wrap - r0
 //******** **********
 var ObjectGridWrap = (function(){
     // public API
