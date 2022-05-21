@@ -1,6 +1,7 @@
 # proto object grid wrap - todo
 
 ## () - first revision r1
+* () update build in clone method to work with array of materials ( see revised file for threejs-plane video)
 * () Have it so that values like -1 for source object index values will result in no object for that tile index
 * () Have a system for adjusting home scale, position, and rotation for each object
 * () have a demo in which I am using a box geometry, cone geometry, and extrude geometry to create base objects that can then be used to create a mounties scene
