@@ -1,15 +1,17 @@
 # proto object grid wrap - todo
 
-## () - rx - 
-* () start a kind of mode object standard object for source object cloning, and effects to use for that kind of cloning
+## () - rx - CLONERS OBJECT, Plugin system
+* () start a CLONERS Object that wlll be a collection of cloner methods
+
+## () - rx -
+* () have a demo in which I am using a box geometry, cone geometry, and extrude geometry to create base objects that can then be used to create a mounties scene
 
 ## () - first revision r1 - materials array fix, blank objects, trans effect optional
 * (done) update build in clone method to work with array of materials ( see revised file for threejs-plane video)
 * (done) Have it so that values like -1 for source object index values will result in no object for that tile index
-* () can disable trans effect
+* (done) can disable trans effect by giving an empty array for new effects create method option
 
-* () Have a system for adjusting home scale, position, and rotation for each object in the grid
-* () have a demo in which I am using a box geometry, cone geometry, and extrude geometry to create base objects that can then be used to create a mounties scene
+* () Have a scale effect
 
 ## ( done 05/20/2022 ) - first version r0
 * (done) crude start working
