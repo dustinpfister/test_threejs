@@ -51,10 +51,11 @@ var ObjectGridWrap = (function(){
         });
     };
     // Object opacity check
+/*
     var objectOpacity = function(grid, obj, objectIndex){
         var ud = grid.userData,
-        v_adjust = getAdjustedPos(grid, objectIndex);
-        var v2 = new THREE.Vector2(v_adjust.x + 0.5, v_adjust.y + 0.5),
+        v_adjust = getAdjustedPos(grid, objectIndex),
+        v2 = new THREE.Vector2(v_adjust.x + 0.5, v_adjust.y + 0.5),
         d = v2.distanceTo( ud.center );
         d *= ud.dAdjust;       
         d = d < 0 ? 0 : d;
@@ -66,12 +67,16 @@ var ObjectGridWrap = (function(){
         setOpacity(obj, b);
         //console.log(i, '(' + trueX + ',' + trueZ + ')', 'd=' + d.toFixed(2), distMax.toFixed(2), b);
     };
+*/
     var EFFECTS = {
         // effect method that will set opacity of object based on distance from center
         opacity : function(grid, obj, objData){
-
-            objectOpacity(grid, obj, objData.i);
-
+            var ud = grid.userData;
+            var b = objData.da / ud.distMax;
+            b = 1 - b;
+            b = parseFloat(b.toFixed(2));
+            // call set opacity helper
+            setOpacity(obj, b);
         }
     };
     // get a 'true' position in the form of a Vector2 for the given object index
@@ -177,6 +182,16 @@ var ObjectGridWrap = (function(){
             objData.truePos = getTruePos(grid, objData.i );
             objData.adjustPos = getAdjustedPos(grid, objData.i );
             objData.pos = getPos(grid, objData.i);
+
+            // d and da
+            //var v_adjust = getAdjustedPos(grid, objectIndex),
+            var v2 = new THREE.Vector2(objData.adjustPos.x + 0.5, objData.adjustPos.y + 0.5),
+            d = objData.d = v2.distanceTo( ud.center );
+            var da = d * ud.dAdjust;       
+            da = da < 0 ? 0 : da;
+            da = da > ud.distMax ? ud.distMax : da;
+objData.da = da;
+            
 
             ud.effects.forEach(function(effectKey){
                 EFFECTS[effectKey](grid, obj, objData)

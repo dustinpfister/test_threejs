@@ -14,6 +14,7 @@
 * (done) have a ud.center
 * (done) have a ud.distMax
 * (done) renamed opt.aOpacity to opt.dAdjust
+* (done) have d and da props for objectData
 
 * () Have a scale effect
 
