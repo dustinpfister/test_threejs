@@ -60,7 +60,8 @@ var grid = ObjectGridWrap.create({
     space: space,
     tw: tw,
     th: th,
-    aOpacity: 1.25,
+    //aOpacity: 1.25,
+    dAdjust: 1.25,
     effects: ['opacity'],
     sourceObjects: array_source_objects,
     objectIndices: array_oi

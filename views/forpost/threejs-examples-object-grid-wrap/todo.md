@@ -12,7 +12,8 @@
 * (done) can disable trans effect by giving an empty array for new effects create method option
 
 * (done) have a ud.center
-* () have a ud.distMax
+* (done) have a ud.distMax
+* (done) renamed opt.aOpacity to opt.dAdjust
 
 * () Have a scale effect
 

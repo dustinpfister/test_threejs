@@ -56,7 +56,7 @@ var ObjectGridWrap = (function(){
         v_adjust = getAdjustedPos(grid, objectIndex);
         var v2 = new THREE.Vector2(v_adjust.x + 0.5, v_adjust.y + 0.5),
         d = v2.distanceTo( ud.center );
-        d *= ud.aOpacity;        
+        d *= ud.dAdjust;       
         d = d < 0 ? 0 : d;
         d = d > ud.distMax ? ud.distMax : d;
         var b = d / ud.distMax;
@@ -69,9 +69,8 @@ var ObjectGridWrap = (function(){
     var EFFECTS = {
         // effect method that will set opacity of object based on distance from center
         opacity : function(grid, obj, objData){
-//console.log(objData);
 
-objectOpacity(grid, obj, objData.i);
+            objectOpacity(grid, obj, objData.i);
 
         }
     };
@@ -124,7 +123,8 @@ objectOpacity(grid, obj, objData.i);
         ud.alphaZ = opt.alphaZ;
         ud.tw = opt.tw;
         ud.th = opt.th;
-        ud.aOpacity = opt.aOpacity === undefined ? 1.0 : opt.aOpacity;
+        // ud.dAdjust aka ud.aOpacity 
+        ud.aOpacity = ud.dAdjust = opt.dAdjust === undefined ? 1.0 : opt.dAdjust;
         // ud center, and ud.distMax
         ud.center = new THREE.Vector2(ud.tw / 2, ud.th / 2);
         ud.distMax = ud.center.distanceTo( new THREE.Vector2(0.5, 0.5) );
@@ -144,12 +144,10 @@ objectOpacity(grid, obj, objData.i);
         api.update(grid);
         return grid;
     };
-
     // set grid to alphas helper
     var setGridToAlphas = function(grid, objectIndex){
         var ud = grid.userData;
         var obj = grid.children[objectIndex];
-
         var v_adjust = getAdjustedPos(grid, objectIndex);
         // use spacing
         var x = v_adjust.x * ud.space;
@@ -157,11 +155,9 @@ objectOpacity(grid, obj, objData.i);
         // subtract so that objects are centered
         x -= (ud.tw - 1) * ud.space / 2;
         z -= (ud.th - 1) * ud.space / 2;
-
         // set position
         obj.position.set(x, 0, z);
     };
-    
     // set position
     api.setPos = function(grid, x, z){
         var ud = grid.userData;
