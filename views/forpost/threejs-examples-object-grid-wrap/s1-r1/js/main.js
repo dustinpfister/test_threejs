@@ -21,7 +21,7 @@ scene.add(dl);
 //******** **********
 var tw = 5,
 th = 5,
-space = 1.25;
+space = 1.5;
 // source objects
 var mkBox = function(color, h){
     var box = new THREE.Group();
@@ -29,7 +29,7 @@ var mkBox = function(color, h){
         new THREE.BoxGeometry( 1, h, 0.25 + 0.25),
         new THREE.MeshStandardMaterial({ color: color}) );
     mesh.position.y = h / 2;
-    mesh.rotation.y = Math.PI / 180 * 20 * -1;
+    //mesh.rotation.y = Math.PI / 180 * 20 * -1;
     var ground = new THREE.Mesh(
         new THREE.BoxGeometry( space, 0.1, space),
         new THREE.MeshStandardMaterial({ color: 0xffffff}) );
@@ -39,10 +39,10 @@ var mkBox = function(color, h){
     return box;
 };
 var array_source_objects = [
-    new THREE.Object3D(),
+    mkBox(0xffffff, 0.1), //new THREE.Object3D(),
     mkBox(0xff0000, 3.5),
     mkBox(0x00ff00, 1.0),
-mkBox(0x00ff00, 0.25)
+mkBox(0x00ffff, 0.25)
 ];
 /*
 var array_oi = [],
@@ -67,6 +67,7 @@ var grid = ObjectGridWrap.create({
     tw: tw,
     th: th,
     aOpacity: 1.25,
+    effects: ['opacity'],
     sourceObjects: array_source_objects,
     objectIndices: array_oi
 });
@@ -90,8 +91,8 @@ var loop = function () {
     ud = grid.userData;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-        ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
-        ObjectGridWrap.update(grid);
+        //ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
+        //ObjectGridWrap.update(grid);
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
