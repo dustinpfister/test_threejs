@@ -53,16 +53,13 @@ var ObjectGridWrap = (function(){
     // Object opacity check
     var objectOpacity = function(grid, obj, objectIndex){
         var ud = grid.userData,
-        //obj = grid.children[objectIndex],
-        //v_center = new THREE.Vector2(ud.tw / 2, ud.th / 2),
-        distMax = ud.center.distanceTo( new THREE.Vector2(0.5, 0.5) );
-        var v_adjust = getAdjustedPos(grid, objectIndex);
+        v_adjust = getAdjustedPos(grid, objectIndex);
         var v2 = new THREE.Vector2(v_adjust.x + 0.5, v_adjust.y + 0.5),
         d = v2.distanceTo( ud.center );
         d *= ud.aOpacity;        
         d = d < 0 ? 0 : d;
-        d = d > distMax ? distMax : d;
-        var b = d / distMax;
+        d = d > ud.distMax ? ud.distMax : d;
+        var b = d / ud.distMax;
         b = 1 - b;
         b = parseFloat(b.toFixed(2));
         // call set opacity helper
@@ -128,9 +125,9 @@ objectOpacity(grid, obj, objData.i);
         ud.tw = opt.tw;
         ud.th = opt.th;
         ud.aOpacity = opt.aOpacity === undefined ? 1.0 : opt.aOpacity;
-        // ud center
+        // ud center, and ud.distMax
         ud.center = new THREE.Vector2(ud.tw / 2, ud.th / 2);
-
+        ud.distMax = ud.center.distanceTo( new THREE.Vector2(0.5, 0.5) );
         var i = 0, len = opt.tw * opt.th;
         while(i < len){
             var objIndex = opt.objectIndices[i];

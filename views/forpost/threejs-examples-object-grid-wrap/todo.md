@@ -11,6 +11,9 @@
 * (done) Have it so that values like -1 for source object index values will result in no object for that tile index
 * (done) can disable trans effect by giving an empty array for new effects create method option
 
+* (done) have a ud.center
+* () have a ud.distMax
+
 * () Have a scale effect
 
 ## ( done 05/20/2022 ) - first version r0
