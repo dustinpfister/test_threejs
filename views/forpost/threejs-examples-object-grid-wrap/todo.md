@@ -6,7 +6,7 @@
 ## () - rx -
 * () have a demo in which I am using a box geometry, cone geometry, and extrude geometry to create base objects that can then be used to create a mounties scene
 
-## () - first revision r1 - materials array fix, blank objects, trans effect optional
+## ( done 05/23/2022 ) - first revision r1 - materials array fix, blank objects, trans effect optional
 * (done) update build in clone method to work with array of materials ( see revised file for threejs-plane video)
 * (done) Have it so that values like -1 for source object index values will result in no object for that tile index
 * (done) can disable trans effect by giving an empty array for new effects create method option
