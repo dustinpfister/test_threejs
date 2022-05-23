@@ -10,7 +10,6 @@
 * (done) update build in clone method to work with array of materials ( see revised file for threejs-plane video)
 * (done) Have it so that values like -1 for source object index values will result in no object for that tile index
 * (done) can disable trans effect by giving an empty array for new effects create method option
-
 * (done) have a ud.center
 * (done) have a ud.distMax
 * (done) renamed opt.aOpacity to opt.dAdjust

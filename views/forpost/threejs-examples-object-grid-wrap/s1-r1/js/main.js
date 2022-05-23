@@ -19,8 +19,8 @@ scene.add(dl);
 //******** **********
 // GRID OPTIONS
 //******** **********
-var tw = 5,
-th = 5,
+var tw = 9,
+th = 9,
 space = 1.5;
 // source objects
 var mkBox = function(color, h){
@@ -40,18 +40,23 @@ var mkBox = function(color, h){
     return box;
 };
 var array_source_objects = [
-    mkBox(0xff00ff, 0.25), //new THREE.Object3D(),
-    mkBox(0xff0000, 3.50),
-    mkBox(0x00ff00, 1.00),
-    mkBox(0x00ffff, 0.50)
+    mkBox(0x00ffff, 0.25), //new THREE.Object3D(),
+    mkBox(0xff0000, 10.00),
+    mkBox(0xffff00, 4.50),
+    mkBox(0x00ff00, 1.50)
 ];
 
 var array_oi = [
-0,0,3,0,0,
-0,2,2,2,0,
-3,2,1,2,3,
-0,2,2,2,0,
-0,0,3,0,0]
+0,0,0,0,0,3,3,0,0,
+0,0,0,0,3,2,3,0,0,
+0,0,0,3,2,3,3,0,0,
+0,0,3,2,2,2,3,0,0,
+0,3,2,2,1,2,3,0,0,
+3,2,3,2,2,2,2,3,0,
+0,3,0,3,3,3,2,3,0,
+0,0,0,0,0,0,3,3,0,
+0,0,0,0,0,0,0,0,0
+]
 
 //******** **********
 // CREATE GRID
@@ -62,7 +67,7 @@ var grid = ObjectGridWrap.create({
     th: th,
     //aOpacity: 1.25,
     dAdjust: 1.25,
-    effects: ['opacity'],
+    effects: ['opacity', 'scale'],
     sourceObjects: array_source_objects,
     objectIndices: array_oi
 });

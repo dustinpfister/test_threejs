@@ -61,6 +61,14 @@ var ObjectGridWrap = (function(){
             b = parseFloat(b.toFixed(2));
             // call set opacity helper
             setOpacity(obj, b);
+        },
+        scale : function(grid, obj, objData){
+            var ud = grid.userData;
+            var b = objData.da / ud.distMax;
+
+            obj.scale.set(1, 1, 1).multiplyScalar(1 - b)
+
+            //setOpacity(obj, b);
         }
     };
     //******** **********
