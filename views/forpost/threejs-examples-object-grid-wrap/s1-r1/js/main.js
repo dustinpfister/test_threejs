@@ -39,8 +39,10 @@ var mkBox = function(color, h){
     return box;
 };
 var array_source_objects = [
-    mkBox(0xff0000, 0.5),
-    mkBox(0x00ff00, 1)
+    new THREE.Object3D(),
+    mkBox(0xff0000, 3.5),
+    mkBox(0x00ff00, 1.0),
+mkBox(0x00ff00, 0.25)
 ];
 /*
 var array_oi = [],
@@ -51,11 +53,11 @@ while(i < len){
 */
 
 var array_oi = [
-0,0,0,0,0,
-0,0,0,0,0,
-0,0,1,2,0,
-0,0,0,0,0,
-0,0,0,0,0]
+0,0,3,0,0,
+0,2,2,2,0,
+3,2,1,2,3,
+0,2,2,2,0,
+0,0,3,0,0]
 
 //******** **********
 // CREATE GRID
@@ -69,6 +71,9 @@ var grid = ObjectGridWrap.create({
     objectIndices: array_oi
 });
 scene.add(grid);
+
+console.log(grid);
+
 //******** **********
 // LOOP
 //******** **********
@@ -85,8 +90,8 @@ var loop = function () {
     ud = grid.userData;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-        //ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
-        //ObjectGridWrap.update(grid);
+        ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
+        ObjectGridWrap.update(grid);
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;

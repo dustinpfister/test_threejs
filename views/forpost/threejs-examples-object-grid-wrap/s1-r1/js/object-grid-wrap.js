@@ -73,9 +73,9 @@ var ObjectGridWrap = (function(){
                 var obj = opt.cloner(opt, objIndex);
                 grid.add(obj);
             }else{
+                // else push a blank object
                 grid.add(new THREE.Object3D());
             }
-
             i += 1;
         };
         api.update(grid);
@@ -148,7 +148,7 @@ var ObjectGridWrap = (function(){
             // the current state of alphaX and alphaY
             setGridToAlphas(grid, i);
             
-            //objectOpacity(grid, obj, i);
+            objectOpacity(grid, obj, i);
         });
     };
     // return public API
