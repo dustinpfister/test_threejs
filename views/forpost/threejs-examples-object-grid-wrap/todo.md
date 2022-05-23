@@ -14,8 +14,7 @@
 * (done) have a ud.distMax
 * (done) renamed opt.aOpacity to opt.dAdjust
 * (done) have d and da props for objectData
-
-* () Have a scale effect
+* (done) Have a scale effect
 
 ## ( done 05/20/2022 ) - first version r0
 * (done) crude start working

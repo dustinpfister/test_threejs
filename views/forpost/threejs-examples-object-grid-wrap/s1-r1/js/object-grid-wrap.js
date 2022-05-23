@@ -1,7 +1,7 @@
 //******** **********
 // ObjectGridWrap module - based off of threejs-examples-object-grid-wrap r1
-// * now works with mesh objects that use an array of materials
-// 
+// * works with mesh objects that use an array of materials
+// * Effects object started with opacity and scale effects built in
 //******** **********
 var ObjectGridWrap = (function(){
     // public API
@@ -62,13 +62,28 @@ var ObjectGridWrap = (function(){
             // call set opacity helper
             setOpacity(obj, b);
         },
+        // set scale based on distance from center
         scale : function(grid, obj, objData){
             var ud = grid.userData;
             var b = objData.da / ud.distMax;
-
-            obj.scale.set(1, 1, 1).multiplyScalar(1 - b)
-
-            //setOpacity(obj, b);
+            obj.scale.set(1, 1, 1).multiplyScalar(1 - b);
+        },
+        // rotationA demo effect
+        rotationA : function(grid, obj, objData){
+            var ud = grid.userData;
+            var b = objData.da / ud.distMax;
+            var y = ( 1 - b ) * Math.PI * 4;
+            obj.rotation.set(0, y, 0);
+        },
+        // rotationB demo effect
+        rotationB : function(grid, obj, objData){
+            obj.rotation.set(0, 0, 0);
+        },
+        // positionA demo effect
+        positionA : function(grid, obj, objData){
+            var ud = grid.userData;
+            var b = objData.da / ud.distMax;
+            obj.position.y = ud.tw / 2 * (1 - b);
         }
     };
     //******** **********
