@@ -1,6 +1,7 @@
 //******** **********
 // ObjectGridWrap module - based off of threejs-examples-object-grid-wrap r1
 // * now works with mesh objects that use an array of materials
+// 
 //******** **********
 var ObjectGridWrap = (function(){
     // public API
@@ -74,6 +75,7 @@ var ObjectGridWrap = (function(){
         api.update(grid);
         return grid;
     };
+
     // set grid to alphas helper
     var setGridToAlphas = function(grid, objectIndex){
         var ud = grid.userData;
@@ -108,9 +110,9 @@ var ObjectGridWrap = (function(){
         });
     };
     // Object opacity check
-    var objectOpacityCheck = function(grid, objectIndex){
+    var objectOpacity = function(grid, obj, objectIndex){
         var ud = grid.userData,
-        obj = grid.children[objectIndex],
+        //obj = grid.children[objectIndex],
         v_center = new THREE.Vector2(ud.tw / 2, ud.th / 2),
         distMax = v_center.distanceTo( new THREE.Vector2(0.5, 0.5) );
         var v_adjust = getAdjustedPos(grid, objectIndex);
@@ -134,9 +136,13 @@ var ObjectGridWrap = (function(){
     };
     // main update method
     api.update = function(grid){
+        // for all children
         grid.children.forEach(function(obj, i){
+            // set the position of all objects based on 
+            // the current state of alphaX and alphaY
             setGridToAlphas(grid, i);
-            objectOpacityCheck(grid, i);
+            
+            objectOpacity(grid, obj, i);
         });
     };
     // return public API
