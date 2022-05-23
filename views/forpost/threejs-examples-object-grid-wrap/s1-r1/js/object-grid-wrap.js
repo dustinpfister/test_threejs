@@ -68,8 +68,14 @@ var ObjectGridWrap = (function(){
         var i = 0, len = opt.tw * opt.th;
         while(i < len){
             var objIndex = opt.objectIndices[i];
-            var obj = opt.cloner(opt, objIndex);
-            grid.add(obj);
+            // if we have a vailid index clone the source object of that index
+            if(typeof objIndex === 'number' && objIndex >= 0 && objIndex <= opt.sourceObjects.length - 1){
+                var obj = opt.cloner(opt, objIndex);
+                grid.add(obj);
+            }else{
+                grid.add(new THREE.Object3D());
+            }
+
             i += 1;
         };
         api.update(grid);
@@ -142,7 +148,7 @@ var ObjectGridWrap = (function(){
             // the current state of alphaX and alphaY
             setGridToAlphas(grid, i);
             
-            objectOpacity(grid, obj, i);
+            //objectOpacity(grid, obj, i);
         });
     };
     // return public API
