@@ -121,6 +121,7 @@ objectOpacity(grid, obj, objData.i);
         opt.cloner = opt.cloner || DEFAULT_CLONER;
         var grid = new THREE.Group();
         var ud = grid.userData;
+        ud.effects = opt.effects || [];
         ud.space = opt.space === undefined ? 1 : opt.space;
         ud.alphaX = opt.alphaX;
         ud.alphaZ = opt.alphaZ;
@@ -172,6 +173,7 @@ objectOpacity(grid, obj, objData.i);
     };
     // main update method
     api.update = function(grid){
+        var ud = grid.userData;
         // for all children
         grid.children.forEach(function(obj, i){
             // set the position of all objects based on 
@@ -183,7 +185,9 @@ objectOpacity(grid, obj, objData.i);
             objData.adjustPos = getAdjustedPos(grid, objData.i );
             objData.pos = getPos(grid, objData.i);
 
-            EFFECTS['opacity'](grid, obj, objData)
+            ud.effects.forEach(function(effectKey){
+                EFFECTS[effectKey](grid, obj, objData)
+            });
             
             //objectOpacity(grid, obj, i);
         });
