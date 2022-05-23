@@ -6,7 +6,9 @@
 var ObjectGridWrap = (function(){
     // public API
     var api = {};
-    // some defaults
+    //******** **********
+    //  DEFAULTS
+    //******** **********
     var  DEFAULT_SOURCE_OBJECTS = [
         new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial()),
         new THREE.Mesh( new THREE.SphereGeometry( 0.5, 30, 30), new THREE.MeshNormalMaterial())
@@ -50,24 +52,6 @@ var ObjectGridWrap = (function(){
             }
         });
     };
-    // Object opacity check
-/*
-    var objectOpacity = function(grid, obj, objectIndex){
-        var ud = grid.userData,
-        v_adjust = getAdjustedPos(grid, objectIndex),
-        v2 = new THREE.Vector2(v_adjust.x + 0.5, v_adjust.y + 0.5),
-        d = v2.distanceTo( ud.center );
-        d *= ud.dAdjust;       
-        d = d < 0 ? 0 : d;
-        d = d > ud.distMax ? ud.distMax : d;
-        var b = d / ud.distMax;
-        b = 1 - b;
-        b = parseFloat(b.toFixed(2));
-        // call set opacity helper
-        setOpacity(obj, b);
-        //console.log(i, '(' + trueX + ',' + trueZ + ')', 'd=' + d.toFixed(2), distMax.toFixed(2), b);
-    };
-*/
     var EFFECTS = {
         // effect method that will set opacity of object based on distance from center
         opacity : function(grid, obj, objData){
@@ -79,6 +63,9 @@ var ObjectGridWrap = (function(){
             setOpacity(obj, b);
         }
     };
+    //******** **********
+    //  POSITION HELPERS
+    //******** **********
     // get a 'true' position in the form of a Vector2 for the given object index
     // by true position I mean how things are with the state of the objectIndices array
     // it can also be thought of as a kind of 'home position' as well
@@ -109,6 +96,9 @@ var ObjectGridWrap = (function(){
         z -= (ud.th - 1) * ud.space / 2;
         return new THREE.Vector2(x, z);        
     };
+    //******** **********
+    //  CREATE METHOD
+    //******** **********
     // The create method will create and return a new THREE.Group with desired source objects
     // and induces for where clones of these objects shall be placed
     api.create = function(opt){
@@ -149,6 +139,9 @@ var ObjectGridWrap = (function(){
         api.update(grid);
         return grid;
     };
+    //******** **********
+    //  SET / UPDATE GRID + HELPERS
+    //******** **********
     // set grid to alphas helper
     var setGridToAlphas = function(grid, objectIndex){
         var ud = grid.userData;
@@ -177,27 +170,22 @@ var ObjectGridWrap = (function(){
             // set the position of all objects based on 
             // the current state of alphaX and alphaY
             setGridToAlphas(grid, i);
-
+            // create object data
             var objData = { i : i };
             objData.truePos = getTruePos(grid, objData.i );
             objData.adjustPos = getAdjustedPos(grid, objData.i );
             objData.pos = getPos(grid, objData.i);
-
             // d and da
-            //var v_adjust = getAdjustedPos(grid, objectIndex),
             var v2 = new THREE.Vector2(objData.adjustPos.x + 0.5, objData.adjustPos.y + 0.5),
             d = objData.d = v2.distanceTo( ud.center );
             var da = d * ud.dAdjust;       
             da = da < 0 ? 0 : da;
             da = da > ud.distMax ? ud.distMax : da;
-objData.da = da;
-            
-
+            objData.da = da;
+            // apply all effects
             ud.effects.forEach(function(effectKey){
                 EFFECTS[effectKey](grid, obj, objData)
             });
-            
-            //objectOpacity(grid, obj, i);
         });
     };
     // return public API
