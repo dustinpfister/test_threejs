@@ -17,7 +17,11 @@ var WeirdWalk = (function(){
     var mkLegObj = function(opt){
         var leg = new THREE.Group();
         // foot mesh
-        var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot );
+
+        //var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot );
+var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot );
+
+
         //foot.position.set( 0, 3.74 + opt.radius, 0.62);
         foot.position.set( 0, opt.radius + opt.radius, 0.62);
         leg.add(foot);

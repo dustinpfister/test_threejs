@@ -103,7 +103,7 @@ var m2 = new THREE.MeshStandardMaterial({
 });
 var ww3_1 = WeirdWalk.create({
     legCount: 5,
-    radius: 3,
+    radius: 2.25,
     bodyLegChild: true,
     materials: {
         foot: m,
@@ -138,7 +138,7 @@ var loop = function () {
         ObjectGridWrap.update(grid);
 
         ww3_1.userData.legs.rotation.x = -Math.PI * 4 * per;
-        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 20;
+        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 10;
 
         camera.lookAt(ww3_1.position.clone().add(new THREE.Vector3(0,-0.5,0)));
 
