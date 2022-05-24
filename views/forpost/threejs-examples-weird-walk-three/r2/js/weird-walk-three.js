@@ -19,19 +19,19 @@ var WeirdWalk = (function(){
         // foot mesh
         var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot );
         //foot.position.set( 0, 3.74 + opt.radius, 0.62);
-        foot.position.set( 0, opt.radius * 0.5 + opt.radius, 0.62);
+        foot.position.set( 0, opt.radius + opt.radius, 0.62);
         leg.add(foot);
         // calf mesh
         var calf = new THREE.Mesh( new THREE.BoxGeometry(1, opt.radius, 0.75), opt.materials.calf );
         //calf.position.set(0, 1.87 + opt.radius, 0);
-        calf.position.set(0, opt.radius * 0.5 + opt.radius / 2, 0);
+        calf.position.set(0, opt.radius + opt.radius / 2, 0);
         leg.add(calf);
         return leg;
     };
 
     var mkBody = function(opt){
         var body = new THREE.Group();
-        var center = new THREE.Mesh( new THREE.SphereGeometry(opt.radius * 0.5, 30, 30), opt.materials.center );
+        var center = new THREE.Mesh( new THREE.SphereGeometry(opt.radius, 30, 30), opt.materials.center );
         body.add(center);
         return body;
     };
