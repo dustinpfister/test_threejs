@@ -5,7 +5,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-10, 3, -8);
+camera.position.set(-12, 3, -7);
 
 
 var renderer = new THREE.WebGLRenderer();
@@ -21,8 +21,8 @@ scene.add(dl);
 // GRID OPTIONS
 //******** **********
 var tw = 9,
-th = 9,
-space = 2.5;
+th = 15,
+space = 3;
 // source objects
 var mkGround = function(){
     var ground = new THREE.Mesh(
@@ -52,18 +52,25 @@ var array_source_objects = [
     mkBox(0x00ff00, 2.00),
     mkBox(0xffff00, 2.50),
     mkBox(0xff8f00, 3.50),
-    mkBox(0xff0000, 4.00)
+    mkBox(0xff0000, 4.00),
+    mkBox(0xffffff, 7.00)
 ];
 var array_oi = [
-0,0,0,1,4,0,0,0,0,
-0,0,0,2,4,0,0,0,0,
-0,0,0,1,5,0,0,0,0,
-0,0,0,2,5,7,0,0,0,
-0,0,0,2,6,0,0,0,0,
-0,0,0,1,5,0,0,0,0,
-0,0,0,3,5,0,0,0,0,
-0,0,0,1,4,7,0,0,0,
-0,0,0,2,4,0,0,0,0
+0,0,0,2,4,0,0,0,8,
+0,0,0,1,4,0,0,0,7,
+0,0,0,1,5,0,0,8,7,
+0,0,0,2,5,7,0,0,7,
+0,0,0,2,6,0,0,0,8,
+0,0,0,1,5,7,0,0,7,
+0,0,0,3,5,0,0,0,7,
+0,0,0,1,4,7,0,0,8,
+0,0,0,2,4,0,0,0,7,
+0,0,0,3,4,0,0,0,7,
+0,0,0,2,4,0,0,0,7,
+0,0,0,1,4,0,0,0,8,
+0,0,0,1,4,7,0,0,7,
+0,0,0,2,4,0,0,8,7,
+0,0,0,3,4,0,0,0,7
 ]
 //******** **********
 // CREATE GRID
@@ -85,7 +92,7 @@ scene.add(grid);
 var ww3_1 = WeirdWalk.create();
 var s = 0.5;
 ww3_1.scale.set(s, s, s);
-ww3_1.position.set(-5, 2.7, -3);
+ww3_1.position.set(-6, 2.7, -3);
 scene.add(ww3_1);
 
 
@@ -108,12 +115,12 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         //ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
-        ObjectGridWrap.setPos(grid, 0, per * 2 );
+        ObjectGridWrap.setPos(grid, 0, per * 1 );
         ObjectGridWrap.update(grid);
 
         ww3_1.rotation.x = -Math.PI * 4 * per;
 
-        camera.lookAt(ww3_1.position);
+        camera.lookAt(ww3_1.position.clone().add(new THREE.Vector3(0,-0.75,0)));
 
 
         renderer.render(scene, camera);
