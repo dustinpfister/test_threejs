@@ -79,6 +79,14 @@ var grid = ObjectGridWrap.create({
 });
 scene.add(grid);
 //******** **********
+// WERID WALK THREE
+//******** **********
+var ww3_1 = WeirdWalk.create();
+ww3_1.position.set(-5,0.5,0)
+scene.add(ww3_1)
+
+
+//******** **********
 // LOOP
 //******** **********
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
