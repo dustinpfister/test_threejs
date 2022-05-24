@@ -43,13 +43,13 @@ var geometry = new THREE.ExtrudeGeometry(fs, extrudeSettings);
 geometry.rotateX(Math.PI * 1); // might want to center
 geometry.center();
 // mesh
-var foot = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+var foot = new THREE.Mesh(geometry, opt.materials.foot);
 //mesh.add(new THREE.BoxHelper(mesh));
 
 foot.rotation.y = Math.PI * 1.5;
 foot.rotation.x = Math.PI * 1.0;
 
-foot.scale.set(2,1,1);
+foot.scale.set(2.00,1,1);
 
         //foot.position.set( 0, 3.74 + opt.radius, 0.62);
         foot.position.set( 0, opt.radius + opt.radius, 0.62);

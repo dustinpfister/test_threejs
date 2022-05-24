@@ -99,7 +99,8 @@ var m = new THREE.MeshStandardMaterial({
     map: texture_rnd1
 });
 var m2 = new THREE.MeshStandardMaterial({
-    map: texture_rnd2
+    map: texture_rnd2,
+    color: 0xff0000
 });
 var ww3_1 = WeirdWalk.create({
     legCount: 5,
