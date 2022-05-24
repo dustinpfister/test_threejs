@@ -15,9 +15,6 @@ var WeirdWalk = (function(){
 
     // just make and return Leg object
     var mkLegObj = function(opt){
-        opt = opt || {};
-        opt.materials = opt.materials || MATERIALS;
-        opt.radius = opt.radius === undefined ? 1 : + opt.radius; 
         var leg = new THREE.Group();
         // foot mesh
         var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot );
@@ -31,8 +28,6 @@ var WeirdWalk = (function(){
     };
 
     var mkBody = function(opt){
-        opt = opt || {};
-        opt.materials = opt.materials || MATERIALS;
         var body = new THREE.Group();
         var center = new THREE.Mesh( new THREE.SphereGeometry(1.5, 30, 30), opt.materials.center );
         body.add(center);
@@ -40,15 +35,18 @@ var WeirdWalk = (function(){
     };
 
     api.create = function(opt){
+        opt = opt || {};
+        opt.materials = opt.materials || MATERIALS;
+        opt.radius = opt.radius === undefined ? 1 : + opt.radius; 
         var weird = new THREE.Group(),
         ud = weird.userData;
         // add legs
         var legs = ud.legs = new THREE.Group();
         weird.add(legs);
-        var i = 0, len = 8;
-        while(i < len){
+        var i = 0; //len = 8;
+        while(i < opt.legCount ){
             var leg = mkLegObj(opt);
-            leg.rotation.x = Math.PI * 2 / len * i;
+            leg.rotation.x = Math.PI * 2 / opt.legCount * i;
             legs.add(leg);
             i += 1;
         }

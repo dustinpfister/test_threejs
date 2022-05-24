@@ -92,6 +92,7 @@ scene.add(grid);
 //******** **********
 var m = new THREE.MeshStandardMaterial();
 var ww3_1 = WeirdWalk.create({
+    legCount: 3,
     materials: {
         foot: m,
         calf: m,
