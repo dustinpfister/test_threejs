@@ -115,7 +115,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         //ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
-        ObjectGridWrap.setPos(grid, 0, per * 1 );
+        ObjectGridWrap.setPos(grid, 0.10 - 0.10 * bias, per * 1 );
         ObjectGridWrap.update(grid);
 
         ww3_1.userData.legs.rotation.x = -Math.PI * 4 * per;
