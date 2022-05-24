@@ -10,18 +10,21 @@ var WeirdWalk = (function(){
     var DEFAULT_MATERIAL = new THREE.MeshNormalMaterial();
 
     MATERIALS.foot = DEFAULT_MATERIAL;
+    MATERIALS.calf = DEFAULT_MATERIAL;
 
     // just make and return Leg object
     var mkLegObj = function(opt){
         opt = opt || {};
         opt.materials = opt.materials || MATERIALS;
-
         var leg = new THREE.Group();
-        var foot = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), opt.materials.foot );
+        // foot mesh
+        var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot );
         leg.add(foot);
-
+        // calf mesh
+        var calf = new THREE.Mesh( new THREE.BoxGeometry(1, 3, 0.75), opt.materials.calf );
+        calf.position.set(0, 1.87, 0.625);
+        leg.add(calf);
         return leg;
-
     };
 
     api.create = function(opt){
