@@ -115,7 +115,29 @@ var s = 0.5;
 ww3_1.scale.set(s, s, s);
 ww3_1.position.set(-7, 2.7, -3);
 scene.add(ww3_1);
+//******** **********
+// SHAPE AND Extrude
+//******** **********
 
+// make the shape
+var tri = new THREE.Shape();
+tri.moveTo(0, 1);
+tri.lineTo(1, -1);
+tri.lineTo(-1, -1);
+// geometry
+var extrudeSettings = {
+    depth: 1,
+    bevelEnabled: false
+};
+var geometry = new THREE.ExtrudeGeometry(tri, extrudeSettings);
+geometry.rotateX(Math.PI * 1); // might want to center
+geometry.center();
+// mesh
+var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+mesh.add(new THREE.BoxHelper(mesh));
+mesh.position.set(-9,1,0);
+// add the mesh to the scene
+scene.add(mesh);
 
 //******** **********
 // LOOP
