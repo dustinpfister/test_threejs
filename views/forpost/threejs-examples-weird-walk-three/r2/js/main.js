@@ -120,16 +120,24 @@ scene.add(ww3_1);
 //******** **********
 
 // make the shape
-var tri = new THREE.Shape();
-tri.moveTo(0, 1);
-tri.lineTo(1, -1);
-tri.lineTo(-1, -1);
+var fs = new THREE.Shape();
+fs.moveTo(0.6, 0.0);
+fs.lineTo(0.6, 0.5);
+fs.lineTo(0.3, 0.6);
+fs.lineTo(0.0, 0.8);
+fs.lineTo(0.0, 1.0);
+fs.lineTo(1.0, 1.0);
+fs.lineTo(1.0, 0.0);
+//tri.moveTo(0, 1);
+//tri.lineTo(1, -1);
+//tri.lineTo(-1, -1);
+
 // geometry
 var extrudeSettings = {
     depth: 1,
     bevelEnabled: false
 };
-var geometry = new THREE.ExtrudeGeometry(tri, extrudeSettings);
+var geometry = new THREE.ExtrudeGeometry(fs, extrudeSettings);
 geometry.rotateX(Math.PI * 1); // might want to center
 geometry.center();
 // mesh
