@@ -19,10 +19,11 @@ var WeirdWalk = (function(){
         var leg = new THREE.Group();
         // foot mesh
         var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot );
+        foot.position.set( 0, 3.74 + 1, 0.62);
         leg.add(foot);
         // calf mesh
         var calf = new THREE.Mesh( new THREE.BoxGeometry(1, 3, 0.75), opt.materials.calf );
-        calf.position.set(0, 1.87, 0.625);
+        calf.position.set(0, 1.87 + 1, 0);
         leg.add(calf);
         return leg;
     };
@@ -31,9 +32,15 @@ var WeirdWalk = (function(){
 
         var weird = new THREE.Group();
 
-        var leg = mkLegObj(opt);
+        var i = 0, len = 6;
+        while(i < len){
+            var leg = mkLegObj(opt);
+            leg.rotation.x = Math.PI * 2 / len * i;
 
-        weird.add(leg)
+            weird.add(leg);
+            i += 1;
+        }
+
 
 
         return weird;
