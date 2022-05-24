@@ -37,7 +37,8 @@ var WeirdWalk = (function(){
     api.create = function(opt){
         opt = opt || {};
         opt.materials = opt.materials || MATERIALS;
-        opt.radius = opt.radius === undefined ? 1 : + opt.radius; 
+        opt.radius = opt.radius === undefined ? 1 : + opt.radius;
+        opt.bodyLegChild = opt.bodyLegChild || false;
         var weird = new THREE.Group(),
         ud = weird.userData;
         // add legs
@@ -52,7 +53,11 @@ var WeirdWalk = (function(){
         }
         // add body
         var body = ud.body = mkBody(opt);
-        weird.add(body);
+        if(opt.bodyLegChild){
+            legs.add(body);
+        }else{
+            weird.add(body);
+        }
         return weird;
     };
 
