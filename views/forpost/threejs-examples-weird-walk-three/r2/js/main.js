@@ -21,7 +21,8 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.15));
 //******** **********
 // TEXTURE
 //******** **********
-var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [0,255]);
+var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [128,255]);
+var texture_rnd2 = datatex.seededRandom(100, 100, 1, 1, 1, [128,255]);
 //******** **********
 // GRID OPTIONS
 //******** **********
@@ -97,13 +98,17 @@ scene.add(grid);
 var m = new THREE.MeshStandardMaterial({
     map: texture_rnd1
 });
+var m2 = new THREE.MeshStandardMaterial({
+    map: texture_rnd2
+});
 var ww3_1 = WeirdWalk.create({
-    legCount: 3,
+    legCount: 5,
+    radius: 3,
     bodyLegChild: true,
     materials: {
         foot: m,
         calf: m,
-        center: m
+        center: m2
     }
 });
 var s = 0.5;
