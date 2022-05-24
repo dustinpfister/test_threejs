@@ -5,7 +5,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-10, 5, 0);
+camera.position.set(-12, 3, -5);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -21,9 +21,8 @@ scene.add(dl);
 //******** **********
 var tw = 9,
 th = 9,
-space = 1.5;
+space = 2.5;
 // source objects
-
 var mkGround = function(){
     var ground = new THREE.Mesh(
         new THREE.BoxGeometry( space, 0.1, space),
@@ -54,7 +53,6 @@ var array_source_objects = [
     mkBox(0xff8f00, 3.50),
     mkBox(0xff0000, 4.00)
 ];
-
 var array_oi = [
 0,0,0,1,4,0,0,0,0,
 0,0,0,2,4,0,0,0,0,
@@ -66,7 +64,6 @@ var array_oi = [
 0,0,0,1,4,7,0,0,0,
 0,0,0,2,4,0,0,0,0
 ]
-
 //******** **********
 // CREATE GRID
 //******** **********
@@ -81,9 +78,6 @@ var grid = ObjectGridWrap.create({
     objectIndices: array_oi
 });
 scene.add(grid);
-
-console.log(grid);
-
 //******** **********
 // LOOP
 //******** **********
@@ -101,7 +95,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         //ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
-ObjectGridWrap.setPos(grid, 0, (1 - per) * 2 );
+         ObjectGridWrap.setPos(grid, 0, per * 2 );
         ObjectGridWrap.update(grid);
         renderer.render(scene, camera);
         frame += fps * secs;
