@@ -92,7 +92,7 @@ scene.add(grid);
 var ww3_1 = WeirdWalk.create();
 var s = 0.5;
 ww3_1.scale.set(s, s, s);
-ww3_1.position.set(-6, 2.7, -3);
+ww3_1.position.set(-7, 2.7, -3);
 scene.add(ww3_1);
 
 
@@ -119,8 +119,9 @@ var loop = function () {
         ObjectGridWrap.update(grid);
 
         ww3_1.userData.legs.rotation.x = -Math.PI * 4 * per;
+        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 20;
 
-        camera.lookAt(ww3_1.position.clone().add(new THREE.Vector3(0,-0.75,0)));
+        camera.lookAt(ww3_1.position.clone().add(new THREE.Vector3(0,-0.5,0)));
 
 
         renderer.render(scene, camera);

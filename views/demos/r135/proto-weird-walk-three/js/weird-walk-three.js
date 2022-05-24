@@ -45,7 +45,7 @@ var WeirdWalk = (function(){
         // add legs
         var legs = ud.legs = new THREE.Group();
         weird.add(legs);
-        var i = 0, len = 6;
+        var i = 0, len = 8;
         while(i < len){
             var leg = mkLegObj(opt);
             leg.rotation.x = Math.PI * 2 / len * i;
