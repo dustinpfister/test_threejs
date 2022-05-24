@@ -5,8 +5,9 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-12, 3, -5);
-camera.lookAt(0, 0, 0);
+camera.position.set(-10, 3, -8);
+
+
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
@@ -82,8 +83,12 @@ scene.add(grid);
 // WERID WALK THREE
 //******** **********
 var ww3_1 = WeirdWalk.create();
-ww3_1.position.set(-5,0.5,0);
-scene.add(ww3_1)
+var s = 0.5;
+ww3_1.scale.set(s, s, s);
+ww3_1.position.set(-5, 2.7, -3);
+scene.add(ww3_1);
+
+
 
 
 //******** **********
@@ -103,8 +108,14 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         //ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
-         ObjectGridWrap.setPos(grid, 0, per * 2 );
+        ObjectGridWrap.setPos(grid, 0, per * 2 );
         ObjectGridWrap.update(grid);
+
+        ww3_1.rotation.x = -Math.PI * 4 * per;
+
+        camera.lookAt(ww3_1.position);
+
+
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
