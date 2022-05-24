@@ -118,7 +118,7 @@ scene.add(ww3_1);
 //******** **********
 // SHAPE AND Extrude
 //******** **********
-
+/*
 // make the shape
 var fs = new THREE.Shape();
 fs.moveTo(0.6, 0.0);
@@ -146,6 +146,7 @@ mesh.add(new THREE.BoxHelper(mesh));
 mesh.position.set(-9,1,0);
 // add the mesh to the scene
 scene.add(mesh);
+*/
 
 //******** **********
 // LOOP

@@ -19,8 +19,37 @@ var WeirdWalk = (function(){
         // foot mesh
 
         //var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot );
-var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot );
+//var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot );
 
+// make the shape
+var fs = new THREE.Shape();
+fs.moveTo(0.6, 0.0);
+fs.lineTo(0.6, 0.5);
+fs.lineTo(0.3, 0.6);
+fs.lineTo(0.0, 0.8);
+fs.lineTo(0.0, 1.0);
+fs.lineTo(1.0, 1.0);
+fs.lineTo(1.0, 0.0);
+//tri.moveTo(0, 1);
+//tri.lineTo(1, -1);
+//tri.lineTo(-1, -1);
+
+// geometry
+var extrudeSettings = {
+    depth: 1,
+    bevelEnabled: false
+};
+var geometry = new THREE.ExtrudeGeometry(fs, extrudeSettings);
+geometry.rotateX(Math.PI * 1); // might want to center
+geometry.center();
+// mesh
+var foot = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+//mesh.add(new THREE.BoxHelper(mesh));
+
+foot.rotation.y = Math.PI * 1.5;
+foot.rotation.x = Math.PI * 1.0;
+
+foot.scale.set(2,1,1);
 
         //foot.position.set( 0, 3.74 + opt.radius, 0.62);
         foot.position.set( 0, opt.radius + opt.radius, 0.62);
@@ -28,7 +57,7 @@ var foot = new THREE.Mesh( new THREE.BoxGeometry(1, 0.75, 2), opt.materials.foot
         // calf mesh
         var calf = new THREE.Mesh( new THREE.BoxGeometry(1, opt.radius, 0.75), opt.materials.calf );
         //calf.position.set(0, 1.87 + opt.radius, 0);
-        calf.position.set(0, opt.radius + opt.radius / 2, 0);
+        calf.position.set(0, opt.radius + opt.radius / 2 - 0.5, 0);
         leg.add(calf);
         return leg;
     };
