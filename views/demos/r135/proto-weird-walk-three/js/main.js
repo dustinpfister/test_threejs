@@ -118,7 +118,7 @@ var loop = function () {
         ObjectGridWrap.setPos(grid, 0, per * 1 );
         ObjectGridWrap.update(grid);
 
-        ww3_1.rotation.x = -Math.PI * 4 * per;
+        ww3_1.userData.legs.rotation.x = -Math.PI * 4 * per;
 
         camera.lookAt(ww3_1.position.clone().add(new THREE.Vector3(0,-0.75,0)));
 
