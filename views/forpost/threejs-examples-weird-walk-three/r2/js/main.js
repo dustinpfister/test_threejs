@@ -33,7 +33,7 @@ space = 4;
 var mkGround = function(){
     var ground = new THREE.Mesh(
         new THREE.BoxGeometry( space, 0.1, space),
-        new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture_rnd1}) );
+        new THREE.MeshStandardMaterial({ color: 0x00af00, map: texture_rnd1}) );
     ground.position.y = 0.05 * -1;
     return ground;
 };
@@ -82,11 +82,11 @@ var array_oi = [
 // CREATE GRID
 //******** **********
 var grid = ObjectGridWrap.create({
-    space: space,
+    space: space + 0.5,
     tw: tw,
     th: th,
     dAdjust: 1.25,
-    effects: ['scale'],
+    //effects: ['scale'],
     sourceObjects: array_source_objects,
     objectIndices: array_oi
 });
@@ -95,11 +95,12 @@ scene.add(grid);
 // WERID WALK THREE
 //******** **********
 var m = new THREE.MeshStandardMaterial({
-    map: texture_rnd1
+    map: texture_rnd1,
+    color: 0xafafaf
 });
 var m2 = new THREE.MeshStandardMaterial({
     map: texture_rnd2,
-    color: 0xff0000
+    color: 0xdfdfdf
 });
 var ww3_1 = WeirdWalk.create({
     legCount: 3,
@@ -116,37 +117,14 @@ ww3_1.scale.set(s, s, s);
 ww3_1.position.set(-7, 2.7, -3);
 scene.add(ww3_1);
 //******** **********
-// SHAPE AND Extrude
+// STATIC GROUND
 //******** **********
-/*
-// make the shape
-var fs = new THREE.Shape();
-fs.moveTo(0.6, 0.0);
-fs.lineTo(0.6, 0.5);
-fs.lineTo(0.3, 0.6);
-fs.lineTo(0.0, 0.8);
-fs.lineTo(0.0, 1.0);
-fs.lineTo(1.0, 1.0);
-fs.lineTo(1.0, 0.0);
-//tri.moveTo(0, 1);
-//tri.lineTo(1, -1);
-//tri.lineTo(-1, -1);
 
-// geometry
-var extrudeSettings = {
-    depth: 1,
-    bevelEnabled: false
-};
-var geometry = new THREE.ExtrudeGeometry(fs, extrudeSettings);
-geometry.rotateX(Math.PI * 1); // might want to center
-geometry.center();
-// mesh
-var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
-mesh.add(new THREE.BoxHelper(mesh));
-mesh.position.set(-9,1,0);
-// add the mesh to the scene
-scene.add(mesh);
-*/
+var staticGround = mkGround();
+staticGround.position.y = -0.25;
+staticGround.material = new THREE.MeshStandardMaterial({color: 0x00faf00})
+staticGround.scale.set(20, 1, 20);
+scene.add(staticGround);
 
 //******** **********
 // LOOP
@@ -165,7 +143,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         //ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
-        ObjectGridWrap.setPos(grid, 0, per * 1 );
+        ObjectGridWrap.setPos(grid, 0.1, per * 1 );
         ObjectGridWrap.update(grid);
 
         ww3_1.userData.legs.rotation.x = -Math.PI * 6 * per;
