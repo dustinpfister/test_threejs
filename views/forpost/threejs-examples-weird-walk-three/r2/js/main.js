@@ -2,10 +2,10 @@
 // SCENE, CAMERA, RENDERER
 //******** **********
 var scene = new THREE.Scene();
-scene.background = new THREE.Color('#000000');
+scene.background = new THREE.Color('#004a4a');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-12, 3, -7);
+camera.position.set(-13, 3, -6);
 
 
 var renderer = new THREE.WebGLRenderer();
@@ -28,12 +28,12 @@ var texture_rnd2 = datatex.seededRandom(100, 100, 1, 1, 1, [128,255]);
 //******** **********
 var tw = 9,
 th = 15,
-space = 3;
+space = 4;
 // source objects
 var mkGround = function(){
     var ground = new THREE.Mesh(
         new THREE.BoxGeometry( space, 0.1, space),
-        new THREE.MeshStandardMaterial({ color: 0xffffff}) );
+        new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture_rnd1}) );
     ground.position.y = 0.05 * -1;
     return ground;
 };
@@ -42,7 +42,7 @@ var mkBox = function(color, h){
     var a = space * 0.5;
     var mesh = new THREE.Mesh(
         new THREE.BoxGeometry( a, h, a),
-        new THREE.MeshStandardMaterial({ color: color}) );
+        new THREE.MeshStandardMaterial({ color: color, map: texture_rnd1}) );
     mesh.position.y = h / 2;
     //mesh.rotation.y = Math.PI / 180 * 20 * -1;
     var ground = mkGround();
@@ -82,12 +82,11 @@ var array_oi = [
 // CREATE GRID
 //******** **********
 var grid = ObjectGridWrap.create({
-    space: space + 0.1,
+    space: space,
     tw: tw,
     th: th,
-    //aOpacity: 1.25,
     dAdjust: 1.25,
-    effects: [],
+    effects: ['scale'],
     sourceObjects: array_source_objects,
     objectIndices: array_oi
 });
@@ -103,7 +102,7 @@ var m2 = new THREE.MeshStandardMaterial({
     color: 0xff0000
 });
 var ww3_1 = WeirdWalk.create({
-    legCount: 5,
+    legCount: 3,
     radius: 2.25,
     bodyLegChild: true,
     materials: {
@@ -166,11 +165,11 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         //ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
-        ObjectGridWrap.setPos(grid, 0.10 - 0.10 * bias, per * 1 );
+        ObjectGridWrap.setPos(grid, 0, per * 1 );
         ObjectGridWrap.update(grid);
 
-        ww3_1.userData.legs.rotation.x = -Math.PI * 4 * per;
-        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 10;
+        ww3_1.userData.legs.rotation.x = -Math.PI * 6 * per;
+        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 5;
 
         camera.lookAt(ww3_1.position.clone().add(new THREE.Vector3(0,-0.5,0)));
 
