@@ -19,7 +19,7 @@
     scene.add(dl);
 
     // CONTROL
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    //var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 
     var frame = 0, frameMax = 300;
@@ -29,19 +29,20 @@
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
 
-/*
-        var per = frame / frameMax;
+
+        var per = frame / frameMax,
+        bias = 1 - Math.abs( per - 0.5) / 0.5;
         var r = Math.PI * 2 * per;
         var x = Math.cos(r) * 10;
         var z = Math.sin(r) * 10;
 
-        camera.lookAt(x, 15, z);
+        camera.lookAt(x, 15 - 15 * bias, z);
 
 
         frame += 1;
         frame %= frameMax;
-*/
-        controls.update();
+
+        //controls.update();
     };
     // USING DAE TOOLS TO LOAD THE *.dae file
     var daeObjects = DAE.create();
