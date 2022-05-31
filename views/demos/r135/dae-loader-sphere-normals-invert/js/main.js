@@ -6,7 +6,7 @@
     scene.add(new THREE.GridHelper(20, 20));
     scene.background = new THREE.Color('cyan');
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(-15, 15, -15);
+    camera.position.set(-25, 25, -25);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer();
@@ -48,6 +48,9 @@
         //material.side = THREE.DoubleSide;
 
         //console.log(material);
+
+        var helper = new THREE.VertexNormalsHelper(mesh, 5, 0x00ff00, 3);
+        scene.add(helper);
 
         loop();
     })
