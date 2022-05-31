@@ -6,8 +6,8 @@
     scene.add(new THREE.GridHelper(20, 20));
     scene.background = new THREE.Color('cyan');
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(-25, 25, -25);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(0, 10, 0);
+
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -19,6 +19,7 @@
 
     // CONTROL
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
 
     // app loop
     var loop = function () {
@@ -33,24 +34,31 @@
         var group = DAE.createGroup(daeObjects, 0);
         scene.add(group);
 
+        var mesh = group.children[0];
+
         // OPTION1 - REPLACE MATERIAL WITH BASIC MATERIAL?
         // A crude fix for this can be just be replacing the material
         // with the basic material, using the THREE.DoubleSide valu for the
         // side value
-        var mesh = group.children[0];
-        mesh.material = new THREE.MeshBasicMaterial({
-            side: THREE.DoubleSide,
-            map: null
-        });
+        //mesh.material = new THREE.MeshBasicMaterial({
+        //    side: THREE.DoubleSide,
+        //    map: null
+        //});
 
         // OPTION2 - MUTATE PHONG MATERIAL 
-        //var material = group.children[0].material;
+        //var material = mesh.material;
         //material.side = THREE.DoubleSide;
 
-        //console.log(material);
+        // OPTION3 - REPLACE WITH BASIC MATERIAL, USING MAP VALUE 
+        // FROM DAE FILE IMPORT
+        var sourceMaterial = mesh.material;
+        var newMaterial = new THREE.MeshBasicMaterial({
+            map: sourceMaterial.map
+        });
+        mesh.material = newMaterial;
 
-        var helper = new THREE.VertexNormalsHelper(mesh, 5, 0x00ff00, 3);
-        scene.add(helper);
+        //var helper = new THREE.VertexNormalsHelper(mesh, 5, 0x00ff00, 3);
+        //scene.add(helper);
 
         loop();
     })
