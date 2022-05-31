@@ -74,6 +74,15 @@
         });
         mesh.material = newMaterial;
 
+        // BASE GROUND MESH
+        var baseGround = new THREE.Mesh( new THREE.BoxGeometry(1, 0.1, 1), new THREE.MeshPhongMaterial({
+             color: 0x00ff00
+        }) );
+        baseGround.position.y = -0.125;
+        baseGround.scale.set(60, 1, 60);
+        scene.add(baseGround);
+
+        // VERTEX NORMALS HELPER
         //var helper = new THREE.VertexNormalsHelper(mesh, 5, 0x00ff00, 3);
         //scene.add(helper);
 
