@@ -7,6 +7,7 @@
     scene.background = new THREE.Color('cyan');
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(0, 10, 0);
+    camera.lookAt(0, 5, 10);
 
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer();
@@ -21,10 +22,25 @@
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 
+    var frame = 0, frameMax = 300;
+
     // app loop
     var loop = function () {
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
+
+/*
+        var per = frame / frameMax;
+        var r = Math.PI * 2 * per;
+        var x = Math.cos(r) * 10;
+        var z = Math.sin(r) * 10;
+
+        camera.lookAt(x, 15, z);
+
+
+        frame += 1;
+        frame %= frameMax;
+*/
         controls.update();
     };
     // USING DAE TOOLS TO LOAD THE *.dae file
