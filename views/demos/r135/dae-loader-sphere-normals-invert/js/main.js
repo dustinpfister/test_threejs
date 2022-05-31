@@ -16,6 +16,7 @@
 
     // LIGHT
     var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 1, 3)
     scene.add(dl);
 
     // CONTROL
@@ -77,7 +78,7 @@
         // BASE GROUND MESH
         var baseGround = new THREE.Mesh( new THREE.BoxGeometry(1, 0.1, 1), new THREE.MeshPhongMaterial({
              color: 0x00ff00
-        }) );
+        }));
         baseGround.position.y = -0.125;
         baseGround.scale.set(60, 1, 60);
         scene.add(baseGround);
