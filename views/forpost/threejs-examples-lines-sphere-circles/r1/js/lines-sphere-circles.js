@@ -5,6 +5,9 @@
 var LinesSphereCircles = (function(){
     // public api
     var api = {};
+    //******** **********
+    // CREATE POINTS
+    //******** **********
     // createSphereCirclePoints - return an array of Vector3 instances that is
     // just one circle for an over all sphere
     api.createSphereCirclePoints = function(opt, maxRadius, circleCount, circleIndex, pointsPerCircle){
@@ -30,15 +33,16 @@ var LinesSphereCircles = (function(){
         }
         return points;
     };
+    //******** **********
+    // CREATE GROUP
+    //******** **********
     // create sphere Lines THREE.GROUP
-    api.createSphereLines = function(maxRadius, circleCount, pointsPerCircle, colors){
-
+    api.createSphereLines = function(opt, maxRadius, circleCount, pointsPerCircle, colors){
         colors = colors || [0xff0000,0x00ff00,0x0000ff];
-
         var lines = new THREE.Group();
         var i = 1;
         while(i < circleCount + 1){
-            var p = api.createSphereCirclePoints({r1: 0.1, r2: 0.5}, maxRadius, circleCount + 1, i, pointsPerCircle);
+            var p = api.createSphereCirclePoints(opt, maxRadius, circleCount + 1, i, pointsPerCircle);
             var geometry = new THREE.BufferGeometry().setFromPoints( p);
             var line = scene.userData.line = new THREE.Line(
                 geometry,

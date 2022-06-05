@@ -13,7 +13,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LINES
 //******** **********
-var g = LinesSphereCircles.createSphereLines(5, 20, 50, [0x00ffff, 0x008800, 0x008888, 0x00ff00]);
+var g = LinesSphereCircles.createSphereLines({}, 5, 20, 50, [0x00ffff, 0x008800, 0x008888, 0x00ff00]);
 scene.add(g);
 //******** **********
 // LOOP
