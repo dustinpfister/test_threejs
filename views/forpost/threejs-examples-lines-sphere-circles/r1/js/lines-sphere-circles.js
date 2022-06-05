@@ -3,6 +3,12 @@
 // By Dustin Pfister : https://dustinpfister.github.io/
 //******** **********
 var LinesSphereCircles = (function(){
+    // built in for point methods
+    var forPoint = {};
+    // seeded random for point method example
+    forPoint.seededRandom = function(v, s, opt){
+        
+    };
     // public api
     var api = {};
     //******** **********
@@ -24,27 +30,27 @@ var LinesSphereCircles = (function(){
         circleIndex = circleIndex || 0;
         // create points
         var points = [];
-        var sPer = circleIndex / opt.circleCount;
-        var radius = Math.sin( Math.PI * opt.r1 * sPer ) * opt.maxRadius;
-        var y = Math.cos( Math.PI * opt.r2 * sPer ) * opt.maxRadius;
-        var i = 0;
+        var s = {};
+        s.sPer = circleIndex / opt.circleCount;
+        s.radius = Math.sin( Math.PI * opt.r1 * s.sPer ) * opt.maxRadius;
+        s.y = Math.cos( Math.PI * opt.r2 * s.sPer ) * opt.maxRadius;
+        s.i = 0;
         // buch points for the current circle
-        while(i < opt.pointsPerCircle){
+        while(s.i < opt.pointsPerCircle){
             // might want to subtract 1 or 0 for this cPer expression
-            var cPer =  i / ( opt.pointsPerCircle - 1 );
-            var radian = Math.PI * 2 * cPer;
-            var v = new THREE.Vector3();
-            v.x = Math.cos(radian) * radius;
-            v.y = y;
-            v.z = Math.sin(radian) * radius;
+            s.cPer =  s.i / ( opt.pointsPerCircle - 1 );
+            s.radian = Math.PI * 2 * s.cPer;
+            s.v = new THREE.Vector3();
+            s.v.x = Math.cos(s.radian) * s.radius;
+            s.v.y = s.y;
+            s.v.z = Math.sin(s.radian) * s.radius;
             // use a for point method if one is given
             if(opt.forPoint){
-                //var s = { i: i, sPer: sPer, cPer: cPer, radian: radian, radius: radius, y: y }
-                points.push( opt.forPoint(v, {} , opt) );
+                points.push( opt.forPoint(s.v, s, opt) );
             }else{
-                points.push(v);
+                points.push(s.v);
             }
-            i += 1;
+            s.i += 1;
         }
         return points;
     };
