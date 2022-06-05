@@ -5,13 +5,16 @@
 var LinesSphereCircles = (function(){
     // public api
     var api = {};
-    // just create one circle for a set of circles that form a sphere like shape
-    // createSphereCirclePoints(maxRadius, circleCount, circleIndex, pointsPerCircle)
-    api.createSphereCirclePoints = function(maxRadius, circleCount, circleIndex, pointsPerCircle){
+    // createSphereCirclePoints - return an array of Vector3 instances that is
+    // just one circle for an over all sphere
+    api.createSphereCirclePoints = function(opt, maxRadius, circleCount, circleIndex, pointsPerCircle){
+        opt = opt || {};
+        opt.r1 = opt.r1 === undefined ? 1 : opt.r1;
+        opt.r2 = opt.r2 === undefined ? 1 : opt.r2;
         var points = [];
         var sPer = circleIndex / circleCount;
-        var radius = Math.sin( Math.PI * 1.0 * sPer ) * maxRadius;
-        var y = Math.cos( Math.PI * 1.0 * sPer ) * maxRadius;
+        var radius = Math.sin( Math.PI * opt.r1 * sPer ) * maxRadius;
+        var y = Math.cos( Math.PI * opt.r2 * sPer ) * maxRadius;
         var i = 0;
         // buch points for the current circle
         while(i < pointsPerCircle){
@@ -29,11 +32,13 @@ var LinesSphereCircles = (function(){
     };
     // create sphere Lines THREE.GROUP
     api.createSphereLines = function(maxRadius, circleCount, pointsPerCircle, colors){
-        colors = colors || [0xff0000,0x00ff00,0x0000ff]
+
+        colors = colors || [0xff0000,0x00ff00,0x0000ff];
+
         var lines = new THREE.Group();
         var i = 1;
         while(i < circleCount + 1){
-            var p = api.createSphereCirclePoints(maxRadius, circleCount + 1, i, pointsPerCircle);
+            var p = api.createSphereCirclePoints({r1: 0.1, r2: 0.5}, maxRadius, circleCount + 1, i, pointsPerCircle);
             var geometry = new THREE.BufferGeometry().setFromPoints( p);
             var line = scene.userData.line = new THREE.Line(
                 geometry,
