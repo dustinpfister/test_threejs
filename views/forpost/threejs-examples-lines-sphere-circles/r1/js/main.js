@@ -13,10 +13,11 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LINES
 //******** **********
-var g = LinesSphereCircles.createSphereLines({
+var g = LinesSphereCircles.create({
     maxRadius: 4,
     pointsPerCircle: 30,
-    colors: [0xffffff]
+    colors: [0xffffff],
+    linewidth: 4
 });
 scene.add(g);
 //******** **********
