@@ -14,6 +14,12 @@ var LinesSphereCircles = (function(){
         var scalar = opt.minRadius + (opt.maxRadius - opt.minRadius) * THREE.MathUtils.seededRandom();
         return v.clone().normalize().multiplyScalar(scalar);
     };
+    // seaShell method
+    forPoint.seaShell = function(v, s, opt){
+        opt.minRadius = opt.minRadius === undefined ? 1.5: opt.minRadius;
+        var scalar =  opt.minRadius + (opt.maxRadius - opt.minRadius) * s.cPer;
+        return v.clone().normalize().multiplyScalar(scalar);
+    };
     // public api
     var api = {};
     //******** **********

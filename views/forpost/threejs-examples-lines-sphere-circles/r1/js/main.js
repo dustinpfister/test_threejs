@@ -19,8 +19,10 @@ var g = LinesSphereCircles.create({
     pointsPerCircle: 30,
     colors: [0xffffff],
     linewidth: 4,
-    forPoint: 'seededRandom',
-    minRadius: 3.5
+    //forPoint: 'seededRandom',
+    //minRadius: 3.5,
+    forPoint: 'seaShell',
+    minRadius: 2.5,
 });
 scene.add(g);
 //******** **********
