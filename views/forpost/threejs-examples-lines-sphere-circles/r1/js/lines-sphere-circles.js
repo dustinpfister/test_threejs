@@ -3,11 +3,16 @@
 // By Dustin Pfister : https://dustinpfister.github.io/
 //******** **********
 var LinesSphereCircles = (function(){
-    // built in for point methods
+    //******** **********
+    // BUILT IN "forPoint" METHODS
+    //******** **********
     var forPoint = {};
     // seeded random for point method example
     forPoint.seededRandom = function(v, s, opt){
-        
+        // min and max radius used
+        opt.minRadius = opt.minRadius === undefined ? 0.5: opt.minRadius;
+        var scalar = opt.minRadius + (opt.maxRadius - opt.minRadius) * THREE.MathUtils.seededRandom();
+        return v.clone().normalize().multiplyScalar(scalar);
     };
     // public api
     var api = {};
@@ -26,6 +31,10 @@ var LinesSphereCircles = (function(){
         opt.circleCount = opt.circleCount === undefined ? 4: opt.circleCount;
         opt.pointsPerCircle = opt.pointsPerCircle === undefined ? 10: opt.pointsPerCircle;
         opt.forPoint = opt.forPoint || null;
+        // if opt.forPoint is a string use a built in for point method
+        if(typeof opt.forPoint === 'string'){
+            opt.forPoint = forPoint[opt.forPoint];
+        }
         // the current index for this circle over all circles
         circleIndex = circleIndex || 0;
         // create points
