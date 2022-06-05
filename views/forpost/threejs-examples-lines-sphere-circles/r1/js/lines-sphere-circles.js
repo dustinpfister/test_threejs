@@ -44,7 +44,20 @@ var LinesSphereCircles = (function(){
     //******** **********
     // CREATE GROUP
     //******** **********
-    // create sphere Lines THREE.GROUP
+    var createLine = function(points, color, linewidth){
+        color =  color || 0xffffff;
+        linewidth = linewidth || 0;
+        var geometry = new THREE.BufferGeometry().setFromPoints(points);
+        return new THREE.Line(
+            geometry,
+            new THREE.LineBasicMaterial({
+                color: color,
+                linewidth: linewidth
+            })
+        );
+       
+    };
+    // OLD create create sphere Lines method
     api.createSphereLines = function(opt){
         opt = opt || {};
         opt.circleCount = opt.circleCount === undefined ? 10 : opt.circleCount;
@@ -54,14 +67,22 @@ var LinesSphereCircles = (function(){
         while(i < opt.circleCount + 1){
             // create points for this circle
             var p = api.createSphereCirclePoints(i, opt);
-            var geometry = new THREE.BufferGeometry().setFromPoints( p);
-            var line = scene.userData.line = new THREE.Line(
-                geometry,
-                new THREE.LineBasicMaterial({
-                    color: opt.colors[i % opt.colors.length],
-                    linewidth: 4
-                })
-            );
+            lines.add( createLine(p, opt.colors[i % opt.colors.length], 4) );
+            i += 1;
+        };
+        return lines;
+    };
+    // new create method
+    api.createGroup = function(opt){
+        opt = opt || {};
+        opt.circleCount = opt.circleCount === undefined ? 10 : opt.circleCount;
+        opt.colors = opt.colors || [0xff0000,0x00ff00,0x0000ff];
+        var lines = new THREE.Group();
+        var i = 1;
+        while(i < opt.circleCount + 1){
+            // create points for this circle
+            var p = api.createSphereCirclePoints(i, opt);
+
             lines.add(line);
             i += 1;
         };
