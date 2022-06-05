@@ -17,7 +17,10 @@ var g = LinesSphereCircles.create({
     maxRadius: 4,
     pointsPerCircle: 30,
     colors: [0xffffff],
-    linewidth: 4
+    linewidth: 4,
+    forPoint: function(v, s, opt){
+        return v.clone().normalize().multiplyScalar(2.5 + 0.5 * THREE.MathUtils.seededRandom());
+    }
 });
 scene.add(g);
 //******** **********

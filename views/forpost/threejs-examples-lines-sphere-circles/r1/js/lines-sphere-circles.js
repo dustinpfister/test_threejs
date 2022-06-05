@@ -19,6 +19,7 @@ var LinesSphereCircles = (function(){
         opt.maxRadius = opt.maxRadius === undefined ? 1: opt.maxRadius;
         opt.circleCount = opt.circleCount === undefined ? 4: opt.circleCount;
         opt.pointsPerCircle = opt.pointsPerCircle === undefined ? 10: opt.pointsPerCircle;
+        opt.forPoint = opt.forPoint || null;
         // the current index for this circle over all circles
         circleIndex = circleIndex || 0;
         // create points
@@ -36,7 +37,13 @@ var LinesSphereCircles = (function(){
             v.x = Math.cos(radian) * radius;
             v.y = y;
             v.z = Math.sin(radian) * radius;
-            points.push( v.clone().normalize().multiplyScalar(opt.maxRadius) );
+            // use a for point method if one is given
+            if(opt.forPoint){
+                //var s = { i: i, sPer: sPer, cPer: cPer, radian: radian, radius: radius, y: y }
+                points.push( opt.forPoint(v, {} , opt) );
+            }else{
+                points.push(v);
+            }
             i += 1;
         }
         return points;
