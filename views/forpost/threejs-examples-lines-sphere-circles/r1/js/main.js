@@ -14,6 +14,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LINES
 //******** **********
 var g = LinesSphereCircles.create({
+    circleCount: 20,
     maxRadius: 4,
     pointsPerCircle: 30,
     colors: [0xffffff],
