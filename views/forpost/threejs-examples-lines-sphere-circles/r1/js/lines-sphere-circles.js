@@ -80,6 +80,14 @@ var LinesSphereCircles = (function(){
             })
         );      
     };
+    // parseOpt
+    var parseOpt = function(opt){
+        opt = opt || {};
+        opt.circleCount = opt.circleCount === undefined ? 10 : opt.circleCount;
+        opt.colors = opt.colors || [0xff0000,0x00ff00,0x0000ff];
+        opt.linewidth = opt.linewidth === undefined ? 1 : opt.linewidth;
+        return opt;
+    };
     //******** **********
     // CREATE GROUP
     //******** **********
@@ -87,21 +95,39 @@ var LinesSphereCircles = (function(){
     var api = {};
     // create a group where each child is a THREE.Line for a circle in the sphere of circles
     api.create = function(opt){
-        opt = opt || {};
-        opt.circleCount = opt.circleCount === undefined ? 10 : opt.circleCount;
-        opt.colors = opt.colors || [0xff0000,0x00ff00,0x0000ff];
-        opt.linewidth = opt.linewidth === undefined ? 1 : opt.linewidth;
-        var lines = new THREE.Group();
+        opt = parseOpt(opt);
+        var lineGroup = new THREE.Group();
+        lineGroup.userData.opt = opt;
         var i = 1;
         while(i < opt.circleCount + 1){
             // create points for this circle
             var points = createSphereCirclePoints(i, opt);
             // create Line and add to group
-            lines.add( createLine(points, opt.colors[i % opt.colors.length], opt.linewidth) );
+            lineGroup.add( createLine(points, opt.colors[i % opt.colors.length], opt.linewidth) );
             i += 1;
         };
-        return lines;
+        return lineGroup;
     };
+    // set state of lineGroup by frame / maxFrame, and optional new opt object
+    api.setByFrame = function(lineGroup, frame, maxFrame, opt){
+        opt = opt || lineGroup.userData.opt;
+        opt = lineGroup.userData.opt = parseOpt(opt);
+        var i = 0;
+        while(i < opt.circleCount){
+            // create points for this circle
+            var points = createSphereCirclePoints(i + 1, opt),
+            line = lineGroup.children[i];
+
+            line.geometry.setFromPoints(points);
+            //line.material.color = opt.colors[i % opt.colors.length];
+            //line.material.linewidth = opt.linewidth;
+            // create Line and add to group
+            //lineGroup.add( createLine(points, opt.colors[i % opt.colors.length], opt.linewidth) );
+            i += 1;
+        };
+
+    };
+
     // return public API
     return api;
 }());

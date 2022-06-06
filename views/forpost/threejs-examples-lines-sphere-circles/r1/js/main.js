@@ -13,16 +13,19 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LINES
 //******** **********
-var g = LinesSphereCircles.create({
-    circleCount: 20,
+var opt = {
+    circleCount: 10,
     maxRadius: 4,
     pointsPerCircle: 30,
     colors: [0x004444, 0x00ffff],
     linewidth: 4,
     forPoint: 'seededRandom',
     minRadius: 3.5
-});
+};
+var g = LinesSphereCircles.create(opt);
 scene.add(g);
+
+
 
 var g2 = LinesSphereCircles.create({
     circleCount: 20,
@@ -42,7 +45,7 @@ scene.add(g2);
 // LOOP
 //******** **********
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
-var fps = 30,
+var fps = 15,
 lt = new Date(),
 frame = 0,
 maxFrame = 300;
@@ -53,6 +56,10 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
+
+        opt.maxRadius = 8 - 4 * bias;
+        LinesSphereCircles.setByFrame(g, 0, 10, opt)
+
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
