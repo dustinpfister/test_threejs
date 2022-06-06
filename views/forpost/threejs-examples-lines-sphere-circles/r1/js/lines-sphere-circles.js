@@ -20,15 +20,13 @@ var LinesSphereCircles = (function(){
         var scalar =  opt.minRadius + (opt.maxRadius - opt.minRadius) * s.cPer;
         return v.clone().normalize().multiplyScalar(scalar);
     };
-    // public api
-    var api = {};
     //******** **********
-    // CREATE POINTS
+    // HELPER FUNCTIONS
     //******** **********
     // createSphereCirclePoints - return an array of Vector3 instances that is
     // just one circle for an over all sphere
     //api.createSphereCirclePoints = function(opt, maxRadius, circleCount, circleIndex, pointsPerCircle){
-    api.createSphereCirclePoints = function(circleIndex, opt){
+    var createSphereCirclePoints = function(circleIndex, opt){
         // options object
         opt = opt || {};
         opt.r1 = opt.r1 === undefined ? 1 : opt.r1;
@@ -69,9 +67,7 @@ var LinesSphereCircles = (function(){
         }
         return points;
     };
-    //******** **********
-    // CREATE GROUP
-    //******** **********
+    // create a single THREE.Line for a collection of circles
     var createLine = function(points, color, linewidth){
         color =  color || 0xffffff;
         linewidth = linewidth || 0;
@@ -84,6 +80,11 @@ var LinesSphereCircles = (function(){
             })
         );      
     };
+    //******** **********
+    // CREATE GROUP
+    //******** **********
+    // public api
+    var api = {};
     // create a group where each child is a THREE.Line for a circle in the sphere of circles
     api.create = function(opt){
         opt = opt || {};
@@ -94,7 +95,7 @@ var LinesSphereCircles = (function(){
         var i = 1;
         while(i < opt.circleCount + 1){
             // create points for this circle
-            var points = api.createSphereCirclePoints(i, opt);
+            var points = createSphereCirclePoints(i, opt);
             // create Line and add to group
             lines.add( createLine(points, opt.colors[i % opt.colors.length], opt.linewidth) );
             i += 1;
