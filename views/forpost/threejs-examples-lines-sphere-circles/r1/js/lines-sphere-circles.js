@@ -84,7 +84,7 @@ var LinesSphereCircles = (function(){
             })
         );      
     };
-    // OLD create create sphere Lines method
+    // create a group where each child is a THREE.Line for a circle in the sphere of circles
     api.create = function(opt){
         opt = opt || {};
         opt.circleCount = opt.circleCount === undefined ? 10 : opt.circleCount;
@@ -94,9 +94,9 @@ var LinesSphereCircles = (function(){
         var i = 1;
         while(i < opt.circleCount + 1){
             // create points for this circle
-            var p = api.createSphereCirclePoints(i, opt);
+            var points = api.createSphereCirclePoints(i, opt);
             // create Line and add to group
-            lines.add( createLine(p, opt.colors[i % opt.colors.length], opt.linewidth) );
+            lines.add( createLine(points, opt.colors[i % opt.colors.length], opt.linewidth) );
             i += 1;
         };
         return lines;
