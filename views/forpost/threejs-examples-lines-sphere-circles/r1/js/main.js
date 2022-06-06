@@ -17,14 +17,27 @@ var g = LinesSphereCircles.create({
     circleCount: 20,
     maxRadius: 4,
     pointsPerCircle: 30,
-    colors: [0xffffff],
+    colors: [0x004444, 0x00ffff],
     linewidth: 4,
-    //forPoint: 'seededRandom',
-    //minRadius: 3.5,
-    forPoint: 'seaShell',
-    minRadius: 2.5,
+    forPoint: 'seededRandom',
+    minRadius: 3.5
 });
 scene.add(g);
+
+var g2 = LinesSphereCircles.create({
+    circleCount: 20,
+    maxRadius: 3,
+    pointsPerCircle: 30,
+    colors: [0x002200, 0x004400, 0x008800, 0x00ff00],
+    linewidth: 4,
+    forPoint: 'seaShell',
+    minRadius: 1.75
+});
+g2.position.set(0, 0, -8);
+scene.add(g2);
+
+
+
 //******** **********
 // LOOP
 //******** **********
