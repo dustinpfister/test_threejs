@@ -8,9 +8,7 @@ LineGroup.load({
         lineCount: 3,
         pointsPerLine: 5
     },
-    baseData:{
-        
-    },
+    baseData:{},
     // called just once in LineGroup.create before lines are created for first time
     // this can be used to add generated options that are not part of the
     // start state object
@@ -25,7 +23,6 @@ LineGroup.load({
             v.y = -3 + THREE.MathUtils.seededRandom() * 6;
             v.z = -3 + THREE.MathUtils.seededRandom() * 6;
             opt.rndPoints.push(v);
-
             // lerp to points
             var lerpToPoints = [];
             var lt = 0;
@@ -41,12 +38,8 @@ LineGroup.load({
             li += 1;
         }
     },
-    // for frame method used to set the current 'state' with 'startState', and 'frameData'
+    // for frame method used to set the current 'state' with 'baseData', and 'frameData'
     forFrame : function(state, baseData, frameData, lineGroup){
-        //baseData.v = baseData.v || new THREE.Vector3(0, 3, 0);
-        //state.v = new THREE.Vector3();
-        //state.v.set(0, 0, 0).lerp(baseData.v, frameData.bias);
-
         state.vDeltas = [];
         lineGroup.userData.opt.lerpTo.forEach(function(lerpToPoints){
             var deltas = [];
@@ -55,10 +48,7 @@ LineGroup.load({
             });
             state.vDeltas.push(deltas)
         });
-
         state.lerpPer = frameData.bias;
-
-
     },
     // create/update points of a line in the line group with 'current state' object
     forLine : function(points, state, lineIndex, lineCount, lineGroup){
@@ -70,7 +60,6 @@ LineGroup.load({
          var vDeltas = state.vDeltas[lineIndex] || [];
          while(i < ud.opt.pointsPerLine){
              var vd = vDeltas[i] || new THREE.Vector3();
-             //var v = sp.clone().lerp(ep, i / ( ud.opt.pointsPerLine - 1 ) ).add(vd)
              var v1 = sp.clone().lerp(ep, i / ( ud.opt.pointsPerLine - 1 ) );
              var v2 = v1.clone().lerp(vd, state.lerpPer);
              points[i].copy( v2 );
