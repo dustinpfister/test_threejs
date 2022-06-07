@@ -23,9 +23,12 @@ var LineGroup = (function(){
             var i = 0;
             while(i < opt.lineCount){
                 var v = new THREE.Vector3();
-                v.x = 1 + THREE.MathUtils.seededRandom() * 3;
-                v.y = 1 + THREE.MathUtils.seededRandom() * 3;
-                v.z = 1 + THREE.MathUtils.seededRandom() * 3;
+                v.x = -2 + THREE.MathUtils.seededRandom() * 4;
+                v.y = -2 + THREE.MathUtils.seededRandom() * 4;
+                v.z = -2 + THREE.MathUtils.seededRandom() * 4;
+                //v.x = -2 + Math.random() * 4;
+                //v.y = -2 + Math.random() * 4;
+                //v.z = -2 + Math.random() * 4;
                 opt.rndPoints.push(v);
                 i += 1;
             }
@@ -40,19 +43,13 @@ var LineGroup = (function(){
         forLine : function(points, state, lineIndex, lineCount, lineGroup){
              var ud = lineGroup.userData,
              rndPoints = ud.opt.rndPoints;
-
              var sp = rndPoints[lineIndex],
              ep = rndPoints[ (lineIndex + 1) % lineCount];
-
              var i = 0;
              while(i < ud.opt.pointsPerLine){
-
-                 points[i].copy( sp.clone().lerp(ep, i / ud.opt.pointsPerLine) );
-
-                 console.log(points[i])
+                 points[i].copy( sp.clone().lerp(ep, i / ( ud.opt.pointsPerLine-1 ) ) );
                  i += 1;
              }
-
         }
     };
     //******** **********
@@ -141,10 +138,15 @@ var LineGroup = (function(){
         // remove all old lines if any
         removeAllLines(lineGroup);
 
-        console.log(typeObj)
 
         ud.groupPoints.forEach(function(points, lineIndex){
-            typeObj.forLine(points, state, lineIndex, ud.opt.lineCount, lineGroup)
+            // call for line
+            typeObj.forLine(points, state, lineIndex, ud.opt.lineCount, lineGroup);
+            // create and add the line
+            var geo = new THREE.BufferGeometry();
+            geo.setFromPoints(points);
+            var line = new THREE.Line(geo, new THREE.LineBasicMaterial())
+            lineGroup.add(line);
         });
         
 
