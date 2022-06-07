@@ -13,7 +13,7 @@ var LineGroup = (function(){
         // default options such as the number of lines, and how many points per line
         opt: {
             lineCount: 3,
-            pointsPerLine: 4
+            pointsPerLine: 5
         },
         // called just once in LineGroup.create before lines are created for first time
         // this can be used to add generated options that are not part of the
@@ -42,8 +42,17 @@ var LineGroup = (function(){
              rndPoints = ud.opt.rndPoints;
 
              var sp = rndPoints[lineIndex],
-             ep = rndPoints[lineIndex % lineCount];
-console.log(sp, ep)
+             ep = rndPoints[ (lineIndex + 1) % lineCount];
+
+             var i = 0;
+             while(i < ud.opt.pointsPerLine){
+
+                 points[i].copy( sp.clone().lerp(ep, i / ud.opt.pointsPerLine) );
+
+                 console.log(points[i])
+                 i += 1;
+             }
+
         }
     };
     //******** **********

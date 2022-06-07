@@ -13,7 +13,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LINES GROUP
 //******** **********
-var lg = LineGroup.create('rnd3', { pointsPerLine: 5 });
+var lg = LineGroup.create('rnd3', { pointsPerLine: 3 });
 scene.add(lg)
 
 //******** **********
