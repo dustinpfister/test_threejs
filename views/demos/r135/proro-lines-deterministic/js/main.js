@@ -18,7 +18,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //var lg1 = LineGroup.create('rnd3', { pointsPerLine: 5 });
 //scene.add(lg1);
 
-var lg2 = LineGroup.create('circleStack', {lineCount: 10});
+var lg2 = LineGroup.create('circleStack', {lineCount: 20});
 scene.add(lg2);
 
 //******** **********

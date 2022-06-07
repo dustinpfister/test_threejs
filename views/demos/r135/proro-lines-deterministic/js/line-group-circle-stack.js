@@ -9,8 +9,9 @@ LineGroup.load({
         pointsPerLine: 30
     },
     baseData:{
-        radiusMin : 0.1,
-        radiusMax : 3
+        radiusMax : 3,
+        yDelta: 0.25,
+        waveCount: 2
     },
     // called just once in LineGroup.create before lines are created
     create: function(opt, lineGroup){
@@ -19,15 +20,22 @@ LineGroup.load({
     // for frame method used to set the current 'state' with 'baseData', and 'frameData'
     forFrame : function(state, baseData, frameData, lineGroup){
         state.radius = [];
-        state.yDelta = 0.5;
+        state.yDelta = baseData.yDelta;
         // figure radius and other state values for each circle
         var ud = lineGroup.userData;
         var i = 0, len = ud.opt.lineCount;
         var rDiff = baseData.radiusMax - baseData.radiusMin;
         while(i < len){
+/*
             var radius = rDiff  * ( 1 / len * i );
             var deltaRadius = frameData.per * rDiff;
-            state.radius[i] = baseData.radiusMin + (radius + deltaRadius ) % rDiff;
+            state.radius[i] = baseData.radiusMin + ( radius + deltaRadius ) % rDiff;
+*/
+
+
+            var radian = Math.PI * baseData.waveCount * ( ( 1 / len * i + frameData.per) % 1);
+            state.radius[i] = Math.cos(radian) * baseData.radiusMax;
+
             i += 1;
         }
     },
