@@ -10,19 +10,25 @@ var LineGroup = (function(){
     // tri
     TYPES.rnd3 = {
         key: 'rnd3',
-        lineCount: 3,
-        pointsPerLine: 10,
+        // options such as the number of lines, and how many points per line
+        opt: {
+            lineCount: 3,
+            pointsPerLine: 10
+        },
         // called just once in LineGroup.create before lines are created
         // this can be used to add generated options that are not part of the
         // start state object
-        beforeCreate: function(opt){},
+        beforeCreate: function(opt, lineGroup){},
 
-        // for frame method used to update lineGroup with startState, and frameData
-        forFrame : function(lineGroup, startState, frameData, opt){
+        // for frame method used to set 'current state' with 'startState', and 'frameData'
+        forFrame : function(state, startState, frameData){
+
+        },
+
+        // create/update points of a line in the line group with 'current state' object
+        forLine : function(points, state, lineIndex, lineCount){
 
         }
-        
-
     };
 
     //******** **********
@@ -33,6 +39,9 @@ var LineGroup = (function(){
     // create a type
     api.create = function(typeKey){
         typeKey = typeKey || 'rnd3';
+        // make the line group
+        var lineGroup = new THREE.Group();
+        return lineGroup;
     };
 
     // load a type

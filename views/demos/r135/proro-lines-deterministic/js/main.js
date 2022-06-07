@@ -13,6 +13,8 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LINES GROUP
 //******** **********
+var lg = LineGroup.create();
+scene.add(lg)
 
 //******** **********
 // LOOP
