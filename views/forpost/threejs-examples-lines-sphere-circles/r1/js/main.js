@@ -19,27 +19,13 @@ var opt = {
     pointsPerCircle: 30,
     colors: [0x004444, 0x00ffff],
     linewidth: 4,
-    forPoint: 'seededRandom',
-    minRadius: 3.5
+    forPoint: 'seaShell',
+    forOpt: function(opt, per, bias, frame, frameMax){
+        opt.minRadius = 1 + 3 * bias;
+    }
 };
 var g = LinesSphereCircles.create(opt);
 scene.add(g);
-
-
-
-var g2 = LinesSphereCircles.create({
-    circleCount: 20,
-    maxRadius: 3,
-    pointsPerCircle: 30,
-    colors: [0x002200, 0x004400, 0x008800, 0x00ff00],
-    linewidth: 4,
-    forPoint: 'seaShell',
-    minRadius: 1.75
-});
-g2.position.set(0, 0, -8);
-scene.add(g2);
-
-
 
 //******** **********
 // LOOP
@@ -48,21 +34,18 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 var fps = 15,
 lt = new Date(),
 frame = 0,
-maxFrame = 300;
+frameMax = 300;
 var loop = function () {
     var now = new Date(),
-    per = frame / maxFrame,
-    bias = 1 - Math.abs(0.5 - per) / 0.5,
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
 
-        opt.maxRadius = 8 - 4 * bias;
-        LinesSphereCircles.setByFrame(g, 0, 10, opt)
+        LinesSphereCircles.setByFrame(g, frame, frameMax, opt)
 
         renderer.render(scene, camera);
         frame += fps * secs;
-        frame %= maxFrame;
+        frame %= frameMax;
         lt = now;
     }
 };

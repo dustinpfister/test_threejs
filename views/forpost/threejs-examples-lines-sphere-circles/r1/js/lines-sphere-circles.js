@@ -39,7 +39,7 @@ var LinesSphereCircles = (function(){
         if(typeof opt.forPoint === 'string'){
             opt.forPoint = forPoint[opt.forPoint];
         }
-        opt.forFrame = opt.forFrame || null;
+        opt.forOpt = opt.forOpt || null;
         // the current index for this circle over all circles
         circleIndex = circleIndex || 0;
         // create points
@@ -118,8 +118,10 @@ var LinesSphereCircles = (function(){
         var i = 0;
         while(i < opt.circleCount){
             // mutate options before calling createSphereCirclePoints
-            if(opt.forFrame){
-                opt.forFrame(opt);
+            if(opt.forOpt){
+                var per = frame / frameMax,
+                bias = 1 - Math.abs(0.5 - per) / 0.5;
+                opt.forOpt(opt, per, bias, frame, frameMax);
             }
             // create points for this circle
             var points = createSphereCirclePoints(i + 1, opt),
