@@ -37,8 +37,13 @@ var LineGroup = (function(){
         },
 
         // create/update points of a line in the line group with 'current state' object
-        forLine : function(points, state, lineIndex, lineCount){
+        forLine : function(points, state, lineIndex, lineCount, lineGroup){
+             var ud = lineGroup.userData,
+             rndPoints = ud.opt.rndPoints;
 
+             var sp = rndPoints[lineIndex],
+             ep = rndPoints[lineIndex % lineCount];
+console.log(sp, ep)
         }
     };
     //******** **********
@@ -97,8 +102,6 @@ var LineGroup = (function(){
 
         typeObj.create(opt, lineGroup);
 
-console.log(ud.opt)
-
         // call set for first time
         api.set(lineGroup, 0, 30, {});
 
@@ -113,6 +116,10 @@ console.log(ud.opt)
     // set a line group with the given frame, maxFrame, and initState
     api.set = function(lineGroup, frame, maxFrame, startState){
 
+        var ud = lineGroup.userData,
+        typeKey = ud.typeKey,
+        typeObj = TYPES[typeKey];
+
         // state object
         var state = {};
 
@@ -125,6 +132,11 @@ console.log(ud.opt)
         // remove all old lines if any
         removeAllLines(lineGroup);
 
+        console.log(typeObj)
+
+        ud.groupPoints.forEach(function(points, lineIndex){
+            typeObj.forLine(points, state, lineIndex, ud.opt.lineCount, lineGroup)
+        });
         
 
     };
