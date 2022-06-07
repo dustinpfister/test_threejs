@@ -13,7 +13,7 @@ var LineGroup = (function(){
         // default options such as the number of lines, and how many points per line
         opt: {
             lineCount: 3,
-            pointsPerLine: 10
+            pointsPerLine: 4
         },
         // called just once in LineGroup.create before lines are created
         // this can be used to add generated options that are not part of the
@@ -44,16 +44,31 @@ var LineGroup = (function(){
         var lineGroup = new THREE.Group();
         // clone opt object from typeObj of given typeKey
         opt = opt || {};
-
+        // use given option, or default options to create an opt object
         Object.keys( typeObj.opt ).forEach(function(key){
-console.log(key)
-
-opt[key] = opt[key] || typeObj.opt[key]; 
-
+            opt[key] = opt[key] || typeObj.opt[key]; 
         });
 
+        // create blank points
+        var groupPoints = [];
+        var lineIndex = 0;
+        while(lineIndex < opt.lineCount){
+            var pointIndex = 0;
+            var points = [];
+            while(pointIndex < opt.pointsPerLine){
+                points.push( new THREE.Vector3() )
+                pointIndex += 1;
+            }
+            groupPoints.push(points);
+            lineIndex += 1;
+        }
+        lineGroup.userData.groupPoints = groupPoints;
 
-console.log(opt);
+        // frame data object
+        var frameData = {
+            frame: 0,
+            frameMax: 30
+        };
 
         return lineGroup;
     };
