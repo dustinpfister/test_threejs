@@ -15,7 +15,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 var lg = LineGroup.create('rnd3', { pointsPerLine: 3 });
 
-LineGroup.set(lg, 25, 100, {})
+
 
 scene.add(lg)
 
@@ -26,12 +26,15 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 var fps = 30,
 lt = new Date(),
 frame = 0,
-frameMax = 300;
+frameMax = 90;
 var loop = function () {
     var now = new Date(),
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
+
+        LineGroup.set(lg, frame, frameMax, {})
+
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= frameMax;

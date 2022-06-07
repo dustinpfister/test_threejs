@@ -26,19 +26,19 @@ var LineGroup = (function(){
                 v.x = -2 + THREE.MathUtils.seededRandom() * 4;
                 v.y = -2 + THREE.MathUtils.seededRandom() * 4;
                 v.z = -2 + THREE.MathUtils.seededRandom() * 4;
-                //v.x = -2 + Math.random() * 4;
-                //v.y = -2 + Math.random() * 4;
-                //v.z = -2 + Math.random() * 4;
                 opt.rndPoints.push(v);
+
+                
+
                 i += 1;
             }
         },
 
-        // for frame method used to set 'current state' with 'startState', and 'frameData'
+        // for frame method used to set the current 'state' with 'startState', and 'frameData'
         forFrame : function(state, startState, frameData){
-
-console.log(frameData)
-
+            startState.v = startState.v || new THREE.Vector3(0, 3, 0)
+            state.v = new THREE.Vector3();
+            state.v.set(0, 0, 0).lerp(startState.v, frameData.bias);
         },
 
         // create/update points of a line in the line group with 'current state' object
@@ -49,7 +49,8 @@ console.log(frameData)
              ep = rndPoints[ (lineIndex + 1) % lineCount];
              var i = 0;
              while(i < ud.opt.pointsPerLine){
-                 points[i].copy( sp.clone().lerp(ep, i / ( ud.opt.pointsPerLine-1 ) ) );
+                 var v = sp.clone().lerp(ep, i / ( ud.opt.pointsPerLine-1 ) ).add(state.v)
+                 points[i].copy( v );
                  i += 1;
              }
         }
