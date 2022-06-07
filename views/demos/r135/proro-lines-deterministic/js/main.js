@@ -13,11 +13,11 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LINES GROUP
 //******** **********
-var lg = LineGroup.create('rnd3', { pointsPerLine: 3 });
-
-
+var lg = LineGroup.create('rnd3', { pointsPerLine: 5 });
 
 scene.add(lg)
+
+//LineGroup.set(lg, 25, 100, {})
 
 //******** **********
 // LOOP

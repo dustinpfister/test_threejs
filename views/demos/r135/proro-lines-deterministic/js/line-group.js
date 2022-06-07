@@ -31,17 +31,14 @@ var LineGroup = (function(){
     api.create = function(typeKey, opt){
         typeKey = typeKey || 'rnd3';
         typeObj = TYPES[typeKey];
-
         // make the line group
         var lineGroup = new THREE.Group();
-
         // the opt object
         // use given option, or default options to create an opt object
         opt = opt || {};
         Object.keys( typeObj.opt ).forEach(function(key){
             opt[key] = opt[key] || typeObj.opt[key]; 
         });
-
         // create blank points
         var groupPoints = [];
         var lineIndex = 0;
@@ -55,35 +52,34 @@ var LineGroup = (function(){
             groupPoints.push(points);
             lineIndex += 1;
         }
-
         // user data object
         var ud = lineGroup.userData; 
         ud.typeKey = typeKey;
         ud.opt = opt;
         ud.groupPoints = groupPoints;
-
+        // call create hook
         typeObj.create(opt, lineGroup);
-
         // call set for first time
         api.set(lineGroup, 0, 30, {});
-
         return lineGroup;
     };
-
     // load a type
     api.load = function(typeObj){
+        typeObj.baseData = typeObj.baseData || {}; 
         TYPES[typeObj.key] = typeObj;
     };
-
     // set a line group with the given frame, maxFrame, and initState
     api.set = function(lineGroup, frame, frameMax, baseData){
         var ud = lineGroup.userData,
         typeKey = ud.typeKey,
         typeObj = TYPES[typeKey];
-
+        // parse baseData
+        baseData = ud.baseData = baseData || {};
+        Object.keys( typeObj.baseData ).forEach(function(key){
+            baseData[key] = baseData[key] || typeObj.baseData[key]; 
+        });
         // state object
         var state = {};
-
         // frame data object
         var frameData = {
             frame: frame,
@@ -91,10 +87,8 @@ var LineGroup = (function(){
         };
         frameData.per = frameData.frame / frameData.frameMax;
         frameData.bias = 1 - Math.abs(0.5 - frameData.per) / 0.5;
-
         // call for frame method of type to update state object
-        typeObj.forFrame(state, baseData, frameData);
-
+        typeObj.forFrame(state, baseData, frameData, lineGroup);
         // remove all old lines if any
         removeAllLines(lineGroup);
         ud.groupPoints.forEach(function(points, lineIndex){
@@ -105,11 +99,10 @@ var LineGroup = (function(){
             geo.setFromPoints(points);
             var line = new THREE.Line(geo, new THREE.LineBasicMaterial({
                 linewidth: 4
-            }))
+            }));
             lineGroup.add(line);
         });
     };
-
     // return public API
     return api;
 }());
