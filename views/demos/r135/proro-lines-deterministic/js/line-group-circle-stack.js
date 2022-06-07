@@ -1,0 +1,49 @@
+//******** **********
+// Lines Group circleStack plug-in
+// By Dustin Pfister : https://dustinpfister.github.io/
+LineGroup.load({
+    key: 'circleStack',
+    // default options such as the number of lines, and how many points per line
+    opt: {
+        lineCount: 5,
+        pointsPerLine: 30
+    },
+    baseData:{
+        radiusMin : 0.1,
+        radiusMax : 3
+    },
+    // called just once in LineGroup.create before lines are created
+    create: function(opt, lineGroup){
+
+    },
+    // for frame method used to set the current 'state' with 'baseData', and 'frameData'
+    forFrame : function(state, baseData, frameData, lineGroup){
+        state.radius = [];
+        state.yDelta = 0.5;
+        // figure radius and other state values for each circle
+        var ud = lineGroup.userData;
+        var i = 0, len = ud.opt.lineCount;
+        var rDiff = baseData.radiusMax - baseData.radiusMin;
+        while(i < len){
+            var radius = rDiff  * ( 1 / len * i );
+            var deltaRadius = frameData.per * rDiff;
+            state.radius[i] = baseData.radiusMin + (radius + deltaRadius ) % rDiff;
+            i += 1;
+        }
+    },
+    // create/update points of a line in the line group with 'current state' object
+    forLine : function(points, state, lineIndex, lineCount, lineGroup){
+         var ud = lineGroup.userData;
+         var i = 0, len = ud.opt.pointsPerLine;
+         while(i < len){
+             var v1 = new THREE.Vector3();
+             var cPer = i / (len - 1);
+             var r = Math.PI * 2 * cPer; 
+             v1.x = Math.cos(r) * state.radius[lineIndex];
+             v1.z = Math.sin(r) * state.radius[lineIndex];
+             v1.y = state.yDelta * lineIndex;
+             points[i].copy(v1);
+             i += 1;
+         }
+    }
+});

@@ -13,11 +13,13 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LINES GROUP
 //******** **********
-var lg = LineGroup.create('rnd3', { pointsPerLine: 5 });
 
-scene.add(lg)
+// rnd3 type
+//var lg1 = LineGroup.create('rnd3', { pointsPerLine: 5 });
+//scene.add(lg1);
 
-//LineGroup.set(lg, 25, 100, {})
+var lg2 = LineGroup.create('circleStack', {lineCount: 10});
+scene.add(lg2);
 
 //******** **********
 // LOOP
@@ -33,7 +35,8 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
 
-        LineGroup.set(lg, frame, frameMax, {})
+        //LineGroup.set(lg1, frame, frameMax, {})
+        LineGroup.set(lg2, frame, frameMax, {})
 
         renderer.render(scene, camera);
         frame += fps * secs;
