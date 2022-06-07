@@ -121,24 +121,18 @@ var LineGroup = (function(){
 
     // set a line group with the given frame, maxFrame, and initState
     api.set = function(lineGroup, frame, maxFrame, startState){
-
         var ud = lineGroup.userData,
         typeKey = ud.typeKey,
         typeObj = TYPES[typeKey];
-
         // state object
         var state = {};
-
         // frame data object
         var frameData = {
             frame: 0,
             frameMax: 30
         };
-
         // remove all old lines if any
         removeAllLines(lineGroup);
-
-
         ud.groupPoints.forEach(function(points, lineIndex){
             // call for line
             typeObj.forLine(points, state, lineIndex, ud.opt.lineCount, lineGroup);
@@ -148,8 +142,6 @@ var LineGroup = (function(){
             var line = new THREE.Line(geo, new THREE.LineBasicMaterial())
             lineGroup.add(line);
         });
-        
-
     };
 
     // return public API
