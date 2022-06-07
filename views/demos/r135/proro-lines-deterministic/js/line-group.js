@@ -7,6 +7,7 @@ var LineGroup = (function(){
     // BUILT IN TYPE(S)
     //******** **********
     var TYPES = {};
+/*
     // tri
     TYPES.rnd3 = {
         key: 'rnd3',
@@ -55,6 +56,7 @@ var LineGroup = (function(){
              }
         }
     };
+*/
     //******** **********
     // HELPERS
     //******** **********
