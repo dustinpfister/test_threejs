@@ -57,27 +57,21 @@ var createSphereLines = function(maxRadius, circleCount, pointsPerCircle, random
 };
 var g = createSphereLines(5, 20, 50, 1.0, [0x00ffff, 0x008800, 0x008888, 0x00ff00]);
 scene.add(g);
-
-
 //******** **********
 // LOOP
 //******** **********
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
 var fps = 30,
 lt = new Date(),
 frame = 0,
-maxFrame = 300;
+frameMax = 300;
 var loop = function () {
     var now = new Date(),
-    per = frame / maxFrame,
-    bias = 1 - Math.abs(0.5 - per) / 0.5,
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-
         renderer.render(scene, camera);
         frame += fps * secs;
-        frame %= maxFrame;
+        frame %= frameMax;
         lt = now;
     }
 };
