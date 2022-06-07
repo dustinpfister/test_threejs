@@ -149,7 +149,9 @@ console.log(frameData)
             // create and add the line
             var geo = new THREE.BufferGeometry();
             geo.setFromPoints(points);
-            var line = new THREE.Line(geo, new THREE.LineBasicMaterial())
+            var line = new THREE.Line(geo, new THREE.LineBasicMaterial({
+                linewidth: 4
+            }))
             lineGroup.add(line);
         });
     };
