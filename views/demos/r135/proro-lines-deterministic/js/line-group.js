@@ -8,10 +8,19 @@ var LineGroup = (function(){
     //******** **********
     var TYPES = {};
     // tri
-    TYPES.tri = {
-        key: 'tri',
+    TYPES.rnd3 = {
+        key: 'rnd3',
         lineCount: 3,
         pointsPerLine: 10,
+        // called just once in LineGroup.create before lines are created
+        // this can be used to add generated options that are not part of the
+        // start state object
+        beforeCreate: function(opt){},
+
+        // for frame method used to update lineGroup with startState, and frameData
+        forFrame : function(lineGroup, startState, frameData, opt){
+
+        }
         
 
     };
@@ -23,7 +32,7 @@ var LineGroup = (function(){
 
     // create a type
     api.create = function(typeKey){
-        typeKey = typeKey || 'tri';
+        typeKey = typeKey || 'rnd3';
     };
 
     // load a type
@@ -32,7 +41,7 @@ var LineGroup = (function(){
     };
 
     // set a line group with the given frame, maxFrame, and initState
-    api.set = function(lineGroup, frame, maxFrame, initState){
+    api.set = function(lineGroup, frame, maxFrame, startState){
     };
 
     // return public API
