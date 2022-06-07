@@ -10,7 +10,7 @@ var LineGroup = (function(){
     // tri
     TYPES.rnd3 = {
         key: 'rnd3',
-        // options such as the number of lines, and how many points per line
+        // default options such as the number of lines, and how many points per line
         opt: {
             lineCount: 3,
             pointsPerLine: 10
@@ -37,10 +37,24 @@ var LineGroup = (function(){
     var api = {};
 
     // create a type
-    api.create = function(typeKey){
+    api.create = function(typeKey, opt){
         typeKey = typeKey || 'rnd3';
+        typeObj = TYPES[typeKey];
         // make the line group
         var lineGroup = new THREE.Group();
+        // clone opt object from typeObj of given typeKey
+        opt = opt || {};
+
+        Object.keys( typeObj.opt ).forEach(function(key){
+console.log(key)
+
+opt[key] = opt[key] || typeObj.opt[key]; 
+
+        });
+
+
+console.log(opt);
+
         return lineGroup;
     };
 
