@@ -39,6 +39,7 @@ var LinesSphereCircles = (function(){
         if(typeof opt.forPoint === 'string'){
             opt.forPoint = forPoint[opt.forPoint];
         }
+        opt.forFrame = opt.forFrame || null;
         // the current index for this circle over all circles
         circleIndex = circleIndex || 0;
         // create points
@@ -109,15 +110,20 @@ var LinesSphereCircles = (function(){
         return lineGroup;
     };
     // set state of lineGroup by frame / maxFrame, and optional new opt object
-    api.setByFrame = function(lineGroup, frame, maxFrame, opt){
+    api.setByFrame = function(lineGroup, frame, frameMax, opt){
+        frame = frame === undefined ? 0 : frame;
+        frameMax = frameMax === undefined ? 30 : frameMax;
         opt = opt || lineGroup.userData.opt;
         opt = lineGroup.userData.opt = parseOpt(opt);
         var i = 0;
         while(i < opt.circleCount){
+            // mutate options before calling createSphereCirclePoints
+            if(opt.forFrame){
+                opt.forFrame(opt);
+            }
             // create points for this circle
             var points = createSphereCirclePoints(i + 1, opt),
             line = lineGroup.children[i];
-
             line.geometry.setFromPoints(points);
             //line.material.color = opt.colors[i % opt.colors.length];
             //line.material.linewidth = opt.linewidth;
