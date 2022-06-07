@@ -10,14 +10,14 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
-
+//******** **********
+// LINES GROUP
+//******** **********
 
 //******** **********
 // LOOP
 //******** **********
-
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
 var fps = 30,
 lt = new Date(),
 frame = 0,
@@ -27,7 +27,6 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= frameMax;
