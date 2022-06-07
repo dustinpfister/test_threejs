@@ -37,6 +37,8 @@ var LineGroup = (function(){
         // for frame method used to set 'current state' with 'startState', and 'frameData'
         forFrame : function(state, startState, frameData){
 
+console.log(frameData)
+
         },
 
         // create/update points of a line in the line group with 'current state' object
@@ -120,17 +122,25 @@ var LineGroup = (function(){
     };
 
     // set a line group with the given frame, maxFrame, and initState
-    api.set = function(lineGroup, frame, maxFrame, startState){
+    api.set = function(lineGroup, frame, frameMax, startState){
         var ud = lineGroup.userData,
         typeKey = ud.typeKey,
         typeObj = TYPES[typeKey];
+
         // state object
         var state = {};
+
         // frame data object
         var frameData = {
-            frame: 0,
-            frameMax: 30
+            frame: frame,
+            frameMax: frameMax
         };
+        frameData.per = frameData.frame / frameData.frameMax;
+        frameData.bias = 1 - Math.abs(0.5 - frameData.per) / 0.5;
+
+        // call for frame method of type to update state object
+        typeObj.forFrame(state, startState, frameData);
+
         // remove all old lines if any
         removeAllLines(lineGroup);
         ud.groupPoints.forEach(function(points, lineIndex){
