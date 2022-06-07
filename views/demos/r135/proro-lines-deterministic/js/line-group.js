@@ -15,10 +15,21 @@ var LineGroup = (function(){
             lineCount: 3,
             pointsPerLine: 4
         },
-        // called just once in LineGroup.create before lines are created
+        // called just once in LineGroup.create before lines are created for first time
         // this can be used to add generated options that are not part of the
         // start state object
-        beforeCreate: function(opt, lineGroup){},
+        create: function(opt, lineGroup){
+            opt.rndPoints = [];
+            var i = 0;
+            while(i < opt.lineCount){
+                var v = new THREE.Vector3();
+                v.x = 1 + THREE.MathUtils.seededRandom() * 3;
+                v.y = 1 + THREE.MathUtils.seededRandom() * 3;
+                v.z = 1 + THREE.MathUtils.seededRandom() * 3;
+                opt.rndPoints.push(v);
+                i += 1;
+            }
+        },
 
         // for frame method used to set 'current state' with 'startState', and 'frameData'
         forFrame : function(state, startState, frameData){
@@ -84,6 +95,10 @@ var LineGroup = (function(){
         ud.opt = opt;
         ud.groupPoints = groupPoints;
 
+        typeObj.create(opt, lineGroup);
+
+console.log(ud.opt)
+
         // call set for first time
         api.set(lineGroup, 0, 30, {});
 
@@ -109,6 +124,8 @@ var LineGroup = (function(){
 
         // remove all old lines if any
         removeAllLines(lineGroup);
+
+        
 
     };
 
