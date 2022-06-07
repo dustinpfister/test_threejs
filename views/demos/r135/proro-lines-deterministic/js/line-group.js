@@ -7,11 +7,9 @@ var LineGroup = (function(){
     // BUILT IN TYPE(S)
     //******** **********
     var TYPES = {};
-
     //******** **********
     // HELPERS
     //******** **********
-
     // remove all lines from lineGroup
     var removeAllLines = function(lineGroup){
         var i = lineGroup.children.length;
@@ -20,13 +18,10 @@ var LineGroup = (function(){
             lineGroup.remove(line);
         }
     };
-
-
     //******** **********
     // PUBLIC API
     //******** **********
     var api = {};
-
     // create a type
     api.create = function(typeKey, opt){
         typeKey = typeKey || 'rnd3';
