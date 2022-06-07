@@ -30,6 +30,19 @@ var LineGroup = (function(){
 
         }
     };
+    //******** **********
+    // HELPERS
+    //******** **********
+
+    // remove all lines from lineGroup
+    var removeAllLines = function(lineGroup){
+        var i = lineGroup.children.length;
+        while(i--){
+            var line = lineGroup.children[i];
+            lineGroup.remove(line);
+        }
+    };
+
 
     //******** **********
     // PUBLIC API
@@ -40,11 +53,13 @@ var LineGroup = (function(){
     api.create = function(typeKey, opt){
         typeKey = typeKey || 'rnd3';
         typeObj = TYPES[typeKey];
+
         // make the line group
         var lineGroup = new THREE.Group();
-        // clone opt object from typeObj of given typeKey
-        opt = opt || {};
+
+        // the opt object
         // use given option, or default options to create an opt object
+        opt = opt || {};
         Object.keys( typeObj.opt ).forEach(function(key){
             opt[key] = opt[key] || typeObj.opt[key]; 
         });
@@ -62,13 +77,15 @@ var LineGroup = (function(){
             groupPoints.push(points);
             lineIndex += 1;
         }
-        lineGroup.userData.groupPoints = groupPoints;
 
-        // frame data object
-        var frameData = {
-            frame: 0,
-            frameMax: 30
-        };
+        // user data object
+        var ud = lineGroup.userData; 
+        ud.typeKey = typeKey;
+        ud.opt = opt;
+        ud.groupPoints = groupPoints;
+
+        // call set for first time
+        api.set(lineGroup, 0, 30, {});
 
         return lineGroup;
     };
@@ -80,6 +97,19 @@ var LineGroup = (function(){
 
     // set a line group with the given frame, maxFrame, and initState
     api.set = function(lineGroup, frame, maxFrame, startState){
+
+        // state object
+        var state = {};
+
+        // frame data object
+        var frameData = {
+            frame: 0,
+            frameMax: 30
+        };
+
+        // remove all old lines if any
+        removeAllLines(lineGroup);
+
     };
 
     // return public API
