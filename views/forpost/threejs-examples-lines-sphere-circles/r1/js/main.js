@@ -44,27 +44,27 @@ LinesSphereCircles.setByFrame(g3, 25, 100, opt);
 
 
 var g4 = LinesSphereCircles.create(opt);
-g4.position.set(1, -8, 0);
+g4.position.set(0, -8, 0);
 scene.add(g4);
 
 var g5 = LinesSphereCircles.create(opt);
-g5.position.set(2, -8, 0);
+g5.position.set(-8, -8, 0);
 scene.add(g5);
 
 var g6 = LinesSphereCircles.create(opt);
-g6.position.set(3, -8, 0);
+g6.position.set(-16, -8, 0);
 scene.add(g6);
 
 var g7 = LinesSphereCircles.create(opt);
-g7.position.set(4, -8, 0);
+g7.position.set(-24, -8, 0);
 scene.add(g7);
 
 var g8 = LinesSphereCircles.create(opt);
-g8.position.set(5, -8, 0);
+g8.position.set(-32, -8, 0);
 scene.add(g8);
 
 var g9 = LinesSphereCircles.create(opt);
-g9.position.set(6, -8, 0);
+g9.position.set(-40, -8, 0);
 scene.add(g9);
 
 
@@ -86,10 +86,10 @@ var loop = function () {
         LinesSphereCircles.setByFrame(g3, frame, frameMax, opt);
         LinesSphereCircles.setByFrame(g4, frame, frameMax, opt);
         LinesSphereCircles.setByFrame(g5, frame, frameMax, opt);
-        //LinesSphereCircles.setByFrame(g6, frame, frameMax, opt);
-        //LinesSphereCircles.setByFrame(g7, frame, frameMax, opt);
-        //LinesSphereCircles.setByFrame(g8, frame, frameMax, opt);
-        //LinesSphereCircles.setByFrame(g9, frame, frameMax, opt);
+        LinesSphereCircles.setByFrame(g6, frame, frameMax, opt);
+        LinesSphereCircles.setByFrame(g7, frame, frameMax, opt);
+        LinesSphereCircles.setByFrame(g8, frame, frameMax, opt);
+        LinesSphereCircles.setByFrame(g9, frame, frameMax, opt);
 
         renderer.render(scene, camera);
         frame += fps * secs;
