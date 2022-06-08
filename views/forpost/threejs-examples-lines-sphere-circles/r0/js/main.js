@@ -57,22 +57,9 @@ var createSphereLines = function(maxRadius, circleCount, pointsPerCircle, random
 };
 var g = createSphereLines(4, 10, 50, 1.0, [0x00ffff, 0x008800, 0x008888, 0x00ff00]);
 scene.add(g);
+
 //******** **********
-// LOOP
+// RENDER
 //******** **********
-var fps = 30,
-lt = new Date(),
-frame = 0,
-frameMax = 300;
-var loop = function () {
-    var now = new Date(),
-    secs = (now - lt) / 1000;
-    requestAnimationFrame(loop);
-    if(secs > 1 / fps){
-        renderer.render(scene, camera);
-        frame += fps * secs;
-        frame %= frameMax;
-        lt = now;
-    }
-};
-loop();
+renderer.render(scene, camera);
+
