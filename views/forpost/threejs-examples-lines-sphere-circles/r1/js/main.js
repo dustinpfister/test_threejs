@@ -13,8 +13,10 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LINES
 //******** **********
+
+// seashell
 var opt = {
-    circleCount: 10,
+    circleCount: 20,
     maxRadius: 4,
     pointsPerCircle: 30,
     colors: [0x004444, 0x00ffff],
@@ -24,8 +26,19 @@ var opt = {
         opt.minRadius = 1 + 3 * bias;
     }
 };
-var g = LinesSphereCircles.create(opt);
-scene.add(g);
+var g1 = LinesSphereCircles.create(opt);
+scene.add(g1);
+
+// plain
+var g2 = LinesSphereCircles.create({ maxRadius: 4, pointsPerCircle: 20 });
+g2.position.set(-10,0,0)
+scene.add(g2);
+
+// plain
+var g2 = LinesSphereCircles.create({ maxRadius: 8, forPoint: 'seededRandom' });
+g2.position.set(-5,-2,-25)
+scene.add(g2);
+
 
 //******** **********
 // LOOP
@@ -41,7 +54,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
 
-        LinesSphereCircles.setByFrame(g, frame, frameMax, opt)
+        LinesSphereCircles.setByFrame(g1, frame, frameMax, opt)
 
         renderer.render(scene, camera);
         frame += fps * secs;
