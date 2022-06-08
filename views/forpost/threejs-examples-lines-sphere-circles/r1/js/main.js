@@ -14,6 +14,16 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LINES
 //******** **********
 
+// plain
+var g1 = LinesSphereCircles.create({ maxRadius: 4, pointsPerCircle: 20 });
+g1.position.set(-10,0,0)
+scene.add(g1);
+
+// seeded random
+var g2 = LinesSphereCircles.create({ maxRadius: 8, forPoint: 'seededRandom' });
+g2.position.set(-5,-2,-25)
+scene.add(g2);
+
 // seashell
 var opt = {
     circleCount: 20,
@@ -26,19 +36,8 @@ var opt = {
         opt.minRadius = 1 + 3 * bias;
     }
 };
-var g1 = LinesSphereCircles.create(opt);
-scene.add(g1);
-
-// plain
-var g2 = LinesSphereCircles.create({ maxRadius: 4, pointsPerCircle: 20 });
-g2.position.set(-10,0,0)
-scene.add(g2);
-
-// plain
-var g2 = LinesSphereCircles.create({ maxRadius: 8, forPoint: 'seededRandom' });
-g2.position.set(-5,-2,-25)
-scene.add(g2);
-
+var g3 = LinesSphereCircles.create(opt);
+scene.add(g3);
 
 //******** **********
 // LOOP
@@ -54,7 +53,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
 
-        LinesSphereCircles.setByFrame(g1, frame, frameMax, opt)
+        LinesSphereCircles.setByFrame(g3, frame, frameMax, opt)
 
         renderer.render(scene, camera);
         frame += fps * secs;
