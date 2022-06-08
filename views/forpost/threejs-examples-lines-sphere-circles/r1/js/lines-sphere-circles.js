@@ -127,15 +127,22 @@ var LinesSphereCircles = (function(){
             var points = createSphereCirclePoints(i + 1, opt),
             line = lineGroup.children[i];
 
+            // need to update by mutation of position attribute rather
+            // than calling setFromPoints as that seems to case a problem
+            // that has to do with loss of webgl context
+            var geo = line.geometry,
+            pos = geo.getAttribute('position');
+            points.forEach(function(v, i){
+                pos.array[i * 3] = v.x;
+                pos.array[i * 3 + 1] = v.y;
+                pos.array[i * 3 + 2] = v.z;
+            });
+            pos.needsUpdate = true;
 
-            // can not use set from points over an over again
+            // !!! can not use set from points over an over again
             // as it seems to result in a loss of context webgl error
             //line.geometry.setFromPoints(points);
 
-            //line.material.color = opt.colors[i % opt.colors.length];
-            //line.material.linewidth = opt.linewidth;
-            // create Line and add to group
-            //lineGroup.add( createLine(points, opt.colors[i % opt.colors.length], opt.linewidth) );
             i += 1;
         };
 
