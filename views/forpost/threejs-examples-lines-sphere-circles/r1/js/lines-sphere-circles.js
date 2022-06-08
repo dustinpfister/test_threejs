@@ -126,7 +126,12 @@ var LinesSphereCircles = (function(){
             // create points for this circle
             var points = createSphereCirclePoints(i + 1, opt),
             line = lineGroup.children[i];
-            line.geometry.setFromPoints(points);
+
+
+            // can not use set from points over an over again
+            // as it seems to result in a loss of context webgl error
+            //line.geometry.setFromPoints(points);
+
             //line.material.color = opt.colors[i % opt.colors.length];
             //line.material.linewidth = opt.linewidth;
             // create Line and add to group

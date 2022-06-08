@@ -26,11 +26,11 @@ scene.add(g2);
 
 // seashell
 var opt = {
-    circleCount: 20,
+    circleCount: 40,
     maxRadius: 4,
-    pointsPerCircle: 30,
+    pointsPerCircle: 60,
     colors: [0x004444, 0x00ffff],
-    linewidth: 4,
+    linewidth: 1,
     forPoint: 'seaShell',
     forOpt: function(opt, per, bias, frame, frameMax){
         opt.minRadius = 1 + 3 * bias;
@@ -38,6 +38,35 @@ var opt = {
 };
 var g3 = LinesSphereCircles.create(opt);
 scene.add(g3);
+
+
+LinesSphereCircles.setByFrame(g3, 50, 100, opt);
+
+/*
+var g4 = LinesSphereCircles.create(opt);
+g4.position.set(1, -8, 0);
+scene.add(g4);
+
+var g5 = LinesSphereCircles.create(opt);
+g5.position.set(2, -8, 0);
+scene.add(g5);
+
+var g6 = LinesSphereCircles.create(opt);
+g6.position.set(3, -8, 0);
+scene.add(g6);
+
+var g7 = LinesSphereCircles.create(opt);
+g7.position.set(4, -8, 0);
+scene.add(g7);
+
+var g8 = LinesSphereCircles.create(opt);
+g8.position.set(5, -8, 0);
+scene.add(g8);
+
+var g9 = LinesSphereCircles.create(opt);
+g9.position.set(6, -8, 0);
+scene.add(g9);
+*/
 
 //******** **********
 // LOOP
@@ -53,7 +82,13 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
 
-        LinesSphereCircles.setByFrame(g3, frame, frameMax, opt)
+        //LinesSphereCircles.setByFrame(g3, frame, frameMax, opt);
+        //LinesSphereCircles.setByFrame(g4, frame, frameMax, opt);
+        //LinesSphereCircles.setByFrame(g5, frame, frameMax, opt);
+        //LinesSphereCircles.setByFrame(g6, frame, frameMax, opt);
+        //LinesSphereCircles.setByFrame(g7, frame, frameMax, opt);
+        //LinesSphereCircles.setByFrame(g8, frame, frameMax, opt);
+        //LinesSphereCircles.setByFrame(g9, frame, frameMax, opt);
 
         renderer.render(scene, camera);
         frame += fps * secs;
