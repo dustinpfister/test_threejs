@@ -20,38 +20,30 @@ scene.add(dl);
 scene.add( new THREE.AmbientLight(0xffffff, 0.05) )
 
 //******** **********
-// CURVE
+// CURVE, TubeGeometry, Mesh
 //******** **********
 class CustomSinCurve extends THREE.Curve {
+    constructor( scale = 1 ) {
+        super();
+        this.scale = scale;
+    }
+    getPoint( t, optionalTarget = new THREE.Vector3() ) {
+        var tx = t * 3 - 1.5,
+        ty = Math.sin( 24 * Math.PI * t ) * 0.5,
+        tz = Math.cos( 24 * Math.PI * t ) * 0.25;
+        return optionalTarget.set( tx, ty, tz ).multiplyScalar( this.scale );
+    }
+};
 
-	constructor( scale = 1 ) {
-
-		super();
-
-		this.scale = scale;
-
-	}
-
-	getPoint( t, optionalTarget = new THREE.Vector3() ) {
-
-		const tx = t * 3 - 1.5;
-		const ty = Math.sin( 2 * Math.PI * t );
-		const tz = 0;
-
-		return optionalTarget.set( tx, ty, tz ).multiplyScalar( this.scale );
-
-	}
-
-}
-
-const path = new CustomSinCurve( 10 );
-
-var tubularSegments = 80;
-var radius = 0.25;
-var radialSegments = 20;
-const geometry = new THREE.TubeGeometry( path, tubularSegments, radius, radialSegments, false );
-const material = new THREE.MeshStandardMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
-const mesh = new THREE.Mesh( geometry, material );
+var path = new CustomSinCurve( 10 ),
+tubularSegments = 800,
+radius = 0.25,
+radialSegments = 20;
+// creating a tube geometry with path and addtional arguments
+var mesh = new THREE.Mesh( 
+    new THREE.TubeGeometry( path, tubularSegments, radius, radialSegments, false ), 
+    new THREE.MeshStandardMaterial( { color: 0x00ff00, side: THREE.DoubleSide })
+);
 scene.add( mesh );
 
 
