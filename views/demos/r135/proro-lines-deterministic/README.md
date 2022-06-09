@@ -1,3 +1,3 @@
 # proto lines deterministic
 
-This is a project where I am starting over with what I worked out in my line circles example.
+This is a project where I am starting over with what I worked out in my line circles example. The goal is to make a project that is simular to what I made for my line circles project, but to make the project in such a way in which the process of creating an updating a group of lines is more generic. That measn that it can be used to make a collecion of lihes of circles that from a kind of sphere like shape sure, but it can also be used to make all kinds of other collections of lines also.
