@@ -11,6 +11,7 @@ var LineGroup = (function(){
     // HELPERS
     //******** **********
     // remove all lines from lineGroup
+/*
     var removeAllLines = function(lineGroup){
         var i = lineGroup.children.length;
         while(i--){
@@ -18,6 +19,7 @@ var LineGroup = (function(){
             lineGroup.remove(line);
         }
     };
+*/
     //******** **********
     // PUBLIC API
     //******** **********
@@ -47,6 +49,24 @@ var LineGroup = (function(){
             groupPoints.push(points);
             lineIndex += 1;
         }
+
+// create lines
+/*
+        groupPoints.forEach(function(points, lineIndex){
+            // call for line
+            typeObj.forLine(points, {}, lineIndex, opt.lineCount, lineGroup);
+            // create and add the line
+            var geo = new THREE.BufferGeometry();
+
+            geo.setFromPoints(points);
+
+
+            var line = new THREE.Line(geo, new THREE.LineBasicMaterial({
+                linewidth: 4
+            }));
+            lineGroup.add(line);
+        });
+*/
         // user data object
         var ud = lineGroup.userData; 
         ud.typeKey = typeKey;
@@ -85,17 +105,46 @@ var LineGroup = (function(){
         // call for frame method of type to update state object
         typeObj.forFrame(state, baseData, frameData, lineGroup);
         // remove all old lines if any
-        removeAllLines(lineGroup);
+
+        //removeAllLines(lineGroup);
+
         ud.groupPoints.forEach(function(points, lineIndex){
-            // call for line
+
+            // call for line to update points
             typeObj.forLine(points, state, lineIndex, ud.opt.lineCount, lineGroup);
-            // create and add the line
-            var geo = new THREE.BufferGeometry();
-            geo.setFromPoints(points);
-            var line = new THREE.Line(geo, new THREE.LineBasicMaterial({
-                linewidth: 4
-            }));
-            lineGroup.add(line);
+
+            // get current line            
+            var line = lineGroup.children[lineIndex];
+
+            // no line? create and add it
+            if( !line ){
+                // create and add the line
+                var geo = new THREE.BufferGeometry();
+
+                // calling set from points once, when making the line
+                // for the first time should work okay
+                geo.setFromPoints(points);
+
+                line = new THREE.Line(geo, new THREE.LineBasicMaterial({
+                    linewidth: 4
+                }));
+                // ??? it should be okay to just all children to a group like this I think
+                // but I should look into this more maybe.
+                lineGroup.children[lineIndex] = line;
+            }else{
+                // so then I have a line and I just need to update the position attribute
+                // but I can not just call the set from points method as that will result in
+                // a loss of context error
+                var geo = line.geometry,
+                pos = geo.getAttribute('position');
+                points.forEach(function(v, i){
+                    pos.array[i * 3] = v.x;
+                    pos.array[i * 3 + 1] = v.y;
+                    pos.array[i * 3 + 2] = v.z;
+                });
+                pos.needsUpdate = true;
+            }
+
         });
     };
     // return public API
