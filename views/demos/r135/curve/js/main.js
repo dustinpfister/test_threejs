@@ -35,7 +35,31 @@ class CustomSinCurve extends THREE.Curve {
     }
 };
 
-var path = new CustomSinCurve( 10 ),
+class DataCurve extends THREE.Curve {
+    constructor( data = [] ) {
+        super();
+        this.data = data;
+    }
+    getPoint( t, optionalTarget = new THREE.Vector3() ) {
+
+        var i = Math.floor( t * ( (this.data.length ) / 3 ) );        
+
+        var tx = this.data[ i ] === undefined ? 0 : this.data[ i ],
+        ty = this.data[ i + 1] === undefined ? 0 : this.data[ i + 1],
+        tz = this.data[ i + 2] === undefined ? 0 : this.data[ i + 2];
+
+
+        return optionalTarget.set( tx * t, ty * t, tz * t );
+    }
+};
+
+var path = new CustomSinCurve( 5 ),
+/*
+var path = new DataCurve([
+   1, 1, 1, 
+   1, 1, 1
+]),
+*/
 tubularSegments = 800,
 radius = 0.25,
 radialSegments = 20;
