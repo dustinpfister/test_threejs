@@ -3,7 +3,7 @@
 ## () - r1 of project
 
 
-## () - r0 of project
+## ( done 06/10/2022 ) - r0 of project
 * (done) start lineGroup module
 * (done) cretaing lines from group points array
 * (done) forFrame method of rnd3 type working in loop of main.js
