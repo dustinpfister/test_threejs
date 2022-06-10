@@ -12,6 +12,6 @@
 * (done) have an array of vectors to lerp to for baseData in rnd3
 * (done) have a baseData object for a typeObj that can be used to set default values for baseData values for the typeObj
 * (done) fix loss of context bug by updating position attribute array rather than calling set by points
+* (done) simple built in 'tri' type for line-group.js
 
 * () updateLines helper function in line-group.js
-* () simple built in 'tri' type for line-group.js

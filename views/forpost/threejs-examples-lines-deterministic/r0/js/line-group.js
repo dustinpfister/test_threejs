@@ -15,7 +15,7 @@ var LineGroup = (function(){
         // these are options that should be given just once when creating the line group
         opt: {
             lineCount: 3,
-            pointsPerLine: 10
+            pointsPerLine: 20
         },
         // base data for the lines that can be changed when calling set method these are then
         // values that define starting conditions for a determinstic animation
@@ -43,7 +43,7 @@ var LineGroup = (function(){
             state.vectors = [];
             while(i < len){
                 var v = state.vectors[i] = new THREE.Vector3();
-                var hv = baseData.homeVectors[i];
+                var hv = baseData.homeVectors[i] || new THREE.VEctor3();
                 var lv = baseData.lerpVectors[i] || new THREE.Vector3();
                 v.copy(hv).lerp(lv, frameData.bias)
                 i += 1;
@@ -57,8 +57,13 @@ var LineGroup = (function(){
             var vs = state.vectors[lineIndex],
             ve = state.vectors[ (lineIndex + 1) % 3 ];
             while(i < len){
+                var pPer = i / (len - 1),
+                pBias = 1 - Math.abs(0.5 - pPer) / 0.5;
                 var v1 = new THREE.Vector3();
-                v1.copy( vs.clone().lerp( ve, i / ( len - 1 ) ) );
+                var dx = 0,
+                dy = 1 * pBias,
+                dz = 0;
+                v1.copy(vs).lerp( ve, i / ( len - 1 ) ).add(new THREE.Vector3(dx, dy, dz));
                 points[i].copy(v1);
                 i += 1;
             }
