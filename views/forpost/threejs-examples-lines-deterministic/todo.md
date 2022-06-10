@@ -13,3 +13,5 @@
 * (done) have a baseData object for a typeObj that can be used to set default values for baseData values for the typeObj
 * (done) fix loss of context bug by updating position attribute array rather than calling set by points
 
+* () updateLines helper function in line-group.js
+* () simple built in 'tri' type for line-group.js

@@ -7,6 +7,9 @@ var LineGroup = (function(){
     // BUILT IN TYPE(S)
     //******** **********
     var TYPES = {};
+
+    TYPES._default = {}
+
     //******** **********
     // HELPERS
     //******** **********
@@ -18,7 +21,7 @@ var LineGroup = (function(){
 
     // create a type
     api.create = function(typeKey, opt){
-        typeKey = typeKey || 'rnd3';
+        typeKey = typeKey || '_default';
         typeObj = TYPES[typeKey];
         // make the line group
         var lineGroup = new THREE.Group();
