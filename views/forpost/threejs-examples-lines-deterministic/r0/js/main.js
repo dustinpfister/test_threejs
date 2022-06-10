@@ -37,6 +37,7 @@ var loop = function () {
     if(secs > 1 / fps){
 
         // update line group (s)
+        LineGroup.set(lg1, frame, frameMax, {})
         //LineGroup.set(lg2, frame, frameMax, {})
 
         renderer.render(scene, camera);

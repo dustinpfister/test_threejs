@@ -26,23 +26,26 @@ var LineGroup = (function(){
                 new THREE.Vector3(3, 0, 0),
                 new THREE.Vector3(-3, 0, 3),
                 new THREE.Vector3(-3, 0, -3)
-            ]
+            ],
+            lerpVectors: []
         },
-        // called just once in LineGroup.create before lines are created
+        // called just once in LineGroup.create before lines are created, this can be used to
+        // generate options once rather than on a frame by frame basis
         create: function(opt, lineGroup){
 
         },
-        // for frame method used to set the current 'state' with 'baseData', and 'frameData'
+        // for frame method used to set the current 'state' with 'baseData', and 'frameData' objects
         forFrame : function(state, baseData, frameData, lineGroup){
             var ud = lineGroup.userData;
             var i = 0, len = ud.opt.lineCount;
+            // for this tri type I want to create an array of three Vectors
+            // based on the home vectors of the base data
             state.vectors = [];
             while(i < len){
                 var v = state.vectors[i] = new THREE.Vector3();
                 var hv = baseData.homeVectors[i];
-                v.x = hv.x;
-                v.y = hv.y;
-                v.z = hv.z;
+                var lv = baseData.lerpVectors[i] || new THREE.Vector3();
+                v.copy(hv).lerp(lv, frameData.bias)
                 i += 1;
             }
         },
@@ -150,10 +153,6 @@ var LineGroup = (function(){
                 line = new THREE.Line(geo, new THREE.LineBasicMaterial({
                     linewidth: 4
                 }));
-
-
-console.log(points);
-
                 // !?!? Using the add method is needed, but I might still need to make sure
                 // that the index numbers are as they should be maybe...
                 //lineGroup.children[lineIndex] = line;
