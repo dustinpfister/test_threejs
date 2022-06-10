@@ -14,6 +14,18 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LINES GROUP
 //******** **********
 
+var lg1Base = {
+    homeVectors: [
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, 0, 0)
+    ], 
+    lerpVectors: [
+        new THREE.Vector3(-5, 0, -5),
+        new THREE.Vector3(-5, 0, 5),
+        new THREE.Vector3(5, 0, 0)
+    ]
+};
 var lg1 = LineGroup.create();
 lg1.position.set(0, 0, 0);
 scene.add(lg1);
@@ -37,7 +49,7 @@ var loop = function () {
     if(secs > 1 / fps){
 
         // update line group (s)
-        LineGroup.set(lg1, frame, frameMax, {})
+        LineGroup.set(lg1, frame, frameMax, lg1Base)
         //LineGroup.set(lg2, frame, frameMax, {})
 
         renderer.render(scene, camera);
