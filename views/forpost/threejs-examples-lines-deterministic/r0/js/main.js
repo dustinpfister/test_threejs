@@ -29,7 +29,8 @@ var lg1Base = {
     rDelta: 2
 };
 var lg1 = LineGroup.create();
-lg1.position.set(3, 0, 3);
+lg1.position.set(3, 0, 0);
+lg1.scale.set(0.5, 0.5, 0.5)
 scene.add(lg1);
 
 var lg2 = LineGroup.create('circleStack', { lineCount: 20 } );
