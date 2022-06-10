@@ -15,7 +15,7 @@ var LineGroup = (function(){
         // these are options that should be given just once when creating the line group
         opt: {
             lineCount: 3,
-            pointsPerLine: 20
+            pointsPerLine: 80
         },
         // base data for the lines that can be changed when calling set method these are then
         // values that define starting conditions for a determinstic animation
@@ -41,6 +41,7 @@ var LineGroup = (function(){
             // for this tri type I want to create an array of three Vectors
             // based on the home vectors of the base data
             state.vectors = [];
+            state.t = 1 - frameData.bias;
             while(i < len){
                 var v = state.vectors[i] = new THREE.Vector3();
                 var hv = baseData.homeVectors[i] || new THREE.VEctor3();
@@ -61,7 +62,7 @@ var LineGroup = (function(){
                 pBias = 1 - Math.abs(0.5 - pPer) / 0.5;
                 var v1 = new THREE.Vector3();
                 var dx = 0,
-                dy = 1 * pBias,
+                dy = 3 * Math.cos( Math.PI * 2.5 *  pBias) * state.t,
                 dz = 0;
                 v1.copy(vs).lerp( ve, i / ( len - 1 ) ).add(new THREE.Vector3(dx, dy, dz));
                 points[i].copy(v1);
