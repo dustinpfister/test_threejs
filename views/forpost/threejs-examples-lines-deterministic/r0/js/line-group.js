@@ -27,7 +27,9 @@ var LineGroup = (function(){
                 new THREE.Vector3(-3, 0, 3),
                 new THREE.Vector3(-3, 0, -3)
             ],
-            lerpVectors: []
+            lerpVectors: [],
+            rBase: 2,
+            rDelta: 8
         },
         // called just once in LineGroup.create before lines are created, this can be used to
         // generate options once rather than on a frame by frame basis
@@ -42,6 +44,7 @@ var LineGroup = (function(){
             // based on the home vectors of the base data
             state.vectors = [];
             state.t = 1 - frameData.bias;
+            state.rCount = baseData.rBase + baseData.rDelta * frameData.bias;
             while(i < len){
                 var v = state.vectors[i] = new THREE.Vector3();
                 var hv = baseData.homeVectors[i] || new THREE.VEctor3();
@@ -62,7 +65,7 @@ var LineGroup = (function(){
                 pBias = 1 - Math.abs(0.5 - pPer) / 0.5;
                 var v1 = new THREE.Vector3();
                 var dx = 0,
-                dy = 3 * Math.cos( Math.PI * 2.5 *  pBias) * state.t,
+                dy = 3 * Math.cos( Math.PI * state.rCount *  pBias) * state.t,
                 dz = 0;
                 v1.copy(vs).lerp( ve, i / ( len - 1 ) ).add(new THREE.Vector3(dx, dy, dz));
                 points[i].copy(v1);
@@ -129,7 +132,7 @@ var LineGroup = (function(){
         // parse baseData
         baseData = ud.baseData = baseData || {};
         Object.keys( typeObj.baseData ).forEach(function(key){
-            baseData[key] = baseData[key] || typeObj.baseData[key]; 
+            baseData[key] = baseData[key] === undefined ? typeObj.baseData[key]: baseData[key]; 
         });
         // state object
         var state = {};

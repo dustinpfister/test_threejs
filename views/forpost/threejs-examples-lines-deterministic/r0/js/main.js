@@ -24,7 +24,9 @@ var lg1Base = {
         new THREE.Vector3(-5, 0, -5),
         new THREE.Vector3(-5, 0, 5),
         new THREE.Vector3(5, 0, 0)
-    ]
+    ],
+    rBase: 0,
+    rDelta: 2
 };
 var lg1 = LineGroup.create();
 lg1.position.set(0, 0, 0);
