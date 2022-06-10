@@ -4,9 +4,9 @@
 //******** **********
 var LineGroup = (function(){
 
-    var DEFAULT_FORLINESTYLE = function(m){
+    var DEFAULT_FORLINESTYLE = function(m, i){
         m.linewidth = 4;
-        m.color = new THREE.Color('lime');
+        m.color = new THREE.Color( ['red', 'lime', 'white', 'blue', 'purple'][ i % 5] );
     };
 
     //******** **********
@@ -21,7 +21,11 @@ var LineGroup = (function(){
         // these are options that should be given just once when creating the line group
         opt: {
             lineCount: 3,
-            pointsPerLine: 80
+            pointsPerLine: 80,
+            forLineStyle: function(m, i){
+                m.linewidth = 4;
+                m.color = new THREE.Color( 'lime' );
+            }
         },
         // base data for the lines that can be changed when calling set method these are then
         // values that define starting conditions for a determinstic animation

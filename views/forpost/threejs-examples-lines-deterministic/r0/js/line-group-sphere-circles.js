@@ -9,7 +9,7 @@ LineGroup.load({
         pointsPerLine: 30,
         forLineStyle: function(m, i){
             m.linewidth = 4;
-            m.color = new THREE.Color( ['red', 'lime', 'white', 'blue', 'purple'][ i % 5] )
+            m.color = new THREE.Color( ['lime', 'cyan', 'green'][ i % 3] );
         }
     },
     baseData:{
