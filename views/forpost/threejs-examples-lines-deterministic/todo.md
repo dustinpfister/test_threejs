@@ -11,5 +11,5 @@
 * (done) rename startState to soemthing else that makes more sense such as baseData
 * (done) have an array of vectors to lerp to for baseData in rnd3
 * (done) have a baseData object for a typeObj that can be used to set default values for baseData values for the typeObj
+* (done) fix loss of context bug by updating position attribute array rather than calling set by points
 
-* () fix loss of context bug by updating position attribute array rather than calling set by points

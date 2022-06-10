@@ -10,20 +10,12 @@ var LineGroup = (function(){
     //******** **********
     // HELPERS
     //******** **********
-    // remove all lines from lineGroup
-/*
-    var removeAllLines = function(lineGroup){
-        var i = lineGroup.children.length;
-        while(i--){
-            var line = lineGroup.children[i];
-            lineGroup.remove(line);
-        }
-    };
-*/
+
     //******** **********
     // PUBLIC API
     //******** **********
     var api = {};
+
     // create a type
     api.create = function(typeKey, opt){
         typeKey = typeKey || 'rnd3';
@@ -49,24 +41,6 @@ var LineGroup = (function(){
             groupPoints.push(points);
             lineIndex += 1;
         }
-
-// create lines
-/*
-        groupPoints.forEach(function(points, lineIndex){
-            // call for line
-            typeObj.forLine(points, {}, lineIndex, opt.lineCount, lineGroup);
-            // create and add the line
-            var geo = new THREE.BufferGeometry();
-
-            geo.setFromPoints(points);
-
-
-            var line = new THREE.Line(geo, new THREE.LineBasicMaterial({
-                linewidth: 4
-            }));
-            lineGroup.add(line);
-        });
-*/
         // user data object
         var ud = lineGroup.userData; 
         ud.typeKey = typeKey;
@@ -104,27 +78,20 @@ var LineGroup = (function(){
         frameData.bias = 1 - Math.abs(0.5 - frameData.per) / 0.5;
         // call for frame method of type to update state object
         typeObj.forFrame(state, baseData, frameData, lineGroup);
-        // remove all old lines if any
 
-        //removeAllLines(lineGroup);
-
+        // create or update lines
         ud.groupPoints.forEach(function(points, lineIndex){
-
             // call for line to update points
             typeObj.forLine(points, state, lineIndex, ud.opt.lineCount, lineGroup);
-
             // get current line            
             var line = lineGroup.children[lineIndex];
-
             // no line? create and add it
             if( !line ){
                 // create and add the line
                 var geo = new THREE.BufferGeometry();
-
                 // calling set from points once, when making the line
                 // for the first time should work okay
                 geo.setFromPoints(points);
-
                 line = new THREE.Line(geo, new THREE.LineBasicMaterial({
                     linewidth: 4
                 }));
@@ -144,7 +111,6 @@ var LineGroup = (function(){
                 });
                 pos.needsUpdate = true;
             }
-
         });
     };
     // return public API
