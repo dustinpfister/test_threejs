@@ -8,7 +8,39 @@ var LineGroup = (function(){
     //******** **********
     var TYPES = {};
 
-    TYPES._default = {}
+    TYPES.tri = {
+        key: 'tri',
+        // default options such as the number of lines, and how many points per line
+        opt: {
+            lineCount: 3,
+            pointsPerLine: 10
+        },
+        // base data for the lines
+        baseData:{
+        },
+        // called just once in LineGroup.create before lines are created
+        create: function(opt, lineGroup){
+
+        },
+        // for frame method used to set the current 'state' with 'baseData', and 'frameData'
+        forFrame : function(state, baseData, frameData, lineGroup){
+            var ud = lineGroup.userData;
+            var i = 0, len = ud.opt.lineCount;
+            while(i < len){
+                i += 1;
+            }
+        },
+        // create/update points of a line in the line group with 'current state' object
+        forLine : function(points, state, lineIndex, lineCount, lineGroup){
+            var ud = lineGroup.userData;
+            var i = 0, len = ud.opt.pointsPerLine;
+            while(i < len){
+                //var v1 = new THREE.Vector3();
+                //points[i].copy(v1);
+                i += 1;
+            }
+        }
+    };
 
     //******** **********
     // HELPERS

@@ -1,5 +1,5 @@
 //******** **********
-// Lines Group circleStack plug-in
+// Lines Group circleStack plug-in for line-group.js in the threejs-examples-lines-deterministic project
 // By Dustin Pfister : https://dustinpfister.github.io/
 LineGroup.load({
     key: 'circleStack',
@@ -26,16 +26,8 @@ LineGroup.load({
         var i = 0, len = ud.opt.lineCount;
         var rDiff = baseData.radiusMax - baseData.radiusMin;
         while(i < len){
-/*
-            var radius = rDiff  * ( 1 / len * i );
-            var deltaRadius = frameData.per * rDiff;
-            state.radius[i] = baseData.radiusMin + ( radius + deltaRadius ) % rDiff;
-*/
-
-
             var radian = Math.PI * baseData.waveCount * ( ( 1 / len * i + frameData.per) % 1);
             state.radius[i] = Math.cos(radian) * baseData.radiusMax;
-
             i += 1;
         }
     },
