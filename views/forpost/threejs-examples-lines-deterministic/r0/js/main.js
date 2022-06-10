@@ -29,12 +29,12 @@ var lg1Base = {
     rDelta: 2
 };
 var lg1 = LineGroup.create();
-lg1.position.set(0, 0, 0);
+lg1.position.set(3, 0, 3);
 scene.add(lg1);
 
-//var lg2 = LineGroup.create('circleStack', { lineCount: 20 } );
-//lg2.position.set(-5, 0, -5);
-//scene.add(lg2);
+var lg2 = LineGroup.create('circleStack', { lineCount: 20 } );
+lg2.position.set(-5, 0, -5);
+scene.add(lg2);
 
 //******** **********
 // LOOP
@@ -52,7 +52,7 @@ var loop = function () {
 
         // update line group (s)
         LineGroup.set(lg1, frame, frameMax, lg1Base)
-        //LineGroup.set(lg2, frame, frameMax, {})
+        LineGroup.set(lg2, frame, frameMax, {})
 
         renderer.render(scene, camera);
         frame += fps * secs;
