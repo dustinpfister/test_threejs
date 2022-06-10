@@ -3,6 +3,12 @@
 // By Dustin Pfister : https://dustinpfister.github.io/
 //******** **********
 var LineGroup = (function(){
+
+    var DEFAULT_FORLINESTYLE = function(m){
+        m.linewidth = 4;
+        m.color = new THREE.Color('lime');
+    };
+
     //******** **********
     // BUILT IN TYPE(S)
     //******** **********
@@ -108,6 +114,7 @@ var LineGroup = (function(){
         ud.typeKey = typeKey;
         ud.opt = opt;
         ud.groupPoints = groupPoints;
+        ud.forLineStyle = opt.forLineStyle || DEFAULT_FORLINESTYLE;
         // call create hook
         typeObj.create(opt, lineGroup);
         // call set for first time
@@ -154,27 +161,28 @@ var LineGroup = (function(){
                 // calling set from points once, when making the line
                 // for the first time should work okay
                 geo.setFromPoints(points);
-                line = new THREE.Line(geo, new THREE.LineBasicMaterial({
-                    linewidth: 4
-                }));
+                // create the line for the first time
+                line = new THREE.Line(geo, new THREE.LineBasicMaterial());
                 // !?!? Using the add method is needed, but I might still need to make sure
                 // that the index numbers are as they should be maybe...
                 //lineGroup.children[lineIndex] = line;
                 lineGroup.add(line);
 
-            }else{
-                // so then I have a line and I just need to update the position attribute
-                // but I can not just call the set from points method as that will result in
-                // a loss of context error
-                var geo = line.geometry,
-                pos = geo.getAttribute('position');
-                points.forEach(function(v, i){
-                    pos.array[i * 3] = v.x;
-                    pos.array[i * 3 + 1] = v.y;
-                    pos.array[i * 3 + 2] = v.z;
-                });
-                pos.needsUpdate = true;
             }
+            // so then I have a line and I just need to update the position attribute
+            // but I can not just call the set from points method as that will result in
+            // a loss of context error
+            var geo = line.geometry,
+            pos = geo.getAttribute('position');
+            points.forEach(function(v, i){
+                pos.array[i * 3] = v.x;
+                pos.array[i * 3 + 1] = v.y;
+                pos.array[i * 3 + 2] = v.z;
+            });
+            pos.needsUpdate = true;
+
+            ud.forLineStyle(line.material, lineIndex, ud)
+            
         });
     };
     // return public API

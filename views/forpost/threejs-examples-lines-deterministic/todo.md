@@ -13,5 +13,5 @@
 * (done) have a baseData object for a typeObj that can be used to set default values for baseData values for the typeObj
 * (done) fix loss of context bug by updating position attribute array rather than calling set by points
 * (done) simple built in 'tri' type for line-group.js
-
-* () start a new line-group-sphere-circles typeObj plug in
+* (done) start a new line-group-sphere-circles typeObj plug in
+* (done) forline style method
