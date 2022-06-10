@@ -1,0 +1,3 @@
+# threejs-examples-lines-deterministic
+
+This is a project where I am starting over with what I worked out in my line circles example. The goal is to make a project that is simular to what I made for my line circles project, but to make the project in such a way in which the process of creating an updating a group of lines is more generic. That means that it can be used to make a collecion of lihes of circles that from a kind of sphere like shape sure, but it can also be used to make all kinds of other collections of lines also. On top of this the focus is also on making a number of plug-ins for this module that follow a kind of deterministic rather than stacastic nature thus the name.
