@@ -53,7 +53,7 @@ var LineGroup = (function(){
 
     // create a type
     api.create = function(typeKey, opt){
-        typeKey = typeKey || '_default';
+        typeKey = typeKey || 'tri';
         typeObj = TYPES[typeKey];
         // make the line group
         var lineGroup = new THREE.Group();
@@ -130,9 +130,11 @@ var LineGroup = (function(){
                 line = new THREE.Line(geo, new THREE.LineBasicMaterial({
                     linewidth: 4
                 }));
-                // ??? it should be okay to just all children to a group like this I think
-                // but I should look into this more maybe.
-                lineGroup.children[lineIndex] = line;
+                // !?!? Using the add method is needed, but I might still need to make sure
+                // that the index numbers are as they should be maybe...
+                //lineGroup.children[lineIndex] = line;
+                lineGroup.add(line);
+
             }else{
                 // so then I have a line and I just need to update the position attribute
                 // but I can not just call the set from points method as that will result in

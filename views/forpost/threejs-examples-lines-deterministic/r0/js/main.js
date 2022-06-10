@@ -14,7 +14,14 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LINES GROUP
 //******** **********
 
+var lg1 = LineGroup.create();
+scene.add(lg1);
+
 var lg2 = LineGroup.create('circleStack', { lineCount: 20 } );
+lg2.position.set(10, 0, 4)
+
+console.log(lg2)
+
 scene.add(lg2);
 
 //******** **********
@@ -32,7 +39,7 @@ var loop = function () {
     if(secs > 1 / fps){
 
         // update line group (s)
-        LineGroup.set(lg2, frame, frameMax, {})
+        //LineGroup.set(lg2, frame, frameMax, {})
 
         renderer.render(scene, camera);
         frame += fps * secs;
