@@ -7,16 +7,21 @@ var LineGroup = (function(){
     // BUILT IN TYPE(S)
     //******** **********
     var TYPES = {};
-
+    // just a 'tri' built in type will be built in for now to mainly serve as an example
+    // on how to make custom types built into the module itself
     TYPES.tri = {
         key: 'tri',
         // default options such as the number of lines, and how many points per line
+        // these are options that should be given just once when creating the line group
         opt: {
             lineCount: 3,
             pointsPerLine: 10
         },
-        // base data for the lines
+        // base data for the lines that can be changed when calling set method these are then
+        // values that define starting conditions for a determinstic animation
         baseData:{
+            // the three home vectors to use that define the starting positions
+            // of the three Vectors of the triangle
             homeVectors: [
                 new THREE.Vector3(3, 0, 0),
                 new THREE.Vector3(-3, 0, 3),
