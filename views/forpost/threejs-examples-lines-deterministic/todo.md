@@ -1,7 +1,7 @@
 # proto lines deterministic todo list
 
 ## () - r1 of project
-* () start a new line-group-sphere-circles typeObj plug in
+
 
 ## () - r0 of project
 * (done) start lineGroup module
@@ -14,4 +14,4 @@
 * (done) fix loss of context bug by updating position attribute array rather than calling set by points
 * (done) simple built in 'tri' type for line-group.js
 
-* () updateLines helper function in line-group.js
+* () start a new line-group-sphere-circles typeObj plug in
