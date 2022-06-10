@@ -15,14 +15,12 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 
 var lg1 = LineGroup.create();
+lg1.position.set(0, 0, 0);
 scene.add(lg1);
 
-var lg2 = LineGroup.create('circleStack', { lineCount: 20 } );
-lg2.position.set(10, 0, 4)
-
-console.log(lg2)
-
-scene.add(lg2);
+//var lg2 = LineGroup.create('circleStack', { lineCount: 20 } );
+//lg2.position.set(-5, 0, -5);
+//scene.add(lg2);
 
 //******** **********
 // LOOP

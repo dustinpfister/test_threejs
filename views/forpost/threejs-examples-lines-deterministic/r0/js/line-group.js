@@ -17,6 +17,11 @@ var LineGroup = (function(){
         },
         // base data for the lines
         baseData:{
+            homeVectors: [
+                new THREE.Vector3(3, 0, 0),
+                new THREE.Vector3(-3, 0, 3),
+                new THREE.Vector3(-3, 0, -3)
+            ]
         },
         // called just once in LineGroup.create before lines are created
         create: function(opt, lineGroup){
@@ -26,7 +31,13 @@ var LineGroup = (function(){
         forFrame : function(state, baseData, frameData, lineGroup){
             var ud = lineGroup.userData;
             var i = 0, len = ud.opt.lineCount;
+            state.vectors = [];
             while(i < len){
+                var v = state.vectors[i] = new THREE.Vector3();
+                var hv = baseData.homeVectors[i];
+                v.x = hv.x;
+                v.y = hv.y;
+                v.z = hv.z;
                 i += 1;
             }
         },
@@ -34,9 +45,13 @@ var LineGroup = (function(){
         forLine : function(points, state, lineIndex, lineCount, lineGroup){
             var ud = lineGroup.userData;
             var i = 0, len = ud.opt.pointsPerLine;
+            // start and end points
+            var vs = state.vectors[lineIndex],
+            ve = state.vectors[ (lineIndex + 1) % 3 ];
             while(i < len){
-                //var v1 = new THREE.Vector3();
-                //points[i].copy(v1);
+                var v1 = new THREE.Vector3();
+                v1.copy( vs.clone().lerp( ve, i / ( len - 1 ) ) );
+                points[i].copy(v1);
                 i += 1;
             }
         }
@@ -130,6 +145,10 @@ var LineGroup = (function(){
                 line = new THREE.Line(geo, new THREE.LineBasicMaterial({
                     linewidth: 4
                 }));
+
+
+console.log(points);
+
                 // !?!? Using the add method is needed, but I might still need to make sure
                 // that the index numbers are as they should be maybe...
                 //lineGroup.children[lineIndex] = line;
