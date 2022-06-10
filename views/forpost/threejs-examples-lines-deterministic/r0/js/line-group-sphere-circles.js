@@ -5,12 +5,19 @@ LineGroup.load({
     key: 'sphereCircles',
     // default options such as the number of lines, and how many points per line
     opt: {
-        lineCount: 10,
-        pointsPerLine: 30
+        lineCount: 15,
+        pointsPerLine: 30,
+        forLineStyle: function(m, i){
+            m.linewidth = 4;
+            m.color = new THREE.Color( ['red', 'lime', 'white', 'blue', 'purple'][ i % 5] )
+        }
     },
     baseData:{
         maxRadius: 4,
-        yAdjust: 1
+        yAdjust: 1,
+        radiusAdjust: 0.25,
+        r1: 1,
+        r2: 1
     },
     // called just once in LineGroup.create before lines are created
     create: function(opt, lineGroup){
@@ -19,10 +26,10 @@ LineGroup.load({
     // for frame method used to set the current 'state' with 'baseData', and 'frameData'
     forFrame : function(state, baseData, frameData, lineGroup){
 
-        state.circleCount = 10;
-        state.maxRadius = baseData.maxRadius;
-        state.r1 = 1;
-        state.r2 = 1;
+        state.circleCount = lineGroup.userData.opt.lineCount;
+        state.maxRadius = baseData.maxRadius - baseData.maxRadius * baseData.radiusAdjust * frameData.bias;
+        state.r1 = baseData.r1;
+        state.r2 = baseData.r2;
         state.yAdjust = baseData.yAdjust * frameData.bias;
 
         // figure radius and other state values for each circle
