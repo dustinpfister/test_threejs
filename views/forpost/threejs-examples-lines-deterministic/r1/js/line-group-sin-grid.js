@@ -27,6 +27,8 @@ LineGroup.load( (function(){
                 m.linewidth = 4;
                 var arr = ['red', 'lime', 'cyan', 'purple', 'blue', 'yellow']
                 m.color = new THREE.Color( arr[ i % arr.length] );
+                m.transparent = true;
+                m.opacity = 0.25;
             }
         },
         baseData:{
