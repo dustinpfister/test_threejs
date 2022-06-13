@@ -23,7 +23,7 @@ LineGroup.load( (function(){
         opt: {
             lineCount: 32,
             pointsPerLine: 40,
-            forLineStyle: function(m, i, ud){
+            forLineStyle: function(m, i){
                 m.linewidth = 4;
                 var arr = ['red', 'lime', 'cyan', 'purple', 'blue', 'yellow']
                 m.color = new THREE.Color( arr[ i % arr.length] );
