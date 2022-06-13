@@ -3,7 +3,7 @@
 //******** **********
 var scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
-//scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0x4a4a4a) )
+scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0x4a4a4a) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(-12, 5, 12);
 camera.lookAt(0, 0, 0);
@@ -13,10 +13,31 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LINES GROUP(s)
 //******** **********
+var lgOpt = {
+    waveHeight: 5,
+    simpleWave: false,
+    waveCount: 4,
+    radianOffsetLoops: 1,
+    sizeWidth: 8,
+    sizeHeight: 8
+};
+
+
 var lg1 = LineGroup.create('sinGrid');
-lg1.position.set(-8, 0, -8);
-lg1.scale.set(0.5, 0.5, 0.5)
+lg1.rotation.y = Math.PI * 0.0;
 scene.add(lg1);
+
+var lg2 = LineGroup.create('sinGrid');
+lg2.rotation.y = Math.PI * 0.5;
+scene.add(lg2);
+
+var lg3 = LineGroup.create('sinGrid');
+lg3.rotation.y = Math.PI * 1.0;
+scene.add(lg3);
+
+var lg4 = LineGroup.create('sinGrid');
+lg4.rotation.y = Math.PI * 1.5;
+scene.add(lg4);
 
 //******** **********
 // LOOP
@@ -38,14 +59,10 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // update line group (s)
-        LineGroup.set(lg1, frame, frameMax, {
-            waveHeight: 5, //1 + 5 * bias
-            simpleWave: false,
-            waveCount: 4,
-            radianOffsetLoops: 2,
-            sizeWidth: 16,
-            sizeHeight: 16
-        });
+        LineGroup.set(lg1, frame, frameMax, lgOpt);
+        LineGroup.set(lg2, frame, frameMax, lgOpt);
+        LineGroup.set(lg3, frame, frameMax, lgOpt);
+        LineGroup.set(lg4, frame, frameMax, lgOpt);
         // render
         renderer.render(scene, camera);
         frame += fps * secs;
