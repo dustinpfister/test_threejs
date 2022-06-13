@@ -5,7 +5,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0x4a4a4a) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(8, 5, 8);
+camera.position.set(-12, 5, 12);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -22,6 +22,10 @@ scene.add(lg1);
 // LOOP
 //******** **********
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.target.set(0,-2, 0);
+controls.update();
+
+
 var fps = 30,
 lt = new Date(),
 frame = 0,
