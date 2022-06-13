@@ -1,8 +1,8 @@
 //******** **********
-// Lines Group sphereCircles plug-in for line-group.js in the threejs-examples-lines-deterministic project
+// Lines Group sinGrid plug-in for line-group.js in the threejs-examples-lines-deterministic project
 // By Dustin Pfister : https://dustinpfister.github.io/
 LineGroup.load({
-    key: 'sphereCircles',
+    key: 'sinGrid',
     // default options such as the number of lines, and how many points per line
     opt: {
         lineCount: 15,

@@ -1,7 +1,7 @@
 # proto lines deterministic todo list
 
 ## () - r1 of project
-* new line-group-sin-grid.js
+* (done) new line-group-sin-grid.js started
 * sin grid is an array of lines for two axis where Math.sin is what is used to change the position of the lines over time
 * I am thinking that I might just want to have an maxEndRadian base value that is the max radian value of the both last lines
 

@@ -32,14 +32,7 @@ var lg1 = LineGroup.create();
 lg1.position.set(3, 0, 0);
 lg1.scale.set(0.5, 0.5, 0.5)
 scene.add(lg1);
-// the 'circleStack' type
-var lg2 = LineGroup.create('circleStack', { lineCount: 20 } );
-lg2.position.set(-5, 0, -5);
-scene.add(lg2);
-// the 'sphereCircles' type base off my other lines example
-var lg3 = LineGroup.create('sphereCircles', { } );
-lg3.position.set(-5, 0, 5);
-scene.add(lg3);
+
 //******** **********
 // LOOP
 //******** **********
@@ -55,8 +48,6 @@ var loop = function () {
     if(secs > 1 / fps){
         // update line group (s)
         LineGroup.set(lg1, frame, frameMax, lg1Base);
-        LineGroup.set(lg2, frame, frameMax, {});
-        LineGroup.set(lg3, frame, frameMax, {});
         // render
         renderer.render(scene, camera);
         frame += fps * secs;
