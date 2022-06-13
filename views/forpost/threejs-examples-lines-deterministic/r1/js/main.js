@@ -15,28 +15,32 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LINES GROUP(s)
 //******** **********
 var lgOpt = {
-    waveHeight: 5,
+    forLineStyle: function(m, i, ud, lineGroup){
+        m.linewidth = 8;
+        var arr = ['red', 'white']
+        m.color = new THREE.Color( arr[ i % arr.length] );
+        m.transparent = true;
+        m.opacity = 0.25;
+    }
+};
+var lgBaseData = {
+    waveHeight: 2,
     simpleWave: false,
-    waveCount: 4,
+    waveCount: 6,
     radianOffsetLoops: 1,
     sizeWidth: 8,
     sizeHeight: 8
 };
-
-
-var lg1 = LineGroup.create('sinGrid');
+var lg1 = LineGroup.create('sinGrid', lgOpt);
 lg1.rotation.y = Math.PI * 0.0;
 scene.add(lg1);
-
-var lg2 = LineGroup.create('sinGrid');
+var lg2 = LineGroup.create('sinGrid', lgOpt);
 lg2.rotation.y = Math.PI * 0.5;
 scene.add(lg2);
-
-var lg3 = LineGroup.create('sinGrid');
+var lg3 = LineGroup.create('sinGrid', lgOpt);
 lg3.rotation.y = Math.PI * 1.0;
 scene.add(lg3);
-
-var lg4 = LineGroup.create('sinGrid');
+var lg4 = LineGroup.create('sinGrid', lgOpt);
 lg4.rotation.y = Math.PI * 1.5;
 scene.add(lg4);
 
@@ -60,10 +64,10 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // update line group (s)
-        LineGroup.set(lg1, frame, frameMax, lgOpt);
-        LineGroup.set(lg2, frame, frameMax, lgOpt);
-        LineGroup.set(lg3, frame, frameMax, lgOpt);
-        LineGroup.set(lg4, frame, frameMax, lgOpt);
+        LineGroup.set(lg1, frame, frameMax, lgBaseData);
+        LineGroup.set(lg2, frame, frameMax, lgBaseData);
+        LineGroup.set(lg3, frame, frameMax, lgBaseData);
+        LineGroup.set(lg4, frame, frameMax, lgBaseData);
         // render
         renderer.render(scene, camera);
         frame += fps * secs;

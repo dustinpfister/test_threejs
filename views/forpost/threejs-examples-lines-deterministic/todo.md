@@ -2,9 +2,9 @@
 
 ## () - r1 of project
 * (done) new line-group-sin-grid.js started
-* sin grid is an array of lines for two axis where Math.sin is what is used to change the position of the lines over time
-* I am thinking that I might just want to have an maxEndRadian base value that is the max radian value of the both last lines
+* (done) sin grid is an array of lines for two axis where Math.sin is what is used to change the position of the lines over time
 
+* (done) fuller range of values to work with when making a functio to update line style
 
 * new line-group-delta-grid.js file
 * base values of delta-grid include the width count, height count, and width and height size of each tile

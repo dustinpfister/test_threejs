@@ -167,9 +167,7 @@ var LineGroup = (function(){
                 geo.setFromPoints(points);
                 // create the line for the first time
                 line = new THREE.Line(geo, new THREE.LineBasicMaterial());
-                // !?!? Using the add method is needed, but I might still need to make sure
-                // that the index numbers are as they should be maybe...
-                //lineGroup.children[lineIndex] = line;
+                // Using the add method is needed, but I might still need to make sure
                 lineGroup.add(line);
 
             }
@@ -184,9 +182,8 @@ var LineGroup = (function(){
                 pos.array[i * 3 + 2] = v.z;
             });
             pos.needsUpdate = true;
-
-            ud.forLineStyle(line.material, lineIndex, ud)
-            
+            // update line style
+            ud.forLineStyle(line.material, lineIndex, ud, lineGroup, frame, frameMax, baseData);
         });
     };
     // return public API

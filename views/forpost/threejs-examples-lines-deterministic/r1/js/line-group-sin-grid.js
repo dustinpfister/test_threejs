@@ -23,12 +23,12 @@ LineGroup.load( (function(){
         opt: {
             lineCount: 32,
             pointsPerLine: 40,
-            forLineStyle: function(m, i){
+            forLineStyle: function(m, i, ud){
                 m.linewidth = 4;
                 var arr = ['red', 'lime', 'cyan', 'purple', 'blue', 'yellow']
                 m.color = new THREE.Color( arr[ i % arr.length] );
                 m.transparent = true;
-                m.opacity = 0.25;
+                m.opacity = 1.0;
             }
         },
         baseData:{
