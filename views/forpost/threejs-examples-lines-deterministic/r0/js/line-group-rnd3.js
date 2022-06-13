@@ -1,5 +1,5 @@
 //******** **********
-// Lines Group rnd3 plug-in
+// Lines Group rnd3 plug-in for line-group.js r0 in the threejs-examples-lines-deterministic project
 // By Dustin Pfister : https://dustinpfister.github.io/
 LineGroup.load({
     key: 'rnd3',

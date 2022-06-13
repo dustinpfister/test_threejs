@@ -1,5 +1,5 @@
 //******** **********
-// Lines Group circleStack plug-in for line-group.js in the threejs-examples-lines-deterministic project
+// Lines Group circleStack plug-in for line-group.js r0 in the threejs-examples-lines-deterministic project
 // By Dustin Pfister : https://dustinpfister.github.io/
 LineGroup.load({
     key: 'circleStack',
