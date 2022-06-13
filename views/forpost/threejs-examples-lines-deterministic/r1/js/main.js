@@ -17,19 +17,19 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var lgOpt = {
     forLineStyle: function(m, i, ud, lineGroup){
         m.linewidth = 8;
-        var arr = ['red', 'white']
+        var arr = ['red', 'lime', 'cyan', 'purple', 'blue', 'yellow', 'orange', 'pink']
         m.color = new THREE.Color( arr[ i % arr.length] );
         m.transparent = true;
         m.opacity = 0.25;
     }
 };
 var lgBaseData = {
-    waveHeight: 2,
+    waveHeight: 7,
     simpleWave: false,
-    waveCount: 6,
+    waveCount: 4,
     radianOffsetLoops: 1,
-    sizeWidth: 8,
-    sizeHeight: 8
+    sizeWidth: 15,
+    sizeHeight: 15
 };
 var lg1 = LineGroup.create('sinGrid', lgOpt);
 lg1.rotation.y = Math.PI * 0.0;
