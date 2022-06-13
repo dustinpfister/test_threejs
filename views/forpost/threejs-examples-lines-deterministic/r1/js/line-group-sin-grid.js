@@ -24,8 +24,8 @@ LineGroup.load( (function(){
         key: 'sinGrid',
         // default options such as the number of lines, and how many points per line
         opt: {
-            lineCount: 8,
-            pointsPerLine: 4,
+            lineCount: 16,
+            pointsPerLine: 40,
             forLineStyle: function(m, i){
                 m.linewidth = 4;
                 m.color = new THREE.Color( 'red' );
@@ -41,10 +41,10 @@ LineGroup.load( (function(){
         // for frame method used to set the current 'state' with 'baseData', and 'frameData'
         forFrame : function(state, baseData, frameData, lineGroup){
 
-            state.countWidth = 4;
+            state.countWidth = 8;
 
-            state.sizeWidth = 1;
-            state.sizeHeight = 1;
+            state.sizeWidth = 4;
+            state.sizeHeight = 4;
 
             // figure state values for each line
             //var ud = lineGroup.userData;
@@ -58,36 +58,30 @@ LineGroup.load( (function(){
             var ud = lineGroup.userData;
             // for each point of each line
             var i = 0, len = ud.opt.pointsPerLine;
-
-            // get startx and startz values for this line
-            var startX = 0; //i % lineCount % state.countWidth;
-
-
-
-
-
             // is this the first or second set of lines?
             var a = lineIndex < lineCount / 2 ? 0 : 1;
             var mapping = a == 0 ? 'xz': 'zx';
-
             var h = state.countWidth;
             var li = lineIndex % h;
-
-
-
-
+            var linePer = li / (h - 1);
+            // for each point in the current line 
             while(i < len ){
+                var v = getGridVector(state, li, h, i, len, mapping );
+
+                var pointPer = i / (len - 1);
+
+var radian = Math.PI * 4 * linePer * pointPer;
+
+v.y = Math.sin(radian)
 
 
-
-                //var linePer = i / len;
-                //var v = new THREE.Vector3();
-
-                //v.x = 1 * lineIndex;
-                //v.z = 10 * linePer;
+                //if(a === 0){
+                //  v.y = Math.sin( Math.PI * 2 * 4 * pointPer ) * 0.1;
+                //}
 
 
-                var v = getGridVector(state, li, h, i, len, mapping )
+               //var x = li % h / h;
+               //v.y = (x + 0.78 * pointPer ) * 0.5;
 
                 points[i].copy(v);
                 i += 1;
