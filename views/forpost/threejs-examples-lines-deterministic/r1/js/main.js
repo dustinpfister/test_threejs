@@ -35,7 +35,8 @@ var loop = function () {
     if(secs > 1 / fps){
         // update line group (s)
         LineGroup.set(lg1, frame, frameMax, {
-            waveHeight: 5 //1 + 5 * bias
+            waveHeight: 5, //1 + 5 * bias
+            simpleWave: false
         });
         // render
         renderer.render(scene, camera);

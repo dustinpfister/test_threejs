@@ -33,7 +33,8 @@ LineGroup.load( (function(){
             }
         },
         baseData:{
-            waveHeight: 1
+            waveHeight: 1,
+            simpleWave: false
         },
         // called just once in LineGroup.create before lines are created
         create: function(opt, lineGroup){
@@ -50,6 +51,8 @@ LineGroup.load( (function(){
 
             // wave height should be adjustable
             state.waveHeight = baseData.waveHeight;
+            // can use simple wave expression or not
+            state.simpleWave = baseData.simpleWave;
 
             // have frame data effect radian offset
             state.radianOffset = Math.PI * 2 * 4 * frameData.per;
@@ -82,11 +85,12 @@ LineGroup.load( (function(){
                 var radian = state.radianOffset + Math.PI * 8 * linePer * pointPer;
 
                 // simple wave height
-                //v.y = Math.sin(radian) * state.waveHeight;
-
-                // variable wave height based on position
-                v.y = Math.sin(radian) * state.waveHeight * ( ( linePer + pointPer ) / 2 );
-
+                if(state.simpleWave){
+                    v.y = Math.sin(radian) * state.waveHeight;
+                }else{
+                    // variable wave height based on position
+                    v.y = Math.sin(radian) * state.waveHeight * ( ( linePer + pointPer ) / 2 );
+                }
 
                 //if(a === 0){
                 //  v.y = Math.sin( Math.PI * 2 * 4 * pointPer ) * 0.1;
