@@ -24,11 +24,12 @@ LineGroup.load( (function(){
         key: 'sinGrid',
         // default options such as the number of lines, and how many points per line
         opt: {
-            lineCount: 16,
+            lineCount: 32,
             pointsPerLine: 40,
             forLineStyle: function(m, i){
                 m.linewidth = 4;
-                m.color = new THREE.Color( 'red' );
+                var arr = ['red', 'lime', 'cyan', 'purple', 'blue', 'yellow']
+                m.color = new THREE.Color( arr[ i % arr.length] );
             }
         },
         baseData:{
@@ -41,13 +42,18 @@ LineGroup.load( (function(){
         // for frame method used to set the current 'state' with 'baseData', and 'frameData'
         forFrame : function(state, baseData, frameData, lineGroup){
 
-            state.countWidth = 8;
+            var opt = lineGroup.userData.opt;
+            state.countWidth = opt.lineCount / 2;
 
-            state.sizeWidth = 8;
-            state.sizeHeight = 8;
+            state.sizeWidth = 16;
+            state.sizeHeight = 16;
 
             // wave height should be adjustable
             state.waveHeight = baseData.waveHeight;
+
+            // have frame data effect radian offset
+            state.radianOffset = Math.PI * 2 * 4 * frameData.per;
+
 
             // figure state values for each line
             //var ud = lineGroup.userData;
@@ -73,9 +79,13 @@ LineGroup.load( (function(){
 
                 var pointPer = i / (len - 1);
 
-                var radian = Math.PI * 4 * linePer * pointPer;
+                var radian = state.radianOffset + Math.PI * 8 * linePer * pointPer;
 
-                v.y = Math.sin(radian) * state.waveHeight;
+                // simple wave height
+                //v.y = Math.sin(radian) * state.waveHeight;
+
+                // variable wave height based on position
+                v.y = Math.sin(radian) * state.waveHeight * ( ( linePer + pointPer ) / 2 );
 
 
                 //if(a === 0){

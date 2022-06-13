@@ -14,7 +14,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LINES GROUP(s)
 //******** **********
 var lg1 = LineGroup.create('sinGrid');
-lg1.position.set(-4, 0, -4);
+lg1.position.set(-8, 0, -8);
 lg1.scale.set(0.5, 0.5, 0.5)
 scene.add(lg1);
 
@@ -35,7 +35,7 @@ var loop = function () {
     if(secs > 1 / fps){
         // update line group (s)
         LineGroup.set(lg1, frame, frameMax, {
-            waveHeight: 3 * bias
+            waveHeight: 5 //1 + 5 * bias
         });
         // render
         renderer.render(scene, camera);
