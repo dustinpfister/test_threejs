@@ -20,7 +20,7 @@ var lgOpt = {
         var arr = ['red', 'lime', 'cyan', 'purple', 'blue', 'yellow', 'orange', 'pink']
         m.color = new THREE.Color( arr[ lineIndex % arr.length] );
         m.transparent = true;
-        m.opacity = 0.10 + 0.9 * frameData.bias;
+        m.opacity = 0.4 + 0.6 * frameData.bias;
     }
 };
 var lgBaseData = {

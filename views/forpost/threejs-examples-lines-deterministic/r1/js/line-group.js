@@ -84,10 +84,12 @@ var LineGroup = (function(){
         }
     };
     //******** **********
-    // PUBLIC API
+    // PUBLIC API START
     //******** **********
     var api = {};
-
+    //******** **********
+    // CREATE METHOD
+    //******** **********
     // create a type
     api.create = function(typeKey, opt){
         typeKey = typeKey || 'tri';
@@ -125,10 +127,26 @@ var LineGroup = (function(){
         api.set(lineGroup, 0, 30, {});
         return lineGroup;
     };
+    //******** **********
+    // LOAD METHOD
+    //******** **********
     // load a type
     api.load = function(typeObj){
         typeObj.baseData = typeObj.baseData || {}; 
         TYPES[typeObj.key] = typeObj;
+    };
+    //******** **********
+    // SET METHOD
+    //******** **********
+    // get frameData object helper
+    var getFrameData = function(frame, frameMax){
+        var frameData = {
+            frame: frame,
+            frameMax: frameMax
+        };
+        frameData.per = frameData.frame / frameData.frameMax;
+        frameData.bias = 1 - Math.abs(0.5 - frameData.per) / 0.5;
+        return frameData;
     };
     // set a line group with the given frame, maxFrame, and initState
     api.set = function(lineGroup, frame, frameMax, baseData){
@@ -140,15 +158,10 @@ var LineGroup = (function(){
         Object.keys( typeObj.baseData ).forEach(function(key){
             baseData[key] = baseData[key] === undefined ? typeObj.baseData[key]: baseData[key]; 
         });
-        // state object
+        // start with clean state object
         var state = {};
         // frame data object
-        var frameData = {
-            frame: frame,
-            frameMax: frameMax
-        };
-        frameData.per = frameData.frame / frameData.frameMax;
-        frameData.bias = 1 - Math.abs(0.5 - frameData.per) / 0.5;
+        var frameData = getFrameData(frame, frameMax);
         // call for frame method of type to update state object
         typeObj.forFrame(state, baseData, frameData, lineGroup);
 

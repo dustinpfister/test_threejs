@@ -5,9 +5,16 @@
 * (done) sin grid is an array of lines for two axis where Math.sin is what is used to change the position of the lines over time
 * (done) fuller range of values to work with when making a functio to update line style
 
-* new line-group-delta-grid.js file
-* base values of delta-grid include the width count, height count, and width and height size of each tile
-* base values include an array of deltas for each point in each line
+* () create frameData object helper
+* () new frameData.biasExp prop
+* () frameData.getPer(times) method
+* () frameData.getBias(times) method
+* () frameData.getBiasExp(times) method
+
+
+* () new line-group-delta-grid.js file
+* () base values of delta-grid include the width count, height count, and width and height size of each tile
+* () base values include an array of deltas for each point in each line
 
 
 ## ( done 06/10/2022 ) - r0 of project
