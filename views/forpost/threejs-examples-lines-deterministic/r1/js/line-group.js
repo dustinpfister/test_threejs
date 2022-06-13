@@ -1,5 +1,5 @@
 //******** **********
-// Lines Grpoup module - ( r0 )
+// Lines Grpoup module - ( r1 )
 // By Dustin Pfister : https://dustinpfister.github.io/
 //******** **********
 var LineGroup = (function(){

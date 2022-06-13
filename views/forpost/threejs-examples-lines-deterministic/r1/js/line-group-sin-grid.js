@@ -1,69 +1,102 @@
 //******** **********
-// Lines Group sinGrid plug-in for line-group.js in the threejs-examples-lines-deterministic project
+// Lines Group sinGrid plug-in for line-group.js r1 in the threejs-examples-lines-deterministic project
 // By Dustin Pfister : https://dustinpfister.github.io/
-LineGroup.load({
-    key: 'sinGrid',
-    // default options such as the number of lines, and how many points per line
-    opt: {
-        lineCount: 15,
-        pointsPerLine: 30,
-        forLineStyle: function(m, i){
-            m.linewidth = 4;
-            m.color = new THREE.Color( ['lime', 'cyan', 'green'][ i % 3] );
+LineGroup.load( (function(){
+
+
+    var getGridVector = function(state, lineIndex, lineCount, pointIndex, pointCount, mapping){
+
+        var v = new THREE.Vector3();
+
+        mapping = mapping || 'xz'; // 'xz' of zx mapping
+        ma = mapping.split('');
+
+        var wh = {
+           x: 15,
+           z: 10
         }
-    },
-    baseData:{
-        maxRadius: 4,
-        yAdjust: 1,
-        radiusAdjust: 0.25,
-        r1: 1,
-        r2: 1
-    },
-    // called just once in LineGroup.create before lines are created
-    create: function(opt, lineGroup){
 
-    },
-    // for frame method used to set the current 'state' with 'baseData', and 'frameData'
-    forFrame : function(state, baseData, frameData, lineGroup){
+        var pointPer = pointIndex / pointCount;
 
-        state.circleCount = lineGroup.userData.opt.lineCount;
-        state.maxRadius = baseData.maxRadius - baseData.maxRadius * baseData.radiusAdjust * frameData.bias;
-        state.r1 = baseData.r1;
-        state.r2 = baseData.r2;
-        state.yAdjust = baseData.yAdjust * frameData.bias;
+        v[ ma[0] ] = ( wh[ ma[0] ] / lineCount ) * lineIndex;
+        v[ ma[1] ] = wh[ ma[1] ] * pointPer;
 
-        // figure radius and other state values for each circle
-        var ud = lineGroup.userData;
-        var i = 0, len = ud.opt.lineCount;
-        while(i < len){
-            i += 1;
+
+        return v;        
+
+    };
+
+
+
+    return {
+        key: 'sinGrid',
+        // default options such as the number of lines, and how many points per line
+        opt: {
+            lineCount: 8,
+            pointsPerLine: 4,
+            forLineStyle: function(m, i){
+                m.linewidth = 4;
+                m.color = new THREE.Color( 'red' );
+            }
+        },
+        baseData:{
+        
+        },
+        // called just once in LineGroup.create before lines are created
+        create: function(opt, lineGroup){
+
+        },
+        // for frame method used to set the current 'state' with 'baseData', and 'frameData'
+        forFrame : function(state, baseData, frameData, lineGroup){
+
+            state.countWidth = 4;
+
+            // figure state values for each line
+            //var ud = lineGroup.userData;
+            //var i = 0, len = ud.opt.lineCount;
+            //while(i < len){
+            //    i += 1;
+            //}
+        },
+        // create/update points of a line in the line group with 'current state' object
+        forLine : function(points, state, lineIndex, lineCount, lineGroup){
+            var ud = lineGroup.userData;
+            // for each point of each line
+            var i = 0, len = ud.opt.pointsPerLine;
+
+            // get startx and startz values for this line
+            var startX = 0; //i % lineCount % state.countWidth;
+
+
+
+
+
+            // is this the first or second set of lines?
+            var a = lineIndex < lineCount / 2 ? 0 : 1;
+            var mapping = a == 0 ? 'xz': 'zx';
+
+            var h = state.countWidth;
+            var li = lineIndex % h;
+
+
+
+
+            while(i < len ){
+
+
+
+                //var linePer = i / len;
+                //var v = new THREE.Vector3();
+
+                //v.x = 1 * lineIndex;
+                //v.z = 10 * linePer;
+
+
+                var v = getGridVector(state, li, h, i, len, mapping )
+
+                points[i].copy(v);
+                i += 1;
+            }
         }
-    },
-    // create/update points of a line in the line group with 'current state' object
-    forLine : function(points, state, lineIndex, lineCount, lineGroup){
-         var ud = lineGroup.userData;
-         var i = 0, len = ud.opt.pointsPerLine;
-
-
-        var s = {};
-        s.sPer = (lineIndex + 0) / state.circleCount;
-        s.radius = Math.sin( Math.PI * state.r1 * s.sPer ) * state.maxRadius;
-        s.y = Math.cos( Math.PI * state.r2 * s.sPer ) * state.maxRadius * state.yAdjust;
-        s.i = 0;
-
-         while(i < len ){
-            s.cPer =  i / ( len - 1 );
-            s.radian = Math.PI * 2 * s.cPer;
-            s.v = new THREE.Vector3();
-            s.v.x = Math.cos(s.radian) * s.radius;
-
-            s.v.y = s.y;
-
-            s.v.z = Math.sin(s.radian) * s.radius;
-
-             points[i].copy(s.v);
-             i += 1;
-         }
-
-    }
-});
+    };
+}()) );

@@ -13,23 +13,8 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LINES GROUP(s)
 //******** **********
-// built in 'tri' type
-var lg1Base = {
-    homeVectors: [
-        new THREE.Vector3(0, 0, 0),
-        new THREE.Vector3(0, 0, 0),
-        new THREE.Vector3(0, 0, 0)
-    ], 
-    lerpVectors: [
-        new THREE.Vector3(-5, 0, -5),
-        new THREE.Vector3(-5, 0, 5),
-        new THREE.Vector3(5, 0, 0)
-    ],
-    rBase: 0,
-    rDelta: 2
-};
-var lg1 = LineGroup.create();
-lg1.position.set(3, 0, 0);
+var lg1 = LineGroup.create('sinGrid');
+lg1.position.set(0, 0, 0);
 lg1.scale.set(0.5, 0.5, 0.5)
 scene.add(lg1);
 
@@ -47,7 +32,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // update line group (s)
-        LineGroup.set(lg1, frame, frameMax, lg1Base);
+        //LineGroup.set(lg1, frame, frameMax, {});
         // render
         renderer.render(scene, camera);
         frame += fps * secs;
