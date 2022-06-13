@@ -28,11 +28,15 @@ frame = 0,
 frameMax = 90;
 var loop = function () {
     var now = new Date(),
+    per = frame / frameMax,
+    bias = 1 - Math.abs(0.5 - per) / 0.5,
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // update line group (s)
-        //LineGroup.set(lg1, frame, frameMax, {});
+        LineGroup.set(lg1, frame, frameMax, {
+            waveHeight: 3 * bias
+        });
         // render
         renderer.render(scene, camera);
         frame += fps * secs;

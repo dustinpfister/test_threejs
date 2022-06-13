@@ -32,11 +32,11 @@ LineGroup.load( (function(){
             }
         },
         baseData:{
-        
+            waveHeight: 1
         },
         // called just once in LineGroup.create before lines are created
         create: function(opt, lineGroup){
-
+            
         },
         // for frame method used to set the current 'state' with 'baseData', and 'frameData'
         forFrame : function(state, baseData, frameData, lineGroup){
@@ -46,7 +46,8 @@ LineGroup.load( (function(){
             state.sizeWidth = 8;
             state.sizeHeight = 8;
 
-state.waveHeight = 1;
+            // wave height should be adjustable
+            state.waveHeight = baseData.waveHeight;
 
             // figure state values for each line
             //var ud = lineGroup.userData;
