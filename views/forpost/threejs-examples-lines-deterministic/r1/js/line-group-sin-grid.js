@@ -2,8 +2,7 @@
 // Lines Group sinGrid plug-in for line-group.js r1 in the threejs-examples-lines-deterministic project
 // By Dustin Pfister : https://dustinpfister.github.io/
 LineGroup.load( (function(){
-
-
+    // get grid vector helper
     var getGridVector = function(state, lineIndex, lineCount, pointIndex, pointCount, mapping){
         var v = new THREE.Vector3();
         mapping = mapping || 'xz'; // 'xz' of zx mapping
@@ -17,9 +16,7 @@ LineGroup.load( (function(){
         v[ ma[1] ] = wh[ ma[1] ] * pointPer;
         return v;        
     };
-
-
-
+    // the type object
     return {
         key: 'sinGrid',
         // default options such as the number of lines, and how many points per line
@@ -34,7 +31,11 @@ LineGroup.load( (function(){
         },
         baseData:{
             waveHeight: 1,
-            simpleWave: false
+            simpleWave: false,
+            waveCount: 1,
+            radianOffsetLoops: 1,
+            sizeWidth : 8,
+            sizeHeight: 8
         },
         // called just once in LineGroup.create before lines are created
         create: function(opt, lineGroup){
@@ -46,17 +47,18 @@ LineGroup.load( (function(){
             var opt = lineGroup.userData.opt;
             state.countWidth = opt.lineCount / 2;
 
-            state.sizeWidth = 16;
-            state.sizeHeight = 16;
+            state.sizeWidth = baseData.sizeWidth;
+            state.sizeHeight = baseData.sizeHeight;
 
             // wave height should be adjustable
             state.waveHeight = baseData.waveHeight;
             // can use simple wave expression or not
             state.simpleWave = baseData.simpleWave;
+            // I should be able to set wave count
+            state.waveCount = baseData.waveCount;
 
             // have frame data effect radian offset
-            state.radianOffset = Math.PI * 2 * 4 * frameData.per;
-
+            state.radianOffset = Math.PI * 2 * baseData.radianOffsetLoops * frameData.per;
 
             // figure state values for each line
             //var ud = lineGroup.userData;
@@ -79,27 +81,16 @@ LineGroup.load( (function(){
             // for each point in the current line 
             while(i < len ){
                 var v = getGridVector(state, li, h, i, len, mapping );
-
                 var pointPer = i / (len - 1);
-
-                var radian = state.radianOffset + Math.PI * 8 * linePer * pointPer;
-
-                // simple wave height
+                var radian = state.radianOffset + Math.PI * state.waveCount * linePer * pointPer;
+                // set y
                 if(state.simpleWave){
+                    // simple wave height
                     v.y = Math.sin(radian) * state.waveHeight;
                 }else{
                     // variable wave height based on position
                     v.y = Math.sin(radian) * state.waveHeight * ( ( linePer + pointPer ) / 2 );
                 }
-
-                //if(a === 0){
-                //  v.y = Math.sin( Math.PI * 2 * 4 * pointPer ) * 0.1;
-                //}
-
-
-               //var x = li % h / h;
-               //v.y = (x + 0.78 * pointPer ) * 0.5;
-
                 points[i].copy(v);
                 i += 1;
             }
