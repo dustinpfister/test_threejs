@@ -43,8 +43,10 @@ LineGroup.load( (function(){
 
             state.countWidth = 8;
 
-            state.sizeWidth = 4;
-            state.sizeHeight = 4;
+            state.sizeWidth = 8;
+            state.sizeHeight = 8;
+
+state.waveHeight = 1;
 
             // figure state values for each line
             //var ud = lineGroup.userData;
@@ -70,9 +72,9 @@ LineGroup.load( (function(){
 
                 var pointPer = i / (len - 1);
 
-var radian = Math.PI * 4 * linePer * pointPer;
+                var radian = Math.PI * 4 * linePer * pointPer;
 
-v.y = Math.sin(radian)
+                v.y = Math.sin(radian) * state.waveHeight;
 
 
                 //if(a === 0){
