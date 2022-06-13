@@ -154,8 +154,9 @@ var LineGroup = (function(){
 
         // create or update lines
         ud.groupPoints.forEach(function(points, lineIndex){
+            var lineCount = ud.opt.lineCount;
             // call for line to update points
-            typeObj.forLine(points, state, lineIndex, ud.opt.lineCount, lineGroup);
+            typeObj.forLine(points, state, lineIndex, lineCount, lineGroup);
             // get current line            
             var line = lineGroup.children[lineIndex];
             // no line? create and add it
@@ -183,7 +184,7 @@ var LineGroup = (function(){
             });
             pos.needsUpdate = true;
             // update line style
-            ud.forLineStyle(line.material, lineIndex, ud, lineGroup, frame, frameMax, baseData);
+            ud.forLineStyle(line.material, lineIndex, lineCount, lineGroup, frameData, baseData);
         });
     };
     // return public API

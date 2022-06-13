@@ -3,7 +3,6 @@
 ## () - r1 of project
 * (done) new line-group-sin-grid.js started
 * (done) sin grid is an array of lines for two axis where Math.sin is what is used to change the position of the lines over time
-
 * (done) fuller range of values to work with when making a functio to update line style
 
 * new line-group-delta-grid.js file

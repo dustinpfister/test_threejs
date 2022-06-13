@@ -15,12 +15,12 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LINES GROUP(s)
 //******** **********
 var lgOpt = {
-    forLineStyle: function(m, i, ud, lineGroup){
+    forLineStyle: function(m, lineIndex, lineCount, lineGroup, frameData, baseData){
         m.linewidth = 8;
         var arr = ['red', 'lime', 'cyan', 'purple', 'blue', 'yellow', 'orange', 'pink']
-        m.color = new THREE.Color( arr[ i % arr.length] );
+        m.color = new THREE.Color( arr[ lineIndex % arr.length] );
         m.transparent = true;
-        m.opacity = 0.25;
+        m.opacity = 0.10 + 0.9 * frameData.bias;
     }
 };
 var lgBaseData = {
