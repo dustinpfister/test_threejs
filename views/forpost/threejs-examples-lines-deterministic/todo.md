@@ -4,8 +4,8 @@
 * (done) new line-group-sin-grid.js started
 * (done) sin grid is an array of lines for two axis where Math.sin is what is used to change the position of the lines over time
 * (done) fuller range of values to work with when making a functio to update line style
+* (done) create frameData object helper
 
-* () create frameData object helper
 * () new frameData.biasExp prop
 * () frameData.getPer(times) method
 * () frameData.getBias(times) method
