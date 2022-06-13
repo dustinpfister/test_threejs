@@ -5,25 +5,17 @@ LineGroup.load( (function(){
 
 
     var getGridVector = function(state, lineIndex, lineCount, pointIndex, pointCount, mapping){
-
         var v = new THREE.Vector3();
-
         mapping = mapping || 'xz'; // 'xz' of zx mapping
         ma = mapping.split('');
-
         var wh = {
-           x: 15,
-           z: 10
+           x: state.sizeWidth * 2,
+           z: state.sizeHeight * 2
         }
-
-        var pointPer = pointIndex / pointCount;
-
-        v[ ma[0] ] = ( wh[ ma[0] ] / lineCount ) * lineIndex;
+        var pointPer = pointIndex / (pointCount - 1);
+        v[ ma[0] ] = ( wh[ ma[0] ] / ( lineCount - 1 ) ) * lineIndex;
         v[ ma[1] ] = wh[ ma[1] ] * pointPer;
-
-
         return v;        
-
     };
 
 
@@ -50,6 +42,9 @@ LineGroup.load( (function(){
         forFrame : function(state, baseData, frameData, lineGroup){
 
             state.countWidth = 4;
+
+            state.sizeWidth = 1;
+            state.sizeHeight = 1;
 
             // figure state values for each line
             //var ud = lineGroup.userData;
