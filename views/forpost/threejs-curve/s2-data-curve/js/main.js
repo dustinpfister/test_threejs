@@ -22,44 +22,24 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.05) )
 //******** **********
 // CURVE, TubeGeometry, Mesh
 //******** **********
-class CustomSinCurve extends THREE.Curve {
-    constructor( scale = 1 ) {
+class CustomCurve extends THREE.Curve {
+    constructor( data = [], scale = 1 ) {
         super();
         this.scale = scale;
+        this.data = data;
+        this.arcLengthDivisions = data.length * 30 * 2;
     }
     getPoint( t, optionalTarget = new THREE.Vector3() ) {
-        var tx = t * 3 - 1.5,
-        ty = Math.sin( 24 * Math.PI * t ) * 0.5,
-        tz = Math.cos( 24 * Math.PI * t ) * 0.25;
+        var data = this.data;
+        var el = data[ Math.floor( (data.length - 1) * t ) ];
+        var tx = -4 + 8 * t,
+        ty = el[0],
+        tz = el[1];
         return optionalTarget.set( tx, ty, tz ).multiplyScalar( this.scale );
     }
 };
 
-class DataCurve extends THREE.Curve {
-    constructor( data = [] ) {
-        super();
-        this.data = data;
-    }
-    getPoint( t, optionalTarget = new THREE.Vector3() ) {
-
-        var i = Math.floor( t * ( (this.data.length ) / 3 ) );        
-
-        var tx = this.data[ i ] === undefined ? 0 : this.data[ i ],
-        ty = this.data[ i + 1] === undefined ? 0 : this.data[ i + 1],
-        tz = this.data[ i + 2] === undefined ? 0 : this.data[ i + 2];
-
-
-        return optionalTarget.set( tx * t, ty * t, tz * t );
-    }
-};
-
-var path = new CustomSinCurve( 5 ),
-/*
-var path = new DataCurve([
-   1, 1, 1, 
-   1, 1, 1
-]),
-*/
+var path = new CustomCurve( [[0, 0], [2, 0], [0, 5], [2, 5], [2, -2], [2, -2], [3, -2], [2, -2]], 1 ),
 tubularSegments = 800,
 radius = 0.25,
 radialSegments = 20;
