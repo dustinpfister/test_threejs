@@ -58,18 +58,7 @@ let mesh = new THREE.Mesh(
 );
 scene.add( mesh );
 //******** **********
-// LOOP
+// RENDER
 //******** **********
-let controls = new THREE.OrbitControls(camera, renderer.domElement);
-let fps = 30,
-lt = new Date();
-var loop = function () {
-    var now = new Date(),
-    secs = (now - lt) / 1000;
-    requestAnimationFrame(loop);
-    if(secs > 1 / fps){
-        renderer.render(scene, camera);      
-        lt = now;
-    }
-};
-loop();
+renderer.render(scene, camera);      
+
