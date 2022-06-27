@@ -34,19 +34,6 @@ class CustomSinCurve extends THREE.Curve {
         return optionalTarget.set( tx, ty, tz ).multiplyScalar( this.scale );
     }
 };
-class DataCurve extends THREE.Curve {
-    constructor( data = [] ) {
-        super();
-        this.data = data;
-    }
-    getPoint( t, optionalTarget = new THREE.Vector3() ) {
-        let i = Math.floor( t * ( (this.data.length ) / 3 ) );        
-        let tx = this.data[ i ] === undefined ? 0 : this.data[ i ],
-        ty = this.data[ i + 1] === undefined ? 0 : this.data[ i + 1],
-        tz = this.data[ i + 2] === undefined ? 0 : this.data[ i + 2];
-        return optionalTarget.set( tx * t, ty * t, tz * t );
-    }
-};
 let path = new CustomSinCurve( 5 ),
 tubularSegments = 800,
 radius = 0.25,
