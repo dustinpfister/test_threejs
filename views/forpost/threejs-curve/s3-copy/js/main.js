@@ -21,14 +21,16 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.05) )
 // CURVE CLASS
 //******** **********
 class CustomSinCurve extends THREE.Curve {
-    constructor( scale = 1 ) {
+    constructor( a = 0.5, b = 0.25, scale = 1 ) {
         super();
         this.scale = scale;
+        this.a = a;
+        this.b = b;
     }
     getPoint( t, optionalTarget = new THREE.Vector3() ) {
         let tx = t * 3 - 1.5,
-        ty = Math.sin( 20 * Math.PI * t ) * (0.5 * t),
-        tz = Math.cos( 20 * Math.PI * t ) * (0.25 * t);
+        ty = Math.sin( 20 * Math.PI * t ) * (this.a * t),
+        tz = Math.cos( 20 * Math.PI * t ) * (this.b * t);
         return optionalTarget.set( tx, ty, tz ).multiplyScalar( this.scale );
     }
 };
@@ -51,7 +53,7 @@ scene.add( mesh );
 let controls = new THREE.OrbitControls(camera, renderer.domElement);
 let fps = 30,
 frame = 0,
-frameMax = 300,
+frameMax = 90,
 lt = new Date();
 let loop = function () {
     let now = new Date(),
@@ -60,7 +62,7 @@ let loop = function () {
     bias = 1 - Math.abs(0.5 - per) / 0.5;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-        let path = new CustomSinCurve( 1 + 4 * bias )
+        let path = new CustomSinCurve( 0.25 + 0.75 * bias, 0.25, 5 );
         let geo = new THREE.TubeGeometry( path, tubularSegments, radius, radialSegments, false );
         mesh.geometry.copy(geo);
         renderer.render(scene, camera);      

@@ -3,8 +3,8 @@
 ## () - finhish sx-data-curve section
 * finish the data curve section
 
-## () - new s3-copy
-* new example that involves updaing the geometry by making use of the copy method.
+## ( done 06/29/2022 ) - new s3-copy
+* (done) new example that involves updaing the geometry by making use of the copy method.
 
 ## ( done 06/27/2022 ) - rename s1-basic to s2-spiral1 and start new s1-basic
 * (done) rename s1-basic to s2-spiral1
