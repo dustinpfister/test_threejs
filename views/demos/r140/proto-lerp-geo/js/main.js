@@ -28,7 +28,7 @@
     // SCENE
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(20, 20));
-    scene.background = new THREE.Color('cyan');
+    scene.background = new THREE.Color('black');
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
     camera.position.set(2, 1, 2);
     camera.lookAt(0, 0, 0);
@@ -40,6 +40,7 @@
     var dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(2, 1, 3);
     scene.add(dl);
+    scene.add( new THREE.AmbientLight(0xafafaf, 0.25) );
     // GEO AND MESH
     var g0 = new THREE.ConeGeometry(1, 1, 20, 18);
     var g1 = new THREE.SphereGeometry(1, 20, 20);
