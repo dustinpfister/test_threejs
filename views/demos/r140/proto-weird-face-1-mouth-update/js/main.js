@@ -79,6 +79,10 @@ lerpGeo(mouth.geometry, m0.geometry, m1.geometry, bias);
             var rScene = daeObjects.results[1].scene;
             m0 = rScene.getObjectByName('mouth-0');
             m1 = rScene.getObjectByName('mouth-1');
+
+
+console.log(m1);
+
             // mouth is based off of m0
             mouth = new THREE.Mesh(m0.geometry.clone(), m0.material )
             scene.add(mouth);
@@ -89,7 +93,7 @@ lerpGeo(mouth.geometry, m0.geometry, m1.geometry, bias);
 
     DAE.loadAll(daeObjects, {
         baseUrl: '/dae/weird-face-1',
-        relUrls: ['weird-face-1b.dae', 'mouths-1b.dae']
+        relUrls: ['weird-face-1b.dae', 'mouths-1c.dae']
     });
 
 }
