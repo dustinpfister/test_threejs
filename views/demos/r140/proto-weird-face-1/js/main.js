@@ -40,24 +40,39 @@
         //controls.update();
     };
     // USING DAE TOOLS TO LOAD THE *.dae file
-    var daeObjects = DAE.create();
+    var daeObjects = DAE.create({
+        onItemProgress: function(per, n, d){
+            console.log('progress: ' + per.toFixed(2) + ' ( ' + n + '/' + d + ' )');
+        },
+        onFileLoad: function(result, allResults, daeObjects){
+            console.log('fileLoad');
+        },
+        onLoad: function(daeObjects, results){
 
-    DAE.loadOne(daeObjects, "/dae/weird-face-1/weird-face-1b.dae")
-    .then(function(daeObjects){
+            var rScene = daeObjects.results[0].scene;
+            var nose = rScene.getObjectByName('nose');
+            scene.add(nose);
 
+            // mouth objects
+            var rScene = daeObjects.results[1].scene;
+            var m0 = rScene.getObjectByName('mouth-0');
+            var m1 = rScene.getObjectByName('mouth-1');
+            m0.position.set(-1, 0, 0);
+            m1.position.set(-2, 0, 0);
+            m0.rotation.set(0, 0, 0);
+            m1.rotation.set(0, 0, 0);
 
-        var rScene = daeObjects.results[0].scene;
-        var nose = rScene.getObjectByName('nose');
+            scene.add(m0);
+            scene.add(m1);
 
-console.log(nose)
-scene.add(nose)
-
-        loop();
-    })
-    .catch(function(e){
-        console.log(e);
-        loop();
+            loop();
+        }
     });
+
+    DAE.loadAll(daeObjects, {
+        baseUrl: '/dae/weird-face-1',
+        relUrls: ['weird-face-1b.dae', 'mouths-1b.dae']
+     });
 
 
 }
