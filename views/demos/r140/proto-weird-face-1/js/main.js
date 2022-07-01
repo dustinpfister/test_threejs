@@ -20,7 +20,7 @@
     scene.add(dl);
 
     // CONTROL
-    //var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 
     var frame = 0, frameMax = 300;
