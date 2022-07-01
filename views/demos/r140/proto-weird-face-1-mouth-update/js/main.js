@@ -4,7 +4,7 @@
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(20, 20));
     scene.background = new THREE.Color('cyan');
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
     camera.position.set(2, 1, 2);
     camera.lookAt(0, 0, 0);
 
@@ -21,6 +21,36 @@
     // CONTROL
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+
+var lerpGeo = function(geo, geoA, geoB, alpha){
+    alpha = alpha || 0;
+    // pos, and new pos
+    let pos = geo.getAttribute('position');
+    let norm = geo.getAttribute('normal');
+    // positions for a and b
+    let posA = geoA.getAttribute('position');
+    let posB = geoB.getAttribute('position');
+    // normals for a and b
+    let normA = geoA.getAttribute('normal');
+    let normB = geoB.getAttribute('normal');
+
+    var i = 0, len = pos.array.length;
+    while(i < len){
+        // update position
+        var v = new THREE.Vector3(posA.array[i], posA.array[i + 1], posA.array[i + 2]);
+        var v2 = new THREE.Vector3(posB.array[i], posB.array[i + 1], posB.array[i + 2]);
+        v.lerp(v2, alpha);
+        pos.array[i] = v.x;
+        pos.array[i + 1] = v.y;
+        pos.array[i + 2] = v.z;      
+        i += 3;
+    }
+    pos.needsUpdate = true;
+    geo.computeVertexNormals();
+    //norm.needsUpdate = true;
+};
+
+
     // app loop
     var frame = 0, frameMax = 300,
     mouth, m0, m1;
@@ -29,6 +59,10 @@
         renderer.render(scene, camera);
         var per = frame / frameMax,
         bias = 1 - Math.abs( per - 0.5) / 0.5;
+
+
+lerpGeo(mouth.geometry, m0.geometry, m1.geometry, bias);
+
         frame += 1;
         frame %= frameMax;
     };
