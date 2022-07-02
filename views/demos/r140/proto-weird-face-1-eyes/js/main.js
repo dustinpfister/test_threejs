@@ -50,7 +50,14 @@
             // main nose object of werid face
             var rScene = daeObjects.results[0].scene;
             nose = rScene.getObjectByName('nose');
-            //mouth = nose.getObjectByName('mouth');
+
+// playing with pupil1
+var pupil1 = nose.getObjectByName('pupil1');
+console.log(pupil1);
+var radius = 0.2;
+pupil1.position.set(0.1, radius * -1, 0.1);
+
+
             scene.add(nose);
             // mouth objects
             rScene = daeObjects.results[1].scene;
