@@ -1,0 +1,3 @@
+# proto-werid-face-1-eyes
+
+Now that I have the mouth working the way that I want it to I am now looking into what I can do with the eyes. At this time I might also want to star to put togeather another javaScript file that works closly with werid face 1 assets to provide abstractions for updating the state of werid face 1. When it comes to updaing the state of the eyes alone for example I will want to chnange the position of the pupil for each eye, but also the over all size relatove to the rest of the eye.
