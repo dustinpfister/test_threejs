@@ -38,13 +38,20 @@
             console.log('fileLoad');
         },
         onLoad: function(daeObjects, results){
+            // main nose object of werid face
+            var rScene = daeObjects.results[0].scene;
+            nose = rScene.getObjectByName('nose');
+            mouth = nose.getObjectByName('mouth');
+            scene.add(nose);
+          
+
             // mouth objects
-            var rScene = daeObjects.results[1].scene;
+            rScene = daeObjects.results[1].scene;
             m0 = rScene.getObjectByName('mouth-0');
             m1 = rScene.getObjectByName('mouth-1');
             // mouth is based off of m0
-            mouth = new THREE.Mesh(m0.geometry.clone(), m0.material )
-            scene.add(mouth);
+            //mouth = new THREE.Mesh(m0.geometry.clone(), m0.material );
+            //scene.add(mouth);
             // start loop
             loop();
         }
