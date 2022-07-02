@@ -43,23 +43,17 @@
             nose = rScene.getObjectByName('nose');
             mouth = nose.getObjectByName('mouth');
             scene.add(nose);
-          
-
             // mouth objects
             rScene = daeObjects.results[1].scene;
             m0 = rScene.getObjectByName('mouth-0');
             m1 = rScene.getObjectByName('mouth-1');
-            // mouth is based off of m0
-            //mouth = new THREE.Mesh(m0.geometry.clone(), m0.material );
-            //scene.add(mouth);
-            // start loop
             loop();
         }
     });
     // load dae files
     DAE.loadAll(daeObjects, {
         baseUrl: '/dae/weird-face-1',
-        relUrls: ['weird-face-1b.dae', 'mouths-1c.dae']
+        relUrls: ['weird-face-1c.dae', 'mouths-1c.dae']
     });
 }
     ());
