@@ -1,4 +1,13 @@
 (function () {
+
+    // WERID FACE CONTROLS
+    var weridFace = {};
+    // set mouth state
+    weridFace.setMouth = function(nose, alpha, m0, m1){
+        var mouth = nose.getObjectByName('mouth');
+        lerpGeo(mouth.geometry, m0.geometry, m1.geometry, alpha);
+    };
+
     // SCENE, CAMERA, RENDERER, LIGHT
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(20, 20));
@@ -17,14 +26,14 @@
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
     // APP LOOP
     var frame = 0, frameMax = 300,
-    mouth, m0, m1;
+    nose, m0, m1;
     var loop = function () {
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
-        var per = frame / frameMax,
-        bias = 1 - Math.abs( per - 0.5) / 0.5;
-        // lerp mouth
-        lerpGeo(mouth.geometry, m0.geometry, m1.geometry, bias);
+        var per = frame / frameMax;
+        // UPDATE MOUTH
+        var mBias = 1 - Math.abs( ( per * 8 % 1 ) - 0.5) / 0.5;
+        weridFace.setMouth(nose, mBias, m0, m1);
         // step frame
         frame += 1;
         frame %= frameMax;
@@ -41,7 +50,7 @@
             // main nose object of werid face
             var rScene = daeObjects.results[0].scene;
             nose = rScene.getObjectByName('nose');
-            mouth = nose.getObjectByName('mouth');
+            //mouth = nose.getObjectByName('mouth');
             scene.add(nose);
             // mouth objects
             rScene = daeObjects.results[1].scene;
