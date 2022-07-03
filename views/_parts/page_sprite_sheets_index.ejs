@@ -5,6 +5,8 @@
 %>
 
 <h3>Video Projects:</h3>
+<div class="links">
 <% links.forEach(function(link){ %>
  <a href="<%= link.href %>"><%= '' + link.name.replace(/-/g,'_') + '' || 'no name' %></a>  <br><br>
 <% }); %>
+</div>
