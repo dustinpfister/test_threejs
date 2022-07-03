@@ -18,6 +18,9 @@ body{
   height:200px;
   background:#000000;
   background-image: url('header.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   color: #ffffff;
   text-align:center;
 }
