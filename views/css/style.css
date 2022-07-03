@@ -1,4 +1,5 @@
 body{
+  background:#5f5f5f;
   margin:0px;
   padding:0px;
 }
@@ -15,7 +16,7 @@ body{
 }
 
 .content_container{
-  background: gray;
+  background: #4f4f4f;
 }
 
 #demo{
@@ -33,3 +34,7 @@ body{
     width:640px;
     height:480px;
 }
+
+a:link { color: #b8b8b8 }
+a:visited { color: #888888 }
+a:hover { color: #ffffff }
