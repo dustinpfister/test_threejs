@@ -54,9 +54,14 @@
 // playing with pupil1
 var pupil1 = nose.getObjectByName('pupil1');
 console.log(pupil1);
-var radius = 0.2;
-pupil1.position.set(0.1, radius * -1, 0.1);
 
+var radius = 0.2;
+
+//pupil1.position.set(0.1, radius * -1, 0.1);
+
+// using set and apply euler
+pupil1.position.set(0 , radius * -1, 0).applyEuler( new THREE.Euler(0.25,0,0.75) );
+//pupil1.lookAt(  );
 
             scene.add(nose);
             // mouth objects
