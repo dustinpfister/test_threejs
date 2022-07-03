@@ -14,9 +14,19 @@ body{
 }
 
 .nav_container{
+  position:relative;
+  height:200px;
   background:#000000;
+  background-image: url('header.png');
   color: #ffffff;
   text-align:center;
+}
+.nav_content{
+  position:absolute;
+  bottom:0px;
+  width:100%;
+  padding-bottom:10px;
+  background: rgba(0,0,0, 0.7);
 }
 
 .content_container{
