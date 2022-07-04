@@ -1,10 +1,11 @@
 (function () {
     // SCENE, CAMERA, RENDERER, LIGHT
     var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(20, 20));
-    scene.background = new THREE.Color('cyan');
+    //var grid = new THREE.GridHelper(20, 20);
+    //scene.add( grid );
+    scene.background = new THREE.Color('black');
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
-    camera.position.set(2, 1, 2);
+    camera.position.set(1.5, 0.25, 1.5);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer();
@@ -32,7 +33,7 @@
         weridFace.setMouth(nose, mBias, m0, m1);
         // UPDATE NOSE
         var nBias = 1 - Math.abs( ( per * 1 % 1 ) - 0.5) / 0.5;
-        nose.position.y = 0.5 + -0.1 + 0.2 * nBias;
+        nose.position.y = 0.2 + -0.1 + 0.2 * nBias;
         nose.rotation.y = 1 - 1.2 * nBias;
         // step frame
         frame += 1;
