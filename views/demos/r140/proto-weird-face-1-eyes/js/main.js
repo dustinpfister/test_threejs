@@ -1,13 +1,4 @@
 (function () {
-
-    // WERID FACE CONTROLS
-    var weridFace = {};
-    // set mouth state
-    weridFace.setMouth = function(nose, alpha, m0, m1){
-        var mouth = nose.getObjectByName('mouth');
-        lerpGeo(mouth.geometry, m0.geometry, m1.geometry, alpha);
-    };
-
     // SCENE, CAMERA, RENDERER, LIGHT
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(20, 20));
@@ -57,8 +48,6 @@ var pupil1 = nose.getObjectByName('pupil1');
 console.log(eye1);
 
 var radius = 0.2;
-
-//pupil1.position.set(0.1, radius * -1, 0.1);
 
 // using set and apply euler
 pupil1.position.set(0 , radius * -1, 0).applyEuler( new THREE.Euler(0.25,0,0.75) );
