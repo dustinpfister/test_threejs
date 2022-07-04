@@ -42,6 +42,10 @@
             var rScene = daeObjects.results[0].scene;
             nose = rScene.getObjectByName('nose');
 
+weridFace.setEye(nose, 1, 0.125, 0, 1);
+weridFace.setEye(nose, 2, 0.875, 0, 1);
+
+/*
 // playing with pupil1
 var eye1 = nose.getObjectByName('eye1');
 var pupil1 = nose.getObjectByName('pupil1');
@@ -54,6 +58,7 @@ pupil1.position.set(0 , radius * -1, 0).applyEuler( new THREE.Euler(0.25,0,0.75)
 var v = new THREE.Vector3();
 eye1.getWorldPosition( v );
 pupil1.lookAt( v );
+*/
 
             scene.add(nose);
             // mouth objects
