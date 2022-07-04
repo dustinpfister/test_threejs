@@ -22,9 +22,18 @@
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
         var per = frame / frameMax;
+        // UPDATE EYES
+        var eBias = 1 - Math.abs( ( per * 4 % 1 ) - 0.5) / 0.5;
+        var a = -0.10 + 0.20 * eBias;
+        weridFace.setEye(nose, 1, a, 0, 1);
+        weridFace.setEye(nose, 2, a, 0, 1);
         // UPDATE MOUTH
-        var mBias = 1 - Math.abs( ( per * 8 % 1 ) - 0.5) / 0.5;
+        var mBias = 1 - Math.abs( ( per * 16 % 1 ) - 0.5) / 0.5;
         weridFace.setMouth(nose, mBias, m0, m1);
+        // UPDATE NOSE
+        var nBias = 1 - Math.abs( ( per * 1 % 1 ) - 0.5) / 0.5;
+        nose.position.y = 0.5 + -0.1 + 0.2 * nBias;
+        nose.rotation.y = 1 - 1.2 * nBias;
         // step frame
         frame += 1;
         frame %= frameMax;
@@ -42,8 +51,8 @@
             var rScene = daeObjects.results[0].scene;
             nose = rScene.getObjectByName('nose');
 
-weridFace.setEye(nose, 1, 0.125, 0, 1);
-weridFace.setEye(nose, 2, 0.875, 0, 1);
+//weridFace.setEye(nose, 1, -0.10, 0, 1);
+//weridFace.setEye(nose, 2, -0.10, 0, 1);
 
 /*
 // playing with pupil1
