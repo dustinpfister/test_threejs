@@ -16,12 +16,11 @@ body{
 .nav_container{
   position:relative;
   height:200px;
-  background:#000000;
+  background:#c0c0c0;
   background-image: url('header.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  color: #ffffff;
   text-align:center;
 }
 .nav_content{
@@ -29,12 +28,12 @@ body{
   bottom:0px;
   width:100%;
   padding-bottom:10px;
-  background: rgba(0,0,0, 0.7);
+  background: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
 }
 
 .content_container{
-  background: #4f4f4f;
-
+  background: #ffffff;
 }
 
 #demo{
