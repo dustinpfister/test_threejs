@@ -24,16 +24,16 @@
         renderer.render(scene, camera);
         var per = frame / frameMax;
         // UPDATE EYES
-        var eBias = 1 - Math.abs( ( per * 4 % 1 ) - 0.5) / 0.5;
-        var pBias = 1 - Math.abs( ( per * 16 % 1 ) - 0.5) / 0.5;
+        var eBias = weridFace.getBias(per, 2);
+        var pBias = weridFace.getBias(per, 8);
         var a = -0.10 + 0.20 * eBias;
-        weridFace.setEye(nose, 1, a, 0, 0.75);
-        weridFace.setEye(nose, 2, a, 0, 0.75);
+        weridFace.setEye(nose, 1, a, 0, 0.75 + 1 * pBias);
+        weridFace.setEye(nose, 2, a, 0, 0.75 + 1 * pBias);
         // UPDATE MOUTH
-        var mBias = 1 - Math.abs( ( per * 16 % 1 ) - 0.5) / 0.5;
+        var mBias = weridFace.getBias(per, 16);
         weridFace.setMouth(nose, mBias, m0, m1);
         // UPDATE NOSE
-        var nBias = 1 - Math.abs( ( per * 1 % 1 ) - 0.5) / 0.5;
+        var nBias = weridFace.getBias(per, 1);
         nose.position.y = 0.2 + -0.1 + 0.2 * nBias;
         nose.rotation.y = 1 - 1.2 * nBias;
         // step frame

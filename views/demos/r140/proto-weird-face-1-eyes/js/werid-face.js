@@ -1,6 +1,12 @@
 // WERID FACE CONTROLS
 var weridFace = {};
 
+
+weridFace.getBias = function(per, count){
+    count = count === undefined ? 1 : count;
+    return 1 - Math.abs( ( per * count % 1 ) - 0.5) / 0.5;
+};
+
 // set mouth state
 weridFace.setMouth = function(nose, alpha, m0, m1){
     var mouth = nose.getObjectByName('mouth');
