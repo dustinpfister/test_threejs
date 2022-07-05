@@ -3,7 +3,7 @@
     var scene = new THREE.Scene();
     //var grid = new THREE.GridHelper(20, 20);
     //scene.add( grid );
-    scene.background = new THREE.Color('black');
+    scene.background = new THREE.Color('#444444');
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
     camera.position.set(1.5, 0.25, 1.5);
     camera.lookAt(0, 0, 0);
@@ -25,9 +25,10 @@
         var per = frame / frameMax;
         // UPDATE EYES
         var eBias = 1 - Math.abs( ( per * 4 % 1 ) - 0.5) / 0.5;
+        var pBias = 1 - Math.abs( ( per * 16 % 1 ) - 0.5) / 0.5;
         var a = -0.10 + 0.20 * eBias;
-        weridFace.setEye(nose, 1, a, 0, 1);
-        weridFace.setEye(nose, 2, a, 0, 1);
+        weridFace.setEye(nose, 1, a, 0, 0.75);
+        weridFace.setEye(nose, 2, a, 0, 0.75);
         // UPDATE MOUTH
         var mBias = 1 - Math.abs( ( per * 16 % 1 ) - 0.5) / 0.5;
         weridFace.setMouth(nose, mBias, m0, m1);
