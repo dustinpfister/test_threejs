@@ -49,23 +49,20 @@
             console.log('fileLoad');
         },
         onLoad: function(daeObjects, results){
-            // main nose object of weird face
-            var rScene = daeObjects.results[0].scene;
-            nose = rScene.getObjectByName('nose');
-			
-			if(nose){
-            scene.add(nose);
-
-            // mouth objects
-            rScene = daeObjects.results[1].scene;
-            m0 = rScene.getObjectByName('mouth-0');
-            m1 = rScene.getObjectByName('mouth-1');
-			            loop();
-			}else{
-				// some times the file will not load?
-				console.log('no nose object');
-			}
-
+            results.forEach(function(result){
+                var rScene = result.scene;
+                // nose object?
+                if(rScene.getObjectByName('nose')){
+                    nose = rScene.getObjectByName('nose');
+                    scene.add(nose);
+                }
+                // mouth object?s
+                if(rScene.getObjectByName('mouth-0')){
+                    m0 = rScene.getObjectByName('mouth-0');
+                    m1 = rScene.getObjectByName('mouth-1');
+                }
+            });
+            loop();
         }
     });
     // load dae files
