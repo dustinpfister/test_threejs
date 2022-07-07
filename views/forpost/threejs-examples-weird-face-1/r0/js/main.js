@@ -27,8 +27,8 @@
         var eBias = weridFace.getBias(per, 2);
         var pBias = weridFace.getBias(per, 8);
         var a = -0.10 + 0.20 * eBias;
-        weridFace.setEye(nose, 1, a, 0, 0.75 + 1 * pBias);
-        weridFace.setEye(nose, 2, a, 0, 0.75 + 1 * pBias);
+        weridFace.setEye(nose, 1, a, 0, 0.75 + 0.25 * pBias);
+        weridFace.setEye(nose, 2, a, 0, 0.75 + 0.25 * pBias);
         // UPDATE MOUTH
         var mBias = weridFace.getBias(per, 16);
         weridFace.setMouth(nose, mBias, m0, m1);
@@ -49,20 +49,23 @@
             console.log('fileLoad');
         },
         onLoad: function(daeObjects, results){
-            // main nose object of werid face
+            // main nose object of weird face
             var rScene = daeObjects.results[0].scene;
             nose = rScene.getObjectByName('nose');
+			
+			if(nose){
             scene.add(nose);
-
-//var p = nose.getObjectByName('pupil1');
-//var m = p.material;
-//p.material = new THREE.MeshBasicMaterial({ map: m.map});
 
             // mouth objects
             rScene = daeObjects.results[1].scene;
             m0 = rScene.getObjectByName('mouth-0');
             m1 = rScene.getObjectByName('mouth-1');
-            loop();
+			            loop();
+			}else{
+				// some times the file will not load?
+				console.log('no nose object');
+			}
+
         }
     });
     // load dae files
