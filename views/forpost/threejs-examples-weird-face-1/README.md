@@ -1,1 +1,1 @@
-# werid-face-1
+# weird-face-1
