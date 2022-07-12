@@ -54,6 +54,7 @@ var ObjectGridWrap = (function(){
         });
     };
     var EFFECTS = {
+/*
         // effect method that will set opacity of object based on distance from center
         opacity : function(grid, obj, objData){
             setOpacity(obj, objData.b);
@@ -76,6 +77,7 @@ var ObjectGridWrap = (function(){
             var ud = grid.userData;
             obj.position.y = ud.tw / 2 * objData.b;
         }
+*/
     };
     //******** **********
     //  POSITION HELPERS
@@ -210,7 +212,10 @@ var ObjectGridWrap = (function(){
             objData.b = parseFloat( b.toFixed(2) );
             // apply all effects
             ud.effects.forEach(function(effectKey){
-                EFFECTS[effectKey](grid, obj, objData, obj.userData);
+                var effect = EFFECTS[effectKey];
+                if(effect){ 
+                    effect(grid, obj, objData, obj.userData);
+                }
             });
         });
     };
