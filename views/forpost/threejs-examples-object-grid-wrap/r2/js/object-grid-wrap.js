@@ -54,24 +54,15 @@ var ObjectGridWrap = (function(){
     var EFFECTS = {
         // effect method that will set opacity of object based on distance from center
         opacity : function(grid, obj, objData){
-            var ud = grid.userData;
-            var b = objData.da / ud.distMax;
-            b = 1 - b;
-            b = parseFloat(b.toFixed(2));
-            // call set opacity helper
-            setOpacity(obj, b);
+            setOpacity(obj, objData.b);
         },
         // set scale based on distance from center
         scale : function(grid, obj, objData){
-            var ud = grid.userData;
-            var b = objData.da / ud.distMax;
-            obj.scale.set(1, 1, 1).multiplyScalar(1 - b);
+            obj.scale.set(1, 1, 1).multiplyScalar( objData.b );
         },
         // rotationA demo effect
         rotationA : function(grid, obj, objData){
-            var ud = grid.userData;
-            var b = objData.da / ud.distMax;
-            var y = ( 1 - b ) * Math.PI * 4;
+            var y = objData.b * Math.PI * 4;
             obj.rotation.set(0, y, 0);
         },
         // rotationB demo effect
@@ -81,8 +72,7 @@ var ObjectGridWrap = (function(){
         // positionA demo effect
         positionA : function(grid, obj, objData){
             var ud = grid.userData;
-            var b = objData.da / ud.distMax;
-            obj.position.y = ud.tw / 2 * (1 - b);
+            obj.position.y = ud.tw / 2 * objData.b;
         }
     };
     //******** **********
@@ -212,6 +202,12 @@ var ObjectGridWrap = (function(){
             da = da < 0 ? 0 : da;
             da = da > ud.distMax ? ud.distMax : da;
             objData.da = da;
+            // 'b' value
+
+            var b = objData.da / ud.distMax;
+            b = 1 - b;
+            objData.b = parseFloat( b.toFixed(2) );
+
             // apply all effects
             ud.effects.forEach(function(effectKey){
                 EFFECTS[effectKey](grid, obj, objData);

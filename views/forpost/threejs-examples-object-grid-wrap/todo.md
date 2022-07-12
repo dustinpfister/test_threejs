@@ -8,6 +8,7 @@
 
 ## () - r2 - plug in system, spaceW + spaceH
 * (done) have a spaceW and spaceH option in place of just space option
+* the 'b' value should be part of the data object used in effects
 * start a plug in system for effects
 
 ## ( done 05/23/2022 ) - first revision r1 - materials array fix, blank objects, trans effect optional

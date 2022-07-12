@@ -62,11 +62,11 @@ var array_oi = [
 // CREATE GRID
 //******** **********
 var grid = ObjectGridWrap.create({
-    space: 3,
+    space: space,
     tw: tw,
     th: th,
     dAdjust: 1.25,
-    effects: ['opacity'],
+    effects: ['opacity', 'scale', 'positionA', 'rotationA'],
     sourceObjects: array_source_objects,
     objectIndices: array_oi
 });
