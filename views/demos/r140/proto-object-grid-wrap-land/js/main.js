@@ -29,8 +29,9 @@ var cube = new THREE.Mesh(
 // MESH SLOPE
 var shape_slope = new THREE.Shape();
 shape_slope.moveTo(0.5, 0.5);
-shape_slope.lineTo(-0.5, 0.5);
 shape_slope.lineTo(-0.5, -0.5);
+shape_slope.lineTo(0.5, -0.5);
+
 // geometry
 var geometry = new THREE.ExtrudeGeometry(shape_slope, {
     depth: 1,
@@ -38,8 +39,8 @@ var geometry = new THREE.ExtrudeGeometry(shape_slope, {
 });
 geometry.computeBoundingBox();
 geometry.center();
-geometry.rotateX( Math.PI * 1.0 );
-geometry.rotateY( Math.PI * 0.5 );
+//geometry.rotateX( Math.PI * 1.0 );
+geometry.rotateY( Math.PI * 1.5 );
 var slope = new THREE.Mesh( geometry, new THREE.MeshStandardMaterial());
 
 //******** **********
