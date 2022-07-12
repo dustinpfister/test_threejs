@@ -1,7 +1,6 @@
 //******** **********
-// ObjectGridWrap module - based off of threejs-examples-object-grid-wrap r1
-// * works with mesh objects that use an array of materials
-// * Effects object started with opacity and scale effects built in
+// ObjectGridWrap module - r2 - for threejs-examples-object-grid-wrap post
+// * spaceW and spaceH options in place of space
 //******** **********
 var ObjectGridWrap = (function(){
     // public API
