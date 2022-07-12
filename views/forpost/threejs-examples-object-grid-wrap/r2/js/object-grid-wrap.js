@@ -203,11 +203,9 @@ var ObjectGridWrap = (function(){
             da = da > ud.distMax ? ud.distMax : da;
             objData.da = da;
             // 'b' value
-
             var b = objData.da / ud.distMax;
             b = 1 - b;
             objData.b = parseFloat( b.toFixed(2) );
-
             // apply all effects
             ud.effects.forEach(function(effectKey){
                 EFFECTS[effectKey](grid, obj, objData);

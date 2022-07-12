@@ -62,7 +62,8 @@ var array_oi = [
 // CREATE GRID
 //******** **********
 var grid = ObjectGridWrap.create({
-    space: space,
+    spaceW: 4,
+    spaceH: space,
     tw: tw,
     th: th,
     dAdjust: 1.25,
