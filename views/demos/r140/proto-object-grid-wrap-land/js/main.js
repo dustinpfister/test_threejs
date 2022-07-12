@@ -16,6 +16,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(-2, 1, 3);
 scene.add(dl);
+scene.add( new THREE.AmbientLight(0xffffff, 0.1 ) )
 
 //******** **********
 // MESH OBJECTS
@@ -35,21 +36,25 @@ var geometry = new THREE.ExtrudeGeometry(shape_slope, {
     depth: 1,
     bevelEnabled: false
 });
-var slope = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
+geometry.computeBoundingBox();
+geometry.center();
+geometry.rotateX( Math.PI * 1.0 );
+geometry.rotateY( Math.PI * 0.5 );
+var slope = new THREE.Mesh( geometry, new THREE.MeshStandardMaterial());
 
 //******** **********
 // GRID OPTIONS
 //******** **********
 var tw = 4,
 th = 4,
-space = 1.5;
+space = 1.0;
 
 //******** **********
 // CREATE GRID
 //******** **********
 var grid = ObjectGridWrap.create({
-    spaceW: space,
-    spaceH: space,
+    spaceW: 1.1,
+    spaceH: 1.1,
     tw: tw,
     th: th,
     dAdjust: 1.25,
