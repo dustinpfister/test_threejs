@@ -22,6 +22,13 @@ scene.add(dl);
 var tw = 4,
 th = 4,
 space = 1.5;
+
+// basic cube
+var cube = new THREE.Mesh(
+    new THREE.BoxGeometry(1,1,1), 
+    new THREE.MeshStandardMaterial()
+);
+
 //******** **********
 // CREATE GRID
 //******** **********
@@ -33,7 +40,7 @@ var grid = ObjectGridWrap.create({
     dAdjust: 1.25,
     effects: [],
     sourceObjects: [
-        new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshStandardMaterial() )
+        cube
     ],
     objectIndices: [
         0,0,0,0,
