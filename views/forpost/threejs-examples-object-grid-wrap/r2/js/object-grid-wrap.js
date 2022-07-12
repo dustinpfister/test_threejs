@@ -3,6 +3,7 @@
 // * spaceW and spaceH options in place of space
 // * objData.b prop to work with when making an effect
 // * ud argument for effet functions
+// * load method started to load external plug ins that contain just effects for now
 //******** **********
 var ObjectGridWrap = (function(){
     // public API
@@ -34,51 +35,7 @@ var ObjectGridWrap = (function(){
     //******** **********
     //  EFFECTS OBJECT - BUILT IN EFFECTS + HELPERS
     //******** **********
-    // set opacity for object and any and all nested objects
-    var setOpacity = function(obj_root, alpha){
-        obj_root.traverse(function(obj){
-            // any object with a material
-            if(obj.material){
-                //obj.material.transparent = true;
-                //obj.material.opacity = alpha;
-                if(obj.material instanceof Array){
-                    obj.material.forEach(function(m){
-                        m.transparent = true;
-                        m.opacity = alpha;
-                    });
-                }else{
-                    obj.material.transparent = true;
-                    obj.material.opacity = alpha;
-                }
-            }
-        });
-    };
-    var EFFECTS = {
-/*
-        // effect method that will set opacity of object based on distance from center
-        opacity : function(grid, obj, objData){
-            setOpacity(obj, objData.b);
-        },
-        // set scale based on distance from center
-        scale : function(grid, obj, objData){
-            obj.scale.set(1, 1, 1).multiplyScalar( objData.b );
-        },
-        // rotationA demo effect
-        rotationA : function(grid, obj, objData){
-            var y = objData.b * Math.PI * 4;
-            obj.rotation.set(0, y, 0);
-        },
-        // rotationB demo effect
-        rotationB : function(grid, obj, objData){
-            obj.rotation.set(0, 0, 0);
-        },
-        // positionA demo effect
-        positionA : function(grid, obj, objData){
-            var ud = grid.userData;
-            obj.position.y = ud.tw / 2 * objData.b;
-        }
-*/
-    };
+    var EFFECTS = {};
     //******** **********
     //  POSITION HELPERS
     //******** **********
@@ -218,6 +175,23 @@ var ObjectGridWrap = (function(){
                 }
             });
         });
+    };
+    //******** **********
+    //  LOAD PLUG-IN
+    //******** **********
+    api.load = function(plugObj){
+        // load any effects given
+        if(plugObj.EFFECTS){
+
+            Object.keys( plugObj.EFFECTS ).forEach(function(effectKey){
+
+console.log(effectKey)
+
+EFFECTS[effectKey] = plugObj.EFFECTS[effectKey];
+
+            });
+
+        }
     };
     // return public API
     return api;
