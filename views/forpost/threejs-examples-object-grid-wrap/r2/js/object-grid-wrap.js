@@ -1,6 +1,8 @@
 //******** **********
 // ObjectGridWrap module - r2 - for threejs-examples-object-grid-wrap post
 // * spaceW and spaceH options in place of space
+// * objData.b prop to work with when making an effect
+// * ud argument for effet functions
 //******** **********
 var ObjectGridWrap = (function(){
     // public API
@@ -208,7 +210,7 @@ var ObjectGridWrap = (function(){
             objData.b = parseFloat( b.toFixed(2) );
             // apply all effects
             ud.effects.forEach(function(effectKey){
-                EFFECTS[effectKey](grid, obj, objData);
+                EFFECTS[effectKey](grid, obj, objData, obj.userData);
             });
         });
     };

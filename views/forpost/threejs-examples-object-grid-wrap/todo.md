@@ -8,8 +8,9 @@
 
 ## () - r2 - plug in system, spaceW + spaceH
 * (done) have a spaceW and spaceH option in place of just space option
-* the 'b' value should be part of the data object used in effects
-* start a plug in system for effects
+* (done) the 'b' value should be part of the data object used in effects
+* (done) ud argument for effects
+* () start a plug in system for loading effects for now
 
 ## ( done 05/23/2022 ) - first revision r1 - materials array fix, blank objects, trans effect optional
 * (done) update build in clone method to work with array of materials ( see revised file for threejs-plane video)
