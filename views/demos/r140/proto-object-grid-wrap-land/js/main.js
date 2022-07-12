@@ -16,18 +16,33 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(-2, 1, 3);
 scene.add(dl);
+
+//******** **********
+// MESH OBJECTS
+//******** **********
+// MESH basic cube
+var cube = new THREE.Mesh(
+    new THREE.BoxGeometry(1,1,1), 
+    new THREE.MeshStandardMaterial()
+);
+// MESH SLOPE
+var shape_slope = new THREE.Shape();
+shape_slope.moveTo(0.5, 0.5);
+shape_slope.lineTo(-0.5, 0.5);
+shape_slope.lineTo(-0.5, -0.5);
+// geometry
+var geometry = new THREE.ExtrudeGeometry(shape_slope, {
+    depth: 1,
+    bevelEnabled: false
+});
+var slope = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
+
 //******** **********
 // GRID OPTIONS
 //******** **********
 var tw = 4,
 th = 4,
 space = 1.5;
-
-// basic cube
-var cube = new THREE.Mesh(
-    new THREE.BoxGeometry(1,1,1), 
-    new THREE.MeshStandardMaterial()
-);
 
 //******** **********
 // CREATE GRID
@@ -40,10 +55,11 @@ var grid = ObjectGridWrap.create({
     dAdjust: 1.25,
     effects: [],
     sourceObjects: [
-        cube
+        cube,
+        slope
     ],
     objectIndices: [
-        0,0,0,0,
+        1,1,1,1,
         0,0,0,0,
         0,0,0,0,
         0,0,0,0
@@ -70,9 +86,9 @@ var loop = function () {
     if(secs > 1 / fps){
 
         // set position of the grid
-        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.cos( Math.PI * bias ) * 0.25 );
+        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.cos( Math.PI * bias ) * 0.25 );
         // update grid by current alphas and effects
-        ObjectGridWrap.update(grid);
+        //ObjectGridWrap.update(grid);
 
         renderer.render(scene, camera);
         frame += fps * secs;
