@@ -200,7 +200,7 @@ var ObjectGridWrap = (function(){
             // set the position of all objects based on 
             // the current state of alphaX and alphaY
             setGridToAlphas(grid, i);
-            // create object data
+            // create objData object that will be used for all effects
             var objData = { i : i };
             objData.truePos = getTruePos(grid, objData.i );
             objData.adjustPos = getAdjustedPos(grid, objData.i );
@@ -214,7 +214,7 @@ var ObjectGridWrap = (function(){
             objData.da = da;
             // apply all effects
             ud.effects.forEach(function(effectKey){
-                EFFECTS[effectKey](grid, obj, objData)
+                EFFECTS[effectKey](grid, obj, objData);
             });
         });
     };

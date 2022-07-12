@@ -89,8 +89,12 @@ var loop = function () {
     ud = grid.userData;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-        ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
+
+        // set position of the grid
+        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.cos( Math.PI * bias ) * 0.25 );
+        // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
+
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
