@@ -72,7 +72,6 @@ var grid = ObjectGridWrap.create({
 });
 scene.add(grid);
 
-console.log(grid);
 
 //******** **********
 // LOOP

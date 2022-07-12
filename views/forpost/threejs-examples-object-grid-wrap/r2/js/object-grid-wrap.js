@@ -111,11 +111,11 @@ var ObjectGridWrap = (function(){
         var ud = grid.userData,
         v_adjust = getAdjustedPos(grid, objectIndex);
         // use spacing
-        var x = v_adjust.x * ud.space;
-        var z = v_adjust.y * ud.space;
+        var x = v_adjust.x * ud.spaceW;
+        var z = v_adjust.y * ud.spaceH;
         // subtract so that objects are centered
-        x -= (ud.tw - 1) * ud.space / 2;
-        z -= (ud.th - 1) * ud.space / 2;
+        x -= (ud.tw - 1) * ud.spaceW / 2;
+        z -= (ud.th - 1) * ud.spaceH / 2;
         return new THREE.Vector2(x, z);        
     };
     //******** **********
@@ -135,7 +135,15 @@ var ObjectGridWrap = (function(){
         var grid = new THREE.Group();
         var ud = grid.userData;
         ud.effects = opt.effects || [];
-        ud.space = opt.space === undefined ? 1 : opt.space;
+        // use opt.space to set ud.spaceW + H or set them by opt.spaceW + H 
+        if(opt.space){
+            ud.spaceW = opt.space;
+            ud.spaceH = opt.space;
+        }else{
+            ud.spaceW = opt.spaceW === undefined ? 1 : opt.spaceW;
+            ud.spaceH = opt.spaceH === undefined ? 1 : opt.spaceH;
+        }
+        // alphaX and Z values for setting offsets of grid
         ud.alphaX = opt.alphaX;
         ud.alphaZ = opt.alphaZ;
         ud.tw = opt.tw;
@@ -170,11 +178,11 @@ var ObjectGridWrap = (function(){
         var obj = grid.children[objectIndex];
         var v_adjust = getAdjustedPos(grid, objectIndex);
         // use spacing
-        var x = v_adjust.x * ud.space;
-        var z = v_adjust.y * ud.space;
+        var x = v_adjust.x * ud.spaceW;
+        var z = v_adjust.y * ud.spaceH;
         // subtract so that objects are centered
-        x -= (ud.tw - 1) * ud.space / 2;
-        z -= (ud.th - 1) * ud.space / 2;
+        x -= (ud.tw - 1) * ud.spaceW / 2;
+        z -= (ud.th - 1) * ud.spaceH / 2;
         // set position
         obj.position.set(x, 0, z);
     };

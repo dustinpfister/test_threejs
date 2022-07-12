@@ -7,7 +7,7 @@
 * () have a demo in which I am using a box geometry, cone geometry, and extrude geometry to create base objects that can then be used to create a mounties scene
 
 ## () - r2 - plug in system, spaceW + spaceH
-* have a spaceW and spaceH option in place of just space option
+* (done) have a spaceW and spaceH option in place of just space option
 * start a plug in system for effects
 
 ## ( done 05/23/2022 ) - first revision r1 - materials array fix, blank objects, trans effect optional
