@@ -19,57 +19,28 @@ scene.add(dl);
 //******** **********
 // GRID OPTIONS
 //******** **********
-var tw = 9,
-th = 9,
+var tw = 4,
+th = 4,
 space = 1.5;
-// source objects
-var mkBox = function(color, h){
-    var box = new THREE.Group();
-    var a = space * 0.95;
-    var mesh = new THREE.Mesh(
-        new THREE.BoxGeometry( a, h, a),
-        new THREE.MeshStandardMaterial({ color: color}) );
-    mesh.position.y = h / 2;
-    //mesh.rotation.y = Math.PI / 180 * 20 * -1;
-    var ground = new THREE.Mesh(
-        new THREE.BoxGeometry( space, 0.1, space),
-        new THREE.MeshStandardMaterial({ color: 0xffffff}) );
-    ground.position.y = 0.05 * -1;
-    box.add(mesh)  
-    box.add(ground);
-    return box;
-};
-var array_source_objects = [
-    mkBox(0x00ffff, 0.25), //new THREE.Object3D(),
-    mkBox(0xff0000, 10.00),
-    mkBox(0xffff00, 4.50),
-    mkBox(0x00ff00, 1.50)
-];
-
-var array_oi = [
-0,0,0,0,0,3,3,0,0,
-0,0,0,0,3,2,3,0,0,
-0,0,0,3,2,3,3,0,0,
-0,0,3,2,2,2,3,0,0,
-0,3,2,2,1,2,3,0,0,
-3,2,3,2,2,2,2,3,0,
-0,3,0,3,3,3,2,3,0,
-0,0,0,0,0,0,3,3,0,
-0,0,0,0,0,0,0,0,0
-]
-
 //******** **********
 // CREATE GRID
 //******** **********
 var grid = ObjectGridWrap.create({
-    spaceW: 4,
+    spaceW: space,
     spaceH: space,
     tw: tw,
     th: th,
     dAdjust: 1.25,
-    effects: ['opacity', 'scale', 'positionA', 'rotationA'],
-    sourceObjects: array_source_objects,
-    objectIndices: array_oi
+    effects: [],
+    sourceObjects: [
+        new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshStandardMaterial() )
+    ],
+    objectIndices: [
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0
+    ]
 });
 scene.add(grid);
 
