@@ -5,7 +5,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-10, 5, 0);
+camera.position.set(-8, 8, 8);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -14,20 +14,22 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LIGHT
 //******** **********
 var dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(-2, 1, 3);
+dl.position.set(8, 2, 4);
 scene.add(dl);
-scene.add( new THREE.AmbientLight(0xffffff, 0.1 ) )
+scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) )
 
 //******** **********
 // MESH OBJECTS
 //******** **********
+
+var MATERIAL_LAND = new THREE.MeshStandardMaterial({color: new THREE.Color('green')})
 
 // MESH basic cube
 var makeCube = function(size){
     size = size === undefined ? 1 : size;
     var cube = new THREE.Mesh(
         new THREE.BoxGeometry(size, size, size), 
-        new THREE.MeshStandardMaterial()
+        MATERIAL_LAND
     );
     return cube
 };
@@ -43,13 +45,13 @@ var makeSlopeMesh = function(alphaR, size){
     shape_slope.lineTo(hSize, hSize * -1);
     // geometry
     var geometry = new THREE.ExtrudeGeometry(shape_slope, {
-        depth: 2,
+        depth: size,
         bevelEnabled: false
     });
     geometry.computeBoundingBox();
     geometry.center();
     geometry.rotateY( Math.PI * 2 * alphaR );
-    var slope = new THREE.Mesh( geometry, new THREE.MeshStandardMaterial());
+    var slope = new THREE.Mesh( geometry, MATERIAL_LAND);
     return slope;
 }
 
@@ -59,10 +61,10 @@ var makeSlopeMesh = function(alphaR, size){
 
 var tw = 10,
 th = 10,
-space = 2.0;
+space = 2;
 var grid = ObjectGridWrap.create({
-    spaceW: space,
-    spaceH: space,
+    spaceW: space + 0.05,
+    spaceH: space + 0.05,
     tw: tw,
     th: th,
     dAdjust: 1.25,
@@ -107,7 +109,7 @@ var altitude = [
 grid.children.forEach(function(obj, i){
     var alt = altitude[i];
     obj.geometry = obj.geometry.clone();
-    obj.geometry.translate(0, alt, 0)
+    obj.geometry.translate(0, alt * space, 0)
 });
 // base position for whone grid
 grid.position.set(0, 0.5, 0);
