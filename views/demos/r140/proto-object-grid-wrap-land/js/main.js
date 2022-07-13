@@ -29,15 +29,12 @@ var cube = new THREE.Mesh(
 );
 
 // MAKE MESH SLOPE HELPER
-
 var makeSlopeMesh = function(alphaR){
     alphaR = alphaR === undefined ? 0 : alphaR;
-
     var shape_slope = new THREE.Shape();
     shape_slope.moveTo(0.5, 0.5);
     shape_slope.lineTo(-0.5, -0.5);
     shape_slope.lineTo(0.5, -0.5);
-
     // geometry
     var geometry = new THREE.ExtrudeGeometry(shape_slope, {
         depth: 1,
@@ -51,13 +48,12 @@ var makeSlopeMesh = function(alphaR){
 }
 
 //******** **********
-// GRID OPTIONS
+// GRID
 //******** **********
+
 var tw = 4,
 th = 4,
 space = 1.0;
-
-
 var grid = ObjectGridWrap.create({
     spaceW: 1.1,
     spaceH: 1.1,
@@ -80,6 +76,22 @@ var grid = ObjectGridWrap.create({
     ]
 });
 scene.add(grid);
+
+// I will want to have some way to set altitude for each
+// cloned mesh object in the gird
+var altitude = [
+    0,1,1,0,
+    1,1,1,1,
+    1,1,1,1,
+    0,1,1,0
+];
+grid.children.forEach(function(obj, i){
+    var alt = altitude[i];
+    obj.position.y = alt;
+});
+
+// base position for whone grid
+grid.position.set(0, 0.5, 0);
 
 
 //******** **********

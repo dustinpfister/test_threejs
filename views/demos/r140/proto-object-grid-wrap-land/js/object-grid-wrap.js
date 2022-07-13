@@ -182,15 +182,9 @@ var ObjectGridWrap = (function(){
     api.load = function(plugObj){
         // load any effects given
         if(plugObj.EFFECTS){
-
             Object.keys( plugObj.EFFECTS ).forEach(function(effectKey){
-
-console.log(effectKey)
-
-EFFECTS[effectKey] = plugObj.EFFECTS[effectKey];
-
+                EFFECTS[effectKey] = plugObj.EFFECTS[effectKey];
             });
-
         }
     };
     // return public API
