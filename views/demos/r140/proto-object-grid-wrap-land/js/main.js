@@ -3,7 +3,7 @@
 //******** **********
 var scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
-//scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
+scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(-10, 5, 0);
 camera.lookAt(0, 0, 0);
@@ -21,27 +21,34 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.1 ) )
 //******** **********
 // MESH OBJECTS
 //******** **********
+
 // MESH basic cube
 var cube = new THREE.Mesh(
     new THREE.BoxGeometry(1,1,1), 
     new THREE.MeshStandardMaterial()
 );
-// MESH SLOPE
-var shape_slope = new THREE.Shape();
-shape_slope.moveTo(0.5, 0.5);
-shape_slope.lineTo(-0.5, -0.5);
-shape_slope.lineTo(0.5, -0.5);
 
-// geometry
-var geometry = new THREE.ExtrudeGeometry(shape_slope, {
-    depth: 1,
-    bevelEnabled: false
-});
-geometry.computeBoundingBox();
-geometry.center();
-//geometry.rotateX( Math.PI * 1.0 );
-geometry.rotateY( Math.PI * 1.5 );
-var slope = new THREE.Mesh( geometry, new THREE.MeshStandardMaterial());
+// MAKE MESH SLOPE HELPER
+
+var makeSlopeMesh = function(alphaR){
+    alphaR = alphaR === undefined ? 0 : alphaR;
+
+    var shape_slope = new THREE.Shape();
+    shape_slope.moveTo(0.5, 0.5);
+    shape_slope.lineTo(-0.5, -0.5);
+    shape_slope.lineTo(0.5, -0.5);
+
+    // geometry
+    var geometry = new THREE.ExtrudeGeometry(shape_slope, {
+        depth: 1,
+        bevelEnabled: false
+    });
+    geometry.computeBoundingBox();
+    geometry.center();
+    geometry.rotateY( Math.PI * 2 * alphaR );
+    var slope = new THREE.Mesh( geometry, new THREE.MeshStandardMaterial());
+    return slope;
+}
 
 //******** **********
 // GRID OPTIONS
@@ -50,9 +57,7 @@ var tw = 4,
 th = 4,
 space = 1.0;
 
-//******** **********
-// CREATE GRID
-//******** **********
+
 var grid = ObjectGridWrap.create({
     spaceW: 1.1,
     spaceH: 1.1,
@@ -62,13 +67,16 @@ var grid = ObjectGridWrap.create({
     effects: [],
     sourceObjects: [
         cube,
-        slope
+        makeSlopeMesh(0.00),
+        makeSlopeMesh(0.25),
+        makeSlopeMesh(0.50),
+        makeSlopeMesh(0.75)
     ],
     objectIndices: [
-        1,1,1,1,
-        0,0,0,0,
-        0,0,0,0,
-        0,0,0,0
+        0,4,4,0,
+        1,0,0,3,
+        1,0,0,3,
+        0,2,2,0
     ]
 });
 scene.add(grid);
