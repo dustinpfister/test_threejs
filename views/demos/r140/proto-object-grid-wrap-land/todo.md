@@ -13,5 +13,5 @@
 * (done) makeSlopeMesh helper function
 * (done) simple system where I manuanly set what object to use for each grid location
 * (done) fixed problem with position of geometry
-* () have a nice looking starting grid for the demo
-
+* () have a nice looking 10 x 10 starting grid for the demo
+* have at least one location with an alt of 2

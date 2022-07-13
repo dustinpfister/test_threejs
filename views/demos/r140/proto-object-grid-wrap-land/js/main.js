@@ -24,20 +24,22 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.1 ) )
 
 // MESH basic cube
 var cube = new THREE.Mesh(
-    new THREE.BoxGeometry(1,1,1), 
+    new THREE.BoxGeometry(2, 2, 2), 
     new THREE.MeshStandardMaterial()
 );
 
 // MAKE MESH SLOPE HELPER
-var makeSlopeMesh = function(alphaR){
+var makeSlopeMesh = function(alphaR, size){
     alphaR = alphaR === undefined ? 0 : alphaR;
+    size = size === undefined ? 1 : size;
     var shape_slope = new THREE.Shape();
-    shape_slope.moveTo(0.5, 0.5);
-    shape_slope.lineTo(-0.5, -0.5);
-    shape_slope.lineTo(0.5, -0.5);
+    var hSize = size / 2;
+    shape_slope.moveTo(hSize, hSize);
+    shape_slope.lineTo(hSize * -1, hSize * -1);
+    shape_slope.lineTo(hSize, hSize * -1);
     // geometry
     var geometry = new THREE.ExtrudeGeometry(shape_slope, {
-        depth: 1,
+        depth: 2,
         bevelEnabled: false
     });
     geometry.computeBoundingBox();
@@ -51,74 +53,58 @@ var makeSlopeMesh = function(alphaR){
 // GRID
 //******** **********
 
-var tw = 6,
-th = 6,
-space = 1.0;
+var tw = 10,
+th = 10,
+space = 2.0;
 var grid = ObjectGridWrap.create({
-    spaceW: 1.1,
-    spaceH: 1.1,
+    spaceW: space,
+    spaceH: space,
     tw: tw,
     th: th,
     dAdjust: 1.25,
-    //effects: ['opacity'],
+    effects: ['opacity'],
     sourceObjects: [
         cube,
-        makeSlopeMesh(0.00),
-        makeSlopeMesh(0.25),
-        makeSlopeMesh(0.50),
-        makeSlopeMesh(0.75)
+        makeSlopeMesh(0.00, 2),
+        makeSlopeMesh(0.25, 2),
+        makeSlopeMesh(0.50, 2),
+        makeSlopeMesh(0.75, 2)
     ],
 
     objectIndices: [
-        3,0,0,0,1,0,
-        0,0,4,4,0,2,
-        0,1,0,0,3,0,
-        0,1,0,0,3,0,
-        0,0,2,2,0,0,
-        0,0,0,0,0,4
+        0,4,0,0,0,0,0,0,0,0,
+        1,0,3,0,0,0,0,0,0,0,
+        1,0,3,0,4,4,4,4,0,0,
+        0,2,0,4,0,0,0,0,4,0,
+        0,0,1,0,0,0,4,0,0,3,
+        0,0,1,0,0,1,0,3,0,3,
+        0,0,0,2,0,0,2,0,0,3,
+        0,4,0,0,1,0,0,0,2,0,
+        1,0,3,0,1,0,0,3,0,0,
+        0,2,0,0,0,2,2,0,0,0,
     ]
-
-
-/*
-    objectIndices: [
-        0,4,4,0,
-        1,0,0,3,
-        1,0,0,3,
-        0,2,2,0
-    ]
-*/
-
 });
 scene.add(grid);
 
 // I will want to have some way to set altitude for each
 // cloned mesh object in the gird
-
 var altitude = [
-    1,0,0,0,1,1,
-    0,0,1,1,0,1,
-    0,1,1,1,1,0,
-    0,1,1,1,1,0,
-    0,0,1,1,0,0,
-    0,0,0,0,0,1
+        0,1,0,0,0,0,0,0,0,0,
+        1,1,1,0,0,0,0,0,0,0,
+        1,1,1,0,1,1,1,1,0,0,
+        0,1,0,1,1,1,1,1,1,0,
+        0,0,1,1,1,1,2,1,1,1,
+        0,0,1,1,1,2,2,2,1,1,
+        0,0,0,1,1,1,2,1,1,1,
+        0,1,0,0,1,1,1,1,1,0,
+        1,1,1,0,1,1,1,1,0,0,
+        0,1,0,0,0,1,1,0,0,0,
 ];
-
-/*
-var altitude = [
-    0,1,1,0,
-    1,1,1,1,
-    1,1,1,1,
-    0,1,1,0
-];
-*/
-
 grid.children.forEach(function(obj, i){
     var alt = altitude[i];
-    //obj.position.y = alt;
     obj.geometry = obj.geometry.clone();
     obj.geometry.translate(0, alt, 0)
 });
-
 // base position for whone grid
 grid.position.set(0, 0.5, 0);
 
