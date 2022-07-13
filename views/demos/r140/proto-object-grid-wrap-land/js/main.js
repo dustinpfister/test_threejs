@@ -3,7 +3,7 @@
 //******** **********
 var scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
-scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
+//scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(-10, 5, 0);
 camera.lookAt(0, 0, 0);
@@ -23,10 +23,14 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.1 ) )
 //******** **********
 
 // MESH basic cube
-var cube = new THREE.Mesh(
-    new THREE.BoxGeometry(2, 2, 2), 
-    new THREE.MeshStandardMaterial()
-);
+var makeCube = function(size){
+    size = size === undefined ? 1 : size;
+    var cube = new THREE.Mesh(
+        new THREE.BoxGeometry(size, size, size), 
+        new THREE.MeshStandardMaterial()
+    );
+    return cube
+};
 
 // MAKE MESH SLOPE HELPER
 var makeSlopeMesh = function(alphaR, size){
@@ -64,11 +68,11 @@ var grid = ObjectGridWrap.create({
     dAdjust: 1.25,
     effects: ['opacity'],
     sourceObjects: [
-        cube,
-        makeSlopeMesh(0.00, 2),
-        makeSlopeMesh(0.25, 2),
-        makeSlopeMesh(0.50, 2),
-        makeSlopeMesh(0.75, 2)
+        makeCube(space),
+        makeSlopeMesh(0.00, space),
+        makeSlopeMesh(0.25, space),
+        makeSlopeMesh(0.50, space),
+        makeSlopeMesh(0.75, space)
     ],
 
     objectIndices: [
