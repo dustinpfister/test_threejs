@@ -12,5 +12,6 @@
 * (done) starting geo for slope
 * (done) makeSlopeMesh helper function
 * (done) simple system where I manuanly set what object to use for each grid location
+* (done) fixed problem with position of geometry
 * () have a nice looking starting grid for the demo
 

@@ -51,8 +51,8 @@ var makeSlopeMesh = function(alphaR){
 // GRID
 //******** **********
 
-var tw = 4,
-th = 4,
+var tw = 6,
+th = 6,
 space = 1.0;
 var grid = ObjectGridWrap.create({
     spaceW: 1.1,
@@ -60,7 +60,7 @@ var grid = ObjectGridWrap.create({
     tw: tw,
     th: th,
     dAdjust: 1.25,
-    effects: [],
+    //effects: ['opacity'],
     sourceObjects: [
         cube,
         makeSlopeMesh(0.00),
@@ -68,26 +68,55 @@ var grid = ObjectGridWrap.create({
         makeSlopeMesh(0.50),
         makeSlopeMesh(0.75)
     ],
+
+    objectIndices: [
+        3,0,0,0,1,0,
+        0,0,4,4,0,2,
+        0,1,0,0,3,0,
+        0,1,0,0,3,0,
+        0,0,2,2,0,0,
+        0,0,0,0,0,4
+    ]
+
+
+/*
     objectIndices: [
         0,4,4,0,
         1,0,0,3,
         1,0,0,3,
         0,2,2,0
     ]
+*/
+
 });
 scene.add(grid);
 
 // I will want to have some way to set altitude for each
 // cloned mesh object in the gird
+
+var altitude = [
+    1,0,0,0,1,1,
+    0,0,1,1,0,1,
+    0,1,1,1,1,0,
+    0,1,1,1,1,0,
+    0,0,1,1,0,0,
+    0,0,0,0,0,1
+];
+
+/*
 var altitude = [
     0,1,1,0,
     1,1,1,1,
     1,1,1,1,
     0,1,1,0
 ];
+*/
+
 grid.children.forEach(function(obj, i){
     var alt = altitude[i];
-    obj.position.y = alt;
+    //obj.position.y = alt;
+    obj.geometry = obj.geometry.clone();
+    obj.geometry.translate(0, alt, 0)
 });
 
 // base position for whone grid
@@ -112,9 +141,9 @@ var loop = function () {
     if(secs > 1 / fps){
 
         // set position of the grid
-        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.cos( Math.PI * bias ) * 0.25 );
+        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.cos( Math.PI * bias ) * 0.25 );
         // update grid by current alphas and effects
-        //ObjectGridWrap.update(grid);
+        ObjectGridWrap.update(grid);
 
         renderer.render(scene, camera);
         frame += fps * secs;
