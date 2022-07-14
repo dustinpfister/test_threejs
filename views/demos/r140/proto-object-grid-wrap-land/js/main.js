@@ -5,7 +5,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-8, 8, 8);
+camera.position.set(-10, 10, 10);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -114,6 +114,10 @@ grid.children.forEach(function(obj, i){
 // base position for whone grid
 grid.position.set(0, 0.5, 0);
 
+// adjust 'minB' value for opacity2 effect
+grid.userData.minB = 0.3;
+
+console.log(grid.userData)
 
 //******** **********
 // LOOP
@@ -133,7 +137,7 @@ var loop = function () {
     if(secs > 1 / fps){
 
         // set position of the grid
-        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.cos( Math.PI * bias ) * 0.25 );
+        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
         // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
 
