@@ -68,7 +68,7 @@ var grid = ObjectGridWrap.create({
     tw: tw,
     th: th,
     dAdjust: 1.25,
-    effects: ['opacity'],
+    effects: ['opacity2'],
     sourceObjects: [
         makeCube(space),
         makeSlopeMesh(0.00, space),

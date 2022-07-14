@@ -13,5 +13,7 @@
 * (done) makeSlopeMesh helper function
 * (done) simple system where I manuanly set what object to use for each grid location
 * (done) fixed problem with position of geometry
-* () have a nice looking 10 x 10 starting grid for the demo
-* have at least one location with an alt of 2
+* (done) have a nice looking 10 x 10 starting grid for the demo
+* (done) have at least one location with an alt of 2
+
+* () see about making a new method for opcaity where opcaity is not lost at all until a certin min distance form center is found
