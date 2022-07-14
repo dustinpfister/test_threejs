@@ -6,7 +6,7 @@
 * () have a createCube helper
 * () have an option for createCube and createSlope helpers that allow for adding a tree as a child
 
-## () - basic idea working
+## ( done 07/14/2022 ) - basic idea working
 * (done) have a cube as one object
 * (done) have a slop as another object
 * (done) starting geo for slope
@@ -15,5 +15,4 @@
 * (done) fixed problem with position of geometry
 * (done) have a nice looking 10 x 10 starting grid for the demo
 * (done) have at least one location with an alt of 2
-
-* () see about making a new method for opcaity where opcaity is not lost at all until a certin min distance form center is found
+* (done) see about making a new method for opcaity where opcaity is not lost at all until a certin min distance form center is found
