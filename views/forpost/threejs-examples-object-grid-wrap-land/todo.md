@@ -2,8 +2,11 @@
 
 
 ## (  ) - r1 - new land-grid.js module
-* () new land-grid.js file that will create and return a new grid set up with mesh objects
-* () create method for land grid module started
+* (done) new object-grid-land.js file that will create and return a new grid set up with mesh objects
+* (done) create method for land grid module started
+
+* () new system where I pass a grid of alt values for the create method of object-grid-land.js
+
 * () use data textures for grass for main.js
 * () have a createTreeOne helper
 * () have a createCube helper
