@@ -24,7 +24,7 @@
         EFFECTS : {
             // opacity2 works by only lowering the alpha value once objData.b value
             // is lower than of equal to a min value such as 0.25. A 'minB' value of the 
-            // userData object of the grid can be used to chnage this
+            // userData object of the grid can be used to change this
             opacity2 : function(grid, obj, objData, ud){
                 var minB = grid.userData.minB === undefined ? 0.5: grid.userData.minB;
                 if(objData.b <= minB){
