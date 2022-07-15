@@ -1,2 +1,3 @@
-# object grid wrap land
+# threejs-object-grid-wrap-land
 
+When I first made my object grid wrap module The idea came to me to use this module as a way to create a grid that looks like land in terms of some mountainous terrain at least. The project would then build on top of the source code that I all ready worked out with my older object grid wrap module, and as such would just be a little additional javaScript code that has to do with just setting up one of these grid objects that I create with that project. In the process of doing so I can end up making some new effect plug-ins as often when doing this sort of things I end up running into things that I might want to change when it comes to additional revisions of the object grid wrap module.
