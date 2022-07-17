@@ -14,7 +14,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 // LIGHT
 //******** **********
 var dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(8, 2, 4);
+dl.position.set(-8, 2, 4);
 scene.add(dl);
 scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) )
 
@@ -36,9 +36,9 @@ altitude: [
 objectIndices: [
     0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,
-    0,0,0,4,0,0,0,0,
+    0,0,7,4,6,0,0,0,
     0,0,1,0,3,0,0,0,
-    0,0,0,2,0,0,0,0,
+    0,0,8,2,5,0,0,0,
     0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0

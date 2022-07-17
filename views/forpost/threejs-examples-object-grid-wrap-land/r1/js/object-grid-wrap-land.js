@@ -37,6 +37,31 @@ var ObjectGridWrapLand = (function(){
         var slope = new THREE.Mesh( geometry, MATERIAL_LAND);
         return slope;
     }
+    // MAKE CORNER MESH HELPER
+    var makeCornerMesh = function(alphaR, size){
+        alphaR = alphaR === undefined ? 0 : alphaR;
+        size = size === undefined ? 1 : size;
+
+
+        var geometry = new THREE.PlaneGeometry(size, size, 1, 1);
+
+// get pos attribute
+var pos = geometry.getAttribute('position');
+pos.array[2] = 2;
+pos.needsUpdate = true;
+
+geometry.computeVertexNormals();
+
+console.log(pos)
+
+        geometry.rotateX( Math.PI * 1.5 );
+        geometry.translate(0, size / 2 * -1 ,0);
+        geometry.rotateY( Math.PI * 2 * alphaR );
+
+
+        var corner = new THREE.Mesh( geometry, MATERIAL_LAND);
+        return corner;
+    };
     //******** **********
     //  CREATE METHOD
     //******** **********
@@ -55,7 +80,13 @@ opt.sourceObjects = [
                 makeSlopeMesh(0.00, space),
                 makeSlopeMesh(0.25, space),
                 makeSlopeMesh(0.50, space),
-                makeSlopeMesh(0.75, space)
+                makeSlopeMesh(0.75, space),
+
+makeCornerMesh(0.00, space),
+makeCornerMesh(0.25, space),
+makeCornerMesh(0.50, space),
+makeCornerMesh(0.75, space)
+
 ];
 
 opt.objectIndices = opt.objectIndices || [

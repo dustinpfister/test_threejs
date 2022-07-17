@@ -5,9 +5,9 @@
 * (done) new object-grid-land.js file that will create and return a new grid set up with mesh objects
 * (done) create method for land grid module started
 * (done) opt object for create method of land module
+* (done) have additional source objects for corners
 
 
-* () have additional source objects for corners
 * () generate object opt.objectIndices based on opt.altitude
 
 
