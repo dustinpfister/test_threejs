@@ -7,8 +7,9 @@
 * (done) opt object for create method of land module
 
 
+* () have additional source objects for corners
+* () generate object opt.objectIndices based on opt.altitude
 
-* () new system where I pass a grid of alt values for the create method of object-grid-land.js
 
 * () use data textures for grass for main.js
 * () have a createTreeOne helper
