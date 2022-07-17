@@ -1,5 +1,8 @@
 # object grid wrap land - todo
 
+## () - r2 - generate from alt option
+* () generate object opt.objectIndices based on opt.altitude
+* () have it so that I can just give an altitude array and tw and th are figured from that
 
 ## (  ) - r1 - new land-grid.js module
 * (done) new object-grid-land.js file that will create and return a new grid set up with mesh objects
@@ -8,10 +11,10 @@
 * (done) have additional source objects for corners
 
 
-* () generate object opt.objectIndices based on opt.altitude
 
 
-* () have it so that I can just give an altitude array and tw and th are figured from that
+
+
 * () use data textures for grass for main.js
 * () have a createTreeOne helper
 * () have a createCube helper

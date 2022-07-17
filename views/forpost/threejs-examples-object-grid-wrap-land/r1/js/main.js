@@ -39,7 +39,6 @@ objectIndices: [
     0,0,1,0,3,0,0,0,
     0,0,8,2,5,0,0,0
 ]
-
 });
 scene.add(grid)
 
