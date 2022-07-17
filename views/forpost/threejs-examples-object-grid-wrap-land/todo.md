@@ -9,10 +9,7 @@
 * (done) create method for land grid module started
 * (done) opt object for create method of land module
 * (done) have additional source objects for corners
-
-* () looks like I will need another kind of corner mesh that is one low point rather than one high point
-
-
+* (done) looks like I will need another kind of inverted corner mesh that is one low point rather than one high point
 
 
 * () use data textures for grass for main.js
