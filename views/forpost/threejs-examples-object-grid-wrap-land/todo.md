@@ -4,6 +4,9 @@
 ## (  ) - r1 - new land-grid.js module
 * (done) new object-grid-land.js file that will create and return a new grid set up with mesh objects
 * (done) create method for land grid module started
+* (done) opt object for create method of land module
+
+
 
 * () new system where I pass a grid of alt values for the create method of object-grid-land.js
 

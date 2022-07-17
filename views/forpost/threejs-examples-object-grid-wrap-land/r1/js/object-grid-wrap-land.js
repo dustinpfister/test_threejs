@@ -44,12 +44,12 @@ var ObjectGridWrapLand = (function(){
 
         opt = opt || {};
 
-        opt.tw = 10;
-        opt.th = 10;
-        opt.dAdjust = 1.20;
-        var space = opt.space = 2;
+        opt.tw = opt.tw === undefined ? 10: opt.tw;
+        opt.th = opt.th === undefined ? 10: opt.th;
+        opt.dAdjust = opt.dAdjust === undefined ? 1.20: opt.dAdjust;
+        var space = opt.space = opt.space === undefined ? 2: opt.space;
 
-opt.effects = ['opacity2'];
+opt.effects = opt.effects || ['opacity2'];
 opt.sourceObjects = [
                 makeCube(space),
                 makeSlopeMesh(0.00, space),
@@ -58,7 +58,7 @@ opt.sourceObjects = [
                 makeSlopeMesh(0.75, space)
 ];
 
-opt.objectIndices = [
+opt.objectIndices = opt.objectIndices || [
                 0,4,0,0,0,0,0,0,0,0,
                 1,0,3,0,0,0,0,0,0,0,
                 1,0,3,0,4,4,4,4,0,0,
@@ -73,7 +73,7 @@ opt.objectIndices = [
         var grid = ObjectGridWrap.create(opt);
         // I will want to have some way to set altitude for each
         // cloned mesh object in the gird
-        var altitude = [
+        var altitude = opt.altitude || [
                 0,1,0,0,0,0,0,0,0,0,
                 1,1,1,0,0,0,0,0,0,0,
                 1,1,1,0,1,1,1,1,0,0,
