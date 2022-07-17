@@ -38,13 +38,21 @@ var ObjectGridWrapLand = (function(){
         return slope;
     }
     // MAKE CORNER MESH HELPER
-    var makeCornerMesh = function(alphaR, size){
+    var makeCornerMesh = function(alphaR, size, invert){
         alphaR = alphaR === undefined ? 0 : alphaR;
         size = size === undefined ? 1 : size;
+        invert = invert || false;
         var geometry = new THREE.PlaneGeometry(size, size, 1, 1);
         // get pos attribute
         var pos = geometry.getAttribute('position');
-        pos.array[2] = 2;
+        if(invert){
+            [5,8,11].forEach(function(i){
+                pos.array[i] = size;
+            })
+        }else{
+            pos.array[2] = size;
+
+        }
         pos.needsUpdate = true;
         geometry.computeVertexNormals();
         // rotate and translate
@@ -67,16 +75,18 @@ var ObjectGridWrapLand = (function(){
         var space = opt.space = opt.space === undefined ? 2: opt.space;
 
         opt.effects = opt.effects || ['opacity2'];
+
+        var meshSize = space - 0.05;
         opt.sourceObjects = [
-            makeCube(space),
-            makeSlopeMesh(0.00, space),
-            makeSlopeMesh(0.25, space),
-            makeSlopeMesh(0.50, space),
-            makeSlopeMesh(0.75, space),
-            makeCornerMesh(0.00, space),
-            makeCornerMesh(0.25, space),
-            makeCornerMesh(0.50, space),
-            makeCornerMesh(0.75, space)
+            makeCube(meshSize),
+            makeSlopeMesh(0.00, meshSize),
+            makeSlopeMesh(0.25, meshSize),
+            makeSlopeMesh(0.50, meshSize),
+            makeSlopeMesh(0.75, meshSize),
+            makeCornerMesh(0.00, meshSize),
+            makeCornerMesh(0.25, meshSize),
+            makeCornerMesh(0.50, meshSize),
+            makeCornerMesh(0.75, meshSize)
         ];
 
 opt.objectIndices = opt.objectIndices || [
@@ -91,6 +101,7 @@ opt.objectIndices = opt.objectIndices || [
                 1,0,3,0,1,0,0,3,0,0,
                 0,2,0,0,0,2,2,0,0,0,
 ];
+
         var grid = ObjectGridWrap.create(opt);
         // I will want to have some way to set altitude for each
         // cloned mesh object in the gird
