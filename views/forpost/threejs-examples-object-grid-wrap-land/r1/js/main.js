@@ -24,20 +24,23 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) )
 
 var grid = ObjectGridWrapLand.create({
     tw: 8,
-    th: 5,
+    th: 6,
+effects:[],
 altitude: [
-    0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,
-    0,0,1,1,1,0,0,0,
-    0,0,1,1,1,0,0,0,
-    0,0,1,1,1,0,0,0
+    0,0,0,0,1,1,0,0,
+    0,1,1,1,1,1,0,0,
+    0,1,1,1,1,1,1,0,
+    0,1,1,1,1,1,1,0,
+    0,1,1,1,1,0,0,0,
+    0,1,1,1,1,0,0,0,
 ],
 objectIndices: [
-    0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,
-    0,0,7,4,6,0,0,0,
-    0,0,1,0,3,0,0,0,
-    0,0,8,2,5,0,0,0
+    0,0,0,0,4,4,0,0,
+    0,7,4,0,0,0,0,0,
+    0,1,0,0,0,0,3,0,
+    0,1,0,0,0,0,3,0,
+    0,1,0,0,0,0,0,0,
+    0,8,2,2,2,0,0,0
 ]
 });
 scene.add(grid)
@@ -60,7 +63,7 @@ var loop = function () {
     if(secs > 1 / fps){
 
         // set position of the grid
-        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
+        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
         // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
 
