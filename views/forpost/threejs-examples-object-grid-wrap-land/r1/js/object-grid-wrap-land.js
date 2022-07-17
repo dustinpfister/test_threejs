@@ -83,10 +83,16 @@ var ObjectGridWrapLand = (function(){
             makeSlopeMesh(0.25, meshSize),
             makeSlopeMesh(0.50, meshSize),
             makeSlopeMesh(0.75, meshSize),
+
             makeCornerMesh(0.00, meshSize),
             makeCornerMesh(0.25, meshSize),
             makeCornerMesh(0.50, meshSize),
-            makeCornerMesh(0.75, meshSize)
+            makeCornerMesh(0.75, meshSize),
+
+            makeCornerMesh(0.00, meshSize, true),
+            makeCornerMesh(0.25, meshSize, true),
+            makeCornerMesh(0.50, meshSize, true),
+            makeCornerMesh(0.75, meshSize, true)
         ];
 
 opt.objectIndices = opt.objectIndices || [

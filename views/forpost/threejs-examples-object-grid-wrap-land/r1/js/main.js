@@ -16,6 +16,10 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(-8, 2, 4);
 scene.add(dl);
+
+
+//camera.add(dl);
+//scene.add(camera);
 scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) )
 
 
@@ -25,22 +29,22 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) )
 var grid = ObjectGridWrapLand.create({
     tw: 8,
     th: 6,
-effects:[],
+//effects:[],
 altitude: [
-    0,0,0,0,1,1,0,0,
+    0,0,0,1,1,1,1,0,
+    0,1,1,1,1,1,1,0,
+    0,1,1,1,1,1,1,0,
+    0,1,1,1,1,1,1,0,
+    0,1,1,1,1,1,1,0,
     0,1,1,1,1,1,0,0,
-    0,1,1,1,1,1,1,0,
-    0,1,1,1,1,1,1,0,
-    0,1,1,1,1,0,0,0,
-    0,1,1,1,1,0,0,0,
 ],
 objectIndices: [
-    0,0,0,0,4,4,0,0,
-    0,7,4,0,0,0,0,0,
-    0,1,0,0,0,0,3,0,
-    0,1,0,0,0,0,3,0,
-    0,1,0,0,0,0,0,0,
-    0,8,2,2,2,0,0,0
+    0, 0, 0, 7, 4, 4, 6, 0,
+    0, 7, 4, 9, 0, 0, 3, 0,
+    0, 1, 0, 0, 0, 0, 3, 0,
+    0, 1, 0, 0, 0, 0, 3, 0,
+    0, 1, 0, 0, 0,11, 5, 0,
+    0, 8, 2, 2, 2, 5, 0, 0
 ]
 });
 scene.add(grid)
@@ -63,7 +67,7 @@ var loop = function () {
     if(secs > 1 / fps){
 
         // set position of the grid
-        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
+        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
         // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
 
