@@ -50,7 +50,7 @@ var ObjectGridWrapLand = (function(){
         // rotate and translate
         geometry.rotateX( Math.PI * 1.5 );
         geometry.translate(0, size / 2 * -1 ,0);
-        geometry.rotateY( Math.PI * 2 * alphaR );
+        geometry.rotateY( Math.PI * 2 * alphaR);
         var corner = new THREE.Mesh( geometry, MATERIAL_LAND);
         return corner;
     };
@@ -66,20 +66,18 @@ var ObjectGridWrapLand = (function(){
         opt.dAdjust = opt.dAdjust === undefined ? 1.20: opt.dAdjust;
         var space = opt.space = opt.space === undefined ? 2: opt.space;
 
-opt.effects = opt.effects || ['opacity2'];
-opt.sourceObjects = [
-                makeCube(space),
-                makeSlopeMesh(0.00, space),
-                makeSlopeMesh(0.25, space),
-                makeSlopeMesh(0.50, space),
-                makeSlopeMesh(0.75, space),
-
-makeCornerMesh(0.00, space),
-makeCornerMesh(0.25, space),
-makeCornerMesh(0.50, space),
-makeCornerMesh(0.75, space)
-
-];
+        opt.effects = opt.effects || ['opacity2'];
+        opt.sourceObjects = [
+            makeCube(space),
+            makeSlopeMesh(0.00, space),
+            makeSlopeMesh(0.25, space),
+            makeSlopeMesh(0.50, space),
+            makeSlopeMesh(0.75, space),
+            makeCornerMesh(0.00, space),
+            makeCornerMesh(0.25, space),
+            makeCornerMesh(0.50, space),
+            makeCornerMesh(0.75, space)
+        ];
 
 opt.objectIndices = opt.objectIndices || [
                 0,4,0,0,0,0,0,0,0,0,
