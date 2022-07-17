@@ -21,7 +21,6 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) )
 
 
 var grid = ObjectGridWrapLand.create();
-
 scene.add(grid)
 
 //******** **********
@@ -31,7 +30,7 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 var fps = 30,
 lt = new Date(),
 frame = 0,
-maxFrame = 300;
+maxFrame = 600;
 var loop = function () {
     var now = new Date(),
     per = frame / maxFrame,
