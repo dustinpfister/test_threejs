@@ -11,6 +11,7 @@
 * () generate object opt.objectIndices based on opt.altitude
 
 
+* () have it so that I can just give an altitude array and tw and th are figured from that
 * () use data textures for grass for main.js
 * () have a createTreeOne helper
 * () have a createCube helper
