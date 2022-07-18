@@ -45,7 +45,7 @@ var grid = ObjectGridWrapLand.create({
     th: 10,
     crackSize: 0.03,
     MATERIAL_LAND: new THREE.MeshStandardMaterial({
-        color: new THREE.Color('white'),
+        color: new THREE.Color('lime'),
         map: texture
     }),
     //effects:[],
