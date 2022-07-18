@@ -86,65 +86,43 @@ var grid = ObjectGridWrapLand.create({
 grid.scale.set(1, 1, 1.25);
 scene.add(grid);
 //******** **********
-// workinbg with tiles
+// ADDING CHILD MESH OBJECTS
 //******** **********
-// can play with tiles of grid this way
-//[34, 44, 54, 33, 43, 53, 32, 42, 52].forEach(function(i){
-//    var tile = grid.children[i];
-//    tile.material.color = new THREE.Color('yellow');
-//});
-var mkCone = function(){
+var mkCone = function(height){
     return new THREE.Mesh(
-        new THREE.ConeGeometry(0.5, 3, 30, 30),
+        new THREE.ConeGeometry(0.5, height, 30, 30),
         new THREE.MeshStandardMaterial({map: texture, color: new THREE.Color('#00ff88')})
     );
 };
-// can add a child to a tile this way
-/*
-var tile = grid.children[143];
-tile.material.color = new THREE.Color('#00ffaa');
-var mesh = mkCone();
-const box = new THREE.Box3();
-tile.geometry.computeBoundingBox();
-box.copy( tile.geometry.boundingBox ).applyMatrix4( tile.matrixWorld );
-// on cubes add half hight, on slopes add 0
-mesh.geometry.computeBoundingBox();
-var v = new THREE.Vector3();
-mesh.geometry.boundingBox.getSize(v);
-var yDelta = tile.userData.isSlope ? 0 : v.y / 2;
-console.log(yDelta);
-mesh.position.y = box.max.y + yDelta;
-tile.add(mesh);
-*/
-
-// If this above code works okay in a project I can use the addAt method
-// that is based off of that with beter yDelta adjustment
-//ObjectGridWrapLand.addAt(grid, mkCone(), 10, 5);
-//ObjectGridWrapLand.addAt(grid, mkCone(), 1, 10);
-//ObjectGridWrapLand.addAt(grid, mkCone(), 1, 12);
-//ObjectGridWrapLand.addAt(grid, mkCone(), 3, 8);
-
 // can make another system that involves a grid if index values
 // but with child objects
 var mkMeshFunctions = [
     null,
-    mkCone
+    function(){
+        return mkCone(2)
+    },
+    function(){
+        return mkCone(3)
+    },
+    function(){
+        return mkCone(4)
+    }
 ];
-
+// object index grid
 [
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,1,0,0,
-    0,0,1,0,0,0,0,0,0,1,0,0,0,0,
+    0,0,0,2,0,0,0,0,0,0,0,1,0,0,
+    0,0,1,0,0,0,3,0,0,1,2,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,1,0,1,1,0,0,
     0,0,0,1,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,1,0,1,0,1,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,1,0,0,0,0,1,0,1,1,0,0,
-    0,0,1,0,0,0,0,1,0,1,0,0,0,1,
-    0,1,0,1,0,1,0,0,1,0,1,1,0,0,
-    0,0,0,0,0,0,0,1,0,0,1,1,0,0,
-    0,1,0,1,0,1,0,0,0,1,0,1,1,1,
+    0,0,0,0,0,0,0,1,0,1,2,1,0,0,
+    0,0,2,0,0,0,0,0,0,2,0,0,0,0,
+    0,0,0,1,0,0,0,2,1,0,1,1,0,0,
+    0,0,1,0,0,0,0,1,0,1,3,3,0,1,
+    0,1,0,1,0,1,2,0,1,2,1,1,2,0,
+    0,0,0,0,2,0,0,1,0,3,1,1,0,0,
+    0,1,0,1,0,1,0,0,0,1,2,3,1,1,
     0,0,0,0,0,0,0,0,0,0,1,0,1,0
 ].forEach(function(objIndex, i){
     var mkMesh = mkMeshFunctions[objIndex];
@@ -152,9 +130,7 @@ var mkMeshFunctions = [
         var mesh = mkMesh(),
         x = i % grid.userData.tw,
         y = Math.floor(i / grid.userData.tw)
-
-ObjectGridWrapLand.addAt(grid, mesh, x, y);
-
+        ObjectGridWrapLand.addAt(grid, mesh, x, y);
     }
 });
 //******** **********
