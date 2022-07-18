@@ -5,7 +5,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#00afaf');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-10, 10, 10);
+camera.position.set(-10, 10, -5);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -41,37 +41,45 @@ texture.needsUpdate = true;
 // GRID
 //******** **********
 var grid = ObjectGridWrapLand.create({
-    tw: 10,
-    th: 10,
+    tw: 14,
+    th: 14,
     crackSize: 0.03,
     MATERIAL_LAND: new THREE.MeshStandardMaterial({
         color: new THREE.Color('lime'),
         map: texture
     }),
-    //effects:[],
+    effects:[],
     altitude: [
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,1,1,1,1,0,0,0,
-        0,1,1,1,1,1,1,0,0,0,
-        0,1,1,1,1,1,1,0,0,0,
-        0,1,1,1,1,1,1,0,0,0,
-        0,1,1,1,1,1,1,0,0,0,
-        0,1,1,1,1,1,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,1,1,1,1,0,0,0,0,0,0,0,
+        0,1,1,1,1,1,1,0,0,0,0,0,0,0,
+        0,1,2,2,2,1,1,0,0,0,0,0,0,0,
+        0,1,2,2,2,1,1,0,0,0,0,0,0,0,
+        0,1,2,2,2,1,1,0,0,0,0,0,0,0,
+        0,1,1,1,1,1,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0
     ],
     objectIndices: [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 7, 4, 4, 6, 0, 0, 0,
-        0, 7, 4, 9, 0, 0, 3, 0, 0, 0,
-        0, 1, 0, 0, 0, 0, 3, 0, 0, 0,
-        0, 1, 0, 0, 0, 0, 3, 0, 0, 0,
-        0, 1, 0, 0, 0,11, 5, 0, 0, 0,
-        0, 8, 2, 2, 2, 5, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 7, 4, 4, 6, 0, 0, 0, 0, 0, 0, 0,
+        0, 7, 4, 9, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0,
+        0, 1, 7, 4, 6, 0, 3, 0, 0, 0, 0, 0, 0, 0,
+        0, 1, 1, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0,
+        0, 1, 8, 2, 5,11, 5, 0, 0, 0, 0, 0, 0, 0,
+        0, 8, 2, 2, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     ]
 });
 
@@ -85,16 +93,20 @@ scene.add(grid);
     var tile = grid.children[i];
     tile.material.color = new THREE.Color('yellow');
 });
-var mkCube = function(){
+var mkCone = function(){
     return new THREE.Mesh(
         new THREE.ConeGeometry(0.5, 3, 30, 30),
         new THREE.MeshStandardMaterial({map: texture, color: new THREE.Color('green')})
     );
+    //return new THREE.Mesh(
+    //    new THREE.BoxGeometry(1, 2, 1),
+    //    new THREE.MeshStandardMaterial({map: texture, color: new THREE.Color('green')})
+    //);
 };
 // can add a child to a tile this way
-var tile = grid.children[45];
-tile.material.color = new THREE.Color('red');
-var mesh = mkCube();
+var tile = grid.children[143];
+tile.material.color = new THREE.Color('#00ffaa');
+var mesh = mkCone();
 const box = new THREE.Box3();
 tile.geometry.computeBoundingBox();
 box.copy( tile.geometry.boundingBox ).applyMatrix4( tile.matrixWorld );
@@ -108,11 +120,11 @@ mesh.position.y = box.max.y + yDelta;
 tile.add(mesh);
 // If this above code works okay in a project I can use the addAt method
 // that is based off of that with beter yDelta adjustment
-ObjectGridWrapLand.addAt(grid, mkCube(), 43);
-ObjectGridWrapLand.addAt(grid, mkCube(), 42);
-ObjectGridWrapLand.addAt(grid, mkCube(), 41);
-ObjectGridWrapLand.addAt(grid, mkCube(), 62);
-ObjectGridWrapLand.addAt(grid, mkCube(), 1, 2);
+ObjectGridWrapLand.addAt(grid, mkCone(), 0);
+ObjectGridWrapLand.addAt(grid, mkCone(), 10, 5);
+ObjectGridWrapLand.addAt(grid, mkCone(), 1, 10);
+ObjectGridWrapLand.addAt(grid, mkCone(), 1, 12);
+ObjectGridWrapLand.addAt(grid, mkCone(), 3, 8);
 //******** **********
 // LOOP
 //******** **********
@@ -130,7 +142,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // set position of the grid
-        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
+        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
         // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
         renderer.render(scene, camera);

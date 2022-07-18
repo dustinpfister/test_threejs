@@ -20,6 +20,7 @@ var ObjectGridWrapLand = (function(){
         );
         // not a slope
         cube.userData.isSlope = false;
+        cube.userData.isCorner = false;
         cube.userData.isInvert = false;
         return cube
     };
@@ -50,6 +51,7 @@ var ObjectGridWrapLand = (function(){
         var slope = new THREE.Mesh( geometry, material);
         // is a slope
         slope.userData.isSlope = true;
+        slope.userData.isCorner = false;
         slope.userData.isInvert = false;
         return slope;
     }
@@ -78,6 +80,7 @@ var ObjectGridWrapLand = (function(){
         var corner = new THREE.Mesh( geometry, material);
         // not a slope
         corner.userData.isSlope = true;
+        corner.userData.isCorner = true;
         corner.userData.isInvert = invert;
         return corner;
     };
@@ -130,6 +133,7 @@ var ObjectGridWrapLand = (function(){
         var ud = grid.userData; 
         // adjust 'minB' value for opacity2 effect
         ud.minB = 0.3;
+        ud.space = opt.space;
         ud.tw = opt.tw;
         ud.th = opt.th;
         ud.opt = opt;
@@ -139,7 +143,8 @@ var ObjectGridWrapLand = (function(){
     //  ADD AT METHOD
     //******** **********
     api.addAt = function(grid, mesh, ix, y){
-        var tile = 0;
+        var tile = 0,
+        ud = grid.userData;
         if(y === undefined){
             tile = grid.children[ix];
         }else{
@@ -153,12 +158,18 @@ var ObjectGridWrapLand = (function(){
         mesh.geometry.computeBoundingBox();
         var v = new THREE.Vector3();
         mesh.geometry.boundingBox.getSize(v);
-        // figure out yDelta value
+        // figure out yDelta value starting with a 
+        // default value that should work okay for cubes
         var yDelta = v.y / 2;
+        // if the tile is a slope?
         if(tile.userData.isSlope){
-            yDelta = v.y / 2 * -1;
+            yDelta = v.y / 2 - ud.space * 0.75;
+        }
+        // if the tile is a corner
+        if(tile.userData.isCorner){
+            yDelta = v.y / 2 - ud.space;
             if(tile.userData.isInvert){
-                yDelta = 0;
+               yDelta = v.y / 2 - ud.space * 0.5;
             }
         }
         mesh.position.y = box.max.y + yDelta;
