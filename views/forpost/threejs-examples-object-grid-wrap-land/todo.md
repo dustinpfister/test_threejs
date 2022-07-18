@@ -13,8 +13,10 @@
 * (done) MATERIAL_LAND create option
 * (done) use data textures for grass for main.js
 * (done) fix texture isshue with uvs for slopes
+* (done) crackSize option
 
 * () have public addAt method for object-grid-wrap-land that helps with the process of adding any object as a child of a grid location
+
 
 ## ( done 07/14/2022 ) - first version r0 based off of the prototype
 * ( done ) start r0 based off of the prototype

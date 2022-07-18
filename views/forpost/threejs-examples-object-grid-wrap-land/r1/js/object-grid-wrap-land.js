@@ -79,6 +79,8 @@ var ObjectGridWrapLand = (function(){
 
         opt = opt || {};
 
+opt.crackSize = opt.crackSize === undefined ? 0.1 : opt.crackSize;
+
         opt.tw = opt.tw === undefined ? 4: opt.tw;
         opt.th = opt.th === undefined ? 2: opt.th;
         opt.dAdjust = opt.dAdjust === undefined ? 1.20: opt.dAdjust;
@@ -87,7 +89,7 @@ var ObjectGridWrapLand = (function(){
         opt.effects = opt.effects || ['opacity2'];
         opt.MATERIAL_LAND = opt.MATERIAL_LAND || MATERIAL_LAND;
 
-        var meshSize = space - 0.05;
+        var meshSize = space - opt.crackSize;
         opt.sourceObjects = [
             makeCube(opt.MATERIAL_LAND, meshSize),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.00),

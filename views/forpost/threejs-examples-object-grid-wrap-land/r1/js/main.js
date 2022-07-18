@@ -44,6 +44,7 @@ texture.needsUpdate = true;
 var grid = ObjectGridWrapLand.create({
     tw: 10,
     th: 10,
+    crackSize: 0.25,
     MATERIAL_LAND: new THREE.MeshStandardMaterial({
         color: new THREE.Color('white'),
         map: texture
@@ -75,7 +76,7 @@ var grid = ObjectGridWrapLand.create({
     ]
 });
 
-grid.scale.set(2,1,3)
+grid.scale.set(1, 1, 1.25)
 scene.add(grid)
 //******** **********
 // LOOP
