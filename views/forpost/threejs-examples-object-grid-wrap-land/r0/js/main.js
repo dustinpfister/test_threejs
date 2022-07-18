@@ -1,5 +1,5 @@
 //******** **********
-// SCENE, CAMERA, RENDERER
+// SCENE, CAMERA, RENDERER with code that is that start of the ObjectGridWrap module land module - r0
 //******** **********
 var scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
