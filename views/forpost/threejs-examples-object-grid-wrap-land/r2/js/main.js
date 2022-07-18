@@ -60,8 +60,10 @@ var grid = ObjectGridWrapLand.create({
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     ]
 });
+grid.scale.set(1, 1, 1);
 
-grid.scale.set(1, 1, 1.25);
+ObjectGridWrapLand.setDataTextures(grid)
+
 scene.add(grid);
 //******** **********
 // ADDING CHILD MESH OBJECTS

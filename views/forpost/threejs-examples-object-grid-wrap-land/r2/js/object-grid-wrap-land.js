@@ -195,7 +195,35 @@ var ObjectGridWrapLand = (function(){
     //******** **********
     //  setDataTextures
     //******** **********
-    api.setDataTextures = function(){
+
+    var DEFAULT_DATATEXT = [
+        ['#00ff00', 8, 8, 180, 255],
+        ['#00ff00', 8, 8, 64, 255],
+        ['#00ff00', 8, 8, 80, 160],
+        ['#00ff6f', 8, 8, 180, 255],
+        ['#aaff6f', 8, 8, 100, 255],
+        ['#00ff6f', 8, 8, 80, 160]
+    ];
+
+    api.setDataTextures = function(grid, dataText){
+
+        dataText = dataText || DEFAULT_DATATEXT;
+
+        var materials = [];
+        dataText.forEach(function(d){
+            materials.push(new THREE.MeshStandardMaterial({
+                color: new THREE.Color(d[0]),
+                map: makeDataTexture(d[1], d[2], d[3], d[4])
+            }));
+        });
+
+        // seeded random material index values
+        var i = 0, len = grid.userData.tw * grid.userData.th;
+        while(i < len){
+           var mi = Math.floor(THREE.MathUtils.seededRandom() * materials.length);
+           grid.children[i].material = materials[mi].clone();
+           i += 1;
+        }
 
     };
     // return public API
