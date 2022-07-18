@@ -10,9 +10,8 @@
 * (done) opt object for create method of land module
 * (done) have additional source objects for corners
 * (done) looks like I will need another kind of inverted corner mesh that is one low point rather than one high point
+* (done) MATERIAL_LAND create option
 
-
-* () MATERIAL_LAND create option
 * () use data textures for grass for main.js
 
 * () have public addAt method for object-grid-wrap-land that helps with the process of adding any object as a child of a grid location

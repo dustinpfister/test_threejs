@@ -8,19 +8,20 @@ var ObjectGridWrapLand = (function(){
     // MESH OBJECTS
     //******** **********
 
+    // default material land value
     var MATERIAL_LAND = new THREE.MeshStandardMaterial({color: new THREE.Color('green')})
 
     // MESH basic cube
-    var makeCube = function(size){
+    var makeCube = function(material, size){
         size = size === undefined ? 1 : size;
         var cube = new THREE.Mesh(
             new THREE.BoxGeometry(size, size, size), 
-            MATERIAL_LAND
+            material
         );
         return cube
     };
     // MAKE MESH SLOPE HELPER
-    var makeSlopeMesh = function(alphaR, size){
+    var makeSlopeMesh = function(material, size, alphaR){
         alphaR = alphaR === undefined ? 0 : alphaR;
         size = size === undefined ? 1 : size;
         var shape_slope = new THREE.Shape();
@@ -36,11 +37,11 @@ var ObjectGridWrapLand = (function(){
         geometry.computeBoundingBox();
         geometry.center();
         geometry.rotateY( Math.PI * 2 * alphaR );
-        var slope = new THREE.Mesh( geometry, MATERIAL_LAND);
+        var slope = new THREE.Mesh( geometry, material);
         return slope;
     }
     // MAKE CORNER MESH HELPER
-    var makeCornerMesh = function(alphaR, size, invert){
+    var makeCornerMesh = function(material, size, alphaR, invert){
         alphaR = alphaR === undefined ? 0 : alphaR;
         size = size === undefined ? 1 : size;
         invert = invert || false;
@@ -61,7 +62,7 @@ var ObjectGridWrapLand = (function(){
         geometry.rotateX( Math.PI * 1.5 );
         geometry.translate(0, size / 2 * -1 ,0);
         geometry.rotateY( Math.PI * 2 * alphaR);
-        var corner = new THREE.Mesh( geometry, MATERIAL_LAND);
+        var corner = new THREE.Mesh( geometry, material);
         return corner;
     };
     //******** **********
@@ -77,24 +78,25 @@ var ObjectGridWrapLand = (function(){
         var space = opt.space = opt.space === undefined ? 2: opt.space;
 
         opt.effects = opt.effects || ['opacity2'];
+        opt.MATERIAL_LAND = opt.MATERIAL_LAND || MATERIAL_LAND;
 
         var meshSize = space - 0.05;
         opt.sourceObjects = [
-            makeCube(meshSize),
-            makeSlopeMesh(0.00, meshSize),
-            makeSlopeMesh(0.25, meshSize),
-            makeSlopeMesh(0.50, meshSize),
-            makeSlopeMesh(0.75, meshSize),
+            makeCube(opt.MATERIAL_LAND, meshSize),
+            makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.00),
+            makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.25),
+            makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.50),
+            makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.75),
 
-            makeCornerMesh(0.00, meshSize),
-            makeCornerMesh(0.25, meshSize),
-            makeCornerMesh(0.50, meshSize),
-            makeCornerMesh(0.75, meshSize),
+            makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.00),
+            makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.25),
+            makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50),
+            makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75),
 
-            makeCornerMesh(0.00, meshSize, true),
-            makeCornerMesh(0.25, meshSize, true),
-            makeCornerMesh(0.50, meshSize, true),
-            makeCornerMesh(0.75, meshSize, true)
+            makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.00, true),
+            makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.25, true),
+            makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50, true),
+            makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75, true)
         ];
 
 opt.objectIndices = opt.objectIndices || [
