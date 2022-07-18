@@ -43,7 +43,7 @@ texture.needsUpdate = true;
 var grid = ObjectGridWrapLand.create({
     tw: 10,
     th: 10,
-    crackSize: 0.25,
+    crackSize: 0.03,
     MATERIAL_LAND: new THREE.MeshStandardMaterial({
         color: new THREE.Color('white'),
         map: texture
@@ -86,14 +86,18 @@ scene.add(grid);
 });
 
 // can add a child to a tile this way
-var tile = grid.children[44];
+var tile = grid.children[43];
 tile.material.color = new THREE.Color('red');
 var mesh = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.BoxGeometry(1, 2, 1),
     new THREE.MeshNormalMaterial()
 );
-console.log(tile.position)
-mesh.position.y = 3.5;
+
+const box = new THREE.Box3();
+tile.geometry.computeBoundingBox();
+box.copy( tile.geometry.boundingBox ).applyMatrix4( tile.matrixWorld );
+// on cubes add half hight, on slopes add 0
+mesh.position.y = box.max.y + 0.0;
 tile.add(mesh);
 
 //******** **********
@@ -113,7 +117,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // set position of the grid
-        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
+        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
         // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
         renderer.render(scene, camera);
