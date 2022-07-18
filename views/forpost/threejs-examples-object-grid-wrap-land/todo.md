@@ -5,10 +5,11 @@
 * () have it so that I can just give an altitude array and tw and th are figured from that
 
 ## () - r2 - setDataTextures, and addObjects method
-* built in data textures method that can be used to quickly add data textures for land tiles
-* can generate more than one texture to use for land
-* use seeded random method for texture index values
-* addObjects method
+* (done) built in data textures method that can be used to quickly add data textures for land tiles
+* (done) data textures for built in material
+* () can generate more than one texture to use for land
+* () use seeded random method for texture index values
+* () addObjects method
 
 ## ( done 07/18/2022 ) - r1 - new land-grid.js module, corner mesh objects, custom land material, addAt method
 * (done) new object-grid-land.js file that will create and return a new grid set up with mesh objects
