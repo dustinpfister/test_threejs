@@ -5,22 +5,22 @@ var ObjectGridWrapLand = (function(){
     // public API
     var api = {};
 
-
-var makeDataTexture = function(width, height, vHigh, vLow){
-    var size = width * height;
-    var data = new Uint8Array( 4 * size );
-    for ( let i = 0; i < size; i ++ ) {
-        var stride = i * 4;
-        var v = Math.floor( vLow + THREE.MathUtils.seededRandom() * ( vHigh - vLow ) );
-        data[ stride ] = v;
-        data[ stride + 1 ] = v;
-        data[ stride + 2 ] = v;
-        data[ stride + 3 ] = 255;
-    }
-    var texture = new THREE.DataTexture( data, width, height );
-    texture.needsUpdate = true;
-    return texture;
-};
+    // make data texture helper
+    var makeDataTexture = function(width, height, vHigh, vLow){
+        var size = width * height;
+        var data = new Uint8Array( 4 * size );
+        for ( let i = 0; i < size; i ++ ) {
+            var stride = i * 4;
+            var v = Math.floor( vLow + THREE.MathUtils.seededRandom() * ( vHigh - vLow ) );
+            data[ stride ] = v;
+            data[ stride + 1 ] = v;
+            data[ stride + 2 ] = v;
+            data[ stride + 3 ] = 255;
+        }
+        var texture = new THREE.DataTexture( data, width, height );
+        texture.needsUpdate = true;
+        return texture;
+    };
 
 
 
@@ -28,7 +28,7 @@ var makeDataTexture = function(width, height, vHigh, vLow){
     // MESH OBJECTS
     //******** **********
 
-    // default material land value
+    // default material for land mesh objects
     var MATERIAL_LAND = new THREE.MeshStandardMaterial({ 
         color: new THREE.Color('green'), 
         map: makeDataTexture(16, 16, 120, 255)
