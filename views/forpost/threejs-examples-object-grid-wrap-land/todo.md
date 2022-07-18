@@ -4,7 +4,7 @@
 * () generate object opt.objectIndices based on opt.altitude
 * () have it so that I can just give an altitude array and tw and th are figured from that
 
-## (  ) - r1 - new land-grid.js module, corner mesh objects, custom land material, addAt method
+## ( done 07/18/2022 ) - r1 - new land-grid.js module, corner mesh objects, custom land material, addAt method
 * (done) new object-grid-land.js file that will create and return a new grid set up with mesh objects
 * (done) create method for land grid module started
 * (done) opt object for create method of land module
@@ -15,11 +15,8 @@
 * (done) fix texture isshue with uvs for slopes
 * (done) crackSize option
 * (done) demo of adding mesh to cube using boundig box to height of tile
-
-* () isSlope bool for userData of each mesh object
-
-* () have public addAt method for object-grid-wrap-land that helps with the process of adding any object as a child of a grid location
-
+* (done) isSlope bool for userData of each mesh object
+* (done) have public addAt method for object-grid-wrap-land that helps with the process of adding any object as a child of a grid location
 
 ## ( done 07/14/2022 ) - first version r0 based off of the prototype
 * ( done ) start r0 based off of the prototype

@@ -112,6 +112,7 @@ ObjectGridWrapLand.addAt(grid, mkCube(), 43);
 ObjectGridWrapLand.addAt(grid, mkCube(), 42);
 ObjectGridWrapLand.addAt(grid, mkCube(), 41);
 ObjectGridWrapLand.addAt(grid, mkCube(), 62);
+ObjectGridWrapLand.addAt(grid, mkCube(), 1, 2);
 //******** **********
 // LOOP
 //******** **********

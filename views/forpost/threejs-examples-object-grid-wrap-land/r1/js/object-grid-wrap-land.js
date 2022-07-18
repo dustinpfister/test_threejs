@@ -127,15 +127,25 @@ var ObjectGridWrapLand = (function(){
         });
         // base position for whone grid
         grid.position.set(0, 0.5, 0);
+        var ud = grid.userData; 
         // adjust 'minB' value for opacity2 effect
-        grid.userData.minB = 0.3;    
+        ud.minB = 0.3;
+        ud.tw = opt.tw;
+        ud.th = opt.th;
+        ud.opt = opt;
         return grid;
     };
     //******** **********
     //  ADD AT METHOD
     //******** **********
-    api.addAt = function(grid, mesh, ix){
-        var tile = grid.children[ix];
+    api.addAt = function(grid, mesh, ix, y){
+        var tile = 0;
+        if(y === undefined){
+            tile = grid.children[ix];
+        }else{
+            var w = grid.userData.tw;
+            tile = grid.children[ y * w + ix];
+        }
         var box = new THREE.Box3();
         tile.geometry.computeBoundingBox();
         box.copy( tile.geometry.boundingBox ).applyMatrix4( tile.matrixWorld );
