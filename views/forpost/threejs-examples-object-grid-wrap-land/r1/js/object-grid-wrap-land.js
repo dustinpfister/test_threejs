@@ -79,8 +79,8 @@ var ObjectGridWrapLand = (function(){
 
         opt = opt || {};
 
-        opt.tw = opt.tw === undefined ? 10: opt.tw;
-        opt.th = opt.th === undefined ? 10: opt.th;
+        opt.tw = opt.tw === undefined ? 4: opt.tw;
+        opt.th = opt.th === undefined ? 2: opt.th;
         opt.dAdjust = opt.dAdjust === undefined ? 1.20: opt.dAdjust;
         var space = opt.space = opt.space === undefined ? 2: opt.space;
 
@@ -105,34 +105,16 @@ var ObjectGridWrapLand = (function(){
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75, true)
         ];
-
-opt.objectIndices = opt.objectIndices || [
-                0,4,0,0,0,0,0,0,0,0,
-                1,0,3,0,0,0,0,0,0,0,
-                1,0,3,0,4,4,4,4,0,0,
-                0,2,0,4,0,0,0,0,4,0,
-                0,0,1,0,0,0,4,0,0,3,
-                0,0,1,0,0,1,0,3,0,3,
-                0,0,0,2,0,0,2,0,0,3,
-                0,4,0,0,1,0,0,0,2,0,
-                1,0,3,0,1,0,0,3,0,0,
-                0,2,0,0,0,2,2,0,0,0,
-];
-
+        opt.objectIndices = opt.objectIndices || [
+            0,0,1,3,
+            0,0,1,3
+        ];
         var grid = ObjectGridWrap.create(opt);
         // I will want to have some way to set altitude for each
         // cloned mesh object in the gird
         var altitude = opt.altitude || [
-                0,1,0,0,0,0,0,0,0,0,
-                1,1,1,0,0,0,0,0,0,0,
-                1,1,1,0,1,1,1,1,0,0,
-                0,1,0,1,1,1,1,1,1,0,
-                0,0,1,1,1,1,2,1,1,1,
-                0,0,1,1,1,2,2,2,1,1,
-                0,0,0,1,1,1,2,1,1,1,
-                0,1,0,0,1,1,1,1,1,0,
-                1,1,1,0,1,1,1,1,0,0,
-                0,1,0,0,0,1,1,0,0,0,
+            0,0,1,1,
+            0,0,1,1
         ];
         grid.children.forEach(function(obj, i){
             var alt = altitude[i];

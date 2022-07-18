@@ -42,13 +42,14 @@ texture.needsUpdate = true;
 // GRID
 //******** **********
 var grid = ObjectGridWrapLand.create({
-    tw: 8,
-    th: 8,
+    //tw: 8,
+    //th: 8,
     MATERIAL_LAND: new THREE.MeshStandardMaterial({
         color: new THREE.Color('white'),
         map: texture
     }),
     //effects:[],
+/*
     altitude: [
         0,0,0,0,0,0,0,0,
         0,0,0,1,1,1,1,0,
@@ -69,6 +70,7 @@ var grid = ObjectGridWrapLand.create({
         0, 8, 2, 2, 2, 5, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0
     ]
+*/
 });
 scene.add(grid)
 //******** **********
