@@ -85,6 +85,17 @@ scene.add(grid);
     tile.material.color = new THREE.Color('lime');
 });
 
+// can add a child to a tile this way
+var tile = grid.children[44];
+tile.material.color = new THREE.Color('red');
+var mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshNormalMaterial()
+);
+console.log(tile.position)
+mesh.position.y = 3.5;
+tile.add(mesh);
+
 //******** **********
 // LOOP
 //******** **********
