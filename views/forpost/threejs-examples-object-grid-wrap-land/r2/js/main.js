@@ -20,35 +20,15 @@ scene.add(dl);
 //scene.add(camera);
 scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) )
 //******** **********
-// TEXTURE
-//******** **********
-// USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-// Uisng the seeded random method of the MathUtils object
-/*
-var width = 10, height = 10;
-var size = width * height;
-var data = new Uint8Array( 4 * size );
-for ( let i = 0; i < size; i ++ ) {
-    var stride = i * 4;
-    var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
-    data[ stride ] = v;
-    data[ stride + 1 ] = v;
-    data[ stride + 2 ] = v;
-    data[ stride + 3 ] = 255;
-}
-var texture = new THREE.DataTexture( data, width, height );
-texture.needsUpdate = true;
-*/
-//******** **********
 // GRID
 //******** **********
 var grid = ObjectGridWrapLand.create({
     tw: 14,
     th: 14,
     crackSize: 0.03,
-    MATERIAL_LAND: new THREE.MeshStandardMaterial({
-        color: new THREE.Color('lime')
-    }),
+    //MATERIAL_LAND: new THREE.MeshStandardMaterial({
+    //    color: new THREE.Color('lime')
+    //}),
     //effects:[],
     altitude: [
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
