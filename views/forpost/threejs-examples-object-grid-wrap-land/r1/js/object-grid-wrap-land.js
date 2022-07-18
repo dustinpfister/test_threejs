@@ -7,7 +7,9 @@ var ObjectGridWrapLand = (function(){
     //******** **********
     // MESH OBJECTS
     //******** **********
+
     var MATERIAL_LAND = new THREE.MeshStandardMaterial({color: new THREE.Color('green')})
+
     // MESH basic cube
     var makeCube = function(size){
         size = size === undefined ? 1 : size;
