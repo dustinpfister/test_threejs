@@ -48,37 +48,37 @@ var grid = ObjectGridWrapLand.create({
         color: new THREE.Color('lime'),
         map: texture
     }),
-    effects:[],
+    //effects:[],
     altitude: [
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,1,1,1,0,0,0,1,1,1,1,0,
+        0,0,0,1,1,1,0,0,0,1,1,1,1,0,
+        0,0,0,1,1,1,0,0,0,1,1,1,1,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,1,1,1,1,0,0,0,0,0,0,0,
         0,1,1,1,1,1,1,0,0,0,0,0,0,0,
         0,1,2,2,2,1,1,0,0,0,0,0,0,0,
-        0,1,2,2,2,1,1,0,0,0,0,0,0,0,
-        0,1,2,2,2,1,1,0,0,0,0,0,0,0,
-        0,1,1,1,1,1,0,0,0,0,0,0,0,0,
+        0,1,2,2,2,1,1,0,0,0,1,1,1,0,
+        0,1,2,2,2,1,1,0,0,0,1,1,1,0,
+        0,1,1,1,1,1,0,0,0,0,1,1,1,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0
     ],
     objectIndices: [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 7, 4, 6, 0, 0, 0, 7, 4, 4, 6, 0,
+        0, 0, 0, 1, 0, 3, 0, 0, 0, 1, 0, 0, 3, 0,
+        0, 0, 0, 8, 2, 5, 0, 0, 0, 8, 2, 2, 5, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 7, 4, 4, 6, 0, 0, 0, 0, 0, 0, 0,
         0, 7, 4, 9, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0,
         0, 1, 7, 4, 6, 0, 3, 0, 0, 0, 0, 0, 0, 0,
-        0, 1, 1, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0,
-        0, 1, 8, 2, 5,11, 5, 0, 0, 0, 0, 0, 0, 0,
-        0, 8, 2, 2, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 1, 1, 0, 3, 0, 3, 0, 0, 0, 7, 4, 6, 0,
+        0, 1, 8, 2, 5,11, 5, 0, 0, 0, 1, 0, 3, 0,
+        0, 8, 2, 2, 2, 5, 0, 0, 0, 0, 8, 2, 5, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     ]
 });
@@ -89,21 +89,18 @@ scene.add(grid);
 // workinbg with tiles
 //******** **********
 // can play with tiles of grid this way
-[34, 44, 54, 33, 43, 53, 32, 42, 52].forEach(function(i){
-    var tile = grid.children[i];
-    tile.material.color = new THREE.Color('yellow');
-});
+//[34, 44, 54, 33, 43, 53, 32, 42, 52].forEach(function(i){
+//    var tile = grid.children[i];
+//    tile.material.color = new THREE.Color('yellow');
+//});
 var mkCone = function(){
     return new THREE.Mesh(
         new THREE.ConeGeometry(0.5, 3, 30, 30),
-        new THREE.MeshStandardMaterial({map: texture, color: new THREE.Color('green')})
+        new THREE.MeshStandardMaterial({map: texture, color: new THREE.Color('#00ff88')})
     );
-    //return new THREE.Mesh(
-    //    new THREE.BoxGeometry(1, 2, 1),
-    //    new THREE.MeshStandardMaterial({map: texture, color: new THREE.Color('green')})
-    //);
 };
 // can add a child to a tile this way
+/*
 var tile = grid.children[143];
 tile.material.color = new THREE.Color('#00ffaa');
 var mesh = mkCone();
@@ -118,13 +115,48 @@ var yDelta = tile.userData.isSlope ? 0 : v.y / 2;
 console.log(yDelta);
 mesh.position.y = box.max.y + yDelta;
 tile.add(mesh);
+*/
+
 // If this above code works okay in a project I can use the addAt method
 // that is based off of that with beter yDelta adjustment
-ObjectGridWrapLand.addAt(grid, mkCone(), 0);
-ObjectGridWrapLand.addAt(grid, mkCone(), 10, 5);
-ObjectGridWrapLand.addAt(grid, mkCone(), 1, 10);
-ObjectGridWrapLand.addAt(grid, mkCone(), 1, 12);
-ObjectGridWrapLand.addAt(grid, mkCone(), 3, 8);
+//ObjectGridWrapLand.addAt(grid, mkCone(), 10, 5);
+//ObjectGridWrapLand.addAt(grid, mkCone(), 1, 10);
+//ObjectGridWrapLand.addAt(grid, mkCone(), 1, 12);
+//ObjectGridWrapLand.addAt(grid, mkCone(), 3, 8);
+
+// can make another system that involves a grid if index values
+// but with child objects
+var mkMeshFunctions = [
+    null,
+    mkCone
+];
+
+[
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,1,0,0,
+    0,0,1,0,0,0,0,0,0,1,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,1,0,1,1,0,0,
+    0,0,0,1,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,1,0,1,0,1,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,1,0,0,0,0,1,0,1,1,0,0,
+    0,0,1,0,0,0,0,1,0,1,0,0,0,1,
+    0,1,0,1,0,1,0,0,1,0,1,1,0,0,
+    0,0,0,0,0,0,0,1,0,0,1,1,0,0,
+    0,1,0,1,0,1,0,0,0,1,0,1,1,1,
+    0,0,0,0,0,0,0,0,0,0,1,0,1,0
+].forEach(function(objIndex, i){
+    var mkMesh = mkMeshFunctions[objIndex];
+    if(mkMesh){
+        var mesh = mkMesh(),
+        x = i % grid.userData.tw,
+        y = Math.floor(i / grid.userData.tw)
+
+ObjectGridWrapLand.addAt(grid, mesh, x, y);
+
+    }
+});
 //******** **********
 // LOOP
 //******** **********
@@ -142,7 +174,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // set position of the grid
-        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
+        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.sin( Math.PI * 2 * per ) * 0.5 );
         // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
         renderer.render(scene, camera);
