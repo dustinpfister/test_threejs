@@ -24,7 +24,7 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) )
 //******** **********
 // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
 // Uisng the seeded random method of the MathUtils object
-var width = 16, height = 16;
+var width = 10, height = 10;
 var size = width * height;
 var data = new Uint8Array( 4 * size );
 for ( let i = 0; i < size; i ++ ) {
