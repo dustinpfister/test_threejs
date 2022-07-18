@@ -18,6 +18,8 @@ var ObjectGridWrapLand = (function(){
             new THREE.BoxGeometry(size, size, size), 
             material
         );
+        // not a slope
+        cube.userData.isSlope = false;
         return cube
     };
     // MAKE MESH SLOPE HELPER
@@ -45,6 +47,8 @@ var ObjectGridWrapLand = (function(){
         geometry.center();
         geometry.rotateY( Math.PI * 2 * alphaR );
         var slope = new THREE.Mesh( geometry, material);
+        // is a slope
+        slope.userData.isSlope = true;
         return slope;
     }
     // MAKE CORNER MESH HELPER
@@ -70,6 +74,8 @@ var ObjectGridWrapLand = (function(){
         geometry.translate(0, size / 2 * -1 ,0);
         geometry.rotateY( Math.PI * 2 * alphaR);
         var corner = new THREE.Mesh( geometry, material);
+        // is a slope
+        corner.userData.isSlope = true;
         return corner;
     };
     //******** **********

@@ -14,6 +14,9 @@
 * (done) use data textures for grass for main.js
 * (done) fix texture isshue with uvs for slopes
 * (done) crackSize option
+* (done) demo of adding mesh to cube using boundig box to height of tile
+
+* () isSlope bool for userData of each mesh object
 
 * () have public addAt method for object-grid-wrap-land that helps with the process of adding any object as a child of a grid location
 

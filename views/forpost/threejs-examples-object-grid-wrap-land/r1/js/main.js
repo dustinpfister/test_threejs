@@ -97,7 +97,12 @@ const box = new THREE.Box3();
 tile.geometry.computeBoundingBox();
 box.copy( tile.geometry.boundingBox ).applyMatrix4( tile.matrixWorld );
 // on cubes add half hight, on slopes add 0
-mesh.position.y = box.max.y + 0.0;
+mesh.geometry.computeBoundingBox();
+var v = new THREE.Vector3();
+mesh.geometry.boundingBox.getSize(v);
+var yDelta = tile.userData.isSlope ? 0 : v.y / 2;
+console.log(yDelta);
+mesh.position.y = box.max.y + yDelta;
 tile.add(mesh);
 
 //******** **********
