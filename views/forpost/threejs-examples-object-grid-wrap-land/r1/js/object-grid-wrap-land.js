@@ -20,6 +20,7 @@ var ObjectGridWrapLand = (function(){
         );
         // not a slope
         cube.userData.isSlope = false;
+        cube.userData.isInvert = false;
         return cube
     };
     // MAKE MESH SLOPE HELPER
@@ -49,6 +50,7 @@ var ObjectGridWrapLand = (function(){
         var slope = new THREE.Mesh( geometry, material);
         // is a slope
         slope.userData.isSlope = true;
+        slope.userData.isInvert = false;
         return slope;
     }
     // MAKE CORNER MESH HELPER
@@ -74,27 +76,23 @@ var ObjectGridWrapLand = (function(){
         geometry.translate(0, size / 2 * -1 ,0);
         geometry.rotateY( Math.PI * 2 * alphaR);
         var corner = new THREE.Mesh( geometry, material);
-        // is a slope
+        // not a slope
         corner.userData.isSlope = true;
+        corner.userData.isInvert = invert;
         return corner;
     };
     //******** **********
     //  CREATE METHOD
     //******** **********
     api.create = function(opt){
-
         opt = opt || {};
-
-opt.crackSize = opt.crackSize === undefined ? 0.1 : opt.crackSize;
-
+        opt.crackSize = opt.crackSize === undefined ? 0.1 : opt.crackSize;
         opt.tw = opt.tw === undefined ? 4: opt.tw;
         opt.th = opt.th === undefined ? 2: opt.th;
         opt.dAdjust = opt.dAdjust === undefined ? 1.20: opt.dAdjust;
         var space = opt.space = opt.space === undefined ? 2: opt.space;
-
         opt.effects = opt.effects || ['opacity2'];
         opt.MATERIAL_LAND = opt.MATERIAL_LAND || MATERIAL_LAND;
-
         var meshSize = space - opt.crackSize;
         opt.sourceObjects = [
             makeCube(opt.MATERIAL_LAND, meshSize),
@@ -102,12 +100,10 @@ opt.crackSize = opt.crackSize === undefined ? 0.1 : opt.crackSize;
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.25),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.50),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.75),
-
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.00),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.25),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75),
-
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.00, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.25, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50, true),
@@ -134,7 +130,30 @@ opt.crackSize = opt.crackSize === undefined ? 0.1 : opt.crackSize;
         // adjust 'minB' value for opacity2 effect
         grid.userData.minB = 0.3;    
         return grid;
-    }; 
+    };
+    //******** **********
+    //  ADD AT METHOD
+    //******** **********
+    api.addAt = function(grid, mesh, ix){
+        var tile = grid.children[ix];
+        var box = new THREE.Box3();
+        tile.geometry.computeBoundingBox();
+        box.copy( tile.geometry.boundingBox ).applyMatrix4( tile.matrixWorld );
+        // on cubes add half hight, on slopes add 0
+        mesh.geometry.computeBoundingBox();
+        var v = new THREE.Vector3();
+        mesh.geometry.boundingBox.getSize(v);
+        // figure out yDelta value
+        var yDelta = v.y / 2;
+        if(tile.userData.isSlope){
+            yDelta = v.y / 2 * -1;
+            if(tile.userData.isInvert){
+                yDelta = 0;
+            }
+        }
+        mesh.position.y = box.max.y + yDelta;
+        tile.add(mesh);
+    };
     // return public API
     return api;
 }());

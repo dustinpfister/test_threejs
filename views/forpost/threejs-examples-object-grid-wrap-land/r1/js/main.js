@@ -85,14 +85,17 @@ scene.add(grid);
     tile.material.color = new THREE.Color('lime');
 });
 
-// can add a child to a tile this way
-var tile = grid.children[43];
-tile.material.color = new THREE.Color('red');
-var mesh = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 2, 1),
-    new THREE.MeshNormalMaterial()
-);
+var mkCube = function(){
+    return new THREE.Mesh(
+        new THREE.BoxGeometry(1, 2, 1),
+        new THREE.MeshNormalMaterial()
+    );
+};
 
+// can add a child to a tile this way
+var tile = grid.children[45];
+tile.material.color = new THREE.Color('red');
+var mesh = mkCube();
 const box = new THREE.Box3();
 tile.geometry.computeBoundingBox();
 box.copy( tile.geometry.boundingBox ).applyMatrix4( tile.matrixWorld );
@@ -104,6 +107,12 @@ var yDelta = tile.userData.isSlope ? 0 : v.y / 2;
 console.log(yDelta);
 mesh.position.y = box.max.y + yDelta;
 tile.add(mesh);
+
+// If this above code works okay in a project I can use the addAt method
+ObjectGridWrapLand.addAt(grid, mkCube(), 43);
+ObjectGridWrapLand.addAt(grid, mkCube(), 42);
+ObjectGridWrapLand.addAt(grid, mkCube(), 41);
+ObjectGridWrapLand.addAt(grid, mkCube(), 62);
 
 //******** **********
 // LOOP
