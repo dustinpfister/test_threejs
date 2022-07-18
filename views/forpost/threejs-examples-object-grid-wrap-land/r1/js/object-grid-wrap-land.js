@@ -34,6 +34,13 @@ var ObjectGridWrapLand = (function(){
             depth: size,
             bevelEnabled: false
         });
+        // uv fix ( ceil values like 0.97... to 1 )
+        var uv = geometry.getAttribute('uv');
+        uv.array.forEach(function(n, i){
+            uv.array[i] = Math.ceil(n);
+            uv.array[i] = uv.array[i] < 1 ? 0 : 1;
+        });
+        uv.needsUpdate = true;
         geometry.computeBoundingBox();
         geometry.center();
         geometry.rotateY( Math.PI * 2 * alphaR );
