@@ -77,21 +77,20 @@ var grid = ObjectGridWrapLand.create({
 
 grid.scale.set(1, 1, 1.25);
 scene.add(grid);
-
-
+//******** **********
+// workinbg with tiles
+//******** **********
 // can play with tiles of grid this way
 [34, 44, 54, 33, 43, 53, 32, 42, 52].forEach(function(i){
     var tile = grid.children[i];
-    tile.material.color = new THREE.Color('lime');
+    tile.material.color = new THREE.Color('yellow');
 });
-
 var mkCube = function(){
     return new THREE.Mesh(
-        new THREE.BoxGeometry(1, 2, 1),
-        new THREE.MeshNormalMaterial()
+        new THREE.ConeGeometry(0.5, 3, 30, 30),
+        new THREE.MeshStandardMaterial({map: texture, color: new THREE.Color('green')})
     );
 };
-
 // can add a child to a tile this way
 var tile = grid.children[45];
 tile.material.color = new THREE.Color('red');
@@ -107,13 +106,12 @@ var yDelta = tile.userData.isSlope ? 0 : v.y / 2;
 console.log(yDelta);
 mesh.position.y = box.max.y + yDelta;
 tile.add(mesh);
-
 // If this above code works okay in a project I can use the addAt method
+// that is based off of that with beter yDelta adjustment
 ObjectGridWrapLand.addAt(grid, mkCube(), 43);
 ObjectGridWrapLand.addAt(grid, mkCube(), 42);
 ObjectGridWrapLand.addAt(grid, mkCube(), 41);
 ObjectGridWrapLand.addAt(grid, mkCube(), 62);
-
 //******** **********
 // LOOP
 //******** **********
@@ -131,7 +129,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // set position of the grid
-        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
+        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0 );
         // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
         renderer.render(scene, camera);
