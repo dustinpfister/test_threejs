@@ -76,8 +76,16 @@ var grid = ObjectGridWrapLand.create({
     ]
 });
 
-grid.scale.set(1, 1, 1.25)
-scene.add(grid)
+grid.scale.set(1, 1, 1.25);
+scene.add(grid);
+
+
+// can play with tiles of grid this way
+[34, 44, 54, 33, 43, 53, 32, 42, 52].forEach(function(i){
+    var tile = grid.children[i];
+    tile.material.color = new THREE.Color('lime');
+});
+
 //******** **********
 // LOOP
 //******** **********
