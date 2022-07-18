@@ -25,10 +25,7 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) )
 var grid = ObjectGridWrapLand.create({
     tw: 14,
     th: 14,
-    crackSize: 0.03,
-    //MATERIAL_LAND: new THREE.MeshStandardMaterial({
-    //    color: new THREE.Color('lime')
-    //}),
+    crackSize: 0,
     //effects:[],
     altitude: [
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,

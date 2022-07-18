@@ -4,7 +4,6 @@
 var ObjectGridWrapLand = (function(){
     // public API
     var api = {};
-
     // make data texture helper
     var makeDataTexture = function(width, height, vHigh, vLow){
         var size = width * height;
@@ -21,19 +20,14 @@ var ObjectGridWrapLand = (function(){
         texture.needsUpdate = true;
         return texture;
     };
-
-
-
-    //******** **********
-    // MESH OBJECTS
-    //******** **********
-
     // default material for land mesh objects
     var MATERIAL_LAND = new THREE.MeshStandardMaterial({ 
         color: new THREE.Color('green'), 
         map: makeDataTexture(16, 16, 120, 255)
     });
-
+    //******** **********
+    // MESH OBJECTS
+    //******** **********
     // MESH basic cube
     var makeCube = function(material, size){
         size = size === undefined ? 1 : size;
