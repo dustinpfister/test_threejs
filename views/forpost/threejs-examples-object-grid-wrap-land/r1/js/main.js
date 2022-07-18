@@ -2,7 +2,7 @@
 // SCENE, CAMERA, RENDERER
 //******** **********
 var scene = new THREE.Scene();
-scene.background = new THREE.Color('#000000');
+scene.background = new THREE.Color('#00afaf');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(-10, 10, 10);
@@ -19,8 +19,9 @@ scene.add(dl);
 //camera.add(dl);
 //scene.add(camera);
 scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) )
-
-
+//******** **********
+// TEXTURE
+//******** **********
 // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
 // Uisng the seeded random method of the MathUtils object
 var width = 16, height = 16;
@@ -36,8 +37,6 @@ for ( let i = 0; i < size; i ++ ) {
 }
 var texture = new THREE.DataTexture( data, width, height );
 texture.needsUpdate = true;
-
-
 //******** **********
 // GRID
 //******** **********
