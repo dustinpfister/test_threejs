@@ -7,6 +7,7 @@
 ## () - r2 - setDataTextures, and addObjects method
 * (done) built in data textures method that can be used to quickly add data textures for land tiles
 * (done) data textures for built in material
+* () start a set data textures public method
 * () can generate more than one texture to use for land
 * () use seeded random method for texture index values
 * () addObjects method

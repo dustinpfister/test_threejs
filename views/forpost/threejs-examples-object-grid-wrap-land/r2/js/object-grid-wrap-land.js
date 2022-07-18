@@ -192,6 +192,12 @@ var ObjectGridWrapLand = (function(){
         mesh.position.y = box.max.y + yDelta;
         tile.add(mesh);
     };
+    //******** **********
+    //  setDataTextures
+    //******** **********
+    api.setDataTextures = function(){
+
+    };
     // return public API
     return api;
 }());
