@@ -3,8 +3,8 @@
 ## () - sx-from-canvas
 * use canvas data?
 
-## () - s5-for-pix
-* () example that involves a forPix method
+## ( done 07/20/2022) - s5-for-pix
+* (done) example that involves a forPix method
 
 ## (done 04/15/2022 ) - s4-psydo-random
 * (done) psudo random example
