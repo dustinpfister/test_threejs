@@ -9,9 +9,7 @@ let createDataTexture = function(opt){
     // default for pix method
     opt.forPix = opt.forPix || function(color, x, y, i, opt){
         let v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
-        color.r = v;
-        color.g = v;
-        color.b = v;
+        color.setRGB(v, v, v);
         return color;
     };
     let size = opt.width * opt.height;
