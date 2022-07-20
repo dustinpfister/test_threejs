@@ -1,7 +1,10 @@
 # threejs-data-texture todo list
 
-## () - s5-from-canvas
+## () - sx-from-canvas
 * use canvas data?
+
+## () - s5-for-pix
+* () example that involves a forPix method
 
 ## (done 04/15/2022 ) - s4-psydo-random
 * (done) psudo random example

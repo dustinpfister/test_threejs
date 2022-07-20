@@ -1,6 +1,6 @@
 # threejs-color
 
-## () sx - data textures example
+## () s8-data-textures
 * () have an example that makes use of data textures and THREE.Color as a way to set the colors of a texture
 
 ## ( done 05/12/2022 ) new s6-color-change
