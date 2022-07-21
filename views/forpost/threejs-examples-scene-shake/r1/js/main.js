@@ -31,7 +31,8 @@
         lt: new Date(),
         shake: ShakeMod.create({
             obj: scene,
-            posRange: [0, 1],
+            posRange: [0.25, 0.5],
+            degRange: [5, 20],
             intensity: 1.0
         })
     };
@@ -55,9 +56,6 @@
                 x = e.changedTouches[0].clientX - box.left;
                 y = e.changedTouches[0].clientY - box.top;
             };
-            // Adjust pos and deg based on pointer position
-            //shake.pos = x / canvas.width * 0.95;
-            //shake.deg = y / canvas.height * 18;
         };
     };
     // mouse

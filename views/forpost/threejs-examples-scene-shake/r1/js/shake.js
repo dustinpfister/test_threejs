@@ -62,6 +62,9 @@
             // copy shake.euler, and shake.vector to object
             obj3d.rotation.copy(shake.euler);
             obj3d.position.copy(shake.vector);
+
+console.log(shake.deg)
+
         } else {
             // else set back to home location
             var sd = obj3d.userData.shakeData;
@@ -78,6 +81,10 @@
         var pMin = shake.posRange[0] * shake.intensity,
         pMax = shake.posRange[1] * shake.intensity;
         shake.pos = pMin + ( pMax - pMin ) * Math.random();
+        // new deg value
+        var dMin = shake.degRange[0] * shake.intensity,
+        dMax = shake.degRange[1] * shake.intensity;
+        shake.deg = dMin + ( dMax - dMin ) * Math.random();
 
         // new roll for euler and vector values
         roll(shake);
