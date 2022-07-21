@@ -7,7 +7,7 @@
     var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
     camera.position.set(5, 5, 5);
     camera.lookAt(0, 0, 0);
-    var renderer = new THREE.WebGLRenderer();     // render
+    var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     //******** **********
@@ -33,7 +33,6 @@
             obj: scene,
             posRange: [0.25, 0.5],
             degRange: [5, 20],
-            intensity: 1.0,
             active: true
         })
     };
