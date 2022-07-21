@@ -33,71 +33,31 @@
             obj: scene,
             posRange: [0.25, 0.5],
             degRange: [5, 20],
-            intensity: 1.0
+            intensity: 1.0,
+            active: true
         })
     };
-    //******** **********
-    // EVENTS
-    //******** **********
-    var pointerDown = function () {
-        state.shake.active = true;
-    };
-    var pointerUp = function () {
-        state.shake.active = false;
-    };
-    var pointerMove = function (shake, canvas) {
-        return function (e) {
-            e.preventDefault();
-            var canvas = e.target,
-            box = canvas.getBoundingClientRect(),
-            x = e.clientX - box.left,
-            y = e.clientY - box.top;
-            if (e.changedTouches) {
-                x = e.changedTouches[0].clientX - box.left;
-                y = e.changedTouches[0].clientY - box.top;
-            };
-        };
-    };
-    // mouse
-    renderer.domElement.addEventListener('mousedown', pointerDown);
-    renderer.domElement.addEventListener('mousemove', pointerMove(state.shake, canvas));
-    renderer.domElement.addEventListener('mouseup', pointerUp);
-    renderer.domElement.addEventListener('mouseout', pointerUp);
-    // touch
-    renderer.domElement.addEventListener('touchstart', pointerDown);
-    renderer.domElement.addEventListener('touchmove', pointerMove(state.shake, canvas));
-    renderer.domElement.addEventListener('touchend', pointerUp);
-    renderer.domElement.addEventListener('touchcancel', pointerUp);
     //******** **********
     // UPDATE AND LOOP
     //******** **********
     var update = function (state, secs) {
-
         ShakeMod.update(state.shake);
-
-
-/*
-        if (state.shake.active) {
-            ShakeMod.roll(state.shake);
-        } else {
-            state.frame = 0;
-        }
-        //ShakeMod.update(state.shake, secs);
-        ShakeMod.applyToObject3d(state.shake, scene);
-*/
     };
     // loop
     var loop = function () {
-        //state.per = state.frame / state.maxFrame;
-        //state.bias = 1 - Math.abs(state.per - 0.5) / 0.5;
+        state.per = state.frame / state.maxFrame;
+        state.bias = 1 - Math.abs(state.per - 0.5) / 0.5;
         var now = new Date();
         secs = (now - state.lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / state.fps) {
+            // changing intesnity value over time
+            state.shake.intensity = state.bias;
+            // update, render, step frame
             update(state, secs);
             renderer.render(scene, camera);
-            //state.frame += state.fps * secs;
-            //state.frame %= state.maxFrame;
+            state.frame += state.fps * secs;
+            state.frame %= state.maxFrame;
             state.lt = now;
         }
     };
