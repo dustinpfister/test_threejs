@@ -1,6 +1,7 @@
 # threejs-examples-scene-shake
 
-### () - r1 for scene shake - update method, object prop, and wave effect
+### () - r1 for scene shake - range values, update method, object prop, and wave effect
+* () add range values for deg and pos
 * () have a shake.obj prop that is a ref to an object to shake
 * () have an update method that will call roll and apply object for a shake.obj object
 * () have a wave effect that will wave effect option that will
