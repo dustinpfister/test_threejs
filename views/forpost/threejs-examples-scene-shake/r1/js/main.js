@@ -70,6 +70,11 @@
     // UPDATE AND LOOP
     //******** **********
     var update = function (state, secs) {
+
+        ShakeMod.update(state.shake);
+
+
+/*
         if (state.shake.active) {
             ShakeMod.roll(state.shake);
         } else {
@@ -77,19 +82,20 @@
         }
         //ShakeMod.update(state.shake, secs);
         ShakeMod.applyToObject3d(state.shake, scene);
+*/
     };
     // loop
     var loop = function () {
-        state.per = state.frame / state.maxFrame;
-        state.bias = 1 - Math.abs(state.per - 0.5) / 0.5;
+        //state.per = state.frame / state.maxFrame;
+        //state.bias = 1 - Math.abs(state.per - 0.5) / 0.5;
         var now = new Date();
         secs = (now - state.lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / state.fps) {
             update(state, secs);
             renderer.render(scene, camera);
-            state.frame += state.fps * secs;
-            state.frame %= state.maxFrame;
+            //state.frame += state.fps * secs;
+            //state.frame %= state.maxFrame;
             state.lt = now;
         }
     };

@@ -35,6 +35,16 @@
         return shake;
     };
 
+    // update the given shake object
+    api.update = function(shake){
+        // new roll for euler and vector values
+        api.roll(shake);
+
+        // apply to the shake.obj prop
+        api.applyToObject3d(shake, shake.obj);
+
+    };
+
     // just make a roll
     api.roll = function (shake) {
         shake.euler.x = rndDeg(shake);
