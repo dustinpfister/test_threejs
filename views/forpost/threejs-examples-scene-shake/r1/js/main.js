@@ -29,7 +29,7 @@
         maxFrame: 3000,
         fps: 30,
         lt: new Date(),
-        shake: ShakeMod.create() // ADJUSTING pos and DEG by EVENTS
+        shake: ShakeMod.create( { pos: 0.25, deg: 5, obj: scene } )
     };
     //******** **********
     // EVENTS
@@ -52,8 +52,8 @@
                 y = e.changedTouches[0].clientY - box.top;
             };
             // Adjust pos and deg based on pointer position
-            shake.pos = x / canvas.width * 0.95;
-            shake.deg = y / canvas.height * 18;
+            //shake.pos = x / canvas.width * 0.95;
+            //shake.deg = y / canvas.height * 18;
         };
     };
     // mouse

@@ -1,3 +1,7 @@
+/*   r1 of shake.js for threejs-examples-scene-shake
+ *
+ *
+ */
 (function (api) {
 
     // degree to radian
@@ -21,6 +25,7 @@
     api.create = function (opt) {
         opt = opt || {};
         var shake = {
+            obj: opt.scene || opt.obj || new THREE.Object3D(), // new obj prop for shake obj
             pos: opt.pos === undefined ? 0.5 : opt.pos,
             deg: opt.deg === undefined ? 2.25 : opt.deg,
             euler: new THREE.Euler(0, 0, 0),
