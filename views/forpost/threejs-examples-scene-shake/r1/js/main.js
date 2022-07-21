@@ -29,7 +29,11 @@
         maxFrame: 3000,
         fps: 30,
         lt: new Date(),
-        shake: ShakeMod.create( { pos: 0.25, deg: 5, obj: scene } )
+        shake: ShakeMod.create({
+            obj: scene,
+            posRange: [0, 1],
+            intensity: 1.0
+        })
     };
     //******** **********
     // EVENTS

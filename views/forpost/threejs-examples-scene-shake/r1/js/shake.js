@@ -26,8 +26,11 @@
         opt = opt || {};
         var shake = {
             obj: opt.scene || opt.obj || new THREE.Object3D(), // new obj prop for shake obj
-            pos: opt.pos === undefined ? 0.5 : opt.pos,
-            deg: opt.deg === undefined ? 2.25 : opt.deg,
+            posRange: opt.posRange || [0, 0.5],
+            degRange: opt.degRange || [0, 2.25],
+            intensity: opt.intensity || 0,
+            pos: 0, //opt.pos === undefined ? 0.5 : opt.pos,
+            deg: 0, //opt.deg === undefined ? 2.25 : opt.deg,
             euler: new THREE.Euler(0, 0, 0),
             vector: new THREE.Vector3(0, 0, 0),
             active: opt.active || false
@@ -35,18 +38,8 @@
         return shake;
     };
 
-    // update the given shake object
-    api.update = function(shake){
-        // new roll for euler and vector values
-        api.roll(shake);
-
-        // apply to the shake.obj prop
-        api.applyToObject3d(shake, shake.obj);
-
-    };
-
     // just make a roll
-    api.roll = function (shake) {
+    var roll = function (shake) {
         shake.euler.x = rndDeg(shake);
         shake.euler.y = rndDeg(shake);
         shake.euler.z = rndDeg(shake);
@@ -56,7 +49,7 @@
     };
 
     // apply a new shake to object3d
-    api.applyToObject3d = function (shake, obj3d) {
+    var applyToObject3d = function (shake, obj3d) {
         // save home data
         if (!obj3d.userData.shakeData) {
             obj3d.userData.shakeData = {
@@ -75,7 +68,24 @@
             obj3d.rotation.copy(sd.homeEuler);
             obj3d.position.copy(sd.homeVector);
         }
-    }
+    };
+
+
+    // update the given shake object
+    api.update = function(shake){
+
+        // new shake.deg and shake.pos values
+        var pMin = shake.posRange[0] * shake.intensity,
+        pMax = shake.posRange[1] * shake.intensity;
+        shake.pos = pMin + ( pMax - pMin ) * Math.random();
+
+        // new roll for euler and vector values
+        roll(shake);
+        // apply to the shake.obj prop
+        applyToObject3d(shake, shake.obj);
+    };
+
+
 
 }
     (this['ShakeMod'] = {}));
