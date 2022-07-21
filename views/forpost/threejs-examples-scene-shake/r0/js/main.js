@@ -75,8 +75,6 @@
     //******** **********
     var update = function (state, secs) {
         if (state.shake.active) {
-            //state.shake.pos = 0.05 + 1.9 * state.bias;
-            //state.shake.deg = 0.50 + 18 * state.bias;
             ShakeMod.roll(state.shake);
         } else {
             state.frame = 0;
