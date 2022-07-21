@@ -1,24 +1,28 @@
 (function () {
-    // scene and grid helper
+    //******** **********
+    // SCENE, CAMNERA, RENDERER
+    //******** **********
     var scene = new THREE.Scene();
+    // camera DO NOT ADD TO SCENE
+    var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
+    camera.position.set(5, 5, 5);
+    camera.lookAt(0, 0, 0);
+    var renderer = new THREE.WebGLRenderer();     // render
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
+    //******** **********
+    // GRID HELPER AND MESH OBJECT
+    //******** **********
     var gridHelper = new THREE.GridHelper(5, 5);
     scene.add(gridHelper);
-    // box is a MESH base off of OBJECT3D
     var box = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
     box.position.set(0, 0.5, 0);
     scene.add(box);
-    // camera DO NOT ADD TO SCENE
-    var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-    camera.position.set(5, 5, 5);
-    camera.lookAt(0, 0, 0);
-    // render
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
-
-    // state object
+    //******** **********
+    // STATE OBJECT INCLDUING SHAKE OBJECT
+    //******** **********
     var canvas = renderer.domElement;
     var state = {
         frame: 0,
@@ -31,8 +35,9 @@
             active: false
         })
     };
-
-    // events
+    //******** **********
+    // EVENTS
+    //******** **********
     var pointerDown = function () {
         state.shake.active = true;
     };
@@ -65,8 +70,9 @@
     renderer.domElement.addEventListener('touchmove', pointerMove(state.shake, canvas));
     renderer.domElement.addEventListener('touchend', pointerUp);
     renderer.domElement.addEventListener('touchcancel', pointerUp);
-
-    // update
+    //******** **********
+    // UPDATE AND LOOP
+    //******** **********
     var update = function (state, secs) {
         if (state.shake.active) {
             //state.shake.pos = 0.05 + 1.9 * state.bias;
@@ -78,7 +84,6 @@
         //ShakeMod.update(state.shake, secs);
         ShakeMod.applyToObject3d(state.shake, scene);
     };
-
     // loop
     var loop = function () {
         state.per = state.frame / state.maxFrame;
