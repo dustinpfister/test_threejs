@@ -29,11 +29,7 @@
         maxFrame: 3000,
         fps: 30,
         lt: new Date(),
-        shake: ShakeMod.create({
-            deg: 5.25,
-            pos: 0.1,
-            active: false
-        })
+        shake: ShakeMod.create() // ADJUSTING pos and DEG by EVENTS
     };
     //******** **********
     // EVENTS

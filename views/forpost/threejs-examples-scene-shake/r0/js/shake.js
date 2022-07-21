@@ -14,6 +14,7 @@
     var rndDeg = function (state) {
         var min = deg(state.deg * -1),
         max = deg(state.deg * 2);
+
         return min + max * Math.random();
     };
 
@@ -27,6 +28,9 @@
             vector: new THREE.Vector3(0, 0, 0),
             active: opt.active || false
         };
+
+console.log(shake)
+
         return shake;
     };
 
