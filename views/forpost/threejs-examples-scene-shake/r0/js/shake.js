@@ -1,3 +1,7 @@
+/*   r0 of shake.js for threejs-examples-scene-shake
+ *
+ *
+ */
 (function (api) {
 
     // degree to radian
@@ -55,6 +59,7 @@
             obj3d.rotation.copy(shake.euler);
             obj3d.position.copy(shake.vector);
         } else {
+            // else set back to home location
             var sd = obj3d.userData.shakeData;
             obj3d.rotation.copy(sd.homeEuler);
             obj3d.position.copy(sd.homeVector);

@@ -25,8 +25,8 @@
     //******** **********
     var canvas = renderer.domElement;
     var state = {
-        frame: 0,
-        maxFrame: 3000,
+        //frame: 0,
+        //maxFrame: 3000,
         fps: 30,
         lt: new Date(),
         shake: ShakeMod.create() // ADJUSTING pos and DEG by EVENTS
@@ -70,26 +70,17 @@
     // UPDATE AND LOOP
     //******** **********
     var update = function (state, secs) {
-        if (state.shake.active) {
-            ShakeMod.roll(state.shake);
-        } else {
-            state.frame = 0;
-        }
-        //ShakeMod.update(state.shake, secs);
+        ShakeMod.roll(state.shake);
         ShakeMod.applyToObject3d(state.shake, scene);
     };
     // loop
     var loop = function () {
-        state.per = state.frame / state.maxFrame;
-        state.bias = 1 - Math.abs(state.per - 0.5) / 0.5;
         var now = new Date();
         secs = (now - state.lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / state.fps) {
             update(state, secs);
             renderer.render(scene, camera);
-            state.frame += state.fps * secs;
-            state.frame %= state.maxFrame;
             state.lt = now;
         }
     };
