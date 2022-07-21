@@ -32,19 +32,20 @@ var group = new THREE.Group();
 scene.add( group );
 // make mesh objects and add them to the group
 var i = 0,
+thickness = 0.75,
 len = vectors.length;
 while(i < len - 1){
     var v = vectors[i],
     nv = vectors[i + 1],
     d = v.distanceTo(nv); // distance from current vector to next vector
     var mesh = new THREE.Mesh(
-        new THREE.CapsuleGeometry(0.25, d, 20, 20),
-        new THREE.MeshNormalMaterial());
+        new THREE.CapsuleGeometry(thickness, d, 10, 20),
+        new THREE.MeshNormalMaterial({wireframe: true}));
     // position should be a mid point between v and nv
     var mv = v.add(nv).divideScalar(2);
     mesh.position.copy(mv);
     // adjust geo to work well with lookAt
-    mesh.geometry.rotateX(Math.PI * 0.5)
+    mesh.geometry.rotateX(Math.PI * 0.5);
     mesh.lookAt(nv)
     // add to group
     group.add(mesh);
