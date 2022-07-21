@@ -38,7 +38,7 @@ while(i < len - 1){
     nv = vectors[i + 1],
     d = v.distanceTo(nv); // distance from current vector to next vector
     var mesh = new THREE.Mesh(
-        new THREE.CapsuleGeometry(0.5, d, 20, 20),
+        new THREE.CapsuleGeometry(0.25, d, 20, 20),
         new THREE.MeshNormalMaterial());
     // position should be a mid point between v and nv
     var mv = v.add(nv).divideScalar(2);
