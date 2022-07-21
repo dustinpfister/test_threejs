@@ -26,7 +26,7 @@
     var canvas = renderer.domElement;
     var state = {
         frame: 0,
-        maxFrame: 3000,
+        maxFrame: 300,
         fps: 30,
         lt: new Date(),
         shake: ShakeMod.create({
