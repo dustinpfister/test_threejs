@@ -1,6 +1,6 @@
 (function () {
     //******** **********
-    // SCENE, CAMNERA, RENDERER
+    // SCENE, CAMERA, RENDERER
     //******** **********
     var scene = new THREE.Scene();
     // camera DO NOT ADD TO SCENE
@@ -21,9 +21,8 @@
     box.position.set(0, 0.5, 0);
     scene.add(box);
     //******** **********
-    // STATE OBJECT INCLDUING SHAKE OBJECT
+    // STATE OBJECT INCLUDING SHAKE OBJECT
     //******** **********
-    var canvas = renderer.domElement;
     var state = {
         frame: 0,
         maxFrame: 300,

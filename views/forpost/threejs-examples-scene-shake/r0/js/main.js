@@ -25,8 +25,6 @@
     //******** **********
     var canvas = renderer.domElement;
     var state = {
-        //frame: 0,
-        //maxFrame: 3000,
         fps: 30,
         lt: new Date(),
         shake: ShakeMod.create() // ADJUSTING pos and DEG by EVENTS
