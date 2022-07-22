@@ -27,10 +27,9 @@ var updateCapsuleLine = function(group, vectors, thickness){
         // set scale
         mesh.scale.set(thickness, thickness, d / 2.0);
         // position should be a mid point between v and nv
-        var mv = v.add(nv).divideScalar(2);
+        var mv = v.clone().add(nv).divideScalar(2);
         mesh.position.copy(mv);
-        // adjust geo to work well with lookAt and set rotation
-        mesh.geometry.rotateX(Math.PI * 0.5);
+        //  and set rotation
         mesh.lookAt(nv);
         i += 1;
     }
@@ -55,6 +54,8 @@ var createCapsuleLine = function(vectors, material, capsuleGeo){
         var mesh = new THREE.Mesh(
             capsuleGeo,
             material);
+        // adjust geo to work well with lookAt
+        mesh.geometry.rotateX(Math.PI * 0.5);
         group.add(mesh);
         i += 1;
     }
@@ -88,4 +89,29 @@ scene.add( g1 );
 //******** **********
 // RENDER THE SCENE
 //******** **********
-renderer.render(scene, camera);
+//******** **********
+// LOOP
+//******** **********
+var fps = 30,
+lt = new Date(),
+frame = 0,
+maxFrame = 300;
+var loop = function () {
+    var now = new Date(),
+    per = frame / maxFrame,
+    bias = 1 - Math.abs(0.5 - per) / 0.5,
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / fps){
+
+        var v = vectors[0];
+        v.x = -20 * bias;
+        updateCapsuleLine(g1, vectors, 1);
+
+        renderer.render(scene, camera);
+        frame += fps * secs;
+        frame %= maxFrame;
+        lt = now;
+    }
+};
+loop();
