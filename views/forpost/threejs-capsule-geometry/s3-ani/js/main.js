@@ -12,19 +12,41 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // HELPERS
 //******** **********
-
-// create and return a new group of mesh objects using the capsule geometry
-// using a aray of vector3 class instances
-var createCapsuleLine = function(vectors, material){
+// update a capsule line group with the given array of vector3 class instances
+var updateCapsuleLine = function(group, vectors, thickness){
     // defaults for arguments
     vectors = vectors || [];
-    material = material || new THREE.MeshNormalMaterial({})
+    thickness = thickness === undefined ? 0.25: thickness;
+    var i = 0,
+    len = vectors.length;
+    while(i < len - 1){
+        var v = vectors[i] || new THREE.Vector(),
+        nv = vectors[i + 1] || new THREE.Vector(),
+        d = v.distanceTo(nv); // distance from current vector to next vector
+        var mesh = group.children[i];
+        // set scale
+        mesh.scale.set(thickness, thickness, d / 2.0);
+        // position should be a mid point between v and nv
+        var mv = v.add(nv).divideScalar(2);
+        mesh.position.copy(mv);
+        // adjust geo to work well with lookAt and set rotation
+        mesh.geometry.rotateX(Math.PI * 0.5);
+        mesh.lookAt(nv);
+        i += 1;
+    }
+
+};
+// create and return a new group of mesh objects using the capsule geometry
+// using a aray of vector3 class instances
+var createCapsuleLine = function(vectors, material, capsuleGeo){
+    // defaults for arguments
+    vectors = vectors || [];
+    material = material || new THREE.MeshNormalMaterial({});
+    capsuleGeo = capsuleGeo || new THREE.CapsuleGeometry(0.25, 1.5, 20, 20);
     // create a group and add that to the scene
     var group = new THREE.Group();
     // make mesh objects and add them to the group
     var i = 0,
-    thickness = 0.25,
-    capsuleGeo = new THREE.CapsuleGeometry(1.0, 0.125, 20, 20),
     len = vectors.length;
     while(i < len - 1){
         var v = vectors[i] || new THREE.Vector(),
@@ -33,17 +55,12 @@ var createCapsuleLine = function(vectors, material){
         var mesh = new THREE.Mesh(
             capsuleGeo,
             material);
-        mesh.scale.set(thickness, thickness, d / 2.0);
-        // position should be a mid point between v and nv
-        var mv = v.add(nv).divideScalar(2);
-        mesh.position.copy(mv);
-        // adjust geo to work well with lookAt
-        mesh.geometry.rotateX(Math.PI * 0.5);
-        mesh.lookAt(nv)
-        // add to group
         group.add(mesh);
         i += 1;
     }
+    // update for first time
+    updateCapsuleLine(group, vectors, 1);
+    // return the group
     return group;
 };
 // array of array of axis values to array of Vector3 class instances
