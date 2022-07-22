@@ -21,14 +21,16 @@ var createCapsuleLine = function(vectors, material){
     // make mesh objects and add them to the group
     var i = 0,
     thickness = 0.75,
+    capsuleGeo = new THREE.CapsuleGeometry(1.0, 0.125, 20, 20),
     len = vectors.length;
     while(i < len - 1){
         var v = vectors[i] || new THREE.Vector(),
         nv = vectors[i + 1] || new THREE.Vector(),
         d = v.distanceTo(nv); // distance from current vector to next vector
         var mesh = new THREE.Mesh(
-            new THREE.CapsuleGeometry(thickness, d, 10, 20),
+            capsuleGeo,
             material);
+        mesh.scale.set(1, thickness, d / 2.0);
         // position should be a mid point between v and nv
         var mv = v.add(nv).divideScalar(2);
         mesh.position.copy(mv);
@@ -61,7 +63,6 @@ vectors = vectors.map(function(a){
 });
 var g1 = createCapsuleLine(vectors);
 scene.add( g1 );
-
 //******** **********
 // RENDER THE SCENE
 //******** **********
