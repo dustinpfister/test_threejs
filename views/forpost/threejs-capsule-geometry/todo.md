@@ -1,6 +1,6 @@
 # threejs-capsule-geometry
 
-## () s2 - loop example
+## () s3 - loop example
 * see about making an animation loop based off of the s2-group example
 * I might want to have a standard capsule geo and then just set scale, pos, and rotation as needed
 
