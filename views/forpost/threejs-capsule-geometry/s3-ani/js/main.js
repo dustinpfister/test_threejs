@@ -89,14 +89,14 @@ var vectors1 = vectorArrayToVector3Array([
     [ -5, 5, -5 ]
 ]);
 var vectors2 = vectorArrayToVector3Array([
-    [0, 0, 0 ],
-    [ 0, 5, 5 ],
-    [ 0, 5, 0 ],
-    [ 0, -1, -4 ],
-    [ -4, -1, -4 ],
-    [ -4, -5, -4 ],
-    [ -4, -5, 5 ],
-    [ 5, -5, 5 ]
+    [0, 3, 0 ],
+    [ 10, -6, -8 ],
+    [ -5, -5, 0 ],
+    [ 0, -2, 4 ],
+    [ 8, 1, 4 ],
+    [ 0, 5, 4 ],
+    [ 4, 6, -5 ],
+    [ -5, -5, -5 ]
 ]);
 var vectors = vectorArrayToVector3Array(vectors1);
 var g1 = createCapsuleLine(vectors);
