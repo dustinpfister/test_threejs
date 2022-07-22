@@ -76,9 +76,8 @@ var vectorArrayToVector3Array = function(vectorArray){
     });
 };
 //******** **********
-// Capsule Group one
+// VECTORS AND CAPSULE GROUP ONE
 //******** **********
-// array of vector values
 var vectors1 = vectorArrayToVector3Array([
     [0, 0, 0 ],
     [ 0, -5, -5 ],
@@ -103,9 +102,6 @@ var vectors = vectorArrayToVector3Array(vectors1);
 var g1 = createCapsuleLine(vectors);
 scene.add( g1 );
 //******** **********
-// RENDER THE SCENE
-//******** **********
-//******** **********
 // LOOP
 //******** **********
 var fps = 30,
@@ -119,16 +115,15 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-
+        // lerp between vectors1 and vectors2 for vectors
         vectors = vectors.map(function(v, i){
             var v1 = vectors1[i],
             v2 = vectors2[i];
             return v1.clone().lerp(v2, bias);
         });
-
-
+        // update g1 with current state of vectors
         updateCapsuleLine(g1, vectors, 1);
-
+        // render, step frame
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
