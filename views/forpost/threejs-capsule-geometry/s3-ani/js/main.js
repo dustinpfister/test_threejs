@@ -129,7 +129,7 @@ var loop = function () {
             return v1.clone().lerp(v2, bias);
         });
         // update g1 with current state of vectors
-        updateCapsuleLine(g1, vectors, 1);
+        updateCapsuleLine(g1, vectors, 2 - 1.5 * bias);
         // render, step frame
         renderer.render(scene, camera);
         frame += fps * secs;
