@@ -20,8 +20,8 @@ var updateCapsuleLine = function(group, vectors, thickness){
     var i = 0,
     len = vectors.length;
     while(i < len - 1){
-        var v = vectors[i] || new THREE.Vector(),
-        nv = vectors[i + 1] || new THREE.Vector(),
+        var v = vectors[i] || new THREE.Vector3(),
+        nv = vectors[i + 1] || new THREE.Vector3(),
         d = v.distanceTo(nv); // distance from current vector to next vector
         var mesh = group.children[i];
         // set scale
@@ -48,8 +48,8 @@ var createCapsuleLine = function(vectors, material, capsuleGeo){
     var i = 0,
     len = vectors.length;
     while(i < len - 1){
-        var v = vectors[i] || new THREE.Vector(),
-        nv = vectors[i + 1] || new THREE.Vector(),
+        var v = vectors[i] || new THREE.Vector3(),
+        nv = vectors[i + 1] || new THREE.Vector3(),
         d = v.distanceTo(nv); // distance from current vector to next vector
         var mesh = new THREE.Mesh(
             capsuleGeo,
@@ -65,16 +65,21 @@ var createCapsuleLine = function(vectors, material, capsuleGeo){
     return group;
 };
 // array of array of axis values to array of Vector3 class instances
+// if it is all ready an array of vector3S then return clones
 var vectorArrayToVector3Array = function(vectorArray){
     return vectorArray.map(function(a){
-        return new THREE.Vector3( a[0], a[1], a[2] );
+        if(a instanceof Array){
+            return new THREE.Vector3( a[0], a[1], a[2] );
+        }
+        // assume that it is all ready a Vector3 and return a clone
+        return a.clone();
     });
 };
 //******** **********
 // Capsule Group one
 //******** **********
 // array of vector values
-var vectors = vectorArrayToVector3Array([
+var vectors1 = vectorArrayToVector3Array([
     [0, 0, 0 ],
     [ 0, -5, -5 ],
     [ 0, -5, 0 ],
@@ -84,6 +89,17 @@ var vectors = vectorArrayToVector3Array([
     [ 4, 5, -5 ],
     [ -5, 5, -5 ]
 ]);
+var vectors2 = vectorArrayToVector3Array([
+    [0, 0, 0 ],
+    [ 0, 5, 5 ],
+    [ 0, 5, 0 ],
+    [ 0, -1, -4 ],
+    [ -4, -1, -4 ],
+    [ -4, -5, -4 ],
+    [ -4, -5, 5 ],
+    [ 5, -5, 5 ]
+]);
+var vectors = vectorArrayToVector3Array(vectors1);
 var g1 = createCapsuleLine(vectors);
 scene.add( g1 );
 //******** **********
@@ -104,8 +120,8 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
 
-        var v = vectors[0];
-        v.x = -20 * bias;
+        //var v = vectors[0];
+        //v.x = -20 * bias;
         updateCapsuleLine(g1, vectors, 1);
 
         renderer.render(scene, camera);
