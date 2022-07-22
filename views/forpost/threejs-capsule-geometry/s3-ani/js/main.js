@@ -120,8 +120,13 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
 
-        //var v = vectors[0];
-        //v.x = -20 * bias;
+        vectors = vectors.map(function(v, i){
+            var v1 = vectors1[i],
+            v2 = vectors2[i];
+            return v1.clone().lerp(v2, bias);
+        });
+
+
         updateCapsuleLine(g1, vectors, 1);
 
         renderer.render(scene, camera);
