@@ -12,6 +12,9 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // HELPERS
 //******** **********
+
+// create and return a new group of mesh objects using the capsule geometry
+// using a aray of vector3 class instances
 var createCapsuleLine = function(vectors, material){
     // defaults for arguments
     vectors = vectors || [];
@@ -43,11 +46,17 @@ var createCapsuleLine = function(vectors, material){
     }
     return group;
 };
+// array of array of axis values to array of Vector3 class instances
+var vectorArrayToVector3Array = function(vectorArray){
+    return vectorArray.map(function(a){
+        return new THREE.Vector3( a[0], a[1], a[2] );
+    });
+};
 //******** **********
 // Capsule Group one
 //******** **********
 // array of vector values
-var vectors = [
+var vectors = vectorArrayToVector3Array([
     [0, 0, 0 ],
     [ 0, -5, -5 ],
     [ 0, -5, 0 ],
@@ -56,11 +65,7 @@ var vectors = [
     [ 4, 5, 4 ],
     [ 4, 5, -5 ],
     [ -5, 5, -5 ]
-];
-// turn vectors array into an array of vector3 instances
-vectors = vectors.map(function(a){
-    return new THREE.Vector3( a[0], a[1], a[2] );
-});
+]);
 var g1 = createCapsuleLine(vectors);
 scene.add( g1 );
 //******** **********
