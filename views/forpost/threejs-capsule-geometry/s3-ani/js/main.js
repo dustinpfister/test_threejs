@@ -10,6 +10,13 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
+// LIGHT
+//******** **********
+var dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(-3, 6, 0).normalize();
+scene.add(dl);
+scene.add( new THREE.AmbientLight(0xffffff, 0.03))
+//******** **********
 // HELPERS
 //******** **********
 // update a capsule line group with the given array of vector3 class instances
@@ -99,7 +106,7 @@ var vectors2 = vectorArrayToVector3Array([
     [ -5, -5, -5 ]
 ]);
 var vectors = vectorArrayToVector3Array(vectors1);
-var g1 = createCapsuleLine(vectors);
+var g1 = createCapsuleLine(vectors, new THREE.MeshStandardMaterial());
 scene.add( g1 );
 //******** **********
 // LOOP
