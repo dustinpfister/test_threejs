@@ -33,7 +33,8 @@ var v2 = new THREE.Vector3(0, -2, 2);
 mesh1.position.copy(v1);
 mesh2.position.copy(v2);
 // SETTING POSITION OF mesh3 TO MIDPOINT BETWEEN v1 AND v2
-var mv = v1.clone().add(v2).divideScalar(2);
+//var mv = v1.clone().add(v2).divideScalar(2);
+var mv = v1.clone().lerp(v2, 0.5);
 mesh3.position.copy(mv);
 //******** **********
 // RENDER THE SCENE
