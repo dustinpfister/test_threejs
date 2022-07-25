@@ -52,6 +52,17 @@ var circleTexture = function(t){
         };
     });
 };
+//  rnd
+var rndTexture = function(){
+    return datatex.forEachPix(16, 16, function(x, y, w, h, i, stride, data){
+        var cv = Math.round( Math.random() * 255 );
+        return {
+            r: cv,
+            g: cv,
+            b: cv
+        };
+    });
+};
 
 //******** **********
 // SCENE, CAMERA, RENDERER
@@ -59,7 +70,7 @@ var circleTexture = function(t){
 var scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10));
 var camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.1, 1000);
-camera.position.set(3, 2, 3);
+camera.position.set(10, 5, 10);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -70,15 +81,16 @@ document.getElementById('demo').appendChild(renderer.domElement);
 var dl = new THREE.DirectionalLight(0xafafaf, 0.5);
 dl.position.set(8, 10, 2);
 scene.add(dl);
+var helper = new THREE.DirectionalLightHelper( dl, 5 );
+scene.add( helper );
 //******** **********
 // MESH
 //******** **********
 var mesh = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.BoxGeometry(5, 5, 5),
     new THREE.MeshStandardMaterial({
         emissive: new THREE.Color('white'),
-        emissiveIntensity: 1,
-        emissiveMap: circleTexture(0.5)
+        emissiveIntensity: 1
     })
 );
 scene.add(mesh);
@@ -99,6 +111,16 @@ var loop = function () {
 
         // new emmisiveMap
         mesh.material.emissiveMap = circleTexture(bias * 4);
+        // new color map
+        mesh.material.map = rndTexture();
+
+        // moving directional light
+        var r = Math.PI * 4 * per,
+        x = Math.cos(r) * 4,
+        z = Math.sin(r) * 4;
+        dl.position.set(x, 4, z);
+
+        helper.update();
 
         renderer.render(scene, camera);
         frame += fps * secs;
