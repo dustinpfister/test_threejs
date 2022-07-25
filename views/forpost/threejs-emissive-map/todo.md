@@ -1,5 +1,8 @@
 # threejs-emissive-map todo list
 
+## () s4-emissive-intensity-loop
+* have an example where emissive intesnity is updated for a collection of mesh objects
+
 ## ( done 07/25/2022 ) - new s3-ani-loop example
 * (done) start a new example that will be an animation loop
 * (done) change intensity over time
