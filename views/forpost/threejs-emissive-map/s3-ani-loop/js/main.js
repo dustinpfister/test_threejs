@@ -40,13 +40,15 @@ var datatex = (function () {
     ());
 // square texture
 var circleTexture = function(t){
-    t = t === undefined ? 0 : t;
+    t = t === undefined ? 1 : t;
     return datatex.forEachPix(16, 16, function(x, y, w, h, i, stride, data){
         var v = new THREE.Vector2(x, y);
         var d = v.distanceTo( new THREE.Vector2(w / 2, h / 2) );
-        var cv = d / 16 * 255;
+        var cv = d / ( 16 * t ) * 255;
+        cv = cv > 255 ? 255 : cv;
+        cv = cv < 0 ? 0 : cv;
         return {
-            r: cv
+            g: Math.round(cv)
         };
     });
 };
@@ -65,7 +67,7 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LIGHT
 //******** **********
-var dl = new THREE.DirectionalLight(0xffffff, 1);
+var dl = new THREE.DirectionalLight(0xafafaf, 0.5);
 dl.position.set(8, 10, 2);
 scene.add(dl);
 //******** **********
@@ -74,7 +76,9 @@ scene.add(dl);
 var mesh = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
     new THREE.MeshStandardMaterial({
-        map: circleTexture()
+        emissive: new THREE.Color('white'),
+        emissiveIntensity: 1,
+        emissiveMap: circleTexture(0.5)
     })
 );
 scene.add(mesh);
@@ -84,7 +88,7 @@ scene.add(mesh);
 var fps = 30,
 lt = new Date(),
 frame = 0,
-maxFrame = 600;
+maxFrame = 300;
 var loop = function () {
     var now = new Date(),
     per = frame / maxFrame,
@@ -93,6 +97,8 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
 
+        // new emmisiveMap
+        mesh.material.emissiveMap = circleTexture(bias * 4);
 
         renderer.render(scene, camera);
         frame += fps * secs;
