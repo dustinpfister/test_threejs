@@ -1,7 +1,7 @@
 //******** **********
 // DATA TEXTURE METHODS
 //******** **********
-// make a data textture by passing w, h, and a function
+// make a data texture by passing w, h, and a function
 // that will be called for each pixel
 var datatex = (function () {
     var api = {};
@@ -63,7 +63,6 @@ var rndTexture = function(){
         };
     });
 };
-
 //******** **********
 // SCENE, CAMERA, RENDERER
 //******** **********
@@ -108,20 +107,20 @@ var loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-
+ 
         // new emmisiveMap
         mesh.material.emissiveMap = circleTexture(bias * 4);
         // new color map
         mesh.material.map = rndTexture();
-
+ 
         // moving directional light
         var r = Math.PI * 4 * per,
         x = Math.cos(r) * 4,
         z = Math.sin(r) * 4;
         dl.position.set(x, 4, z);
-
+ 
         helper.update();
-
+ 
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
