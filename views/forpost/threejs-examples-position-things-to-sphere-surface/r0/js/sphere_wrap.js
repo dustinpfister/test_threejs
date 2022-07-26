@@ -1,5 +1,7 @@
+/*  sphere_wrap.js - r0 - from threejs-examples-position-things-to-sphere-surface
+ *  
+ */
 (function (api) {
-
     // create wrap method
     api.createWrap = function () {
         // create a wrap group
@@ -18,7 +20,6 @@
         wrap.add(surface);
         return wrap;
     };
-
     // set to lat and long helper
     api.setObjToLatLong = function (wrap, childName, latPer, longPer, dist) {
         var childWrap = wrap.getObjectByName('objwrap_' + childName),
@@ -31,11 +32,10 @@
         // set long
         childWrap.rotation.y = Math.PI * 2 * longPer;
         // look at origin of wrap
-		var v = new THREE.Vector3();
-		wrap.getWorldPosition(v);
+        var v = new THREE.Vector3();
+        wrap.getWorldPosition(v);
         child.lookAt(v);
     };
-
     // Add an Object to a Sphere Wrap Group
     api.addObjectToWrap = function (wrap, objectName, obj) {
         // create an obj
@@ -59,6 +59,5 @@
         //set position for the first time
         api.setObjToLatLong(wrap, objectName, ud.latPer, ud.longPer, ud.dist);
     };
-
 }
     (this['SphereWrap'] = {}));
