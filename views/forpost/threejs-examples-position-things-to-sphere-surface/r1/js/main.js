@@ -19,11 +19,14 @@ var sphere1 = new THREE.Mesh(
 scene.add(sphere1);
 
 var box1 =  new THREE.Mesh(
-    new THREE.BoxGeometry(0.25, 0.25, 0.25),
+    new THREE.BoxGeometry(0.5, 0.5, 0.5),
     new THREE.MeshNormalMaterial()
 );
 scene.add(box1);
-SphereWrap.positionToSphere(sphere1, box1, 0.5, 0.3, 0);
+// position to sphere
+SphereWrap.positionToSphere(sphere1, box1, 0.0, 0.0, 0.25);
+// using lookAt method to set box rotation
+box1.lookAt(sphere1.position);
 
 //******** **********
 // LOOP
