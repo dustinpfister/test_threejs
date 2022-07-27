@@ -3,30 +3,39 @@ var apLerp = (function () {
 
     var api = {};
 
+    // The main get points between method that will return an array of Vector3
+    // instances between the two that are given. The include bool can be used to
+    // also include clones of v1 and v2 and the start and end.
     api.getPointsBetween = function(v1, v2, count, include){
-
         count = count === undefined ? 1 : count;
         include = include === undefined ? false : include;
-
-        var d = 1 / (count + 1);
 
         var points = [];
         var i = 0;
         while(i < count){
 
+            // simple lerp
+            var d = 1 / (count + 1);
+            var a = d + d * i;
 
-            var v = v1.clone().lerp(v2, d + d * i);
+// Math.pow lerp
+var base = 2.0;
+var e = 16;
+var inv = true;
+
+var p = i / count;
+var m = Math.pow(base, e * p) / Math.pow(base, e);
+var a = inv ? 1 - m : m;
+
+            var v = v1.clone().lerp(v2, a);
             points.push(v);
             i += 1;
         }
-
         if(include){
-           points.unshift(v1);
-           points.push(v2);
+           points.unshift(v1.clone());
+           points.push(v2.clone());
         }
-
         return points;
-
     };
 
     return api;
@@ -41,7 +50,7 @@ var apLerp = (function () {
     scene.add(new THREE.GridHelper(10, 10));
     scene.background = new THREE.Color('black');
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
-    camera.position.set(2, 1, 2);
+    camera.position.set(8, 4, 8);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer();
@@ -54,15 +63,16 @@ var apLerp = (function () {
     scene.add( new THREE.AmbientLight(0xafafaf, 0.25) );
     
 
-var v1 = new THREE.Vector3(5, 0, 0);
-var v2 = new THREE.Vector3(-5, 0, 0);
+// POINTS
+var v1 = new THREE.Vector3(-5, 0, 0);
+var v2 = new THREE.Vector3(5, 0, 0);
 
-var points = apLerp.getPointsBetween(v1, v2, 8, true);
+var points = apLerp.getPointsBetween(v1, v2, 58, true);
 
 var group = new THREE.Group();
 scene.add(group);
 points.forEach(function(v){
-    var mesh = new THREE.Mesh( new THREE.SphereGeometry(0.25, 30, 30), new THREE.MeshNormalMaterial() );
+    var mesh = new THREE.Mesh( new THREE.SphereGeometry(0.125, 30, 30), new THREE.MeshNormalMaterial() );
     mesh.position.copy(v);
     group.add(mesh);
 });
