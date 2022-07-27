@@ -20,12 +20,23 @@ var apLerp = (function () {
     GET_ALPHA_METHODS.pow2 = function(state, param){
         var base = param.base === undefined ? 2.0 : param.base;
         var e = param.e === undefined ? 16 : param.e;
-
         var p = (state.i + 1) / (state.count + 1);
         var d = Math.sqrt( Math.pow(p - 0.5, 2) );
         var s = p > 0.5 ? -1 : 1;
         return 0.5 - ( Math.pow(base, e * ( 0.5 + d ) ) / Math.pow(base, e) * 0.5 ) * s;
     };
+
+    GET_ALPHA_METHODS.porabola = function(state, param){
+        //var h = param.h === undefined ? 0 : param.h;
+        //var k = param.k === undefined ? 0 : param.k;
+
+        var h = 0.4, k = 0.125;
+        var x = state.i / (state.count - 1); 
+        var y = Math.pow(x - h, 2) + k;
+        var a = (x > 0.5 ? 0.5 - y : y) * 2;
+        return a
+    };
+
     // public api
     var api = {};
     // The main get points between method that will return an array of Vector3
@@ -91,6 +102,7 @@ var apLerp = (function () {
 var v1 = new THREE.Vector3(-5, 0, 0);
 var v2 = new THREE.Vector3(5, 0, 0);
 
+/*
 var points = apLerp.getPointsBetween({
     v1: v1,
     v2: v2,
@@ -102,6 +114,17 @@ var points = apLerp.getPointsBetween({
         e: 18
     }
 });
+*/
+var points = apLerp.getPointsBetween({
+    v1: v1,
+    v2: v2,
+    count: 28,
+    include: true,
+    getAlpha: 'porabola',
+    gaParam: {
+    }
+});
+
 
 
 var group = new THREE.Group();
