@@ -25,14 +25,25 @@ var apLerp = (function () {
     // The main get points between method that will return an array of Vector3
     // instances between the two that are given. The include bool can be used to
     // also include clones of v1 and v2 and the start and end.
-    api.getPointsBetween = function(v1, v2, count, include, getAlpha){
-        count = count === undefined ? 1 : count;
-        include = include === undefined ? false : include;
-        getAlpha = getAlpha || GET_ALPHA_METHODS.pow1;
+
+    //api.getPointsBetween = function(v1, v2, count, include, getAlpha){
+//        count = count === undefined ? 1 : count;
+//        include = include === undefined ? false : include;
+//        getAlpha = getAlpha || GET_ALPHA_METHODS.pow1;
+
+
+api.getPointsBetween = function(opt){
+
+        opt = opt || {};
+        opt.v1 = opt.v1 || new THREE.Vector3();
+        opt.v2 = opt.v2 || new THREE.Vector3();
+        opt.count = opt.count === undefined ? 1 : opt.count;
+        opt.include = opt.include === undefined ? false : opt.include;
+        opt.getAlpha = opt.getAlpha || GET_ALPHA_METHODS.pow1;
 
         var points = [];
         var i = 0;
-        while(i < count){
+        while(i < opt.count){
 
 // Math.pow lerp with d from 0.5
 //var base = 2.0;
@@ -43,18 +54,18 @@ var apLerp = (function () {
 //var a = 0.5 - ( Math.pow(base, e * ( 0.5 + d ) ) / Math.pow(base, e) * 0.5 ) * s;
 //console.log(a, p, d.toFixed(2));
 
-            var a = getAlpha({
+            var a = opt.getAlpha({
                 i: i,
-                count: count
+                count: opt.count
             });
 
-            var v = v1.clone().lerp(v2, a);
+            var v = opt.v1.clone().lerp(opt.v2, a);
             points.push(v);
             i += 1;
         }
-        if(include){
-           points.unshift(v1.clone());
-           points.push(v2.clone());
+        if(opt.include){
+           points.unshift(opt.v1.clone());
+           points.push(opt.v2.clone());
         }
         return points;
     };
@@ -88,7 +99,15 @@ var apLerp = (function () {
 var v1 = new THREE.Vector3(-5, 0, 0);
 var v2 = new THREE.Vector3(5, 0, 0);
 
-var points = apLerp.getPointsBetween(v1, v2, 28, true);
+//var points = apLerp.getPointsBetween(v1, v2, 28, true);
+
+var points = apLerp.getPointsBetween({
+    v1: v1,
+    v2: v2,
+    count: 28,
+    include: true
+});
+
 
 var group = new THREE.Group();
 scene.add(group);
