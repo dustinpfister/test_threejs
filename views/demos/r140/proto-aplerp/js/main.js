@@ -29,9 +29,8 @@ var apLerp = (function () {
     GET_ALPHA_METHODS.porabola = function(state, param){
         //var h = param.h === undefined ? 0 : param.h;
         //var k = param.k === undefined ? 0 : param.k;
-
-        var h = 0.4, k = 0.125;
-        var x = state.i / (state.count - 1); 
+        var h = 0.5, k = 0.00;
+        var x = (state.i + 1) / (state.count - 0) ; 
         var y = Math.pow(x - h, 2) + k;
         var a = (x > 0.5 ? 0.5 - y : y) * 2;
         return a
@@ -119,18 +118,18 @@ var points = apLerp.getPointsBetween({
     v1: v1,
     v2: v2,
     count: 28,
-    include: true,
+    include: false,
     getAlpha: 'porabola',
     gaParam: {
     }
 });
 
-
+console.log(points)
 
 var group = new THREE.Group();
 scene.add(group);
 points.forEach(function(v){
-    var mesh = new THREE.Mesh( new THREE.SphereGeometry(0.125, 30, 30), new THREE.MeshNormalMaterial() );
+    var mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 30, 30), new THREE.MeshNormalMaterial() );
     mesh.position.copy(v);
     group.add(mesh);
 });
