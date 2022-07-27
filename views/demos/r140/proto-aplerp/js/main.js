@@ -1,27 +1,33 @@
 // apLerp module -r0 prototype
 var apLerp = (function () {
-
-    var api = {};
-
+    // built in get alpha methods
     var GET_ALPHA_METHODS = {};
-
+    // simple lerp
     GET_ALPHA_METHODS.simp = function(state){
         var d = 1 / (state.count + 1);
         return d + d * state.i;
     };
-
-
+    // pow1 from v1 to v2
     GET_ALPHA_METHODS.pow1 = function(state, param){
         var base = param.base === undefined ? 2.0 : param.base;
         var e = param.e === undefined ? 16 : param.e;
         var invert = param.invert === undefined ? false : param.invert;
-
         var p = state.i / state.count;
         var m = Math.pow(base, e * p) / Math.pow(base, e);
         return invert ? 1 - m : m;
     };
+    // pow2 using distance from 0.5 of i / count;
+    GET_ALPHA_METHODS.pow2 = function(state, param){
+        var base = param.base === undefined ? 2.0 : param.base;
+        var e = param.e === undefined ? 16 : param.e;
 
-
+        var p = (state.i + 1) / (state.count + 1);
+        var d = Math.sqrt( Math.pow(p - 0.5, 2) );
+        var s = p > 0.5 ? -1 : 1;
+        return 0.5 - ( Math.pow(base, e * ( 0.5 + d ) ) / Math.pow(base, e) * 0.5 ) * s;
+    };
+    // public api
+    var api = {};
     // The main get points between method that will return an array of Vector3
     // instances between the two that are given. The include bool can be used to
     // also include clones of v1 and v2 and the start and end.
@@ -36,26 +42,16 @@ var apLerp = (function () {
         if(typeof opt.getAlpha === 'string'){
             opt.getAlpha = GET_ALPHA_METHODS[opt.getAlpha];
         }
-
         var points = [];
         var i = 0;
         while(i < opt.count){
-
-// Math.pow lerp with d from 0.5
-//var base = 2.0;
-//var e = 10;
-//var p = (i + 1) / (count + 1);
-//var d = Math.sqrt( Math.pow(p - 0.5, 2) );
-//var s = p > 0.5 ? -1 : 1;
-//var a = 0.5 - ( Math.pow(base, e * ( 0.5 + d ) ) / Math.pow(base, e) * 0.5 ) * s;
-//console.log(a, p, d.toFixed(2));
-
+            // use get alpha method
             var a = opt.getAlpha({
                 i: i,
                 count: opt.count,
                 gaParam: opt.gaParam || {}	
             }, opt.gaParam || {});
-
+            // lerp from v1 to v2 using alpha from get alpha method
             var v = opt.v1.clone().lerp(opt.v2, a);
             points.push(v);
             i += 1;
@@ -66,9 +62,8 @@ var apLerp = (function () {
         }
         return points;
     };
-
+    // return public api
     return api;
-
 }
     ());
 
@@ -96,16 +91,15 @@ var apLerp = (function () {
 var v1 = new THREE.Vector3(-5, 0, 0);
 var v2 = new THREE.Vector3(5, 0, 0);
 
-//var points = apLerp.getPointsBetween(v1, v2, 28, true);
-
 var points = apLerp.getPointsBetween({
     v1: v1,
     v2: v2,
     count: 28,
     include: true,
-    getAlpha: 'pow1',
+    getAlpha: 'pow2',
     gaParam: {
-        base: 1.25
+        base: 1.5,
+        e: 18
     }
 });
 
