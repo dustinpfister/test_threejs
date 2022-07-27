@@ -38,7 +38,7 @@ var apLerp = (function () {
 
     // SCENE
     var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(20, 20));
+    scene.add(new THREE.GridHelper(10, 10));
     scene.background = new THREE.Color('black');
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
     camera.position.set(2, 1, 2);
@@ -54,9 +54,18 @@ var apLerp = (function () {
     scene.add( new THREE.AmbientLight(0xafafaf, 0.25) );
     
 
-var v1 = new THREE.Vector3(0, 0, 0);
-var v2 = new THREE.Vector3(0, 3, 0);
-console.log(apLerp.getPointsBetween(v1, v2, 4, true))
+var v1 = new THREE.Vector3(5, 0, 0);
+var v2 = new THREE.Vector3(-5, 0, 0);
+
+var points = apLerp.getPointsBetween(v1, v2, 8, true);
+
+var group = new THREE.Group();
+scene.add(group);
+points.forEach(function(v){
+    var mesh = new THREE.Mesh( new THREE.SphereGeometry(0.25, 30, 30), new THREE.MeshNormalMaterial() );
+    mesh.position.copy(v);
+    group.add(mesh);
+});
 
     // CONTROL
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
