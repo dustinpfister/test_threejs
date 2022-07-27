@@ -15,10 +15,12 @@ var apLerp = (function () {
         while(i < count){
 
             // simple lerp
-            var d = 1 / (count + 1);
-            var a = d + d * i;
-
+/*
+var d = 1 / (count + 1);
+var a = d + d * i;
+*/
 // Math.pow lerp
+/*
 var base = 2.0;
 var e = 16;
 var inv = true;
@@ -26,6 +28,20 @@ var inv = true;
 var p = i / count;
 var m = Math.pow(base, e * p) / Math.pow(base, e);
 var a = inv ? 1 - m : m;
+*/
+
+// Math.pow lerp with d from 0.5
+var base = 2.0;
+var e = 10;
+var p = (i + 1) / (count + 1);
+var d = Math.sqrt( Math.pow(p - 0.5, 2) );
+var s = p > 0.5 ? -1 : 1;
+var a = 0.5 - ( Math.pow(base, e * ( 0.5 + d ) ) / Math.pow(base, e) * 0.5 ) * s;
+
+
+
+console.log(a, p, d.toFixed(2));
+
 
             var v = v1.clone().lerp(v2, a);
             points.push(v);
@@ -67,7 +83,7 @@ var a = inv ? 1 - m : m;
 var v1 = new THREE.Vector3(-5, 0, 0);
 var v2 = new THREE.Vector3(5, 0, 0);
 
-var points = apLerp.getPointsBetween(v1, v2, 58, true);
+var points = apLerp.getPointsBetween(v1, v2, 28, true);
 
 var group = new THREE.Group();
 scene.add(group);
