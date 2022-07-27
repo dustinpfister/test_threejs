@@ -11,35 +11,31 @@ var apLerp = (function () {
     };
 
 
-    GET_ALPHA_METHODS.pow1 = function(state){
-        var base = 2.0;
-        var e = 16;
-        var inv = true;
+    GET_ALPHA_METHODS.pow1 = function(state, param){
+        var base = param.base === undefined ? 2.0 : param.base;
+        var e = param.e === undefined ? 16 : param.e;
+        var invert = param.invert === undefined ? false : param.invert;
 
         var p = state.i / state.count;
         var m = Math.pow(base, e * p) / Math.pow(base, e);
-        return inv ? 1 - m : m;
+        return invert ? 1 - m : m;
     };
 
 
     // The main get points between method that will return an array of Vector3
     // instances between the two that are given. The include bool can be used to
     // also include clones of v1 and v2 and the start and end.
-
-    //api.getPointsBetween = function(v1, v2, count, include, getAlpha){
-//        count = count === undefined ? 1 : count;
-//        include = include === undefined ? false : include;
-//        getAlpha = getAlpha || GET_ALPHA_METHODS.pow1;
-
-
-api.getPointsBetween = function(opt){
-
+    api.getPointsBetween = function(opt){
+        // pase options
         opt = opt || {};
         opt.v1 = opt.v1 || new THREE.Vector3();
         opt.v2 = opt.v2 || new THREE.Vector3();
         opt.count = opt.count === undefined ? 1 : opt.count;
         opt.include = opt.include === undefined ? false : opt.include;
-        opt.getAlpha = opt.getAlpha || GET_ALPHA_METHODS.pow1;
+        opt.getAlpha = opt.getAlpha || GET_ALPHA_METHODS.simp;
+        if(typeof opt.getAlpha === 'string'){
+            opt.getAlpha = GET_ALPHA_METHODS[opt.getAlpha];
+        }
 
         var points = [];
         var i = 0;
@@ -56,8 +52,9 @@ api.getPointsBetween = function(opt){
 
             var a = opt.getAlpha({
                 i: i,
-                count: opt.count
-            });
+                count: opt.count,
+                gaParam: opt.gaParam || {}	
+            }, opt.gaParam || {});
 
             var v = opt.v1.clone().lerp(opt.v2, a);
             points.push(v);
@@ -105,7 +102,11 @@ var points = apLerp.getPointsBetween({
     v1: v1,
     v2: v2,
     count: 28,
-    include: true
+    include: true,
+    getAlpha: 'pow1',
+    gaParam: {
+        base: 1.25
+    }
 });
 
 
