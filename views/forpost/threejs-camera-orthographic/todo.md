@@ -1,6 +1,7 @@
 # threejs-camera-orthographic
 
-## () - s3 - update method
+## () - s4 - update method
+* () new example where the props of an orthographic camera are being updated
 
 ## ( done 04/29/2022 ) - s3 - data textures, and create method
 * (done) have a create method for the cube stack file
