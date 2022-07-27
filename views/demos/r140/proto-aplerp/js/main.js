@@ -3,12 +3,21 @@ var apLerp = (function () {
 
     var api = {};
 
+    var GET_ALPHA_METHODS = {};
+
+    GET_ALPHA_METHODS.simp = function(state){
+        var d = 1 / (state.count + 1);
+        return d + d * state.i;
+    };
+
+
     // The main get points between method that will return an array of Vector3
     // instances between the two that are given. The include bool can be used to
     // also include clones of v1 and v2 and the start and end.
-    api.getPointsBetween = function(v1, v2, count, include){
+    api.getPointsBetween = function(v1, v2, count, include, getAlpha){
         count = count === undefined ? 1 : count;
         include = include === undefined ? false : include;
+        getAlpha = getAlpha || GET_ALPHA_METHODS.simp;
 
         var points = [];
         var i = 0;
@@ -31,17 +40,18 @@ var a = inv ? 1 - m : m;
 */
 
 // Math.pow lerp with d from 0.5
-var base = 2.0;
-var e = 10;
-var p = (i + 1) / (count + 1);
-var d = Math.sqrt( Math.pow(p - 0.5, 2) );
-var s = p > 0.5 ? -1 : 1;
-var a = 0.5 - ( Math.pow(base, e * ( 0.5 + d ) ) / Math.pow(base, e) * 0.5 ) * s;
+//var base = 2.0;
+//var e = 10;
+//var p = (i + 1) / (count + 1);
+//var d = Math.sqrt( Math.pow(p - 0.5, 2) );
+//var s = p > 0.5 ? -1 : 1;
+//var a = 0.5 - ( Math.pow(base, e * ( 0.5 + d ) ) / Math.pow(base, e) * 0.5 ) * s;
+//console.log(a, p, d.toFixed(2));
 
-
-
-console.log(a, p, d.toFixed(2));
-
+            var a = getAlpha({
+                i: i,
+                count: count
+            });
 
             var v = v1.clone().lerp(v2, a);
             points.push(v);
