@@ -11,7 +11,7 @@ var apLerp = (function () {
             var base = param.base === undefined ? 2.0 : param.base;
             var e = param.e === undefined ? 16 : param.e;
             var invert = param.invert === undefined ? false : param.invert;
-            var m = Math.pow(base, e * state.p2) / Math.pow(base, e);
+            var m = Math.pow(base, e * state.p) / Math.pow(base, e);
             return invert ? 1 - m : m;
         }
     };
@@ -38,40 +38,59 @@ var apLerp = (function () {
 */
 
 
-    var apLerp = function(){
-
+    var apLerp = function(opt){
+        opt = opt || {};
+        opt.v1 = opt.v1 || new THREE.Vector3();
+        opt.v2 = opt.v2 || new THREE.Vector3();
+        opt.alpha = opt.alpha === undefined ? 0 : opt.alpha;
+        opt.getAlpha = opt.getAlpha || GET_ALPHA_METHODS.pow1;
+        if(typeof opt.getAlpha === 'string'){
+            opt.getAlpha = GET_ALPHA_METHODS[opt.getAlpha];
+        }
+        var a = opt.getAlpha({
+            p: opt.alpha,
+            gaParam: opt.gaParam || {}	
+        }, opt.gaParam || {});
+        // lerp from v1 to v2 using alpha from get alpha method and return the Vector3
+        return opt.v1.clone().lerp(opt.v2, a);
     };
 
     // public api
     var api = {};
+    // Public lerp method that 
+    api.lerp = function(v1, v2, alpha, opt){
+        opt = opt || {};
+        alpha = alpha === undefined ? 0 : alpha;
+        // clamp alpha
+        alpha = alpha < 0 ? 0 : alpha;
+        alpha = alpha > 1 ? 1 : alpha;
+        return apLerp({
+            v1: v1 || opt.v1 || new THREE.Vector3,
+            v2: v2 || opt.v2 || new THREE.Vector3,
+            alpha: alpha,
+            getAlpha: opt.getAlpha,
+            gaParam: opt.gaParam
+        })
+    };
+
     // Get points in the from of an array of Vector3
     // instances between the two that are given. The include bool can be used to
     // also include clones of v1 and v2 and the start and end.
     api.getPointsBetween = function(opt){
         // pase options
         opt = opt || {};
-        opt.v1 = opt.v1 || new THREE.Vector3();
-        opt.v2 = opt.v2 || new THREE.Vector3();
         opt.count = opt.count === undefined ? 1 : opt.count;
         opt.include = opt.include === undefined ? false : opt.include;
-        opt.getAlpha = opt.getAlpha || GET_ALPHA_METHODS.pow1;
-        if(typeof opt.getAlpha === 'string'){
-            opt.getAlpha = GET_ALPHA_METHODS[opt.getAlpha];
-        }
         var points = [];
         var i = 1;
         while(i <= opt.count){
-            // use get alpha method
-            var a = opt.getAlpha({
-                i: i,
-                count: opt.count,
-                p: i / ( opt.count + 1 ),
-                p2: ( i - 1 ) / opt.count,
-                gaParam: opt.gaParam || {}	
-            }, opt.gaParam || {});
-            // lerp from v1 to v2 using alpha from get alpha method
-            var v = opt.v1.clone().lerp(opt.v2, a);
-            points.push(v);
+            // call apLerp using i / ( opt.count + 1 ) for alpha
+            points.push( apLerp({
+                v1: opt.v1, v2: opt.v2,
+                alpha: i / ( opt.count + 1 ),
+                getAlpha: opt.getAlpha,
+                gaParam: opt.gaParam
+            }) );
             i += 1;
         }
         if(opt.include){
