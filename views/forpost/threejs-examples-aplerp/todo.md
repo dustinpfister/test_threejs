@@ -17,7 +17,7 @@
 
 
 
-* () have a s1-1-basic demo that uses the two built in simp and pow1 getAlpha methods
+* (done) have a s1-1-basic demo that uses the two built in simp and pow1 getAlpha methods
 * () have a s1-2-pow2 example in the from of a function in main.js
 * () have a s1-3-parabola example in the form of a function in main.js
 * () have a s1-4-sin example in the form of a function in main.js

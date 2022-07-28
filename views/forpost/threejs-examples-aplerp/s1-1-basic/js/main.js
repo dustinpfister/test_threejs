@@ -1,7 +1,8 @@
 // demo of r0 of aplerp.js for threejs-examples-aplerp
 (function () {
-
+    //******** **********
     // SCENE
+    //******** **********
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(10, 10));
     scene.background = new THREE.Color('black');
@@ -17,14 +18,24 @@
     dl.position.set(2, 1, 3);
     scene.add(dl);
     scene.add( new THREE.AmbientLight(0xafafaf, 0.25) );
-    
+    //******** **********
+    // CREATE SPHERES GROUP HELPER
+    //******** **********
+    var createSpheresGroup = function(points){
+        var group = new THREE.Group();
+        scene.add(group);
+        points.forEach(function(v){
+            var mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 30, 30), new THREE.MeshNormalMaterial() );
+            mesh.position.copy(v);
+            group.add(mesh);
+        });
+        return group;
+    };
 
-// POINTS
+// POINTS 2 EXAMPLE USING POW1 GET ALPHA METHOD
 var v1 = new THREE.Vector3(-5, 0, 0);
 var v2 = new THREE.Vector3(5, 0, 0);
-
-
-var points = apLerp.getPointsBetween({
+var points2 = apLerp.getPointsBetween({
     v1: v1,
     v2: v2,
     count: 50,
@@ -35,15 +46,10 @@ var points = apLerp.getPointsBetween({
         e: 3
     }
 });
-console.log(points)
 
-var group = new THREE.Group();
-scene.add(group);
-points.forEach(function(v){
-    var mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 30, 30), new THREE.MeshNormalMaterial() );
-    mesh.position.copy(v);
-    group.add(mesh);
-});
+
+var group2 = createSpheresGroup(points2)
+scene.add(group2);
 
     // CONTROL
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
