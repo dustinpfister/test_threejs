@@ -18,7 +18,6 @@
     // MATH.SIN
     //******** **********
     var parabolaGetAlpha = function(state, param){
-
         var a = 0.5;
         return a;
     };

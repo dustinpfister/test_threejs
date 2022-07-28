@@ -20,3 +20,5 @@
 * () have a s1-4-sin example in the form of a function in main.js
 
 * (done) add makeSphereGroup helper as public method to aplerp module
+* () update all sections to use apLerp.makeSphereGroup
+* () have all s1 examples be a static scene, aka loose orbit controls and app loop
