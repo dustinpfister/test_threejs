@@ -1,19 +1,22 @@
 # threejs-examples-aplerp todo list
 
-## () - r1 - apLerp.load
+## () - r1 - apLerp.load, more built in get alpha methods
 * ( done) start r1 of the aplerp.js module
 * () have a apLerp.load method as a way to load custom getAlpha methods
-
+* () more built in get alpha methods
 * () s2-1-add-sin example that translates from each point using a sin wave
 
 ## () - r0 - core of idea working okay
 * ( done ) start r0 of the aplerp.js module
 * ( done) have a getPointsBetween method that returns an array of vector3 class instances
-* (done) have a state.p value that is the proper i / len value for this
-* () simp built in can now just return state.p
+* ( done ) have a state.p value that is the proper i / len value for this
+* ( done ) simp built in can now just return state.p
 
 * () have an apLerp.lerp method that is like vector3 lerp
-* () just have simp and pow1 as built in getAlpha methods
+
+
+* () just have simp as the only built in getAlpha method
+
 
 * () have a s1-1-basic demo that uses the two built in simp and pow1 getAlpha methods
 * () have a s1-2-pow2 example in the from of a function in main.js
