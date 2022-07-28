@@ -34,19 +34,27 @@
     };
     var v1 = new THREE.Vector3(-5, 0, 0);
     var v2 = new THREE.Vector3(5, 0, 0);
+var i = 0, len = 20;
+while(i < len){
+
+var per = i / len;
+
     var group = apLerp.createSpheresGroup({
             v1: v1,
             v2: v2,
-            count: 30,
-            include: false,
+            count: 40,
+            include: true,
             getAlpha: sinGetAlpha,
             gaParam: {
-                piM: 4,
-                bMulti: 0.05,
-                aOffset: 0
+                piM: 2,
+                bMulti: 0.4 - 0.399 * per,
+                aOffset: 0.0
             }
         });
+group.position.z = -5 + 10 * per;
     scene.add(group);
+i += 1;
+}
     //******** **********
     // USING ORBIT CONTROLS
     //******** **********

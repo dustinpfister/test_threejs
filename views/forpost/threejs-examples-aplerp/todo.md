@@ -17,8 +17,9 @@
 * (done) test out apLerp.lerp in s1-basic example
 * (done) have a s1-2-pow example in which I am playing with the base and e values for a collection of points
 * (done) have a s1-3-parabola example in the form of a function in main.js
-* () have a s1-4-sin example in the form of a function in main.js
-
+* (done) have a s1-4-sin example in the form of a function in main.js
 * (done) add makeSphereGroup helper as public method to aplerp module
+* (done) sin example creates a collection of sphere groups
+
 * () update all sections to use apLerp.makeSphereGroup
 * () have all s1 examples be a static scene, aka loose orbit controls and app loop
