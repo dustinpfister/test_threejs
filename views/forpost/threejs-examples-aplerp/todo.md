@@ -15,7 +15,6 @@
 * (done) have an apLerp.lerp method that is like vector3 lerp
 * (done) intreal apLerp method shared between apLerp.lerp and apLerp.getPointsBetween
 * (done) test out apLerp.lerp in s1-basic example
-
-* () have a s1-2-pow example in which I am playing with the base and e values for a collection of points
-* () have a s1-3-parabola example in the form of a function in main.js
+* (done) have a s1-2-pow example in which I am playing with the base and e values for a collection of points
+* (done) have a s1-3-parabola example in the form of a function in main.js
 * () have a s1-4-sin example in the form of a function in main.js
