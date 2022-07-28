@@ -15,7 +15,6 @@
 * () have an apLerp.lerp method that is like vector3 lerp
 
 
-* () just have simp as the only built in getAlpha method
 
 
 * () have a s1-1-basic demo that uses the two built in simp and pow1 getAlpha methods

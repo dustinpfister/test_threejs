@@ -27,12 +27,12 @@ var v2 = new THREE.Vector3(5, 0, 0);
 var points = apLerp.getPointsBetween({
     v1: v1,
     v2: v2,
-    count: 8,
+    count: 50,
     include: true,
-    getAlpha: 'simp',
+    getAlpha: 'pow1',
     gaParam: {
-        base: 2,
-        e: 1.5
+        base: 6,
+        e: 3
     }
 });
 console.log(points)

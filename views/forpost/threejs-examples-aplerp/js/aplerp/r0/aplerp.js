@@ -11,12 +11,7 @@ var apLerp = (function () {
             var base = param.base === undefined ? 2.0 : param.base;
             var e = param.e === undefined ? 16 : param.e;
             var invert = param.invert === undefined ? false : param.invert;
-            var p = state.i / state.count;
-
-
-console.log(p)
-
-            var m = Math.pow(base, e * p) / Math.pow(base, e);
+            var m = Math.pow(base, e * state.p2) / Math.pow(base, e);
             return invert ? 1 - m : m;
         }
     };
@@ -71,6 +66,7 @@ console.log(p)
                 i: i,
                 count: opt.count,
                 p: i / ( opt.count + 1 ),
+                p2: ( i - 1 ) / opt.count,
                 gaParam: opt.gaParam || {}	
             }, opt.gaParam || {});
             // lerp from v1 to v2 using alpha from get alpha method
