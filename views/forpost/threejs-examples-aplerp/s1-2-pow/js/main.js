@@ -15,20 +15,6 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     //******** **********
-    // CREATE SPHERES GROUP HELPER
-    //******** **********
-    var createSpheresGroup = function(points){
-        var group = new THREE.Group();
-        scene.add(group);
-        points.forEach(function(v){
-            var mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 30, 30), new THREE.MeshNormalMaterial() );
-            mesh.position.copy(v);
-            group.add(mesh);
-        });
-        return group;
-    };
-    
-    //******** **********
     // USING POW1 GET ALPHA METHOD
     //******** **********
     var i = 0, len = 25;
@@ -36,7 +22,7 @@
         var per = i / len;
         var v1 = new THREE.Vector3(-5, 0, 0);
         var v2 = new THREE.Vector3(5, 0, 0);
-        var points2 = apLerp.getPointsBetween({
+        var group = apLerp.createSpheresGroup({
             v1: v1,
             v2: v2,
             count: 60 - Math.floor(50 * per),
@@ -47,9 +33,8 @@
                 e: 1.75 + 8 * per
             }
         });
-        var group2 = createSpheresGroup(points2);
-        group2.position.z = -5 + 10 * per;
-        scene.add(group2);
+        group.position.z = -5 + 10 * per;
+        scene.add(group);
         i += 1;
     }
     //******** **********

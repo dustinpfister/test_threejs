@@ -6,7 +6,7 @@
 * () more built in get alpha methods
 * () s2-1-add-sin example that translates from each point using a sin wave
 
-## () - r0 - core of idea working okay
+## ( done 07/28/2022 ) - r0 - core of idea working okay
 * (done) start r0 of the aplerp.js module
 * (done) have a getPointsBetween method that returns an array of vector3 class instances
 * (done) have a state.p value that is the proper i / len value for this
@@ -20,6 +20,5 @@
 * (done) have a s1-4-sin example in the form of a function in main.js
 * (done) add makeSphereGroup helper as public method to aplerp module
 * (done) sin example creates a collection of sphere groups
-
-* () update all sections to use apLerp.makeSphereGroup
 * (done) have all s1 examples be a static scene, aka loose orbit controls and app loop
+* (done) update all sections to use apLerp.makeSphereGroup
