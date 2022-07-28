@@ -43,21 +43,8 @@
         });
     scene.add(group);
     //******** **********
-    // USING ORBIT CONTROLS
+    // RENDER
     //******** **********
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
-    //******** **********
-    // APP LOOP
-    //******** **********
-    var frame = 0, frameMax = 300;
-    var loop = function () {
-        requestAnimationFrame(loop);
-        renderer.render(scene, camera);
-        var per = frame / frameMax,
-        bias = 1 - Math.abs( per - 0.5) / 0.5;
-        frame += 1;
-        frame %= frameMax;
-    };
-    loop();
+    renderer.render(scene, camera);
 }
     ());

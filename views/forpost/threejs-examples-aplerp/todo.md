@@ -22,4 +22,4 @@
 * (done) sin example creates a collection of sphere groups
 
 * () update all sections to use apLerp.makeSphereGroup
-* () have all s1 examples be a static scene, aka loose orbit controls and app loop
+* (done) have all s1 examples be a static scene, aka loose orbit controls and app loop
