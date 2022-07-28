@@ -37,7 +37,7 @@ var apLerp = (function () {
     };
 */
 
-
+    // built in ap lerp method used by apLerp.lerp and apLerp.getPointsBetween
     var apLerp = function(opt){
         opt = opt || {};
         opt.v1 = opt.v1 || new THREE.Vector3();
