@@ -18,7 +18,10 @@
     // MATH.SIN
     //******** **********
     var parabolaGetAlpha = function(state, param){
-        var a = 0.5;
+        var r = Math.PI * 6 * state.p;
+        var b = Math.sin( r );
+        var a = state.p + b * 0.1;
+console.log(b)
         return a;
     };
     var v1 = new THREE.Vector3(-5, 0, 0);
@@ -26,8 +29,8 @@
     var group = apLerp.createSpheresGroup({
             v1: v1,
             v2: v2,
-            count: 80,
-            include: true,
+            count: 100,
+            include: false,
             getAlpha: parabolaGetAlpha,
             gaParam: {
             }
