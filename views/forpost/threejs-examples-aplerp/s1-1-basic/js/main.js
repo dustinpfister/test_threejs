@@ -27,6 +27,21 @@
         return group;
     };
     //******** **********
+    // TESTING OUT apLerp.lerp
+    //******** **********
+    var v1 = new THREE.Vector3(1, 1, 1),
+    v2 = new THREE.Vector3(2, 1, 1),
+    alpha = 0.5;
+    // testing 'simp' get alpha method 
+    var opt = { getAlpha: 'simp'};
+    console.log( apLerp.lerp(v1, v2, alpha, opt) ); // {x: 1.5, y: 1, z: 1}
+    // testing out pow2 get alpha method
+    var opt = { 
+        getAlpha: 'pow1',
+        gaParam: {base: 1.25, e: 14}
+    };
+    console.log( apLerp.lerp(v1, v2, alpha, opt) ); // {x: 1.2097152, y: 1, z: 1}
+    //******** **********
     // POINTS 1 EXAMPLE USING SIMP GET ALPHA METHOD
     //******** **********
     var v1 = new THREE.Vector3(-5, 0, 0);
