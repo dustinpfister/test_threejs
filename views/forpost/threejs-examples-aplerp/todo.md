@@ -19,4 +19,4 @@
 * (done) have a s1-3-parabola example in the form of a function in main.js
 * () have a s1-4-sin example in the form of a function in main.js
 
-* () add makeSphereGroup helper as public method to aplerp module
+* (done) add makeSphereGroup helper as public method to aplerp module

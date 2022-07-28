@@ -32,7 +32,7 @@ var apLerp = (function () {
         // lerp from v1 to v2 using alpha from get alpha method and return the Vector3
         return opt.v1.clone().lerp(opt.v2, a);
     };
-
+ 
     // public api
     var api = {};
     // Public lerp method that 
@@ -50,7 +50,7 @@ var apLerp = (function () {
             gaParam: opt.gaParam
         })
     };
-
+ 
     // Get points in the from of an array of Vector3
     // instances between the two that are given. The include bool can be used to
     // also include clones of v1 and v2 and the start and end.
@@ -89,7 +89,7 @@ var apLerp = (function () {
         });
         return group;
     };
-
+ 
     // return public api
     return api;
 }
