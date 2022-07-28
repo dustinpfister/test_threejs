@@ -4,13 +4,7 @@ var apLerp = (function () {
     var GET_ALPHA_METHODS = {
         // simple, regular lerp
         simp: function(state){
-
-            //var d = 1 / ( state.count + 1 );
-            //var a = d * state.i;
-            //console.log(a.toFixed(2), (state.p).toFixed(2) );
-            //return a;
             return state.p;
-
         },
         // pow1 lerp ( default for r0 )
         pow1 : function(state, param){
@@ -47,9 +41,15 @@ console.log(p)
         return a
     };
 */
+
+
+    var apLerp = function(){
+
+    };
+
     // public api
     var api = {};
-    // The main get points between method that will return an array of Vector3
+    // Get points in the from of an array of Vector3
     // instances between the two that are given. The include bool can be used to
     // also include clones of v1 and v2 and the start and end.
     api.getPointsBetween = function(opt){
