@@ -1,7 +1,7 @@
 // demo of r0 of aplerp.js for threejs-examples-aplerp
 (function () {
     //******** **********
-    // SCENE
+    // SCENE, CAMERA, RENDERER
     //******** **********
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(10, 10));
@@ -13,11 +13,6 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-    // LIGHT
-    var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, 3);
-    scene.add(dl);
-    scene.add( new THREE.AmbientLight(0xafafaf, 0.25) );
     //******** **********
     // CREATE SPHERES GROUP HELPER
     //******** **********
@@ -31,29 +26,31 @@
         });
         return group;
     };
-
-// POINTS 2 EXAMPLE USING POW1 GET ALPHA METHOD
-var v1 = new THREE.Vector3(-5, 0, 0);
-var v2 = new THREE.Vector3(5, 0, 0);
-var points2 = apLerp.getPointsBetween({
-    v1: v1,
-    v2: v2,
-    count: 50,
-    include: true,
-    getAlpha: 'pow1',
-    gaParam: {
-        base: 6,
-        e: 3
-    }
-});
-
-
-var group2 = createSpheresGroup(points2)
-scene.add(group2);
-
-    // CONTROL
+    //******** **********
+    // POINTS 2 EXAMPLE USING POW1 GET ALPHA METHOD
+    //******** **********
+    var v1 = new THREE.Vector3(-5, 0, 0);
+    var v2 = new THREE.Vector3(5, 0, 0);
+    var points2 = apLerp.getPointsBetween({
+        v1: v1,
+        v2: v2,
+        count: 50,
+        include: true,
+        getAlpha: 'pow1',
+        gaParam: {
+            base: 6,
+            e: 3
+        }
+    });
+    var group2 = createSpheresGroup(points2)
+    scene.add(group2);
+    //******** **********
+    // USING ORBIT CONTROLS
+    //******** **********
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    //******** **********
     // APP LOOP
+    //******** **********
     var frame = 0, frameMax = 300;
     var loop = function () {
         requestAnimationFrame(loop);
