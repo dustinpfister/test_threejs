@@ -27,6 +27,20 @@
         return group;
     };
     //******** **********
+    // POINTS 1 EXAMPLE USING SIMP GET ALPHA METHOD
+    //******** **********
+    var v1 = new THREE.Vector3(-5, 0, 0);
+    var v2 = new THREE.Vector3(5, 0, 0);
+    var points1 = apLerp.getPointsBetween({
+        v1: v1,
+        v2: v2,
+        count: 40,
+        include: true,
+        getAlpha: 'simp'
+    });
+    var group1 = createSpheresGroup(points1);
+    scene.add(group1);
+    //******** **********
     // POINTS 2 EXAMPLE USING POW1 GET ALPHA METHOD
     //******** **********
     var v1 = new THREE.Vector3(-5, 0, 0);
@@ -34,7 +48,7 @@
     var points2 = apLerp.getPointsBetween({
         v1: v1,
         v2: v2,
-        count: 50,
+        count: 40,
         include: true,
         getAlpha: 'pow1',
         gaParam: {
@@ -42,7 +56,8 @@
             e: 3
         }
     });
-    var group2 = createSpheresGroup(points2)
+    var group2 = createSpheresGroup(points2);
+    group2.position.z = 1;
     scene.add(group2);
     //******** **********
     // USING ORBIT CONTROLS

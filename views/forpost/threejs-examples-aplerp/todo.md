@@ -11,13 +11,12 @@
 * ( done) have a getPointsBetween method that returns an array of vector3 class instances
 * ( done ) have a state.p value that is the proper i / len value for this
 * ( done ) simp built in can now just return state.p
+* (done) have a s1-1-basic demo that uses the two built in simp and pow1 getAlpha methods
 
 * () have an apLerp.lerp method that is like vector3 lerp
+* () intreal apLerp method shared between apLerp.lerp and apLerp.getPointsBetween
 
+* () have a s1-2-pow example in which I am playing with the base and e values for a collection of points
 
-
-
-* (done) have a s1-1-basic demo that uses the two built in simp and pow1 getAlpha methods
-* () have a s1-2-pow2 example in the from of a function in main.js
 * () have a s1-3-parabola example in the form of a function in main.js
 * () have a s1-4-sin example in the form of a function in main.js
