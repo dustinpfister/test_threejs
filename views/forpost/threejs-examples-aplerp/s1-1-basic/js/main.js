@@ -23,29 +23,18 @@
 var v1 = new THREE.Vector3(-5, 0, 0);
 var v2 = new THREE.Vector3(5, 0, 0);
 
-/*
-var points = apLerp.getPointsBetween({
-    v1: v1,
-    v2: v2,
-    count: 28,
-    include: true,
-    getAlpha: 'pow2',
-    gaParam: {
-        base: 1.5,
-        e: 18
-    }
-});
-*/
-var points = apLerp.getPointsBetween({
-    v1: v1,
-    v2: v2,
-    count: 28,
-    include: false,
-    getAlpha: 'porabola',
-    gaParam: {
-    }
-});
 
+var points = apLerp.getPointsBetween({
+    v1: v1,
+    v2: v2,
+    count: 8,
+    include: true,
+    getAlpha: 'simp',
+    gaParam: {
+        base: 2,
+        e: 1.5
+    }
+});
 console.log(points)
 
 var group = new THREE.Group();

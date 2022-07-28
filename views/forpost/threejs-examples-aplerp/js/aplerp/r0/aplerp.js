@@ -1,21 +1,32 @@
 // apLerp module -r0 prototype
 var apLerp = (function () {
     // built in get alpha methods
-    var GET_ALPHA_METHODS = {};
-    // simple lerp
-    GET_ALPHA_METHODS.simp = function(state){
-        var d = 1 / (state.count + 1);
-        return d + d * state.i;
+    var GET_ALPHA_METHODS = {
+        // simple, regular lerp
+        simp: function(state){
+
+            //var d = 1 / ( state.count + 1 );
+            //var a = d * state.i;
+            //console.log(a.toFixed(2), (state.p).toFixed(2) );
+            //return a;
+            return state.p;
+
+        },
+        // pow1 lerp ( default for r0 )
+        pow1 : function(state, param){
+            var base = param.base === undefined ? 2.0 : param.base;
+            var e = param.e === undefined ? 16 : param.e;
+            var invert = param.invert === undefined ? false : param.invert;
+            var p = state.i / state.count;
+
+
+console.log(p)
+
+            var m = Math.pow(base, e * p) / Math.pow(base, e);
+            return invert ? 1 - m : m;
+        }
     };
-    // pow1 from v1 to v2
-    GET_ALPHA_METHODS.pow1 = function(state, param){
-        var base = param.base === undefined ? 2.0 : param.base;
-        var e = param.e === undefined ? 16 : param.e;
-        var invert = param.invert === undefined ? false : param.invert;
-        var p = state.i / state.count;
-        var m = Math.pow(base, e * p) / Math.pow(base, e);
-        return invert ? 1 - m : m;
-    };
+/*
     // pow2 using distance from 0.5 of i / count;
     GET_ALPHA_METHODS.pow2 = function(state, param){
         var base = param.base === undefined ? 2.0 : param.base;
@@ -35,7 +46,7 @@ var apLerp = (function () {
         var a = (x > 0.5 ? 0.5 - y : y) * 2;
         return a
     };
-
+*/
     // public api
     var api = {};
     // The main get points between method that will return an array of Vector3
@@ -48,17 +59,18 @@ var apLerp = (function () {
         opt.v2 = opt.v2 || new THREE.Vector3();
         opt.count = opt.count === undefined ? 1 : opt.count;
         opt.include = opt.include === undefined ? false : opt.include;
-        opt.getAlpha = opt.getAlpha || GET_ALPHA_METHODS.simp;
+        opt.getAlpha = opt.getAlpha || GET_ALPHA_METHODS.pow1;
         if(typeof opt.getAlpha === 'string'){
             opt.getAlpha = GET_ALPHA_METHODS[opt.getAlpha];
         }
         var points = [];
-        var i = 0;
-        while(i < opt.count){
+        var i = 1;
+        while(i <= opt.count){
             // use get alpha method
             var a = opt.getAlpha({
                 i: i,
                 count: opt.count,
+                p: i / ( opt.count + 1 ),
                 gaParam: opt.gaParam || {}	
             }, opt.gaParam || {});
             // lerp from v1 to v2 using alpha from get alpha method

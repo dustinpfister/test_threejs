@@ -9,6 +9,8 @@
 ## () - r0 - core of idea working okay
 * ( done ) start r0 of the aplerp.js module
 * ( done) have a getPointsBetween method that returns an array of vector3 class instances
+* (done) have a state.p value that is the proper i / len value for this
+* () simp built in can now just return state.p
 
 * () have an apLerp.lerp method that is like vector3 lerp
 * () just have simp and pow1 as built in getAlpha methods
