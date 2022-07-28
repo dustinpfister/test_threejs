@@ -18,3 +18,5 @@
 * (done) have a s1-2-pow example in which I am playing with the base and e values for a collection of points
 * (done) have a s1-3-parabola example in the form of a function in main.js
 * () have a s1-4-sin example in the form of a function in main.js
+
+* () add makeSphereGroup helper as public method to aplerp module

@@ -16,20 +16,6 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     //******** **********
-    // CREATE SPHERES GROUP HELPER
-    //******** **********
-    var createSpheresGroup = function(points){
-        var group = new THREE.Group();
-        scene.add(group);
-        points.forEach(function(v){
-            var mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 30, 30), new THREE.MeshNormalMaterial() );
-            mesh.position.copy(v);
-            group.add(mesh);
-        });
-        return group;
-    };
-    
-    //******** **********
     // PARABOLA
     //******** **********
     var parabola = function(x, h, k){
@@ -46,7 +32,7 @@
     };
     var v1 = new THREE.Vector3(-5, 0, 0);
     var v2 = new THREE.Vector3(5, 0, 0);
-    var points = apLerp.getPointsBetween({
+    var group = apLerp.createSpheresGroup({
             v1: v1,
             v2: v2,
             count: 80,
@@ -55,8 +41,6 @@
             gaParam: {
             }
         });
-    var group = createSpheresGroup(points);
-    group.position.z = 0;
     scene.add(group);
     //******** **********
     // USING ORBIT CONTROLS

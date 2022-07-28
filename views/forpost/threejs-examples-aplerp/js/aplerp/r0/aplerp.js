@@ -77,6 +77,19 @@ var apLerp = (function () {
         }
         return points;
     };
+ 
+    // make a sphere group
+    api.createSpheresGroup = function(opt){
+        var points = api.getPointsBetween(opt);
+        var group = new THREE.Group();
+        points.forEach(function(v){
+            var mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 30, 30), new THREE.MeshNormalMaterial() );
+            mesh.position.copy(v);
+            group.add(mesh);
+        });
+        return group;
+    };
+
     // return public api
     return api;
 }
