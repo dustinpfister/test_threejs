@@ -1,7 +1,7 @@
 # threejs-examples-aplerp todo list
 
 ## () - r1 - apLerp.load, more built in get alpha methods
-* ( done) start r1 of the aplerp.js module
+* () start r1 of the aplerp.js module
 * () have a apLerp.load method as a way to load custom getAlpha methods
 * () more built in get alpha methods
 * () s2-1-add-sin example that translates from each point using a sin wave
