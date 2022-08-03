@@ -1,6 +1,6 @@
 # threejs-buffer-geometry-loader todo list
 
-## () - start a s3-more than one
+## () - start a s3-more-than-one
 * have a s3-more-than-one example
 
 ## ( done 04/01/2022 ) - start a s2-additional-callbacks example
