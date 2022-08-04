@@ -13,13 +13,9 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-    
     // ********** **********
     // ANIMATION LOOP
     // ********** **********
-
-console.log(cameraKit)
-
     var frame = 0,
     maxFrame = 90,
     lt = new Date();
@@ -30,11 +26,10 @@ console.log(cameraKit)
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / 24) {
-
-            var v1 = new THREE.Vector3(8, -8 + 16 * bias, 8);
+            // using circle around method
+            var v1 = new THREE.Vector3(8, 8, 8);
             var vTarget = new THREE.Vector3(0, 0, 0);
-            cameraKit.circleAround(camera, vTarget, v1, per);
-
+            cameraKit.circleAround(camera, vTarget, v1, per, 0.25);
             // draw
             renderer.render(scene, camera);
             frame += 20 * secs;

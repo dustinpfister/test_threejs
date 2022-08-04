@@ -51,12 +51,13 @@ var cameraKit = (function () {
     };
 
     // circle around method
-
-    api.circleAround = function(camera, vTarget, v1, alpha){
+    // ex: cameraKit.circleAround(camera, new THREE.Vector3(), new THREE.Vector3(8, 8, 8), per);
+    api.circleAround = function(camera, vTarget, v1, alpha, rOffset){
+        rOffset = rOffset === undefined ? 0 : rOffset;
         var v3 = vTarget.clone();
         v3.y = v1.y;
         var d = camera.position.distanceTo( v3 );
-        var r = Math.PI * 0.25 + Math.PI * 2 * alpha;
+        var r = Math.PI * rOffset + Math.PI * 2 * alpha;
         var x = Math.cos(r) * d,
         z = Math.sin(r) * d;
         camera.position.set(x, v1.y, z);
