@@ -1,10 +1,13 @@
 # threejs-buffer-geometry-loader todo list
 
-## () - have three-io folder
-* have a copy of the three-io folder here so that I do not have to download the whole threejs repo to get the folder
 
-## () - start a s3-more-than-one
+## () - s4-more-than-one
 * have a s3-more-than-one example
+
+## () - s3-export-from-threejs
+
+## ( done 08/04/2022 ) - have three-io folder
+* ( done) have a copy of the three-io folder here so that I do not have to download the whole threejs repo to get the folder
 
 ## ( done 04/01/2022 ) - start a s2-additional-callbacks example
 * (done) have a s2-additional-callbacks example
