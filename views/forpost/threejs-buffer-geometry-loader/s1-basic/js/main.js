@@ -5,8 +5,8 @@
     var scene = new THREE.Scene();
 
     // Camera
-    var camera = new THREE.PerspectiveCamera(65, 4 / 3, .5, 10);
-    camera.position.set(2, 2, 2);
+    var camera = new THREE.PerspectiveCamera(65, 4 / 3, .5, 20);
+    camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
 
     // Render
@@ -41,7 +41,10 @@
     // load a resource
     loader.load(
         // resource URL
-        '/forpost/threejs-buffer-geometry-loader/buffer-geo/three_2.json',
+        //'/forpost/threejs-buffer-geometry-loader/buffer-geo/three_2.json',
+
+        '/json/static/box_house1_solid.json',
+
         // onLoad callback
         function (geometry) {
         // create a mesh with the geometry
