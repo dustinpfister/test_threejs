@@ -16,7 +16,7 @@ var cameraKit = (function () {
     };
 
     // sin lper method
-    // ex: cameraKit.sinLerp(camera, v1, v2, 0.5);
+    // ex: cameraKit.sinLerp(camera, v1, v2, 0.5, { bMulti: 0.1, piM: 2, aOffset: 0 } );
     var sinGetAlpha = function(state, param){
         param.piM = param.piM === undefined ? 2 : param.piM;
         param.bMulti = param.bMulti=== undefined ? 0.1 : param.bMulti;
