@@ -5,7 +5,7 @@
     var scene = new THREE.Scene();
 
     // Camera
-    var camera = new THREE.PerspectiveCamera(65, 4 / 3, .5, 20);
+    var camera = new THREE.PerspectiveCamera(65, 4 / 3, 0.1, 100);
     camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
 
@@ -14,13 +14,9 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
 
-    var light = new THREE.PointLight(0xffffff, 1, 100);
-    light.position.set(2, 2, 2);
-    scene.add(light);
-
-    var light2 = new THREE.PointLight(0xffffff, 1, 100);
-    light2.position.set(-2, -2, -2);
-    scene.add(light2);
+    var pl = new THREE.PointLight(0xffffff, 1, 100);
+    pl.position.set(5, 5, 5);
+    scene.add(pl);
 
     var frame = 0,
     maxFrame = 200,
