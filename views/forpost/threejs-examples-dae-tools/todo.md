@@ -3,9 +3,11 @@
 ## () - progress bar demo
 * when I have a version of dae tools that provides a progress bar feature I will want a demo of that
 
+## () 
+
 ## () - dae-tools-r3.js - getBufferGeoText
-* start an r3 of dae tools
-* have a method that will return a dae file as buffer geometry text
+* (done) start an r3 of dae tools
+* (done) have a method that will return a dae file as buffer geometry text
 
 ## ( 06/25/2021 ) - loadAll demo
 * (done) when I have a version of dae tools that provides a load all feature I will want a demo of that
