@@ -1,5 +1,8 @@
 # threejs-buffer-geometry-loader todo list
 
+## () - have three-io folder
+* have a copy of the three-io folder here so that I do not have to download the whole threejs repo to get the folder
+
 ## () - start a s3-more-than-one
 * have a s3-more-than-one example
 
