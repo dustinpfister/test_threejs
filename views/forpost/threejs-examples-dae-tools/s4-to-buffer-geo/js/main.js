@@ -20,7 +20,7 @@
     var daeObjects = DAE.create({
         onLoad: function(daeObjects, results){
              // THE getBufferGeoText method can be used to get buffer geometry text
-             var text = DAE.getBufferGeoText(daeObjects, 1);
+             var text = DAE.getBufferGeoText(daeObjects, 2, 0);
              // this text can then be used to create a JSON file that will work with the
              // THREE.BufferGeomertyLoader or I can pass it to the DAE.fromBufferGeoText method
              console.log(text);
@@ -41,7 +41,8 @@
         baseUrl: '/dae',
         relUrls: [
             'rpi4/rpi4_start_box.dae',
-            'obj/obj.dae'
+            'obj/obj.dae',
+            'box_house_1/box_house1_solid.dae'
         ]
     });
 }
