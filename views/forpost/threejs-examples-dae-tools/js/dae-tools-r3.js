@@ -90,14 +90,34 @@
         return group;
     };
     
+    api.getMeshObjects = function(daeObjects, resultIndex){
+        resultIndex = resultIndex === undefined ? 0 : resultIndex;
+        var result = daeObjects.results[resultIndex];
+        var meshObjects = new THREE.Group();
+        result.scene.traverse(function(obj){
+            if(obj.type === 'Mesh'){
+                meshObjects.add(obj);
+            }
+        });
+        return meshObjects;
+    };
+    
     // get buffer geometry text that can then be used with the buffer geometry loader
-    api.getBufferGeoText = function(daeObjects, resultIndex){
+    api.getBufferGeoText = function(daeObjects, resultIndex, meshIndex){
+        resultIndex = resultIndex === undefined ? 0 : resultIndex;
+        meshIndex = meshIndex === undefined ? 0 : meshIndex;
+        var meshGroup = api.getMeshObjects(daeObjects, resultIndex);
+        var mesh = meshGroup.children[meshIndex];
+        // return text for the mesh
+        return JSON.stringify( mesh.geometry.toNonIndexed().toJSON() );
+    };
+    // buffer geometry text to geomerry
+    api.fromBufferGeoText = function(text){
 
-        var result = daeObjects.results[what];
-        console.log(result)
+        var loader = new THREE.BufferGeometryLoader();
 
+        return loader.parse( JSON.parse(text) );
 
     };
- 
 }
     (this['DAE'] = {}));
