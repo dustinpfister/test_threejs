@@ -28,11 +28,13 @@
         requestAnimationFrame(loop);
         if (secs > 1 / 24) {
 
-
             var v1 = new THREE.Vector3(8, 4, 8);
             var v2 = new THREE.Vector3(-8, -4, 8);
+            cameraKit.plainLerp(camera, v1, v2, bias);
+
+
             var v3 = new THREE.Vector3(0, 0, 0);
-            cameraKit.plainLerp(camera, v1, v2, bias, v3);
+            camera.lookAt(v3);
 
             // draw
             renderer.render(scene, camera);
