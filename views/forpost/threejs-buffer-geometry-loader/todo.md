@@ -4,8 +4,8 @@
 ## () - s4-more-than-one
 * have a s3-more-than-one example
 
-## () - s3-to-json
-* () have an example where I am converting a buffer geometry to JSON
+## ( done 08/04/2022 ) - s3-to-json
+* (done) have an example where I am converting a buffer geometry to JSON
 
 ## ( done 08/04/2022 ) - have three-io folder
 * (done) have a copy of the three-io folder here so that I do not have to download the whole threejs repo to get the folder
