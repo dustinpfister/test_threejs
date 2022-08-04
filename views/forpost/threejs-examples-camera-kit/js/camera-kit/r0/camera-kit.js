@@ -49,7 +49,21 @@ var cameraKit = (function () {
         // sin lerp the camera
         camera.position.copy( v3 );
     };
- 
+
+    // circle around method
+
+    api.circleAround = function(camera, vTarget, v1, alpha){
+        var v3 = vTarget.clone();
+        v3.y = v1.y;
+        var d = camera.position.distanceTo( v3 );
+        var r = Math.PI * 0.25 + Math.PI * 2 * alpha;
+        var x = Math.cos(r) * d,
+        z = Math.sin(r) * d;
+        camera.position.set(x, v1.y, z);
+        camera.lookAt( vTarget );
+    };
+
+
     // return public api
     return api;
 }
