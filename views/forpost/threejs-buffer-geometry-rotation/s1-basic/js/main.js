@@ -8,10 +8,9 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-    // GEOMETRY AND MESH
-    var geometry = new THREE.ConeGeometry(1.5, 10, 30, 30);
+    // MESH
     var cone = new THREE.Mesh(
-            geometry,
+            new THREE.ConeGeometry(1.5, 10, 30, 30),
             new THREE.MeshNormalMaterial());
     // USING BUFFER GEOMERTY rotateX, rotateY, and rotateX METHODS
     cone.geometry.rotateX(Math.PI * 0.5);
@@ -20,5 +19,4 @@
     scene.add(cone)
     // RENDER
     renderer.render(scene, camera);
-}
-    ());
+}());
