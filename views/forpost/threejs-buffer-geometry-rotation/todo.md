@@ -1,5 +1,7 @@
 # threejs-buffer-geometry-rotation
 
+## () - new s1-basic example
+* () just have a basic example of rotation
 
-## ( ) - start for post folder
-* () start for post folder
+## ( done 08/08/2022 ) - start for post folder
+* ( done ) start for post folder
