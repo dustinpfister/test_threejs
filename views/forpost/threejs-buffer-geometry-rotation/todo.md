@@ -1,7 +1,10 @@
 # threejs-buffer-geometry-rotation
 
-## () - new s1-basic example
-* () just have a basic example of rotation
+## () - s3-copy-and-rotate
+* () have a loop example that uses copy before calling rotate methods
+
+## ( done 08/08/2022 ) - new s1-basic example
+* (done) just have a basic example of rotation
 
 ## ( done 08/08/2022 ) - start for post folder
 * ( done ) start for post folder
