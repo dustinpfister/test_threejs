@@ -1,16 +1,15 @@
 # threejs-buffer-geometry todo list
 
-## () - Video for threejs-buffer-geometry
-* start a video project for buffer-geometry
-
-## () new s8 section on loading extremal geometry file in the form of dae files
-* the dae loader, and any additional files will need to be added to needed files in the readme
-* have a dae loader example
-
 ## () update examples to use textures
-* update s4 group with texture
-* update s5-light with texture
-* update s6-rotation with texture
+* () update s4 group with texture
+* () update s5-light with texture
+* () update s6-rotation with texture
+
+## () s8-from-json
+* () basic example of the buffer geometry loader
+
+## () s7-to-json
+* () example based on what I worked out for my post on the buffer-geometry-loader for this
 
 ## ( done 04/25/2022 ) new s3 section on uv attribute
 * (done) I am going to want a section on creating a uv attribute for a custom geometry
