@@ -5,8 +5,11 @@
 * () update s5-light with texture
 * () update s6-rotation with texture
 
+## () - new copy example
+* () - have a new basic copy method example
+
 ## () - update s6-rotation example
-* update s6-rotation example to showcase what the deal is for the video on buffer-geometry-rotation
+* () - update s6-rotation example to showcase what the deal is for the video on buffer-geometry-rotation
 
 ## ( done 08/09/2022 ) s8-from-json
 * (done) basic example of the buffer geometry loader
