@@ -6,13 +6,17 @@
 * () update s6-rotation with texture
 
 ## () - new updating loop example
-* () have a new simple updating example
+* () have a new simple updating example, maybe using a plain geometry
 
 ## () - new copy example
 * () - have a new basic copy method example
 
-## () - update s6-rotation example
-* () - update s6-rotation example to showcase what the deal is for the video on buffer-geometry-rotation
+## () - built in constructor example
+* have one or more basic examples that involve the use of the built in geometry constructors
+* () combine all the examples that have to do with creating a custom geometry from the ground up into one section with sub sections.
+
+## ( done 08/09/2022 ) - update s6-rotation example
+* (done) - update s6-rotation example to showcase what the deal is for the video on buffer-geometry-rotation
 
 ## ( done 08/09/2022 ) s8-from-json
 * (done) basic example of the buffer geometry loader
