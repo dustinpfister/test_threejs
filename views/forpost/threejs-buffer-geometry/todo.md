@@ -5,11 +5,11 @@
 * () update s5-light with texture
 * () update s6-rotation with texture
 
-## () s8-from-json
-* () basic example of the buffer geometry loader
+## ( done 08/09/2022 ) s8-from-json
+* (done) basic example of the buffer geometry loader
 
-## () s7-to-json
-* () example based on what I worked out for my post on the buffer-geometry-loader for this
+## ( done 08/09/2022 ) s7-to-json
+* (done) example based on what I worked out for my post on the buffer-geometry-loader for this
 
 ## ( done 04/25/2022 ) new s3 section on uv attribute
 * (done) I am going to want a section on creating a uv attribute for a custom geometry

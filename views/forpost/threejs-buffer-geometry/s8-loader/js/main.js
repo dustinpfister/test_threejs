@@ -1,0 +1,60 @@
+
+(function () {
+
+    // Scene
+    var scene = new THREE.Scene();
+
+    // Camera
+    var camera = new THREE.PerspectiveCamera(65, 4 / 3, 0.1, 100);
+    camera.position.set(10, 10, 10);
+    camera.lookAt(0, 0, 0);
+
+    // Render
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
+
+    var pl = new THREE.PointLight(0xffffff, 1, 100);
+    pl.position.set(5, 5, 5);
+    scene.add(pl);
+
+    var frame = 0,
+    maxFrame = 200,
+    mesh;
+    var loop = function () {
+        var per = frame / maxFrame;
+        requestAnimationFrame(loop);
+        mesh.rotation.set(Math.PI / 2, Math.PI * 2 * per, 0);
+        // render the scene
+        renderer.render(scene, camera);
+        frame += 1;
+        frame %= maxFrame;
+    };
+
+    // Loader
+    var loader = new THREE.BufferGeometryLoader();
+
+    // load a resource
+    loader.load(
+        // resource URL
+        //'/forpost/threejs-buffer-geometry-loader/buffer-geo/three_2.json',
+
+        '/json/static/box_house1_solid.json',
+
+        // onLoad callback
+        function (geometry) {
+        // create a mesh with the geometry
+        // and a material, and add it to the scene
+        mesh = new THREE.Mesh(
+                geometry,
+                new THREE.MeshStandardMaterial({
+                    color: 0x00ff0000,
+                    emissive: 0x2a2a2a,
+                    side: THREE.DoubleSide
+                }));
+        scene.add(mesh);
+        loop();
+    });
+
+}
+    ());
