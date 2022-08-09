@@ -5,6 +5,9 @@
 * () update s5-light with texture
 * () update s6-rotation with texture
 
+## () - new updating loop example
+* () have a new simple updating example
+
 ## () - new copy example
 * () - have a new basic copy method example
 
