@@ -20,11 +20,10 @@ var mesh1 = new THREE.Mesh(
         THREE.MathUtils.degToRad(45), // start radian
         THREE.MathUtils.degToRad(220)   // rdaian length
      ),
-
+     // Using the normals material and making sure to use Double side
      new THREE.MeshNormalMaterial({
          side: THREE.DoubleSide
      })
-
 );
 scene.add(mesh1);
 
