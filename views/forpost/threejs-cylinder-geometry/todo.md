@@ -6,8 +6,8 @@
 ## () s6 - buffer copy
 * exmaple where I am updaing over time in a loop by mmaking use of the copy method
 
-## () s5 - points, and Lines
-* have an example that using THREE.Points and THREE.LineSegments
+## ( done 08/12/2022 ) s5 - points, and Lines
+* (done) have an example that using THREE.Points and THREE.LineSegments
 
 ## ( done 08/12/2022) s4 - caps-open
 * (done) example with caps open and custom start and end radians
