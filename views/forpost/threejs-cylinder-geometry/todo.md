@@ -1,7 +1,7 @@
 # threejs-cylinder-geometry todo list
 
-## ( ) - s3-groups
-* () more than one material example
+## ( done 08/12/2022 ) - s3-groups
+* (done) more than one material example
 
 ## ( done 08/12/2022 ) - s2-cylinder-as-cone
 * (done) example using the arguments to create a cone with cylinder
