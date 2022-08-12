@@ -13,8 +13,8 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 // LIGHT
 //******** **********
-var dl = new THREE.DirectionalLight(0xffffff, 0.75);
-dl.position.set(3, 1, 4);
+var dl = new THREE.DirectionalLight(0xffffff, 1.0);
+dl.position.set(3, 4, 1);
 scene.add(dl);
 
 //******** **********
@@ -34,7 +34,6 @@ var mesh2 = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 4, 20, 20), mate
 mesh2.position.set(0, 0, 1);
 mesh2.rotation.z = Math.PI * 0.6;
 scene.add(mesh2);
-
 
 //******** **********
 // RENDER
