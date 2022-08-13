@@ -1,3 +1,4 @@
+// see r111 demo for a code that seems to be working well on Rpi
 //****** **********
 // camera and renderer
 //****** **********
