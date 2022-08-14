@@ -34,7 +34,7 @@ const skeleton = new THREE.Skeleton( bones );
 //****** **********
 const geometry = new THREE.CylinderGeometry( 1, 1, 5, 15, 15, false);
 // buffer geometry must be used with skinned mesh
-var bufferGeometry = new THREE.BufferGeometry().fromGeometry(geometry);
+//var bufferGeometry = new THREE.BufferGeometry().fromGeometry(geometry);
 
 
 // create the skin indices and skin weights manually
@@ -43,7 +43,7 @@ const sizing = {
     halfHeight: 5,
     segmentHeight: 30
 };
-const position = bufferGeometry.attributes.position;
+const position = geometry.attributes.position;
 const vertex = new THREE.Vector3();
 const skinIndices = [];
 const skinWeights = [];
@@ -56,13 +56,13 @@ for ( let i = 0; i < position.count; i ++ ) {
 	skinIndices.push( skinIndex, skinIndex + 1, 0, 0 );
 	skinWeights.push( 1 - skinWeight, skinWeight, 0, 0 );
 }
-bufferGeometry.setAttribute( 'skinIndex', new THREE.Uint16BufferAttribute( skinIndices, 4 ) );
-bufferGeometry.setAttribute( 'skinWeight', new THREE.Float32BufferAttribute( skinWeights, 4 ) );
+geometry.setAttribute( 'skinIndex', new THREE.Uint16BufferAttribute( skinIndices, 4 ) );
+geometry.setAttribute( 'skinWeight', new THREE.Float32BufferAttribute( skinWeights, 4 ) );
 
 //console.log(skinIndices, skinWeights)
 
 const material = new THREE.MeshNormalMaterial();
-const mesh = new THREE.SkinnedMesh( bufferGeometry, material );
+const mesh = new THREE.SkinnedMesh( geometry, material );
 mesh.bind( skeleton );
 scene.add( mesh );
 
