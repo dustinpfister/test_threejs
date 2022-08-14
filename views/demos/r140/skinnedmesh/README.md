@@ -1,6 +1,13 @@
 ## skinned mesh demo
 
-So far this feature of threejs results in a loss of context webgl error in chromium 90.x on rpi os buster. This is because it would seem that webgl 2.0 is disabled and thus this will not work, at least not with late versions of threejs such as r140
+This is a skinned mesh demo in which I just want to bend a cylinder around.
+
+
+https://github.com/mrdoob/three.js/blob/dev/docs/scenes/bones-browser.html
+
+### Getting this to work on raspberry pi os?
+
+So far this feature of threejs results in a loss of context webgl error in chromium 90.x on rpi os buster. This is because it would seem that webgl 2.0 is disabled and thus this will not work, at least not with late versions of threejs such as r140. I have started another demo using an older version of threejs in my r111 folder of demos, this does not result in a loss of content, but thus far I also have not got it working.
 
 ## Know webgl support
 
