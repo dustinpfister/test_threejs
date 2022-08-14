@@ -71,17 +71,13 @@ if(renderer.capabilities.isWebGL2){
     //****** **********
     var loop = function(){
         requestAnimationFrame(loop);
-    var x = -0.3 + 0.6 * Math.random();
-    var y = -0.3 + 0.6 * Math.random();
-    var z = -0.3 + 0.6 * Math.random();
-    skeleton.bones[ 0 ].rotation.set(x, y, z);
-
-    //mesh.position.x = -1 + 2 * Math.random()
-
-//console.log(skeleton.bones[ 0 ])
-    renderer.render(scene, camera);
-}
-loop();
+        var x = -0.3 + 0.6 * Math.random();
+        var y = -0.3 + 0.6 * Math.random();
+        var z = -0.3 + 0.6 * Math.random();
+        skeleton.bones[ 0 ].rotation.set(x, y, z);
+        renderer.render(scene, camera);
+    }
+    loop();
 }else{
     console.log('We do not have webgl2');
 }
