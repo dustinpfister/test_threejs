@@ -2,10 +2,10 @@
 
 ## () - expand s3 section on camera movement
 * () have one example on the Vector3 lerp method
-* () link to camera-kit threejs examle
+* () link to camera-kit threejs example
 
-## () - s2 examples on orthographic
-* have at least one example on the orthographic camera
+## ( done 08/15/2022 ) - s2 example on orthographic
+* (done) have at least one example on the orthographic camera
 
 ## ( done 08/15/2022 ) - curent set of examples
 * (done) have s1 examples
