@@ -1,6 +1,12 @@
-// seq-hooks-r1.js
-// sequence hooks library from threejs-examples-sequence-hooks
-// * added an seq.getPer method
+/* seq-hooks-r1.js - sequence hooks library from threejs-examples-sequence-hooks
+ *    * added an seq.getPer method
+ *    * added an seq.getBias and seq.getSinBias methods
+ *    * new public methods for getPer, getBias, and getSinBias
+ *    * added an seg.pff (Part Frame Function) that can be set via create options
+ *    * pff function is used to set what expressions to use to get partFrame and partFrame max values
+ *    * three built in pff functions 'r0', 'r0Cap', and 'r1' with a default of 'r1'
+ *    * can define a custom pff function if needed by just using a function rather than string value for seq.pff
+ */
 var seqHooks = (function () {
     var api = {};
     //******** **********
@@ -125,7 +131,6 @@ var seqHooks = (function () {
         // set main per and bias values
         seq.per = getPer(seq.frame, seq.frameMax);
         seq.bias = getBias(seq.per);
-
         // update object index
         seq.objectIndex = 0;
         var i = 0, len = seq.objects.length;
