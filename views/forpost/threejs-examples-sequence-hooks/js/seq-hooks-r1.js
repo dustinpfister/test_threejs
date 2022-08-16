@@ -152,7 +152,7 @@ var seqHooks = (function () {
         seq.afterObjects(seq);
     };
     //******** **********
-    // PUBLIC GET PER
+    // PUBLIC GET PER AND BIAS METHODS
     //******** **********
     api.getPer = function(a, b, count){
         a = a === undefined ? 0 : a;
@@ -160,6 +160,10 @@ var seqHooks = (function () {
         count = count === undefined ? 1 : count;
         var per = a / b;
         return per * count % 1;
+    };
+    api.getBias = function(a, b, count){
+        var per = api.getPer(a, b, count);
+        return getBias(per);
     };
     //******** **********
     // OTHER PUBLIC METHODS

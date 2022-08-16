@@ -27,6 +27,8 @@
     //******** **********
     console.log( seqHooks.getPer(2, 10, 1) ); // 0.2
     console.log( seqHooks.getPer(2, 10, 4) ); // 0.8
+    console.log( seqHooks.getBias(2, 10, 1) ); // 0.4
+    console.log( seqHooks.getBias(2, 10, 4) ); // 0.3999999999999999
     //******** **********
     // CREATE seq objects using seq.getPer
     //******** **********
