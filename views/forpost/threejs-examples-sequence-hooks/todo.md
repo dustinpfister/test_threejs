@@ -7,20 +7,16 @@
 * () see about having a getSinBias method
 * () see about making some of the public methods private helpers
 
-## () - r1 - getBias, getPer methods, bugs fixed
+## () - r1 - have an r1 of the module with getBias, getPer methods, bugs fixed, ect
 * (done) I want a seq.getPer
 * (done) have a public getPer method that will take n, d, and count value
-
-* () start a r0 demo to reproduce problem with partPer values
 * () see about fixing bug with partPer values getting a 1 value
-
 * () I will want a seq.getBias methods
 * () have a public getBias method like the getPer method
 
-
-## () - new r0 basic example
+## ( done 08/16/2022 ) - new r0 basic example
 * (done) rename current basic r0 example to s1-3-many
-* () start new s1-1-basic that is just a basic starting example
+* (done) start new s1-1-basic that is just a basic starting example
 
 ## ( done 08/16/2022 ) - new r0-bug example
 * (done) start an s1-2-part-per example
