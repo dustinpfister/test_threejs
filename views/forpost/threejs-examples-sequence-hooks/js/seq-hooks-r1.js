@@ -98,9 +98,9 @@ var seqHooks = (function () {
             if(seq.per >= obj.per && seq.per < per2){
                 seq.objectIndex = i;
                 // expression for setting partFrameMax and partFrame values
-                seq.partFrameMax = Math.floor( (per2 - obj.per) * seq.frameMax );
-                seq.partFrame = seq.frame - Math.floor(seq.frameMax * obj.per);
-
+                seq.partFrameMax = Math.ceil( (per2 - obj.per) * seq.frameMax );
+                seq.partFrame = Math.floor(seq.frame - seq.frameMax * obj.per);
+                // set partPer and partBias
                 seq.partPer = getPer(seq.partFrame, seq.partFrameMax);
                 seq.partBias = getBias(seq.partPer);
                 break;
