@@ -6,7 +6,7 @@
 ## () - r2 - 
 * () see about making some of the public methods private helpers
 
-## () - r1 - have an r1 of the module with getBias, getPer methods, bugs fixed, ect
+## ( done 08/16/2022 ) - r1 - have an r1 of the module with getBias, getPer methods, bugs fixed, ect
 * (done) I want a seq.getPer
 * (done) have a public getPer method that will take n, d, and count value
 * (done) see about fixing bug with partPer values getting a 1 value
