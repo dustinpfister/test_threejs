@@ -1,16 +1,21 @@
 # threejs-examples-sequence-hooks todo list
 
+## Known problems
+* () - #0 partPer values end up being 1 which cuases undesired effects 
+
+## () - r2 - 
+* () see about having a getSinBias method
+* () see about making some of the public methods private helpers
+
 ## () - r1 - getBias, getPer methods, bugs fixed
 * (done) I want a seq.getPer
 * (done) have a public getPer method that will take n, d, and count value
 
-* () I will want a seq.getBias methods
-* () have a public getBias method like the getPer method
-
-* () see about having a getSinBias method
+* () start a r0 demo to reproduce problem with partPer values
 * () see about fixing bug with partPer values getting a 1 value
 
-* () see about making some of the public methods private helpers
+* () I will want a seq.getBias methods
+* () have a public getBias method like the getPer method
 
 ## ( done 05/12/2022 ) - first state of for post folder
 * (done) start an r0 folder for this example using the source code from the r135 prototype demo
