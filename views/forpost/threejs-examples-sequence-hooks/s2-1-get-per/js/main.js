@@ -26,9 +26,11 @@
     // PUBLIC seqHooks.getPer
     //******** **********
     console.log( seqHooks.getPer(2, 10, 1) ); // 0.2
-    console.log( seqHooks.getPer(2, 10, 4) ); // 0.8
+    console.log( seqHooks.getPer(2, 10, 2) ); // 0.4
     console.log( seqHooks.getBias(2, 10, 1) ); // 0.4
-    console.log( seqHooks.getBias(2, 10, 4) ); // 0.3999999999999999
+    console.log( seqHooks.getBias(2, 10, 2) ); // 0.8
+    console.log( seqHooks.getSinBias(2, 10, 1) ); // 0.5877852522924731
+    console.log( seqHooks.getSinBias(2, 10, 2) ); // 0.9510565162951535
     //******** **********
     // CREATE seq objects using seq.getPer
     //******** **********

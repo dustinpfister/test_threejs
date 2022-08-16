@@ -4,6 +4,7 @@
 * ( fixed in r1 ) - #0 partPer values end up being 1 which cuases undesired effects 
 
 ## () - r2 - 
+* () see about making some of the public methods private helpers
 
 ## () - r1 - have an r1 of the module with getBias, getPer methods, bugs fixed, ect
 * (done) I want a seq.getPer
@@ -12,9 +13,7 @@
 * (done) worked out a complex solution for #0, but it will allow for old, new, and custom values for seq.partFrame
 * (done) I will want a seq.getBias methods
 * (done) have a public getBias method like the getPer method
-
-* () see about having a getSinBias method
-* () see about making some of the public methods private helpers
+* (done) see about having a getSinBias method
 
 ## ( done 08/16/2022 ) - new r0 basic example
 * (done) rename current basic r0 example to s1-3-many

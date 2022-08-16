@@ -178,6 +178,10 @@ var seqHooks = (function () {
         var per = api.getPer(a, b, count);
         return getBias(per);
     };
+    api.getSinBias = function(a, b, count){
+        var per = api.getPer(a, b, count);
+        return getSinBias(per);
+    };
     //******** **********
     // OTHER PUBLIC METHODS
     //******** **********
