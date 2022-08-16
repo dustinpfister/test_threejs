@@ -19,11 +19,11 @@
 
 
 ## () - new r0 basic example
-* rename current basic r0 example to s1-3-many-seq-obj
-* start new s1-1-basic that is just a basic starting example
+* () rename current basic r0 example to s1-3-many-seq-obj
+* () start new s1-1-basic that is just a basic starting example
 
 ## () - new r0-bug example
-* start an s1-2-part-frame 
+* () start an s1-2-part-frame 
 
 ## ( done 05/12/2022 ) - first state of for post folder
 * (done) start an r0 folder for this example using the source code from the r135 prototype demo
