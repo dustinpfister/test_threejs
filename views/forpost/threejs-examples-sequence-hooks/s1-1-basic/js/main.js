@@ -1,134 +1,56 @@
 (function () {
     // SCENE, CAMERA, and RENDERER
     var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(10, 10))
-    var width = 640, height = 480,
-    fieldOfView = 40, aspectRatio = width / height,
-    near = 0.1, far = 1000,
-    camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far);
+    scene.add(new THREE.GridHelper(10, 10));
+    camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.1, 1000);
     var renderer = new THREE.WebGLRenderer();
     document.getElementById('demo').appendChild(renderer.domElement);
-    renderer.setSize(width, height);
+    renderer.setSize(640, 480);
     // MESH
     var mesh1 = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
     scene.add(mesh1);
-    var mesh2 = new THREE.Mesh(
-        new THREE.SphereGeometry(0.5, 30, 30),
-        new THREE.MeshNormalMaterial());
-    scene.add(mesh2);
-    // seq object for mesh1 that scales the mesh
-    var seq_mesh1_scale = seqHooks.create({
-        setPerValues: false,
-        beforeObjects: function(seq){
-            mesh1.scale.set(1, 1, 1);
-        },
-        objects: [
-            {
-                per: 0,
-                update: function(seq, partPer, partBias){
-                    var s = 1 + 2 * partPer;
-                    mesh1.scale.set(s, s, s);
-                }
-            },
-            {
-                per: 0.15,
-                update: function(seq, partPer, partBias){
-                    mesh1.scale.set(3, 3, 3);                    
-                }
-            },
-            {
-                per: 0.25,
-                update: function(seq, partPer, partBias){
-                    var s = 3 - 2 * partPer;
-                    mesh1.scale.set(s, s, s);                    
-                }
-            }
-        ]
-    });
-    // seq object for mesh1 that rotates the mesh
-    var seq_mesh1_rotate = seqHooks.create({
-        setPerValues: false,
-        beforeObjects: function(seq){
-            mesh1.scale.set(1, 1, 1);
-            mesh1.rotation.set(0, 0, 0);
-            mesh1.rotation.y = Math.PI * 4 * seq.per;
-        },
-        objects: [
-            {
-                per: 0,
-                update: function(seq, partPer, partBias){
-                    mesh1.rotation.x = Math.PI * 1.5;
-                }
-            },
-            {
-                per: 0.5,
-                update: function(seq, partPer, partBias){
-                    mesh1.rotation.x = Math.PI;
-                }
-            }
-        ]
-    });
     // A MAIN SEQ OBJECT
     var seq = seqHooks.create({
+        // before current object hook
         beforeObjects: function(seq){
-            var r = Math.PI * 2 * seq.per;
-            var x = Math.cos(r) * 4;
-            var z = Math.sin(r) * 4;
-            mesh2.position.set(x, 0, z);
+             // default value for camera
+             camera.fov = 60;
+             camera.aspect = 640 / 480;
+             camera.position.set(10, 10, 10);
+             camera.lookAt(0, 0, 0);
+             // always rotate mesh object
+             mesh1.rotation.y = Math.PI * 2 * seq.per;
         },
+        // after current object hook
         afterObjects: function(seq){
-            camera.lookAt(mesh1.position);
+             // always update the projection matrix so that any values
+             // like fov or aspect take effect from before hook, and 
+             // current update method in seq.objects
+             camera.updateProjectionMatrix();
         },
+        // the objects for eac sequence
         objects: [
             {
-                per: 0,
-                secs: 3,
-                update: function(seq, partPer, partBias){
-                    // seq_mesh1
-                    seqHooks.setFrame(seq_mesh1_scale, seq.partFrame, seq.partFrameMax);
-                    // camera
-                    camera.position.set(10, 10, 10);
-                }
-            },
-            {
                 secs: 1,
                 update: function(seq, partPer, partBias){
-                    // camera
-                    camera.position.set(10 - 20 * partPer, 10, 10);
-                }
-            },
-            {
-                secs: 1,
-                update: function(seq, partPer, partBias){
-                    // camera
-                    camera.position.set(-10, 10 - 7 * partPer, 10);
+                    camera.fov = 10 + 50 * partPer;
                 }
             },
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
-                    // camera
-                    camera.position.set(-10, 3, 10);
-                    var x = 10 * partBias;
-                    camera.lookAt(mesh1.position.clone().add(new THREE.Vector3(x, 0, 0)));
-                }
-            },
-            {
-                secs: 10,
-                update: function(seq, partPer, partBias){
-                    // seq_mesh1
-                    seqHooks.setFrame(seq_mesh1_rotate, seq.partFrame, seq.partFrameMax);
-                    // camera
-                    camera.position.set(-10, 3 - 10 * partPer, 10 - 30 * partPer);
+                     var w = 640 - 320 * partPer;
+                     var h = 480 + 240 * partPer;
+                     camera.aspect = w / h;
                 }
             }
         ]
     });
     // APP LOOP
     var secs = 0,
-    fps_update = 10,
+    fps_update = 30,
     fps_movement = 30,
     lt = new Date();
     var loop = function () {
