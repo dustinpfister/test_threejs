@@ -149,6 +149,7 @@ var seqHooks = (function () {
                 // set partPer and partBias
                 seq.partPer = getPer(seq.partFrame, seq.partFrameMax);
                 seq.partBias = getBias(seq.partPer);
+                seq.partSinBias = getSinBias(seq.partPer);
                 break;
             }
             i += 1;
@@ -159,7 +160,7 @@ var seqHooks = (function () {
         var obj = seq.objects[seq.objectIndex];
         if(obj){
             seq.obj = obj;
-            obj.update(seq, seq.partPer, seq.partBias, obj);
+            obj.update(seq, seq.partPer, seq.partBias, seq.partSinBias, obj);
         }
         // call after objects hook
         seq.afterObjects(seq);
@@ -196,7 +197,7 @@ var seqHooks = (function () {
                 perValues.push(0);
             }else{
                 var perDelta = seq.objects[i - 1].secs / secsTotal;
-                perValues.push( parseFloat( ( per + perDelta ).toFixed(4) ) );         
+                perValues.push( parseFloat( ( per + perDelta ).toFixed(4) ) );
             }
             i += 1;
         }

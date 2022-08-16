@@ -57,7 +57,7 @@
         objects: [
             {
                 secs: 3,
-                update: function(seq, partPer, partBias){
+                update: function(seq, partPer, partBias, partSinBias){
                     var p = seq.getPer(4);
                     var r = Math.PI * 2 * p,
                     x = Math.cos(r) * 5,
@@ -66,7 +66,7 @@
                     // camera
                     var b = seq.getSinBias(4);
                     camera.fov = 40 - 15 * b;
-                    camera.position.set(10, 10, 10);
+                    camera.position.set(10, 10, 10 - 5 * partSinBias);
                     camera.lookAt(0, 0, 0);
                 }
             },
