@@ -1,5 +1,7 @@
 (function () {
+    //******** **********
     // SCENE, CAMERA, and RENDERER
+    //******** **********
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(10, 10))
     var width = 640, height = 480,
@@ -9,7 +11,9 @@
     var renderer = new THREE.WebGLRenderer();
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.setSize(width, height);
+    //******** **********
     // MESH
+    //******** **********
     var mesh1 = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
@@ -18,6 +22,9 @@
         new THREE.SphereGeometry(0.5, 30, 30),
         new THREE.MeshNormalMaterial());
     scene.add(mesh2);
+    //******** **********
+    // CREATE seq objects
+    //******** **********
     // seq object for mesh1 that scales the mesh
     var seq_mesh1_scale = seqHooks.create({
         setPerValues: false,
@@ -35,14 +42,14 @@
             {
                 per: 0.15,
                 update: function(seq, partPer, partBias){
-                    mesh1.scale.set(3, 3, 3);                    
+                    mesh1.scale.set(3, 3, 3);
                 }
             },
             {
                 per: 0.25,
                 update: function(seq, partPer, partBias){
                     var s = 3 - 2 * partPer;
-                    mesh1.scale.set(s, s, s);                    
+                    mesh1.scale.set(s, s, s);
                 }
             }
         ]
@@ -126,7 +133,9 @@
             }
         ]
     });
+    //******** **********
     // APP LOOP
+    //******** **********
     var secs = 0,
     fps_update = 10,
     fps_movement = 30,

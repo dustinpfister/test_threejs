@@ -1,21 +1,70 @@
-// seq-hooks-r0.js
+// seq-hooks-r1.js
 // sequence hooks library from threejs-examples-sequence-hooks
+// public getPer and getBias methods
 var seqHooks = (function () {
     var api = {};
+    //******** **********
     // HELPERS
+    //******** **********
+    // no operation
+    var noop = function(){};
+    // internal get per method
     var getPer = function(a, b){
         return a / b;
     };
+    // internal get bias method
     var getBias = function(per){
         return 1 - Math.abs( 0.5 - per ) / 0.5;
     };
+    // get total secs value helper
+    var getTotalSecs = function(seq){
+        return seq.objects.reduce(function(acc, obj){ return acc + (obj.secs || 0) }, 0);
+    };
+    //******** **********
+    // CREATE - create and return a new seq object
+    //******** **********
+    // create new seq object method
+    api.create = function(opt){
+        opt = opt || {};
+        opt.setPerValues = opt.setPerValues === undefined ? true : false;
+        var seq = {};
+        seq.objectIndex = 0;
+        seq.per = 0;
+        seq.bias = 0;
+        seq.frame = 0;
+        seq.frameMax = 100;
+        // parse hooks
+        seq.beforeObjects = opt.beforeObjects || noop;
+        seq.afterObjects = opt.afterObjects || noop;
+        // parse objects
+        seq.objects = opt.objects || [];
+        seq.objects = seq.objects.map(function(obj){
+            obj.per = obj.per === undefined ? 0 : obj.per;
+            obj.secs = obj.secs === undefined ? 0 : obj.secs;
+            obj.data = obj.data || {};
+            obj.update = obj.update || noop;
+            return obj;
+        });
+        // set per values is part of the create process
+        if(opt.setPerValues){
+            api.setPerValues(seq, opt.fps === undefined ? 30: opt.fps);
+        }
+        return seq;
+    };
+    //******** **********
+    // SET FRAME
+    //******** **********
     // update the given seq object by way of a frame, and maxFrame value
     api.setFrame = function(seq, frame, frameMax){
         seq.frame = frame === undefined ? 0 : frame;
         seq.frameMax = frameMax === undefined ? 100 : frameMax;
+
         // set main per and bias values
         seq.per = getPer(seq.frame, seq.frameMax);
         seq.bias = getBias(seq.per);
+
+        seq.getBias = createGetBiasMethod(seq)
+
         // update object index
         seq.objectIndex = 0;
         var i = 0, len = seq.objects.length;
@@ -48,10 +97,9 @@ var seqHooks = (function () {
         // call after objects hook
         seq.afterObjects(seq);
     };
-    // get total secs value helper
-    var getTotalSecs = function(seq){
-        return seq.objects.reduce(function(acc, obj){ return acc + (obj.secs || 0) }, 0);
-    };
+    //******** **********
+    // OTHER PUBLIC METHODS
+    //******** **********
     // just get an array of per values based on sec values for each object, and DO NOT MUTATE the seq object
     api.getPerValues = function(seq){
         var secsTotal = getTotalSecs(seq);
@@ -85,35 +133,6 @@ var seqHooks = (function () {
         });
         // set frameMax
         seq.frameMax = api.getTargetFrames(seq, fps);
-        return seq;
-    };
-    // create new seq object method
-    var noop = function(){};
-    api.create = function(opt){
-        opt = opt || {};
-        opt.setPerValues = opt.setPerValues === undefined ? true : false;
-        var seq = {};
-        seq.objectIndex = 0;
-        seq.per = 0;
-        seq.bias = 0;
-        seq.frame = 0;
-        seq.frameMax = 100;
-        // parse hooks
-        seq.beforeObjects = opt.beforeObjects || noop;
-        seq.afterObjects = opt.afterObjects || noop;
-        // parse objects
-        seq.objects = opt.objects || [];
-        seq.objects = seq.objects.map(function(obj){
-            obj.per = obj.per === undefined ? 0 : obj.per;
-            obj.secs = obj.secs === undefined ? 0 : obj.secs;
-            obj.data = obj.data || {};
-            obj.update = obj.update || noop;
-            return obj;
-        });
-        // set per values is part of the create process
-        if(opt.setPerValues){
-            api.setPerValues(seq, opt.fps === undefined ? 30: opt.fps);
-        }
         return seq;
     };
     // return public api
