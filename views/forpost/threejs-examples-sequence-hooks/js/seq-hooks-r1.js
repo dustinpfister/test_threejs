@@ -58,6 +58,13 @@ var seqHooks = (function () {
             return p * count % 1;
         };
     };
+    // create a get bias method to be used for sm.getBias
+    var createGetBiasMethod = function(seq){
+        return function(count, objectPer){
+            var per = seq.getPer(count, objectPer);
+            return getBias(per);
+        };
+    };
     //******** **********
     // CREATE - create and return a new seq object
     //******** **********
@@ -90,6 +97,7 @@ var seqHooks = (function () {
         }
         // create get per method for this object
         seq.getPer = createGetPerMethod(seq);
+        seq.getBias = createGetBiasMethod(seq);
         return seq;
     };
     //******** **********

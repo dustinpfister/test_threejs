@@ -12,7 +12,7 @@
 * (done) have a public getPer method that will take n, d, and count value
 * (done) see about fixing bug with partPer values getting a 1 value
 * (done) worked out a complex solution for #0, but it will allow for old, new, and custom values for seq.partFrame
-* () I will want a seq.getBias methods
+* (done) I will want a seq.getBias methods
 * () have a public getBias method like the getPer method
 
 ## ( done 08/16/2022 ) - new r0 basic example

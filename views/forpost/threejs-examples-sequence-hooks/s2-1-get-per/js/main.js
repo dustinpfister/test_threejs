@@ -34,11 +34,14 @@
     var seq = seqHooks.create({
         // before current seq.objects
         beforeObjects: function(seq){
+            // mesh1
             var r = Math.PI * 2 * seq.per;
             var x = Math.cos(r) * 2;
             var z = Math.sin(r) * 2;
             mesh1.position.set(x, 0, z);
             mesh1.lookAt(mesh2.position);
+            // defaults for camera
+            camera.fov = 40;
         },
         // after current seq.objects
         afterObjects: function(seq){
@@ -56,6 +59,9 @@
                     x = Math.cos(r) * 5,
                     z = Math.sin(r) * 5;
                     mesh2.position.set(x, 0, z);
+                    // camera
+                    var b = seq.getBias(5);
+                    camera.fov = 40 - 15 * b;
                     camera.position.set(10, 10, 10);
                     camera.lookAt(0, 0, 0);
                 }
@@ -68,6 +74,9 @@
                     x = Math.cos(r) * 5,
                     z = Math.sin(r) * 5;
                     mesh2.position.set(x, z, 0);
+                    // camera
+                    var b = seq.getBias(2);
+                    camera.fov = 40 - 15 * b;
                     camera.position.set(10, 10, 10);
                     camera.lookAt(0, 0, 0);
                 }
