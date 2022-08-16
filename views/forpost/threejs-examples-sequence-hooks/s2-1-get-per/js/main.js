@@ -62,7 +62,7 @@
                     z = Math.sin(r) * 5;
                     mesh2.position.set(x, 0, z);
                     // camera
-                    var b = seq.getBias(5);
+                    var b = seq.getSinBias(4);
                     camera.fov = 40 - 15 * b;
                     camera.position.set(10, 10, 10);
                     camera.lookAt(0, 0, 0);

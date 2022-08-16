@@ -39,6 +39,11 @@ var seqHooks = (function () {
     var getTotalSecs = function(seq){
         return seq.objects.reduce(function(acc, obj){ return acc + (obj.secs || 0) }, 0);
     };
+    // get sin bias helper
+    var getSinBias = function(per){
+        var b = getBias(per);
+        return Math.sin( Math.PI * 0.5 * b );
+    };
     // create and return a getPer method to be used as seq.getPer
     var createGetPerMethod = function(seq){
         return function(count, objectPer){
@@ -63,6 +68,13 @@ var seqHooks = (function () {
         return function(count, objectPer){
             var per = seq.getPer(count, objectPer);
             return getBias(per);
+        };
+    };
+    // create a get bias method to be used for sm.getBias
+    var createGetSinBiasMethod = function(seq){
+        return function(count, objectPer){
+            var per = seq.getPer(count, objectPer);
+            return getSinBias(per);
         };
     };
     //******** **********
@@ -98,6 +110,7 @@ var seqHooks = (function () {
         // create get per method for this object
         seq.getPer = createGetPerMethod(seq);
         seq.getBias = createGetBiasMethod(seq);
+        seq.getSinBias = createGetSinBiasMethod(seq);
         return seq;
     };
     //******** **********
