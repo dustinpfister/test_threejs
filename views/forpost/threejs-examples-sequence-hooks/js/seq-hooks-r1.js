@@ -1,6 +1,6 @@
 // seq-hooks-r1.js
 // sequence hooks library from threejs-examples-sequence-hooks
-// public getPer and getBias methods
+// * added an seq.getPer method
 var seqHooks = (function () {
     var api = {};
     //******** **********
@@ -19,6 +19,25 @@ var seqHooks = (function () {
     // get total secs value helper
     var getTotalSecs = function(seq){
         return seq.objects.reduce(function(acc, obj){ return acc + (obj.secs || 0) }, 0);
+    };
+    // create and return a getPer method to be used as seq.getPer
+    var createGetPerMethod = function(seq){
+        return function(count, objectPer){
+            // by default return current 1 count per value for the current sequence object
+            count = count === undefined ? 1 : count;
+            objectPer = objectPer === undefined ? true: objectPer;
+            // if I want a objectPer value
+            var a = seq.partFrame, b = seq.partFrameMax;
+            // not object per
+            if(!objectPer){
+                a = seq.frame; 
+                b = seq.frameMax;
+            }
+            // base p value
+            var p = getPer(a, b);
+            // return base p value effected by count
+            return p * count % 1;
+        };
     };
     //******** **********
     // CREATE - create and return a new seq object
@@ -49,29 +68,10 @@ var seqHooks = (function () {
         if(opt.setPerValues){
             api.setPerValues(seq, opt.fps === undefined ? 30: opt.fps);
         }
+        // create get per method for this object
+        seq.getPer = createGetPerMethod(seq);
         return seq;
     };
-
-
-    var createGetPerMethod = function(seq){
-        return function(count, objectPer){
-            // by default return current 1 count per value for the current sequence object
-            count = count === undefined ? 1 : count;
-            objectPer = objectPer === undefined ? true: objectPer;
-            // if I want a objectPer value
-            var a = seq.partFrame, b = seq.partFrameMax;
-            // not object per
-            if(!objectPer){
-                a = seq.frame; 
-                b = seq.frameMax;
-            }
-            // base p value
-            var p = a / b;
-            // return base p value effected by count
-            return p * count % 1;
-        };
-    };
-
     //******** **********
     // SET FRAME
     //******** **********
@@ -83,8 +83,6 @@ var seqHooks = (function () {
         // set main per and bias values
         seq.per = getPer(seq.frame, seq.frameMax);
         seq.bias = getBias(seq.per);
-
-        seq.getPer = createGetPerMethod(seq);
 
         // update object index
         seq.objectIndex = 0;
@@ -99,8 +97,10 @@ var seqHooks = (function () {
             // index as well as other relevant values
             if(seq.per >= obj.per && seq.per < per2){
                 seq.objectIndex = i;
+                // expression for setting partFrameMax and partFrame values
                 seq.partFrameMax = Math.floor( (per2 - obj.per) * seq.frameMax );
                 seq.partFrame = seq.frame - Math.floor(seq.frameMax * obj.per);
+
                 seq.partPer = getPer(seq.partFrame, seq.partFrameMax);
                 seq.partBias = getBias(seq.partPer);
                 break;
@@ -117,6 +117,16 @@ var seqHooks = (function () {
         }
         // call after objects hook
         seq.afterObjects(seq);
+    };
+    //******** **********
+    // PUBLIC GET PER
+    //******** **********
+    api.getPer = function(a, b, count){
+        a = a === undefined ? 0 : a;
+        b = b === undefined ? 1 : b;
+        count = count === undefined ? 1 : count;
+        var per = a / b;
+        return per * count % 1;
     };
     //******** **********
     // OTHER PUBLIC METHODS

@@ -23,7 +23,12 @@
         new THREE.MeshNormalMaterial());
     scene.add(mesh2);
     //******** **********
-    // CREATE seq objects
+    // PUBLIC seqHooks.getPer
+    //******** **********
+    console.log( seqHooks.getPer(2, 10, 1) ); // 0.2
+    console.log( seqHooks.getPer(2, 10, 4) ); // 0.8
+    //******** **********
+    // CREATE seq objects using seq.getPer
     //******** **********
     // A MAIN SEQ OBJECT
     var seq = seqHooks.create({
