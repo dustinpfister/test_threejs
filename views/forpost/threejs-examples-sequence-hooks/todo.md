@@ -1,7 +1,7 @@
 # threejs-examples-sequence-hooks todo list
 
 ## Known problems
-* () - #0 partPer values end up being 1 which cuases undesired effects 
+* ( fixed in r1 ) - #0 partPer values end up being 1 which cuases undesired effects 
 
 ## () - r2 - 
 * () see about having a getSinBias method
@@ -10,7 +10,8 @@
 ## () - r1 - have an r1 of the module with getBias, getPer methods, bugs fixed, ect
 * (done) I want a seq.getPer
 * (done) have a public getPer method that will take n, d, and count value
-* () see about fixing bug with partPer values getting a 1 value
+* (done) see about fixing bug with partPer values getting a 1 value
+* (done) worked out a complex solution for #0, but it will allow for old, new, and custom values for seq.partFrame
 * () I will want a seq.getBias methods
 * () have a public getBias method like the getPer method
 

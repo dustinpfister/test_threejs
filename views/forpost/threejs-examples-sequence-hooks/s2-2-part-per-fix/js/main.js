@@ -22,9 +22,16 @@
     var seq = seqHooks.create({
         beforeObjects: function(seq){
             mesh2.position.set(4 - 8 * seq.bias, 0, 1);
-            //!!! I get werid partper values in r0 THOUGH
+            // this will still happen depeding on the method used to get partFrame and partFrame max values
+            // uncomment to use old 'r0' expressions of define custom
+            //seq.pff = 'r0';
+            //seq.pff = 'r0cap';
+            //seq.pff = function(seq, per2, obj){
+            //        seq.partFrameMax = Math.ceil( (per2 - obj.per) * seq.frameMax );
+            //        seq.partFrame = Math.floor(seq.frame - seq.frameMax * obj.per);
+            //};
             if(seq.partPer >= 1){
-                console.log(seq.objectIndex, seq.partPer.toFixed(2), seq.frame + ' / ' + seq.frameMax)
+                console.log(seq.objectIndex, seq.partPer.toFixed(2), seq.partFrame + ' / ' + seq.partFrameMax)
             }
         },
         objects: [

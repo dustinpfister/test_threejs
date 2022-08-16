@@ -4,6 +4,25 @@
 var seqHooks = (function () {
     var api = {};
     //******** **********
+    // SET PART FRAME FUNCTIONS
+    //******** **********
+    var partFrameFunctions = {
+        // expressions used in r0
+        r0: function(seq, per2, obj){
+            seq.partFrameMax = Math.floor( (per2 - obj.per) * seq.frameMax );
+            seq.partFrame = seq.frame - Math.floor( seq.frameMax * obj.per );
+        },
+        r0cap: function(seq, per2, obj){
+            partFrameFunctions['r0'](seq, per2, obj);
+            seq.partFrame = seq.partFrame >= seq.partFrameMax ? seq.partFrameMax - 1 : seq.partFrame;
+        },
+        // new expression for r1
+        r1: function(seq, per2, obj){
+            seq.partFrameMax = Math.round( (per2 - obj.per) * seq.frameMax );
+            seq.partFrame = Math.floor(seq.frame - seq.frameMax * obj.per);
+        }
+    }
+    //******** **********
     // HELPERS
     //******** **********
     // no operation
@@ -52,6 +71,7 @@ var seqHooks = (function () {
         seq.bias = 0;
         seq.frame = 0;
         seq.frameMax = 100;
+        seq.pff = opt.pff || 'r1';
         // parse hooks
         seq.beforeObjects = opt.beforeObjects || noop;
         seq.afterObjects = opt.afterObjects || noop;
@@ -97,9 +117,14 @@ var seqHooks = (function () {
             // index as well as other relevant values
             if(seq.per >= obj.per && seq.per < per2){
                 seq.objectIndex = i;
-                // expression for setting partFrameMax and partFrame values
-                seq.partFrameMax = Math.ceil( (per2 - obj.per) * seq.frameMax );
-                seq.partFrame = Math.floor(seq.frame - seq.frameMax * obj.per);
+                // fix for #0 still allows for using old methid for setting partFrame values if needed
+                // while also allowing for addtional custom fix if needed by setting seq.pff to a function
+                // see partFrameFunctions above for examples
+                if(typeof seq.pff === 'function'){
+                    seq.pff(seq, per2, obj);
+                }else{
+                    partFrameFunctions[seq.pff](seq, per2, obj);
+                }
                 // set partPer and partBias
                 seq.partPer = getPer(seq.partFrame, seq.partFrameMax);
                 seq.partBias = getBias(seq.partPer);
