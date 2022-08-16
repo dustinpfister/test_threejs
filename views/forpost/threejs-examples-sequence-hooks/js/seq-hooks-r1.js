@@ -51,6 +51,27 @@ var seqHooks = (function () {
         }
         return seq;
     };
+
+
+    var createGetPerMethod = function(seq){
+        return function(count, objectPer){
+            // by default return current 1 count per value for the current sequence object
+            count = count === undefined ? 1 : count;
+            objectPer = objectPer === undefined ? true: objectPer;
+            // if I want a objectPer value
+            var a = seq.partFrame, b = seq.partFrameMax;
+            // not object per
+            if(!objectPer){
+                a = seq.frame; 
+                b = seq.frameMax;
+            }
+            // base p value
+            var p = a / b;
+            // return base p value effected by count
+            return p * count % 1;
+        };
+    };
+
     //******** **********
     // SET FRAME
     //******** **********
@@ -63,7 +84,7 @@ var seqHooks = (function () {
         seq.per = getPer(seq.frame, seq.frameMax);
         seq.bias = getBias(seq.per);
 
-        seq.getBias = createGetBiasMethod(seq)
+        seq.getPer = createGetPerMethod(seq);
 
         // update object index
         seq.objectIndex = 0;
