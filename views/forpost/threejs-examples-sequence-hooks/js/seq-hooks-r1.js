@@ -120,7 +120,8 @@ var seqHooks = (function () {
     api.setFrame = function(seq, frame, frameMax){
         seq.frame = frame === undefined ? 0 : frame;
         seq.frameMax = frameMax === undefined ? 100 : frameMax;
-
+        // just making sure frame value is vaild
+        seq.frame = seq.frame % frameMax;
         // set main per and bias values
         seq.per = getPer(seq.frame, seq.frameMax);
         seq.bias = getBias(seq.per);
