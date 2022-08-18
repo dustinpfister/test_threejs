@@ -1,8 +1,5 @@
 # threejs-materials todo list
 
-## () - Video on Perspective camera
-* start a forpost_... video on Perspective camera
-
 ## () Update all features example
 * make it so the s6 "all features example" also mutates near and far along with everything else
 
