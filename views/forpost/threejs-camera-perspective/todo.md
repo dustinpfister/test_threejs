@@ -1,7 +1,10 @@
 # threejs-materials todo list
 
 ## () Update all features example
-* make it so the s6 "all features example" also mutates near and far along with everything else
+* make it so the s5 "all features example" also mutates near and far along with everything else
+
+## () - s6-zoom example
+* () have a simple example of the zoom property
 
 ## (done 07/04/2021) new example on a camera helper
 * (done) have one camera that makes use of the camera helper, and another that can be used to gain an outside perspective
