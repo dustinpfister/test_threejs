@@ -14,7 +14,9 @@ I have also started a for post folder that is serving as the standard location f
 
 ## Just browsing the Repo
 
-There is cloning down the whole repo and setting up the sever as a way to view the demos locally, but another way would be to just browse the view folder here at GitHub. When doing so the two main folders of interest here would be the [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/views/demos), and the [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost).
+There is cloning down the whole repo and setting up the sever as a way to view the demos locally, but another way would be to just browse the view folder here at GitHub. When doing so the two main folders of interest here would be the [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/views/demos), and the [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost). 
+
+I often start out by working out one or more prototypes for something in the demos folder. Here I have a folder for each revision of interest that I have started making demos for, or might like to see about getting something that once worked working again and so forth. The for post folder as the name suggests is a folder where I am keeping the final source code examples that I have made for a blog post on a specific threejs feature.
 
 ## 1 - Install
 
