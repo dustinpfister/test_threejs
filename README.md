@@ -9,7 +9,8 @@ I have also started a for post folder that is serving as the standard location f
 <div align="center">
       <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
          <img src="https://img.youtube.com/vi/AzuB6ExUE64/0.jpg" style="width:50%;">
-      </a>
+      </a><br>
+      <p>Weird Face one threejs example Project</p>
 </div>
 
 ## Just browsing the Repo
