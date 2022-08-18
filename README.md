@@ -7,10 +7,13 @@ In the views folder there is the demos folder, and in that folder I have folders
 I have also started a for post folder that is serving as the standard location for final source code examples for each blog post that I write about on my website. When it comes to this I have gt into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post.
 
 <div align="center">
-      <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
-         <img src="https://img.youtube.com/vi/AzuB6ExUE64/0.jpg" style="width:50%;">
-      </a><br>
-      <p><a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-weird-face-1">Weird Face one</a> [threejs example Project](https://dustinpfister.github.io/2021/02/19/threejs-examples/)</p>
+    <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
+        <img src="https://img.youtube.com/vi/AzuB6ExUE64/0.jpg" style="width:50%;">
+    </a><br>
+    <p>
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-weird-face-1">Weird Face one</a> from my 
+        <a href="https://dustinpfister.github.io/2021/02/19/threejs-examples/">threejs example Project Collection</a>
+    </p>
 </div>
 
 ## Just browsing the Repo
