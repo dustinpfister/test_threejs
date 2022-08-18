@@ -6,6 +6,12 @@ In the views folder there is the demos folder, and in that folder I have folders
 
 I have also started a for post folder that is serving as the standard location for final source code examples for each blog post that I write about on my website. When it comes to this I have gt into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post.
 
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
+         <img src="https://img.youtube.com/vi/AzuB6ExUE64/0.jpg" style="width:50%;">
+      </a>
+</div>
+
 ## 1 - Install
 
 I do not have any intention to make this project an npm package or anything to that effect. So for now the best way to set things up with this on your end would be to clone it down with git, cd into the folder, and then do an npm install which seems wot work fine for me each time thus far with the various versions of nodejs and npm that I use at least. After that the main server script can be started as a way to navigate and view all the various demos, videos, and post related source code examples.
