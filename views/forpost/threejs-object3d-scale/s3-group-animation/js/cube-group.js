@@ -1,5 +1,5 @@
 (function (api) {
-
+    // get per values for the current frame and max frame
     var getPerValues = function (frame, maxFrame, base) {
         frame = frame === undefined ? 0 : frame;
         maxFrame = maxFrame === undefined ? 100 : maxFrame;
@@ -16,7 +16,7 @@
             biasLog: Math.log(1 + bias * (base - 1)) / Math.log(base)
         };
     };
-
+    // create group helper
     var createGroup = function () {
         var size = 1,
         scale = 1 / 2,
