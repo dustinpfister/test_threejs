@@ -2,11 +2,9 @@
 
 This is the current standing collection of examples that have to do with [using the transparent property as well as other features of a material in threejs](https://dustinpfister.github.io/2021/04/21/threejs-materials-transparent/).
 
-## Needed Files
-
-* threejs
-
-## Videos for this post
-
-none
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=nUybyQbaFtk">
+         <img src="https://img.youtube.com/vi/nUybyQbaFtk/0.jpg" style="width:50%;">
+      </a>
+</div>
 
