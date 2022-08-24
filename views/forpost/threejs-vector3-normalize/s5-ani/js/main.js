@@ -28,6 +28,8 @@
     //-------- ----------
     // ADD MESH OBJECTS
     //-------- ----------
+    var group = new THREE.Group();
+    group.position.set(2, -1, 0);
     [
         {x: 1, y: 0, z: 0, ul: 5},
         {x: 0, y: 1, z: 0, ul: 3},
@@ -54,8 +56,9 @@
         // and have the mesh look at the origin
         mesh.position.copy(v);
         mesh.lookAt(0, 0, 0);
-        scene.add(mesh);
+        group.add(mesh);
     });
+    scene.add(group);
     //-------- ----------
     // LOOP
     //-------- ----------
