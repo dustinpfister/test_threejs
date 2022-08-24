@@ -102,24 +102,42 @@ loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
     //******** **********
 
     var land0 = result.scene.getObjectByName('land-0');
+    //land0.geometry.scale(2, 2, 2);
     var land1 = result.scene.getObjectByName('land-1');
+    //land1.geometry.scale(2, 2, 2);
     var land2 = result.scene.getObjectByName('land-2');
+
+    //!!! scale and rotate land object helper that should be part of land module
+    // but I am just making it here for now
+    var scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){
+        var mesh = sourceMesh.clone();
+        var geo = mesh.geometry = sourceMesh.geometry.clone();
+
+        geo.scale(scale, scale, scale);
+        geo.rotateX(Math.PI * 2 * rx);
+        geo.rotateX(Math.PI * 2 * ry);
+        geo.rotateX(Math.PI * 2 * rz);
+
+        return mesh;
+    };
 
     // source objects
     gridOpt.sourceObjects = [
-        land0.clone(),
-        land0.clone(),
-        land0.clone(),
-        land0.clone(),
-        land0.clone(),
-        land0.clone(),
-        land0.clone(),
-        land0.clone(),
-        land0.clone(),
-        land0.clone(),
-        land0.clone(),
-        land0.clone(),
-        land0.clone()
+        scaleAndRotateLandObject(land0, 2, 0, 0, 0),
+
+        scaleAndRotateLandObject(land1, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land1, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land1, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land1, 2, 0, 0, 0),
+
+        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 0, 0)
     ];
 
     grid = ObjectGridWrapLand.create(gridOpt);
