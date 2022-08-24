@@ -56,7 +56,7 @@
     //-------- ----------
     // ADD MESH OBJECTS
     //-------- ----------
-    var group = createCapsuleGroup({
+    var group1 = createCapsuleGroup({
         data: [
             {x: 1, y: 0, z: 0, ul: 5},
             {x: 0, y: 1, z: 0, ul: 3},
@@ -66,7 +66,17 @@
             {x: -1, y: -1, z: 1, ul: 4}
         ]
     });
-    scene.add(group);
+    scene.add(group1);
+
+    var group2 = createCapsuleGroup({
+        data: [
+            {x: 1, y: 0, z: -1, ul: 3},
+            {x: 0, y: 1, z: 0, ul: 4},
+            {x: -5, y: 0, z: 0, ul: 3}
+        ]
+    });
+    group2.position.set(-5, 0, -5);
+    scene.add(group2);
 
     //-------- ----------
     // LOOP
