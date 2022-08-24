@@ -78,9 +78,9 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // set position of the grid
-        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.sin( Math.PI * 2 * per ) * 0.5 );
+        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.sin( Math.PI * 2 * per ) * 0.5 );
 
-        ObjectGridWrap.setPos(grid, 0.2, 0.75 );
+        //ObjectGridWrap.setPos(grid, 0.2, 0.75 );
 
         // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
