@@ -4,6 +4,6 @@ This is what I have togeather for my [threejs for post example on a basic framew
 
 <div align="center">
       <a href="https://www.youtube.com/watch?v=UaxHBdbvsco">
-         <img src="https://img.youtube.com/vi/NDnQksd2LR4/0.jpg" style="width:50%;">
+         <img src="https://img.youtube.com/vi/UaxHBdbvsco/0.jpg" style="width:50%;">
       </a>
 </div>
