@@ -20,7 +20,7 @@
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(10, 10));
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(5, 5, 5);
+    camera.position.set(0, 5, 10);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -29,7 +29,12 @@
     // ADD MESH OBJECTS
     //-------- ----------
     [
-        {x: 1, y: 1, z: 1, ul: 3}
+        {x: 1, y: 0, z: 0, ul: 5},
+        {x: 0, y: 1, z: 0, ul: 3},
+        {x: 0, y: 0, z: 1, ul: 5},
+        {x: 1, y: 1, z: 1, ul: 2},
+        {x: -1, y: 0, z: -1, ul: 5},
+        {x: -1, y: -1, z: 1, ul: 4}
     ].forEach(function(opt, i, arr){
         // create a normalize vector based on the given options for x, y, and z
         // then apply the unit length option using multiplyScalar
@@ -40,7 +45,12 @@
         // set length attribute of capsule geometry based mesh object
         var geo = new THREE.CapsuleGeometry( 0.125, v.length(), 30, 30 );
         // translate geometry on y by half the vector length
-        geo.translate(0,v.length() / 2,0);
+        // also rotate on x by half of pi before calling lookAt method
+        // to set rotation of geo to vector
+        geo.translate(0, v.length() / 2, 0);
+        geo.rotateX(Math.PI * 0.5)
+        geo.lookAt(v)
+        // creating mesh object
         var mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());
         scene.add(mesh);
     });
