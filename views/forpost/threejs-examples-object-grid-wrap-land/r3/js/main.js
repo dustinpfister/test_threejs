@@ -115,8 +115,8 @@ loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
 
         geo.scale(scale, scale, scale);
         geo.rotateX(Math.PI * 2 * rx);
-        geo.rotateX(Math.PI * 2 * ry);
-        geo.rotateX(Math.PI * 2 * rz);
+        geo.rotateY(Math.PI * 2 * ry);
+        geo.rotateZ(Math.PI * 2 * rz);
 
         return mesh;
     };
@@ -125,19 +125,20 @@ loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
     gridOpt.sourceObjects = [
         scaleAndRotateLandObject(land0, 2, 0, 0, 0),
 
-        scaleAndRotateLandObject(land1, 2, 0, 0, 0),
-        scaleAndRotateLandObject(land1, 2, 0, 0, 0),
-        scaleAndRotateLandObject(land1, 2, 0, 0, 0),
-        scaleAndRotateLandObject(land1, 2, 0, 0, 0),
+        scaleAndRotateLandObject(land1, 2, 0, 0.75, 0),
+        scaleAndRotateLandObject(land1, 2, 0, 1.00, 0),
+        scaleAndRotateLandObject(land1, 2, 0, 1.25, 0),
+        scaleAndRotateLandObject(land1, 2, 0, 1.50, 0),
 
-        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 0, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 0, 0)
+        scaleAndRotateLandObject(land2, 2, 0, 0.75, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 1.00, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 1.25, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 1.50, 0),
+
+        scaleAndRotateLandObject(land2, 2, 0, 0.75, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 1.00, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 1.25, 0),
+        scaleAndRotateLandObject(land2, 2, 0, 1.50, 0)
     ];
 
     grid = ObjectGridWrapLand.create(gridOpt);
