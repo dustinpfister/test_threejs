@@ -1,9 +1,12 @@
 # object grid wrap land - todo
 
-## () - r3 - Generate from alt option
+## () - rx - Generate from alt option
 * () generate object opt.objectIndices based on opt.altitude
 * () have it so that I can just give an altitude array and tw and th are figured from that
 * () addObjects method
+
+## () - r3 - DAE asset land-set-one
+* () start new revision that works with dae file asset
 
 ## ( done 07/18/2022 ) - r2 - setDataTextures
 * (done) built in data textures method that can be used to quickly add data textures for land tiles
