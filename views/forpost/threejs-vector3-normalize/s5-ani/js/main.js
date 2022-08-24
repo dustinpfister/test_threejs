@@ -14,6 +14,34 @@
         v.applyEuler(e).normalize();
         return v.multiplyScalar(len);
     };
+    // create capsule group
+    var createCapsuleGroup = function(opt){
+        opt = opt || {};
+		opt.data = opt.data || [];
+        var group = new THREE.Group();
+        opt.data.forEach(function(opt, i, arr){
+            // create a normalize vector based on the given options for x, y, and z
+            // then apply the unit length option using multiplyScalar
+            var v = new THREE.Vector3(opt.x, opt.y, opt.z).normalize().multiplyScalar(opt.ul);
+            console.log( v.length() ); // about same as opt.ul
+            console.log( v.distanceTo( new THREE.Vector3() )); // same as v.length()
+            // UNIT LENGTH ( or distance to 0,0,0 ) can be used to 
+            // set length attribute of capsule geometry based mesh object
+            var geo = new THREE.CapsuleGeometry( 0.125, v.length(), 30, 30 );
+            // translate geometry on y by half the vector length
+            // also rotate on x by half of unit length
+            geo.translate(0, v.length() / 2, 0);
+            geo.rotateX(Math.PI * 0.5);
+            // creating mesh object
+            var mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());
+            // copy vector to position of mesh object
+            // and have the mesh look at the origin
+            mesh.position.copy(v);
+            mesh.lookAt(0, 0, 0);
+            group.add(mesh);
+        });
+        return group;
+    };
     //-------- ----------
     // SCENE, CAMERA, RENDERER
     //-------- ----------
@@ -28,37 +56,18 @@
     //-------- ----------
     // ADD MESH OBJECTS
     //-------- ----------
-    var group = new THREE.Group();
-    group.position.set(2, -1, 0);
-    [
-        {x: 1, y: 0, z: 0, ul: 5},
-        {x: 0, y: 1, z: 0, ul: 3},
-        {x: 0, y: 0, z: 1, ul: 5},
-        {x: 1, y: 1, z: 1, ul: 2},
-        {x: -1, y: 0, z: -1, ul: 5},
-        {x: -1, y: -1, z: 1, ul: 4}
-    ].forEach(function(opt, i, arr){
-        // create a normalize vector based on the given options for x, y, and z
-        // then apply the unit length option using multiplyScalar
-        var v = new THREE.Vector3(opt.x, opt.y, opt.z).normalize().multiplyScalar(opt.ul);
-        console.log( v.length() ); // about same as opt.ul
-        console.log( v.distanceTo( new THREE.Vector3() )); // same as v.length()
-        // UNIT LENGTH ( or distance to 0,0,0 ) can be used to 
-        // set length attribute of capsule geometry based mesh object
-        var geo = new THREE.CapsuleGeometry( 0.125, v.length(), 30, 30 );
-        // translate geometry on y by half the vector length
-        // also rotate on x by half of unit length
-        geo.translate(0, v.length() / 2, 0);
-        geo.rotateX(Math.PI * 0.5);
-        // creating mesh object
-        var mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());
-        // copy vector to position of mesh object
-        // and have the mesh look at the origin
-        mesh.position.copy(v);
-        mesh.lookAt(0, 0, 0);
-        group.add(mesh);
+    var group = createCapsuleGroup({
+        data: [
+            {x: 1, y: 0, z: 0, ul: 5},
+            {x: 0, y: 1, z: 0, ul: 3},
+            {x: 0, y: 0, z: 1, ul: 5},
+            {x: 1, y: 1, z: 1, ul: 2},
+            {x: -1, y: 0, z: -1, ul: 5},
+            {x: -1, y: -1, z: 1, ul: 4}
+        ]
     });
     scene.add(group);
+
     //-------- ----------
     // LOOP
     //-------- ----------
