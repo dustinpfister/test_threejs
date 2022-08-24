@@ -78,7 +78,10 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // set position of the grid
-        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.sin( Math.PI * 2 * per ) * 0.5 );
+        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.sin( Math.PI * 2 * per ) * 0.5 );
+
+        ObjectGridWrap.setPos(grid, 0.2, 0.75 );
+
         // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
         renderer.render(scene, camera);
@@ -106,6 +109,7 @@ loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
     var land1 = result.scene.getObjectByName('land-1');
     //land1.geometry.scale(2, 2, 2);
     var land2 = result.scene.getObjectByName('land-2');
+    var land3 = result.scene.getObjectByName('land-3');
 
     //!!! scale and rotate land object helper that should be part of land module
     // but I am just making it here for now
@@ -130,15 +134,15 @@ loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
         scaleAndRotateLandObject(land1, 2, 0, 1.25, 0),
         scaleAndRotateLandObject(land1, 2, 0, 1.50, 0),
 
-        scaleAndRotateLandObject(land2, 2, 0, 0.75, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 1.00, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 1.25, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 1.50, 0),
+        scaleAndRotateLandObject(land2, 2, 0.75, 0.75, 0),
+        scaleAndRotateLandObject(land2, 2, 0.75, 0.00, 0),
+        scaleAndRotateLandObject(land2, 2, 0.75, 0.25, 0),
+        scaleAndRotateLandObject(land2, 2, 0.75, 0.50, 0),
 
-        scaleAndRotateLandObject(land2, 2, 0, 0.75, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 1.00, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 1.25, 0),
-        scaleAndRotateLandObject(land2, 2, 0, 1.50, 0)
+        scaleAndRotateLandObject(land3, 2, 0, 0.50, 0),
+        scaleAndRotateLandObject(land3, 2, 0, 0.75, 0),
+        scaleAndRotateLandObject(land3, 2, 0, 0.00, 0),
+        scaleAndRotateLandObject(land3, 2, 0, 0.25, 0)
     ];
 
     grid = ObjectGridWrapLand.create(gridOpt);

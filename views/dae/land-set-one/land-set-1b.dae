@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.79.0</authoring_tool>
     </contributor>
-    <created>2022-08-24T19:08:00</created>
-    <modified>2022-08-24T19:08:00</modified>
+    <created>2022-08-24T19:19:17</created>
+    <modified>2022-08-24T19:19:17</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -333,12 +333,44 @@
         </triangles>
       </mesh>
     </geometry>
+    <geometry id="land-3-geo-mesh" name="land-3-geo">
+      <mesh>
+        <source id="land-3-geo-mesh-positions">
+          <float_array id="land-3-geo-mesh-positions-array" count="21">-0.5 -0.5 -0.5 -0.5 -0.5 0.5 -0.5 0.5 -0.5 -0.5 0.5 0.5 0.5 -0.5 -0.5 0.5 -0.5 0.5 0.5 0.5 -0.5</float_array>
+          <technique_common>
+            <accessor source="#land-3-geo-mesh-positions-array" count="7" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="land-3-geo-mesh-normals">
+          <float_array id="land-3-geo-mesh-normals-array" count="21">-1 0 0 0 1 0 1 0 0 0 -1 0 0 0 -1 0 0 1 0.5773503 0.5773503 0.5773503</float_array>
+          <technique_common>
+            <accessor source="#land-3-geo-mesh-normals-array" count="7" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="land-3-geo-mesh-vertices">
+          <input semantic="POSITION" source="#land-3-geo-mesh-positions"/>
+        </vertices>
+        <triangles count="10">
+          <input semantic="VERTEX" source="#land-3-geo-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#land-3-geo-mesh-normals" offset="1"/>
+          <p>1 0 2 0 0 0 2 1 3 1 6 1 4 2 6 2 5 2 5 3 0 3 4 3 6 4 0 4 2 4 1 5 5 5 3 5 5 6 6 6 3 6 1 0 3 0 2 0 5 3 1 3 0 3 6 4 4 4 0 4</p>
+        </triangles>
+      </mesh>
+    </geometry>
     <geometry id="land-2-geo-mesh" name="land-2-geo">
       <mesh>
         <source id="land-2-geo-mesh-positions">
-          <float_array id="land-2-geo-mesh-positions-array" count="21">-0.5 -0.5 -0.5 -0.5 -0.5 0.5 -0.5 0.5 -0.5 -0.5 0.5 0.5 0.5 -0.5 -0.5 0.5 -0.5 0.5 0.5 0.5 -0.5</float_array>
+          <float_array id="land-2-geo-mesh-positions-array" count="15">-0.5 -0.5 -0.5 -0.5 -0.5 0.5 -0.5 0.5 -0.5 0.5 -0.5 -0.5 0.5 0.5 -0.5</float_array>
           <technique_common>
-            <accessor source="#land-2-geo-mesh-positions-array" count="7" stride="3">
+            <accessor source="#land-2-geo-mesh-positions-array" count="5" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
@@ -346,9 +378,9 @@
           </technique_common>
         </source>
         <source id="land-2-geo-mesh-normals">
-          <float_array id="land-2-geo-mesh-normals-array" count="21">-1 0 0 0 1 0 1 0 0 0 -1 0 0 0 -1 0 0 1 0.5773503 0.5773503 0.5773503</float_array>
+          <float_array id="land-2-geo-mesh-normals-array" count="15">0 0.7071068 0.7071068 0.7071068 0 0.7071068 -1 0 0 0 -1 0 0 0 -1</float_array>
           <technique_common>
-            <accessor source="#land-2-geo-mesh-normals-array" count="7" stride="3">
+            <accessor source="#land-2-geo-mesh-normals-array" count="5" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
@@ -358,10 +390,10 @@
         <vertices id="land-2-geo-mesh-vertices">
           <input semantic="POSITION" source="#land-2-geo-mesh-positions"/>
         </vertices>
-        <triangles count="10">
+        <triangles count="6">
           <input semantic="VERTEX" source="#land-2-geo-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#land-2-geo-mesh-normals" offset="1"/>
-          <p>1 0 2 0 0 0 2 1 3 1 6 1 4 2 6 2 5 2 5 3 0 3 4 3 6 4 0 4 2 4 1 5 5 5 3 5 5 6 6 6 3 6 1 0 3 0 2 0 5 3 1 3 0 3 6 4 4 4 0 4</p>
+          <p>4 0 2 0 1 0 3 1 4 1 1 1 0 2 1 2 2 2 1 3 0 3 3 3 4 4 0 4 2 4 4 4 3 4 0 4</p>
         </triangles>
       </mesh>
     </geometry>
@@ -406,6 +438,10 @@
       <node id="land-1" name="land-1" type="NODE">
         <matrix sid="transform">1 0 0 4.5 0 1 0 -2.5 0 0 1 0 0 0 0 1</matrix>
         <instance_geometry url="#land-1-geo-mesh" name="land-1"/>
+      </node>
+      <node id="land-3" name="land-3" type="NODE">
+        <matrix sid="transform">1 0 0 8.5 0 1 0 -2.5 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#land-3-geo-mesh" name="land-3"/>
       </node>
       <node id="land-2" name="land-2" type="NODE">
         <matrix sid="transform">1 0 0 6.5 0 1 0 -2.5 0 0 1 0 0 0 0 1</matrix>
