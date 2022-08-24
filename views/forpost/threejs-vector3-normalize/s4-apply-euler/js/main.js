@@ -1,6 +1,8 @@
 
 (function () {
-
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
     // simple create cube helper
     var createCube = function(){
         var cube = new THREE.Mesh(
@@ -8,7 +10,7 @@
             new THREE.MeshNormalMaterial());
         return cube;
     };
-
+    // vector from angles helper
     var vectorFromAngles = function(a, b, c, len, start){
         len = len = undefined ? 1 : len;
         var e = new THREE.Euler(
@@ -19,48 +21,46 @@
         v.applyEuler(e).normalize();
         return v.multiplyScalar(len);
     };
-
-
-
-    // scene
+    //-------- ----------
+    // SCENE, CAMERA, RENDERER
+    //-------- ----------
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(9, 9));
-
-
-
-    var cube = createCube();
-    scene.add(cube);
-
-    var v = vectorFromAngles(90, 0, 0, 1);
-    console.log(v);
-    cube.position.copy(v);
-
-    // CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
     camera.position.set(5, 5, 5);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-
-
+    //-------- ----------
+    // ADD MESH
+    //-------- ----------
+    var cube = createCube();
+    scene.add(cube);
+    var v = vectorFromAngles(90, 0, 0, 1);
+    console.log(v);
+    cube.position.copy(v);
+    //-------- ----------
+    // LOOP
+    //-------- ----------
     var lt = new Date(),
-    a = 0,
+    a = 45,
     b = 0,
     c = 90,
+    d = 2.5,
     fps = 30;
     var loop = function(){
         var now = new Date(),
         secs = ( now - lt ) / 1000;
-
         requestAnimationFrame(loop);
-
         if(secs > 1 / fps){
             b += 90 * secs;
             b %= 360;
-            var v = vectorFromAngles(a, b, c, 1.5);
+            // using vector from angles helper to copy new position
+            // to the cube mesh object that uses apply Euler and normalize
+            var v = vectorFromAngles(a, b, c, d);
             cube.position.copy(v);
-
+            cube.lookAt(0, 0, 0);
             lt = now;
             renderer.render(scene, camera);
         }
