@@ -23,17 +23,15 @@
             // create a normalize vector based on the given options for x, y, and z
             // then apply the unit length option using multiplyScalar
             var v = new THREE.Vector3(opt.x, opt.y, opt.z).normalize().multiplyScalar(opt.ul);
-            console.log( v.length() ); // about same as opt.ul
-            console.log( v.distanceTo( new THREE.Vector3() )); // same as v.length()
             // UNIT LENGTH ( or distance to 0,0,0 ) can be used to 
             // set length attribute of capsule geometry based mesh object
-            var geo = new THREE.CapsuleGeometry( 0.125, v.length(), 30, 30 );
+            var geo = new THREE.CapsuleGeometry( 0.1, v.length(), 30, 30 );
             // translate geometry on y by half the vector length
             // also rotate on x by half of unit length
             geo.translate(0, v.length() / 2, 0);
             geo.rotateX(Math.PI * 0.5);
             // creating mesh object
-            var mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());
+            var mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ transparent: true, opacity: 0.6}));
             // copy vector to position of mesh object
             // and have the mesh look at the origin
             mesh.position.copy(v);
