@@ -45,13 +45,15 @@
         // set length attribute of capsule geometry based mesh object
         var geo = new THREE.CapsuleGeometry( 0.125, v.length(), 30, 30 );
         // translate geometry on y by half the vector length
-        // also rotate on x by half of pi before calling lookAt method
-        // to set rotation of geo to vector
+        // also rotate on x by half of unit length
         geo.translate(0, v.length() / 2, 0);
-        geo.rotateX(Math.PI * 0.5)
-        geo.lookAt(v)
+        geo.rotateX(Math.PI * 0.5);
         // creating mesh object
         var mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());
+        // copy vector to position of mesh object
+        // and have the mesh look at the origin
+        mesh.position.copy(v);
+        mesh.lookAt(0, 0, 0);
         scene.add(mesh);
     });
     //-------- ----------
