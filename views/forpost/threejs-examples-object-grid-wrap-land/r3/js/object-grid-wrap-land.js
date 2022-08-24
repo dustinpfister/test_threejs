@@ -1,5 +1,7 @@
 //******** **********
 // ObjectGridWrap module land module - r3 - from threejs-examples-object-grid-wrap-land
+//
+//    * can pass a custom collection of source objects when calling create method
 //******** **********
 var ObjectGridWrapLand = (function(){
     // public API
@@ -114,7 +116,8 @@ var ObjectGridWrapLand = (function(){
         opt.effects = opt.effects || ['opacity2'];
         opt.MATERIAL_LAND = opt.MATERIAL_LAND || MATERIAL_LAND;
         var meshSize = space - opt.crackSize;
-        opt.sourceObjects = [
+        // can pass a custom collection of source objects
+        opt.sourceObjects = opt.sourceObjects || [
             makeCube(opt.MATERIAL_LAND, meshSize),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.00),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.25),

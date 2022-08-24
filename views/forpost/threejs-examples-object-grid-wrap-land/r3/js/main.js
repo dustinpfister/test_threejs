@@ -100,6 +100,28 @@ loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
     //******** **********
     // CREATE GRID with gridOpt
     //******** **********
+
+    var land0 = result.scene.getObjectByName('land-0');
+    var land1 = result.scene.getObjectByName('land-1');
+    var land2 = result.scene.getObjectByName('land-2');
+
+    // source objects
+    gridOpt.sourceObjects = [
+        land0.clone(),
+        land0.clone(),
+        land0.clone(),
+        land0.clone(),
+        land0.clone(),
+        land0.clone(),
+        land0.clone(),
+        land0.clone(),
+        land0.clone(),
+        land0.clone(),
+        land0.clone(),
+        land0.clone(),
+        land0.clone()
+    ];
+
     grid = ObjectGridWrapLand.create(gridOpt);
     grid.scale.set(1, 1, 1);
     ObjectGridWrapLand.setDataTextures(grid)
