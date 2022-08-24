@@ -49,6 +49,7 @@
         g.children[capsuleIndex].getWorldPosition(v);
         var origin = g.position.clone();
         mesh.position.copy( origin.clone().lerp(v, alpha) );
+        mesh.lookAt(g.position);
     };
     //-------- ----------
     // SCENE, CAMERA, RENDERER
@@ -91,12 +92,19 @@
     groups.add(g);
     // MESH OBJECT
     var s = 1.0;
-    var mesh = new THREE.Mesh(new THREE.BoxGeometry(s, s, s), new THREE.MeshNormalMaterial());
-    scene.add(mesh);
-    setToGroup(groups, mesh, 1, 0, 0.75)
+    var mesh1 = new THREE.Mesh(new THREE.BoxGeometry(s, s, s), new THREE.MeshNormalMaterial());
+    scene.add(mesh1);
+    var mesh2 = new THREE.Mesh(new THREE.SphereGeometry(s, 30, 30), new THREE.MeshNormalMaterial());
+    scene.add(mesh2);
+    var mesh3 = new THREE.Mesh(new THREE.ConeGeometry(s / 2, s * 2, 30, 30), new THREE.MeshNormalMaterial());
+    mesh3.geometry.rotateX(Math.PI * 1.5);
+    scene.add(mesh3);
     //-------- ----------
     // LOOP
     //-------- ----------
+    var d = 0,
+    f = 0,
+    fMax = 30;
     var lt = new Date(),
     fps = 30;
     var loop = function(){
@@ -104,8 +112,20 @@
         secs = ( now - lt ) / 1000;
         requestAnimationFrame(loop);
         if(secs > 1 / fps){
-            lt = now;
+            // update
+            var p = f / fMax;
+            var b = 1 - Math.abs(0.5 - p) / 0.5;
+            d = 1 - b;
+            setToGroup(groups, mesh1, 0, 0, d);
+            setToGroup(groups, mesh2, 1, 1, 1 - 0.95 * d);
+            setToGroup(groups, mesh3, 0, 5, 0.5 + 0.5 * d);
+            // step frame
+            f += 1;
+            f %= fMax;
+            // render
             renderer.render(scene, camera);
+            // lt
+            lt = now;
         }
     };
     loop();
