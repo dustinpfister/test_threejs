@@ -45,8 +45,10 @@
     // set to group helper
     var setToGroup = function(groups, mesh, groupIndex, capsuleIndex, alpha){
         var v = new THREE.Vector3();
-        groups.children[groupIndex].children[capsuleIndex].getWorldPosition(v);
-        mesh.position.copy( v );
+        var g = groups.children[groupIndex];
+        g.children[capsuleIndex].getWorldPosition(v);
+        var origin = g.position.clone();
+        mesh.position.copy( origin.clone().lerp(v, alpha) );
     };
     //-------- ----------
     // SCENE, CAMERA, RENDERER
@@ -62,11 +64,12 @@
     //-------- ----------
     // ADD MESH OBJECTS
     //-------- ----------
-	var groups = new THREE.Group();
-	scene.add(groups);
+    // create groups
+    var groups = new THREE.Group();
+    scene.add(groups);
+    // group index 0
     var g = createCapsuleGroup({
         data: [
-
             {x: 0, y: 1, z: 0, ul: 3},
             {x: 1, y: 0, z: 0, ul: 5},
             {x: 0, y: 0, z: 1, ul: 5},
@@ -76,7 +79,7 @@
         ]
     });
     groups.add(g);
-
+    // group index 1
     var g = createCapsuleGroup({
         data: [
             {x: 0, y: 1, z: 0, ul: 4},
@@ -86,14 +89,11 @@
     });
     g.position.set(-4, 0, -5);
     groups.add(g);
-    // mesh
+    // MESH OBJECT
     var s = 1.0;
     var mesh = new THREE.Mesh(new THREE.BoxGeometry(s, s, s), new THREE.MeshNormalMaterial());
     scene.add(mesh);
-
-
-    setToGroup(groups, mesh, 1, 0, 0)
-
+    setToGroup(groups, mesh, 1, 0, 0.75)
     //-------- ----------
     // LOOP
     //-------- ----------
