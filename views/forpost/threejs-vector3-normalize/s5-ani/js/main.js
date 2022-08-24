@@ -17,7 +17,7 @@
     // create capsule group
     var createCapsuleGroup = function(opt){
         opt = opt || {};
-		opt.data = opt.data || [];
+        opt.data = opt.data || [];
         var group = new THREE.Group();
         opt.data.forEach(function(opt, i, arr){
             // create a normalize vector based on the given options for x, y, and z
@@ -42,13 +42,19 @@
         });
         return group;
     };
+    // set to group helper
+    var setToGroup = function(groups, mesh, groupIndex, capsuleIndex, alpha){
+        var v = new THREE.Vector3();
+        groups.children[groupIndex].children[capsuleIndex].getWorldPosition(v);
+        mesh.position.copy( v );
+    };
     //-------- ----------
     // SCENE, CAMERA, RENDERER
     //-------- ----------
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(10, 10));
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(0, 5, 10);
+    camera.position.set(-2.5, 5, 10);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -56,27 +62,37 @@
     //-------- ----------
     // ADD MESH OBJECTS
     //-------- ----------
-    var group1 = createCapsuleGroup({
+	var groups = new THREE.Group();
+	scene.add(groups);
+    var g = createCapsuleGroup({
         data: [
-            {x: 1, y: 0, z: 0, ul: 5},
+
             {x: 0, y: 1, z: 0, ul: 3},
+            {x: 1, y: 0, z: 0, ul: 5},
             {x: 0, y: 0, z: 1, ul: 5},
             {x: 1, y: 1, z: 1, ul: 2},
             {x: -1, y: 0, z: -1, ul: 5},
             {x: -1, y: -1, z: 1, ul: 4}
         ]
     });
-    scene.add(group1);
+    groups.add(g);
 
-    var group2 = createCapsuleGroup({
+    var g = createCapsuleGroup({
         data: [
-            {x: 1, y: 0, z: -1, ul: 3},
             {x: 0, y: 1, z: 0, ul: 4},
+            {x: 1, y: 0, z: -1, ul: 3},
             {x: -5, y: 0, z: 0, ul: 3}
         ]
     });
-    group2.position.set(-5, 0, -5);
-    scene.add(group2);
+    g.position.set(-4, 0, -5);
+    groups.add(g);
+    // mesh
+    var s = 1.0;
+    var mesh = new THREE.Mesh(new THREE.BoxGeometry(s, s, s), new THREE.MeshNormalMaterial());
+    scene.add(mesh);
+
+
+    setToGroup(groups, mesh, 1, 0, 0)
 
     //-------- ----------
     // LOOP
