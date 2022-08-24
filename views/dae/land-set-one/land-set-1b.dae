@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.79.0</authoring_tool>
     </contributor>
-    <created>2022-08-24T19:19:17</created>
-    <modified>2022-08-24T19:19:17</modified>
+    <created>2022-08-24T19:34:38</created>
+    <modified>2022-08-24T19:34:38</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -291,13 +291,23 @@
             </accessor>
           </technique_common>
         </source>
+        <source id="land-0-geo-mesh-map-0">
+          <float_array id="land-0-geo-mesh-map-0-array" count="72">0.6668664 1.9976e-4 0.9998002 0.3331335 0.6668664 0.3331335 1.9976e-4 0.6668664 0.3331335 0.9998002 1.99771e-4 0.9998002 0.6664669 0.6664669 0.3335331 0.3335331 0.6664668 0.3335331 0.3331335 0.6664669 1.9976e-4 0.3335331 0.3331335 0.3335331 0.3335331 0.3331336 0.6664669 1.9976e-4 0.6664669 0.3331335 1.9976e-4 0.3331336 0.3331335 1.9976e-4 0.3331335 0.3331336 0.6668664 1.9976e-4 0.9998002 1.9976e-4 0.9998002 0.3331335 1.9976e-4 0.6668664 0.3331335 0.6668665 0.3331335 0.9998002 0.6664669 0.6664669 0.3335331 0.6664669 0.3335331 0.3335331 0.3331335 0.6664669 1.99771e-4 0.6664669 1.9976e-4 0.3335331 0.3335331 0.3331336 0.3335331 1.9976e-4 0.6664669 1.9976e-4 1.9976e-4 0.3331336 1.9976e-4 1.99782e-4 0.3331335 1.9976e-4</float_array>
+          <technique_common>
+            <accessor source="#land-0-geo-mesh-map-0-array" count="36" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
         <vertices id="land-0-geo-mesh-vertices">
           <input semantic="POSITION" source="#land-0-geo-mesh-positions"/>
         </vertices>
         <triangles count="12">
           <input semantic="VERTEX" source="#land-0-geo-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#land-0-geo-mesh-normals" offset="1"/>
-          <p>1 0 2 0 0 0 3 1 6 1 2 1 7 2 4 2 6 2 5 3 0 3 4 3 6 4 0 4 2 4 3 5 5 5 7 5 1 0 3 0 2 0 3 1 7 1 6 1 7 2 5 2 4 2 5 3 1 3 0 3 6 4 4 4 0 4 3 5 1 5 5 5</p>
+          <input semantic="TEXCOORD" source="#land-0-geo-mesh-map-0" offset="2" set="0"/>
+          <p>1 0 0 2 0 1 0 0 2 3 1 3 6 1 4 2 1 5 7 2 6 4 2 7 6 2 8 5 3 9 0 3 10 4 3 11 6 4 12 0 4 13 2 4 14 3 5 15 5 5 16 7 5 17 1 0 18 3 0 19 2 0 20 3 1 21 7 1 22 6 1 23 7 2 24 5 2 25 4 2 26 5 3 27 1 3 28 0 3 29 6 4 30 4 4 31 0 4 32 3 5 33 1 5 34 5 5 35</p>
         </triangles>
       </mesh>
     </geometry>
@@ -323,13 +333,23 @@
             </accessor>
           </technique_common>
         </source>
+        <source id="land-1-geo-mesh-map-0">
+          <float_array id="land-1-geo-mesh-map-0-array" count="48">1.66125e-4 1.66085e-4 0.3202241 0.4527965 1.66085e-4 0.4527965 0.2264813 0.6794438 1.66085e-4 0.4531286 0.4527965 0.4531286 0.5468715 1.66085e-4 0.7731867 0.2264812 0.3205563 0.2264812 0.3202241 0.999834 1.66085e-4 0.679776 0.3202241 0.679776 0.4531286 0.7731866 0.7731866 0.4531286 0.7731866 0.7731866 1.66125e-4 1.66085e-4 0.3202241 1.66085e-4 0.3202241 0.4527965 0.3202241 0.999834 1.66095e-4 0.999834 1.66085e-4 0.679776 0.4531286 0.7731866 0.4531286 0.4531286 0.7731866 0.4531286</float_array>
+          <technique_common>
+            <accessor source="#land-1-geo-mesh-map-0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
         <vertices id="land-1-geo-mesh-vertices">
           <input semantic="POSITION" source="#land-1-geo-mesh-positions"/>
         </vertices>
         <triangles count="8">
           <input semantic="VERTEX" source="#land-1-geo-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#land-1-geo-mesh-normals" offset="1"/>
-          <p>1 0 5 0 2 0 0 1 1 1 2 1 3 2 5 2 4 2 4 3 0 3 3 3 5 4 0 4 2 4 1 0 4 0 5 0 4 3 1 3 0 3 5 4 3 4 0 4</p>
+          <input semantic="TEXCOORD" source="#land-1-geo-mesh-map-0" offset="2" set="0"/>
+          <p>1 0 0 5 0 1 2 0 2 0 1 3 1 1 4 2 1 5 3 2 6 5 2 7 4 2 8 4 3 9 0 3 10 3 3 11 5 4 12 0 4 13 2 4 14 1 0 15 4 0 16 5 0 17 4 3 18 1 3 19 0 3 20 5 4 21 3 4 22 0 4 23</p>
         </triangles>
       </mesh>
     </geometry>
@@ -355,13 +375,23 @@
             </accessor>
           </technique_common>
         </source>
+        <source id="land-3-geo-mesh-map-0">
+          <float_array id="land-3-geo-mesh-map-0-array" count="60">2.34061e-4 0.6798386 0.3201614 0.9997659 2.34071e-4 0.9997659 0.6793705 0.6793704 0.4531477 0.4531477 0.9055933 0.4531477 0.6187543 2.34061e-4 0.8449772 0.2264568 0.3925315 0.2264568 0.9609523 0.9997658 0.641025 0.6798386 0.9609523 0.6798386 0.3206295 0.9997659 0.6405568 0.6798386 0.6405568 0.9997659 0.2264568 0.6793704 2.34061e-4 0.4531477 0.4526796 0.4531477 2.34123e-4 2.34061e-4 0.3920634 0.2264568 2.34061e-4 0.4526796 2.34061e-4 0.6798386 0.3201614 0.6798386 0.3201614 0.9997659 0.9609523 0.9997658 0.641025 0.9997658 0.641025 0.6798386 0.3206295 0.9997659 0.3206295 0.6798386 0.6405568 0.6798386</float_array>
+          <technique_common>
+            <accessor source="#land-3-geo-mesh-map-0-array" count="30" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
         <vertices id="land-3-geo-mesh-vertices">
           <input semantic="POSITION" source="#land-3-geo-mesh-positions"/>
         </vertices>
         <triangles count="10">
           <input semantic="VERTEX" source="#land-3-geo-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#land-3-geo-mesh-normals" offset="1"/>
-          <p>1 0 2 0 0 0 2 1 3 1 6 1 4 2 6 2 5 2 5 3 0 3 4 3 6 4 0 4 2 4 1 5 5 5 3 5 5 6 6 6 3 6 1 0 3 0 2 0 5 3 1 3 0 3 6 4 4 4 0 4</p>
+          <input semantic="TEXCOORD" source="#land-3-geo-mesh-map-0" offset="2" set="0"/>
+          <p>1 0 0 2 0 1 0 0 2 2 1 3 3 1 4 6 1 5 4 2 6 6 2 7 5 2 8 5 3 9 0 3 10 4 3 11 6 4 12 0 4 13 2 4 14 1 5 15 5 5 16 3 5 17 5 6 18 6 6 19 3 6 20 1 0 21 3 0 22 2 0 23 5 3 24 1 3 25 0 3 26 6 4 27 4 4 28 0 4 29</p>
         </triangles>
       </mesh>
     </geometry>
@@ -387,13 +417,23 @@
             </accessor>
           </technique_common>
         </source>
+        <source id="land-2-geo-mesh-map-0">
+          <float_array id="land-2-geo-mesh-map-0-array" count="36">0.4010171 0.2318967 0.4010172 0.515351 1.52453e-4 0.5153511 0.3274572 1.52453e-4 0.4911096 0.2315918 1.52453e-4 0.2315918 0.2005848 0.7160884 1.52453e-4 0.515656 0.4010173 0.515656 0.4013221 0.4323291 0.6017546 0.2318967 0.802187 0.4323291 1.52453e-4 0.9998476 0.2836067 0.7163933 0.2836067 0.9998476 1.52453e-4 0.9998476 1.52453e-4 0.7163933 0.2836067 0.7163933</float_array>
+          <technique_common>
+            <accessor source="#land-2-geo-mesh-map-0-array" count="18" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
         <vertices id="land-2-geo-mesh-vertices">
           <input semantic="POSITION" source="#land-2-geo-mesh-positions"/>
         </vertices>
         <triangles count="6">
           <input semantic="VERTEX" source="#land-2-geo-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#land-2-geo-mesh-normals" offset="1"/>
-          <p>4 0 2 0 1 0 3 1 4 1 1 1 0 2 1 2 2 2 1 3 0 3 3 3 4 4 0 4 2 4 4 4 3 4 0 4</p>
+          <input semantic="TEXCOORD" source="#land-2-geo-mesh-map-0" offset="2" set="0"/>
+          <p>4 0 0 2 0 1 1 0 2 3 1 3 4 1 4 1 1 5 0 2 6 1 2 7 2 2 8 1 3 9 0 3 10 3 3 11 4 4 12 0 4 13 2 4 14 4 4 15 3 4 16 0 4 17</p>
         </triangles>
       </mesh>
     </geometry>
