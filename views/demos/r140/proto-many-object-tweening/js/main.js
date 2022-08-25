@@ -27,10 +27,56 @@
         pos.needsUpdate = true;
     };
 
+/*
+
+    tweenMany(mesh.geometry, [
+        [ box_1.geometry, box_2.geometry, 0.25 ],
+        [ box_1.geometry, box_3.geometry, 0.1 ]
+    ]);
+
+*/
+
+    var tweenMany = function(geo, states){
+        states = states || [];
+        // figure numbefr to div my to get mean
+        var a1 = states.reduce(function(acc, lgArgu){
+            if(lgArgu[2] > 0){
+                acc.push(lgArgu)
+            }
+            return acc;
+        }, []);
+        var d = states.length;
+        // array of new geos that is the lerp between each given geo and alpha
+        var a2 = states.map( function( lgArgu ){
+            var n = geo.clone();
+            lerpGeo.apply(null, [ n ].concat(lgArgu) );
+            return n;
+        });
+        // get the mean of all, and update main geo while doing so
+        var pos = geo.getAttribute('position');
+        var i = 0, len = pos.array.length;
+        while(i < len){
+            var v = new THREE.Vector3();
+            a2.forEach(function(nGeo){
+                var nPos = nGeo.getAttribute('position');
+                v.x += nPos.array[i];
+                v.y += nPos.array[i + 1];
+                v.z += nPos.array[i + 2];
+            });
+            v.divideScalar( d );
+            // set pos vertex to state of v
+            pos.array[i] = v.x;
+            pos.array[i + 1] = v.y;
+            pos.array[i + 2] = v.z;
+            i += 3;
+        }
+        pos.needsUpdate = true;
+    };
+
     // scene
     var scene = new THREE.Scene();
     scene.background = new THREE.Color('cyan');
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
@@ -63,9 +109,14 @@
 
         if(secs >= 1 / 30){
             var p = f / fm;
-            var b = Math.abs(0.5 - p) / 0.5;
-            lerpGeo(mesh.geometry, sourceObj.box_1.geometry, sourceObj.box_2.geometry, b );
+            var b1 = Math.abs(0.5 - (p * 4 % 1) ) / 0.5;
+            var b2 = Math.abs(0.5 - p) / 0.5;
 
+
+tweenMany(mesh.geometry, [
+    [ sourceObj.box_1.geometry, sourceObj.box_3.geometry, b1 ],
+    [ sourceObj.box_1.geometry, sourceObj.box_3.geometry, b2 ]
+]);
 
             //!!! should use dae normals
             mesh.geometry.computeVertexNormals();
@@ -84,7 +135,7 @@
     var loader = new THREE.ColladaLoader();
     loader.load("/dae/many-object-tweening/many-object-tweening-1a.dae", function (result) {
         // get objects by name
-        [ 'box_1', 'box_2' ].forEach(function(objName, i, arr){
+        [ 'box_1', 'box_2', 'box_3' ].forEach(function(objName, i, arr){
             // get the source object and change position to 0, 0, 0
             var obj = result.scene.getObjectByName(objName);
             obj.position.set(0, 0, 0);
@@ -97,6 +148,11 @@
         mesh = sourceObj.box_1.clone();
         mesh.geometry = sourceObj.box_1.geometry.clone();
         scene.add(mesh);
+
+
+
+
+        //renderer.render(scene, camera);
 
         loop();
     });
