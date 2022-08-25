@@ -1,5 +1,9 @@
 # threejs-examples-tree todo list
 
+##  () - remake folder where the current version of tree.sj is in this folder
+* () have current version of threejs in this forpost folder in a root js folder
+* () call current version r0
+* () have both current examples follow a r0-x-name pattren
 
 ## ( done 08/25/2022 ) - first state of for post folder
 
