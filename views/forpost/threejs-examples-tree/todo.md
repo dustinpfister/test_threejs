@@ -1,12 +1,11 @@
 # threejs-examples-tree todo list
 
-##  () - remake folder where the current version of tree.sj is in this folder
-* () have current version of threejs in this forpost folder in a root js folder
-* () call current version r0
-* () have both current examples follow a r0-x-name pattren
+##  ( done 08/25/2022 ) - remake folder where the current version of tree.sj is in this folder
+* (done) have current version of threejs in this forpost folder in a root js folder
+* (done) call current version r0
+* (done) have both current examples follow a r0-x-name pattren
 
 ## ( done 08/25/2022 ) - first state of for post folder
-
 * (done) create an index.ejs file for this folder
 * (done) the index.ejs file will make use of the tree model in the views/js/modules_group folder v0.0.0 for now
 * (done) store additional code that makes use of tree.js v0.0.0 in a local js folder just like with the demos
