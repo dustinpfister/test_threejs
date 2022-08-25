@@ -13,6 +13,11 @@
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
 
+    // light
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 3, 1);
+    scene.add(dl);
+
     // controls
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
     // app loop
