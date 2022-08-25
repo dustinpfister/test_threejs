@@ -77,7 +77,7 @@
     var scene = new THREE.Scene();
     scene.background = new THREE.Color('cyan');
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(2, 2, 2);
+    camera.position.set(1.4, 1.4, 1.4);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer();
@@ -99,7 +99,7 @@
 
     // app loop
     var lt = new Date();
-    var f = 0, fm = 90;
+    var f = 0, fm = 300;
 
     var loop = function () {
 
@@ -110,17 +110,22 @@
 
         if(secs >= 1 / 30){
             var p = f / fm;
-            var b1 = Math.abs(0.5 - ( p * 4 % 1) ) / 0.5;
+            var b1 = Math.abs(0.5 - ( p * 1 % 1) ) / 0.5;
             var b2 = Math.abs(0.5 - ( p * 8 % 1) ) / 0.5;
+            var b3 = Math.abs(0.5 - ( p * 16 % 1) ) / 0.5;
 
 
             tweenMany(mesh.geometry, [
                 [ sourceObj.box_1.geometry, sourceObj.box_2.geometry, b1 ],
-                [ sourceObj.box_3.geometry, sourceObj.box_3.geometry, b2 ]
+                [ sourceObj.box_1.geometry, sourceObj.box_3.geometry, b2 ],
+                [ sourceObj.box_1.geometry, sourceObj.box_4.geometry, b3 ]
             ]);
 
             //!!! should use dae normals
             mesh.geometry.computeVertexNormals();
+
+            mesh.rotation.y = Math.PI * 2 * p;
+            mesh.rotation.x = Math.PI * 4 * p;
 
             lt = new Date();
             f += 1;
@@ -135,7 +140,7 @@
     var loader = new THREE.ColladaLoader();
     loader.load("/dae/many-object-tweening/many-object-tweening-1a.dae", function (result) {
         // get objects by name
-        [ 'box_1', 'box_2', 'box_3' ].forEach(function(objName, i, arr){
+        [ 'box_1', 'box_2', 'box_3', 'box_4' ].forEach(function(objName, i, arr){
             // get the source object and change position to 0, 0, 0
             var obj = result.scene.getObjectByName(objName);
             obj.position.set(0, 0, 0);
