@@ -100,6 +100,7 @@
     // app loop
     var lt = new Date();
     var f = 0, fm = 90;
+
     var loop = function () {
 
         var now = new Date();
@@ -109,18 +110,17 @@
 
         if(secs >= 1 / 30){
             var p = f / fm;
-            var b1 = Math.abs(0.5 - (p * 4 % 1) ) / 0.5;
-            var b2 = Math.abs(0.5 - p) / 0.5;
+            var b1 = Math.abs(0.5 - ( p * 4 % 1) ) / 0.5;
+            var b2 = Math.abs(0.5 - ( p * 8 % 1) ) / 0.5;
 
 
-tweenMany(mesh.geometry, [
-    [ sourceObj.box_1.geometry, sourceObj.box_3.geometry, b1 ],
-    [ sourceObj.box_1.geometry, sourceObj.box_3.geometry, b2 ]
-]);
+            tweenMany(mesh.geometry, [
+                [ sourceObj.box_1.geometry, sourceObj.box_2.geometry, b1 ],
+                [ sourceObj.box_3.geometry, sourceObj.box_3.geometry, b2 ]
+            ]);
 
             //!!! should use dae normals
             mesh.geometry.computeVertexNormals();
-
 
             lt = new Date();
             f += 1;
