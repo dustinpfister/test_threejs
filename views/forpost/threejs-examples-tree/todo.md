@@ -1,5 +1,13 @@
 # threejs-examples-tree todo list
 
+## () start r1 of tree.js
+* () start and r1 of tree.js following the usual create method pattern that I do
+* () use cylinder geometry over that of cone which will allow for a new effect
+
+## ( done 08/25/2022 ) r0-2-for-cone
+* (done) have a for cone example
+* (done) rename r0-2-loop to r0-3-loop
+
 ##  ( done 08/25/2022 ) - remake folder where the current version of tree.sj is in this folder
 * (done) have current version of threejs in this forpost folder in a root js folder
 * (done) call current version r0
