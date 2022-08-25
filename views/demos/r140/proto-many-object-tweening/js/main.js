@@ -25,9 +25,6 @@
         }
         // the needs update bool of pos should be set true
         pos.needsUpdate = true;
-
-        geo.computeVertexNormals();
-
     };
 
     // scene
@@ -44,7 +41,7 @@
 
     // light
     var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 3, 1);
+    dl.position.set(2, 1, 3);
     scene.add(dl);
 
     // controls
@@ -56,6 +53,7 @@
 
     // app loop
     var lt = new Date();
+    var f = 0, fm = 90;
     var loop = function () {
 
         var now = new Date();
@@ -64,8 +62,18 @@
         requestAnimationFrame(loop);
 
         if(secs >= 1 / 30){
-            lerpGeo(mesh.geometry, sourceObj.box_1.geometry, sourceObj.box_2.geometry, 1 );
+            var p = f / fm;
+            var b = Math.abs(0.5 - p) / 0.5;
+            lerpGeo(mesh.geometry, sourceObj.box_1.geometry, sourceObj.box_2.geometry, b );
+
+
+            //!!! should use dae normals
+            mesh.geometry.computeVertexNormals();
+
+
             lt = new Date();
+            f += 1;
+            f %= fm;
         }
 
         controls.update();
