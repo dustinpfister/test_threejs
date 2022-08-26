@@ -92,13 +92,33 @@ var tweenMany = (function () {
         pos.needsUpdate = true;
     };
 
-    // 
+    // create a new mesh from a source object
     api.createMesh = function(sourceObj, name){
         var mesh = sourceObj[name].clone();
         mesh.geometry = sourceObj[name].geometry.clone();
         return mesh;
     };
  
+    // create a source object from a DAE file result object create with the DAE file loader
+    // I have this public here so I can bypass using the load methid when I all ready have a result
+    // object. This is the case when making a video with my videoground applaction.
+    api.createSourceObj = function(result){
+        // source object
+        var sourceObj = {};
+        // loop children of scene
+        result.scene.children.forEach(function(obj, i, arr){
+            // load all vaild mesh objects to sourceObj
+            if(vaildNameCheck){
+                console.log('keyed in: ', obj.name);
+                // set position to 0, 0, 0
+                obj.position.set(0, 0, 0);
+                // add ref to sourceObj
+                sourceObj[obj.name] = obj;
+            }
+        });
+        return sourceObj;
+    };
+
     // load the dae file with the given URL, and create a sourceObject from it
     // returns a Promsie
     api.load = function(url){
@@ -115,8 +135,6 @@ var tweenMany = (function () {
         };
         // retrun a promise
         return new Promise(function(resolve, reject){
-            // source object
-            var sourceObj = {};
             // on Error reject with custom generic error message
             manager.onError = function ( url, b ) {
                reject(  new Error('Error while loading DAE FILE') )
@@ -125,19 +143,8 @@ var tweenMany = (function () {
             var loader = new THREE.ColladaLoader(manager);
             // load the dae file and resolve with source object if all goes well
             loader.load(url, function (result) {
-                // loop children of scene
-                result.scene.children.forEach(function(obj, i, arr){
-                    // load all vaild mesh objects to sourceObj
-                    if(vaildNameCheck){
-                        console.log('keyed in: ', obj.name);
-                        // set position to 0, 0, 0
-                        obj.position.set(0, 0, 0);
-                        // add ref to sourceObj
-                        sourceObj[obj.name] = obj;
-                    }
-                });
                 // resolve with the source object
-                resolve(sourceObj);
+                resolve(api.createSourceObj(result));
             });
         });
     };
