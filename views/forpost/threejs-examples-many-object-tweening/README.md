@@ -1,4 +1,4 @@
-﻿# threejs-examples-many-object-tweening proto folder
+﻿# threejs-examples-many-object-tweening
 
 This threejs example is the continuing development of my many-object-tweening threejs r140 prototype that as the name suggests has to do with tweeing or 'in betweening' if that makes more sense between two or more object states. In threejs you have these things called mesh objects, and these mesh objects have nested objects mainly a buffer geometry instance, and one or more materials. A buffer geometry contains a few core attributes such as position, normal, and uv. Say that I have two objects with geometries that contain the same count of vertices, and I want to transition from one object state to another, then say while at some point between doing so I want to stop and transition to a thid object. This threejs example has to do with making a crude yet effective system for doing so that has to do with creating a mean between each of these various geometries and various lerp points between them.
 
