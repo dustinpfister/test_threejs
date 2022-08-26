@@ -1,6 +1,8 @@
 
 (function () {
 
+/*
+
     // LERP GEO FUNCTION based off the method from threejs-examples-lerp-geo
     var lerpGeo = function(geo, geoA, geoB, alpha){
         alpha = alpha || 0;
@@ -26,15 +28,6 @@
         // the needs update bool of pos should be set true
         pos.needsUpdate = true;
     };
-
-/*
-
-    tweenMany(mesh.geometry, [
-        [ box_1.geometry, box_2.geometry, 0.25 ],
-        [ box_1.geometry, box_3.geometry, 0.1 ]
-    ]);
-
-*/
 
     var tweenMany = function(geo, states){
         states = states || [];
@@ -72,6 +65,8 @@
         }
         pos.needsUpdate = true;
     };
+
+*/
 
     // scene
     var scene = new THREE.Scene();
@@ -115,7 +110,7 @@
             var b3 = Math.abs(0.5 - ( p * 16 % 1) ) / 0.5;
 
 
-            tweenMany(mesh.geometry, [
+            tweenMany.tween(mesh.geometry, [
                 [ sourceObj.box_1.geometry, sourceObj.box_2.geometry, b1 ],
                 [ sourceObj.box_1.geometry, sourceObj.box_3.geometry, b2 ],
                 [ sourceObj.box_1.geometry, sourceObj.box_4.geometry, b3 ]
@@ -144,8 +139,6 @@
             // get the source object and change position to 0, 0, 0
             var obj = result.scene.getObjectByName(objName);
             obj.position.set(0, 0, 0);
-            // log name and count of position attribute
-            console.log( obj.name, obj.geometry.attributes.position.count );
             // add ref to sourceObj
             sourceObj[objName] = obj;
         });
