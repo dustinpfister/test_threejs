@@ -14,5 +14,8 @@
 * (done) tweenMany.load will process all child objects of scene that are mesh objects with a vaild name string
 * (done) tweenMany.load will reject if an error happens while loading
 
+* () tweenMany.createMeshFromSource function
+* () tweenMany.createSourceObj method so I can just pass a result object when making a video
+* () tweenMany.load uses tweenMany.createSourceObj
 
 * () the basic demo can just be a simple transtion between box1 and box2

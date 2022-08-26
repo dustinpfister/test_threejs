@@ -91,6 +91,13 @@ var tweenMany = (function () {
         }
         pos.needsUpdate = true;
     };
+
+    // 
+    api.createMesh = function(sourceObj, name){
+        var mesh = sourceObj[name].clone();
+        mesh.geometry = sourceObj[name].geometry.clone();
+        return mesh;
+    };
  
     // load the dae file with the given URL, and create a sourceObject from it
     // returns a Promsie

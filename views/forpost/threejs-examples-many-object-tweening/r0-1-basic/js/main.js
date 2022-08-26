@@ -46,12 +46,14 @@
         }
         renderer.render(scene, camera);
     };
-
+    //-------- ----------
+    // LOAD DAE - start loop when done
+    //-------- ----------
     tweenMany.load("/dae/many-object-tweening/many-object-tweening-1a.dae")
     .then( (sourceObj) => {
         sObj = sourceObj;
-        mesh = sObj.box_1.clone();
-        mesh.geometry = sObj.box_1.geometry.clone();
+        // can create a new mesh like this now
+        mesh = tweenMany.createMesh(sObj, 'box_1');
         scene.add(mesh);
         // start loop
         loop();
