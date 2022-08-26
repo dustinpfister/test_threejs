@@ -68,6 +68,38 @@ var tweenMany = (function () {
         }
         pos.needsUpdate = true;
     };
+
+    // load the dae file with the given URL, and create a sourceObject from it
+    // returns a Promsie
+    api.load = function(url){
+        return new Promise(function(resolve, reject){
+
+            // load dae, start loop
+            var loader = new THREE.ColladaLoader();
+            loader.load(url, function (result) {
+                var sourceObj = {};
+                // get objects by name
+                [ 'box_1', 'box_2', 'box_3', 'box_4' ].forEach(function(objName, i, arr){
+                    // get the source object and change position to 0, 0, 0
+                    var obj = result.scene.getObjectByName(objName);
+                    obj.position.set(0, 0, 0);
+                    // add ref to sourceObj
+                    sourceObj[objName] = obj;
+                });
+        // can now make new mesh objects by cloning a source object
+        //mesh = sourceObj.box_1.clone();
+        //mesh.geometry = sourceObj.box_1.geometry.clone();
+        //scene.add(mesh);
+        // start loop
+        //loop();
+
+               resolve(sourceObj);
+
+    });
+
+
+        });
+    };
  
     // return the public API
     return api;

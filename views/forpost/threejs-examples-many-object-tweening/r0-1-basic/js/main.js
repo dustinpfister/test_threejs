@@ -21,8 +21,7 @@
     //-------- ----------
     // APP LOOP
     //-------- ----------
-    // source object
-    var sourceObj = {};
+    var sObj = {}; // source objects
     var mesh;
     var lt = new Date();
     var f = 0, fm = 300;
@@ -34,7 +33,7 @@
             var p = f / fm;
             var b1 = Math.abs(0.5 - ( p * 4 % 1) ) / 0.5;
             tweenMany.tween(mesh.geometry, [
-                [ sourceObj.box_1.geometry, sourceObj.box_2.geometry, b1 ]
+                [ sObj.box_1.geometry, sObj.box_2.geometry, b1 ]
             ]);
             //!!! should use dae normals
             mesh.geometry.computeVertexNormals();
@@ -47,23 +46,19 @@
         }
         renderer.render(scene, camera);
     };
-    // load dae, start loop
-    var loader = new THREE.ColladaLoader();
-    loader.load("/dae/many-object-tweening/many-object-tweening-1a.dae", function (result) {
-        // get objects by name
-        [ 'box_1', 'box_2', 'box_3', 'box_4' ].forEach(function(objName, i, arr){
-            // get the source object and change position to 0, 0, 0
-            var obj = result.scene.getObjectByName(objName);
-            obj.position.set(0, 0, 0);
-            // add ref to sourceObj
-            sourceObj[objName] = obj;
-        });
-        // can now make new mesh objects by cloning a source object
-        mesh = sourceObj.box_1.clone();
-        mesh.geometry = sourceObj.box_1.geometry.clone();
+
+    tweenMany.load("/dae/many-object-tweening/many-object-tweening-1a.dae")
+    .then( (sourceObj) => {
+        sObj = sourceObj;
+        mesh = sObj.box_1.clone();
+        mesh.geometry = sObj.box_1.geometry.clone();
         scene.add(mesh);
         // start loop
         loop();
+    })
+    .catch((e)=>{
+        conosole.warn(e.message);
     });
+
 }
     ());
