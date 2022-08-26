@@ -11,9 +11,8 @@
 * (done) start the first basic demo
 * (done) have a built in DAE loader for tween-many.js
 * (done) make it so that the dae loader will also process and return a sourceObjects collection
-
-* () tweenMany.load will process all child objects of scene that are mesh objects with a vaild name string
-* () tweenMany.load will reject if an error happens while loading
+* (done) tweenMany.load will process all child objects of scene that are mesh objects with a vaild name string
+* (done) tweenMany.load will reject if an error happens while loading
 
 
 * () the basic demo can just be a simple transtion between box1 and box2
