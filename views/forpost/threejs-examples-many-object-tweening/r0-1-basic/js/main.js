@@ -57,7 +57,7 @@
         loop();
     })
     .catch((e)=>{
-        conosole.warn(e.message);
+        console.warn(e.message);
     });
 
 }

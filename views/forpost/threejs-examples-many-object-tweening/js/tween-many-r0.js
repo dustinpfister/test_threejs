@@ -31,6 +31,29 @@ var tweenMany = (function () {
         pos.needsUpdate = true;
     };
  
+    // names should always have at least one underscore like box_1
+    var vaildNameCheck = function(obj){
+        // object type is not a mesh!? return false
+        if(obj.type.toLowerCase() != 'mesh'){
+            return false;
+        }
+        // name is not a string!? Yeah return false.
+        if(typeof obj.name != 'string'){
+            return false;
+        }
+        // return false for empty string
+        if(obj.name === ''){
+            return false;
+        }
+        // check underscore count
+        var uCount = obj.name.split('_').length;
+        if(uCount < 1){
+            return false;
+        }
+        // if we make it this far all checks are a pass
+        return true;
+    };
+ 
     // the main PUBLIC TWEEN Method
     api.tween = function(geo, states){
         states = states || [];
@@ -72,32 +95,27 @@ var tweenMany = (function () {
     // load the dae file with the given URL, and create a sourceObject from it
     // returns a Promsie
     api.load = function(url){
+        // create the loader
+        var loader = new THREE.ColladaLoader();
+        // retrun a promise
         return new Promise(function(resolve, reject){
-
             // load dae, start loop
-            var loader = new THREE.ColladaLoader();
             loader.load(url, function (result) {
                 var sourceObj = {};
-                // get objects by name
-                [ 'box_1', 'box_2', 'box_3', 'box_4' ].forEach(function(objName, i, arr){
-                    // get the source object and change position to 0, 0, 0
-                    var obj = result.scene.getObjectByName(objName);
-                    obj.position.set(0, 0, 0);
-                    // add ref to sourceObj
-                    sourceObj[objName] = obj;
+                // loop children of scene
+                result.scene.children.forEach(function(obj, i, arr){
+                    // load all vaild mesh objects to sourceObj
+                    if(vaildNameCheck){
+                        console.log('keyed in: ', obj.name);
+                        // set position to 0, 0, 0
+                        obj.position.set(0, 0, 0);
+                        // add ref to sourceObj
+                        sourceObj[obj.name] = obj;
+                    }
                 });
-        // can now make new mesh objects by cloning a source object
-        //mesh = sourceObj.box_1.clone();
-        //mesh.geometry = sourceObj.box_1.geometry.clone();
-        //scene.add(mesh);
-        // start loop
-        //loop();
-
-               resolve(sourceObj);
-
-    });
-
-
+                // resolve with the source object
+                resolve(sourceObj);
+            });
         });
     };
  
