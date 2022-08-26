@@ -57,7 +57,7 @@ var tweenMany = (function () {
     // the main PUBLIC TWEEN Method
     api.tween = function(geo, states){
         states = states || [];
-        // figure numbefr to div my to get mean
+        // figure number to div by to get mean
         var a1 = states.reduce(function(acc, lgArgu){
             if(lgArgu[2] > 0){
                 acc.push(lgArgu)
