@@ -3,8 +3,8 @@
 ## () r0-1-timeline
 * () work out an exmaple that involves a timeline array to define what the states array should be when calling tween
 
-## () r0-2-box1-2-3
-* () demo the involves trasitions between box1, 2, and 3
+## ( done 08/26/2022 ) r0-2-many-box
+* (done) demo the involves trasitions between box1, 2, and 3
 
 ## ( done 08/26/2022 ) r0 of tween-many.js and r0-1-basic demo
 * (done) start r0-tween-many.js
