@@ -100,12 +100,13 @@ loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
     //******** **********
     // CREATE GRID with gridOpt
     //******** **********
-    var land0 = result.scene.getObjectByName('land-0');
+
+    var land0 = result.scene.getObjectByName('land_0');
     //land0.geometry.scale(2, 2, 2);
-    var land1 = result.scene.getObjectByName('land-1');
+    var land1 = result.scene.getObjectByName('land_1');
     //land1.geometry.scale(2, 2, 2);
-    var land2 = result.scene.getObjectByName('land-2');
-    var land3 = result.scene.getObjectByName('land-3');
+    var land2 = result.scene.getObjectByName('land_2');
+    var land3 = result.scene.getObjectByName('land_3');
 
     //!!! scale and rotate land object helper that should be part of land module
     // but I am just making it here for now
