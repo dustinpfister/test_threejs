@@ -93,35 +93,28 @@ var loop = function () {
 //******** **********
 // DAE - load land-set-one dae file
 //******** **********
-// CREATE A COLLADALOADER INSTANCE
 var loader = new THREE.ColladaLoader();
-// CALL THE LOAD METHOD, PASS THE ABSOLUTE OR RELATIVE PATH
-// TO THE *.DAE FILE AS THE FIRST ARGUMENT, AND A DONE CALLBACK
-// AS THE SECOND ARGUMENT
+// load land set one
 loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
     console.log(result.scene);
     //******** **********
     // CREATE GRID with gridOpt
     //******** **********
-
     var land0 = result.scene.getObjectByName('land-0');
     //land0.geometry.scale(2, 2, 2);
     var land1 = result.scene.getObjectByName('land-1');
     //land1.geometry.scale(2, 2, 2);
     var land2 = result.scene.getObjectByName('land-2');
     var land3 = result.scene.getObjectByName('land-3');
-
     //!!! scale and rotate land object helper that should be part of land module
     // but I am just making it here for now
     var scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){
         var mesh = sourceMesh.clone();
         var geo = mesh.geometry = sourceMesh.geometry.clone();
-
         geo.scale(scale, scale, scale);
         geo.rotateX(Math.PI * 2 * rx);
         geo.rotateY(Math.PI * 2 * ry);
         geo.rotateZ(Math.PI * 2 * rz);
-
         return mesh;
     };
 
