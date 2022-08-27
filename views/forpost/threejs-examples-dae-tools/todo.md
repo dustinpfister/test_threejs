@@ -3,6 +3,11 @@
 ## () - progress bar demo
 * when I have a version of dae tools that provides a progress bar feature I will want a demo of that
 
+## () r4 - new revision
+* () start an r4 of dae tools that is based off of what I am using in object-grid-wrap-land and tween-many threejs examples
+* () set up sections folders as they should be
+* () new set of demos for the new r4 version
+
 ## ( done 08/04/2022 ) - s4-to-buffer-geo example
 * (done) have a to-buffer-geo example
 * (done) make sure all examples still work with r3 
