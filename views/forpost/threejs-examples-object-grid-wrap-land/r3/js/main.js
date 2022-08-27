@@ -153,7 +153,7 @@ var mkMeshFunctions = [
     function(){
         var mesh = sObj.tree_1.clone();
         mesh.material = sObj.tree_1.material.clone();
-        //mesh.geometry.translate(0, 0.1, 0);
+        //mesh.geometry.translate(0, -0.05, 0);
         //mesh.scale.set(0.5, 0.5, 0.5);
         return mesh;
     },
