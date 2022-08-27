@@ -91,55 +91,42 @@ var loop = function () {
     }
 };
 //******** **********
-// DAE - load land-set-one dae file
+// LOAD
 //******** **********
-var loader = new THREE.ColladaLoader();
-// load land set one
-loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
-    console.log(result.scene);
+//!!! scale and rotate land object helper that should be part of land module
+// but I am just making it here for now
+var scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){
+    var mesh = sourceMesh.clone();
+    var geo = mesh.geometry = sourceMesh.geometry.clone();
+    geo.scale(scale, scale, scale);
+    geo.rotateX(Math.PI * 2 * rx);
+    geo.rotateY(Math.PI * 2 * ry);
+    geo.rotateZ(Math.PI * 2 * rz);
+    return mesh;
+};
+ObjectGridWrapLand.load('/dae/land-set-one/land-set-1b.dae')
+.then( (sObj) => {
     //******** **********
-    // CREATE GRID with gridOpt
+    // SET UP SOURCE OBJECTS
     //******** **********
-
-    var land0 = result.scene.getObjectByName('land_0');
-    //land0.geometry.scale(2, 2, 2);
-    var land1 = result.scene.getObjectByName('land_1');
-    //land1.geometry.scale(2, 2, 2);
-    var land2 = result.scene.getObjectByName('land_2');
-    var land3 = result.scene.getObjectByName('land_3');
-
-    //!!! scale and rotate land object helper that should be part of land module
-    // but I am just making it here for now
-    var scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){
-        var mesh = sourceMesh.clone();
-        var geo = mesh.geometry = sourceMesh.geometry.clone();
-        geo.scale(scale, scale, scale);
-        geo.rotateX(Math.PI * 2 * rx);
-        geo.rotateY(Math.PI * 2 * ry);
-        geo.rotateZ(Math.PI * 2 * rz);
-        return mesh;
-    };
-
-    // source objects
     gridOpt.sourceObjects = [
-        scaleAndRotateLandObject(land0, 2, 0, 0, 0),
+        scaleAndRotateLandObject(sObj.land_0, 2, 0, 0, 0),
 
-        scaleAndRotateLandObject(land1, 2, 0, 0.75, 0),
-        scaleAndRotateLandObject(land1, 2, 0, 1.00, 0),
-        scaleAndRotateLandObject(land1, 2, 0, 1.25, 0),
-        scaleAndRotateLandObject(land1, 2, 0, 1.50, 0),
+        scaleAndRotateLandObject(sObj.land_1, 2, 0, 0.75, 0),
+        scaleAndRotateLandObject(sObj.land_1, 2, 0, 1.00, 0),
+        scaleAndRotateLandObject(sObj.land_1, 2, 0, 1.25, 0),
+        scaleAndRotateLandObject(sObj.land_1, 2, 0, 1.50, 0),
 
-        scaleAndRotateLandObject(land2, 2, 0.75, 0.75, 0),
-        scaleAndRotateLandObject(land2, 2, 0.75, 0.00, 0),
-        scaleAndRotateLandObject(land2, 2, 0.75, 0.25, 0),
-        scaleAndRotateLandObject(land2, 2, 0.75, 0.50, 0),
+        scaleAndRotateLandObject(sObj.land_2, 2, 0.75, 0.75, 0),
+        scaleAndRotateLandObject(sObj.land_2, 2, 0.75, 0.00, 0),
+        scaleAndRotateLandObject(sObj.land_2, 2, 0.75, 0.25, 0),
+        scaleAndRotateLandObject(sObj.land_2, 2, 0.75, 0.50, 0),
 
-        scaleAndRotateLandObject(land3, 2, 0, 0.50, 0),
-        scaleAndRotateLandObject(land3, 2, 0, 0.75, 0),
-        scaleAndRotateLandObject(land3, 2, 0, 0.00, 0),
-        scaleAndRotateLandObject(land3, 2, 0, 0.25, 0)
+        scaleAndRotateLandObject(sObj.land_3, 2, 0, 0.50, 0),
+        scaleAndRotateLandObject(sObj.land_3, 2, 0, 0.75, 0),
+        scaleAndRotateLandObject(sObj.land_3, 2, 0, 0.00, 0),
+        scaleAndRotateLandObject(sObj.land_3, 2, 0, 0.25, 0)
     ];
-
     grid = ObjectGridWrapLand.create(gridOpt);
     grid.scale.set(1, 1, 1);
     ObjectGridWrapLand.setDataTextures(grid)
@@ -149,3 +136,4 @@ loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
     //******** **********
     loop();
 });
+

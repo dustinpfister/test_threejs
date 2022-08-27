@@ -217,21 +217,25 @@ var ObjectGridWrapLand = (function(){
         manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
             console.log(itemsLoaded + '/' + itemsTotal);
         };
-        manager.onLoad = function ( a ) {
-            console.log('done loading DAE File');
-        };
+
         // retrun a promise
         return new Promise(function(resolve, reject){
+            var sourceObj = {};
             // on Error reject with custom generic error message
             manager.onError = function ( url, b ) {
                reject(  new Error('Error while loading DAE FILE') )
+            };
+            manager.onLoad = function ( a ) {
+                console.log('done loading DAE File');
+                resolve(sourceObj)
             };
             // create the loader
             var loader = new THREE.ColladaLoader(manager);
             // load the dae file and resolve with source object if all goes well
             loader.load(url, function (result) {
                 // resolve with the source object
-                resolve(api.createSourceObj(result));
+                //resolve( api.createSourceObj(result) );
+                sourceObj = api.createSourceObj(result);
             });
         });
     };
