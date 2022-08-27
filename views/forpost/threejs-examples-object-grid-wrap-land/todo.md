@@ -9,11 +9,11 @@
 * () the scaleAndRotateLandObject method in my basic r3 demo should be built into r3 as a helper
 * () regardless if I use built in javaScript solutions like makeCornerMesh or DAE assets both should use scaleAndRotateLandObject
 
-## () - r3 - DAE asset land-set-one, createSourceObj, load
+## ( done 08/27/2022 ) - r3 - DAE asset land-set-one, createSourceObj, load
 * (done) start new revision that works with dae file asset
-* () The standard should be underscores rather than dashes in the dae file like in tween-many example
-* () have a stanard simular to that of what I made for my tween-many example when it comes to the create source object module
-* () have a createMesh method like that of what I have in my tween-many example
+* (done) The standard should be underscores rather than dashes in the dae file like in tween-many example
+* (done) have a stanard simular to that of what I made for my tween-many example when it comes to the create source object module
+* (done) have a createMesh method like that of what I have in my tween-many example
 
 ## ( done 07/18/2022 ) - r2 - setDataTextures
 * (done) built in data textures method that can be used to quickly add data textures for land tiles
