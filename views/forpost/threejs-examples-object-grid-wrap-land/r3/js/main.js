@@ -5,7 +5,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#00afaf');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(15, 10, 15);
+camera.position.set(10, 5, 10);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -25,6 +25,7 @@ scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) );
 var gridOpt = {
     tw: 14,
     th: 14,
+    space: 1,
     crackSize: 0,
     //effects:[],
     altitude: [
@@ -110,27 +111,82 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1b.dae')
     // SET UP SOURCE OBJECTS
     //******** **********
     gridOpt.sourceObjects = [
-        scaleAndRotateLandObject(sObj.land_0, 2, 0, 0, 0),
+        scaleAndRotateLandObject(sObj.land_0, 1, 0, 0, 0),
 
-        scaleAndRotateLandObject(sObj.land_1, 2, 0, 0.75, 0),
-        scaleAndRotateLandObject(sObj.land_1, 2, 0, 1.00, 0),
-        scaleAndRotateLandObject(sObj.land_1, 2, 0, 1.25, 0),
-        scaleAndRotateLandObject(sObj.land_1, 2, 0, 1.50, 0),
+        scaleAndRotateLandObject(sObj.land_1, 1, 0, 0.75, 0),
+        scaleAndRotateLandObject(sObj.land_1, 1, 0, 1.00, 0),
+        scaleAndRotateLandObject(sObj.land_1, 1, 0, 1.25, 0),
+        scaleAndRotateLandObject(sObj.land_1, 1, 0, 1.50, 0),
 
-        scaleAndRotateLandObject(sObj.land_2, 2, 0.75, 0.75, 0),
-        scaleAndRotateLandObject(sObj.land_2, 2, 0.75, 0.00, 0),
-        scaleAndRotateLandObject(sObj.land_2, 2, 0.75, 0.25, 0),
-        scaleAndRotateLandObject(sObj.land_2, 2, 0.75, 0.50, 0),
+        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.75, 0),
+        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.00, 0),
+        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.25, 0),
+        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.50, 0),
 
-        scaleAndRotateLandObject(sObj.land_3, 2, 0, 0.50, 0),
-        scaleAndRotateLandObject(sObj.land_3, 2, 0, 0.75, 0),
-        scaleAndRotateLandObject(sObj.land_3, 2, 0, 0.00, 0),
-        scaleAndRotateLandObject(sObj.land_3, 2, 0, 0.25, 0)
+        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.50, 0),
+        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.75, 0),
+        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.00, 0),
+        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.25, 0)
     ];
     grid = ObjectGridWrapLand.create(gridOpt);
     grid.scale.set(1, 1, 1);
     ObjectGridWrapLand.setDataTextures(grid)
     scene.add(grid);
+
+
+//******** **********
+// ADDING CHILD MESH OBJECTS
+//******** **********
+var mkCone = function(height){
+    var mesh = new THREE.Mesh(
+        new THREE.ConeGeometry(0.25, height, 30, 30),
+        new THREE.MeshStandardMaterial({color: new THREE.Color('#00ff88')})
+    );
+    //mesh.geometry.translate(0, height * 0.40 * -1, 0)
+    mesh.scale.set(1, 1, 1);
+    return mesh;
+};
+// can make another system that involves a grid if index values
+// but with child objects
+var mkMeshFunctions = [
+    null,
+    function(){
+        return mkCone(2)
+    },
+    function(){
+        return mkCone(3)
+    },
+    function(){
+        return mkCone(4)
+    }
+];
+// object index grid
+[
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,2,0,0,0,0,0,0,0,1,0,0,
+    0,0,1,0,0,0,3,0,0,1,2,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,1,0,1,1,0,0,
+    0,0,0,1,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,1,0,1,2,1,0,0,
+    0,0,2,0,0,0,0,0,0,2,0,0,0,0,
+    0,0,0,1,0,0,0,2,1,0,1,1,0,0,
+    0,0,1,0,0,0,0,1,0,1,3,3,0,1,
+    0,1,0,1,0,1,2,0,1,2,1,1,2,0,
+    0,0,0,0,2,0,0,1,0,3,1,1,0,0,
+    0,1,0,1,0,1,0,0,0,1,2,3,1,1,
+    0,0,0,0,0,0,0,0,0,0,1,0,1,0
+].forEach(function(objIndex, i){
+    var mkMesh = mkMeshFunctions[objIndex];
+    if(mkMesh){
+        var mesh = mkMesh(),
+        x = i % grid.userData.tw,
+        y = Math.floor(i / grid.userData.tw);
+        ObjectGridWrapLand.addAt(grid, mesh, x, y, -0.75);
+    }
+});
+
+
     //******** **********
     // START LOOP
     //******** **********

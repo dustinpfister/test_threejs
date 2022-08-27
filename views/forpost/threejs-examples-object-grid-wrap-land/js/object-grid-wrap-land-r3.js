@@ -244,7 +244,8 @@ var ObjectGridWrapLand = (function(){
     //******** **********
     //  ADD AT METHOD
     //******** **********
-    api.addAt = function(grid, mesh, ix, y){
+    api.addAt = function(grid, mesh, ix, y, yda){
+        yda = yda === undefined ? 0 : yda;  // y delta adjust
         var tile = 0,
         ud = grid.userData;
         if(y === undefined){
@@ -274,7 +275,7 @@ var ObjectGridWrapLand = (function(){
                yDelta = v.y / 2 - ud.space * 0.5;
             }
         }
-        mesh.position.y = box.max.y + yDelta;
+        mesh.position.y = box.max.y + yDelta + yda;
         tile.add(mesh);
     };
     //******** **********
