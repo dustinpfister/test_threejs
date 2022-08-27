@@ -217,7 +217,6 @@ var ObjectGridWrapLand = (function(){
         manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
             console.log(itemsLoaded + '/' + itemsTotal);
         };
-
         // retrun a promise
         return new Promise(function(resolve, reject){
             var sourceObj = {};
@@ -239,7 +238,6 @@ var ObjectGridWrapLand = (function(){
             });
         });
     };
-
 
     //******** **********
     //  ADD AT METHOD

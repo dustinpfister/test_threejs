@@ -1,7 +1,12 @@
 ﻿# threejs-examples-many-object-tweening todo list
 
-## () r0-1-timeline
+## () r1-1-timeline
 * () work out an exmaple that involves a timeline array to define what the states array should be when calling tween
+
+## () r1 - normales and uvs
+* (done) fix loader to make it resolve when all loading is done
+* () see about updating uv attrbute as well
+* () see about updaing normal attribute as well
 
 ## ( done 08/26/2022 ) r0-2-many-box
 * (done) demo the involves trasitions between box1, 2, and 3
