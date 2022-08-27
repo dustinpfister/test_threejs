@@ -27,7 +27,7 @@ var gridOpt = {
     th: 14,
     space: 1,
     crackSize: 0,
-    //effects:[],
+    effects:[],
     altitude: [
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,1,1,1,0,0,0,1,1,1,1,0,
@@ -79,7 +79,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // set position of the grid
-        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.sin( Math.PI * 2 * per ) * 0.5 );
+        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.sin( Math.PI * 2 * per ) * 0.5 );
 
         //ObjectGridWrap.setPos(grid, 0.2, 0.75 );
 
@@ -151,13 +151,23 @@ var mkCone = function(height){
 var mkMeshFunctions = [
     null,
     function(){
-        return mkCone(2)
+        var mesh = sObj.tree_1.clone();
+        mesh.material = sObj.tree_1.material.clone();
+        //mesh.geometry.translate(0, 0.1, 0);
+        //mesh.scale.set(0.5, 0.5, 0.5);
+        return mesh;
     },
     function(){
-        return mkCone(3)
+        var mesh = sObj.tree_2.clone();
+        mesh.material = sObj.tree_2.material.clone();
+        //mesh.scale.set(0.5, 0.5, 0.5);
+        return mesh;
     },
     function(){
-        return mkCone(4)
+        var mesh = sObj.tree_3.clone();
+        mesh.material = sObj.tree_3.material.clone();
+        //mesh.scale.set(0.5, 0.5, 0.5);
+        return mesh;
     }
 ];
 // object index grid
@@ -182,7 +192,7 @@ var mkMeshFunctions = [
         var mesh = mkMesh(),
         x = i % grid.userData.tw,
         y = Math.floor(i / grid.userData.tw);
-        ObjectGridWrapLand.addAt(grid, mesh, x, y, -0.75);
+        ObjectGridWrapLand.addAt(grid, mesh, x, y, 0);
     }
 });
 

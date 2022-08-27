@@ -6,6 +6,7 @@
 * () addObjects method
 
 ## () - r3 - scaleAndRotateLandObject helper in module as it should be
+* () fix bug where isCorner and so forth bools are not being set
 * () the scaleAndRotateLandObject method in my basic r3 demo should be built into r3 as a helper
 * () regardless if I use built in javaScript solutions like makeCornerMesh or DAE assets both should use scaleAndRotateLandObject
 

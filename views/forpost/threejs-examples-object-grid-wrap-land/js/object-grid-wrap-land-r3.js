@@ -166,7 +166,7 @@ var ObjectGridWrapLand = (function(){
             0,0,1,1
         ];
         grid.children.forEach(function(obj, i){
-            var alt = altitude[i];
+            var alt = obj.userData.alt = altitude[i];
             obj.geometry = obj.geometry.clone();
             obj.geometry.translate(0, alt * space, 0)
         });
@@ -255,6 +255,7 @@ var ObjectGridWrapLand = (function(){
         var box = new THREE.Box3();
         tile.geometry.computeBoundingBox();
         box.copy( tile.geometry.boundingBox ).applyMatrix4( tile.matrixWorld );
+
         // on cubes add half hight, on slopes add 0
         mesh.geometry.computeBoundingBox();
         var v = new THREE.Vector3();
@@ -264,16 +265,24 @@ var ObjectGridWrapLand = (function(){
         var yDelta = v.y / 2;
         // if the tile is a slope?
         if(tile.userData.isSlope){
-            yDelta = v.y / 2 - ud.space * 0.75;
+            yDelta = v.y / 2 - ud.space * 1.75;
         }
         // if the tile is a corner
+
+console.log(tile.userData.isCorner)
+
         if(tile.userData.isCorner){
+
             yDelta = v.y / 2 - ud.space;
             if(tile.userData.isInvert){
-               yDelta = v.y / 2 - ud.space * 0.5;
+               yDelta = v.y / 2 - ud.space * 1.75;
             }
         }
-        mesh.position.y = box.max.y + yDelta + yda;
+//        mesh.position.y = box.max.y + yDelta + yda;
+
+
+        mesh.position.y = tile.userData.alt + yDelta + yda;
+
         tile.add(mesh);
     };
     //******** **********
