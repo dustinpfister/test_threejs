@@ -2,6 +2,7 @@
 // ObjectGridWrap module land module - r3 - from threejs-examples-object-grid-wrap-land
 //
 //    * can pass a custom collection of source objects when calling create method
+//    * create source object, mesh, and load methods based on tween-many-r0
 //******** **********
 var ObjectGridWrapLand = (function(){
     // public API
@@ -102,6 +103,28 @@ var ObjectGridWrapLand = (function(){
         corner.userData.isInvert = invert;
         return corner;
     };
+    // names should always have at least one underscore like box_1
+    var vaildNameCheck = function(obj){
+        // object type is not a mesh!? return false
+        if(obj.type.toLowerCase() != 'mesh'){
+            return false;
+        }
+        // name is not a string!? Yeah return false.
+        if(typeof obj.name != 'string'){
+            return false;
+        }
+        // return false for empty string
+        if(obj.name === ''){
+            return false;
+        }
+        // check underscore count
+        var uCount = obj.name.split('_').length;
+        if(uCount < 1){
+            return false;
+        }
+        // if we make it this far all checks are a pass
+        return true;
+    };
     //******** **********
     //  CREATE METHOD
     //******** **********
@@ -158,6 +181,62 @@ var ObjectGridWrapLand = (function(){
         ud.opt = opt;
         return grid;
     };
+    //******** **********
+    //  CREATE SOURCE OBJECT, MESH, LOAD
+    //******** **********
+    api.createSourceObj = function(result){
+        // source object
+        var sourceObj = {};
+        // loop children of scene
+        result.scene.children.forEach(function(obj, i, arr){
+            // load all vaild mesh objects to sourceObj
+            if(vaildNameCheck){
+                console.log('keyed in: ', obj.name);
+                // set position to 0, 0, 0
+                obj.position.set(0, 0, 0);
+                // add ref to sourceObj
+                sourceObj[obj.name] = obj;
+            }
+        });
+        return sourceObj;
+    };
+    // create a new mesh from a source object
+    api.createMesh = function(sourceObj, name){
+        var mesh = sourceObj[name].clone();
+        mesh.geometry = sourceObj[name].geometry.clone();
+        return mesh;
+    };
+    // load the dae file with the given URL, and create a sourceObject from it
+    // returns a Promsie
+    api.load = function(url){
+        // cusotm loading manager
+        var manager = new THREE.LoadingManager();
+        manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+            console.log('loading DAE File: ' + url);
+        };
+        manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+            console.log(itemsLoaded + '/' + itemsTotal);
+        };
+        manager.onLoad = function ( a ) {
+            console.log('done loading DAE File');
+        };
+        // retrun a promise
+        return new Promise(function(resolve, reject){
+            // on Error reject with custom generic error message
+            manager.onError = function ( url, b ) {
+               reject(  new Error('Error while loading DAE FILE') )
+            };
+            // create the loader
+            var loader = new THREE.ColladaLoader(manager);
+            // load the dae file and resolve with source object if all goes well
+            loader.load(url, function (result) {
+                // resolve with the source object
+                resolve(api.createSourceObj(result));
+            });
+        });
+    };
+
+
     //******** **********
     //  ADD AT METHOD
     //******** **********
