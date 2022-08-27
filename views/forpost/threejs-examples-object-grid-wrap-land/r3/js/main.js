@@ -5,7 +5,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#00afaf');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(15, 15, 15);
+camera.position.set(15, 10, 15);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -106,6 +106,7 @@ loader.load("/dae/land-set-one/land-set-1b.dae", function (result) {
     //land1.geometry.scale(2, 2, 2);
     var land2 = result.scene.getObjectByName('land-2');
     var land3 = result.scene.getObjectByName('land-3');
+
     //!!! scale and rotate land object helper that should be part of land module
     // but I am just making it here for now
     var scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){

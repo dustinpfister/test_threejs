@@ -6,6 +6,9 @@
 var ObjectGridWrapLand = (function(){
     // public API
     var api = {};
+    //******** **********
+    // HELPERS
+    //******** **********
     // make data texture helper
     var makeDataTexture = function(width, height, vHigh, vLow){
         var size = width * height;
@@ -27,9 +30,6 @@ var ObjectGridWrapLand = (function(){
         color: new THREE.Color('green'), 
         map: makeDataTexture(16, 16, 120, 255)
     });
-    //******** **********
-    // MESH OBJECTS
-    //******** **********
     // MESH basic cube
     var makeCube = function(material, size){
         size = size === undefined ? 1 : size;
@@ -88,7 +88,6 @@ var ObjectGridWrapLand = (function(){
             })
         }else{
             pos.array[2] = size;
-
         }
         pos.needsUpdate = true;
         geometry.computeVertexNormals();
@@ -198,7 +197,6 @@ var ObjectGridWrapLand = (function(){
     //******** **********
     //  setDataTextures
     //******** **********
-
     var DEFAULT_DATATEXT = [
         ['#00ff00', 32, 32, 180, 255],
         ['#00ff00', 32, 32, 64, 255],
@@ -207,11 +205,8 @@ var ObjectGridWrapLand = (function(){
         ['#aaff6f', 32, 32, 100, 255],
         ['#00ff6f', 32, 32, 80, 160]
     ];
-
     api.setDataTextures = function(grid, dataText){
-
         dataText = dataText || DEFAULT_DATATEXT;
-
         var materials = [];
         dataText.forEach(function(d){
             materials.push(new THREE.MeshStandardMaterial({
@@ -219,7 +214,6 @@ var ObjectGridWrapLand = (function(){
                 map: makeDataTexture(d[1], d[2], d[3], d[4])
             }));
         });
-
         // seeded random material index values
         var i = 0, len = grid.userData.tw * grid.userData.th;
         while(i < len){
@@ -227,7 +221,6 @@ var ObjectGridWrapLand = (function(){
            grid.children[i].material = materials[mi].clone();
            i += 1;
         }
-
     };
     // return public API
     return api;
