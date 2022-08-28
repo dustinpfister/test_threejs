@@ -169,7 +169,17 @@ var ObjectGridWrapLand = (function(){
         ];
 
         opt.sourceObjects.forEach(function(mesh){
-            console.log(mesh.name)
+            console.log(mesh.name);
+            var mUD = mesh.userData;
+            var parts = mesh.name.split('_');
+
+            if(parts[1] === '0'){
+
+                mUD.isCube = true;
+                mUD.isSlope = false;
+                mUD.isCorner = false;
+                mUD.isInvert = false;
+            }
         });
 
         opt.objectIndices = opt.objectIndices || [

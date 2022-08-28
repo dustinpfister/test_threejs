@@ -110,7 +110,7 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     //******** **********
     // SET UP SOURCE OBJECTS
     //******** **********
-/*
+
     gridOpt.sourceObjects = [
         scaleAndRotateLandObject(sObj.land_0, 1, 0, 0, 0),
 
@@ -129,7 +129,7 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
         scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.00, 0),
         scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.25, 0)
     ];
-*/
+
     grid = ObjectGridWrapLand.create(gridOpt);
     grid.scale.set(1, 1, 1);
     ObjectGridWrapLand.setDataTextures(grid)
@@ -198,7 +198,9 @@ var mkMeshFunctions = [
 
         // add at method
         ObjectGridWrapLand.addAt(grid, mesh, x, y, function(tile, mesh, tileUD){
-            mesh.position.y = tileUD.alt;
+            if(tileUD.isCube){
+                mesh.position.y = tileUD.alt + 0.5;;
+            }
         });
     }
 });
