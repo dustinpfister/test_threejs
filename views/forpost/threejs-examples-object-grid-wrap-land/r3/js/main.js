@@ -195,7 +195,9 @@ var mkMeshFunctions = [
 
 
         // add at method
-        ObjectGridWrapLand.addAt(grid, mesh, x, y, 0);
+        ObjectGridWrapLand.addAt(grid, mesh, x, y, function(tile, mesh, tileUD){
+            mesh.position.y = tileUD.alt;
+        });
     }
 });
 
