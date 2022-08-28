@@ -198,8 +198,11 @@ var mkMeshFunctions = [
 
         // add at method
         ObjectGridWrapLand.addAt(grid, mesh, x, y, function(tile, mesh, tileUD){
+            // default to just the alt value of the tile
+            mesh.position.y = tileUD.alt;
+            // if tile is a cube
             if(tileUD.isCube){
-                mesh.position.y = tileUD.alt + 0.5;;
+                mesh.position.y = tileUD.alt + 0.5;
             }
         });
     }
