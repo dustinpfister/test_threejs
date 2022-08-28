@@ -42,6 +42,7 @@ var ObjectGridWrapLand = (function(){
         cube.userData.isSlope = false;
         cube.userData.isCorner = false;
         cube.userData.isInvert = false;
+        cube.name = 'land_0';
         return cube
     };
     // MAKE MESH SLOPE HELPER
@@ -73,6 +74,7 @@ var ObjectGridWrapLand = (function(){
         slope.userData.isSlope = true;
         slope.userData.isCorner = false;
         slope.userData.isInvert = false;
+        slope.name = 'land_1_' + ( alphaR.toString().split('.').join('_') );
         return slope;
     }
     // MAKE CORNER MESH HELPER
@@ -101,6 +103,13 @@ var ObjectGridWrapLand = (function(){
         corner.userData.isSlope = true;
         corner.userData.isCorner = true;
         corner.userData.isInvert = invert;
+
+        if(corner.userData.isInvert){
+            corner.name = 'land_3_' + ( alphaR.toString().split('.').join('_') );
+        }else{
+            corner.name = 'land_2_' + ( alphaR.toString().split('.').join('_') );
+        }
+
         return corner;
     };
     // names should always have at least one underscore like box_1
@@ -140,20 +149,29 @@ var ObjectGridWrapLand = (function(){
         var meshSize = space - opt.crackSize;
         // can pass a custom collection of source objects
         opt.sourceObjects = opt.sourceObjects || [
+
             makeCube(opt.MATERIAL_LAND, meshSize),
+
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.00),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.25),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.50),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.75),
+
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.00),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.25),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75),
+
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.00, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.25, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75, true)
         ];
+
+        opt.sourceObjects.forEach(function(mesh){
+            console.log(mesh.name)
+        });
+
         opt.objectIndices = opt.objectIndices || [
             0,0,1,3,
             0,0,1,3
