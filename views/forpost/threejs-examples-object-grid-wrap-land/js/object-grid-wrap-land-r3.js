@@ -242,7 +242,11 @@ var ObjectGridWrapLand = (function(){
     //******** **********
     //  ADD AT METHOD
     //******** **********
-    api.addAt = function(grid, mesh, ix, y, yda){
+
+    // basic add at method should just add a given mesh to the tile
+    // at the given location and that is it. However a function can be given
+    // to define what needs to happen in terms of adjusting the y value
+    api.addAt = addAt = function(grid, mesh, ix, y, yAdjust){
         yda = yda === undefined ? 0 : yda;  // y delta adjust
         var tile = 0,
         ud = grid.userData;
@@ -252,6 +256,8 @@ var ObjectGridWrapLand = (function(){
             var w = grid.userData.tw;
             tile = grid.children[ y * w + ix];
         }
+
+/*
         var box = new THREE.Box3();
         tile.geometry.computeBoundingBox();
         box.copy( tile.geometry.boundingBox ).applyMatrix4( tile.matrixWorld );
@@ -282,6 +288,8 @@ console.log(tile.userData.isCorner)
 
 
         mesh.position.y = tile.userData.alt + yDelta + yda;
+*/
+        //mesh.position.y = tile.userData.alt;
 
         tile.add(mesh);
     };

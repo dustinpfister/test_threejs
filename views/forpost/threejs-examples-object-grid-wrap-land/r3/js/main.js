@@ -105,7 +105,7 @@ var scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){
     geo.rotateZ(Math.PI * 2 * rz);
     return mesh;
 };
-ObjectGridWrapLand.load('/dae/land-set-one/land-set-1b.dae')
+ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
 .then( (sObj) => {
     //******** **********
     // SET UP SOURCE OBJECTS
@@ -192,6 +192,9 @@ var mkMeshFunctions = [
         var mesh = mkMesh(),
         x = i % grid.userData.tw,
         y = Math.floor(i / grid.userData.tw);
+
+
+        // add at method
         ObjectGridWrapLand.addAt(grid, mesh, x, y, 0);
     }
 });
