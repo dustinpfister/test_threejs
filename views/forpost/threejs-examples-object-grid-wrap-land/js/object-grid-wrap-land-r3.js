@@ -247,15 +247,21 @@ var ObjectGridWrapLand = (function(){
     // at the given location and that is it. However a function can be given
     // to define what needs to happen in terms of adjusting the y value
     api.addAt = addAt = function(grid, mesh, ix, y, yAdjust){
-        yda = yda === undefined ? 0 : yda;  // y delta adjust
-        var tile = 0,
-        ud = grid.userData;
+        // get the tile with the given values ix and or y;
+        var tile;
         if(y === undefined){
             tile = grid.children[ix];
         }else{
             var w = grid.userData.tw;
             tile = grid.children[ y * w + ix];
         }
+        // use yAdjust if given;
+        if(typeof yAdjust === 'function'){
+            yAdjust(tile, mesh, tile.userData);
+        };
+        // add given mesh as child of tile
+        tile.add(mesh);
+
 
 /*
         var box = new THREE.Box3();
@@ -291,7 +297,7 @@ console.log(tile.userData.isCorner)
 */
         //mesh.position.y = tile.userData.alt;
 
-        tile.add(mesh);
+
     };
     //******** **********
     //  setDataTextures
