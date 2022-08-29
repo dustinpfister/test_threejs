@@ -174,12 +174,33 @@ var ObjectGridWrapLand = (function(){
             var parts = mesh.name.split('_');
 
             if(parts[1] === '0'){
-
                 mUD.isCube = true;
                 mUD.isSlope = false;
                 mUD.isCorner = false;
                 mUD.isInvert = false;
             }
+
+            if(parts[1] === '1'){
+                mUD.isCube = false;
+                mUD.isSlope = true;
+                mUD.isCorner = false;
+                mUD.isInvert = false;
+            }
+
+            if(parts[1] === '2'){
+                mUD.isCube = false;
+                mUD.isSlope = false;
+                mUD.isCorner = true;
+                mUD.isInvert = false;
+            }
+
+            if(parts[1] === '3'){
+                mUD.isCube = false;
+                mUD.isSlope = false;
+                mUD.isCorner = true;
+                mUD.isInvert = true;
+            }
+
         });
 
         opt.objectIndices = opt.objectIndices || [

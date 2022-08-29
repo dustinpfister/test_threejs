@@ -204,6 +204,14 @@ var mkMeshFunctions = [
             if(tileUD.isCube){
                 mesh.position.y = tileUD.alt + 0.5;
             }
+            // if tile is a cube
+            if(tileUD.isSlope){
+                mesh.position.y = tileUD.alt - 0.5;
+            }
+            // if tile is a cube
+            if(tileUD.isCorner){
+                mesh.position.y = tileUD.alt - 0.5;
+            }
         });
     }
 });
