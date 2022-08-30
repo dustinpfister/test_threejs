@@ -291,7 +291,6 @@ var ObjectGridWrapLand = (function(){
     //******** **********
     //  ADD AT METHOD
     //******** **********
-
     // basic add at method should just add a given mesh to the tile
     // at the given location and that is it. However a function can be given
     // to define what needs to happen in terms of adjusting the y value
@@ -310,44 +309,12 @@ var ObjectGridWrapLand = (function(){
         };
         // add given mesh as child of tile
         tile.add(mesh);
-
-
-/*
-        var box = new THREE.Box3();
-        tile.geometry.computeBoundingBox();
-        box.copy( tile.geometry.boundingBox ).applyMatrix4( tile.matrixWorld );
-
-        // on cubes add half hight, on slopes add 0
-        mesh.geometry.computeBoundingBox();
-        var v = new THREE.Vector3();
-        mesh.geometry.boundingBox.getSize(v);
-        // figure out yDelta value starting with a 
-        // default value that should work okay for cubes
-        var yDelta = v.y / 2;
-        // if the tile is a slope?
-        if(tile.userData.isSlope){
-            yDelta = v.y / 2 - ud.space * 1.75;
-        }
-        // if the tile is a corner
-
-console.log(tile.userData.isCorner)
-
-        if(tile.userData.isCorner){
-
-            yDelta = v.y / 2 - ud.space;
-            if(tile.userData.isInvert){
-               yDelta = v.y / 2 - ud.space * 1.75;
-            }
-        }
-//        mesh.position.y = box.max.y + yDelta + yda;
-
-
-        mesh.position.y = tile.userData.alt + yDelta + yda;
-*/
-        //mesh.position.y = tile.userData.alt;
-
-
     };
+    //******** **********
+    //  SCALE AND ROTATE LAND OBJECT HELPER
+    //******** **********
+
+
     //******** **********
     //  setDataTextures
     //******** **********

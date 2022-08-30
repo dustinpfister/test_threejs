@@ -5,12 +5,11 @@
 * () have it so that I can just give an altitude array and tw and th are figured from that
 * () addObjects method
 
-## () - r3 - scaleAndRotateLandObject
+## () - r3 - scaleAndRotateLandObject helper
 * () the scaleAndRotateLandObject method in my basic r3 demo should be built into r3 as a helper
-* () regardless if I use built in javaScript solutions like makeCornerMesh or DAE assets both should use scaleAndRotateLandObject
 
-## () - update folders to align with current state of blog post
-* rename sections folders to rx-sectionNumber-sectionName pattern
+## ( done 08/30/2022) - update folders to align with current state of blog post
+* (done) rename sections folders to rx-sectionNumber-sectionName pattern
 
 ## (done 08/30/2022 ) - r3 - scaleAndRotateLandObject helper in module as it should be
 * (done) can define custom logic for adjusting y values when calling addAt
