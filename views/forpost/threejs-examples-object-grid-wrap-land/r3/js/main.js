@@ -146,31 +146,36 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
 //******** **********
 // ADDING CHILD MESH OBJECTS
 //******** **********
-// can make another system that involves a grid if index values
-// but with child objects
 var cObjScale = 0.50;
+// get a random radian
 var getRandomRadian = function(){
     return Math.PI * 2 * THREE.MathUtils.seededRandom();
-}
+};
+var setRandomScale = function(mesh, sMin, sMax){
+    var scale = sMin + ( sMax - sMin ) * THREE.MathUtils.seededRandom();
+    mesh.scale.set(scale, scale, scale);
+};
+// can make another system that involves a grid of index values
+// but with child objects
 var mkMeshFunctions = [
     null,
     function(){
         var mesh = sObj.tree_1.clone();
         mesh.material = sObj.tree_1.material.clone();
-        mesh.scale.set(cObjScale, cObjScale, cObjScale);
+        setRandomScale(mesh, 0.25, 0.75);
         return mesh;
     },
     function(){
         var mesh = sObj.tree_2.clone();
         mesh.material = sObj.tree_2.material.clone();
-        mesh.scale.set(cObjScale, cObjScale, cObjScale);
+        setRandomScale(mesh, 0.25, 0.75);
         mesh.rotation.y = getRandomRadian()
         return mesh;
     },
     function(){
         var mesh = sObj.tree_3.clone();
         mesh.material = sObj.tree_3.material.clone();
-        mesh.scale.set(cObjScale, cObjScale, cObjScale);
+        setRandomScale(mesh, 0.35, 0.50);
         mesh.rotation.y = getRandomRadian()
         return mesh;
     }
@@ -179,10 +184,10 @@ var mkMeshFunctions = [
 [
     2,2,0,0,0,0,0,0,0,0,2,2,1,2,
     2,1,2,2,0,0,0,0,0,0,0,1,2,0,
-    0,2,1,0,0,0,3,0,0,1,2,2,1,2,
-    0,0,0,0,0,0,0,0,0,0,3,2,2,2,
-    0,0,0,0,0,0,0,0,1,0,1,1,2,2,
-    0,0,0,1,0,0,0,0,0,0,0,0,0,0,
+    0,2,1,2,2,0,3,0,0,1,2,2,1,2,
+    0,0,2,2,2,2,0,0,0,0,3,2,2,2,
+    0,0,0,2,2,0,0,0,1,0,1,1,2,2,
+    0,0,0,1,2,2,2,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,1,0,1,2,1,0,0,
     0,0,2,0,0,0,0,0,0,2,0,0,0,0,
     0,0,0,1,0,0,0,2,1,0,1,1,0,0,
