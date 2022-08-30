@@ -5,18 +5,30 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color('#00afaf');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-10, 5, 10);
+camera.position.set(-7.09, 9.35, 9.03);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
+//******** **********
+// ORBIT CONTROLS
+//******** **********
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+renderer.domElement.addEventListener('pointerup', function(){
+
+   var pos = camera.position;
+   var rot = camera.rotation;
+   console.log(pos.x.toFixed(2), pos.y.toFixed(2), pos.z.toFixed(2));
+   console.log(rot.x.toFixed(2), rot.y.toFixed(2), rot.z.toFixed(2));
+
+})
 //******** **********
 // LIGHT
 //******** **********
 var dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(-8, 2, 4);
 scene.add(dl);
-//camera.add(dl);
+
 //scene.add(camera);
 scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) );
 //******** **********
@@ -27,7 +39,7 @@ var gridOpt = {
     th: 14,
     space: 1,
     crackSize: 0,
-    effects:[],
+    effects:['opacity2'],
     altitude: [
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,1,1,1,0,0,0,1,1,1,1,0,
@@ -64,7 +76,6 @@ var gridOpt = {
 //******** **********
 // LOOP
 //******** **********
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
 var fps = 30,
 grid,
 lt = new Date(),
@@ -79,7 +90,7 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // set position of the grid
-        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.sin( Math.PI * 2 * per ) * 0.5 );
+        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.sin( Math.PI * 2 * per ) * 0.5 );
 
         //ObjectGridWrap.setPos(grid, 0.2, 0.75 );
 
