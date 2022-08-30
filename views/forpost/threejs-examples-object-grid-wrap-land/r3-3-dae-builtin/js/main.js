@@ -81,34 +81,32 @@ var loop = function () {
 var srlo = ObjectGridWrapLand.scaleAndRotateLandObject;
 ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
 .then( (sObj) => {
-
-
+    //******** **********
+    // grid1 - WITH MODULE BUILT IN OBJECTS
+    //******** **********
     grid1 = ObjectGridWrapLand.create(gridOpt);
     grid1.position.set(0, 0, 4);
     grid1.scale.set(1, 1, 1);
     ObjectGridWrapLand.setDataTextures(grid1);
     scene.add(grid1);
-
     //******** **********
-    // SET UP SOURCE OBJECTS
+    // grid2 - WITH DAE SOURCE OBJECTS
     //******** **********
     gridOpt.sourceObjects = [
-        srlo(sObj.land_0, 1, 0, 0, 0),
-        srlo(sObj.land_1, 1, 0, 0.00, 0),
-        srlo(sObj.land_1, 1, 0, 0.25, 0),
-        srlo(sObj.land_1, 1, 0, 0.50, 0),
-        srlo(sObj.land_1, 1, 0, 0.75, 0),
-        srlo(sObj.land_2, 1, 0, 0.00, 0),
-        srlo(sObj.land_2, 1, 0, 0.25, 0),
-        srlo(sObj.land_2, 1, 0, 0.50, 0),
-        srlo(sObj.land_2, 1, 0, 0.75, 0),
-        srlo(sObj.land_3, 1, 0, 0.00, 0),
-        srlo(sObj.land_3, 1, 0, 0.25, 0),
-        srlo(sObj.land_3, 1, 0, 0.50, 0),
-        srlo(sObj.land_3, 1, 0, 0.75, 0),
+        sObj.land_0,
+        sObj.land_1,
+        sObj.land_1,
+        sObj.land_1,
+        sObj.land_1,
+        sObj.land_2,
+        sObj.land_2,
+        sObj.land_2,
+        sObj.land_2,
+        sObj.land_3,
+        sObj.land_3,
+        sObj.land_3,
+        sObj.land_3
     ];
-
-
     grid2 = ObjectGridWrapLand.create(gridOpt);
     grid2.position.set(0, 0, -4);
     grid2.scale.set(1, 1, 1);

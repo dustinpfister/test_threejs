@@ -5,9 +5,9 @@
 * () have it so that I can just give an altitude array and tw and th are figured from that
 * () addObjects method
 
-## () - r3 - fix DAE, and helper
+## ( done 08/30/2022 ) - r3 - fix DAE, and helper
 * (done) fix dae file so that the obejcts do not need to be adjusted
-* () start a new demo where I have two grids, one of which uses the javaScript functions and then other uses the DAE objects
+* (done) start a new demo where I have two grids, one of which uses the javaScript functions and then other uses the DAE objects
 
 ## ( done 08/30/2022 ) - r3 - scaleAndRotateLandObject helper
 * (done) the scaleAndRotateLandObject method in my basic r3 demo should be built into r3 as a helper

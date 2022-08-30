@@ -64,7 +64,7 @@ var ObjectGridWrapLand = (function(){
         uv.needsUpdate = true;
         geometry.computeBoundingBox();
         geometry.center();
-        geometry.rotateY( Math.PI * 2 * alphaR );
+        //geometry.rotateY( Math.PI * 2 * alphaR );
         var slope = new THREE.Mesh( geometry, material);
         slope.name = 'land_1_' + ( alphaR.toString().split('.').join('_') );
         return slope;
@@ -89,9 +89,8 @@ var ObjectGridWrapLand = (function(){
         // rotate and translate
         geometry.rotateX( Math.PI * 1.5 );
         geometry.translate(0, size / 2 * -1 ,0);
-        geometry.rotateY( Math.PI * 2 * alphaR);
+        //geometry.rotateY( Math.PI * 2 * alphaR);
         var corner = new THREE.Mesh( geometry, material);
-
         if(corner.userData.isInvert){
             corner.name = 'land_3_' + ( alphaR.toString().split('.').join('_') );
         }else{
@@ -123,6 +122,18 @@ var ObjectGridWrapLand = (function(){
         return true;
     };
     //******** **********
+    //  SCALE AND ROTATE LAND OBJECT HELPER - when loading custom land objects in DAE file that may need to have geo adjusted
+    //******** **********
+    api.scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){
+        var mesh = sourceMesh.clone();
+        var geo = mesh.geometry = sourceMesh.geometry.clone();
+        geo.scale(scale, scale, scale);
+        geo.rotateX(Math.PI * 2 * rx);
+        geo.rotateY(Math.PI * 2 * ry);
+        geo.rotateZ(Math.PI * 2 * rz);
+        return mesh;
+    };
+    //******** **********
     //  CREATE METHOD
     //******** **********
     api.create = function(opt){
@@ -137,24 +148,29 @@ var ObjectGridWrapLand = (function(){
         var meshSize = space - opt.crackSize;
         // can pass a custom collection of source objects
         opt.sourceObjects = opt.sourceObjects || [
- 
             makeCube(opt.MATERIAL_LAND, meshSize),
- 
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.00),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.25),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.50),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.75),
- 
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.00),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.25),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75),
- 
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.00, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.25, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75, true)
         ];
+
+
+// call scale and rotate for all
+
+        var yadjust = [0,0,0.25,0.5,0.75, 0,0.25,0.5,0.75, 0,0.25,0.5,0.75]
+        opt.sourceObjects = opt.sourceObjects.map(function(landMesh, i){
+            return api.scaleAndRotateLandObject(landMesh, 1, 0, yadjust[i], 0);
+        })
+
         // set bools for isCube, isSlope, ect
         opt.sourceObjects.forEach(function(mesh){
             console.log(mesh.name);
@@ -194,8 +210,15 @@ var ObjectGridWrapLand = (function(){
             0,0,1,1,
             0,0,1,1
         ];
+
+
+
+
+
         // create the grid
         var grid = ObjectGridWrap.create(opt);
+
+
         // translate geometry going by state of alt array
         grid.children.forEach(function(obj, i){
             var alt = obj.userData.alt = altitude[i];
@@ -291,18 +314,6 @@ var ObjectGridWrapLand = (function(){
         };
         // add given mesh as child of tile
         tile.add(mesh);
-    };
-    //******** **********
-    //  SCALE AND ROTATE LAND OBJECT HELPER - when loading custom land objects in DAE file that may need to have geo adjusted
-    //******** **********
-    api.scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){
-        var mesh = sourceMesh.clone();
-        var geo = mesh.geometry = sourceMesh.geometry.clone();
-        geo.scale(scale, scale, scale);
-        geo.rotateX(Math.PI * 2 * rx);
-        geo.rotateY(Math.PI * 2 * ry);
-        geo.rotateZ(Math.PI * 2 * rz);
-        return mesh;
     };
     //******** **********
     //  setDataTextures

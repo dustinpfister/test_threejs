@@ -107,26 +107,21 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     //******** **********
     // SET UP SOURCE OBJECTS
     //******** **********
-
     gridOpt.sourceObjects = [
-        scaleAndRotateLandObject(sObj.land_0, 1, 0, 0, 0),
-
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 0.00, 0),
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 0.25, 0),
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 0.50, 0),
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 0.75, 0),
-
-        scaleAndRotateLandObject(sObj.land_2, 1, 0, 0.00, 0),
-        scaleAndRotateLandObject(sObj.land_2, 1, 0, 0.25, 0),
-        scaleAndRotateLandObject(sObj.land_2, 1, 0, 0.50, 0),
-        scaleAndRotateLandObject(sObj.land_2, 1, 0, 0.75, 0),
-
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.00, 0),
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.25, 0),
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.50, 0),
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.75, 0)
+        sObj.land_0,
+        sObj.land_1,
+        sObj.land_1,
+        sObj.land_1,
+        sObj.land_1,
+        sObj.land_2,
+        sObj.land_2,
+        sObj.land_2,
+        sObj.land_2,
+        sObj.land_3,
+        sObj.land_3,
+        sObj.land_3,
+        sObj.land_3,
     ];
-
     grid = ObjectGridWrapLand.create(gridOpt);
     grid.scale.set(1, 1, 1);
     ObjectGridWrapLand.setDataTextures(grid)
