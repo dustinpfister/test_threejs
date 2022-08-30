@@ -5,6 +5,10 @@
 * () have it so that I can just give an altitude array and tw and th are figured from that
 * () addObjects method
 
+## () - r3 - creation of source objects done as part of load process
+* when using load method, default mapping of objects is done
+* have a way to overdire this if I want to change land-0, land-1, ... to something like land-0, land-0, ...
+
 ## ( done 08/30/2022 ) - r3 - fix DAE, and helper
 * (done) fix dae file so that the obejcts do not need to be adjusted
 * (done) start a new demo where I have two grids, one of which uses the javaScript functions and then other uses the DAE objects
