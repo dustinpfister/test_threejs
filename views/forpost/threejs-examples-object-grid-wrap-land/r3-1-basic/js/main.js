@@ -74,33 +74,14 @@ var loop = function () {
 //******** **********
 // LOAD
 //******** **********
-//!!! scale and rotate land object helper that should be part of land module
-// but I am just making it here for now
-var srlo = ObjectGridWrapLand.scaleAndRotateLandObject;
 ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
 .then( (state) => {
     //******** **********
     // SET UP SOURCE OBJECTS
     //******** **********
-    var sObj = state.sourceObj;
-    gridOpt.sourceObjects = [
-        sObj.land_0,
-        sObj.land_1,
-        sObj.land_1,
-        sObj.land_1,
-        sObj.land_1,
-        sObj.land_2,
-        sObj.land_2,
-        sObj.land_2,
-        sObj.land_2,
-        sObj.land_3,
-        sObj.land_3,
-        sObj.land_3,
-        sObj.land_3,
-    ];
+    gridOpt.sourceObjects = state.gridOpt.sourceObjects;
     grid = ObjectGridWrapLand.create(gridOpt);
     grid.scale.set(1, 1, 1);
-    ObjectGridWrapLand.setDataTextures(grid)
     scene.add(grid);
     //******** **********
     // START LOOP
@@ -108,19 +89,3 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     loop();
 });
 
-//******** **********
-// OVERRIDE MATERIAL
-//******** **********
-//scene.overrideMaterial = new THREE.MeshPhongMaterial({
-//    wireframe: true
-//});
-//******** **********
-// ORBIT CONTROLS
-//******** **********
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
-renderer.domElement.addEventListener('pointerup', function(){
-   var pos = camera.position;
-   var rot = camera.rotation;
-   console.log(pos.x.toFixed(2), pos.y.toFixed(2), pos.z.toFixed(2));
-   console.log(rot.x.toFixed(2), rot.y.toFixed(2), rot.z.toFixed(2));
-});

@@ -270,16 +270,24 @@ var ObjectGridWrapLand = (function(){
             };
             manager.onLoad = function ( a ) {
                 console.log('done loading DAE File');
+                // result with state object
                 resolve(state);
             };
             // create the loader
             var loader = new THREE.ColladaLoader(manager);
             // load the dae file and resolve with source object if all goes well
             loader.load(url, function (result) {
-                // resolve with the source object
-                //resolve( api.createSourceObj(result) );
+                // set up state object props
                 state.result = result;
-                state.sourceObj = api.createSourceObj(result);
+                var sObj = state.sourceObj = api.createSourceObj(result);
+                state.gridOpt = {
+                    sourceObjects : [
+                        sObj.land_0,
+                        sObj.land_1,sObj.land_1,sObj.land_1,sObj.land_1,
+                        sObj.land_2,sObj.land_2,sObj.land_2,sObj.land_2,
+                        sObj.land_3,sObj.land_3,sObj.land_3,sObj.land_3,
+                    ]
+                }
             });
         });
     };

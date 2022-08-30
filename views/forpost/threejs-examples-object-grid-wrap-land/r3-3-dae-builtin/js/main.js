@@ -92,22 +92,7 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     //******** **********
     // grid2 - WITH DAE SOURCE OBJECTS
     //******** **********
-    var sObj = state.sourceObj;
-    gridOpt.sourceObjects = [
-        sObj.land_0,
-        sObj.land_1,
-        sObj.land_1,
-        sObj.land_1,
-        sObj.land_1,
-        sObj.land_2,
-        sObj.land_2,
-        sObj.land_2,
-        sObj.land_2,
-        sObj.land_3,
-        sObj.land_3,
-        sObj.land_3,
-        sObj.land_3
-    ];
+    gridOpt.sourceObjects = state.gridOpt.sourceObjects;
     grid2 = ObjectGridWrapLand.create(gridOpt);
     grid2.position.set(0, 0, -4);
     grid2.scale.set(1, 1, 1);
