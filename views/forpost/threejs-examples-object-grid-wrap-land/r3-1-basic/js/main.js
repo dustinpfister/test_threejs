@@ -97,20 +97,20 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     gridOpt.sourceObjects = [
         srlo(sObj.land_0, 1, 0, 0, 0),
 
+        srlo(sObj.land_1, 1, 0, 0.00, 0),
+        srlo(sObj.land_1, 1, 0, 0.25, 0),
+        srlo(sObj.land_1, 1, 0, 0.50, 0),
         srlo(sObj.land_1, 1, 0, 0.75, 0),
-        srlo(sObj.land_1, 1, 0, 1.00, 0),
-        srlo(sObj.land_1, 1, 0, 1.25, 0),
-        srlo(sObj.land_1, 1, 0, 1.50, 0),
 
-        srlo(sObj.land_2, 1, 0.75, 0.75, 0),
-        srlo(sObj.land_2, 1, 0.75, 0.00, 0),
-        srlo(sObj.land_2, 1, 0.75, 0.25, 0),
-        srlo(sObj.land_2, 1, 0.75, 0.50, 0),
+        srlo(sObj.land_2, 1, 0, 0.00, 0),
+        srlo(sObj.land_2, 1, 0, 0.25, 0),
+        srlo(sObj.land_2, 1, 0, 0.50, 0),
+        srlo(sObj.land_2, 1, 0, 0.75, 0),
 
+        srlo(sObj.land_3, 1, 0, 0.00, 0),
+        srlo(sObj.land_3, 1, 0, 0.25, 0),
         srlo(sObj.land_3, 1, 0, 0.50, 0),
         srlo(sObj.land_3, 1, 0, 0.75, 0),
-        srlo(sObj.land_3, 1, 0, 0.00, 0),
-        srlo(sObj.land_3, 1, 0, 0.25, 0)
     ];
 
 

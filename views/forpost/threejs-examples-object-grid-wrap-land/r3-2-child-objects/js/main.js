@@ -4,12 +4,18 @@
 var scene = new THREE.Scene();
 scene.background = new THREE.Color('#00afaf');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1.0, 30);
 camera.position.set(-7.09, 9.35, 9.03);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
+//******** **********
+// OVERRIDE MATERIAL
+//******** **********
+//scene.overrideMaterial = new THREE.MeshPhongMaterial({
+//    wireframe: true
+//});
 //******** **********
 // ORBIT CONTROLS
 //******** **********
@@ -121,20 +127,20 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     gridOpt.sourceObjects = [
         scaleAndRotateLandObject(sObj.land_0, 1, 0, 0, 0),
 
+        scaleAndRotateLandObject(sObj.land_1, 1, 0, 0.00, 0),
+        scaleAndRotateLandObject(sObj.land_1, 1, 0, 0.25, 0),
+        scaleAndRotateLandObject(sObj.land_1, 1, 0, 0.50, 0),
         scaleAndRotateLandObject(sObj.land_1, 1, 0, 0.75, 0),
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 1.00, 0),
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 1.25, 0),
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 1.50, 0),
 
-        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.75, 0),
-        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.00, 0),
-        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.25, 0),
-        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.50, 0),
+        scaleAndRotateLandObject(sObj.land_2, 1, 0, 0.00, 0),
+        scaleAndRotateLandObject(sObj.land_2, 1, 0, 0.25, 0),
+        scaleAndRotateLandObject(sObj.land_2, 1, 0, 0.50, 0),
+        scaleAndRotateLandObject(sObj.land_2, 1, 0, 0.75, 0),
 
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.50, 0),
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.75, 0),
         scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.00, 0),
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.25, 0)
+        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.25, 0),
+        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.50, 0),
+        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.75, 0)
     ];
 
     grid = ObjectGridWrapLand.create(gridOpt);
@@ -202,23 +208,21 @@ var mkMeshFunctions = [
         var mesh = mkMesh(),
         x = i % grid.userData.tw,
         y = Math.floor(i / grid.userData.tw);
-
-
         // add at method
         ObjectGridWrapLand.addAt(grid, mesh, x, y, function(tile, mesh, tileUD){
             // default to just the alt value of the tile
             mesh.position.y = tileUD.alt;
             // if tile is a cube
             if(tileUD.isCube){
-                mesh.position.y = tileUD.alt + 0.5;
+                mesh.position.y = tileUD.alt + 0.25;
             }
             // if tile is a cube
             if(tileUD.isSlope){
-                mesh.position.y = tileUD.alt - 0.5;
+                mesh.position.y = tileUD.alt - 0.25;
             }
             // if tile is a cube
             if(tileUD.isCorner){
-                mesh.position.y = tileUD.alt - 0.5;
+                mesh.position.y = tileUD.alt - 0.25;
             }
         });
     }
