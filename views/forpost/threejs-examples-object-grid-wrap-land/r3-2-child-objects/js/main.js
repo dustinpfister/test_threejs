@@ -97,7 +97,7 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     gridOpt.sourceObjects = state.gridOpt.sourceObjects;
     grid = ObjectGridWrapLand.create(gridOpt);
     grid.scale.set(1, 1, 1);
-    ObjectGridWrapLand.setDataTextures(grid)
+    //ObjectGridWrapLand.setDataTextures(grid)
     scene.add(grid);
     //******** **********
     // ADDING CHILD MESH OBJECTS
