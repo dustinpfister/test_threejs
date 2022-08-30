@@ -15,12 +15,10 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 renderer.domElement.addEventListener('pointerup', function(){
-
    var pos = camera.position;
    var rot = camera.rotation;
    console.log(pos.x.toFixed(2), pos.y.toFixed(2), pos.z.toFixed(2));
    console.log(rot.x.toFixed(2), rot.y.toFixed(2), rot.z.toFixed(2));
-
 })
 //******** **********
 // LIGHT
@@ -28,9 +26,7 @@ renderer.domElement.addEventListener('pointerup', function(){
 var dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(-8, 2, 4);
 scene.add(dl);
-
-//scene.add(camera);
-scene.add( new THREE.AmbientLight(0xffffff, 0.05 ) );
+scene.add( new THREE.AmbientLight(0xffffff, 0.25 ) );
 //******** **********
 // GRID OPTIONS
 //******** **********
@@ -150,55 +146,51 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
 //******** **********
 // ADDING CHILD MESH OBJECTS
 //******** **********
-var mkCone = function(height){
-    var mesh = new THREE.Mesh(
-        new THREE.ConeGeometry(0.25, height, 30, 30),
-        new THREE.MeshStandardMaterial({color: new THREE.Color('#00ff88')})
-    );
-    //mesh.geometry.translate(0, height * 0.40 * -1, 0)
-    mesh.scale.set(1, 1, 1);
-    return mesh;
-};
 // can make another system that involves a grid if index values
 // but with child objects
+var cObjScale = 0.50;
+var getRandomRadian = function(){
+    return Math.PI * 2 * THREE.MathUtils.seededRandom();
+}
 var mkMeshFunctions = [
     null,
     function(){
         var mesh = sObj.tree_1.clone();
         mesh.material = sObj.tree_1.material.clone();
-        //mesh.geometry.translate(0, -0.05, 0);
-        //mesh.scale.set(0.5, 0.5, 0.5);
+        mesh.scale.set(cObjScale, cObjScale, cObjScale);
         return mesh;
     },
     function(){
         var mesh = sObj.tree_2.clone();
         mesh.material = sObj.tree_2.material.clone();
-        //mesh.scale.set(0.5, 0.5, 0.5);
+        mesh.scale.set(cObjScale, cObjScale, cObjScale);
+        mesh.rotation.y = getRandomRadian()
         return mesh;
     },
     function(){
         var mesh = sObj.tree_3.clone();
         mesh.material = sObj.tree_3.material.clone();
-        //mesh.scale.set(0.5, 0.5, 0.5);
+        mesh.scale.set(cObjScale, cObjScale, cObjScale);
+        mesh.rotation.y = getRandomRadian()
         return mesh;
     }
 ];
 // object index grid
 [
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,2,0,0,0,0,0,0,0,1,0,0,
-    0,0,1,0,0,0,3,0,0,1,2,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,1,0,1,1,0,0,
+    2,2,0,0,0,0,0,0,0,0,2,2,1,2,
+    2,1,2,2,0,0,0,0,0,0,0,1,2,0,
+    0,2,1,0,0,0,3,0,0,1,2,2,1,2,
+    0,0,0,0,0,0,0,0,0,0,3,2,2,2,
+    0,0,0,0,0,0,0,0,1,0,1,1,2,2,
     0,0,0,1,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,1,0,1,2,1,0,0,
     0,0,2,0,0,0,0,0,0,2,0,0,0,0,
     0,0,0,1,0,0,0,2,1,0,1,1,0,0,
     0,0,1,0,0,0,0,1,0,1,3,3,0,1,
     0,1,0,1,0,1,2,0,1,2,1,1,2,0,
-    0,0,0,0,2,0,0,1,0,3,1,1,0,0,
-    0,1,0,1,0,1,0,0,0,1,2,3,1,1,
-    0,0,0,0,0,0,0,0,0,0,1,0,1,0
+    0,0,0,0,2,0,0,1,0,3,1,1,2,2,
+    2,1,0,1,0,1,0,0,2,1,2,3,1,1,
+    2,2,0,0,0,0,0,0,0,2,1,2,1,2
 ].forEach(function(objIndex, i){
     var mkMesh = mkMeshFunctions[objIndex];
     if(mkMesh){
