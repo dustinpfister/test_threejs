@@ -5,8 +5,13 @@
 * () have it so that I can just give an altitude array and tw and th are figured from that
 * () addObjects method
 
-## () - r3 - scaleAndRotateLandObject helper
-* () the scaleAndRotateLandObject method in my basic r3 demo should be built into r3 as a helper
+## () - r3 - fix DAE, and helper
+* () fix dae file so that the obejcts do not need to be adjusted
+* () do the same for built in functions
+* () start a new demo where I have two grids, one of which uses the javaScript functions and then other uses the DAE objects
+
+## ( done 08/30/2022 ) - r3 - scaleAndRotateLandObject helper
+* (done) the scaleAndRotateLandObject method in my basic r3 demo should be built into r3 as a helper
 
 ## ( done 08/30/2022) - update folders to align with current state of blog post
 * (done) rename sections folders to rx-sectionNumber-sectionName pattern
