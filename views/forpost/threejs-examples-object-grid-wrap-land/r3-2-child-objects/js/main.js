@@ -11,22 +11,6 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
 //******** **********
-// OVERRIDE MATERIAL
-//******** **********
-//scene.overrideMaterial = new THREE.MeshPhongMaterial({
-//    wireframe: true
-//});
-//******** **********
-// ORBIT CONTROLS
-//******** **********
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
-renderer.domElement.addEventListener('pointerup', function(){
-   var pos = camera.position;
-   var rot = camera.rotation;
-   console.log(pos.x.toFixed(2), pos.y.toFixed(2), pos.z.toFixed(2));
-   console.log(rot.x.toFixed(2), rot.y.toFixed(2), rot.z.toFixed(2));
-});
-//******** **********
 // LIGHT
 //******** **********
 var dl = new THREE.DirectionalLight(0xffffff, 1);
@@ -235,3 +219,19 @@ var mkMeshFunctions = [
     loop();
 });
 
+//******** **********
+// OVERRIDE MATERIAL
+//******** **********
+//scene.overrideMaterial = new THREE.MeshPhongMaterial({
+//    wireframe: true
+//});
+//******** **********
+// ORBIT CONTROLS
+//******** **********
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+renderer.domElement.addEventListener('pointerup', function(){
+   var pos = camera.position;
+   var rot = camera.rotation;
+   console.log(pos.x.toFixed(2), pos.y.toFixed(2), pos.z.toFixed(2));
+   console.log(rot.x.toFixed(2), rot.y.toFixed(2), rot.z.toFixed(2));
+});

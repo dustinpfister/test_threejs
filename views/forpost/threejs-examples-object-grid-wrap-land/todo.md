@@ -6,8 +6,7 @@
 * () addObjects method
 
 ## () - r3 - fix DAE, and helper
-* () fix dae file so that the obejcts do not need to be adjusted
-* () do the same for built in functions
+* (done) fix dae file so that the obejcts do not need to be adjusted
 * () start a new demo where I have two grids, one of which uses the javaScript functions and then other uses the DAE objects
 
 ## ( done 08/30/2022 ) - r3 - scaleAndRotateLandObject helper

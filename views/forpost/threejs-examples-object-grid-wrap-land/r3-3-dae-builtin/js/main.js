@@ -4,7 +4,7 @@
 var scene = new THREE.Scene();
 scene.background = new THREE.Color('#00afaf');
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-4, 3, 4);
+camera.position.set(-8, 5, -8);
 camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -25,6 +25,7 @@ var gridOpt = {
     space: 1,
     crackSize: 0,
     effects:['opacity2'],
+    //effects:[],
     altitude: [
         0,0,0,0,0,0,0,0,
         0,0,0,1,1,1,1,0,
@@ -50,7 +51,8 @@ var gridOpt = {
 // LOOP
 //******** **********
 var fps = 30,
-grid,
+grid1,
+grid2,
 lt = new Date(),
 frame = 0,
 maxFrame = 600;
@@ -58,13 +60,14 @@ var loop = function () {
     var now = new Date(),
     per = frame / maxFrame,
     bias = 1 - Math.abs(0.5 - per) / 0.5,
-    secs = (now - lt) / 1000,
-    ud = grid.userData;
+    secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-        ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0.75 );
+        ObjectGridWrap.setPos(grid1, ( 1 - per ) * 2, 0.75 );
+        ObjectGridWrap.setPos(grid2, ( 1 - per ) * 2, 0.75 );
         // update grid by current alphas and effects
-        ObjectGridWrap.update(grid);
+        ObjectGridWrap.update(grid1);
+        ObjectGridWrap.update(grid2);
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
@@ -74,29 +77,31 @@ var loop = function () {
 //******** **********
 // LOAD
 //******** **********
-//!!! scale and rotate land object helper that should be part of land module
-// but I am just making it here for now
+// scale and rotate should be done in landjs, and I only need to give values here if needed
 var srlo = ObjectGridWrapLand.scaleAndRotateLandObject;
 ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
 .then( (sObj) => {
+
+
+    grid1 = ObjectGridWrapLand.create(gridOpt);
+    grid1.position.set(0, 0, 4);
+    grid1.scale.set(1, 1, 1);
+    ObjectGridWrapLand.setDataTextures(grid1);
+    scene.add(grid1);
+
     //******** **********
     // SET UP SOURCE OBJECTS
     //******** **********
-
-
     gridOpt.sourceObjects = [
         srlo(sObj.land_0, 1, 0, 0, 0),
-
         srlo(sObj.land_1, 1, 0, 0.00, 0),
         srlo(sObj.land_1, 1, 0, 0.25, 0),
         srlo(sObj.land_1, 1, 0, 0.50, 0),
         srlo(sObj.land_1, 1, 0, 0.75, 0),
-
         srlo(sObj.land_2, 1, 0, 0.00, 0),
         srlo(sObj.land_2, 1, 0, 0.25, 0),
         srlo(sObj.land_2, 1, 0, 0.50, 0),
         srlo(sObj.land_2, 1, 0, 0.75, 0),
-
         srlo(sObj.land_3, 1, 0, 0.00, 0),
         srlo(sObj.land_3, 1, 0, 0.25, 0),
         srlo(sObj.land_3, 1, 0, 0.50, 0),
@@ -104,10 +109,11 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     ];
 
 
-    grid = ObjectGridWrapLand.create(gridOpt);
-    grid.scale.set(1, 1, 1);
-    ObjectGridWrapLand.setDataTextures(grid)
-    scene.add(grid);
+    grid2 = ObjectGridWrapLand.create(gridOpt);
+    grid2.position.set(0, 0, -4);
+    grid2.scale.set(1, 1, 1);
+    //ObjectGridWrapLand.setDataTextures(grid)
+    scene.add(grid2);
     //******** **********
     // START LOOP
     //******** **********
