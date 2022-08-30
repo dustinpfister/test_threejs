@@ -77,15 +77,7 @@ var loop = function () {
 //******** **********
 //!!! scale and rotate land object helper that should be part of land module
 // but I am just making it here for now
-var scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){
-    var mesh = sourceMesh.clone();
-    var geo = mesh.geometry = sourceMesh.geometry.clone();
-    geo.scale(scale, scale, scale);
-    geo.rotateX(Math.PI * 2 * rx);
-    geo.rotateY(Math.PI * 2 * ry);
-    geo.rotateZ(Math.PI * 2 * rz);
-    return mesh;
-};
+var srlo = ObjectGridWrapLand.scaleAndRotateLandObject;
 ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
 .then( (sObj) => {
     //******** **********
@@ -93,22 +85,22 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     //******** **********
 
     gridOpt.sourceObjects = [
-        scaleAndRotateLandObject(sObj.land_0, 1, 0, 0, 0),
+        srlo(sObj.land_0, 1, 0, 0, 0),
 
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 0.75, 0),
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 1.00, 0),
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 1.25, 0),
-        scaleAndRotateLandObject(sObj.land_1, 1, 0, 1.50, 0),
+        srlo(sObj.land_1, 1, 0, 0.75, 0),
+        srlo(sObj.land_1, 1, 0, 1.00, 0),
+        srlo(sObj.land_1, 1, 0, 1.25, 0),
+        srlo(sObj.land_1, 1, 0, 1.50, 0),
 
-        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.75, 0),
-        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.00, 0),
-        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.25, 0),
-        scaleAndRotateLandObject(sObj.land_2, 1, 0.75, 0.50, 0),
+        srlo(sObj.land_2, 1, 0.75, 0.75, 0),
+        srlo(sObj.land_2, 1, 0.75, 0.00, 0),
+        srlo(sObj.land_2, 1, 0.75, 0.25, 0),
+        srlo(sObj.land_2, 1, 0.75, 0.50, 0),
 
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.50, 0),
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.75, 0),
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.00, 0),
-        scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.25, 0)
+        srlo(sObj.land_3, 1, 0, 0.50, 0),
+        srlo(sObj.land_3, 1, 0, 0.75, 0),
+        srlo(sObj.land_3, 1, 0, 0.00, 0),
+        srlo(sObj.land_3, 1, 0, 0.25, 0)
     ];
 
     grid = ObjectGridWrapLand.create(gridOpt);

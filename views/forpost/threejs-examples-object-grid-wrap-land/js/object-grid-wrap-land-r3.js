@@ -311,10 +311,17 @@ var ObjectGridWrapLand = (function(){
         tile.add(mesh);
     };
     //******** **********
-    //  SCALE AND ROTATE LAND OBJECT HELPER
+    //  SCALE AND ROTATE LAND OBJECT HELPER - when loading custom land objects in DAE file that may need to have geo adjusted
     //******** **********
-
-
+    api.scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){
+        var mesh = sourceMesh.clone();
+        var geo = mesh.geometry = sourceMesh.geometry.clone();
+        geo.scale(scale, scale, scale);
+        geo.rotateX(Math.PI * 2 * rx);
+        geo.rotateY(Math.PI * 2 * ry);
+        geo.rotateZ(Math.PI * 2 * rz);
+        return mesh;
+    };
     //******** **********
     //  setDataTextures
     //******** **********
