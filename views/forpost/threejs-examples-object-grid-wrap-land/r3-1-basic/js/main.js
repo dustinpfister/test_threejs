@@ -9,7 +9,16 @@ camera.lookAt(0, 0, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
-
+//******** **********
+// ORBIT CONTROLS
+//******** **********
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+renderer.domElement.addEventListener('pointerup', function(){
+   var pos = camera.position;
+   var rot = camera.rotation;
+   console.log(pos.x.toFixed(2), pos.y.toFixed(2), pos.z.toFixed(2));
+   console.log(rot.x.toFixed(2), rot.y.toFixed(2), rot.z.toFixed(2));
+});
 //******** **********
 // LIGHT
 //******** **********
@@ -107,8 +116,6 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     grid.scale.set(1, 1, 1);
     ObjectGridWrapLand.setDataTextures(grid)
     scene.add(grid);
-
-
     //******** **********
     // START LOOP
     //******** **********

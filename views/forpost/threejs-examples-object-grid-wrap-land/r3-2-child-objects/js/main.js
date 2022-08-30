@@ -19,7 +19,7 @@ renderer.domElement.addEventListener('pointerup', function(){
    var rot = camera.rotation;
    console.log(pos.x.toFixed(2), pos.y.toFixed(2), pos.z.toFixed(2));
    console.log(rot.x.toFixed(2), rot.y.toFixed(2), rot.z.toFixed(2));
-})
+});
 //******** **********
 // LIGHT
 //******** **********
