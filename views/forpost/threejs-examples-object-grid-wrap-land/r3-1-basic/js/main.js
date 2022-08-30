@@ -78,10 +78,11 @@ var loop = function () {
 // but I am just making it here for now
 var srlo = ObjectGridWrapLand.scaleAndRotateLandObject;
 ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
-.then( (sObj) => {
+.then( (state) => {
     //******** **********
     // SET UP SOURCE OBJECTS
     //******** **********
+    var sObj = state.sourceObj;
     gridOpt.sourceObjects = [
         sObj.land_0,
         sObj.land_1,

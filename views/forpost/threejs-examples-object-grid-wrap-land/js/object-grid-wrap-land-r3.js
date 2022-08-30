@@ -162,15 +162,11 @@ var ObjectGridWrapLand = (function(){
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75, true)
         ];
-
-
-// call scale and rotate for all
-
+        // call scale and rotate for all
         var yadjust = [0,0,0.25,0.5,0.75, 0,0.25,0.5,0.75, 0,0.25,0.5,0.75]
         opt.sourceObjects = opt.sourceObjects.map(function(landMesh, i){
             return api.scaleAndRotateLandObject(landMesh, 1, 0, yadjust[i], 0);
         })
-
         // set bools for isCube, isSlope, ect
         opt.sourceObjects.forEach(function(mesh){
             console.log(mesh.name);
@@ -210,15 +206,8 @@ var ObjectGridWrapLand = (function(){
             0,0,1,1,
             0,0,1,1
         ];
-
-
-
-
-
         // create the grid
         var grid = ObjectGridWrap.create(opt);
-
-
         // translate geometry going by state of alt array
         grid.children.forEach(function(obj, i){
             var alt = obj.userData.alt = altitude[i];
@@ -274,14 +263,14 @@ var ObjectGridWrapLand = (function(){
         };
         // retrun a promise
         return new Promise(function(resolve, reject){
-            var sourceObj = {};
+            var state = {};
             // on Error reject with custom generic error message
             manager.onError = function ( url, b ) {
                reject(  new Error('Error while loading DAE FILE') )
             };
             manager.onLoad = function ( a ) {
                 console.log('done loading DAE File');
-                resolve(sourceObj)
+                resolve(state);
             };
             // create the loader
             var loader = new THREE.ColladaLoader(manager);
@@ -289,7 +278,8 @@ var ObjectGridWrapLand = (function(){
             loader.load(url, function (result) {
                 // resolve with the source object
                 //resolve( api.createSourceObj(result) );
-                sourceObj = api.createSourceObj(result);
+                state.result = result;
+                state.sourceObj = api.createSourceObj(result);
             });
         });
     };

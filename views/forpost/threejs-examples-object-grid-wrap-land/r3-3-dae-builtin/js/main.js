@@ -80,7 +80,7 @@ var loop = function () {
 // scale and rotate should be done in landjs, and I only need to give values here if needed
 var srlo = ObjectGridWrapLand.scaleAndRotateLandObject;
 ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
-.then( (sObj) => {
+.then( (state) => {
     //******** **********
     // grid1 - WITH MODULE BUILT IN OBJECTS
     //******** **********
@@ -92,6 +92,7 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     //******** **********
     // grid2 - WITH DAE SOURCE OBJECTS
     //******** **********
+    var sObj = state.sourceObj;
     gridOpt.sourceObjects = [
         sObj.land_0,
         sObj.land_1,

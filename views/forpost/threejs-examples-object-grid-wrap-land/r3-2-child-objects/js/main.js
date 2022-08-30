@@ -103,10 +103,11 @@ var scaleAndRotateLandObject = function(sourceMesh, scale, rx, ry, rz){
     return mesh;
 };
 ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
-.then( (sObj) => {
+.then( (state) => {
     //******** **********
     // SET UP SOURCE OBJECTS
     //******** **********
+    var sObj = state.sourceObj;
     gridOpt.sourceObjects = [
         sObj.land_0,
         sObj.land_1,
