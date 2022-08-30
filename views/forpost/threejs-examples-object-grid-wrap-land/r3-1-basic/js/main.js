@@ -3,22 +3,13 @@
 //******** **********
 var scene = new THREE.Scene();
 scene.background = new THREE.Color('#00afaf');
-//scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-9, 5, 9);
+camera.position.set(-9, 7, 9);
+camera.lookAt(0, -1, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
-//******** **********
-// ORBIT CONTROLS
-//******** **********
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
-renderer.domElement.addEventListener('pointerup', function(){
-   var pos = camera.position;
-   var rot = camera.rotation;
-   console.log(pos.x.toFixed(2), pos.y.toFixed(2), pos.z.toFixed(2));
-   console.log(rot.x.toFixed(2), rot.y.toFixed(2), rot.z.toFixed(2));
-})
+
 //******** **********
 // LIGHT
 //******** **********
@@ -34,8 +25,7 @@ var gridOpt = {
     th: 14,
     space: 1,
     crackSize: 0,
-    //effects:['opacity2'],
-    effects:[],
+    effects:['opacity2'],
     altitude: [
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,1,1,1,0,0,0,1,1,1,1,0,
@@ -85,11 +75,7 @@ var loop = function () {
     ud = grid.userData;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-        // set position of the grid
-        //ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, Math.sin( Math.PI * 2 * per ) * 0.5 );
-
         ObjectGridWrap.setPos(grid, ( 1 - per ) * 2, 0.75 );
-
         // update grid by current alphas and effects
         ObjectGridWrap.update(grid);
         renderer.render(scene, camera);
@@ -117,6 +103,7 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     //******** **********
     // SET UP SOURCE OBJECTS
     //******** **********
+
     gridOpt.sourceObjects = [
         scaleAndRotateLandObject(sObj.land_0, 1, 0, 0, 0),
 
@@ -135,9 +122,13 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
         scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.00, 0),
         scaleAndRotateLandObject(sObj.land_3, 1, 0, 0.25, 0)
     ];
+
     grid = ObjectGridWrapLand.create(gridOpt);
+    grid.scale.set(1, 1, 1);
     ObjectGridWrapLand.setDataTextures(grid)
     scene.add(grid);
+
+
     //******** **********
     // START LOOP
     //******** **********
