@@ -38,10 +38,6 @@ var ObjectGridWrapLand = (function(){
             new THREE.BoxGeometry(size, size, size), 
             material
         );
-        // not a slope
-        cube.userData.isSlope = false;
-        cube.userData.isCorner = false;
-        cube.userData.isInvert = false;
         cube.name = 'land_0';
         return cube
     };
@@ -70,10 +66,6 @@ var ObjectGridWrapLand = (function(){
         geometry.center();
         geometry.rotateY( Math.PI * 2 * alphaR );
         var slope = new THREE.Mesh( geometry, material);
-        // is a slope
-        slope.userData.isSlope = true;
-        slope.userData.isCorner = false;
-        slope.userData.isInvert = false;
         slope.name = 'land_1_' + ( alphaR.toString().split('.').join('_') );
         return slope;
     }
@@ -99,10 +91,6 @@ var ObjectGridWrapLand = (function(){
         geometry.translate(0, size / 2 * -1 ,0);
         geometry.rotateY( Math.PI * 2 * alphaR);
         var corner = new THREE.Mesh( geometry, material);
-        // not a slope
-        corner.userData.isSlope = true;
-        corner.userData.isCorner = true;
-        corner.userData.isInvert = invert;
 
         if(corner.userData.isInvert){
             corner.name = 'land_3_' + ( alphaR.toString().split('.').join('_') );
@@ -149,71 +137,66 @@ var ObjectGridWrapLand = (function(){
         var meshSize = space - opt.crackSize;
         // can pass a custom collection of source objects
         opt.sourceObjects = opt.sourceObjects || [
-
+ 
             makeCube(opt.MATERIAL_LAND, meshSize),
-
+ 
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.00),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.25),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.50),
             makeSlopeMesh(opt.MATERIAL_LAND, meshSize, 0.75),
-
+ 
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.00),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.25),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75),
-
+ 
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.00, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.25, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.50, true),
             makeCornerMesh(opt.MATERIAL_LAND, meshSize, 0.75, true)
         ];
-
+        // set bools for isCube, isSlope, ect
         opt.sourceObjects.forEach(function(mesh){
             console.log(mesh.name);
             var mUD = mesh.userData;
             var parts = mesh.name.split('_');
-
             if(parts[1] === '0'){
                 mUD.isCube = true;
                 mUD.isSlope = false;
                 mUD.isCorner = false;
                 mUD.isInvert = false;
             }
-
             if(parts[1] === '1'){
                 mUD.isCube = false;
                 mUD.isSlope = true;
                 mUD.isCorner = false;
                 mUD.isInvert = false;
             }
-
             if(parts[1] === '2'){
                 mUD.isCube = false;
                 mUD.isSlope = false;
                 mUD.isCorner = true;
                 mUD.isInvert = false;
             }
-
             if(parts[1] === '3'){
                 mUD.isCube = false;
                 mUD.isSlope = false;
                 mUD.isCorner = true;
                 mUD.isInvert = true;
             }
-
         });
-
+        // what the defaults should be for land objects and alt
         opt.objectIndices = opt.objectIndices || [
             0,0,1,3,
             0,0,1,3
         ];
-        var grid = ObjectGridWrap.create(opt);
-        // I will want to have some way to set altitude for each
-        // cloned mesh object in the gird
         var altitude = opt.altitude || [
             0,0,1,1,
             0,0,1,1
         ];
+        // create the grid
+        var grid = ObjectGridWrap.create(opt);
+        // translate geometry going by state of alt array
         grid.children.forEach(function(obj, i){
             var alt = obj.userData.alt = altitude[i];
             obj.geometry = obj.geometry.clone();
@@ -287,7 +270,6 @@ var ObjectGridWrapLand = (function(){
             });
         });
     };
-
     //******** **********
     //  ADD AT METHOD
     //******** **********

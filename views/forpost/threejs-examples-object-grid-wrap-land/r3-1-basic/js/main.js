@@ -93,6 +93,7 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
     // SET UP SOURCE OBJECTS
     //******** **********
 
+
     gridOpt.sourceObjects = [
         srlo(sObj.land_0, 1, 0, 0, 0),
 
@@ -111,6 +112,7 @@ ObjectGridWrapLand.load('/dae/land-set-one/land-set-1c.dae')
         srlo(sObj.land_3, 1, 0, 0.00, 0),
         srlo(sObj.land_3, 1, 0, 0.25, 0)
     ];
+
 
     grid = ObjectGridWrapLand.create(gridOpt);
     grid.scale.set(1, 1, 1);
