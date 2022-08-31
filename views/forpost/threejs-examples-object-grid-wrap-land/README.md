@@ -4,7 +4,7 @@ When I first made my object grid wrap module the idea came to me to use this mod
 
 <div align="center">
       <a href="https://www.youtube.com/watch?v=ke-r9KtRYeo">
-         <img src="https://img.youtube.com/vi/CFFCF6lGmHc/0.jpg" style="width:50%;">
+         <img src="https://img.youtube.com/vi/ke-r9KtRYeo/0.jpg" style="width:50%;">
       </a>
 </div>
 

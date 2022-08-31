@@ -4,7 +4,7 @@ As I make my blog post videos I have found that I would like to step away from a
 
 <div align="center">
       <a href="https://www.youtube.com/watch?v=ke-r9KtRYeo">
-         <img src="https://img.youtube.com/vi/CFFCF6lGmHc/0.jpg" style="width:50%;">
+         <img src="https://img.youtube.com/vi/ke-r9KtRYeo/0.jpg" style="width:50%;">
       </a>
 </div>
 
