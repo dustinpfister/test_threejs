@@ -5,9 +5,16 @@
 * () have it so that I can just give an altitude array and tw and th are figured from that
 * () addObjects method
 
-## () - r3 - creation of source objects done as part of load process
-* when using load method, default mapping of objects is done
-* have a way to overdire this if I want to change land-0, land-1, ... to something like land-0, land-0, ...
+## () - r4 - remove javaScript methods for making land tiles
+* () remove code that has to do with using javaScript to make the land tiles as I am sure I will be only using DAE moveing forward
+* () still have a way to make a custom set of objects though and have one demo on using the same old methods for makignthe geo
+* () I will want an updated form of the create source object method that will also create the state object that I use in load (for videos)
+* () look into having more than one option for land tiles, expanding the set to include a cliff faces, and water tiles
+* () see about making a built in abstraction that will work well for the addAt method
+
+## ( done 08/30/3033 ) - r3 - creation of source objects done as part of load process
+* (done) when using load method, default mapping of objects is done
+* (done) have a way to override this if I want to change land-0, land-1, ... to something like land-0, land-0, ...
 
 ## ( done 08/30/2022 ) - r3 - fix DAE, and helper
 * (done) fix dae file so that the obejcts do not need to be adjusted
