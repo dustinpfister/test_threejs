@@ -22,7 +22,7 @@
     var createGroup = function () {
         var group = new THREE.Group();
         var i = 0,
-        len = 250;
+        len = 50;
         while (i < len) {
             var mesh = new THREE.Mesh(
                 new THREE.BoxGeometry(1.0, 1.0, 1.0), 
@@ -58,6 +58,18 @@
             if (Math.abs(pos.x) === 2 || Math.abs(pos.z) === 2) {
                 ud.alpha = 0;
             }
+/*
+            pos.clampLength(
+                0.1,
+                2);
+            mesh.lookAt(group.position);
+            if(pos.length() === 2){
+                ud.alpha = 0;
+            }
+
+
+
+*/
         });
     };
     //-------- ----------
