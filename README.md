@@ -1,10 +1,6 @@
 # test_threejs
 
-This is a collection of work using the javaScript library known as [three.js](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple demos of threejs features, simple project examples, videos, and so forth. In other words I am just simply testing out threejs, and what can be done with threejs along with other javaScript libraries applications like blender, and a little vanilla javaScript code here and there. I [write about the state of the source code worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/).
-
-In the views folder there is the demos folder, and in that folder I have folders for each revision number of three.js that I have made a simple demo for. This demos folder is then for testing out new features, and also figuring out how to fix things when they break each time code breaking changes are made in a new revision of threejs. 
-
-I have also started a for post folder that is serving as the standard location for final source code examples for each blog post that I write about on my website. When it comes to this I have gt into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post.
+This is a collection of work using the javaScript library known as [three.js](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple demos of threejs features, simple project examples, and so forth. In other words I am just simply testing out threejs, and what can be done with threejs along with other javaScript libraries, and a little vanilla javaScript code here and there. I [write about the state of the source code worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/).
 
 <div align="center">
     <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
@@ -16,11 +12,17 @@ I have also started a for post folder that is serving as the standard location f
     </p>
 </div>
 
-## Just browsing the Repo
+## The views folder
 
-There is cloning down the whole repo and setting up the sever as a way to view the demos locally, but another way would be to just browse the view folder here at GitHub. When doing so the two main folders of interest here would be the [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/views/demos), and the [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost). 
+The views folder is where I have all the demos, as well a collections of final source code examples that I write about  in the various blog posts. This is also a place where I park DAE file assets, and any additional files and so forth that I use in my various source code examples.
 
-I often start out by working out one or more prototypes for something in the demos folder. Here I have a folder for each revision of interest that I have started making demos for, or might like to see about getting something that once worked working again and so forth. The for post folder as the name suggests is a folder where I am keeping the final source code examples that I have made for a blog post on a specific threejs feature.
+### The demos folder
+
+In then [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/views/demos) I have folders for each revision number of three.js that I have made one or more demos for. This demos folder is then for testing out new features, and also figuring out how to fix things when they break each time code breaking changes are made in a new revision of threejs. This demo folder is also a place where I have drafts, or prototypes for project ideas. In any case if things go well I start a new folder in the for post folder 
+
+### The for post folder
+
+I have also started a [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost) folder that is serving as the standard location for final source code examples for each blog post that I write about on my website. When it comes to this I have got into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post. Each time I come around to edit an older post I will revise, and extend the source code examples a little and make sure things are working in the latest revision of threejs that I am  working with at the moment.
 
 ## 1 - Install
 
