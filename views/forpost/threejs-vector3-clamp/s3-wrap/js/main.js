@@ -1,6 +1,4 @@
-
 (function () {
-
     //-------- ----------
     // SCENE, CAMERA RENDERER
     //-------- ----------
@@ -43,19 +41,44 @@
         wrapAxis(vec, vecMin, vecMax, 'y');
         wrapAxis(vec, vecMin, vecMax, 'z');
     };
-    //-------- ----------
-    // MESH
-    //-------- ----------
-    // creating a mesh
-    var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshNormalMaterial());
-    scene.add(mesh);
-    mesh.position.set(3, 4, -3);
-
+    // create group
+    var createGroup = function () {
+        var group = new THREE.Group();
+        var i = 0,
+        len = 50;
+        while (i < len) {
+            var mesh = new THREE.Mesh(
+                new THREE.BoxGeometry(1.0, 1.0, 1.0), 
+                new THREE.MeshNormalMaterial({
+                    transparent: true,
+                    opacity: 0.60
+                })
+            );
+            mesh.position.x = -2 + 4 * Math.random();
+            mesh.position.y = -2 + 4 * Math.random();
+            mesh.position.z = -2 + 4 * Math.random();
+            group.add(mesh);
+            i += 1;
+        }
+        return group;
+    };
+    // update a group
+    var updateGroup = function (group, secs, bias) {
+       group.children.forEach(function(mesh){
+            mesh.position.x += (2 - 4 * bias) * secs;
+            mesh.position.y += (-2 + 4 * bias ) * secs;
+            mesh.position.z += 2 * secs;
+            wrapVector(
+                mesh.position,
+                new THREE.Vector3(-2, -2, -2),
+                new THREE.Vector3(2, 2, 2));
+        });
+    };
     //-------- ----------
     // LOOP
     //-------- ----------
+    var group = createGroup();
+    scene.add(group);
     var frame = 0,
     maxFrame = 300,
     fps = 20,
@@ -67,16 +90,7 @@
         bias = 1 - Math.abs(0.5 - per) / 0.5;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-
-            mesh.position.x += (2 - 4 * bias) * secs;
-            mesh.position.y += (-2 + 4 * bias ) * secs;
-            mesh.position.z += 2 * secs;
-
-            wrapVector(
-                mesh.position,
-                new THREE.Vector3(-2, -2, -2),
-                new THREE.Vector3(2, 2, 2));
-
+            updateGroup(group, secs, bias)
             renderer.render(scene, camera);
             frame += fps * secs;
             frame %= maxFrame;
@@ -84,6 +98,5 @@
         }
     };
     loop();
-
 }
     ());
