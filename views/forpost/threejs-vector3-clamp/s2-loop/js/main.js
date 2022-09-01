@@ -22,9 +22,15 @@
     var createGroup = function () {
         var group = new THREE.Group();
         var i = 0,
-        len = 20;
+        len = 250;
         while (i < len) {
-            var mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial());
+            var mesh = new THREE.Mesh(
+                new THREE.BoxGeometry(1.0, 1.0, 1.0), 
+                new THREE.MeshNormalMaterial({
+                    transparent: true,
+                    opacity: 0.50
+                })
+            );
             var ud = mesh.userData;
             var start_dir = ud.start_dir = new THREE.Vector3();
             ud.alpha = 0;
