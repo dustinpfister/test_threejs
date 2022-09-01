@@ -58,18 +58,6 @@
             if (Math.abs(pos.x) === 2 || Math.abs(pos.z) === 2) {
                 ud.alpha = 0;
             }
-/*
-            pos.clampLength(
-                0.1,
-                2);
-            mesh.lookAt(group.position);
-            if(pos.length() === 2){
-                ud.alpha = 0;
-            }
-
-
-
-*/
         });
     };
     //-------- ----------
