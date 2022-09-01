@@ -1,8 +1,7 @@
 # threejs-vector3-wrap todo list
 
-
-## (  ) - first set of examples done
+## ( done 09/01/2022 ) - first set of examples done
 * (done) have a mod example
-* () have an example for just one axis
-* () wrap method example
+* (done) have an example for just one axis
+* (done) wrap method example
 
