@@ -62,7 +62,7 @@
             var pos = mesh.position;
             ud.alpha += delta * ud.dr;
             pos.copy(start_dir.clone().normalize().multiplyScalar(ud.alpha));
-
+            // clamp type
             if(ud.clampType === 'clamp'){
                 pos.clamp(
                     new THREE.Vector3(-2, -2, -2),
@@ -71,7 +71,6 @@
                     ud.alpha = 0;
                 }
             }
-
             // if clamp type is length
             if(ud.clampType === 'length'){
                 pos.clampLength(0.1, 2);
