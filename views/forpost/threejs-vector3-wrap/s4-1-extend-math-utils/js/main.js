@@ -1,15 +1,9 @@
 (function () {
+
+
+//-------- ----------
+    // HELPERS
     //-------- ----------
-    // SCENE, CAMERA RENDERER
-    //-------- ----------
-    var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(4, 4));
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(5, 5, 5);
-    camera.lookAt(0, 0, 0);
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
     // Wrap method based off of the method from Phaser3 
     // ( https://github.com/photonstorm/phaser/blob/v3.55.2/src/math/Wrap.js )
     // * just added some code for case : Wrap(0, 0, 0)
@@ -40,44 +34,30 @@
         wrapAxis(vec, vecMin, vecMax, 'y');
         wrapAxis(vec, vecMin, vecMax, 'z');
     };
-    // create group
-    var createGroup = function () {
-        var group = new THREE.Group();
-        var i = 0,
-        len = 50;
-        while (i < len) {
-            var mesh = new THREE.Mesh(
-                new THREE.BoxGeometry(1.0, 1.0, 1.0), 
-                new THREE.MeshNormalMaterial({
-                    transparent: true,
-                    opacity: 0.60
-                })
-            );
-            mesh.position.x = -2 + 4 * Math.random();
-            mesh.position.y = -2 + 4 * Math.random();
-            mesh.position.z = -2 + 4 * Math.random();
-            group.add(mesh);
-            i += 1;
-        }
-        return group;
-    };
-    // update a group
-    var updateGroup = function (group, secs, bias) {
-       group.children.forEach(function(mesh){
-            mesh.position.x += (2 - 4 * bias) * secs;
-            mesh.position.y += (-2 + 4 * bias ) * secs;
-            mesh.position.z += 2 * secs;
-            wrapVector(
-                mesh.position,
-                new THREE.Vector3(-2, -2, -2),
-                new THREE.Vector3(2, 2, 2));
-        });
-    };
+    //-------- ----------
+    // SCENE, CAMERA RENDERER
+    //-------- ----------
+    var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(4, 4));
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    camera.position.set(5, 5, 5);
+    camera.lookAt(0, 0, 0);
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
+    //-------- ----------
+    // MESH
+    //-------- ----------
+    var mesh1 = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshNormalMaterial());
+    mesh1.position.set(0, 0, 0);
+    scene.add(mesh1);
     //-------- ----------
     // LOOP
     //-------- ----------
-    var group = createGroup();
-    scene.add(group);
+    var vMin = new THREE.Vector3(-2, 0, 0),
+    vMax  = new THREE.Vector3(2, 0, 0);
     var frame = 0,
     maxFrame = 300,
     fps = 20,
@@ -89,7 +69,10 @@
         bias = 1 - Math.abs(0.5 - per) / 0.5;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-            updateGroup(group, secs, bias)
+            // warp one axis
+            mesh1.position.x += (-5 + 10 * bias) * secs;
+            // wrap vector
+            wrapVector(mesh1.position, vMin, vMax);
             renderer.render(scene, camera);
             frame += fps * secs;
             frame %= maxFrame;
