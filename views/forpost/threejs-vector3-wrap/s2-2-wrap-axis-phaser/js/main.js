@@ -13,38 +13,16 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
-    // mod method
-    //var mod = function (a, b) {
-    //    return THREE.MathUtils.euclideanModulo(a, b);
-    //};
     // Wrap method from Phaser ( https://github.com/photonstorm/phaser/blob/v3.55.2/src/math/Wrap.js )
     var Wrap = function (value, min, max){
         var range = max - min;
         return (min + ((((value - min) % range) + range) % range));
     };
-
-    // wrap and axis
+    // wrap an axis
     var wrapAxis = function(vec, vecMin, vecMax, axis){
         axis = axis || 'x';
-
         vec[axis] = Wrap( vec[axis], vecMin[axis], vecMax[axis] );
-
         return vec;
-
-/*
-        var maxD = new THREE.Vector2(vecMin[axis], 0).distanceTo( new THREE.Vector2(vecMax[axis], 0) );
-        var d = new THREE.Vector2(vec[axis], 0).distanceTo( new THREE.Vector2(vecMin[axis], 0) );
-        if(maxD === 0){
-           vec[axis] = 0;
-        }else{
-            if(vec[axis] >= vecMax[axis]){
-                vec[axis] = vecMin[axis] + mod(d, maxD);
-            }
-            if(vec[axis] < vecMin[axis]){
-                vec[axis] = vecMax[axis] - mod(d, maxD);
-            }
-        }
-*/
     };
     //-------- ----------
     // MESH
