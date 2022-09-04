@@ -1,50 +1,7 @@
-var wrapVector = (function () {
-    // Wrap method based off of the method from Phaser3 
-    // ( https://github.com/photonstorm/phaser/blob/v3.55.2/src/math/Wrap.js )
-    // * just added some code for case : Wrap(0, 0, 0)
-    // * using Math.min and Math.max
-    //
-    var Wrap = function (value, a, b){
-        // get min and max this way so Wrap(value, 2, 10) is same as Wrap(value, 10, 2)
-        var max = Math.max(a, b);
-        var min = Math.min(a, b);
-        // return 0 for Wrap(value, 0, 0);
-        if(max === 0 && min === 0){
-             return 0;
-        }
-        var range = max - min;
-        return (min + ((((value - min) % range) + range) % range));
-    };
-    // wrap an axis
-    var wrapAxis = function(vec, vecMin, vecMax, axis){
-        axis = axis || 'x';
-        vec[axis] = Wrap( vec[axis], vecMin[axis], vecMax[axis] );
-        return vec;
-    };
-
-
-
-    // wrap a vector
-    var wrapVector = function (vec, vecMin, vecMax) {
-        vecMin = vecMin || new THREE.Vector3(0, 0, 0);
-        vecMax = vecMax || new THREE.Vector3(1, 1, 1);
-        wrapAxis(vec, vecMin, vecMax, 'x');
-        wrapAxis(vec, vecMin, vecMax, 'y');
-        wrapAxis(vec, vecMin, vecMax, 'z');
-        return vec;
-    };
-
-    var api = function(vec, vecMin, vecMax){
-wrapVector(vec, vecMin, vecMax)
-    };
-
-    return api;
-
-}());
-
-
 (function () {
-
+    // works well with Vector2
+    var v = new THREE.Vector2(5, 2);
+    console.log( wrapVector( v , new THREE.Vector2(-3, -3), new THREE.Vector2(3, 3) ) );
     //-------- ----------
     // SCENE, CAMERA RENDERER
     //-------- ----------
@@ -64,11 +21,16 @@ wrapVector(vec, vecMin, vecMax)
             new THREE.MeshNormalMaterial());
     mesh1.position.set(0, 0, 0);
     scene.add(mesh1);
+    var mesh2 = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshNormalMaterial());
+    mesh2.position.set(0, 0, -1.5);
+    scene.add(mesh2);
     //-------- ----------
     // LOOP
     //-------- ----------
-    var vMin = new THREE.Vector3(-2, 0, 0),
-    vMax  = new THREE.Vector3(2, 0, 0);
+    var vMin = new THREE.Vector3(-2, -1, -2),
+    vMax  = new THREE.Vector3(2, 1, 2);
     var frame = 0,
     maxFrame = 300,
     fps = 20,
@@ -82,8 +44,10 @@ wrapVector(vec, vecMin, vecMax)
         if (secs > 1 / fps) {
             // warp one axis
             mesh1.position.x += (-5 + 10 * bias) * secs;
+            mesh2.position.y += (-5 + 10 * bias) * secs;
             // wrap vector
             wrapVector(mesh1.position, vMin, vMax);
+            wrapVector(mesh2.position, vMin, vMax);
             renderer.render(scene, camera);
             frame += fps * secs;
             frame %= maxFrame;
