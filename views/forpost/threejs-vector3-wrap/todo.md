@@ -1,10 +1,10 @@
 # threejs-vector3-wrap todo list
 
-## () - Extend THREEJS Vector2, Vector3, ect
-* () example that also extends Vector classes with a wrap method
+## Looks like extending THREEJS Mathutils?
+* () look into how to go about extending math utils, might have to involve hacking over threejs itself
 
-## () - Extend THREEJS Math utils example
-* () example that extends Math utils object with a wrap method
+## () Wrap Vector Module
+* () looks like section 4 will have to be a wrap vector module.
 
 ## ( done 09/04/2022 ) - 2.2 - phaser based wrap axis
 * (done) have a phaser based wrap axis method

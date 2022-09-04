@@ -1,9 +1,4 @@
-(function () {
-
-
-//-------- ----------
-    // HELPERS
-    //-------- ----------
+var wrapVector = (function () {
     // Wrap method based off of the method from Phaser3 
     // ( https://github.com/photonstorm/phaser/blob/v3.55.2/src/math/Wrap.js )
     // * just added some code for case : Wrap(0, 0, 0)
@@ -26,6 +21,9 @@
         vec[axis] = Wrap( vec[axis], vecMin[axis], vecMax[axis] );
         return vec;
     };
+
+
+
     // wrap a vector
     var wrapVector = function (vec, vecMin, vecMax) {
         vecMin = vecMin || new THREE.Vector3(0, 0, 0);
@@ -33,7 +31,20 @@
         wrapAxis(vec, vecMin, vecMax, 'x');
         wrapAxis(vec, vecMin, vecMax, 'y');
         wrapAxis(vec, vecMin, vecMax, 'z');
+        return vec;
     };
+
+    var api = function(vec, vecMin, vecMax){
+wrapVector(vec, vecMin, vecMax)
+    };
+
+    return api;
+
+}());
+
+
+(function () {
+
     //-------- ----------
     // SCENE, CAMERA RENDERER
     //-------- ----------
