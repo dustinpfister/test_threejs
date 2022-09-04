@@ -1,5 +1,8 @@
 # threejs-vector3-wrap todo list
 
+## () - 2.2 - phaser based wrap axis
+* () have a phaser based wrap axis method
+
 ## ( done 09/01/2022 ) - first set of examples done
 * (done) have a mod example
 * (done) have an example for just one axis
