@@ -12,22 +12,29 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // create group
-    var createGroup = function (spread) {
+    var createGroup = function (count, spread, ppsMin, ppsMax) {
         spread = spread === undefined ? 5 : spread;
+        count = count === undefined ? 5 : count;
+        ppsMin = ppsMin === undefined ? 0.25 : ppsMin;
+        ppsMax = ppsMax === undefined ? 2 : ppsMax;
         var group = new THREE.Group();
-        var i = 0,
-        len = 50;
-        while (i < len) {
+        var i = 0;
+        while (i < count) {
             var mesh = new THREE.Mesh(
-                new THREE.BoxGeometry(1.0, 1.0, 1.0), 
+                new THREE.BoxGeometry(0.25, 0.25, 0.25), 
                 new THREE.MeshNormalMaterial({
                     transparent: true,
                     opacity: 0.60
                 })
             );
+            // start position
             mesh.position.x = spread * THREE.MathUtils.seededRandom();
             mesh.position.y = spread * THREE.MathUtils.seededRandom();
             mesh.position.z = spread * THREE.MathUtils.seededRandom();
+            // user data values
+            var ud = mesh.userData;
+            ud.pps = ppsMin + (ppsMax - ppsMin) * THREE.MathUtils.seededRandom();
+            ud.dir = new THREE.Vector3(-2 + 4 * THREE.MathUtils.seededRandom(), 0, 1).normalize();
             group.add(mesh);
             i += 1;
         }
@@ -36,9 +43,10 @@
     // update a group
     var updateGroup = function (group, secs, bias) {
        group.children.forEach(function(mesh){
-            mesh.position.x += (2 - 4 * bias) * secs;
-            mesh.position.y += (-2 + 4 * bias ) * secs;
-            mesh.position.z += 2 * secs;
+            var ud = mesh.userData;
+            mesh.position.x += ud.dir.x * ud.pps * secs;
+            mesh.position.y += ud.dir.y * ud.pps * secs;
+            mesh.position.z += ud.dir.z * ud.pps * secs;
             wrapVector(
                 mesh.position,
                 new THREE.Vector3(-2, -2, -2),
@@ -48,7 +56,7 @@
     //-------- ----------
     // LOOP
     //-------- ----------
-    var group = createGroup(1.5);
+    var group = createGroup(100, 5, 0.05, 2);
     scene.add(group);
     var frame = 0,
     maxFrame = 300,
