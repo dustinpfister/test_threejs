@@ -12,13 +12,13 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // create group
-    var createGroup = function (count, spread, ppsMin, ppsMax, meshSize, boundSize) {
+    var createGroup = function (count, spread, ppsMin, ppsMax, meshSize, boundSize, gitDir) {
         spread = spread === undefined ? 5 : spread;
-        count = count === undefined ? 5 : count;
-        ppsMin = ppsMin === undefined ? 0.25 : ppsMin;
+        count = count === undefined ? 50 : count;
+        ppsMin = ppsMin === undefined ? 0.5 : ppsMin;
         ppsMax = ppsMax === undefined ? 2 : ppsMax;
 
-        meshSize = meshSize === undefined ? 0.25 : meshSize;
+        meshSize = meshSize === undefined ? 1 : meshSize;
         boundSize = boundSize === undefined ? 4 : boundSize;
 
         var group = new THREE.Group();
@@ -38,10 +38,10 @@
             mesh.position.x = spread * THREE.MathUtils.seededRandom();
             mesh.position.y = spread * THREE.MathUtils.seededRandom();
             mesh.position.z = spread * THREE.MathUtils.seededRandom();
-            // user data values
+            // user data values, pps and direction
             var ud = mesh.userData;
             ud.pps = ppsMin + (ppsMax - ppsMin) * THREE.MathUtils.seededRandom();
-            ud.dir = new THREE.Vector3(-2 + 4 * THREE.MathUtils.seededRandom(), 0, 1).normalize();
+            ud.dir = gitDir ? gitDir(group, mesh, i) : new THREE.Vector3(0, 1, 0).normalize();
             group.add(mesh);
             i += 1;
         }
@@ -70,9 +70,19 @@
     //-------- ----------
     // LOOP
     //-------- ----------
-    var controls = new THREE.OrbitControls(camera, renderer.domElement)
-    var group = createGroup(100, 5, 0.5, 4, 0.5, 4);
-    scene.add(group);
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    // group1 uses default values
+    var group1 = createGroup();
+    scene.add(group1);
+    // group2 uses custom values
+    var group2 = createGroup(100, 5, 0.125, 0.25, 0.25, 4, () => {
+        return new THREE.Vector3(
+            -5 + 10 * THREE.MathUtils.seededRandom(),
+            -5 + 10 * THREE.MathUtils.seededRandom(),
+            -5 + 10 * THREE.MathUtils.seededRandom());
+    });
+    group2.position.set(-7, 0, 0);
+    scene.add(group2);
     var frame = 0,
     maxFrame = 300,
     fps = 20,
@@ -84,7 +94,8 @@
         bias = 1 - Math.abs(0.5 - per) / 0.5;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-            updateGroup(group, secs, bias)
+            updateGroup(group1, secs, bias);
+            updateGroup(group2, secs, bias);
             renderer.render(scene, camera);
             frame += fps * secs;
             frame %= maxFrame;
