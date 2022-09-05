@@ -10,17 +10,17 @@
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
     // create group
     var createGroup = function (count, spread, ppsMin, ppsMax, meshSize, boundSize, gitDir) {
         spread = spread === undefined ? 5 : spread;
         count = count === undefined ? 50 : count;
         ppsMin = ppsMin === undefined ? 0.5 : ppsMin;
         ppsMax = ppsMax === undefined ? 2 : ppsMax;
-
         meshSize = meshSize === undefined ? 1 : meshSize;
         boundSize = boundSize === undefined ? 4 : boundSize;
-
         var group = new THREE.Group();
         var gud = group.userData;
         gud.meshSize = meshSize;
