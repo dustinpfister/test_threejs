@@ -4,7 +4,9 @@
 * () look into how to go about extending math utils, might have to involve hacking over threejs itself
 
 ## () - more demos for module example
-* have at least one more demo of wrap module
+* () have a s4-1-basic example
+* () have a s4-2-seededRandom example
+* () have a s4-3-grids example
 
 ## ( done 09/04/2022 ) - Wrap Vector Module
 * (done) looks like section 4 will have to be a wrap vector module.
