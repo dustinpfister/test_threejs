@@ -12,16 +12,23 @@
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // create group
-    var createGroup = function (count, spread, ppsMin, ppsMax) {
+    var createGroup = function (count, spread, ppsMin, ppsMax, meshSize, boundSize) {
         spread = spread === undefined ? 5 : spread;
         count = count === undefined ? 5 : count;
         ppsMin = ppsMin === undefined ? 0.25 : ppsMin;
         ppsMax = ppsMax === undefined ? 2 : ppsMax;
+
+        meshSize = meshSize === undefined ? 0.25 : meshSize;
+        boundSize = boundSize === undefined ? 4 : boundSize;
+
         var group = new THREE.Group();
+        var gud = group.userData;
+        gud.meshSize = meshSize;
+        gud.boundSize = boundSize;
         var i = 0;
         while (i < count) {
             var mesh = new THREE.Mesh(
-                new THREE.BoxGeometry(0.25, 0.25, 0.25), 
+                new THREE.BoxGeometry(gud.meshSize, gud.meshSize, gud.meshSize), 
                 new THREE.MeshNormalMaterial({
                     transparent: true,
                     opacity: 0.60
@@ -42,6 +49,13 @@
     };
     // update a group
     var updateGroup = function (group, secs, bias) {
+       var gud = group.userData;
+       var bs = gud.boundSize / 2;
+       var ms = gud.meshSize / 2;
+       var a = bs * -1 + ms;
+       var b = bs - ms;
+       var vMin = new THREE.Vector3(a, a, a);
+       var vMax = new THREE.Vector3(b, b, b);
        group.children.forEach(function(mesh){
             var ud = mesh.userData;
             mesh.position.x += ud.dir.x * ud.pps * secs;
@@ -49,14 +63,15 @@
             mesh.position.z += ud.dir.z * ud.pps * secs;
             wrapVector(
                 mesh.position,
-                new THREE.Vector3(-2, -2, -2),
-                new THREE.Vector3(2, 2, 2));
+                vMin,
+                vMax);
         });
     };
     //-------- ----------
     // LOOP
     //-------- ----------
-    var group = createGroup(100, 5, 0.05, 2);
+    var controls = new THREE.OrbitControls(camera, renderer.domElement)
+    var group = createGroup(100, 5, 0.5, 4, 0.5, 4);
     scene.add(group);
     var frame = 0,
     maxFrame = 300,
