@@ -1,3 +1,8 @@
+/* vector-wrap.js - r0 - A Wrap Vector Module prototype 
+ *     for the post: https://dustinpfister.github.io/2022/09/02/threejs-vector3-wrap
+ * 
+ *
+ */
 var wrapVector = (function () {
     // Wrap method based off of the method from Phaser3 
     // ( https://github.com/photonstorm/phaser/blob/v3.55.2/src/math/Wrap.js )
