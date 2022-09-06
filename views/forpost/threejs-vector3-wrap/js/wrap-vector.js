@@ -9,6 +9,7 @@ var wrapVector = (function () {
     // * Added some code for case: Wrap(0, 0, 0)
     // * Using Math.min and Math.max so that Wrap(value, 2, 10) is same as Wrap(value, 10, 2)
     //
+
     var wrap = function (value, a, b){
         // get min and max this way
         var max = Math.max(a, b);
