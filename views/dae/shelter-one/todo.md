@@ -1,10 +1,13 @@
 # shelter-one DAE file todo list
 
+## () final frame part
+* () start part-4-frame object that will be all the board parts 1-3 togeather as one part
+
 ## () - back part
 * () start part-2-back that will be the back part of the shelter
 
-* () start part-4-frame object that will be all the board parts 1-3 togeather as one part
-* () side parts
+## () - new sides and roof
+* () The roof is to low so I ned new side parts
 
 ## ( done 09/07/2022 ) - start roof
 * (done) 1'8" spacing ( -1.66667ft ) seems to work okay so use that
