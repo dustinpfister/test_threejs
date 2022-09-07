@@ -6,6 +6,7 @@
     let opacityEffect = (mesh) =>  {
         mesh.material.opacity = 1 - mesh.position.length() / 5;
     };
+    // rotation effect using the distanceTo method
     let rotationEffect = (group, mesh) =>  {
         let minDist = 5;
         group.children.forEach( (child) => {
@@ -17,8 +18,6 @@
                     let ud = mesh.userData;
                     ud.rp += p;
                     ud.rp %= 1;
-                    mesh.rotation.x += Math.PI / 180 * 45 * ud.rp;
-                    mesh.rotation.y += Math.PI / 180 * 45 * ud.rp;
                     mesh.rotation.z += Math.PI / 180 * 45 * ud.rp;
                 }
             }
