@@ -2,7 +2,10 @@
     //-------- ----------
     // HELPER FUNCTIONS
     //-------- ----------
-
+    // opaicty effect using length method which is distance to origin
+    let opacityEffect = (mesh) =>  {
+        mesh.material.opacity = 1 - mesh.position.length() / 5;
+    };
     // get a start position by passing two values that are 0 - 1
     let getStartPosition = (a, b) => {
         a = a === undefined ? 0 : a;
@@ -31,7 +34,11 @@
         let i = 0, count = 40;
         while(i < count){
             // create mesh object
-            let mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshNormalMaterial() );
+            let mesh = new THREE.Mesh( 
+                new THREE.BoxGeometry(1,1,1), 
+                new THREE.MeshNormalMaterial({
+                    transparent: true
+                }) );
             // user data
             let ud = mesh.userData;
             newMeshUserData(mesh);
@@ -45,21 +52,20 @@
     // update group
     let updateGroup = function(group, secs){
         secs = secs === undefined ? 0 : secs;
-
         group.children.forEach( (mesh) => {
             let ud = mesh.userData;
             ud.alpha += ud.alphaDelta * secs;
             ud.alpha = ud.alpha > 1 ? 1 : ud.alpha;
-
+            // new positon using start pos in userData and lerping from there
             mesh.position.copy(ud.startPos).lerp( new THREE.Vector3(), ud.alpha );
             mesh.lookAt(0, 0, 0);
             // new data if alpha === 1
             if(ud.alpha === 1){
                 newMeshUserData(mesh);
             }
-
+            // opaicty effect
+            opacityEffect(mesh);
         });
-
     };
     //-------- ----------
     // SCENE, CAMERA, RENDERER
