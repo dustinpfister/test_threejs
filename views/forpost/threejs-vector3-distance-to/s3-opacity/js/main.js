@@ -17,6 +17,14 @@
             THREE.MathUtils.seededRandom(), 
             THREE.MathUtils.seededRandom() );
     };
+    // set new mesh user data
+    let newMeshUserData = (mesh) => {
+        // user data
+        let ud = mesh.userData;
+        ud.startPos = getSeededRandomStartPosition();
+        ud.alphaDelta = 0.1 + 0.5 * THREE.MathUtils.seededRandom();
+        ud.alpha = 0;
+    };
     // create group
     let createGroup = () => {
         let group = new THREE.Group();
@@ -26,12 +34,9 @@
             let mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshNormalMaterial() );
             // user data
             let ud = mesh.userData;
-            ud.startPos = getSeededRandomStartPosition();
-            ud.alphaDelta = 0.5;
-            ud.alpha = 0;
+            newMeshUserData(mesh);
             // start pos, lookAt, add to group
             mesh.position.copy( ud.startPos );
-            mesh.lookAt(0, 0, 0);
             group.add(mesh);
             i += 1;
         }
@@ -47,6 +52,11 @@
             ud.alpha = ud.alpha > 1 ? 1 : ud.alpha;
 
             mesh.position.copy(ud.startPos).lerp( new THREE.Vector3(), ud.alpha );
+            mesh.lookAt(0, 0, 0);
+            // new data if alpha === 1
+            if(ud.alpha === 1){
+                newMeshUserData(mesh);
+            }
 
         });
 
