@@ -16,3 +16,9 @@ A design for a shelter that I may or may not build in the real world.
 ## Use TinyCad add on
 
 make sure you have tiny cad add on enabled in blender, and use the w key to use
+
+## Using US Standard is a pain in blender
+
+```
+1'8" :  -1.66667ft
+```
