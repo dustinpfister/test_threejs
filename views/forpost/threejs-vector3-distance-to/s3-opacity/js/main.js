@@ -101,19 +101,14 @@
     //-------- ----------
     // OBJECTS
     //-------- ----------
-
     let group1 = createGroup(80);
     scene.add(group1);
-
     let group2 = createGroup(20);
     group2.position.set(-10, 0, 0);
     scene.add(group2);
-
     let group3 = createGroup(20);
     group3.position.set(0, 0, -10);
     scene.add(group3);
-
-
     //-------- ----------
     // LOOP
     //-------- ----------
@@ -127,12 +122,10 @@
             updateGroup(group1, secs);
             updateGroup(group2, secs);
             updateGroup(group3, secs);
-
             lt = now;
             renderer.render(scene, camera);
         }
     };
     loop();
-
 }
     ());
