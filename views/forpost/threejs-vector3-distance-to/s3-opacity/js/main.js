@@ -17,19 +17,39 @@
             THREE.MathUtils.seededRandom(), 
             THREE.MathUtils.seededRandom() );
     };
-
-
+    // create group
     let createGroup = () => {
         let group = new THREE.Group();
         let i = 0, count = 40;
         while(i < count){
+            // create mesh object
             let mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshNormalMaterial() );
-            mesh.position.copy( getSeededRandomStartPosition()  );
+            // user data
+            let ud = mesh.userData;
+            ud.startPos = getSeededRandomStartPosition();
+            ud.alphaDelta = 0.5;
+            ud.alpha = 0;
+            // start pos, lookAt, add to group
+            mesh.position.copy( ud.startPos );
             mesh.lookAt(0, 0, 0);
             group.add(mesh);
             i += 1;
         }
         return group;
+    };
+    // update group
+    let updateGroup = function(group, secs){
+        secs = secs === undefined ? 0 : secs;
+
+        group.children.forEach( (mesh) => {
+            let ud = mesh.userData;
+            ud.alpha += ud.alphaDelta * secs;
+            ud.alpha = ud.alpha > 1 ? 1 : ud.alpha;
+
+            mesh.position.copy(ud.startPos).lerp( new THREE.Vector3(), ud.alpha );
+
+        });
+
     };
     //-------- ----------
     // SCENE, CAMERA, RENDERER
@@ -60,6 +80,7 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
+            updateGroup(group, secs);
             lt = now;
             renderer.render(scene, camera);
         }
