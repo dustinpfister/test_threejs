@@ -18,7 +18,7 @@
                     let ud = mesh.userData;
                     ud.rp += p;
                     ud.rp %= 1;
-                    mesh.rotation.z += Math.PI / 180 * 45 * ud.rp;
+                    mesh.rotation.z += Math.PI / 180 * ud.maxDegPerChid * ud.rp;
                 }
             }
         })
@@ -45,6 +45,7 @@
         ud.alphaDelta = 0.1 + 0.5 * THREE.MathUtils.seededRandom();
         ud.alpha = 0;
         ud.rp = 0;
+        ud.maxDegPerChid = 5 + 355 * THREE.MathUtils.seededRandom();
     };
     // create group
     let createGroup = () => {
