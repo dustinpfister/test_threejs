@@ -48,9 +48,10 @@
         ud.maxDegPerChid = 5 + 355 * THREE.MathUtils.seededRandom();
     };
     // create group
-    let createGroup = () => {
+    let createGroup = (count) => {
+        count = count === undefined ? 10 : count;
         let group = new THREE.Group();
-        let i = 0, count = 100;
+        let i = 0;;
         while(i < count){
             // create mesh object
             let mesh = new THREE.Mesh( 
@@ -101,8 +102,16 @@
     // OBJECTS
     //-------- ----------
 
-    let group = createGroup();
-    scene.add(group);
+    let group1 = createGroup(80);
+    scene.add(group1);
+
+    let group2 = createGroup(20);
+    group2.position.set(-10, 0, 0);
+    scene.add(group2);
+
+    let group3 = createGroup(20);
+    group3.position.set(0, 0, -10);
+    scene.add(group3);
 
 
     //-------- ----------
@@ -115,7 +124,10 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-            updateGroup(group, secs);
+            updateGroup(group1, secs);
+            updateGroup(group2, secs);
+            updateGroup(group3, secs);
+
             lt = now;
             renderer.render(scene, camera);
         }
