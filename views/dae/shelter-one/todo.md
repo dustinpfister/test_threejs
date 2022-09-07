@@ -7,7 +7,7 @@
 * () side parts
 
 ## () - roof
-* () 1'8" spacing ( -1.66667ft ) seems to work okay so use that
+* (done) 1'8" spacing ( -1.66667ft ) seems to work okay so use that
 
 ## ( done 09/07/2022 ) - shelter-1a
 * (done) start a boards file
