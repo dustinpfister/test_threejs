@@ -6,8 +6,9 @@
 * () start part-4-frame object that will be all the board parts 1-3 togeather as one part
 * () side parts
 
-## () - roof
+## ( done 09/07/2022 ) - start roof
 * (done) 1'8" spacing ( -1.66667ft ) seems to work okay so use that
+* (done) added a person cube to see if the roof is to low which it is
 
 ## ( done 09/07/2022 ) - shelter-1a
 * (done) start a boards file
