@@ -11,6 +11,14 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     //-------- ----------
+    // LIGHT
+    //-------- ----------
+    let dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(-10, 3, -5);
+    scene.add(dl);
+    let al = new THREE.AmbientLight(0xffffff, 0.15);
+    scene.add(al);
+    //-------- ----------
     // HELPERS
     //-------- ----------
     // set position of mesh based on vector unit length along with a and b values
@@ -66,7 +74,10 @@
         let i = 0;
         let group = new THREE.Group();
         while(i < count){
-            let mesh = new THREE.Mesh( new THREE.BoxGeometry(s, s, s), new THREE.MeshNormalMaterial());
+            let mesh = new THREE.Mesh(
+                new THREE.BoxGeometry(s, s, s),
+                new THREE.MeshPhongMaterial({
+                }));
             group.add(mesh);
             i += 1;
         }
@@ -76,7 +87,7 @@
     //-------- ----------
     // OBJECTS
     //-------- ----------
-    let group1 = createGroup(120, 0.4);
+    let group1 = createGroup(120, 0.6);
     scene.add(group1);
     //-------- ----------
     // LOOP
