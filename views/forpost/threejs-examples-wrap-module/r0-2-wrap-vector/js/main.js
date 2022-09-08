@@ -34,6 +34,7 @@
             // update dir
             dir.x += Math.PI / 180 * 5 * secs;
             dir.y += Math.PI / 180 * 45 * secs;
+            wrapMod.wrapEuler(dir);
             // figure delta
             let delta = new THREE.Vector3(0, 0, 1);
             delta = delta.applyEuler(dir).normalize().multiplyScalar(unitsPerSec * secs);

@@ -28,7 +28,7 @@ const wrapMod = (function () {
     };
     // Wrap a vector method of public api
     api.wrapVector = function (vec, vecMin, vecMax) {
-        vecMin = vecMin || new THREE.Vector3(0, 0, 0);
+        vecMin = vecMin || new THREE.Vector3(-1, -1, -1);
         vecMax = vecMax || new THREE.Vector3(1, 1, 1);
         Object.keys(vec).forEach(function(axis){
             wrapAxis(vec, vecMin, vecMax, axis);
@@ -42,6 +42,17 @@ const wrapMod = (function () {
         let len = wrap(vec.length(), minLength, maxLength);
         vec.normalize().multiplyScalar(len);
         return vec;
+    };
+    // wrap a Euler
+    // Wrap a vector method of public api
+    const PI2 = Math.PI * 2;
+    api.wrapEuler = function (eu, euMin, euMax) {
+        euMin = euMin || new THREE.Euler(0, 0, 0);
+        euMax = euMax || new THREE.Euler(PI2, PI2, PI2);
+        eu.x = wrap(eu.x, euMin.x, euMax.x);
+        eu.y = wrap(eu.y, euMin.y, euMax.y);
+        eu.z = wrap(eu.z, euMin.z, euMax.z);
+        return eu;
     };
     // return api
     return api;
