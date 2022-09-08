@@ -7,9 +7,10 @@
 
 ## () - r0 of threejs-wrap.js
 * (done) start a r0 of threejs-wrap-.js based off of what I started in threejs-vector3-wrap
-* () add a wrapLength method to the module
-
 * (done) wrap method demo
-* () wrapVector method demo
+* (done) wrapVector method demo
+
+* () add a wrapLength method to the module
 * () wrapLength method demo
 
+* () wrapMod.wrapVector in place of main api method
