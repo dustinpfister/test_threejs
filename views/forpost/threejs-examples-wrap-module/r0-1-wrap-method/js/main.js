@@ -16,51 +16,32 @@
     var mesh1 = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
-    mesh1.position.set(0, 0, -3);
     scene.add(mesh1);
-    var mesh2 = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshNormalMaterial());
-    mesh2.position.set(0, 0, -2);
-    scene.add(mesh2);
-    var mesh3 = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshNormalMaterial());
-    mesh3.position.set(0, 0, 2);
-    scene.add(mesh3);
-    var mesh4 = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshNormalMaterial());
-    mesh4.position.set(0, 0, 3);
-    scene.add(mesh4);
     //-------- ----------
     // LOOP
     //-------- ----------
-    var frame = 0,
-    maxFrame = 300,
+    var x =0,
+    unitsPerSec = 2,
     fps = 20,
     lt = new Date();
     var loop = function () {
         var now = new Date(),
-        secs = (now - lt) / 1000,
-        per = frame / maxFrame,
-        bias = 1 - Math.abs(0.5 - per) / 0.5;
+        secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-            mesh1.position.x -= 5 * secs;
-            mesh1.position.x %= 5;
-            mesh2.position.x += 5 * secs;
-            mesh2.position.x %= 5;
-            mesh3.position.x -= 5 * secs;
-            mesh3.position.x = THREE.MathUtils.euclideanModulo(mesh3.position.x, 5);
-            mesh4.position.x += 5 * secs;
-            mesh4.position.x = THREE.MathUtils.euclideanModulo(mesh4.position.x, 5);
+            x += unitsPerSec * secs;
+            // USING THRE wrapMod.wrap METHOD WITH A VALUE
+            x = wrapMod.wrap(x, -4.5, 4.5);
+            mesh1.position.x = x;
+            
             renderer.render(scene, camera);
-            frame += fps * secs;
-            frame %= maxFrame;
             lt = now;
         }
     };
     loop();
+    //-------- ----------
+    // CONTROLS
+    //-------- ----------
+    let controls = new THREE.OrbitControls(camera, renderer.domElement)
 }
     ());
