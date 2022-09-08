@@ -3,8 +3,8 @@
 ## () - art-example-1
 * () have an example that makes use of everything covered in the post that will be used to make a video
 
-## () - changing direction and scale of vectors
-* () animation loop example that shows use of applyEuler along with multiply scalar
+## ( done 09/08/2022 ) - changing direction and scale of vectors
+* (done) animation loop example that shows use of applyEuler along with multiply scalar
 
 ## ( done 03/23/2022 ) - copy, translate, normalize, and multiply-scalar
 * (done) example that uses translate on top of copy and normailze
