@@ -22,6 +22,7 @@
             0, 
             a % 1 * pi2,
             b % 1 * pi2);
+        // using copy to start at startDir, then applying the Euler. After that normalize and multiplyScalar
         return mesh.position.copy( startDir ).applyEuler( eul ).normalize().multiplyScalar(len);
     };
     // get a bias value
