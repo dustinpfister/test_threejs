@@ -32,7 +32,8 @@
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
             // update dir
-            dir.y += Math.PI / 180 * 10 * secs;
+            dir.y += Math.PI / 180 * 40 * secs;
+			console.log(dir.y)
             // figure delta
             let delta = new THREE.Vector3(0, 0, 1);
             delta = delta.applyEuler(dir).normalize().multiplyScalar(unitsPerSec * secs);

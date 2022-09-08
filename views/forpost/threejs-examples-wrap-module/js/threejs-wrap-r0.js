@@ -37,6 +37,8 @@ const wrapMod = (function () {
     };
     // wrap a vector by unit length
     api.wrapVectorLength = function (vec, minLength, maxLength) {
+        minLength = minLength === undefined ? 0 : minLength;
+        maxLength = maxLength === undefined ? 0 : maxLength;
         let len = wrap(vec.length(), minLength, maxLength);
         vec.normalize().multiplyScalar(len);
         return vec;
