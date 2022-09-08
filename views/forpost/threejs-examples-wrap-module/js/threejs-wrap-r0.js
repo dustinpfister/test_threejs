@@ -27,13 +27,22 @@ const wrapMod = (function () {
         return vec;
     };
     // Wrap a vector method of public api
-    const wrapVector = api.wrapVector = function (vec, vecMin, vecMax) {
+    api.wrapVector = function (vec, vecMin, vecMax) {
         vecMin = vecMin || new THREE.Vector3(0, 0, 0);
         vecMax = vecMax || new THREE.Vector3(1, 1, 1);
         Object.keys(vec).forEach(function(axis){
             wrapAxis(vec, vecMin, vecMax, axis);
         });
         return vec;
+    };
+    // wrap a vector by unit length
+    api.wrapVectorLength = function (vec, minLength, maxLength) {
+		
+		let len = wrap(vec.length(), minLength, maxLength);
+		
+		vec.normalize().multiplyScalar(len);
+		
+		return vec;
     };
     // return api
     return api;
