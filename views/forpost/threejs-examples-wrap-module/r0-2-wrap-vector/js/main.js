@@ -39,7 +39,7 @@
             delta = delta.applyEuler(dir).normalize().multiplyScalar(unitsPerSec * secs);
             // USING wrapMod main method to wrap mesh1.position
             mesh1.position.add(delta);
-            wrapMod(mesh1.position, vecMin, vecMax);
+            wrapMod.wrapVector(mesh1.position, vecMin, vecMax);
             mesh1.lookAt(0, 0, 0);
             // render
             renderer.render(scene, camera);

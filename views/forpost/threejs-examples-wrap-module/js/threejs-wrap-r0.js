@@ -2,12 +2,14 @@
  *     for the post: https://dustinpfister.github.io/2022/09/09/threejs-examples-wrap-module/
  */
 const wrapMod = (function () {
+    // public API
+    const api = {};
     // Wrap method based off of the method from Phaser3 
     // ( https://github.com/photonstorm/phaser/blob/v3.55.2/src/math/Wrap.js )
     // * Added some code for case: Wrap(0, 0, 0)
     // * Using Math.min and Math.max so that Wrap(value, 2, 10) is same as Wrap(value, 10, 2)
     //
-    const wrap = function (value, a, b){
+    const wrap = api.wrap = function (value, a, b){
         // get min and max this way
         let max = Math.max(a, b);
         let min = Math.min(a, b);
@@ -24,8 +26,8 @@ const wrapMod = (function () {
         vec[axis] = wrap( vec[axis], vecMin[axis], vecMax[axis] );
         return vec;
     };
-    // Main wrap a vector method of public api
-    const api = function (vec, vecMin, vecMax) {
+    // Wrap a vector method of public api
+    const wrapVector = api.wrapVector = function (vec, vecMin, vecMax) {
         vecMin = vecMin || new THREE.Vector3(0, 0, 0);
         vecMax = vecMax || new THREE.Vector3(1, 1, 1);
         Object.keys(vec).forEach(function(axis){
@@ -33,8 +35,6 @@ const wrapMod = (function () {
         });
         return vec;
     };
-    // make wrap method public
-    api.wrap = wrap;
     // return api
     return api;
 }());
