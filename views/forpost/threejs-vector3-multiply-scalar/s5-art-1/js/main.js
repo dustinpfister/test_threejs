@@ -31,19 +31,23 @@
         return 1 - Math.abs(0.5 - per) / 0.5;
     };
     // update a group
-    const updateGroup = function(group, gAlpha, alphaAdjust, lenBiasCount, bBiasCount){
-        alphaAdjust = alphaAdjust === undefined ? 1 : alphaAdjust;
-        lenBiasCount = lenBiasCount === undefined ? 5 : lenBiasCount;
-        bBiasCount = bBiasCount === undefined ? 5 : bBiasCount;
+    //const updateGroup = function(group, gAlpha, alphaAdjust, lenBiasCount, bBiasCount){
+    const updateGroup = function(group, gAlpha, opt){
+        gAlpha = gAlpha === undefined ? 0 : gAlpha; 
+        opt = opt || {};
+        opt.alphaAdjust = opt.alphaAdjust === undefined ? 1 : opt.alphaAdjust;
+        opt.lenBiasCount = opt.lenBiasCount === undefined ? 5 : opt.lenBiasCount;
+        opt.bBiasCount = opt.bBiasCount === undefined ? 5 : opt.bBiasCount;
+        opt.lenRange = opt.lenRange || [3, 8];
+        opt.bRange = opt.bRange || [-0.125, 0.125];
         let i = 0, count = group.children.length;
         while(i < count){
             let mesh = group.children[i];
             let iAlpha = i / count;
-            let alpha = ( iAlpha + gAlpha ) / alphaAdjust;
-            let len = 3 + 5 * getBias(alpha, lenBiasCount);
+            let alpha = ( iAlpha + gAlpha ) / opt.alphaAdjust;
+            let len = opt.lenRange[0] + (opt.lenRange[1] - opt.lenRange[0]) * getBias(alpha, opt.lenBiasCount);
             let a = alpha;
-            let b = -0.125 + 0.25 * getBias(alpha, bBiasCount);
-
+            let b = opt.bRange[0] + (opt.bRange[1] - opt.bRange[0]) * getBias(alpha, opt.bBiasCount);
             setByLength(mesh, len, a, b);
             // next child
             nextChild = group.children[i + 1];
@@ -72,9 +76,8 @@
     //-------- ----------
     // OBJECTS
     //-------- ----------
-    let group1 = createGroup(100, 0.5);
+    let group1 = createGroup(120, 0.4);
     scene.add(group1);
-
     //-------- ----------
     // LOOP
     //-------- ----------
@@ -84,22 +87,14 @@
     lt = new Date();
     const loop = function () {
         let now = new Date(),
-        secs = (now - lt) / 1000;
+        secs = (now - lt) / 1000,
+        fAlpha = frame / maxFrame;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-
-
-        updateGroup(group1, frame / maxFrame);
-
-            // USING SET BY LENGTH HELPER
-/*
-            let len = 1 + 4 * getBias(frame, maxFrame, 6);
-            let a = frame / maxFrame;
-            let b = -0.125 + 0.25 * getBias(frame, maxFrame, 10);
-            setByLength(mesh1, len, a, b);
-            // look at, render, step, ...
-            mesh1.lookAt(0, 0, 0);
-*/
+            updateGroup(group1, fAlpha, {
+                lenRange: [1, 6],
+                bRange: [-0.125, 0.2 * getBias(fAlpha, 8)]
+            });
             renderer.render(scene, camera);
             frame += fps * secs;
             frame %= maxFrame;
