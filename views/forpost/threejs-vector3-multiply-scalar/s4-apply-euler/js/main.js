@@ -13,29 +13,46 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
-    
-
+    // set position of mesh based on vector unit length along with a and b values
+    // relative to a standard start position
+    const setByLength = function(mesh, len, a, b, startDir){
+        startDir = startDir || new THREE.Vector3(1, 0, 0);
+        const pi2 = Math.PI * 2,
+        eul = new THREE.Euler(
+            0, 
+            a % 1 * pi2,
+            b % 1 * pi2);
+        return mesh.position.copy( startDir ).applyEuler( eul ).normalize().multiplyScalar(len);
+    };
+    // get a bias value
+    const getBias = function(n, d, count){
+        let per = n / d * count % 1;
+        return 1 - Math.abs(0.5 - per) / 0.5;
+    };
     //-------- ----------
     // OBJECTS
     //-------- ----------
     const mesh1 = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshNormalMaterial());
     scene.add(mesh1);
-
-
     //-------- ----------
     // LOOP
     //-------- ----------
-    var frame = 0,
+    let frame = 0,
     maxFrame = 300,
     fps = 20,
     lt = new Date();
-    var loop = function () {
-        var now = new Date(),
-        secs = (now - lt) / 1000,
-        per = frame / maxFrame,
-        bias = 1 - Math.abs(0.5 - per) / 0.5;
+    const loop = function () {
+        let now = new Date(),
+        secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
+            // USING SET BY LENGTH HELPER
+            let len = 1 + 4 * getBias(frame, maxFrame, 6);
+            let a = frame / maxFrame;
+            let b = -0.125 + 0.25 * getBias(frame, maxFrame, 10);
+            setByLength(mesh1, len, a, b);
+            // look at, render, step, ...
+            mesh1.lookAt(0, 0, 0);
             renderer.render(scene, camera);
             frame += fps * secs;
             frame %= maxFrame;
