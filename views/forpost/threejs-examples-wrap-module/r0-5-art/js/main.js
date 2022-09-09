@@ -67,21 +67,26 @@
        var vMax = new THREE.Vector3(b, b, b);
        group.children.forEach(function(mesh){
             var ud = mesh.userData;
+            // update
             mesh.position.x += ud.dir.x * ud.pps * secs;
             mesh.position.y += ud.dir.y * ud.pps * secs;
             mesh.position.z += ud.dir.z * ud.pps * secs;
+            // if wrap vector
+            if(gud.type === 'wrapVector'){
+                wrapMod.wrapVector(
+                    mesh.position,
+                    vMin,
+                    vMax);
+            }
+            // if wrap vector length type
+            if(gud.type === 'wrapVectorLength'){
+                wrapMod.wrapVectorLength(
+                    mesh.position,
+                    a,
+                    b);
+                mesh.lookAt(group.position);
+            }
 
-            //wrapMod.wrapVector(
-            //    mesh.position,
-            //    vMin,
-            //    vMax);
-
-            wrapMod.wrapVectorLength(
-                mesh.position,
-                1,
-                2);
-
-            mesh.lookAt(group.position);
         });
     };
     // create group
@@ -105,6 +110,7 @@
         var gud = group.userData;
         gud.meshSize = meshSize;
         gud.boundSize = boundSize;
+        gud.type = 'wrapVector';
         var i = 0;
         while (i < count) {
             var mesh = makeCube(gud.meshSize, color);
@@ -128,8 +134,15 @@
     var mesh1 = makeCube();
     scene.add(mesh1);
 
-    var group1 = createGroup(100, 5, 0.25, 1, 0.75, 4);
+    var group1 = createGroup(80, 5, 0.25, 1, 0.75, 5, new THREE.Color(0,1,1));
+    group1.userData.type = 'wrapVector';
+    group1.position.set(-3,0,0)
     scene.add(group1);
+
+    var group2 = createGroup(80, 5, 0.25, 1, 0.75, 5, new THREE.Color(0,1,0));
+    group2.userData.type = 'wrapVectorLength';
+    group2.position.set(3,0,0)
+    scene.add(group2);
 
     //-------- ----------
     // LOOP
@@ -157,6 +170,7 @@
             mesh1.lookAt(0, 0, 0);
 
 updateGroup(group1, secs);
+updateGroup(group2, secs);
 
             // render
             renderer.render(scene, camera);
