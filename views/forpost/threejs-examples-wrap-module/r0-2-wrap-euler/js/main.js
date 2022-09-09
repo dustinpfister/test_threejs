@@ -37,17 +37,22 @@
         if(vMax < 0){
             //return ( wrapMod.wrap( value, vMin, vMax ) + Math.abs( vMin ) ) / range;
         }
-        // vMax is 0 or higher
+        // vMax is 0 or higher ( also looks like I might have a one liner here )
         return Math.abs( vMin - wrapMod.wrap(value, vMin, vMax) ) / range;
-
     };
-    // get alpha method test
+    //-------- ----------
+    // TESTING OUT getAlpha HELPER ( seems to work okay for these and demo )
+    //-------- ----------
     console.log( getAlpha( 6, 0, 10 ) );       // 0.6
     console.log( getAlpha( -14, -20, -10 ) );  // 0.6
     console.log( getAlpha( 2, -10, 10 ) );     // 0.6
     console.log( getAlpha( -1.4, -5, 1 ) );    // 0.6
-
     console.log( getAlpha( 2, -1, 5) ); // 0.5
+
+
+console.log( getAlpha( -0.9999, -1, 1) )
+console.log( getAlpha( 0, -1, 1) )
+console.log( getAlpha( 0.9999, -1, 1) )
 
     //-------- ----------
     // MESH
@@ -58,9 +63,9 @@
     // LOOP
     //-------- ----------
     let pi2 = Math.PI * 2,
-    eMin = new THREE.Euler(0, 0, 0),
-    eMax = new THREE.Euler(pi2, pi2 * 0.75, pi2),
-    degPerSec = 90,
+    eMin = new THREE.Euler(0, pi2 * 0.5 * -1, 0),
+    eMax = new THREE.Euler(pi2, pi2 * 0.25, pi2),
+    degPerSec = 20,
     fps = 20,
     lt = new Date();
     const loop = function () {
@@ -68,11 +73,10 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-
+            // updating and wraping the Euler in as mesh rotation property
             mesh1.rotation.y += Math.PI / 180 * degPerSec * secs;
-            mesh1.opacity
-
             wrapMod.wrapEuler(mesh1.rotation, eMin, eMax);
+            mesh1.material.opacity = 1 - Math.abs( 0.5 - getAlpha(mesh1.rotation.y, eMin.y, eMax.y) ) / 0.5;
             renderer.render(scene, camera);
             lt = now;
         }
