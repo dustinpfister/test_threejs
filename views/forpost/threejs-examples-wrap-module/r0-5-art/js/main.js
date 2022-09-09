@@ -14,8 +14,10 @@
     // LIGHT
     //-------- ----------
     const dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(1,10,3)
+    dl.position.set(1,10,3);
     scene.add(dl);
+    const al = new THREE.AmbientLight(0xffffff, 0.2);
+    scene.add(al);
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -69,11 +71,17 @@
             mesh.position.y += ud.dir.y * ud.pps * secs;
             mesh.position.z += ud.dir.z * ud.pps * secs;
 
-            wrapMod.wrapVector(
+            //wrapMod.wrapVector(
+            //    mesh.position,
+            //    vMin,
+            //    vMax);
+
+            wrapMod.wrapVectorLength(
                 mesh.position,
-                vMin,
-                vMax);
-            //mesh.lookAt(group.position);
+                1,
+                2);
+
+            mesh.lookAt(group.position);
         });
     };
     // create group
@@ -101,9 +109,9 @@
         while (i < count) {
             var mesh = makeCube(gud.meshSize, color);
             // start position
-            mesh.position.x = spread * THREE.MathUtils.seededRandom();
-            mesh.position.y = spread * THREE.MathUtils.seededRandom();
-            mesh.position.z = spread * THREE.MathUtils.seededRandom();
+            mesh.position.x = spread * -1 + spread * 2 * THREE.MathUtils.seededRandom();
+            mesh.position.y = spread * -1 + spread * 2 * THREE.MathUtils.seededRandom();
+            mesh.position.z = spread * -1 + spread * 2 * THREE.MathUtils.seededRandom();
             // user data values, pps and direction
             var ud = mesh.userData;
             ud.pps = ppsMin + (ppsMax - ppsMin) * THREE.MathUtils.seededRandom();
