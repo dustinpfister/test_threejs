@@ -5,7 +5,7 @@
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(10, 10));
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(8, 8, 8);
+    camera.position.set(10, 10, -10);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -129,28 +129,31 @@
         return group;
     };
     //-------- ----------
-    // MESH
+    // OBJECTS
     //-------- ----------
-    var mesh1 = makeCube();
-    scene.add(mesh1);
 
     var group1 = createGroup(80, 5, 0.25, 1, 0.75, 5, new THREE.Color(0,1,1));
     group1.userData.type = 'wrapVector';
-    group1.position.set(-3,0,0)
+    group1.position.set(-5,0,-5);
     scene.add(group1);
 
     var group2 = createGroup(80, 5, 0.25, 1, 0.75, 5, new THREE.Color(0,1,0));
     group2.userData.type = 'wrapVectorLength';
-    group2.position.set(3,0,0)
+    group2.position.set(5,0,5);
     scene.add(group2);
+
+    const mesh1 = makeCone(7, 2);
+    scene.add(mesh1);
 
     //-------- ----------
     // LOOP
     //-------- ----------
-    var dir = new THREE.Euler(0, 0, 1),
-    unitsPerSec = 4,
-    vecMin = new THREE.Vector3(-4.5,-4.5,-4.5),
-    vecMax = new THREE.Vector3(4.5,4.5,4.5),
+    let pi2 = Math.PI * 2,
+    eMin = new THREE.Euler(0, pi2 * 0.5 * -1, 0),
+    eMax = new THREE.Euler(pi2, pi2 * 0.25, pi2),
+    degPerSec = 45,
+    //vecMin = new THREE.Vector3(-4.5,-4.5,-4.5),
+    //vecMax = new THREE.Vector3(4.5,4.5,4.5),
     fps = 20,
     lt = new Date();
     var loop = function () {
@@ -158,19 +161,13 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-            // update dir
-            dir.y += Math.PI / 180 * 40 * secs;
-            wrapMod.wrapEuler(dir);
-            // figure delta
-            let delta = new THREE.Vector3(0, 0, 1);
-            delta = delta.applyEuler(dir).normalize().multiplyScalar(unitsPerSec * secs);
-            // USING wrapMod main method to wrap mesh1.position
-            mesh1.position.add(delta);
-            wrapMod.wrapVectorLength(mesh1.position, 2.5, 4.5);
-            mesh1.lookAt(0, 0, 0);
 
-updateGroup(group1, secs);
-updateGroup(group2, secs);
+            updateGroup(group1, secs);
+            updateGroup(group2, secs);
+
+            mesh1.rotation.y += Math.PI / 180 * degPerSec * secs;
+            wrapMod.wrapEuler(mesh1.rotation, eMin, eMax);
+            mesh1.material.opacity = 1 - Math.abs( 0.5 - getWrapAlpha(mesh1.rotation.y, eMin.y, eMax.y) ) / 0.5;
 
             // render
             renderer.render(scene, camera);
