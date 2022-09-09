@@ -131,20 +131,16 @@
     //-------- ----------
     // OBJECTS
     //-------- ----------
-
     var group1 = createGroup(80, 5, 0.25, 1, 0.75, 5, new THREE.Color(0,1,1));
     group1.userData.type = 'wrapVector';
     group1.position.set(-5,0,-5);
     scene.add(group1);
-
     var group2 = createGroup(80, 5, 0.25, 1, 0.75, 5, new THREE.Color(0,1,0));
     group2.userData.type = 'wrapVectorLength';
     group2.position.set(5,0,5);
     scene.add(group2);
-
     const mesh1 = makeCone(7, 2);
     scene.add(mesh1);
-
     //-------- ----------
     // LOOP
     //-------- ----------
@@ -161,14 +157,11 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-
             updateGroup(group1, secs);
             updateGroup(group2, secs);
-
             mesh1.rotation.y += Math.PI / 180 * degPerSec * secs;
             wrapMod.wrapEuler(mesh1.rotation, eMin, eMax);
             mesh1.material.opacity = 1 - Math.abs( 0.5 - getWrapAlpha(mesh1.rotation.y, eMin.y, eMax.y) ) / 0.5;
-
             // render
             renderer.render(scene, camera);
             lt = now;
