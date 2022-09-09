@@ -2,12 +2,12 @@
     //-------- ----------
     // SCENE, CAMERA, RENDERER
     //-------- ----------
-    const scene = new THREE.Scene();
+    var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(10, 10));
-    const camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
     camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
-    const renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     //-------- ----------
@@ -21,56 +21,59 @@
             new THREE.ConeGeometry(radius, len, 20, 20),
             new THREE.MeshNormalMaterial({
                 transparent: true,
-                opacity: 0.5
+                opacity: 1
             }));
         mesh.geometry.rotateX( Math.PI * 0.5 );
         mesh.geometry.rotateY( Math.PI * 0.5 );
         return mesh;
     };
-    const getAlpha = (value, vMin, vMax) => {
+    // make a cube
+    const makeCube = (size) => {
+        size = size === undefined ? 1 : size;
+        const mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(size, size, size),
+            new THREE.MeshNormalMaterial({
+                transparent: true,
+                opacity: 1
+            }));
+        return mesh;
+    };
+    // get an alpha value for a wrap
+    const getWrapAlpha = (value, vMin, vMax) => {
         const range = Math.abs(vMax - vMin);
-        // is min >= 0 ?
-        if(vMin >= 0){
-            //return wrapMod.wrap(value, vMin, vMax) / range;
-        }
-        // vMax is also less than 0
-        if(vMax < 0){
-            //return ( wrapMod.wrap( value, vMin, vMax ) + Math.abs( vMin ) ) / range;
-        }
-        // vMax is 0 or higher ( also looks like I might have a one liner here )
+        // looks like I might have a one liner here...
         return Math.abs( vMin - wrapMod.wrap(value, vMin, vMax) ) / range;
     };
     //-------- ----------
-    // TESTING OUT getAlpha HELPER ( seems to work okay for these and demo )
-    //-------- ----------
-    console.log( getAlpha( 6, 0, 10 ) );       // 0.6
-    console.log( getAlpha( -14, -20, -10 ) );  // 0.6
-    console.log( getAlpha( 2, -10, 10 ) );     // 0.6
-    console.log( getAlpha( -1.4, -5, 1 ) );    // 0.6
-    console.log( getAlpha( 2, -1, 5) ); // 0.5
-    //-------- ----------
     // MESH
     //-------- ----------
-    const mesh1 = makeCone(7, 2);
+    var mesh1 = makeCube();
     scene.add(mesh1);
     //-------- ----------
     // LOOP
     //-------- ----------
-    let pi2 = Math.PI * 2,
-    eMin = new THREE.Euler(0, pi2 * 0.5 * -1, 0),
-    eMax = new THREE.Euler(pi2, pi2 * 0.25, pi2),
-    degPerSec = 20,
+    var dir = new THREE.Euler(0, 0, 1),
+    unitsPerSec = 4,
+    vecMin = new THREE.Vector3(-4.5,-4.5,-4.5),
+    vecMax = new THREE.Vector3(4.5,4.5,4.5),
     fps = 20,
     lt = new Date();
-    const loop = function () {
-        let now = new Date(),
+    var loop = function () {
+        var now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-            // updating and wraping the Euler in as mesh rotation property
-            mesh1.rotation.y += Math.PI / 180 * degPerSec * secs;
-            wrapMod.wrapEuler(mesh1.rotation, eMin, eMax);
-            mesh1.material.opacity = 1 - Math.abs( 0.5 - getAlpha(mesh1.rotation.y, eMin.y, eMax.y) ) / 0.5;
+            // update dir
+            dir.y += Math.PI / 180 * 40 * secs;
+            wrapMod.wrapEuler(dir);
+            // figure delta
+            let delta = new THREE.Vector3(0, 0, 1);
+            delta = delta.applyEuler(dir).normalize().multiplyScalar(unitsPerSec * secs);
+            // USING wrapMod main method to wrap mesh1.position
+            mesh1.position.add(delta);
+            wrapMod.wrapVectorLength(mesh1.position, 2.5, 4.5);
+            mesh1.lookAt(0, 0, 0);
+            // render
             renderer.render(scene, camera);
             lt = now;
         }
