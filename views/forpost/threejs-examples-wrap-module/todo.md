@@ -4,6 +4,7 @@
 * () add a simple clamp method that will just use the clamp method in mathUtils
 * () add a box3Clamp method
 * () one or more demos on box3Clamp
+* () add get alpha method in wrapEuler r0 as a public method
 
 ## () - r0 wrap euler demo
 * () wrap Euler r0-Demo

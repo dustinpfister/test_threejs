@@ -42,10 +42,12 @@
 
     };
     // get alpha method test
-    console.log( getAlpha( 6, 0, 10 ) );
-    console.log( getAlpha( -14, -20, -10 ) );
-    console.log( getAlpha( 2, -10, 10 ) );
-    console.log( getAlpha( -1.4, -5, 1 ) );
+    console.log( getAlpha( 6, 0, 10 ) );       // 0.6
+    console.log( getAlpha( -14, -20, -10 ) );  // 0.6
+    console.log( getAlpha( 2, -10, 10 ) );     // 0.6
+    console.log( getAlpha( -1.4, -5, 1 ) );    // 0.6
+
+    console.log( getAlpha( 2, -1, 5) ); // 0.5
 
     //-------- ----------
     // MESH
