@@ -6,7 +6,10 @@
 * () one or more demos on box3Clamp
 
 ## () - r0 wrap euler demo
-*  () wrap Euler r0-Demo
+* () wrap Euler r0-Demo
+
+## () - r0 - art demo
+* () make a cool looking art demo for the sake of video1 for the post
 
 ## ( done 09/08/2022 ) - r0 of threejs-wrap.js - started from vector3-wrap post, wrapLength, wrapEuler
 * (done) start a r0 of threejs-wrap-.js based off of what I started in threejs-vector3-wrap
