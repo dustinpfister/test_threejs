@@ -6,9 +6,8 @@
 * () one or more demos on box3Clamp
 * () add get alpha method in wrapEuler r0 as a public method
 
-## () - r0 - art demo
-* () make a cool looking art demo for the sake of video1 for the post
-
+## ( done 09/09/2022 ) - r0 - art demo
+* (done) make a cool looking art demo for the sake of video1 for the post
 
 ## ( done 09/09/2022 ) - r0 wrap euler demo
 * (done) wrap Euler r0-Demo
