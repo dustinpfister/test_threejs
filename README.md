@@ -14,7 +14,7 @@ This is a collection of work using the javaScript library called [three.js](http
 
 ## The views folder
 
-The views folder is where I have all the draft ptototypes, final for post source code examples, and additional assets like DAE files and textures. 
+The views folder is where I have all the draft prototypes, final for post source code examples, and additional assets like DAE files and textures. 
 
 ### The demos folder
 
@@ -73,7 +73,7 @@ I have a /js path where \*.js files can be fetched with an absolute path. When d
 <script src="/js/threejs/0.<%= r %>.0/three.min.js" ></script>
 ```
 
-When it comes to working out the main index.ejs file realtive paths can be used for scripts local to the demo
+When it comes to working out the main index.ejs file relative paths can be used for scripts local to the demo
 
 ```html
 <!-- load demo script -->
@@ -87,5 +87,4 @@ As of this writing it is determined by the folder that the demo is in as that st
 ### 3.4 - Generating index of demos
 
 I am using [klaw](https://github.com/jprichardson/node-klaw), and [through2](https://www.npmjs.com/package/through2) to help with building lists of links for demos.
-
 
