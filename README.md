@@ -1,6 +1,6 @@
 # test_threejs
 
-This is a collection of work using the javaScript library known as [three.js](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple demos of threejs features, simple project examples, and so forth. In other words I am just simply testing out threejs, and what can be done with threejs along with other javaScript libraries, and a little vanilla javaScript code here and there. I [write about the state of the source code worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/).
+This is a collection of work using the javaScript library called [three.js](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple demos of threejs features, and project examples. In other words I am just simply testing out threejs, along with a little extra vanilla javaScript code. I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/).
 
 <div align="center">
     <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
@@ -14,19 +14,19 @@ This is a collection of work using the javaScript library known as [three.js](ht
 
 ## The views folder
 
-The views folder is where I have all the demos, as well a collections of final source code examples that I write about  in the various blog posts. This is also a place where I park DAE file assets, and any additional files and so forth that I use in my various source code examples.
+The views folder is where I have all the draft ptototypes, final for post source code examples, and additional assets like DAE files and textures. 
 
 ### The demos folder
 
-In then [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/views/demos) I have folders for each revision number of three.js that I have made one or more demos for. This demos folder is then for testing out new features, and also figuring out how to fix things when they break each time code breaking changes are made in a new revision of threejs. This demo folder is also a place where I have drafts, or prototypes for project ideas. In any case if things go well I start a new folder in the for post folder 
+In the [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/views/demos) I have folders for each revision number of three.js that I have worked with thus far going back to r91. This demos folder is then for testing out new features, and also figuring out how to fix things when they break each time code breaking changes are made in a new revision. This demo folder is also a place where I have drafts, or prototypes for project ideas that might end up being one of my [threejs examples](https://dustinpfister.github.io/2021/02/19/threejs-examples/) projects.
 
 ### The for post folder
 
-I have also started a [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost) folder that is serving as the standard location for final source code examples for each blog post that I write about on my website. When it comes to this I have got into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post. Each time I come around to edit an older post I will revise, and extend the source code examples a little and make sure things are working in the latest revision of threejs that I am  working with at the moment.
+I have a [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost) folder that is serving as the standard location for final source code examples for each blog post that I write about on my website. When it comes to this I have got into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post. Each time I come around to edit an older post I will revise, and extend the source code examples a little and make sure things are working in the latest revision of threejs that I am  working with at the moment.
 
 ## 1 - Install
 
-I do not have any intention to make this project an npm package or anything to that effect. So for now the best way to set things up with this on your end would be to clone it down with git, cd into the folder, and then do an npm install which seems wot work fine for me each time thus far with the various versions of nodejs and npm that I use at least. After that the main server script can be started as a way to navigate and view all the various demos, videos, and post related source code examples.
+I do not have any intention to make this project an npm package or anything to that effect. So for now the best way to set things up and running with this on your end would be to clone it down with git, cd into the folder, and then do an npm install. This seems to work fine for me each time thus far with the various versions of nodejs and npm that I use at least. After that the main server script can be started as a way to navigate and view all the various demos, videos, and post related source code examples.
 
 ```
 $ git clone --depth 1 https://github.com/dustinpfister/test_threejs
@@ -36,7 +36,7 @@ $ npm install
 
 ## 2 - Starting the server
 
-Like many of my test projects like this in which I am making many demos that make use of one framework, library, ect I have made this a full stack application that uses nodejs to host content over the http rather than file protocol. I did this as a means of exercising how to go about making such applications, as well as laying support for demos that make use of a back end of some kind. Also with certain features one way or another something like this must be done anyway when it comes to security concerns with the file protocol.
+I made the server script a long time ago, and as long as it still works okay I can not say that I have much interest to sit down and write a new one. It is just a single index javaScript file at the root of this folder, and it runs on top of [express](https://dustinpfister.github.io/2018/06/12/express/) using [ejs](https://dustinpfister.github.io/2017/12/07/nodejs-ejs-javascript-templates/) for rendering of templates.
 
 ### 2.1 - Start by calling index script directly
 
