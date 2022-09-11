@@ -12,9 +12,6 @@
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
-    const dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, 3)
-    scene.add(dl);
     //-------- ----------
     // HELPERS
     //-------- ----------
