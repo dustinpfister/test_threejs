@@ -58,12 +58,15 @@
             const group = new THREE.Group();
             for ( let i = 0; i < paths.length; i ++ ) {
                 const path = paths[ i ];
+                // each path gets its own material
                 const material = new THREE.MeshBasicMaterial( {
                     color: path.color,
                     side: THREE.DoubleSide,
                     depthWrite: false
                 } );
+                // create a shape
                 const shapes = THREE.SVGLoader.createShapes( path );
+                // for each shape create a mesh and add it to the group
                 for ( let j = 0; j < shapes.length; j ++ ) {
                     const shape = shapes[ j ];
                     const geometry = new THREE.ShapeGeometry( shape );
