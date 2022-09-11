@@ -50,7 +50,7 @@
         });
         return group;
     };
-    // create a single mesh from 
+    // create a single mesh from SVG data
     const createGeoFromSVG = (data) => {
         const geoArray = createShapeGeosFromSVG(data)
         const geo = THREE.BufferGeometryUtils.mergeBufferGeometries(geoArray);
@@ -100,6 +100,7 @@
             geo.center();
             geo.rotateX(Math.PI * 1);
             geo.scale(0.025, 0.025, 0.025);
+            // create a
             const mesh = new THREE.Mesh( geo, new THREE.MeshBasicMaterial({
                 side: THREE.DoubleSide
             }));
