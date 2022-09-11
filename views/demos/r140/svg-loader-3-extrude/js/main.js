@@ -6,12 +6,15 @@
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#000000');
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
-    camera.position.set(200, 200, 200);
+    camera.position.set(0, 0, 3.5);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
+    //-------- ----------
+    // LIGHT
+    //-------- ----------
     const dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(2, 1, 3)
     scene.add(dl);
@@ -42,10 +45,8 @@
         const group = new THREE.Group();
         geoArray.forEach( (geo, i) => {
             // each mesh gets its own material
-            const material = new THREE.MeshBasicMaterial( {
-                color: data.paths[i].color, // using paths data for color
-                side: THREE.DoubleSide,
-                depthWrite: false
+            const material = new THREE.MeshPhongMaterial( {
+                color: data.paths[i].color // using paths data for color
             });
             const mesh = new THREE.Mesh( geo, material );
             group.add(mesh);
@@ -53,13 +54,14 @@
         return group;
     };
     //-------- ----------
-    // GRID
+    // OBJECTS
     //-------- ----------
-    const grid = new THREE.GridHelper(10, 10, 0xffffff, 0xff0000);
-    grid.material.linewidth = 3;
-    grid.material.transparent = true;
-    grid.material.opacity = 0.25;;
-    scene.add(grid);
+    let group;
+    //const grid = new THREE.GridHelper(10, 10, 0xffffff, 0xff0000);
+    //grid.material.linewidth = 3;
+    //grid.material.transparent = true;
+    //grid.material.opacity = 0.25;;
+    //scene.add(grid);
     //-------- ----------
     // CONTROL
     //-------- ----------
@@ -68,18 +70,21 @@
     // LOOP
     //-------- ----------
     let fps = 30,
+    degree = 0,
     lt = new Date();
     const loop = function () {
         let now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
+            group.rotation.y = Math.PI / 180 * degree;
+            degree += 45 * secs;
+            degree %= 360;
             // render
             renderer.render(scene, camera);
             lt = now;
         }
     };
-    loop();
     //-------- ----------
     // SVG LOADER
     //-------- ----------
@@ -91,25 +96,33 @@
         '/demos/r140/svg-loader-1/svg/fff.svg',
         // called when the resource is loaded
         function ( data ) {
-            const group = createMeshGroupFromSVG(data);
-
+            group = createMeshGroupFromSVG(data);
             // get min and max of children
-            var xMin = Infinity, xMax = -Infinity;
+            let xMin = Infinity, xMax = -Infinity;
+            let yMin = Infinity, yMax = -Infinity;
+            let zMin = Infinity, zMax = -Infinity;
             group.children.forEach( (mesh) => {
                 const geo = mesh.geometry;
                 geo.computeBoundingBox();
                 const b = geo.boundingBox;
                 xMin = b.min.x < xMin ? b.min.x: xMin;
                 xMax = b.max.x > xMax ? b.max.x: xMax;
+                yMin = b.min.y < yMin ? b.min.y: yMin;
+                yMax = b.max.y > yMax ? b.max.y: yMax;
+                zMin = b.min.z < zMin ? b.min.z: zMin;
+                zMax = b.max.z > zMax ? b.max.z: zMax;
             });
-            var xRange = xMax - xMin;
-
+            const xRange = xMax - xMin;
+            const yRange = yMax - yMin;
+            const zRange = zMax - zMin;
             group.children.forEach( (mesh) => {
-                mesh.geometry.translate(xRange / 2 * -1, 0, 0);
+                mesh.geometry.translate(xRange / 2 * -1, yRange / 2 * -1, zRange / 2 * -1);
                 mesh.rotateX(Math.PI)
             });
-
+            group.scale.normalize().multiplyScalar(0.025);
             scene.add(group);
+            // start loop
+            loop();
         },
         // called when loading is in progresses
         function ( xhr ) {
