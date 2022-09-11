@@ -18,20 +18,41 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
-    // create a single mesh from 
-    const createGeoFromSVG = (data) => {
+    // create an array of shape geometry from SVG data loaded with the SVGLoader
+    const createShapeGeosFromSVG = (data) => {
         const paths = data.paths;
-        // geoArray in place of group
         const geoArray = [];
         for ( let i = 0; i < paths.length; i ++ ) {
             const path = paths[ i ];
+            // create a shape
             const shapes = THREE.SVGLoader.createShapes( path );
-            // for each shape create geometry and push to geoArray
+            // for each shape create a mesh and add it to the group
             for ( let j = 0; j < shapes.length; j ++ ) {
                 const shape = shapes[ j ];
-                geoArray.push(new THREE.ShapeGeometry( shape ) );
+                geoArray.push( new THREE.ShapeGeometry( shape ) );
             }
         }
+        return geoArray;
+    };
+    // create mesh group from SVG
+    const createMeshGroupFromSVG = (data) => {
+        const geoArray = createShapeGeosFromSVG(data);
+        const group = new THREE.Group();
+        geoArray.forEach( (geo, i) => {
+            // each mesh gets its own material
+            const material = new THREE.MeshBasicMaterial( {
+                color: data.paths[i].color, // using paths data for color
+                side: THREE.DoubleSide,
+                depthWrite: false
+            });
+            const mesh = new THREE.Mesh( geo, material );
+            group.add(mesh);
+        });
+        return group;
+    };
+    // create a single mesh from 
+    const createGeoFromSVG = (data) => {
+        const geoArray = createShapeGeosFromSVG(data)
         const geo = THREE.BufferGeometryUtils.mergeBufferGeometries(geoArray);
         return geo;
     };
@@ -63,7 +84,6 @@
         }
     };
     loop();
-
     //-------- ----------
     // SVG LOADER
     //-------- ----------
@@ -75,6 +95,7 @@
         '/demos/r140/svg-loader-1/svg/fff.svg',
         // called when the resource is loaded
         function ( data ) {
+            // create a single geo
             const geo = createGeoFromSVG(data);
             geo.center();
             geo.rotateX(Math.PI * 1);
