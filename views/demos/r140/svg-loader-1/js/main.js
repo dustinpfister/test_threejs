@@ -5,7 +5,7 @@
     var scene = new THREE.Scene();
     scene.background = new THREE.Color('#000000');
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
-    camera.position.set(5, 5, 5);
+    camera.position.set(200, 200, 200);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer();
@@ -82,7 +82,7 @@ loader.load(
 
 		}
 
-console.log('foo')
+console.log(group)
 
 		scene.add( group );
 
