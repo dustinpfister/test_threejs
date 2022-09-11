@@ -47,12 +47,12 @@
 
 
 // instantiate a loader
-const loader = new SVGLoader();
+const loader = new THREE.SVGLoader();
 
 // load a SVG resource
 loader.load(
 	// resource URL
-	'data/svgSample.svg',
+	'/demos/r140/svg-loader-1/svg/fff.svg',
 	// called when the resource is loaded
 	function ( data ) {
 
@@ -69,7 +69,7 @@ loader.load(
 				depthWrite: false
 			} );
 
-			const shapes = SVGLoader.createShapes( path );
+			const shapes = THREE.SVGLoader.createShapes( path );
 
 			for ( let j = 0; j < shapes.length; j ++ ) {
 
@@ -81,6 +81,8 @@ loader.load(
 			}
 
 		}
+
+console.log('foo')
 
 		scene.add( group );
 
@@ -95,6 +97,7 @@ loader.load(
 	function ( error ) {
 
 		console.log( 'An error happened' );
+console.log(error)
 
 	}
 );
