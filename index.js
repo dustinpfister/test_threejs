@@ -85,6 +85,7 @@ app.use(serveAllFiles('dae'));
 app.use(serveAllFiles('jpg'));
 app.use(serveAllFiles('jpeg'));
 app.use(serveAllFiles('png'));
+app.use(serveAllFiles('svg'));
 
 // DEMO PATH
 
