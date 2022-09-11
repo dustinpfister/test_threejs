@@ -1,3 +1,4 @@
+// SVG LOAD demo using THREE.BufferGeometryUtils.mergeBufferGeometries
 (function () {
     //-------- ----------
     // SCENE, CAMERA, RENDERER, LIGHT

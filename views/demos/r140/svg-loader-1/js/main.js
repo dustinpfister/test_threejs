@@ -1,3 +1,4 @@
+// Basic load SVG DEMO
 (function () {
     //-------- ----------
     // SCENE, CAMERA, RENDERER, LIGHT
@@ -14,6 +15,41 @@
     const dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(2, 1, 3)
     scene.add(dl);
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
+    // create an array of shape geometry from SVG data loaded with the SVGLoader
+    const createShapeGeosFromSVG = (data) => {
+        const paths = data.paths;
+        const geoArray = [];
+        for ( let i = 0; i < paths.length; i ++ ) {
+            const path = paths[ i ];
+            // create a shape
+            const shapes = THREE.SVGLoader.createShapes( path );
+            // for each shape create a mesh and add it to the group
+            for ( let j = 0; j < shapes.length; j ++ ) {
+                const shape = shapes[ j ];
+                geoArray.push( new THREE.ShapeGeometry( shape ) );
+            }
+        }
+        return geoArray;
+    };
+    // create mesh group from SVG
+    const createMeshGroupFromSVG = (data) => {
+        const geoArray = createShapeGeosFromSVG(data);
+        const group = new THREE.Group();
+        geoArray.forEach( (geo, i) => {
+            // each mesh gets its own material
+            const material = new THREE.MeshBasicMaterial( {
+                color: data.paths[i].color, // using paths data for color
+                side: THREE.DoubleSide,
+                depthWrite: false
+            });
+            const mesh = new THREE.Mesh( geo, material );
+            group.add(mesh);
+        });
+        return group;
+    };
     //-------- ----------
     // GRID
     //-------- ----------
@@ -42,7 +78,6 @@
         }
     };
     loop();
-
     //-------- ----------
     // SVG LOADER
     //-------- ----------
@@ -54,27 +89,8 @@
         '/demos/r140/svg-loader-1/svg/fff.svg',
         // called when the resource is loaded
         function ( data ) {
-            const paths = data.paths;
-            const group = new THREE.Group();
-            for ( let i = 0; i < paths.length; i ++ ) {
-                const path = paths[ i ];
-                // each path gets its own material
-                const material = new THREE.MeshBasicMaterial( {
-                    color: path.color,
-                    side: THREE.DoubleSide,
-                    depthWrite: false
-                } );
-                // create a shape
-                const shapes = THREE.SVGLoader.createShapes( path );
-                // for each shape create a mesh and add it to the group
-                for ( let j = 0; j < shapes.length; j ++ ) {
-                    const shape = shapes[ j ];
-                    const geometry = new THREE.ShapeGeometry( shape );
-                    const mesh = new THREE.Mesh( geometry, material );
-                    group.add( mesh );
-                }
-            }
-            scene.add( group );
+            var group = createMeshGroupFromSVG(data);
+            scene.add(group);
         },
         // called when loading is in progresses
         function ( xhr ) {
