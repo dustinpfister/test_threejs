@@ -1,7 +1,17 @@
 # threejs-math-utils todo list
 
-## () - all examples using r140
-* () all examples are using r140
+## () s9-ping-pong
+
+## () s8-mapLinear
+
+## () s7-damp
+* () example on the damp method
+
+## () s6-lerp example
+* () example on the lerp and inverseLerp methods
+
+## ( done 09/12/2022 ) - all examples using r140
+* (done) all examples are using r140
 
 ## ( done 09/12/2022 ) - s5-smoothstep
 * (done) have an example for smoothstep and smootherstep
