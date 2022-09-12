@@ -30,6 +30,9 @@
     // EXPORT
     //-------- ----------
     const exporter = new THREE.ColladaExporter();
-    const result = exporter.parse( scene, null, { version: '1.5.0'} );
+    const result = exporter.parse( scene, null, {
+        author: 'John Doe',
+        version: '1.4.1'
+    });
     document.getElementById('dae_output').value = result.data;
 }());
