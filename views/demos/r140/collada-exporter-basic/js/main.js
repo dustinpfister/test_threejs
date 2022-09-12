@@ -4,7 +4,6 @@
     // SCENE, CAMERA, RENDERER
     //-------- ----------
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#000000');
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
     camera.position.set(5, 5, 5);
     camera.lookAt(0, 0, 0);
@@ -26,7 +25,7 @@
     //-------- ----------
     // RENDER
     //-------- ----------
-    renderer.render(scene, camera);
+    renderer.render(mesh, camera);
     //-------- ----------
     // EXPORT
     //-------- ----------
