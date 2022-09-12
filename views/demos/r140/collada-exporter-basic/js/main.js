@@ -15,8 +15,8 @@
     //-------- ----------
     // a mesh object
     const mesh = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.5, 1, 1, 30),
-        new THREE.MeshNormalMaterial()
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshPhongMaterial()
     );
     // can set a name for it
     mesh.name = 'my_cylinder';
