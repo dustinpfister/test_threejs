@@ -39,7 +39,7 @@
     const updateGroupSmooth = (group, secs) => {
         group.children.forEach( (mesh) => {
             const mud = mesh.userData;
-            // variable pixles per second using THREE.MathUtils.smoothstep
+            // variable pixles per second using THREE.MathUtils.smoothstep and Vector3.distanceTo
             const d = mesh.position.distanceTo( new THREE.Vector3(0, 0, mesh.position.z) );
             const pps = THREE.MathUtils.smoothstep(d, -2.5, 2.5) * mud.maxPPS;
             // stepping posiiton
@@ -48,16 +48,29 @@
             mesh.position.x = wrap(mesh.position.x, -5, 5);
         });
     };
+    // simple update group with fixed pixles per second for sake of something to compare to
+    const updateGroup = (group, secs) => {
+        group.children.forEach( (mesh) => {
+            const mud = mesh.userData;
+            // stepping posiiton
+            mesh.position.x -= mud.maxPPS * secs;
+            // wrap
+            mesh.position.x = wrap(mesh.position.x, -5, 5);
+        });
+    };
     // create a group
-    const createGroup = (color) => {
+    const createGroup = (size, color) => {
+        size = size === undefined ? 1 : size;
         color = color || new THREE.Color(1, 1, 1);
         let i = 0;
         const len = 5, group = new THREE.Group();
         while(i < len){
             const mesh = new THREE.Mesh(
-                new THREE.BoxGeometry(1, 1, 1),
+                new THREE.BoxGeometry(size, size, size),
                 new THREE.MeshPhongMaterial({
-                    color: color
+                    color: color,
+                    transparent: true,
+                    opacity: 0.5
                 }));
             mesh.userData.maxPPS = 1.25 + 1.5 * (i / len);
             const x = 5;
@@ -72,8 +85,10 @@
     // OBJECTS
     //-------- ----------
     scene.add( new THREE.GridHelper(10, 10) );
-    const group = createGroup();
-    scene.add(group);
+    const group1 = createGroup( 1, new THREE.Color(0,1,0) );
+    scene.add(group1);
+    const group2 = createGroup( 0.75 );
+    scene.add(group2);
     //-------- ----------
     // LOOP
     //-------- ----------
@@ -89,7 +104,8 @@
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
 
-            updateGroupSmooth(group, secs)
+            updateGroupSmooth(group1, secs);
+            updateGroup(group2, secs);
 
             renderer.render(scene, camera);
             frame += fps * secs;
