@@ -11,6 +11,12 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     //-------- ----------
+    // LIGHT
+    //-------- ----------
+    const dl = new THREE.DirectionalLight();
+    dl.position.set(1, 2.5, 5);
+    scene.add(dl);
+    //-------- ----------
     // HELPERS
     //-------- ----------
     // Wrap method based off of the method from Phaser3 
@@ -29,9 +35,8 @@
         var range = max - min;
         return (min + ((((value - min) % range) + range) % range));
     };
-
-    // update a group using smoothstep
-    const updateGroup = (group, secs) => {
+    // UPDATE A GROUP USING THREE.mathUtils.smoothstep
+    const updateGroupSmooth = (group, secs) => {
         group.children.forEach( (mesh) => {
             const mud = mesh.userData;
             // variable pixles per second using THREE.MathUtils.smoothstep
@@ -43,16 +48,18 @@
             mesh.position.x = wrap(mesh.position.x, -5, 5);
         });
     };
-
     // create a group
-    const createGroup = () => {
+    const createGroup = (color) => {
+        color = color || new THREE.Color(1, 1, 1);
         let i = 0;
         const len = 5, group = new THREE.Group();
         while(i < len){
             const mesh = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
-                new THREE.MeshNormalMaterial());
-            mesh.userData.maxPPS = 0.25 + 1.5 * (i / len);
+                new THREE.MeshPhongMaterial({
+                    color: color
+                }));
+            mesh.userData.maxPPS = 1.25 + 1.5 * (i / len);
             const x = 5;
             const z = -4 + 10 * (i / len);
             mesh.position.set(x, 0, z);
@@ -82,7 +89,7 @@
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
 
-updateGroup(group, secs)
+            updateGroupSmooth(group, secs)
 
             renderer.render(scene, camera);
             frame += fps * secs;
