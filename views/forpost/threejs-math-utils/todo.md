@@ -1,7 +1,10 @@
 # threejs-math-utils todo list
 
-## () - s4-smoothstep
-* have an example for smoothstep and smootherstep
+## () - all examples using r140
+* () all examples are using r140
+
+## () - s5-smoothstep
+* () have an example for smoothstep and smootherstep
 
 ## ( done 04/13/2022 ) - s4-seededRandom
 * seeded random example
