@@ -19,7 +19,7 @@
         new THREE.MeshPhongMaterial()
     );
     // can set a name for it
-    mesh.name = 'my_cylinder';
+    //mesh.name = 'my_cylinder';
     // be sure to add it to the scene
     scene.add(mesh);
     //-------- ----------

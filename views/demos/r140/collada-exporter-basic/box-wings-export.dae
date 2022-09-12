@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+<asset>
+<contributor>
+<author>Wings3D Collada Exporter</author>
+<authoring_tool>Wings3D 2.1.7 Collada Exporter</authoring_tool>
+<comments/>
+<copyright/>
+<source_data/>
+</contributor>
+<created>2022-09-12T23:20:24</created>
+<modified>2022-09-12T23:20:24</modified>
+<unit meter="0.01" name="centimeter"/>
+<up_axis>Y_UP</up_axis>
+</asset>
+<library_effects><effect id="default-fx" name="default-fx"><profile_COMMON><technique sid="wings3d"><phong><emission><color>0.000000 0.000000 0.000000 1.000000
+</color></emission><ambient><color>0.789854 0.813333 0.694044 1.000000
+</color></ambient><diffuse><color>0.789854 0.813333 0.694044 1.000000
+</color></diffuse><specular><color>0.000000 0.000000 0.000000 1.000000
+</color></specular><shininess><float>0.000000</float></shininess></phong></technique></profile_COMMON></effect></library_effects>
+
+<library_materials><material id="default" name="default"><instance_effect url="#default-fx"/></material></library_materials>
+<library_geometries><geometry name="Cube1-0" id="Cube1-0"><mesh><source id="Cube1-0-Pos"><float_array id="Cube1-0-Pos-array" count="24">-1.000000 -1.000000 -1.000000 -1.000000 -1.000000 1.000000 -1.000000 1.000000 -1.000000 -1.000000 1.000000 1.000000 1.000000 -1.000000 -1.000000 1.000000 -1.000000 1.000000 1.000000 1.000000 -1.000000 1.000000 1.000000 1.000000</float_array><technique_common><accessor count="8" source="#Cube1-0-Pos-array" stride="3"><param name="X" type="float"/><param name="Y" type="float"/><param name="Z" type="float"/></accessor></technique_common></source><source id="Cube1-0-Normal"><float_array id="Cube1-0-Normal-array" count="24">-0.577350 -0.577350 -0.577350 -0.577350 -0.577350 0.577350 -0.577350 0.577350 -0.577350 -0.577350 0.577350 0.577350 0.577350 -0.577350 -0.577350 0.577350 -0.577350 0.577350 0.577350 0.577350 -0.577350 0.577350 0.577350 0.577350</float_array><technique_common><accessor count="8" source="#Cube1-0-Normal-array" stride="3"><param name="X" type="float"/><param name="Y" type="float"/><param name="Z" type="float"/></accessor></technique_common></source><vertices id="Cube1-0-Vtx"><input semantic="POSITION" source="#Cube1-0-Pos"/></vertices><polylist count="6" material="default"><input offset="0" semantic="VERTEX" source="#Cube1-0-Vtx"/><input offset="1" semantic="NORMAL" source="#Cube1-0-Normal"/><vcount>4 4 4 4 4 4</vcount><p>1 1 3 3 2 2 0 0 4 4 6 6 7 7 5 5 2 2 6 6 4 4 0 0 1 1 5 5 7 7 3 3 0 0 4 4 5 5 1 1 3 3 7 7 6 6 2 2</p></polylist></mesh></geometry></library_geometries>
+<library_visual_scenes><visual_scene id="Scene" name="Scene"><node layer="L1" id="Cube1-0L1" name="Cube1-0"><translate sid="translate">0.00000 0.00000 0.00000</translate>
+<rotate sid="rotateZ">0 0 1 0.00000</rotate><rotate sid="rotateY">0 1 0 0.00000</rotate><rotate sid="rotateX">1 0 0 0.00000</rotate><scale sid="scale">1.0000 1.0000 1.0000</scale><instance_geometry url="#Cube1-0"><bind_material><technique_common><instance_material symbol="default" target="#default"><bind_vertex_input input_semantic="TEXCOORD" input_set="1" semantic="CHANNEL1"/></instance_material></technique_common></bind_material></instance_geometry></node></visual_scene></library_visual_scenes>
+<scene><instance_visual_scene url="#Scene"/></scene>
+</COLLADA>

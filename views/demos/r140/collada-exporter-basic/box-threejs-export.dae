@@ -4,8 +4,8 @@
     <contributor>
       <authoring_tool>three.js Collada Exporter</authoring_tool>
     </contributor>
-    <created>2022-09-12T23:14:36.750Z</created>
-    <modified>2022-09-12T23:14:36.750Z</modified>
+    <created>2022-09-12T23:18:07.068Z</created>
+    <modified>2022-09-12T23:18:07.068Z</modified>
     <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
@@ -123,7 +123,7 @@
     <visual_scene id="Scene" name="scene">
       <node name="">
         <matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
-        <node name="my_cylinder">
+        <node name="">
           <matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
           <instance_geometry url="#Mesh1">
             <bind_material>
