@@ -16,7 +16,7 @@
     //-------- ----------
     // a mesh object
     const mesh = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.5, 1, 1, 30), 
+        new THREE.CylinderGeometry(0.5, 1, 1, 30),
         new THREE.MeshNormalMaterial()
     );
     // can set a name for it
@@ -31,6 +31,6 @@
     // EXPORT
     //-------- ----------
     const exporter = new THREE.ColladaExporter();
-    const result = exporter.parse( scene );
+    const result = exporter.parse( scene, null, { version: '1.5.0'} );
     document.getElementById('dae_output').value = result.data;
 }());
