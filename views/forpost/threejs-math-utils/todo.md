@@ -3,11 +3,11 @@
 ## () - all examples using r140
 * () all examples are using r140
 
-## () - s5-smoothstep
-* () have an example for smoothstep and smootherstep
+## ( done 09/12/2022 ) - s5-smoothstep
+* (done) have an example for smoothstep and smootherstep
 
 ## ( done 04/13/2022 ) - s4-seededRandom
-* seeded random example
+* (done) seeded random example
 
 ## ( done 04/12/2022 ) - s3-euclidean-modulo
 * (done) simple example based off of the clamp one
