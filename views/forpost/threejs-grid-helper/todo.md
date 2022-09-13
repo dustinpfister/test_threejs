@@ -3,6 +3,9 @@
 ## () - new s5-update example
 * () example in which I am updating properties of a grid over time
 
+## ( done 09/13/202 ) - default to document body in examples
+* (done) sense a lot of people might just copy and pase source code from posts, I should do this.
+
 ## ( done 05/11/2022 ) - new s3-linewidth folder
 * (done) start a new s3-linewidtb folder
 * (done) rename s3-animation-loop to s4-animation-loop

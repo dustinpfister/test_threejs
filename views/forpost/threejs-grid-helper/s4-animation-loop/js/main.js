@@ -47,7 +47,7 @@
     scene.add(new THREE.GridHelper(8, 8))
     // RENDER
     var renderer = new THREE.WebGLRenderer();
-    document.getElementById('demo').appendChild(renderer.domElement);
+    ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     renderer.setSize(640, 480);
     // MESH
     var mesh = new THREE.Mesh(

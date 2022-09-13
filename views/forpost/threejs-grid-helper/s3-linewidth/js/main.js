@@ -19,7 +19,7 @@
     camera.lookAt(0, 0, 0);
     // RENDER
     var renderer = new THREE.WebGLRenderer();
-    document.getElementById('demo').appendChild(renderer.domElement);
+    ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     renderer.setSize(640, 480);
     renderer.render(scene, camera);
 }
