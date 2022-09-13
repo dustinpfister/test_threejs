@@ -3,6 +3,11 @@
 ## () - new s5-canvas-textures
 * canvas textures are to cool to not have a basic example of that also here
 
+## () - rename examples, default to document.body, readme
+* (done) rename example folders as s1 forward as they should be now
+* () default to document.body in exmaples
+* () update readme
+
 ## ( done 02/08/2022 ) - new s4-animation example
 * (done) I will want to add at least one simple animation example for this post
 
