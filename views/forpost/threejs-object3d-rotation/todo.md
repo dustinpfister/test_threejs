@@ -3,15 +3,13 @@
 ## () - sx-object-children
 * () have an example involving object children
 
-## () - s7 - art-example-one
+## () - s6 - art-example-one
 * () have an example where the aim is to just making somehting that looks cool
 * () the focus should still mainly be on rotation of object3d 
 
-## () - s6 - apply-euler-rotation-to-position
+## () - s5 - apply-euler
 * () example in which euler state of one mesh effects position of another
-
-## () - s5 - apply-euler-rotation-to-position
-* () example in which euler state of one mesh effects position of another
+* () example in which vector3 state of one mesh effects rotation of another
 
 ## ( done 04/10/2022 ) - s4-rotate-geo
 * (done) example showing that geo can also be rotated
