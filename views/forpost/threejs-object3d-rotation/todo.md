@@ -7,10 +7,10 @@
 * () have an example where the aim is to just making somehting that looks cool
 * () the focus should still mainly be on rotation of object3d 
 
-## () - s6 - set-from-vector3
-* () have another mesh where the rotation is effected by the posiiton of another
+## ( done 09/13/2022 ) - s6 - set-from-vector3
+* (done) have another mesh where the rotation is effected by the posiiton of another
 
-## ( done 09 ) - s5 - apply-euler
+## ( done 09/13/2022 ) - s5 - apply-euler
 * (done) example in which euler state of one mesh effects position of another
 
 ## ( done 04/10/2022 ) - s4-rotate-geo
