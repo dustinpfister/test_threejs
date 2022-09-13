@@ -1,7 +1,6 @@
 (function () {
     // SCENE
     var scene = new THREE.Scene();
-
     // GRID HELPER
     var size = 8;
     var divisions = 8;
@@ -12,7 +11,6 @@
     // !!! THIS WLL NOT WORK ON ALL PLATFORMS !!!
     helper.material.linewidth = 6;
     scene.add(helper)
-
     // CAMERA
     var camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.1, 100);
     camera.position.set(8, 5, 8);

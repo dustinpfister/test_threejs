@@ -1,9 +1,7 @@
 (function () {
-
     var getBias = function(per){
         return 1 - Math.abs(per - 0.5) / 0.5;
     };
-
     // create camera helper
     var createCamera = function(opt){
         opt = opt || {};
@@ -14,9 +12,7 @@
         camera.userData.subject = new THREE.Vector3();
         return camera;
     };
-
     var camMoveMethod = {};
-
     // follow subject1 method
     camMoveMethod.flyAround = function(camera, per){
         var bias = getBias(per),
@@ -29,7 +25,6 @@
             lookAt: camera.userData.subject
         };
     };
-
     // move camera update helper
     var moveCamera = function (camera, per, moveFunc) {
         var camState = moveFunc(camera, per);
@@ -38,10 +33,8 @@
         camera.position.copy(camState.position)
         camera.lookAt(camState.lookAt);
     };
-
     // CAMERA
     var camera = createCamera();
-
     // SCENE
     var scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(8, 8))
@@ -55,9 +48,7 @@
         new THREE.MeshNormalMaterial());
     mesh.position.set(3, 0, 0);
     scene.add(mesh);
-
     camera.userData.subject = mesh.position;
-
     // APP LOOP
     var secs = 0,
     methodSecs = 0,
