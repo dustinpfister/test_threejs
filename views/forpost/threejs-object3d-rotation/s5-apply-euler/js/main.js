@@ -35,7 +35,9 @@
     lt = new Date();
     // update
     const update = function(frame, frameMax){
-        console.log(frame + '/' + frameMax);
+        const per = frame / frameMax,
+        bias = THREE.MathUtils.pingpong(per * 2, 1);
+        console.log(frame + '/' + frameMax, per.toFixed(2), bias.toFixed(2))
     };
     // loop
     const loop = () => {
@@ -43,10 +45,10 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if(secs > 1 / FPS_UPDATE){
-
+            // update, render
             update( Math.floor(frame), FRAME_MAX);
-
             renderer.render(scene, camera);
+            // step frame
             frame += FPS_MOVEMENT * secs;
             frame %= FRAME_MAX;
             lt = now;
