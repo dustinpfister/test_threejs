@@ -18,26 +18,44 @@
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial() );
     };
+    const degToRad = (deg) => {
+         return THREE.MathUtils.degToRad(deg);
+    };
+    const getBias = (a, b, count) => {
+        count = count === undefined ? 1 : count;
+        return THREE.MathUtils.pingpong(  a / b  * ( 2  * count ), 1);
+    }; 
     // ---------- ----------
     // SCENE CHILD OBJECTS
     // ---------- ----------
     scene.add( new THREE.GridHelper(10, 10) );
     const mesh1 = makeMesh();
     scene.add(mesh1);
+    const mesh2 = makeMesh();
+    scene.add(mesh2);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
-    const FPS_UPDATE = 4, // fps rate to update ( low fps for low CPU use, but choppy video )
-    FPS_MOVEMENT = 30;    // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 600;
+    const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
+    FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+    FRAME_MAX = 120;
     let secs = 0,
     frame = 0,
     lt = new Date();
     // update
+    const vStart = new THREE.Vector3(0, 0, 1);
     const update = function(frame, frameMax){
-        const per = frame / frameMax,
-        bias = THREE.MathUtils.pingpong(per * 2, 1);
-        console.log(frame + '/' + frameMax, per.toFixed(2), bias.toFixed(2))
+        const per = frame / frameMax;
+        // setting rotation of mesh1
+        mesh1.rotation.x = degToRad(90 * getBias(frame, frameMax, 1));
+        mesh1.rotation.y = degToRad(360) * per;
+        mesh1.rotation.z = 0;
+ 
+        // using the state of the rotation of mesh1 to effect the position of mesh2
+        let radius = 5 - 4 * getBias(frame, frameMax, 4);
+        mesh2.position.copy(vStart).applyEuler( mesh1.rotation ).normalize().multiplyScalar(radius);
+        mesh2.lookAt(mesh1.position);
+ 
     };
     // loop
     const loop = () => {
