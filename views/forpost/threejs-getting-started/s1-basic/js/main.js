@@ -10,8 +10,11 @@
     // to use with my scene, and camera
     let renderer = new THREE.WebGLRenderer();
     // I must append the dom element used by the renderer to the html
-    // that I am using.
-    document.getElementById('demo').appendChild(renderer.domElement);
+    // that I am using. 
+    // !!!HERE I AM USING document.body IN THEN EVENT THAT YOU ARE
+    // JUST COPYING THIS OVER BUT YOU SHOUD CHANGE THIS FOR WHAT IS GOING ON
+    // WITH YOUR HTML 
+    ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     // ---------- ---------- ----------
     // ADD A MESH
     // ---------- ---------- ----------

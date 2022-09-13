@@ -5,7 +5,7 @@
     let scene = new THREE.Scene(),
     camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000),
     renderer = new THREE.WebGLRenderer();
-    document.getElementById('demo').appendChild(renderer.domElement);
+    ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     // ---------- ---------- ----------
     // ADD A MESH
     // ---------- ---------- ----------
