@@ -197,12 +197,12 @@
         new THREE.BoxGeometry(1, 1, 1),
         // array of materials as the second argument
         [
-            mkMaterial(0xffffff, 1),
-            mkMaterial(0xffffff, 1),
-            mkMaterial(0xffffff, 1),
-            mkMaterial(0xffffff, 1),
-            mkMaterial(0xffffff, 1),
-            mkMaterial(0xffffff, 1)
+            mkMaterial(0xffffff, 1, texture_rnd1),
+            mkMaterial(0xffffff, 1, texture_rnd1),
+            mkMaterial(0xffffff, 1, texture_rnd1),
+            mkMaterial(0xffffff, 1, texture_rnd1),
+            mkMaterial(0xffffff, 1, texture_rnd1),
+            mkMaterial(0xffffff, 1, texture_rnd1)
         ]
     );
     mesh.position.set(0, 1.5, 0);
