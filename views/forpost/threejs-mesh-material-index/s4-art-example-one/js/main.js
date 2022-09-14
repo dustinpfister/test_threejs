@@ -61,6 +61,7 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
+    // create a plane geo with groups set up to work with images
     const createPlaneGeo = (images, imageIndex) => {
         const geometry = new THREE.PlaneGeometry(5, 5, 16, 16);
         const img = images[imageIndex];
@@ -70,30 +71,32 @@
             geometry.addGroup(pxIndex * 6, 6, img[pxIndex]);
             pxIndex += 1;
         }
-
-
         return geometry;
     };
+    // create plane mesh to use with images
+    const createPlaneMesh = ()=> {
+        // new plane geometry
+        var geometry = createPlaneGeo(images, 1);
+        var mesh = new THREE.Mesh(
+            // geometry as first argument
+            geometry,
+            // array of materials as the second argument
+            [
+                new THREE.MeshPhongMaterial({
+                    color: 0x000000
+                }),
+                new THREE.MeshPhongMaterial({
+                    color: 0xffffff
+                })
+            ]
+        );
+        return mesh;
+    };
+
     //-------- ----------
-    // GEOMETRY AND GROUPS
-    //-------- ----------
-    // new plane geometry
-    var geometry = createPlaneGeo(images, 1);
     // MESH
     //-------- ----------
-    var mesh = new THREE.Mesh(
-        // geometry as first argument
-        geometry,
-        // array of materials as the second argument
-        [
-            new THREE.MeshPhongMaterial({
-                color: 0x000000
-            }),
-            new THREE.MeshPhongMaterial({
-                color: 0xffffff
-            })
-        ]
-    );
+    var mesh = createPlaneMesh();
     scene.add(mesh);
     //-------- ----------
     // RENDER
