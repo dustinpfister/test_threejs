@@ -3,8 +3,8 @@
     // SCENE, CAMERA, RENDERER
     //-------- ----------
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(50, 640 / 480, 0.5, 1000);
-    camera.position.set(3, 3, 6);
+    var camera = new THREE.PerspectiveCamera(45, 640 / 480, 0.5, 1000);
+    camera.position.set(7, 3, 7);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -25,7 +25,7 @@
     //-------- ----------
     // create a plane geo with groups set up to work with images
     const createPlaneGeo = () => {
-        const geometry = new THREE.PlaneGeometry(5, 5, 16, 16);
+        const geometry = new THREE.PlaneGeometry(10, 10, 16, 16);
         geometry.rotateX(Math.PI * 1.5);
         let pxIndex = 0, len = 256;
         while(pxIndex < len){
@@ -270,15 +270,15 @@
     //-------- ----------
     var mesh = new THREE.Mesh(
         // geometry as first argument
-        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.BoxGeometry(2, 2, 2),
         // array of materials as the second argument
         [
-            mkMaterial(0xffffff, 1, texture_side1),
-            mkMaterial(0xffffff, 1, texture_side3),
-            mkMaterial(0xffffff, 1, texture_top),
-            mkMaterial(0xffffff, 1, texture_bottom),
-            mkMaterial(0xffffff, 1, texture_side2),
-            mkMaterial(0xffffff, 1, texture_side4)
+            mkMaterial(0xffffff, 0.5, texture_side1),
+            mkMaterial(0xffffff, 0.5, texture_side3),
+            mkMaterial(0xffffff, 0.5, texture_top),
+            mkMaterial(0xffffff, 0.5, texture_bottom),
+            mkMaterial(0xffffff, 0.5, texture_side2),
+            mkMaterial(0xffffff, 0.5, texture_side4)
         ]
     );
     mesh.position.set(0, 1.5, 0);
