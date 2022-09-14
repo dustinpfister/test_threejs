@@ -18,6 +18,16 @@
 * () have an example in which I am cretaing data textures
 * () have one mesh object where I just create custom textures for each face of a cube
 
+## () sx-art-example-one
+* () start a first art example that will be used for video1 for the post
+
+* () have a plane geometry set up with a 16 by 16 grid
+* () use an array of 8 colors to choose from
+* () have an array of arrays of material index values where each array node is an image in the form of material index values
+* () have it so that the plan transiaitons between differeing image states
+
+* () have a cube with an array of six materials rotating around over the plane
+
 ## ( done 09/14/2022 ) sx-create-groups example
 * (done) have an example where I am createing groups for a plane geomerty
 
