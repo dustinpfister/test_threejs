@@ -16,7 +16,8 @@
     var geometry = new THREE.PlaneGeometry(5, 5, 2, 2);
     geometry.rotateX(Math.PI * 1.5);
     // adding groups
-    geometry.addGroup(0, 6, 0);  // give a start vertiex index, count of vertex and material index for each call
+    // give a start vertex index, count of vertex and material index for each call
+    geometry.addGroup(0, 6, 0);
     geometry.addGroup(6, 6, 1);
     geometry.addGroup(12, 6, 1);
     geometry.addGroup(18, 6, 0);

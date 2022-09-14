@@ -18,8 +18,8 @@
 * () have an example in which I am cretaing data textures
 * () have one mesh object where I just create custom textures for each face of a cube
 
-## () sx-create-groups example
-* () have an example where I am createing groups for a plane geomerty
+## ( done 09/14/2022 ) sx-create-groups example
+* (done) have an example where I am createing groups for a plane geomerty
 
 ## ( done 09/14/2022 ) s1-material-array
 * (done) new box geo example with six matreials
