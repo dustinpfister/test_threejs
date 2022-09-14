@@ -3,8 +3,8 @@
     // SCENE, CAMERA, RENDERER
     //-------- ----------
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(2, 2, 4);
+    var camera = new THREE.PerspectiveCamera(50, 640 / 480, 0.5, 1000);
+    camera.position.set(3, 3, 6);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -12,12 +12,12 @@
     //-------- ----------
     // LIGHT
     //-------- ----------
-    const dl = new THREE.DirectionalLight(0xffffff, 0.2);
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(3, 2, 1);
     scene.add(dl);
-    const al = new THREE.AmbientLight(0xffffff, 0.1);
+    const al = new THREE.AmbientLight(0xffffff, 0.15);
     scene.add(al);
-    const pl = new THREE.PointLight(0xffffff, 1);
+    const pl = new THREE.PointLight(0xffffff, 0.5);
     pl.position.set(-3, 2, -3);
     scene.add(pl);
     //-------- ----------
@@ -90,7 +90,10 @@
         api.fromPXDATA = function(pxData, width, palette){
             palette = palette || [
                 [0,0,0,255],
-                [255,255,255,255]
+                [255,0,0,255],
+                [32,32,32,255],
+                [64,64,64,255],
+                [128,128,128,255]
             ];
             var height = Math.floor(pxData.length / width);
             return api.forEachPix(width, height, function(x, y, w, h, i){
@@ -191,21 +194,39 @@
     const texture_rnd1 = datatex.seededRandom(32, 32, 1, 1, 1, [128, 255]);
     const texture_top = datatex.fromPXDATA([
         1,1,1,1,
-        1,0,0,0,
-        1,0,0,0,
-        1,0,0,0
+        1,2,3,3,
+        1,2,2,2,
+        1,2,3,3
     ], 4);
     const texture_side1 = datatex.fromPXDATA([
         1,1,1,1,
-        0,0,0,1,
-        0,0,0,1,
+        2,3,2,1,
+        3,2,3,1,
         1,1,1,1
     ], 4);
     const texture_side2 = datatex.fromPXDATA([
         1,1,1,1,
-        0,0,0,0,
-        0,0,0,0,
-        0,0,0,0
+        2,2,2,2,
+        3,3,3,3,
+        3,3,3,3
+    ], 4);
+    const texture_side3 = datatex.fromPXDATA([
+        3,1,2,1,
+        3,1,1,1,
+        3,2,2,2,
+        3,3,3,3
+    ], 4);
+    const texture_side4 = datatex.fromPXDATA([
+        3,1,2,2,
+        3,1,1,1,
+        2,2,2,1,
+        3,3,3,1
+    ], 4);
+    const texture_bottom = datatex.fromPXDATA([
+        2,2,1,3,
+        1,1,1,3,
+        2,2,2,3,
+        3,3,3,3
     ], 4);
     //-------- ----------
     // MESH OBJECTS
@@ -216,11 +237,11 @@
         // array of materials as the second argument
         [
             mkMaterial(0xffffff, 1, texture_side1),
-            mkMaterial(0xffffff, 1, texture_rnd1),
+            mkMaterial(0xffffff, 1, texture_side3),
             mkMaterial(0xffffff, 1, texture_top),
-            mkMaterial(0xffffff, 1, texture_rnd1),
+            mkMaterial(0xffffff, 1, texture_bottom),
             mkMaterial(0xffffff, 1, texture_side2),
-            mkMaterial(0xffffff, 1, texture_rnd1)
+            mkMaterial(0xffffff, 1, texture_side4)
         ]
     );
     mesh.position.set(0, 1.5, 0);
@@ -235,7 +256,7 @@
     scene.add(plane);
     // sphere
     const sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(200, 30, 15),
+        new THREE.SphereGeometry(200, 30, 30),
         new THREE.MeshBasicMaterial({wireframe:true, wireframeLinewidth: 3}))
     scene.add(sphere);
     // ---------- ----------
@@ -243,17 +264,17 @@
     // ---------- ----------
     const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 300;
+    FRAME_MAX = 800;
     let secs = 0,
     frame = 0,
     lt = new Date();
     // update
     const update = function(frame, frameMax){
         const alpha = frame / frameMax;
-
         updatePlaneGeo(plane.geometry, images, [0,1,0,1,0,1][ Math.floor(alpha * 6)] );
-        mesh.rotation.set(0.5, 1.5, 0);
-        //mesh.rotation.y = Math.PI * 2 * alpha;
+        mesh.rotation.set(
+            Math.PI * 2 * 1 * alpha, 
+            Math.PI * 2 * 8 * alpha, 0);
         sphere.rotation.y = Math.PI * 2 * alpha;
     };
     // loop
