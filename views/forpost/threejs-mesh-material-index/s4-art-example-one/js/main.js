@@ -119,12 +119,12 @@
         new THREE.BoxGeometry(1, 1, 1),
         // array of materials as the second argument
         [
-            mkMaterial(0xff0000, 1),
-            mkMaterial(0x00ff00, 1),
-            mkMaterial(0x0000ff, 1),
-            mkMaterial(0xff00ff, 1),
-            mkMaterial(0xffff00, 1),
-            mkMaterial(0x00ffff, 1)
+            mkMaterial(0xffffff, 1),
+            mkMaterial(0xffffff, 1),
+            mkMaterial(0xffffff, 1),
+            mkMaterial(0xffffff, 1),
+            mkMaterial(0xffffff, 1),
+            mkMaterial(0xffffff, 1)
         ]
     );
     mesh.position.set(0, 1.5, 0);
