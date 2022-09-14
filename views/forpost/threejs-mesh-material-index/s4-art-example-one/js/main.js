@@ -15,6 +15,8 @@
     const dl = new THREE.DirectionalLight(0xffffff, 0.2);
     dl.position.set(3, 2, 1);
     scene.add(dl);
+    const al = new THREE.AmbientLight(0xffffff, 0.1);
+    scene.add(al);
     const pl = new THREE.PointLight(0xffffff, 1);
     pl.position.set(-3, 2, -3);
     scene.add(pl);
@@ -84,6 +86,15 @@
         }
         return geometry;
     };
+    const mkMaterial = (color, opacity, texture) => {
+        return new THREE.MeshPhongMaterial({
+            color: color,
+            map: texture || null,
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: opacity
+        })
+    };
     // create plane mesh to use with images
     const createPlaneMesh = () => {
         // new plane geometry
@@ -93,15 +104,9 @@
             geometry,
             // array of materials as the second argument
             [
-                new THREE.MeshPhongMaterial({
-                    color: 0xffffff
-                }),
-                new THREE.MeshPhongMaterial({
-                    color: 0x000000
-                }),
-                new THREE.MeshPhongMaterial({
-                    color: 0x888888
-                })
+                mkMaterial(0xffffff, 1, null),
+                mkMaterial(0x000000, 1, null),
+                mkMaterial(0x888888, 1, null)
             ]
         );
         return mesh;
@@ -109,9 +114,30 @@
     //-------- ----------
     // MESH
     //-------- ----------
-    var plane = createPlaneMesh();
+    var mesh = new THREE.Mesh(
+        // geometry as first argument
+        new THREE.BoxGeometry(1, 1, 1),
+        // array of materials as the second argument
+        [
+            mkMaterial(0xff0000, 1),
+            mkMaterial(0x00ff00, 1),
+            mkMaterial(0x0000ff, 1),
+            mkMaterial(0xff00ff, 1),
+            mkMaterial(0xffff00, 1),
+            mkMaterial(0x00ffff, 1)
+        ]
+    );
+    mesh.position.set(0, 1.5, 0);
+    scene.add(mesh);
+    // plane
+    const plane = createPlaneMesh();
     updatePlaneGeo(plane.geometry, images, 0);
     scene.add(plane);
+    // sphere
+    const sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(200, 30, 15),
+        new THREE.MeshBasicMaterial({wireframe:true, wireframeLinewidth: 3}))
+    scene.add(sphere);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -126,7 +152,8 @@
         const alpha = frame / frameMax;
 
         updatePlaneGeo(plane.geometry, images, [0,1,0,1,0,1][ Math.floor(alpha * 6)] );
-
+        mesh.rotation.y = Math.PI * 2 * alpha;
+        sphere.rotation.y = Math.PI * 2 * alpha;
     };
     // loop
     const loop = () => {

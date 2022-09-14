@@ -19,7 +19,7 @@
 * () have one mesh object where I just create custom textures for each face of a cube
 
 ## () sx-art-example-one
-* () start a first art example that will be used for video1 for the post
+* (done) start a first art example that will be used for video1 for the post
 
 * () have a plane geometry set up with a 16 by 16 grid
 * () use an array of 8 colors to choose from
