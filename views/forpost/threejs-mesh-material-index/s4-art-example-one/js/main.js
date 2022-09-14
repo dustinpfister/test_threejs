@@ -62,19 +62,29 @@
     // HELPERS
     //-------- ----------
     // create a plane geo with groups set up to work with images
-    const createPlaneGeo = (images, imageIndex) => {
+    const createPlaneGeo = () => {
         const geometry = new THREE.PlaneGeometry(5, 5, 16, 16);
-        const img = images[imageIndex];
         geometry.rotateX(Math.PI * 1.5);
         let pxIndex = 0, len = 256;
         while(pxIndex < len){
-            geometry.addGroup(pxIndex * 6, 6, img[pxIndex]);
+            geometry.addGroup(pxIndex * 6, 6, 0);
+            pxIndex += 1;
+        }
+        return geometry;
+    };
+    // update plane geo to given imageindex and images array
+    const updatePlaneGeo = (geometry, images, imageIndex) => {
+        const img = images[imageIndex];
+        let pxIndex = 0, len = 256;
+        while(pxIndex < len){
+            const group = geometry.groups[pxIndex]
+            group.materialIndex = img[pxIndex];
             pxIndex += 1;
         }
         return geometry;
     };
     // create plane mesh to use with images
-    const createPlaneMesh = ()=> {
+    const createPlaneMesh = () => {
         // new plane geometry
         var geometry = createPlaneGeo(images, 1);
         var mesh = new THREE.Mesh(
@@ -92,11 +102,11 @@
         );
         return mesh;
     };
-
     //-------- ----------
     // MESH
     //-------- ----------
     var mesh = createPlaneMesh();
+    updatePlaneGeo(mesh.geometry, images, 1);
     scene.add(mesh);
     //-------- ----------
     // RENDER
