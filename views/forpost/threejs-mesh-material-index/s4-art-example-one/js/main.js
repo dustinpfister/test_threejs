@@ -4,11 +4,20 @@
     //-------- ----------
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(4, 7, 4);
+    camera.position.set(2, 2, 4);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
+    //-------- ----------
+    // LIGHT
+    //-------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 0.2);
+    dl.position.set(3, 2, 1);
+    scene.add(dl);
+    const pl = new THREE.PointLight(0xffffff, 1);
+    pl.position.set(-3, 2, -3);
+    scene.add(pl);
     //-------- ----------
     // PLANE MATERIAL INDEX DATA
     //-------- ----------
@@ -70,7 +79,6 @@
     //-------- ----------
     // new plane geometry
     var geometry = createPlaneGeo(images, 1);
-
     // MESH
     //-------- ----------
     var mesh = new THREE.Mesh(
@@ -78,11 +86,11 @@
         geometry,
         // array of materials as the second argument
         [
-            new THREE.MeshBasicMaterial({
-                color: 0xff0000
+            new THREE.MeshPhongMaterial({
+                color: 0x000000
             }),
-            new THREE.MeshBasicMaterial({
-                color: 0x00ff00
+            new THREE.MeshPhongMaterial({
+                color: 0xffffff
             })
         ]
     );
