@@ -23,39 +23,22 @@
     //-------- ----------
     const images = [
         [
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+            0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,
+            0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
+            0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,
+            0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,
+            0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,
+            0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,
+            0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,
+            0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+            0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,
+            0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,
+            0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-        ],
-        [
-            1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
-            0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
-            1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
-            0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
-            1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
-            0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
-            1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
-            0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
-            1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
-            0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
-            1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
-            0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
-            1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
-            0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
-            1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
-            0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
         ]
     ]
     //-------- ----------
@@ -93,10 +76,19 @@
             // array of materials as the second argument
             [
                 new THREE.MeshPhongMaterial({
+                    color: 0xffffff
+                }),
+                new THREE.MeshPhongMaterial({
                     color: 0x000000
                 }),
                 new THREE.MeshPhongMaterial({
-                    color: 0xffffff
+                    color: 0xff0000
+                }),
+                new THREE.MeshPhongMaterial({
+                    color: 0x00ff00
+                }),
+                new THREE.MeshPhongMaterial({
+                    color: 0x00ffff
                 })
             ]
         );
@@ -105,12 +97,40 @@
     //-------- ----------
     // MESH
     //-------- ----------
-    var mesh = createPlaneMesh();
-    updatePlaneGeo(mesh.geometry, images, 1);
-    scene.add(mesh);
-    //-------- ----------
-    // RENDER
-    //-------- ----------
-    renderer.render(scene, camera);
+    var plane = createPlaneMesh();
+    updatePlaneGeo(plane.geometry, images, 0);
+    scene.add(plane);
+    // ---------- ----------
+    // ANIMATION LOOP
+    // ---------- ----------
+    const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+    FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+    FRAME_MAX = 90;
+    let secs = 0,
+    frame = 0,
+    lt = new Date();
+    // update
+    const update = function(frame, frameMax){
+        const alpha = frame / frameMax;
+
+        updatePlaneGeo(plane.geometry, images, [0][ Math.floor(alpha * 1)] );
+
+    };
+    // loop
+    const loop = () => {
+        const now = new Date(),
+        secs = (now - lt) / 1000;
+        requestAnimationFrame(loop);
+        if(secs > 1 / FPS_UPDATE){
+            // update, render
+            update( Math.floor(frame), FRAME_MAX);
+            renderer.render(scene, camera);
+            // step frame
+            frame += FPS_MOVEMENT * secs;
+            frame %= FRAME_MAX;
+            lt = now;
+        }
+    };
+    loop();
 }
     ());
