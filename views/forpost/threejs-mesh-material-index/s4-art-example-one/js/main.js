@@ -189,6 +189,24 @@
     // TEXTURES
     //-------- ----------
     const texture_rnd1 = datatex.seededRandom(32, 32, 1, 1, 1, [128, 255]);
+    const texture_top = datatex.fromPXDATA([
+        1,1,1,1,
+        1,0,0,0,
+        1,0,0,0,
+        1,0,0,0
+    ], 4);
+    const texture_side1 = datatex.fromPXDATA([
+        1,1,1,1,
+        0,0,0,1,
+        0,0,0,1,
+        1,1,1,1
+    ], 4);
+    const texture_side2 = datatex.fromPXDATA([
+        1,1,1,1,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0
+    ], 4);
     //-------- ----------
     // MESH OBJECTS
     //-------- ----------
@@ -197,11 +215,11 @@
         new THREE.BoxGeometry(1, 1, 1),
         // array of materials as the second argument
         [
+            mkMaterial(0xffffff, 1, texture_side1),
             mkMaterial(0xffffff, 1, texture_rnd1),
+            mkMaterial(0xffffff, 1, texture_top),
             mkMaterial(0xffffff, 1, texture_rnd1),
-            mkMaterial(0xffffff, 1, texture_rnd1),
-            mkMaterial(0xffffff, 1, texture_rnd1),
-            mkMaterial(0xffffff, 1, texture_rnd1),
+            mkMaterial(0xffffff, 1, texture_side2),
             mkMaterial(0xffffff, 1, texture_rnd1)
         ]
     );
@@ -234,7 +252,8 @@
         const alpha = frame / frameMax;
 
         updatePlaneGeo(plane.geometry, images, [0,1,0,1,0,1][ Math.floor(alpha * 6)] );
-        mesh.rotation.y = Math.PI * 2 * alpha;
+        mesh.rotation.set(0.5, 1.5, 0);
+        //mesh.rotation.y = Math.PI * 2 * alpha;
         sphere.rotation.y = Math.PI * 2 * alpha;
     };
     // loop
