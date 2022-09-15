@@ -21,6 +21,61 @@
     const al = new THREE.AmbientLight(0xffffff, 0.25);
     scene.add(al);
     //-------- ----------
+    // UVGenerator
+    //-------- ----------
+    let i = 0;
+    const UVGenerator = {
+        generateTopUV: function ( geometry, vertices, indexA, indexB, indexC ) {
+            const n = 1;
+            const a_x = vertices[ indexA * n ];
+            const a_y = vertices[ indexA * n + 1 ];
+            const b_x = vertices[ indexB * n ];
+            const b_y = vertices[ indexB * n + 1 ];
+            const c_x = vertices[ indexC * n ];
+            const c_y = vertices[ indexC * n + 1 ];
+            return [
+                new THREE.Vector2( a_x % 1, a_y % 1 ),
+                new THREE.Vector2( b_x % 1, b_y % 1 ),
+                new THREE.Vector2( c_x % 1, c_y % 1 )
+            ];
+            //return [
+            //     new THREE.Vector2( 0, 0 ),
+            //     new THREE.Vector2( 0, 0 ),
+            //     new THREE.Vector2( 0, 1 )
+            //];
+        },
+        generateSideWallUV: function ( geometry, vertices, indexA, indexB, indexC, indexD ) {
+            const n = 1;
+            const a_x = vertices[ indexA * n ];
+            const a_y = vertices[ indexA * n + 1 ];
+            const a_z = vertices[ indexA * n + 2 ];
+            const b_x = vertices[ indexB * n ];
+            const b_y = vertices[ indexB * n + 1 ];
+            const b_z = vertices[ indexB * n + 2 ];
+            const c_x = vertices[ indexC * n ];
+            const c_y = vertices[ indexC * n + 1 ];
+            const c_z = vertices[ indexC * n + 2 ];
+            const d_x = vertices[ indexD * n ];
+            const d_y = vertices[ indexD * n + 1 ];
+            const d_z = vertices[ indexD * n + 2 ];
+            if ( Math.abs( a_y - b_y ) < Math.abs( a_x - b_x ) ) {
+                return [
+                    new THREE.Vector2( a_x % 1, (1 - a_z) % 1 ),
+                    new THREE.Vector2( b_x % 1, (1 - b_z) % 1 ),
+                    new THREE.Vector2( c_x % 1, (1 - c_z) % 1 ),
+                    new THREE.Vector2( d_x % 1, (1 - d_z) % 1 )
+                ];
+            } else {
+                return [
+                    new THREE.Vector2( a_y % 1, (1 - a_z) % 1 ),
+                    new THREE.Vector2( b_y % 1, (1 - b_z) % 1 ),
+                    new THREE.Vector2( c_y % 1, (1 - c_z) % 1 ),
+                    new THREE.Vector2( d_y % 1, (1 - d_z) % 1 )
+                ];
+            }
+        }
+    };
+    //-------- ----------
     // HELPERS
     //-------- ----------
     // create an array of Extrude geometry from SVG data loaded with the SVGLoader
@@ -35,9 +90,11 @@
             for ( let j = 0; j < shapes.length; j ++ ) {
                 const shape = shapes[ j ];
                 geoArray.push( new THREE.ExtrudeGeometry( shape, {
-                    curveSegments: 4,
-                    steps: 4,
-                    depth: 32
+                    curveSegments: 8,
+                    steps: 8,
+                    depth: 32,
+                    bevelEnabled: false,
+                    UVGenerator: UVGenerator
                 }));
             }
         }
