@@ -35,7 +35,9 @@
             for ( let j = 0; j < shapes.length; j ++ ) {
                 const shape = shapes[ j ];
                 geoArray.push( new THREE.ExtrudeGeometry( shape, {
-                    depth: 16
+                    curveSegments: 4,
+                    steps: 4,
+                    depth: 32
                 }));
             }
         }
@@ -47,9 +49,18 @@
         const group = new THREE.Group();
         geoArray.forEach( (geo, i) => {
             // each mesh gets its own material
-            const material = new THREE.MeshPhongMaterial( {
-                color: data.paths[i].color // using paths data for color
-            });
+            const material = [ 
+                new THREE.MeshPhongMaterial( {  // face
+                    color: data.paths[i].color,
+                    map : datatex.seededRandom(64, 64),
+                    wireframe: false
+                }),
+                new THREE.MeshPhongMaterial( { // sides material
+                    color: new THREE.Color(1, 1, 1), 
+                    map : datatex.seededRandom(64, 64),
+                    wireframe: false
+                })
+            ];
             const mesh = new THREE.Mesh( geo, material );
             group.add(mesh);
         });
@@ -110,7 +121,7 @@
             const zRange = zMax - zMin;
             group.children.forEach( (mesh) => {
                 mesh.geometry.translate(xRange / 2 * -1, yRange / 2 * -1, zRange / 2 * -1);
-                mesh.material.map = datatex.seededRandom(64, 64);
+                //mesh.material.map = datatex.seededRandom(64, 64);
                 mesh.rotateX(Math.PI)
             });
             group.scale.normalize().multiplyScalar(0.025);
