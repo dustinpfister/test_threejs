@@ -45,7 +45,7 @@
             //];
         },
         generateSideWallUV: function ( geometry, vertices, indexA, indexB, indexC, indexD ) {
-            const n = 1;
+            const n = 2;
             const a_x = vertices[ indexA * n ];
             const a_y = vertices[ indexA * n + 1 ];
             const a_z = vertices[ indexA * n + 2 ];
@@ -90,9 +90,9 @@
             for ( let j = 0; j < shapes.length; j ++ ) {
                 const shape = shapes[ j ];
                 geoArray.push( new THREE.ExtrudeGeometry( shape, {
-                    curveSegments: 8,
-                    steps: 8,
-                    depth: 32,
+                    curveSegments: 20,
+                    steps: 20,
+                    depth: 10,
                     bevelEnabled: false,
                     UVGenerator: UVGenerator
                 }));
@@ -107,14 +107,23 @@
         geoArray.forEach( (geo, i) => {
             // each mesh gets its own material
             const material = [ 
-                new THREE.MeshPhongMaterial( {  // face
+                new THREE.MeshPhongMaterial({  // face material
                     color: data.paths[i].color,
-                    map : datatex.seededRandom(512, 512, 1, 1, 1, [64, 255]),
+                    map : datatex.seededRandom(512, 512, 1, 1, 1, [128, 255]),
                     wireframe: false
                 }),
-                new THREE.MeshPhongMaterial( { // sides material
-                    color: new THREE.Color(1, 1, 1), 
-                    map : datatex.seededRandom(128, 126, 1, 1, 1, [64, 255]),
+                new THREE.MeshPhongMaterial({ // sides material
+                    color: new THREE.Color(1, 0, 0.2), 
+                    //map : datatex.seededRandom(8, 8, 1, 1, 1, [128, 255]),
+                    map: datatex.fromPXDATA([
+                        2,1,0,1,2,1,0,0,
+                        0,1,2,0,0,1,2,0,
+                        2,1,0,1,2,1,0,0,
+                        0,1,2,0,0,1,2,0,
+                        2,1,0,1,2,1,0,0,
+                        0,1,2,0,0,1,2,0,
+                        2,1,0,1,2,1,0,0
+                    ], 8, [ [255,255,255,255], [200,200,200,255], [100,100,100,255] ]),
                     wireframe: false
                 })
             ];
