@@ -109,12 +109,12 @@
             const material = [ 
                 new THREE.MeshPhongMaterial( {  // face
                     color: data.paths[i].color,
-                    map : datatex.seededRandom(64, 64),
+                    map : datatex.seededRandom(512, 512, 1, 1, 1, [64, 255]),
                     wireframe: false
                 }),
                 new THREE.MeshPhongMaterial( { // sides material
                     color: new THREE.Color(1, 1, 1), 
-                    map : datatex.seededRandom(64, 64),
+                    map : datatex.seededRandom(128, 126, 1, 1, 1, [64, 255]),
                     wireframe: false
                 })
             ];
