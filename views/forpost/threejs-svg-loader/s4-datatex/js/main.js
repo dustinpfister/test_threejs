@@ -38,11 +38,6 @@
                 new THREE.Vector2( b_x % 1, b_y % 1 ),
                 new THREE.Vector2( c_x % 1, c_y % 1 )
             ];
-            //return [
-            //     new THREE.Vector2( 0, 0 ),
-            //     new THREE.Vector2( 0, 0 ),
-            //     new THREE.Vector2( 0, 1 )
-            //];
         },
         generateSideWallUV: function ( geometry, vertices, indexA, indexB, indexC, indexD ) {
             const n = 2;
@@ -105,16 +100,15 @@
         const geoArray = createExtrudeGeosFromSVG(data);
         const group = new THREE.Group();
         geoArray.forEach( (geo, i) => {
-            // each mesh gets its own material
-            const material = [ 
+            // each mesh gets its own materials
+            const materials = [ 
                 new THREE.MeshPhongMaterial({  // face material
                     color: data.paths[i].color,
                     map : datatex.seededRandom(512, 512, 1, 1, 1, [128, 255]),
                     wireframe: false
                 }),
                 new THREE.MeshPhongMaterial({ // sides material
-                    color: new THREE.Color(1, 0, 0.2), 
-                    //map : datatex.seededRandom(8, 8, 1, 1, 1, [128, 255]),
+                    color: new THREE.Color(1, 0, 0.2),
                     map: datatex.fromPXDATA([
                         2,1,0,1,2,1,0,0,
                         0,1,2,0,0,1,2,0,
@@ -127,7 +121,7 @@
                     wireframe: false
                 })
             ];
-            const mesh = new THREE.Mesh( geo, material );
+            const mesh = new THREE.Mesh( geo, materials );
             group.add(mesh);
         });
         return group;
@@ -140,16 +134,18 @@
     // LOOP
     //-------- ----------
     let fps = 30,
-    degree = 0,
+    d1 = -20,
+    d2 = 0,
     lt = new Date();
     const loop = function () {
         let now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / fps) {
-            group.rotation.y = Math.PI / 180 * degree;
-            degree += 20 * secs;
-            degree %= 360;
+            group.rotation.x = Math.PI / 180 * d1;
+            group.rotation.y = Math.PI / 180 * d2;
+            d2 += 20 * secs;
+            d2 %= 360;
             // render
             renderer.render(scene, camera);
             lt = now;
@@ -187,7 +183,6 @@
             const zRange = zMax - zMin;
             group.children.forEach( (mesh) => {
                 mesh.geometry.translate(xRange / 2 * -1, yRange / 2 * -1, zRange / 2 * -1);
-                //mesh.material.map = datatex.seededRandom(64, 64);
                 mesh.rotateX(Math.PI)
             });
             group.scale.normalize().multiplyScalar(0.025);
