@@ -35,14 +35,16 @@
         bias: 0,
         camUnitLength: 5,
         camDir: new THREE.Vector3(0.60, 0.75, 1.5).normalize(),
-        camVec: new THREE.Vector3()
+        camVec: new THREE.Vector3(),
+        camLook: new THREE.Vector3(0, 0, -0.1)
     };
     var update = function (secs, per, bias, state) {
         helper.update();
         state.camUnitLength = 5 - 4.9 * bias;
         state.camVec.copy(state.camDir).multiplyScalar(state.camUnitLength);
         camera.position.copy(state.camVec);
-        camera.lookAt(0, 0, -0.1);
+        const vd = new THREE.Vector3(0,0,0);
+        camera.lookAt(state.camLook);
     };
     var loop = function () {
         var now = new Date(),
@@ -55,7 +57,7 @@
         update(secs, state.per, state.bias, state)
         renderer.render(scene, camera);
 
-        state.frame += 4 * secs;
+        state.frame += 30 * secs;
         state.frame %= state.maxFrame;
         lt = now;
     };
