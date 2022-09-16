@@ -60,12 +60,14 @@
     //-------- ----------
     // instantiate a loader
     const loader = new THREE.SVGLoader();
+
     // load a SVG resource
     loader.load(
         // resource URL
-        '/forpost/threejs-svg-loader/svg/fff2.svg',
+        '/forpost/threejs-svg-loader/svg/draft1.svg',
         // called when the resource is loaded
         function ( data ) {
+
             var group = createMeshGroupFromSVG(data, 1);
             scene.add(group);
             // render

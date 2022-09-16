@@ -58,9 +58,9 @@
      <g class="Page">
       <g class="com.sun.star.drawing.ClosedBezierShape">
        <g id="id3">
-        <rect class="BoundingBox" stroke="none" fill="none" x="-1541" y="-1541" width="2543" height="2543"/>
-        <path fill="rgb(255,0,0)" stroke="none" d="M 678,-1282 C 750,-1282 1000,6 1000,6 L 428,890 -932,1000 -1540,-141 -932,-1282 -395,-1540 678,-1282 Z"/>
-        <path fill="none" stroke="rgb(0,0,0)" d="M 678,-1282 C 750,-1282 1000,6 1000,6 L 428,890 -932,1000 -1540,-141 -932,-1282 -395,-1540 678,-1282 Z"/>
+        <rect class="BoundingBox" stroke="none" fill="none" x="745" y="745" width="257" height="3"/>
+        <path fill="rgb(255,0,0)" stroke="none" d="M 968,746 C 975,746 1000,746 1000,746 L 943,746 807,746 746,746 807,746 860,746 968,746 Z"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 968,746 L 1000,746 943,746 807,746 746,746 807,746 860,746 968,746 Z"/>
        </g>
       </g>
      </g>
