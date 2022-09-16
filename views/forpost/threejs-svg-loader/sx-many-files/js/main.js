@@ -77,13 +77,14 @@
     // instance of a SVG loader
     const loader = new THREE.SVGLoader(manager);
     // load a SVG resource
-    const loadSVG = (loader, url) => {
+    const loadSVG = (loader, url, name) => {
         loader.load(
             // resource URL
             url,
             // called when the resource is loaded
             ( data) => {
                 const group = createMeshGroupFromSVG(data, 1);
+                group.name = name;
                 scene.add(group);
                 console.log('svg loader: file ' + url + ' loaded ' );
             },
@@ -98,6 +99,6 @@
             }
         );
     };
-    loadSVG(loader, '/forpost/threejs-svg-loader/svg/draft1.svg');
-    loadSVG(loader, '/forpost/threejs-svg-loader/svg/fff2.svg');
+    loadSVG(loader, '/forpost/threejs-svg-loader/svg/draft1.svg', 'draft1');
+    loadSVG(loader, '/forpost/threejs-svg-loader/svg/fff2.svg', 'fff2');
 }());

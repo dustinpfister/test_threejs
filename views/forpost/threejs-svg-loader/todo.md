@@ -14,8 +14,9 @@
 
 ## () - more than one file example
 * (done) start an example where I am loading more than one svg file
+* (done) have a way to set names for each object that is added to the scene
 * () have at least four files that are being loaded
-* () have a way to set names for each object that is added to the scene
+* () get objects by name and move them around
 
 ## ( done 09/16/2022 ) - Lines example
 * (done) start a lines example that might end up being the new basic example
