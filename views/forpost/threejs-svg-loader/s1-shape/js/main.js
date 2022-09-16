@@ -1,4 +1,4 @@
-// Basic load SVG DEMO
+// shape SVG DEMO
 (function () {
     //-------- ----------
     // SCENE, CAMERA, RENDERER, LIGHT

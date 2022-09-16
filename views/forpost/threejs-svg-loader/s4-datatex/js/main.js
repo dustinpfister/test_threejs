@@ -1,4 +1,4 @@
-// Extrude Geo
+// Extrude Geo, Custom UV Generator and data textures
 (function () {
     //-------- ----------
     // SCENE, CAMERA, RENDERER, LIGHT
