@@ -36,25 +36,6 @@
         }
         return geoArray;
     };
-    // create mesh group from SVG
-    const createMeshGroupFromSVG = (data, si, ei) => {
-        si = si === undefined ? 0 : si;
-        ei = ei === undefined ? data.paths.length: ei;
-        const geoArray = createShapeGeosFromSVG(data, si, ei);
-        const group = new THREE.Group();
-        geoArray.forEach( (geo, i) => {
-            // each mesh gets its own material
-            const material = new THREE.MeshBasicMaterial( {
-                color: data.paths[si + i].color, // using paths data for color
-                side: THREE.DoubleSide,
-                depthWrite: false,
-                wireframe: false
-            });
-            const mesh = new THREE.Mesh( geo, material );
-            group.add(mesh);
-        });
-        return group;
-    };
     // create a single mesh from SVG data
     const createGeoFromSVG = (data, si, ei) => {
         const geoArray = createShapeGeosFromSVG(data, si, ei)
@@ -69,26 +50,6 @@
     grid.material.transparent = true;
     grid.material.opacity = 0.25;;
     scene.add(grid);
-    //-------- ----------
-    // CONTROL
-    //-------- ----------
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    //-------- ----------
-    // LOOP
-    //-------- ----------
-    let fps = 30,
-    lt = new Date();
-    const loop = function () {
-        let now = new Date(),
-        secs = (now - lt) / 1000;
-        requestAnimationFrame(loop);
-        if (secs > 1 / fps) {
-            // render
-            renderer.render(scene, camera);
-            lt = now;
-        }
-    };
-    loop();
     //-------- ----------
     // SVG LOADER
     //-------- ----------
@@ -109,6 +70,7 @@
                 side: THREE.DoubleSide
             }));
             scene.add(mesh);
+            renderer.render(scene, camera);
         },
         // called when loading is in progresses
         function ( xhr ) {
