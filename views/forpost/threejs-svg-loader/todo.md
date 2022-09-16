@@ -6,6 +6,9 @@
 ## () - punch out example
 * () see about making a shape with a hole in it that is the same shape scaled down?
 
+## () s5-4-move-camera-along-paths
+* () example where svg data is used to define paths for camera position and lookAt point
+
 ## () s5-3-move-object-along-path
 * () move an object along the path example
 
