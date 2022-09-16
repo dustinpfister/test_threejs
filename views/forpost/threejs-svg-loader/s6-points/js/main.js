@@ -23,8 +23,9 @@
         '/forpost/threejs-svg-loader/svg/fff2.svg',
         // called when the resource is loaded
         function ( data ) {
+            const paths = data.paths.slice( 1, data.paths.length);
             // create points for each path
-            data.paths.forEach((path)=>{
+            paths.forEach((path)=>{
                 const geo = new THREE.BufferGeometry().setFromPoints( path.subPaths[0].getPoints() );
                 const material = new THREE.PointsMaterial({size: 3, color: 0x00ff00});
                 const points = new THREE.Points(geo, material);
