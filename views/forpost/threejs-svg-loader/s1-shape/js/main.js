@@ -19,7 +19,7 @@
     const createShapeGeosFromSVG = (data, si, ei) => {
         si = si === undefined ? 0 : si;
         ei = ei === undefined ? data.paths.length: ei;
-        const paths = data.paths.slice(1, data.paths.length);
+        const paths = data.paths.slice(si, data.paths.length);
         const geoArray = [];
         for ( let i = 0; i < paths.length; i ++ ) {
             const path = paths[ i ];
