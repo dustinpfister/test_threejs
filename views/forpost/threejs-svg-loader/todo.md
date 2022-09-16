@@ -15,7 +15,7 @@
 ## () - Points example
 * start a points example that might end up being the new basic example
 
-## () - Paths examples
+## ( done 09/16/2022 ) - Paths examples
 * (done) start a paths example that might end up being the new basic example
 * (done) paths example where I create bounding box for each point of each path
 * (done) paths example where I create a sphere for each point of each path
