@@ -6,7 +6,7 @@
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#000000');
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
-    camera.position.set(0, 0, 3.5);
+    camera.position.set(100, 100, 100);
     camera.lookAt(0, -0.1, 0);
     scene.add(camera);
     const renderer = new THREE.WebGLRenderer();
@@ -24,8 +24,11 @@
     // HELPERS
     //-------- ----------
     // create an array of Extrude geometry from SVG data loaded with the SVGLoader
-    const createExtrudeGeosFromSVG = (data) => {
-        const paths = data.paths;
+    const createExtrudeGeosFromSVG = (data, si, ei) => {
+        si = si === undefined ? 0 : si;
+        ei = ei === undefined ? data.paths.length: ei;
+        //const paths = data.paths;
+        const paths = data.paths.slice(si, data.paths.length);
         const geoArray = [];
         for ( let i = 0; i < paths.length; i ++ ) {
             const path = paths[ i ];
@@ -35,20 +38,23 @@
             for ( let j = 0; j < shapes.length; j ++ ) {
                 const shape = shapes[ j ];
                 geoArray.push( new THREE.ExtrudeGeometry( shape, {
-                    depth: 16
+                    curveSegments: 20,
+                    steps: 20,
+                    depth: 10,
+                    bevelEnabled: false,
                 }));
             }
         }
         return geoArray;
     };
     // create mesh group from SVG
-    const createMeshGroupFromSVG = (data) => {
-        const geoArray = createExtrudeGeosFromSVG(data);
+    const createMeshGroupFromSVG = (data, si, ei) => {
+        const geoArray = createExtrudeGeosFromSVG(data, si, ei);
         const group = new THREE.Group();
         geoArray.forEach( (geo, i) => {
             // each mesh gets its own material
             const material = new THREE.MeshPhongMaterial( {
-                color: data.paths[i].color // using paths data for color
+                color: data.paths[si + i].color // using paths data for color
             });
             const mesh = new THREE.Mesh( geo, material );
             group.add(mesh);
@@ -86,33 +92,10 @@
     // load a SVG resource
     loader.load(
         // resource URL
-        '/forpost/threejs-svg-loader/svg/fff.svg',
+        '/forpost/threejs-svg-loader/svg/fff2.svg',
         // called when the resource is loaded
         function ( data ) {
-            group = createMeshGroupFromSVG(data);
-            // get min and max of children
-            let xMin = Infinity, xMax = -Infinity;
-            let yMin = Infinity, yMax = -Infinity;
-            let zMin = Infinity, zMax = -Infinity;
-            group.children.forEach( (mesh) => {
-                const geo = mesh.geometry;
-                geo.computeBoundingBox();
-                const b = geo.boundingBox;
-                xMin = b.min.x < xMin ? b.min.x: xMin;
-                xMax = b.max.x > xMax ? b.max.x: xMax;
-                yMin = b.min.y < yMin ? b.min.y: yMin;
-                yMax = b.max.y > yMax ? b.max.y: yMax;
-                zMin = b.min.z < zMin ? b.min.z: zMin;
-                zMax = b.max.z > zMax ? b.max.z: zMax;
-            });
-            const xRange = xMax - xMin;
-            const yRange = yMax - yMin;
-            const zRange = zMax - zMin;
-            group.children.forEach( (mesh) => {
-                mesh.geometry.translate(xRange / 2 * -1, yRange / 2 * -1, zRange / 2 * -1);
-                mesh.rotateX(Math.PI)
-            });
-            group.scale.normalize().multiplyScalar(0.025);
+            group = createMeshGroupFromSVG(data, 1);
             scene.add(group);
             // start loop
             loop();
