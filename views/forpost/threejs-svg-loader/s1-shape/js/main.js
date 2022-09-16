@@ -6,7 +6,7 @@
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#000000');
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
-    camera.position.set(200, 200, 200);
+    camera.position.set(100, 100, 100);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     const renderer = new THREE.WebGLRenderer();
@@ -16,8 +16,10 @@
     // HELPERS
     //-------- ----------
     // create an array of shape geometry from SVG data loaded with the SVGLoader
-    const createShapeGeosFromSVG = (data) => {
-        const paths = data.paths;
+    const createShapeGeosFromSVG = (data, si, ei) => {
+        si = si === undefined ? 0 : si;
+        ei = ei === undefined ? data.paths.length: ei;
+        const paths = data.paths.slice(1, data.paths.length);
         const geoArray = [];
         for ( let i = 0; i < paths.length; i ++ ) {
             const path = paths[ i ];
@@ -35,13 +37,15 @@
         return geoArray;
     };
     // create mesh group from SVG
-    const createMeshGroupFromSVG = (data) => {
-        const geoArray = createShapeGeosFromSVG(data);
+    const createMeshGroupFromSVG = (data, si, ei) => {
+        si = si === undefined ? 0 : si;
+        ei = ei === undefined ? data.paths.length: ei;
+        const geoArray = createShapeGeosFromSVG(data, si, ei);
         const group = new THREE.Group();
         geoArray.forEach( (geo, i) => {
             // each mesh gets its own material
             const material = new THREE.MeshBasicMaterial( {
-                color: data.paths[i].color, // using paths data for color
+                color: data.paths[si + i].color, // using paths data for color
                 side: THREE.DoubleSide,
                 depthWrite: false,
                 wireframe: false
@@ -51,14 +55,6 @@
         });
         return group;
     };
-    //-------- ----------
-    // GRID
-    //-------- ----------
-    const grid = new THREE.GridHelper(10, 10, 0xffffff, 0xff0000);
-    grid.material.linewidth = 3;
-    grid.material.transparent = true;
-    grid.material.opacity = 0.25;;
-    scene.add(grid);
     //-------- ----------
     // CONTROL
     //-------- ----------
@@ -87,10 +83,10 @@
     // load a SVG resource
     loader.load(
         // resource URL
-        '/forpost/threejs-svg-loader/svg/fff.svg',
+        '/forpost/threejs-svg-loader/svg/fff2.svg',
         // called when the resource is loaded
         function ( data ) {
-            var group = createMeshGroupFromSVG(data);
+            var group = createMeshGroupFromSVG(data, 1);
             scene.add(group);
         },
         // called when loading is in progresses
