@@ -9,11 +9,11 @@
 ## () - more than one file example
 * () example where I am loading more than one svg file
 
-## () - Lines example
-* start a lines example that might end up being the new basic example
+## ( done 09/16/2022 ) - Lines example
+* (done) start a lines example that might end up being the new basic example
 
-## () - Points example
-* start a points example that might end up being the new basic example
+## ( done 09/16/2022 ) - Points example
+* (done) start a points example that might end up being the new basic example
 
 ## ( done 09/16/2022 ) - Paths examples
 * (done) start a paths example that might end up being the new basic example
