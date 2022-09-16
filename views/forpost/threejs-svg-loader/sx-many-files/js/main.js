@@ -6,7 +6,7 @@
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#000000');
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
-    camera.position.set(100, 100, 100);
+    camera.position.set(200, 200, 200);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     const renderer = new THREE.WebGLRenderer();
@@ -58,29 +58,46 @@
     //-------- ----------
     // SVG LOADER
     //-------- ----------
-    // instantiate a loader
-    const loader = new THREE.SVGLoader();
-
+    // starting a custom manager
+    var manager = new THREE.LoadingManager();
+    manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+        console.log('manager start');
+    };
+    manager.onLoad = function ( ) {
+        console.log('manager load');
+        // render
+        renderer.render(scene, camera);
+    };
+    manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+        console.log('manager progress: ' + itemsLoaded + '/' + itemsTotal);
+    };
+    manager.onError = function ( url ) {
+        console.log('manager error');
+    };
+    // instance of a SVG loader
+    const loader = new THREE.SVGLoader(manager);
     // load a SVG resource
-    loader.load(
-        // resource URL
-        '/forpost/threejs-svg-loader/svg/draft1.svg',
-        // called when the resource is loaded
-        function ( data ) {
-
-            var group = createMeshGroupFromSVG(data, 1);
-            scene.add(group);
-            // render
-            renderer.render(scene, camera);
-        },
-        // called when loading is in progresses
-        function ( xhr ) {
-            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-        },
-        // called when loading has errors
-        function ( error ) {
-            console.log( 'An error happened' );
-            console.log(error)
-        }
-    );
+    const loadSVG = (loader, url) => {
+        loader.load(
+            // resource URL
+            url,
+            // called when the resource is loaded
+            ( data) => {
+                const group = createMeshGroupFromSVG(data, 1);
+                scene.add(group);
+                console.log('svg loader: file ' + url + ' loaded ' );
+            },
+            // called when loading is in progresses
+            ( xhr ) => {
+                console.log( 'svg loader: ' + ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+            },
+            // called when loading has errors
+            ( error ) => {
+                console.log( 'svg loader: an error happened' );
+                console.log(error)
+            }
+        );
+    };
+    loadSVG(loader, '/forpost/threejs-svg-loader/svg/draft1.svg');
+    loadSVG(loader, '/forpost/threejs-svg-loader/svg/fff2.svg');
 }());
