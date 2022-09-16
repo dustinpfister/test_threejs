@@ -23,10 +23,13 @@
             const path = paths[ i ];
             // create a shape
             const shapes = THREE.SVGLoader.createShapes( path );
-            // for each shape create a mesh and add it to the group
+            // for each shape create a shape geometry and push it to the array
             for ( let j = 0; j < shapes.length; j ++ ) {
                 const shape = shapes[ j ];
-                geoArray.push( new THREE.ShapeGeometry( shape ) );
+                // when calling the THREE.ShapeGeometry constructor I pass the shape
+                // and then if I want the curveSegments to be higher or lower than the
+                // default ( 12 ) I can pass that as the second argument.
+                geoArray.push( new THREE.ShapeGeometry( shape, 8 ) );
             }
         }
         return geoArray;
@@ -40,7 +43,8 @@
             const material = new THREE.MeshBasicMaterial( {
                 color: data.paths[i].color, // using paths data for color
                 side: THREE.DoubleSide,
-                depthWrite: false
+                depthWrite: false,
+                wireframe: false
             });
             const mesh = new THREE.Mesh( geo, material );
             group.add(mesh);
