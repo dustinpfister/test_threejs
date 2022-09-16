@@ -56,26 +56,6 @@
         return group;
     };
     //-------- ----------
-    // CONTROL
-    //-------- ----------
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    //-------- ----------
-    // LOOP
-    //-------- ----------
-    let fps = 30,
-    lt = new Date();
-    const loop = function () {
-        let now = new Date(),
-        secs = (now - lt) / 1000;
-        requestAnimationFrame(loop);
-        if (secs > 1 / fps) {
-            // render
-            renderer.render(scene, camera);
-            lt = now;
-        }
-    };
-    loop();
-    //-------- ----------
     // SVG LOADER
     //-------- ----------
     // instantiate a loader
@@ -88,6 +68,8 @@
         function ( data ) {
             var group = createMeshGroupFromSVG(data, 1);
             scene.add(group);
+            // render
+            renderer.render(scene, camera);
         },
         // called when loading is in progresses
         function ( xhr ) {
