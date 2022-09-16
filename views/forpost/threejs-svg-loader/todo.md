@@ -9,6 +9,12 @@
 ## () - more than one file example
 * () example where I am loading more than one svg file
 
+## () - Lines example
+* start a lines example that might end up being the new basic example
+
+## () - paths example
+* start a paths example that might end up being the new basic example
+
 ## ( done 09/15/2022 ) - data textures
 * (done) use the from px data method in datatex.js in videoground blog posts
 * (done) make an example in which I am using data textures to create texture 
