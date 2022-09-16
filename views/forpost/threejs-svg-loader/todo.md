@@ -6,6 +6,9 @@
 ## () - punch out example
 * () see about making a shape with a hole in it that is the same shape scaled down?
 
+## () s5-3-move-object-along-path
+* () move an object along the path example
+
 ## () - more than one file example
 * () example where I am loading more than one svg file
 
