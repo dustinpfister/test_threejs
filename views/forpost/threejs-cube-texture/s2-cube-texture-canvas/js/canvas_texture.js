@@ -1,7 +1,7 @@
 (function (canvasTextureMod) {
     // create a canvas texture with a draw method and size
     canvasTextureMod.createCanvasTexture = function (draw, size) {
-        var canvas = document.createElement('canvas'),
+        const canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
         canvas.width = size || 64;
         canvas.height = size || 64;
@@ -9,8 +9,8 @@
         return new THREE.CanvasTexture(canvas);
     };
     // random grid draw helper
-    var randomGridDraw = function (ctx, canvas, colorsArray, minValue, maxValue) {
-        var i = 0,
+    const randomGridDraw = function (ctx, canvas, colorsArray, minValue, maxValue) {
+        let i = 0,
         r1,
         r,
         g,
