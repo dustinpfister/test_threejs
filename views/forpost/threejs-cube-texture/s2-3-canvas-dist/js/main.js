@@ -15,28 +15,46 @@
     // CREATING A CUBE TEXTURE WITH CANVAS
     //-------- ----------
     // square
+
     const grid1 = {
         w: 16,
         pxData: [
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,
+            0,0,1,1,1,0,0,1,1,0,0,1,1,1,0,0,
+            0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,
+            0,0,1,0,1,1,1,1,1,1,1,1,0,1,0,0,
             0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
+            0,0,0,0,1,0,1,1,1,1,0,1,0,0,0,0,
+            0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,
+            0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,
+            0,0,0,0,1,0,1,1,1,1,0,1,0,0,0,0,
             0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
-            0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
-            0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
-            0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
-            0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
-            0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,1,0,1,1,1,1,1,1,1,1,0,1,0,0,
+            0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,
+            0,0,1,1,1,0,0,1,1,0,0,1,1,1,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         ],
         pal: [ [1,1,1], [0,0,0] ]
     };
+
+/*
+    const grid1 = {
+        w: 8,
+        pxData: [
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,1,1,1,1,0,0,
+0,0,1,0,0,1,0,0,
+0,0,1,0,0,1,0,0,
+0,0,1,1,1,1,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0
+        ],
+        pal: [ [1,1,1], [0,0,0] ]
+    };
+*/
     // mutated square
 
     // get an px index if x and y are known
@@ -56,12 +74,28 @@
         return v2;
     };
 
-    //console.log( getVector2(grid1, grid1.pxData.length - 1) )
-
+    const r1 = 3;
+    const hw = grid1.w / 2;
+    const vHalf = new THREE.Vector2(hw - 0.5, hw - 0.5);  //!!! May have to adjust this between even and odd
+    const mDist = vHalf.distanceTo( new THREE.Vector2(0, 0) );
     const grid2 = {
         w: grid1.w,
-        pxData: grid1.pxData.map((px, i) => {
-            return px;
+        pxData: grid1.pxData.map((currentColorIndex, i) => {
+            const v2 = getVector2(grid1, i);
+            const dist = v2.distanceTo( vHalf );
+            // dist alpha value, and angle to center
+            const dAlpha = dist / mDist;
+            const a = Math.atan2(v2.y - vHalf.y, v2.x - vHalf.x) + Math.PI;
+
+            // get another color index from closer to center
+            const x = v2.x + Math.round(Math.cos(a) * r1 * (1 - dAlpha));
+            const y = v2.y + Math.round(Math.sin(a) * r1 * (1 - dAlpha));
+            const refIndex = getIndex(grid1, x, y);
+
+            //console.log(i, a.toFixed(2), refIndex);
+
+            //return currentColorIndex;
+            return grid1.pxData[refIndex];
         }),
         pal: grid1.pal
     };
