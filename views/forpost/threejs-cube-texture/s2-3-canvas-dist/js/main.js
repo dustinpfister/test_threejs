@@ -38,7 +38,7 @@
         pal: [ [1,1,1], [0,0,0] ]
     };
     // mutated square
-
+ 
     const grid2 = {
         w: grid1.w,
         pxData: grid1.pxData.map((px, i) => {
@@ -46,7 +46,6 @@
         }),
         pal: grid1.pal
     };
-
  
     const getTextureFromGrid = (grid, canvasSize) => {
         canvasSize = canvasSize === undefined ? 64 : canvasSize;
