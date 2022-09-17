@@ -38,6 +38,7 @@
         pal: [ [1,1,1], [0,0,0] ]
     };
     // mutated square
+/*
     const grid2 = {
         w: 16,
         pxData: [
@@ -60,6 +61,7 @@
         ],
         pal: [ [1,1,1], [0,0,0] ]
     };
+*/
  
     const getTextureFromGrid = (grid, canvasSize) => {
         canvasSize = canvasSize === undefined ? 64 : canvasSize;
@@ -80,14 +82,17 @@
             }
         }, canvasSize);
     };
-
-    const texture =  getTextureFromGrid(grid2, 256);
-
+    //-------- ----------
+    // BACKGROUND
+    //-------- ----------
+    const texture =  getTextureFromGrid(grid1, 256);
     // same texture for all sides
     cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture.image));
     cubeTexture.needsUpdate = true;
     scene.background = cubeTexture;
-
+    //-------- ----------
+    // SPHERE
+    //-------- ----------
     const sphere = new THREE.Mesh(
         new THREE.SphereGeometry(5, 30, 30), 
         new THREE.MeshBasicMaterial({
@@ -95,7 +100,6 @@
         }) 
     );
     scene.add(sphere);
-
     //-------- ----------
     // CONTROLS
     //-------- ----------
