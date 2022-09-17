@@ -14,9 +14,35 @@
     //-------- ----------
     // CREATING A CUBE TEXTURE WITH CANVAS
     //-------- ----------
-    const texture = canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 256, 1, 'black', 32, 64).image;
+    const grid = {
+        w: 4,
+        pxData: [
+            0,0,0,0,
+            0,1,1,0,
+            0,1,1,0,
+            0,0,0,0,
+        ],
+        pal: [ [1,0,0], [0,1,0] ]
+    };
+
+    const texture = canvasTextureMod.createCanvasTexture((ctx, canvas) => {
+        ctx.fillStyle='white';
+        ctx.fillRect(0,0,canvas.width, canvas.height);
+        let i = 0, len = grid.pxData.length;
+        while(i < len){
+            let pX = i % grid.w;
+            let pY = Math.floor(i / grid.w);
+            let c = grid.pal[ grid.pxData[i] ];
+            let color = new THREE.Color(c[0], c[1], c[2]);
+            ctx.fillStyle = color.getStyle();
+            let pxW = canvas.width / grid.w;
+            let pxH = canvas.height / grid.w;
+            ctx.fillRect(pX * pxW, pY * pxH, pxW, pxH);
+            i += 1;
+        }
+    }, 128)
     // same texture for all sides
-    cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture));
+    cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture.image));
     cubeTexture.needsUpdate = true;
     scene.background = cubeTexture;
     //-------- ----------
