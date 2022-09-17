@@ -38,7 +38,26 @@
         pal: [ [1,1,1], [0,0,0] ]
     };
     // mutated square
- 
+
+    // get an px index if x and y are known
+    const getIndex = (grid, vx, y) => {
+        const px = THREE.MathUtils.euclideanModulo(vx, grid.w);
+        const py = THREE.MathUtils.euclideanModulo(y, grid.w);
+        const index = py * grid.w + px;
+        return index;
+    };
+
+    // get Vector2 if index is known but not x and y
+    const getVector2 = (grid, i) => {
+        let pi = THREE.MathUtils.euclideanModulo(i, grid.pxData.length);
+        let pX = pi % grid.w;
+        let pY = Math.floor(pi / grid.w);
+        let v2 = new THREE.Vector2(pX, pY);
+        return v2;
+    };
+
+    //console.log( getVector2(grid1, grid1.pxData.length - 1) )
+
     const grid2 = {
         w: grid1.w,
         pxData: grid1.pxData.map((px, i) => {
