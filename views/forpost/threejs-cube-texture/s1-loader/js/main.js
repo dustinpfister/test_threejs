@@ -1,18 +1,17 @@
-
 (function () {
-
-    // camera
-    var scene = new THREE.Scene();
-    // camera
-    var camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
+    //-------- ----------
+    // SCENE, CAMERA, RENDERER
+    //-------- ----------
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
     camera.position.set(1, 1, 1);
     camera.lookAt(0, 0, 0);
-    // renderer
-    var renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
-
+    (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+    //-------- ----------
     // LOAD CUBE TEXTURE
+    //-------- ----------
     new THREE.CubeTextureLoader()
     .setPath('/img/cube/skybox/')
     .load(
@@ -26,24 +25,24 @@
             'nz.jpg'
         ],
         // what to do when loading is over
-        function (cubeTexture) {
+        (cubeTexture) => {
             // Geometry
-            var geometry = new THREE.SphereGeometry(1, 20, 20);
+            const geometry = new THREE.SphereGeometry(1, 60, 60);
             // Material
-            var material = new THREE.MeshBasicMaterial({
+            const material = new THREE.MeshBasicMaterial({
                 // CUBE TEXTURE can be used with
                 // the environment map property of
                 // a material.
                 envMap: cubeTexture
             });
             // Mesh
-            var mesh = new THREE.Mesh(geometry, material);
+            const mesh = new THREE.Mesh(geometry, material);
             scene.add(mesh);
             // CUBE TEXTURE is also an option for a background
             scene.background = cubeTexture;
+            // render
             renderer.render(scene, camera);
         }
     );
-
 }
     ());
