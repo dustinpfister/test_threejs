@@ -15,6 +15,7 @@
     // CREATING A CUBE TEXTURE WITH CANVAS
     //-------- ----------
     const texture = canvasTextureMod.basicSquare(['r1', 'r1', 'r1'], 256, 1, 'black', 32, 64).image;
+    // same texture for all sides
     cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture));
     cubeTexture.needsUpdate = true;
     scene.background = cubeTexture;
