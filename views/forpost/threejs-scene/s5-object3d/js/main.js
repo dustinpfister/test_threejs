@@ -1,21 +1,20 @@
 // CREATE A SCENE
-var scene = new THREE.Scene();
+const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
-var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
+const camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
 camera.position.set(2, 1, 2);
 camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
-var container = document.getElementById('demo') || document.body;
-container.appendChild(renderer.domElement);
-var mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial());
+(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+const mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial());
 scene.add(mesh);
 // LOOP
-var frame = 0,
-maxFrame = 50,
-loop = function () {
-    var per = frame / maxFrame,
-    bias = Math.abs(.5 - per) / .5;
+let frame = 0,
+maxFrame = 50;
+const loop = function () {
+    const per = frame / maxFrame,
+    bias = 1 - Math.abs(0.5 - per) / 0.5;
     requestAnimationFrame(loop);
     // using Object3D properties to change
     // the position and rotation of a scene
