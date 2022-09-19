@@ -1,6 +1,7 @@
 # threejs-torus todo list
 
-
+## () s2-3-group-grid
+* () have a 2d grid group exmaple where for each value of x and y there is a coresponding value for radial and tube segmnets 
 
 ## () sx-x-textures
 * () start a collection of exmaples on textures
