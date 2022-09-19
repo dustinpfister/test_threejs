@@ -30,8 +30,10 @@
         return v2;
     };
     // create a remaped grid
-    const createRemapedGrid = (grid1, r1) => {
-        r1 = r1 === undefined ? Math.floor(grid1.w / 4) : r1;
+    const createRemapedGrid = (grid1, mpr, offset) => {
+        // max pixle radius
+        mpr = mpr === undefined ? Math.floor(grid1.w / 4) : mpr;
+        offset = offset === undefined ? new THREE.Vector2(0, 0) : offset;
         const hw = grid1.w / 2;
         const vHalf = new THREE.Vector2(hw - 0.5, hw - 0.5);  //!!! May have to adjust this between even and odd
         const mDist = vHalf.distanceTo( new THREE.Vector2(0, 0) );
@@ -39,16 +41,23 @@
             w: grid1.w,
             pxData: grid1.pxData.map((currentColorIndex, i) => {
                 const v2 = getVector2(grid1, i);
-                const dist = v2.distanceTo( vHalf );
+                const dist = v2.distanceTo( vHalf.clone().add( offset) );
                 // dist alpha value, and angle to center
                 const dAlpha = dist / mDist;
                 const a = Math.atan2(v2.y - vHalf.y, v2.x - vHalf.x) + Math.PI;
                 // get another color index from closer to center
-                const x = v2.x + Math.round(Math.cos(a) * r1 * (1 - dAlpha));
-                const y = v2.y + Math.round(Math.sin(a) * r1 * (1 - dAlpha));
+                const x = v2.x + Math.round(Math.cos(a) * mpr * (1 - dAlpha));
+                const y = v2.y + Math.round(Math.sin(a) * mpr * (1 - dAlpha));
+
+// do not remap if x or y wraps around
+if(x < 0 || y < 0){
+    return currentColorIndex;
+}
+if(x >= grid1.width || y >= grid1.width){
+    return currentColorIndex;
+}
+
                 const refIndex = getIndex(grid1, x, y);
-                //console.log(i, a.toFixed(2), refIndex);
-                //return currentColorIndex;
                 return grid1.pxData[refIndex];
             }),
             pal: grid1.pal
@@ -272,18 +281,19 @@
 
     //const r1 = 2.25;
     //const r1 = 0;
-    const r1 = 4;
-    const grid_side1_remap = createRemapedGrid(grid_side1, r1);
-    const grid_top_remap = createRemapedGrid(grid_top, r1);
-    const grid_bottom_remap = createRemapedGrid(grid_bottom, r1);
+    const r1 = 8, offset = new THREE.Vector3(0, 8);
+    const grid_side1_remap = createRemapedGrid(grid_side1, r1, offset);
+    const grid_top_remap = createRemapedGrid(grid_top, r1, offset);
+    const grid_bottom_remap = createRemapedGrid(grid_bottom, r1, offset);
 
+    const res = 128;
     const cube_textures = [
-        getTextureFromGrid(grid_side1_remap, 256),
-        getTextureFromGrid(grid_side1_remap, 256),
-        getTextureFromGrid(grid_top_remap, 256),
-        getTextureFromGrid(grid_bottom_remap, 256),
-        getTextureFromGrid(grid_side1_remap, 256),
-        getTextureFromGrid(grid_side1_remap, 256)
+        getTextureFromGrid(grid_side1_remap, res),
+        getTextureFromGrid(grid_side1_remap, res),
+        getTextureFromGrid(grid_top_remap, res),
+        getTextureFromGrid(grid_bottom_remap, res),
+        getTextureFromGrid(grid_side1_remap, res),
+        getTextureFromGrid(grid_side1_remap, res)
     ];
 
     const cube_images = cube_textures.map((texture) => {
