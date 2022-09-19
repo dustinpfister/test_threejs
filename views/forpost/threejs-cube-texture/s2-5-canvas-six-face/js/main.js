@@ -29,10 +29,11 @@
         let v2 = new THREE.Vector2(pX, pY);
         return v2;
     };
-    // create a remaped grid
+    // create a remaped grid - now qith an offset argument
     const createRemapedGrid = (grid1, mpr, offset) => {
         // max pixle radius
         mpr = mpr === undefined ? Math.floor(grid1.w / 4) : mpr;
+        // offset the distance to value
         offset = offset === undefined ? new THREE.Vector2(0, 0) : offset;
         const hw = grid1.w / 2;
         const vHalf = new THREE.Vector2(hw - 0.5, hw - 0.5);  //!!! May have to adjust this between even and odd
@@ -48,15 +49,13 @@
                 // get another color index from closer to center
                 const x = v2.x + Math.round(Math.cos(a) * mpr * (1 - dAlpha));
                 const y = v2.y + Math.round(Math.sin(a) * mpr * (1 - dAlpha));
-
-// do not remap if x or y wraps around
-if(x < 0 || y < 0){
-    return currentColorIndex;
-}
-if(x >= grid1.width || y >= grid1.width){
-    return currentColorIndex;
-}
-
+                // do not remap if x or y wraps around
+                if(x < 0 || y < 0){
+                    return currentColorIndex;
+                }
+                if(x >= grid1.width || y >= grid1.width){
+                    return currentColorIndex;
+                }
                 const refIndex = getIndex(grid1, x, y);
                 return grid1.pxData[refIndex];
             }),
