@@ -81,4 +81,4 @@ console.log(grid);
 //7: (8) ["0.00", "0.13", "0.23", "0.29", "0.29", "0.23", "0.13", "0.00"]
 ```
 
-However I would also need to make some changes when it comes to the angles, and also I might run into problems with getting index values out of range.
+However I would also need to make some changes when it comes to the angles, and also I might run into problems with getting index values out of range. ANother important note to keep in mind with this is that I will loose detail at the center of the source image, rather than out at the edges. The trickey part about this is that I would like to loose no detail actually, so it looks like I might need to look into other options for this as well as the other aspects of remaping the textures.
