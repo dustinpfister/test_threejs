@@ -36,8 +36,11 @@ renderer.setSize(640, 480);
 //-------- ----------
 // ADD MESH TO SCENE
 //-------- ----------
-const mesh = createDonutMesh({});
-scene.add(mesh);
+const mesh1 = createDonutMesh({});
+scene.add(mesh1);
+const mesh2 = createDonutMesh({});
+mesh2.position.x = -2;
+scene.add(mesh2);
 //-------- ----------
 // LOOP
 //-------- ----------
@@ -52,10 +55,13 @@ const loop = function(){
     bias = THREE.MathUtils.pingpong(per - 0.5, 1) * 2;
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
-        // copying new geo to old geo of mesh object
-        mesh.geometry.copy( createDonutGeo({
+        // copying new geos to old geo of mesh objects
+        mesh1.geometry.copy( createDonutGeo({
             rs: 3 + 27 * bias, 
             ts: 3 + 27 * bias}));
+        mesh2.geometry.copy( createDonutGeo({
+            r: 0.75 + 0.125 * bias,
+            tr: 0.25 - 0.125 * bias }));
         // render step
         renderer.render(scene, camera);
         frame += fps * secs;
