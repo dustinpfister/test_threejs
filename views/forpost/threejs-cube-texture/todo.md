@@ -16,9 +16,15 @@
 * () do everything else as always with the other examples
 
 ## () - s2-5-canvas-six-face
-* () start an example that will be lower res again 16 by 16
-* () this time have six grids one for each face
-* () see about drawing something that looks like a kind of landscape
+* (done) start an example that will be lower res again 16 by 16
+* (done) try higher res also at 32 by 32
+* (done) this time have six grids one for each face
+* (done) see about drawing something that looks like a kind of landscape
+* (done) try adding an offset argument for the remap method
+
+* () try a new remap method that is the same general idea, but go by distance to edges
+* () try another method that involves the use of a sin wave
+
 
 ## ( done 09/19/2022 )  - canvas grid dist example 2
 * (done) start a new draft example continue with the canvas-dist example
