@@ -17,8 +17,8 @@
 * () I will want one on array of materials
 * () normal matreial example
 
-## () s2-2-points-mesh-for-every
-* () example where I make a mesh object using sphere geometry for every point in a toruse geometry
+## ( done 09/19/2022 ) s2-2-points-mesh-for-every
+* (done) example where I make a mesh object using sphere geometry for every point in a toruse geometry
 
 ## ( done 09/19/2022 ) s3-points
 * (done) have a points example

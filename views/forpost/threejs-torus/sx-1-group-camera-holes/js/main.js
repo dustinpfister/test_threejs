@@ -2,36 +2,36 @@
 // HELPERS
 //-------- ----------
 const MAIN_RADIUS = 8,
-DONUT_COUNT = 30;
-// create a donut child for a group
-const createDonutChild = (index, len) => {
+DOUGHNUT_COUNT = 30;
+// create a DOUGHNUT child for a group
+const createDoughnutChild = (index, len) => {
     const per = index / len,
     bias = 1 - Math.abs(per - 0.5) / 0.5,
     radius = 0.6 + 2.3 * bias,
     tubeRadius = 0.125 + 0.25 * bias,
     radialSegments = 32,
     tubeSegments = 32;
-    const donut = new THREE.Mesh(
+    const doughnut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
         new THREE.MeshStandardMaterial({
            color: 0xffffff,
            emissive: 0x2a0000
         }));
-    donut.geometry.rotateY(Math.PI * 0.5);
-    return donut;
+    doughnut.geometry.rotateY(Math.PI * 0.5);
+    return doughnut;
 };
-// create a group of donuts
-const createDonutGroup = () => {
+// create a group of DOUGHNUTs
+const createDoughnutGroup = () => {
     let i = 0;
-    const len = DONUT_COUNT,
+    const len = DOUGHNUT_COUNT,
     group = new THREE.Group();
     while(i < len){
         const per = i / len,
         radian = Math.PI * 2 * per;
-        const donut = createDonutChild(i, len);
-        donut.position.set(Math.cos(radian) * MAIN_RADIUS, 0, Math.sin(radian) * MAIN_RADIUS);
-        donut.lookAt(0, 0, 0);
-        group.add(donut);
+        const doughnut = createDoughnutChild(i, len);
+        doughnut.position.set(Math.cos(radian) * MAIN_RADIUS, 0, Math.sin(radian) * MAIN_RADIUS);
+        doughnut.lookAt(0, 0, 0);
+        group.add(doughnut);
         i += 1;
     }
     return group;
@@ -54,7 +54,7 @@ renderer.setSize(640, 480);
 //-------- ----------
 // ADDING GROUP TO SCENE
 //-------- ----------
-const group = createDonutGroup();
+const group = createDoughnutGroup();
 scene.add(group);
 //-------- ----------
 // LOOP
