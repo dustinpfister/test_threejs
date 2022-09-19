@@ -5,8 +5,8 @@
 
 ## ()  - canvas grid dist example 2
 * (done) start a new draft example continue with the canvas-dist example
-* () use the better loop example from hello world post
-* () update r1 over time to see about having an animated grid
+* (done) use the better loop example from hello world post
+* (done) update r1 over time to see about having an animated grid
 
 ## () - background only loader example
 * () have a background only example as the new basic exmaple
