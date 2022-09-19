@@ -1,5 +1,11 @@
 # threejs-torus todo list
 
+## () sx-normals-attribute
+* () example in which I am mutating the normals
+
+## () sx-position-attribute
+* () have an example in which I am mutating the position attribute
+
 ## () s2-3-group-grid
 * () have a 2d grid group exmaple where for each value of x and y there is a coresponding value for radial and tube segmnets 
 
