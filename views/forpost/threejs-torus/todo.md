@@ -11,6 +11,9 @@
 * () I will want one on array of materials
 * () normal matreial example
 
+## () s3-points
+* () have a points example
+
 ## ( done 09/19/2022 ) s1-2-geo-copy
 * (done) start a basic loop exmaple in which I update a torus geometry with an additonal torus geomertry
 
