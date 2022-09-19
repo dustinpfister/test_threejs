@@ -45,3 +45,40 @@ console.log(grid);
 //7: (8) ["1.00", "0.87", "0.77", "0.71", "0.71", "0.77", "0.87", "1.00"]
 ```
 
+### Invert alphas, and add PI for angles?
+
+If the first distort system is not working so great then I could try a new system that is just like the first but with just a few simple changes. The first change would be to just simply invert the alpha values so that the max distance of the radis is somehting that is approched as x and y reach the center rather than the corners. Not so hard tio do this as I can just use the same code just subtract from one when figuring the alpha values.
+
+```js
+// trying a new system for geting alphas
+let x = 0, y = 0, size = 8;
+let row = [];
+let grid = [];
+let halfV = new THREE.Vector2(size / 2 - 0.5, size / 2 - 0.5);
+let mDist = halfV.distanceTo( new THREE.Vector2(0, 0) );
+while(y < size){
+    x = 0;
+    row = [];
+    while(x < size){
+        let v = new THREE.Vector2(x, y),
+        d = v.distanceTo(halfV),
+        // just subtract from one and invert the alphas
+        alpha = 1 - (d / mDist);
+        row.push(alpha.toFixed(2));
+        x += 1;
+    }
+    grid.push(row)
+    y += 1;
+}
+console.log(grid);
+//0: (8) ["0.00", "0.13", "0.23", "0.29", "0.29", "0.23", "0.13", "0.00"]
+//1: (8) ["0.13", "0.29", "0.41", "0.48", "0.48", "0.41", "0.29", "0.13"]
+//2: (8) ["0.23", "0.41", "0.57", "0.68", "0.68", "0.57", "0.41", "0.23"]
+//3: (8) ["0.29", "0.48", "0.68", "0.86", "0.86", "0.68", "0.48", "0.29"]
+//4: (8) ["0.29", "0.48", "0.68", "0.86", "0.86", "0.68", "0.48", "0.29"]
+//5: (8) ["0.23", "0.41", "0.57", "0.68", "0.68", "0.57", "0.41", "0.23"]
+//6: (8) ["0.13", "0.29", "0.41", "0.48", "0.48", "0.41", "0.29", "0.13"]
+//7: (8) ["0.00", "0.13", "0.23", "0.29", "0.29", "0.23", "0.13", "0.00"]
+```
+
+However I would also need to make some changes when it comes to the angles, and also I might run into problems with getting index values out of range.
