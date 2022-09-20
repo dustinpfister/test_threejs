@@ -80,7 +80,9 @@
     lt = new Date();
     // update
     const update = function(frame, frameMax){
-        const v3Array = Vector3ArrayLerp(v3Array_1, v3Array_2, frame / frameMax);
+        const p = frame / frameMax;
+        const a = 1 - THREE.MathUtils.pingpong(p - 0.5, 1) * 2
+        const v3Array = Vector3ArrayLerp(v3Array_1, v3Array_2, a);
         points.geometry.copy( Vector3ArrayToGeometry( v3Array) )
     };
     // loop
