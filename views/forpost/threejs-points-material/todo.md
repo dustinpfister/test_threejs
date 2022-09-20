@@ -1,9 +1,9 @@
 # threejs-points-material todo list
 
-### () - animation loop example section
+### () - Animation loop example section
 * () start a new section for animation loop examples with just one example for now
 
-### () - points array to buffer geo, buffer geo to points
+### () - Points array to buffer geo, buffer geo to points
 * () Expand basic section with examples that focus on the process of converting the two back and forth
 * () update all examples with any relevant changes
 
