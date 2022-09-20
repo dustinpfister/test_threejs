@@ -1,4 +1,3 @@
-
 (function () {
     //-------- ----------
     // SCENE, CAMERA, RENDERER
@@ -25,5 +24,4 @@
     // RENDER
     //-------- ----------
     renderer.render(scene, camera);
-}
-    ());
+}());

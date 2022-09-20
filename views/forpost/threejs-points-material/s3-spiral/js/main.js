@@ -1,15 +1,25 @@
 (function () {
-    // scene
-    var scene = new THREE.Scene();
-
-    // geometry
-    var i = 0,
-    iMax = 50,
-    rotationCount = 4,
+    //-------- ----------
+    // SCENE, CAMERA, RENDERER
+    //-------- ----------
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    camera.position.set(10, 10, 10);
+    camera.lookAt(0, 0, 0);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+    //-------- ----------
+    // POINTS
+    //-------- ----------
+    // GEOMETRY
+    let i = 0,
     vert,
-    vertices = [],
     per,
     r;
+    const iMax = 200,
+    rotationCount = 4,
+    vertices = [];
     while (i < iMax) {
         // percent
         per = i / iMax;
@@ -24,27 +34,20 @@
         vertices.push(vert.x, vert.y, vert.z);
         i += 1;
     }
-    var geometry = new THREE.BufferGeometry();
+    const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-
-    // THREE.Points INSTANCE UISNG THREE.PointsMaterial
-    var points = new THREE.Points(
+    // POINTS
+    const points = new THREE.Points(
             // geometry as first argument
             geometry,
             // then Material
             new THREE.PointsMaterial({
-                size: .05
+                size: 0.5
             }));
     scene.add(points);
-
-    // camera and renderer
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(10, 10, 10);
-    camera.lookAt(0, 0, 0);
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
+    //-------- ----------
+    // RENDER
+    //-------- ----------
     renderer.render(scene, camera);
-
 }
     ());
