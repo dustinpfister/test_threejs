@@ -32,7 +32,7 @@
     // POINTS
     //-------- ----------
     // ARRAY of VECTOR3 CLASS INSTANCES
-    const verts = [
+    const v3Array = [
         new THREE.Vector3(0, 0, 0),
         new THREE.Vector3(1, 0, 0),
         new THREE.Vector3(0, 1, 0),
@@ -47,7 +47,7 @@
     // THREE.Points INSTANCE UISNG THREE.PointsMaterial
     scene.add(
         new THREE.Points(
-            Vector3ArrayToGeometry(verts),
+            Vector3ArrayToGeometry(v3Array),
             new THREE.PointsMaterial({
                 color: 0x00afaf,
                 size: 0.25
