@@ -1,5 +1,9 @@
 # threejs-edges-geometry tod list
 
+## () expand sphere section
+
+## () expand loop section
+
 ## () new s3-points section
 * () new section of examples that involves Points and looking at what edges geometry does with count
 * () new s3-1-points-counts - example where I look at the count of points in source and edge geos
