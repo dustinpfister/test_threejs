@@ -4,9 +4,9 @@
 
 ## () expand loop section
 
-## () new s3-points section
-* () new s3-1-attributes - example where I look at what attributes are given in edges geometry
-* () new s3-2-points-counts - example where I look at the count of points in source and edge geos
+## ( done 09/21/2022 ) new s3-points section
+* (done) new s3-1-attributes - example where I look at what attributes are given in edges geometry
+* (done) new s3-2-points-counts - example where I look at the count of points in source and edge geos
 * (done) rename s3-sphere to s2-sphere
 * (done) rename s2-loop to s4-loop
 
