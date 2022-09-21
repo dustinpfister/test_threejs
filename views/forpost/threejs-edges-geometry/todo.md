@@ -1,8 +1,16 @@
 # threejs-edges-geometry tod list
 
 ## () expand sphere section
+* () more than one sphere example
 
 ## () expand loop section
+* () animation example for many spheres with differing settings for number of sections and angle thresholds
+* () animation loop example with torus geometry
+
+## () - break points section apart into new Points and attributes sections
+* () rename the points section to attributes section
+* () use line segments in examples rather than points
+* () start a new points section
 
 ## ( done 09/21/2022 ) new s3-points section
 * (done) new s3-1-attributes - example where I look at what attributes are given in edges geometry
