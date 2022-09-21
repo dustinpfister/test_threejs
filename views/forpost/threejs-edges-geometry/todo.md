@@ -5,11 +5,10 @@
 ## () expand loop section
 
 ## () new s3-points section
-* () new section of examples that involves Points and looking at what edges geometry does with count
-* () new s3-1-points-counts - example where I look at the count of points in source and edge geos
-* () new s3-2-attributes - example where I look at what attributes are given in edges geometry
-* () rename s3-sphere to s2-sphere
-* () rename s2-loop to s4-loop
+* () new s3-1-attributes - example where I look at what attributes are given in edges geometry
+* () new s3-2-points-counts - example where I look at the count of points in source and edge geos
+* (done) rename s3-sphere to s2-sphere
+* (done) rename s2-loop to s4-loop
 
 ## ( done 09/21/2022 ) - break down basic section
 * (done) rename s1-basic to s1-3-edges-lineseg

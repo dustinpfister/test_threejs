@@ -11,7 +11,7 @@
     renderer.setSize(640, 480);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
     //-------- ----------
-    // EDGE GEOMETRY CREATED FROM BOX GEOMETRY
+    // JUST USING BOX GEOMETRY WITH THREE.Line
     //-------- ----------
     const boxGeo = new THREE.BoxGeometry(1, 1, 1),
     line = new THREE.Line(
