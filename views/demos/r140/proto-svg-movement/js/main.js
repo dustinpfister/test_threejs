@@ -16,16 +16,14 @@
     // HELPERS
     //-------- ----------
     let SVGMove = {};
-
+ 
     // create an Mesh based object with the given
     // svg data and id prefix
     SVGMove.createMesh = (data, id_prefix, ) => {
-
         const obj = new THREE.Mesh( 
             new THREE.BoxGeometry(1,1,1),
             new THREE.MeshNormalMaterial());
         const ud = obj.userData;
-
         data.paths.forEach((path)=>{
             // get id of the path
             const id = path.userData.node.id;
@@ -39,24 +37,19 @@
         });
         return obj;
     };
-
+ 
     // set an object by an alpha value of 0 - 1
     SVGMove.setToAlpha = (obj, alpha) => {
-
         const ud = obj.userData;
         let len = 0, i = 0;
-
         // get current xz Vector2
         len = ud.xz.length;
         i = Math.floor( ( len - 1) * alpha);
         const v2_xz = ud.xz[i];
-
-
+        // use xz Vector2 to set position of object
         obj.position.set(v2_xz.x, 0, v2_xz.y);
-
-    }
-
-
+    };
+ 
     //-------- ----------
     // GRID
     //-------- ----------
@@ -74,14 +67,12 @@
     let secs = 0,
     frame = 0,
     lt = new Date();
-
+    // mesh object to move
     let mesh;
-
     // update
     const update = function(frame, frameMax){
- 
+        // calling set to alpha here
         SVGMove.setToAlpha(mesh, frame / frameMax);
- 
     };
     // loop
     const loop = () => {
@@ -110,13 +101,10 @@
         '/demos/r140/proto-svg-movement/svg/move1.svg',
         // called when the resource is loaded
         function ( data ) {
-
+            // creating mesh object, adding to scene, and starting loop
             mesh = SVGMove.createMesh(data, 'box1', { } )
             scene.add(mesh);
-
-
             loop();
-
         },
         // called when loading is in progresses
         function ( xhr ) {
