@@ -51,7 +51,6 @@
         i = Math.floor( ( len - 1) * alpha);
         const v2_xz = ud.xz[i];
 
-        //console.log(v2_xz);
 
         obj.position.set(v2_xz.x, 0, v2_xz.y);
 

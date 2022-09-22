@@ -7,6 +7,6 @@
      viewBox="0 0 32 32">
   <path id="box1_xz"
         fill="none" stroke="black" stroke-width="1"
-        d="M 0,0
-           C -1,0 2,10" />
+        d="M 5,5
+           C -5,5 -5,-5 5,-5 5,5" />
 </svg>
