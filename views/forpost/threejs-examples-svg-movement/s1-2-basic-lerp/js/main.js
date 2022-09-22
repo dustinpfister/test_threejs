@@ -28,10 +28,12 @@
             const id = path.userData.node.id;
             const idParts = id.split('_');
             if(idParts[0] === id_prefix){
+
+                console.log(idParts); // parts
+
                 // get points
                 const points = path.subPaths[0].getPoints();
                 ud[idParts[1]] = points;
-                console.log(points.length)
             }
         });
         return obj;
@@ -46,14 +48,22 @@
         i = Math.floor( fi);     // index ex: 1
         lerpAlpha = fi % 1;      // lerpAlpha from current to next point ex: 0.44
 
-        //console.log(fi.toFixed(2), i, lerpAlpha.toFixed(2))
+
 
         const v2_xz = ud.xz[i];
         const v2_xz_next = ud.xz[(i + 1) % len];
+
+        const v2_y = ud.y[i];
+        const v2_y_next = ud.y[(i + 1) % len];
+
         // use xz Vector2 to set position of object
-        const v3_current = new THREE.Vector3(v2_xz.x, 0, v2_xz.y);
-        const v3_next = new THREE.Vector3(v2_xz_next.x, 0, v2_xz_next.y);
+        const v3_current = new THREE.Vector3(v2_xz.x, v2_y.y, v2_xz.y);
+        const v3_next = new THREE.Vector3(v2_xz_next.x, v2_y_next.y, v2_xz_next.y);
         obj.position.copy( v3_current.clone().lerp(v3_next, lerpAlpha) );
+
+
+        //console.log(fi.toFixed(2), i, lerpAlpha.toFixed(2))
+
     };
     //-------- ----------
     // GRID
@@ -78,6 +88,7 @@
     const update = function(frame, frameMax){
         // calling set to alpha here
         SVGMove.setToAlpha(mesh, frame / frameMax);
+        mesh.lookAt(0,0,0);
     };
     // loop
     const loop = () => {
@@ -108,10 +119,6 @@
             // creating mesh object, adding to scene, and starting loop
             mesh = SVGMove.createMesh(data, 'box1', { } )
             scene.add(mesh);
-
-SVGMove.setToAlpha(mesh, 0);
-
-SVGMove.setToAlpha(mesh, 0.06);
 
             loop();
         },

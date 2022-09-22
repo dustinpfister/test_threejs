@@ -14,9 +14,9 @@
 * () SVGMove.createLines to get a vishual idea of what is going on
 
 
-## () - basic lerp example
-* () addtional basic example where I am working out lerp points between vector2 values
-* () in this example I should also set the y value
+## ( done 09/22/2022 ) - basic lerp example
+* (done) addtional basic example where I am working out lerp points between vector2 values
+* (done) in this example I should also set the y value
 
 ## ( done 09/22/2022 ) - basic xz example
 * (done) have a basic xz only movement example
