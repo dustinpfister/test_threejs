@@ -39,6 +39,20 @@ const SVGMove = (function () {
         const ud = obj.userData;
         return !(ud[useStr + '_' + valueStr] === undefined);
     };
+    // get the revision number of the svg file
+    const getRNum = (data) => {
+        let rNum = -1;
+        let i = 0, len = data.xml.childNodes.length;
+        while(i < len){
+            let item = data.xml.childNodes.item(i);
+            if(item.id === 'svgmove_r'){
+                rNum = parseInt(item.textContent)
+                break;
+            }
+            i += 1;
+        }
+        return rNum;
+    }
     //-------- ----------
     // PUBLIC API
     //-------- ----------
@@ -49,16 +63,25 @@ const SVGMove = (function () {
     api.useObj = (data, id_prefix, obj) => {
         const ud = obj.userData;
         ud.data = data; // ref to raw data
-        data.paths.forEach((path)=>{
-            // get id of the path
-            const id = path.userData.node.id;
-            const idParts = id.split('_');
-            if(idParts[0] === id_prefix){
-                // get points
-                const points = path.subPaths[0].getPoints();
-                ud[ idParts[1] + '_' + idParts[2] ] = points;
-            }
-        });
+        let rNum = getRNum(data);
+        if(rNum === 0){
+            data.paths.forEach((path)=>{
+                // get id of the path
+                const id = path.userData.node.id;
+                const idParts = id.split('_');
+                if(idParts[0] === id_prefix){
+                    // get points
+                    const points = path.subPaths[0].getPoints();
+                    ud[ idParts[1] + '_' + idParts[2] ] = points;
+                }
+            });
+        }
+        if(rNum === -1){
+            console.warn('Could not figure out r num for the SVG file.')
+        }
+        if(rNum >= 1){
+            console.warn('This is r0 of svgmove.js, but svg file is for r' + rNum);
+        }
         return obj;
     };
     // create an Mesh based object with the given
