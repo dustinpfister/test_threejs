@@ -1,8 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+              "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 
-
-
-<svg version="1.1"
-     xmlns="http://www.w3.org/2000/svg"
+<svg xmlns="http://www.w3.org/2000/svg"
      width="3.0in" height="3.0in"
      viewBox="-15 -15 30 30">
 
@@ -33,19 +33,19 @@
            C 0,3 0,-3 0,5 0,-5" />
 
   <path id="cam1_pos_xz"
-        fill="none" stroke="#ff0000" stroke-width="1"
+        fill="none" stroke="red" stroke-width="1"
         d="M 10,10
            L -10,10 -10,-30" />
   <path id="cam1_pos_y"
-        fill="none" stroke="#880000" stroke-width="1"
+        fill="none" stroke="red" stroke-width="1"
         d="M 0,10
            L 0,5 0,10" />
   <path id="cam1_lookat_xz"
-        fill="none" stroke="#880000" stroke-width="1"
+        fill="none" stroke="red" stroke-width="1"
         d="M 0,0
            L 0,0" />
   <path id="cam1_lookat_y"
-        fill="none" stroke="#880000" stroke-width="1"
+        fill="none" stroke="red" stroke-width="1"
         d="M 0,0
            L 0,0" />
 
