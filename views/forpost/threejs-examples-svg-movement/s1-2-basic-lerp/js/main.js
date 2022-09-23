@@ -35,6 +35,16 @@
         });
         return obj;
     };
+
+
+    const getV2 = (obj, useStr, valueStr, index) => {
+        const ud = obj.userData;
+        const arr = ud[ useStr + '_' + valueStr ];
+        const len = arr.length;
+        const i = THREE.MathUtils.euclideanModulo(index, len);
+        return arr[i];
+    }
+
     // set an object by an alpha value of 0 - 1
     SVGMove.setToAlpha = (obj, alpha) => {
         const ud = obj.userData;
@@ -45,14 +55,14 @@
         i = Math.floor( fi);     // index ex: 1
         lerpAlpha = fi % 1;      // lerpAlpha from current to next point ex: 0.44
         // current pos
-        const v2_xz = ud.pos_xz[i];
-        const v2_xz_next = ud.pos_xz[(i + 1) % len];
+        const xz = getV2(obj, 'pos', 'xz', i); 
+        const xz_next = getV2(obj, 'pos', 'xz', i + 1); 
         // next pos
-        const v2_y = ud.pos_y[i];
-        const v2_y_next = ud.pos_y[(i + 1) % len];
+        const y = getV2(obj, 'pos', 'y', i);
+        const y_next = getV2(obj, 'pos', 'y', i + 1);
         // use xz Vector2 to set position of object
-        const v3_current = new THREE.Vector3(v2_xz.x, v2_y.y, v2_xz.y);
-        const v3_next = new THREE.Vector3(v2_xz_next.x, v2_y_next.y, v2_xz_next.y);
+        const v3_current = new THREE.Vector3(xz.x, y.y, xz.y);
+        const v3_next = new THREE.Vector3(xz_next.x, y_next.y, xz_next.y);
         obj.position.copy( v3_current.clone().lerp(v3_next, lerpAlpha) );
     };
     //-------- ----------
