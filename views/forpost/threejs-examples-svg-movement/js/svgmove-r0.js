@@ -59,7 +59,6 @@ const SVGMove = (function () {
                 ud[ idParts[1] + '_' + idParts[2] ] = points;
             }
         });
-console.log(ud);
         return obj;
     };
     // create an Mesh based object with the given
