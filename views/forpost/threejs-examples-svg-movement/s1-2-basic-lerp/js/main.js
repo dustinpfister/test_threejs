@@ -28,9 +28,6 @@
             const id = path.userData.node.id;
             const idParts = id.split('_');
             if(idParts[0] === id_prefix){
-
-                console.log(idParts); // parts
-
                 // get points
                 const points = path.subPaths[0].getPoints();
                 ud[idParts[1]] = points;

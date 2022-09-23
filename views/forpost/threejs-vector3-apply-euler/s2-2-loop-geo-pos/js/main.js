@@ -43,13 +43,6 @@
     };
     // update geo helper
     const updateGeo = (geometry, toV3array, alpha) => {
-        //forVector = forVector ||  function(v) {
-        //    return v.clone().normalize().multiplyScalar(1 + 3 * Math.random())
-        //};
-
-
-        //const v3array2 = v3array1.map(forVector);
-
         const v3array3 = Vector3ArrayLerp(v3array1, toV3array, alpha);
         const pos = sphere.geometry.getAttribute('position');
         const typed = Vector3ArrayToTyped(v3array3);
@@ -68,7 +61,6 @@
         })
     );
     scene.add(sphere);
-
     const angleEffect = function(v, i, arr) {
         const unitLength = 0.5 + 4.5 * Math.random();
         const e = new THREE.Euler();
@@ -83,9 +75,6 @@
     }
     const v3array1 = Vector3ArrayFromGeometry(sphere.geometry);
     const v3array2 = v3array1.map(angleEffect);
-
-
-
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -117,5 +106,4 @@
         }
     };
     loop();
-}
-    ());
+}());
