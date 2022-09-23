@@ -121,7 +121,7 @@
         // called when the resource is loaded
         function ( data ) {
             // creating mesh object, adding to scene, and starting loop
-            mesh = SVGMove.createMesh(data, 'box1', { } )
+            mesh = SVGMove.createMesh(data, 'box1');
             scene.add(mesh);
             loop();
         },

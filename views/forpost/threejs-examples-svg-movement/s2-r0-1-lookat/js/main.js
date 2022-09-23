@@ -62,8 +62,9 @@
         '/forpost/threejs-examples-svg-movement/svg/obj1.svg',
         // called when the resource is loaded
         function ( data ) {
-            // creating mesh object, adding to scene, and starting loop
-            mesh = SVGMove.createMesh(data, 'box1', { } )
+            // CREATING A MESH OBJECT WITH SVG DATA FOR 'cone1' THAT
+            // HAS BOTH 'pos', AND 'lookat' paths
+            mesh = SVGMove.createMesh(data, 'cone1');
             scene.add(mesh);
             loop();
         },
