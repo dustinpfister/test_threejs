@@ -1,10 +1,11 @@
 
 
 
-<svg version="1.1"
-     xmlns="http://www.w3.org/2000/svg"
+<svg xmlns="http://www.w3.org/2000/svg"
      width="3.0in" height="3.0in"
      viewBox="-15 -15 30 30">
+
+  <desc id="svgmove_r">0</desc>
 
   <path id="box1_pos_xz"
         fill="none" stroke="black" stroke-width="1"
