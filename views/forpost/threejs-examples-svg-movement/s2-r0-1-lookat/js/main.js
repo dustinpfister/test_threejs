@@ -6,7 +6,7 @@
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#000000');
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
-    camera.position.set(20, 20, 20);
+    camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     const renderer = new THREE.WebGLRenderer();
@@ -35,7 +35,6 @@
     const update = function(frame, frameMax){
         // calling set to alpha here
         SVGMove.setToAlpha(mesh, frame / frameMax);
-        mesh.lookAt(0,0,0)
     };
     // loop
     const loop = () => {

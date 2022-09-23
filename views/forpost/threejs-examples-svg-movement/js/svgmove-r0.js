@@ -45,10 +45,11 @@ const SVGMove = (function () {
     let api = {};
     // create an Mesh based object with the given
     // svg data and id prefix
-    api.createMesh = (data, id_prefix, ) => {
+    api.createMesh = (data, id_prefix ) => {
         const obj = new THREE.Mesh( 
-            new THREE.BoxGeometry(1,1,1),
+            new THREE.ConeGeometry(0.25,1,30, 30),
             new THREE.MeshNormalMaterial());
+        obj.geometry.rotateX(Math.PI * 0.5);
         const ud = obj.userData;
         data.paths.forEach((path)=>{
             // get id of the path
@@ -60,17 +61,17 @@ const SVGMove = (function () {
                 ud[ idParts[1] + '_' + idParts[2] ] = points;
             }
         });
-
-console.log( hasValues(obj, 'pos'), hasValues(obj, 'pos', 'y'), hasValues(obj, 'pos', 'other'), hasValues(obj, 'lookat') )
-
         return obj;
     };
     // set an object by an alpha value of 0 - 1
     api.setToAlpha = (obj, alpha) => {
-        // just setting position for now
-        obj.position.copy( createV3(obj, 'pos', alpha) );
-
-        
+        // set position
+        if( hasValues(obj, 'pos')){
+            obj.position.copy( createV3(obj, 'pos', alpha) );
+        }
+        if( hasValues(obj, 'lookat')){
+            obj.lookAt( createV3(obj, 'lookat', alpha) );
+        }
 
     };
     return api;
