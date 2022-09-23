@@ -4,6 +4,11 @@ This is what I have together in terms of source code examples when it comes to u
 
 There are two general ways of adding cube textures, loading textures that have been made before hand, and generating textures with javaScript code. I have two general sets of examples that cover both of these ways of adding cube textures.
 
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=-O8fEADJddg">
+         <img src="https://img.youtube.com/vi/-O8fEADJddg/0.jpg" style="width:50%;">
+      </a>
+</div>
 
 ## Getting the alphas
 
