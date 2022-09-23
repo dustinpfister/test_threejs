@@ -33,6 +33,12 @@ const SVGMove = (function () {
         const v3_next = new THREE.Vector3(xz_next.x, y_next.y, xz_next.y);
         return v3_current.clone().lerp(v3_next, lerpAlpha);
     };
+    // return true if an object has the given values else false
+    const hasValues = (obj, useStr, valueStr) => {
+        valueStr = valueStr || 'xz';
+        const ud = obj.userData;
+        return !(ud[useStr + '_' + valueStr] === undefined);
+    };
     //-------- ----------
     // PUBLIC API
     //-------- ----------
@@ -54,12 +60,18 @@ const SVGMove = (function () {
                 ud[ idParts[1] + '_' + idParts[2] ] = points;
             }
         });
+
+console.log( hasValues(obj, 'pos'), hasValues(obj, 'pos', 'y'), hasValues(obj, 'pos', 'other'), hasValues(obj, 'lookat') )
+
         return obj;
     };
     // set an object by an alpha value of 0 - 1
     api.setToAlpha = (obj, alpha) => {
         // just setting position for now
         obj.position.copy( createV3(obj, 'pos', alpha) );
+
+        
+
     };
     return api;
 }());
