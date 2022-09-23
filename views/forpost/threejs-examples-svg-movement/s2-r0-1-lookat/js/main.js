@@ -64,7 +64,9 @@
         function ( data ) {
             // CREATING A MESH OBJECT WITH SVG DATA FOR 'cone1' THAT
             // HAS BOTH 'pos', AND 'lookat' paths
-            mesh = SVGMove.createMesh(data, 'cone1');
+            mesh = SVGMove.createMesh(data, 'cone1', {
+                con: 'Cone', argu: [0.5, 4, 30, 30]
+            });
             scene.add(mesh);
             loop();
         },

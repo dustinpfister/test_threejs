@@ -64,12 +64,30 @@ const SVGMove = (function () {
  
     // create an Mesh based object with the given
     // svg data and id prefix
-    api.createMesh = (data, id_prefix ) => {
+    api.createMesh = (data, id_prefix, opt ) => {
+        opt = opt || {};
+        opt.con = opt.con || 'Box';
+        opt.argu = opt.argu || [1, 1, 1, 1];
+        opt.material = opt.material || new THREE.MeshNormalMaterial();
+        opt.geometry = null;
+        // if opt is a string try to get con function like this
+        // else assume the value given is all ready a function
+        if(typeof opt.con === 'string'){
+            opt.con = THREE[opt.con + 'Geometry'];
+        }
+        // if geometry is given use that and ignore any con and argu 
+        // props that might be there, else we will need to create it
+        if(!opt.geometry){
+            opt.geometry = new opt.con(...opt.argu);
+        }
+        // create the mesh
         const mesh = new THREE.Mesh( 
-            new THREE.ConeGeometry(0.25,1,30, 30),
-            new THREE.MeshNormalMaterial());
+            opt.geometry,
+            opt.material);
         mesh.geometry.rotateX(Math.PI * 0.5);
+        // use path data with the mesh
         api.useObj(data, id_prefix, mesh);
+        // return the mesh
         return mesh;
     };
     // set an object by an alpha value of 0 - 1
