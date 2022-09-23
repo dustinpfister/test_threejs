@@ -30,11 +30,11 @@
     frame = 0,
     lt = new Date();
     // mesh object to move
-    let mesh;
+    let mesh1;
     // update
     const update = function(frame, frameMax){
         // calling set to alpha here
-        SVGMove.setToAlpha(mesh, frame / frameMax);
+        SVGMove.setToAlpha(mesh1, frame / frameMax);
     };
     // loop
     const loop = () => {
@@ -64,10 +64,12 @@
         function ( data ) {
             // CREATING A MESH OBJECT WITH SVG DATA FOR 'cone1' THAT
             // HAS BOTH 'pos', AND 'lookat' paths
-            mesh = SVGMove.createMesh(data, 'cone1', {
+            mesh1 = SVGMove.createMesh(data, 'cone1', {
                 con: 'Cone', argu: [0.5, 4, 30, 30]
             });
-            scene.add(mesh);
+            // rotation geo once here so that it is pointing the way I want it
+            mesh1.geometry.rotateX(Math.PI * 0.5);
+            scene.add(mesh1);
             loop();
         },
         // called when loading is in progresses

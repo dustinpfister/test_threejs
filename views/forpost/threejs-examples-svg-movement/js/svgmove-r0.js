@@ -84,7 +84,6 @@ const SVGMove = (function () {
         const mesh = new THREE.Mesh( 
             opt.geometry,
             opt.material);
-        mesh.geometry.rotateX(Math.PI * 0.5);
         // use path data with the mesh
         api.useObj(data, id_prefix, mesh);
         // return the mesh
