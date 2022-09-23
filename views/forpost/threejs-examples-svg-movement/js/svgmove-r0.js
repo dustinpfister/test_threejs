@@ -43,13 +43,11 @@ const SVGMove = (function () {
     // PUBLIC API
     //-------- ----------
     let api = {};
-    // create an Mesh based object with the given
-    // svg data and id prefix
-    api.createMesh = (data, id_prefix ) => {
-        const obj = new THREE.Mesh( 
-            new THREE.ConeGeometry(0.25,1,30, 30),
-            new THREE.MeshNormalMaterial());
-        obj.geometry.rotateX(Math.PI * 0.5);
+
+    // use the given object for svg path data
+    // this is what I will want to use if I all ready have an object
+    // that I want to use
+    api.useObj = (data, id_prefix, obj) => {
         const ud = obj.userData;
         data.paths.forEach((path)=>{
             // get id of the path
@@ -62,6 +60,17 @@ const SVGMove = (function () {
             }
         });
         return obj;
+    };
+ 
+    // create an Mesh based object with the given
+    // svg data and id prefix
+    api.createMesh = (data, id_prefix ) => {
+        const mesh = new THREE.Mesh( 
+            new THREE.ConeGeometry(0.25,1,30, 30),
+            new THREE.MeshNormalMaterial());
+        mesh.geometry.rotateX(Math.PI * 0.5);
+        api.useObj(data, id_prefix, mesh);
+        return mesh;
     };
     // set an object by an alpha value of 0 - 1
     api.setToAlpha = (obj, alpha) => {

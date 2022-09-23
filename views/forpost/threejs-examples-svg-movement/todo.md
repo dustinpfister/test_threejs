@@ -1,5 +1,10 @@
 # threejs-examples-svg-movement todo list
 
+## () - r1 - revision 1 of the module
+* () have an SVGMove.createCamera movement
+* () have a scale useString that can set scale of objects
+* () maybe path data for perspective camera values like zoom?
+
 ## () - r0 - lines demo
 * () demo of create lines feature
 
@@ -16,8 +21,13 @@
 * (done) have an SVGMove.setToAlpha method
 * (done) SVGMove.setToAlpha will set x,y, and z for position
 * (done) SVGMove.setToAlpha will also set rotation based on look at values
-* () have a general SVGMove.create method
-* () have an SVGMove.createCamera movement
+* (done) have a general SVGMove.useObj method where I can just pass any object I want to use
+
+* () update SVGMove.createMesh so that I can give an options object
+* () SVGMove.createMesh options object can be given a geometry || conName and arguments array
+* () SVGMove.createMesh options object can be given a material, default can be normal material
+
+
 * () SVGMove.createLines to get a vishual idea of what is going on
 
 ## ( done 09/23/2022 ) - basic example changes
