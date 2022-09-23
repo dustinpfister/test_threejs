@@ -35,35 +35,40 @@
         });
         return obj;
     };
-
-
+    // create a v2 from the given obj, useStr, valueStr, and index
+    // ex getV2(obj, 'pos', 'xz', 0)
     const getV2 = (obj, useStr, valueStr, index) => {
         const ud = obj.userData;
         const arr = ud[ useStr + '_' + valueStr ];
         const len = arr.length;
         const i = THREE.MathUtils.euclideanModulo(index, len);
         return arr[i];
-    }
-
-    // set an object by an alpha value of 0 - 1
-    SVGMove.setToAlpha = (obj, alpha) => {
+    };
+    // create a v3 for the given obj, use string, and alpha value
+    // ex crateV3(obj, 'pos', 0.35);
+    const createV3 = (obj, useStr, alpha) => {
         const ud = obj.userData;
         let len = 0, fi, i = 0, lerpAlpha;
         // get current xz Vector2
-        len = ud.pos_xz.length;
+        len = ud[useStr + '_xz'].length;
         fi = ( len - 1) * alpha; // fraction index ex: 1.44
         i = Math.floor( fi);     // index ex: 1
         lerpAlpha = fi % 1;      // lerpAlpha from current to next point ex: 0.44
         // current pos
-        const xz = getV2(obj, 'pos', 'xz', i); 
-        const xz_next = getV2(obj, 'pos', 'xz', i + 1); 
+        const xz = getV2(obj, useStr, 'xz', i); 
+        const xz_next = getV2(obj, useStr, 'xz', i + 1); 
         // next pos
-        const y = getV2(obj, 'pos', 'y', i);
-        const y_next = getV2(obj, 'pos', 'y', i + 1);
+        const y = getV2(obj, useStr, 'y', i);
+        const y_next = getV2(obj, useStr, 'y', i + 1);
         // use xz Vector2 to set position of object
         const v3_current = new THREE.Vector3(xz.x, y.y, xz.y);
         const v3_next = new THREE.Vector3(xz_next.x, y_next.y, xz_next.y);
-        obj.position.copy( v3_current.clone().lerp(v3_next, lerpAlpha) );
+        return v3_current.clone().lerp(v3_next, lerpAlpha);
+    };
+    // set an object by an alpha value of 0 - 1
+    SVGMove.setToAlpha = (obj, alpha) => {
+        // just setting position for now
+        obj.position.copy( createV3(obj, 'pos', alpha) );
     };
     //-------- ----------
     // GRID
@@ -88,7 +93,6 @@
     const update = function(frame, frameMax){
         // calling set to alpha here
         SVGMove.setToAlpha(mesh, frame / frameMax);
-        mesh.lookAt(0,0,0);
     };
     // loop
     const loop = () => {
@@ -119,7 +123,6 @@
             // creating mesh object, adding to scene, and starting loop
             mesh = SVGMove.createMesh(data, 'box1', { } )
             scene.add(mesh);
-
             loop();
         },
         // called when loading is in progresses
