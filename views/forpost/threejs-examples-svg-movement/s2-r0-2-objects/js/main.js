@@ -65,6 +65,9 @@
         '/forpost/threejs-examples-svg-movement/svg/obj1.svg',
         // called when the resource is loaded
         function ( data ) {
+            // USE OBJECT METHOD SHOULD WORK WITH ANY OBJECT3D BASED OBJECT
+            // SUCH AS A CAMERA
+            SVGMove.useObj(data, 'cam1', camera);
             // CREATING A MESH OBJECT WITH SVG DATA FOR 'cone1' THAT
             // HAS BOTH 'pos', AND 'lookat' paths
             mesh1 = SVGMove.createMesh(data, 'cone1', {
@@ -74,10 +77,6 @@
             // rotation geo once here so that it is pointing the way I want it
             mesh1.geometry.rotateX(Math.PI * 0.5);
             scene.add(mesh1);
-
-// use object method with the camera
-SVGMove.useObj(data, 'cam1', camera);
-
             loop();
         },
         // called when loading is in progresses

@@ -1,17 +1,19 @@
 # threejs-examples-svg-movement todo list
 
-## () - r1 - revision 1 of the module
-* () have an SVGMove.createCamera movement
+## () - r2 - scale of objects
 * () have a scale useString that can set scale of objects
-* () maybe path data for perspective camera values like zoom?
 
-## () - r0 - lines demo
+## () - r1 - lines demo
 * () demo of create lines feature
 
-## () - r0 - objects demo
-* () mesh object created by just calling createMesh
-* () mesh object created by passing a mesh object
-* () mesh object created with geo and material given
+## () - r1 - create lines method, createV3ByAlpha, createCamera
+* () SVGMove.createLine to get a vishual idea of what is going on
+* () have an SVGMove.createCamera movement
+* () maybe path data for perspective camera values like zoom?
+
+## ( done 09/23/2022) - r0 - objects demo
+* (done) mesh object created by just calling createMesh
+* (done) use with the camera
 
 ## ( done 09/23/2022) - r0 - lookat demo
 * (done) start a r0 demo of the lookat feature
@@ -25,8 +27,6 @@
 * (done) update SVGMove.createMesh so that I can give an options object
 * (done) SVGMove.createMesh options object can be given a geometry || conName and arguments array
 * (done) SVGMove.createMesh options object can be given a material, default can be normal material
-
-* () SVGMove.createLine to get a vishual idea of what is going on
 
 ## ( done 09/23/2022 ) - basic example changes
 * (done) change box1-xz to box1-pos-xz, and do the same for y values
