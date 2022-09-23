@@ -1,14 +1,23 @@
 # threejs-examples-svg-movement todo list
 
+## () - r0 - lines demo
+* () demo of create lines feature
 
 ## () - r0 - lookat demo
-* have a r0 demo of the lookat feature
+* (done) start a r0 demo of the lookat feature
+
+## () - r0 - objects demo
+* () mesh object created by just calling createMesh
+* () mesh object created by passing a mesh object
+* () mesh object created with geo and material given
 
 ## () - r0 of module
 * () have a general SVGMove.create method
-* () have an SVGMove.createMesh method 
+
 * () have an SVGMove.createCamera movement
-* () have an SVGMove.setToAlpha method
+* (done) have an SVGMove.createMesh method
+* (done) have an SVGMove.setToAlpha method
+
 * () SVGMove.setToAlpha will set x,y, and z for position
 * () SVGMove.setToAlpha will also set rotation based on look at values
 * () SVGMove.createLines to get a vishual idea of what is going on
