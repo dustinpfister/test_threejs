@@ -43,12 +43,12 @@ const SVGMove = (function () {
     // PUBLIC API
     //-------- ----------
     let api = {};
-
     // use the given object for svg path data
     // this is what I will want to use if I all ready have an object
     // that I want to use
     api.useObj = (data, id_prefix, obj) => {
         const ud = obj.userData;
+        ud.data = data; // ref to raw data
         data.paths.forEach((path)=>{
             // get id of the path
             const id = path.userData.node.id;
@@ -61,7 +61,6 @@ const SVGMove = (function () {
         });
         return obj;
     };
- 
     // create an Mesh based object with the given
     // svg data and id prefix
     api.createMesh = (data, id_prefix, opt ) => {
@@ -98,7 +97,6 @@ const SVGMove = (function () {
         if( hasValues(obj, 'lookat')){
             obj.lookAt( createV3(obj, 'lookat', alpha) );
         }
-
     };
     return api;
 }());
