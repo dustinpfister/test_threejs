@@ -30,8 +30,7 @@
             if(idParts[0] === id_prefix){
                 // get points
                 const points = path.subPaths[0].getPoints();
-                ud[idParts[1]] = points;
-                console.log(points.length)
+                ud[ idParts[1] + '_' + idParts[2] ] = points;
             }
         });
         return obj;
@@ -41,11 +40,11 @@
         const ud = obj.userData;
         let len = 0, i = 0;
         // get current xz Vector2
-        len = ud.xz.length;
+        len = ud.pos_xz.length;
         i = Math.floor( ( len - 1) * alpha);
-        const v2_xz = ud.xz[i];
+        const v2_pos_xz = ud.pos_xz[i];
         // use xz Vector2 to set position of object
-        obj.position.set(v2_xz.x, 0, v2_xz.y);
+        obj.position.set(v2_pos_xz.x, 0, v2_pos_xz.y);
     };
     //-------- ----------
     // GRID

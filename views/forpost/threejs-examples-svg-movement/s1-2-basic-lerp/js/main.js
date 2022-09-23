@@ -30,7 +30,7 @@
             if(idParts[0] === id_prefix){
                 // get points
                 const points = path.subPaths[0].getPoints();
-                ud[idParts[1]] = points;
+                ud[ idParts[1] + '_' + idParts[2] ] = points;
             }
         });
         return obj;
@@ -40,27 +40,20 @@
         const ud = obj.userData;
         let len = 0, fi, i = 0, lerpAlpha;
         // get current xz Vector2
-        len = ud.xz.length;
+        len = ud.pos_xz.length;
         fi = ( len - 1) * alpha; // fraction index ex: 1.44
         i = Math.floor( fi);     // index ex: 1
         lerpAlpha = fi % 1;      // lerpAlpha from current to next point ex: 0.44
-
-
-
-        const v2_xz = ud.xz[i];
-        const v2_xz_next = ud.xz[(i + 1) % len];
-
-        const v2_y = ud.y[i];
-        const v2_y_next = ud.y[(i + 1) % len];
-
+        // current pos
+        const v2_xz = ud.pos_xz[i];
+        const v2_xz_next = ud.pos_xz[(i + 1) % len];
+        // next pos
+        const v2_y = ud.pos_y[i];
+        const v2_y_next = ud.pos_y[(i + 1) % len];
         // use xz Vector2 to set position of object
         const v3_current = new THREE.Vector3(v2_xz.x, v2_y.y, v2_xz.y);
         const v3_next = new THREE.Vector3(v2_xz_next.x, v2_y_next.y, v2_xz_next.y);
         obj.position.copy( v3_current.clone().lerp(v3_next, lerpAlpha) );
-
-
-        //console.log(fi.toFixed(2), i, lerpAlpha.toFixed(2))
-
     };
     //-------- ----------
     // GRID
