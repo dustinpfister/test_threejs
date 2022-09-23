@@ -32,17 +32,17 @@
   <path id="cam1_pos_xz"
         fill="none" stroke="black" stroke-width="1"
         d="M 10,10
-           C 10,10 -10,10 -10,10 10,10" />
+           L -10,10 10,10" />
   <path id="cam1_pos_y"
         fill="none" stroke="black" stroke-width="1"
         d="M 0,10
-           C 0,10 0,10 0,10 0,10" />
+           L 0,5 0,10" />
   <path id="cam1_lookat_xz"
         fill="none" stroke="black" stroke-width="1"
         d="M 0,0
-           C 0,0 0,0 0,0 0,0" />
+           L 0,0" />
   <path id="cam1_lookat_y"
         fill="none" stroke="black" stroke-width="1"
         d="M 0,0
-           C 0,0 0,0 0,0 0,0" />
+           L 0,0" />
 </svg>
