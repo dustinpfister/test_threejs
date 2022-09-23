@@ -3,7 +3,7 @@
 ## () - r0 - lines demo
 * () demo of create lines feature
 
-## () - r0 - lookat demo
+## ( done 09/23/2022) - r0 - lookat demo
 * (done) start a r0 demo of the lookat feature
 
 ## () - r0 - objects demo
@@ -12,14 +12,12 @@
 * () mesh object created with geo and material given
 
 ## () - r0 of module
-* () have a general SVGMove.create method
-
-* () have an SVGMove.createCamera movement
 * (done) have an SVGMove.createMesh method
 * (done) have an SVGMove.setToAlpha method
-
-* () SVGMove.setToAlpha will set x,y, and z for position
-* () SVGMove.setToAlpha will also set rotation based on look at values
+* (done) SVGMove.setToAlpha will set x,y, and z for position
+* (done) SVGMove.setToAlpha will also set rotation based on look at values
+* () have a general SVGMove.create method
+* () have an SVGMove.createCamera movement
 * () SVGMove.createLines to get a vishual idea of what is going on
 
 ## ( done 09/23/2022 ) - basic example changes
