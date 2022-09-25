@@ -1,8 +1,12 @@
 # threejs-vector3-apply-euler todo list
 
+## () expand s2-loop example
+* () more advanced object position example with group of objects
+
 ## () expand basic section
-* () simple example of normalize and multiply scalar
-* () basic group example
+* () example of normalize and multiply scalar
+* () example of add method
+* () group example with lerp method
 
 ## ( 09/22/2022 ) expand s2-loop section
 * (done) start a new loop example with the position attribute of a mesh geometry such as a sphere
