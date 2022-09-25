@@ -4,11 +4,13 @@
 * () more advanced object position example with group of objects
 
 ## () expand basic section
-* () example of normalize and multiply scalar
 * () example of add method
 * () group example with lerp method
 
-## ( 09/22/2022 ) expand s2-loop section
+## ( done 09/25/2022 ) expand basic section
+* (done) example of normalize and multiply scalar
+
+## ( done 09/22/2022 ) expand s2-loop section
 * (done) start a new loop example with the position attribute of a mesh geometry such as a sphere
 
 ## ( done 09/22/2022 ) - for post folder started
