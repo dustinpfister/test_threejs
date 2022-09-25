@@ -6,7 +6,7 @@
     const scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(9, 9));
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(5, 5, 5);
+    camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
@@ -35,22 +35,46 @@
         cube.lookAt(0, 0, 0);
         return cube;
     };
+    // create a group
+    const createGroup = (len) => {
+        const group = new THREE.Group();
+        let i = 0;
+        while(i < len){
+            group.add( createCube(null, 1) );
+            i += 1;
+        }
+        return group;
+    };
+    // set a group
+    const setGroup = (group, aCount, unitLength, vd) => {
+        aCount = aCount === undefined ? 1 : aCount;
+        unitLength = unitLength === undefined ? 1 : unitLength;
+        vd = vd === undefined ? new THREE.Vector3() : vd;
+        let len = group.children.length;
+        let i = 0;
+        while(i < len){
+            const p = i / len;
+            const a = 360 * aCount * p;
+            // using my vector from angles method
+            const v = vectorFromAngles(a, 180 * p, unitLength);
+            // adding another Vector
+            v.add( vd.clone().multiplyScalar(p) );
+            const cube = group.children[i];
+            cube.position.copy(v);
+            cube.lookAt(0, 0, 0);
+            const s = 1 - 0.75 * p;
+            cube.scale.set(s, s, s);
+            i += 1;
+        }
+    }
     //-------- ----------
     // MESH
     //-------- ----------
 
-    let aCount = 4;
-    let len = 100;
-    const group = new THREE.Group();
-    let i = 0;
-    while(i < len){
-        const p = i / len;
-        const a = 360 * aCount * p;
-        const v = vectorFromAngles(a, 180 * p, 2)
-        group.add( createCube(v, 1 - 0.75 * p) );
-        i += 1;
-    }
 
+
+    const group = createGroup(100);
+    setGroup(group, 4, 3, new THREE.Vector3(6, 0, 0));
     scene.add(group);
 
  
