@@ -14,7 +14,7 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
-    // setPos helper using applyEuler, normalize, and multiply scalar
+    // Vector from angles method
     const vectorFromAngles = function (a, b, len) {
         a = a === undefined ? 0 : a;
         b = b === undefined ? 0 : b;

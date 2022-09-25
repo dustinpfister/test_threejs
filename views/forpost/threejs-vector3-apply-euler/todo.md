@@ -4,8 +4,7 @@
 * () more advanced object position example with group of objects
 
 ## () expand basic section
-* () example of add method
-* () group example with lerp method
+* () example of add and lerp methods on top of everything else
 
 ## ( done 09/25/2022 ) expand basic section
 * (done) example of normalize and multiply scalar
