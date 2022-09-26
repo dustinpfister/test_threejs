@@ -94,7 +94,7 @@
         c += 1;
         c = c > CMAX ? CMAX : c;
         const p = c / CMAX;
-        const b = Math.abs(0.5 - p) / 0.5;
+        const b = THREE.MathUtils.pingpong(p - 0.5, 1) * 2;
         // get acount set group
         const aCount = acRange[0] + (acRange[1] - acRange[0]) * b;
         setGroup(group, aCount, 3, vd, vlt, b);
