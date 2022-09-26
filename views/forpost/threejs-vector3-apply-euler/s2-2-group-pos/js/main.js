@@ -72,10 +72,7 @@
     //-------- ----------
     // MESH
     //-------- ----------
-    const group = createGroup(100);
-    const vd = new THREE.Vector3(0, 0, 0);
-    const vlt = new THREE.Vector3(0, 0, 0);
-
+    const group = createGroup(400);
     scene.add(group);
     // ---------- ----------
     // ANIMATION LOOP
@@ -88,17 +85,25 @@
     lt = new Date();
     // update
     let c = 0;
+    const CMAX = 200;
     let acRange = [-5, 5];
-    const update = function(frame, frameMax){
-        c += 1;
-        c = c > 100 ? 100 : c;
-        const p = c / 100;
-        const b = Math.abs(0.5 - p) / 0.5;
+    const vd = new THREE.Vector3(0, 0, 0);
+    const vlt = new THREE.Vector3(0, 0, 0);
 
+    const update = function(frame, frameMax){
+        // step count, figire p and b alpha values
+        c += 1;
+        c = c > CMAX ? CMAX : c;
+        const p = c / CMAX;
+        const b = Math.abs(0.5 - p) / 0.5;
+        // get acount set group
         const aCount = acRange[0] + (acRange[1] - acRange[0]) * b;
         setGroup(group, aCount, 3, vd, vlt, b);
-        if(c === 100){
+        // if c === CMAX new values
+        if(c === CMAX){
             c = 0;
+            acRange[0] = -20 + 20 * Math.random();
+            acRange[1] = 20 * Math.random();
         }
     };
     // loop
