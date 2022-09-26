@@ -46,10 +46,12 @@
         return group;
     };
     // set a group
-    const setGroup = (group, aCount, unitLength, vd) => {
+    const setGroup = (group, aCount, unitLength, vd, vlt, alpha) => {
         aCount = aCount === undefined ? 1 : aCount;
         unitLength = unitLength === undefined ? 1 : unitLength;
-        vd = vd === undefined ? new THREE.Vector3() : vd;
+        vd = vd === undefined ? new THREE.Vector3() : vd;       // vector delta for each object effected by i / len
+        vlt = vlt === undefined ? new THREE.Vector3() : vlt;    // vector to lerp to for each mesh positon
+        alpha = alpha === undefined ? 0 : alpha;
         let len = group.children.length;
         let i = 0;
         while(i < len){
@@ -60,7 +62,7 @@
             // adding another Vector
             v.add( vd.clone().multiplyScalar(p) );
             const cube = group.children[i];
-            cube.position.copy(v);
+            cube.position.copy(v.lerp(vlt, alpha));
             cube.lookAt(0, 0, 0);
             const s = 1 - 0.75 * p;
             cube.scale.set(s, s, s);
@@ -70,14 +72,13 @@
     //-------- ----------
     // MESH
     //-------- ----------
-
-
-
     const group = createGroup(100);
-    setGroup(group, 4, 3, new THREE.Vector3(6, 0, 0));
-    scene.add(group);
+    const vd = new THREE.Vector3(6, 0, 0);
+    const vlt = new THREE.Vector3(-10, 2, 0);
 
- 
+    setGroup(group, 4, 3, vd, vlt, 0.75);
+
+    scene.add(group);
     //-------- ----------
     // RENDER
     //-------- ----------
