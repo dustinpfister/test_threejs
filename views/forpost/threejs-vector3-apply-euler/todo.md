@@ -1,11 +1,17 @@
 # threejs-vector3-apply-euler todo list
 
-## () expand s2-loop example
-* () more advanced object position example with group of objects
+## () s2-4-loop example
 
-## () expand basic section
-* () example of add, and lerp methods on top of everything else
-* () have a group of objects
+## () new s2-2-group-pos example
+* () start group of objects example between obj-pos, and geo-pos
+* () rename s2-2-geo-pos to s2-3-geo-pos
+* () base this one off of the s1-3-add-lerp-group example
+* () use loop function example from getting started post
+* () the group object itself should be moved around using the vector from angles method
+
+## ( done 09/26/2022 ) expand basic section
+* (done) example of add, and lerp methods on top of everything else
+* (done) have a group of objects
 
 ## ( done 09/25/2022 ) expand basic section
 * (done) example of normalize and multiply scalar
