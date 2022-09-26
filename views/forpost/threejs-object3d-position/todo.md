@@ -1,17 +1,27 @@
 # threejs-object3d-position todo list
 
 
-## () s6-world-space
-* have an example that has to do with parent and world space relative positions
+## () sx-world-space
+* () have an example that has to do with parent and world space relative positions
 
-## () s5-loop
-* have an animation loop example
+## () sx-loop
+* () Start an animation loop example
 
-## () s4-clone
+## () sx-clone
 * more advanced example of s3-rotation but now have two or more clones of a bash group
 
-## () s3-rotation
+## () sx-rotation
 * more advanced example of the s2-children example but using rotation also
+
+## () expand basic even more
+* () s1-5-normalize-multiply
+* () s1-6-apply-euler
+
+## () expand basic section
+* (done) rename s1-basic to s1-2-set
+* () s1-1-props example where setting the position by x, y, z props
+* () s1-3-copy
+* () s1-4-lerp
 
 ## ( done 04/04 2022 ) s2-children
 * (done) have an example that involves a group of mesh objects
