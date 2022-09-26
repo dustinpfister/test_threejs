@@ -89,7 +89,6 @@
     let acRange = [-5, 5];
     const vd = new THREE.Vector3(0, 0, 0);
     const vlt = new THREE.Vector3(0, 0, 0);
-
     const update = function(frame, frameMax){
         // step count, figire p and b alpha values
         c += 1;
