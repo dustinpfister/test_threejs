@@ -8,6 +8,7 @@
 * (done) base this one off of the s1-3-add-lerp-group example
 * (done) use loop function example from getting started post
 * (done) use the MathUtils ping pong method in place of the expression for what I called 'bias'
+
 * () the group object itself should be moved around using the vector from angles method
 
 ## ( done 09/26/2022 ) expand basic section
