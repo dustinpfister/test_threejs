@@ -17,11 +17,11 @@
 * () s1-5-normalize-multiply
 * () s1-6-apply-euler
 
-## ( ) expand basic section
+## ( done 09/26/2022 ) expand basic section
 * (done) rename s1-basic to s1-2-set
 * (done) s1-1-props example where setting the position by x, y, z props
 * (done) s1-3-copy
-* () s1-4-lerp
+* (done) s1-4-lerp
 
 ## ( done 04/04 2022 ) s2-children
 * (done) have an example that involves a group of mesh objects
