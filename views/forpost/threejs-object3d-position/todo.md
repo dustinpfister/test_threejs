@@ -19,7 +19,7 @@
 
 ## () expand basic section
 * (done) rename s1-basic to s1-2-set
-* () s1-1-props example where setting the position by x, y, z props
+* (done) s1-1-props example where setting the position by x, y, z props
 * () s1-3-copy
 * () s1-4-lerp
 
