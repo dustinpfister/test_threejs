@@ -1,17 +1,25 @@
 # threejs-object3d-position todo list
 
-
-## () sx-world-space
-* () have an example that has to do with parent and world space relative positions
-
-## () sx-loop
-* () Start an animation loop example
-
 ## () sx-clone
 * more advanced example of s3-rotation but now have two or more clones of a bash group
 
 ## () sx-rotation
 * more advanced example of the s2-children example but using rotation also
+
+## () sx-world-space
+* () have an example that has to do with parent and world space relative positions
+
+## () sx-box3 section
+* () use box3 to set an area where mesh objects can be
+* () use box3 to make it so the position of objects will not go below a plane
+
+## () sx-wrap-clamp section
+* () animation involving the use of clamp
+* () animation involving wrap
+
+## () sx-basic-ani section
+* () loop example where I am just moving mesh objects along the x axis at differing rates
+* () lerp centered animation
 
 ## () expand basic even more
 * () s1-5-normalize-multiply
