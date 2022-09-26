@@ -104,6 +104,8 @@
             acRange[0] = -20 + 20 * Math.random();
             acRange[1] = 20 * Math.random();
         }
+        // ALSO MOVEING GROUP POSITION WITH APPLY EULER
+        group.position.copy( vectorFromAngles(360 * p, 90, 2.5) );
     };
     // loop
     const loop = () => {

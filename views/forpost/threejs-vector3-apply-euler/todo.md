@@ -1,15 +1,12 @@
 # threejs-vector3-apply-euler todo list
 
-## () s2-4-loop example
-
-## () new s2-2-group-pos example
+## ( done 09/26/2022 ) new s2-2-group-pos example
 * (done) start group of objects example between obj-pos, and geo-pos
 * (done) rename s2-2-geo-pos to s2-3-geo-pos
 * (done) base this one off of the s1-3-add-lerp-group example
 * (done) use loop function example from getting started post
 * (done) use the MathUtils ping pong method in place of the expression for what I called 'bias'
-
-* () the group object itself should be moved around using the vector from angles method
+* (done) the group object itself should be moved around using the vector from angles method
 
 ## ( done 09/26/2022 ) expand basic section
 * (done) example of add, and lerp methods on top of everything else
