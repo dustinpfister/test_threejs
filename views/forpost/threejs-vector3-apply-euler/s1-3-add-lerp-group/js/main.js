@@ -75,9 +75,7 @@
     const group = createGroup(100);
     const vd = new THREE.Vector3(6, 0, 0);
     const vlt = new THREE.Vector3(-10, 2, 0);
-
-    setGroup(group, 4, 3, vd, vlt, 0.75);
-
+    setGroup(group, 4, 3, vd, vlt, 0.25);
     scene.add(group);
     //-------- ----------
     // RENDER
