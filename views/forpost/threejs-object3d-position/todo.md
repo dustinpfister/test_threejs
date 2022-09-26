@@ -6,7 +6,7 @@
 ## () sx-rotation
 * more advanced example of the s2-children example but using rotation also
 
-## () sx-world-space
+## () expand children section
 * () have an example that has to do with parent and world space relative positions
 
 ## () sx-box3 section
@@ -17,13 +17,13 @@
 * () animation involving the use of clamp
 * () animation involving wrap
 
-## () sx-basic-ani section
-* () loop example where I am just moving mesh objects along the x axis at differing rates
-* () lerp centered animation
-
 ## () expand basic even more
 * () s1-5-normalize-multiply
 * () s1-6-apply-euler
+
+## () sx-basic-ani section
+* () loop example where I am just moving mesh objects along the x axis at differing rates
+* () lerp centered animation
 
 ## ( done 09/26/2022 ) expand basic section
 * (done) rename s1-basic to s1-2-set
