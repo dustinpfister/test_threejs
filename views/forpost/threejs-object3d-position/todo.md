@@ -22,7 +22,7 @@
 * () s1-6-apply-euler
 
 ## () sx-basic-ani section
-* () loop example where I am just moving mesh objects along the x axis at differing rates
+* (done) loop example where I am just moving mesh objects along the x axis at differing rates
 * () lerp centered animation
 
 ## ( done 09/26/2022 ) expand basic section
