@@ -1,5 +1,7 @@
 (function () {
+    //-------- ----------
     // SCENE TYPE OBJECT, CAMERA TYPE OBJECT, and RENDERER
+    //-------- ----------
     const scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(9, 9));
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 100);
@@ -7,7 +9,9 @@
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+    //-------- ----------
     // CREATING A GROUP WITH CHILDREN
+    //-------- ----------
     const group = new THREE.Group();
     let i = 0, len = 30, radian, radius, x, y, z;
     while(i < len){
@@ -30,6 +34,8 @@
     // POSITON AND ROTATION OF CAMERA
     camera.position.set(8, 8, 8);
     camera.lookAt(0, 1, 0);
-    // render static scene
+    //-------- ----------
+    // RENDER
+    //-------- ----------
     renderer.render(scene, camera);
 }());
