@@ -1,17 +1,17 @@
 (function () {
     // SCENE TYPE OBJECT, CAMERA TYPE OBJECT, and RENDERER
-    var scene = new THREE.Scene();
+    const scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(9, 9));
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 100);
     scene.add(camera);
-    var renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
+    (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     // CREATING A GROUP WITH CHILDREN
-    var group = new THREE.Group();
-    var i = 0, len = 30, radian, radius, x, y, z;
+    const group = new THREE.Group();
+    let i = 0, len = 30, radian, radius, x, y, z;
     while(i < len){
-        var mesh = new THREE.Mesh(
+        const mesh = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
         radian = Math.PI * 2 * 4 / len * i;
@@ -25,15 +25,11 @@
         i += 1;
     }
     scene.add(group);
- 
     // SETTING POSITION OF THE GROUP
     group.position.set(-5,0,-5)
- 
     // POSITON AND ROTATION OF CAMERA
     camera.position.set(8, 8, 8);
     camera.lookAt(0, 1, 0);
- 
     // render static scene
     renderer.render(scene, camera);
-}
-    ());
+}());

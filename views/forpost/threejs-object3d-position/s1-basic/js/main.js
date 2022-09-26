@@ -1,14 +1,14 @@
 (function () {
     // SCENE TYPE OBJECT, CAMERA TYPE OBJECT, and RENDERER
-    var scene = new THREE.Scene();
+    const scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(9, 9));
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 20);
+    const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 20);
     scene.add(camera);
-    var renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
+    (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     // adding a mesh object
-    var mesh = new THREE.Mesh(
+    const mesh = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
     scene.add(mesh);
