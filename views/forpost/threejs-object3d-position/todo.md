@@ -6,12 +6,10 @@
 ## () sx-rotation
 * more advanced example of the s2-children example but using rotation also
 
-## () expand children section
-* () have an example that has to do with parent and world space relative positions
-
-## () sx-raycaster-section
+## () sx-raycaster section
 * () start a raycaster section with at least one basic example with say a torus geometry
 * () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
+* () at least a basic menu example
 
 ## () sx-box3 section
 * () use box3 to set an area where mesh objects can be
@@ -24,6 +22,11 @@
 ## () expand basic even more
 * () s1-5-normalize-multiply
 * () s1-6-apply-euler
+
+## () expand children section
+* () have an example that has to do with parent and world space relative positions
+* () worldToLocal example
+* () get world posiiton example
 
 ## () sx-basic-ani section
 * (done) loop example where I am just moving mesh objects along the x axis at differing rates
