@@ -15,6 +15,7 @@ const loopMod = (function(){
             fps_update: opt.fps_update || 12,
             fps_movement: opt.fps_movement || 30,
             init: opt.init || function(){},
+            onStart: opt.onStart || function(){},
             update: opt.update || function(){},
             scene: opt.scene || new THREE.Scene(),
             camera: opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000),
@@ -26,7 +27,7 @@ const loopMod = (function(){
             requestAnimationFrame(loopObj.loop);
             if(secs > 1 / loopObj.fps_update){
                 // update, render
-                loopObj.update( Math.floor(loopObj.frame), loopObj.FRAME_MAX);
+                loopObj.update(loopObj, Math.floor(loopObj.frame), loopObj.FRAME_MAX, loopObj.scene, loopObj.camera);
                 loopObj.renderer.render(loopObj.scene, loopObj.camera);
                 // step frame
                 loopObj.frame += loopObj.fps_movement * secs;
@@ -34,6 +35,7 @@ const loopMod = (function(){
                 loopObj.lt = now;
             }
         };
+        loopObj.init(loopObj, loopObj.scene, loopObj.camera, loopObj.renderer);
         return loopObj;
     };
     //-------- ----------
@@ -48,7 +50,7 @@ const loopMod = (function(){
     };
     // start a loop object
     api.start = (loopObj) => {
-        loopObj.init(loopObj, loopObj.scene, loopObj.camera, loopObj.renderer);
+        loopObj.onStart(loopObj, loopObj.scene, loopObj.camera, loopObj.renderer);
         loopObj.loop();
     };
     // return public api
@@ -59,21 +61,25 @@ const loopMod = (function(){
 // ---------- ----------
 // DEMO
 // ---------- ----------
-const mesh = new THREE.Mesh(
-     new THREE.BoxGeometry(1, 1, 1),
-     new THREE.MeshNormalMaterial());
 const loopObj = loopMod.create({
     init: function(loopObj, scene, camera, renderer){
+        const mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshNormalMaterial());
+        mesh.name = 'mesh';
+        scene.userData.mesh = mesh;
+        scene.add(mesh);
+        (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+    },
+    onStart: function(loopObj, scene, camera, renderer){
         camera.position.set(2, 2, 2);
         camera.lookAt(0, 0, 0);
         renderer.setSize(640, 480);
     },
-    update: function(frame, frameMax){
+    update: function(loopObj, frame, frameMax, scene, camera){
         const degree = 360 * (frame / frameMax);
-        mesh.rotation.x = THREE.MathUtils.degToRad(degree);
+        scene.userData.mesh.rotation.x = THREE.MathUtils.degToRad(degree);
     }
 });
 // do just once
-(document.getElementById('demo') || document.body).appendChild(loopObj.renderer.domElement);
-loopObj.scene.add(mesh);
 loopMod.start(loopObj);
