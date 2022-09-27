@@ -28,7 +28,7 @@
 * () worldToLocal example
 * () get world posiiton example
 
-## () sx-basic-ani section
+## () sx-ani section
 * (done) loop example where I am just moving mesh objects along the x axis at differing rates
 * () lerp centered animation
 
