@@ -11,7 +11,8 @@ const loopMod = (function(){
         const loopObj = {
             frame: 0,
             lt: new Date(),
-            FRAME_MAX: opt.FRAME_MAX || 90,
+            active: false,
+            FRAME_MAX: opt.FRAME_MAX || 300,
             fps_update: opt.fps_update || 12,
             fps_movement: opt.fps_movement || 30,
             init: opt.init || function(){},
@@ -24,7 +25,9 @@ const loopMod = (function(){
         loopObj.loop = function(){
             const now = new Date(),
             secs = (now - loopObj.lt) / 1000;
-            requestAnimationFrame(loopObj.loop);
+            if(loopObj.active){
+                requestAnimationFrame(loopObj.loop);
+            }
             if(secs > 1 / loopObj.fps_update){
                 // update, render
                 loopObj.update(loopObj, Math.floor(loopObj.frame), loopObj.FRAME_MAX, loopObj.scene, loopObj.camera);
@@ -50,8 +53,13 @@ const loopMod = (function(){
     };
     // start a loop object
     api.start = (loopObj) => {
+        loopObj.active = true;
+        loopObj.lt = new Date();
         loopObj.onStart(loopObj, loopObj.scene, loopObj.camera, loopObj.renderer);
         loopObj.loop();
+    };
+    api.stop = (loopObj) => {
+        loopObj.active = false;
     };
     // return public api
     return api;
@@ -75,6 +83,8 @@ const loopObj = loopMod.create({
         camera.position.set(2, 2, 2);
         camera.lookAt(0, 0, 0);
         renderer.setSize(640, 480);
+        scene.userData.mesh.rotation.x = 0;
+        loopObj.frame = 0;
     },
     update: function(loopObj, frame, frameMax, scene, camera){
         const degree = 360 * (frame / frameMax);
@@ -83,3 +93,14 @@ const loopObj = loopMod.create({
 });
 // do just once
 loopMod.start(loopObj);
+ 
+// event 
+const canvas = loopObj.renderer.domElement;
+canvas.onselectstart = function () { return false; }
+canvas.addEventListener('click', (e) => {
+    if(loopObj.active){
+        loopMod.stop(loopObj);
+    }else{
+        loopMod.start(loopObj);
+    }
+});
