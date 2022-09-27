@@ -6,6 +6,12 @@
 ## () sx-rotation
 * more advanced example of the s2-children example but using rotation also
 
+## () sx-svg-movement
+* () start an svg-path section using my threejs example module code for this
+
+## () sx-curve-class
+* () start a curve class section
+
 ## () sx-raycaster section
 * () start a raycaster section with at least one basic example with say a torus geometry
 * () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
@@ -18,6 +24,9 @@
 ## () sx-wrap-clamp section
 * () animation involving the use of clamp
 * () animation involving wrap
+
+## () sx-ani-stochastic section
+* () start a section for stochastic animation examples
 
 ## () expand basic even more
 * () s1-5-normalize-multiply
