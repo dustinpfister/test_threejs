@@ -14,6 +14,7 @@ const loopMod = (function(){
             FRAME_MAX: opt.FRAME_MAX || 90,
             fps_update: opt.fps_update || 12,
             fps_movement: opt.fps_movement || 30,
+            init: opt.init || function(){},
             update: opt.update || function(){},
             scene: opt.scene || new THREE.Scene(),
             camera: opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000),
@@ -39,14 +40,16 @@ const loopMod = (function(){
     // PUBLIC API
     //-------- ----------
     const api = {};
-    // create loop function
+    // create a loop object
     api.create = (opt) => {
         opt = opt || {};
         const loopObj = createLoopFunction(opt);
-        loopObj.camera.position.set(2, 2, 2);
-        loopObj.camera.lookAt(0, 0, 0);
-        loopObj.renderer.setSize(640, 480);
         return loopObj;
+    };
+    // start a loop object
+    api.start = (loopObj) => {
+        loopObj.init(loopObj, loopObj.scene, loopObj.camera, loopObj.renderer);
+        loopObj.loop();
     };
     // return public api
     return api;
@@ -56,15 +59,21 @@ const loopMod = (function(){
 // ---------- ----------
 // DEMO
 // ---------- ----------
-var mesh = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial());
+const mesh = new THREE.Mesh(
+     new THREE.BoxGeometry(1, 1, 1),
+     new THREE.MeshNormalMaterial());
 const loopObj = loopMod.create({
+    init: function(loopObj, scene, camera, renderer){
+        camera.position.set(2, 2, 2);
+        camera.lookAt(0, 0, 0);
+        renderer.setSize(640, 480);
+    },
     update: function(frame, frameMax){
         const degree = 360 * (frame / frameMax);
         mesh.rotation.x = THREE.MathUtils.degToRad(degree);
     }
 });
+// do just once
 (document.getElementById('demo') || document.body).appendChild(loopObj.renderer.domElement);
 loopObj.scene.add(mesh);
-loopObj.loop();
+loopMod.start(loopObj);
