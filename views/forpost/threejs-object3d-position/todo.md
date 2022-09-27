@@ -28,9 +28,9 @@
 * () worldToLocal example
 * () get world posiiton example
 
-## () sx-ani section
+## ( done 09/27/2022 ) sx-ani section
 * (done) loop example where I am just moving mesh objects along the x axis at differing rates
-* () lerp centered animation
+* (done) lerp centered animation
 
 ## ( done 09/26/2022 ) expand basic section
 * (done) rename s1-basic to s1-2-set
