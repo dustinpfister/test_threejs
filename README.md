@@ -18,7 +18,15 @@ The views folder is where I have all the draft prototypes, final for post source
 
 ### The demos folder
 
-In the [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/views/demos) I have folders for each revision number of three.js that I have worked with thus far going back to r91. This demos folder is then for testing out new features, and also figuring out how to fix things when they break each time code breaking changes are made in a new revision. This demo folder is also a place where I have drafts, or prototypes for project ideas that might end up being one of my [threejs examples](https://dustinpfister.github.io/2021/02/19/threejs-examples/) projects.
+In the [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/views/demos) I have folders for each revision number of three.js that I have worked with thus far going back to r91. This demos folder is then for testing out new features, and also figuring out how to fix things when they break each time code breaking changes are made in a new revision. 
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=JPZL4wPPuCg">
+         <img src="https://img.youtube.com/vi/JPZL4wPPuCg/0.jpg" style="width:50%;">
+      </a>
+</div>
+
+This demo folder is also a place where I have drafts, or prototypes for project ideas that might end up being one of my [threejs examples](https://dustinpfister.github.io/2021/02/19/threejs-examples/) projects.
 
 ### The for post folder
 
