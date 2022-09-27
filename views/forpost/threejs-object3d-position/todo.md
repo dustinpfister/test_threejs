@@ -9,6 +9,10 @@
 ## () expand children section
 * () have an example that has to do with parent and world space relative positions
 
+## () sx-raycaster-section
+* () start a raycaster section with at least one basic example with say a torus geometry
+* () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
+
 ## () sx-box3 section
 * () use box3 to set an area where mesh objects can be
 * () use box3 to make it so the position of objects will not go below a plane
