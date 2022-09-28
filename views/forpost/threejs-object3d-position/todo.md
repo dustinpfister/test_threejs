@@ -32,9 +32,8 @@
 * () s1-5-normalize-multiply
 * () s1-6-apply-euler
 
-## () expand children section
-* () worldToLocal example
-* () get world position example
+## ( done 09/28/2022 ) expand children section
+* (done) get world position example
 
 ## ( done 09/27/2022 ) sx-ani section
 * (done) loop example where I am just moving mesh objects along the x axis at differing rates
