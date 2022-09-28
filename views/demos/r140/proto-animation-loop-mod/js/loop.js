@@ -25,10 +25,18 @@ const loopMod = (function(){
     //-------- ----------
     // LOOP CLASS PROTOTYPE
     //-------- ----------
-    // GetPer method pased off of frame and FRAME_MAX
-    Loop.prototype.getAlpha = function(count){
+    // GetAlpha method pased off of frame and FRAME_MAX by default
+    // or the given count, n, d, values
+    Loop.prototype.getAlpha = function(count, n, d){
         count = count === undefined ? 1 : count;
-        return this.frame / this.FRAME_MAX * count % 1;
+        n = n === undefined ? this.frame : n;
+        d = d === undefined ? this.FRAME_MAX : d;
+        return THREE.MathUtils.euclideanModulo(n / d * count, 1);
+    };
+    // get a bias or ping pong value
+    Loop.prototype.getBias = function(count, n, d){
+        const alpha = this.getAlpha(count, n, d);
+        return THREE.MathUtils.pingpong(alpha - 0.5, 1) * 2;
     };
     // loop function at prototype level is noop (might remove)
     Loop.prototype.loop = function(){};
