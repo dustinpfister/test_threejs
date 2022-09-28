@@ -8,7 +8,7 @@
 ## () clean up and combine examples
 * (done) update all examples to use cont and let
 * (done) update all examples to use document.body as default for attachment element
-* () update comments for all examples
+* (done) update comments for all examples
 * () combine s1 - s3 as s2-box-geometry section examples
 * () rename s4-loop to s3-1-box-geometry
 

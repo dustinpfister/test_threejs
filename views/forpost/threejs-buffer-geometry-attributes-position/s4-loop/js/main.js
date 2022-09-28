@@ -1,6 +1,7 @@
-
 (function () {
-
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
     // set location of a vert given an index value in geometry.index
     const setVert = function(geometry, vertIndex, pos){
         pos = pos || {};
@@ -10,7 +11,6 @@
         position.array[posIndex + 1] = pos.y === undefined ? position.array[posIndex + 1]: pos.y;
         position.array[posIndex + 2] = pos.z === undefined ? position.array[posIndex + 2]: pos.z;
     };
-
     // set pos for tri index
     const setTri = function(geometry, triIndex, pos){
         pos = pos || {};
@@ -19,7 +19,6 @@
         setVert(geometry, vertIndex + 1, pos);
         setVert(geometry, vertIndex + 2, pos);
     };
-
     // update method for a box geo
     const updateBoxGeo = function(geometry, per){
         const bias = 1 - Math.abs(per - 0.5) / 0.5,
@@ -37,27 +36,27 @@
         // MUST SET THE needsUpdate prop of position to true
         position.needsUpdate = true;
     };
-
-    // scene
+    //-------- ----------
+    // SCENE, CAMERA, RENDERER
+    //-------- ----------
     const scene = new THREE.Scene();
-
-    // GEOMETRY
+    const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
+    camera.position.set(3, 3, 3);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+    //-------- ----------
+    // GEOMETRY, MESH
+    //-------- ----------
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
         side: THREE.DoubleSide
     }));
     scene.add(mesh);
-
-    // CAMERA
-    const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(3, 3, 3);
     camera.lookAt(mesh.position);
-
-    // RENDER
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-
+    //-------- ----------
+    // LOOP
+    //-------- ----------
     const maxFrames = 300,
     FPS = 30;
     let lt = new Date(), per = 0;
@@ -74,6 +73,4 @@
         }
     };
     loop();
-
-}
-    ());
+}());

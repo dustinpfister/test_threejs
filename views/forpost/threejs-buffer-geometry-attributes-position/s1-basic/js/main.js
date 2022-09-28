@@ -1,16 +1,16 @@
 (function () {
-    //******** **********
-    // scene, camera, render
-    //******** **********
+    //-------- ----------
+    // SCENE, CAMERA, RENDERER
+    //-------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(2, 2, 2);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-    //******** **********
+    //-------- ----------
     // GEOMETRY, MESH - starting with a cube and looking at position attribute
-    //******** **********
+    //-------- ----------
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     // check out the position attribute of a cube
     const position = geometry.getAttribute('position');
@@ -31,9 +31,9 @@
     }));
     scene.add(mesh);
     camera.lookAt(mesh.position);
-    //******** **********
+    //-------- ----------
     // RENDER
-    //******** **********
+    //-------- ----------
     renderer.render(scene, camera);
 }
     ());
