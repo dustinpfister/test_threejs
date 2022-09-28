@@ -13,14 +13,14 @@ const loopMod = (function(){
         this.secs = 0;
         this.active = false;
         this.alpha = 0;
-        this.fps_update = opt.fps_update || 12;
-        this.fps_movement = opt.fps_movement || 60;
+        this.fps_update = opt.fps_update || 20;
+        this.fps_movement = opt.fps_movement || 30;
         this.init = opt.init || function(){};
         this.onStart = opt.onStart || function(){};
         this.update = opt.update || function(){};
         this.scene = opt.scene || new THREE.Scene();
         this.camera = opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
-        this.renderer = new THREE.WebGLRenderer();
+        this.renderer = new THREE.WebGLRenderer({ alpha: true });
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE
@@ -51,7 +51,7 @@ const loopMod = (function(){
         // the loop function as own property
         loop.loop = function(){
             const now = new Date();
-            const secs = loop.secs = (now - loop.lt) / 1000;
+            let secs = loop.secs = (now - loop.lt) / 1000;
             // keep calling loop over and over again i active
             if(loop.active){
                 requestAnimationFrame(loop.loop);
