@@ -8,7 +8,7 @@ const loopMod = (function(){
     // create loop helper
     const createLoopObject = (opt) => {
         opt = opt || {};
-        const loopObj = {
+        const loop = {
             frame: 0,
             lt: new Date(),
             active: false,
@@ -23,25 +23,25 @@ const loopMod = (function(){
             renderer: new THREE.WebGLRenderer()
         };
         // the loop function
-        loopObj.loop = function(){
+        loop.loop = function(){
             const now = new Date();
-            const secs = loopObj.secs = (now - loopObj.lt) / 1000;
+            const secs = loop.secs = (now - loop.lt) / 1000;
             // keep calling loop over and over again i active
-            if(loopObj.active){
-                requestAnimationFrame(loopObj.loop);
+            if(loop.active){
+                requestAnimationFrame(loop.loop);
             }
-            if(secs > 1 / loopObj.fps_update){
+            if(secs > 1 / loop.fps_update){
                 // update, render
-                loopObj.update(loopObj, loopObj.scene, loopObj.camera, loopObj.renderer);
-                loopObj.renderer.render(loopObj.scene, loopObj.camera);
+                loop.update.call(loop, loop, loop.scene, loop.camera, loop.renderer);
+                loop.renderer.render(loop.scene, loop.camera);
                 // step frame
-                loopObj.frame += loopObj.fps_movement * secs;
-                loopObj.frame %= loopObj.FRAME_MAX;
-                loopObj.lt = now;
+                loop.frame += loop.fps_movement * secs;
+                loop.frame %= loop.FRAME_MAX;
+                loop.lt = now;
             }
         };
-        loopObj.init(loopObj, loopObj.scene, loopObj.camera, loopObj.renderer);
-        return loopObj;
+        loop.init(loop, loop.scene, loop.camera, loop.renderer);
+        return loop;
     };
     //-------- ----------
     // PUBLIC API
@@ -50,18 +50,18 @@ const loopMod = (function(){
     // create a loop object
     api.create = (opt) => {
         opt = opt || {};
-        const loopObj = createLoopObject(opt);
-        return loopObj;
+        const loop = createLoopObject(opt);
+        return loop;
     };
     // start a loop object
-    api.start = (loopObj) => {
-        loopObj.active = true;
-        loopObj.lt = new Date();
-        loopObj.onStart(loopObj, loopObj.scene, loopObj.camera, loopObj.renderer);
-        loopObj.loop();
+    api.start = (loop) => {
+        loop.active = true;
+        loop.lt = new Date();
+        loop.onStart(loop, loop.scene, loop.camera, loop.renderer);
+        loop.loop();
     };
-    api.stop = (loopObj) => {
-        loopObj.active = false;
+    api.stop = (loop) => {
+        loop.active = false;
     };
     // return public api
     return api;
