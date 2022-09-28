@@ -33,9 +33,8 @@
 * () s1-6-apply-euler
 
 ## () expand children section
-* () have an example that has to do with parent and world space relative positions
 * () worldToLocal example
-* () get world posiiton example
+* () get world position example
 
 ## ( done 09/27/2022 ) sx-ani section
 * (done) loop example where I am just moving mesh objects along the x axis at differing rates
