@@ -3,26 +3,44 @@
 // ---------- ----------
 const loopMod = (function(){
     //-------- ----------
+    // LOOP CLASS CONSTRUCTOR
+    //-------- ----------
+    const Loop = function(opt){
+        opt = opt || {};
+        this.frame = 0;
+        this.FRAME_MAX = opt.FRAME_MAX || 300;
+        this.lt = new Date();
+        this.secs = 0;
+        this.active = false;
+        this.alpha = 0;
+        this.fps_update = opt.fps_update || 12;
+        this.fps_movement = opt.fps_movement || 60;
+        this.init = opt.init || function(){};
+        this.onStart = opt.onStart || function(){};
+        this.update = opt.update || function(){};
+        this.scene = opt.scene || new THREE.Scene();
+        this.camera = opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
+        this.renderer = new THREE.WebGLRenderer();
+    };
+    //-------- ----------
+    // LOOP CLASS PROTOTYPE
+    //-------- ----------
+    // GetPer method pased off of frame and FRAME_MAX
+    Loop.prototype.getAlpha = function(count){
+        count = count === undefined ? 1 : count;
+        return this.frame / this.FRAME_MAX * count % 1;
+    };
+    // loop function at prototype level is noop (might remove)
+    Loop.prototype.loop = function(){};
+    //-------- ----------
     // HELPERS
     //-------- ----------
     // create loop helper
     const createLoopObject = (opt) => {
         opt = opt || {};
-        const loop = {
-            frame: 0,
-            lt: new Date(),
-            active: false,
-            FRAME_MAX: opt.FRAME_MAX || 300,
-            fps_update: opt.fps_update || 12,
-            fps_movement: opt.fps_movement || 60,
-            init: opt.init || function(){},
-            onStart: opt.onStart || function(){},
-            update: opt.update || function(){},
-            scene: opt.scene || new THREE.Scene(),
-            camera: opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000),
-            renderer: new THREE.WebGLRenderer()
-        };
-        // the loop function
+        // create a Loop Class Object
+        const loop = new Loop(opt);
+        // the loop function as own property
         loop.loop = function(){
             const now = new Date();
             const secs = loop.secs = (now - loop.lt) / 1000;
@@ -40,6 +58,7 @@ const loopMod = (function(){
                 loop.lt = now;
             }
         };
+        // call init
         loop.init(loop, loop.scene, loop.camera, loop.renderer);
         return loop;
     };

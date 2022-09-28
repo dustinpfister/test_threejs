@@ -34,9 +34,9 @@ const loopObj = loopMod.create({
         loopObj.frame = 0;
     },
     // update method
-    update: function(loopObj, scene, camera){
-        //const degree = 360 * (loopObj.frame / loopObj.FRAME_MAX);
-        const degree = scene.userData.degree += 20 * loopObj.secs;
+    update: function(loop, scene, camera){
+        const degree = 360 * loop.getAlpha(2);
+        //const degree = scene.userData.degree += 20 * loopObj.secs;
         scene.userData.mesh.rotation.x = THREE.MathUtils.degToRad(degree);
     }
 });
