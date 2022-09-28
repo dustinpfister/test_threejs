@@ -6,8 +6,8 @@
 * () have a mesh example and use compute vertex normals, and set clean defaults for uv attribute
 
 ## () clean up and combine examples
-* () update all examples to use cont and let
-* () update all examples to use document.body as default for attachment element
+* (done) update all examples to use cont and let
+* (done) update all examples to use document.body as default for attachment element
 * () update comments for all examples
 * () combine s1 - s3 as s2-box-geometry section examples
 * () rename s4-loop to s3-1-box-geometry

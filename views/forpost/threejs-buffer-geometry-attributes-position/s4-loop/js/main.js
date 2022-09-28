@@ -2,9 +2,9 @@
 (function () {
 
     // set location of a vert given an index value in geometry.index
-    var setVert = function(geometry, vertIndex, pos){
+    const setVert = function(geometry, vertIndex, pos){
         pos = pos || {};
-        var posIndex = geometry.index.array[vertIndex] * 3,
+        const posIndex = geometry.index.array[vertIndex] * 3,
         position = geometry.getAttribute('position');
         position.array[posIndex] = pos.x === undefined ? position.array[posIndex]: pos.x;
         position.array[posIndex + 1] = pos.y === undefined ? position.array[posIndex + 1]: pos.y;
@@ -12,21 +12,21 @@
     };
 
     // set pos for tri index
-    var setTri = function(geometry, triIndex, pos){
+    const setTri = function(geometry, triIndex, pos){
         pos = pos || {};
-        var vertIndex = triIndex * 3;
+        const vertIndex = triIndex * 3;
         setVert(geometry, vertIndex, pos);
         setVert(geometry, vertIndex + 1, pos);
         setVert(geometry, vertIndex + 2, pos);
     };
 
     // update method for a box geo
-    var updateBoxGeo = function(geometry, per){
-        var bias = 1 - Math.abs(per - 0.5) / 0.5;
-        var size = 0.5 + 1 * bias,
+    const updateBoxGeo = function(geometry, per){
+        const bias = 1 - Math.abs(per - 0.5) / 0.5,
+        size = 0.5 + 1 * bias,
         position = geometry.getAttribute('position'),
-        triCount = geometry.getIndex().count / 3,
-        i = 0, pos, axis;
+        triCount = geometry.getIndex().count / 3;
+        let i = 0, pos, axis;
         while(i < triCount){
             axis = ['x', 'y', 'z'][Math.floor(i / 4)];
             pos = {};
@@ -39,31 +39,30 @@
     };
 
     // scene
-    var scene = new THREE.Scene();
+    const scene = new THREE.Scene();
 
     // GEOMETRY
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({
         side: THREE.DoubleSide
     }));
     scene.add(mesh);
 
     // CAMERA
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
+    const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(3, 3, 3);
     camera.lookAt(mesh.position);
 
     // RENDER
-    var renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
+    (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 
-    var per = 0,
-    lt = new Date(),
-    maxFrames = 300,
+    const maxFrames = 300,
     FPS = 30;
-    var loop = function(){
-        var now = new Date(),
+    let lt = new Date(), per = 0;
+    const loop = function(){
+        const now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if(secs > 1 / FPS){
