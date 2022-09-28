@@ -6,14 +6,14 @@ const loopMod = (function(){
     // HELPERS
     //-------- ----------
     // create loop helper
-    const createLoopFunction = (opt) => {
+    const createLoopObject = (opt) => {
         opt = opt || {};
         const loopObj = {
             frame: 0,
             lt: new Date(),
             active: false,
             FRAME_MAX: opt.FRAME_MAX || 300,
-            fps_update: opt.fps_update || 60,
+            fps_update: opt.fps_update || 12,
             fps_movement: opt.fps_movement || 60,
             init: opt.init || function(){},
             onStart: opt.onStart || function(){},
@@ -22,15 +22,17 @@ const loopMod = (function(){
             camera: opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000),
             renderer: new THREE.WebGLRenderer()
         };
+        // the loop function
         loopObj.loop = function(){
-            const now = new Date(),
-            secs = (now - loopObj.lt) / 1000;
+            const now = new Date();
+            const secs = loopObj.secs = (now - loopObj.lt) / 1000;
+            // keep calling loop over and over again i active
             if(loopObj.active){
                 requestAnimationFrame(loopObj.loop);
             }
             if(secs > 1 / loopObj.fps_update){
                 // update, render
-                loopObj.update(loopObj, Math.floor(loopObj.frame), loopObj.FRAME_MAX, loopObj.scene, loopObj.camera);
+                loopObj.update(loopObj, loopObj.scene, loopObj.camera, loopObj.renderer);
                 loopObj.renderer.render(loopObj.scene, loopObj.camera);
                 // step frame
                 loopObj.frame += loopObj.fps_movement * secs;
@@ -48,7 +50,7 @@ const loopMod = (function(){
     // create a loop object
     api.create = (opt) => {
         opt = opt || {};
-        const loopObj = createLoopFunction(opt);
+        const loopObj = createLoopObject(opt);
         return loopObj;
     };
     // start a loop object
