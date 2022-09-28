@@ -1,9 +1,11 @@
 # threejs-buffer-geometry-attributes-position todo list
 
-## () new basic section
+## () - expand animation section
+
+## ( done 09/28/2022 ) new basic section
 * (done) start a new basic section that will be about making a geometry from the ground up.
 * (done) for first demo just use the points constructor
-* () have a mesh example and use compute vertex normals, and set clean defaults for uv attribute
+* (done) have a mesh example and use compute vertex normals, and set clean defaults for uv attribute
 
 ## ( done 09/28/2022 ) clean up and combine examples
 * (done) update all examples to use cont and let
