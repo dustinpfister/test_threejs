@@ -32,6 +32,14 @@
 * () s1-5-normalize-multiply
 * () s1-6-apply-euler
 
+## () s3-3-ani-world-local
+* () this will be an animation in which I have two groups
+* () the two groups will be in motion
+* () the children of both groups will be in motion
+* () I will then have at least one 'free' mesh that is just a child of scene
+* () use the getWorldPositon method to get the world space location of a current group
+* () move the mesh object to a location relative to groups, children of groups, and the scene object
+
 ## ( done 09/28/2022 ) expand children section
 * (done) get world position example
 
