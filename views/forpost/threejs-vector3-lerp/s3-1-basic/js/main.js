@@ -7,7 +7,7 @@
     camera.lookAt(0, 0, 0);
     let renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
+    (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
     scene.add(camera);
     let light = new THREE.PointLight(0xffffff);
     light.position.set(1, 2, 4);
