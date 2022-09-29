@@ -22,15 +22,27 @@ const loopMod = (function(){
     const drawUI = {};
 
     drawUI.playButton = (loop, canvas, ctx) => {
-        const x = loop.buttons.play.x;
-        const y = loop.buttons.play.y;
+        const pb = loop.buttons.play;
+        const x = pb.x;
+        const y = pb.y;
         ctx.fillStyle = 'black';
         ctx.strokeStyle = 'white';
         ctx.beginPath();
         ctx.arc(x, y, 32, 0, Math.PI * 2);
         ctx.fill();
         ctx.stroke();
+        // if active draw square, else triangle
+        ctx.beginPath();
+        ctx.fillStyle = 'white';
+        if(loop.active){
+            const r = pb.r / 2;
+            ctx.rect( pb.x - r, pb.y - r, r * 2, r * 2 );
+        }
+        ctx.fill();
     };
+    drawUI.draw = (loop, canvas, ctx) => {
+        drawUI.playButton(loop, canvas, ctx);
+    }
 
     //-------- ----------
     // LOOP CLASS CONSTRUCTOR
@@ -59,13 +71,12 @@ const loopMod = (function(){
         this.ctx_ui =  this.canvas_ui.getContext('2d');
         this.container.appendChild(this.canvas_ui);
         this.container.appendChild(this.renderer.domElement);
-
-
+        // ui buttons
         const buttons = this.buttons = {};
         buttons.play = { x:0, y:0, r: 32 }
-
         // attach UI EVENTS
         canvas.onselectstart = function () { return false; };
+        // play pause button check
         canvas.addEventListener('click', (e) => {
             const pos = getCanvasRelative(e);
             // prevent default
@@ -74,13 +85,13 @@ const loopMod = (function(){
             const v_click = new THREE.Vector2(pos.x, pos.y);
             const v_pb = new THREE.Vector2(pb.x, pb.y);
             const d = v_click.distanceTo(v_pb);
-            console.log( );
             if(d <= pb.r ){
-                if(loopObj.active){
-                    loopMod.stop(loopObj);
+                if(loop.active){
+                    loopMod.stop(loop);
                 }else{
-                    loopMod.start(loopObj);
+                    loopMod.start(loop);
                 }
+                drawUI.draw(loop, loop.canvas_ui, loop.ctx_ui);
             }
         });
         // set size for first time
@@ -118,7 +129,7 @@ const loopMod = (function(){
         // draw ui
         this.buttons.play.x = this.canvas_ui.width - 64;
         this.buttons.play.y = this.canvas_ui.height - 64;
-        drawUI.playButton(this, this.canvas_ui, this.ctx_ui)
+        drawUI.draw(this, this.canvas_ui, this.ctx_ui);
     };
     // loop function at prototype level is noop (might remove)
     Loop.prototype.loop = function(){};
@@ -169,11 +180,13 @@ const loopMod = (function(){
         loop.active = true;
         loop.lt = new Date();
         loop.onStart(loop, loop.scene, loop.camera, loop.renderer);
+        drawUI.draw(loop, loop.canvas_ui, loop.ctx_ui);
         loop.loop();
     };
     // stop the loop
     api.stop = (loop) => {
         loop.active = false;
+        drawUI.draw(loop, loop.canvas_ui, loop.ctx_ui);
     };
     // return public api
     return api;
