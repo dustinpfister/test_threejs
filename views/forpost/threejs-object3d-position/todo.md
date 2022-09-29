@@ -28,6 +28,9 @@
 ## () sx-ani-stochastic section
 * () start a section for stochastic animation examples
 
+## () expand basic even more
+* () s1-6-apply-euler
+
 ## () s3-3-ani-world-local
 * () this will be an animation in which I have two groups
 * () the two groups will be in motion
@@ -36,9 +39,8 @@
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
 
-## () expand basic even more
-* () s1-5-normalize-multiply
-* () s1-6-apply-euler
+## ( done 09/29/2022 ) expand basic even more 
+* (done) s1-5-normalize-multiply
 
 ## ( done 09/28/2022 ) expand children section
 * (done) get world position example
