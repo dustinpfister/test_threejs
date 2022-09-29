@@ -22,8 +22,8 @@ const loopMod = (function(){
     const drawUI = {};
 
     drawUI.playButton = (loop, canvas, ctx) => {
-        const x = canvas.width - 64;
-        const y = canvas.height - 64;
+        const x = loop.buttons.play.x;
+        const y = loop.buttons.play.y;
         ctx.fillStyle = 'black';
         ctx.strokeStyle = 'white';
         ctx.beginPath();
@@ -36,6 +36,7 @@ const loopMod = (function(){
     // LOOP CLASS CONSTRUCTOR
     //-------- ----------
     const Loop = function(opt){
+        const loop = this;
         opt = opt || {};
         this.frame = 0;
         this.FRAME_MAX = opt.FRAME_MAX || 300;
@@ -58,23 +59,32 @@ const loopMod = (function(){
         this.ctx_ui =  this.canvas_ui.getContext('2d');
         this.container.appendChild(this.canvas_ui);
         this.container.appendChild(this.renderer.domElement);
-        this.setSize(640, 480);
+
+
+        const buttons = this.buttons = {};
+        buttons.play = { x:0, y:0, r: 32 }
+
         // attach UI EVENTS
-
-
-        canvas.onselectstart = function () { return false; }
+        canvas.onselectstart = function () { return false; };
         canvas.addEventListener('click', (e) => {
             const pos = getCanvasRelative(e);
-            console.log(pos)
             // prevent default
             e.preventDefault();
-            if(loopObj.active){
-                loopMod.stop(loopObj);
-            }else{
-                loopMod.start(loopObj);
+            const pb = loop.buttons.play;
+            const v_click = new THREE.Vector2(pos.x, pos.y);
+            const v_pb = new THREE.Vector2(pb.x, pb.y);
+            const d = v_click.distanceTo(v_pb);
+            console.log( );
+            if(d <= pb.r ){
+                if(loopObj.active){
+                    loopMod.stop(loopObj);
+                }else{
+                    loopMod.start(loopObj);
+                }
             }
         });
-
+        // set size for first time
+        this.setSize(640, 480);
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE
@@ -106,6 +116,8 @@ const loopMod = (function(){
         can.width = w;
         can.height = h;
         // draw ui
+        this.buttons.play.x = this.canvas_ui.width - 64;
+        this.buttons.play.y = this.canvas_ui.height - 64;
         drawUI.playButton(this, this.canvas_ui, this.ctx_ui)
     };
     // loop function at prototype level is noop (might remove)
