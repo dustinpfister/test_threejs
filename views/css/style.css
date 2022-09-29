@@ -68,7 +68,7 @@ body{
   /*width: 700px;*/
   margin-right:auto;
   margin-left:auto;
-  outline: 2px solid #00ff00;
+  outline: 4px solid #00af00;
 }
 
 #demo > canvas {

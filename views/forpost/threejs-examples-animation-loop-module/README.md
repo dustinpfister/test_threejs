@@ -1,0 +1,3 @@
+# threejs-examples-animation-loop-module
+
+This is an animaiton loop module project based off of by r140 demo that was the starting point for this. The aim is to have something that will work as a center framework for header apps. These apps might prove to be mainly frame, by frame, or determanisic in nature. However becuase the aim is to make a header app many of them might prove to also be stocastic, random, make use of seed data on a page by page basis, or other various factors. In any case I might like to have a standard UI that can be used to pause and start the app, as well as adjust the rate at which it updates so that the user has control over the amount of processor overhead that it will use.
