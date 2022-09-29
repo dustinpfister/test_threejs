@@ -34,9 +34,13 @@ const loopMod = (function(){
         // if active draw square, else triangle
         ctx.beginPath();
         ctx.fillStyle = 'white';
+        const r = pb.r / 2;
         if(loop.active){
-            const r = pb.r / 2;
             ctx.rect( pb.x - r, pb.y - r, r * 2, r * 2 );
+        }else{
+            ctx.moveTo(pb.x + r * 1.25, pb.y);
+            ctx.lineTo(pb.x - r, pb.y + r);
+            ctx.lineTo(pb.x - r, pb.y - r);
         }
         ctx.fill();
     };

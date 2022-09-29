@@ -2,6 +2,8 @@
 // DEMO
 // ---------- ----------
 const loopObj = loopMod.create({
+    fps_update: 12,
+    fps_movement: 80,
     // init hook for prefroming actions that will only happen once
     // this is called once the loopObj is ready but has not been 
     // started yet for first time
