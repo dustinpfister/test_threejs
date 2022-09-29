@@ -21,9 +21,22 @@ const loopObj = loopMod.create({
             i += 1;
         };
         scene.add(group);
-        (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-        // EVENTS
-        const canvas = loopObj.renderer.domElement;
+
+        //(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+        ( document.getElementById('demo') || document.body ).appendChild( loopObj.container )
+
+        camera.aspect = 640 / 200;
+        camera.updateProjectionMatrix();
+        loopObj.setSize(640, 200);
+
+        // UI CANVAS
+        const canvas = loopObj.canvas_ui;
+        const ctx = loopObj.ctx_ui;
+
+        ctx.fillStyle = 'rgba(255,0,0,0.5)';
+        ctx.fillRect(0,0, canvas.width, canvas.height)
+
+        // UI CNAVAS EVENTS
         canvas.onselectstart = function () { return false; }
         canvas.addEventListener('click', (e) => {
             if(loopObj.active){
@@ -37,9 +50,7 @@ const loopObj = loopMod.create({
     onStart: function(loopObj, scene, camera, renderer){
         camera.position.set(2, 2, 2);
         camera.lookAt(0, 0, 0);
-        camera.aspect = 640 / 200;
-        camera.updateProjectionMatrix();
-        renderer.setSize(640, 200);
+
         loopObj.frame = 0;
     },
     // update method

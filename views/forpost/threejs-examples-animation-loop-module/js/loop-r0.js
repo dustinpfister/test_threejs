@@ -20,7 +20,15 @@ const loopMod = (function(){
         this.update = opt.update || function(){};
         this.scene = opt.scene || new THREE.Scene();
         this.camera = opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
+        // renderer, ui canvas, and container div
+        this.container = document.createElement('div');
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
+        const canvas = this.canvas_ui =  document.createElement('canvas');
+        canvas.style.position = 'absolute';
+        this.ctx_ui =  this.canvas_ui.getContext('2d');
+        this.container.appendChild(this.canvas_ui);
+        this.container.appendChild(this.renderer.domElement);
+
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE
@@ -37,6 +45,19 @@ const loopMod = (function(){
     Loop.prototype.getBias = function(count, n, d){
         const alpha = this.getAlpha(count, n, d);
         return THREE.MathUtils.pingpong(alpha - 0.5, 1) * 2;
+    };
+    // the setSize method
+    Loop.prototype.setSize = function(w, h){
+        this.renderer.setSize(640, 200);
+        // set container, and canvas with style api
+        const con = this.container;
+        const can = this.canvas_ui;
+        con.style.width = w + 'px';
+        con.style.height = h + 'px';
+        can.style.width = w + 'px';
+        can.style.height = h + 'px';
+        can.width = w;
+        can.height = h;
     };
     // loop function at prototype level is noop (might remove)
     Loop.prototype.loop = function(){};
@@ -77,7 +98,9 @@ const loopMod = (function(){
     // create a loop object
     api.create = (opt) => {
         opt = opt || {};
+        // the loop object
         const loop = createLoopObject(opt);
+        // return the loop object
         return loop;
     };
     // start a loop object
@@ -87,6 +110,7 @@ const loopMod = (function(){
         loop.onStart(loop, loop.scene, loop.camera, loop.renderer);
         loop.loop();
     };
+    // stop the loop
     api.stop = (loop) => {
         loop.active = false;
     };
