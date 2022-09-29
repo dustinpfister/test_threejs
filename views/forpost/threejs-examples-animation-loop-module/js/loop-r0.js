@@ -3,6 +3,21 @@
 // ---------- ----------
 const loopMod = (function(){
 
+
+    const getCanvasRelative = function (e) {
+        var canvas = e.target,
+        bx = canvas.getBoundingClientRect(),
+        pos = {
+            x: (e.changedTouches ? e.changedTouches[0].clientX : e.clientX) - bx.left,
+            y: (e.changedTouches ? e.changedTouches[0].clientY : e.clientY) - bx.top,
+            bx: bx
+        };
+        // ajust for native canvas matrix size
+        pos.x = Math.floor((pos.x / canvas.scrollWidth) * canvas.width);
+        pos.y = Math.floor((pos.y / canvas.scrollHeight) * canvas.height);
+        return pos;
+    };
+
     // UI DRAW METHIDS
     const drawUI = {};
 
@@ -44,6 +59,22 @@ const loopMod = (function(){
         this.container.appendChild(this.canvas_ui);
         this.container.appendChild(this.renderer.domElement);
         this.setSize(640, 480);
+        // attach UI EVENTS
+
+
+        canvas.onselectstart = function () { return false; }
+        canvas.addEventListener('click', (e) => {
+            const pos = getCanvasRelative(e);
+            console.log(pos)
+            // prevent default
+            e.preventDefault();
+            if(loopObj.active){
+                loopMod.stop(loopObj);
+            }else{
+                loopMod.start(loopObj);
+            }
+        });
+
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE

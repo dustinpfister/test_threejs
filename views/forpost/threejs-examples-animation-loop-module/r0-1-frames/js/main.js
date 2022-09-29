@@ -37,14 +37,7 @@ const loopObj = loopMod.create({
         //ctx.fillRect(0,0, canvas.width, canvas.height)
 
         // UI CNAVAS EVENTS
-        canvas.onselectstart = function () { return false; }
-        canvas.addEventListener('click', (e) => {
-            if(loopObj.active){
-                loopMod.stop(loopObj);
-            }else{
-                loopMod.start(loopObj);
-            }
-        });
+
     },
     // what needs to happen each time the loop starts
     onStart: function(loopObj, scene, camera, renderer){
