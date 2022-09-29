@@ -2,6 +2,21 @@
 // ANIMATION LOOP MODULE - r0 - prototype
 // ---------- ----------
 const loopMod = (function(){
+
+    // UI DRAW METHIDS
+    const drawUI = {};
+
+    drawUI.playButton = (loop, canvas, ctx) => {
+        const x = canvas.width - 64;
+        const y = canvas.height - 64;
+        ctx.fillStyle = 'black';
+        ctx.strokeStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(x, y, 32, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+    };
+
     //-------- ----------
     // LOOP CLASS CONSTRUCTOR
     //-------- ----------
@@ -28,7 +43,7 @@ const loopMod = (function(){
         this.ctx_ui =  this.canvas_ui.getContext('2d');
         this.container.appendChild(this.canvas_ui);
         this.container.appendChild(this.renderer.domElement);
-
+        this.setSize(640, 480);
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE
@@ -48,7 +63,8 @@ const loopMod = (function(){
     };
     // the setSize method
     Loop.prototype.setSize = function(w, h){
-        this.renderer.setSize(640, 200);
+        // set renderer
+        this.renderer.setSize(w, h);
         // set container, and canvas with style api
         const con = this.container;
         const can = this.canvas_ui;
@@ -58,6 +74,8 @@ const loopMod = (function(){
         can.style.height = h + 'px';
         can.width = w;
         can.height = h;
+        // draw ui
+        drawUI.playButton(this, this.canvas_ui, this.ctx_ui)
     };
     // loop function at prototype level is noop (might remove)
     Loop.prototype.loop = function(){};

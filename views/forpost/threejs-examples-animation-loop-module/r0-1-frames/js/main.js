@@ -33,8 +33,8 @@ const loopObj = loopMod.create({
         const canvas = loopObj.canvas_ui;
         const ctx = loopObj.ctx_ui;
 
-        ctx.fillStyle = 'rgba(255,0,0,0.5)';
-        ctx.fillRect(0,0, canvas.width, canvas.height)
+        //ctx.fillStyle = 'rgba(255,0,0,0.5)';
+        //ctx.fillRect(0,0, canvas.width, canvas.height)
 
         // UI CNAVAS EVENTS
         canvas.onselectstart = function () { return false; }
