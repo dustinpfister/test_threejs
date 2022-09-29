@@ -10,8 +10,8 @@ body{
 }
 
 .container{
-  padding: 25px;
-  margin:0px;
+  padding: 50px;
+  margin: 0px;
 }
 /*******************
     The Navagation DIV
@@ -19,7 +19,7 @@ body{
 .nav_container{
   position:fixed;
   width: 100%;
-  height:200px;
+  height: 200px;
   background:rgba(0,0,0,0.9);
   background-image: url('header.png');
   background-repeat: no-repeat;
