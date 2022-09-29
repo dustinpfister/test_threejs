@@ -27,6 +27,13 @@ body{
   background-position: center;
   text-align:center;
 }
+#nav_headerapp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -110%);
+  width: 640px;
+}
 .nav_content{
   position:absolute;
   bottom:0px;
@@ -34,14 +41,20 @@ body{
   color: #ffffff;
 }
 .nav_title{
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
    color: #2a2a2a;
    font-size: 32px;
    text-shadow: 4px 4px 8px lime, 2px 2px 4px white;
 }
 .nav_links{
-  position: static;
-  margin-right: auto;
-  margin-left: auto;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+
   font-size: 12pt;
   width: 600px;
   padding:5px;
@@ -57,7 +70,7 @@ body{
     DEMO DIV
 *******************/
 #demo{
-  display:block;
+  position: relative;
   background-image: url('demoback.png');
   background-repeat: repeat;
   background-size: 32px 32px;

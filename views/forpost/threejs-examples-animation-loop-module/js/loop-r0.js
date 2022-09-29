@@ -45,8 +45,9 @@ const loopMod = (function(){
         ctx.fill();
     };
     drawUI.draw = (loop, canvas, ctx) => {
+        ctx.clearRect(0,0,canvas.width, canvas.height);
         drawUI.playButton(loop, canvas, ctx);
-    }
+    };
 
     //-------- ----------
     // LOOP CLASS CONSTRUCTOR
@@ -71,10 +72,15 @@ const loopMod = (function(){
         this.container = document.createElement('div');
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
         const canvas = this.canvas_ui =  document.createElement('canvas');
-        canvas.style.position = 'absolute';
+
         this.ctx_ui =  this.canvas_ui.getContext('2d');
+
         this.container.appendChild(this.canvas_ui);
         this.container.appendChild(this.renderer.domElement);
+
+        canvas.style.position = 'absolute';
+        canvas.style.left = '0px';
+
         // ui buttons
         const buttons = this.buttons = {};
         buttons.play = { x:0, y:0, r: 32 }
