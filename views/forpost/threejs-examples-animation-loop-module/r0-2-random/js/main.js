@@ -2,7 +2,7 @@
 // Random animation example for r0 of threejs-examples-animation-loop-module
 // ---------- ----------
 const loopObj = loopMod.create({
-    fps_update: 12,
+    fps_update: 30,
     fps_movement: 80,
     pb: { r: 32, dx: 40, dy: 40},
     // init hook for prefroming actions that will only happen once
@@ -16,7 +16,7 @@ const loopObj = loopMod.create({
         sud.dMax = 5;
         // SETUP MESH GROUP
         const group = scene.userData.group = new THREE.Group();
-        const len = 60;
+        const len = 100;
         let i = 0;
         while(i < len){
             const mesh = new THREE.Mesh(
