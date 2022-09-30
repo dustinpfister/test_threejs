@@ -3,8 +3,27 @@
 // ---------- ----------
 const loopMod = (function(){
     //-------- ----------
-    // LOOP CLASS CONSTRUCTOR
+    // HELPERS
     //-------- ----------
+    // wrap and wrap axis methods from threejs-examples-wrap-module
+    // https://dustinpfister.github.io/2022/09/09/threejs-examples-wrap-module/
+    const wrap = function (value, a, b){
+        // get min and max this way
+        let max = Math.max(a, b);
+        let min = Math.min(a, b);
+        // return 0 for Wrap(value, 0, 0);
+        if(max === 0 && min === 0){
+             return 0;
+        }
+        let range = max - min;
+        return (min + ((((value - min) % range) + range) % range));
+    };
+    // wrap an axis
+    const wrapAxis = function(vec, vecMin, vecMax, axis){
+        axis = axis || 'x';
+        vec[axis] = wrap( vec[axis], vecMin[axis], vecMax[axis] );
+        return vec;
+    };
     // get canvas relative position from mouse or touch event object
     const getCanvasRelative = (e) => {
         var canvas = e.target,
@@ -62,10 +81,11 @@ const loopMod = (function(){
         const pb = loop.buttons.play;
         const x = pb.x;
         const y = pb.y;
+        ctx.globalAlpha = 0.75;
         ctx.fillStyle = 'black';
         ctx.strokeStyle = 'white';
         ctx.beginPath();
-        ctx.arc(x, y, 32, 0, Math.PI * 2);
+        ctx.arc(x, y, pb.r, 0, Math.PI * 2);
         ctx.fill();
         ctx.stroke();
         // if active draw square, else triangle
@@ -115,7 +135,7 @@ const loopMod = (function(){
         li.container.appendChild(li.canvas_ui);
         // ui buttons
         const buttons = li.buttons = {};
-        buttons.play = { x:0, y:0, r: 32 };
+        buttons.play = opt.pb || { x:0, y:0, r: 20, dx: 24, dy: 24 };
         // set style
         setContainerStyle(li);
         // attach UI EVENTS
@@ -153,8 +173,9 @@ const loopMod = (function(){
         can.width = w;
         can.height = h;
         // draw ui
-        this.buttons.play.x = this.canvas_ui.width - 64;
-        this.buttons.play.y = this.canvas_ui.height - 64;
+        const pb = this.buttons.play;
+        pb.x = this.canvas_ui.width - pb.dx;
+        pb.y = this.canvas_ui.height - pb.dy;
         drawUI.draw(this, this.canvas_ui, this.ctx_ui);
     };
     // loop function at prototype level is noop (might remove)
@@ -214,23 +235,8 @@ const loopMod = (function(){
         loop.active = false;
         drawUI.draw(loop, loop.canvas_ui, loop.ctx_ui);
     };
-    const wrap = api.wrap = function (value, a, b){
-        // get min and max this way
-        let max = Math.max(a, b);
-        let min = Math.min(a, b);
-        // return 0 for Wrap(value, 0, 0);
-        if(max === 0 && min === 0){
-             return 0;
-        }
-        let range = max - min;
-        return (min + ((((value - min) % range) + range) % range));
-    };
-    // wrap an axis
-    const wrapAxis = function(vec, vecMin, vecMax, axis){
-        axis = axis || 'x';
-        vec[axis] = wrap( vec[axis], vecMin[axis], vecMax[axis] );
-        return vec;
-    };
+    // making wrap helper public
+    api.wrap = wrap;
     // Wrap a vector method of public api
     api.wrapVector = function (vec, vecMin, vecMax) {
         vecMin = vecMin || new THREE.Vector3(-1, -1, -1);

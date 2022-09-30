@@ -1,8 +1,13 @@
 # threejs-examples-animation-loop-module todo list
 
+## () r1 - 
+
+
 ## ( done 09/30/2022 ) - r0-2-random - random features
 * (done) just have cubes go all over the place
 * (done) make use of the wrap vector feature
+* (done) no on start hook for this
+* (done) make use of userData object of scene for const settings
 
 ## ( done 09/30/2022 ) - r0-1-frames - Demo of the frames features of the library
 * (done) just a simple demo of the frame by frame feature
@@ -18,6 +23,7 @@
 * (done) helper function for setting style of container and all children
 * (done) attach events helper function
 * (done) bake in a wrap method from the wrap module example
+* (done) can adjust button size and position with create option
 
 ## ( done 09/29/2022 ) Start with source code from r140 proto
 * (done) start for post folder with code from demos folder

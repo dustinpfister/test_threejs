@@ -2,6 +2,7 @@
 const loopObj = loopMod.create({
     fps_update: 12,
     fps_movement: 80,
+    pb: { r: 32, dx: 40, dy: 40},
     // init hook for prefroming actions that will only happen once
     // this is called once the loopObj is ready but has not been 
     // started yet for first time
@@ -57,7 +58,6 @@ const loopObj = loopMod.create({
              loopMod.wrapVector(mesh.position, sud.vMin, sud.vMax);
              // setting opacity
              const d = mesh.position.distanceTo( sud.vCenter );
-
              let dAlpha = d / sud.dMax;
              dAlpha = THREE.MathUtils.clamp(dAlpha, 0, 1);
              mesh.material.opacity = 0.5 - 0.5 * dAlpha;
