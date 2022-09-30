@@ -8,14 +8,17 @@ const loopObj = loopMod.create({
     init: function(loopObj, scene, camera, renderer){
         // SETUP MESH GROUP
         const group = scene.userData.group = new THREE.Group();
-        const len = 20;
+        const len = 60;
         let i = 0;
         while(i < len){
             const mesh = new THREE.Mesh(
-                new THREE.BoxGeometry(1, 1, 1),
+                new THREE.BoxGeometry(0.5, 0.5, 0.5),
                 new THREE.MeshNormalMaterial());
             const ud = mesh.userData;
-            ud.dir = new THREE.Vector3(-3 + 6 * Math.random() ,1 + 3 * Math.random(), -3 + 6 * Math.random() );
+            ud.dir = new THREE.Vector3(
+               -3 + 6 * Math.random() ,
+               1 + 3 * Math.random() * (Math.random() > 0.5 ? 1 : -1),
+               -3 + 6 * Math.random() );
             group.add(mesh);
             i += 1;
         };
@@ -30,7 +33,6 @@ const loopObj = loopMod.create({
     onStart: function(loopObj, scene, camera, renderer){
         camera.position.set(2, 2, 2);
         camera.lookAt(0, 0, 0);
-        loopObj.frame = 0;
     },
     // update method
     update: function(loop, scene, camera){
