@@ -5,8 +5,11 @@ const loadScript = (src, domElement ) => {
     let script = document.createElement('script');
     domElement.appendChild(script);
     return new Promise((resolve, reject) => {
-        script.addEventListener('load', () => {
+        script.addEventListener('load', (e) => {
             resolve();
+        });
+        script.addEventListener('error', (e, b) => {
+            reject();
         });
         script.src = src;
     });
