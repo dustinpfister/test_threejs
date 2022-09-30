@@ -34,12 +34,10 @@ const loopMod = (function(){
     };
     // attach event handers
     const attachUIEvents = (li) => {
-
-const canvas = li.canvas_ui;
-
-        canvas.onselectstart = function () { return false; };
+        const con = li.container;
+        con.onselectstart = function () { return false; };
         // play pause button check
-        canvas.addEventListener('click', (e) => {
+        con.addEventListener('click', (e) => {
             const pos = getCanvasRelative(e);
             // prevent default
             e.preventDefault();
@@ -56,7 +54,6 @@ const canvas = li.canvas_ui;
                 drawUI.draw(li, li.canvas_ui, li.ctx_ui);
             }
         });
-
     };
     // UI DRAW METHIDS
     const drawUI = {};
