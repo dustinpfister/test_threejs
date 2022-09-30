@@ -5,6 +5,7 @@ const loopObj = loopMod.create({
     fps_update: 30,
     fps_movement: 30,
     FRAME_MAX: 300,
+    pb: { r: 16, dx:40, dy: 50 },
     init: function(loopObj, scene, camera, renderer){
         // cube
         const ud = scene.userData;

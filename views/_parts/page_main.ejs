@@ -42,7 +42,18 @@ In the for post section I am starting to put together folders of source code tha
 <script src="/js/threejs/0.140.0/loaders/ColladaLoader.js" ></script>
 
 
-<script src="/forpost/threejs-examples-animation-loop-module/js/loop-r0.js"></script>
+<script src="/forpost/threejs-examples-animation-loop-module/js/loop-r1.js"></script>
+<script>
+loopMod.iFrameLoad({
+    el: document.getElementById('nav_headerapp'),
+    url_threejs: '/js/threejs/0.140.0/three.min.js',
+    url_css: '/css/style-headerapp.css',
+    url_loopjs: '/forpost/threejs-examples-animation-loop-module/js/loop-r1.js',
+    url_app: '/forpost/threejs-examples-animation-loop-module/r1-1-basic/js/main.js'
+});
+</script>
+
+<!--
 <script>
 // ---------- ----------
 // DEMO
@@ -112,7 +123,7 @@ const loopObj = loopMod.create({
 loopMod.start(loopObj);
  
 </script>
-
+-->
 
 
 <script src="/forpost/threejs-scene/s3-3-bg-cube-texture/js/main.js"></script>
