@@ -2,9 +2,11 @@
 // ANIMATION LOOP MODULE - r0 - prototype
 // ---------- ----------
 const loopMod = (function(){
-
-
-    const getCanvasRelative = function (e) {
+    //-------- ----------
+    // LOOP CLASS CONSTRUCTOR
+    //-------- ----------
+    // get canvas relative position from mouse or touch event object
+    const getCanvasRelative = (e) => {
         var canvas = e.target,
         bx = canvas.getBoundingClientRect(),
         pos = {
@@ -17,10 +19,13 @@ const loopMod = (function(){
         pos.y = Math.floor((pos.y / canvas.scrollHeight) * canvas.height);
         return pos;
     };
+    // set the style of the container as well as all children
+    const setContainerStyle = (loop) => {
 
+    };
     // UI DRAW METHIDS
     const drawUI = {};
-
+    // draw the 'play/pause' button
     drawUI.playButton = (loop, canvas, ctx) => {
         const pb = loop.buttons.play;
         const x = pb.x;
@@ -44,45 +49,44 @@ const loopMod = (function(){
         }
         ctx.fill();
     };
+    // main draw ui method
     drawUI.draw = (loop, canvas, ctx) => {
         ctx.clearRect(0,0,canvas.width, canvas.height);
         drawUI.playButton(loop, canvas, ctx);
     };
-
     //-------- ----------
     // LOOP CLASS CONSTRUCTOR
     //-------- ----------
     const Loop = function(opt){
-        const loop = this;
+        const li = this; // li for Loop Instance
         opt = opt || {};
-        this.frame = 0;
-        this.FRAME_MAX = opt.FRAME_MAX || 300;
-        this.lt = new Date();
-        this.secs = 0;
-        this.active = false;
-        this.alpha = 0;
-        this.fps_update = opt.fps_update || 20;
-        this.fps_movement = opt.fps_movement || 30;
-        this.init = opt.init || function(){};
-        this.onStart = opt.onStart || function(){};
-        this.update = opt.update || function(){};
-        this.scene = opt.scene || new THREE.Scene();
-        this.camera = opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
+        li.frame = 0;
+        li.FRAME_MAX = opt.FRAME_MAX || 300;
+        li.lt = new Date();
+        li.secs = 0;
+        li.active = false;
+        li.alpha = 0;
+        li.fps_update = opt.fps_update || 20;
+        li.fps_movement = opt.fps_movement || 30;
+        li.init = opt.init || function(){};
+        li.onStart = opt.onStart || function(){};
+        li.update = opt.update || function(){};
+        li.scene = opt.scene || new THREE.Scene();
+        li.camera = opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
         // renderer, ui canvas, and container div
-        this.container = document.createElement('div');
-        this.renderer = new THREE.WebGLRenderer({ alpha: true });
-        const canvas = this.canvas_ui =  document.createElement('canvas');
+        li.container = document.createElement('div');
+        li.renderer = new THREE.WebGLRenderer({ alpha: true });
+        const canvas = li.canvas_ui =  document.createElement('canvas');
+        li.ctx_ui =  li.canvas_ui.getContext('2d');
+        li.container.appendChild(li.canvas_ui);
+        li.container.appendChild(li.renderer.domElement);
 
-        this.ctx_ui =  this.canvas_ui.getContext('2d');
+setContainerStyle(li);
 
-        this.container.appendChild(this.canvas_ui);
-        this.container.appendChild(this.renderer.domElement);
-
-        canvas.style.position = 'absolute';
-        canvas.style.left = '0px';
-
+        //canvas.style.position = 'absolute';
+        //canvas.style.left = '0px';
         // ui buttons
-        const buttons = this.buttons = {};
+        const buttons = li.buttons = {};
         buttons.play = { x:0, y:0, r: 32 }
         // attach UI EVENTS
         canvas.onselectstart = function () { return false; };
@@ -91,21 +95,21 @@ const loopMod = (function(){
             const pos = getCanvasRelative(e);
             // prevent default
             e.preventDefault();
-            const pb = loop.buttons.play;
+            const pb = li.buttons.play;
             const v_click = new THREE.Vector2(pos.x, pos.y);
             const v_pb = new THREE.Vector2(pb.x, pb.y);
             const d = v_click.distanceTo(v_pb);
             if(d <= pb.r ){
-                if(loop.active){
-                    loopMod.stop(loop);
+                if(li.active){
+                    loopMod.stop(li);
                 }else{
-                    loopMod.start(loop);
+                    loopMod.start(li);
                 }
-                drawUI.draw(loop, loop.canvas_ui, loop.ctx_ui);
+                drawUI.draw(li, li.canvas_ui, li.ctx_ui);
             }
         });
         // set size for first time
-        this.setSize(640, 480);
+        li.setSize(640, 480);
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE
