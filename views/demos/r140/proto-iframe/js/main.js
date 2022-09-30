@@ -1,21 +1,35 @@
 //-------- ----------
 // WINDOW
-//-------- ----------
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60, 640 / 240, 0.1, 1000);
-camera.position.set(2, 2, 2);
-camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 240);
-(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-// revision used
-console.log('r' + THREE.REVISION)
-// add something to scene
-scene.add(new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial() ))
-// render
-renderer.render(scene, camera);
-//-------- ----------
-// IFRAME
-//-------- ----------
-const iframe = document.createElement('iframe');
-(document.getElementById('demo') || document.body).appendChild(iframe);
+//-------- ---------
+let script = document.createElement('script');
+document.body.appendChild(script);
+script.src = '/demos/r140/proto-iframe/js/app.js';
+// on load
+script.addEventListener('load', ()=>{  
+    //-------- ----------
+    // IFRAME
+    //-------- ----------
+    const iframe = document.createElement('iframe');
+    iframe.width = 640;
+    iframe.height = 240;
+    (document.getElementById('demo') || document.body).appendChild(iframe);
+
+    let script = document.createElement('script');
+    script.src = '/js/threejs/0.127.0/three.min.js';
+    iframe.contentWindow.document.body.appendChild(script);
+
+    script.addEventListener('load', ()=>{  
+
+    let script = document.createElement('script');
+    script.src = '/demos/r140/proto-iframe/js/app.js';
+    iframe.contentWindow.document.body.appendChild(script);
+
+});
+
+/*
+    var p = document.createElement('p');
+    p.innerText = 'hello';
+    iframe.contentWindow.document.body.appendChild(p)
+    console.log()
+*/
+});
