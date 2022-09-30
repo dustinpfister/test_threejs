@@ -8,6 +8,7 @@
 * add fetures that help with offloading work to a web worker
 
 ## () rx - iframe container?
+* () I might want to start with a r140 demo for this one
 * () see about making an iframe the kind of container rather than a div
 
 ## ( done 09/30/2022 ) - r0-2-random - random features
