@@ -214,6 +214,32 @@ const loopMod = (function(){
         loop.active = false;
         drawUI.draw(loop, loop.canvas_ui, loop.ctx_ui);
     };
+    const wrap = api.wrap = function (value, a, b){
+        // get min and max this way
+        let max = Math.max(a, b);
+        let min = Math.min(a, b);
+        // return 0 for Wrap(value, 0, 0);
+        if(max === 0 && min === 0){
+             return 0;
+        }
+        let range = max - min;
+        return (min + ((((value - min) % range) + range) % range));
+    };
+    // wrap an axis
+    const wrapAxis = function(vec, vecMin, vecMax, axis){
+        axis = axis || 'x';
+        vec[axis] = wrap( vec[axis], vecMin[axis], vecMax[axis] );
+        return vec;
+    };
+    // Wrap a vector method of public api
+    api.wrapVector = function (vec, vecMin, vecMax) {
+        vecMin = vecMin || new THREE.Vector3(-1, -1, -1);
+        vecMax = vecMax || new THREE.Vector3(1, 1, 1);
+        Object.keys(vec).forEach(function(axis){
+            wrapAxis(vec, vecMin, vecMax, axis);
+        });
+        return vec;
+    };
     // return public api
     return api;
 }());

@@ -1,7 +1,7 @@
 # threejs-examples-animation-loop-module todo list
 
 ## () - r0-2-random - random features
-* () just have cubes go all over the place
+* (done) just have cubes go all over the place
 * () make use of the wrap vector feature
 
 ## ( done 09/30/2022 ) - r0-1-frames - Demo of the frames features of the library
