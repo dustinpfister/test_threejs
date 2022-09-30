@@ -1,5 +1,6 @@
 // ---------- ----------
 // ANIMATION LOOP MODULE - r0 - from threejs-examples-animation-loop-module
+//  Copyright 2022 by Dustin Pfister - https://dustinpfister.github.io/about
 // ---------- ----------
 const loopMod = (function(){
     //-------- ----------
