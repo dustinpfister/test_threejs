@@ -24,18 +24,39 @@ const loopMod = (function(){
         const con = li.container;
         const len = con.children.length;
         let i = 0;
+        // set style (of classNames, ids)
         con.className = 'aniloop_parent'
-        // set position and left and right css vlaues
         while(i < len){
            const item = con.children.item(i);
            item.className = 'aniloop_child'
-/*
-           item.style.position = 'absolute';
-           item.style.left = '0px';
-           item.style.top = '0px';
-*/
            i += 1;
         }
+    };
+    // attach event handers
+    const attachUIEvents = (li) => {
+
+const canvas = li.canvas_ui;
+
+        canvas.onselectstart = function () { return false; };
+        // play pause button check
+        canvas.addEventListener('click', (e) => {
+            const pos = getCanvasRelative(e);
+            // prevent default
+            e.preventDefault();
+            const pb = li.buttons.play;
+            const v_click = new THREE.Vector2(pos.x, pos.y);
+            const v_pb = new THREE.Vector2(pb.x, pb.y);
+            const d = v_click.distanceTo(v_pb);
+            if(d <= pb.r ){
+                if(li.active){
+                    loopMod.stop(li);
+                }else{
+                    loopMod.start(li);
+                }
+                drawUI.draw(li, li.canvas_ui, li.ctx_ui);
+            }
+        });
+
     };
     // UI DRAW METHIDS
     const drawUI = {};
@@ -90,38 +111,18 @@ const loopMod = (function(){
         // renderer, ui canvas, and container div
         li.container = document.createElement('div');
         li.renderer = new THREE.WebGLRenderer({ alpha: true });
-        const canvas = li.canvas_ui =  document.createElement('canvas');
+        li.canvas_ui =  document.createElement('canvas');
         li.ctx_ui =  li.canvas_ui.getContext('2d');
-
+        // append
         li.container.appendChild(li.renderer.domElement);
         li.container.appendChild(li.canvas_ui);
-setContainerStyle(li);
-
-        //canvas.style.position = 'absolute';
-        //canvas.style.left = '0px';
         // ui buttons
         const buttons = li.buttons = {};
-        buttons.play = { x:0, y:0, r: 32 }
+        buttons.play = { x:0, y:0, r: 32 };
+        // set style
+        setContainerStyle(li);
         // attach UI EVENTS
-        canvas.onselectstart = function () { return false; };
-        // play pause button check
-        canvas.addEventListener('click', (e) => {
-            const pos = getCanvasRelative(e);
-            // prevent default
-            e.preventDefault();
-            const pb = li.buttons.play;
-            const v_click = new THREE.Vector2(pos.x, pos.y);
-            const v_pb = new THREE.Vector2(pb.x, pb.y);
-            const d = v_click.distanceTo(v_pb);
-            if(d <= pb.r ){
-                if(li.active){
-                    loopMod.stop(li);
-                }else{
-                    loopMod.start(li);
-                }
-                drawUI.draw(li, li.canvas_ui, li.ctx_ui);
-            }
-        });
+        attachUIEvents(li);
         // set size for first time
         li.setSize(640, 480);
     };

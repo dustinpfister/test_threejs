@@ -15,7 +15,7 @@
 * (done) events should be attached to ui layer canvas
 * (done) draw ui button to ui canvas for start and stop
 * (done) make it so that clicking the start and stop button will start and stop the animation
-* () helper function for setting style of container and all children
+* (done) helper function for setting style of container and all children
 * () attach events helper function
 * () bake in a wrap method from the wrap module example
 
