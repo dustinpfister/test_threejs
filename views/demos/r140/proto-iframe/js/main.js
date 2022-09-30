@@ -1,3 +1,6 @@
+//-------- ----------
+// WINDOW
+//-------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, 640 / 240, 0.1, 1000);
 camera.position.set(2, 2, 2);
@@ -11,3 +14,8 @@ console.log('r' + THREE.REVISION)
 scene.add(new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial() ))
 // render
 renderer.render(scene, camera);
+//-------- ----------
+// IFRAME
+//-------- ----------
+const iframe = document.createElement('iframe');
+(document.getElementById('demo') || document.body).appendChild(iframe);
