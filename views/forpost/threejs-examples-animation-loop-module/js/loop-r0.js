@@ -20,8 +20,22 @@ const loopMod = (function(){
         return pos;
     };
     // set the style of the container as well as all children
-    const setContainerStyle = (loop) => {
-
+    const setContainerStyle = (li) => {
+        const con = li.container;
+        const len = con.children.length;
+        let i = 0;
+        con.className = 'aniloop_parent'
+        // set position and left and right css vlaues
+        while(i < len){
+           const item = con.children.item(i);
+           item.className = 'aniloop_child'
+/*
+           item.style.position = 'absolute';
+           item.style.left = '0px';
+           item.style.top = '0px';
+*/
+           i += 1;
+        }
     };
     // UI DRAW METHIDS
     const drawUI = {};
@@ -78,9 +92,9 @@ const loopMod = (function(){
         li.renderer = new THREE.WebGLRenderer({ alpha: true });
         const canvas = li.canvas_ui =  document.createElement('canvas');
         li.ctx_ui =  li.canvas_ui.getContext('2d');
-        li.container.appendChild(li.canvas_ui);
-        li.container.appendChild(li.renderer.domElement);
 
+        li.container.appendChild(li.renderer.domElement);
+        li.container.appendChild(li.canvas_ui);
 setContainerStyle(li);
 
         //canvas.style.position = 'absolute';
