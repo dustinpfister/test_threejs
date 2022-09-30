@@ -1,7 +1,14 @@
 # threejs-examples-animation-loop-module todo list
 
-## () r1 - 
 
+## () rx - content api
+* () look into adding feature that will create values that change depeding on the state of page content
+
+## () rx - web workers
+* add fetures that help with offloading work to a web worker
+
+## () rx - iframe container?
+* () see about making an iframe the kind of container rather than a div
 
 ## ( done 09/30/2022 ) - r0-2-random - random features
 * (done) just have cubes go all over the place
