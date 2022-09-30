@@ -1,5 +1,5 @@
 // ---------- ----------
-// ANIMATION LOOP MODULE - r0 - prototype
+// ANIMATION LOOP MODULE - r0 - from threejs-examples-animation-loop-module
 // ---------- ----------
 const loopMod = (function(){
     //-------- ----------
