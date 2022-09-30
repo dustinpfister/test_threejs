@@ -44,7 +44,7 @@ body{
   position: absolute;
   bottom: 0%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
    color: #2a2a2a;
    font-size: 32px;
    text-shadow: 4px 4px 8px lime, 2px 2px 4px white;
