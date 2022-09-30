@@ -1,35 +1,36 @@
 //-------- ----------
+// HELPERS
+//-------- ---------
+const loadScript = (src, domElement ) => {
+    let script = document.createElement('script');
+    domElement.appendChild(script);
+    return new Promise((resolve, reject) => {
+        script.addEventListener('load', () => {
+            resolve();
+        });
+        script.src = src;
+    });
+};
+//-------- ----------
 // WINDOW
 //-------- ---------
-let script = document.createElement('script');
-document.body.appendChild(script);
-script.src = '/demos/r140/proto-iframe/js/app.js';
-// on load
-script.addEventListener('load', ()=>{  
+const container = (document.getElementById('demo') || document.body);
+let iBody = null, iframe = null;
+loadScript('/demos/r140/proto-iframe/js/app.js', container )
+.then( () => {
     //-------- ----------
     // IFRAME
-    //-------- ----------
-    const iframe = document.createElement('iframe');
+    //-------- ---------
+    iframe = document.createElement('iframe');
     iframe.width = 640;
     iframe.height = 240;
-    (document.getElementById('demo') || document.body).appendChild(iframe);
-
-    let script = document.createElement('script');
-    script.src = '/js/threejs/0.127.0/three.min.js';
-    iframe.contentWindow.document.body.appendChild(script);
-
-    script.addEventListener('load', ()=>{  
-
-    let script = document.createElement('script');
-    script.src = '/demos/r140/proto-iframe/js/app.js';
-    iframe.contentWindow.document.body.appendChild(script);
-
-});
-
-/*
-    var p = document.createElement('p');
-    p.innerText = 'hello';
-    iframe.contentWindow.document.body.appendChild(p)
-    console.log()
-*/
+    iframe.style.border = '0';
+    container.appendChild( iframe );
+    iBody = iframe.contentWindow.document.body;
+    iBody.style.margin = '0px';
+    iBody.style.padding = '0px';
+    return loadScript('/js/threejs/0.127.0/three.min.js', iBody);
+})
+.then( () => {
+    return loadScript('/demos/r140/proto-iframe/js/app.js', iBody);
 });
