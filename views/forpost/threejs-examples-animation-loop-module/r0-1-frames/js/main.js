@@ -1,5 +1,5 @@
 // ---------- ----------
-// DEMO
+// Frame by Frame animation example for r0 of threejs-examples-animation-loop-module
 // ---------- ----------
 const loopObj = loopMod.create({
     // fps_update is actual update FPS rate ( lower for less CPU use, but choppy )

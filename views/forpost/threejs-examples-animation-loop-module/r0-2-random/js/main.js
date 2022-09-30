@@ -1,4 +1,6 @@
-// random demo
+// ---------- ----------
+// Random animation example for r0 of threejs-examples-animation-loop-module
+// ---------- ----------
 const loopObj = loopMod.create({
     fps_update: 12,
     fps_movement: 80,
