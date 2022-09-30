@@ -6,6 +6,35 @@ const loopMod = (function(){
     //-------- ----------
     // HELPERS
     //-------- ----------
+    // create a script tag for the given src, and append to the given element
+    const loadScript = (src, container ) => {
+        let script = document.createElement('script');
+        container.appendChild(script);
+        return new Promise((resolve, reject) => {
+            script.addEventListener('load', (e) => {
+                resolve();
+            });
+            script.addEventListener('error', (e, b) => {
+                reject();
+            });
+            script.src = src;
+        });
+    };
+    // create and return an iframe
+    const createIframe = ( container, cssPath) => {
+        const iFrame = document.createElement('iframe');
+        container.appendChild( iFrame );
+        const iBody = iFrame.contentWindow.document.body;
+        iBody.style.margin = '0px';
+        iBody.style.padding = '0px';
+        iFrame.style.border = '0';
+        const cssLink = document.createElement("link") 
+        cssLink.href = cssPath; 
+        cssLink.rel = "stylesheet"; 
+        cssLink.type = "text/css"; 
+        iFrame.contentWindow.document.body.appendChild(cssLink);
+        return iFrame;
+    };
     // wrap and wrap axis methods from threejs-examples-wrap-module
     // https://dustinpfister.github.io/2022/09/09/threejs-examples-wrap-module/
     const wrap = function (value, a, b){
@@ -128,6 +157,7 @@ const loopMod = (function(){
         li.camera = opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
         // renderer, ui canvas, and container div
         li.container = document.createElement('div');
+        //li.container = createIframe(opt.el || document.body);
         li.renderer = new THREE.WebGLRenderer({ alpha: true });
         li.canvas_ui =  document.createElement('canvas');
         li.ctx_ui =  li.canvas_ui.getContext('2d');
@@ -142,7 +172,7 @@ const loopMod = (function(){
         // attach UI EVENTS
         attachUIEvents(li);
         // set size for first time
-        li.setSize(640, 480);
+        li.setSize(640, 200);
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE
@@ -246,6 +276,25 @@ const loopMod = (function(){
             wrapAxis(vec, vecMin, vecMax, axis);
         });
         return vec;
+    };
+    // load frame method
+    api.iFrameLoad = (opt) => {
+        opt = opt || {};
+        opt.url_css = opt.url_css || null;
+        opt.url_threejs = opt.url_threejs || null;
+        opt.url_loopjs = opt.url_loopjs || null;
+        opt.url_app = opt.url_app || null;
+        const iFrame = createIframe( document.getElementById('demo') || document.body, opt.url_css );
+        iFrame.width = 640;
+        iFrame.height = 200;
+        const iBody = iFrame.contentWindow.document.body;
+        loadScript(opt.url_threejs, iBody)
+        .then(()=>{
+            return loadScript(opt.url_loopjs, iBody)
+        })
+        .then(()=>{
+            return loadScript(opt.url_app, iBody)
+        })
     };
     // return public api
     return api;
