@@ -1,4 +1,8 @@
-
+body {
+    margin:0px;
+    padding:0px;
+    color: white;
+}
 .aniloop_parent{
   position: static;
 }
@@ -6,7 +10,4 @@
   position: absolute;
   left: 0px;
   top: 0px;
-}
-
-#nav_headerapp {
 }

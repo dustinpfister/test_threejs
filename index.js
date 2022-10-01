@@ -80,6 +80,7 @@ app.use(serveAllFiles('js'));
 app.use(serveAllFiles('json'));
 app.use(serveAllFiles('css'));
 app.use(serveAllFiles('dae'));
+app.use(serveAllFiles('html'));
 
 // image files
 app.use(serveAllFiles('jpg'));
