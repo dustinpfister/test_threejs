@@ -12,9 +12,21 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
+    // Vector3 Array to Typed Array
+    const Vector3ArrayToTyped = (v3Array) => {
+        let i = 0, len = v3Array.length, vertArray = [];
+        while(i < len){
+            let v = v3Array[i];
+            vertArray.push(v.x, v.y, v.z);
+            i += 1;
+        }
+        return new THREE.Float32BufferAttribute(vertArray, 3)
+    };
     // Buffer Geometry from v3Array
     const Vector3ArrayToGeometry = (v3Array) => {
-        return new THREE.BufferGeometry().setFromPoints(v3Array);
+        const typedArray = Vector3ArrayToTyped(v3Array);
+        const geometry = new THREE.BufferGeometry();
+        return geometry.setAttribute('position', typedArray);
     };
     // Vector3 array from geometry
     const Vector3ArrayFromGeometry = (geometry) => {

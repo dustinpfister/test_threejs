@@ -2,6 +2,10 @@
 
 ## () - expand animation section
 
+## () sx-v3array - section on vector3 arrays
+* () have a basic example on bufferGeometry set from points
+
+
 ## ( done 09/28/2022 ) new basic section
 * (done) start a new basic section that will be about making a geometry from the ground up.
 * (done) for first demo just use the points constructor
