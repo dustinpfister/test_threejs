@@ -1,17 +1,19 @@
 # threejs-examples-animation-loop-module todo list
 
+## () rx - load iframe method
+* (done) I might want to start with a r140 demo for this one
+* (done) see about making a load iframe public method
+* (done) I might not work on this more as I have found that I like just using and html file with an iframe in place of doing this
 
-## () rx - content api
-* () look into adding feature that will create values that change depeding on the state of page content
+
 
 ## () rx - web workers
 * add fetures that help with offloading work to a web worker
 
 ## () - r1-1-basic example
 
-## () r1 - load iframe method
-* (done) I might want to start with a r140 demo for this one
-* (done) see about making a load iframe public method
+## () r1 - content api
+* () look into adding feature that will create values that change depeding on the state of page content
 
 
 ## ( done 09/30/2022 ) - r0-2-random - random features
