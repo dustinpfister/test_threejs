@@ -1,5 +1,8 @@
 # threejs-buffer-geometry-attributes-position todo list
 
+## () - expand s3-points
+* () example that makes use of apply euler
+
 ## () - expand animation section
 * () lerp all points example based off of s3-3-updatefromv3
 
