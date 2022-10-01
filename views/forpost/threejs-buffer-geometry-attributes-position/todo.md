@@ -1,12 +1,12 @@
 # threejs-buffer-geometry-attributes-position todo list
 
 ## () - expand animation section
-* () lerp all points example
+* () lerp all points example based off of s3-3-updatefromv3
 
-## () sx-points - section on vector3 arrays
-* () geometry from v3array with set from points
-* () v3array from geometry example
-* () update from v3array example
+## ( done 10/01/2022 ) s3-points - section on vector3 arrays
+* (done) geometry from v3array with set from points
+* (done) v3array from geometry example
+* (done) update from v3array example
 
 ## ( done 09/28/2022 ) new basic section
 * (done) start a new basic section that will be about making a geometry from the ground up.

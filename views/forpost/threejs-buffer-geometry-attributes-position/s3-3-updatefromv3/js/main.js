@@ -39,13 +39,14 @@
         return vertArray;
         //return new THREE.Float32BufferAttribute(vertArray, 3)
     };
-
+    //-------- ----------
+    // GEO AND POINTS
+    //-------- ----------
     let geo_sphere = new THREE.SphereGeometry(1.5, 30, 30);
     let geo_torus = new THREE.TorusGeometry(1, 0.5, 30, 30);
     let v3array = Vector3ArrayFromGeometry(geo_torus);
     let points = new THREE.Points( geo_sphere, new THREE.PointsMaterial({ size: 0.1}) );
     scene.add(points);
-
     let typed = Vector3ArrayToTyped(v3array);
     let pos = geo_sphere.getAttribute('position');
     let alpha = 1;
@@ -54,5 +55,7 @@
         return n + d * alpha;
     });
     pos.needsUpdate = true;
-
+    //-------- ----------
+    // RENDER
+    //-------- ----------
     renderer.render(scene, camera);
