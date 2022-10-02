@@ -6,6 +6,9 @@
 ## () s3-1-ani-seeded-random
 * () animation loop example of seeded random
 
+## () s1-5-basic-setfromobject
+* () have a set from object example that is a group of mesh object
+
 ## ( done 10/02/2022 ) s1-x - combine and expand basic section
 * (done) s1, s2, and s3 examples can be combined into a basic section
 * (done) rename s4-seeded-random to s2-1-bounds-seededrandom
