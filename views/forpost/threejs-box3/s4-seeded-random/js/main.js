@@ -16,7 +16,6 @@ scene.add(box3Helper);
 var setAxis = function(mesh, box3, axis, per){
     var meshSize = new THREE.Vector3()
     mesh.geometry.boundingBox.getSize(meshSize);
-
     mesh.position[axis] = box3.min[axis] + meshSize[axis] / 2  + ( boxSize[axis] - meshSize[axis] ) * per;
 };
 var rnd1 = function(){
@@ -43,15 +42,11 @@ while(i < len){
     box3.getSize(boxSize);
     // get mesh size
     mesh.geometry.computeBoundingBox();
-
     setAxis(mesh, box3, 'x', rnd2());
     setAxis(mesh, box3, 'y', rnd2());
     setAxis(mesh, box3, 'z', rnd1());
-
     scene.add(mesh);
     i += 1;
 };
-
-
 // render
 renderer.render(scene, camera);
