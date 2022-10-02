@@ -5,7 +5,7 @@ camera.position.set(1.25, 1.25, 1.25);
 camera.lookAt(0, 0.4, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
+(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // mesh object
 var mesh = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),

@@ -4,7 +4,7 @@ camera.position.set(-2, 0.5, 4);
 camera.lookAt(0, -0.25, 0);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
+(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // create a new box3 with helper
 var min = new THREE.Vector3(-1.0, -1.0, -1.0),
 max = new THREE.Vector3(1.0, 1.0, 1.0);
