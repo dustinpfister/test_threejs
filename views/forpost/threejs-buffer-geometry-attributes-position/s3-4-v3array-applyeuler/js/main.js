@@ -1,4 +1,4 @@
-// v3 from geo
+// v3 apply Euler method
 (function () {
     //-------- ----------
     // SCENE, CAMERA, RENDERER
@@ -32,16 +32,17 @@
     //-------- ----------
     // POINTS
     //-------- ----------
-    // Geometry created with the Torus Geometry Constructor
     const geometry = new THREE.TorusGeometry(2, 0.75, 30, 60);
     geometry.rotateX(Math.PI / 180 * 90);
-    // array of Vector3 class instances
     const v3Array = Vector3ArrayFromGeometry(geometry);
-    // do something to the v3 array
     v3Array.forEach((v) => {
-        const vd = new THREE.Vector3();
-        vd.copy(v).normalize().multiplyScalar(0.75 * THREE.MathUtils.seededRandom())
-        v.add(vd);
+        const v_delta = new THREE.Vector3(0, 0, 1);
+        const eu = new THREE.Euler();
+        if(v.y > 0){
+            eu.x =  1 * Math.random();
+        }
+        v_delta.normalize().applyEuler(eu).multiplyScalar(1);
+        v.add(v_delta);
     });
     // THREE.Points INSTANCE UISNG THREE.PointsMaterial
     scene.add(

@@ -1,10 +1,13 @@
 # threejs-buffer-geometry-attributes-position todo list
 
-## () - expand s3-points
-* () example that makes use of apply euler
-
 ## () - expand animation section
 * () lerp all points example based off of s3-3-updatefromv3
+
+## () - expand s3-4-v3array-applyeuler
+* () work out something where the change in direction and unit length results in a kind of twist
+
+## ( done 10/02/2022 ) - expand s3-4-v3array-applyeuler
+* (done) start example that makes use of apply Euler
 
 ## ( done 10/01/2022 ) s3-points - section on vector3 arrays
 * (done) geometry from v3array with set from points
