@@ -37,7 +37,6 @@ body{
   top: 0px;
 }
 #nav_headerapp {
-	  z-index: 1;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -46,14 +45,12 @@ body{
   height: 200px;
 }
 .nav_content{
-  z-index: 1;
   position:absolute;
   bottom:0px;
   width:100%;
   color: #ffffff;
 }
 .nav_title{
-	  z-index: 1;
   position: absolute;
   bottom: 0%;
   left: 50%;
