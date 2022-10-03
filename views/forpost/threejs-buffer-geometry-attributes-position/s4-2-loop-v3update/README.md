@@ -1,2 +1,0 @@
-# buffer-geometry-attributes-position
-
