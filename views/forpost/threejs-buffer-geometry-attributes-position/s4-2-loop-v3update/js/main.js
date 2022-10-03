@@ -42,17 +42,12 @@
     //-------- ----------
     // GEO AND POINTS
     //-------- ----------
-    let geo_sphere = new THREE.SphereGeometry(1.5, 30, 30);
-    let geo_torus = new THREE.TorusGeometry(1, 0.5, 30, 30);
-
-
-    let points = new THREE.Points( geo_sphere.clone(), new THREE.PointsMaterial({ size: 0.1}) );
-    scene.add(points);
 
     const updateGeo = (geo, geoa, geob) => {
+
         let v3array = Vector3ArrayFromGeometry(geo_torus);
         let typed = Vector3ArrayToTyped(v3array);
-        let pos = geo_sphere.getAttribute('position');
+        let pos = geo.getAttribute('position');
         let alpha = 1;
         pos.array = pos.array.map( (n, i) => {
             let d  = typed[i] === undefined ? 0: typed[i];
@@ -60,6 +55,16 @@
         });
         pos.needsUpdate = true;
     };
+
+
+    let geo_sphere = new THREE.SphereGeometry(1.5, 30, 30);
+    let geo_torus = new THREE.TorusGeometry(1, 0.5, 30, 30);
+
+
+    let points = new THREE.Points( geo_sphere.clone(), new THREE.PointsMaterial({ size: 0.1}) );
+    scene.add(points);
+
+
 
     // ---------- ----------
     // ANIMATION LOOP
