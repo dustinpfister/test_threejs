@@ -1,16 +1,15 @@
 # threejs-canvas-texture todo list
 
-## () - Video for threejs-canvas-texture
-* start a video project for threejs-canvas-texture
+## () combine animation examples
+* () combine both animaiton examples into one section
+* () have examples all as one file
 
-## () - start a deterministic example section
-* have an example that involves creating a start state and then updating over time from that start state
+## () combine helper function example into basic section
+* () combine helper function example into basic section
+* () have example as a single file
 
-## () - Start a stochastic example section
-* have one Mesh canvas texture example that is Stochastic \(random\)
-
-## () - animation and material index
-* start another example based off of the animation example but now have more than one texture for the same cube
+## ( done 10/03/2022 ) - animation and material index
+* (done) start another example based off of the animation example but now have more than one texture for the same cube
 
 ## ( done 06/28/2021 ) - needed improvements of s3, and s4 examples
 * (done) The create canvas helper function in s3 should return an object that contains references to the canvas, and context.
