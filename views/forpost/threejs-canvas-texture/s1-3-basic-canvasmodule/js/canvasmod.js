@@ -9,13 +9,13 @@
     // create and return a canvas texture
     api.createCanvasTexture = function (state, drawFunc) {
         drawFunc = drawFunc || canvasMod.draw;
-        var canvas = document.createElement('canvas'),
+        const canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
         canvas.width = 16;
         canvas.height = 16;
-        var texture = new THREE.Texture(canvas);
+        const texture = new THREE.Texture(canvas);
         texture.needsUpdate = true;
-        var canvasObj = {
+        const canvasObj = {
             texture: texture,
             canvas: canvas,
             ctx: ctx,

@@ -13,9 +13,9 @@ renderer.setSize(640, 480);
 // CANVAS
 //-------- ----------
 // create texture with default draw method
-const canvasObj = canvasMod.createCanvasTexture();
+let canvasObj = canvasMod.createCanvasTexture();
 // create cube with the texture
-const cube = canvasMod.createCube(canvasObj.texture);
+let cube = canvasMod.createCube(canvasObj.texture);
 scene.add(cube);
 // create texture with custom draw method that makes use of a state object
 const draw = function (ctx, canvas, state) {
@@ -33,7 +33,7 @@ const draw = function (ctx, canvas, state) {
 const state = {
    rPer: 0.1
 };
-const canvasObj = canvasMod.createCanvasTexture(state, draw);
+canvasObj = canvasMod.createCanvasTexture(state, draw);
 cube = canvasMod.createCube(canvasObj.texture);
 cube.position.set(0, 0, 2)
 scene.add(cube);

@@ -4,9 +4,9 @@
 * () combine both animaiton examples into one section
 * () have examples all as one file
 
-## () combine helper function example into basic section
-* () combine helper function example into basic section
-* () have example as a single file
+## () new basic section of three examples
+* (done) combine helper function example and current basic example into new section
+* () have a s1-1-basic example
 
 ## ( done 10/03/2022 ) - animation and material index
 * (done) start another example based off of the animation example but now have more than one texture for the same cube
