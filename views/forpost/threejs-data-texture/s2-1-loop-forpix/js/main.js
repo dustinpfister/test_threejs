@@ -76,6 +76,18 @@ forPix.rndChannel = (r, g, b) => {
         return color;
     };
 };
+// better random function
+forPix.square = (size, color, bgColor, v2_center) => {
+   color = color || new THREE.Color(1,1,1);
+   bgColor = bgColor || new THREE.Color(0, 0, 0);
+   v2_center = v2_center || new THREE.Vector2();
+   return function(color, x, y, i, opt){
+        color.r = color.r * 255;
+        color.g = color.g * 255;
+        color.b = color.b * 255;
+        return color;
+    };
+};
 //-------- ----------
 // MESH OBJECTS WITH DATA TEXTURES
 //-------- ----------
@@ -83,10 +95,14 @@ const mesh1 = makeCube(0, 0, 0);
 scene.add(mesh1);
 const mesh2 = makeCube(-3, 0, 0);
 scene.add(mesh2);
+const mesh3 = makeCube(-3, 0, -3);
+scene.add(mesh3);
+const mesh4 = makeCube(0, 0, -3);
+scene.add(mesh4);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
-    const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+    const FPS_UPDATE = 60, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
     FRAME_MAX = 300;
     let secs = 0,
@@ -98,6 +114,9 @@ scene.add(mesh2);
         mesh1.material.map = createDataTexture({ forPix: forPix.rndChannel() });
         // mesh2- rand red
         mesh2.material.map = createDataTexture({ forPix: forPix.rndChannel([64, 200], [0,0], [0,0]) });
+
+        mesh3.material.map = createDataTexture({ forPix: forPix.rndChannel([0,0], [0,255], [0,0]) });
+        mesh4.material.map = createDataTexture({ forPix: forPix.rndChannel([0,0], [0,0], [0,255]) });
     };
     // loop
     const loop = () => {
