@@ -7,8 +7,10 @@
 * () start a section that has to do with canvas elements by starting with a data texture from canvas exampe
 
 ## () - s2-1-forpix
-* () use new loop template from getting started post
-* () show better use of the for pix helper
+* (done) use new loop template from getting started post
+* (done) new update method that involves updating a texture rather than creating a new one each frame
+* () square for pix method
+* () distance for pix method
 
 ## ( done 10/04/2022) - combine examples into new basic
 * (done) combine s1 - s4 into new basic section
