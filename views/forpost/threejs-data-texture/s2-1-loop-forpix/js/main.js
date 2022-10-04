@@ -98,21 +98,63 @@ forPix.rndChannel = (r, g, b) => {
     };
 };
 // better random function
-forPix.square = (size, color, bgColor, v2_center) => {
-   color = color || new THREE.Color(1,1,1);
+forPix.square = (size, fgColor, bgColor, v2_center) => {
+   size = size === undefined ? 2 : size;
+   fgColor = fgColor || new THREE.Color(255, 255, 255);
    bgColor = bgColor || new THREE.Color(0, 0, 0);
-   v2_center = v2_center || new THREE.Vector2();
+
+   v2_center = v2_center || new THREE.Vector2(0, 0);
+
+   const b2 = new THREE.Box2(
+       v2_center.clone().add( new THREE.Vector2(size * -1, size * -1) ),
+       v2_center.clone().add( new THREE.Vector2(size, size) )
+   );
+
+//console.log(b2)
+
    return function(color, x, y, i, opt){
-        
-        color.r = color.r * 255;
-        color.g = color.g * 255;
-        color.b = color.b * 255;
+
+        color.copy(bgColor);
+
+        const v2_px = new THREE.Vector2(x, y);
+        if(b2.containsPoint(v2_px)){
+            color.r = fgColor.r;
+            color.g = fgColor.g;
+            color.b = fgColor.b;
+        }
+
+
+        //const v2_px = new THREE.Vector2(x, y);
+        //const dx = new THREE.Vector2(v2_px.x, 0).distanceTo( new THREE.Vector2(v2_center.x, 0) );
+        //const dy = new THREE.Vector2(0, v2_px.y).distanceTo( new THREE.Vector2(0, v2_center.y) );
+        //if( dx <= size && dy <= size){
+        //    color.r = fgColor.r;
+        //    color.g = fgColor.g;
+        //    color.b = fgColor.b;
+        //}
+
+
+        //if( Math.abs( v2_center.x - v2_px.x ) === size && Math.abs( v2_center.y - v2_px.y ) === size){
+        //    color.r = fgColor.r;
+        //    color.g = fgColor.g;
+        //    color.b = fgColor.b;
+        //}
+
+//console.log(x, y, dx);
+
         return color;
     };
 };
+
 //-------- ----------
 // MESH OBJECTS 
 //-------- ----------
+let m = makeCube(0, 0, 0, { forPix: forPix.square(), width: 4, height: 4 });
+
+
+
+
+
 const group = new THREE.Group();
 let i = 0;
 let w = 4;
@@ -135,11 +177,18 @@ let secs = 0,
 frame = 0,
 lt = new Date();
 // update
+const fg = new THREE.Color(255, 255, 255),
+bg = new THREE.Color(0, 0, 0),
+v2_center = new THREE.Vector2( 8, 8);
 const update = function(frame, frameMax){
     // update group 
     group.children.forEach( (mesh) => {
         // using the update texture method
-        updateTexture(mesh.material.map, { forPix: forPix.rndChannel() });
+        //updateTexture(mesh.material.map, { forPix: forPix.rndChannel() });
+
+
+        updateTexture(mesh.material.map, { forPix: forPix.square(6, fg, bg, v2_center) });
+
         // !!! this old way of doing it would result in a loss of context
         //mesh.material.map = createDataTexture({ forPix: forPix.rndChannel() });
     });
