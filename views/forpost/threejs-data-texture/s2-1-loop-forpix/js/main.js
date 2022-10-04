@@ -18,8 +18,8 @@ scene.add(light);
 //-------- ----------
 // HELPER FUNCTIONS
 //-------- ----------
-// create data texture method
-const createDataTexture = function(opt){
+// create data 
+const createData = function(opt){
     opt = opt || {};
     opt.width = opt.width === undefined ? 16: opt.width; 
     opt.height = opt.height === undefined ? 16: opt.height;
@@ -43,14 +43,27 @@ const createDataTexture = function(opt){
         data[ stride + 2 ] = color.b;
         data[ stride + 3 ] = 255;
     }
+    return data;
+};
+// create data texture
+const createDataTexture = function(opt){
+    opt = opt || {};
+    opt.width = opt.width === undefined ? 16: opt.width; 
+    opt.height = opt.height === undefined ? 16: opt.height;
+    const data = createData(opt);
     let texture = new THREE.DataTexture( data, opt.width, opt.height );
     texture.needsUpdate = true;
     return texture;
+
 };
 // update a texture
 const updateTexture = (texture, opt) => {
-    const texture_new = createDataTexture(opt);
-    texture.image = texture_new.image;
+    // just updating data array only
+    const data = createData(opt);
+    texture.image.data = data;
+    //!!! old way of doing this where I create a whole new texture object each time
+    //const texture_new = createDataTexture(opt);
+    //texture.image = texture_new.image;
     texture.needsUpdate = true;
 };
 // get random from range
