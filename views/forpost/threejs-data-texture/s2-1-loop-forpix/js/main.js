@@ -4,7 +4,7 @@
 const scene = new THREE.Scene();
 //scene.add(new THREE.GridHelper(8,8))
 const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(8, 8, 8);
+camera.position.set(5, 5, 5);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -13,7 +13,7 @@ renderer.setSize(640, 480);
 // ADD A LIGHT BECUASE THIS IS THE STANDARD MATERIAL THAT I AM USING
 //-------- ----------
 const light = new THREE.PointLight( new THREE.Color(1, 1, 1), 1 );
-light.position.set(6, 3, 1);
+light.position.set(4, 2, 10);
 scene.add(light);
 //-------- ----------
 // HELPER FUNCTIONS
@@ -100,15 +100,14 @@ forPix.square = (size, color, bgColor, v2_center) => {
 //-------- ----------
 // MESH OBJECTS 
 //-------- ----------
-
 const group = new THREE.Group();
 let i = 0;
-let w = 15;
+let w = 4;
 let len = w * w;
 while(i < len){
     const x = i % w;
     const z = Math.floor(i / w);
-    const mesh = makeCube(-10 + x * 1.2, 0, -10 + z * 1.2);
+    const mesh = makeCube(-2 + x * 1.5, 0, -2 + z * 1.5);
     group.add(mesh);
     i += 1;
 }
@@ -124,10 +123,12 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-    // mesh1 - rand default
-    group.children.forEach((mesh)=>{
+    // update group 
+    group.children.forEach( (mesh) => {
+        // using the update texture method
+        updateTexture(mesh.material.map, { forPix: forPix.rndChannel() });
+        // !!! this old way of doing it would result in a loss of context
         //mesh.material.map = createDataTexture({ forPix: forPix.rndChannel() });
-        updateTexture(mesh.material.map, { forPix: forPix.rndChannel() })
     });
 };
 // loop
