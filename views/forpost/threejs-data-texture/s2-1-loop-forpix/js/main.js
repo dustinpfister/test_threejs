@@ -103,67 +103,47 @@ forPix.square = (size, color, bgColor, v2_center) => {
 
 const group = new THREE.Group();
 let i = 0;
-let w = 16;
+let w = 10;
 let len = w * w;
 while(i < len){
     const x = i % w;
     const z = Math.floor(i / w);
-    const mesh = makeCube(-20 + x * 1.2, 0, -20 + z * 1.2);
+    const mesh = makeCube(-7 + x * 1.2, 0, -7 + z * 1.2);
     group.add(mesh);
     i += 1;
 }
 scene.add(group);
-
-/*
-const mesh1 = makeCube(0, 0, 0);
-scene.add(mesh1);
-const mesh2 = makeCube(-3, 0, 0);
-scene.add(mesh2);
-const mesh3 = makeCube(-3, 0, -3);
-scene.add(mesh3);
-const mesh4 = makeCube(0, 0, -3);
-scene.add(mesh4);
-*/
-
-    // ---------- ----------
-    // ANIMATION LOOP
-    // ---------- ----------
-    const FPS_UPDATE = 60, // fps rate to update ( low fps for low CPU use, but choppy video )
-    FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 300;
-    let secs = 0,
-    frame = 0,
-    lt = new Date();
-    // update
-    const update = function(frame, frameMax){
-        // mesh1 - rand default
-
-group.children.forEach((mesh)=>{
-    mesh.material.map = createDataTexture({ forPix: forPix.rndChannel() });
-});
-
-        //mesh1.material.map = createDataTexture({ forPix: forPix.rndChannel() });
-
-        //updateTexture(mesh1.material.map, { forPix: forPix.rndChannel() })
-        //updateTexture(mesh2.material.map, { forPix: forPix.rndChannel() })
-        //updateTexture(mesh3.material.map, { forPix: forPix.rndChannel() })
-        //updateTexture(mesh4.material.map, { forPix: forPix.rndChannel() })
-
-    };
-    // loop
-    const loop = () => {
-        const now = new Date(),
-        secs = (now - lt) / 1000;
-        requestAnimationFrame(loop);
-        if(secs > 1 / FPS_UPDATE){
-            // update, render
-            update( Math.floor(frame), FRAME_MAX);
-            renderer.render(scene, camera);
-            // step frame
-            frame += FPS_MOVEMENT * secs;
-            frame %= FRAME_MAX;
-            lt = now;
-        }
-    };
-    loop();
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+const FPS_UPDATE = 60, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 60;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 300;
+let secs = 0,
+frame = 0,
+lt = new Date();
+// update
+const update = function(frame, frameMax){
+    // mesh1 - rand default
+    group.children.forEach((mesh)=>{
+        //mesh.material.map = createDataTexture({ forPix: forPix.rndChannel() });
+        updateTexture(mesh.material.map, { forPix: forPix.rndChannel() })
+    });
+};
+// loop
+const loop = () => {
+    const now = new Date(),
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / FPS_UPDATE){
+        // update, render
+        update( Math.floor(frame), FRAME_MAX);
+        renderer.render(scene, camera);
+        // step frame
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
+        lt = now;
+    }
+};
+loop();
 
