@@ -103,12 +103,12 @@ forPix.square = (size, color, bgColor, v2_center) => {
 
 const group = new THREE.Group();
 let i = 0;
-let w = 10;
+let w = 15;
 let len = w * w;
 while(i < len){
     const x = i % w;
     const z = Math.floor(i / w);
-    const mesh = makeCube(-7 + x * 1.2, 0, -7 + z * 1.2);
+    const mesh = makeCube(-10 + x * 1.2, 0, -10 + z * 1.2);
     group.add(mesh);
     i += 1;
 }
@@ -116,8 +116,8 @@ scene.add(group);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-const FPS_UPDATE = 60, // fps rate to update ( low fps for low CPU use, but choppy video )
-FPS_MOVEMENT = 60;     // fps rate to move object by that is independent of frame update rate
+const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 300;
 let secs = 0,
 frame = 0,
