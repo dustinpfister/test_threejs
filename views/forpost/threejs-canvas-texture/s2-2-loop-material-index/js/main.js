@@ -2,13 +2,13 @@
     // create and return a canvasObj with texture
     api.createCanvasObject = function (state, drawFunc) {
         drawFunc = drawFunc || canvasMod.draw;
-        var canvas = document.createElement('canvas'),
+        const canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
         canvas.width = 64;
         canvas.height = 64;
-        var texture = new THREE.Texture(canvas);
+        const texture = new THREE.Texture(canvas);
         texture.needsUpdate = true;
-        var canvasObj = {
+        const canvasObj = {
             texture: texture,
             canvas: canvas,
             ctx: ctx,
@@ -25,7 +25,7 @@
 
     // create a cube the makes use of one or more textures
     api.createCube = function (texture) {
-        var materials = [];
+        let materials = [];
         if(texture instanceof Array){
             texture.forEach(function(t){
                 t.magFilter = THREE.NearestFilter;
@@ -46,21 +46,21 @@
 
 (function () {
     // SCENE, CAMERA, LIGHT, RENDERER
-    var scene = new THREE.Scene();
+    const scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10));
-    var camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
+    const camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
     camera.position.set(1, 1, 1);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
-    var light = new THREE.PointLight();
+    const light = new THREE.PointLight();
     light.position.set(0, 0, 0)
     camera.add(light);
-    var renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 
     // state object
-    var state = {
+    const state = {
        frame: 0,
        maxFrame: 300,
        per: 0,
@@ -68,7 +68,7 @@
        fps: 30,
        lt: new Date()
     };
-    var drawBackground = function(ctx, canvas, state){
+    const drawBackground = function(ctx, canvas, state){
         ctx.fillStyle = '#1a1a1a';
         ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
         ctx.lineWidth = 1;
@@ -76,15 +76,15 @@
         ctx.strokeRect(0,0, canvas.width, canvas.height);
     };
     // drawBox function
-    var drawBox = function(ctx, canvas, state){
-        var x = canvas.width / 2 * state.bias, y = canvas.height / 2 * state.bias,
+    const drawBox = function(ctx, canvas, state){
+        const x = canvas.width / 2 * state.bias, y = canvas.height / 2 * state.bias,
         w = canvas.width - canvas.width * state.bias, h = canvas.height - canvas.height * state.bias;
         drawBackground(ctx, canvas, state);
         ctx.lineWidth = 3;
         ctx.strokeStyle = '#00ff00';
         ctx.strokeRect(x, y, w, h);
     };
-    var drawCircle = function(ctx, canvas, state){
+    const drawCircle = function(ctx, canvas, state){
         ctx.lineWidth = 3;
         drawBackground(ctx, canvas, state);
         ctx.strokeStyle = '#ff0000';
@@ -97,11 +97,11 @@
         ctx.stroke();
     };
     // create canvas objs
-    var canvasObjBox = canvasMod.createCanvasObject(state, drawBox);
-    var canvasObjCircle = canvasMod.createCanvasObject(state, drawCircle);
+    const canvasObjBox = canvasMod.createCanvasObject(state, drawBox);
+    const canvasObjCircle = canvasMod.createCanvasObject(state, drawCircle);
     
     // using create cube method
-    var mesh = canvasMod.createCube([
+    const mesh = canvasMod.createCube([
         canvasObjBox.texture,
         canvasObjBox.texture,
         canvasObjCircle.texture,
@@ -109,25 +109,18 @@
         canvasObjBox.texture,
         canvasObjCircle.texture,]);
     scene.add(mesh);
-
-
-
     // Loop
-    var loop = function () {
-        var now = new Date(),
+    const loop = function () {
+        const now = new Date(),
         secs = (now - state.lt) / 1000;
         requestAnimationFrame(loop);
         if(secs > 1 / state.fps){
-
             state.per = state.frame / state.maxFrame * 4 % 1,
             state.bias = 1 - Math.abs(0.5 - state.per) / 0.5;
             canvasObjBox.draw();
             canvasObjCircle.draw();
-
             mesh.rotation.y = Math.PI * 2 * (state.per / 4 % 1);
-
             renderer.render(scene, camera);
-
             state.frame += state.fps * secs;
             state.frame = state.frame % state.maxFrame;
             state.lt = now;

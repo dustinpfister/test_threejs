@@ -2,13 +2,13 @@
     // create and return a canvasObj with texture
     api.createCanvasObject = function (state, drawFunc) {
         drawFunc = drawFunc || canvasMod.draw;
-        var canvas = document.createElement('canvas'),
+        const canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
         canvas.width = 16;
         canvas.height = 16;
-        var texture = new THREE.Texture(canvas);
+        const texture = new THREE.Texture(canvas);
         texture.needsUpdate = true;
-        var canvasObj = {
+        const canvasObj = {
             texture: texture,
             canvas: canvas,
             ctx: ctx,
@@ -26,15 +26,15 @@
 
 (function () {
     // state object
-    var state = {
+    const state = {
        frame: 0,
        maxFrame: 90,
        fps: 30,
        lt: new Date()
     };
     // draw function
-    var draw = function(ctx, canvas, state){
-        var per = state.frame / state.maxFrame,
+    const draw = function(ctx, canvas, state){
+        const per = state.frame / state.maxFrame,
         bias = Math.abs(0.5 - per) / 0.5,
         x = canvas.width / 2 * bias;
         y = canvas.height / 2 * bias;
@@ -47,41 +47,38 @@
         ctx.strokeRect(x, y, w, h);
     };
     // create canvas obj
-    var canvasObj = canvasMod.createCanvasObject(state, draw);
+    const canvasObj = canvasMod.createCanvasObject(state, draw);
     // filter
     canvasObj.texture.magFilter = THREE.NearestFilter;
     // SCENE
-    var scene = new THREE.Scene();
+    const scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10))
-    var fogColor = new THREE.Color(0xffffff);
+    const fogColor = new THREE.Color(0xffffff);
     scene.background = fogColor;
     scene.fog = new THREE.FogExp2(fogColor, 0.35);
     // CAMERA
-    var camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
+    const camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
     camera.position.set(1.75, 1.75, 1.75);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     // light
-    var light = new THREE.PointLight();
+    const light = new THREE.PointLight();
     light.position.set(0,0.5,0)
     camera.add(light);
-
     // using create cube method
-    var mesh = new THREE.Mesh(
+    const mesh = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshStandardMaterial({
                 map: canvasObj.texture
             }));
     scene.add(mesh);
-
     // Render
-    var renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-
     // Loop
-    var loop = function () {
-        var now = new Date(),
+    const loop = function () {
+        const now = new Date(),
         secs = (now - state.lt) / 1000;
         requestAnimationFrame(loop);
         if(secs > 1 / state.fps){
