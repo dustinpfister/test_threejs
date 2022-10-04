@@ -1,7 +1,13 @@
 # threejs-data-texture todo list
 
-## () - sx-from-canvas
-* use canvas data?
+## () - sx-2-canvas-datato
+* () data texture to canvas example
+
+## () - sx-1-canvas-datafrom
+* () start a section that has to do with canvas elements by starting with a data texture from canvas exampe
+
+## () - combine examples into new basic
+* () combine s1 - s4 into new basic section
 
 ## ( done 07/20/2022) - s5-for-pix
 * (done) example that involves a forPix method
