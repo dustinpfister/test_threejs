@@ -7,7 +7,8 @@
 
 ## () - s4-4-loop-
 
-## () - s4-3-loop-
+## () - s4-3-loop-tween-many
+* () have a tween many example
 
 ## ( done 10/04/2022 ) - s4-2-loop-lerpgeo
 * (done) lerp all points example based off of lerpgeo function
