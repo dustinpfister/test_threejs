@@ -1,4 +1,21 @@
 //******** **********
+// SCENE, CAMERA, RENDERER
+//******** **********
+var scene = new THREE.Scene();
+scene.add(new THREE.GridHelper(8,8))
+var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+camera.position.set(4, 4, 4);
+camera.lookAt(0, 0, 0);
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize(640, 480);
+(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+//******** **********
+// ADD A LIGHT BECUASE THIS IS THE STANDARD MATERIAL THAT I AM USING
+//******** **********
+var light = new THREE.PointLight(new THREE.Color(1, 1, 1));
+light.position.set(1, 3, 2);
+scene.add(light);
+//******** **********
 // DATA TEXTURE HELPER
 //******** **********
 // create data texture method
@@ -30,23 +47,6 @@ let createDataTexture = function(opt){
     texture.needsUpdate = true;
     return texture;
 };
-//******** **********
-// SCENE, CAMERA, RENDERER
-//******** **********
-var scene = new THREE.Scene();
-scene.add(new THREE.GridHelper(8,8))
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(4, 4, 4);
-camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-//******** **********
-// ADD A LIGHT BECUASE THIS IS THE STANDARD MATERIAL THAT I AM USING
-//******** **********
-var light = new THREE.PointLight(new THREE.Color(1, 1, 1));
-light.position.set(1, 3, 2);
-scene.add(light);
 //******** **********
 // MESH OBJECTS WITH DATA TEXTURES
 //******** **********
