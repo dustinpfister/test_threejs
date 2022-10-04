@@ -6,6 +6,10 @@
 ## () - sx-1-canvas-datafrom
 * () start a section that has to do with canvas elements by starting with a data texture from canvas exampe
 
+## () - s2-1-forpix
+* () use new loop template from getting started post
+* () show better use of the for pix helper
+
 ## ( done 10/04/2022) - combine examples into new basic
 * (done) combine s1 - s4 into new basic section
 
