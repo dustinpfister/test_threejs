@@ -102,46 +102,22 @@ forPix.square = (size, fgColor, bgColor, v2_center) => {
    size = size === undefined ? 2 : size;
    fgColor = fgColor || new THREE.Color(255, 255, 255);
    bgColor = bgColor || new THREE.Color(0, 0, 0);
-
    v2_center = v2_center || new THREE.Vector2(0, 0);
-
+   // create box2
    const b2 = new THREE.Box2(
        v2_center.clone().add( new THREE.Vector2(size * -1, size * -1) ),
        v2_center.clone().add( new THREE.Vector2(size, size) )
    );
-
-//console.log(b2)
-
    return function(color, x, y, i, opt){
-
         color.copy(bgColor);
-
+        // vector2 for current px
         const v2_px = new THREE.Vector2(x, y);
+        // is current px inside box2
         if(b2.containsPoint(v2_px)){
             color.r = fgColor.r;
             color.g = fgColor.g;
             color.b = fgColor.b;
         }
-
-
-        //const v2_px = new THREE.Vector2(x, y);
-        //const dx = new THREE.Vector2(v2_px.x, 0).distanceTo( new THREE.Vector2(v2_center.x, 0) );
-        //const dy = new THREE.Vector2(0, v2_px.y).distanceTo( new THREE.Vector2(0, v2_center.y) );
-        //if( dx <= size && dy <= size){
-        //    color.r = fgColor.r;
-        //    color.g = fgColor.g;
-        //    color.b = fgColor.b;
-        //}
-
-
-        //if( Math.abs( v2_center.x - v2_px.x ) === size && Math.abs( v2_center.y - v2_px.y ) === size){
-        //    color.r = fgColor.r;
-        //    color.g = fgColor.g;
-        //    color.b = fgColor.b;
-        //}
-
-//console.log(x, y, dx);
-
         return color;
     };
 };
