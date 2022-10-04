@@ -5,7 +5,7 @@
 * (done) have examples all as one file
 * (done) doc body default
 * (done) use let and const
-* () comments
+* (done) comments
 
 ## ( done 10/03/2022 ) new basic section of three examples
 * (done) combine helper function example and current basic example into new section

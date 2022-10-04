@@ -1,3 +1,6 @@
+//-------- ----------
+// CANVAS MODULE
+//-------- ----------
 (function(api){
     // create and return a canvasObj with texture
     api.createCanvasObject = function (state, drawFunc) {
@@ -22,7 +25,6 @@
         canvasObj.draw();
         return canvasObj;
     };
-
     // create a cube the makes use of one or more textures
     api.createCube = function (texture) {
         let materials = [];
@@ -41,11 +43,14 @@
         }
         return new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), materials);
     };
-
 }( this['canvasMod'] = {} ));
-
+//-------- ----------
+// DEMO
+//-------- ----------
 (function () {
+    //-------- ----------
     // SCENE, CAMERA, LIGHT, RENDERER
+    //-------- ----------
     const scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10));
     const camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 100);
@@ -58,8 +63,9 @@
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-
-    // state object
+    //-------- ----------
+    // STATE, DRAW, CANVAS OBJECT
+    //-------- ----------
     const state = {
        frame: 0,
        maxFrame: 300,
@@ -99,8 +105,9 @@
     // create canvas objs
     const canvasObjBox = canvasMod.createCanvasObject(state, drawBox);
     const canvasObjCircle = canvasMod.createCanvasObject(state, drawCircle);
-    
-    // using create cube method
+    //-------- ----------
+    // MESH
+    //-------- ----------
     const mesh = canvasMod.createCube([
         canvasObjBox.texture,
         canvasObjBox.texture,
@@ -109,7 +116,9 @@
         canvasObjBox.texture,
         canvasObjCircle.texture,]);
     scene.add(mesh);
-    // Loop
+    //-------- ----------
+    // LOOP
+    //-------- ----------
     const loop = function () {
         const now = new Date(),
         secs = (now - state.lt) / 1000;
