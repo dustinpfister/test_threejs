@@ -1,6 +1,12 @@
 # threejs-canvas-texture todo list
 
-## () combine animation examples
+## () - sx-x-cigrid section
+* () start a color index grid section
+
+## () - s2-3-loop-uv
+* () loop example that involves static canvas texture, but updating uv attribute over time
+
+## ( done 10/04/2022 ) combine animation examples
 * (done) combine both animaiton examples into one section
 * (done) have examples all as one file
 * (done) doc body default
