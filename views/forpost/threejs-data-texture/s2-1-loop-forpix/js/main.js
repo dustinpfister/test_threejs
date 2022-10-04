@@ -52,10 +52,12 @@ const getRndFromRange = (range) => {
     return range[0] + THREE.MathUtils.seededRandom() * ( range[1] - range[0] );
 };
 // make cube
-const makeCube = (x, y, z) => {
+const makeCube = (x, y, z, opt) => {
     const mesh = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshStandardMaterial()
+        new THREE.MeshStandardMaterial({
+            map : createDataTexture(opt)
+        })
     );
     mesh.position.set(x, y, z);
     return mesh;
@@ -82,6 +84,7 @@ forPix.square = (size, color, bgColor, v2_center) => {
    bgColor = bgColor || new THREE.Color(0, 0, 0);
    v2_center = v2_center || new THREE.Vector2();
    return function(color, x, y, i, opt){
+        
         color.r = color.r * 255;
         color.g = color.g * 255;
         color.b = color.b * 255;
@@ -91,6 +94,15 @@ forPix.square = (size, color, bgColor, v2_center) => {
 //-------- ----------
 // MESH OBJECTS WITH DATA TEXTURES
 //-------- ----------
+
+
+const updateTexture = (texture, opt) => {
+    const texture_new = createDataTexture(opt);
+    texture.image = texture_new.image;
+    texture.needsUpdate = true;
+};
+
+
 const mesh1 = makeCube(0, 0, 0);
 scene.add(mesh1);
 const mesh2 = makeCube(-3, 0, 0);
@@ -99,6 +111,7 @@ const mesh3 = makeCube(-3, 0, -3);
 scene.add(mesh3);
 const mesh4 = makeCube(0, 0, -3);
 scene.add(mesh4);
+
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -111,12 +124,13 @@ scene.add(mesh4);
     // update
     const update = function(frame, frameMax){
         // mesh1 - rand default
-        mesh1.material.map = createDataTexture({ forPix: forPix.rndChannel() });
-        // mesh2- rand red
-        mesh2.material.map = createDataTexture({ forPix: forPix.rndChannel([64, 200], [0,0], [0,0]) });
+        //mesh1.material.map = createDataTexture({ forPix: forPix.rndChannel() });
 
-        mesh3.material.map = createDataTexture({ forPix: forPix.rndChannel([0,0], [0,255], [0,0]) });
-        mesh4.material.map = createDataTexture({ forPix: forPix.rndChannel([0,0], [0,0], [0,255]) });
+        updateTexture(mesh1.material.map, { forPix: forPix.rndChannel() })
+        updateTexture(mesh2.material.map, { forPix: forPix.rndChannel() })
+        updateTexture(mesh3.material.map, { forPix: forPix.rndChannel() })
+        updateTexture(mesh4.material.map, { forPix: forPix.rndChannel() })
+
     };
     // loop
     const loop = () => {
