@@ -9,8 +9,8 @@
 
 ## () - s4-3-loop-
 
-## () - s4-2-loop-updatefromv3
-* () lerp all points example based off of s3-3-vsarray-updatefromv3
+## () - s4-2-loop-lerpgeo
+* () lerp all points example based off of lerpgeo function
 
 ## ( done 10/02/2022 ) - expand s3-4-v3array-applyeuler
 * (done) start example that makes use of apply Euler
