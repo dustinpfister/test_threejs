@@ -1,7 +1,7 @@
 # threejs-canvas-texture todo list
 
 ## () combine animation examples
-* () combine both animaiton examples into one section
+* (done) combine both animaiton examples into one section
 * () have examples all as one file
 
 ## ( done 10/03/2022 ) new basic section of three examples
