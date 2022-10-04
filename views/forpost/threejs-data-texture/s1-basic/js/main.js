@@ -1,33 +1,44 @@
-// scene, camera, and renderer
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+//-------- ----------
+// SCENE, CAMERA, RENDERER
+//-------- ----------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(2, 2, 2);
 camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 document.getElementById('demo').appendChild(renderer.domElement);
+//-------- ----------
+// TEXTURE
+//-------- ----------
 // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-var width = 512, height = 512;
-var size = width * height;
-var data = new Uint8Array( 4 * size );
+const width = 32, height = 32;
+const size = width * height;
+const data = new Uint8Array( 4 * size );
 for ( let i = 0; i < size; i ++ ) {
-    var stride = i * 4,
-    per = i / size;
+    const stride = i * 4,
+    a1 = i / size,
+    a2 = i % width / width;
     // set r, g, b, and alpha data values
-    data[ stride ] = 32 + Math.floor(128 * per); // red
-    data[ stride + 1 ] = 255 - 200 * per;        // green
-    data[ stride + 2 ] = 255;                    // blue
-    data[ stride + 3 ] = 255;                    // alpha
+    data[ stride ] = Math.floor(255 * a1);            // red
+    data[ stride + 1 ] = 255 - Math.floor(255 * a1);  // green
+    data[ stride + 2 ] = Math.floor(255 * a2);        // blue
+    data[ stride + 3 ] = 255;                         // alpha
 }
-var texture = new THREE.DataTexture( data, width, height );
+const texture = new THREE.DataTexture( data, width, height );
 texture.needsUpdate = true;
-// creating a mesh with this texture as a color map
-var box = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
+//-------- ----------
+// MESH
+//-------- ----------
+const plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(3, 3, 1, 1),
     new THREE.MeshBasicMaterial({
-        map: texture
+        map: texture,
+        side: THREE.DoubleSide
     })
 );
-scene.add(box);
-// render
+scene.add(plane);
+//-------- ----------
+// RENDER
+//-------- ----------
 renderer.render(scene, camera);
