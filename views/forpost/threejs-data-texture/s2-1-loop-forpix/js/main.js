@@ -70,6 +70,11 @@ const updateTexture = (texture, opt) => {
 const getRndFromRange = (range) => {
     return range[0] + THREE.MathUtils.seededRandom() * ( range[1] - range[0] );
 };
+// get bias or ping pong method
+const getBias = (n, d, count) => {
+    const a = n / d * count % 1;
+    return 1 - Math.abs(0.5 - a) / 0.5;
+};
 // make cube
 const makeCube = (x, y, z, opt) => {
     const mesh = new THREE.Mesh(
@@ -121,24 +126,18 @@ forPix.square = (size, fgColor, bgColor, v2_center) => {
         return color;
     };
 };
-
 //-------- ----------
 // MESH OBJECTS 
 //-------- ----------
-let m = makeCube(0, 0, 0, { forPix: forPix.square(), width: 4, height: 4 });
-
-
-
-
-
+//let m = makeCube(0, 0, 0, { forPix: forPix.square(), width: 4, height: 4 });
 const group = new THREE.Group();
 let i = 0;
-let w = 4;
+let w = 5;
 let len = w * w;
 while(i < len){
     const x = i % w;
     const z = Math.floor(i / w);
-    const mesh = makeCube(-2 + x * 1.5, 0, -2 + z * 1.5);
+    const mesh = makeCube(-3 + x * 1.5, 0, -3 + z * 1.5);
     group.add(mesh);
     i += 1;
 }
@@ -155,16 +154,23 @@ lt = new Date();
 // update
 const fg = new THREE.Color(255, 255, 255),
 bg = new THREE.Color(0, 0, 0),
-v2_center = new THREE.Vector2( 8, 8);
+v2_center = new THREE.Vector2(8, 8);
 const update = function(frame, frameMax){
     // update group 
-    group.children.forEach( (mesh) => {
+    group.children.forEach( (mesh, i) => {
         // using the update texture method
-        //updateTexture(mesh.material.map, { forPix: forPix.rndChannel() });
-
-
-        updateTexture(mesh.material.map, { forPix: forPix.square(6, fg, bg, v2_center) });
-
+        updateTexture(mesh.material.map, { forPix: forPix.rndChannel() });
+        // square update - size up and down
+        if( i % 4 === 0){
+            const size = 9 * getBias(frame, frameMax, 2)
+            updateTexture(mesh.material.map, { forPix: forPix.square(size, fg, bg, v2_center) });
+        }
+        // square update - random pos
+        if( i % 3 === 0){
+            const size = 4;
+            const v2_rnd = new THREE.Vector2(16 * Math.random(), 16 * Math.random())
+            updateTexture(mesh.material.map, { forPix: forPix.square(size, fg, bg, v2_rnd) });
+        }
         // !!! this old way of doing it would result in a loss of context
         //mesh.material.map = createDataTexture({ forPix: forPix.rndChannel() });
     });
