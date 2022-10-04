@@ -3,8 +3,9 @@
 ## () combine animation examples
 * (done) combine both animaiton examples into one section
 * (done) have examples all as one file
-* () doc body default
+* (done) doc body default
 * () use let and const
+* () commnets
 
 ## ( done 10/03/2022 ) new basic section of three examples
 * (done) combine helper function example and current basic example into new section
