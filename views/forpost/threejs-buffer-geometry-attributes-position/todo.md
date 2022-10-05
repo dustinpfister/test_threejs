@@ -3,12 +3,13 @@
 ## () - expand s3-4-v3array-applyeuler
 * () work out something where the change in direction and unit length results in a kind of twist
 
-## () - s4-5-loop-
-
-## () - s4-4-loop-
-
-## () - s4-3-loop-tween-many
+## () - s4-x-loop-tween-many
 * () have a tween many example
+
+## () - s4-x-loop-
+
+## () - s4-3-loop-boxgeometry-vert
+* () animation example based on the vert helper example
 
 ## ( done 10/04/2022 ) - s4-2-loop-lerpgeo
 * (done) lerp all points example based off of lerpgeo function
