@@ -5,7 +5,7 @@
 
 ### () - expand basic section
 * () s1-1-basic-nums - example using numbers for x, y, and z
-* () rename s1-lookat to s1-2-basic-vector3 
+* (done) rename s1-lookat to s1-2-basic-vector3 
 * () s1-3-basic-add - example involving the add method of vector3
 
 ### ( done 08/23/2022 ) - fixed relative to group example
