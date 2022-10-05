@@ -8,8 +8,8 @@
 
 ## () - s4-x-loop-
 
-## () - s4-3-loop-boxgeometry-vert
-* () animation example based on the vert helper example
+## ( done 10/05/2022 ) - s4-3-loop-boxgeometry-vert
+* (done) animation example based on the vert helper example
 
 ## ( done 10/04/2022 ) - s4-2-loop-lerpgeo
 * (done) lerp all points example based off of lerpgeo function
