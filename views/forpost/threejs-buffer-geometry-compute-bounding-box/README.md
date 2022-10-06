@@ -1,2 +1,2 @@
-# threejs-buffer-geometry-compute-boudning-box
+# threejs-buffer-geometry-compute-bounding-box
 
