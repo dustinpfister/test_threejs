@@ -22,16 +22,25 @@ const getMeshGroundPosition = (mesh, x, z) => {
     bb.getSize(v_size);
     return new THREE.Vector3(x, v_size.y / 2, z);
 };
-// get bias
-/*
-const getBias = (n, d, count) => {
-    let a = n / d * count % 1;
-    return 1 - Math.abs(0.5 - a) / 0.5;
+// Make Mesh
+const m = new THREE.MeshNormalMaterial();
+const makeMesh = (w, h, d, x, z, sh, p1, p2) => {
+    const mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(w, h, d), m);
+    mesh.userData.v_start = new THREE.Vector3(x, sh, z);
+    mesh.userData.p1 = 0.5;
+    mesh.userData.p2 = 0.8;
+    return mesh
 };
-
-console.log( getBias( 0.5, 1, 1) );
-*/
-
+// set mesh animation state for the given alpha
+const setMesh = (mesh, alpha) => {
+    let mud = mesh.userData;
+    let b = getAlpha(alpha, 1, mud.p1, mud.p2);
+    let v_start = mud.v_start;
+    let v_ground = getMeshGroundPosition(mesh, v_start.x, v_start.z);
+    mesh.position.copy(v_start).lerp(v_ground, b);
+};
+// get alpha helper
 const getAlpha = (n, d, p1, p2) => {
     let a = n / d;
     let b = 0;
@@ -42,13 +51,10 @@ const getAlpha = (n, d, p1, p2) => {
     }
     return b;
 };
-
 //-------- ----------
 // MESH, MATERIAL
 //-------- ----------
-const m = new THREE.MeshNormalMaterial();
-const mesh = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 3.25, 3), m);
+let mesh = makeMesh(1, 3.25, 3, 0, 0, 5, 0.75, 0.9);
 scene.add(mesh);
 // ---------- ----------
 // ANIMATION LOOP
@@ -61,10 +67,7 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-    let b = getAlpha(frame, frameMax, 0.75, 0.95)
-    let v_start = new THREE.Vector3(0, 5, 0);
-    let v_ground = getMeshGroundPosition(mesh, v_start.x, v_start.z);
-    mesh.position.copy(v_start).lerp(v_ground, b);
+    setMesh(mesh, frame / frameMax);
 };
 // loop
 const loop = () => {
