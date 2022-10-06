@@ -11,8 +11,8 @@
 ## () s2-1-loop-sizepos
 * () start an animation example in which size and position are used to position objects to grid
 
-## () s1-3-basic-sizeandpos
-* () start a new example in which I get size, and using that to set posiiton of objects
+## ( done 10/06/2022 ) s1-3-basic-sizeandpos
+* (done) start a new example in which I get size, and using that to set posiiton of objects
 
 ## ( done 10/04/2022 ) - start basic section with r140 demos
 * (done) start off with r140 demos for start of basic section
