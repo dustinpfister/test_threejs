@@ -58,8 +58,9 @@ const material = new THREE.MeshNormalMaterial();
 let group = new THREE.Group();
 [
     [1, 1, 1, 0.5, 0.5, 12, 0.65, 0.8, material],
-    [1, 1, 1, -4.5, -4.5, 10, 0.75, 0.9, material],
-    [1, 3.25, 3, -4.5, 0.5, 8, 0.25, 0.5, material]
+    [1, 3, 1, -4.5, -4.5, 10, 0.75, 0.9, material],
+    [1, 3.25, 3, -4.5, 0.5, 8, 0.25, 0.5, material],
+    [2, 2, 2, 3, -2, 8, 0.15, 0.4, material]
 ].forEach((argu) => {
     let mesh = makeMesh.apply(null, argu);
     group.add(mesh);
