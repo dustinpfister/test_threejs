@@ -1,0 +1,1 @@
+This is an example where I was trying to get raycaster working with on orgin of 0,0,0 or near it at least and have found that this does not work well.
