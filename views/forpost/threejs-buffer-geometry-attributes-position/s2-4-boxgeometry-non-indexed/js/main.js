@@ -44,7 +44,8 @@
     //-------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(5, 5, 5);
+    camera.position.set(3, 3, 3);
+    camera.lookAt(0.5, 0, 0);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -52,33 +53,26 @@
     // GEOMETRY
     //-------- ----------
     const geo_source = new THREE.BoxGeometry(1, 1, 1);
-	const geo_indexed = geo_source.clone();
-	const geo_nonindexed = geo_source.clone().toNonIndexed();
+    const geo_indexed = geo_source.clone();
+    const geo_nonindexed = geo_source.clone().toNonIndexed();
     // example 2 on set tri helper
-
-triMoveOne(geo_indexed);
-triMoveOne(geo_nonindexed);
-
+    triMoveOne(geo_indexed);
+    triMoveOne(geo_nonindexed);
     //-------- ----------
     // MESH
     //-------- ----------
-    const mesh1 = new THREE.Mesh(geo_indexed, new THREE.MeshNormalMaterial({
-        side: THREE.DoubleSide
-    }));
+    const material = new THREE.MeshNormalMaterial({
+        wireframe: true,
+        wireframeLinewidth: 3
+    });
+    const mesh1 = new THREE.Mesh(geo_indexed, material);
+    mesh1.position.x = 1.5;
     scene.add(mesh1);
-    camera.lookAt(mesh1.position);
-    const mesh2 = new THREE.Mesh(geo_nonindexed, new THREE.MeshNormalMaterial({
-        side: THREE.DoubleSide
-    }));
-    mesh2.position.x = -3;
+    const mesh2 = new THREE.Mesh(geo_nonindexed, material);
+    mesh2.position.x = -1.5;
     scene.add(mesh2);
     //-------- ----------
-    // LOOP
+    // RENDER
     //-------- ----------
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    const loop = function(){
-        requestAnimationFrame(loop);
-        renderer.render(scene, camera);
-    };
-    loop();
+    renderer.render(scene, camera);
 }());
