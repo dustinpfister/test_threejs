@@ -6,12 +6,17 @@
 ## () - s4-x-loop-tween-many
 * () have a tween many example
 
-## () - s4-x-loop-
+## () - s4-4-loop-boxgeometry-nonindexed
+* () have a non indexed animation in which I move all the triangles out
 
-## () - s2-4-boxgeometry-nonindexed
+## () - s4-3-loop-boxgeometry-vert
+* () see about moving each point
+* () still use an indexed box geometry
+
+## ( done 10/06/2022 ) - s2-4-boxgeometry-nonindexed
 * (done) start a n example where I pull apart a geometry that is non indexed and thus has an array size of 108.
-* () have two mesh objects one indexed and the other not
-* () see about break all the triangles out into space 
+* (done) have two mesh objects one indexed and the other not
+* (done) see about break all the triangles out into space 
 
 ## ( done 10/05/2022 ) - s4-3-loop-boxgeometry-vert
 * (done) animation example based on the vert helper example
