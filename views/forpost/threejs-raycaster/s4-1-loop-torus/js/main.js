@@ -30,6 +30,11 @@ const getDir = (v_origin, v_lookat) => {
     dir.applyEuler(obj.rotation).normalize();
     return dir;
 };
+// get look at vector
+const getLookAt = (deg, radius) => {
+    let radian = Math.PI / 180 * deg;
+    return new THREE.Vector3(1, 0, 0).applyEuler( new THREE.Euler(0, radian, 0) ).multiplyScalar(radius);
+};
 
 //-------- ----------
 // MESH - SPHERE
@@ -47,18 +52,8 @@ scene.add(box);
 //-------- ----------
 // RAYCASTER
 //-------- ----------
-const v_ray_origin = new THREE.Vector3(0, 3, 0); // where the ray comes from
-
-let radian = Math.PI / 180 * 300;
-let v_lookat = new THREE.Vector3(1, 0, 0).applyEuler( new THREE.Euler(0, radian, 0) ).multiplyScalar(4);
-
-// object to helper set dir
-//const obj = new THREE.Object3D();
-//obj.position.copy(v_ray_origin);
-//obj.lookAt(v_lookat);
-//const v_ray_dir = new THREE.Vector3(0, 0, 1);
-//v_ray_dir.applyEuler(obj.rotation).normalize();
-
+let v_ray_origin = new THREE.Vector3(0, 3, 0); // where the ray comes from
+let v_lookat = getLookAt(300, 4);
 let v_ray_dir = getDir(v_ray_origin,  v_lookat);
 
 // create raycaster
@@ -68,34 +63,34 @@ const raycaster = new THREE.Raycaster(v_ray_origin, v_ray_dir, near, far);
 
 setMeshIfHit(raycaster, box, torus, v_lookat);
 
-    // ---------- ----------
-    // ANIMATION LOOP
-    // ---------- ----------
-    const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
-    FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 120;
-    let secs = 0,
-    frame = 0,
-    lt = new Date();
-    // update
-    const update = function(frame, frameMax){
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 120;
+let secs = 0,
+frame = 0,
+lt = new Date();
+// update
+const update = function(frame, frameMax){
 
 
 
-    };
-    // loop
-    const loop = () => {
-        const now = new Date(),
-        secs = (now - lt) / 1000;
-        requestAnimationFrame(loop);
-        if(secs > 1 / FPS_UPDATE){
-            // update, render
-            update( Math.floor(frame), FRAME_MAX);
-            renderer.render(scene, camera);
-            // step frame
-            frame += FPS_MOVEMENT * secs;
-            frame %= FRAME_MAX;
-            lt = now;
-        }
-    };
-    loop();
+};
+// loop
+const loop = () => {
+    const now = new Date(),
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / FPS_UPDATE){
+        // update, render
+        update( Math.floor(frame), FRAME_MAX);
+        renderer.render(scene, camera);
+        // step frame
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
+        lt = now;
+    }
+};
+loop();
