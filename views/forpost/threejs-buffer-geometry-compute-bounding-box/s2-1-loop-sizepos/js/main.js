@@ -23,13 +23,13 @@ const getMeshGroundPosition = (mesh, x, z) => {
     return new THREE.Vector3(x, v_size.y / 2, z);
 };
 // Make Mesh
-const m = new THREE.MeshNormalMaterial();
-const makeMesh = (w, h, d, x, z, sh, p1, p2) => {
+
+const makeMesh = (w, h, d, x, z, sh, p1, p2, m) => {
     const mesh = new THREE.Mesh(
         new THREE.BoxGeometry(w, h, d), m);
     mesh.userData.v_start = new THREE.Vector3(x, sh, z);
-    mesh.userData.p1 = 0.5;
-    mesh.userData.p2 = 0.8;
+    mesh.userData.p1 = p1;
+    mesh.userData.p2 = p2;
     return mesh
 };
 // set mesh animation state for the given alpha
@@ -52,10 +52,20 @@ const getAlpha = (n, d, p1, p2) => {
     return b;
 };
 //-------- ----------
-// MESH, MATERIAL
+// GROUP, MESH, MATERIAL
 //-------- ----------
-let mesh = makeMesh(1, 3.25, 3, 0, 0, 5, 0.75, 0.9);
-scene.add(mesh);
+const material = new THREE.MeshNormalMaterial();
+let group = new THREE.Group();
+[
+    [1, 1, 1, 0.5, 0.5, 12, 0.65, 0.8, material],
+    [1, 1, 1, -4.5, -4.5, 10, 0.75, 0.9, material],
+    [1, 3.25, 3, -4.5, 0.5, 8, 0.25, 0.5, material]
+].forEach((argu) => {
+    let mesh = makeMesh.apply(null, argu);
+    group.add(mesh);
+});
+scene.add(group);
+
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -67,7 +77,9 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-    setMesh(mesh, frame / frameMax);
+    group.children.forEach((mesh)=>{
+        setMesh(mesh, frame / frameMax);
+    });
 };
 // loop
 const loop = () => {
