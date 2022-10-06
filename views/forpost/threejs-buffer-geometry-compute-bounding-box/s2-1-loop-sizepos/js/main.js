@@ -23,12 +23,25 @@ const getMeshGroundPosition = (mesh, x, z) => {
     return new THREE.Vector3(x, v_size.y / 2, z);
 };
 // get bias
+/*
 const getBias = (n, d, count) => {
     let a = n / d * count % 1;
     return 1 - Math.abs(0.5 - a) / 0.5;
 };
 
 console.log( getBias( 0.5, 1, 1) );
+*/
+
+const getAlpha = (n, d, p1, p2) => {
+    let a = n / d;
+    let b = 0;
+    if(a < p1){ b = a * (1 / p1);}
+    if(a >= p1 && a < p2){ b = 1;}
+    if(a >= p2){
+        b = (1 - a) / (1 - p2);
+    }
+    return b;
+};
 
 //-------- ----------
 // MESH, MATERIAL
@@ -40,25 +53,15 @@ scene.add(mesh);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 120;
+FRAME_MAX = FPS_MOVEMENT * 5; // 5 sec animation
 let secs = 0,
 frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-    let a = (frame / frameMax);
-    let b = 0;
-    if(a < 0.5){
-        b = a * 2;
-    }
-    if(a >= 0.5 && a < 0.9){
-        b = 1;
-    }
-    if(a >= 0.9){
-        b = (1 - a) / 0.1
-    }
+    let b = getAlpha(frame, frameMax, 0.75, 0.95)
     let v_start = new THREE.Vector3(0, 5, 0);
     let v_ground = getMeshGroundPosition(mesh, v_start.x, v_start.z);
     mesh.position.copy(v_start).lerp(v_ground, b);
