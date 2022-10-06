@@ -8,8 +8,8 @@
 * () start animation example in which mesh objects combine when they overlap
 * () see about using the lerp geo method as part of this
 
-## () s2-1-loop-sizepos
-* () start an animation example in which size and position are used to position objects to grid
+## ( done 10/06/2022 ) s2-1-loop-sizepos
+* (done) start an animation example in which size and position are used to position objects to grid
 
 ## ( done 10/06/2022 ) s1-3-basic-sizeandpos
 * (done) start a new example in which I get size, and using that to set posiiton of objects
