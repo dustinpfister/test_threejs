@@ -12,6 +12,7 @@ renderer.setSize(640, 480);
 //-------- ----------
 // HELPERS
 //-------- ----------
+// set mesh posiiton if we have a hit
 const setMeshIfHit = (raycaster, mesh, target, v_lookat) => {
     const result = raycaster.intersectObject(target, false);
     if(result.length > 0){
@@ -19,6 +20,15 @@ const setMeshIfHit = (raycaster, mesh, target, v_lookat) => {
         mesh.position.copy( hit.point );
         mesh.lookAt(v_lookat);
    }
+};
+// get dir
+const getDir = (v_origin, v_lookat) => {
+    const obj = new THREE.Object3D();
+    obj.position.copy(v_origin);
+    obj.lookAt(v_lookat);
+    const dir = new THREE.Vector3(0, 0, 1);
+    dir.applyEuler(obj.rotation).normalize();
+    return dir;
 };
 
 //-------- ----------
@@ -43,23 +53,18 @@ let radian = Math.PI / 180 * 300;
 let v_lookat = new THREE.Vector3(1, 0, 0).applyEuler( new THREE.Euler(0, radian, 0) ).multiplyScalar(4);
 
 // object to helper set dir
-const obj = new THREE.Object3D();
-obj.position.copy(v_ray_origin);
-obj.lookAt(v_lookat);
-const v_ray_dir = new THREE.Vector3(0, 0, 1);
-v_ray_dir.applyEuler(obj.rotation).normalize();
+//const obj = new THREE.Object3D();
+//obj.position.copy(v_ray_origin);
+//obj.lookAt(v_lookat);
+//const v_ray_dir = new THREE.Vector3(0, 0, 1);
+//v_ray_dir.applyEuler(obj.rotation).normalize();
+
+let v_ray_dir = getDir(v_ray_origin,  v_lookat);
+
 // create raycaster
 const near = 0, far = 100;
 const raycaster = new THREE.Raycaster(v_ray_origin, v_ray_dir, near, far);
-// intersect
-/*
-const result = raycaster.intersectObject(torus, false)
-if(result.length > 0){
-    const hit = result[0];
-    box.position.copy( hit.point );
-    box.lookAt(v_lookat);
-}
-*/
+
 
 setMeshIfHit(raycaster, box, torus, v_lookat);
 
