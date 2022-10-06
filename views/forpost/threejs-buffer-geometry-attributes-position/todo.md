@@ -9,7 +9,9 @@
 ## () - s4-x-loop-
 
 ## () - s2-4-boxgeometry-nonindexed
-* () have an example where I pull appart a geometry that is non indexed and thus has an array size of 108.
+* (done) start a n example where I pull apart a geometry that is non indexed and thus has an array size of 108.
+* () have two mesh objects one indexed and the other not
+* () see about break all the triangles out into space 
 
 ## ( done 10/05/2022 ) - s4-3-loop-boxgeometry-vert
 * (done) animation example based on the vert helper example
