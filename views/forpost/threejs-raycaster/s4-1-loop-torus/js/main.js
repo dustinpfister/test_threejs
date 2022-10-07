@@ -48,6 +48,7 @@ scene.add(torus);
 const box = new THREE.Mesh(
     new THREE.BoxGeometry(1.5, 1.5, 1.5),
     new THREE.MeshNormalMaterial());
+box.geometry.translate(0, 0, -0.75); // just translating the geometry works
 scene.add(box);
 //-------- ----------
 // RAYCASTER
