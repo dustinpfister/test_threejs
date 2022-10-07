@@ -22,7 +22,7 @@ geo_box.computeBoundingBox();
 const mesh = new THREE.Mesh( geo_box, new THREE.MeshNormalMaterial({wireframe: true}) );
 scene.add(mesh);
 // getting a ref to bounding box of geo_box
-// and usinbg that to set the position of other mesh objects
+// and using that to set the position of other mesh objects
 const bb = geo_box.boundingBox;
 const material = new THREE.MeshNormalMaterial({transparent: true, opacity: 0.5});
 const mesh1 = new THREE.Mesh( geo_sphere, material );
