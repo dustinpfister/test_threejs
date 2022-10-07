@@ -4,7 +4,7 @@
 const scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(10, 10));
 const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(5, 5, 5);
+camera.position.set(7, 7, 7);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -13,12 +13,13 @@ renderer.setSize(640, 480);
 // HELPERS
 //-------- ----------
 // set mesh posiiton if we have a hit
-const setMeshIfHit = (raycaster, mesh, target, v_lookat) => {
+const setMeshIfHit = (raycaster, mesh, target) => {
     const result = raycaster.intersectObject(target, false);
     if(result.length > 0){
         const hit = result[0];
         mesh.position.copy( hit.point );
-        mesh.lookAt(v_lookat);
+        // can use the origin prop of the Ray class
+        mesh.lookAt(raycaster.ray.origin);
    }
 };
 // get dir
@@ -39,16 +40,29 @@ const getLookAt = (deg, radius) => {
 // MESH - SPHERE
 //-------- ----------
 const torus_radius = 4;
+// the torus mesh
 const torus = new THREE.Mesh(
         new THREE.TorusGeometry(torus_radius, 1.25, 20, 20),
         new THREE.MeshNormalMaterial({wireframe: true}));
-torus.geometry.rotateX(Math.PI * 0.5)
+torus.geometry.rotateX(Math.PI * 0.5);
 scene.add(torus);
-// create mesh at point
-const box = new THREE.Mesh(
-    new THREE.BoxGeometry(1.5, 1.5, 1.5),
+// raycaster point mesh
+const mesh_ray = new THREE.Mesh(
+    new THREE.ConeGeometry(0.25, 2, 10, 10),
     new THREE.MeshNormalMaterial());
-scene.add(box);
+mesh_ray.geometry.rotateX(Math.PI * 0.5);
+scene.add(mesh_ray);
+
+// create a mesh object
+const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(0.75, 2.25, 1.25),
+    new THREE.MeshNormalMaterial());
+mesh.geometry.rotateX(Math.PI * 0.5);
+
+// just translating the geometry works, but I would rather adjust by another means
+//box.geometry.translate(0, 0, -0.75);
+
+scene.add(mesh);
 //-------- ----------
 // RAYCASTER
 //-------- ----------
@@ -67,11 +81,16 @@ lt = new Date();
 const update = function(frame, frameMax){
     let a = frame / frameMax;
     let b = 1 - Math.abs(0.5 - a * 2 % 1 ) / 0.5;
+    // update raycaster
     let v_lookat = getLookAt(360 * a, torus_radius);
-    let v_ray_origin = new THREE.Vector3(0, -20 + 40 * b, 0)
+    let v_ray_origin = new THREE.Vector3(0, -5 + 10 * b, 0);
     let v_ray_dir = getDir(v_ray_origin,  v_lookat);
     raycaster.set(v_ray_origin, v_ray_dir);
-    setMeshIfHit(raycaster, box, torus, v_lookat);
+    // update mesh_ray to have the same position as the raycaster origin
+    mesh_ray.position.copy(v_ray_origin);
+    mesh_ray.lookAt(v_lookat);
+    // if we have a hit, update the mesh object
+    setMeshIfHit(raycaster, mesh, torus, v_lookat);
 };
 // loop
 const loop = () => {
