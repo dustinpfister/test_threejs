@@ -52,16 +52,13 @@ const mesh_ray = new THREE.Mesh(
     new THREE.MeshNormalMaterial());
 mesh_ray.geometry.rotateX(Math.PI * 0.5);
 scene.add(mesh_ray);
-
 // create a mesh object
 const mesh = new THREE.Mesh(
     new THREE.BoxGeometry(0.75, 2.25, 1.25),
     new THREE.MeshNormalMaterial());
 mesh.geometry.rotateX(Math.PI * 0.5);
-
 // just translating the geometry works, but I would rather adjust by another means
 //box.geometry.translate(0, 0, -0.75);
-
 scene.add(mesh);
 //-------- ----------
 // RAYCASTER
