@@ -2,7 +2,8 @@
 
 ## () s4-2-loop-toruslerp
 * (done) use the origin prop of the ray for a look at point for the mesh
-* () use the lerp method from the point on the surface of the mesh, along with bounding box to adjust mesh position 
+* (done) use the lerp method from the point on the surface of the mesh to the ray origin
+* () use compute bounding box to get size, and use that to fine the value to aid in adjusting position
 
 ## ( done 10/06/2022 ) s4-1-loop-torus
 * (done) start an animation example based off of the torus basic example

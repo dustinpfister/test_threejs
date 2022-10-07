@@ -14,10 +14,15 @@ renderer.setSize(640, 480);
 //-------- ----------
 // set mesh posiiton if we have a hit
 const setMeshIfHit = (raycaster, mesh, target) => {
+    // raycatsre result
     const result = raycaster.intersectObject(target, false);
+    //if we have a hit, update mesh pos
     if(result.length > 0){
         const hit = result[0];
-        mesh.position.copy( hit.point );
+        // start with copying the hit point
+        let d = hit.point.distanceTo(raycaster.ray.origin);
+        mesh.position.copy( hit.point ).lerp(raycaster.ray.origin, (1) / d);
+        //mesh.position.copy( hit.point );
         // can use the origin prop of the Ray class
         mesh.lookAt(raycaster.ray.origin);
    }
@@ -54,7 +59,7 @@ mesh_ray.geometry.rotateX(Math.PI * 0.5);
 scene.add(mesh_ray);
 // create a mesh object
 const mesh = new THREE.Mesh(
-    new THREE.BoxGeometry(0.75, 2.25, 1.25),
+    new THREE.BoxGeometry(0.75, 2, 1.25),
     new THREE.MeshNormalMaterial());
 mesh.geometry.rotateX(Math.PI * 0.5);
 // just translating the geometry works, but I would rather adjust by another means
@@ -75,6 +80,7 @@ let secs = 0,
 frame = 0,
 lt = new Date();
 // update
+new THREE.OrbitControls(camera, renderer.domElement);
 const update = function(frame, frameMax){
     let a = frame / frameMax;
     let b = 1 - Math.abs(0.5 - a * 2 % 1 ) / 0.5;
@@ -87,7 +93,7 @@ const update = function(frame, frameMax){
     mesh_ray.position.copy(v_ray_origin);
     mesh_ray.lookAt(v_lookat);
     // if we have a hit, update the mesh object
-    setMeshIfHit(raycaster, mesh, torus, v_lookat);
+    setMeshIfHit(raycaster, mesh, torus);
 };
 // loop
 const loop = () => {
