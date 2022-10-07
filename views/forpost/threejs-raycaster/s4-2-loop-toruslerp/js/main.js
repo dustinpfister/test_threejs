@@ -26,7 +26,6 @@ const setMeshIfHit = (raycaster, mesh, target, adjustAxis, adjustMulti) => {
         let v_size = new THREE.Vector3();
         mesh.geometry.boundingBox.getSize(v_size);
         let hh = v_size[adjustAxis] * adjustMulti;
-
         let d = hit.point.distanceTo(raycaster.ray.origin);
         mesh.position.copy( hit.point ).lerp(raycaster.ray.origin, hh / d);
         //mesh.position.copy( hit.point );
