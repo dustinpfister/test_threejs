@@ -13,15 +13,22 @@ renderer.setSize(640, 480);
 // HELPERS
 //-------- ----------
 // set mesh posiiton if we have a hit
-const setMeshIfHit = (raycaster, mesh, target) => {
+const setMeshIfHit = (raycaster, mesh, target, adjustAxis, adjustMulti) => {
+    adjustAxis = adjustAxis || 'z';
+    adjustMulti = adjustMulti === undefined ? 0.5 : adjustMulti;
     // raycatsre result
     const result = raycaster.intersectObject(target, false);
     //if we have a hit, update mesh pos
     if(result.length > 0){
         const hit = result[0];
-        // start with copying the hit point
+        // use distance to, lerp, and bounding box to adjust
+        mesh.geometry.computeBoundingBox();
+        let v_size = new THREE.Vector3();
+        mesh.geometry.boundingBox.getSize(v_size);
+        let hh = v_size[adjustAxis] * adjustMulti;
+
         let d = hit.point.distanceTo(raycaster.ray.origin);
-        mesh.position.copy( hit.point ).lerp(raycaster.ray.origin, (1) / d);
+        mesh.position.copy( hit.point ).lerp(raycaster.ray.origin, hh / d);
         //mesh.position.copy( hit.point );
         // can use the origin prop of the Ray class
         mesh.lookAt(raycaster.ray.origin);
