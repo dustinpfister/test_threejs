@@ -54,8 +54,8 @@ const getLookAt = (deg, radius) => {
 const torus_radius = 4;
 // the torus mesh
 const torus = new THREE.Mesh(
-        new THREE.TorusGeometry(torus_radius, 1.25, 20, 20),
-        new THREE.MeshNormalMaterial({wireframe: true}));
+        new THREE.TorusGeometry(torus_radius, 1.25, 40, 40),
+        new THREE.MeshNormalMaterial({ transparent: true, opacity: 0.8 }));
 torus.geometry.rotateX(Math.PI * 0.5);
 scene.add(torus);
 // raycaster point mesh
