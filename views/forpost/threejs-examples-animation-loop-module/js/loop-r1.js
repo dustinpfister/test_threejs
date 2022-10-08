@@ -176,16 +176,16 @@ const loopMod = (function(){
     // the setSize method
     Loop.prototype.setSize = function(w, h){
         // set renderer
-        this.renderer.setSize(w, h);
+        this.renderer.setSize(w, h, false);
         // set container, and canvas with style api
         const con = this.container;
         const can = this.canvas_ui;
         can.width = w;
         can.height = h;
-        can.style.width = w + 'px';
-        can.style.height = h + 'px';
-        con.style.width = w + 'px';
-        con.style.height = h + 'px';
+        //can.style.width = w + 'px';
+        //can.style.height = h + 'px';
+        //con.style.width = w + 'px';
+        //con.style.height = h + 'px';
         // update play button state, and draw ui
         const pb = this.buttons.play;
         pb.x = this.canvas_ui.width - pb.dx;
