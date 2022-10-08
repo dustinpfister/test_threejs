@@ -28,6 +28,7 @@ body{
   background-position: center;
   text-align:center;
 }
+/*
 .aniloop_parent{
   position: static;
 }
@@ -36,6 +37,7 @@ body{
   left: 0px;
   top: 0px;
 }
+*/
 #nav_headerapp {
   position: absolute;
   top: 50%;
@@ -64,7 +66,6 @@ body{
   bottom: 0%;
   left: 50%;
   transform: translate(-50%, 0%);
-
   font-size: 12pt;
   width: 600px;
   padding:5px;
@@ -74,8 +75,8 @@ body{
     The Content DIV
 *******************/
 .content_container{
-	  z-index: 0;
-   padding-top: 200px;
+  z-index: 0;
+  padding-top: 200px;
 }
 /*******************
     DEMO DIV
@@ -98,8 +99,8 @@ body{
 
 #demo > canvas {
   z-index: 0;
-    width:640px;
-    height:480px;
+  width:640px;
+  height:480px;
 }
 /*******************
     LINKS
