@@ -56,15 +56,13 @@ const loopMod = (function(){
     // attach event handers
     const attachUIEvents = (li) => {
         const con = li.container;
+        // make it so that when the canvas is clicked text will not be selected
         con.onselectstart = function () { return false; };
         // play pause button check
         con.addEventListener('click', (e) => {
             const pos = getCanvasRelative(e);
             // prevent default
             e.preventDefault();
-
-console.log(pos)
-
             const pb = li.buttons.play;
             const v_click = new THREE.Vector2(pos.x, pos.y);
             const v_pb = new THREE.Vector2(pb.x, pb.y);
@@ -77,6 +75,13 @@ console.log(pos)
                 }
                 drawUI.draw(li, li.canvas_ui, li.ctx_ui);
             }
+        });
+        // on resize and load of window
+        window.addEventListener('resize', ()=>{
+             li.setSize(window.innerWidth, window.innerHeight);
+        });
+        window.addEventListener('load', ()=>{
+             li.setSize(window.innerWidth, window.innerHeight);
         });
     };
     // UI DRAW METHIDS
@@ -122,8 +127,6 @@ console.log(pos)
         li.lt = new Date();
         li.w = opt.width === undefined ? 640 : opt.width;
         li.h = opt.height === undefined ? 480 : opt.height
-
-
         li.secs = 0;
         li.active = false;
         li.alpha = 0;
@@ -134,11 +137,9 @@ console.log(pos)
         li.update = opt.update || function(){};
         li.scene = opt.scene || new THREE.Scene();
         li.camera = opt.camera || new THREE.PerspectiveCamera(50, li.w / li.h, 0.1, 1000);
-
         // renderer, ui canvas, and container div
         li.container = document.createElement('div');
         //li.container = opt.el || document.body; //document.createElement('div');
-
         li.renderer = new THREE.WebGLRenderer({ alpha: true });
         li.canvas_ui =  document.createElement('canvas');
         li.ctx_ui =  li.canvas_ui.getContext('2d');
@@ -154,11 +155,9 @@ console.log(pos)
         attachUIEvents(li);
         // set size for first time
         li.setSize(li.w, li.h);
-
         if(opt.el){
             opt.el.appendChild( li.container );
         }
-
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE
@@ -178,6 +177,10 @@ console.log(pos)
     };
     // the setSize method
     Loop.prototype.setSize = function(w, h){
+
+this.w = w;
+this.h = h;
+
         // set renderer size, passing false to make it so that style will not be set
         this.renderer.setSize(w, h, false);
         // set container, and canvas with style api
@@ -189,6 +192,11 @@ console.log(pos)
         //can.style.height = h + 'px';
         //con.style.width = w + 'px';
         //con.style.height = h + 'px';
+
+
+this.camera.aspect = w / h;
+this.camera.updateProjectionMatrix();
+
         // update play button state, and draw ui
         const pb = this.buttons.play;
         pb.x = this.canvas_ui.width - pb.dx;
