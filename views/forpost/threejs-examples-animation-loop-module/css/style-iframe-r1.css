@@ -3,19 +3,19 @@
   height: 200px;
 }
 
-@media (max-width: 319px) {
+@media (max-width: 399px) {
   .headerapp_iframe{
       width:200px;
   }
 }
 
-@media (min-width: 320px) and (max-width: 639px) {
+@media (min-width: 400px) and (max-width: 799px) {
   .headerapp_iframe{
       width:320px;
   }
 }
 
-@media (min-width: 640px){
+@media (min-width: 800px){
   .headerapp_iframe{
       width:640px;
   }

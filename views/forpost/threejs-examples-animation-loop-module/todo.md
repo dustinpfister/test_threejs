@@ -22,7 +22,8 @@
 * (done) set mount point by way of create options, will not append by default
 * (done) look into media queries for css
 * (done) it looks like I might need a style-iframe-r1.css that will be used for the page that contains an iframe
-* () might need on resize events for setting
+* (done) might need on window resize, and load events for setting native size as well
+* (done) I might need to have an frame.html file for each demo
 
 * () frame rate control slider
 * () raycaster features
