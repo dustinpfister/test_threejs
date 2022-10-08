@@ -13,7 +13,7 @@
 ## () - r1-1-basic example
 
 ## () r1 - content api
-* () look into adding feature that will create values that change depeding on the state of page content
+* () look into adding features that will create values that change depeding on the state of page content
 
 
 ## ( done 09/30/2022 ) - r0-2-random - random features
