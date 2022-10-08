@@ -15,7 +15,8 @@
 * () demo for raycaster features
 
 ## () - r1-1-basic example
-* () more objects in scene
+* () add a cone as a child of the cube
+* () demo new mesh click feature
 
 ## () - r1 - ui improvements, better css and create options
 * (done) have create method options to set width and height
@@ -26,7 +27,7 @@
 * (done) I might need to have an frame.html file for each demo
 
 * () frame rate control slider
-* () raycaster features
+* () raycaster features and onMeshClick create method option
 
 ## ( done 09/30/2022 ) - r0-2-random - random features
 * (done) just have cubes go all over the place
