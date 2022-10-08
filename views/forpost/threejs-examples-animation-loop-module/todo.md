@@ -17,7 +17,7 @@
 ## () - r1-1-basic example
 * () more objects in scene
 
-## () - r1 - ui improvements, Create method options
+## () - r1 - ui improvements, better css and create options
 * (done) have create method options to set width and height
 * (done) set mount point by way of create options, will not append by default
 * (done) look into media queries for css
