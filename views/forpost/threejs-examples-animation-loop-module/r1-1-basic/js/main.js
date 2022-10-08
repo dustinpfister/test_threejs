@@ -12,18 +12,28 @@ const loopObj = loopMod.create({
     init: function(li, scene, camera, renderer){
         // cube
         const ud = scene.userData;
+
+        
+/*
         const material = new THREE.MeshNormalMaterial({ transparent: true, opacity: 0.5});
         // main cube
         const cube = ud.cube = new THREE.Mesh(new THREE.BoxGeometry(0.75, 0.75, 0.75), material);
         scene.add(cube);
         // cube children
         const cone = new THREE.Mesh( new THREE.ConeGeometry(0.25, 1, 30, 30), material);
+*/
+
+        const material = new THREE.LineBasicMaterial({ color: new THREE.Color(0,1,1), transparent: true, opacity: 0.6, linewidth: 3});
+        const cube = ud.cube = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(0.75, 0.75, 0.75)), material);
+        scene.add(cube);
+        // cube children
+        const cone = new THREE.LineSegments( new THREE.EdgesGeometry(new THREE.ConeGeometry(0.25, 1, 5, 20)), material);
         cone.geometry.rotateX(Math.PI * 1.5);
+
         cone.position.set(1, 0, 0);
         cone.lookAt(cube.position);
         cube.add(cone);
-
-
+        // camera
         li.camera.position.set(1.2, 1.2, 1.2);
         li.camera.lookAt(0, 0, 0);
     },

@@ -177,10 +177,8 @@ const loopMod = (function(){
     };
     // the setSize method
     Loop.prototype.setSize = function(w, h){
-
-this.w = w;
-this.h = h;
-
+        this.w = w;
+        this.h = h;
         // set renderer size, passing false to make it so that style will not be set
         this.renderer.setSize(w, h, false);
         // set container, and canvas with style api
@@ -192,11 +190,8 @@ this.h = h;
         //can.style.height = h + 'px';
         //con.style.width = w + 'px';
         //con.style.height = h + 'px';
-
-
-this.camera.aspect = w / h;
-this.camera.updateProjectionMatrix();
-
+        this.camera.aspect = w / h;
+        this.camera.updateProjectionMatrix();
         // update play button state, and draw ui
         const pb = this.buttons.play;
         pb.x = this.canvas_ui.width - pb.dx;
