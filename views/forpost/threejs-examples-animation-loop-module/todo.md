@@ -21,8 +21,8 @@
 * (done) have create method options to set width and height
 * (done) set mount point by way of create options, will not append by default
 * (done) look into media queries for css
-* () it looks like i might need a style-iframe-r1.css that will be used for the page that contains an iframe
-
+* (done) it looks like I might need a style-iframe-r1.css that will be used for the page that contains an iframe
+* () might need on resize events for setting
 
 * () frame rate control slider
 * () raycaster features

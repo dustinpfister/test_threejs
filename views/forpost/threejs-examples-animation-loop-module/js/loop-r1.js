@@ -62,6 +62,9 @@ const loopMod = (function(){
             const pos = getCanvasRelative(e);
             // prevent default
             e.preventDefault();
+
+console.log(pos)
+
             const pb = li.buttons.play;
             const v_click = new THREE.Vector2(pos.x, pos.y);
             const v_pb = new THREE.Vector2(pb.x, pb.y);
@@ -175,7 +178,7 @@ const loopMod = (function(){
     };
     // the setSize method
     Loop.prototype.setSize = function(w, h){
-        // set renderer
+        // set renderer size, passing false to make it so that style will not be set
         this.renderer.setSize(w, h, false);
         // set container, and canvas with style api
         const con = this.container;
