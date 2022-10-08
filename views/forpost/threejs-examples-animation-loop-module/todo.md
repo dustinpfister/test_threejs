@@ -5,16 +5,22 @@
 * (done) see about making a load iframe public method
 * (done) I might not work on this more as I have found that I like just using and html file with an iframe in place of doing this
 
-
+## () rx - Content API
+* () look into adding features that will create values that change depeding on the state of page content
 
 ## () rx - web workers
 * add fetures that help with offloading work to a web worker
 
+## () - r1-2-raycatser
+* () demo for raycaster features
+
 ## () - r1-1-basic example
+* () more objects in scene
 
-## () r1 - content api
-* () look into adding features that will create values that change depeding on the state of page content
-
+## () - r1 - ui improvements, Create method options
+* () have create method options to set width and height
+* () frame rate control slider
+* () raycaster features
 
 ## ( done 09/30/2022 ) - r0-2-random - random features
 * (done) just have cubes go all over the place

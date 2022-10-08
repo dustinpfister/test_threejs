@@ -46,10 +46,10 @@ const loopMod = (function(){
         const len = con.children.length;
         let i = 0;
         // set style (of classNames, ids)
-        con.className = 'aniloop_parent'
+        con.className = 'aniloop_parent';
         while(i < len){
            const item = con.children.item(i);
-           item.className = 'aniloop_child'
+           item.className = 'aniloop_child';
            i += 1;
         }
     };
@@ -117,6 +117,10 @@ const loopMod = (function(){
         li.frame = 0;
         li.FRAME_MAX = opt.FRAME_MAX || 300;
         li.lt = new Date();
+        li.w = opt.width === undefined ? 640 : opt.width;
+        li.h = opt.height === undefined ? 480 : opt.height
+
+
         li.secs = 0;
         li.active = false;
         li.alpha = 0;
@@ -126,9 +130,12 @@ const loopMod = (function(){
         li.onStart = opt.onStart || function(){};
         li.update = opt.update || function(){};
         li.scene = opt.scene || new THREE.Scene();
-        li.camera = opt.camera || new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
+        li.camera = opt.camera || new THREE.PerspectiveCamera(50, li.w / li.h, 0.1, 1000);
+
         // renderer, ui canvas, and container div
         li.container = document.createElement('div');
+        //li.container = opt.el || document.body; //document.createElement('div');
+
         li.renderer = new THREE.WebGLRenderer({ alpha: true });
         li.canvas_ui =  document.createElement('canvas');
         li.ctx_ui =  li.canvas_ui.getContext('2d');
@@ -143,7 +150,12 @@ const loopMod = (function(){
         // attach UI EVENTS
         attachUIEvents(li);
         // set size for first time
-        li.setSize(640, 200);
+        li.setSize(li.w, li.h);
+
+
+        opt.el.appendChild( li.container );
+
+
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE
@@ -168,13 +180,13 @@ const loopMod = (function(){
         // set container, and canvas with style api
         const con = this.container;
         const can = this.canvas_ui;
-        con.style.width = w + 'px';
-        con.style.height = h + 'px';
-        can.style.width = w + 'px';
-        can.style.height = h + 'px';
         can.width = w;
         can.height = h;
-        // draw ui
+        can.style.width = w + 'px';
+        can.style.height = h + 'px';
+        con.style.width = w + 'px';
+        con.style.height = h + 'px';
+        // update play button state, and draw ui
         const pb = this.buttons.play;
         pb.x = this.canvas_ui.width - pb.dx;
         pb.y = this.canvas_ui.height - pb.dy;
@@ -189,28 +201,28 @@ const loopMod = (function(){
     const createLoopObject = (opt) => {
         opt = opt || {};
         // create a Loop Class Object
-        const loop = new Loop(opt);
+        const li = new Loop(opt);
         // the loop function as own property
-        loop.loop = function(){
+        li.loop = function(){
             const now = new Date();
-            let secs = loop.secs = (now - loop.lt) / 1000;
+            let secs = li.secs = (now - li.lt) / 1000;
             // keep calling loop over and over again i active
-            if(loop.active){
-                requestAnimationFrame(loop.loop);
+            if(li.active){
+                requestAnimationFrame(li.loop);
             }
-            if(secs > 1 / loop.fps_update){
+            if(secs > 1 / li.fps_update){
                 // update, render
-                loop.update.call(loop, loop, loop.scene, loop.camera, loop.renderer);
-                loop.renderer.render(loop.scene, loop.camera);
+                li.update.call(li, li, li.scene, li.camera, li.renderer);
+                li.renderer.render(li.scene, li.camera);
                 // step frame
-                loop.frame += loop.fps_movement * secs;
-                loop.frame %= loop.FRAME_MAX;
-                loop.lt = now;
+                li.frame += li.fps_movement * secs;
+                li.frame %= li.FRAME_MAX;
+                li.lt = now;
             }
         };
         // call init
-        loop.init(loop, loop.scene, loop.camera, loop.renderer);
-        return loop;
+        li.init(li, li.scene, li.camera, li.renderer);
+        return li;
     };
     //-------- ----------
     // PUBLIC API

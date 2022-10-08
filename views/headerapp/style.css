@@ -1,10 +1,17 @@
+
 body {
     margin:0px;
     padding:0px;
     color: white;
 }
+
+#demo{
+   position: relative;
+   width:640px;
+   height:200px;
+}
 .aniloop_parent{
-  position: static;
+   position: absolute;
 }
 .aniloop_child{
   position: absolute;
