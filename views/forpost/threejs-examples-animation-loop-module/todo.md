@@ -18,7 +18,8 @@
 * () more objects in scene
 
 ## () - r1 - ui improvements, Create method options
-* () have create method options to set width and height
+* (done) have create method options to set width and height
+* (done) set mount point by way of create options, will not append by default
 * () frame rate control slider
 * () raycaster features
 

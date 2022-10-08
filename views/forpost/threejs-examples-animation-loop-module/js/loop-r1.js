@@ -152,9 +152,9 @@ const loopMod = (function(){
         // set size for first time
         li.setSize(li.w, li.h);
 
-
-        opt.el.appendChild( li.container );
-
+        if(opt.el){
+            opt.el.appendChild( li.container );
+        }
 
     };
     //-------- ----------
