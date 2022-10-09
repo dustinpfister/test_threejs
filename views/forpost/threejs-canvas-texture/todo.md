@@ -6,6 +6,12 @@
 ## () - s2-3-loop-uv
 * () loop example that involves static canvas texture, but updating uv attribute over time
 
+## () - s2-4-datatexture-module
+* () basic module example that involves tools for conversion and so forth
+
+## () - s2-3-datatexture-rotate
+* () example that has to do with rotation of data texture source by copying to a canvas element, and then using ctx.drawImage
+
 ## ( done 10/09/2022 ) - new s2-x-datatexture section
 * (done) rename loop examples
 * (done) s2-1-datatexture-from - canvas texture from data texture
