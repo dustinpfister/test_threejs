@@ -29,7 +29,7 @@ const texture_canvas = new THREE.CanvasTexture(canvas);
 //-------- ----------
 // DATA TEXTURE FROM CANVAS 2D CONTEXT
 //-------- ----------
-const canvasData = ctx.getImageData(0, 0, 32, 32);
+const canvasData = texture_canvas.image.getContext('2d').getImageData(0, 0, 32, 32);
 const texture_data = new THREE.DataTexture(canvasData.data, 32, 32 );
 // Can do somehting to the data like add noise
 const data = texture_data.image.data;
