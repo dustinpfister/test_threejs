@@ -6,6 +6,11 @@
 ## () - s2-3-loop-uv
 * () loop example that involves static canvas texture, but updating uv attribute over time
 
+## () - new s2-x-datatexture section
+* () rename loop examples
+* () s2-1-datatexture-from - canvas texture from data texture
+* () s2-2-datatexture-to   - canvas texture to data texture
+
 ## ( done 10/04/2022 ) combine animation examples
 * (done) combine both animaiton examples into one section
 * (done) have examples all as one file
