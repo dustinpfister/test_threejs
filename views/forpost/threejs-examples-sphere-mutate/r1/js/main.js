@@ -25,18 +25,11 @@
         const stride = i * 4;
         const a1 = i / size;
         const a2 = i % width / width;
-        // set r, g, b, and alpha data values
-        //data[ stride ] = Math.floor(255 * a1);            // red
-        //data[ stride + 1 ] = 255 - Math.floor(255 * a1);  // green
-       // data[ stride + 2 ] = Math.floor(255 * a2);        // blue
-        //data[ stride + 3 ] = 255;                         // alpha
-
         const v = 30 + 70 * Math.random();
         data[ stride ] = v + 150 * a1;           // red
         data[ stride + 1 ] = v + 150 - 150 * a1; // green
         data[ stride + 2 ] = v + 50 * a2;        // blue
         data[ stride + 3 ] = 255;                // alpha
-
     }
     const texture = new THREE.DataTexture( data, width, height );
     texture.needsUpdate = true;
@@ -52,36 +45,29 @@
             }));
     scene.add(mesh);
     camera.lookAt(mesh.position);
-
-
-    const geo = mesh.geometry;
-    const pos = geo.getAttribute('position');
-
-    console.log(pos.count)
-
-    const len = pos.count;
-    let i = 0;
-    while(i < len){
-
-        const v = new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i));
-        v.normalize().multiplyScalar(0.25 + 0.3 * Math.random());
-
-        pos.array[i * 3] = v.x;
-        pos.array[i * 3 + 1] = v.y;
-        pos.array[i * 3 + 2] = v.z;
-
-
-        i += 1;
-
-    }
-
-    pos.needsUpdate = true;
-
+    // ---------- ----------
+    // HELPERS
+    // ---------- ----------
+    const updateMeshGeo = (mesh) => {
+        const geo = mesh.geometry;
+        const pos = geo.getAttribute('position');
+        const len = pos.count;
+        let i = 0;
+        while(i < len){
+            const v = new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i));
+            v.normalize().multiplyScalar(0.25 + 0.3 * Math.random());
+            pos.array[i * 3] = v.x;
+            pos.array[i * 3 + 1] = v.y;
+            pos.array[i * 3 + 2] = v.z;
+            i += 1;
+        }
+        pos.needsUpdate = true;
+    };
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
     new THREE.OrbitControls(camera, renderer.domElement);
-    const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+    const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
     FRAME_MAX = 120;
     let secs = 0,
@@ -89,6 +75,7 @@
     lt = new Date();
     // update
     const update = function(frame, frameMax){
+       updateMeshGeo(mesh)
     };
     // loop
     const loop = () => {
