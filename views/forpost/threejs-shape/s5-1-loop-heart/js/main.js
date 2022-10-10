@@ -12,7 +12,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // HELPER FUNCTIONS
 //-------- ----------
-
+// make a heart shape
 const makeHeartShape = (b, mb, sx, sy) => {
     b = b === undefined ? 9: b;
     mb = mb === undefined ? 0.75: mb;
@@ -28,21 +28,26 @@ const makeHeartShape = (b, mb, sx, sy) => {
     shape.bezierCurveTo( 3, 0, sx, sy, sx, sy );
     return shape;
 };
+// make a heart geometry
+const makeHeartGeo = (b, mb, sx, sy, extrudeSettings) => {
+    const shape = makeHeartShape(b, mb, sx, sy);
+    extrudeSettings = extrudeSettings || {
+        depth: 1.5,
+        bevelEnabled: true,
+        curveSegments: 40,
+        bevelSegments: 20,
+        steps: 8,
+        bevelThickness: 0.75,
+        bevelSize: 0.75 };
+    const geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
+    geometry.rotateX(Math.PI * 1);
+    geometry.center();
+    return geometry;
+};
 //-------- ----------
 // GEOMETRY
 //-------- ----------
-const shape = makeHeartShape(12, 0.5, 2.5, 1);
-const extrudeSettings = {
-    depth: 1.5,
-    bevelEnabled: true,
-    curveSegments: 40,
-    bevelSegments: 20,
-    steps: 8,
-    bevelThickness: 0.75,
-    bevelSize: 0.75 };
-const geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
-geometry.rotateX(Math.PI * 1);
-geometry.center();
+const geometry = makeHeartGeo();
 //-------- ----------
 // MESH
 //-------- ----------
