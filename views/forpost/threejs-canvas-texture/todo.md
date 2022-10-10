@@ -9,8 +9,16 @@
 ## () - s2-3-loop-uv
 * () loop example that involves static canvas texture, but updating uv attribute over time
 
-## () - s2-3-datatexture-rotate
-* () example that has to do with rotation of data texture source by copying to a canvas element, and then using ctx.drawImage
+
+
+## () - sx-x-textreader section
+* () I would like to see about having a text reader module
+* () The module should allow for loading external data in the form of plain text files such as javaScript and markdown files
+* () canvas elements can then be used to create a current texture of a current point in a text file
+* () I am thinking it would be cool to just use Plane geometry as a means to display the text
+
+## ( done 10/10/2022 ) - s2-3-datatexture-rotate
+* (done) example that has to do with rotation of data texture source by copying to a canvas element, and then using ctx.drawImage
 
 ## ( done 10/09/2022 ) - new s2-x-datatexture section
 * (done) rename loop examples
