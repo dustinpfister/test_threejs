@@ -1,13 +1,13 @@
 # threejs-canvas-texture todo list
 
+## () - sx-x-modules
+* () start with an sx-1-modules-draw module centred on createing and usinf draw functions
+
 ## () - sx-x-cigrid section
 * () start a color index grid section
 
 ## () - s2-3-loop-uv
 * () loop example that involves static canvas texture, but updating uv attribute over time
-
-## () - s2-4-datatexture-module
-* () basic module example that involves tools for conversion and so forth
 
 ## () - s2-3-datatexture-rotate
 * () example that has to do with rotation of data texture source by copying to a canvas element, and then using ctx.drawImage
