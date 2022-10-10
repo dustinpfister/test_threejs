@@ -33,21 +33,31 @@ const makeHeartGeo = (b, mb, sx, sy, extrudeSettings) => {
     const shape = makeHeartShape(b, mb, sx, sy);
     extrudeSettings = extrudeSettings || {
         depth: 1.5,
-        bevelEnabled: true,
-        curveSegments: 40,
-        bevelSegments: 20,
-        steps: 8,
-        bevelThickness: 0.75,
-        bevelSize: 0.75 };
+        bevelEnabled: false,
+        steps: 2};
     const geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
     geometry.rotateX(Math.PI * 1);
     geometry.center();
     return geometry;
 };
+// update geo
+const updateGeo = (geoA, geoB) => {
+    const posA = geoA.getAttribute('position');
+    const posB = geoB.getAttribute('position');
+    posA.array = posA.array.map((n, i)=>{
+        return posB.array[i];
+    });
+    posA.needsUpdate = true;
+    geoA.computeVertexNormals();
+};
 //-------- ----------
 // GEOMETRY
 //-------- ----------
 const geometry = makeHeartGeo();
+
+
+
+
 //-------- ----------
 // MESH
 //-------- ----------
@@ -56,6 +66,7 @@ let s = 0.25;
 mesh.scale.set(s, s, s);
 // add the mesh to the scene
 scene.add(mesh);
+
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -68,6 +79,11 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
     const a = frame / frameMax;
+    const ab = 1 - Math.abs(0.5 - a) / 0.5;
+    let b = 6 + 6 * ab;
+    let mb = 0.75;
+    let sy = 2.5 * ab;
+    updateGeo(mesh.geometry, makeHeartGeo(b, mb, 2.5, sy));
     mesh.rotation.y = Math.PI * 2 * a;
 };
 // loop
