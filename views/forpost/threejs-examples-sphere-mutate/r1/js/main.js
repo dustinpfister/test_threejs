@@ -5,7 +5,7 @@
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0.02,0.02,0.02)
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(1, 0, 1);
+    camera.position.set(1.25, 0.25, 1.25);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -14,6 +14,57 @@
     scene.add(dl);
     const al = new THREE.AmbientLight(0xffffff, 0.1);
     scene.add(al);
+    // ---------- ----------
+    // HELPERS
+    // ---------- ----------
+    const createNewVectors = (mesh) => {
+        const pos = mesh.userData.pos_base;
+        const len = pos.count, vstart=[], vend= [];
+        let i = 0;
+        while(i < len){
+            const v = new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i));
+            const ul = v.length();
+            vstart.push(v);
+            vend.push(v.clone().normalize().multiplyScalar(ul - 0.25 + 0.5 * Math.random()));
+            i += 1;
+        }
+        mesh.userData.vstart = vstart;
+        mesh.userData.vend = vend;
+    };
+    // create the mesh object
+    const createMesh = () => {
+        const mesh = new THREE.Mesh(
+            new THREE.SphereGeometry(0.5, 20, 20, 0, Math.PI * 1.6), 
+            new THREE.MeshPhongMaterial({
+                color: 'white',
+                map: texture,
+                side: THREE.DoubleSide
+            }));
+        mesh.userData.pos_base = mesh.geometry.getAttribute('position').clone();
+        createNewVectors(mesh);
+        return mesh;
+    };
+    // update the mesh object
+    const updateMeshGeo = (mesh, alpha) => {
+        const geo = mesh.geometry;
+        const pos = geo.getAttribute('position');
+        const len = pos.count;
+        const mud = mesh.userData;
+        let i = 0;
+        while(i < len){
+            //const pos_base = mesh.userData.pos_base;
+            //const v = new THREE.Vector3(pos_base.getX(i), pos_base.getY(i), pos_base.getZ(i));
+            //v.normalize().multiplyScalar(0.25 + 0.3 * Math.random());
+
+            const v = mud.vstart[i].clone().lerp( mud.vend[i], alpha );
+
+            pos.array[i * 3] = v.x;
+            pos.array[i * 3 + 1] = v.y;
+            pos.array[i * 3 + 2] = v.z;
+            i += 1;
+        }
+        pos.needsUpdate = true;
+    };
     //-------- ----------
     // TEXTURE
     //-------- ----------
@@ -36,46 +87,25 @@
     // ---------- ----------
     // GEOMETRY, MESH
     // ---------- ----------
-    const mesh = new THREE.Mesh(
-        new THREE.SphereGeometry(0.5, 60, 60, 0, Math.PI * 1.75), 
-        new THREE.MeshPhongMaterial({
-                color: 'white',
-                map: texture,
-                side: THREE.DoubleSide
-            }));
+    const mesh = createMesh();
     scene.add(mesh);
     camera.lookAt(mesh.position);
-    // ---------- ----------
-    // HELPERS
-    // ---------- ----------
-    const updateMeshGeo = (mesh) => {
-        const geo = mesh.geometry;
-        const pos = geo.getAttribute('position');
-        const len = pos.count;
-        let i = 0;
-        while(i < len){
-            const v = new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i));
-            v.normalize().multiplyScalar(0.25 + 0.3 * Math.random());
-            pos.array[i * 3] = v.x;
-            pos.array[i * 3 + 1] = v.y;
-            pos.array[i * 3 + 2] = v.z;
-            i += 1;
-        }
-        pos.needsUpdate = true;
-    };
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
     new THREE.OrbitControls(camera, renderer.domElement);
     const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 120;
+    FRAME_MAX = 300;
     let secs = 0,
     frame = 0,
     lt = new Date();
     // update
     const update = function(frame, frameMax){
-       updateMeshGeo(mesh)
+       let alpha = frame / frameMax;
+       let bias = 1 - Math.abs(0.5 - alpha) / 0.5;
+       updateMeshGeo(mesh, bias);
+       mesh.rotation.y = Math.PI * 4 * alpha;
     };
     // loop
     const loop = () => {
