@@ -17,7 +17,9 @@
     // ---------- ----------
     // HELPERS
     // ---------- ----------
-    const createNewVectors = (mesh) => {
+    // create new vectors
+    const createNewVectors = (mesh, mag) => {
+        mag = mag === undefined ? 0.25 : mag
         const pos = mesh.userData.pos_base;
         const len = pos.count, vstart=[], vend= [];
         let i = 0;
@@ -25,7 +27,7 @@
             const v = new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i));
             const ul = v.length();
             vstart.push(v);
-            vend.push(v.clone().normalize().multiplyScalar(ul - 0.25 + 0.5 * Math.random()));
+            vend.push(v.clone().normalize().multiplyScalar(ul - mag + mag * 2 * Math.random()));
             i += 1;
         }
         mesh.userData.vstart = vstart;
@@ -34,7 +36,7 @@
     // create the mesh object
     const createMesh = () => {
         const mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(0.5, 20, 20, 0, Math.PI * 1.6), 
+            new THREE.SphereGeometry(0.5, 40, 40, 0, Math.PI * 1.6), 
             new THREE.MeshPhongMaterial({
                 color: 'white',
                 map: texture,
@@ -52,12 +54,7 @@
         const mud = mesh.userData;
         let i = 0;
         while(i < len){
-            //const pos_base = mesh.userData.pos_base;
-            //const v = new THREE.Vector3(pos_base.getX(i), pos_base.getY(i), pos_base.getZ(i));
-            //v.normalize().multiplyScalar(0.25 + 0.3 * Math.random());
-
             const v = mud.vstart[i].clone().lerp( mud.vend[i], alpha );
-
             pos.array[i * 3] = v.x;
             pos.array[i * 3 + 1] = v.y;
             pos.array[i * 3 + 2] = v.z;
@@ -69,7 +66,7 @@
     // TEXTURE
     //-------- ----------
     // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-    const width = 512, height = 512;
+    const width = 32, height = 32;
     const size = width * height;
     const data = new Uint8Array( 4 * size );
     for ( let i = 0; i < size; i ++ ) {
@@ -102,10 +99,13 @@
     lt = new Date();
     // update
     const update = function(frame, frameMax){
-       let alpha = frame / frameMax;
-       let bias = 1 - Math.abs(0.5 - alpha) / 0.5;
-       updateMeshGeo(mesh, bias);
-       mesh.rotation.y = Math.PI * 4 * alpha;
+        let alpha = frame / frameMax;
+        let bias = 1 - Math.abs(0.5 - (alpha * 4 % 1)) / 0.5;
+        if(frame === 0){
+            createNewVectors(mesh, 0.05 + 0.20 * Math.random())
+        }
+        updateMeshGeo(mesh, bias);
+        mesh.rotation.y = Math.PI * 4 * alpha;
     };
     // loop
     const loop = () => {
