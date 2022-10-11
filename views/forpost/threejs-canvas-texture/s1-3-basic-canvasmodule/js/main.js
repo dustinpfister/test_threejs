@@ -20,36 +20,36 @@ const makeCube = (canObj) => {
     }));
 };
 //-------- ----------
-// CANVAS
+// CANVAS DEFAULT
 //-------- ----------
 // create texture with default draw method, size settings and so forth
-let canvasObj = canvasMod.create();
+let canObj1 = canvasMod.create();
 // create cube with the texture
-let cube = makeCube(canvasObj);
-scene.add(cube);
-
-
-// create texture with custom draw method that makes use of a state object
-const draw = function (canObj, ctx, canvas, state) {
-    ctx.fillStyle = 'red';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'black';
-    ctx.beginPath();
-    const hw = canvas.width / 2,
-    sx = hw,
-    sy = canvas.height / 2,
-    radius = hw - hw * state.rPer;
-    ctx.arc(sx, sy, radius, 0, Math.PI * 2);
-    ctx.fill();
+let cube1 = makeCube(canObj1);
+scene.add(cube1);
+//-------- ----------
+// CANVAS CUSTOM
+//-------- ----------
+const opt = {
+    size: 64,
+    state: {
+        rPer: 0.2
+    },
+    draw: function (canObj, ctx, canvas, state) {
+        ctx.fillStyle = canObj.palette[1];
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = canObj.palette[0];
+        ctx.beginPath();
+        const hw = canvas.width / 2, sx = hw, sy = canvas.height / 2,
+        radius = hw - hw * state.rPer;
+        ctx.arc(sx, sy, radius, 0, Math.PI * 2);
+        ctx.fill();
+    }
 };
-const state = {
-   rPer: 0.1
-};
-canvasObj = canvasMod.create({ state: state, draw: draw });
-cube = makeCube(canvasObj);
-cube.position.set(0, 0, 2)
-scene.add(cube);
-
+const canObj2 = canvasMod.create(opt);
+const cube2 = makeCube(canObj2);
+cube2.position.set(0, 0, 2)
+scene.add(cube2);
 //-------- ----------
 // RENDER
 //-------- ----------

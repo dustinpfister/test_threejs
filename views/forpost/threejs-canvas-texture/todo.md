@@ -21,6 +21,10 @@
 ## () - fix up basic canvas module example
 * (done) have no function for createing a mesh, make that a helper in the demo
 * (done) have an update funciton for the module
+* (done) canObj.palette for setting colors
+
+* () more than one built in option for draw methods
+* () can give a string value for draw method as a way to choose built in methods
 
 ## ( done 10/10/2022 ) - s2-3-datatexture-rotate
 * (done) example that has to do with rotation of data texture source by copying to a canvas element, and then using ctx.drawImage
