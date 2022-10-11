@@ -1,7 +1,7 @@
 # threejs-canvas-texture todo list
 
-## () - sx-x-modules
-* () start with an sx-1-modules-draw module centred on createing and usinf draw functions
+## () - sx-x-canvasmod
+* () start with an sx-1-modules-draw module centred on createing and using draw functions
 
 ## () - sx-x-cigrid section
 * () start a color index grid section
@@ -16,6 +16,11 @@
 * () The module should allow for loading external data in the form of plain text files such as javaScript and markdown files
 * () canvas elements can then be used to create a current texture of a current point in a text file
 * () I am thinking it would be cool to just use Plane geometry as a means to display the text
+
+
+## () - fix up basic canvas module example
+* (done) have no function for createing a mesh, make that a helper in the demo
+* (done) have an update funciton for the module
 
 ## ( done 10/10/2022 ) - s2-3-datatexture-rotate
 * (done) example that has to do with rotation of data texture source by copying to a canvas element, and then using ctx.drawImage

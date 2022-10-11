@@ -1,38 +1,40 @@
 (function(api){
-    api.draw = function (ctx, canvas) {
+
+    const draw = function (canObj, ctx, canvas) {
         ctx.fillStyle = '#000000';
         ctx.lineWidth = 1;
         ctx.fillRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
         ctx.strokeStyle = '#00ff00';
         ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
     };
+
     // create and return a canvas texture
-    api.createCanvasTexture = function (state, drawFunc) {
-        drawFunc = drawFunc || canvasMod.draw;
+    api.create = function (opt) {
+        opt = opt || {};
+        opt.size = opt.size === undefined ? 16 : opt.size;
+        opt.draw = opt.draw || draw;
+        opt.state = opt.state || {};
+        // create canvas, get context, set size
         const canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
-        canvas.width = 16;
-        canvas.height = 16;
-        const texture = new THREE.Texture(canvas);
-        texture.needsUpdate = true;
-        const canvasObj = {
-            texture: texture,
-            canvas: canvas,
-            ctx: ctx,
-            state: state,
-            draw: function(){
-                drawFunc.call(state, ctx, canvas, state);
-            }
+        canvas.width = opt.size;
+        canvas.height = opt.size;
+        // create canvas object
+        const canObj = {
+            texture: null,
+            canvas: canvas, ctx: ctx,
+            state: opt.state,
+            draw: opt.draw
         };
-        canvasObj.draw();
-        return canvasObj;
+        // create texture object
+        canObj.texture = new THREE.CanvasTexture(canvas);
+        api.update(canObj);
+        return canObj;
     };
-    // create a cube the makes use of a canvas texture
-    api.createCube = function (texture) {
-        return new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
-                map: texture
-            }));
+    // update
+    api.update = (canObj) => {
+        canObj.draw.call(canObj, canObj, canObj.ctx, canObj.canvas, canObj.state);
+        canObj.texture.needsUpdate = true;
     };
+
 }( this['canvasMod'] = {} ));

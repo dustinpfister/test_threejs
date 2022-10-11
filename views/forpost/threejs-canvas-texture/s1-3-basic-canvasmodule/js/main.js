@@ -1,7 +1,7 @@
 //-------- ----------
 // SCENE, CAMERA, RENDERER
 //-------- ----------
-var scene = new THREE.Scene();
+const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
 camera.position.set(2, 2, 2);
@@ -10,15 +10,27 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
+// HELPERS
+//-------- ----------
+const makeCube = (canObj) => {
+    return new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshBasicMaterial({
+            map: canObj.texture
+    }));
+};
+//-------- ----------
 // CANVAS
 //-------- ----------
-// create texture with default draw method
-let canvasObj = canvasMod.createCanvasTexture();
+// create texture with default draw method, size settings and so forth
+let canvasObj = canvasMod.create();
 // create cube with the texture
-let cube = canvasMod.createCube(canvasObj.texture);
+let cube = makeCube(canvasObj);
 scene.add(cube);
+
+
 // create texture with custom draw method that makes use of a state object
-const draw = function (ctx, canvas, state) {
+const draw = function (canObj, ctx, canvas, state) {
     ctx.fillStyle = 'red';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'black';
@@ -33,10 +45,11 @@ const draw = function (ctx, canvas, state) {
 const state = {
    rPer: 0.1
 };
-canvasObj = canvasMod.createCanvasTexture(state, draw);
-cube = canvasMod.createCube(canvasObj.texture);
+canvasObj = canvasMod.create({ state: state, draw: draw });
+cube = makeCube(canvasObj);
 cube.position.set(0, 0, 2)
 scene.add(cube);
+
 //-------- ----------
 // RENDER
 //-------- ----------
