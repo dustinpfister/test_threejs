@@ -22,7 +22,6 @@
 * (done) have no function for createing a mesh, make that a helper in the demo
 * (done) have an update funciton for the module
 * (done) canObj.palette for setting colors
-
 * () more than one built in option for draw methods
 * () can give a string value for draw method as a way to choose built in methods
 

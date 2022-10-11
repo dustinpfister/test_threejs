@@ -23,7 +23,7 @@ const makeCube = (canObj) => {
 // CANVAS DEFAULT
 //-------- ----------
 // create texture with default draw method, size settings and so forth
-let canObj1 = canvasMod.create();
+let canObj1 = canvasMod.create({draw:'rnd'});
 // create cube with the texture
 let cube1 = makeCube(canObj1);
 scene.add(cube1);
