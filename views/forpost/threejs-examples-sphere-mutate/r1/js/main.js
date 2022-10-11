@@ -1,7 +1,8 @@
 
 (function () {
-
-    // scene
+    //-------- ----------
+    // SCENE, CAMERA, RENDRER, LIGHT
+    //-------- ----------
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0.02,0.02,0.02)
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
