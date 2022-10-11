@@ -12,9 +12,9 @@ renderer.setSize(640, 480);
 //-------- ----------
 // HELPERS
 //-------- ----------
-const makeCube = (canObj) => {
+const makeCube = (canObj, size) => {
     return new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.BoxGeometry(size, size, size),
         new THREE.MeshBasicMaterial({
             map: canObj.texture
     }));
@@ -23,10 +23,20 @@ const makeCube = (canObj) => {
 // CANVAS DEFAULT
 //-------- ----------
 // create texture with default draw method, size settings and so forth
-let canObj1 = canvasMod.create({draw:'rnd'});
+let canObj1 = canvasMod.create();
 // create cube with the texture
-let cube1 = makeCube(canObj1);
+let cube1 = makeCube(canObj1, 1);
 scene.add(cube1);
+//-------- ----------
+// CANVAS WITH RND BUILT IN DRAW METHOD
+//-------- ----------
+let canObj2 = canvasMod.create({
+    draw:'rnd',
+    state: { gSize: 12 },
+    palette: ['red', 'lime', 'blue', 'cyan', 'purple', 'orange'] });
+let cube2 = makeCube(canObj2, 2);
+cube2.position.set(-3, 0, 0);
+scene.add(cube2);
 //-------- ----------
 // CANVAS CUSTOM
 //-------- ----------
@@ -46,10 +56,10 @@ const opt = {
         ctx.fill();
     }
 };
-const canObj2 = canvasMod.create(opt);
-const cube2 = makeCube(canObj2);
-cube2.position.set(0, 0, 2)
-scene.add(cube2);
+const canObj3 = canvasMod.create(opt);
+const cube3 = makeCube(canObj3, 1);
+cube3.position.set(0, 0, 2);
+scene.add(cube3);
 //-------- ----------
 // RENDER
 //-------- ----------

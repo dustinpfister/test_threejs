@@ -14,12 +14,13 @@
     // random using palette colors
     DRAW.rnd = (canObj, ctx, canvas, state) => {
         let i = 0;
-        const len = 5 * 5;
-        const pxSize = canObj.size / 5;
+        const gSize =  state.gSize === undefined ? 5 : state.gSize;
+        const len = gSize * gSize;
+        const pxSize = canObj.size / gSize;
         while(i < len){
             const ci = Math.floor( canObj.palette.length * Math.random() );
-            const x = i % 5;
-            const y = Math.floor(i / 5);
+            const x = i % gSize;
+            const y = Math.floor(i / gSize);
             ctx.fillStyle = canObj.palette[ci];
             ctx.fillRect(0.5 + x * pxSize, 0.5 + y * pxSize, pxSize, pxSize);
             i += 1;
