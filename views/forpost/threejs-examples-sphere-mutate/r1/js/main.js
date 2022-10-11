@@ -1,4 +1,4 @@
-
+// threejs-examples-sphere-mutate - r1 - random vector unit length with same direction
 (function () {
     //-------- ----------
     // SCENE, CAMERA, RENDRER, LIGHT
