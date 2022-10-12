@@ -30,6 +30,12 @@ const createGroup = function (color) {
     group.add(new THREE.BoxHelper(group));
     return group;
 };
+// update
+const updateGroup = (group, alpha) => {
+
+};
+
+
 //-------- ----------
 // SCENE CHILD OBJECTS
 //-------- ----------
@@ -52,6 +58,10 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
+    // animate cubes the same way
+    
+
+
     // with group1 I am just passing lookAt the LOCAL position of the cube
     group1.userData.pointer.lookAt(group1.userData.cube.position);
     // with group to I am USING GETWORLDPOSITION to get a vector to pass to lookAt
