@@ -11,7 +11,7 @@ renderer.setSize(640, 480);
 //-------- ----------
 // HELPERS
 //-------- ----------
-const createGroup = function (color) {
+const createGroup = function (color, x) {
     color = color || new THREE.Color(1, 1, 1);
     const group = new THREE.Group();
     const geo = new THREE.CylinderGeometry(0, 0.5, 1, 12);
@@ -27,26 +27,28 @@ const createGroup = function (color) {
             new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.5 }));
     cube.position.set(0, 0, 1);
     group.add(cube);
-    group.add(new THREE.BoxHelper(group));
+
+    group.position.set(x, 0, 0);
     return group;
 };
 // update
 const updateGroup = (group, alpha) => {
-
+    const e = new THREE.Euler();
+    e.y = Math.PI * 2 * alpha;
+    group.userData.cube.position.copy( new THREE.Vector3(1,0,0) ).applyEuler(e).normalize().multiplyScalar(1.5);
 };
-
 
 //-------- ----------
 // SCENE CHILD OBJECTS
 //-------- ----------
 scene.add(new THREE.GridHelper(5, 5));
 // just set up group1 and group2
-const group1 = createGroup(0xff0000);
+const group1 = createGroup(0xff0000, -2);
 scene.add(group1);
-group1.position.set(-2.0, 0, 0.0);
-const group2 = createGroup(0x00ff00);
+//group1.position.set(-2.0, 0, 0.0);
+const group2 = createGroup(0x00ff00, 2);
 scene.add(group2);
-group2.position.set(2.0, 0, 0.0);
+//group2.position.set(2.0, 0, 0.0);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -58,8 +60,10 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-    // animate cubes the same way
-    
+    // animate groups the same way
+    let a = frame / frameMax;
+    updateGroup(group1, a);
+    updateGroup(group2, a);
 
 
     // with group1 I am just passing lookAt the LOCAL position of the cube
