@@ -23,11 +23,10 @@ const createGroup = function (color, x) {
     pointer.rotation.y = 1.57;
     group.add(pointer);
     const cube = group.userData.cube = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.BoxGeometry(0.5, 0.5, 0.5),
             new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.5 }));
     cube.position.set(0, 0, 1);
     group.add(cube);
-
     group.position.set(x, 0, 0);
     return group;
 };
@@ -45,10 +44,14 @@ scene.add(new THREE.GridHelper(5, 5));
 // just set up group1 and group2
 const group1 = createGroup(0xff0000, -2);
 scene.add(group1);
-//group1.position.set(-2.0, 0, 0.0);
 const group2 = createGroup(0x00ff00, 2);
 scene.add(group2);
-//group2.position.set(2.0, 0, 0.0);
+
+const helper1 = new THREE.BoxHelper(group1);
+scene.add(helper1);
+const helper2 = new THREE.BoxHelper(group2);
+scene.add(helper2);
+
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -64,8 +67,8 @@ const update = function(frame, frameMax){
     let a = frame / frameMax;
     updateGroup(group1, a);
     updateGroup(group2, a);
-
-
+    helper1.update();
+    helper2.update();
     // with group1 I am just passing lookAt the LOCAL position of the cube
     group1.userData.pointer.lookAt(group1.userData.cube.position);
     // with group to I am USING GETWORLDPOSITION to get a vector to pass to lookAt
