@@ -4,7 +4,7 @@
 const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
-camera.position.set(2, 2, 2);
+camera.position.set(0, 2, 4);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
@@ -12,11 +12,11 @@ renderer.setSize(640, 480);
 //-------- ----------
 // HELPERS
 //-------- ----------
-const makeCube = (canObj, size) => {
+const makeCube = (texture, size) => {
     return new THREE.Mesh(
         new THREE.BoxGeometry(size, size, size),
         new THREE.MeshBasicMaterial({
-            map: canvasMod.toDataTexture(canObj)
+            map: texture || null
     }));
 };
 //-------- ----------
@@ -26,9 +26,15 @@ let canObj2 = canvasMod.create({
     draw:'rnd',
     state: { gSize: 12 },
     palette: ['red', 'lime', 'blue', 'cyan', 'purple', 'orange'] });
-let cube2 = makeCube(canObj2, 2);
-cube2.position.set(0, 0, 0);
+
+let cube1 = makeCube(canObj2.texture, 2);
+cube1.position.set(2, 0, 0);
+scene.add(cube1);
+
+let cube2 = makeCube(canObj2.texture_data, 2);
+cube2.position.set(-2, 0, 0);
 scene.add(cube2);
+
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------

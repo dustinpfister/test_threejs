@@ -46,6 +46,13 @@
     //-------- ----------
     // PUBLIC API
     //-------- ----------
+    // to data texture method
+    api.toDataTexture = (canObj) => {
+        const canvasData = canObj.texture.image.getContext('2d').getImageData(0, 0, canObj.size, canObj.size);
+        const texture_data = new THREE.DataTexture(canvasData.data, canObj.size, canObj.size );
+        texture_data.needsUpdate = true;
+        return texture_data;
+    };
     // create and return a canvas texture
     api.create = function (opt) {
         opt = opt || {};
@@ -58,6 +65,8 @@
         // create canvas object
         const canObj = {
             texture: null,
+            texture_data: null,
+            update_mode: opt.update_mode || 'dual',
             size: opt.size,
             canvas: canvas, ctx: ctx,
             palette: opt.palette || ['black', 'white'],
@@ -66,19 +75,33 @@
         };
         // create texture object
         canObj.texture = new THREE.CanvasTexture(canvas);
+        canObj.texture_data = api.toDataTexture(canObj);
         api.update(canObj);
         return canObj;
     };
     // update
-    api.update = (canObj) => {
+    const UPDATE = {};
+    // update canvas only update mode
+    UPDATE.canvas = (canObj) => {
+        // update canvas texture
         canObj.draw.call(canObj, canObj, canObj.ctx, canObj.canvas, canObj.state);
         canObj.texture.needsUpdate = true;
     };
-    // to data texture method
-    api.toDataTexture = (canObj) => {
+    // update canvas AND data texture AKA 'dual' mode ( default for r1 )
+    UPDATE.dual = (canObj) => {
+        UPDATE.canvas(canObj);
+        // update data texture
         const canvasData = canObj.texture.image.getContext('2d').getImageData(0, 0, canObj.size, canObj.size);
-        const texture_data = new THREE.DataTexture(canvasData.data, canObj.size, canObj.size );
-        texture_data.needsUpdate = true;
-        return texture_data;
-    }
+        const data = canObj.texture_data.image.data;
+        const len = data.length;
+        let i = 0;
+        while(i < len){
+            data[i] = canvasData.data[i];
+            i += 1;
+        }
+        canObj.texture_data.needsUpdate = true;
+    };
+    api.update = (canObj) => {
+        UPDATE[canObj.update_mode](canObj);
+    };
 }( this['canvasMod'] = {} ));
