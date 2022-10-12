@@ -24,6 +24,8 @@ const makeCube = (texture, size) => {
 //-------- ----------
 let canObj2 = canvasMod.create({
     draw:'rnd',
+    size: 16,
+    update_mode: 'dual',
     state: { gSize: 12 },
     palette: ['red', 'lime', 'blue', 'cyan', 'purple', 'orange'] });
 
@@ -46,6 +48,9 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
+
+    canvasMod.update(canObj2)
+
 };
 // loop
 const loop = () => {
