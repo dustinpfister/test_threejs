@@ -1,14 +1,10 @@
 # threejs-canvas-texture todo list
 
-
-
 ## () - sx-x-cigrid section
 * () start a color index grid section
 
 ## () - s2-3-loop-uv
 * () loop example that involves static canvas texture, but updating uv attribute over time
-
-
 
 ## () - sx-x-textreader section
 * () I would like to see about having a text reader module
@@ -22,6 +18,15 @@
 
 ## () - canvasjs - r1
 * (done) start the file based off of the example in the basic section
+<!-- improve the square built in draw function -->
+* () refine the square method so that I can have more than one square in the canvas
+* () have it so that I can set linewidth, cx, cy, size, and strokeColor, and fillColor for each square
+<!-- improve the rnd built in draw function -->
+* () refine the rnd built in draw function
+
+<!-- data texture support -->
+* () 
+
 
 ## ( done 10/11/2022 ) - fix up basic canvas module example
 * (done) have no function for createing a mesh, make that a helper in the demo

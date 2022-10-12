@@ -74,4 +74,11 @@
         canObj.draw.call(canObj, canObj, canObj.ctx, canObj.canvas, canObj.state);
         canObj.texture.needsUpdate = true;
     };
+    // to data texture method
+    api.toDataTexture = (canObj) => {
+        const canvasData = canObj.texture.image.getContext('2d').getImageData(0, 0, canObj.size, canObj.size);
+        const texture_data = new THREE.DataTexture(canvasData.data, canObj.size, canObj.size );
+        texture_data.needsUpdate = true;
+        return texture_data;
+    }
 }( this['canvasMod'] = {} ));
