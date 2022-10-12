@@ -17,8 +17,11 @@
 * () I am thinking it would be cool to just use Plane geometry as a means to display the text
 
 
-## () - sx-x-canvasmod
-* () start with an sx-1-modules-draw module centred on createing and using draw functions
+## () - sx-x-canvasjs basic
+* () This just needs to be a functioning hello world example of r1 of canvas.js
+
+## () - canvasjs - r1
+* (done) start the file based off of the example in the basic section
 
 ## ( done 10/11/2022 ) - fix up basic canvas module example
 * (done) have no function for createing a mesh, make that a helper in the demo
