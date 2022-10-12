@@ -36,7 +36,6 @@ const updateGroup = (group, alpha) => {
     e.y = Math.PI * 2 * alpha;
     group.userData.cube.position.copy( new THREE.Vector3(1,0,0) ).applyEuler(e).normalize().multiplyScalar(1.5);
 };
-
 //-------- ----------
 // SCENE CHILD OBJECTS
 //-------- ----------
@@ -46,12 +45,10 @@ const group1 = createGroup(0xff0000, -2);
 scene.add(group1);
 const group2 = createGroup(0x00ff00, 2);
 scene.add(group2);
-
 const helper1 = new THREE.BoxHelper(group1);
 scene.add(helper1);
 const helper2 = new THREE.BoxHelper(group2);
 scene.add(helper2);
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
