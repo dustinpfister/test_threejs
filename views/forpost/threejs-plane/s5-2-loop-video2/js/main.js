@@ -4,7 +4,7 @@
     // ---------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 64 / 48, 0.5, 100);
-    camera.position.set(8, 6, 8);
+    camera.position.set(10, 10, 10);
     camera.lookAt(0, -1.5, 0);
     scene.add(camera);
     const renderer = new THREE.WebGLRenderer();
@@ -14,6 +14,7 @@
     // LIGHT
     // ---------- ----------
     const dl = new THREE.DirectionalLight();
+    dl.position.set(0,3,3)
     scene.add(dl);
     // ---------- ----------
     // HELPERS
@@ -70,6 +71,11 @@
     const opt_data_texture = {
         alpha: 1,
         forPix: function(color, x, y, i, opt){
+            const roll = Math.random();
+            if(roll < 0.05){
+                color.setRGB(255,255,255);
+                return color;
+            }
             let v = 50 + 100 * opt.alpha + 100 * opt.alpha * Math.random();
             color.setRGB(0, v, 0);
             if(y % 2 === 0 && x % 2 === 0){
@@ -87,9 +93,14 @@
     // random texture options
     const opt_data_texture_rnd = {
         forPix: function(color, x, y, i, opt){
-            //color.r = 32 + 200 * Math.random();
-            color.g = 32 + 200 * Math.random();
-            //color.b = 32 + 200 * Math.random();
+            const v = 32 + 200 * Math.random();
+            const roll = Math.random();
+
+            if(roll < 0.80){
+                color.g = v;
+                return color;
+            }
+            color.setRGB(v, v, v);
             return color;
         }
     };
@@ -134,6 +145,23 @@
         array_oi.push( Math.floor( array_source_objects.length * THREE.MathUtils.seededRandom() ) );
         i += 1;
     }
+
+
+   // EFFECT
+
+(function(){
+    ObjectGridWrap.load( {
+        EFFECTS : {
+            flip : function(grid, obj, objData, ud){
+                const startFlip = grid.userData.startFlip === undefined ? -45: grid.userData.startFlip;
+                const maxFlipDelta = grid.userData.maxFlipDelta === undefined ? 90: grid.userData.maxFlipDelta;
+                obj.rotation.x = Math.PI / 180 * startFlip  + Math.PI / 180 * maxFlipDelta * objData.b;
+            }
+        }
+    } );
+}());
+
+
     //-------- ----------
     // CREATE GRID
     //-------- ----------
@@ -141,8 +169,7 @@
         space: space,
         tw: tw,
         th: th,
-        effects: ['opacity2'],
-        //aOpacity: 1.25,
+        effects: ['opacity2', 'flip'],
         sourceObjects: array_source_objects,
         objectIndices: array_oi
     });
@@ -160,14 +187,15 @@
         requestAnimationFrame(loop);
         if(secs >= 1 / fps_update){
 
+
+            grid.userData.startFlip = -180 * b;
+            grid.userData.maxFlipDelta = 360 * b;
+
             opt_data_texture.alpha = b;
             updateTexture(texture_checker, opt_data_texture);
             updateTexture(texture_rnd, opt_data_texture_rnd);
-
-
             ObjectGridWrap.setPos(grid, 1 - a, 0 );
             ObjectGridWrap.update(grid);
-
             f += fps_move * secs;
             f %= fm;
             renderer.render(scene, camera);
