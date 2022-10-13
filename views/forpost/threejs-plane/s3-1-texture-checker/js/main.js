@@ -54,15 +54,6 @@
         texture.needsUpdate = true;
         return texture;
     };
-    // update a texture
-    /*
-    const updateTexture = (texture, opt) => {
-        // just updating data array only
-        const data = createData(opt);
-        texture.image.data = data;
-        texture.needsUpdate = true;
-    };
-    */
     // ---------- ----------
     // TEXTURE
     // ---------- ----------
