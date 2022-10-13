@@ -1,5 +1,11 @@
 # threejs-plane todo list
 
+<!-- Raycaster -->
+
+## Maybe add a raycaster section and be sure to like to this video
+https://www.youtube.com/watch?v=oQbfy8QP8Lc
+
+
 <!-- LOOP -->
 
 ## () sx-3-loop-position
