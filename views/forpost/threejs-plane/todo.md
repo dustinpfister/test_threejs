@@ -38,11 +38,12 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 
 <!-- TEXTURES -->
 
-### () s3-1-texture-checker
-* () use data textures to create a color map that is a checker pattern
+### (done) s3-1-texture-checker
+* (done) use data textures to create a color map that is a checker pattern
 
-### () s3-2-texture-random
+### () s3-2-texture-update
 * () use data textures to create a color map that is a random pattern
+* () update textures over time
 
 <!-- DONE -->
 
