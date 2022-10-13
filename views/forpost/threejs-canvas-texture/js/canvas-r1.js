@@ -6,7 +6,7 @@
     const DRAW = {};
     // square draw method
     DRAW.square = (canObj, ctx, canvas, state) => {
-        ctx.fillStyle = canObj.palette[0]
+        ctx.fillStyle = canObj.palette[0];
         ctx.lineWidth = 1;
         ctx.fillRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
         ctx.strokeStyle = canObj.palette[1]
