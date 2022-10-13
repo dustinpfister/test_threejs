@@ -12,6 +12,21 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 ## () s2-3-groups-map
 * () example where I can give an array of material index values
 
+
+
+<!-- TEXTURES -->
+
+## () - s3-3-texture-wrapst
+* () example using the wrapS and wrapT properties
+
+## () - s3-4-texture-uv
+* () example in which I am mutating the uv attribute and using a static texture
+
+<!-- TILEMOD -->
+
+## () - expand r0 section
+* () have more than one r0 demo of the module
+
 <!-- LOOP -->
 
 ## () sx-3-loop-position
@@ -25,27 +40,20 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 
 <!-- ATTRIBUTES -->
 
-### () sx-1-attribute-position
+## () sx-1-attribute-position
 
-### () sx-2-attribute-normal
+## () sx-2-attribute-normal
 
-### () sx-3-attribute-uv
-
-<!-- TILEMOD -->
-
-### () - expand r0 section
-* () have more than one r0 demo of the module
-
-<!-- TEXTURES -->
-
-### (done) s3-1-texture-checker
-* (done) use data textures to create a color map that is a checker pattern
-
-### () s3-2-texture-update
-* () use data textures to create a color map that is a random pattern
-* () update textures over time
+## () sx-3-attribute-uv
 
 <!-- DONE -->
+
+## ( done 10/13/2022 ) s3-1-texture-checker
+* (done) use data textures to create a color map that is a checker pattern
+
+## ( done 10/13/2022 ) s3-2-texture-update
+* (done) use data textures to create a color map that is a random pattern
+* (done) update textures over time
 
 ## ( done 10/13/2022 ) - combine checker and basic groups example togetaher
 * (done) cobine the basic and checker examples into a single groups section
