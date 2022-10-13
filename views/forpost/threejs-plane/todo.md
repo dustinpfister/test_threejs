@@ -38,9 +38,9 @@
 * (done) have an example in which I am using buffer geometry rotate methods
 * (done) use three double side for one or more of the materials
 
-## () s1-3-basic-segments
-* () have two or more planes with differing segments counts
-* () have the materials in wireframe mode
+## ( done 10/13/2022 )) s1-3-basic-segments
+* (done) have two or more planes with differing segments counts
+* (done) have the materials in wireframe mode
 
 <!-- DONE -->
 
