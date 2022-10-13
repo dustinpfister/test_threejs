@@ -1,10 +1,16 @@
 # threejs-plane todo list
 
+<!-- BASIC SECTION -->
+
 <!-- Raycaster -->
 
 ## Maybe add a raycaster section and be sure to like to this video
 https://www.youtube.com/watch?v=oQbfy8QP8Lc
 
+<!-- GROUPS SECTION -->
+
+## () s2-3-groups-map
+* () example where I can give an array of material index values
 
 <!-- LOOP -->
 
@@ -38,7 +44,10 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 ### () sx-2-texture-random
 * () use data textures to create a color map that is a random pattern
 
-<!-- BASIC SECTION -->
+<!-- DONE -->
+
+## ( done 10/13/2022 ) - combine checker and basic groups example togetaher
+* (done) cobine the basic and checker examples into a single groups section
 
 ## ( done 10/13/2022 ) s1-2-basic-rotate-side
 * (done) have an example in which I am using buffer geometry rotate methods
@@ -47,8 +56,6 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 ## ( done 10/13/2022 )) s1-3-basic-segments
 * (done) have two or more planes with differing segments counts
 * (done) have the materials in wireframe mode
-
-<!-- DONE -->
 
 ## ( done 10/13/2022 ) start for post folder with current set of examples in post
 * (done) just create folders for source code in post
