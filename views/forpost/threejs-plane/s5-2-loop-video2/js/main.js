@@ -95,7 +95,6 @@
         forPix: function(color, x, y, i, opt){
             const v = 32 + 200 * Math.random();
             const roll = Math.random();
-
             if(roll < 0.80){
                 color.g = v;
                 return color;
@@ -145,23 +144,20 @@
         array_oi.push( Math.floor( array_source_objects.length * THREE.MathUtils.seededRandom() ) );
         i += 1;
     }
-
-
-   // EFFECT
-
-(function(){
-    ObjectGridWrap.load( {
-        EFFECTS : {
-            flip : function(grid, obj, objData, ud){
-                const startFlip = grid.userData.startFlip === undefined ? -45: grid.userData.startFlip;
-                const maxFlipDelta = grid.userData.maxFlipDelta === undefined ? 90: grid.userData.maxFlipDelta;
-                obj.rotation.x = Math.PI / 180 * startFlip  + Math.PI / 180 * maxFlipDelta * objData.b;
+    //-------- ----------
+    // EFFECT
+    //-------- ----------
+    (function(){
+        ObjectGridWrap.load( {
+            EFFECTS : {
+                flip : function(grid, obj, objData, ud){
+                    const startFlip = grid.userData.startFlip === undefined ? -45: grid.userData.startFlip;
+                    const maxFlipDelta = grid.userData.maxFlipDelta === undefined ? 90: grid.userData.maxFlipDelta;
+                    obj.rotation.x = Math.PI / 180 * startFlip  + Math.PI / 180 * maxFlipDelta * objData.b;
+                }
             }
-        }
-    } );
-}());
-
-
+        });
+    }());
     //-------- ----------
     // CREATE GRID
     //-------- ----------
