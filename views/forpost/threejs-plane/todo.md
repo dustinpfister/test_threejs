@@ -38,10 +38,10 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 
 <!-- TEXTURES -->
 
-### () sx-1-texture-checker
+### () s3-1-texture-checker
 * () use data textures to create a color map that is a checker pattern
 
-### () sx-2-texture-random
+### () s3-2-texture-random
 * () use data textures to create a color map that is a random pattern
 
 <!-- DONE -->
