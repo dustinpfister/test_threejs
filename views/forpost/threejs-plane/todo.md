@@ -34,9 +34,9 @@
 
 <!-- BASIC SECTION -->
 
-## () s1-2-basic-rotate-size
-* () have an example in which I am using buffer geometry rotate methods
-* () use three double side for the materials
+## ( done 10/13/2022 ) s1-2-basic-rotate-side
+* (done) have an example in which I am using buffer geometry rotate methods
+* (done) use three double side for one or more of the materials
 
 ## () s1-3-basic-segments
 * () have two or more planes with differing segments counts
