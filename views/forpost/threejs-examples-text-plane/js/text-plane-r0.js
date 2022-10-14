@@ -33,12 +33,10 @@
         while(i < rows){
             lines.push({
                 text: '',
-                //x: 10, y : 30 + 60 * i,
                 x: 10, y:0,
                 lw: 1, 
                 fc: canObj.palette[1],
                 sc: canObj.palette[2],
-                //fc: '#888888', sc: 'white',
                 a: 'left', f: 'arial', fs: '20px', bl: 'top'
             });
             i += 1;
