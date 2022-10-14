@@ -14,8 +14,8 @@ let canObj2 = TextPlane.createCanObj({ rows: 5, size: 256})
 //-------- ----------
 // MESH
 //-------- ----------
-let plane = TextPlane.makePlane(canObj2.texture_data, 2);
-plane.position.set(0, 2, 0);
+let plane = TextPlane.makePlane(canObj2.texture_data, 7, 5);
+plane.position.set(0, 2.5, 0);
 scene.add(plane);
 //-------- ----------
 // TEXT and textLines
@@ -41,7 +41,7 @@ const update = function(frame, frameMax){
     canvasMod.update(canObj2);
     // update camera
     camera.position.set(-4 * b, 1, 5);
-    camera.lookAt(0, 1, 0);
+    camera.lookAt(0, 1.5, 0);
 };
 // loop
 const loop = () => {

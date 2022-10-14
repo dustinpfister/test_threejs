@@ -27,15 +27,19 @@
     };
     // create an array of text objects to use with the drawText method
     // this is a reusable set of objects
-    const createLines = (rows) => {
+    const createLines = (canObj, rows) => {
         let i = 0;
         const lines = [];
         while(i < rows){
             lines.push({
                 text: '',
-                x: 10, y : 30 + 60 * i,
-                lw: 2, fc: '#888888', sc: 'white',
-                a: 'left', f: 'arial', fs: '30px', bl: 'top'
+                //x: 10, y : 30 + 60 * i,
+                x: 10, y:0,
+                lw: 1, 
+                fc: canObj.palette[1],
+                sc: canObj.palette[2],
+                //fc: '#888888', sc: 'white',
+                a: 'left', f: 'arial', fs: '20px', bl: 'top'
             });
             i += 1;
         }
@@ -53,7 +57,7 @@
     };
     // The custom draw text method to be used with canvas.js
     const drawText = (canObj, ctx, canvas, state) => {
-        ctx.fillStyle = '#101010';
+        ctx.fillStyle = canObj.palette[0];
         ctx.fillRect(0,0, canvas.width, canvas.height);
         state.lines.forEach((li)=>{
             ctx.lineWidth = li.lw;
@@ -80,16 +84,18 @@
             size: opt.size === undefined ? 512 : opt.size,
             update_mode: 'dual',
             state: {
-                lines : createLines( opt.rows === undefined ? 9 : opt.rows )
+                lines: []
+                //lines : createLines(null, opt.rows === undefined ? 9 : opt.rows )
             },
-            palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
+            palette: opt.palette || ['#080808', '#8a8a8a', '#ffffff']
         });
+        canObj.state.lines = createLines(canObj,  opt.rows === undefined ? 9 : opt.rows );
         return canObj;
     };
     // make plane helper function
-    api.makePlane = (texture, size) => {
+    api.makePlane = (texture, w, h) => {
         return new THREE.Mesh(
-            new THREE.PlaneGeometry(6, 4, 1, 1),
+            new THREE.PlaneGeometry(w, h, 1, 1),
             new THREE.MeshBasicMaterial({
                 map: texture || null,
                 side: THREE.DoubleSide
