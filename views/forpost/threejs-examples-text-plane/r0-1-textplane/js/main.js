@@ -7,8 +7,6 @@ const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-
-
 //-------- ----------
 // HELPERS
 //-------- ----------
@@ -23,6 +21,8 @@ const makePlane = (texture, size) => {
     );
 };
 // wrap text method
+// https://stackoverflow.com/questions/14484787/wrap-text-in-javascript
+// https://dustinpfister.github.io/2019/03/20/js-regex/
 const wrapText = function (str, width) {
     const patt = new RegExp('(?![^\\n]{1,' + width + ')([^\\n]{1,' + width + '})\\s', 'g');
     return str.replace(patt, '$1\n');
@@ -31,9 +31,27 @@ const wrapText = function (str, width) {
 const EOLConvert = (text) => {
    return text.replace(/\r\n/g,'\n').replace(/\r/g,'\n')
 }
+// VANILLA JAVASCRIPT LODASH CHUNK ALTERTAIVE
+// https://dustinpfister.github.io/2017/09/13/lodash-chunk/
+const chunk = function (arr, size) {
+    var chunkedArr = [];
+    arr = arr || [];
+    size = size === undefined ? 1 : size;
+    for (var i = 0; i < arr.length; i += size) {
+        chunkedArr.push(arr.slice(i, i + size));
+    }
+    return chunkedArr;
+};
 // create text lines
 const createTextLines = (text, cols) => {
     let arr = wrapText(EOLConvert(text), cols).split('\n');
+    // need to break down lines that are at or above cols
+    arr = arr.map((a)=>{
+        if(a.length >= cols){
+            return chunk(a.split(''), cols).map((b)=>{ return b.join('')})
+        }
+        return a;
+    }).flat()
     return arr;
 };
 // create an array of text objects to use with the drawText method
@@ -112,11 +130,9 @@ scene.add(plane);
 //-------- ----------
 // TEXT and textLines
 //-------- ----------
-const text = '\r\n\r\nHello there how are you today? \r\n\r\nThis is some text that could be some raw text from a file or somehting like that maybe. \r\n\r\nI would like to see about doing what I can to make this work with just about all kinds of raw text formats. \r\n\r\nWith that said I have this wrap text method that seems to work okay, but I am having a few problems with it when it comes to words that are longer than the max width of a line. \r\n\r\n';
+const text2 = '\r\n\r\nHello there how are you today? \r\n\r\nThis is some text that could be some raw text from a file or somehting like that maybe. \r\n\r\nI would like to see about doing what I can to make this work with just about all kinds of raw text formats. \r\n\r\nWith that said I have this wrap text method that seems to work okay, but I am having a few problems with it when it comes to words that are longer than the max width of a line. \r\n\r\n\r\rThis is some foo text first\r\rabcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.\r\r\r\r\r0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.\r\r\r\r\r0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.\r\r\r\r\r0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.\r\r\r\r\r0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.\r\r\r\r\r0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.\r\r\r\r\r0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789. \r\r\r\r\r'
 
-const text2 = 'abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.'
-
-const textLines = createTextLines(text2, 35);
+const textLines = createTextLines(text2, 30);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
