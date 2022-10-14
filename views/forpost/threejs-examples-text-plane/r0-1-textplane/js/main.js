@@ -11,14 +11,19 @@ renderer.setSize(640, 480);
 //-------- ----------
 // CANVAS OBJECT
 //-------- ----------
-let canObj2 = TextPlane.createCanObj({
-    update_mode: 'canvas',
-    rows: 5, size: 256, palette: ['rgba(0,255,255,0.25)', 'black', 'black']
-})
+//let canObj2 = TextPlane.createCanObj({
+//    update_mode: 'canvas',
+//    rows: 5, size: 256, palette: ['rgba(0,255,255,0.25)', 'black', 'black']
+//})
 //-------- ----------
 // MESH
 //-------- ----------
-let plane = TextPlane.makePlane(canObj2.texture, 7, 5);
+//let plane = TextPlane.makePlane(canObj2.texture, 7, 5);
+const plane = TextPlane.createPlane({
+    w: 7, h: 5,
+    //update_mode: 'canvas',
+    rows: 5, size: 256, palette: ['rgba(0,255,255,0.25)', 'black', 'black']
+});
 plane.position.set(0, 2.5, 0);
 plane.material.transparent = true;
 plane.material.opacity = 0.5;
@@ -42,9 +47,9 @@ const update = function(frame, frameMax){
     let a = frame / frameMax;
     let b = 1 - Math.abs(0.5 - a) / 0.5;
     // UPDATE
-    TextPlane.moveTextLines(canObj2.state.lines, textLines, b);
+    TextPlane.moveTextLines(plane.userData.canObj.state.lines, textLines, b);
     // update canvas
-    canvasMod.update(canObj2);
+    canvasMod.update(plane.userData.canObj);
     // update camera
     camera.position.set(-4 * b, 1, 5);
     camera.lookAt(0, 1.5, 0);

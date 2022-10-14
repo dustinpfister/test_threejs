@@ -78,7 +78,7 @@
     // create just a canvas object that will work
     // for a material. I will want to call this if I want to
     // use the resulting texture with a mesh object other than a plane
-    // of as a backgound or soemthing to that effect
+    // of as a background or something to that effect
     api.createCanObj = (opt) => {
         opt = opt || {};
         let canObj = canvasMod.create({
@@ -87,7 +87,6 @@
             update_mode: opt.update_mode || 'dual',
             state: {
                 lines: []
-                //lines : createLines(null, opt.rows === undefined ? 9 : opt.rows )
             },
             palette: opt.palette || ['#080808', '#8a8a8a', '#ffffff']
         });
@@ -95,14 +94,21 @@
         return canObj;
     };
     // make plane helper function
-    api.makePlane = (texture, w, h) => {
-        return new THREE.Mesh(
-            new THREE.PlaneGeometry(w, h, 1, 1),
+    //api.makePlane = (texture, w, h) => {
+    api.createPlane = (opt) => {
+        opt = opt || {};
+        const canObj = api.createCanObj(opt);
+        // create plane
+        const plane = new THREE.Mesh(
+            new THREE.PlaneGeometry(opt.w, opt.h, 1, 1),
             new THREE.MeshBasicMaterial({
-                map: texture || null,
+                map: canObj.updateMode === 'dual' ? canObj.texture_data : canObj.texture,
                 side: THREE.DoubleSide
             })
         );
+        plane.userData.canObj = canObj;
+        // return the new plane
+        return plane;
     };
     // create text lines
     api.createTextLines = (text, cols) => {
