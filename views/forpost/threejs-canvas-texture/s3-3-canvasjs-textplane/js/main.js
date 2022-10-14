@@ -61,7 +61,7 @@ const createLines = (rows) => {
         lines.push({
             text: '#' + i,
             x: 10, y : 30 + 60 * i,
-            lw: 2, fc: '#888888', sc: 'black',
+            lw: 2, fc: '#888888', sc: 'white',
             a: 'left', f: 'arial', fs: '30px', bl: 'top'
         });
         i += 1;
@@ -78,10 +78,18 @@ const smoothY = (lines, alpha, sy, dy) => {
         i += 1;
     }
 };
+// move full set of text lines
+const moveTextLines = (lines, textLines, alpha) => {
+    linesLen = lines.length;
+    const tli = Math.floor( textLines.length * alpha);
+    textLines.slice(tli, tli + linesLen).forEach( (text, i) => {
+        lines[i].text = text;
+    });
+    smoothY(lines, alpha * textLines.length % 1, 30, 60);
+};
 // The custom draw text method to be used with canvas.js
 const drawText = (canObj, ctx, canvas, state) => {
-    ctx.fillStyle = 'white';
-    ctx.strokeStyle = 'black';
+    ctx.fillStyle = '#101010';
     ctx.fillRect(0,0, canvas.width, canvas.height);
     state.lines.forEach((li)=>{
         ctx.lineWidth = li.lw;
@@ -130,22 +138,12 @@ lt = new Date();
 const update = function(frame, frameMax){
     let a = frame / frameMax;
     let b = 1 - Math.abs(0.5 - a) / 0.5;
- 
-    
-    //textLines
-    const lines = canObj2.state.lines,
-    linesLen = lines.length;
-    const tli = Math.floor( textLines.length * b);
-    textLines.slice(tli, tli + linesLen).forEach( (text, i) => {
-        lines[i].text = text;
-    });
-
-    smoothY(lines, b * textLines.length % 1, 30, 60);
- 
+    // using move text lines helper
+    moveTextLines(canObj2.state.lines, textLines, a);
     // update canvas
     canvasMod.update(canObj2);
     // update camera
-    camera.position.set(0, 1, 5);
+    camera.position.set(-4 * b, 1, 5);
     camera.lookAt(0, 1, 0);
 };
 // loop
