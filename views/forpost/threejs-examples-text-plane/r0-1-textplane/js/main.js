@@ -22,17 +22,15 @@ renderer.setSize(640, 480);
 const plane = TextPlane.createPlane({
     w: 7, h: 5,
     //update_mode: 'dual', // Might not need data textures
-    rows: 5, size: 256, palette: ['rgba(0,255,255,0.25)', 'black', 'black']
+    rows: 10, size: 256, palette: ['rgba(0,255,255,0.2)', 'black', 'black']
 });
 plane.position.set(0, 2.5, 0);
-plane.material.transparent = true;
-plane.material.opacity = 0.5;
 scene.add(plane);
 //-------- ----------
 // TEXT and textLines
 //-------- ----------
-const text2 = 'This is just a little demo of my text plane module thus far. \n\nIt is all ready working okay, or at least it seems to be working well thus far. I am sure there may be at least one or two bugs still maybe,this is just r0 of the module after all. \n\nIf all goes well I am sure that I will start using this in a lof of my video projects as a way to add text content to an over all scene. \n\n'
-const textLines = TextPlane.createTextLines(text2, 16);
+const text2 = '\n\nThis is just a little demo of my text plane module thus far. \n\nIt is all ready working okay, or at least it seems to be working well thus far. I am sure there may be at least one or two bugs still maybe,this is just r0 of the module after all. \n\nIf all goes well I am sure that I will start using this in a lof of my video projects as a way to add text content to an over all scene. \n'
+const textLines = TextPlane.createTextLines(text2, 22);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -47,7 +45,7 @@ const update = function(frame, frameMax){
     let a = frame / frameMax;
     let b = 1 - Math.abs(0.5 - a) / 0.5;
     // UPDATE
-    TextPlane.moveTextLines(plane.userData.canObj.state.lines, textLines, b);
+    TextPlane.moveTextLines(plane.userData.canObj.state.lines, textLines, b, 0, 30);
     // update canvas
     canvasMod.update(plane.userData.canObj);
     // update camera

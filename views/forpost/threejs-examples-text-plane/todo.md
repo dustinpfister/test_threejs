@@ -1,5 +1,9 @@
 # threejs-examples-text-plane todo list
 
+## () - r1 of module
+* () simple update method where I can just pass plane text
+* () have a load text method
+
 ## () - r0 of module
 * (done) I will want a method that will break text down into lines
 * (done) EOL conversion
@@ -9,9 +13,6 @@
 * (done) clean rect and then fill so that I can have a transparent background
 * (done) can set canvas update mode when creating canvas object
 * (done) fix up make plane method so that I can just call that to set up a plane mesh with canvas object 
-
-* () simple update method where I can just pass plane text
-
 
 ## ( done 10/14/2022 ) - for post folder started
 * (done) started for post folder with the canvas texture module example

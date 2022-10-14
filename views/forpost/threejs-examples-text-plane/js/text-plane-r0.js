@@ -103,7 +103,9 @@
             new THREE.PlaneGeometry(opt.w, opt.h, 1, 1),
             new THREE.MeshBasicMaterial({
                 map: canObj.updateMode === 'dual' ? canObj.texture_data : canObj.texture,
-                side: THREE.DoubleSide
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: 1
             })
         );
         plane.userData.canObj = canObj;
@@ -122,13 +124,13 @@
         }).flat()
         return arr;
     };
-    // move full set of text lines
-    api.moveTextLines = (lines, textLines, alpha) => {
+    // Just move the given text lines
+    api.moveTextLines = (lines, textLines, alpha, sy, dy) => {
         linesLen = lines.length;
         const tli = Math.floor( textLines.length * alpha);
         textLines.slice(tli, tli + linesLen).forEach( (text, i) => {
             lines[i].text = text;
         });
-        smoothY(lines, alpha * textLines.length % 1, 30, 60);
+        smoothY(lines, alpha * textLines.length % 1, sy, dy);
     };
 }( this['TextPlane'] = {} ));
