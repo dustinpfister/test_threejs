@@ -10,7 +10,7 @@ renderer.setSize(640, 480);
 //-------- ----------
 // CANVAS OBJECT
 //-------- ----------
-let canObj2 = TextPlane.createCanObj()
+let canObj2 = TextPlane.createCanObj({ rows: 5, size: 256})
 //-------- ----------
 // MESH
 //-------- ----------
@@ -20,8 +20,8 @@ scene.add(plane);
 //-------- ----------
 // TEXT and textLines
 //-------- ----------
-const text2 = 'This is just a little demo of my text plane module thus far. \n\n'
-const textLines = TextPlane.createTextLines(text2, 30);
+const text2 = 'This is just a little demo of my text plane module thus far. \n\nIt is all ready working okay, or at least it seems to be working well thus far. I am sure there may be at least one or two bugs still maybe,this is just r0 of the module after all. \n\nIf all goes well I am sure that I will start using this in a lof of my video projects as a way to add text content to an over all scene. \n\n'
+const textLines = TextPlane.createTextLines(text2, 16);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------

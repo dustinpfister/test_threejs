@@ -66,28 +66,26 @@
             ctx.strokeText(li.text, li.x, li.y);
         });
     };
-
-
     //-------- ----------
     // PUBLIC API
     //-------- ----------
-
-    api.createCanObj = () => {
-
-    let canObj = canvasMod.create({
-        draw: drawText,
-        size: 512,
-        update_mode: 'dual',
-        state: {
-            lines : createLines(9)
-        },
-        palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
-    });
-
-return canObj;
-
+    // create just a canvas object that will work
+    // for a material. I will want to call this if I want to
+    // use the resulting texture with a mesh object other than a plane
+    // of as a backgound or soemthing to that effect
+    api.createCanObj = (opt) => {
+        opt = opt || {};
+        let canObj = canvasMod.create({
+            draw: drawText,
+            size: opt.size === undefined ? 512 : opt.size,
+            update_mode: 'dual',
+            state: {
+                lines : createLines( opt.rows === undefined ? 9 : opt.rows )
+            },
+            palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
+        });
+        return canObj;
     };
-
     // make plane helper function
     api.makePlane = (texture, size) => {
         return new THREE.Mesh(
@@ -98,8 +96,6 @@ return canObj;
             })
         );
     };
-
-
     // create text lines
     api.createTextLines = (text, cols) => {
         let arr = wrapText(EOLConvert(text), cols).split('\n');
@@ -112,8 +108,6 @@ return canObj;
         }).flat()
         return arr;
     };
-
-
     // move full set of text lines
     api.moveTextLines = (lines, textLines, alpha) => {
         linesLen = lines.length;
@@ -123,7 +117,4 @@ return canObj;
         });
         smoothY(lines, alpha * textLines.length % 1, 30, 60);
     };
-
-
-
 }( this['TextPlane'] = {} ));
