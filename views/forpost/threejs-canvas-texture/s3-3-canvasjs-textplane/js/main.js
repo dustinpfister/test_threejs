@@ -20,10 +20,8 @@ const makePlane = (texture, size) => {
         })
     );
 };
-//-------- ----------
-// CUSTOM DRAW METHOD
-//-------- ----------
 // create an array of text objects to use with the drawText method
+// this is a reusable set of objects
 const createLines = (rows) => {
     let i = 0;
     const lines = [];
@@ -38,7 +36,17 @@ const createLines = (rows) => {
     }
     return lines;
 };
-// draw text method
+// smooth move of lines on the Y
+const smoothY = (lines, alpha, sy, dy) => {
+    let i = 0;
+    const len = lines.length;
+    while(i < len){
+        const li = lines[i];
+        li.y = sy + dy * i - dy * alpha * 1;
+        i += 1;
+    }
+};
+// The custom draw text method to be used with canvas.js
 const drawText = (canObj, ctx, canvas, state) => {
     ctx.fillStyle = 'white';
     ctx.strokeStyle = 'black';
@@ -62,10 +70,11 @@ let canObj2 = canvasMod.create({
     size: 512,
     update_mode: 'dual',
     state: {
-       lines : createLines(8)
+       lines : createLines(9)
     },
     palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
 });
+ 
 canObj2.texture_data.flipY = true;
 //canObj2.texture_data.center = new THREE.Vector2(0.5, 0.5);
 //canObj2.texture_data.rotation = Math.PI / 180 * 0;
@@ -81,7 +90,7 @@ scene.add(plane);
 // ---------- ----------
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 300;
+FRAME_MAX = 150;
 let secs = 0,
 frame = 0,
 lt = new Date();
@@ -89,6 +98,9 @@ lt = new Date();
 const update = function(frame, frameMax){
     let a = frame / frameMax;
     let b = 1 - Math.abs(0.5 - a) / 0.5;
+ 
+    smoothY(canObj2.state.lines, a, 30, 60);
+ 
     // update canvas
     canvasMod.update(canObj2);
     // update camera
