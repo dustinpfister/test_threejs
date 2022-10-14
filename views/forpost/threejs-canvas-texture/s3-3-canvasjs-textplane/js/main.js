@@ -20,28 +20,40 @@ const makePlane = (texture, size) => {
         })
     );
 };
-
-
+//-------- ----------
+// CUSTOM DRAW METHOD
+//-------- ----------
+// create an array of text objects to use with the drawText method
+const createLines = (rows) => {
+    let i = 0;
+    const lines = [];
+    while(i < rows){
+        lines.push({
+            text: '#' + i,
+            x: 10, y : 30 + 60 * i,
+            lw: 2, fc: '#888888', sc: 'black',
+            a: 'left', f: 'arial', fs: '30px', bl: 'top'
+        });
+        i += 1;
+    }
+    return lines;
+};
+// draw text method
 const drawText = (canObj, ctx, canvas, state) => {
     ctx.fillStyle = 'white';
     ctx.strokeStyle = 'black';
     ctx.fillRect(0,0, canvas.width, canvas.height);
-
-
-    let text = 'Hello World!',
-    x = 256, y = 256, 
-    lw = 2, fc = 'red', sc = 'black', a = 'center', f = 'arial', fs = '75px';
-
-    ctx.lineWidth = lw;
-    ctx.textAlign = a;
-    ctx.font = fs + ' ' + f;
-    ctx.fillStyle = fc;
-    ctx.strokeStyle = sc;
-    ctx.fillText(text, x, y);
-    ctx.strokeText(text, x, y);
-
+    state.lines.forEach((li)=>{
+        ctx.lineWidth = li.lw;
+        ctx.textAlign = li.a;
+        ctx.textBaseline = li.bl;
+        ctx.font = li.fs + ' ' + li.f;
+        ctx.fillStyle = li.fc;
+        ctx.strokeStyle = li.sc;
+        ctx.fillText(li.text, li.x, li.y);
+        ctx.strokeText(li.text, li.x, li.y);
+    });
 };
-
 //-------- ----------
 // CANVAS OBJECT
 //-------- ----------
@@ -49,7 +61,9 @@ let canObj2 = canvasMod.create({
     draw: drawText,
     size: 512,
     update_mode: 'dual',
-    state: {},
+    state: {
+       lines : createLines(8)
+    },
     palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
 });
 canObj2.texture_data.flipY = true;
