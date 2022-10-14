@@ -12,12 +12,13 @@ renderer.setSize(640, 480);
 // CANVAS OBJECT
 //-------- ----------
 let canObj2 = TextPlane.createCanObj({
-    rows: 5, size: 256, palette: ['rgba(0,0,0,0)', 'black', 'black']
+    update_mode: 'canvas',
+    rows: 5, size: 256, palette: ['rgba(0,255,255,0.25)', 'black', 'black']
 })
 //-------- ----------
 // MESH
 //-------- ----------
-let plane = TextPlane.makePlane(canObj2.texture_data, 7, 5);
+let plane = TextPlane.makePlane(canObj2.texture, 7, 5);
 plane.position.set(0, 2.5, 0);
 plane.material.transparent = true;
 plane.material.opacity = 0.5;

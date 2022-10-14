@@ -7,6 +7,7 @@
 * (done) have a text-plane-r0.js file
 * (done) palette can be used to set colors
 * (done) clean rect and then fill so that I can have a transparent background
+* (done) can set canvas update mode when creating canvas object
 
 * () fix up make plane method so that I can just call that to set up a plane mesh with canvas object 
 * () simple update method where I can just pass plane text
