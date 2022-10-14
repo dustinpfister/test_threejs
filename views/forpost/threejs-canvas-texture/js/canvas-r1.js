@@ -32,6 +32,7 @@
         const gSize =  state.gSize === undefined ? 5 : state.gSize;
         const len = gSize * gSize;
         const pxSize = canObj.size / gSize;
+        ctx.clearRect(0,0, canvas.width, canvas.height);
         while(i < len){
             const ci = Math.floor( canObj.palette.length * Math.random() );
             const x = i % gSize;
