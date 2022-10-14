@@ -4,7 +4,10 @@
 * () simple update method where I can just pass plane text
 * () have a load text method
 
-## () - r0 of module
+## ( done 10/14/2022 ) - r0-1-textplane
+* (done) just one test demo for r0 that shows it working okay
+
+## ( done 10/14/2022 ) - r0 of module
 * (done) I will want a method that will break text down into lines
 * (done) EOL conversion
 * (done) wrap method does not work with long words, see about using chunk and flatten like methods maybe?
