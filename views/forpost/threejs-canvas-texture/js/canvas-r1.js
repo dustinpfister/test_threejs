@@ -114,6 +114,8 @@
             data[i] = canvasData.data[i];
             i += 1;
         }
+        canObj.texture_data.flipY = true; // need to do this even though it should be the default in r140
+        canObj.texture_data.center = new THREE.Vector2(0.5, 0.5);
         canObj.texture_data.needsUpdate = true;
     };
     api.update = (canObj) => {
