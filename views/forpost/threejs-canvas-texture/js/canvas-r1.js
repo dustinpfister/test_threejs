@@ -6,11 +6,25 @@
     const DRAW = {};
     // square draw method
     DRAW.square = (canObj, ctx, canvas, state) => {
-        ctx.fillStyle = canObj.palette[0];
-        ctx.lineWidth = 1;
-        ctx.fillRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
-        ctx.strokeStyle = canObj.palette[1]
-        ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
+        const squares = state.squares || [ {
+            lw: 1,
+            fi: 0,
+            si: 1,
+            rect: [ 0.5, 0.5, canvas.width - 1, canvas.height - 1 ] } ];
+        let i = 0;
+        const len = squares.length;
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        while(i < len){
+            const sq = squares[i];
+            ctx.lineWidth = sq.lw === undefined ? 1 : sq.lw;
+            ctx.fillStyle = canObj.palette[ sq.fi === undefined ? 0 : sq.fi];
+            ctx.strokeStyle = canObj.palette[ sq.si === undefined ? 1 : sq.si ];
+            ctx.beginPath();
+            ctx.rect.apply(ctx, sq.rect);
+            ctx.fill();
+            ctx.stroke();
+            i += 1;
+        }
     };
     // random using palette colors
     DRAW.rnd = (canObj, ctx, canvas, state) => {

@@ -13,19 +13,17 @@
 * () I am thinking it would be cool to just use Plane geometry as a means to display the text
 
 
-## () - sx-x-canvasjs basic
+## () - sx-x-canvasjs-basic
 * () This just needs to be a functioning hello world example of r1 of canvas.js
+* () make this one on the square built in draw function
 
-## () - canvasjs - r1
+## ( done 10/14/2022 ) - canvasjs - r1
 * (done) start the file based off of the example in the basic section
 * (done) have a 'canvas', and 'dual' update mode
 * (done) 'canvas' update mode will just update the canvas texture
 * (done) 'dual' update mode will update the canvas texture AND the data texture 
-<!-- improve the square built in draw function -->
-* () refine the square method so that I can have more than one square in the canvas
-* () have it so that I can set linewidth, cx, cy, size, and strokeColor, and fillColor for each square
-<!-- improve the rnd built in draw function -->
-* () refine the rnd built in draw function
+* (done) refine the square method so that I can have more than one square in the canvas
+* (done) have it so that I can set linewidth, cx, cy, size, and strokeColor, and fillColor for each square
 
 ## ( done 10/11/2022 ) - fix up basic canvas module example
 * (done) have no function for createing a mesh, make that a helper in the demo

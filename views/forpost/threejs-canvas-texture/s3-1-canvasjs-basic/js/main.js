@@ -12,6 +12,7 @@ renderer.setSize(640, 480);
 //-------- ----------
 // HELPERS
 //-------- ----------
+// make cube helper function
 const makeCube = (texture, size) => {
     return new THREE.Mesh(
         new THREE.BoxGeometry(size, size, size),
@@ -20,37 +21,52 @@ const makeCube = (texture, size) => {
     }));
 };
 //-------- ----------
-// CANVAS WITH RND BUILT IN DRAW METHOD
+// CANVAS OBJECT
 //-------- ----------
 let canObj2 = canvasMod.create({
-    draw:'rnd',
-    size: 16,
+    draw:'square',
+    size: 64,
     update_mode: 'dual',
-    state: { gSize: 12 },
-    palette: ['red', 'lime', 'blue', 'cyan', 'purple', 'orange'] });
-
-let cube1 = makeCube(canObj2.texture, 2);
-cube1.position.set(2, 0, 0);
+    state: {},
+    palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
+});
+//-------- ----------
+// MESH
+//-------- ----------
+let cube1 = makeCube(canObj2.texture_data, 2);
+cube1.position.set(0, 0, 0);
 scene.add(cube1);
-
-let cube2 = makeCube(canObj2.texture_data, 2);
-cube2.position.set(-2, 0, 0);
-scene.add(cube2);
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 120;
+FRAME_MAX = 300;
 let secs = 0,
 frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-
-    canvasMod.update(canObj2)
-
+    let a = frame / frameMax;
+    if(Math.floor(frame) % 5 === 0){
+        let i = 0, len = 20;
+        canObj2.state.squares = [];
+        while(i < len){
+            canObj2.state.squares.push({
+                lw: 1 + Math.floor(4 * Math.random()),
+                si: 0,
+                fi: 1 + Math.floor( Math.random() * ( canObj2.palette.length - 1 ) ),
+                rect: [
+                    Math.random() * (64 - 16),
+                    Math.random() * (64 - 16),
+                    16,
+                    16]
+            });
+            i += 1;
+        }
+        canvasMod.update(canObj2);
+    }
+    cube1.rotation.y = Math.PI * 2 * a;
 };
 // loop
 const loop = () => {
