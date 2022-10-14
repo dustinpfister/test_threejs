@@ -84,7 +84,7 @@
         let canObj = canvasMod.create({
             draw: drawText,
             size: opt.size === undefined ? 512 : opt.size,
-            update_mode: opt.update_mode || 'dual',
+            update_mode: opt.update_mode || 'canvas',
             state: {
                 lines: []
             },

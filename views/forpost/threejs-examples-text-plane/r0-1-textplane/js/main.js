@@ -21,7 +21,7 @@ renderer.setSize(640, 480);
 //let plane = TextPlane.makePlane(canObj2.texture, 7, 5);
 const plane = TextPlane.createPlane({
     w: 7, h: 5,
-    //update_mode: 'canvas',
+    //update_mode: 'dual', // Might not need data textures
     rows: 5, size: 256, palette: ['rgba(0,255,255,0.25)', 'black', 'black']
 });
 plane.position.set(0, 2.5, 0);

@@ -1,5 +1,8 @@
 # threejs-canvas-texture todo list
 
+## () canvasjs - r2
+* () willReadFrequently bool to true
+
 ## () - sx-x-cigrid section
 * () start a color index grid section
 
