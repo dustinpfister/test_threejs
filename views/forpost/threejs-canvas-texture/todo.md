@@ -12,11 +12,11 @@
 * () canvas elements can then be used to create a current texture of a current point in a text file
 * () I am thinking it would be cool to just use Plane geometry as a means to display the text
 
-## ( ) - s3-3-canvasjs-textplane
-* () have a textplane demo
+## ( done 10/14/2022 ) - s3-3-canvasjs-textplane
+* (done) have a textplane demo
 
-## ( ) - s3-2-canvasjs-rnd
-* () start a demo that makes use of the rnd built in draw method
+## ( done 10/14/2022 ) - s3-2-canvasjs-rnd
+* (done) start a demo that makes use of the rnd built in draw method
 
 ## ( done 10/14/2022 ) - s3-1-canvasjs-basic
 * (done) This just needs to be a functioning hello world example of r1 of canvas.js
