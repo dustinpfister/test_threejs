@@ -7,17 +7,7 @@ const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-//-------- ----------
-// TEXT LINES
-//-------- ----------
-const textLines = [
-    '',
-    'Hello There',
-    '',
-    'This is just some demo text',
-    'for a kind of text plane module but I will need to add at least a few features to help with this sort of thing for sure.',
-    ''
-];
+
 
 //-------- ----------
 // HELPERS
@@ -31,6 +21,20 @@ const makePlane = (texture, size) => {
             side: THREE.DoubleSide
         })
     );
+};
+// wrap text method
+const wrapText = function (str, width) {
+    const patt = new RegExp('(?![^\\n]{1,' + width + ')([^\\n]{1,' + width + '})\\s', 'g');
+    return str.replace(patt, '$1\n');
+};
+// EOL CONVERSION - replace all /r/n and /r with /n
+const EOLConvert = (text) => {
+   return text.replace(/\r\n/g,'\n').replace(/\r/g,'\n')
+}
+// create text lines
+const createTextLines = (text, cols) => {
+    let arr = wrapText(EOLConvert(text), cols).split('\n');
+    return arr;
 };
 // create an array of text objects to use with the drawText method
 // this is a reusable set of objects
@@ -105,6 +109,14 @@ canObj2.texture_data.flipY = true;
 let plane = makePlane(canObj2.texture_data, 2);
 plane.position.set(0, 2, 0);
 scene.add(plane);
+//-------- ----------
+// TEXT and textLines
+//-------- ----------
+const text = '\r\n\r\nHello there how are you today? \r\n\r\nThis is some text that could be some raw text from a file or somehting like that maybe. \r\n\r\nI would like to see about doing what I can to make this work with just about all kinds of raw text formats. \r\n\r\nWith that said I have this wrap text method that seems to work okay, but I am having a few problems with it when it comes to words that are longer than the max width of a line. \r\n\r\n';
+
+const text2 = 'abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.abcdefghigklmnopqrstuvwxyz.0123456789.'
+
+const textLines = createTextLines(text2, 35);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -119,7 +131,7 @@ const update = function(frame, frameMax){
     let a = frame / frameMax;
     let b = 1 - Math.abs(0.5 - a) / 0.5;
     // using move text lines helper
-    moveTextLines(canObj2.state.lines, textLines, a);
+    moveTextLines(canObj2.state.lines, textLines, b);
     // update canvas
     canvasMod.update(canObj2);
     // update camera
