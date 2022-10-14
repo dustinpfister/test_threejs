@@ -2,6 +2,7 @@
 // SCENE, CAMERA, RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0.75, 0.75, 0.75);
 scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
 const renderer = new THREE.WebGLRenderer();
@@ -10,12 +11,16 @@ renderer.setSize(640, 480);
 //-------- ----------
 // CANVAS OBJECT
 //-------- ----------
-let canObj2 = TextPlane.createCanObj({ rows: 5, size: 256})
+let canObj2 = TextPlane.createCanObj({
+    rows: 5, size: 256, palette: ['rgba(0,0,0,0)', 'black', 'black']
+})
 //-------- ----------
 // MESH
 //-------- ----------
 let plane = TextPlane.makePlane(canObj2.texture_data, 7, 5);
 plane.position.set(0, 2.5, 0);
+plane.material.transparent = true;
+plane.material.opacity = 0.5;
 scene.add(plane);
 //-------- ----------
 // TEXT and textLines

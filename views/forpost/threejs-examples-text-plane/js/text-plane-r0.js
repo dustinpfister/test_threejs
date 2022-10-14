@@ -58,6 +58,8 @@
     // The custom draw text method to be used with canvas.js
     const drawText = (canObj, ctx, canvas, state) => {
         ctx.fillStyle = canObj.palette[0];
+        // clear rect then fill so that I can have a transparent background if I want
+        ctx.clearRect(0,0,canvas.width, canvas.height)
         ctx.fillRect(0,0, canvas.width, canvas.height);
         state.lines.forEach((li)=>{
             ctx.lineWidth = li.lw;
