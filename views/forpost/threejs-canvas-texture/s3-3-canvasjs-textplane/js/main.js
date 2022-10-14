@@ -8,6 +8,38 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
+// TEXT LINES
+//-------- ----------
+const textLines = [
+    '',
+    '',
+    '',
+    'This is just some demo text',
+    'for a kind of text plane module',
+    'idea that I might get into',
+    'it will work with this canvas.js',
+    'module that I made.',
+    '',
+
+    'It might prove to be a cool',
+    'Little project that I will then',
+    'start to use in future video projects',
+    'as I seem to like to make videos',
+    'using threejs.',
+    '',
+    'I hope that getting this to work does',
+    'not end up eating up to much time',
+    'as I have way to many ideas for',
+    'projects such as this one.',
+    '',
+    'So far it looks like I need to',
+    'figure out how to go about adjusting',
+    'some things that have to do with',
+    'the rate at which the text is moved',
+    ''
+];
+
+//-------- ----------
 // HELPERS
 //-------- ----------
 // make plane helper function
@@ -90,7 +122,7 @@ scene.add(plane);
 // ---------- ----------
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 150;
+FRAME_MAX = 600;
 let secs = 0,
 frame = 0,
 lt = new Date();
@@ -99,7 +131,16 @@ const update = function(frame, frameMax){
     let a = frame / frameMax;
     let b = 1 - Math.abs(0.5 - a) / 0.5;
  
-    smoothY(canObj2.state.lines, a, 30, 60);
+    
+    //textLines
+    const lines = canObj2.state.lines,
+    linesLen = lines.length;
+    const tli = Math.floor( textLines.length * b);
+    textLines.slice(tli, tli + linesLen).forEach( (text, i) => {
+        lines[i].text = text;
+    });
+
+    smoothY(lines, b * textLines.length % 1, 30, 60);
  
     // update canvas
     canvasMod.update(canObj2);
