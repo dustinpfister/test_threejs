@@ -47,11 +47,11 @@
 ## () - r0-4-position
 * () demo of mutation of position attribute just four points for now
 
-## () - r0-3-customdraw
-* () have an example in which I am using a plane geomerty but outside the module
-* () the reason why is becuase I am using a custom canvas object and draw method for this plane
+## ( done 10/15/2022 ) - r0-3-customdraw
+* (done) have an example in which I am using a plane geomerty but outside the module
+* (done) the reason why is becuase I am using a custom canvas object and draw method for this plane
 
-## (  done 10/15/2022 ) - r0-2-sphere
+## ( done 10/15/2022 ) - r0-2-sphere
 * (done) try out creating a can object directly and use it with a sphere
 
 ## ( done 10/14/2022 ) - r0-1-textplane
