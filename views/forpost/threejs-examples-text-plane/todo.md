@@ -1,13 +1,38 @@
 # threejs-examples-text-plane todo list
 
-## () - r2 - TextPlane.load
+## () - rx - TextPlane.load
 * () have a TextPlane.load text method than can be used to load one or more raw text files
 * () TextPlane.load creates an array of textLines, one for each file.
 
-## () - r1 - Canvas state object, smoothV2 Method
+## () - rx - Control Over Wrapping
+* () I should be able to turn wrapping off and on 
+
+## () - r2-1-layers
+* () layer demo
+
+## () - r2 - canvas layers, more than one map
+* () I will want to have some kind of system where I have more than one canvas object for an addtional background texture
+* () can set up canvas objects for map, emissveMap, alphaMap
+* () default material should now be phong
+
+## () - r1 - CanvasObj state, smoothV2 helper, Update method, plane sections
 * () A canObj should have textLines as part of the state
 * () The move text lines method should take a canObj or plane as the first argument
+* () updating of the canvas object should happen in the move text lines method
 * () Updated smoothV2 helper to replace smoothY helper
+* () smoothV2 helper can still move text along up and down just as before
+* () smoothV2 helper can also move text left and right of course as well as any direction depeding on dx and dy values
+* () move text lines method should just be an TextPlane.update method
+* () TextPlane.update should just take a canObj or mesh as the first argument, and then an alpha value as the second
+* () Everything else that has with updtaing should be part of the state object of the canObj
+* () can pass plane section options to the create plane method
+* () can change what material is used from that of basic
+
+## () - r0-3-position
+* () demo of position
+
+## () - r0-2-sphere
+* () try out creating a can object directly and use it with a sphere
 
 ## ( done 10/14/2022 ) - r0-1-textplane
 * (done) just one test demo for r0 that shows it working okay
