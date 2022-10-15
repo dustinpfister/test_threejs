@@ -1,8 +1,13 @@
 # threejs-examples-text-plane todo list
 
-## () - r1 of module
-* () simple update method where I can just pass plane text
-* () have a load text method
+## () - r2 - TextPlane.load
+* () have a TextPlane.load text method than can be used to load one or more raw text files
+* () TextPlane.load creates an array of textLines, one for each file.
+
+## () - r1 - Canvas state object, smoothV2 Method
+* () A canObj should have textLines as part of the state
+* () The move text lines method should take a canObj or plane as the first argument
+* () Updated smoothV2 helper to replace smoothY helper
 
 ## ( done 10/14/2022 ) - r0-1-textplane
 * (done) just one test demo for r0 that shows it working okay

@@ -92,7 +92,6 @@
         return canObj;
     };
     // make plane helper function
-    //api.makePlane = (texture, w, h) => {
     api.createPlane = (opt) => {
         opt = opt || {};
         const canObj = api.createCanObj(opt);
