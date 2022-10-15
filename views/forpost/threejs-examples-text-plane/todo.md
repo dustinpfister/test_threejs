@@ -7,8 +7,13 @@
 ## () - rx - Control Over Wrapping
 * () I should be able to turn wrapping off and on 
 
+## () - r2-2-emissive
+* () demo in which I have moveing text for both the map, and emissive maps
+* () have a moving point light
+
 ## () - r2-1-layers
-* () layer demo
+* () layer demo cound make use of the 'rnd' built in canvas draw method for the background canvas
+* () I can then just move text over the background
 
 ## () - r2 - canvas layers, more than one map
 * () I will want to have some kind of system where I have more than one canvas object for an addtional background texture
@@ -29,7 +34,7 @@
 * () can change what material is used from that of basic
 
 ## () - r0-3-position
-* () demo of position
+* () demo of mutation of position attribute just four points for now
 
 ## () - r0-2-sphere
 * () try out creating a can object directly and use it with a sphere
