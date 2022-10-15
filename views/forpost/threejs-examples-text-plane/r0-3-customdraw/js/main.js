@@ -24,9 +24,9 @@ let canObj2 = canvasMod.create({
     size: 256,
     update_mode: 'canvas',
     state: {
-        gSize: 10
+        gSize: 16
     },
-    palette: ['#00ff00','#008800','#004400']
+    palette: ['red', 'lime', 'cyan', 'purple', 'orange', 'green', 'blue']
 });
 // canvas object 3 will be the final background use for the material
 let canObj3 = canvasMod.create({
@@ -49,7 +49,7 @@ let canObj3 = canvasMod.create({
         rDelta: 180,
         rAlpha: 0
     },
-    palette: ['red','white','blue']
+    palette: ['black', 'white']
 });
 //-------- ----------
 // MESH
@@ -87,7 +87,7 @@ const update = function(frame, frameMax){
     TextPlane.moveTextLines(canObj1.state.lines, textLines, b * 0.5, 0, 30);
     // update canvas
     canvasMod.update(canObj1);
-    canvasMod.update(canObj2);
+    //canvasMod.update(canObj2); // background can be animated or static
     canObj3.state.rAlpha = b;
     canvasMod.update(canObj3);
 };

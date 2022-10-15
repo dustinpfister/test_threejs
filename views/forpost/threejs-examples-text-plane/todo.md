@@ -25,7 +25,9 @@
 * () default material should now be phong
 
 
-
+### () - r1-x-transtext
+* () demo where I amm adjusting the trans state value use in the draw method
+* () I will want to have maybe to planes one in which the effect is disabled and the other showing this difference
 
 ## () - r1 - CanvasObj state, smoothV2 helper, Update method, plane sections
 * () A canObj should have textLines as part of the state
@@ -40,6 +42,7 @@
 * () Everything else that has with updtaing should be part of the state object of the canObj
 * () can pass plane section options to the create plane method
 * () can change what material is used from that of basic
+* () update the draw method used to allow for a state value that can be used to adjust a transparency effect
 
 ## () - r0-4-position
 * () demo of mutation of position attribute just four points for now
