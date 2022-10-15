@@ -15,13 +15,9 @@ const canObj = TextPlane.createCanObj({
     rows: 12, size: 512,
     palette: ['rgba(0,255,255,0.2)', 'black', 'black']
 });
-
 //-------- ----------
 // MESH
 //-------- ----------
-
-
-
 const mesh = new THREE.Mesh(
     new THREE.SphereGeometry(0.85, 80, 80),
     new THREE.MeshBasicMaterial({
