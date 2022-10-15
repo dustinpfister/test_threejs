@@ -36,8 +36,8 @@
 ## () - r0-3-position
 * () demo of mutation of position attribute just four points for now
 
-## () - r0-2-sphere
-* () try out creating a can object directly and use it with a sphere
+## (  done 10/14/2022 ) - r0-2-sphere
+* (done) try out creating a can object directly and use it with a sphere
 
 ## ( done 10/14/2022 ) - r0-1-textplane
 * (done) just one test demo for r0 that shows it working okay
