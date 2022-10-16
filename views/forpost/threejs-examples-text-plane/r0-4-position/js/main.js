@@ -20,22 +20,30 @@ const setLinesStyle = (lines, lw, fs, f) => {
 };
 // update position attribute
 const updatePlaneGeoPosition = (plane, alpha) => {
-	const geo = plane.geometry;
-	const pos = geo.getAttribute('position');
-	let i = 0;
-	const w = geo.parameters.widthSegments + 1;
-	//const h = geo.parameters.heightSegments;
-	while(i < pos.count){
-		
-		const x = i % w;
-		const y = Math.floor(i / w);
-		
-		console.log(x, y)
-		
-		//console.log(i);
-		i += 1;
-	}
-	
+    const geo = plane.geometry;
+    const pos = geo.getAttribute('position');
+    let i = 0;
+    const w = geo.parameters.widthSegments + 1;
+    const h = geo.parameters.heightSegments + 1;
+    const mx = 6;
+    const my = 4;
+    const xWaves = 8;
+    const yWaves = 2;
+    const mz = 0.25;
+    while(i < pos.count){
+        const x = i % w;
+        const y = Math.floor(i / w);
+        const px = x / ( w - 1 ) * mx - ( w - 1 ) *  mx / 2 / (w - 1 ) ;
+        const py = y / ( h - 1 ) * my * -1 + ( h - 1 ) *  my / 2 / (h - 1);
+        //let pz = 0;
+        //let pz = Math.sin(i / pos.count * 8 * Math.PI * 2) * 0.2;
+        //let pz = Math.sin(i / pos.count * 8 * (Math.PI * (x * 0.6 / w)) * 2) * 0.2;
+        let pz = Math.sin(x / w * xWaves % 1 * (Math.PI + Math.PI * 2 * (y / h) * yWaves) * 2) * mz;
+        pos.setXYZ(i, px, py, pz);
+        i += 1;
+    }
+    pos.needsUpdate = true;
+    geo.computeVertexNormals();
 };
 //-------- ----------
 // CANVAS OBJECT
@@ -82,13 +90,14 @@ let canObj3 = canvasMod.create({
 // MESH
 //-------- ----------
 const mesh = new THREE.Mesh(
-    new THREE.PlaneGeometry(3.75, 2, 2, 2),
+    new THREE.PlaneGeometry(3.75, 2, 20, 20),
     new THREE.MeshBasicMaterial({
         map: canObj3.texture,
+		side: THREE.DoubleSide,
         transparent: true
     })
 );
-mesh.position.set(0, 1, 0);
+mesh.position.set(0, 0, 0);
 scene.add(mesh);
 
 updatePlaneGeoPosition(mesh, 0);
@@ -101,8 +110,8 @@ const textLines = TextPlane.createTextLines(text2, 14);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-camera.position.set(0, 1, 2);
-camera.lookAt(0, 1, 0);
+camera.position.set(3, 3, 3);
+camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 800;
