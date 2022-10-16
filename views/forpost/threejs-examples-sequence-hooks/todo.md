@@ -7,8 +7,14 @@
 * () a demo where I am defining arrays of Vector3 objects with array literals and directly calling THREE.Vector3
 
 ## () - r2 - v3Paths
-* () Make all other public methods private helpers 
+* (done) Make all other public methods private helpers 
+* (done) use new way of setting global \( this\[\'seqHooks\'\] = \{\} \)
+* (done) use let and const in place of var
+
+
 * () start a new 'v3Paths' system that is a way to define the movement of objects by way of Vector3 arrays
+
+* () use arrow functions in place of repressions except where not needed such as with noop
 
 ## ( done 08/16/2022 ) - r1 - have an r1 of the module with getBias, getPer methods, bugs fixed, ect
 * (done) I want a seq.getPer

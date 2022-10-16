@@ -1,12 +1,12 @@
 /* seq-hooks.js - r2 - from threejs-examples-sequence-hooks
- *
+ *        * Made 'OTHER' publuc methods private helper
+ *        * using this['seqHooks'] = {} in place of returning public api
  */
-var seqHooks = (function () {
-    var api = {};
-    //******** **********
+(function (api) {
+    //-------- ----------
     // SET PART FRAME FUNCTIONS
-    //******** **********
-    var partFrameFunctions = {
+    //-------- ----------
+    const partFrameFunctions = {
         // expressions used in r0
         r0: function(seq, per2, obj){
             seq.partFrameMax = Math.floor( (per2 - obj.per) * seq.frameMax );
@@ -22,72 +22,72 @@ var seqHooks = (function () {
             seq.partFrame = Math.floor(seq.frame - seq.frameMax * obj.per);
         }
     }
-    //******** **********
+    //-------- ----------
     // HELPERS
-    //******** **********
+    //-------- ----------
     // no operation
-    var noop = function(){};
+    const noop = function(){};
     // internal get per method
-    var getPer = function(a, b){
+    const getPer = function(a, b){
         return a / b;
     };
     // internal get bias method
-    var getBias = function(per){
+    const getBias = function(per){
         return 1 - Math.abs( 0.5 - per ) / 0.5;
     };
     // get total secs value helper
-    var getTotalSecs = function(seq){
+    const getTotalSecs = function(seq){
         return seq.objects.reduce(function(acc, obj){ return acc + (obj.secs || 0) }, 0);
     };
     // get sin bias helper
-    var getSinBias = function(per){
-        var b = getBias(per);
+    const getSinBias = function(per){
+        const b = getBias(per);
         return Math.sin( Math.PI * 0.5 * b );
     };
     // create and return a getPer method to be used as seq.getPer
-    var createGetPerMethod = function(seq){
+    const createGetPerMethod = function(seq){
         return function(count, objectPer){
             // by default return current 1 count per value for the current sequence object
             count = count === undefined ? 1 : count;
             objectPer = objectPer === undefined ? true: objectPer;
             // if I want a objectPer value
-            var a = seq.partFrame, b = seq.partFrameMax;
+            let a = seq.partFrame, b = seq.partFrameMax;
             // not object per
             if(!objectPer){
                 a = seq.frame; 
                 b = seq.frameMax;
             }
             // base p value
-            var p = getPer(a, b);
+            let p = getPer(a, b);
             // return base p value effected by count
             return p * count % 1;
         };
     };
     // create a get bias method to be used for sm.getBias
-    var createGetBiasMethod = function(seq){
+    const createGetBiasMethod = function(seq){
         return function(count, objectPer){
-            var per = seq.getPer(count, objectPer);
+            const per = seq.getPer(count, objectPer);
             return getBias(per);
         };
     };
     // create a get bias method to be used for sm.getBias
-    var createGetSinBiasMethod = function(seq){
+    const createGetSinBiasMethod = function(seq){
         return function(count, objectPer){
-            var per = seq.getPer(count, objectPer);
+            const per = seq.getPer(count, objectPer);
             return getSinBias(per);
         };
     };
     // just get an array of per values based on sec values for each object, and DO NOT MUTATE the seq object
-    var getPerValues = function(seq){
-        var secsTotal = getTotalSecs(seq);
-        var perValues = [];
-        var i = 0, len = seq.objects.length;
+    const getPerValues = function(seq){
+        const secsTotal = getTotalSecs(seq);
+        const perValues = [];
+        let i = 0, len = seq.objects.length;
         while(i < len){
-            var per = perValues[i - 1];
+            const per = perValues[i - 1];
             if( per === undefined ){
                 perValues.push(0);
             }else{
-                var perDelta = seq.objects[i - 1].secs / secsTotal;
+                const perDelta = seq.objects[i - 1].secs / secsTotal;
                 perValues.push( parseFloat( ( per + perDelta ).toFixed(4) ) );
             }
             i += 1;
@@ -95,9 +95,9 @@ var seqHooks = (function () {
         return perValues;
     };
     // get a target frames value
-    var getTargetFrames = function(seq, fps){
+    const getTargetFrames = function(seq, fps){
         fps = fps === undefined ? 30 : fps;
-        var secsTotal = getTotalSecs(seq);
+        const secsTotal = getTotalSecs(seq);
         return Math.ceil(secsTotal * fps);
     };
     // set per values
@@ -112,14 +112,14 @@ var seqHooks = (function () {
         seq.frameMax = getTargetFrames(seq, fps);
         return seq;
     };
-    //******** **********
+    //-------- ----------
     // CREATE - create and return a new seq object
-    //******** **********
+    //-------- ----------
     // create new seq object method
     api.create = function(opt){
         opt = opt || {};
         opt.setPerValues = opt.setPerValues === undefined ? true : false;
-        var seq = {};
+        const seq = {};
         seq.objectIndex = 0;
         seq.per = 0;
         seq.bias = 0;
@@ -148,9 +148,9 @@ var seqHooks = (function () {
         seq.getSinBias = createGetSinBiasMethod(seq);
         return seq;
     };
-    //******** **********
+    //-------- ----------
     // SET FRAME
-    //******** **********
+    //-------- ----------
     // update the given seq object by way of a frame, and maxFrame value
     api.setFrame = function(seq, frame, frameMax){
         seq.frame = frame === undefined ? 0 : frame;
@@ -162,10 +162,10 @@ var seqHooks = (function () {
         seq.bias = getBias(seq.per);
         // update object index
         seq.objectIndex = 0;
-        var i = 0, len = seq.objects.length;
+        let i = 0, len = seq.objects.length;
         while(i < len){
-            var obj = seq.objects[i];
-            var per2 = 1;
+            const obj = seq.objects[i];
+            let per2 = 1;
             if(seq.objects[i + 1] != undefined){
                 per2 = seq.objects[i + 1].per;
             }
@@ -192,7 +192,7 @@ var seqHooks = (function () {
         // call before hook
         seq.beforeObjects(seq);
         // call update for current object
-        var obj = seq.objects[seq.objectIndex];
+        const obj = seq.objects[seq.objectIndex];
         if(obj){
             seq.obj = obj;
             obj.update(seq, seq.partPer, seq.partBias, seq.partSinBias, obj);
@@ -200,24 +200,22 @@ var seqHooks = (function () {
         // call after objects hook
         seq.afterObjects(seq);
     };
-    //******** **********
+    //-------- ----------
     // PUBLIC GET PER AND BIAS METHODS
-    //******** **********
+    //-------- ----------
     api.getPer = function(a, b, count){
         a = a === undefined ? 0 : a;
         b = b === undefined ? 1 : b;
         count = count === undefined ? 1 : count;
-        var per = a / b;
+        const per = a / b;
         return per * count % 1;
     };
     api.getBias = function(a, b, count){
-        var per = api.getPer(a, b, count);
+        const per = api.getPer(a, b, count);
         return getBias(per);
     };
     api.getSinBias = function(a, b, count){
-        var per = api.getPer(a, b, count);
+        const per = api.getPer(a, b, count);
         return getSinBias(per);
     };
-    // return public api
-    return api;
-}());
+}( this['seqHooks'] = {} ));
