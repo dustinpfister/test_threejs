@@ -3,7 +3,7 @@
 //-------- ----------
 const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
-const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
+const camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 1000);
 camera.position.set(0, 1.5, 2.75);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGLRenderer();
