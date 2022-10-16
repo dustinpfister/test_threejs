@@ -158,8 +158,48 @@
     // SET FRAME
     //-------- ----------
 
+    // set v3 paths for an object ( main seq object or a seq.objects object )
+    const setV3PathsForObject = (seq, mainObj) => {
+        const obj = mainObj ? seq : seq.objects[seq.objectIndex];
+
+        const per = mainObj ? seq.per : seq.partPer;
+
+        const v3Paths = mainObj ? seq.v3Paths.main : obj.v3Paths;
+
+        if(v3Paths){
+            let i = 0, len = v3Paths.length;
+             while(i < len){
+                 const pathObj = v3Paths[i];
+                 const array = pathObj.array;
+                 const cv = new THREE.Vector3(); // current vector
+                 const len = array.length - 1;
+                 let vi1 = Math.floor( len * per );
+                 let vi2 = vi1 + 1;
+                 v12 = vi2 > len ? len : vi2;
+                 //const vi2 = Math.floor( array.length * seq.partPer );
+                 if(pathObj.lerp){
+                     const alpha =  len * per % 1;
+                     cv.copy( array[ vi1 ] ).lerp( array[ vi2 ], alpha );
+                 }else{
+                     // else just copy
+                     let vi1 = Math.floor( array.length * per );
+                     v11 = vi1 > len ? len : vi1;
+                     cv.copy( array[ vi1 ] );
+                 }
+                 // key in to seq.v3Paths
+                 seq.v3Paths.paths[pathObj.key] = cv;
+                 i += 1;
+             }
+        }
+    };
+
     const setV3Paths = (seq) => {
         seq.v3Paths.paths = []; // clear paths to empty array
+
+setV3PathsForObject(seq, true);
+setV3PathsForObject(seq, false);
+
+/*
         const obj = seq.objects[seq.objectIndex];
         if(obj.v3Paths){
             let i = 0, len = obj.v3Paths.length;
@@ -167,7 +207,6 @@
                  const pathObj = obj.v3Paths[i];
                  const array = pathObj.array;
                  const cv = new THREE.Vector3(); // current vector
-
                  const len = array.length - 1;
                  const vi1 = Math.floor( len * seq.partPer );
                  const vi2 = vi1 + 1;
@@ -180,14 +219,12 @@
                      // else just copy
                      cv.copy( array[ vi2 ] );
                  }
-
-
-
-
                  seq.v3Paths.paths[pathObj.key] = cv;
                  i += 1;
              }
         }
+*/
+
     };
 
     // update the given seq object by way of a frame, and maxFrame value

@@ -26,14 +26,18 @@
                 key: 'm1pos',
                 array: [
                     new THREE.Vector3(0,0,5),
-                    new THREE.Vector3(0,0,-5)
+                    new THREE.Vector3(2,-1,0),
+                    new THREE.Vector3(2,-2,-5)
                 ],
-                lerp: true
+                lerp: false
             }
         ],
         beforeObjects: (seq) => {
             camera.position.set(-10, 5, 5);
             camera.lookAt(0, 0, 0);
+
+                    mesh1.position.copy(seq.v3Paths.paths['m1pos'] );
+
         },
         afterObjects: (seq) => {},
         objects: [
@@ -58,7 +62,7 @@
                     }
                 ],
                 update: (seq, partPer, partBias) => {
-                    mesh2.position.copy(seq.v3Paths.paths['m2pos'] )
+                    mesh2.position.copy(seq.v3Paths.paths['m2pos'] );
                 }
             },
             // seq1 - 
@@ -84,7 +88,7 @@
                     }
                 ],
                 update: (seq, partPer, partBias) => {
-                    mesh2.position.copy(seq.v3Paths.paths['m2pos'] )
+                    mesh2.position.copy(seq.v3Paths.paths['m2pos'] );
                 }
             }
         ]
