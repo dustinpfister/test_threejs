@@ -108,21 +108,16 @@ const drawText = (canObj, ctx, canvas, state) => {
 let canObj2 = canvasMod.create({
     draw: drawText,
     size: 512,
-    update_mode: 'dual',
+    update_mode: 'canvas',
     state: {
        lines : createLines(9)
     },
     palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
 });
- 
-canObj2.texture_data.flipY = true;
-//canObj2.texture_data.center = new THREE.Vector2(0.5, 0.5);
-//canObj2.texture_data.rotation = Math.PI / 180 * 0;
-//canObj2.texture_data.needsUpdate = true;
 //-------- ----------
 // MESH
 //-------- ----------
-let plane = makePlane(canObj2.texture_data, 2);
+let plane = makePlane(canObj2.texture, 2);
 plane.position.set(0, 2, 0);
 scene.add(plane);
 // ---------- ----------
