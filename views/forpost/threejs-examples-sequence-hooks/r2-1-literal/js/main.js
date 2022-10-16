@@ -25,6 +25,16 @@
         objects: [
             {
                 secs: 1,
+                v3Paths: [
+                    {
+                        key: 'm1pos',
+                        array: [
+                            new THREE.Vector3(0,0,0),
+                            new THREE.vector3(0,0,-3)
+                        ],
+                        lerp: false
+                    }
+                ],
                 update: (seq, partPer, partBias) => {
                  
                 }
