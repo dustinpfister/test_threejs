@@ -18,6 +18,25 @@ const setLinesStyle = (lines, lw, fs, f) => {
        lObj.f = f;
    });
 };
+// update position attribute
+const updatePlaneGeoPosition = (plane, alpha) => {
+	const geo = plane.geometry;
+	const pos = geo.getAttribute('position');
+	let i = 0;
+	const w = geo.parameters.widthSegments + 1;
+	//const h = geo.parameters.heightSegments;
+	while(i < pos.count){
+		
+		const x = i % w;
+		const y = Math.floor(i / w);
+		
+		console.log(x, y)
+		
+		//console.log(i);
+		i += 1;
+	}
+	
+};
 //-------- ----------
 // CANVAS OBJECT
 //-------- ----------
@@ -63,7 +82,7 @@ let canObj3 = canvasMod.create({
 // MESH
 //-------- ----------
 const mesh = new THREE.Mesh(
-    new THREE.PlaneGeometry(3.75, 2),
+    new THREE.PlaneGeometry(3.75, 2, 2, 2),
     new THREE.MeshBasicMaterial({
         map: canObj3.texture,
         transparent: true
@@ -71,6 +90,9 @@ const mesh = new THREE.Mesh(
 );
 mesh.position.set(0, 1, 0);
 scene.add(mesh);
+
+updatePlaneGeoPosition(mesh, 0);
+
 //-------- ----------
 // TEXT and textLines
 //-------- ----------
@@ -95,7 +117,6 @@ const update = function(frame, frameMax){
     TextPlane.moveTextLines(canObj1.state.lines, textLines, b * 0.85, 0, 40);
     // update canvas
     canvasMod.update(canObj1);
-    //canvasMod.update(canObj2); // background can be animated or static
     canvasMod.update(canObj3);
 };
 // loop
