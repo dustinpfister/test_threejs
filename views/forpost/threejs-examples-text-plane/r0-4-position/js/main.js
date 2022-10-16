@@ -4,7 +4,7 @@
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0.75, 0.75, 0.75);
 scene.add( new THREE.GridHelper(10, 10) );
-const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
+const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 1000);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
@@ -90,7 +90,7 @@ let canObj3 = canvasMod.create({
 //-------- ----------
 // MESH
 //-------- ----------
-const mesh = new THREE.Mesh(
+const plane = new THREE.Mesh(
     new THREE.PlaneGeometry(3.75, 2, 20, 20),
     new THREE.MeshBasicMaterial({
         map: canObj3.texture,
@@ -99,8 +99,15 @@ const mesh = new THREE.Mesh(
         opacity: 0.6
     })
 );
-mesh.position.set(0, 0, 0);
-scene.add(mesh);
+plane.position.set(0, 0, 0);
+scene.add(plane);
+const sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(30, 30, 30),
+    new THREE.MeshBasicMaterial({
+         wireframe: true
+    })
+);
+scene.add(sphere);
 //-------- ----------
 // TEXT and textLines
 //-------- ----------
@@ -122,7 +129,7 @@ const update = function(frame, frameMax){
     let a = frame / frameMax;
     let b = 1 - Math.abs(0.5 - a) / 0.5;
     // UPDATE
-    updatePlaneGeoPosition(mesh, a, {
+    updatePlaneGeoPosition(plane, a, {
         xWaves : 8 * b,
         yWaves: 0.15 * a,
         m: new THREE.Vector3(10 + 2 * b,6 + 4 * b,1.5)
