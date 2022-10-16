@@ -132,8 +132,7 @@
         seq.beforeObjects = opt.beforeObjects || noop;
         seq.afterObjects = opt.afterObjects || noop;
         // setup sequence objects
-        seq.objects = opt.objects || [];
-        seq.objects = seq.objects.map(function(obj){
+        seq.objects = ( opt.objects || [] ).map(function(obj){
             obj.per = obj.per === undefined ? 0 : obj.per;
             obj.secs = obj.secs === undefined ? 0 : obj.secs;
             obj.data = obj.data || {};
@@ -148,11 +147,40 @@
         seq.getPer = createGetPerMethod(seq);
         seq.getBias = createGetBiasMethod(seq);
         seq.getSinBias = createGetSinBiasMethod(seq);
+        // MAIN seq.v3Paths object
+        seq.v3Paths = {
+            main: opt.v3Paths || [],
+            paths: {}
+        };
         return seq;
     };
     //-------- ----------
     // SET FRAME
     //-------- ----------
+
+    const setV3Paths = (seq) => {
+        seq.v3Paths.paths = []; // clear paths to empty array
+        const obj = seq.objects[seq.objectIndex];
+        if(obj.v3Paths){
+            let i = 0, len = obj.v3Paths.length;
+             while(i < len){
+                 const pathObj = obj.v3Paths[i];
+                 const array = pathObj.array;
+                 const cv = new THREE.Vector3(); // current vector
+
+                 // just copy
+                 cv.copy( array[ Math.floor( array.length * seq.partPer ) ] )
+
+
+
+
+
+                 seq.v3Paths.paths[pathObj.key] = cv;
+                 i += 1;
+             }
+        }
+    };
+
     // update the given seq object by way of a frame, and maxFrame value
     api.setFrame = function(seq, frame, frameMax){
         seq.frame = frame === undefined ? 0 : frame;
@@ -191,6 +219,13 @@
             }
             i += 1;
         }
+
+// V3 PATHS
+
+setV3Paths(seq);
+
+
+
         // call before hook
         seq.beforeObjects(seq);
         // call update for current object

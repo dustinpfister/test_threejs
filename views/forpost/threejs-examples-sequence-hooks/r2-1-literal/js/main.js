@@ -15,38 +15,84 @@
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
     scene.add(mesh1);
+    const mesh2 = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial());
+    scene.add(mesh2);
     // A MAIN SEQ OBJECT
     const seq = seqHooks.create({
+        v3Paths: [
+            {
+                key: 'm1pos',
+                array: [
+                    new THREE.Vector3(0,0,5),
+                    new THREE.Vector3(0,0,-5)
+                ],
+                lerp: true
+            }
+        ],
         beforeObjects: (seq) => {
-            camera.position.set(5, 5, 5);
+            camera.position.set(-10, 5, 5);
             camera.lookAt(0, 0, 0);
         },
         afterObjects: (seq) => {},
         objects: [
+            // seq0 - 
             {
-                secs: 1,
+                secs: 3,
                 v3Paths: [
                     {
-                        key: 'm1pos',
+                        key: 'm2pos',
                         array: [
-                            new THREE.Vector3(0,0,0),
-                            new THREE.vector3(0,0,-3)
+                            new THREE.Vector3(5, 0, 5),
+                            new THREE.Vector3(5, 0, 4),
+                            new THREE.Vector3(5, 0, 3),
+                            new THREE.Vector3(5, 0, 2),
+                            new THREE.Vector3(5, 0, 1),
+                            new THREE.Vector3(5, 0, 0),
+                            new THREE.Vector3(5, 0, -1),
+                            new THREE.Vector3(5, 0, -2),
+                            new THREE.Vector3(5, 0, -3)
+                        ],
+                        lerp: true
+                    }
+                ],
+                update: (seq, partPer, partBias) => {
+                    mesh2.position.copy(seq.v3Paths.paths['m2pos'] )
+                }
+            },
+            // seq1 - 
+            {
+                secs: 7,
+                v3Paths: [
+                    {
+                        key: 'm2pos',
+                        array: [
+                            new THREE.Vector3(5, 0,-3),
+                            new THREE.Vector3(4, 0,-3),
+                            new THREE.Vector3(3, 0,-3),
+                            new THREE.Vector3(2, 0,-3),
+                            new THREE.Vector3(1, 0,-3),
+                            new THREE.Vector3(0, 0,-3),
+                            new THREE.Vector3(-1, 0,-3),
+                            new THREE.Vector3(-2, 0,-3),
+                            new THREE.Vector3(-3, 0,-3),
+                            new THREE.Vector3(-4, 0,-3),
+                            new THREE.Vector3(-5,0,-3)
                         ],
                         lerp: false
                     }
                 ],
                 update: (seq, partPer, partBias) => {
-                 
-                }
-            },
-            {
-                secs: 3,
-                update: (seq, partPer, partBias) => {
-                
+                    mesh2.position.copy(seq.v3Paths.paths['m2pos'] )
                 }
             }
         ]
     });
+
+seqHooks.setFrame(seq, 0, seq.frameMax);
+console.log(seq.v3Paths)
+
     // APP LOOP
     const fps_update = 30,
     fps_movement = 30;
