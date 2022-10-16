@@ -168,9 +168,15 @@
                  const array = pathObj.array;
                  const cv = new THREE.Vector3(); // current vector
 
-                 // just copy
-                 cv.copy( array[ Math.floor( array.length * seq.partPer ) ] )
-
+                 const vi1 = Math.floor( (array.length - 1) * seq.partPer );
+                 const vi2 = Math.floor( array.length * seq.partPer );
+                 if(pathObj.lerp){
+                     const alpha =  0
+                     cv.copy( array[ vi1 ] ).lerp( array[ vi2 ], alpha );
+                 }else{
+                     // else just copy
+                     cv.copy( array[ vi2 ] );
+                 }
 
 
 
