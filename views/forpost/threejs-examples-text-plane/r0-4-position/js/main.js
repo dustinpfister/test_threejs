@@ -22,8 +22,8 @@ const setLinesStyle = (lines, lw, fs, f) => {
 const updatePlaneGeoPosition = (plane, alpha, opt) => {
     opt = opt || {};
     opt.m = opt.m || new THREE.Vector3(6, 4, 0.2);
-    opt.xWaves = opt.xWaves === undefined ? 4 : opt.xWaves;
-    opt.yWaves = opt.yWaves === undefined ? 2 : opt.yWaves;
+    opt.xWaves = opt.xWaves === undefined ? 8 : opt.xWaves;
+    opt.yWaves = opt.yWaves === undefined ? 0.5 : opt.yWaves;
     const geo = plane.geometry;
     const pos = geo.getAttribute('position');
     let i = 0;
@@ -37,7 +37,9 @@ const updatePlaneGeoPosition = (plane, alpha, opt) => {
         //let pz = 0;
         //let pz = Math.sin(i / pos.count * 8 * Math.PI * 2) * 0.2;
         //let pz = Math.sin(i / pos.count * 8 * (Math.PI * (x * 0.6 / w)) * 2) * 0.2;
-        let pz = Math.sin(x / w * opt.xWaves % 1 * (Math.PI + Math.PI * 2 * (y / h) * opt.yWaves) * 2) * opt.m.z;
+        let xWaves = opt.xWaves * alpha;
+        let yWaves = Math.PI * 2 * (y / h) * opt.yWaves;
+        let pz = Math.sin(x / w * xWaves * ( Math.PI + yWaves) * 2) * opt.m.z;
         pos.setXYZ(i, px, py, pz);
         i += 1;
     }
@@ -92,15 +94,12 @@ const mesh = new THREE.Mesh(
     new THREE.PlaneGeometry(3.75, 2, 20, 20),
     new THREE.MeshBasicMaterial({
         map: canObj3.texture,
-		side: THREE.DoubleSide,
+        side: THREE.DoubleSide,
         transparent: true
     })
 );
 mesh.position.set(0, 0, 0);
 scene.add(mesh);
-
-updatePlaneGeoPosition(mesh, 0);
-
 //-------- ----------
 // TEXT and textLines
 //-------- ----------
@@ -109,7 +108,7 @@ const textLines = TextPlane.createTextLines(text2, 14);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-camera.position.set(3, 3, 3);
+camera.position.set(3, 3, 7);
 camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
@@ -122,10 +121,19 @@ const update = function(frame, frameMax){
     let a = frame / frameMax;
     let b = 1 - Math.abs(0.5 - a) / 0.5;
     // UPDATE
+    updatePlaneGeoPosition(mesh, a, {
+		xWaves : 8 * b,
+		yWaves: 0.15 * a,
+		m: new THREE.Vector3(10 + 2 * b,6 + 4 * b,1.5)
+	});
     TextPlane.moveTextLines(canObj1.state.lines, textLines, b * 0.85, 0, 40);
     // update canvas
     canvasMod.update(canObj1);
+    canvasMod.update(canObj2);
     canvasMod.update(canObj3);
+    // camera
+    camera.position.x = 3 - 6 * b;
+	camera.lookAt(0, 0, 0);
 };
 // loop
 const loop = () => {
