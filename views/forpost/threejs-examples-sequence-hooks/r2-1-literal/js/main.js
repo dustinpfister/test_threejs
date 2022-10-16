@@ -80,7 +80,7 @@
                             new THREE.Vector3(-4, 0,-3),
                             new THREE.Vector3(-5,0,-3)
                         ],
-                        lerp: false
+                        lerp: true
                     }
                 ],
                 update: (seq, partPer, partBias) => {
