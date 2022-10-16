@@ -3,7 +3,7 @@
 //-------- ----------
 const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
-const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
+const camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 1000);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
@@ -20,7 +20,6 @@ const textLines = [
     'it will work with this canvas.js',
     'module that I made.',
     '',
-
     'It might prove to be a cool',
     'Little project that I will then',
     'start to use in future video projects',
@@ -38,7 +37,6 @@ const textLines = [
     'the rate at which the text is moved',
     ''
 ];
-
 //-------- ----------
 // HELPERS
 //-------- ----------
