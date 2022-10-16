@@ -9,6 +9,9 @@
 ## () - s2-3-loop-uv
 * () loop example that involves static canvas texture, but updating uv attribute over time
 
+## () sx-texture section
+* () I will want to stat a section on TEXTURE class features such as flip warp ect
+
 ## ( done 10/14/2022 ) - s3-3-canvasjs-textplane
 * (done) have a textplane demo
 
