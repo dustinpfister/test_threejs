@@ -3,7 +3,8 @@
 ## Known problems
 * ( fixed in r1 ) - #0 partPer values end up being 1 which cuases undesired effects 
 
-## () 
+## () - r2-1-literal
+* () a demo where I am defining arrays of Vector3 objects with array literals and directly calling THREE.Vector3
 
 ## () - r2 - v3Paths
 * () Make all other public methods private helpers 
