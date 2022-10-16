@@ -9,12 +9,6 @@
 ## () - s2-3-loop-uv
 * () loop example that involves static canvas texture, but updating uv attribute over time
 
-## () - sx-x-textreader section
-* () I would like to see about having a text reader module
-* () The module should allow for loading external data in the form of plain text files such as javaScript and markdown files
-* () canvas elements can then be used to create a current texture of a current point in a text file
-* () I am thinking it would be cool to just use Plane geometry as a means to display the text
-
 ## ( done 10/14/2022 ) - s3-3-canvasjs-textplane
 * (done) have a textplane demo
 
