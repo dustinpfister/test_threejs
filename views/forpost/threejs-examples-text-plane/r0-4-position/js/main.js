@@ -19,26 +19,25 @@ const setLinesStyle = (lines, lw, fs, f) => {
    });
 };
 // update position attribute
-const updatePlaneGeoPosition = (plane, alpha) => {
+const updatePlaneGeoPosition = (plane, alpha, opt) => {
+    opt = opt || {};
+    opt.m = opt.m || new THREE.Vector3(6, 4, 0.2);
+    opt.xWaves = opt.xWaves === undefined ? 4 : opt.xWaves;
+    opt.yWaves = opt.yWaves === undefined ? 2 : opt.yWaves;
     const geo = plane.geometry;
     const pos = geo.getAttribute('position');
     let i = 0;
     const w = geo.parameters.widthSegments + 1;
     const h = geo.parameters.heightSegments + 1;
-    const mx = 6;
-    const my = 4;
-    const xWaves = 8;
-    const yWaves = 2;
-    const mz = 0.25;
     while(i < pos.count){
         const x = i % w;
         const y = Math.floor(i / w);
-        const px = x / ( w - 1 ) * mx - ( w - 1 ) *  mx / 2 / (w - 1 ) ;
-        const py = y / ( h - 1 ) * my * -1 + ( h - 1 ) *  my / 2 / (h - 1);
+        const px = x / ( w - 1 ) * opt.m.x - ( w - 1 ) *  opt.m.x / 2 / (w - 1 ) ;
+        const py = y / ( h - 1 ) * opt.m.y * -1 + ( h - 1 ) *  opt.m.y / 2 / (h - 1);
         //let pz = 0;
         //let pz = Math.sin(i / pos.count * 8 * Math.PI * 2) * 0.2;
         //let pz = Math.sin(i / pos.count * 8 * (Math.PI * (x * 0.6 / w)) * 2) * 0.2;
-        let pz = Math.sin(x / w * xWaves % 1 * (Math.PI + Math.PI * 2 * (y / h) * yWaves) * 2) * mz;
+        let pz = Math.sin(x / w * opt.xWaves % 1 * (Math.PI + Math.PI * 2 * (y / h) * opt.yWaves) * 2) * opt.m.z;
         pos.setXYZ(i, px, py, pz);
         i += 1;
     }
