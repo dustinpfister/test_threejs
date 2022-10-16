@@ -77,6 +77,41 @@ var seqHooks = (function () {
             return getSinBias(per);
         };
     };
+    // just get an array of per values based on sec values for each object, and DO NOT MUTATE the seq object
+    var getPerValues = function(seq){
+        var secsTotal = getTotalSecs(seq);
+        var perValues = [];
+        var i = 0, len = seq.objects.length;
+        while(i < len){
+            var per = perValues[i - 1];
+            if( per === undefined ){
+                perValues.push(0);
+            }else{
+                var perDelta = seq.objects[i - 1].secs / secsTotal;
+                perValues.push( parseFloat( ( per + perDelta ).toFixed(4) ) );
+            }
+            i += 1;
+        }
+        return perValues;
+    };
+    // get a target frames value
+    var getTargetFrames = function(seq, fps){
+        fps = fps === undefined ? 30 : fps;
+        var secsTotal = getTotalSecs(seq);
+        return Math.ceil(secsTotal * fps);
+    };
+    // set per values
+    const setPerValues = function(seq, fps){
+        // set seq.totalSecs
+        seq.totalSecs = getTotalSecs(seq);
+        // set per values
+        getPerValues(seq).forEach(function(per, i){
+            seq.objects[i].per = per;
+        });
+        // set frameMax
+        seq.frameMax = getTargetFrames(seq, fps);
+        return seq;
+    };
     //******** **********
     // CREATE - create and return a new seq object
     //******** **********
@@ -105,7 +140,7 @@ var seqHooks = (function () {
         });
         // set per values is part of the create process
         if(opt.setPerValues){
-            api.setPerValues(seq, opt.fps === undefined ? 30: opt.fps);
+            setPerValues(seq, opt.fps === undefined ? 30: opt.fps);
         }
         // create get per method for this object
         seq.getPer = createGetPerMethod(seq);
@@ -182,44 +217,6 @@ var seqHooks = (function () {
     api.getSinBias = function(a, b, count){
         var per = api.getPer(a, b, count);
         return getSinBias(per);
-    };
-    //******** **********
-    // OTHER PUBLIC METHODS
-    //******** **********
-    // just get an array of per values based on sec values for each object, and DO NOT MUTATE the seq object
-    api.getPerValues = function(seq){
-        var secsTotal = getTotalSecs(seq);
-        var perValues = [];
-        var i = 0, len = seq.objects.length;
-        while(i < len){
-            var per = perValues[i - 1];
-            if( per === undefined ){
-                perValues.push(0);
-            }else{
-                var perDelta = seq.objects[i - 1].secs / secsTotal;
-                perValues.push( parseFloat( ( per + perDelta ).toFixed(4) ) );
-            }
-            i += 1;
-        }
-        return perValues;
-    };
-    // get a target frames value
-    api.getTargetFrames = function(seq, fps){
-        fps = fps === undefined ? 30 : fps;
-        var secsTotal = getTotalSecs(seq);
-        return Math.ceil(secsTotal * fps);
-    };
-    // set per values
-    api.setPerValues = function(seq, fps){
-        // set seq.totalSecs
-        seq.totalSecs = getTotalSecs(seq);
-        // set per values
-        api.getPerValues(seq).forEach(function(per, i){
-            seq.objects[i].per = per;
-        });
-        // set frameMax
-        seq.frameMax = api.getTargetFrames(seq, fps);
-        return seq;
     };
     // return public api
     return api;
