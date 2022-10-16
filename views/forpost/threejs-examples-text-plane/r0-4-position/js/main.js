@@ -95,7 +95,8 @@ const mesh = new THREE.Mesh(
     new THREE.MeshBasicMaterial({
         map: canObj3.texture,
         side: THREE.DoubleSide,
-        transparent: true
+        transparent: true,
+        opacity: 0.6
     })
 );
 mesh.position.set(0, 0, 0);
@@ -122,10 +123,10 @@ const update = function(frame, frameMax){
     let b = 1 - Math.abs(0.5 - a) / 0.5;
     // UPDATE
     updatePlaneGeoPosition(mesh, a, {
-		xWaves : 8 * b,
-		yWaves: 0.15 * a,
-		m: new THREE.Vector3(10 + 2 * b,6 + 4 * b,1.5)
-	});
+        xWaves : 8 * b,
+        yWaves: 0.15 * a,
+        m: new THREE.Vector3(10 + 2 * b,6 + 4 * b,1.5)
+    });
     TextPlane.moveTextLines(canObj1.state.lines, textLines, b * 0.85, 0, 40);
     // update canvas
     canvasMod.update(canObj1);
@@ -133,7 +134,7 @@ const update = function(frame, frameMax){
     canvasMod.update(canObj3);
     // camera
     camera.position.x = 3 - 6 * b;
-	camera.lookAt(0, 0, 0);
+    camera.lookAt(0, 0, 0);
 };
 // loop
 const loop = () => {
