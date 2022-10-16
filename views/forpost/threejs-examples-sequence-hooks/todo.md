@@ -12,7 +12,7 @@
 * (done) use let and const in place of var
 * (done) start a new 'v3Paths' system that is a way to define the movement of objects by way of Vector3 arrays
 * (done) get v3Paths working for objects
-* () get v3Paths working for main seq object
+* (done) get v3Paths working for main seq object
 
 * () use arrow functions in place of repressions except where not needed such as with noop
 

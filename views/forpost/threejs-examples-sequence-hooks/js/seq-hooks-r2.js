@@ -192,41 +192,13 @@
              }
         }
     };
-
+    // set v3 paths for main seq and current object in seq.objects
     const setV3Paths = (seq) => {
         seq.v3Paths.paths = []; // clear paths to empty array
-
-setV3PathsForObject(seq, true);
-setV3PathsForObject(seq, false);
-
-/*
-        const obj = seq.objects[seq.objectIndex];
-        if(obj.v3Paths){
-            let i = 0, len = obj.v3Paths.length;
-             while(i < len){
-                 const pathObj = obj.v3Paths[i];
-                 const array = pathObj.array;
-                 const cv = new THREE.Vector3(); // current vector
-                 const len = array.length - 1;
-                 const vi1 = Math.floor( len * seq.partPer );
-                 const vi2 = vi1 + 1;
-                 v12 = vi2 > len ? len : vi2;
-                 //const vi2 = Math.floor( array.length * seq.partPer );
-                 if(pathObj.lerp){
-                     const alpha =  len * seq.partPer % 1;
-                     cv.copy( array[ vi1 ] ).lerp( array[ vi2 ], alpha );
-                 }else{
-                     // else just copy
-                     cv.copy( array[ vi2 ] );
-                 }
-                 seq.v3Paths.paths[pathObj.key] = cv;
-                 i += 1;
-             }
-        }
-*/
-
+        setV3PathsForObject(seq, true);
+        setV3PathsForObject(seq, false);
     };
-
+ 
     // update the given seq object by way of a frame, and maxFrame value
     api.setFrame = function(seq, frame, frameMax){
         seq.frame = frame === undefined ? 0 : frame;
