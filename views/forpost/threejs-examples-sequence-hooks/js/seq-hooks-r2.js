@@ -237,13 +237,8 @@
             }
             i += 1;
         }
-
-// V3 PATHS
-
-setV3Paths(seq);
-
-
-
+        // V3 PATHS
+        setV3Paths(seq);
         // call before hook
         seq.beforeObjects(seq);
         // call update for current object
