@@ -3,6 +3,8 @@
 ## Known problems
 * ( fixed in r1 ) - #0 partPer values end up being 1 which cuases undesired effects 
 
+## () - r2-2-sinwave
+
 ## ( done 10/16/2022 ) - r2-1-literal
 * (done) a demo where I am defining arrays of Vector3 objects with array literals and directly calling THREE.Vector3
 
@@ -14,8 +16,7 @@
 * (done) get v3Paths working for objects
 * (done) get v3Paths working for main seq object
 
-* () make at least 3 more demos to make sure this is working okay at least
-
+* ()
 
 ## ( done 08/16/2022 ) - r1 - have an r1 of the module with getBias, getPer methods, bugs fixed, ect
 * (done) I want a seq.getPer
