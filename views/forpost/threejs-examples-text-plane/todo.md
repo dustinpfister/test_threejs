@@ -7,42 +7,35 @@
 ## () - rx - Control Over Wrapping
 * () I should be able to turn wrapping off and on 
 
-
-
-
-## () - r2-2-emissive
-* () demo in which I have moveing text for both the map, and emissive maps
-* () have a moving point light
-
-## () - r2-1-layers
-* () layer demo cound make use of the 'rnd' built in canvas draw method for the background canvas
-* () I can then just move text over the background
-
-## () - r2 - canvas layers, more than one map
+## () - rx - canvas layers, more than one map
 * () adding methods that help to abstract things that have to do with having not just text, but also one or more background layers
 * () I will want to have some kind of system where I have more than one canvas object for an addtional background texture
 * () can set up canvas objects for map, emissveMap, alphaMap
 * () default material should now be phong
 
-
 ### () - r1-x-transtext
 * () demo where I amm adjusting the trans state value use in the draw method
 * () I will want to have maybe to planes one in which the effect is disabled and the other showing this difference
 
-## () - r1 - CanvasObj state, smoothV2 helper, Update method, plane sections
-* () A canObj should have textLines as part of the state
+## () - r1 - Update method, smoothV2 helper, plane sections, and geometry update
+<!-- new main update method -->
 * () The move text lines method should take a canObj or plane as the first argument
-* () updating of the canvas object should happen in the move text lines method
-* () Updated smoothV2 helper to replace smoothY helper
-* () smoothV2 helper can still move text along up and down just as before
-* () smoothV2 helper can also move text left and right of course as well as any direction depeding on dx and dy values
-* () move text lines method should just be an TextPlane.update method
+* () updating of the canvas object should happen in the update method
 * () TextPlane.update should just take a canObj or mesh as the first argument, and then an alpha value as the second
 * () TextPlane update should also be able to update the state of the text lines that are used
-* () Everything else that has with updtaing should be part of the state object of the canObj
+<!-- move text lines method -->
+* () move text lines method should just be an TextPlane.update method
+<!-- new smoothV2 helper -->
+* () Updated smoothV2 helper to replace smoothY helper
+* () smoothV2 helper can still move text along up and down just as before
+* () smoothV2 helper can also move text left and right of course as well as any direction depending on dx and dy values
+<!-- create plane -->
 * () can pass plane section options to the create plane method
 * () can change what material is used from that of basic
+<!-- draw method-->
 * () update the draw method used to allow for a state value that can be used to adjust a transparency effect
+<!-- update geometry -->
+* () I will want a system for updating the position attribute of a plane geometry over time
 
 ## () - r0-4-position
 * () demo of mutation of position attribute just four points for now
