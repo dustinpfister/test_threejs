@@ -1,6 +1,8 @@
 /* seq-hooks.js - r2 - from threejs-examples-sequence-hooks
  *        * Made 'OTHER' publuc methods private helper
  *        * using this['seqHooks'] = {} in place of returning public api
+ *        * using let and const
+ *        * V3Paths
  */
 (function (api) {
     //-------- ----------
