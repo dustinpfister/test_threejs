@@ -29,14 +29,21 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 
 <!-- LOOP -->
 
+## () sx-7-loop-tweenmany
+* () loop example making use of my tween many module
+
+## () sx-6-loop-text-plane
+* () loop example in which I am using my text plane module
+
+## () sx-5-loop-material-map
+* () loop example in which I am using phong material for 'metal' areas, and Lambert for 'wood' areas
+* () Try a single texture for both materials, and use uv mapping rather than two textures
+
+## () sx-4-loop-uv
+* () loop example in which I ma using uv mapping in place of having more than one material
+
 ## () sx-3-loop-position
-* () mutate position over time example
-
-## () sx-2-loop-datatexture
-* () animated texture over timee
-
-## () sx-1-loop-video1
-* () have an animation loop example based on source of video1 for the post
+* () mutate position over time example, maybe a wire frame look with waves
 
 <!-- ATTRIBUTES -->
 
@@ -47,6 +54,13 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 ## () sx-3-attribute-uv
 
 <!-- DONE -->
+
+
+## ( done 10/16/2022 ) s5-2-loop-datatexture
+* (done) animated texture over timee
+
+## ( done 10/16/2022 ) s5-1-loop-video1
+* (done) have an animation loop example based on source of video1 for the post
 
 ## ( done 10/13/2022 ) s3-1-texture-checker
 * (done) use data textures to create a color map that is a checker pattern
