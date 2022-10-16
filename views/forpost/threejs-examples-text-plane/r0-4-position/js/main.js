@@ -111,8 +111,8 @@ scene.add(sphere);
 //-------- ----------
 // TEXT and textLines
 //-------- ----------
-const text2 = '\n\n888888888-888888888-88***\n\n\nThis is the custom draw method demo.\n\nThe idea here is that the canvas object that I am using for the text is just being used to update the canvas element. I then use that canvas element with the draw image method when drawing to another canvas element that is actauly used to to skin a geometry of a mesh object. \n\n'
-const textLines = TextPlane.createTextLines(text2, 14);
+const text2 = '\n\n\n\n\nThe idea with this demo is to make an example where I am not just using the text plane module but also some additional code that has to do with mutating the position attribute of the buffer geometry instance that is created with the plane geometry constructor. \n\n\nThis is then something that I will want to back into future revisions maybe as I would like to turn the project into something that is not just used to create a texture, but also update the geometry of the mesh object that is used to display the texture as well. \n\n\nHowever for now this is something that I will have to just do with example code until I fine a good way to abstract it away into the module. \n';
+const textLines = TextPlane.createTextLines(text2, 17);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -134,7 +134,7 @@ const update = function(frame, frameMax){
         yWaves: 0.15 * a,
         m: new THREE.Vector3(10 + 2 * b,6 + 4 * b,1.5)
     });
-    TextPlane.moveTextLines(canObj1.state.lines, textLines, b * 0.85, 0, 40);
+    TextPlane.moveTextLines(canObj1.state.lines, textLines, b * 1, 0, 40);
     // update canvas
     canvasMod.update(canObj1);
     canvasMod.update(canObj2);
