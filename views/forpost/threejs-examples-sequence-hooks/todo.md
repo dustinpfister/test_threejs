@@ -3,8 +3,11 @@
 ## Known problems
 * ( fixed in r1 ) - #0 partPer values end up being 1 which cuases undesired effects 
 
-## () - r2 - 
-* () see about making some of the public methods private helpers
+## () 
+
+## () - r2 - v3Paths
+* () Make all other public methods private helpers 
+* () start a new 'v3Paths' system that is a way to define the movement of objects by way of Vector3 arrays
 
 ## ( done 08/16/2022 ) - r1 - have an r1 of the module with getBias, getPer methods, bugs fixed, ect
 * (done) I want a seq.getPer
