@@ -17,7 +17,15 @@
 * () demo where I amm adjusting the trans state value use in the draw method
 * () I will want to have maybe to planes one in which the effect is disabled and the other showing this difference
 
-## () - r1 - Update method, smoothV2 helper, plane sections, and geometry update
+## () - r1 - Position attribute, main update method, smoothV2 helper
+<!-- canvas and tween many-->
+* () I might want to see what I need to improve with the canvas module first and if so use the latest revision for that
+* () I will want the latest revision of tween many as well for this
+<!-- update geometry -->
+* () I will want a system for updating the position attribute of a plane geometry over time
+* () I will want to use tween many with the position attribute update system
+* () I would like to have an option for waves
+* () I would like to have an option that involves going from a plan state to an 'over the surface of a sphere state'
 <!-- new main update method -->
 * () The move text lines method should take a canObj or plane as the first argument
 * () updating of the canvas object should happen in the update method
@@ -34,8 +42,6 @@
 * () can change what material is used from that of basic
 <!-- draw method-->
 * () update the draw method used to allow for a state value that can be used to adjust a transparency effect
-<!-- update geometry -->
-* () I will want a system for updating the position attribute of a plane geometry over time
 
 ## () - r0-4-position
 * () demo of mutation of position attribute just four points for now
