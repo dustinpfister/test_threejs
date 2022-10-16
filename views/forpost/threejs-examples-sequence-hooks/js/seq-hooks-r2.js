@@ -157,15 +157,11 @@
     //-------- ----------
     // SET FRAME
     //-------- ----------
-
     // set v3 paths for an object ( main seq object or a seq.objects object )
     const setV3PathsForObject = (seq, mainObj) => {
         const obj = mainObj ? seq : seq.objects[seq.objectIndex];
-
         const per = mainObj ? seq.per : seq.partPer;
-
         const v3Paths = mainObj ? seq.v3Paths.main : obj.v3Paths;
-
         if(v3Paths){
             let i = 0, len = v3Paths.length;
              while(i < len){
@@ -198,7 +194,6 @@
         setV3PathsForObject(seq, true);
         setV3PathsForObject(seq, false);
     };
- 
     // update the given seq object by way of a frame, and maxFrame value
     api.setFrame = function(seq, frame, frameMax){
         seq.frame = frame === undefined ? 0 : frame;
