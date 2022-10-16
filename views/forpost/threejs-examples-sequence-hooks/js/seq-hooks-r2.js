@@ -120,16 +120,18 @@
         opt = opt || {};
         opt.setPerValues = opt.setPerValues === undefined ? true : false;
         const seq = {};
-        seq.objectIndex = 0;
-        seq.per = 0;
+        seq.objectIndex = 0;  // index of current sequence object in seq.objects
+        seq.per = 0;          // main per and bias values
         seq.bias = 0;
-        seq.frame = 0;
+        seq.frame = 0;        // frame and frameMax for the full video
         seq.frameMax = 100;
+        seq.partFrameMax = 0; // partFrame and partFrame max are set by the Part Frame Function ( seq.pff )
+        seq.partFrame = 0;
         seq.pff = opt.pff || 'r1';
         // parse hooks
         seq.beforeObjects = opt.beforeObjects || noop;
         seq.afterObjects = opt.afterObjects || noop;
-        // parse objects
+        // setup sequence objects
         seq.objects = opt.objects || [];
         seq.objects = seq.objects.map(function(obj){
             obj.per = obj.per === undefined ? 0 : obj.per;
