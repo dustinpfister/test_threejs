@@ -5,7 +5,7 @@ const scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(6, 6));
 const camera = new THREE.PerspectiveCamera(50, 320 / 240, 1, 100);
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
+renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
 //  MESH

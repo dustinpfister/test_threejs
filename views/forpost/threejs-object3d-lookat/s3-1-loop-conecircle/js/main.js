@@ -7,7 +7,7 @@
     camera.position.set(8, 8, 8);
     camera.lookAt(0,0,0);
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
+    renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     // ---------- ---------- ----------
     // LIGHT

@@ -12,10 +12,10 @@
 * () have an example that shows the problem with the biplane model
 * () have an alternative solution to setting the rotation of the biplane
 
-## () - s2-3-scene-object
-* () example where I am moving a whole scene object
+## ( done 10/17/2022 ) - s2-3-scene-object
+* (done) example where I am moving a whole scene object
 
-## ( done 110/05/2022 ) s3-1-loop-conecircle
+## ( done 10/05/2022 ) s3-1-loop-conecircle
 * (done) animation example based off of what I made for video1
 
 ## (done 10/05/2022 ) - expand basic section
