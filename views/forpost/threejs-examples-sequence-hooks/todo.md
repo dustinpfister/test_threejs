@@ -20,9 +20,8 @@
 * (done) get v3Paths working for objects
 * (done) get v3Paths working for main seq object
 * (done) lerp mode only if array length is less than max frame
+* (done) default key names if none given
 
-
-* () default key names if none given
 * () can give an array of numbers that will be parses into an array of vector3 objects
 
 ## ( done 08/16/2022 ) - r1 - have an r1 of the module with getBias, getPer methods, bugs fixed, ect
