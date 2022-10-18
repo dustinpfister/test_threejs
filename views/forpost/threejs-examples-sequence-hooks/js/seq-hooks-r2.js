@@ -164,6 +164,7 @@
         const obj = mainObj ? seq : seq.objects[seq.objectIndex];
         const per = mainObj ? seq.per : seq.partPer;
         const v3Paths = mainObj ? seq.v3Paths.main : obj.v3Paths;
+        const maxFrame = mainObj ? seq.frameMax: seq.partFrameMax;
         if(v3Paths){
             let i = 0, len = v3Paths.length;
              while(i < len){
@@ -174,12 +175,15 @@
                  let vi1 = Math.floor( len * per );
                  let vi2 = vi1 + 1;
                  v12 = vi2 > len ? len : vi2;
-                 //const vi2 = Math.floor( array.length * seq.partPer );
-                 if(pathObj.lerp){
+                 // if lerp mode is true I will want to have a Vector3 that
+                 // is between two as there is not one on a frame by frame basic
+                 if(pathObj.lerp && array.length < maxFrame){
                      const alpha =  len * per % 1;
                      cv.copy( array[ vi1 ] ).lerp( array[ vi2 ], alpha );
                  }else{
-                     // else just copy
+                     // if not lerp mode just copy a vector3 from
+                     // the array is it is equal to or greater than
+                     // the count of frames
                      let vi1 = Math.floor( array.length * per );
                      v11 = vi1 > len ? len : vi1;
                      cv.copy( array[ vi1 ] );
