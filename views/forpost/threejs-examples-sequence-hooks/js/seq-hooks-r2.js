@@ -237,11 +237,7 @@
                      cv.copy( array[ vi1 ] );
                  }
                  // key in to seq.v3Paths
-                 //seq.v3Paths.paths[ pathObj.key || 'unnamed_' + Object.keys(seq.v3Paths.paths).length ] = cv;
-
-seq.v3Paths.paths[ pathObj.key ] = cv;
-
-
+                 seq.v3Paths.paths[ pathObj.key ] = cv;
                  i += 1;
              }
         }
