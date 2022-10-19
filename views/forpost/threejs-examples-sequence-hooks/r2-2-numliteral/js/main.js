@@ -39,7 +39,22 @@
             // seq0 - 
             {
                 secs: 30,
+                v3Paths: [
+                    {
+                        key: 'campos',
+                        array: [
+                            2, 14, 2,
+                            0, 12, 2,
+                            -5, 10, 4,
+                            -8, 7, 5,
+                            -12, 7, 7
+                        ],
+                        lerp: true
+                    }
+                ],
                 update: (seq, partPer, partBias) => {
+                    camera.position.copy(seq.v3Paths.paths['campos'] );
+                    camera.lookAt(0, 0, 0);
                 }
             },
             // seq1 - 
