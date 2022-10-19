@@ -117,6 +117,30 @@
     //-------- ----------
     // CREATE - create and return a new seq object
     //-------- ----------
+    // Parse a v3Paths object, filling in any blanks, anc convert forms other than v3array to v3array
+    const parseV3PathsObject = (seq, v3Paths) => {
+        // check each path object given
+        v3Paths.forEach( (pathObj) => {
+            // must have a key, array, and lerp bool
+            pathObj.key = pathObj.key || 'unnamed_' + Object.keys(seq.v3Paths.paths).length;
+            pathObj.array = pathObj.array || [];
+            pathObj.lerp = pathObj.lerp === undefined ? false : pathObj.lerp; 
+            // IF NUMBER ARRAY, convert to vector3 array
+            if(typeof pathObj.array[0] === 'number'){
+                let v3Array = [];
+                let i = 0, len = pathObj.array.length;
+                while(i < len){
+                    v3Array.push(new THREE.Vector3(
+                        pathObj.array[i],
+                        pathObj.array[i + 1],
+                        pathObj.array[i + 2]
+                    ))
+                    i += 3;
+                }
+                pathObj.array = v3Array;
+            }
+        });
+    };
     // create new seq object method
     api.create = function(opt){
         opt = opt || {};
@@ -139,6 +163,19 @@
             obj.secs = obj.secs === undefined ? 0 : obj.secs;
             obj.data = obj.data || {};
             obj.update = obj.update || noop;
+            obj.v3Paths = obj.v3Paths || [];
+            // parse v3Paths into Vector3 objects if numbers are given
+
+            parseV3PathsObject(seq, obj.v3Paths);
+
+/*
+console.log(obj.v3Paths[0])
+
+            if(typeof obj.v3Paths[0] === 'number'){
+                console.log('number array');
+            }
+*/
+
             return obj;
         });
         // set per values is part of the create process
@@ -154,6 +191,7 @@
             main: opt.v3Paths || [],
             paths: {}
         };
+        parseV3PathsObject(seq, seq.v3Paths.main );
         // CALL SET FRAME FOR FIRST TIME
         api.setFrame(seq, seq.frame, seq.frameMax);
         return seq;
@@ -191,7 +229,11 @@
                      cv.copy( array[ vi1 ] );
                  }
                  // key in to seq.v3Paths
-                 seq.v3Paths.paths[ pathObj.key || 'unnamed_' + Object.keys(seq.v3Paths.paths).length ] = cv;
+                 //seq.v3Paths.paths[ pathObj.key || 'unnamed_' + Object.keys(seq.v3Paths.paths).length ] = cv;
+
+seq.v3Paths.paths[ pathObj.key ] = cv;
+
+
                  i += 1;
              }
         }

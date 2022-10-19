@@ -16,9 +16,20 @@
         new THREE.MeshNormalMaterial());
     scene.add(mesh1);
     // A MAIN SEQ OBJECT
+    const pathGeo = new THREE.SphereGeometry(5, 20, 20);
+    const points = new THREE.Points(pathGeo, new THREE.PointsMaterial({size: 0.25}));
+    scene.add(points)
     const seq = seqHooks.create({
-
+        v3Paths: [
+            {
+                key: 'm1pos',
+                array: pathGeo.getAttribute('position').array,
+                lerp: true
+            }
+        ],
         beforeObjects: (seq) => {
+            mesh1.position.copy(seq.v3Paths.paths['m1pos'] );
+            mesh1.lookAt(0, 0, 0);
             camera.position.set(-10, 5, 5);
             camera.lookAt(0, 0, 0);
         },
@@ -26,50 +37,18 @@
         objects: [
             // seq0 - 
             {
-                secs: 3,
-                v3Paths: [
-                    {
-                        key: 'm1pos',
-                        array: [
-                            //5, 0, 5,
-                           // 5, 0, 3
-                            new THREE.Vector3(5, 0, 5),
-                            new THREE.Vector3(5, 0, -3)
-                        ],
-                        lerp: true
-                    }
-                ],
+                secs: 30,
                 update: (seq, partPer, partBias) => {
-                    mesh1.position.copy(seq.v3Paths.paths['m1pos'] );
-                    // if target is object3d assume position property
-                    //seq.getPos('m2pos', mesh);
                 }
             },
             // seq1 - 
             {
-                secs: 7,
-                v3Paths: [
-                    {
-                        key: 'm1pos',
-                        array: [
-                            //5, 0, 3,
-                            //-5, 0, -3
-                            new THREE.Vector3(5, 0,-3),
-                            new THREE.Vector3(-5,0,-3)
-                        ],
-                        lerp: true
-                    }
-                ],
+                secs: 30,
                 update: (seq, partPer, partBias) => {
-                    mesh1.position.copy(seq.v3Paths.paths['m1pos'] );
                 }
             }
         ]
     });
-
-seqHooks.setFrame(seq, 0, seq.frameMax);
-console.log(seq.v3Paths)
-
     // APP LOOP
     const fps_update = 30,
     fps_movement = 30;
