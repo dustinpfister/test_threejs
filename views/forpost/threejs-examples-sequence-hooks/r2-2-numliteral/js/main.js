@@ -31,7 +31,7 @@
         beforeObjects: (seq) => {
             mesh1.position.copy(seq.v3Paths.paths['m1pos'] );
             mesh1.lookAt(0, 0, 0);
-            camera.position.set(-10, 5, 5);
+            camera.position.set(-12, 7, 7);
             camera.lookAt(0, 0, 0);
         },
         afterObjects: (seq) => {},
