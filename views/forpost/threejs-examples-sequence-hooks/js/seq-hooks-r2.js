@@ -165,17 +165,7 @@
             obj.update = obj.update || noop;
             obj.v3Paths = obj.v3Paths || [];
             // parse v3Paths into Vector3 objects if numbers are given
-
             parseV3PathsObject(seq, obj.v3Paths);
-
-/*
-console.log(obj.v3Paths[0])
-
-            if(typeof obj.v3Paths[0] === 'number'){
-                console.log('number array');
-            }
-*/
-
             return obj;
         });
         // set per values is part of the create process
@@ -190,6 +180,24 @@ console.log(obj.v3Paths[0])
         seq.v3Paths = {
             main: opt.v3Paths || [],
             paths: {}
+        };
+        // get pos helper
+        seq.getPos = (key) => {
+            return seq.v3Paths.paths[key];
+        };
+        // copy pos helper
+        seq.copyPos = (key, target) => {
+            target = target || {};
+            const v3 = seq.v3Paths.paths[key];
+            // if target is object3d assume copy to position
+            if(target.isObject3D){
+                target.position.copy(v3);
+            }
+            // if instance of Vector3 assume copy to that
+            if(target instanceof THREE.Vector3){
+                target.copy(v3)
+            }
+            return v3;
         };
         parseV3PathsObject(seq, seq.v3Paths.main );
         // CALL SET FRAME FOR FIRST TIME

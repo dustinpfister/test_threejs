@@ -23,13 +23,15 @@
         v3Paths: [
             {
                 key: 'm1pos',
-                // useing the array of a position attribute
+                // using the array of a position attribute
                 array: pathGeo.getAttribute('position').array,
                 lerp: true
             }
         ],
         beforeObjects: (seq) => {
-            mesh1.position.copy(seq.v3Paths.paths['m1pos'] );
+            //mesh1.position.copy(seq.v3Paths.paths['m1pos'] );
+            seq.copyPos('m1pos', mesh1);
+            //mesh1.lookAt( seq.copyPos('m1pos') );
             mesh1.lookAt(0, 0, 0);
             camera.position.set(-12, 7, 7);
             camera.lookAt(0, 0, 0);
@@ -53,7 +55,7 @@
                     }
                 ],
                 update: (seq, partPer, partBias) => {
-                    camera.position.copy(seq.v3Paths.paths['campos'] );
+                    seq.copyPos('campos', camera);
                     camera.lookAt(0, 0, 0);
                 }
             },

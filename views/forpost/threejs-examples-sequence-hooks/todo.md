@@ -6,14 +6,14 @@
 ## () - r2-3-lookat
 * () example in which I am using v3Paths for position and lookat for a camera
 
-## () - r2-2-numbers
+## ( done 10/19/2022 ) - r2-2-numbers
 * (done) start a demo of using raw number
-* () use number literal arrays for camera movement
+* (done) use number literal arrays for camera movement
 
 ## ( done 10/16/2022 ) - r2-1-literal
 * (done) a demo where I am defining arrays of Vector3 objects with array literals and directly calling THREE.Vector3
 
-## ( ) - r2 - v3Paths
+## ( done 10/19/2022 ) - r2 - v3Paths
 * (done) Make all other public methods private helpers 
 * (done) use new way of setting global \( this\[\'seqHooks\'\] = \{\} \)
 * (done) use let and const in place of var
@@ -24,8 +24,7 @@
 * (done) default key names if none given
 * (done) calling set frame method for first time in create method
 * (done) can give an array of numbers that will be parses into an array of vector3 objects
-* () might want a seq.getPos helper rather than using mesh2.position.copy(seq.v3Paths.paths\[\'m2pos\'\] )
-
+* (done) might want a seq.getPos helper rather than using mesh2.position.copy(seq.v3Paths.paths\[\'m2pos\'\] )
 
 ## ( done 08/16/2022 ) - r1 - have an r1 of the module with getBias, getPer methods, bugs fixed, ect
 * (done) I want a seq.getPer
