@@ -7,7 +7,8 @@
 * () example in which I am using v3Paths for position and lookat for a camera
 
 ## () - r2-2-numbers
-* () demo of using raw number
+* (done) start a demo of using raw number
+* () use number literal arrays for camera movement
 
 ## ( done 10/16/2022 ) - r2-1-literal
 * (done) a demo where I am defining arrays of Vector3 objects with array literals and directly calling THREE.Vector3
@@ -22,8 +23,7 @@
 * (done) lerp mode only if array length is less than max frame
 * (done) default key names if none given
 * (done) calling set frame method for first time in create method
-
-* () can give an array of numbers that will be parses into an array of vector3 objects
+* (done) can give an array of numbers that will be parses into an array of vector3 objects
 * () might want a seq.getPos helper rather than using mesh2.position.copy(seq.v3Paths.paths\[\'m2pos\'\] )
 
 
