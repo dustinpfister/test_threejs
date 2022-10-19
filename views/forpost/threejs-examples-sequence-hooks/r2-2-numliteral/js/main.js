@@ -15,14 +15,15 @@
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
     scene.add(mesh1);
-    // A MAIN SEQ OBJECT
     const pathGeo = new THREE.SphereGeometry(5, 20, 20);
     const points = new THREE.Points(pathGeo, new THREE.PointsMaterial({size: 0.25}));
     scene.add(points)
+    // A MAIN SEQ OBJECT
     const seq = seqHooks.create({
         v3Paths: [
             {
                 key: 'm1pos',
+                // useing the array of a position attribute
                 array: pathGeo.getAttribute('position').array,
                 lerp: true
             }
