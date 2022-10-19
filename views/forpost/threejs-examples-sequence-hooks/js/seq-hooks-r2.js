@@ -154,6 +154,8 @@
             main: opt.v3Paths || [],
             paths: {}
         };
+        // CALL SET FRAME FOR FIRST TIME
+        api.setFrame(seq, seq.frame, seq.frameMax);
         return seq;
     };
     //-------- ----------
