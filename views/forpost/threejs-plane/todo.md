@@ -47,13 +47,16 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 
 <!-- ATTRIBUTES -->
 
-## () s4-1-attribute-position
-* () start the example
-* () jut move the y value for each
+## ( done 10/20/2022 ) s4-1-attribute-position
+* (done) start the example
+* (done) just move the y value for each
 
 ## () s4-2-attribute-normal
 
 ## () s4-3-attribute-uv
+
+## () s4-4-index
+* () example on having a non indexed plane geometry
 
 <!-- DONE -->
 
