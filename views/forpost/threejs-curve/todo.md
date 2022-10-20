@@ -1,7 +1,10 @@
 # threejs-curve
 
-## () - finhish sx-data-curve section
+## () - finish sx-data-curve section
 * finish the data curve section
+
+## () - points section
+* start a points section
 
 ## ( done 06/29/2022 ) - new s3-copy
 * (done) new example that involves updaing the geometry by making use of the copy method.
