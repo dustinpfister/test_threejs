@@ -6,11 +6,11 @@
 ## () - points section
 * start a points section
 
-## () s1-1-basic-line
+## ( done 10/20/2022 ) s1-1-basic-line
 
-## () s1-2-basic-bezier
+## ( done 10/20/2022 ) s1-2-basic-bezier
 
-## () rename s1-basic to s1-3-basic-tube
+## ( done 10/20/2022 ) rename s1-basic to s1-3-basic-tube
 
 ## ( done 06/29/2022 ) - new s3-copy
 * (done) new example that involves updaing the geometry by making use of the copy method.
