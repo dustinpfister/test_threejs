@@ -47,11 +47,13 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 
 <!-- ATTRIBUTES -->
 
-## () sx-1-attribute-position
+## () s4-1-attribute-position
+* () start the example
+* () jut move the y value for each
 
-## () sx-2-attribute-normal
+## () s4-2-attribute-normal
 
-## () sx-3-attribute-uv
+## () s4-3-attribute-uv
 
 <!-- DONE -->
 
