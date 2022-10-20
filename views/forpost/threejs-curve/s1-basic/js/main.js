@@ -1,25 +1,24 @@
-//******** **********
+//-------- ----------
 // SCENE, CAMERA, RENDERER
-//******** **********
-let scene = new THREE.Scene();
-scene.background = new THREE.Color('#000000');
+//-------- ----------
+const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0x4a4a4a) )
-let camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(50, 320 / 240, 0.1, 1000);
 camera.position.set(0, 5, 10);
 camera.lookAt(0, 3, 0);
-let renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-//******** **********
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(640, 480, false);
+( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+//-------- ----------
 // LIGHT
-//******** **********
+//-------- ----------
 let dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(3, 10, 1).normalize();
 scene.add(dl);
 scene.add( new THREE.AmbientLight(0xffffff, 0.05) )
-//******** **********
+//-------- ----------
 // CURVE, TubeGeometry, Mesh
-//******** **********
+//-------- ----------
 // basic cuve class extending three curve
 class BasicCurve extends THREE.Curve {
     constructor() {
@@ -42,8 +41,7 @@ let mesh = new THREE.Mesh(
     new THREE.MeshStandardMaterial( { color: 0xff0000, side: THREE.DoubleSide })
 );
 scene.add( mesh );
-//******** **********
+//-------- ----------
 // RENDER
-//******** **********
-renderer.render(scene, camera);      
-
+//-------- ----------
+renderer.render(scene, camera);
