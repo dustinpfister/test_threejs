@@ -1,76 +1,47 @@
 (function () {
-    // ---------- ---------- ----------
+    //-------- ----------
     // SCENE, CAMERA, and RENDERER
-    // ---------- ---------- ----------
+    //-------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
-    camera.position.set(8, 8, 8);
+    camera.position.set(6, 6, 6);
     camera.lookAt(0,0,0);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-    // ---------- ---------- ----------
-    // LIGHT
-    // ---------- ---------- ----------
-    var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(1, 1, 1);
-    scene.add(dl);
-    // ---------- ---------- ----------
-    // HELPER FUNCTIONS
-    // ---------- ---------- ----------
-    // ALL LOOK HELPER
-    var allLook = function(group, target){
-        var v = new THREE.Vector3();
-        target.getWorldPosition(v);
-        group.children.forEach(function(child){
-            child.lookAt(v);
-        });
-    };
-    // ---------- ---------- ----------
-    // GROUPS
-    // ---------- ---------- ----------
-    // DEMO GROUP
-    var demoGroup = new THREE.Group();
-    scene.add(demoGroup);
-    var sphere = new THREE.Mesh( 
-        new THREE.SphereGeometry(1.25, 30, 30), 
-        new THREE.MeshStandardMaterial({
-            color: new THREE.Color('blue')
-        })
-    );
-    demoGroup.add(sphere);
-    // CONE GROUP
-    var coneGroup = new THREE.Group();
-    demoGroup.add(coneGroup);
-    var coneMaterial = new THREE.MeshStandardMaterial({
-        color: new THREE.Color('cyan')
+    //-------- ----------
+    // CURVE PATH
+    //-------- ----------
+    const POINT_COUNT = 300; // NUMBER OF POINTS TO HAVE THE CAMERA LOOK AT
+    const curvePath = new THREE.CurvePath();
+    [
+        [5,0,5, 0,2,-7,5,3,-5], // three each (x,y,z) for start, end, and control points
+        [0,2,-7,0,1.5,0,-2,4,3],
+        [0,1.5,0,3,1,1,5,-1,-4],
+        [3,1,1,-12,0,0,3,7,10]
+    ].forEach((a)=>{
+        const v1 = new THREE.Vector3(a[0], a[1], a[2]);       // start
+        const v2 = new THREE.Vector3(a[3], a[4], a[5]);       // end
+        const vControl = new THREE.Vector3(a[6], a[7], a[8]); // control
+        curvePath.add( new THREE.QuadraticBezierCurve3( v1, vControl, v2) );
     });
-    // [ [[x, y, z], coneLength], ... ]
-    var coneDataArray = [],
-    len = 8,
-    i = 0, x, y, z, radian, radius = 3;
-    while(i < len){
-        radian = Math.PI * 2 / len * i;
-        x = Math.cos(radian) * radius;
-        y = 0;
-        z = Math.sin(radian) * radius;
-        coneDataArray.push([[ x, y, z], 2]);
-        i += 1;
-    }
-    coneDataArray.forEach(function(coneData){
-        var cone = new THREE.Mesh( new THREE.ConeGeometry(0.5, coneData[1], 30, 30), coneMaterial);
-        cone.geometry.rotateX(1.57);
-        cone.position.fromArray(coneData[0]);
-        cone.position.y += coneData[1] / 2 - 0.8;
-        coneGroup.add(cone);
-    });
-    allLook(coneGroup, sphere);
-    // ---------- ----------
+    const v3Array = curvePath.getPoints(POINT_COUNT / curvePath.curves.length);
+    //-------- ----------
+    // SCENE CHILD OBJECTS
+    //-------- ----------
+    scene.add( new THREE.GridHelper(10, 10) );
+    // you can just use getPoints as a way to create an array of vector3 objects
+    // which can be used with the set from points method
+    const geometry = new THREE.BufferGeometry();
+    geometry.setFromPoints(v3Array);
+    const points = new THREE.Points(geometry, new THREE.PointsMaterial({color: 0x00ff00, size: 0.125 }));
+    scene.add(points);
+    //-------- ----------
     // ANIMATION LOOP
-    // ---------- ----------
-    const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
-    FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 300;
+    //-------- ----------
+    const FPS_UPDATE = 20,    // fps rate to update ( low fps for low CPU use, but choppy video )
+    FPS_MOVEMENT = 30;        // fps rate to move object by that is independent of frame update rate
+    FRAME_MAX = POINT_COUNT;  // MADE THE FRAME MAX THE SAME AS THE POINT COUNT
     let secs = 0,
     frame = 0,
     lt = new Date();
@@ -79,11 +50,8 @@
     const v_delta = new THREE.Vector3(0, 0, 3);
     const update = function(frame, frameMax){
         const a = frame / frameMax;
-        coneGroup.rotation.set(0, Math.PI * 2 * a, 0);
-        const e = new THREE.Euler();
-        e.x = Math.PI * 8 * a;
-        sphere.position.copy(v_start).normalize().applyEuler(e).multiplyScalar(4).add(v_delta);
-        allLook(coneGroup, sphere);
+        const v3 = v3Array[ frame ];
+        camera.lookAt(v3);
     };
     // loop
     const loop = () => {
