@@ -3,6 +3,10 @@
 ## () s3-3-loop-curve-update
 * () have a an example where a curves are being updated over time
 
+## () s3-3-loop-getpoint
+* () have an example in which I am uisng the get point method to skip having to create an array of vector3 objects
+* () also see abount having a cool way of getting the index vlues to use with get point
+
 ## ( done 10/22/2022) s3-2-lookat
 * (done) have a look at example
 
