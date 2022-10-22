@@ -6,8 +6,8 @@
 ## ( done 10/22/2022) s3-2-lookat
 * (done) have a look at example
 
-## () s3-1-loop-meshpos
-* () have an example in which I am updating the position using curves
+## ( done 10/22/2022 ) s3-1-loop-meshpos
+* (done) have an example in which I am updating the position using curves
 
 ## ( done 10/21/2022 ) - start a curve path section
 * (done) have a s2-2-basic-curvepath example
