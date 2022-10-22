@@ -47,12 +47,6 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 
 <!-- ATTRIBUTES -->
 
-## ( done 10/20/2022 ) s4-1-attribute-position
-* (done) start the example
-* (done) just move the y value for each
-
-## () s4-2-attribute-normal
-
 ## () s4-3-attribute-uv
 
 ## () s4-4-index
@@ -60,6 +54,12 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 
 <!-- DONE -->
 
+## ( done 10/22/2022 ) s4-2-attribute-normal
+* (done) start new normal example
+
+## ( done 10/20/2022 ) s4-1-attribute-position
+* (done) start the example
+* (done) just move the y value for each
 
 ## ( done 10/16/2022 ) s5-2-loop-datatexture
 * (done) animated texture over timee
