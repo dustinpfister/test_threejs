@@ -57,21 +57,22 @@
     //-------- ----------
     const POINT_COUNT = 400;
     const cp_pos1 = createCurvePath([
-        [5,1,5, 0,2,-5, 5,1.5,-5],
-        [0,2,-5, -5,4,-5, -3,1.75,-5]
-    ]);
-    const cp_pos2 = createCurvePath([
         [5,0,5, 0,1,-5, 5,0.5,-5],
         [0,1,-5, -5,3,-5, -3,0.75,-5]
     ]);
+    const cp_pos2 = createCurvePath([
+        [5,1,5, 0,2,-5, 5,1.5,-5],
+        [0,2,-5, -5,4,-5, -3,1.75,-5]
+    ]);
+    // damp alpha
     const dampAlpha = (rawAlpha) => {
-        return THREE.MathUtils.damp(0, 1, 8, rawAlpha);
+        return 1 - THREE.MathUtils.damp(0, 1, 8, 1 - rawAlpha);
     };
     //-------- ----------
     // POINTS
     //-------- ----------
-    scene.add( createPoints( cp_pos1, 0xff0000, POINT_COUNT, dampAlpha ) );
-    scene.add( createPoints( cp_pos2, 0x00ff00, POINT_COUNT) );
+    scene.add( createPoints( cp_pos1, 0xff0000, POINT_COUNT) );
+    scene.add( createPoints( cp_pos2, 0x00ff00, POINT_COUNT, dampAlpha ) );
     //-------- ----------
     // GRID, MESH
     //-------- ----------
@@ -100,10 +101,10 @@
         const alpha = frame / frameMax;
         const b = 1 - Math.abs(0.5 - alpha) / 0.5;
         // uisng the get Point method here
-        const v1 = getPoint(cp_pos1, b, dampAlpha);
+        const v1 = getPoint(cp_pos1, b);
         mesh1.position.copy(v1);
         mesh1.lookAt(0, 0, 0);
-        const v2 = getPoint(cp_pos2, b);
+        const v2 = getPoint(cp_pos2, b, dampAlpha);
         mesh2.position.copy(v2);
         mesh2.lookAt(0, 0, 0);
     };
