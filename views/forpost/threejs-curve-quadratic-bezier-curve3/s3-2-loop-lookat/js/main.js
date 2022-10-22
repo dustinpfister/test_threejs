@@ -28,6 +28,13 @@
         const cp = createCurvePath(data);
         return cp.getPoints(pointCount / cp.curves.length);
     };
+    // create points from v3 array
+    const createPoints = (v3Array, color) => {
+        color = color || 0xffffff;
+        const geometry = new THREE.BufferGeometry();
+        geometry.setFromPoints(v3Array);
+        return new THREE.Points(geometry, new THREE.PointsMaterial({color: color, size: 0.125 }));
+    };
     //-------- ----------
     // CURVE PATHS
     //-------- ----------
@@ -39,17 +46,13 @@
         [3,1,1,-12,0,0,3,7,10]
     ], POINT_COUNT);
     const v3Array_look = createV3Array([
-        [-10,0,0,10,3,-5,0,-3,0]
+        [-10,0,5,10,3,20,0,-3,0]
     ], POINT_COUNT);
     //-------- ----------
     // POINTS
     //-------- ----------
-    // you can just use getPoints as a way to create an array of vector3 objects
-    // which can be used with the set from points method
-    const geometry = new THREE.BufferGeometry();
-    geometry.setFromPoints(v3Array_pos);
-    const points = new THREE.Points(geometry, new THREE.PointsMaterial({color: 0x00ff00, size: 0.125 }));
-    scene.add(points);
+    scene.add( createPoints( v3Array_pos, 0xff0000 ) );
+    scene.add( createPoints( v3Array_look, 0x00ff00 ) );
     //-------- ----------
     // GRID, MESH
     //-------- ----------
@@ -76,6 +79,7 @@
         const v2 = v3Array_look[ frame ];
         camera.position.copy(v1);
         camera.lookAt(v2);
+        mesh.position.copy(v2);
     };
     // loop
     const loop = () => {
