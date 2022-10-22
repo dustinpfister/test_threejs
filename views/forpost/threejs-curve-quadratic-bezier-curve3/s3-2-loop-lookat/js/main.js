@@ -23,7 +23,7 @@
         return curvePath;
     };
     //-------- ----------
-    // CURVE PATH
+    // CURVE PATHS
     //-------- ----------
     const POINT_COUNT = 300; // NUMBER OF POINTS
     const cp_pos = createCurvePath([
@@ -32,7 +32,11 @@
         [0,1.5,0,3,1,1,5,-1,-4],
         [3,1,1,-12,0,0,3,7,10]
     ]);
-    const v3Array = cp_pos.getPoints(POINT_COUNT / cp_pos.curves.length);
+    const v3Array_pos = cp_pos.getPoints(POINT_COUNT / cp_pos.curves.length);
+    const cp_look = createCurvePath([
+        [-10,0,0,10,3,-5,0,-3,0]
+    ]);
+    const v3Array_look = cp_look.getPoints(POINT_COUNT / cp_look.curves.length);
     //-------- ----------
     // POINTS
     //-------- ----------
@@ -40,7 +44,7 @@
     // you can just use getPoints as a way to create an array of vector3 objects
     // which can be used with the set from points method
     const geometry = new THREE.BufferGeometry();
-    geometry.setFromPoints(v3Array);
+    geometry.setFromPoints(v3Array_pos);
     const points = new THREE.Points(geometry, new THREE.PointsMaterial({color: 0x00ff00, size: 0.125 }));
     scene.add(points);
     //-------- ----------
@@ -64,9 +68,10 @@
     const v_delta = new THREE.Vector3(0, 0, 3);
     const update = function(frame, frameMax){
         const a = frame / frameMax;
-        const v1 = v3Array[ frame ];
+        const v1 = v3Array_pos[ frame ];
+        const v2 = v3Array_look[ frame ];
         camera.position.copy(v1);
-        camera.lookAt(0, 0, 0);
+        camera.lookAt(v2);
     };
     // loop
     const loop = () => {
