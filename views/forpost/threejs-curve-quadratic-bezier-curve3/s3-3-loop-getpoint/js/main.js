@@ -50,7 +50,7 @@
         const points = createV3Array(cp, pointCount, getAlpha);
         console.log(points);
         geometry.setFromPoints(points);
-        return new THREE.Points(geometry, new THREE.PointsMaterial({color: color, size: 0.1 }));
+        return new THREE.Points(geometry, new THREE.PointsMaterial({color: color, size: 0.025 }));
     };
     //-------- ----------
     // CURVE PATHS
@@ -64,15 +64,23 @@
         [5,1,5, 0,2,-5, 5,1.5,-5],
         [0,2,-5, -5,4,-5, -3,1.75,-5]
     ]);
+    const cp_pos3 = createCurvePath([
+        [5,2,5, 0,3,-5, 5,2.5,-5],
+        [0,3,-5, -5,5,-5, -3,2.75,-5]
+    ]);
     // damp alpha
     const dampAlpha = (rawAlpha) => {
         return 1 - THREE.MathUtils.damp(0, 1, 8, 1 - rawAlpha);
+    };
+    const smoothAlpha = (rawAlpha) => {
+        return THREE.MathUtils.smoothstep(rawAlpha, 0, 1);
     };
     //-------- ----------
     // POINTS
     //-------- ----------
     scene.add( createPoints( cp_pos1, 0xff0000, POINT_COUNT) );
     scene.add( createPoints( cp_pos2, 0x00ff00, POINT_COUNT, dampAlpha ) );
+    scene.add( createPoints( cp_pos3, 0x0000ff, POINT_COUNT, smoothAlpha ) );
     //-------- ----------
     // GRID, MESH
     //-------- ----------
@@ -85,6 +93,10 @@
         new THREE.BoxGeometry(1,1,1),
         new THREE.MeshNormalMaterial());
     scene.add(mesh2);
+    const mesh3 = new THREE.Mesh(
+        new THREE.BoxGeometry(1,1,1),
+        new THREE.MeshNormalMaterial());
+    scene.add(mesh3);
     //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
@@ -107,6 +119,9 @@
         const v2 = getPoint(cp_pos2, b, dampAlpha);
         mesh2.position.copy(v2);
         mesh2.lookAt(0, 0, 0);
+        const v3 = getPoint(cp_pos3, b, smoothAlpha);
+        mesh3.position.copy(v3);
+        mesh3.lookAt(0, 0, 0);
     };
     // loop
     const loop = () => {
