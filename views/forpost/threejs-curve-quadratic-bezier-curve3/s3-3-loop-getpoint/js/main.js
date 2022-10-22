@@ -25,7 +25,14 @@
     };
     // create a v3 array
     const createV3Array = (cp, pointCount) => {
-        return cp.getPoints(pointCount / cp.curves.length);
+        let i = 0;
+        const v3Array = [];
+        while(i < pointCount){
+           const alpha = i / pointCount;
+           v3Array.push( cp.getPoint(alpha) );
+           i += 1;
+        }
+        return v3Array;
     };
     // create points from v3 array
     const createPoints = (cp, color, pointCount) => {
@@ -70,8 +77,10 @@
     const v_delta = new THREE.Vector3(0, 0, 3);
     const update = function(frame, frameMax){
         const a = frame / frameMax;
-        //const v1 = v3Array_pos[ frame ];
-        //mesh.position.copy(v1);
+        // uisng the get Point method here
+        const v1 = cp_pos.getPoint(a);
+        mesh.position.copy(v1);
+        mesh.lookAt(0, 0, 0);
     };
     // loop
     const loop = () => {
