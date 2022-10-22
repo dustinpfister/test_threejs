@@ -10,22 +10,29 @@
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     //-------- ----------
+    // HELPERS
+    //-------- ----------
+    const createCurvePath = (data) => {
+        const curvePath = new THREE.CurvePath();
+        data.forEach((a)=>{
+            const v1 = new THREE.Vector3(a[0], a[1], a[2]);       // start
+            const v2 = new THREE.Vector3(a[3], a[4], a[5]);       // end
+            const vControl = new THREE.Vector3(a[6], a[7], a[8]); // control
+            curvePath.add( new THREE.QuadraticBezierCurve3( v1, vControl, v2) );
+        });
+        return curvePath;
+    };
+    //-------- ----------
     // CURVE PATH
     //-------- ----------
     const POINT_COUNT = 300; // NUMBER OF POINTS TO HAVE THE CAMERA LOOK AT
-    const curvePath = new THREE.CurvePath();
-    [
+    const cp_pos = createCurvePath([
         [5,0,5, 0,2,-7,5,3,-5], // three each (x,y,z) for start, end, and control points
         [0,2,-7,0,1.5,0,-2,4,3],
         [0,1.5,0,3,1,1,5,-1,-4],
         [3,1,1,-12,0,0,3,7,10]
-    ].forEach((a)=>{
-        const v1 = new THREE.Vector3(a[0], a[1], a[2]);       // start
-        const v2 = new THREE.Vector3(a[3], a[4], a[5]);       // end
-        const vControl = new THREE.Vector3(a[6], a[7], a[8]); // control
-        curvePath.add( new THREE.QuadraticBezierCurve3( v1, vControl, v2) );
-    });
-    const v3Array = curvePath.getPoints(POINT_COUNT / curvePath.curves.length);
+    ]);
+    const v3Array = cp_pos.getPoints(POINT_COUNT / cp_pos.curves.length);
     //-------- ----------
     // POINTS
     //-------- ----------
