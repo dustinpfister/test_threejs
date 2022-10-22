@@ -25,7 +25,7 @@
     //-------- ----------
     // CURVE PATH
     //-------- ----------
-    const POINT_COUNT = 300; // NUMBER OF POINTS TO HAVE THE CAMERA LOOK AT
+    const POINT_COUNT = 300; // NUMBER OF POINTS
     const cp_pos = createCurvePath([
         [5,0,5, 0,2,-7,5,3,-5], // three each (x,y,z) for start, end, and control points
         [0,2,-7,0,1.5,0,-2,4,3],
