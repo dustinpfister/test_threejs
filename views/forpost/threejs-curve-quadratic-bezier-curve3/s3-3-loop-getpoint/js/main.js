@@ -24,10 +24,9 @@
         return curvePath;
     };
     // get a point along a curve path
-    const getPoint = (cp, alpha) => {
-
-        return cp.getPoint(alpha)
-
+    const getPoint = (cp, rawAlpha) => {
+        const alpha = THREE.MathUtils.damp(0, 1, 8, rawAlpha);
+        return cp.getPoint(alpha);
     };
     // create a v3 array
     const createV3Array = (cp, pointCount) => {
@@ -52,7 +51,7 @@
     //-------- ----------
     // CURVE PATHS
     //-------- ----------
-    const POINT_COUNT = 100;
+    const POINT_COUNT = 400;
     const cp_pos = createCurvePath([
         [5,0,5, 0,1,-5, 5,0.5,-5],
         [0,1,-5, -5,3,-5, -3,0.75,-5]
