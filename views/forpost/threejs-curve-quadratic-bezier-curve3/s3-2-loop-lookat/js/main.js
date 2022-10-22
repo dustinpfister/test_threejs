@@ -12,6 +12,7 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
+    // make a curve path
     const createCurvePath = (data) => {
         const curvePath = new THREE.CurvePath();
         data.forEach((a)=>{
@@ -22,25 +23,27 @@
         });
         return curvePath;
     };
+    // create a v3 array
+    const createV3Array = (data, pointCount) => {
+        const cp = createCurvePath(data);
+        return cp.getPoints(pointCount / cp.curves.length);
+    };
     //-------- ----------
     // CURVE PATHS
     //-------- ----------
     const POINT_COUNT = 300; // NUMBER OF POINTS
-    const cp_pos = createCurvePath([
+    const v3Array_pos = createV3Array([
         [5,0,5, 0,2,-7,5,3,-5], // three each (x,y,z) for start, end, and control points
         [0,2,-7,0,1.5,0,-2,4,3],
         [0,1.5,0,3,1,1,5,-1,-4],
         [3,1,1,-12,0,0,3,7,10]
-    ]);
-    const v3Array_pos = cp_pos.getPoints(POINT_COUNT / cp_pos.curves.length);
-    const cp_look = createCurvePath([
+    ], POINT_COUNT);
+    const v3Array_look = createV3Array([
         [-10,0,0,10,3,-5,0,-3,0]
-    ]);
-    const v3Array_look = cp_look.getPoints(POINT_COUNT / cp_look.curves.length);
+    ], POINT_COUNT);
     //-------- ----------
     // POINTS
     //-------- ----------
-    scene.add( new THREE.GridHelper(10, 10) );
     // you can just use getPoints as a way to create an array of vector3 objects
     // which can be used with the set from points method
     const geometry = new THREE.BufferGeometry();
@@ -48,8 +51,9 @@
     const points = new THREE.Points(geometry, new THREE.PointsMaterial({color: 0x00ff00, size: 0.125 }));
     scene.add(points);
     //-------- ----------
-    // MESH
+    // GRID, MESH
     //-------- ----------
+    scene.add( new THREE.GridHelper(10, 10) );
     const mesh = new THREE.Mesh(
         new THREE.BoxGeometry(1,1,1),
         new THREE.MeshNormalMaterial());
