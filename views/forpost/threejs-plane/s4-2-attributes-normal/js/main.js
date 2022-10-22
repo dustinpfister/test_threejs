@@ -13,7 +13,7 @@
     // ---------- ----------
     // PLANE GEOMETRY
     // ---------- ----------
-    const geo = new THREE.PlaneGeometry(10, 10, 5, 5);
+    const geo = new THREE.PlaneGeometry(10, 10, 20, 20);
     geo.rotateX(Math.PI * 1.5);
     // ---------- ----------
     // NORMAL ATTRIBUTE OF PLANE GEOMETRY
@@ -22,14 +22,13 @@
     let i = 0;
     const len = normal.count;
     while(i < len){
-        let x = normal.getX(i);
-        let y = normal.getY(i);
-        let z = normal.getZ(i);
-        x = x + Math.random() * 2;
-        normal.setXYZ(i, 
-            x + -16 + Math.random() * 32,
-            y + -16 + Math.random() * 32,
-            z + -16 + Math.random() * 32
+        const dx = -2 + 4 * Math.random(),
+        dy = -2 + 4 * Math.random(),
+        dz = -2 + 4 * Math.random();
+        normal.setXYZ(i,
+            normal.getX(i) +  Math.random() *  dx,
+            normal.getY(i) +  Math.random() *  dy,
+            normal.getZ(i) +  Math.random() *  dz
         );
         i += 1;
     }
@@ -40,6 +39,10 @@
     const mesh = new THREE.Mesh( geo,
         new THREE.MeshNormalMaterial({ side: THREE.DoubleSide }));
     scene.add(mesh);
+    if(THREE.VertexNormalsHelper){
+        const helper = new THREE.VertexNormalsHelper( mesh, 1, 0x00af00 );
+        scene.add(helper);
+    }
     // ---------- ----------
     // CALLING RENDER OF RENDERER
     // ---------- ----------
