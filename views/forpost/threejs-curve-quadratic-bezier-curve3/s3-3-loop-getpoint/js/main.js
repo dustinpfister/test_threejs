@@ -23,13 +23,19 @@
         });
         return curvePath;
     };
+    // get a point along a curve path
+    const getPoint = (cp, alpha) => {
+
+        return cp.getPoint(alpha)
+
+    };
     // create a v3 array
     const createV3Array = (cp, pointCount) => {
         let i = 0;
         const v3Array = [];
         while(i < pointCount){
            const alpha = i / pointCount;
-           v3Array.push( cp.getPoint(alpha) );
+           v3Array.push( getPoint(cp, alpha) );
            i += 1;
         }
         return v3Array;
@@ -76,9 +82,9 @@
     const v_start = new THREE.Vector3(0, 0, 1);
     const v_delta = new THREE.Vector3(0, 0, 3);
     const update = function(frame, frameMax){
-        const a = frame / frameMax;
+        const alpha = frame / frameMax;
         // uisng the get Point method here
-        const v1 = cp_pos.getPoint(a);
+        const v1 = getPoint(cp_pos, alpha);
         mesh.position.copy(v1);
         mesh.lookAt(0, 0, 0);
     };
