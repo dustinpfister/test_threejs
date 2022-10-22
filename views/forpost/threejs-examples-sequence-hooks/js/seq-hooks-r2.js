@@ -222,7 +222,7 @@
                  const len = array.length - 1;
                  let vi1 = Math.floor( len * per );
                  let vi2 = vi1 + 1;
-                 v12 = vi2 > len ? len : vi2;
+                 vi2 = vi2 > len ? len : vi2;
                  // if lerp mode is true I will want to have a Vector3 that
                  // is between two as there is not one on a frame by frame basic
                  if(pathObj.lerp && array.length < maxFrame){
@@ -233,7 +233,7 @@
                      // the array is it is equal to or greater than
                      // the count of frames
                      let vi1 = Math.floor( array.length * per );
-                     v11 = vi1 > len ? len : vi1;
+                     vi1 = vi1 > len ? len : vi1;
                      cv.copy( array[ vi1 ] );
                  }
                  // key in to seq.v3Paths
