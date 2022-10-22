@@ -68,19 +68,37 @@
         [5,2,5, 0,3,-5, 5,2.5,-5],
         [0,3,-5, -5,5,-5, -3,2.75,-5]
     ]);
+    const cp_pos4 = createCurvePath([
+        [5,3,5, 0,4,-5, 5,3.5,-5],
+        [0,4,-5, -5,6,-5, -3,3.75,-5]
+    ]);
     // damp alpha
     const dampAlpha = (rawAlpha) => {
         return 1 - THREE.MathUtils.damp(0, 1, 8, 1 - rawAlpha);
     };
+    // smooth alpha
     const smoothAlpha = (rawAlpha) => {
         return THREE.MathUtils.smoothstep(rawAlpha, 0, 1);
     };
+    // curve Alpha
+    const curveAlpha = (function(){
+        const curve = new THREE.QuadraticBezierCurve(
+            new THREE.Vector2( 0, 0 ),
+            new THREE.Vector2( 2, 0 ),
+            new THREE.Vector2( 10, 10 )
+        );
+        return function(rawAlpha){
+            const pt = curve.getPoint(rawAlpha);
+            return pt.y / 10;
+        };
+    }());
     //-------- ----------
     // POINTS
     //-------- ----------
     scene.add( createPoints( cp_pos1, 0xff0000, POINT_COUNT) );
     scene.add( createPoints( cp_pos2, 0x00ff00, POINT_COUNT, dampAlpha ) );
     scene.add( createPoints( cp_pos3, 0x0000ff, POINT_COUNT, smoothAlpha ) );
+    scene.add( createPoints( cp_pos4, 0x00ffff, POINT_COUNT, curveAlpha ) );
     //-------- ----------
     // GRID, MESH
     //-------- ----------
@@ -97,6 +115,10 @@
         new THREE.BoxGeometry(1,1,1),
         new THREE.MeshNormalMaterial());
     scene.add(mesh3);
+    const mesh4 = new THREE.Mesh(
+        new THREE.BoxGeometry(1,1,1),
+        new THREE.MeshNormalMaterial());
+    scene.add(mesh4);
     //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
@@ -122,6 +144,9 @@
         const v3 = getPoint(cp_pos3, b, smoothAlpha);
         mesh3.position.copy(v3);
         mesh3.lookAt(0, 0, 0);
+        const v4 = getPoint(cp_pos4, b, curveAlpha);
+        mesh4.position.copy(v4);
+        mesh4.lookAt(0, 0, 0);
     };
     // loop
     const loop = () => {
