@@ -4,7 +4,7 @@
     //-------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
-    camera.position.set(6, 6, 6);
+    camera.position.set(-6, 6, 6);
     camera.lookAt(0,0,0);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
@@ -23,27 +23,31 @@
         });
         return curvePath;
     };
-    // get a point along a curve path
-    const getPoint = (cp, rawAlpha) => {
-        const alpha = THREE.MathUtils.damp(0, 1, 8, rawAlpha);
+    // get a point along a curve path using a getAlpha method
+    const getPoint = (cp, rawAlpha, getAlpha) => {
+        rawAlpha = rawAlpha === undefined ? 0 : rawAlpha;
+        getAlpha = getAlpha || function(rawAlpha){
+            return rawAlpha
+        };
+        const alpha = getAlpha(rawAlpha);
         return cp.getPoint(alpha);
     };
     // create a v3 array
-    const createV3Array = (cp, pointCount) => {
+    const createV3Array = (cp, pointCount, getAlpha) => {
         let i = 0;
         const v3Array = [];
         while(i < pointCount){
            const alpha = i / pointCount;
-           v3Array.push( getPoint(cp, alpha) );
+           v3Array.push( getPoint(cp, alpha, getAlpha) );
            i += 1;
         }
         return v3Array;
     };
     // create points from v3 array
-    const createPoints = (cp, color, pointCount) => {
+    const createPoints = (cp, color, pointCount, getAlpha) => {
         color = color || 0xffffff;
         const geometry = new THREE.BufferGeometry();
-        const points = createV3Array(cp, pointCount);
+        const points = createV3Array(cp, pointCount, getAlpha);
         console.log(points);
         geometry.setFromPoints(points);
         return new THREE.Points(geometry, new THREE.PointsMaterial({color: color, size: 0.1 }));
@@ -52,22 +56,34 @@
     // CURVE PATHS
     //-------- ----------
     const POINT_COUNT = 400;
-    const cp_pos = createCurvePath([
+    const cp_pos1 = createCurvePath([
+        [5,1,5, 0,2,-5, 5,1.5,-5],
+        [0,2,-5, -5,4,-5, -3,1.75,-5]
+    ]);
+    const cp_pos2 = createCurvePath([
         [5,0,5, 0,1,-5, 5,0.5,-5],
         [0,1,-5, -5,3,-5, -3,0.75,-5]
     ]);
+    const dampAlpha = (rawAlpha) => {
+        return THREE.MathUtils.damp(0, 1, 8, rawAlpha);
+    };
     //-------- ----------
     // POINTS
     //-------- ----------
-    scene.add( createPoints( cp_pos, 0xff0000, POINT_COUNT ) );
+    scene.add( createPoints( cp_pos1, 0xff0000, POINT_COUNT, dampAlpha ) );
+    scene.add( createPoints( cp_pos2, 0x00ff00, POINT_COUNT) );
     //-------- ----------
     // GRID, MESH
     //-------- ----------
     scene.add( new THREE.GridHelper(10, 10) );
-    const mesh = new THREE.Mesh(
+    const mesh1 = new THREE.Mesh(
         new THREE.BoxGeometry(1,1,1),
         new THREE.MeshNormalMaterial());
-    scene.add(mesh);
+    scene.add(mesh1);
+    const mesh2 = new THREE.Mesh(
+        new THREE.BoxGeometry(1,1,1),
+        new THREE.MeshNormalMaterial());
+    scene.add(mesh2);
     //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
@@ -82,10 +98,14 @@
     const v_delta = new THREE.Vector3(0, 0, 3);
     const update = function(frame, frameMax){
         const alpha = frame / frameMax;
+        const b = 1 - Math.abs(0.5 - alpha) / 0.5;
         // uisng the get Point method here
-        const v1 = getPoint(cp_pos, alpha);
-        mesh.position.copy(v1);
-        mesh.lookAt(0, 0, 0);
+        const v1 = getPoint(cp_pos1, b, dampAlpha);
+        mesh1.position.copy(v1);
+        mesh1.lookAt(0, 0, 0);
+        const v2 = getPoint(cp_pos2, b);
+        mesh2.position.copy(v2);
+        mesh2.lookAt(0, 0, 0);
     };
     // loop
     const loop = () => {
