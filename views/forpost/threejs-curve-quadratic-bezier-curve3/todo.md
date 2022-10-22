@@ -1,7 +1,12 @@
 # threejs-curve-quadratic-bezier-curve3 todo list
 
-## () s3-3-loop-curve-update
+## () s3-x-loop-curve-update
 * () have a an example where a curves are being updated over time
+
+## () s3-4-loop-curvealpha
+* () example in which I continue with the curve alpha method that I started in s3-3-loop-getpoint
+* () see about using a 2d curve path
+* () in any case the curve needs to be strick assending monotonic
 
 ## (  done 10/22/2022 ) s3-3-loop-getpoint
 * (done) have an example in which I am uisng the get point method to skip having to create an array of vector3 objects
