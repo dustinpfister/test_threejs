@@ -15,6 +15,10 @@
 * () I may need to functions for options for the update method, one for the polls and the other for everything else
 * () start a module form of what I have here as I am thinking that is what I want to have moving forward with this project
 
+* () if I have a module from I will want to make a few demos actually one will be just like the r1 demo, but without the seam!
+* () have another demo of the module that is a sin wave effect
+* () maybe have another demo that makes use of curves?
+
 ## ( done 10/10/2022 ) r1 - buffer attribute methods
 * (done) new example in which I am using the buffer Attribute methods
 
