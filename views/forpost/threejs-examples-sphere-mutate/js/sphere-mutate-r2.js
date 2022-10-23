@@ -7,13 +7,15 @@
         return vs.normalize().multiplyScalar(0.75 + 0.25 * Math.random());
     };
     // create the mesh object
-    api.create = (texture) => {
+    api.create = (size, w, h, texture) => {
+        size = size === undefined ? 1 : size;
+        w = w === undefined ? 10 : w;
+        h = h === undefined ? 10 : h;
         const mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(1, 60, 60, 0, Math.PI * 2), 
+            new THREE.SphereGeometry(size, w, h, 0, Math.PI * 2), 
             new THREE.MeshPhongMaterial({
                 color: 'white',
-                map: texture || null,
-                side: THREE.DoubleSide
+                map: texture || null
             }));
         const pos = mesh.geometry.getAttribute('position');
         mesh.userData.pos = pos;

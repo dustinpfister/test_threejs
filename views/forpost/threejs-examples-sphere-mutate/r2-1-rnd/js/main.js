@@ -18,7 +18,7 @@
     // ---------- ----------
     // GEOMETRY, MESH
     // ---------- ----------
-    const mesh = sphereMutate.create();
+    const mesh = sphereMutate.create(1.25, 40, 40);
     scene.add(mesh);
     camera.lookAt(mesh.position);
     // update options
@@ -28,7 +28,7 @@
             const state = mud.state = mud.state === undefined ? [] : mud.state;
             if(!state[i]){
                 state[i] = {
-                    v: vs.clone().normalize().multiplyScalar(1 + 0.5 * Math.random()),
+                    v: vs.clone().normalize().multiplyScalar(1.25 + 0.25 * Math.random()),
                     count: 1 + Math.floor( Math.random() * 9 ),
                     offset: Math.random()
                 };
@@ -52,11 +52,8 @@
     // update
     const update = function(frame, frameMax){
         let alpha = frame / frameMax;
-        //mesh.rotation.y = Math.PI * 2 * alpha;
-       // mesh.rotation.x = Math.PI * 4 * alpha;
-
-    sphereMutate.update(mesh, alpha * 4 % 1, updateOpt);
-
+        mesh.rotation.y = Math.PI * 2 * alpha;
+        sphereMutate.update(mesh, alpha * 4 % 1, updateOpt);
     };
     // loop
     const loop = () => {
