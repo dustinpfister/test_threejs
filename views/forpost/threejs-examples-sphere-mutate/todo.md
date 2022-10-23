@@ -7,10 +7,13 @@
 * () step 2: have a whole bunch of triangles explode outward from the center of the sphere
 
 ## () - r2 - seam
-* () start with the r2 example
-* () make the r2 code into an example like that of the r1 example where there is a seam
-* () see abount having a way to fine out if a vertiex indice is at a seam or not
-* () make sure that all seam indices share a common value for new unit length
+* (done) start with the r1 example
+* (done) see about having a way to find out if a vertex index is at a seam or not
+* (done) make sure that all seam index share a common value for new unit length
+* () start a helper function for updating geo based on what I have working this far
+* () see about having an option for the update method where I can pass a custom function for creating deltas for each point
+* () I may need to functions for options for the update method, one for the polls and the other for everything else
+* () start a module form of what I have here as I am thinking that is what I want to have moving forward with this project
 
 ## ( done 10/10/2022 ) r1 - buffer attribute methods
 * (done) new example in which I am using the buffer Attribute methods
