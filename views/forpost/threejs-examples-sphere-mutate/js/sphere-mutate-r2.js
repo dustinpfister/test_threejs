@@ -1,4 +1,8 @@
 (function (api) {
+    const DEFAULT_FORPOINT = function(vs, mesh, alpha, opt){
+        return vs.normalize().multiplyScalar(0.75 + 0.25 * Math.random());
+    };
+
     // create the mesh object
     api.create = (texture) => {
         const mesh = new THREE.Mesh(
@@ -14,14 +18,17 @@
         return mesh;
     };
     // update the mesh object
-    api.update = (mesh) => {
+    api.update = (mesh, alpha, opt) => {
+        alpha = alpha === undefined ? 0 : alpha;
+        opt = opt || {};
+        opt.forPoint = opt.forPoint || DEFAULT_FORPOINT;
         // mutate
         const geo = mesh.geometry;
         const pos = mesh.userData.pos;
         const pos_base = mesh.userData.pos_base; 
-        let i = 0;
         const w = geo.parameters.widthSegments
         const h = geo.parameters.heightSegments;
+        let i = 0;
         while(i < pos.count){
             const x = i % ( w + 1);
             const y = Math.floor(i / ( h + 1) );
@@ -30,10 +37,10 @@
             }else{
                 if(x < w){
                     const vs = new THREE.Vector3(pos_base.getX(i), pos_base.getY(i), pos_base.getZ(i));
-                    const v = vs.clone().normalize().multiplyScalar(0.5 + 0.95 * Math.random());
+                    const v = opt.forPoint(vs.clone(), mesh, alpha, opt);
                     pos.setXYZ(i, v.x, v.y, v.z);
                 }else{
-                    // deal with seam
+                    // deal with seam by setting to point that was all ready set
                     const i2 = y * ( h + 1 );
                     pos.setXYZ( i, pos.getX(i2), pos.getY(i2), pos.getZ(i2) )
                 }

@@ -22,23 +22,22 @@
     const mesh = sphereMutate.create();
     scene.add(mesh);
     camera.lookAt(mesh.position);
- 
     sphereMutate.update(mesh);
- 
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
     new THREE.OrbitControls(camera, renderer.domElement);
     const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 300;
+    FRAME_MAX = 800;
     let secs = 0,
     frame = 0,
     lt = new Date();
     // update
     const update = function(frame, frameMax){
         let alpha = frame / frameMax;
-        let bias = 1 - Math.abs(0.5 - (alpha * 4 % 1)) / 0.5;
+        mesh.rotation.y = Math.PI * 2 * alpha;
+        mesh.rotation.x = Math.PI * 4 * alpha;
     };
     // loop
     const loop = () => {

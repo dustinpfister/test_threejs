@@ -10,10 +10,11 @@
 * (done) start with the r1 example
 * (done) see about having a way to find out if a vertex index is at a seam or not
 * (done) make sure that all seam index share a common value for new unit length
-* () start a helper function for updating geo based on what I have working this far
+* (done) start a helper function for updating geo based on what I have working this far
+* (done) start a module form of what I have here as I am thinking that is what I want to have moving forward with this project
+
 * () see about having an option for the update method where I can pass a custom function for creating deltas for each point
 * () I may need to functions for options for the update method, one for the polls and the other for everything else
-* () start a module form of what I have here as I am thinking that is what I want to have moving forward with this project
 
 * () if I have a module from I will want to make a few demos actually one will be just like the r1 demo, but without the seam!
 * () have another demo of the module that is a sin wave effect
