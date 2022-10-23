@@ -9,7 +9,7 @@
     // create the mesh object
     api.create = (texture) => {
         const mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(0.25, 60, 60, 0, Math.PI * 2), 
+            new THREE.SphereGeometry(1, 60, 60, 0, Math.PI * 2), 
             new THREE.MeshPhongMaterial({
                 color: 'white',
                 map: texture || null,
@@ -21,8 +21,7 @@
         return mesh;
     };
     // update the mesh object
-    api.update = (mesh, alpha, opt) => {
-        alpha = alpha === undefined ? 0 : alpha;
+    api.update = (mesh, opt) => {
         opt = opt || {};
         opt.forPoint = opt.forPoint || DEFAULT_FORPOINT;
         opt.forPole = opt.forPole || DEFAULT_FORPOLE;
@@ -40,11 +39,11 @@
             let v = vs.clone();
             // do something special for top and bottom points
             if(y === 0 || y === h){
-                v = opt.forPole(vs.clone(), i, x, y, mesh, alpha, opt);
+                v = opt.forPole(vs.clone(), i, x, y, mesh, opt);
             }else{
                 // else to what needs to be done for all others
                 if(x < w){
-                    v = opt.forPoint(vs.clone(), i, x, y, mesh, alpha, opt);
+                    v = opt.forPoint(vs.clone(), i, x, y, mesh, opt);
                 }else{
                     // deal with seam by setting to point that was all ready set
                     const i2 = y * ( h + 1 );
@@ -54,6 +53,7 @@
             pos.setXYZ(i, v.x, v.y, v.z);
             i += 1;
         }
+        pos.needsUpdate = true;
     };
 }
     (this['sphereMutate'] = {}));

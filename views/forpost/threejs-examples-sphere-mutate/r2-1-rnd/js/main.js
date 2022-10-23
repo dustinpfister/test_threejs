@@ -23,11 +23,29 @@
     camera.lookAt(mesh.position);
     // update options
     const updateOpt = {
-        forPoint : function(vs){
-            return vs;
+        forPoint : function(vs, i, x, y, mesh){
+            const mud = mesh.userData;
+            const state = mud.state = mud.state === undefined ? [] : mud.state;
+
+            if(!state[i]){
+                state[i] = {
+                    v: vs.clone().normalize().multiplyScalar(0.8 + 0.4 * Math.random()),
+                    f: Math.floor( Math.random() * 50 )
+                };
+            }else{
+
+
+            }
+
+            const alpha = state[i].f / 50;
+            const alpha2 = 1 - Math.abs(0.5 - alpha) / 0.5;
+            state[i].f += 1;
+            state[i].f %= 50;
+
+            return vs.lerp(state[i].v, alpha2);
         }
     };
-    sphereMutate.update(mesh, 0, updateOpt);
+    sphereMutate.update(mesh, updateOpt);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -41,8 +59,11 @@
     // update
     const update = function(frame, frameMax){
         let alpha = frame / frameMax;
-        mesh.rotation.y = Math.PI * 2 * alpha;
-        mesh.rotation.x = Math.PI * 4 * alpha;
+        //mesh.rotation.y = Math.PI * 2 * alpha;
+       // mesh.rotation.x = Math.PI * 4 * alpha;
+
+    sphereMutate.update(mesh, updateOpt);
+
     };
     // loop
     const loop = () => {
