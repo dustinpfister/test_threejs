@@ -21,7 +21,8 @@
         return mesh;
     };
     // update the mesh object
-    api.update = (mesh, opt) => {
+    api.update = (mesh, alpha, opt) => {
+        alpha = alpha === undefined ? 0 : alpha;
         opt = opt || {};
         opt.forPoint = opt.forPoint || DEFAULT_FORPOINT;
         opt.forPole = opt.forPole || DEFAULT_FORPOLE;
@@ -39,11 +40,11 @@
             let v = vs.clone();
             // do something special for top and bottom points
             if(y === 0 || y === h){
-                v = opt.forPole(vs.clone(), i, x, y, mesh, opt);
+                v = opt.forPole(vs.clone(), i, x, y, mesh, alpha, opt);
             }else{
                 // else to what needs to be done for all others
                 if(x < w){
-                    v = opt.forPoint(vs.clone(), i, x, y, mesh, opt);
+                    v = opt.forPoint(vs.clone(), i, x, y, mesh, alpha, opt);
                 }else{
                     // deal with seam by setting to point that was all ready set
                     const i2 = y * ( h + 1 );

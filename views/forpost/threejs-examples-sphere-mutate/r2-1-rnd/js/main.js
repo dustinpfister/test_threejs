@@ -23,29 +23,22 @@
     camera.lookAt(mesh.position);
     // update options
     const updateOpt = {
-        forPoint : function(vs, i, x, y, mesh){
+        forPoint : function(vs, i, x, y, mesh, alpha){
             const mud = mesh.userData;
             const state = mud.state = mud.state === undefined ? [] : mud.state;
-
             if(!state[i]){
                 state[i] = {
-                    v: vs.clone().normalize().multiplyScalar(0.8 + 0.4 * Math.random()),
-                    f: Math.floor( Math.random() * 50 )
+                    v: vs.clone().normalize().multiplyScalar(1 + 0.5 * Math.random()),
+                    count: 1 + Math.floor( Math.random() * 9 ),
+                    offset: Math.random()
                 };
-            }else{
-
-
             }
-
-            const alpha = state[i].f / 50;
-            const alpha2 = 1 - Math.abs(0.5 - alpha) / 0.5;
-            state[i].f += 1;
-            state[i].f %= 50;
-
-            return vs.lerp(state[i].v, alpha2);
+            const alpha2 = (state[i].offset + state[i].count * alpha) % 1;
+            const alpha3 = 1 - Math.abs(0.5 - alpha2) / 0.5;
+            return vs.lerp(state[i].v, alpha3);
         }
     };
-    sphereMutate.update(mesh, updateOpt);
+    sphereMutate.update(mesh, 0, updateOpt);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -62,7 +55,7 @@
         //mesh.rotation.y = Math.PI * 2 * alpha;
        // mesh.rotation.x = Math.PI * 4 * alpha;
 
-    sphereMutate.update(mesh, updateOpt);
+    sphereMutate.update(mesh, alpha * 4 % 1, updateOpt);
 
     };
     // loop
