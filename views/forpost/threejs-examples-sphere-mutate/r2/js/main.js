@@ -10,7 +10,7 @@
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    const dl = new THREE.DirectionalLight(0xffffff, 0.8);
     dl.position.set(3, 1, -2);
     scene.add(dl);
     const al = new THREE.AmbientLight(0xffffff, 0.2);
@@ -21,10 +21,10 @@
     // create the mesh object
     const createMesh = (texture) => {
         const mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(0.25, 20, 20, 0, Math.PI * 2), 
-            new THREE.MeshNormalMaterial({
-                //color: 'white',
-                //map: texture || null,
+            new THREE.SphereGeometry(0.25, 30, 30, 0, Math.PI * 2), 
+            new THREE.MeshPhongMaterial({
+                color: 'white',
+                map: texture || null,
                 side: THREE.DoubleSide
             }));
         const pos = mesh.geometry.getAttribute('position');
@@ -38,39 +38,32 @@
     const mesh = createMesh();
     scene.add(mesh);
     camera.lookAt(mesh.position);
-	
-	const pos = mesh.userData.pos;
-	const pos_base = mesh.userData.pos_base;
-	
-	
-	
-	let i = 0;
-	
-	const w = 20
-	const h = 20;
-	
-	while(i < pos.count){
-		
-		const x = i % ( w + 1);
-		const y = Math.floor(i / ( h + 1) );
-		
-		console.log(x, y);
-	
-	if(x < w){
-        const vs = new THREE.Vector3(pos_base.getX(i), pos_base.getY(i), pos_base.getZ(i));
-	    const v = vs.clone().normalize().multiplyScalar(1 + 0.5 * Math.random());
-	    pos.setXYZ(i, v.x, v.y, v.z);
-	}else{
-		
-		const i2 = y * ( h + 1 );
-		
-		pos.setXYZ( i, pos.getX(i2), pos.getY(i2), pos.getZ(i2) )
-	}
-
+ 
+    // mutate
+    const geo = mesh.geometry;
+    const pos = mesh.userData.pos;
+    const pos_base = mesh.userData.pos_base; 
+    let i = 0;
+    const w = geo.parameters.widthSegments
+    const h = geo.parameters.heightSegments;
+    while(i < pos.count){
+        const x = i % ( w + 1);
+        const y = Math.floor(i / ( h + 1) );
+        if(y === 0 || y === h){
+            // do something special for top and bottom points
+        }else{
+            if(x < w){
+                const vs = new THREE.Vector3(pos_base.getX(i), pos_base.getY(i), pos_base.getZ(i));
+                const v = vs.clone().normalize().multiplyScalar(1 + 0.5 * Math.random());
+                pos.setXYZ(i, v.x, v.y, v.z);
+            }else{
+                // deal with seam
+                const i2 = y * ( h + 1 );
+                pos.setXYZ( i, pos.getX(i2), pos.getY(i2), pos.getZ(i2) )
+            }
+        }
         i += 1;
-
-	}
-	
+    }
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
