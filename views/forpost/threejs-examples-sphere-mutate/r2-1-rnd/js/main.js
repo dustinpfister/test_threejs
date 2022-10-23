@@ -15,7 +15,6 @@
     scene.add(dl);
     const al = new THREE.AmbientLight(0xffffff, 0.2);
     scene.add(al);
-
     // ---------- ----------
     // GEOMETRY, MESH
     // ---------- ----------

@@ -1,9 +1,9 @@
 (function (api) {
-    const DEFAULT_FORPOLE = function(vs, mesh, alpha, opt){
+    const DEFAULT_FORPOLE = function(vs, i, x, y, mesh, alpha, opt){
         return vs;
     };
     // defualt for all other points
-    const DEFAULT_FORPOINT = function(vs, mesh, alpha, opt){
+    const DEFAULT_FORPOINT = function(vs, i, x, y, mesh, alpha, opt){
         return vs.normalize().multiplyScalar(0.75 + 0.25 * Math.random());
     };
     // create the mesh object
@@ -40,11 +40,11 @@
             let v = vs.clone();
             // do something special for top and bottom points
             if(y === 0 || y === h){
-                v = opt.forPole(vs.clone(), mesh, alpha, opt);
+                v = opt.forPole(vs.clone(), i, x, y, mesh, alpha, opt);
             }else{
                 // else to what needs to be done for all others
                 if(x < w){
-                    v = opt.forPoint(vs.clone(), mesh, alpha, opt);
+                    v = opt.forPoint(vs.clone(), i, x, y, mesh, alpha, opt);
                 }else{
                     // deal with seam by setting to point that was all ready set
                     const i2 = y * ( h + 1 );
