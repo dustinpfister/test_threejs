@@ -12,11 +12,10 @@
 * (done) make sure that all seam index share a common value for new unit length
 * (done) start a helper function for updating geo based on what I have working this far
 * (done) start a module form of what I have here as I am thinking that is what I want to have moving forward with this project
+* (done) see about having an option for the update method where I can pass a custom function for creating deltas for each point
+* (done) if I have a module from I will want to make a few demos actually one will be just like the r1 demo, but without the seam!
 
-* () see about having an option for the update method where I can pass a custom function for creating deltas for each point
-* () I may need to functions for options for the update method, one for the polls and the other for everything else
-
-* () if I have a module from I will want to make a few demos actually one will be just like the r1 demo, but without the seam!
+* () I may need two functions for update method options, one for the poles and the other for everything else
 * () have another demo of the module that is a sin wave effect
 * () maybe have another demo that makes use of curves?
 
