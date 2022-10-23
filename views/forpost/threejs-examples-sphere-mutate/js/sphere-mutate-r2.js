@@ -57,6 +57,7 @@
             i += 1;
         }
         pos.needsUpdate = true;
+        geo.computeVertexNormals();
     };
 }
     (this['sphereMutate'] = {}));
