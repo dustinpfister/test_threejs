@@ -21,7 +21,13 @@
     const mesh = sphereMutate.create();
     scene.add(mesh);
     camera.lookAt(mesh.position);
-    sphereMutate.update(mesh);
+    // update options
+    const updateOpt = {
+        forPoint : function(vs){
+            return vs;
+        }
+    };
+    sphereMutate.update(mesh, 0, updateOpt);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
