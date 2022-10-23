@@ -8,8 +8,8 @@
 * () see about using a 2d curve path
 * () in any case the curve needs to be strick assending monotonic
 
-## () s1-2-basic-tube
-* () tube geometry example
+## ( done 10/23/2022 ) s1-2-basic-tube
+* (done) tube geometry example
 
 ## (  done 10/22/2022 ) s3-3-loop-getpoint
 * (done) have an example in which I am uisng the get point method to skip having to create an array of vector3 objects
