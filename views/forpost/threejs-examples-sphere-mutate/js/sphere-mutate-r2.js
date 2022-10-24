@@ -7,7 +7,7 @@
     const DEFAULT_FORPOLE = function(vs, i, x, y, mesh, alpha, opt){
         return vs;
     };
-    // defualt for all other points
+    // default for all other points
     const DEFAULT_FORPOINT = function(vs, i, x, y, mesh, alpha, opt){
         return vs.normalize().multiplyScalar(0.75 + 0.25 * Math.random());
     };
