@@ -19,7 +19,7 @@
     // GEOMETRY, MESH
     // ---------- ----------
     const mesh = sphereMutate.create({
-        size: 1.25, w: 40, h: 40, material: new THREE.MeshNormalMaterial()
+        size: 1.25, w: 60, h: 60, material: new THREE.MeshNormalMaterial({wireframe: true, wireframeLinewidth : 3})
     });
     scene.add(mesh);
     camera.lookAt(mesh.position);

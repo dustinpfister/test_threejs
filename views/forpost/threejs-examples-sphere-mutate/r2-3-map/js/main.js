@@ -19,17 +19,15 @@
     // TEXTURE
     //-------- ----------
     // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-    const width = 256, height = 256;
+    const width = 512, height = 512;
     const size = width * height;
     const data = new Uint8Array( 4 * size );
     for ( let i = 0; i < size; i ++ ) {
         const stride = i * 4;
-        const a1 = i / size;
-        const a2 = 1 - Math.abs(0.5 - a1 * 2 % 1) / 0.5;
-        const v = 105 + 150 * Math.random();
-        data[ stride ] = v * a1;
-        data[ stride + 1 ] = v * (1 - a1);
-        data[ stride + 2 ] = v * a2
+        const v = 30 + 110 * Math.random();
+        data[ stride ] = 0;
+        data[ stride + 1 ] = v;
+        data[ stride + 2 ] = 0
         data[ stride + 3 ] = 255;
     }
     const texture = new THREE.DataTexture( data, width, height );
@@ -38,7 +36,7 @@
     // GEOMETRY, MESH
     // ---------- ----------
     const mesh = sphereMutate.create({
-        size: 1.25, w: 40, h: 40, texture: texture
+        size: 1.25, w: 100, h: 100, texture: texture
     });
     scene.add(mesh);
     camera.lookAt(mesh.position);
