@@ -11,11 +11,11 @@
 ## () - r2-4-curves
 * () maybe have another demo that makes use of curves?
 
-## () - r2-3-map
-* () demo in which I have a map of hight values
+## ( done 10/24/2022 ) - r2-3-map
+* (done) demo in which I have a map of hight values
 
 ## ( done 10/24/2022 ) - r2-2-sinwave
-* ( done 10/24/2022 ) have another demo of the module that is a sin wave effect
+* ( done ) have another demo of the module that is a sin wave effect
 
 ## ( done 10/24/2022 ) - r2 - seam
 * (done) start with the r1 example

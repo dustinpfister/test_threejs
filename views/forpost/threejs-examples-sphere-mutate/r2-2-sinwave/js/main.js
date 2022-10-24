@@ -29,7 +29,6 @@
             const geo = mesh.geometry;
             const w = geo.parameters.widthSegments;
             const h = geo.parameters.heightSegments;
-            const mud = mesh.userData;
             const a1 = x / w;
             const a2 = y / h;
             const radian1 = Math.PI * 16 * a1 + Math.PI * (2 + 16 * a2) * alpha;
@@ -37,7 +36,7 @@
             const n1 = ( Math.PI + Math.sin( radian1 ) ) / Math.PI;
             const n2 = ( Math.PI + Math.sin( radian2 ) ) / Math.PI;
             const n3 = ( n1 + n2 ) / 2;
-            const v2 = vs.clone().normalize().multiplyScalar( vs.length() + 0.2 * n3 )
+            const v2 = vs.clone().normalize().multiplyScalar( vs.length() + 0.2 * n3 );
             return vs.lerp(v2, 1 - Math.abs(0.5 - alpha) / 0.5);
         }
     };

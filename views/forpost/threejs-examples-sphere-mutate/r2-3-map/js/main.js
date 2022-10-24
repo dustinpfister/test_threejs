@@ -6,7 +6,7 @@
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0.02,0.02,0.02)
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
-    camera.position.set(2,2,2);
+    camera.position.set(1.5, 1.5, 1.5);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -19,7 +19,7 @@
     // TEXTURE
     //-------- ----------
     // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-    const width = 512, height = 512;
+    const width = 64, height = 64;
     const size = width * height;
     const data = new Uint8Array( 4 * size );
     for ( let i = 0; i < size; i ++ ) {
@@ -36,26 +36,45 @@
     // GEOMETRY, MESH
     // ---------- ----------
     const mesh = sphereMutate.create({
-        size: 1.25, w: 100, h: 100, texture: texture
+        size: 0.25, w: 128, h: 128, texture: texture
     });
     scene.add(mesh);
     camera.lookAt(mesh.position);
+    // MAP DATA
+    const map_w = 16;
+    const map_data = [
+        1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,
+        1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,
+        1,0,0,4,3,0,0,1,1,0,0,3,4,0,0,1,
+        1,0,0,5,2,0,0,1,1,0,0,2,5,0,0,1,
+        2,0,0,5,1,0,0,2,2,0,0,1,5,0,0,2,
+        3,0,0,0,0,0,0,3,3,0,0,0,0,0,0,3,
+        4,0,0,0,0,0,0,4,4,0,0,0,0,0,0,4,
+        5,4,3,2,2,3,4,5,5,4,3,2,2,3,4,5,
+        5,4,3,2,2,3,4,5,5,4,3,2,2,3,4,5,
+        4,0,0,0,0,0,0,4,4,0,0,0,0,0,0,4,
+        3,0,0,0,0,0,0,3,3,0,0,0,0,0,0,3,
+        2,0,0,5,1,0,0,2,2,0,0,1,5,0,0,2,
+        1,0,0,5,2,0,0,1,1,0,0,2,5,0,0,1,
+        1,0,0,4,3,0,0,1,1,0,0,3,4,0,0,1,
+        1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,
+        1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1
+    ];
     // update options
     const updateOpt = {
         forPoint : function(vs, i, x, y, mesh, alpha){
             const geo = mesh.geometry;
             const w = geo.parameters.widthSegments;
             const h = geo.parameters.heightSegments;
-            const mud = mesh.userData;
-            const a1 = x / w;
-            const a2 = y / h;
-            const radian1 = Math.PI * 16 * a1 + Math.PI * (2 + 16 * a2) * alpha;
-            const radian2 = Math.PI * 16 * a2 + Math.PI * 8 * alpha;
-            const n1 = ( Math.PI + Math.sin( radian1 ) ) / Math.PI;
-            const n2 = ( Math.PI + Math.sin( radian2 ) ) / Math.PI;
-            const n3 = ( n1 + n2 ) / 2;
-            const v2 = vs.clone().normalize().multiplyScalar( vs.length() + 0.2 * n3 )
-            return vs.lerp(v2, 1 - Math.abs(0.5 - alpha) / 0.5);
+            // get grid location
+            const gx = Math.floor( x / w * map_w );
+            const gy = Math.floor( ( y - 1 ) / ( h - 1) * map_w );
+            const gi = gy * map_w + gx;
+            const dy = map_data[gi];
+
+            const ulb = 0.25 + 0.75 * alpha;
+            const uld = 0.75 - 0.75 * alpha
+            return vs.normalize().multiplyScalar(ulb + dy / 5 * uld);
         }
     };
     sphereMutate.update(mesh, 0, updateOpt);
@@ -65,14 +84,16 @@
     new THREE.OrbitControls(camera, renderer.domElement);
     const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 800;
+    FRAME_MAX = 200;
     let secs = 0,
     frame = 0,
     lt = new Date();
     // update
     const update = function(frame, frameMax){
         let alpha = frame / frameMax;
-        sphereMutate.update(mesh, alpha * 4 % 1, updateOpt);
+        let b = 1 - Math.abs( 0.5 - alpha ) / 0.5;
+        sphereMutate.update(mesh, b, updateOpt);
+        mesh.rotation.y = Math.PI * 2 * alpha;
     };
     // loop
     const loop = () => {
