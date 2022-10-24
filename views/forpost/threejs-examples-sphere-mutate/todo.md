@@ -15,8 +15,17 @@
 * (done) see about having an option for the update method where I can pass a custom function for creating deltas for each point
 * (done) if I have a module from I will want to make a few demos actually one will be just like the r1 demo, but without the seam!
 * (done) I may need two functions for update method options, one for the poles and the other for everything else
+* (done) I will want more options for the create method
 
-* () I will want more options for the create method
+* (done) see about fixing bug with normals along the seam
+
+* () might also want to fix the pole normals
+
+* () have a get point helper function
+* () use get point helper in update method
+
+* () I will want to be able to set the type of material used for the create option
+* () might want to go with an object form for the create options
 
 * () have another demo of the module that is a sin wave effect
 * () maybe have another demo that makes use of curves?

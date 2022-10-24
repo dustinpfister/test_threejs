@@ -23,6 +23,23 @@
         return mesh;
     };
     // update the mesh object
+    const updateNormals = (geo) => {
+        const w = geo.parameters.widthSegments
+        const h = geo.parameters.heightSegments;
+        // just call compute vertex normals for all points first
+        geo.computeVertexNormals();
+        // need to fix the seam normals though
+        const x = w;
+        let y = 1;
+        const normal = geo.getAttribute('normal');
+        while(y < h){
+            const i =  y * (h + 1) + x,
+            i2 = i - x;
+            normal.setXYZ(i, normal.getX(i2), normal.getY(i2), normal.getZ(i2))
+            y += 1;
+        }
+        normal.needsUpdate = true;
+    };
     api.update = (mesh, alpha, opt) => {
         alpha = alpha === undefined ? 0 : alpha;
         opt = opt || {};
@@ -57,7 +74,8 @@
             i += 1;
         }
         pos.needsUpdate = true;
-        geo.computeVertexNormals();
+        // update normals
+        updateNormals(geo);
     };
 }
     (this['sphereMutate'] = {}));

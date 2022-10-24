@@ -19,7 +19,7 @@
     // TEXTURE
     //-------- ----------
     // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-    const width = 512, height = 512;
+    const width = 2048, height = 2048;
     const size = width * height;
     const data = new Uint8Array( 4 * size );
     for ( let i = 0; i < size; i ++ ) {
@@ -58,6 +58,9 @@
         }
     };
     sphereMutate.update(mesh, 0, updateOpt);
+    // normals helper
+    const helper = new THREE.VertexNormalsHelper(mesh, 0.1, 0x00ff00);
+    scene.add(helper);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -71,8 +74,9 @@
     // update
     const update = function(frame, frameMax){
         let alpha = frame / frameMax;
-        mesh.rotation.y = Math.PI * 2 * alpha;
+        mesh.rotation.y = Math.PI / 180 * 140; 
         sphereMutate.update(mesh, alpha * 4 % 1, updateOpt);
+        helper.update();
     };
     // loop
     const loop = () => {
