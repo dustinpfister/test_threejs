@@ -37,7 +37,10 @@
     // ---------- ----------
     // GEOMETRY, MESH
     // ---------- ----------
-    const mesh = sphereMutate.create(1.25, 40, 40, texture);
+    //const mesh = sphereMutate.create(1.25, 40, 40, texture);
+    const mesh = sphereMutate.create({
+        size: 1.25, w: 40, h: 40, texture: texture
+    });
     scene.add(mesh);
     camera.lookAt(mesh.position);
     // update options

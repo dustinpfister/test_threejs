@@ -45,15 +45,17 @@
     // PUBLIC API
     //-------- ----------
     // create the mesh object
-    api.create = (size, w, h, texture) => {
-        size = size === undefined ? 1 : size;
-        w = w === undefined ? 10 : w;
-        h = h === undefined ? 10 : h;
+    //api.create = (size, w, h, texture) => {
+    api.create = (opt) => {
+        opt = opt || {};
+        opt.size = opt.size === undefined ? 1 : opt.size;
+        opt.w = opt.w === undefined ? 10 : opt.w;
+        opt.h = opt.h === undefined ? 10 : opt.h;
         const mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(size, w, h, 0, Math.PI * 2), 
-            new THREE.MeshPhongMaterial({
+            new THREE.SphereGeometry(opt.size, opt.w, opt.h, 0, Math.PI * 2), 
+            opt.material || new THREE.MeshPhongMaterial({
                 color: 'white',
-                map: texture || null
+                map: opt.texture || null
             }));
         const pos = mesh.geometry.getAttribute('position');
         mesh.userData.pos = pos;

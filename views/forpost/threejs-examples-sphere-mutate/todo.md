@@ -7,7 +7,17 @@
 * () step 2: have a whole bunch of triangles explode outward from the center of the sphere
 * () fixed seam normals in r2, but I might also want to fix the pole normals
 
-## () - r2 - seam
+
+## () - r2-4-curves
+* () maybe have another demo that makes use of curves?
+
+## () - r2-3-map
+* () demo in which I have a map of hight values
+
+## () - r2-2-sinwave
+* () have another demo of the module that is a sin wave effect
+
+## ( done 10/24/2022 ) - r2 - seam
 * (done) start with the r1 example
 * (done) see about having a way to find out if a vertex index is at a seam or not
 * (done) make sure that all seam index share a common value for new unit length
@@ -18,17 +28,10 @@
 * (done) I may need two functions for update method options, one for the poles and the other for everything else
 * (done) I will want more options for the create method
 * (done) see about fixing bug with normals along the seam
-
-
-
-* () have a get point helper function
-* () use get point helper in update method
-
-* () I will want to be able to set the type of material used for the create option
-* () might want to go with an object form for the create options
-
-* () have another demo of the module that is a sin wave effect
-* () maybe have another demo that makes use of curves?
+* (done) have a get point helper function
+* (done) use get point helper in update method
+* (done) I will want to be able to set the type of material used for the create option
+* (done) might want to go with an object form for the create options
 
 ## ( done 10/10/2022 ) r1 - buffer attribute methods
 * (done) new example in which I am using the buffer Attribute methods
