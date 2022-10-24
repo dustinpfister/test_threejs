@@ -24,13 +24,13 @@
     const data = new Uint8Array( 4 * size );
     for ( let i = 0; i < size; i ++ ) {
         const stride = i * 4;
-        const a1 = i / size;
-        const a2 = i % width / width;
+        //const a1 = i / size;
+        //const a2 = i % width / width;
         const v = 30 + 70 * Math.random();
         data[ stride ] = v;
         data[ stride + 1 ] = v;
         data[ stride + 2 ] = v;
-        data[ stride + 3 ] = 255;                // alpha
+        data[ stride + 3 ] = 255;
     }
     const texture = new THREE.DataTexture( data, width, height );
     texture.needsUpdate = true;
