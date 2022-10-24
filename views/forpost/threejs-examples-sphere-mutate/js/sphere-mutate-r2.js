@@ -72,7 +72,7 @@
         const geo = mesh.geometry;
         const pos = mesh.userData.pos;
         const pos_base = mesh.userData.pos_base; 
-        const w = geo.parameters.widthSegments
+        const w = geo.parameters.widthSegments;
         const h = geo.parameters.heightSegments;
         let i = 0;
         while(i < pos.count){
