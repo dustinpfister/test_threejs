@@ -1,4 +1,8 @@
 (function (api) {
+    //-------- ----------
+    // DEFAULTS
+    //-------- ----------
+    // default for pole function
     const DEFAULT_FORPOLE = function(vs, i, x, y, mesh, alpha, opt){
         return vs;
     };
@@ -6,6 +10,40 @@
     const DEFAULT_FORPOINT = function(vs, i, x, y, mesh, alpha, opt){
         return vs.normalize().multiplyScalar(0.75 + 0.25 * Math.random());
     };
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
+    // get index if x and y are known
+    const getIndex = (geo, x, y) => {
+        const h = geo.parameters.heightSegments;
+        return y * ( h + 1 ) + x;
+    };
+    // get a Vector3 object of the given buffer attribute and index
+    const getV3 = (ba, index) => {
+        return new THREE.Vector3(ba.getX(index), ba.getY(index), ba.getZ(index));
+    };
+    // UPDATE NORMALS HELPER
+    const updateNormals = (geo) => {
+        const w = geo.parameters.widthSegments
+        const h = geo.parameters.heightSegments;
+        // just call compute vertex normals for all points first
+        geo.computeVertexNormals();
+        // need to fix the seam normals though
+        const x = w;
+        let y = 1;
+        const normal = geo.getAttribute('normal');
+        while(y < h){
+            const i =  getIndex(geo, x, y),
+            i2 = i - x;
+            const v = getV3(normal, i2);
+            normal.setXYZ(i, v.x, v.y, v.z);
+            y += 1;
+        }
+        normal.needsUpdate = true;
+    };
+    //-------- ----------
+    // PUBLIC API
+    //-------- ----------
     // create the mesh object
     api.create = (size, w, h, texture) => {
         size = size === undefined ? 1 : size;
@@ -22,24 +60,7 @@
         mesh.userData.pos_base = pos.clone();
         return mesh;
     };
-    // update the mesh object
-    const updateNormals = (geo) => {
-        const w = geo.parameters.widthSegments
-        const h = geo.parameters.heightSegments;
-        // just call compute vertex normals for all points first
-        geo.computeVertexNormals();
-        // need to fix the seam normals though
-        const x = w;
-        let y = 1;
-        const normal = geo.getAttribute('normal');
-        while(y < h){
-            const i =  y * (h + 1) + x,
-            i2 = i - x;
-            normal.setXYZ(i, normal.getX(i2), normal.getY(i2), normal.getZ(i2))
-            y += 1;
-        }
-        normal.needsUpdate = true;
-    };
+    // main update method
     api.update = (mesh, alpha, opt) => {
         alpha = alpha === undefined ? 0 : alpha;
         opt = opt || {};
@@ -55,7 +76,7 @@
         while(i < pos.count){
             const x = i % ( w + 1);
             const y = Math.floor(i / ( h + 1) );
-            const vs = new THREE.Vector3(pos_base.getX(i), pos_base.getY(i), pos_base.getZ(i));
+            const vs = getV3(pos_base, i);
             let v = vs.clone();
             // do something special for top and bottom points
             if(y === 0 || y === h){
@@ -66,8 +87,7 @@
                     v = opt.forPoint(vs.clone(), i, x, y, mesh, alpha, opt);
                 }else{
                     // deal with seam by setting to point that was all ready set
-                    const i2 = y * ( h + 1 );
-                    v.set(pos.getX(i2), pos.getY(i2), pos.getZ(i2));
+                    v.copy( getV3(pos, getIndex(geo, x, y) - w ) );
                 }
             }
             pos.setXYZ(i, v.x, v.y, v.z);

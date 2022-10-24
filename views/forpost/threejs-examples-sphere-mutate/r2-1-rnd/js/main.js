@@ -19,17 +19,17 @@
     // TEXTURE
     //-------- ----------
     // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-    const width = 2048, height = 2048;
+    const width = 256, height = 256;
     const size = width * height;
     const data = new Uint8Array( 4 * size );
     for ( let i = 0; i < size; i ++ ) {
         const stride = i * 4;
-        //const a1 = i / size;
-        //const a2 = i % width / width;
-        const v = 30 + 70 * Math.random();
-        data[ stride ] = v;
-        data[ stride + 1 ] = v;
-        data[ stride + 2 ] = v;
+        const a1 = i / size;
+        const a2 = 1 - Math.abs(0.5 - a1 * 2 % 1) / 0.5;
+        const v = 105 + 150 * Math.random();
+        data[ stride ] = v * a1;
+        data[ stride + 1 ] = v * (1 - a1);
+        data[ stride + 2 ] = v * a2
         data[ stride + 3 ] = 255;
     }
     const texture = new THREE.DataTexture( data, width, height );
@@ -59,8 +59,11 @@
     };
     sphereMutate.update(mesh, 0, updateOpt);
     // normals helper
-    const helper = new THREE.VertexNormalsHelper(mesh, 0.1, 0x00ff00);
-    scene.add(helper);
+    let helper = null;
+    //if(THREE.VertexNormalsHelper){
+    //    helper = new THREE.VertexNormalsHelper(mesh, 0.1, 0x00ff00);
+    //    scene.add(helper);
+    //}
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -74,9 +77,11 @@
     // update
     const update = function(frame, frameMax){
         let alpha = frame / frameMax;
-        mesh.rotation.y = Math.PI / 180 * 140; 
+        mesh.rotation.y = Math.PI * 4 * alpha; 
         sphereMutate.update(mesh, alpha * 4 % 1, updateOpt);
-        helper.update();
+        if(helper){
+            helper.update();
+        }
     };
     // loop
     const loop = () => {
