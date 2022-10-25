@@ -61,9 +61,62 @@ mesh_end.position.copy(vEnd);
 mesh_control.position.copy(vControl);
 
 // ---------- ----------
-// ANIMATION LOOP
+// ORBIT CONTROLS
 // ---------- ----------
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enabled = true;
+// ---------- ----------
+// EVENTS
+// ---------- ----------
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2(-5, -5);
+const onDown = ( event ) => {
+    const canvas = event.target,
+    box = canvas.getBoundingClientRect(),
+    x = event.clientX - box.left,
+    y = event.clientY - box.top;
+    mouse.x = ( x / canvas.scrollWidth ) * 2 - 1;
+    mouse.y = - ( y / canvas.scrollHeight ) * 2 + 1;
+};
+const onUp = ( event ) => {
+    mouse.x = -5;
+    mouse.y = -5;
+};
+const pState = {
+    down: false
+};
+renderer.domElement.addEventListener('pointerdown', (event) => {
+    pState.down = true;
+    onDown(event);
+    raycaster.setFromCamera( mouse, camera );
+    const intersects = raycaster.intersectObjects([mesh_control, mesh_start, mesh_end], true );
+    console.log(intersects);
+    if(intersects[0]){
+        controls.enabled = false;
+    }
+
+
+});
+
+renderer.domElement.addEventListener('pointerup', (event) => {
+    pState.down = false;
+    controls.enabled = true;
+    onUp(event);
+});
+
+renderer.domElement.addEventListener('pointermove', (event) => {
+    if(pState.down){
+        console.log(mouse.x, mouse.y)
+        //console.log('yes')
+    }else{
+    }
+})
+
+
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+
 
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
@@ -73,6 +126,7 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
+
 };
 // loop
 const loop = () => {
