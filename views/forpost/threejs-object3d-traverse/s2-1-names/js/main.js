@@ -1,17 +1,28 @@
-
 (function () {
-
-    var createCube = function(){
-        var mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1),new THREE.MeshNormalMaterial());
+    //-------- ----------
+    // SCENE, CAMERA, RENDERER
+    //-------- ----------
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 25);
+    camera.position.set(8, 8, 8);
+    camera.lookAt(0, 0, 0);
+    scene.add(camera);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480, false);
+    ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
+    const createCube = function(){
+        const mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1),new THREE.MeshNormalMaterial());
         mesh.userData.cubeGroupType = 'Mesh';
         return mesh;
     };
-
-    var createCubeGroup = function(id, count){
-        var group = new THREE.Group();
+    const createCubeGroup = function(id, count){
+        const group = new THREE.Group();
         id = id || group.id;
         count = count || 10;
-        var i = count;
+        let i = count;
         while(i--){
             group.add( createCube() );
         }
@@ -20,14 +31,13 @@
         group.userData.cubeGroupType = 'Group';
         return group;
     };
-
-    var setNamesForScene = function(scene){
-        var standAloneCount = 0;
+    const setNamesForScene = function(scene){
+        let standAloneCount = 0;
         // TRAVERSING ALL OBJECTS IN THE SCENE
         scene.traverse(function(obj){        
             // SET NAMES FOR STAND ALONE MESH CUBES
             if(obj.userData.cubeGroupType === 'Mesh'){
-                var parent = obj.parent;
+                const parent = obj.parent;
                 if(parent.type != 'Group'){
                     if(obj.userData.cubeGroupType === 'Mesh'){
                         obj.name = 'mesh:' + standAloneCount;
@@ -49,14 +59,14 @@
             }
         });     
     };
-
-    var positionGroup = function(scene, groupId, y){
-        var group = scene.getObjectByName('cubegroup:' + groupId), i, len;
+    const positionGroup = function(scene, groupId, y){
+        const group = scene.getObjectByName('cubegroup:' + groupId);
+        let i, len;
         y = y === undefined ? 0 : y;
         len = group.userData.count;
         i = len;
         while(i--){
-            var mesh = group.getObjectByName('mesh:' + i + '_cubegroup:' + groupId),
+            const mesh = group.getObjectByName('mesh:' + i + '_cubegroup:' + groupId),
             rad = Math.PI * 2 * ( i / len ),
             x = Math.cos(rad) * 5,
             z = Math.sin(rad) * 5;
@@ -65,46 +75,35 @@
             }
         }
     };
-
-    // Scene
-    var scene = new THREE.Scene();
-
+    //-------- ----------
     // ADDING GRID HELPERS TO THE SCENE
-    var helper = new THREE.GridHelper(10, 10, 'white', '#2a2a2a');
-    scene.add(helper);
-    helper = new THREE.GridHelper(10, 10, 'white', '#2a2a2a');
-    helper.rotation.z = Math.PI * 0.5;
-    scene.add(helper);
-
-    // adding a group
-    var group = createCubeGroup('one');
-    scene.add( group );
-    var group = createCubeGroup('two');
-    scene.add( group );
-
-    // stand alone mesh
-    var mesh = createCube();
+    //-------- ----------
+    const helper1 = new THREE.GridHelper(10, 10, 'white', '#2a2a2a');
+    scene.add(helper1);
+    const helper2 = new THREE.GridHelper(10, 10, 'white', '#2a2a2a');
+    helper2.rotation.z = Math.PI * 0.5;
+    scene.add(helper2);
+    //-------- ----------
+    // ADDING GROUPS
+    //-------- ----------
+    const group1 = createCubeGroup('one');
+    scene.add( group1 );
+    const group2 = createCubeGroup('two');
+    scene.add( group2 );
+    //-------- ----------
+    // STAND ALONE MESH
+    //-------- ----------
+    const mesh = createCube();
     scene.add( mesh );
-
-    // camera, renderer
-    var camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 25);
-    camera.position.set(8, 8, 8);
-    camera.lookAt(0, 0, 0);
-    scene.add(camera); // ADDING CAMERA OBJECT TO THE SCENE
-
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
-
-    // calling set names
+    //-------- ----------
+    // CALLING SET NAMES
+    //-------- ----------
     setNamesForScene(scene);
-
-    // position groups
     positionGroup(scene, 'one', -1);
     positionGroup(scene, 'two', 1);
-
-    // render
+    //-------- ----------
+    // RENDER
+    //-------- ----------
     renderer.render(scene, camera);
-
 }
     ());

@@ -1,6 +1,4 @@
-
 (function () {
-
     // SCENE, CAMERA, RENDERER
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 64 / 48, 0.1, 1000);
