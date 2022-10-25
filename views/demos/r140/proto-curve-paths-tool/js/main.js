@@ -12,11 +12,15 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // HELPERS
 //-------- ----------
+// get control point
+const getControlPoint = (vStart, vEnd, vDelta) => {
+    return vStart.clone().lerp(vEnd, 0.5).add( vDelta );
+};
 // create curve helper
 const createCurve = (vStart, vEnd, vDelta) => {
     vDelta = vDelta || new THREE.Vector3();
     // control point is half way between vStart and vEnd
-    vControl = vStart.clone().lerp(vEnd, 0.5).add( vDelta );
+    vControl = getControlPoint(vStart, vEnd, vDelta);
     return new THREE.QuadraticBezierCurve3(vStart, vControl, vEnd);
 };
 // create points helper
@@ -27,14 +31,12 @@ const createPoints = (curve) => {
     );
 };
 
+const vStart = new THREE.Vector3(-5, 0, 5)
+const vEnd = new THREE.Vector3(-5, 0, -5)
+const vDelta = new THREE.Vector3(0, 0, 0)
 
 const curve = new THREE.CurvePath();
-
-curve.add(createCurve(
-    new THREE.Vector3(-5, 0, 5),
-    new THREE.Vector3(-5, 0, -5),
-    new THREE.Vector3(20, -5, -4)
-));
+curve.add( createCurve( vStart, vEnd, vDelta) );
 
 const points = createPoints(curve);
 scene.add(points);
@@ -43,3 +45,4 @@ scene.add(points);
 //  RENDER
 //-------- ----------
 renderer.render(scene, camera);
+
