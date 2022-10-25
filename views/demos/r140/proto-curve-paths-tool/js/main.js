@@ -70,10 +70,9 @@ controls.enabled = true;
 // ---------- ----------
 const uiState = {
     down: false,
+    raycaster : new THREE.Raycaster(),
     mouse_current: new THREE.Vector2(-5, -5)
 };
-const raycaster = new THREE.Raycaster();
-
 const updateMouse = ( event, mouse ) => {
     const canvas = event.target,
     box = canvas.getBoundingClientRect(),
@@ -86,40 +85,29 @@ const resetMouse = ( event, mouse ) => {
     mouse.x = -5;
     mouse.y = -5;
 };
-
 renderer.domElement.addEventListener('pointerdown', (event) => {
     uiState.down = true;
     updateMouse(event, uiState.mouse_current);
-    raycaster.setFromCamera( uiState.mouse_current, camera );
-    const intersects = raycaster.intersectObjects([mesh_control, mesh_start, mesh_end], true );
+    uiState.raycaster.setFromCamera( uiState.mouse_current, camera );
+    const intersects = uiState.raycaster.intersectObjects([mesh_control, mesh_start, mesh_end], true );
     if(intersects[0]){
         controls.enabled = false;
     }
 });
-
 renderer.domElement.addEventListener('pointerup', (event) => {
     uiState.down = false;
     controls.enabled = true;
     resetMouse(event, uiState.mouse_current);
 });
-
 renderer.domElement.addEventListener('pointermove', (event) => {
-
     updateMouse(event, uiState.mouse_current);
-
     if(uiState.down){
-        console.log(uiState.mouse_current.x, uiState.mouse_current.y)
-        //console.log('yes')
-    }else{
+        //console.log(uiState.mouse_current.x, uiState.mouse_current.y)
     }
-})
-
-
+});
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-
-
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 120;
@@ -128,7 +116,6 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-
 };
 // loop
 const loop = () => {
