@@ -28,6 +28,12 @@ const createPoints = (curve) => {
          new THREE.PointsMaterial({ size: 0.4, color: new THREE.Color(0,1,0) })
     );
 };
+const updatePoints = (points, curve) => {
+    curve.getPoints(50).forEach((v)=>{
+
+
+    });
+};
 // create mesh helper
 const createMesh = () => {
     const mesh = new THREE.Mesh(
@@ -108,7 +114,17 @@ renderer.domElement.addEventListener('pointerup', (event) => {
     uiState.down = false;
     controls.enabled = true;
     resetMouse(event, uiState.mouse_current);
-    console.log(uiState.d, uiState.a)
+    console.log(uiState.d, uiState.a);
+
+const vStart = mesh_start.position;
+const vEnd = mesh_end.position;
+const vControl = mesh_control.position;
+const curve = new THREE.CurvePath();
+curve.add( createCurve( vStart, vEnd, vControl) );
+
+console.log(curve)
+
+
 });
 renderer.domElement.addEventListener('pointermove', (event) => {
     updateMouse(event, uiState.mouse_current);
