@@ -68,9 +68,13 @@ controls.enabled = true;
 // ---------- ----------
 // EVENTS
 // ---------- ----------
+const uiState = {
+    down: false,
+    mouse_current: new THREE.Vector2(-5, -5)
+};
 const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2(-5, -5);
-const onDown = ( event ) => {
+
+const updateMouse = ( event, mouse ) => {
     const canvas = event.target,
     box = canvas.getBoundingClientRect(),
     x = event.clientX - box.left,
@@ -78,35 +82,33 @@ const onDown = ( event ) => {
     mouse.x = ( x / canvas.scrollWidth ) * 2 - 1;
     mouse.y = - ( y / canvas.scrollHeight ) * 2 + 1;
 };
-const onUp = ( event ) => {
+const resetMouse = ( event, mouse ) => {
     mouse.x = -5;
     mouse.y = -5;
 };
-const pState = {
-    down: false
-};
+
 renderer.domElement.addEventListener('pointerdown', (event) => {
-    pState.down = true;
-    onDown(event);
-    raycaster.setFromCamera( mouse, camera );
+    uiState.down = true;
+    updateMouse(event, uiState.mouse_current);
+    raycaster.setFromCamera( uiState.mouse_current, camera );
     const intersects = raycaster.intersectObjects([mesh_control, mesh_start, mesh_end], true );
-    console.log(intersects);
     if(intersects[0]){
         controls.enabled = false;
     }
-
-
 });
 
 renderer.domElement.addEventListener('pointerup', (event) => {
-    pState.down = false;
+    uiState.down = false;
     controls.enabled = true;
-    onUp(event);
+    resetMouse(event, uiState.mouse_current);
 });
 
 renderer.domElement.addEventListener('pointermove', (event) => {
-    if(pState.down){
-        console.log(mouse.x, mouse.y)
+
+    updateMouse(event, uiState.mouse_current);
+
+    if(uiState.down){
+        console.log(uiState.mouse_current.x, uiState.mouse_current.y)
         //console.log('yes')
     }else{
     }
