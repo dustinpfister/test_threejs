@@ -71,7 +71,13 @@ controls.enabled = true;
 const uiState = {
     down: false,
     raycaster : new THREE.Raycaster(),
-    mouse_current: new THREE.Vector2(-5, -5)
+    mouse_down: new THREE.Vector2(-5, -5),
+    mouse_current: new THREE.Vector2(-5, -5),
+    d: 0, // distance and angle
+    a: 0,
+    mesh: null,
+    v_start: new THREE.Vector3(),
+    v_end: new THREE.Vector3()
 };
 const updateMouse = ( event, mouse ) => {
     const canvas = event.target,
@@ -87,22 +93,34 @@ const resetMouse = ( event, mouse ) => {
 };
 renderer.domElement.addEventListener('pointerdown', (event) => {
     uiState.down = true;
+    updateMouse(event, uiState.mouse_down);
     updateMouse(event, uiState.mouse_current);
     uiState.raycaster.setFromCamera( uiState.mouse_current, camera );
     const intersects = uiState.raycaster.intersectObjects([mesh_control, mesh_start, mesh_end], true );
+    uiState.mesh = null;
     if(intersects[0]){
         controls.enabled = false;
+        uiState.mesh = intersects[0].object;
+        uiState.v_start = uiState.mesh.position.clone();
     }
 });
 renderer.domElement.addEventListener('pointerup', (event) => {
     uiState.down = false;
     controls.enabled = true;
     resetMouse(event, uiState.mouse_current);
+    console.log(uiState.d, uiState.a)
 });
 renderer.domElement.addEventListener('pointermove', (event) => {
     updateMouse(event, uiState.mouse_current);
-    if(uiState.down){
-        //console.log(uiState.mouse_current.x, uiState.mouse_current.y)
+    if(uiState.down && uiState.mesh){
+         const m1 = uiState.mouse_down;
+         const m2 = uiState.mouse_current;
+         uiState.d = parseFloat( m1.distanceTo(m2).toFixed(4) );
+         uiState.a = Math.PI + parseFloat( ( Math.atan2( m1.y - m2.y, m1.x - m2.x) ).toFixed(4) );
+         // moveing control mesh
+         const x = Math.cos(uiState.a) * 5 * uiState.d;
+         uiState.v_end = uiState.v_start.clone().add( new THREE.Vector3(x, 0 ,0) )
+         uiState.mesh.position.copy(uiState.v_end)
     }
 });
 // ---------- ----------
