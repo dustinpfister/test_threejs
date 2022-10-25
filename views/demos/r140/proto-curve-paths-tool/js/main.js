@@ -48,9 +48,9 @@ scene.add(mesh_control);
 //-------- ----------
 // CURVE POINTS
 //-------- ----------
-const vStart = new THREE.Vector3(-5, 0, 5);
-const vEnd = new THREE.Vector3(-5, 0, -5);
-const vControl = new THREE.Vector3(15, 0, 0);
+const vStart = new THREE.Vector3(0, 0, 5);
+const vEnd = new THREE.Vector3(0, 0, -5);
+const vControl = new THREE.Vector3(0, 0, 0);
 const curve = new THREE.CurvePath();
 curve.add( createCurve( vStart, vEnd, vControl) );
 const points = createPoints(curve);
@@ -60,8 +60,34 @@ mesh_start.position.copy(vStart);
 mesh_end.position.copy(vEnd);
 mesh_control.position.copy(vControl);
 
-//-------- ----------
-//  RENDER
-//-------- ----------
-renderer.render(scene, camera);
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 120;
+let secs = 0,
+frame = 0,
+lt = new Date();
+// update
+const update = function(frame, frameMax){
+};
+// loop
+const loop = () => {
+    const now = new Date(),
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / FPS_UPDATE){
+        // update, render
+        update( Math.floor(frame), FRAME_MAX);
+        renderer.render(scene, camera);
+        // step frame
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
+        lt = now;
+    }
+};
+loop();
 
