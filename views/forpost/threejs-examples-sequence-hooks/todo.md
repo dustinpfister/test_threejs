@@ -3,8 +3,13 @@
 ## Known problems
 * ( fixed in r1 ) - #0 partPer values end up being 1 which cuases undesired effects 
 
-## () - r2-3-lookat
+## () - r2-x-lookat
 * () example in which I am using v3Paths for position and lookat for a camera
+
+## () - r2-3-curve
+* () start a curve example
+* () make the starting control point value a lerp point half way between start and end
+* () I can then just have an addtional vector3 that is a delta from this mid point
 
 ## ( done 10/19/2022 ) - r2-2-numbers
 * (done) start a demo of using raw number
