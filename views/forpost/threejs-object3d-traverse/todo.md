@@ -1,5 +1,8 @@
 # threejs-object3d-traverse
 
+## () - s3-1-loop-video1 section
+* () have an example that is based off of the source code of video1 for the post
+
 ## ( 10/25/2022 ) - s1-2-basic-userdata
 * (done) start new basic example involivng the use of the user data object
 * (done) use traverse to check for a userData object that has a dir, length and range prop
