@@ -26,6 +26,8 @@
 * (done) might need on window resize, and load events for setting native size as well
 * (done) I might need to have an frame.html file for each demo
 
+* () draw for first time in create public methid
+
 * () frame rate control slider
 * () raycaster features and onMeshClick create method option
 

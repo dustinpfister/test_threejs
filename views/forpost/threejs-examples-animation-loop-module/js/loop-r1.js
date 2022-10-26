@@ -158,6 +158,11 @@ const loopMod = (function(){
         if(opt.el){
             opt.el.appendChild( li.container );
         }
+
+
+        // render for first time
+        li.init(li, li.scene, li.camera, li.renderer);
+
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE
@@ -198,6 +203,12 @@ const loopMod = (function(){
         pb.y = this.canvas_ui.height - pb.dy;
         drawUI.draw(this, this.canvas_ui, this.ctx_ui);
     };
+    // call the update method and render to the dom element
+    Loop.prototype.render = function(){
+         const li = this;
+         li.update.call(li, li, li.scene, li.camera, li.renderer);
+         li.renderer.render(li.scene, li.camera);
+    };
     // loop function at prototype level is noop (might remove)
     Loop.prototype.loop = function(){};
     //-------- ----------
@@ -218,8 +229,9 @@ const loopMod = (function(){
             }
             if(secs > 1 / li.fps_update){
                 // update, render
-                li.update.call(li, li, li.scene, li.camera, li.renderer);
-                li.renderer.render(li.scene, li.camera);
+                li.render();
+                //li.update.call(li, li, li.scene, li.camera, li.renderer);
+                //li.renderer.render(li.scene, li.camera);
                 // step frame
                 li.frame += li.fps_movement * secs;
                 li.frame %= li.FRAME_MAX;
@@ -227,7 +239,7 @@ const loopMod = (function(){
             }
         };
         // call init
-        li.init(li, li.scene, li.camera, li.renderer);
+        //li.init(li, li.scene, li.camera, li.renderer);
         return li;
     };
     //-------- ----------
@@ -238,9 +250,10 @@ const loopMod = (function(){
     api.create = (opt) => {
         opt = opt || {};
         // the loop object
-        const loop = createLoopObject(opt);
+        const li = createLoopObject(opt);
+        li.loop();
         // return the loop object
-        return loop;
+        return li;
     };
     // start a loop object
     api.start = (loop) => {
