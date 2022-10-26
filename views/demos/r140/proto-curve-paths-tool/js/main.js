@@ -77,14 +77,13 @@ mesh_control.position.copy(vControl);
 // ---------- ----------
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enabled = true;
-// ---------- ----------
-// EVENTS
-// ---------- ----------
 const uiState = {
     down: false,
     raycaster : new THREE.Raycaster(),
     mouse_down: new THREE.Vector2(-5, -5),
     mouse_current: new THREE.Vector2(-5, -5),
+    axis: 'x', //the current axis to control
+    snapMode: true,
     d: 0, // distance and angle
     a: 0,
     mesh: null,
@@ -137,10 +136,28 @@ renderer.domElement.addEventListener('pointermove', (event) => {
          uiState.a = Math.PI + parseFloat( ( Math.atan2( m1.y - m2.y, m1.x - m2.x) ).toFixed(4) );
          // moving control mesh
          const x = Math.cos(uiState.a) * 5 * uiState.d;
-         uiState.v_end = uiState.v_start.clone().add( new THREE.Vector3(x, 0 ,0) )
+         const v = new THREE.Vector3();
+         v[uiState.axis] = x;
+         uiState.v_end = uiState.v_start.clone().add( v );
+         if(uiState.snapMode){
+             uiState.v_end.x = Math.round( uiState.v_end.x );
+             uiState.v_end.y = Math.round( uiState.v_end.y );
+             uiState.v_end.z = Math.round( uiState.v_end.z );
+         }
          uiState.mesh.position.copy(uiState.v_end)
     }
 });
+// ---------- ----------
+// KETBOARD EVENTS
+// ---------- ----------
+window.addEventListener('keydown', (e) => {
+    ['x', 'y', 'z'].forEach( (key) => {
+         if(e.key.toLowerCase() === key){
+             uiState.axis = key;
+         }
+    });
+});
+
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
