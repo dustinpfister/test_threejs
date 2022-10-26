@@ -17,8 +17,7 @@ renderer.setSize(640, 480, false);
 //    return vStart.clone().lerp(vEnd, 0.5).add( vDelta );
 //};
 // create curve helper
-const createCurve = (vStart, vEnd, vDelta) => {
-    vDelta = vDelta || new THREE.Vector3();
+const createCurve = (vStart, vEnd, vControl) => {
     return new THREE.QuadraticBezierCurve3(vStart, vControl, vEnd);
 };
 // create points helper
@@ -29,10 +28,22 @@ const createPoints = (curve) => {
     );
 };
 const updatePoints = (points, curve) => {
-    curve.getPoints(50).forEach((v)=>{
+    const geo = points.geometry;
+    const pos = geo.getAttribute('position');
 
-
-    });
+    const v3Array = curve.getPoints(50);
+    const len = v3Array.length;
+	
+	console.log(v3Array);
+    let i = 0;
+    while(i < len){
+        const v = v3Array[i];
+        pos.array[i * 3] = v.x;
+        pos.array[i * 3 + 1] = v.y;
+        pos.array[i * 3 + 2] = v.z;
+        i += 1;
+    }
+    pos.needsUpdate = true;
 };
 // create mesh helper
 const createMesh = () => {
@@ -124,6 +135,8 @@ curve.add( createCurve( vStart, vEnd, vControl) );
 
 console.log(curve)
 
+updatePoints(points, curve)
+
 
 });
 renderer.domElement.addEventListener('pointermove', (event) => {
@@ -133,7 +146,7 @@ renderer.domElement.addEventListener('pointermove', (event) => {
          const m2 = uiState.mouse_current;
          uiState.d = parseFloat( m1.distanceTo(m2).toFixed(4) );
          uiState.a = Math.PI + parseFloat( ( Math.atan2( m1.y - m2.y, m1.x - m2.x) ).toFixed(4) );
-         // moveing control mesh
+         // moving control mesh
          const x = Math.cos(uiState.a) * 5 * uiState.d;
          uiState.v_end = uiState.v_start.clone().add( new THREE.Vector3(x, 0 ,0) )
          uiState.mesh.position.copy(uiState.v_end)
