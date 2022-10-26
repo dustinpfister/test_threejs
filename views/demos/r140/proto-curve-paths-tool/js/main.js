@@ -10,15 +10,27 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
+// STATE OBJECT
+//-------- ----------
+const state = {
+    controls: new THREE.OrbitControls(camera, renderer.domElement),
+    down: false,
+    raycaster : new THREE.Raycaster(),
+    mouse_down: new THREE.Vector2(-5, -5),
+    mouse_current: new THREE.Vector2(-5, -5),
+    axis: 'x', //the current axis to control
+    snapMode: true,
+    d: 0, // distance and angle
+    a: 0,
+    mesh: null,
+    v_start: new THREE.Vector3(),
+    v_end: new THREE.Vector3()
+};
+//-------- ----------
 // HELPERS
 //-------- ----------
-// get control point
-//const getControlPoint = (vStart, vEnd, vDelta) => {
-//    return vStart.clone().lerp(vEnd, 0.5).add( vDelta );
-//};
 // create curve helper
-const createCurve = (vStart, vEnd, vDelta) => {
-    vDelta = vDelta || new THREE.Vector3();
+const createCurve = (vStart, vEnd, vControl) => {
     return new THREE.QuadraticBezierCurve3(vStart, vControl, vEnd);
 };
 // create points helper
@@ -28,11 +40,21 @@ const createPoints = (curve) => {
          new THREE.PointsMaterial({ size: 0.4, color: new THREE.Color(0,1,0) })
     );
 };
+// update points
 const updatePoints = (points, curve) => {
-    curve.getPoints(50).forEach((v)=>{
-
-
-    });
+    const geo = points.geometry;
+    const pos = geo.getAttribute('position');
+    const v3Array = curve.getPoints(50);
+    const len = v3Array.length;
+    let i = 0;
+    while(i < len){
+        const v = v3Array[i];
+        pos.array[i * 3] = v.x;
+        pos.array[i * 3 + 1] = v.y;
+        pos.array[i * 3 + 2] = v.z;
+        i += 1;
+    }
+    pos.needsUpdate = true;
 };
 // create mesh helper
 const createMesh = () => {
@@ -41,6 +63,20 @@ const createMesh = () => {
         new THREE.MeshNormalMaterial()
     );
     return mesh;
+};
+// update a mouse v2 with the given event
+const updateMouse = ( event, mouse ) => {
+    const canvas = event.target,
+    box = canvas.getBoundingClientRect(),
+    x = event.clientX - box.left,
+    y = event.clientY - box.top;
+    mouse.x = ( x / canvas.scrollWidth ) * 2 - 1;
+    mouse.y = - ( y / canvas.scrollHeight ) * 2 + 1;
+};
+// reset mouse v2
+const resetMouse = ( event, mouse ) => {
+    mouse.x = -5;
+    mouse.y = -5;
 };
 //-------- ----------
 // MESH OBJECTS
@@ -61,83 +97,66 @@ const curve = new THREE.CurvePath();
 curve.add( createCurve( vStart, vEnd, vControl) );
 const points = createPoints(curve);
 scene.add(points);
-
 mesh_start.position.copy(vStart);
 mesh_end.position.copy(vEnd);
 mesh_control.position.copy(vControl);
-
 // ---------- ----------
 // ORBIT CONTROLS
 // ---------- ----------
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enabled = true;
-// ---------- ----------
-// EVENTS
-// ---------- ----------
-const uiState = {
-    down: false,
-    raycaster : new THREE.Raycaster(),
-    mouse_down: new THREE.Vector2(-5, -5),
-    mouse_current: new THREE.Vector2(-5, -5),
-    d: 0, // distance and angle
-    a: 0,
-    mesh: null,
-    v_start: new THREE.Vector3(),
-    v_end: new THREE.Vector3()
-};
-const updateMouse = ( event, mouse ) => {
-    const canvas = event.target,
-    box = canvas.getBoundingClientRect(),
-    x = event.clientX - box.left,
-    y = event.clientY - box.top;
-    mouse.x = ( x / canvas.scrollWidth ) * 2 - 1;
-    mouse.y = - ( y / canvas.scrollHeight ) * 2 + 1;
-};
-const resetMouse = ( event, mouse ) => {
-    mouse.x = -5;
-    mouse.y = -5;
-};
 renderer.domElement.addEventListener('pointerdown', (event) => {
-    uiState.down = true;
-    updateMouse(event, uiState.mouse_down);
-    updateMouse(event, uiState.mouse_current);
-    uiState.raycaster.setFromCamera( uiState.mouse_current, camera );
-    const intersects = uiState.raycaster.intersectObjects([mesh_control, mesh_start, mesh_end], true );
-    uiState.mesh = null;
+    state.down = true;
+    updateMouse(event, state.mouse_down);
+    updateMouse(event, state.mouse_current);
+    state.raycaster.setFromCamera( state.mouse_current, camera );
+    const intersects = state.raycaster.intersectObjects([mesh_control, mesh_start, mesh_end], true );
+    state.mesh = null;
     if(intersects[0]){
-        controls.enabled = false;
-        uiState.mesh = intersects[0].object;
-        uiState.v_start = uiState.mesh.position.clone();
+        state.controls.enabled = false;
+        state.mesh = intersects[0].object;
+        state.v_start = state.mesh.position.clone();
     }
 });
 renderer.domElement.addEventListener('pointerup', (event) => {
-    uiState.down = false;
-    controls.enabled = true;
-    resetMouse(event, uiState.mouse_current);
-    console.log(uiState.d, uiState.a);
-
-const vStart = mesh_start.position;
-const vEnd = mesh_end.position;
-const vControl = mesh_control.position;
-const curve = new THREE.CurvePath();
-curve.add( createCurve( vStart, vEnd, vControl) );
-
-console.log(curve)
-
-
+    state.down = false;
+    state.controls.enabled = true;
+    resetMouse(event, state.mouse_current);
+    const vStart = mesh_start.position;
+    const vEnd = mesh_end.position;
+    const vControl = mesh_control.position;
+    const curve = new THREE.CurvePath();
+    curve.add( createCurve( vStart, vEnd, vControl) );
+    // calling update points method
+    updatePoints(points, curve);
 });
 renderer.domElement.addEventListener('pointermove', (event) => {
-    updateMouse(event, uiState.mouse_current);
-    if(uiState.down && uiState.mesh){
-         const m1 = uiState.mouse_down;
-         const m2 = uiState.mouse_current;
-         uiState.d = parseFloat( m1.distanceTo(m2).toFixed(4) );
-         uiState.a = Math.PI + parseFloat( ( Math.atan2( m1.y - m2.y, m1.x - m2.x) ).toFixed(4) );
-         // moveing control mesh
-         const x = Math.cos(uiState.a) * 5 * uiState.d;
-         uiState.v_end = uiState.v_start.clone().add( new THREE.Vector3(x, 0 ,0) )
-         uiState.mesh.position.copy(uiState.v_end)
+    updateMouse(event, state.mouse_current);
+    if(state.down && state.mesh){
+         const m1 = state.mouse_down;
+         const m2 = state.mouse_current;
+         state.d = parseFloat( m1.distanceTo(m2).toFixed(4) );
+         state.a = Math.PI + parseFloat( ( Math.atan2( m1.y - m2.y, m1.x - m2.x) ).toFixed(4) );
+         // moving control mesh
+         const x = Math.cos(state.a) * 5 * state.d;
+         const v = new THREE.Vector3();
+         v[state.axis] = x;
+         state.v_end = state.v_start.clone().add( v );
+         if(state.snapMode){
+             state.v_end.x = Math.round( state.v_end.x );
+             state.v_end.y = Math.round( state.v_end.y );
+             state.v_end.z = Math.round( state.v_end.z );
+         }
+         state.mesh.position.copy(state.v_end)
     }
+});
+// ---------- ----------
+// KETBOARD EVENTS
+// ---------- ----------
+window.addEventListener('keydown', (e) => {
+    ['x', 'y', 'z'].forEach( (key) => {
+         if(e.key.toLowerCase() === key){
+             state.axis = key;
+         }
+    });
 });
 // ---------- ----------
 // ANIMATION LOOP
@@ -149,8 +168,7 @@ let secs = 0,
 frame = 0,
 lt = new Date();
 // update
-const update = function(frame, frameMax){
-};
+const update = function(frame, frameMax){};
 // loop
 const loop = () => {
     const now = new Date(),
