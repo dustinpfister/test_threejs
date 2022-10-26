@@ -26,8 +26,6 @@ const state = {
     v_start: new THREE.Vector3(),
     v_end: new THREE.Vector3()
 };
-
-
 //-------- ----------
 // HELPERS
 //-------- ----------
@@ -66,6 +64,20 @@ const createMesh = () => {
     );
     return mesh;
 };
+// update a mouse v2 with the given event
+const updateMouse = ( event, mouse ) => {
+    const canvas = event.target,
+    box = canvas.getBoundingClientRect(),
+    x = event.clientX - box.left,
+    y = event.clientY - box.top;
+    mouse.x = ( x / canvas.scrollWidth ) * 2 - 1;
+    mouse.y = - ( y / canvas.scrollHeight ) * 2 + 1;
+};
+// reset mouse v2
+const resetMouse = ( event, mouse ) => {
+    mouse.x = -5;
+    mouse.y = -5;
+};
 //-------- ----------
 // MESH OBJECTS
 //-------- ----------
@@ -91,18 +103,6 @@ mesh_control.position.copy(vControl);
 // ---------- ----------
 // ORBIT CONTROLS
 // ---------- ----------
-const updateMouse = ( event, mouse ) => {
-    const canvas = event.target,
-    box = canvas.getBoundingClientRect(),
-    x = event.clientX - box.left,
-    y = event.clientY - box.top;
-    mouse.x = ( x / canvas.scrollWidth ) * 2 - 1;
-    mouse.y = - ( y / canvas.scrollHeight ) * 2 + 1;
-};
-const resetMouse = ( event, mouse ) => {
-    mouse.x = -5;
-    mouse.y = -5;
-};
 renderer.domElement.addEventListener('pointerdown', (event) => {
     state.down = true;
     updateMouse(event, state.mouse_down);
@@ -126,7 +126,7 @@ renderer.domElement.addEventListener('pointerup', (event) => {
     const curve = new THREE.CurvePath();
     curve.add( createCurve( vStart, vEnd, vControl) );
     // calling update points method
-    updatePoints(points, curve)
+    updatePoints(points, curve);
 });
 renderer.domElement.addEventListener('pointermove', (event) => {
     updateMouse(event, state.mouse_current);
@@ -158,7 +158,6 @@ window.addEventListener('keydown', (e) => {
          }
     });
 });
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -169,8 +168,7 @@ let secs = 0,
 frame = 0,
 lt = new Date();
 // update
-const update = function(frame, frameMax){
-};
+const update = function(frame, frameMax){};
 // loop
 const loop = () => {
     const now = new Date(),
