@@ -30,11 +30,8 @@ const createPoints = (curve) => {
 const updatePoints = (points, curve) => {
     const geo = points.geometry;
     const pos = geo.getAttribute('position');
-
     const v3Array = curve.getPoints(50);
     const len = v3Array.length;
-	
-	console.log(v3Array);
     let i = 0;
     while(i < len){
         const v = v3Array[i];
@@ -72,11 +69,9 @@ const curve = new THREE.CurvePath();
 curve.add( createCurve( vStart, vEnd, vControl) );
 const points = createPoints(curve);
 scene.add(points);
-
 mesh_start.position.copy(vStart);
 mesh_end.position.copy(vEnd);
 mesh_control.position.copy(vControl);
-
 // ---------- ----------
 // ORBIT CONTROLS
 // ---------- ----------
@@ -125,19 +120,13 @@ renderer.domElement.addEventListener('pointerup', (event) => {
     uiState.down = false;
     controls.enabled = true;
     resetMouse(event, uiState.mouse_current);
-    console.log(uiState.d, uiState.a);
-
-const vStart = mesh_start.position;
-const vEnd = mesh_end.position;
-const vControl = mesh_control.position;
-const curve = new THREE.CurvePath();
-curve.add( createCurve( vStart, vEnd, vControl) );
-
-console.log(curve)
-
-updatePoints(points, curve)
-
-
+    const vStart = mesh_start.position;
+    const vEnd = mesh_end.position;
+    const vControl = mesh_control.position;
+    const curve = new THREE.CurvePath();
+    curve.add( createCurve( vStart, vEnd, vControl) );
+    // calling update points method
+    updatePoints(points, curve)
 });
 renderer.domElement.addEventListener('pointermove', (event) => {
     updateMouse(event, uiState.mouse_current);
