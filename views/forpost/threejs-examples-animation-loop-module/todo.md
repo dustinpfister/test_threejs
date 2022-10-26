@@ -25,8 +25,7 @@
 * (done) it looks like I might need a style-iframe-r1.css that will be used for the page that contains an iframe
 * (done) might need on window resize, and load events for setting native size as well
 * (done) I might need to have an frame.html file for each demo
-
-* () draw for first time in create public methid
+* (done) draw for first time in create public methid
 
 * () frame rate control slider
 * () raycaster features and onMeshClick create method option

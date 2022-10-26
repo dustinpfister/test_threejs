@@ -158,11 +158,11 @@ const loopMod = (function(){
         if(opt.el){
             opt.el.appendChild( li.container );
         }
-
-
-        // render for first time
         li.init(li, li.scene, li.camera, li.renderer);
-
+        // render for first time when page loads
+        window.addEventListener('load', function(){
+            li.render();
+        });
     };
     //-------- ----------
     // LOOP CLASS PROTOTYPE

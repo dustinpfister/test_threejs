@@ -26,7 +26,7 @@ const loopObj = loopMod.create({
         li.camera.lookAt(0, 0, 0);
     },
     onStart: function(loopObj, scene, camera, renderer){
-        loopObj.frame = 0;
+        //loopObj.frame = 0;
     },
     update: function(li, scene, camera){
         const ud = scene.userData;
@@ -35,8 +35,5 @@ const loopObj = loopMod.create({
         cube.rotation.x = Math.PI / 180 * (-45 + 90 * li.getBias(2));
     }
 });
-loopMod.start(loopObj);
-setTimeout(function(){
-    loopMod.stop(loopObj);
-}, 100);
+//loopMod.start(loopObj);
 
