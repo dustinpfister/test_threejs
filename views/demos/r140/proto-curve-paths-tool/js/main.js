@@ -13,6 +13,7 @@ renderer.setSize(640, 480, false);
 // STATE OBJECT
 //-------- ----------
 const state = {
+    controls: new THREE.OrbitControls(camera, renderer.domElement),
     down: false,
     raycaster : new THREE.Raycaster(),
     mouse_down: new THREE.Vector2(-5, -5),
@@ -90,9 +91,6 @@ mesh_control.position.copy(vControl);
 // ---------- ----------
 // ORBIT CONTROLS
 // ---------- ----------
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enabled = true;
-
 const updateMouse = ( event, mouse ) => {
     const canvas = event.target,
     box = canvas.getBoundingClientRect(),
@@ -113,14 +111,14 @@ renderer.domElement.addEventListener('pointerdown', (event) => {
     const intersects = state.raycaster.intersectObjects([mesh_control, mesh_start, mesh_end], true );
     state.mesh = null;
     if(intersects[0]){
-        controls.enabled = false;
+        state.controls.enabled = false;
         state.mesh = intersects[0].object;
         state.v_start = state.mesh.position.clone();
     }
 });
 renderer.domElement.addEventListener('pointerup', (event) => {
     state.down = false;
-    controls.enabled = true;
+    state.controls.enabled = true;
     resetMouse(event, state.mouse_current);
     const vStart = mesh_start.position;
     const vEnd = mesh_end.position;
