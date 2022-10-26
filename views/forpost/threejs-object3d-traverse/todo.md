@@ -1,7 +1,14 @@
 # threejs-object3d-traverse
 
-## () - s3-1-loop-video1 section
-* () have an example that is based off of the source code of video1 for the post
+## () - s3-2-loop-video2
+* () start new animaiton project for a video2 for the post
+* () have nested groups
+* () make use of names as well as user data
+* () for the use case of traverse I will just want to check each mesh object 
+* () when it comes to doing something for each group object DO NOT LOOP OVER CHILDREN!
+
+## ( done 10/26/2022 ) - s3-1-loop-video1 section
+* (done) have an example that is based off of the source code of video1 for the post
 
 ## ( 10/25/2022 ) - s1-2-basic-userdata
 * (done) start new basic example involivng the use of the user data object
