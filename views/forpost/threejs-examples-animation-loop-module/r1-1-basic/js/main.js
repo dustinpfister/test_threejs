@@ -38,5 +38,5 @@ const loopObj = loopMod.create({
 loopMod.start(loopObj);
 setTimeout(function(){
     loopMod.stop(loopObj);
-}, 200);
+}, 100);
 
