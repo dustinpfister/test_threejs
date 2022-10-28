@@ -4,6 +4,15 @@ While working on my electronjs applaction that I use to make videos called video
 
 I then wanted to add at least a few more features in terms of addtional hooks that fire before, and after the current for frame method is fired. This example is then just that project that is simply just a slightly more improved project from the bore basic sequences project. As with all folders in this post I have [wrote a blog post on this sequence hooks module](https://dustinpfister.github.io/2022/05/12/threejs-examples-sequence-hooks/) and a few demos of its use.
 
+
+
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=3IlQ4zDaNz8">
+         <img src="https://img.youtube.com/vi/3IlQ4zDaNz8/0.jpg" style="width:50%;">
+      </a>
+</div>
+
 <div align="center">
       <a href="https://www.youtube.com/watch?v=hBUt0Jc0lL4">
          <img src="https://img.youtube.com/vi/hBUt0Jc0lL4/0.jpg" style="width:50%;">
