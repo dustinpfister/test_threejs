@@ -68,10 +68,19 @@ console.log(uv)
 const faceIndex = 0;
 const cellIndex = 0;
 let di = 0;
+
+
+const cellX = 1;
+const cellY = 1;
 while(di < 4){
     const i = faceIndex * 4 + di;
-	const u = di % 2;
-    const v = 1 - 1 * Math.floor(di / 2);
+	const x = di % 2;
+    const y = 1 - 1 * Math.floor(di / 2);
+	
+	// just need to figure out how to adjust for uv
+	const u = 0.25 * cellX + x * 0.25;
+	const v = y;
+	
 	uv.setXY(i, u, v);
 	di += 1;
 }
