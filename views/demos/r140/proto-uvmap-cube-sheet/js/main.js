@@ -59,33 +59,29 @@ scene.add(mesh);
 const uv = geo.getAttribute('uv');
 console.log(uv)
 
-/*
-// 12
-uv.setXY(0, 0, 0.25);
-uv.setXY(1, 0.25, 0.25);
-uv.setXY(2, 0, 0);
-uv.setXY(3, 0.25, 0);
-*/
-
 // whole image
-uv.setXY(0, 0, 1);
-uv.setXY(1, 1, 1);
-uv.setXY(2, 0, 0);
-uv.setXY(3, 1, 0);
+//uv.setXY(0, 0, 1);
+//uv.setXY(1, 1, 1);
+//uv.setXY(2, 0, 0);
+//uv.setXY(3, 1, 0);
 
-// 0
-/*
-uv.setXY(0, 0, 1);
-uv.setXY(1, 0.25, 1);
-uv.setXY(2, 0, 0.75);
-uv.setXY(3, 0.25, 1);
-*/
-//uv.setX(1, 0);
-//uv.setY(1, 0);
+const faceIndex = 0;
+const cellIndex = 0;
+let di = 0;
+while(di < 4){
+    const i = faceIndex * 4 + di;
+	const u = di % 2;
+    const v = 1 - 1 * Math.floor(di / 2);
+	uv.setXY(i, u, v);
+	di += 1;
+}
 
 
-//console.log( uv.count );
-//console.log( uv.getX(1)  )
+// 1
+//uv.setXY(0, 0.25, 1);
+//uv.setXY(1, 0.5, 1);
+//uv.setXY(2, 0.25, 0.75);
+//uv.setXY(3, 0.5, 0.75);
 
 //-------- ----------
 //  RENDER
