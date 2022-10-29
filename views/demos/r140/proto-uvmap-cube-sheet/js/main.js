@@ -21,8 +21,10 @@ canvas.height = CANVAS_SIZE;
 // draw to canvas
 let y = 0, x = 0, i = 0;
 const colors = [
-    'red','lime', 'blue', 'pink', 'orange', 'yellow', 'green', 'purple',
-    'red','lime', 'blue', 'pink', 'orange', 'yellow', 'green', 'purple'
+    'red','lime', 'blue', 'pink', 
+    'orange', 'yellow', 'green', 'purple',
+    'red','lime', 'blue', 'pink', 
+    'orange', 'yellow', 'green', 'purple'
     ];
 while(y < CELL_COUNT){
     x = 0;
@@ -57,11 +59,27 @@ scene.add(mesh);
 const uv = geo.getAttribute('uv');
 console.log(uv)
 
+/*
+// 12
 uv.setXY(0, 0, 0.25);
 uv.setXY(1, 0.25, 0.25);
 uv.setXY(2, 0, 0);
 uv.setXY(3, 0.25, 0);
+*/
 
+// whole image
+uv.setXY(0, 0, 1);
+uv.setXY(1, 1, 1);
+uv.setXY(2, 0, 0);
+uv.setXY(3, 1, 0);
+
+// 0
+/*
+uv.setXY(0, 0, 1);
+uv.setXY(1, 0.25, 1);
+uv.setXY(2, 0, 0.75);
+uv.setXY(3, 0.25, 1);
+*/
 //uv.setX(1, 0);
 //uv.setY(1, 0);
 
