@@ -41,6 +41,7 @@ const setUVData = (uv, uvData, order ) => {
     const b = uvData[ order[di] ]
         uv.setXY(a.i, b.u, b.v);
     });
+    uv.needsUpdate = true;
 };
 // main helper
 const setUVFace = (uv, faceIndex, cellIndex, order, gridSize) => {
@@ -102,7 +103,40 @@ setUVFace(uv, 2, 2, [3, 1, 2, 0] );
 setUVFace(uv, 3, 3);
 setUVFace(uv, 4, 4, [2, 0, 3, 1] );
 setUVFace(uv, 5, 5);
-//-------- ----------
-//  RENDER
-//-------- ----------
-renderer.render(scene, camera);
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 800;
+let secs = 0,
+frame = 0,
+lt = new Date();
+// update
+const update = function(frame, frameMax){
+    const alpha = frame / frameMax;
+    const degree = 360 * alpha;
+    mesh.rotation.y = THREE.MathUtils.degToRad(degree * 1);
+    mesh.rotation.x = THREE.MathUtils.degToRad(degree * 2);
+    [0, 1, 2, 3, 4, 5].forEach((fi) => {
+        if( ( frame + fi * 5 ) % 20 === 0){
+            setUVFace(uv, fi, Math.floor(Math.random() * 16));
+        }
+    });
+};
+// loop
+const loop = () => {
+    const now = new Date(),
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / FPS_UPDATE){
+        // update, render
+        update( Math.floor(frame), FRAME_MAX);
+        renderer.render(scene, camera);
+        // step frame
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
+        lt = now;
+    }
+};
+loop();
