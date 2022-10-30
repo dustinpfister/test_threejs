@@ -37,6 +37,7 @@ while(y < CELL_COUNT){
         ctx.fillStyle = 'black';
         ctx.textBaseline = 'top';
         ctx.fillText(i, px, py);
+        ctx.fillText('(' + x + ',' + y + ')', px, py + 10);
         x += 1;
     }
     y += 1;
@@ -66,23 +67,20 @@ console.log(uv)
 //uv.setXY(3, 1, 0);
 
 const faceIndex = 0;
-const cellIndex = 0;
+const cellIndex = 7;
+
+const cellX = cellIndex % 4;
+const cellY = Math.floor(cellIndex / 4);
 let di = 0;
-
-
-const cellX = 1;
-const cellY = 1;
 while(di < 4){
     const i = faceIndex * 4 + di;
-	const x = di % 2;
+    const x = di % 2;
     const y = 1 - 1 * Math.floor(di / 2);
-	
-	// just need to figure out how to adjust for uv
-	const u = 0.25 * cellX + x * 0.25;
-	const v = y;
-	
-	uv.setXY(i, u, v);
-	di += 1;
+    // get u and v using cellX and cellY
+    const u = 0.25 * cellX + x * 0.25;
+    const v = 1 - 0.25 * ( cellY + 1 ) + y * 0.25;
+    uv.setXY(i, u, v);
+    di += 1;
 }
 
 
