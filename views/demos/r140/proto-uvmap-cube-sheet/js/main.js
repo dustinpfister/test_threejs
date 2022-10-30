@@ -56,8 +56,8 @@ scene.add(mesh);
 //-------- ----------
 //  MUTATE UV ATTRIBUTE
 //-------- ----------
-
-const getUVDataArray = (uv, faceIndex, cellIndex) => {
+// get a uvData array for a given uv face index and cell index
+const getUVData = (uv, faceIndex, cellIndex) => {
     faceIndex = faceIndex === undefined ? 0: faceIndex;
     cellIndex = cellIndex === undefined ? 0: cellIndex;
     const cellX = cellIndex % 4;
@@ -77,17 +77,19 @@ const getUVDataArray = (uv, faceIndex, cellIndex) => {
     }
     return uvData;
 };
+// set uvs with the uvData, and order arrays
+const setUVData = (uv, uvData, order ) => {
+    order = order || [0,1,2,3]; // normal
+    uvData.forEach((a, di, uvData) => {
+    console.log(di, a)
+    const b = uvData[ order[di] ]
+        uv.setXY(a.i, b.u, b.v);
+    });
+};
 
 const uv = geo.getAttribute('uv');
-const uvData = getUVDataArray(uv, 2, 3);
-
-// set uvs with the uvData, and order arrays
-const order = [0,1,2,3]; // normal
-uvData.forEach((a, di, uvData) => {
-   console.log(di, a)
-   const b = uvData[ order[di] ]
-    uv.setXY(a.i, b.u, b.v);
-});
+const uvData = getUVData(uv, 2, 3);
+setUVData(uv, uvData);
 
 //-------- ----------
 //  RENDER
