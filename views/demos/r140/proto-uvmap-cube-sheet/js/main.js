@@ -3,7 +3,7 @@
 //-------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
-camera.position.set(3, 2, 1);
+camera.position.set(2, 2, 2);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480, false);
@@ -57,21 +57,23 @@ scene.add(mesh);
 //  MUTATE UV ATTRIBUTE
 //-------- ----------
 // get a uvData array for a given uv face index and cell index
-const getUVData = (uv, faceIndex, cellIndex) => {
+const getUVData = (uv, faceIndex, cellIndex, gridSize) => {
     faceIndex = faceIndex === undefined ? 0: faceIndex;
     cellIndex = cellIndex === undefined ? 0: cellIndex;
-    const cellX = cellIndex % 4;
-    const cellY = Math.floor(cellIndex / 4);
+    gridSize = gridSize === undefined ? 4: gridSize;
+    const cellX = cellIndex % gridSize;
+    const cellY = Math.floor(cellIndex / gridSize);
     // for each set of uvs for the face
     let di = 0;
+    const uvd = 1 / gridSize;
     let uvData = [];
     while(di < 4){
         const i = faceIndex * 4 + di;
         const x = di % 2;
         const y = 1 - 1 * Math.floor(di / 2);
         // get u and v using cellX and cellY
-        const u = 0.25 * cellX + x * 0.25;
-        const v = 1 - 0.25 * ( cellY + 1 ) + y * 0.25;
+        const u = uvd * cellX + x * uvd;
+        const v = 1 - uvd * ( cellY + 1 ) + y * uvd;
         uvData.push({i:i,u:u,v:v});
         di += 1;
     }
@@ -79,17 +81,21 @@ const getUVData = (uv, faceIndex, cellIndex) => {
 };
 // set uvs with the uvData, and order arrays
 const setUVData = (uv, uvData, order ) => {
-    order = order || [0,1,2,3]; // normal
+    order = order || [0, 1, 2, 3]; // normal
     uvData.forEach((a, di, uvData) => {
-    console.log(di, a)
     const b = uvData[ order[di] ]
         uv.setXY(a.i, b.u, b.v);
     });
 };
 
 const uv = geo.getAttribute('uv');
-const uvData = getUVData(uv, 2, 3);
-setUVData(uv, uvData);
+
+setUVData(uv, getUVData(uv, 0, 0, 4) );
+setUVData(uv, getUVData(uv, 1, 1, 4) );
+setUVData(uv, getUVData(uv, 2, 2, 4), [3, 1, 2, 0] );
+setUVData(uv, getUVData(uv, 3, 3, 4) );
+setUVData(uv, getUVData(uv, 4, 4, 4), [2, 0, 3, 1] );
+setUVData(uv, getUVData(uv, 5, 5, 4) );
 
 //-------- ----------
 //  RENDER
