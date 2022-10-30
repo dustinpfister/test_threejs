@@ -84,6 +84,27 @@ const GlavinPoints = (count, origin, mvul ) => {
     }
     return v3Array;
 };
+const GlavinPoints2 = (count, origin, VULRange ) => {
+    count = count === undefined ? 50 : count;
+    origin = origin === undefined ? new THREE.Vector3() : origin;
+    VULRange = VULRange === undefined ? new THREE.Vector2(0, 1) : VULRange; // max vector unit length
+    const v3Array = [];
+    let i  = 0;
+    while(i < count){
+        // random euler
+        const e = new THREE.Euler();
+        e.x = Math.PI * 2 * THREE.MathUtils.seededRandom();
+        e.y = Math.PI * 2 * THREE.MathUtils.seededRandom();
+        e.z = Math.PI * 2 * THREE.MathUtils.seededRandom();
+        // random unit length
+        const ul = VULRange.x + ( VULRange.y - VULRange.x ) * THREE.MathUtils.seededRandom();
+        // v3 is a random dir and unit length from origin
+        const v = origin.clone().add( new THREE.Vector3( 0, 0, 1).applyEuler(e).multiplyScalar(ul) )
+        v3Array.push(v);
+        i += 1;
+    }
+    return v3Array;
+};
 //-------- ----------
 // CAMERA PATHS
 //-------- ----------
@@ -106,14 +127,20 @@ const v3Array_campos = [
         [10,0,0, 0,0,-7,    6,0,-6,      120]
     ]),
     // seq 5
-    GlavinPoints(800, new THREE.Vector3(0,0,-7), 4)
+    GlavinPoints2(400, new THREE.Vector3(0,0,-7), new THREE.Vector2(6.8, 7))
 ];
 // LINE
 const line_debug = new THREE.Line(
     new THREE.BufferGeometry().setFromPoints(v3Array_campos.flat()),
     new THREE.LineBasicMaterial({})
 );
-scene.add(line_debug);
+//scene.add(line_debug);
+// POINTS
+const points_debug = new THREE.Points(
+    new THREE.BufferGeometry().setFromPoints(v3Array_campos.flat()),
+    new THREE.PointsMaterial({ size: 0.25, color: new THREE.Color(0, 1, 0)})
+);
+scene.add(points_debug);
 //-------- ----------
 //  RENDER
 //-------- ----------
