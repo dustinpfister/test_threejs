@@ -48,6 +48,13 @@ const setUVFace = (uv, faceIndex, cellIndex, order, gridSize) => {
     const uvData = getUVData(uv, faceIndex, cellIndex, gridSize);
     setUVData(uv, uvData, order );
 }
+const toDataTexture = (texture_canvas) => {
+    const canvas = texture_canvas.image;
+    const canvasData = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
+    const texture_data = new THREE.DataTexture(canvasData.data, canvas.width, canvas.height );
+    texture_data.needsUpdate = true;
+    return texture_data;
+};
 //-------- ----------
 //  CANVAS, TEXTURE
 //-------- ----------
@@ -82,7 +89,7 @@ while(y < CELL_COUNT){
     }
     y += 1;
 }
-const texture = new THREE.CanvasTexture(canvas);
+const texture = toDataTexture(new THREE.CanvasTexture(canvas));
 //-------- ----------
 //  CUBE
 //-------- ----------
