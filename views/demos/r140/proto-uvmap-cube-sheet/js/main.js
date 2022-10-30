@@ -57,36 +57,35 @@ scene.add(mesh);
 //  MUTATE UV ATTRIBUTE
 //-------- ----------
 
+const getUVDataArray = (uv, faceIndex, cellIndex) => {
+    faceIndex = faceIndex === undefined ? 0: faceIndex;
+    cellIndex = cellIndex === undefined ? 0: cellIndex;
+    const cellX = cellIndex % 4;
+    const cellY = Math.floor(cellIndex / 4);
+    // for each set of uvs for the face
+    let di = 0;
+    let uvData = [];
+    while(di < 4){
+        const i = faceIndex * 4 + di;
+        const x = di % 2;
+        const y = 1 - 1 * Math.floor(di / 2);
+        // get u and v using cellX and cellY
+        const u = 0.25 * cellX + x * 0.25;
+        const v = 1 - 0.25 * ( cellY + 1 ) + y * 0.25;
+        uvData.push({i:i,u:u,v:v});
+        di += 1;
+    }
+    return uvData;
+};
+
 const uv = geo.getAttribute('uv');
-const faceIndex = 0;
-const cellIndex = 1;
-const cellX = cellIndex % 4;
-const cellY = Math.floor(cellIndex / 4);
-// for each set of uvs for the face
-let di = 0;
-let array = [];
-while(di < 4){
-    const i = faceIndex * 4 + di;
-    const x = di % 2;
-    const y = 1 - 1 * Math.floor(di / 2);
-    // get u and v using cellX and cellY
-    const u = 0.25 * cellX + x * 0.25;
-    const v = 1 - 0.25 * ( cellY + 1 ) + y * 0.25;
-    array.push( {i:i, u:u, v:v} );
-    di += 1;
-}
+const uvData = getUVDataArray(uv, 2, 3);
 
-array.forEach((a, di, array) => {
+// set uvs with the uvData, and order arrays
+const order = [0,1,2,3]; // normal
+uvData.forEach((a, di, uvData) => {
    console.log(di, a)
-   
-   const order = [0,1,2,3]; // normal
-   //const order = [2,0, 3, 1];
-   //const order = [2,3,0,1]; // flip hor
-   //const order = [3,2,1,0];
-   //const order = [3,1,2,0]; //
-
-   
-   const b = array[ order[di] ]
+   const b = uvData[ order[di] ]
     uv.setXY(a.i, b.u, b.v);
 });
 
