@@ -63,20 +63,22 @@ const getHTAlpha = (alpha, sa1, ea1, sa2, ea2) => {
     return 0;
 };
 // Glavin Points are random points used for camera pos
-const GlavinPoints2 = (count, origin, VULRange ) => {
+const GlavinPoints2 = (count, origin, VULR, A1, A2 ) => {
     count = count === undefined ? 50 : count;
     origin = origin === undefined ? new THREE.Vector3() : origin;
-    VULRange = VULRange === undefined ? new THREE.Vector2(0, 1) : VULRange; // max vector unit length
+    VULR = VULR === undefined ? new THREE.Vector2(0, 1) : VULR; // Max and min unit vector length
+    A1 = A1 === undefined ? new THREE.Vector2(45, 90) : A1;
+    A2 = A2 === undefined ? new THREE.Vector2(-45, 45) : A2;
     const v3Array = [];
     let i  = 0;
     while(i < count){
         // random euler
         const e = new THREE.Euler();
-        e.x = Math.PI * 2 * THREE.MathUtils.seededRandom();
-        e.y = Math.PI * 2 * THREE.MathUtils.seededRandom();
-        e.z = Math.PI * 2 * THREE.MathUtils.seededRandom();
+        e.x = Math.PI / 180 * ( A1.x + ( A1.y - A1.x ) * THREE.MathUtils.seededRandom() );
+        e.y = Math.PI / 180 * ( A2.x + ( A2.y - A2.x ) * THREE.MathUtils.seededRandom() );
+        //e.y = Math.PI * 2 * THREE.MathUtils.seededRandom();
         // random unit length
-        const ul = VULRange.x + ( VULRange.y - VULRange.x ) * THREE.MathUtils.seededRandom();
+        const ul = VULR.x + ( VULR.y - VULR.x ) * THREE.MathUtils.seededRandom();
         // v3 is a random dir and unit length from origin
         const v = origin.clone().add( new THREE.Vector3( 0, 0, 1).applyEuler(e).multiplyScalar(ul) )
         v3Array.push(v);
@@ -94,19 +96,19 @@ const v3Array_campos = [
         [0,6,12, 0,5,10,    0,0,0,      30]
     ]),
     // seq 1
-    GlavinPoints2(400, new THREE.Vector3(0,5,10), new THREE.Vector2(1.8, 2)),
+    GlavinPoints2(400, new THREE.Vector3(0,5,10), new THREE.Vector2(0, 2)),
     // seq 2
     QBV3Array([
         [0,5,10, 10,0,0,    6,2,9,      210]
     ]),
     // seq 3
-    GlavinPoints2(800, new THREE.Vector3(10,0,0), new THREE.Vector2(3.8, 4)),
+    GlavinPoints2(800, new THREE.Vector3(10,0,0), new THREE.Vector2(0, 4)),
     // seq 4
     QBV3Array([
         [10,0,0, 0,0,-7,    6,0,-6,      120]
     ]),
     // seq 5
-    GlavinPoints2(1600, new THREE.Vector3(0,0,-7), new THREE.Vector2(7.8, 8))
+    GlavinPoints2(1600, new THREE.Vector3(0,0,-7), new THREE.Vector2(-8, 8))
 ];
 // LINE
 const line_debug = new THREE.Line(
