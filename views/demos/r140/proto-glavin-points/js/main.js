@@ -67,8 +67,8 @@ const GlavinPoints2 = (count, origin, VULR, A1, A2 ) => {
     count = count === undefined ? 50 : count;
     origin = origin === undefined ? new THREE.Vector3() : origin;
     VULR = VULR === undefined ? new THREE.Vector2(0, 1) : VULR; // Max and min unit vector length
-    A1 = A1 === undefined ? new THREE.Vector2(45, 90) : A1;
-    A2 = A2 === undefined ? new THREE.Vector2(-45, 45) : A2;
+    A1 = A1 === undefined ? new THREE.Vector2(0, 360) : A1;
+    A2 = A2 === undefined ? new THREE.Vector2(-90, 90) : A2;
     const v3Array = [];
     let i  = 0;
     while(i < count){
@@ -108,14 +108,19 @@ const v3Array_campos = [
         [10,0,0, 0,0,-7,    6,0,-6,      120]
     ]),
     // seq 5
-    GlavinPoints2(1600, new THREE.Vector3(0,0,-7), new THREE.Vector2(-8, 8))
+    GlavinPoints2(1600, 
+        new THREE.Vector3(0,0,-7), // origin
+        new THREE.Vector2(0, 20),  // vector unit length range
+        new THREE.Vector2(160, 200),
+        new THREE.Vector2(-25, 25)
+    )
 ];
 // LINE
 const line_debug = new THREE.Line(
     new THREE.BufferGeometry().setFromPoints(v3Array_campos.flat()),
-    new THREE.LineBasicMaterial({})
+    new THREE.LineBasicMaterial({ transparent: true, opacity: 0.3})
 );
-//scene.add(line_debug);
+scene.add(line_debug);
 // POINTS
 const points_debug = new THREE.Points(
     new THREE.BufferGeometry().setFromPoints(v3Array_campos.flat()),
