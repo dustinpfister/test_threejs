@@ -58,20 +58,13 @@ scene.add(mesh);
 //-------- ----------
 
 const uv = geo.getAttribute('uv');
-console.log(uv)
-
-// whole image
-//uv.setXY(0, 0, 1);
-//uv.setXY(1, 1, 1);
-//uv.setXY(2, 0, 0);
-//uv.setXY(3, 1, 0);
-
 const faceIndex = 0;
-const cellIndex = 7;
-
+const cellIndex = 1;
 const cellX = cellIndex % 4;
 const cellY = Math.floor(cellIndex / 4);
+// for each set of uvs for the face
 let di = 0;
+let array = [];
 while(di < 4){
     const i = faceIndex * 4 + di;
     const x = di % 2;
@@ -79,16 +72,23 @@ while(di < 4){
     // get u and v using cellX and cellY
     const u = 0.25 * cellX + x * 0.25;
     const v = 1 - 0.25 * ( cellY + 1 ) + y * 0.25;
-    uv.setXY(i, u, v);
+    array.push( {i:i, u:u, v:v} );
     di += 1;
 }
 
+array.forEach((a, di, array) => {
+   console.log(di, a)
+   
+   const order = [0,1,2,3]; // normal
+   //const order = [2,0, 3, 1];
+   //const order = [2,3,0,1]; // flip hor
+   //const order = [3,2,1,0];
+   //const order = [3,1,2,0]; //
 
-// 1
-//uv.setXY(0, 0.25, 1);
-//uv.setXY(1, 0.5, 1);
-//uv.setXY(2, 0.25, 0.75);
-//uv.setXY(3, 0.5, 0.75);
+   
+   const b = array[ order[di] ]
+    uv.setXY(a.i, b.u, b.v);
+});
 
 //-------- ----------
 //  RENDER
