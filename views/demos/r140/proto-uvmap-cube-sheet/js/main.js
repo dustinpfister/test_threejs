@@ -3,11 +3,50 @@
 //-------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
-camera.position.set(2, 2, 2);
+camera.position.set(1.25, 1.25, 1.25);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+//-------- ----------
+//  HELPERS
+//-------- ----------
+// get a uvData array for a given uv face index and cell index
+const getUVData = (uv, faceIndex, cellIndex, gridSize) => {
+    faceIndex = faceIndex === undefined ? 0: faceIndex;
+    cellIndex = cellIndex === undefined ? 0: cellIndex;
+    gridSize = gridSize === undefined ? 4: gridSize;
+    const cellX = cellIndex % gridSize;
+    const cellY = Math.floor(cellIndex / gridSize);
+    // for each set of uvs for the face
+    let di = 0;
+    const uvd = 1 / gridSize;
+    let uvData = [];
+    while(di < 4){
+        const i = faceIndex * 4 + di;
+        const x = di % 2;
+        const y = 1 - 1 * Math.floor(di / 2);
+        // get u and v using cellX and cellY
+        const u = uvd * cellX + x * uvd;
+        const v = 1 - uvd * ( cellY + 1 ) + y * uvd;
+        uvData.push({i:i,u:u,v:v});
+        di += 1;
+    }
+    return uvData;
+};
+// set uvs with the uvData, and order arrays
+const setUVData = (uv, uvData, order ) => {
+    order = order || [0, 1, 2, 3]; // normal
+    uvData.forEach((a, di, uvData) => {
+    const b = uvData[ order[di] ]
+        uv.setXY(a.i, b.u, b.v);
+    });
+};
+// main helper
+const setUVFace = (uv, faceIndex, cellIndex, order, gridSize) => {
+    const uvData = getUVData(uv, faceIndex, cellIndex, gridSize);
+    setUVData(uv, uvData, order );
+}
 //-------- ----------
 //  CANVAS, TEXTURE
 //-------- ----------
@@ -56,47 +95,13 @@ scene.add(mesh);
 //-------- ----------
 //  MUTATE UV ATTRIBUTE
 //-------- ----------
-// get a uvData array for a given uv face index and cell index
-const getUVData = (uv, faceIndex, cellIndex, gridSize) => {
-    faceIndex = faceIndex === undefined ? 0: faceIndex;
-    cellIndex = cellIndex === undefined ? 0: cellIndex;
-    gridSize = gridSize === undefined ? 4: gridSize;
-    const cellX = cellIndex % gridSize;
-    const cellY = Math.floor(cellIndex / gridSize);
-    // for each set of uvs for the face
-    let di = 0;
-    const uvd = 1 / gridSize;
-    let uvData = [];
-    while(di < 4){
-        const i = faceIndex * 4 + di;
-        const x = di % 2;
-        const y = 1 - 1 * Math.floor(di / 2);
-        // get u and v using cellX and cellY
-        const u = uvd * cellX + x * uvd;
-        const v = 1 - uvd * ( cellY + 1 ) + y * uvd;
-        uvData.push({i:i,u:u,v:v});
-        di += 1;
-    }
-    return uvData;
-};
-// set uvs with the uvData, and order arrays
-const setUVData = (uv, uvData, order ) => {
-    order = order || [0, 1, 2, 3]; // normal
-    uvData.forEach((a, di, uvData) => {
-    const b = uvData[ order[di] ]
-        uv.setXY(a.i, b.u, b.v);
-    });
-};
-
 const uv = geo.getAttribute('uv');
-
-setUVData(uv, getUVData(uv, 0, 0, 4) );
-setUVData(uv, getUVData(uv, 1, 1, 4) );
-setUVData(uv, getUVData(uv, 2, 2, 4), [3, 1, 2, 0] );
-setUVData(uv, getUVData(uv, 3, 3, 4) );
-setUVData(uv, getUVData(uv, 4, 4, 4), [2, 0, 3, 1] );
-setUVData(uv, getUVData(uv, 5, 5, 4) );
-
+setUVFace(uv, 0, 0);
+setUVFace(uv, 1, 1);
+setUVFace(uv, 2, 2, [3, 1, 2, 0] );
+setUVFace(uv, 3, 3);
+setUVFace(uv, 4, 4, [2, 0, 3, 1] );
+setUVFace(uv, 5, 5);
 //-------- ----------
 //  RENDER
 //-------- ----------
