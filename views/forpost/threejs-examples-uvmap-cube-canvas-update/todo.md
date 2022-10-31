@@ -1,7 +1,9 @@
 # threejs-examples-uvmap-cube-canvas-update todo list
 
 ## () - r0-2-basic-face
-* () example where I have a drawing of a face, and I create a canvas that is th face going in four directions
+* (done) start example where I have a drawing of a face
+* () I will need a new palGrid draw method
+
 
 ## ( done 10/31/2022 ) - r0-1-basic
 * (done) have a basic example with just some starting textures 
