@@ -31,7 +31,7 @@
 ## () expand basic even more
 * () s1-6-apply-euler
 
-## () s3-x-ani-world-local
+## () s4-x-loop-world-local
 * () this will be an animation in which I have two groups
 * () the two groups will be in motion
 * () the children of both groups will be in motion
@@ -39,17 +39,21 @@
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
 
-## () s4-2-video2
+## () s5-2-video-showcase
 * () new video that showcases more about setting the position of objects
+* () have more than one video file, or make a longer than normal video
 
-## () s4-1-video1
+## () s5-1-video-first
 * () start new section on the source code of video projects for this post
 * () new example based on the source code for video1 in videoground-blog-posts
 
-## () s3-1-curve
-* () start a new section 3 on using curves to set the position of objects
-* () base this first cuve example off of the example from mesh pos threejs-curve-quadratic-bezier-curve3
-* () rename ani section folder
+## ( done 10/31/2022 ) s4-3-loop-curve
+* (done) new loop based on curve example
+
+## ( done 10/31/2022 ) s3-1-curve
+* (done) start a new section 3 on using curves to set the position of objects
+* (done) base this first cuve example off of the example from mesh pos threejs-curve-quadratic-bezier-curve3
+* (done) rename ani section folder
 
 ## ( done 09/29/2022 ) expand basic even more 
 * (done) s1-5-normalize-multiply
