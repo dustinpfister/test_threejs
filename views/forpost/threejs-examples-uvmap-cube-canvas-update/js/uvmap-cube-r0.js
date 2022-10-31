@@ -72,13 +72,19 @@
         mud.drawto = 'front';
         mud.gSize = 20;
         // images array and argumets used to set current index as well as offsets
+        mud.images = opt.images || [ 
+            canvasMod.create({ draw: 'rnd', size: 128, state:{gSize: 8} } ).canvas
+        ];
         mud.imgArgs = {
             i: 0,
-            sx: 0, sy: 0, sw: 128, sh: 128
+            sx: 0, sy: 0, sw: 32, sh: 32
+        };
+        // set ws and sh to full size of image 1 if there.
+        const img0 = mud.images[0];
+        if(img0){
+            mud.imgArgs.sw = img0.width;
+            mud.imgArgs.sh = img0.height;
         }
-        mud.images = opt.textures || [ 
-            canvasMod.create({draw: 'rnd', size: 128, state:{gSize: 8}}).canvas
-        ];
         mud.canObj = canvasMod.create({
             size: opt.canvasSize === undefined ? 256 : opt.canvasSize,
             state: mud,
@@ -93,7 +99,12 @@
                  const py = y * cellSize;
                  // draw current image with current settings
                  const img = mud.images[mud.imgArgs.i];
-                 ctx.drawImage(img, mud.imgArgs.sx, mud.imgArgs.sy, mud.imgArgs.sw, mud.imgArgs.sh, px, py, cellSize, cellSize)
+                 if(img){
+                     ctx.clearRect(px, py, cellSize, cellSize);
+                     ctx.drawImage(img, 
+                         mud.imgArgs.sx, mud.imgArgs.sy, mud.imgArgs.sw, mud.imgArgs.sh, 
+                         px, py, cellSize, cellSize);
+                 }
             }
         });
         // MATERIAL

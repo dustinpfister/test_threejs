@@ -12,8 +12,17 @@
     // ---------- ---------- ----------
     // ADD A MESH
     // ---------- ---------- ----------
-    let mesh = uvMapCube.create(); //new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200), new THREE.MeshNormalMaterial());
+    // create the mesh object
+    let mesh = uvMapCube.create({
+        images: [ 
+            canvasMod.create({ draw: 'rnd', palette: ['lime', 'green'], size: 128, state:{gSize: 16} } ).canvas,
+            canvasMod.create({ draw: 'rnd', palette: ['red', 'blue', 'purple'], size: 128, state:{gSize: 16} } ).canvas
+        ]
+    });
     scene.add(mesh);
+    // I can now use the draw face method
+    uvMapCube.drawFace(mesh, 'front', {i:1, sx: 0, sy: 0, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'back', {i:1, sx: 0, sy: 0, sw: 16, sh: 64});
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
