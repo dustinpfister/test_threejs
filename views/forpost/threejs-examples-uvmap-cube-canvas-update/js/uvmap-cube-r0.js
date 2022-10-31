@@ -56,6 +56,8 @@ const setUVFace = (uv, faceIndex, cellIndex, order, gridSize) => {
 
         // set the uvs once!
         let faceIndex = 0;
+        //const cellNames = ['front', 'back', 'top', 'bottom', 'right', 'left'];
+        const cellNames = { front: 0, back: 1, top: 2, bottom: 3, right: 4, left: 5};
         const cellIndices = [5, 7, 1, 9, 4, 6];
         while( faceIndex < 6){
             setUVFace(uv, faceIndex, cellIndices[faceIndex], [0,1,2,3], 4);
@@ -64,12 +66,33 @@ const setUVFace = (uv, faceIndex, cellIndex, order, gridSize) => {
 
         // CREATE Mesh User Data
         const mud = {};
+        mud.cellNames = cellNames;
+        mud.cellIndices = cellIndices;
+        mud.drawto = 'right'; //['front', 'back', 'top', 'bottom', 'right', 'left']
         mud.gSize = 20;
+
+        
+
         mud.canObj = canvasMod.create({
             size: opt.canvasSize === undefined ? 256 : opt.canvasSize,
             state: mud,
             palette: ['red','white'],
-            draw: 'rnd'
+            draw: function(canObj, ctx, canvas, mud){
+                 // get current ci value
+                 const ci = mud.cellIndices[mud.cellNames[mud.drawto]];
+
+                 const cellSize = canvas.width / 4;
+                 const x = ci % 4;
+                 const y = Math.floor(ci / 4);
+                 const px = x * cellSize;
+                 const py = y * cellSize;
+
+                 //ctx.drawImage(img, px, py, cellSize, cellSize)
+                 ctx.fillStyle = 'red'
+                 ctx.fillRect(px, py, cellSize, cellSize);
+
+
+            }
         });
 
         // MATERIAL
