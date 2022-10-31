@@ -10,52 +10,72 @@
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     //-------- ----------
-    // HELPERS
+    // HELPERS - from 'frink3' project in videoground-beta-world
+    //           ( https://github.com/dustinpfister/videoground-beta-world )
     //-------- ----------
-    const createCurvePath = (data) => {
-        const curvePath = new THREE.CurvePath();
-        data.forEach((a)=>{
-            const v1 = new THREE.Vector3(a[0], a[1], a[2]);       // start
-            const v2 = new THREE.Vector3(a[3], a[4], a[5]);       // end
-            const vControl = new THREE.Vector3(a[6], a[7], a[8]); // control
-            curvePath.add( new THREE.QuadraticBezierCurve3( v1, vControl, v2) );
-        });
-        return curvePath;
+    // just a short hand for THREE.QuadraticBezierCurve3
+    const QBC3 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3){
+        let vs = x1;
+        let ve = y1;
+        let vc = z1;
+        if(arguments.length === 9){
+            vs = new THREE.Vector3(x1, y1, z1);
+            ve = new THREE.Vector3(x2, y2, z2);
+            vc = new THREE.Vector3(x3, y3, z3);
+        }
+        return new THREE.QuadraticBezierCurve3( vs, vc, ve );
+    };
+    // QBDelta helper using QBC3
+    // this works by giving deltas from the point that is half way between
+    // the two start and end points rather than a direct control point for x3, y3, and x3
+    const QBDelta = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
+        const vs = new THREE.Vector3(x1, y1, z1);
+        const ve = new THREE.Vector3(x2, y2, z2);
+        // deltas
+        const vDelta = new THREE.Vector3(x3, y3, z3);
+        const vc = vs.clone().lerp(ve, 0.5).add(vDelta);
+        const curve = QBC3(vs, ve, vc);
+        return curve;
+    };
+    // custom get alpha method
+    const getAlpha = (a1) => {
+        const a2 = THREE.MathUtils.pingpong(a1, 0.5);
+        return THREE.MathUtils.smoothstep(a2 * 2, 0, 1);
     };
     //-------- ----------
-    // CURVE PATH
+    // CURVE
     //-------- ----------
-    const POINT_COUNT = 300; // NUMBER OF POINTS
-    const cp_pos = createCurvePath([
-        [5,0,5, 0,2,-7,5,3,-5], // three each (x,y,z) for start, end, and control points
-        [0,2,-7,0,1.5,0,-2,4,3],
-        [0,1.5,0,3,1,1,5,-1,-4],
-        [3,1,1,-12,0,0,3,7,10]
-    ]);
-    const v3Array = cp_pos.getPoints(POINT_COUNT / cp_pos.curves.length);
+    const curve = QBC3(0, 0, 5, 0, 0, -5, -15, 7, 2.5);
     //-------- ----------
-    // POINTS
+    // OBJECTS
     //-------- ----------
-    scene.add( new THREE.GridHelper(10, 10) );
-    // you can just use getPoints as a way to create an array of vector3 objects
-    // which can be used with the set from points method
-    const geometry = new THREE.BufferGeometry();
-    geometry.setFromPoints(v3Array);
-    const points = new THREE.Points(geometry, new THREE.PointsMaterial({color: 0x00ff00, size: 0.125 }));
-    scene.add(points);
-    //-------- ----------
-    // MESH
-    //-------- ----------
+    // grid helper
+    const grid = new THREE.GridHelper(10, 10);
+    scene.add(grid);
+    // mesh object that will be positioned along the curve
     const mesh = new THREE.Mesh(
         new THREE.BoxGeometry(1,1,1),
         new THREE.MeshNormalMaterial());
     scene.add(mesh);
+    // points
+    const POINT_COUNT = 300;
+    let i = 0, v3Array = [];
+    while(i < POINT_COUNT){
+        const a2 = getAlpha( i / POINT_COUNT);
+        v3Array.push( curve.getPoint( a2 ) );
+        i += 1;
+    }
+    const points = new THREE.Points(
+        new THREE.BufferGeometry().setFromPoints( v3Array ),
+        new THREE.PointsMaterial({size: 0.075})
+    );
+    scene.add(points);
     //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
     const FPS_UPDATE = 20,    // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;        // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = POINT_COUNT;  // MADE THE FRAME MAX THE SAME AS THE POINT COUNT
+    FRAME_MAX = POINT_COUNT;
     let secs = 0,
     frame = 0,
     lt = new Date();
@@ -63,12 +83,11 @@
     const v_start = new THREE.Vector3(0, 0, 1);
     const v_delta = new THREE.Vector3(0, 0, 3);
     const update = function(frame, frameMax){
-        const a = frame / frameMax;
-        const v1 = v3Array[ frame ];
-        mesh.position.copy(v1);
-        // looking at next in path
-        const v2 = v3Array[ ( frame + 1 ) % frameMax ];
-        mesh.lookAt(v2)
+        const a1 = frame / frameMax;
+        const a2 = getAlpha(a1);
+        const v3 = curve.getPoint( a2 );
+        mesh.position.copy( v3 );
+        mesh.lookAt(0, 0, 0);
     };
     // loop
     const loop = () => {
