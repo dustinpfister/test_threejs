@@ -4,7 +4,7 @@
     // ---------- ---------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.1, 1000);
-    camera.position.set(250, 250, 250);
+    camera.position.set(2, 2, 2);
     camera.lookAt(0,0,0);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
@@ -12,7 +12,7 @@
     // ---------- ---------- ----------
     // ADD A MESH
     // ---------- ---------- ----------
-    let mesh = new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200), new THREE.MeshNormalMaterial());
+    let mesh = uvMapCube.create(); //new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200), new THREE.MeshNormalMaterial());
     scene.add(mesh);
     // ---------- ----------
     // ANIMATION LOOP
