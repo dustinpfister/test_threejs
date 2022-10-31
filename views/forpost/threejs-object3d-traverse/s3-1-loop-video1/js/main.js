@@ -1,5 +1,7 @@
 (function () {
+    // ---------- ----------
     // SCENE, CAMERA, RENDERER
+    // ---------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 64 / 48, 0.1, 1000);
     camera.position.set(8, 8, 8);
@@ -8,14 +10,15 @@
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-    
-
+    // ---------- ----------
     // LIGHT
+    // ---------- ----------
     var dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(3, 10, 3);
     scene.add(dl);
-
+    // ---------- ----------
     // ADDING A GROUP OF MESH OBJECTS
+    // ---------- ----------
     var group = new THREE.Group();
     var i = 20;
     while(i--){
@@ -24,16 +27,13 @@
         }) ));
     }
     scene.add( group );
-
+    // ---------- ----------
     // TRAVERSING ALL OBJECTS IN THE SCENE
+    // ---------- ----------
     scene.traverse(function(obj){
-        if(obj.type === 'GridHelper'){
-            obj.material.color = new THREE.Color(0, 1, 0);
-        }
         if(obj.type === 'Mesh'){
             obj.position.x = -5 + Math.floor(10 * THREE.MathUtils.seededRandom());
             obj.position.z = -5 + Math.floor(10 * THREE.MathUtils.seededRandom());
-            obj.rotation.y = Math.PI * 2 * THREE.MathUtils.seededRandom();
         }
         if(obj.type === 'Group'){
             var len = obj.children.length;
@@ -90,7 +90,5 @@
         }
     };
     loop();
-
-
 }
     ());

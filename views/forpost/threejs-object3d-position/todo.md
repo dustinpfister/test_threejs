@@ -31,13 +31,23 @@
 ## () expand basic even more
 * () s1-6-apply-euler
 
-## () s3-3-ani-world-local
+## () s3-x-ani-world-local
 * () this will be an animation in which I have two groups
 * () the two groups will be in motion
 * () the children of both groups will be in motion
 * () I will then have at least one 'free' mesh that is just a child of scene
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
+
+## () s4-2-video2
+* () new video that showcases more about setting the position of objects
+
+## () s4-1-video1
+* () start new section on the source code of video projects for this post
+* () new example based on the source code for video1 in videoground-blog-posts
+
+## () sx-1-curve
+* () start a new section on using curves to set the position of objects
 
 ## ( done 09/29/2022 ) expand basic even more 
 * (done) s1-5-normalize-multiply
