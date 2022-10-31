@@ -43,6 +43,12 @@
     //-------- ----------
     // PUBLIC API
     //-------- ----------
+    api.drawFace = ( mesh, drawto, imgArgs ) => {
+        const mud = mesh.userData;
+        mud.drawto = drawto;
+        mud.imgArgs = imgArgs;
+        canvasMod.update(mud.canObj);
+    };
     // create and return a cube
     api.create = (opt) => {
         opt = opt || {};
@@ -65,13 +71,12 @@
         mud.cellIndices = cellIndices;
         mud.drawto = 'front';
         mud.gSize = 20;
-
-        // images
+        // images array and argumets used to set current index as well as offsets
         mud.imgArgs = {
-            index: 0,
-            sx: 0, sy: 0, sw: 64, sh: 64
+            i: 0,
+            sx: 0, sy: 0, sw: 128, sh: 128
         }
-        mud.images = opt.textures || [ canvasMod.create({draw: 'rnd', size: 64, state:{gSize: 8}}).canvas ];
+        mud.images = opt.textures || [ canvasMod.create({draw: 'rnd', size: 128, state:{gSize: 8}}).canvas ];
         mud.canObj = canvasMod.create({
             size: opt.canvasSize === undefined ? 256 : opt.canvasSize,
             state: mud,
@@ -85,7 +90,7 @@
                  const px = x * cellSize;
                  const py = y * cellSize;
                  // draw current image with current settings
-                 const img = mud.images[mud.imgArgs.index];
+                 const img = mud.images[mud.imgArgs.i];
                  ctx.drawImage(img, mud.imgArgs.sx, mud.imgArgs.sy, mud.imgArgs.sw, mud.imgArgs.sh, px, py, cellSize, cellSize)
             }
         });
@@ -97,6 +102,14 @@
         // MESH OBJECT
         const mesh = new THREE.Mesh(geo, material);
         mesh.userData = mud;
+
+        api.drawFace(mesh, 'front', mud.imgArgs);
+        api.drawFace(mesh, 'back', mud.imgArgs);
+        api.drawFace(mesh, 'top', mud.imgArgs);
+        api.drawFace(mesh, 'bottom', mud.imgArgs);
+        api.drawFace(mesh, 'left', mud.imgArgs);
+        api.drawFace(mesh, 'right', mud.imgArgs);
+
         // return a mesh object
         return mesh;
     };
