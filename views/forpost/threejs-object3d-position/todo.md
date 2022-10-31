@@ -46,8 +46,10 @@
 * () start new section on the source code of video projects for this post
 * () new example based on the source code for video1 in videoground-blog-posts
 
-## () sx-1-curve
-* () start a new section on using curves to set the position of objects
+## () s3-1-curve
+* () start a new section 3 on using curves to set the position of objects
+* () base this first cuve example off of the example from mesh pos threejs-curve-quadratic-bezier-curve3
+* () rename ani section folder
 
 ## ( done 09/29/2022 ) expand basic even more 
 * (done) s1-5-normalize-multiply
