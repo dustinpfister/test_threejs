@@ -17,6 +17,7 @@
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
     const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
     FRAME_MAX = 120;

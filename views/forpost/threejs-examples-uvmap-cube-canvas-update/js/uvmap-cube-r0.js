@@ -40,14 +40,6 @@ const setUVFace = (uv, faceIndex, cellIndex, order, gridSize) => {
     const uvData = getUVData(uv, faceIndex, cellIndex, gridSize);
     setUVData(uv, uvData, order );
 }
-const toDataTexture = (texture_canvas) => {
-    const canvas = texture_canvas.image;
-    const canvasData = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
-    const texture_data = new THREE.DataTexture(canvasData.data, canvas.width, canvas.height );
-    texture_data.needsUpdate = true;
-    return texture_data;
-};
-
 
     //-------- ----------
     // PUBLIC API
@@ -57,7 +49,20 @@ const toDataTexture = (texture_canvas) => {
         opt = opt || {};
         const cs = opt.cubeSize = opt.cubeSize === undefined ? 1 : opt.cubeSize;
 
+        // CREATE BOX GEO
+        const geo = new THREE.BoxGeometry(cs, cs, cs);
 
+        const uv = geo.getAttribute('uv');
+
+        // set the uvs once!
+        let faceIndex = 0;
+        const cellIndices = [5, 7, 1, 9, 4, 6];
+        while( faceIndex < 6){
+            setUVFace(uv, faceIndex, cellIndices[faceIndex], [0,1,2,3], 4);
+            faceIndex += 1;
+        }
+
+        // CREATE Mesh User Data
         const mud = {};
         mud.gSize = 20;
         mud.canObj = canvasMod.create({
@@ -66,13 +71,16 @@ const toDataTexture = (texture_canvas) => {
             palette: ['red','white'],
             draw: 'rnd'
         });
-        // create geo
-        const geo = new THREE.BoxGeometry(1, 1, 1);
+
+        // MATERIAL
         const material = new THREE.MeshPhongMaterial({
             emissive: new THREE.Color(1, 1, 1),
             emissiveMap: mud.canObj.texture_data
         });
+
+        // MESH OBJECT
         const mesh = new THREE.Mesh(geo, material);
+        mesh.userData = mud;
 
         // return a mesh object
         return mesh;
