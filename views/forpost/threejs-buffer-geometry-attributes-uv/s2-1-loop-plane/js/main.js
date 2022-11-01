@@ -40,8 +40,6 @@
                 map: texture
             }));
     scene.add(mesh);
-
-
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
