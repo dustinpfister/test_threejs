@@ -13,7 +13,7 @@
         manager.onError = function ( url ) {
             onError(url);
         };
-        return manager
+        return manager;
     };
     //-------- ----------
     // TEXTURE LOADER
@@ -22,7 +22,7 @@
         opt = opt || {};
         opt.URLS_BASE = opt.URLS_BASE || '';
         opt.URLS = opt.URLS || [];
-        opt.onDone = opt
+        opt.onDone = opt;
         const textureObj = {};
         return new Promise(function(resolve, reject){
             const manager = createLoadingManager(
@@ -46,5 +46,5 @@
                 });
             });
         });
-    }
+    };
 }( this['listLoader'] = {} ));
