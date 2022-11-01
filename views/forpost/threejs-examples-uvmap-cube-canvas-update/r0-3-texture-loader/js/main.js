@@ -10,7 +10,7 @@
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     //-------- ----------
-    // URLS TEXTURE OBJECT
+    // URLS, TEXTURE OBJECT
     //-------- ----------
     const URLS = [
         '/img/smile-face/smile_face_256.png',
@@ -18,7 +18,6 @@
         '/img/smile-face/smile_face_32.png'
     ];
     const textureObj = {};
-
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -47,59 +46,50 @@
             lt = now;
         }
     };
-
-//-------- ----------
-// MANAGER
-//-------- ----------
-const manager = new THREE.LoadingManager();
-// starting
-manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
-    console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-};
-// done
-manager.onLoad = function ( ) {
-    console.log( 'Loading complete!');
- 
-
-    // ---------- ---------- ----------
-    // CREATE AND UPDATE MESH
-    // ---------- ---------- ----------
-    // create the mesh object
-    let mesh = uvMapCube.create({
-        images: [
-            textureObj['smile_face_256'].image
-        ]
+    //-------- ----------
+    // MANAGER
+    //-------- ----------
+    const manager = new THREE.LoadingManager();
+    // starting
+    manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+        console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+    };
+    // done
+    manager.onLoad = function ( ) {
+        console.log( 'Loading complete!');
+        // ---------- ---------- ----------
+        // CREATE AND UPDATE MESH
+        // ---------- ---------- ----------
+        // create the mesh object
+        let mesh = uvMapCube.create({
+            images: [
+                textureObj['smile_face_256'].image
+            ]
+        });
+        scene.add(mesh);
+        //uvMapCube.drawFace(mesh, 'front', {i:0, sx: 0, sy: 0, sw: 32, sh: 32});
+        // ---------- ---------- ----------
+        // START THE LOOP
+        // ---------- ---------- ----------
+        loop()
+    };
+    // progress
+    manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+        console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+    };
+    // ERROR
+    manager.onError = function ( url ) {
+        console.log( 'There was an error loading ' + url );
+    };
+    //-------- ----------
+    // TEXTURE LOADER
+    //-------- ----------
+    const loader = new THREE.TextureLoader(manager);
+    URLS.forEach((url) => {
+        loader.load(url, (texture) => {
+            const file_name = url.split('/').pop().split('.')[0];
+            // keying the textureObj by using file name as the key
+            textureObj[file_name] = texture;
+        });
     });
-    scene.add(mesh);
-
-    // START THE LOOP
-    loop()
-
-};
-// progress
-manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
-    console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-};
-// ERROR
-manager.onError = function ( url ) {
-    console.log( 'There was an error loading ' + url );
-};
-//-------- ----------
-// TEXTURE LOADER
-//-------- ----------
-const loader = new THREE.TextureLoader(manager);
-URLS.forEach((url) => {
-    loader.load(url, (texture) => {
-        const file_name = url.split('/').pop().split('.')[0];
-        // keying the textureObj by using file name as the key
-        textureObj[file_name] = texture;
-    });
-});
-
-
-    // I can now use the draw face method
-    //uvMapCube.drawFace(mesh, 'front', {i:0, sx: 0, sy: 0, sw: 32, sh: 32});
-
-
-
 }());
