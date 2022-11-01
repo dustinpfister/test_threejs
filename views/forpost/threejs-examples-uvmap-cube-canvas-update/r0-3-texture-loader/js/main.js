@@ -12,8 +12,9 @@
     //-------- ----------
     // URLS, TEXTURE OBJECT
     //-------- ----------
+    const URLS_BASE = '/img/smile-face/';
     const URLS = [
-        '/img/smile-face/smile_sheet_128.png'
+        'smile_sheet_128.png'
     ];
     const textureObj = {};
     // ---------- ----------
@@ -68,14 +69,10 @@
         scene.add(mesh);
         uvMapCube.drawFace(mesh, 'front', {i:0, sx: 0, sy: 0, sw: 32, sh: 32});
         uvMapCube.drawFace(mesh, 'back', {i:0, sx: 64, sy: 0, sw: 32, sh: 32});
-
         uvMapCube.drawFace(mesh, 'top', {i:0, sx: 0, sy: 32, sw: 32, sh: 32});
         uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 32, sw: 32, sh: 32});
-
         uvMapCube.drawFace(mesh, 'left', {i:0, sx: 32, sy: 0, sw: 32, sh: 32});
         uvMapCube.drawFace(mesh, 'right', {i:0, sx: 96, sy: 0, sw: 32, sh: 32});
-
-
         // ---------- ---------- ----------
         // START THE LOOP
         // ---------- ---------- ----------
@@ -94,7 +91,11 @@
     //-------- ----------
     const loader = new THREE.TextureLoader(manager);
     URLS.forEach((url) => {
+        // set base utl path
+        loader.setPath(URLS_BASE);
+        // load files from base
         loader.load(url, (texture) => {
+            // get file name from url
             const file_name = url.split('/').pop().split('.')[0];
             // keying the textureObj by using file name as the key
             textureObj[file_name] = texture;
