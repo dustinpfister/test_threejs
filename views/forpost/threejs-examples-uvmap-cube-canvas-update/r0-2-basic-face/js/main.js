@@ -27,7 +27,6 @@
             const x = i % w;
             const y = Math.floor(i / w);
             ctx.fillStyle = canObj.palette[ci];
-
             const px = x * pxW;
             const py = y * pxH;
             ctx.fillRect(px, py, pxW, pxH);
@@ -93,6 +92,7 @@
     // ---------- ---------- ----------
     // create the mesh object
     let mesh = uvMapCube.create({
+        pxa: 0.4,
         images: [
             createGridCanvas(data_smile).canvas
 

@@ -70,10 +70,10 @@
         mud.cellNames = cellNames;
         mud.cellIndices = cellIndices;
         mud.drawto = 'front';
-        mud.gSize = 20;
+        mud.pxa = opt.pxa === undefined ? 0.4 : opt.pxa;
         // images array and argumets used to set current index as well as offsets
         mud.images = opt.images || [ 
-            canvasMod.create({ draw: 'rnd', size: 128, state:{gSize: 8} } ).canvas
+            canvasMod.create({ draw: 'rnd', size: 128, state:{ gSize: 16} } ).canvas
         ];
         mud.imgArgs = {
             i: 0,
@@ -93,17 +93,18 @@
                  // get current ci value
                  const ci = mud.cellIndices[mud.cellNames[mud.drawto]];
                  const cellSize = canvas.width / 4;
+                 const pxa = mud.pxa;
                  const x = ci % 4;
                  const y = Math.floor(ci / 4);
-                 const px = x * cellSize - 0.4;
-                 const py = y * cellSize - 0.4;
+                 const px = x * cellSize - pxa;
+                 const py = y * cellSize - pxa;
                  // draw current image with current settings
                  const img = mud.images[mud.imgArgs.i];
                  if(img){
                      ctx.clearRect(px, py, cellSize, cellSize);
                      ctx.drawImage(img, 
                          mud.imgArgs.sx, mud.imgArgs.sy, mud.imgArgs.sw, mud.imgArgs.sh, 
-                         px, py, cellSize + 0.8, cellSize + 0.8);
+                         px, py, cellSize + pxa * 2, cellSize + pxa * 2);
                  }
             }
         });
