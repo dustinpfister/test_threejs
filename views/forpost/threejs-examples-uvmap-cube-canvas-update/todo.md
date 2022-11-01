@@ -1,5 +1,8 @@
 # threejs-examples-uvmap-cube-canvas-update todo list
 
+## () - r1 - draw cell helper
+* () build draw cell helper into module
+
 ## ( done 11/01/2022 ) - r0-2-basic-face
 * (done) start example where I have a drawing of a face
 * (done) I will need a new draw grid method
