@@ -1,9 +1,8 @@
 # threejs-examples-uvmap-cube-canvas-update todo list
 
-## () - r0-2-basic-face
+## ( done 11/01/2022 ) - r0-2-basic-face
 * (done) start example where I have a drawing of a face
-* () I will need a new palGrid draw method
-
+* (done) I will need a new draw grid method
 
 ## ( done 10/31/2022 ) - r0-1-basic
 * (done) have a basic example with just some starting textures 
