@@ -95,15 +95,15 @@
                  const cellSize = canvas.width / 4;
                  const x = ci % 4;
                  const y = Math.floor(ci / 4);
-                 const px = x * cellSize;
-                 const py = y * cellSize;
+                 const px = x * cellSize - 0.4;
+                 const py = y * cellSize - 0.4;
                  // draw current image with current settings
                  const img = mud.images[mud.imgArgs.i];
                  if(img){
                      ctx.clearRect(px, py, cellSize, cellSize);
                      ctx.drawImage(img, 
                          mud.imgArgs.sx, mud.imgArgs.sy, mud.imgArgs.sw, mud.imgArgs.sh, 
-                         px, py, cellSize, cellSize);
+                         px, py, cellSize + 0.8, cellSize + 0.8);
                  }
             }
         });
