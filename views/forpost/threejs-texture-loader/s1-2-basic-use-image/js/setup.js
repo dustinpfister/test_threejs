@@ -9,7 +9,26 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
-// LOAD TEXTURE, ADD MESH, RENDER
+// CANVAS TEXTURE
+//-------- ----------
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = 64;
+canvas.height = 64;
+const texture_canvas = new THREE.CanvasTexture(canvas);
+//-------- ----------
+// MESH THAT IS USING A CANVAS TEXTURE
+//-------- ----------
+// using the texture for a material and a Mesh
+const box = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({
+        map: texture_canvas
+    }));
+// add the box mesh to the scene
+scene.add(box);
+//-------- ----------
+// LOAD TEXTURE, DRAW TO CANVAS TEXTURE WITH IMAGE SOURCE
 //-------- ----------
 const loader = new THREE.TextureLoader();
 loader.load(
@@ -17,14 +36,17 @@ loader.load(
     '/img/smile-face/smile_face_256.png',
     // the second argument is an on done call back
     function (texture) {
-        // using the texture for a material and a Mesh
-        const box = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
-                map: texture
-            }));
-        // add the box mesh to the scene
-        scene.add(box);
+        // ref to canvas and image of texture
+        const canvas = texture_canvas.image;
+        const ctx = canvas.getContext('2d');
+        const img = texture.image;
+        // I can now draw to the canvas with the static image asset
+        ctx.drawImage(img, 128, 0, 128, 128, 0, 0, 32, 32);
+        ctx.drawImage(img, 0, 0, 128, 128, 32, 0, 32, 32);
+        ctx.drawImage(img, 128, 128, 128, 128, 32, 32, 32, 32);
+        ctx.drawImage(img, 0, 128, 128, 128, 0, 32, 32, 32);
+        // render
+        texture_canvas.needsUpdate = true;
         renderer.render(scene, camera);
     }
 );
