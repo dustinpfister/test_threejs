@@ -13,9 +13,7 @@
     // URLS, TEXTURE OBJECT
     //-------- ----------
     const URLS = [
-        '/img/smile-face/smile_face_256.png',
-        '/img/smile-face/smile_face_128.png',
-        '/img/smile-face/smile_face_32.png'
+        '/img/smile-face/smile_sheet_128.png'
     ];
     const textureObj = {};
     // ---------- ----------
@@ -62,12 +60,22 @@
         // ---------- ---------- ----------
         // create the mesh object
         let mesh = uvMapCube.create({
+            pxa: 1.42,
             images: [
-                textureObj['smile_face_256'].image
+                textureObj['smile_sheet_128'].image
             ]
         });
         scene.add(mesh);
-        //uvMapCube.drawFace(mesh, 'front', {i:0, sx: 0, sy: 0, sw: 32, sh: 32});
+        uvMapCube.drawFace(mesh, 'front', {i:0, sx: 0, sy: 0, sw: 32, sh: 32});
+        uvMapCube.drawFace(mesh, 'back', {i:0, sx: 64, sy: 0, sw: 32, sh: 32});
+
+        uvMapCube.drawFace(mesh, 'top', {i:0, sx: 0, sy: 32, sw: 32, sh: 32});
+        uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 32, sw: 32, sh: 32});
+
+        uvMapCube.drawFace(mesh, 'left', {i:0, sx: 32, sy: 0, sw: 32, sh: 32});
+        uvMapCube.drawFace(mesh, 'right', {i:0, sx: 96, sy: 0, sw: 32, sh: 32});
+
+
         // ---------- ---------- ----------
         // START THE LOOP
         // ---------- ---------- ----------
