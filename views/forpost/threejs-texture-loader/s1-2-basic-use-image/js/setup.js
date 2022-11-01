@@ -14,7 +14,7 @@ renderer.setSize(640, 480, false);
 const loader = new THREE.TextureLoader();
 loader.load(
     // the first argument is the relative or absolute path of the file
-    '/img/smile-face/smile_face.png',
+    '/img/smile-face/smile_face_256.png',
     // the second argument is an on done call back
     function (texture) {
         // using the texture for a material and a Mesh

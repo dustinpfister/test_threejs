@@ -39,8 +39,8 @@ const createTextureCube = function (texture) {
 // LOADING
 //-------- ----------
 const urlArray = [
-    '/img/smile-face/smile_face_128_128.png',
-    '/img/smile-face/smile_face_32_32.png'
+    '/img/smile-face/smile_face_128.png',
+    '/img/smile-face/smile_face_32.png'
 ];
 loadTextureCollection(urlArray)
 // then if all images load
