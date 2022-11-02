@@ -3,11 +3,11 @@
     // SCENE, CAMERA, and RENDERER
     // ---------- ---------- ----------
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
+    const camera = new THREE.PerspectiveCamera(50, 32 / 24, 1, 1000);
     camera.position.set(250, 250, 250);
     camera.lookAt(0,0,0);
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
+    renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     // ---------- ---------- ----------
     // ADD A MESH
