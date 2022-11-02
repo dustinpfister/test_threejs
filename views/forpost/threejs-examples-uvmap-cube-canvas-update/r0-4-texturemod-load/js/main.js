@@ -10,8 +10,11 @@
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     // ---------- ----------
-    // ANIMATION LOOP
+    // APP LOOP
     // ---------- ----------
+    const state = {
+        mesh: null
+    };
     const controls = new THREE.OrbitControls(camera, renderer.domElement);
     const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
@@ -21,6 +24,9 @@
     lt = new Date();
     // update
     const update = function(frame, frameMax){
+        // animate face
+        drawCell(state.mesh, 'front', 0, Math.floor(Math.random() * 4), 0);
+
     };
     // loop
     const loop = () => {
@@ -58,14 +64,14 @@
         // CREATE AND UPDATE MESH
         // ---------- ---------- ----------
         // create the mesh object
-        let mesh = uvMapCube.create({
+        const mesh = state.mesh = uvMapCube.create({
             pxa: 1.42,
             images: [
                 textureObj['smile_sheet_128'].image
             ]
         });
         scene.add(mesh);
-        drawCell(mesh, 'front');
+        drawCell(mesh, 'front', 0, 0, 0);
         drawCell(mesh, 'back', 0, 2, 0);
         drawCell(mesh, 'top', 0, 0, 1);
         drawCell(mesh, 'bottom', 0, 1, 1);
