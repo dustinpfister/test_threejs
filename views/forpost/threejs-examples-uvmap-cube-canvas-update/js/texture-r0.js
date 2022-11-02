@@ -1,4 +1,4 @@
-// list-loader.js - r0 - from threejs-examples-uvmap-cube-canvas-update
+// texture.js - r0 - from threejs-texture-loader
 (function (api) {
     //-------- ----------
     // MANAGER
@@ -6,13 +6,9 @@
     const createLoadingManager = (onDone, onError) => {
         const manager = new THREE.LoadingManager();
         // done
-        manager.onLoad = function ( ) {
-            onDone();
-        };
+        manager.onLoad = function ( ) { onDone(); };
         // ERROR
-        manager.onError = function ( url ) {
-            onError(url);
-        };
+        manager.onError = function ( url ) { onError(url); };
         return manager;
     };
     //-------- ----------
@@ -35,7 +31,7 @@
             );
             const loader = new THREE.TextureLoader(manager);
             opt.URLS.forEach((url) => {
-                // set base utl path
+                // set base url path
                 loader.setPath(opt.URLS_BASE);
                 // load files from base
                 loader.load(url, (texture) => {
@@ -47,4 +43,4 @@
             });
         });
     };
-}( this['listLoader'] = {} ));
+}( this['textureMod'] = {} ));

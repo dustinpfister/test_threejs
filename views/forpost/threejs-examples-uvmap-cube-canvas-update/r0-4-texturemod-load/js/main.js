@@ -48,7 +48,7 @@
     // ---------- ---------- ----------
     // USING LIST LOADER r0
     // ---------- ---------- ----------
-    listLoader.load({
+    textureMod.load({
         URLS_BASE: '/img/smile-face/',
         URLS: ['smile_sheet_128.png']
     })
