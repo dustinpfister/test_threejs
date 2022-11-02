@@ -90,6 +90,13 @@
         drawCell(mesh, 'left', 0, 1, 0);
         drawCell(mesh, 'right', 0, 3, 0);
         // ---------- ---------- ----------
+        // CREATE MESH
+        // ---------- ---------- ----------
+        const mesh2 = new THREE.Mesh(mesh.geometry, mesh.material);
+        mesh2.position.set(-2, 0, -2);
+        scene.add(mesh2);
+
+        // ---------- ---------- ----------
         // START THE LOOP
         // ---------- ---------- ----------
         loop()

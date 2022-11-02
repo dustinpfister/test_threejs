@@ -5,7 +5,8 @@
 
 ## () - r0-4-texturemod-load
 * (done) start a an exmaple that makes use of r0 of my texture.js module
-* () use more that one sheet in the example
+* (done) use more that one sheet in the example
+* () see about making more than one mesh object
 
 ## ( done 11/01/2022 ) - r0-2-basic-face
 * (done) start example where I have a drawing of a face
