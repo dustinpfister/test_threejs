@@ -1,9 +1,9 @@
 # threejs-buffer-geometry-attributes-uv
 
-## () s1-2-basic-triangle
-* () basic example that involves a custom buffer geometry of a triangle
-* () use compute vertex normals to create normals attribute
-* () create uv attribute
+## ( done 11/02/2022 ) s1-2-basic-triangle
+* (done) basic example that involves a custom buffer geometry of a triangle
+* (done) use compute vertex normals to create normals attribute
+* (done) create uv attribute
 
 ## ( done 11/01/2022 ) - update examples
 * (done) update examples to new code style
