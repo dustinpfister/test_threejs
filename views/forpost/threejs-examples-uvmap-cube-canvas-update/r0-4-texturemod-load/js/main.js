@@ -25,8 +25,7 @@
     // update
     const update = function(frame, frameMax){
         // animate face
-        drawCell(state.mesh, 'front', 0, Math.floor(Math.random() * 4), 0);
-
+        //drawCell(state.mesh, 'front', 0, Math.floor(Math.random() * 4), 0);
     };
     // loop
     const loop = () => {
