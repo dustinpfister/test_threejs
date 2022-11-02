@@ -10,6 +10,12 @@
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     // ---------- ----------
+    // LIGHT
+    // ---------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(1, 2, 3);
+    scene.add(dl)
+    // ---------- ----------
     // APP LOOP
     // ---------- ----------
     const state = {
