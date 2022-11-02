@@ -3,6 +3,10 @@
 ## () - r1 - draw cell helper
 * () build draw cell helper into module
 
+## () - r0-4-texturemod-load
+* (done) start a an exmaple that makes use of r0 of my texture.js module
+* () use more that one sheet in the example
+
 ## ( done 11/01/2022 ) - r0-2-basic-face
 * (done) start example where I have a drawing of a face
 * (done) I will need a new draw grid method
