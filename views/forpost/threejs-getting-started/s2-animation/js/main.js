@@ -27,7 +27,6 @@
     const update = function(frame, frameMax){
         const degree = 360 * (frame / frameMax);
         mesh.rotation.x = THREE.MathUtils.degToRad(degree);
- 
     };
     // loop
     const loop = () => {
