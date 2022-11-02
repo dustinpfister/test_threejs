@@ -26,9 +26,9 @@
     //-------- ----------
     // GEOMETRY - Custom Triangle
     //-------- ----------
-    // position
-    var geometry = new THREE.BufferGeometry();
-    var vertices1 = new Float32Array([
+    // position attribuite
+    const geometry = new THREE.BufferGeometry();
+    const vertices1 = new Float32Array([
                 0, -0.5, -0.75,
                 0, 0.5, 0.25,
                 0, -0.5, 0.25
@@ -37,7 +37,7 @@
     // normals
     geometry.computeVertexNormals();
     // uv attribute
-    var vertices2 = new Float32Array([
+    const vertices2 = new Float32Array([
                 0.2, 0.2,
                 0.9, 0.9,
                 0.2, 0.9
@@ -52,7 +52,6 @@
                 map: texture
             }));
     scene.add(mesh);
-    mesh.position.set(0, 0, 0)
     //-------- ----------
     // RENDER
     //-------- ----------
