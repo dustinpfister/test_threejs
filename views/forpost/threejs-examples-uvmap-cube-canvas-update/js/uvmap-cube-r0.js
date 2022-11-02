@@ -110,6 +110,8 @@
         });
         // MATERIAL
         const material = new THREE.MeshPhongMaterial({
+            color: new THREE.Color(1, 1, 1),
+            map: mud.canObj.texture_data,
             emissive: new THREE.Color(1, 1, 1),
             emissiveMap: mud.canObj.texture_data
         });

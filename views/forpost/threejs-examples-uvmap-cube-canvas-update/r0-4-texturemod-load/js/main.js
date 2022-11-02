@@ -4,7 +4,7 @@
     // ---------- ---------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(1.25, 1.25, 1.25);
+    camera.position.set(2, 1.25, 0);
     camera.lookAt(0,0,0);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
@@ -24,8 +24,13 @@
     lt = new Date();
     // update
     const update = function(frame, frameMax){
+        const alpha = frame / frameMax;
+        const bias = 1 - Math.abs(0.5 - alpha) / 0.5;
         // animate face
-        //drawCell(state.mesh, 'front', 0, Math.floor(Math.random() * 4), 0);
+        const cx = Math.floor(3.99 * bias);
+        drawCell(state.mesh, 'front', 1, cx, 0);
+        const d = -45 + 90 * bias;;
+        state.mesh.rotation.y = Math.PI / 180 * d;
     };
     // loop
     const loop = () => {
@@ -55,7 +60,7 @@
     // ---------- ---------- ----------
     textureMod.load({
         URLS_BASE: '/img/smile-face/',
-        URLS: ['smile_sheet_128.png']
+        URLS: ['smile_sheet_128.png', 'smile_creepy_128.png']
     })
     // then if all goes well
     .then( (textureObj) => {
@@ -66,11 +71,13 @@
         const mesh = state.mesh = uvMapCube.create({
             pxa: 1.42,
             images: [
-                textureObj['smile_sheet_128'].image
+                textureObj['smile_sheet_128'].image,
+                textureObj['smile_creepy_128'].image
             ]
         });
+        mesh.material.emissiveIntensity = 0.15;
         scene.add(mesh);
-        drawCell(mesh, 'front', 0, 0, 0);
+        drawCell(mesh, 'front', 1, 3, 0);
         drawCell(mesh, 'back', 0, 2, 0);
         drawCell(mesh, 'top', 0, 0, 1);
         drawCell(mesh, 'bottom', 0, 1, 1);
