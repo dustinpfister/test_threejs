@@ -26,6 +26,7 @@
     //-------- ----------
     // GEOMETRY - Custom Triangle
     //-------- ----------
+    // position
     var geometry = new THREE.BufferGeometry();
     var vertices1 = new Float32Array([
                 0, -0.5, -0.75,
@@ -33,15 +34,15 @@
                 0, -0.5, 0.25
             ]);
     geometry.setAttribute('position', new THREE.BufferAttribute(vertices1, 3));
-
-
+    // normals
+    geometry.computeVertexNormals();
+    // uv attribute
     var vertices2 = new Float32Array([
                 0.2, 0.2,
                 0.9, 0.9,
                 0.2, 0.9
             ]);
     geometry.setAttribute('uv', new THREE.BufferAttribute(vertices2, 2));
-
     //-------- ----------
     // MESH
     //-------- ----------
