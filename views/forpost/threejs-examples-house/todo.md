@@ -1,7 +1,9 @@
 # threejs-examples-house
 
-## () - r1-1-demo
+## ( done 11/03/2022 ) - r1-1-demo
 * (done) I will want a canvas texture
+* (done) custom set of materials
+* (done) use double side only with roof
 
 ### ( done 11/03/2022 ) - r1 of the module
 * (done) fix issue with the uvs when it comes to that custom triangle

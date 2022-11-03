@@ -31,7 +31,7 @@ ctx = canvas.getContext('2d');
 canvas.width = size;
 canvas.height = size;
 let i = 0;
-const w = 10;
+const w = 20;
 const len = w * w;
 const pxSize = size / w;
 while(i < len){
@@ -46,26 +46,26 @@ while(i < len){
     i += 1;
 }
 const texture = new THREE.CanvasTexture(canvas);
-// ground
+//-------- ----------
+// MATERIALS
+//-------- ----------
 const materials = {
     base: new THREE.MeshStandardMaterial({
         color: 0x0000ff,
-        map: texture,
-        //side: THREE.DoubleSide
+        map: texture
     }),
     tri: new THREE.MeshStandardMaterial({
         color: 0x0000ff,
-        map: texture,
-        //side: THREE.DoubleSide
+        map: texture
     }),
     roof: new THREE.MeshStandardMaterial({
        color: 0x202020,
-       //side: THREE.DoubleSide
+        map: texture,
+       side: THREE.DoubleSide
     }),
     ground: new THREE.MeshStandardMaterial({
         color: 0x00ff00,
-        map: texture,
-        //side: THREE.DoubleSide
+        map: texture
     })
 };
 //-------- ----------
@@ -76,7 +76,7 @@ const house = HouseMod.create(materials);
 house.position.set(-2, 1.05, 0);
 scene.add(house);
 // add a plane
-const plane = new THREE.Mesh(new THREE.PlaneGeometry(12, 12, 1, 1), materials.ground);
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(15, 15, 1, 1), materials.ground);
 plane.rotation.set(-Math.PI / 2, 0, 0);
 plane.castShadow = false; //default is false
 plane.receiveShadow = true; //default
