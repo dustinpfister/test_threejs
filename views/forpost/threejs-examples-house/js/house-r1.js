@@ -41,33 +41,30 @@
     HouseMod.create = function(materials){
         materials = materials || materials_default;
         // mian house group
-        var house = new THREE.Group();
+        const house = new THREE.Group();
         // base of house is just a BOX
-        var base = new THREE.Mesh(new THREE.BoxGeometry(3, 2, 4), materials.base);
+        const base = new THREE.Mesh(new THREE.BoxGeometry(3, 2, 4), materials.base);
         house.add(base);
-
         // house triangle parts
-        var tri1 = HouseTriangle(materials);
+        const tri1 = HouseTriangle(materials);
         tri1.position.set(-0.5, 1 , 2);
         house.add(tri1);
-        var tri2 = HouseTriangle(materials);
+        const tri2 = HouseTriangle(materials);
         tri2.position.set(-0.5, 1 , -2);
         house.add(tri2);
-
         // roof
-        var roof1 = new THREE.Mesh(
+        const roof1 = new THREE.Mesh(
             new THREE.PlaneGeometry(2.84, 4.5), 
             materials.roof);
         roof1.position.set(-1, 1.51, 0);
         roof1.rotation.set(Math.PI * 0.5, Math.PI * 0.25, 0);
         house.add(roof1);
-        var roof2 = new THREE.Mesh(
+        const roof2 = new THREE.Mesh(
             new THREE.PlaneGeometry(2.84, 4.5), 
             materials.roof);
         roof2.position.set(1, 1.51, 0);
         roof2.rotation.set(Math.PI * 0.5, Math.PI * -0.25, 0);
         house.add(roof2);
-
         // house should cast a shadow
         house.castShadow = true;
         house.receiveShadow = false;
