@@ -20,7 +20,7 @@ dl.shadow.camera.near = 0.5;
 dl.shadow.camera.far = 15;
 // add AmbientLight
 const light = new THREE.AmbientLight(0xffffff);
-light.intensity = 0.1;
+light.intensity = 0.4;
 scene.add(light);
 //-------- ----------
 // CANVAS ELEMENT, TEXTURE
@@ -31,35 +31,52 @@ ctx = canvas.getContext('2d');
 canvas.width = size;
 canvas.height = size;
 let i = 0;
-const len = 5 * 5;
+const w = 10;
+const len = w * w;
+const pxSize = size / w;
 while(i < len){
-    const x = i % size;
-    const y = Math.floor( i / size );
-    const px = x * size;
-    const py = y * size;
-
-    //const c = new THEEE.Color(1, 0.25 + 0.75 * Math.random(),1);
-    //ctx.fillStyle = c.getStyle();
-    //ctx.fillRect(px, py, size, size);
-
+    const x = i % w;
+    const y = Math.floor( i / w );
+    const px = x * pxSize;
+    const py = y * pxSize;
+    const v = 0.25 + 0.75 * Math.random();
+    const c = new THREE.Color(v, v, v);
+    ctx.fillStyle = c.getStyle();
+    ctx.fillRect(px, py, pxSize, pxSize);
     i += 1;
 }
-//const texture = new THREE.CanvasTexture(canvas);
+const texture = new THREE.CanvasTexture(canvas);
+// ground
+const materials = {
+    base: new THREE.MeshStandardMaterial({
+        color: 0x0000ff,
+        map: texture,
+        side: THREE.DoubleSide
+    }),
+    tri: new THREE.MeshStandardMaterial({
+        color: 0x0000ff,
+        map: texture,
+        side: THREE.DoubleSide
+    }),
+    roof: new THREE.MeshStandardMaterial({
+       color: 0x202020,
+       side: THREE.DoubleSide
+    }),
+    ground: new THREE.MeshStandardMaterial({
+        color: 0x00ff00,
+        map: texture,
+        side: THREE.DoubleSide
+    })
+};
 //-------- ----------
 // ADD THE HOUSE, AND OTHER OBJECTS
 //-------- ----------
 // add the house
-const house = HouseMod.create();
+const house = HouseMod.create(materials);
 house.position.set(-2, 1.05, 0);
 scene.add(house);
-// ground
-const materials = {
-    ground: new THREE.MeshStandardMaterial({
-        color: 0x00ff00,
-        side: THREE.DoubleSide
-    })
-};
-const plane = new THREE.Mesh(new THREE.PlaneGeometry(12, 12, 8), materials.ground);
+// add a plane
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(12, 12, 1, 1), materials.ground);
 plane.rotation.set(-Math.PI / 2, 0, 0);
 plane.castShadow = false; //default is false
 plane.receiveShadow = true; //default
