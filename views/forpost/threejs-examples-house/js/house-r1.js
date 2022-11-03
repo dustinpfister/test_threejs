@@ -47,7 +47,8 @@
         house.add(base);
         // house triangle parts
         const tri1 = HouseTriangle(materials);
-        tri1.position.set(-0.5, 1 , 2);
+        tri1.geometry.rotateY(Math.PI);
+        tri1.position.set(0.5, 1 , 2);
         house.add(tri1);
         const tri2 = HouseTriangle(materials);
         tri2.position.set(-0.5, 1 , -2);
@@ -56,12 +57,14 @@
         const roof1 = new THREE.Mesh(
             new THREE.PlaneGeometry(2.84, 4.5), 
             materials.roof);
+        roof1.geometry.rotateY(Math.PI);
         roof1.position.set(-1, 1.51, 0);
         roof1.rotation.set(Math.PI * 0.5, Math.PI * 0.25, 0);
         house.add(roof1);
         const roof2 = new THREE.Mesh(
             new THREE.PlaneGeometry(2.84, 4.5), 
             materials.roof);
+        roof2.geometry.rotateY(Math.PI);
         roof2.position.set(1, 1.51, 0);
         roof2.rotation.set(Math.PI * 0.5, Math.PI * -0.25, 0);
         house.add(roof2);

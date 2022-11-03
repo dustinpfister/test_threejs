@@ -51,21 +51,21 @@ const materials = {
     base: new THREE.MeshStandardMaterial({
         color: 0x0000ff,
         map: texture,
-        side: THREE.DoubleSide
+        //side: THREE.DoubleSide
     }),
     tri: new THREE.MeshStandardMaterial({
         color: 0x0000ff,
         map: texture,
-        side: THREE.DoubleSide
+        //side: THREE.DoubleSide
     }),
     roof: new THREE.MeshStandardMaterial({
        color: 0x202020,
-       side: THREE.DoubleSide
+       //side: THREE.DoubleSide
     }),
     ground: new THREE.MeshStandardMaterial({
         color: 0x00ff00,
         map: texture,
-        side: THREE.DoubleSide
+        //side: THREE.DoubleSide
     })
 };
 //-------- ----------
