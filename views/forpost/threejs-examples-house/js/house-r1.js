@@ -1,3 +1,4 @@
+// house.js - r1 - from threejs-examples-house
 (function (HouseMod) {
     // default materials
     const materials_default = {
