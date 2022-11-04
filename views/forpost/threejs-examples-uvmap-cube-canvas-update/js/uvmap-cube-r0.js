@@ -88,6 +88,7 @@
         mud.canObj = canvasMod.create({
             size: opt.canvasSize === undefined ? 256 : opt.canvasSize,
             state: mud,
+            update_mode: 'canvas',
             palette: ['red','white'],
             draw: function(canObj, ctx, canvas, mud){
                  // get current ci value
@@ -111,9 +112,9 @@
         // MATERIAL
         const material = new THREE.MeshPhongMaterial({
             color: new THREE.Color(1, 1, 1),
-            map: mud.canObj.texture_data,
+            map: mud.canObj.texture,
             emissive: new THREE.Color(1, 1, 1),
-            emissiveMap: mud.canObj.texture_data
+            emissiveMap: mud.canObj.texture
         });
         // MESH OBJECT
         const mesh = new THREE.Mesh(geo, material);

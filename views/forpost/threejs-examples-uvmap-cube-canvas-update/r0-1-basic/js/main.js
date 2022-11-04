@@ -15,8 +15,8 @@
     // create the mesh object
     let mesh = uvMapCube.create({
         images: [ 
-            canvasMod.create({ draw: 'rnd', palette: ['lime', 'green'], size: 128, state:{gSize: 16} } ).canvas,
-            canvasMod.create({ draw: 'rnd', palette: ['red', 'blue', 'purple'], size: 128, state:{gSize: 16} } ).canvas
+            canvasMod.create({ draw: 'rnd', update_mode: 'canvas', palette: ['lime', 'green'], size: 128, state:{gSize: 16} } ).canvas,
+            canvasMod.create({ draw: 'rnd', update_mode: 'canvas', palette: ['red', 'blue', 'purple'], size: 128, state:{gSize: 16} } ).canvas
         ]
     });
     scene.add(mesh);
