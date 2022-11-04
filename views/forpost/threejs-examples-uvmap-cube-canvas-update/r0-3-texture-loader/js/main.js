@@ -1,14 +1,16 @@
 (function () {
-    // ---------- ---------- ----------
+    // ---------- ----------
     // SCENE, CAMERA, and RENDERER
-    // ---------- ---------- ----------
+    // ---------- ----------
     const scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(10, 10 ));
+    scene.background = new THREE.Color(0.5, 0.5, 0.5);
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
     camera.position.set(1.25, 1.25, 1.25);
-    camera.lookAt(0,0,0);
-    const renderer = new THREE.WebGLRenderer();
+    camera.lookAt(0, 0, 0);
+    const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
-    ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+    ( document.getElementById('demo') || document.body ).appendChild( renderer.domElement );
     //-------- ----------
     // URLS, TEXTURE OBJECT
     //-------- ----------
@@ -18,9 +20,14 @@
     ];
     const textureObj = {};
     // ---------- ----------
+    // ORBIT CONTROLS
+    // ---------- ----------
+    if(THREE.OrbitControls){
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    }
+    // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
     const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
     FRAME_MAX = 120;

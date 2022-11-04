@@ -106,9 +106,14 @@
     uvMapCube.drawFace(mesh, 'top', {i:0, sx: 0, sy: 64, sw: 32, sh: 32});
     uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 64, sw: 32, sh: 32});
     // ---------- ----------
+    // ORBIT CONTROLS
+    // ---------- ----------
+    if(THREE.OrbitControls){
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    }
+    // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
     const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
     FRAME_MAX = 120;
@@ -116,8 +121,7 @@
     frame = 0,
     lt = new Date();
     // update
-    const update = function(frame, frameMax){
-    };
+    const update = function(frame, frameMax){};
     // loop
     const loop = () => {
         const now = new Date(),
