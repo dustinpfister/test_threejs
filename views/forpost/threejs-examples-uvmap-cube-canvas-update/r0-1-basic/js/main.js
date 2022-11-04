@@ -1,22 +1,36 @@
 (function () {
-    // ---------- ---------- ----------
+    // ---------- ----------
     // SCENE, CAMERA, and RENDERER
-    // ---------- ---------- ----------
+    // ---------- ----------
     const scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(10, 10 ));
+    scene.background = new THREE.Color(0.5, 0.5, 0.5);
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
     camera.position.set(1.25, 1.25, 1.25);
-    camera.lookAt(0,0,0);
-    const renderer = new THREE.WebGLRenderer();
+    camera.lookAt(0, 0, 0);
+    const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
-    ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-    // ---------- ---------- ----------
+    ( document.getElementById('demo') || document.body ).appendChild( renderer.domElement );
+    // ---------- ----------
+    // HELPERS
+    // ---------- ----------
+    const mkCanvasOpt = (palette) => {
+        const canOpt = {
+            draw: 'rnd', 
+            update_mode: 'canvas', 
+            palette: palette || ['white', 'black'], 
+            size: 128, 
+            state:{ gSize: 16 } };
+        return canOpt;
+    };
+    // ---------- ----------
     // CREATE AND UPDATE MESH
-    // ---------- ---------- ----------
+    // ---------- ----------
     // create the mesh object
-    let mesh = uvMapCube.create({
+    const mesh = uvMapCube.create({
         images: [ 
-            canvasMod.create({ draw: 'rnd', update_mode: 'canvas', palette: ['lime', 'green'], size: 128, state:{gSize: 16} } ).canvas,
-            canvasMod.create({ draw: 'rnd', update_mode: 'canvas', palette: ['red', 'blue', 'purple'], size: 128, state:{gSize: 16} } ).canvas
+            canvasMod.create( mkCanvasOpt() ).canvas,
+            canvasMod.create( mkCanvasOpt(['red', 'blue', 'purple']) ).canvas
         ]
     });
     scene.add(mesh);
