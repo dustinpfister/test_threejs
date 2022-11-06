@@ -28,14 +28,14 @@
     // ---------- ----------
     const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 60;
+    FRAME_MAX = 800;
     let secs = 0,
     frame = 0,
     lt = new Date();
     // update
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
-        const a2 = sampleAlpha.getByAlpha(state.result, 'glavin', a1);
+        const a2 = sampleAlpha.getByAlpha(state.result, 'bv_006_bass', a1);
         const s = 0.65 + 0.35 * a2;
         box.scale.set(s, s, s);
         box.rotation.y = -0.25 + 0.15 * a2;
@@ -60,10 +60,17 @@
     // ---------- ----------
     sampleAlpha.load({
         URLS_BASE: '/demos/r146/get-audio-alphas/sample-data/',
-        URLS: ['glavin.html']
+        URLS: [
+           'glavin.html',
+           'bv_006_bass.html',
+           'bv_006_drums.html' ]
     })
     .then((result) => {
         state.result = result;
+console.log(state.result);
+
+console.log( sampleAlpha.getByAlpha(state.result, 'bv_006_bass', 1) );
+
         loop();
     });
 }());

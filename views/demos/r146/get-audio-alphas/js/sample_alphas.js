@@ -78,7 +78,7 @@
     // for the given result object and sample key
     api.getByAlpha = (result, key, alpha) => {
         const sampleObj = result[key];
-        const rawNum = sampleObj.raw[ Math.floor( sampleObj.raw.length * alpha) ];
+        const rawNum = sampleObj.raw[ Math.round( ( sampleObj.raw.length - 1) * alpha) ];
         return ( rawNum + 1 ) / ( sampleObj.maxN + 1 );
     };
 }( this['sampleAlpha'] = {} ));
