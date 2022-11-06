@@ -68,9 +68,6 @@
                         minN: Math.min.apply(null, raw),
                         raw: raw
                     };
-
-console.log(files)
-
                 });
             });
         });
@@ -84,5 +81,13 @@ console.log(files)
         const sampleObj = result[key];
         const rawNum = sampleObj.raw[ Math.round( ( sampleObj.raw.length - 1) * alpha) ];
         return ( rawNum + 1 ) / ( sampleObj.maxN + 1 );
+        //return rawNum / sampleObj.maxN;
+
+        //const r = sampleObj.maxN - sampleObj.minN;
+
+//console.log(r);
+
+        //return ( rawNum ) / r;
+
     };
 }( this['sampleAlpha'] = {} ));
