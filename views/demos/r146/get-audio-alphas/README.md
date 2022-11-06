@@ -8,8 +8,9 @@ So in other words this is a music visualization tool for threejs projects.
 
 * (done) start a javaScript module that will load one or more html files that contain sample data
 * (done) the loader will parse the html into a result object that will contain a key for every sample
+* (done) have the demo make use of at least two sets of sample data
 
-* () have the demo make use of at least two sets of sample data
+* () looks like I might want to also use the min Number in the process of getting an alpha value
 
 ## Using DOM PARSER
 
