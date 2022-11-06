@@ -13,7 +13,7 @@
     // STATE
     // ---------- ----------
     const state = {
-        glavin: { alphas: [], maxN: 0 }
+       result: null
     };
     // ---------- ----------
     // OBJECTS
@@ -35,12 +35,10 @@
     // update
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
-
-        const sampleAlpha = state.glavin.alphas[ Math.floor( state.glavin.alphas.length * a1) ] / state.glavin.maxN;
-
-        const s = 0.65 + 0.35 * sampleAlpha;
+        const a2 = sampleAlpha.get(state.result, 'glavin', a1);
+        const s = 0.65 + 0.35 * a2;
         box.scale.set(s, s, s);
-        box.rotation.y = -0.25 + 0.15 * sampleAlpha;
+        box.rotation.y = -0.25 + 0.15 * a2;
     };
     // loop
     const loop = () => {
@@ -64,12 +62,8 @@
         URLS_BASE: '/demos/r146/get-audio-alphas/sample-data/',
         URLS: ['glavin.html']
     })
-    .then((result)=>{
-        console.log(result);
-
-          state.glavin = result.glavin;
-          //state.m = result.glavin.maxN; //Math.max.apply(null, state.sample_alphas);
-
+    .then((result) => {
+        state.result = result;
         loop();
     });
 }());

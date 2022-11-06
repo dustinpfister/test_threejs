@@ -60,19 +60,23 @@
                 loader.setPath(opt.URLS_BASE);
                 // load files from base
                 loader.load(url, (html) => {
-                    const alphas = getRawNumbers(html);
+                    const raw = getRawNumbers(html);
                     const key = opt.keyer(url, html);
+                    // create sample OBJ for the key
                     files[key] = {
-                        maxN: Math.max.apply(null, alphas),
-                        alphas: alphas
+                        maxN: Math.max.apply(null, raw),
+                        raw: raw
                     }
                 });
             });
         });
     };
     //-------- ----------
-    // MAIN LOAD PUBLIC METHOD
+    // get method
     //-------- ----------
-
+    api.get = (result, key, alpha) => {
+        const sampleObj = result[key];
+        return sampleObj.raw[ Math.floor( sampleObj.raw.length * alpha) ] / sampleObj.maxN;
+    };
 
 }( this['sampleAlpha'] = {} ));
