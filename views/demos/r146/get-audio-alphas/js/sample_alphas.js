@@ -18,10 +18,11 @@
         opt = opt || {};
         opt.URLS_BASE = opt.URLS_BASE || '';
         opt.URLS = opt.URLS || [];
-
-
-const files = [];
-
+        opt.keyer = opt.keyer || function(url, html){
+            const file_name = url.split('/').pop().split('.')[0];
+            return file_name;
+        };
+        const files = {};
         // return a promise
         return new Promise(function(resolve, reject){
             const manager = createLoadingManager(
@@ -38,9 +39,8 @@ const files = [];
                 loader.setPath(opt.URLS_BASE);
                 // load files from base
                 loader.load(url, (html) => {
-
-files.push(html)
-
+                    const key = opt.keyer(url, html);
+                    files[key] = html;
                 });
             });
         });
