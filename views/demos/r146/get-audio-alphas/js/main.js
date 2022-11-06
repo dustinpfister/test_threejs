@@ -10,6 +10,13 @@
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
     // ---------- ----------
+    // STATE
+    // ---------- ----------
+    const state = {
+        sample_alphas: [],
+        m : 0
+    };
+    // ---------- ----------
     // OBJECTS
     // ---------- ----------
     scene.add( new THREE.GridHelper( 10,10 ) );
@@ -28,11 +35,11 @@
     lt = new Date();
     // update
     const update = function(frame, frameMax){
-        //const a1 = frame / frameMax;
-        //const sampleAlpha = sample_alphas[ Math.floor( sample_alphas.length * a1) ] / m;
-        //const s = 0.65 + 0.35 * sampleAlpha;
-        //box.scale.set(s, s, s);
-        //box.rotation.y = -0.25 + 0.15 * sampleAlpha;
+        const a1 = frame / frameMax;
+        const sampleAlpha = state.sample_alphas[ Math.floor( state.sample_alphas.length * a1) ] / state.m;
+        const s = 0.65 + 0.35 * sampleAlpha;
+        box.scale.set(s, s, s);
+        box.rotation.y = -0.25 + 0.15 * sampleAlpha;
     };
     // loop
     const loop = () => {
@@ -58,7 +65,10 @@
     })
     .then((result)=>{
         console.log(result);
-    })
 
+          state.sample_alphas = result.glavin;
+          state.m = Math.max.apply(null, state.sample_alphas);
 
+        loop();
+    });
 }());
