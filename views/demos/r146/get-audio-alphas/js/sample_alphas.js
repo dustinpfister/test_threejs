@@ -65,8 +65,12 @@
                     // create sample OBJ for the key
                     files[key] = {
                         maxN: Math.max.apply(null, raw),
+                        minN: Math.min.apply(null, raw),
                         raw: raw
-                    }
+                    };
+
+console.log(files)
+
                 });
             });
         });

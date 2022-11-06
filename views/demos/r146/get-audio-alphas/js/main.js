@@ -39,7 +39,7 @@
         const a3 = sampleAlpha.getByAlpha(state.result, 'bv_006_drums', a1);
         const s = 0.6 + 0.75 * a2;
         box.scale.set(s, s, s);
-        box.rotation.y = THREE.MathUtils.degToRad(45) * (a3 - 0.6);
+        box.rotation.y = THREE.MathUtils.degToRad(45) * (a3);
     };
     // loop
     const loop = () => {
