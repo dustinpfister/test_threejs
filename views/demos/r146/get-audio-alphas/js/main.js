@@ -35,7 +35,7 @@
     // update
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
-        const a2 = sampleAlpha.get(state.result, 'glavin', a1);
+        const a2 = sampleAlpha.getByAlpha(state.result, 'glavin', a1);
         const s = 0.65 + 0.35 * a2;
         box.scale.set(s, s, s);
         box.rotation.y = -0.25 + 0.15 * a2;
