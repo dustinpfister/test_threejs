@@ -13,8 +13,7 @@
     // STATE
     // ---------- ----------
     const state = {
-        sample_alphas: [],
-        m : 0
+        glavin: { alphas: [], maxN: 0 }
     };
     // ---------- ----------
     // OBJECTS
@@ -36,7 +35,9 @@
     // update
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
-        const sampleAlpha = state.sample_alphas[ Math.floor( state.sample_alphas.length * a1) ] / state.m;
+
+        const sampleAlpha = state.glavin.alphas[ Math.floor( state.glavin.alphas.length * a1) ] / state.glavin.maxN;
+
         const s = 0.65 + 0.35 * sampleAlpha;
         box.scale.set(s, s, s);
         box.rotation.y = -0.25 + 0.15 * sampleAlpha;
@@ -66,8 +67,8 @@
     .then((result)=>{
         console.log(result);
 
-          state.sample_alphas = result.glavin.alphas;
-          state.m = result.glavin.maxN; //Math.max.apply(null, state.sample_alphas);
+          state.glavin = result.glavin;
+          //state.m = result.glavin.maxN; //Math.max.apply(null, state.sample_alphas);
 
         loop();
     });
