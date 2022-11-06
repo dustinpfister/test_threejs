@@ -18,7 +18,7 @@
         opt = opt || {};
         opt.URLS_BASE = opt.URLS_BASE || '';
         opt.URLS = opt.URLS || [];
-        opt.keyer = opt.keyer || function(url, html){
+        opt.keyer = opt.keyer || function(url, html, doc){
             const file_name = url.split('/').pop().split('.')[0];
             return file_name;
         };
@@ -39,7 +39,11 @@
                 loader.setPath(opt.URLS_BASE);
                 // load files from base
                 loader.load(url, (html) => {
-                    const key = opt.keyer(url, html);
+
+const parser = new DOMParser();
+const doc = parser.parseFromString(html, "text/html");
+console.log(doc);
+                    const key = opt.keyer(url, html, doc);
                     files[key] = html;
                 });
             });

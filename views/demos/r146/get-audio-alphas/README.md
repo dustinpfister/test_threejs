@@ -8,3 +8,9 @@ So in other words this is a music visualization tool for threejs projects.
 
 * () start a javaScript module that will load one or more html files that contain sample data
 * () the loader will parse the html into an array of number values
+
+## Using DOM PARSER
+
+```
+https://developer.mozilla.org/en-US/docs/Web/API/DOMParser/parseFromString
+```
