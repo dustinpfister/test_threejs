@@ -74,10 +74,11 @@
     //-------- ----------
     // get method
     //-------- ----------
+    // return a sample alpha value ( 0 - 1 ) for a given alpha value ( 0 - 1 )
+    // for the given result object and sample key
     api.getByAlpha = (result, key, alpha) => {
         const sampleObj = result[key];
         const rawNum = sampleObj.raw[ Math.floor( sampleObj.raw.length * alpha) ];
         return ( rawNum + 1 ) / ( sampleObj.maxN + 1 );
     };
-
 }( this['sampleAlpha'] = {} ));
