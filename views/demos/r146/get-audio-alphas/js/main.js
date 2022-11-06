@@ -4,7 +4,7 @@
     // ---------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(2, 2, 2);
+    camera.position.set(2, 3, 4);
     camera.lookAt(0, 0, 0);
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
@@ -36,9 +36,10 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         const a2 = sampleAlpha.getByAlpha(state.result, 'bv_006_bass', a1);
-        const s = 0.65 + 0.35 * a2;
+        const a3 = sampleAlpha.getByAlpha(state.result, 'bv_006_drums', a1);
+        const s = 0.6 + 0.75 * a2;
         box.scale.set(s, s, s);
-        box.rotation.y = -0.25 + 0.15 * a2;
+        box.rotation.y = THREE.MathUtils.degToRad(45) * (a3 - 0.6);
     };
     // loop
     const loop = () => {
@@ -67,10 +68,6 @@
     })
     .then((result) => {
         state.result = result;
-console.log(state.result);
-
-console.log( sampleAlpha.getByAlpha(state.result, 'bv_006_bass', 1) );
-
         loop();
     });
 }());
