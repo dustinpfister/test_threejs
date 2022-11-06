@@ -6,8 +6,10 @@ So in other words this is a music visualization tool for threejs projects.
 
 ## Goals with this prototype
 
-* () start a javaScript module that will load one or more html files that contain sample data
-* () the loader will parse the html into an array of number values
+* (done) start a javaScript module that will load one or more html files that contain sample data
+* (done) the loader will parse the html into a result object that will contain a key for every sample
+
+* () have the demo make use of at least two sets of sample data
 
 ## Using DOM PARSER
 
