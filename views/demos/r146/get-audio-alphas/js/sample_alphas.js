@@ -16,8 +16,7 @@
         let i = 1;
         while(i < len){
             let a1 = parseFloat(nodes[i].children[2].textContent);
-            let a2 = (1 + a1) / 2
-            alphas.push(a2);
+            alphas.push(a1);
             i += 1;
         }
         return alphas;
@@ -61,14 +60,19 @@
                 loader.setPath(opt.URLS_BASE);
                 // load files from base
                 loader.load(url, (html) => {
-
-const alphas = getRawNumbers(html);
-
+                    const alphas = getRawNumbers(html);
                     const key = opt.keyer(url, html);
-                    files[key] = alphas;
+                    files[key] = {
+                        maxN: Math.max.apply(null, alphas),
+                        alphas: alphas
+                    }
                 });
             });
         });
     };
+    //-------- ----------
+    // MAIN LOAD PUBLIC METHOD
+    //-------- ----------
+
 
 }( this['sampleAlpha'] = {} ));

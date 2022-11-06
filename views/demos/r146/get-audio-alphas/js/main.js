@@ -66,8 +66,8 @@
     .then((result)=>{
         console.log(result);
 
-          state.sample_alphas = result.glavin;
-          state.m = Math.max.apply(null, state.sample_alphas);
+          state.sample_alphas = result.glavin.alphas;
+          state.m = result.glavin.maxN; //Math.max.apply(null, state.sample_alphas);
 
         loop();
     });
