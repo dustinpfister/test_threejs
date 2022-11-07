@@ -41,7 +41,7 @@
     // ---------- ----------
     // OBJECTS
     // ---------- ----------
-    scene.add( new THREE.GridHelper( 10,10 ) );
+    scene.add( new THREE.GridHelper( 20, 20 ) );
     const box1 = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
@@ -59,7 +59,9 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         const a2 = state.sum_array[ Math.round( ( state.sum_array.length - 1 ) * a1) ] / state.sum_max;
-        box1.position.set(-10 + 20 * a2,0,0);
+
+        const a3 = 0.25 * a1 + 0.75 * a2;
+        box1.position.set(-10 + 20 * a3,0,0);
         camera.lookAt(box1.position);
     };
     // loop
