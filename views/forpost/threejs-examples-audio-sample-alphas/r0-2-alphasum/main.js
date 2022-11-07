@@ -6,9 +6,32 @@
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
     camera.position.set(6, 6, 12);
     camera.lookAt(0, -1, 0);
+    camera.zoom = 2;
+    camera.updateProjectionMatrix();
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+    // ---------- ----------
+    // HELPERS
+    // ---------- ----------
+    // get sum array helper
+    const getSumArray = (result, key) => {
+        const sampleObj = result[key];
+        const alphas = sampleObj.abs;
+        const sum_up = [];
+        let i = 0;
+        const len = alphas.length;
+        while(i < len){
+            const a1 = alphas[i] / sampleObj.maxABS;
+            let a2 = 0;
+            if(i > 0){
+               a2 = sum_up[ i - 1];
+            }
+            sum_up.push(a1 + a2);
+            i += 1;
+        }
+        return sum_up;
+    };
     // ---------- ----------
     // STATE
     // ---------- ----------
@@ -35,9 +58,9 @@
     // update
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
-        const a2 = sampleAlpha.getByAlpha(state.result, 'bv_006_bass', a1);
-        const a3 = sampleAlpha.getByAlpha(state.result, 'bv_006_drums', a1);
-        const s = 0.25 + 1.75 * a2;
+        const a2 = state.sum_array[ Math.round( ( state.sum_array.length - 1 ) * a1) ] / state.sum_max;
+        box1.position.set(-10 + 20 * a2,0,0);
+        camera.lookAt(box1.position);
     };
     // loop
     const loop = () => {
@@ -66,22 +89,12 @@
     })
     .then((result) => {
         state.result = result;
+        state.sum_array = getSumArray(result, 'bv_006_drums');
+        state.sum_max = state.sum_array[ state.sum_array.length - 1];
+console.log( state );
 
-const alphas = sampleAlpha.getArray( result, 'bv_006_drums', 800);
-const sum_up = [];
-let i = 0;
-const len = alphas.length;
-while(i < len){
-    const a1 = alphas[i];
-    let a2 = 0;
-    if(i > 0){
-       a2 = sum_up[ i - 1];
-    }
-    sum_up.push(a1 + a2);
-    i += 1;
-}
-        console.log(alphas)
-        console.log( sum_up );
+        //console.log(alphas)
+        //console.log( sum_up );
         loop();
     });
 }());
