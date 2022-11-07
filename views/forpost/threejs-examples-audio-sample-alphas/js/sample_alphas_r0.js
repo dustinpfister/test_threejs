@@ -1,4 +1,4 @@
-// sample_alphas.js - r0 - protoype 
+// sample_alphas.js - r0 - from threejs-examples-audio-sample-alphas
 (function(api){
     //-------- ----------
     // HELPERS
@@ -87,6 +87,8 @@
         const absNum = sampleObj.abs[ Math.round( ( sampleObj.abs.length - 1) * alpha) ];
         return absNum / sampleObj.maxABS;
     };
+    // get an array of alpha values for the given result object and key. The count value
+    // will then be the number of elements in the array
     api.getArray = (result, key, count) => {
         count = count === undefined ? 10 : count;
         let i = 0;
