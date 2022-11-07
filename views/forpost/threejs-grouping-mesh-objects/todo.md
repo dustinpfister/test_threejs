@@ -1,5 +1,7 @@
 # threejs-threejs-grouping-mesh-objects todo list
 
+## () s1-7-basic-applyeuler
+
 ## () s1-6-basic-userdata
 
 ## () s1-5-basic-traverse
@@ -12,8 +14,9 @@
 
 ## () rename s1-1-basic, new s1-1-basic-add
 * () rename s1-1-basic to s1-2-basic-circle
+* () new simple basic add method
 
-## ( done 11/07/2022 ) - first state of for post folder
+## ( done 04/07/2022 ) - first state of for post folder
 * (done) just start a forpost folder that reflects the current state of the post
 * (done) s2 folder on basic example in post
 * (done) s3 folder on rotation of geometry in mesh
