@@ -12,8 +12,11 @@
   <li>revision used : r<%= r %></li>
 </ul>
 
+<!-- Only adding three.min.js for revisions below r146, I now add this, or modules on a demo by demo basis -->
+<% if(r < 146){ %>
+  <script src="/js/threejs/0.<%= r %>.0/three.min.js" ></script>
+<% } %>
 
-<script src="/js/threejs/0.<%= r %>.0/three.min.js" ></script>
 <%- include(demoIndex,this) %>
 
 <br>
