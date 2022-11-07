@@ -7,27 +7,28 @@
         const parser = new DOMParser();
         return parser.parseFromString(html, "text/html");
     };
-    // get the raw numbers from the html string
-    const getRawNumbers = (html) => {
+    // create a sample object for the given html string
+    const createSampleObj = (html) => {
+        const sampleObj = {
+            raw: [],
+            abs: [],
+            maxABS: 0, maxRaw: 0, minRaw: 0
+        };
         const doc = htmlStringToDOM(html);
         const nodes = doc.querySelectorAll('tr');
         const len = nodes.length;
-        const alphas = [];
         let i = 1;
         while(i < len){
             let a1 = parseFloat(nodes[i].children[2].textContent);
-            alphas.push(a1);
+            sampleObj.raw.push(a1);
+            sampleObj.abs.push( Math.abs(a1) );
             i += 1;
         }
-        return alphas;
+        sampleObj.maxRaw = Math.max.apply(null, sampleObj.raw);
+        sampleObj.minRaw = Math.min.apply(null, sampleObj.raw);
+        sampleObj.maxABS = Math.max.apply(null, sampleObj.abs);
+        return sampleObj;
     };
-	// get ABS Numbers from raw numbers
-    const getABSNumbers = (html) => {
-		const raw = getRawNumbers(html);
-		return raw.map((n)=>{
-			return Math.abs(n);
-		});
-	}
     //-------- ----------
     // MANAGER
     //-------- ----------
@@ -67,18 +68,9 @@
                 loader.setPath(opt.URLS_BASE);
                 // load files from base
                 loader.load(url, (html) => {
-                    const raw = getRawNumbers(html);
-					const abs = getABSNumbers(html);
+                    // KEY IN THE SAMPLE OBJECT
                     const key = opt.keyer(url, html);
-                    // create sample OBJ for the key
-                    files[key] = {
-                        maxRaw: Math.max.apply(null, raw),
-                        minRaw: Math.min.apply(null, raw),
-                        raw: raw,
-						maxABS: Math.max.apply(null, abs),
-						//minABS: Math.min.apply(null, abs),
-						abs: abs
-                    };
+                    files[key] = createSampleObj(html);
                 });
             });
         });
@@ -91,42 +83,6 @@
     api.getByAlpha = (result, key, alpha) => {
         const sampleObj = result[key];
         const absNum = sampleObj.abs[ Math.round( ( sampleObj.abs.length - 1) * alpha) ];
-		
-		return absNum / sampleObj.maxABS;
-		
-		/*
-        const rawNum = sampleObj.raw[ Math.round( ( sampleObj.raw.length - 1) * alpha) ];
-		
-		const absNum = sampleObj.abs[ Math.round( ( sampleObj.abs.length - 1) * alpha) ];
-		
-		
-		const m = Math.max.apply(null, [sampleObj.maxRaw, Math.abs(sampleObj.minRaw)]);
-		
-		console.log(alpha.toFixed(2), absNum / sampleObj.maxABS )
-		
-		
-		return Math.abs( rawNum ) / m;
-		*/
-		
-        //return ( rawNum + 1 ) / ( sampleObj.maxN + 1 );
-        //return rawNum / sampleObj.maxN;
-//        const r = sampleObj.maxN - sampleObj.minN;
-        //return ( rawNum ) / r;
-// looks like r is good
-//console.log(r);
-//console.log( new THREE.Vector2(sampleObj.minN, 0).distanceTo( new THREE.Vector2(sampleObj.maxN, 0) ) );
-/*
-const v1 = new THREE.Vector2(sampleObj.minN, 0);
-const v2 = new THREE.Vector2(rawNum, 0);
-const d = v2.distanceTo(v1);
-console.log(rawNum)
-        if(sampleObj.minN < 0){
-			return (rawNum + Math.abs(sampleObj.minN)) / r;
-		}
-		
-		if(sampleObj.minN >= 0){
-			return rawNum / r;
-		}
-		*/
+        return absNum / sampleObj.maxABS;
     };
 }( this['sampleAlpha'] = {} ));
