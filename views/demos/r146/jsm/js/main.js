@@ -1,10 +1,21 @@
 
-import * as three from '/js/threejs/0.146.0/three.min.js';
-import * as OC from '/js/threejs/0.146.0/controls/OrbitControls.js';
+import * as three from '/js/threejs/0.146.0/three.module.js';
+import * as THREE from '/js/threejs/0.146.0/three.module.js';
 
-console.log(OC);
+//import * as OC from '/js/threejs/0.146.0/controls/OrbitControls.js';
+
+console.log(three);
+
+//import * as THREE from 'three';
+
+//import { OrbitControls } from '/js/threejs/0.146.0/controls/OrbitControls.js';
+
+//console.log(THREE)
+//console.log(three)
+//console.log(OC);
 
 (function(){
+	
     // ---------- ----------
     // SCENE, CAMERA, RENDERER
     // ---------- ----------
