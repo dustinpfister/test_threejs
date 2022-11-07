@@ -1,22 +1,31 @@
 (function () {
- 
-    // Scene
-    var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(7, 7));
- 
-    // Camera
-    var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 50);
+    //-------- ----------
+    // SCENE, CAMERA, RENDERER
+    //-------- ----------
+    const scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(10, 10));
+    const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
     camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
-    scene.add(camera); // adding the camera to the scene
- 
+    const renderer = new THREE.WebGL1Renderer();
+    renderer.setSize(640, 480, false);
+    ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+    //-------- ----------
+    // ADD CAMERA TO SCENE
+    //-------- ----------
+    scene.add(camera)
+    //-------- ----------
+    // ADD LIGHT TO CAMERA
+    //-------- ----------
     // positioning a light above the camera
-    var light = new THREE.PointLight();
+    const light = new THREE.PointLight();
     light.position.set(0, 5, 0);
     camera.add(light);
- 
+    //-------- ----------
+    // OBJECTS
+    //-------- ----------
     // positioning a mesh in front of the camera
-    var withCamera = new THREE.Mesh(
+    const withCamera = new THREE.Mesh(
             new THREE.BoxGeometry(.1, .1, .1),
             new THREE.MeshStandardMaterial({
                 color: 0xffffff,
@@ -24,24 +33,19 @@
             }));
     withCamera.position.set(-0.25, .2, -0.75);
     camera.add(withCamera);
- 
     // adding another mesh object directly to the scene
     scene.add(new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshStandardMaterial({
                 color: 0x00ff00
             })));
- 
-    // Render
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
- 
-    // loop
-    var frame = 0,
-    maxFrame = 500;
-    var loop = function () {
-        var per = frame / maxFrame,
+    //-------- ----------
+    // LOOP
+    //-------- ----------
+    let frame = 0;
+    const maxFrame = 500;
+    const loop = function () {
+        const per = frame / maxFrame,
         bias = 1 - Math.abs(0.5 - per) / 0.5;
         requestAnimationFrame(loop);
         withCamera.rotation.set(Math.PI * 4 * per,
@@ -53,6 +57,5 @@
         renderer.render(scene, camera);
     };
     loop();
- 
 }
     ());
