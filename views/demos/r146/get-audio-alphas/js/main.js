@@ -69,16 +69,16 @@
     .then((result) => {
         state.result = result;
 
-        const len = 10;
+        const len = 30;
         let i = 0;
         const alphas = [];
         while(i < len){
-           alphas.push( sampleAlpha.getByAlpha(state.result, 'bv_006_drums', i / len ) );
+           alphas.push( sampleAlpha.getByAlpha(state.result, 'bv_006_drums', i / (len - 1) ) );
            i += 1;
         }
 
-console.log(result)
-        console.log(alphas);
+//console.log(result)
+//        console.log(alphas);
 
         loop();
     });

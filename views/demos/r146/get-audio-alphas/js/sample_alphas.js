@@ -21,6 +21,13 @@
         }
         return alphas;
     };
+	// get ABS Numbers from raw numbers
+    const getABSNumbers = (html) => {
+		const raw = getRawNumbers(html);
+		return raw.map((n)=>{
+			return Math.abs(n);
+		});
+	}
     //-------- ----------
     // MANAGER
     //-------- ----------
@@ -61,12 +68,16 @@
                 // load files from base
                 loader.load(url, (html) => {
                     const raw = getRawNumbers(html);
+					const abs = getABSNumbers(html);
                     const key = opt.keyer(url, html);
                     // create sample OBJ for the key
                     files[key] = {
-                        maxN: Math.max.apply(null, raw),
-                        minN: Math.min.apply(null, raw),
-                        raw: raw
+                        maxRaw: Math.max.apply(null, raw),
+                        minRaw: Math.min.apply(null, raw),
+                        raw: raw,
+						maxABS: Math.max.apply(null, abs),
+						//minABS: Math.min.apply(null, abs),
+						abs: abs
                     };
                 });
             });
@@ -79,10 +90,23 @@
     // for the given result object and sample key
     api.getByAlpha = (result, key, alpha) => {
         const sampleObj = result[key];
+        const absNum = sampleObj.abs[ Math.round( ( sampleObj.abs.length - 1) * alpha) ];
+		
+		return absNum / sampleObj.maxABS;
+		
+		/*
         const rawNum = sampleObj.raw[ Math.round( ( sampleObj.raw.length - 1) * alpha) ];
 		
-		const m = Math.max.apply(null, [sampleObj.maxN, Math.abs(sampleObj.minM)]);
-		return Math.abs( rawNum ) / sampleObj.maxN;
+		const absNum = sampleObj.abs[ Math.round( ( sampleObj.abs.length - 1) * alpha) ];
+		
+		
+		const m = Math.max.apply(null, [sampleObj.maxRaw, Math.abs(sampleObj.minRaw)]);
+		
+		console.log(alpha.toFixed(2), absNum / sampleObj.maxABS )
+		
+		
+		return Math.abs( rawNum ) / m;
+		*/
 		
         //return ( rawNum + 1 ) / ( sampleObj.maxN + 1 );
         //return rawNum / sampleObj.maxN;
