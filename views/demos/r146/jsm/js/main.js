@@ -1,14 +1,18 @@
+import * as three from 'three';
+import * as THREE from 'three';
 
-import * as three from '/js/threejs/0.146.0/three.module.js';
-import * as THREE from '/js/threejs/0.146.0/three.module.js';
 
-//import * as OC from '/js/threejs/0.146.0/controls/OrbitControls.js';
+//import * as three from '/js/threejs/0.146.0/three.module.js';
+//import * as THREE from '/js/threejs/0.146.0/three.module.js';
+
+//import * as OC from '/js/threejs/0.146.0/jsm/controls/OrbitControls.js';
+
 
 console.log(three);
 
 //import * as THREE from 'three';
 
-//import { OrbitControls } from '/js/threejs/0.146.0/controls/OrbitControls.js';
+import { OrbitControls } from 'OrbitControls';
 
 //console.log(THREE)
 //console.log(three)
@@ -40,7 +44,7 @@ console.log(three);
     // CONTROLS
     // ---------- ----------
 
-    //const controls = new OC.OrbitControls(camera, renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
