@@ -80,14 +80,29 @@
     api.getByAlpha = (result, key, alpha) => {
         const sampleObj = result[key];
         const rawNum = sampleObj.raw[ Math.round( ( sampleObj.raw.length - 1) * alpha) ];
-        return ( rawNum + 1 ) / ( sampleObj.maxN + 1 );
+		
+		const m = Math.max.apply(null, [sampleObj.maxN, Math.abs(sampleObj.minM)]);
+		return Math.abs( rawNum ) / sampleObj.maxN;
+		
+        //return ( rawNum + 1 ) / ( sampleObj.maxN + 1 );
         //return rawNum / sampleObj.maxN;
-
-        //const r = sampleObj.maxN - sampleObj.minN;
-
-//console.log(r);
-
+//        const r = sampleObj.maxN - sampleObj.minN;
         //return ( rawNum ) / r;
-
+// looks like r is good
+//console.log(r);
+//console.log( new THREE.Vector2(sampleObj.minN, 0).distanceTo( new THREE.Vector2(sampleObj.maxN, 0) ) );
+/*
+const v1 = new THREE.Vector2(sampleObj.minN, 0);
+const v2 = new THREE.Vector2(rawNum, 0);
+const d = v2.distanceTo(v1);
+console.log(rawNum)
+        if(sampleObj.minN < 0){
+			return (rawNum + Math.abs(sampleObj.minN)) / r;
+		}
+		
+		if(sampleObj.minN >= 0){
+			return rawNum / r;
+		}
+		*/
     };
 }( this['sampleAlpha'] = {} ));
