@@ -4,8 +4,8 @@
     // ---------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(2, 3, 4);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(2, 4, 5);
+    camera.lookAt(0, 1, 0);
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -23,6 +23,16 @@
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
     scene.add(box);
+    const box_bass = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial());
+    box_bass.position.set(-3, 0, -1);
+    scene.add(box_bass);
+    const box_drums = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial());
+    box_drums.position.set(-5, 0, -1);
+    scene.add(box_drums);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -37,9 +47,19 @@
         const a1 = frame / frameMax;
         const a2 = sampleAlpha.getByAlpha(state.result, 'bv_006_bass', a1);
         const a3 = sampleAlpha.getByAlpha(state.result, 'bv_006_drums', a1);
-        const s = 0.6 + 0.75 * a2;
+        const s = 0.25 + 1.75 * a2;
         box.scale.set(s, s, s);
-        box.rotation.y = THREE.MathUtils.degToRad(45) * (a3);
+        box.position.y = s / 2 + s * a3;
+        box.rotation.set(
+            Math.PI * 2 * Math.random() * a3,
+            Math.PI * 2 * Math.random() * a3,
+            Math.PI * 2 * Math.random() * a3
+        )
+        
+        box_bass.scale.set(1, 0.1 + a2 * 2.9, 1);
+        box_bass.position.y = a2 * 3 / 2;
+        box_drums.scale.set(1, 0.1 + a3 * 2.9, 1);
+        box_drums.position.y = a3 * 3 / 2;
     };
     // loop
     const loop = () => {
