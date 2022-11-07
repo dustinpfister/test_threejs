@@ -38,10 +38,6 @@
         const a2 = sampleAlpha.getByAlpha(state.result, 'bv_006_bass', a1);
         const a3 = sampleAlpha.getByAlpha(state.result, 'bv_006_drums', a1);
         const s = 0.25 + 1.75 * a2;
-
-        
-
-
     };
     // loop
     const loop = () => {
@@ -70,6 +66,7 @@
     })
     .then((result) => {
         state.result = result;
+
 const alphas = sampleAlpha.getArray( result, 'bv_006_drums', 800);
 const sum_up = [];
 let i = 0;

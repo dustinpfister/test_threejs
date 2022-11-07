@@ -1,10 +1,14 @@
 # threejs-examples-audio-sample-alphas todo list
 
-## () r0-2-alphasum
-* () start an example of the alpha sum method
+## () r1 - alpha sum, all cols
+* () alpha sum method built in
+* () have alphas for all cols in html sample file
 
-## () r0 - final form of r0 of the module
-* () alpha sum method that will add up all the alpha values to a sum
+## () r0-2-alphasum
+* () start an example of an alpha sum helper method
+
+## ( done 11/07/2022 ) r0 - final form of r0 of the module
+* (done) commnets
 
 ## ( done 11/07/2022 ) - for post folder started
 * (done) started a for post folder based off the r146 demo
