@@ -8,7 +8,8 @@
         return parser.parseFromString(html, "text/html");
     };
     // create a sample object for the given html string
-    const createSampleObj = (html) => {
+    const createSampleObj = (html, colNum) => {
+        colNum = colNum === undefined ? 2 : colNum;
         const sampleObj = {
             raw: [],
             abs: [],
@@ -19,7 +20,7 @@
         const len = nodes.length;
         let i = 1;
         while(i < len){
-            let a1 = parseFloat(nodes[i].children[2].textContent);
+            let a1 = parseFloat(nodes[i].children[colNum].textContent);
             sampleObj.raw.push(a1);
             sampleObj.abs.push( Math.abs(a1) );
             i += 1;
@@ -47,6 +48,7 @@
         opt = opt || {};
         opt.URLS_BASE = opt.URLS_BASE || '';
         opt.URLS = opt.URLS || [];
+        opt.colNum = opt.colNum === undefined ? 2 : opt.colNum;
         opt.keyer = opt.keyer || function(url, html){
             const file_name = url.split('/').pop().split('.')[0];
             return file_name;
@@ -70,7 +72,7 @@
                 loader.load(url, (html) => {
                     // KEY IN THE SAMPLE OBJECT
                     const key = opt.keyer(url, html);
-                    files[key] = createSampleObj(html);
+                    files[key] = createSampleObj(html, opt.colNum);
                 });
             });
         });
