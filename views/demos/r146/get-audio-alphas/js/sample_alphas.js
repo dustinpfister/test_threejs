@@ -76,7 +76,7 @@
         });
     };
     //-------- ----------
-    // get method
+    // Get method
     //-------- ----------
     // return a sample alpha value ( 0 - 1 ) for a given alpha value ( 0 - 1 )
     // for the given result object and sample key
@@ -84,5 +84,15 @@
         const sampleObj = result[key];
         const absNum = sampleObj.abs[ Math.round( ( sampleObj.abs.length - 1) * alpha) ];
         return absNum / sampleObj.maxABS;
+    };
+    api.getArray = (result, key, count) => {
+        count = count === undefined ? 10 : count;
+        let i = 0;
+        const alphas = [];
+        while(i < count){
+           alphas.push( sampleAlpha.getByAlpha(result, key, i / ( count - 1) ) );
+           i += 1;
+        }
+        return alphas
     };
 }( this['sampleAlpha'] = {} ));

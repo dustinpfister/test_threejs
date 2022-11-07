@@ -68,18 +68,9 @@
     })
     .then((result) => {
         state.result = result;
-
-        const len = 30;
-        let i = 0;
-        const alphas = [];
-        while(i < len){
-           alphas.push( sampleAlpha.getByAlpha(state.result, 'bv_006_drums', i / (len - 1) ) );
-           i += 1;
-        }
-
-//console.log(result)
-//        console.log(alphas);
-
+        console.log( sampleAlpha.getArray( result, 'glavin', 10) );
+        console.log( sampleAlpha.getArray( result, 'bv_006_bass', 10) );
+        console.log( sampleAlpha.getArray( result, 'bv_006_drums', 10) );
         loop();
     });
 }());
