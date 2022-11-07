@@ -1,25 +1,7 @@
-import * as three from 'three';
 import * as THREE from 'three';
-
-
-//import * as three from '/js/threejs/0.146.0/three.module.js';
-//import * as THREE from '/js/threejs/0.146.0/three.module.js';
-
-//import * as OC from '/js/threejs/0.146.0/jsm/controls/OrbitControls.js';
-
-
-console.log(three);
-
-//import * as THREE from 'three';
-
 import { OrbitControls } from 'OrbitControls';
 
-//console.log(THREE)
-//console.log(three)
-//console.log(OC);
-
 (function(){
-	
     // ---------- ----------
     // SCENE, CAMERA, RENDERER
     // ---------- ----------
@@ -43,8 +25,11 @@ import { OrbitControls } from 'OrbitControls';
     // ---------- ----------
     // CONTROLS
     // ---------- ----------
-
-    const controls = new OrbitControls(camera, renderer.domElement);
+    try{
+        const controls = new OrbitControls(camera, renderer.domElement);
+    }catch(e){
+        console.warn('OrbitControls JSM module not loaded.');
+    }
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
