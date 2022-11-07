@@ -59,7 +59,6 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         const a2 = state.sum_array[ Math.round( ( state.sum_array.length - 1 ) * a1) ] / state.sum_max;
-
         const a3 = 0.25 * a1 + 0.75 * a2;
         box1.position.set(-10 + 20 * a3,0,0);
         camera.lookAt(box1.position);
@@ -93,10 +92,6 @@
         state.result = result;
         state.sum_array = getSumArray(result, 'bv_006_drums');
         state.sum_max = state.sum_array[ state.sum_array.length - 1];
-console.log( state );
-
-        //console.log(alphas)
-        //console.log( sum_up );
         loop();
     });
 }());
