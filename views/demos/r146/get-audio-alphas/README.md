@@ -10,6 +10,7 @@ So in other words this is a music visualization tool for threejs projects.
 * (done) the loader will parse the html into a result object that will contain a key for every sample
 * (done) have the demo make use of at least two sets of sample data
 * (done) using an absolute value array to get the kinds of alphas hat seem to work well
+* (done) col number option for the load method
 
 ## Using DOM PARSER
 
