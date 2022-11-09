@@ -14,11 +14,12 @@
     // ---------- ----------
     // HELPERS
     // ---------- ----------
-    const getByAlphaMean = (result, key, alpha, backCount) => {
+    // get a sample alpha by a given sample index and a backCount that is
+    // the max number of samples back to go to create a mean to use.
+    const getByIndexMean = (result, key, csi, backCount) => {
         backCount = backCount === undefined ? 3 : backCount;
         const sampleObj = result[key];
         // current sample index
-        const csi = Math.round( ( sampleObj.abs.length - 1) * alpha);
         const bsi = csi - backCount;
         // by default just use the
         let samples = [];
@@ -39,6 +40,27 @@
         const alphaSamp = absNum / sampleObj.maxABS;
         return alphaSamp;
     };
+    // get a sample alpha by a given alpha value and a backCount that is
+    // the max number of samples back to go to create a mean to use.
+    const getByAlphaMean = (result, key, alpha, backCount) => {
+        const sampleObj = result[key];
+        const csi = Math.round( ( sampleObj.abs.length - 1) * alpha);
+        return getByIndexMean(result, key, csi, backCount);
+    };
+    // make a mesh helper
+    const makeMesh = (x, y, z, color) => {
+        const mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(2, 2, 2),
+            new THREE.MeshPhongMaterial({ color: color }));
+        mesh.position.set(x, y, z);
+        return mesh;
+    };
+    // ---------- ----------
+    // LIGHT
+    // ---------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(1, 2, 3)
+    scene.add(dl);
     // ---------- ----------
     // STATE
     // ---------- ----------
@@ -48,17 +70,17 @@
     // ---------- ----------
     // OBJECTS
     // ---------- ----------
+    // for the build in getByAlpha method that is limited to just one sample to create the alpha
     scene.add( new THREE.GridHelper( 20, 20 ) );
-    const mesh1 = new THREE.Mesh(
-        new THREE.BoxGeometry(2, 2, 2),
-        new THREE.MeshNormalMaterial());
-    mesh1.position.x = -2;
+    const mesh1 = makeMesh(-2, 0, -2, new THREE.Color( 1, 0, 0) );
     scene.add(mesh1);
-    const mesh2 = new THREE.Mesh(
-        new THREE.BoxGeometry(2, 2, 2),
-        new THREE.MeshNormalMaterial());
-    mesh2.position.x = 2;
+    const mesh2 = makeMesh(-2, 0, 2, new THREE.Color( 1, 0, 0) );
     scene.add(mesh2);
+    // for the getByAlphaMean method
+    const mesh3 = makeMesh(2, 0, -2, new THREE.Color( 0, 1, 0) );
+    scene.add(mesh3);
+    const mesh4 = makeMesh(2, 0, 2, new THREE.Color( 0, 1, 0) );
+    scene.add(mesh4);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -73,13 +95,16 @@
         const a1 = frame / frameMax;
         const a2 = sampleAlpha.getByAlpha(state.result, 'bv_006_drums', a1);
         const a3 = getByAlphaMean(state.result, 'bv_006_drums', a1, 5);
-
+        const a4 = sampleAlpha.getByAlpha(state.result, 'bv_006_bass', a1);
+        const a5 = getByAlphaMean(state.result, 'bv_006_bass', a1, 5);
         const s1 = 0.1 + 0.9 * a2;
-        mesh1.scale.set(s1, s1, s1);
-
-        const s2 = 0.1 + 0.9 * a3;
-        mesh2.scale.set(s2, s2, s2);
-
+        mesh1.scale.set(1, s1, 1);
+        const s2 = 0.1 + 0.9 * a4;
+        mesh2.scale.set(1, s2, 1);
+        const s3 = 0.1 + 0.9 * a3;
+        mesh3.scale.set(1, s3, 1);
+        const s4 = 0.1 + 0.9 * a5;
+        mesh4.scale.set(1, s4, 1);
     };
     // loop
     const loop = () => {
@@ -106,12 +131,6 @@
     })
     .then((result) => {
         state.result = result;
-
-//const a3 = getByAlphaMean(state.result, 'bv_006_bass', 0.2, 5);
-
-//console.log(a3);
-
-
         loop();
     });
 }());
