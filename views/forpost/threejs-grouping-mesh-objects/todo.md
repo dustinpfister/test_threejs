@@ -12,9 +12,9 @@
 ## () s1-3-basic-parent
 * () example in which I get the parent object of a child, and also of the group
 
-## () rename s1-1-basic, new s1-1-basic-add
-* () rename s1-1-basic to s1-2-basic-circle
-* () new simple basic add method
+## ( done 11/07/2022 ) rename s1-1-basic, new s1-1-basic-add
+* (done) rename s1-1-basic to s1-2-basic-circle
+* (done) new simple basic add method
 
 ## ( done 04/07/2022 ) - first state of for post folder
 * (done) just start a forpost folder that reflects the current state of the post
