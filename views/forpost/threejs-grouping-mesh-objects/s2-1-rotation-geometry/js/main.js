@@ -13,27 +13,30 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
-    const createConeGroup = function (coneRotation) {
-        coneRotation = coneRotation === undefined ? Math.PI * 1.5 : coneRotation;
-        const group = new THREE.Group(), radius = 2,count = 8;
+    // create a single cone and rotate the geo once
+    const createConeMesh = () => {
+        const geo = new THREE.ConeGeometry(0.5, 1, 10, 10);
+        geo.rotateX(Math.PI * 0.5);
+        const cone = new THREE.Mesh(
+            geo,
+            new THREE.MeshNormalMaterial());
+        return cone;
+    };
+    // create a cone circle
+    const createConeCircle = function (radius, count) {
+        const group = new THREE.Group();
         let i = 0;
         while (i < count) {
             // creating a mesh
-            const geo = new THREE.ConeGeometry(0.5, 1, 10, 10);
-            // ROTATING THE CONE GEOMERTY
-            geo.rotateX(coneRotation);
-            const bx = new THREE.Mesh(
-                    geo,
-                    new THREE.MeshNormalMaterial()),
-            r = Math.PI * 2 / count * i;
-            // set position of mesh
-            bx.position.set(
-                Math.cos(r) * radius,
-                0,
-                Math.sin(r) * radius);
-            bx.lookAt(0, 0, 0);
+            const cone = createConeMesh();
+            // position the mesh
+            const vs = new THREE.Vector3(0, 0, 1);
+            const e = new THREE.Euler(0, Math.PI / 180 * 360 * (i / count), 0 );
+            cone.position.copy(vs).applyEuler(e).multiplyScalar( radius );
+            // set look at point
+            cone.lookAt(0, 0, 0);
             // add mesh to the group
-            group.add(bx);
+            group.add(cone);
             i += 1;
         }
         return group;
@@ -42,13 +45,8 @@
     // GROUPS
     //-------- ----------
     // add groups
-    const group1 = createConeGroup();
-    group1.position.set(-4, 0, -4);
-    group1.rotation.z = Math.PI / 180 * 90;
+    const group1 = createConeCircle(2, 8);
     scene.add(group1);
-    const group2 = createConeGroup(Math.PI * 0.5);
-    group2.position.set(2, 0, 2);
-    scene.add(group2);
     //-------- ----------
     // RENDER
     //-------- ----------
