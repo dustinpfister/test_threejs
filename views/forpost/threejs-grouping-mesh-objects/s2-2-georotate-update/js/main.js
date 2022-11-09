@@ -22,21 +22,33 @@
             new THREE.MeshNormalMaterial());
         return cone;
     };
-    // create a cone circle
-    const createConeCircle = function (radius, count) {
-        const group = new THREE.Group();
+    // update a group
+    const conCircleUpdate = (group, v3_lookat, radius) => {
+        // position the mesh
+        const count = group.children.length;
         let i = 0;
         while (i < count) {
-            // creating a mesh
-            const cone = createConeMesh();
-            // position the mesh
+            const cone = group.children[i];
             const vs = new THREE.Vector3(0, 0, 1);
             const e = new THREE.Euler(0, Math.PI / 180 * 360 * (i / count), 0 );
             cone.position.copy(vs).applyEuler(e).multiplyScalar( radius );
             // set look at point
-            cone.lookAt(0, 0, 0);
+            cone.lookAt(v3_lookat);
+            i += 1;
+        };
+    };
+    // create a cone circle
+    const createConeCircle = function (opt) {
+        opt = opt || {};
+        opt.count = opt.count === undefined ? 4 : opt.count;
+        const group = new THREE.Group();
+        let i = 0;
+        while (i < opt.count) {
+            // creating a mesh
+            const cone = createConeMesh();
             // add mesh to the group
             group.add(cone);
+            conCircleUpdate(group, new THREE.Vector3(0, 0, 0), 1);
             i += 1;
         }
         return group;
@@ -44,9 +56,11 @@
     //-------- ----------
     // GROUPS
     //-------- ----------
-    // add groups
-    const group1 = createConeCircle(2, 8);
+    const group1 = createConeCircle({count: 6});
     scene.add(group1);
+    const group2 = createConeCircle({count: 10});
+    conCircleUpdate(group2, new THREE.Vector3(0, 5, 0), 4);
+    scene.add(group2);
     //-------- ----------
     // RENDER
     //-------- ----------
