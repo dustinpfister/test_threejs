@@ -14,8 +14,8 @@
     // HELPERS
     //-------- ----------
     // create a single cone and rotate the geo once
-    const createConeMesh = () => {
-        const geo = new THREE.ConeGeometry(0.5, 1, 10, 10);
+    const createConeMesh = ( length, radius ) => {
+        const geo = new THREE.ConeGeometry(radius, length, 10, 10);
         geo.rotateX(Math.PI * 0.5);
         const cone = new THREE.Mesh(
             geo,
@@ -23,7 +23,6 @@
         return cone;
     };
     // update a group
-    //const coneCircleUpdate = (group, v3_lookat, radius) => {
     const coneCircleUpdate = (group, alpha ) => {
         alpha = alpha || 0;
         // position the mesh
@@ -44,6 +43,7 @@
     const createConeCircle = function (opt) {
         opt = opt || {};
         opt.count = opt.count === undefined ? 4 : opt.count;
+        opt.cone = opt.cone || [1, 0.5];
         const group = new THREE.Group();
         const gud = group.userData;
         gud.v3_lookat = opt.v3_lookat || new THREE.Vector3();
@@ -51,7 +51,7 @@
         let i = 0;
         while (i < opt.count) {
             // creating a mesh
-            const cone = createConeMesh();
+            const cone = createConeMesh.apply(null, opt.cone);
             // add mesh to the group
             group.add(cone);
             coneCircleUpdate(group, 0);
@@ -63,12 +63,12 @@
     // MESH
     //-------- ----------
     const mesh = new THREE.Mesh( new THREE.SphereGeometry(0.5, 30, 30), new THREE.MeshNormalMaterial());
-    mesh.position.set(0, 4, 0);
+    mesh.position.set(2, 4, 0);
     scene.add(mesh)
     //-------- ----------
     // GROUPS
     //-------- ----------
-    const opt = {count: 8, radius: [1, 4], v3_lookat: mesh.position };
+    const opt = {count: 8, radius: [2, 3], v3_lookat: mesh.position, cone: [2,0.5] };
     const group1 = createConeCircle(opt);
     coneCircleUpdate(group1, 0);
     scene.add(group1);
