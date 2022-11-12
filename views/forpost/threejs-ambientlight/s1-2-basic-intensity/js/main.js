@@ -11,7 +11,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // LIGHT
 //-------- ----------
-const al = new THREE.AmbientLight(0xffffff);
+const al = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(al);
 //-------- ----------
 // MESH
@@ -23,6 +23,17 @@ const mesh = new THREE.Mesh(
         }));
 scene.add(mesh);
 //-------- ----------
-// RENDER
+// RENDER LOOP
 //-------- ----------
-renderer.render(scene, camera);
+let f = 0;
+const fm = 300;
+const loop = () => {
+    const a1 = f / fm;
+    const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+    requestAnimationFrame(loop);
+    al.intensity = a2;
+    renderer.render(scene, camera);
+    f += 1;
+    f %= fm;
+};
+loop();
