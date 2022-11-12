@@ -12,7 +12,16 @@ renderer.setSize(640, 480, false);
 // LIGHT
 //-------- ----------
 const al = new THREE.AmbientLight(0xffffff);
-scene.add(al);
+scene.add(al); 
+// ADD a Point Light and position the light away from the camera
+var pl = new THREE.PointLight('white');
+pl.position.set(20, 30, 40);
+pl.add(new THREE.Mesh(
+        new THREE.SphereGeometry(1, 10, 10),
+        new THREE.MeshBasicMaterial({
+            color: 'white'
+        })));
+scene.add(pl);
 //-------- ----------
 // MESH
 //-------- ----------
@@ -23,6 +32,17 @@ const mesh = new THREE.Mesh(
         }));
 scene.add(mesh);
 //-------- ----------
-// RENDER
+// RENDER LOOP
 //-------- ----------
-renderer.render(scene, camera);
+let f = 0;
+const fm = 300;
+const loop = () => {
+    const a1 = f / fm;
+    const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+    requestAnimationFrame(loop);
+    al.intensity = a2;
+    renderer.render(scene, camera);
+    f += 1;
+    f %= fm;
+};
+loop();
