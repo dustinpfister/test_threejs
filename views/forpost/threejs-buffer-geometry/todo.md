@@ -15,6 +15,9 @@
 * have one or more basic examples that involve the use of the built in geometry constructors
 * () combine all the examples that have to do with creating a custom geometry from the ground up into one section with sub sections.
 
+## ( done 11/14/2022 ) - fixed uv demo
+* (done) fixed the uv demo
+
 ## ( done 08/09/2022 ) - update s6-rotation example
 * (done) - update s6-rotation example to showcase what the deal is for the video on buffer-geometry-rotation
 
