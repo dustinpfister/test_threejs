@@ -4,9 +4,9 @@
     scene.add(new THREE.GridHelper(10, 10));
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 1000);
     camera.position.set(0, 0.5, 3);
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
+    var renderer = new THREE.WebGL1Renderer();
+    renderer.setSize(640, 480, false);
+    (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     var dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(1, 3, 2)
     scene.add(dl);
@@ -24,7 +24,9 @@
     geometry.computeVertexNormals();
     // creating a uv
     var uvs = new Float32Array([
-                0, 1, 1, 1
+                0, 1,
+                1, 1,
+                0, 0
             ]);
     geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
     // data texture
@@ -54,7 +56,6 @@
     // vertex helper
     var vertHelper = new THREE.VertexNormalsHelper(mesh1, 0.5, 0x00ff00);
     scene.add(vertHelper)
- 
     // RENDER
     renderer.render(scene, camera);
 }());
