@@ -1,9 +1,9 @@
 # threejs-materials-transparent todo list
 
-## () s2-1-map-rgba
-* () basic example involing a material with a map option
-* () use canvas textures
-* () use rgba to set colors when drawing to the canvas
+## ( done 11/14/2022 ) s2-1-map-rgba
+* (done) basic example involing a material with a map option
+* (done) use canvas textures
+* (done) use rgba to set colors when drawing to the canvas
 
 ## ( done 11/14/2022 ) - update source of all examples
 * (done) update source of ll examples
