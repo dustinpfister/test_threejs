@@ -37,6 +37,14 @@
     scene.add(guy1.group);
     // using set to plain surface
     setYToPlainSurface(guy1, 0.5);
+
+    const guy2 = new Guy();
+    guy2.group.scale.set(0.75, 0.75, 0.75);
+    scene.add(guy2.group);
+    // using set to plain surface
+    setYToPlainSurface(guy2, 0.75);
+    guy2.group.position.x = 3;
+
     //-------- ----------
     // RENDER
     //-------- ----------
