@@ -1,3 +1,7 @@
+// guy.js - r0 - from threejs-examples-guy-one
+// By Dustin Pfister
+// https://dustinpfister.github.io/2021/04/29/threejs-examples-guy-one/
+// 
 var Guy = (function () {
     // material used for the legs
     var material_leg = new THREE.MeshLambertMaterial({
