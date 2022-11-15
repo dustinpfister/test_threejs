@@ -8,8 +8,8 @@
 ## () - r0-6-canvas
 * () canvas textures demo
 
-## () - r0-5-curvepath
-* () have a curve path animation demo
+## ( done 11/15/2022 ) - r0-5-curvepath
+* (done) have a curve path animation demo
 
 ## ( done 11/15/2022 ) r0-4-box3
 * (done) start a box3 demo where I use the setByObject method to get an area in which a guy is loacted
