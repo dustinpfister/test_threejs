@@ -58,31 +58,61 @@
         }
         guy.group.lookAt( v3 );
     };
+    // just a short hand for THREE.QuadraticBezierCurve3
+    const QBC3 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3){
+        let vs = x1;
+        let ve = y1;
+        let vc = z1;
+        if(arguments.length === 9){
+            vs = new THREE.Vector3(x1, y1, z1);
+            ve = new THREE.Vector3(x2, y2, z2);
+            vc = new THREE.Vector3(x3, y3, z3);
+        }
+        return new THREE.QuadraticBezierCurve3( vs, vc, ve );
+    };
+    // QBDelta helper using QBC3
+    // this works by giving deltas from the point that is half way between
+    // the two start and end points rather than a direct control point for x3, y3, and x3
+    const QBDelta = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
+        const vs = new THREE.Vector3(x1, y1, z1);
+        const ve = new THREE.Vector3(x2, y2, z2);
+        // deltas
+        const vDelta = new THREE.Vector3(x3, y3, z3);
+        const vc = vs.clone().lerp(ve, 0.5).add(vDelta);
+        const curve = QBC3(vs, ve, vc);
+        return curve;
+    };
+    //-------- ----------
+    // CURVE PATH
+    //-------- ----------
+    const curvePath = new THREE.CurvePath();
+    curvePath.add( QBDelta(-5, 0, -5, 5, 0, 0, 5, 0, -2.5) );
+    curvePath.add( QBDelta(5, 0, 0, 2, 0, 5, 2, 0, 2) );
+
+    // PATH DEBUG POINTS
+    const v3Array_path = curvePath.getPoints(20);
+    const points_debug = new THREE.Points(
+        new THREE.BufferGeometry().setFromPoints(v3Array_path),
+        new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
+    );
+    scene.add(points_debug);
+
+
     //-------- ----------
     // ADDING GUY OBJECT TO SCENE
     //-------- ----------
     const scale_h1 = 1 / getGuySize( createGuy(1) ).y;
     // height 1
-    const guy1 = createGuy(scale_h1);
-    setGuyPos(guy1, new THREE.Vector3(-2,0,0));
+    const guy1 = createGuy(scale_h1 * 2);
     scene.add(guy1.group);
-    // height 2
-    const guy2 = createGuy(scale_h1 * 2);
-    setGuyPos(guy2, new THREE.Vector3(0,0,0));
-    scene.add(guy2.group);
-    // height 4, also moving arms and testing out etGuyRotation helper
-    const guy3 = createGuy(scale_h1 * 4);
 
-    guy3.moveArm('arm_left', -0.125, 0);
-    guy3.moveArm('arm_right', 0.125, 0);
 
-    setGuyPos(guy3, new THREE.Vector3(2,0,0));
-    setGuyRotation(guy3, new THREE.Vector3(3,0,2), false);
-    scene.add(guy3.group);
-    // height 6
-    const guy4 = createGuy(scale_h1 * 6);
-    setGuyPos(guy4, new THREE.Vector3(6,0,0));
-    scene.add(guy4.group);
+    let f = 0;
+    const fMax = 100;
+    setGuyPos(guy1, curvePath.getPoint( f / fMax ) );
+    let i2 = (f + 1) / fMax;
+    i2 = i2 > 1 ? 1 : i2;
+    setGuyRotation(guy1, curvePath.getPoint( i2 ) );
 
     //-------- ----------
     // RENDER
