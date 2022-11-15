@@ -46,25 +46,40 @@
         guy.group.position.copy(v3_pos);
         guy.group.position.y = ( v3_size.y + gud.scale ) / 2 + v3_pos.y;
     };
+    // a set guy rotation helper
+    const setGuyRotation = (guy, v3_lookat, ignoreY) => {
+        ignoreY = ignoreY === undefined ? true: ignoreY;
+        const gud = guy.group.userData;
+        const v3_size = getGuySize(guy);
+        const v3 = v3_lookat.clone();
+        v3.y = guy.group.position.y;
+        if(!ignoreY){
+            v3.y = v3_lookat.y + ( v3_size.y + gud.scale ) / 2;
+        }
+        guy.group.lookAt( v3 );
+    };
     //-------- ----------
     // ADDING GUY OBJECT TO SCENE
     //-------- ----------
     const scale_h1 = 1 / getGuySize( createGuy(1) ).y;
-    
+    // height 1
     const guy1 = createGuy(scale_h1);
     setGuyPos(guy1, new THREE.Vector3(-2,0,0));
     scene.add(guy1.group);
-
+    // height 2
     const guy2 = createGuy(scale_h1 * 2);
     setGuyPos(guy2, new THREE.Vector3(0,0,0));
     scene.add(guy2.group);
-
+    // height 4, also moving arms and testing out etGuyRotation helper
     const guy3 = createGuy(scale_h1 * 4);
-    setGuyPos(guy3, new THREE.Vector3(2,0,0));
+
     guy3.moveArm('arm_left', -0.125, 0);
     guy3.moveArm('arm_right', 0.125, 0);
-    scene.add(guy3.group);
 
+    setGuyPos(guy3, new THREE.Vector3(2,0,0));
+    setGuyRotation(guy3, new THREE.Vector3(3,0,2), false);
+    scene.add(guy3.group);
+    // height 6
     const guy4 = createGuy(scale_h1 * 6);
     setGuyPos(guy4, new THREE.Vector3(6,0,0));
     scene.add(guy4.group);
