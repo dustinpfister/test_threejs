@@ -82,13 +82,41 @@
         const curve = QBC3(vs, ve, vc);
         return curve;
     };
+    // create guy collection
+    const createGuyCollection = (guyCount, hScale) => {
+        const scale_h1 = 1 / getGuySize( createGuy(1) ).y;
+        // height 1
+        const guys = [];
+        let gi = 0;
+        while(gi < guyCount){
+            const guy = createGuy(scale_h1 * hScale);
+            guys.push(guy);
+            scene.add(guy.group);
+            gi += 1;
+        }
+        return guys;
+    };
+    // update a guy collection
+    const updateGuyCollection = (guys, f, fMax) => {
+        guys.forEach((guy, i, arr)=>{
+            const offset = i / arr.length;
+            const a1 = f / fMax;
+            let a2 = (f + 0.05) / fMax;
+            a2 = a2 > 1 ? 1 : a2;
+            setGuyPos(guy, curvePath.getPoint( (a1 + offset) % 1 ) );
+            setGuyRotation(guy, curvePath.getPoint( (a2 + offset) % 1 ) );
+            guy.walk(a1, 10);
+        });
+    };
+
     //-------- ----------
     // CURVE PATH
     //-------- ----------
     const curvePath = new THREE.CurvePath();
     curvePath.add( QBDelta(-5, 0, -5, 5, 0, 0, 5, 0, -2.5) );
     curvePath.add( QBDelta(5, 0, 0, 2, 0, 5, 2, 0, 2) );
-
+    curvePath.add( QBDelta(2, 0, 5, -5, 0, 5, 0, 0, 0) );
+    curvePath.add( QBDelta(-5, 0, 5, -10, 0, -5, -5, 0, 5) );
     // PATH DEBUG POINTS
     const v3Array_path = curvePath.getPoints(20);
     const points_debug = new THREE.Points(
@@ -96,26 +124,10 @@
         new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
     );
     scene.add(points_debug);
-
-
     //-------- ----------
     // ADDING GUY OBJECT TO SCENE
     //-------- ----------
-    const scale_h1 = 1 / getGuySize( createGuy(1) ).y;
-
-
-    // height 1
-    const guys = [];
-    const guyCount = 5;
-    let gi = 0;
-    while(gi < guyCount){
-        const guy = createGuy(scale_h1 * 2);
-        guys.push(guy)
-        scene.add(guy.group);
-        gi += 1;
-    }
-
-
+    const guys = createGuyCollection(16, 2);
     ///-------- ----------
     // ANIMATION LOOP
     //-------- ----------
@@ -127,17 +139,8 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 0.05) {
-
-            guys.forEach((guy, i, arr)=>{
-                const offset = i / arr.length;
-                const a1 = f / fMax;
-                let a2 = (f + 1) / fMax;
-                a2 = a2 > 1 ? 1 : a2;
-                setGuyPos(guy, curvePath.getPoint( (a1 + offset) % 1 ) );
-                setGuyRotation(guy, curvePath.getPoint( (a2 + offset) % 1 ) );
-                guy.walk(a1, 10);
-            });
-
+            // update guys
+            updateGuyCollection(guys, f, fMax)
             // draw
             renderer.render(scene, camera);
             f += 30 * secs;
