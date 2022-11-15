@@ -102,9 +102,18 @@
     // ADDING GUY OBJECT TO SCENE
     //-------- ----------
     const scale_h1 = 1 / getGuySize( createGuy(1) ).y;
+
+
     // height 1
-    const guy1 = createGuy(scale_h1 * 2);
-    scene.add(guy1.group);
+    const guys = [];
+    const guyCount = 5;
+    let gi = 0;
+    while(gi < guyCount){
+        const guy = createGuy(scale_h1 * 2);
+        guys.push(guy)
+        scene.add(guy.group);
+        gi += 1;
+    }
 
 
     ///-------- ----------
@@ -119,13 +128,15 @@
         requestAnimationFrame(loop);
         if (secs > 0.05) {
 
-
-            const a1 = f / fMax;
-            let a2 = (f + 1) / fMax;
-            a2 = a2 > 1 ? 1 : a2;
-            setGuyPos(guy1, curvePath.getPoint( (a1 + 0.5) % 1 ) );
-            setGuyRotation(guy1, curvePath.getPoint( (a2 + 0.5) % 1 ) );
-            guy1.walk(a1, 10);
+            guys.forEach((guy, i, arr)=>{
+                const offset = i / arr.length;
+                const a1 = f / fMax;
+                let a2 = (f + 1) / fMax;
+                a2 = a2 > 1 ? 1 : a2;
+                setGuyPos(guy, curvePath.getPoint( (a1 + offset) % 1 ) );
+                setGuyRotation(guy, curvePath.getPoint( (a2 + offset) % 1 ) );
+                guy.walk(a1, 10);
+            });
 
             // draw
             renderer.render(scene, camera);
