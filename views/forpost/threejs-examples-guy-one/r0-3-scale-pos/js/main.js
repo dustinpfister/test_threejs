@@ -22,7 +22,7 @@
     //-------- ----------
     // set to plain surface by subtracting by known values
     // for legSize, bodSize, and space that work well
-    const setToPlainSurface = (guy, scale) => {
+    const setYToPlainSurface = (guy, scale) => {
         scale = scale === undefined ? 1 : scale;
         const legSize = 2 * scale;
         const bodSize = 2 * scale;
@@ -36,18 +36,7 @@
     guy1.group.scale.set(0.5, 0.5, 0.5);
     scene.add(guy1.group);
     // using set to plain surface
-    setToPlainSurface(guy1, 0.5);
-    //-------- ----------
-    // BOX3
-    //-------- ----------
-    const b3 = new THREE.Box3();
-    b3.setFromObject(guy1.group);
-    // box3 helper
-    const helper = new THREE.Box3Helper(b3);
-    scene.add(helper);
-    const size = new THREE.Vector3();
-    b3.getSize(size);
-    console.log(size)
+    setYToPlainSurface(guy1, 0.5);
     //-------- ----------
     // RENDER
     //-------- ----------

@@ -10,6 +10,10 @@
 * () see about using this to set position
 * () see about using this to set scale
 
+
+## ( done 11/15/2022 ) r0-3-scale-pos
+* (done) scale and position demo
+
 ## ( done 11/15/2022 ) - r0-1-single demo
 * (done) have a single r0 guy demo that will be the new hello world demo for the ro section of the post
 
