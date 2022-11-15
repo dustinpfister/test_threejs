@@ -3,6 +3,7 @@
     // SCENE, CAMERA, and RENDERER
     //-------- ----------
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0.1, 0.1, 0.1);
     scene.add( new THREE.GridHelper(10, 10) );
     const camera = new THREE.PerspectiveCamera(50, 64 / 48, 0.05, 100);
     const renderer = new THREE.WebGL1Renderer();
@@ -17,6 +18,8 @@
     const pl = new THREE.PointLight(0xffffff, 1);
     pl.position.set(3, 2, 1);
     scene.add(pl);
+    const al = new THREE.AmbientLight(0xffffff, 0.15);
+    scene.add(al);
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -90,6 +93,28 @@
         let gi = 0;
         while(gi < guyCount){
             const guy = createGuy(scale_h1 * hScale);
+            // head
+            guy.head.material = [
+               // 0 default material
+               new THREE.MeshPhongMaterial({
+                   color: 0xffff00, transparent: true
+               }),
+               // 1 used for the face
+               new THREE.MeshPhongMaterial({
+                    color: 0xffffff, transparent: true
+                })
+            ];
+            guy.body.material = new THREE.MeshPhongMaterial({
+                color: 0x00ff00, transparent: true
+            });
+            guy.arm_right.material = new THREE.MeshPhongMaterial({
+                color: 0x00ff00, transparent: true
+            });
+            guy.leg_right.material = new THREE.MeshPhongMaterial({
+                color: 0x00ffff, transparent: true
+            });
+            guy.arm_left.material = guy.arm_right.material;
+            guy.leg_left.material = guy.leg_right.material;
             guys.push(guy);
             scene.add(guy.group);
             gi += 1;
@@ -103,12 +128,20 @@
             const a1 = f / fMax;
             let a2 = (f + 0.05) / fMax;
             a2 = a2 > 1 ? 1 : a2;
-            setGuyPos(guy, curvePath.getPoint( (a1 + offset) % 1 ) );
+            // position and rotation
+            const a3 = (a1 + offset) % 1;
+            setGuyPos(guy, curvePath.getPoint( a3 ));
             setGuyRotation(guy, curvePath.getPoint( (a2 + offset) % 1 ) );
             guy.walk(a1, 10);
+            // opacity
+            const a4 = 1 - Math.abs(0.5 - a3) / 0.5;
+            guy.head.material[0].opacity = a4;
+            guy.head.material[1].opacity = a4;
+            guy.body.material.opacity = a4;
+            guy.arm_right.material.opacity = a4;
+            guy.leg_right.material.opacity = a4;
         });
     };
-
     //-------- ----------
     // CURVE PATH
     //-------- ----------
