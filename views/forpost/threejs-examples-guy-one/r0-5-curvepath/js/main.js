@@ -107,16 +107,33 @@
     scene.add(guy1.group);
 
 
-    let f = 0;
-    const fMax = 100;
-    setGuyPos(guy1, curvePath.getPoint( f / fMax ) );
-    let i2 = (f + 1) / fMax;
-    i2 = i2 > 1 ? 1 : i2;
-    setGuyRotation(guy1, curvePath.getPoint( i2 ) );
+    ///-------- ----------
+    // ANIMATION LOOP
+    //-------- ----------
+    let f = 0,
+    lt = new Date();
+    const fMax = 200;
+    const loop = function () {
+        const now = new Date(),
+        secs = (now - lt) / 1000;
+        requestAnimationFrame(loop);
+        if (secs > 0.05) {
 
-    //-------- ----------
-    // RENDER
-    //-------- ----------
-    renderer.render(scene, camera);
+
+            const a1 = f / fMax;
+            let a2 = (f + 1) / fMax;
+            a2 = a2 > 1 ? 1 : a2;
+            setGuyPos(guy1, curvePath.getPoint( (a1 + 0.5) % 1 ) );
+            setGuyRotation(guy1, curvePath.getPoint( (a2 + 0.5) % 1 ) );
+            guy1.walk(a1, 10);
+
+            // draw
+            renderer.render(scene, camera);
+            f += 30 * secs;
+            f %= fMax;
+            lt = now;
+        }
+    };
+    loop();
 }
     ());
