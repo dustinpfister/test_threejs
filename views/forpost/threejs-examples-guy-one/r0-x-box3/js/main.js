@@ -20,34 +20,55 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
-    // set to plain surface by subtracting by known values
-    // for legSize, bodSize, and space that work well
-    const setToPlainSurface = (guy, scale) => {
-        scale = scale === undefined ? 1 : scale;
-        const legSize = 2 * scale;
-        const bodSize = 2 * scale;
-        const space = 0.1 * scale;
-        guy.group.position.y = legSize + bodSize / 2 + space * 2;
+    // create guy helper
+    const createGuy = (scale) => {
+        const guy = new Guy();
+        const gud =  guy.group.userData;
+        gud.scale = scale;
+        guy.group.scale.set(scale, scale, scale);
+        // using set to plain surface
+        setGuyPos(guy);
+        return guy;
+    };
+    // get guy size helper
+    const getGuySize = (guy) => {
+        const b3 = new THREE.Box3();
+        b3.setFromObject(guy.group);
+        const v3_size = new THREE.Vector3();
+        b3.getSize(v3_size);
+        return v3_size;
+    };
+    // set guy pos using box3 and userData object
+    const setGuyPos = (guy, v3_pos) => {
+        v3_pos = v3_pos || new THREE.Vector3();
+        const gud = guy.group.userData;
+        const v3_size = getGuySize(guy);
+        guy.group.position.copy(v3_pos);
+        guy.group.position.y = ( v3_size.y + gud.scale ) / 2 + v3_pos.y;
     };
     //-------- ----------
     // ADDING GUY OBJECT TO SCENE
     //-------- ----------
-    const guy1 = new Guy();
-    guy1.group.scale.set(0.5, 0.5, 0.5);
+    const scale_h1 = 1 / getGuySize( createGuy(1) ).y;
+    
+    const guy1 = createGuy(scale_h1);
+    setGuyPos(guy1, new THREE.Vector3(-2,0,0));
     scene.add(guy1.group);
-    // using set to plain surface
-    setToPlainSurface(guy1, 0.5);
-    //-------- ----------
-    // BOX3
-    //-------- ----------
-    const b3 = new THREE.Box3();
-    b3.setFromObject(guy1.group);
-    // box3 helper
-    const helper = new THREE.Box3Helper(b3);
-    scene.add(helper);
-    const size = new THREE.Vector3();
-    b3.getSize(size);
-    console.log(size)
+
+    const guy2 = createGuy(scale_h1 * 2);
+    setGuyPos(guy2, new THREE.Vector3(0,0,0));
+    scene.add(guy2.group);
+
+    const guy3 = createGuy(scale_h1 * 4);
+    setGuyPos(guy3, new THREE.Vector3(2,0,0));
+    guy3.moveArm('arm_left', -0.125, 0);
+    guy3.moveArm('arm_right', 0.125, 0);
+    scene.add(guy3.group);
+
+    const guy4 = createGuy(scale_h1 * 6);
+    setGuyPos(guy4, new THREE.Vector3(6,0,0));
+    scene.add(guy4.group);
+
     //-------- ----------
     // RENDER
     //-------- ----------
