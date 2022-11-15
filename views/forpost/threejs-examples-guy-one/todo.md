@@ -5,11 +5,16 @@
 * () I might want to have a head that is 1.5 x high compared to the other sides
 * () have a methid that makes use of box3 setFromObject to get area in which a guy is loacted
 
-## () r0-3-box3
-* () start a box3 demo where I use the setByObject method to get an area in which a guy is loacted
-* () see about using this to set position
-* () see about using this to set scale
+## () - r0-6-canvas
+* () canvas textures demo
 
+## () - r0-5-curvepath
+* () have a curve path animation demo
+
+## ( done 11/15/2022 ) r0-4-box3
+* (done) start a box3 demo where I use the setByObject method to get an area in which a guy is loacted
+* (done) see about using this to set position
+* (done) see about using this to set scale
 
 ## ( done 11/15/2022 ) r0-3-scale-pos
 * (done) scale and position demo
