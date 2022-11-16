@@ -16,30 +16,25 @@
     // MATERIALS
     //-------- ----------
     const material_leg = new THREE.MeshLambertMaterial({
-            color: 0x000000,
-            emissive: 0x00001a
+            color: 0x000000, emissive: 0x00001a, side: THREE.DoubleSide
         });
     // material used for the arms
     const material_arm = new THREE.MeshLambertMaterial({
-            color: 0x00ffff,
-            emissive: 0x001a00
+            color: 0x00ffff, emissive: 0x001a00, side: THREE.DoubleSide
         });
     // material used for the body
     const material_body = new THREE.MeshLambertMaterial({
-            color: 0x00ffff,
-            emissive: 0x001a00
+            color: 0x00ffff, emissive: 0x001a00, side: THREE.DoubleSide
         });
     // array of materials used for the head
     const material_head = [
         // 0 default material
         new THREE.MeshLambertMaterial({
-            color: 0xffaf00,
-            emissive: 0x1a1a00
+            color: 0xffaf00, emissive: 0x1a1a00, side: THREE.DoubleSide
         }),
         // 1 used for the face
         new THREE.MeshLambertMaterial({
-            color: 0xffffff,
-            emissive: 0x1a1a1a
+            color: 0xffffff, emissive: 0x1a1a1a, side: THREE.DoubleSide
         })
     ];
     //-------- ----------
