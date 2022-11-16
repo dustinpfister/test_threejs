@@ -28,6 +28,8 @@
         const guy = new Guy();
         const gud =  guy.group.userData;
         gud.scale = scale;
+        gud.maxUnitDelta = 5;
+        gud.maxRotation = 4;
         guy.group.scale.set(scale, scale, scale);
         // for each mesh
         guy.group.traverse(( obj ) => {
@@ -40,7 +42,6 @@
                 const pos = mesh.geometry.getAttribute('position');
                 mud.pos = pos;
                 mud.pos_home = pos.clone();
-                mud.unitDelta = 5;
             }
         });
         // using set to plain surface
@@ -83,7 +84,9 @@
     };
     // update guy method
     const updateGuyEffect = (guy, globalAlpha, effect) => {
-        guy.group.traverse( (obj) => {
+        const group = guy.group;
+        const gud = group.userData;
+        group.traverse( (obj) => {
             if(obj.type === 'Mesh'){
                 const mesh = obj;
                 const mud = mesh.userData;
@@ -91,12 +94,10 @@
                 const ct = mud.pos.array.length;
                 // for each trinagle
                 while(ti < ct){
-                    const a1 = (ti + 1) / ct;
                     // for each point of a triangle
                     let pi = 0;
                     while(pi < 3){
                         const i = ti + pi * 3;
-                        const a2 = ( pi + 1) / 3;
                         // create vector3 from pos_home
                         const x = mud.pos_home.array[ i ];
                         const y = mud.pos_home.array[ i + 1];
@@ -104,7 +105,7 @@
                         const v_pos_home = new THREE.Vector3(x, y, z);
                         // figure out the delta
                         let v_delta = new THREE.Vector3(0, 0, 1);
-                        v_delta = effect(ti, pi, v_pos_home, globalAlpha, mesh, mud, v_delta);
+                        v_delta = effect(ti, pi, v_pos_home, globalAlpha, mesh, group, mud, gud, v_delta);
                         // update pos
                         const v_pos = v_pos_home.clone().add( v_delta );
                         mud.pos.array[ i ] = v_pos.x;
@@ -122,11 +123,11 @@
     // EFFECTS
     //-------- ----------
     // EFFECT 1
-    const EFFECT1 = (ti, pi, v_pos_home, globalAlpha, mesh, mud, v_delta) => {
+    const EFFECT1 = (ti, pi, v_pos_home, globalAlpha, mesh, group, mud, gud, v_delta) => {
         const a1 = ti / mud.pos.array.length;
         const e = new THREE.Euler();
-        e.y = Math.PI * 2 * globalAlpha * (0.25 + a1);
-        v_delta.applyEuler(e).normalize().multiplyScalar( globalAlpha * mud.unitDelta);
+        e.y = Math.PI * 2 * gud.maxRotation * globalAlpha * (0.25 + a1);
+        v_delta.applyEuler(e).normalize().multiplyScalar( globalAlpha * gud.maxUnitDelta);
         return v_delta;
     };
     //-------- ----------
@@ -148,9 +149,9 @@
         if (secs > 0.05) {
             const a1 = f / fMax;
             const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-
-guy1.walk(a1, 8)
-
+            guy1.walk(a1, 8);
+            setGuyPos(guy1, new THREE.Vector3(0,0,0));
+            setGuyRotation(guy1, new THREE.Vector3(1, 0, 5 * a2));
             updateGuyEffect(guy1, a2, EFFECT1);
             // draw
             renderer.render(scene, camera);
