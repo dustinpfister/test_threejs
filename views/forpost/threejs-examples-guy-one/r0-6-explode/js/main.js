@@ -29,18 +29,19 @@
         const gud =  guy.group.userData;
         gud.scale = scale;
         guy.group.scale.set(scale, scale, scale);
-
         // for each mesh
         guy.group.traverse(( obj ) => {
             if(obj.type === 'Mesh'){
-                const mud = obj.userData;
-                const pos = obj.geometry.getAttribute('position');
+                const mesh = obj;
+                const mud = mesh.userData;
+                // I WANT A NON INDEX GEOMETRY
+                mesh.geometry = mesh.geometry.toNonIndexed();
+                // store refs to pos and a clone of the pos
+                const pos = mesh.geometry.getAttribute('position');
                 mud.pos = pos;
                 mud.pos_home = pos.clone();
-                console.log(mud);
             }
         });
-
         // using set to plain surface
         setGuyPos(guy);
         return guy;
@@ -83,10 +84,13 @@
     // guy1
     const guy1 = createGuyHScale(3);
     scene.add(guy1.group);
-
-//    guy1.group.traverse((obj)=>{
-//        console.log(obj);
-//    });
+    guy1.group.traverse( (obj) => {
+        if(obj.type === 'Mesh'){
+            const mesh = obj;
+            const mud = mesh.userData;
+            console.log(mud);
+        }
+    });
 
 
     ///-------- ----------
