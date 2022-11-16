@@ -29,6 +29,18 @@
         const gud =  guy.group.userData;
         gud.scale = scale;
         guy.group.scale.set(scale, scale, scale);
+
+        // for each mesh
+        guy.group.traverse(( obj ) => {
+            if(obj.type === 'Mesh'){
+                const mud = obj.userData;
+                const pos = obj.geometry.getAttribute('position');
+                mud.pos = pos;
+                mud.pos_home = pos.clone();
+                console.log(mud);
+            }
+        });
+
         // using set to plain surface
         setGuyPos(guy);
         return guy;
@@ -71,6 +83,12 @@
     // guy1
     const guy1 = createGuyHScale(3);
     scene.add(guy1.group);
+
+//    guy1.group.traverse((obj)=>{
+//        console.log(obj);
+//    });
+
+
     ///-------- ----------
     // ANIMATION LOOP
     //-------- ----------
