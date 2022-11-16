@@ -5,8 +5,11 @@
 * () I might want to have a head that is 1.5 x high compared to the other sides
 * () have a methid that makes use of box3 setFromObject to get area in which a guy is loacted
 
-## () - r0-6-canvas
+## () - r0-7-canvas
 * () canvas textures demo
+
+## ( done 11/16/2022 ) - r0-6-explode
+* (done) have an explode effect demo
 
 ## ( done 11/15/2022 ) - r0-5-curvepath
 * (done) have a curve path animation demo
