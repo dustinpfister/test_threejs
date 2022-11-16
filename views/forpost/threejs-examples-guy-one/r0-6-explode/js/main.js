@@ -7,7 +7,7 @@
     scene.add( new THREE.GridHelper(10, 10) );
     const camera = new THREE.PerspectiveCamera(50, 64 / 48, 0.05, 100);
     const renderer = new THREE.WebGL1Renderer();
-    camera.position.set(10, 5, 7);
+    camera.position.set(5, 5, 5);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     renderer.setSize(640, 480, false);
@@ -40,6 +40,7 @@
                 const pos = mesh.geometry.getAttribute('position');
                 mud.pos = pos;
                 mud.pos_home = pos.clone();
+                mud.unitDelta = 5;
             }
         });
         // using set to plain surface
@@ -80,49 +81,60 @@
         }
         guy.group.lookAt( v3 );
     };
-
+    // update guy method
+    const updateGuyEffect = (guy, globalAlpha, effect) => {
+        guy.group.traverse( (obj) => {
+            if(obj.type === 'Mesh'){
+                const mesh = obj;
+                const mud = mesh.userData;
+                let ti = 0;
+                const ct = mud.pos.array.length;
+                // for each trinagle
+                while(ti < ct){
+                    const a1 = (ti + 1) / ct;
+                    // for each point of a triangle
+                    let pi = 0;
+                    while(pi < 3){
+                        const i = ti + pi * 3;
+                        const a2 = ( pi + 1) / 3;
+                        // create vector3 from pos_home
+                        const x = mud.pos_home.array[ i ];
+                        const y = mud.pos_home.array[ i + 1];
+                        const z = mud.pos_home.array[ i + 2];
+                        const v_pos_home = new THREE.Vector3(x, y, z);
+                        // figure out the delta
+                        let v_delta = new THREE.Vector3(0, 0, 1);
+                        v_delta = effect(ti, pi, v_pos_home, globalAlpha, mesh, mud, v_delta);
+                        // update pos
+                        const v_pos = v_pos_home.clone().add( v_delta );
+                        mud.pos.array[ i ] = v_pos.x;
+                        mud.pos.array[ i + 1] = v_pos.y;
+                        mud.pos.array[ i + 2] = v_pos.z;
+                        pi += 1;
+                    }
+                    ti += 9;
+                }
+                mud.pos.needsUpdate = true;
+            }
+        });
+    };
+    //-------- ----------
+    // EFFECTS
+    //-------- ----------
+    // EFFECT 1
+    const EFFECT1 = (ti, pi, v_pos_home, globalAlpha, mesh, mud, v_delta) => {
+        const a1 = ti / mud.pos.array.length;
+        const e = new THREE.Euler();
+        e.y = Math.PI * 2 * globalAlpha * (0.25 + a1);
+        v_delta.applyEuler(e).normalize().multiplyScalar( globalAlpha * mud.unitDelta);
+        return v_delta;
+    };
+    //-------- ----------
+    // CREATE GUY
+    //-------- ----------
     // guy1
     const guy1 = createGuyHScale(3);
     scene.add(guy1.group);
-    const globalAlpha = 1;
-    guy1.group.traverse( (obj) => {
-        if(obj.type === 'Mesh'){
-            const mesh = obj;
-            const mud = mesh.userData;
-            console.log('**********');
-            let ti = 0;
-            const ct = mud.pos.array.length;
-            // for each trinagle
-            while(ti < ct){
-                const a1 = ti / ct * globalAlpha;
-                // for each point of a triangle
-                let pi = 0;
-                while(pi < 3){
-                    const i = ti + pi * 3;
-                    // create vector3 from pos_home
-                    const x = mud.pos_home.array[ i ];
-                    const y = mud.pos_home.array[ i + 1];
-                    const z = mud.pos_home.array[ i + 2];
-                    const v_pos_home = new THREE.Vector3(x, y, z);
-                    const v_delta = new THREE.Vector3();
-                    const r = Math.PI * 2 * a1;
-                    v_delta.x = -2 * a1 + 4 * a1 + Math.cos(r) * 5 * a1;
-                    v_delta.z = -2 * a1 + 4 * a1 + Math.sin(r) * 5 * a1;
-                    const v_pos = v_pos_home.clone().add( v_delta );
-                    // update pos
-                    mud.pos.array[ i ] = v_pos.x;
-                    mud.pos.array[ i + 1] = v_pos.y;
-                    mud.pos.array[ i + 2] = v_pos.z;
-                    pi += 1;
-                }
-                ti += 9;
-            }
-            mud.pos.needsUpdate = true;
-            console.log('**********');
-        }
-    });
-
-
     ///-------- ----------
     // ANIMATION LOOP
     //-------- ----------
@@ -134,7 +146,12 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 0.05) {
+            const a1 = f / fMax;
+            const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
 
+guy1.walk(a1, 8)
+
+            updateGuyEffect(guy1, a2, EFFECT1);
             // draw
             renderer.render(scene, camera);
             f += 30 * secs;
