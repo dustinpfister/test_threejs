@@ -13,6 +13,36 @@
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     //-------- ----------
+    // MATERIALS
+    //-------- ----------
+    const material_leg = new THREE.MeshLambertMaterial({
+            color: 0x000000,
+            emissive: 0x00001a
+        });
+    // material used for the arms
+    const material_arm = new THREE.MeshLambertMaterial({
+            color: 0x00ffff,
+            emissive: 0x001a00
+        });
+    // material used for the body
+    const material_body = new THREE.MeshLambertMaterial({
+            color: 0x00ffff,
+            emissive: 0x001a00
+        });
+    // array of materials used for the head
+    const material_head = [
+        // 0 default material
+        new THREE.MeshLambertMaterial({
+            color: 0xffaf00,
+            emissive: 0x1a1a00
+        }),
+        // 1 used for the face
+        new THREE.MeshLambertMaterial({
+            color: 0xffffff,
+            emissive: 0x1a1a1a
+        })
+    ];
+    //-------- ----------
     // LIGHT
     //-------- ----------
     const pl = new THREE.PointLight(0xffffff, 1);
@@ -24,12 +54,12 @@
     // HELPERS
     //-------- ----------
     // create guy helper
-    const createGuy = (scale) => {
+    const createGuy = (scale, maxUnitDelta, maxRotation) => {
         const guy = new Guy();
         const gud =  guy.group.userData;
         gud.scale = scale;
-        gud.maxUnitDelta = 5;
-        gud.maxRotation = 4;
+        gud.maxUnitDelta = maxUnitDelta === undefined ? 1 : maxUnitDelta;
+        gud.maxRotation = maxRotation === undefined ? 1 : maxRotation;
         guy.group.scale.set(scale, scale, scale);
         // for each mesh
         guy.group.traverse(( obj ) => {
@@ -44,14 +74,21 @@
                 mud.pos_home = pos.clone();
             }
         });
+        // use materials in this file
+        guy.head.material = material_head.map( (m) => { return m.clone(); });
+        guy.body.material = material_body.clone();
+        guy.arm_left.material = material_arm.clone();
+        guy.arm_right.material = material_arm.clone();
+        guy.leg_right.material = material_leg.clone();
+        guy.leg_left.material = material_leg.clone();
         // using set to plain surface
         setGuyPos(guy);
         return guy;
     };
     // create a guy by way of a hight scale value
-    const createGuyHScale = (HScale) => {
+    const createGuyHScale = (HScale, maxUnitDelta, maxRotation) => {
         const scale_h1 = 1 / getGuySize( createGuy(1) ).y;
-        const guy = createGuy(HScale * scale_h1);
+        const guy = createGuy(HScale * scale_h1, maxUnitDelta, maxRotation);
         return guy;
     };
     // get guy size helper
@@ -134,7 +171,7 @@
     // CREATE GUY
     //-------- ----------
     // guy1
-    const guy1 = createGuyHScale(3);
+    const guy1 = createGuyHScale(3, 0.25, 8);
     scene.add(guy1.group);
     ///-------- ----------
     // ANIMATION LOOP
