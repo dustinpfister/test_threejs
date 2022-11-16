@@ -84,11 +84,41 @@
     // guy1
     const guy1 = createGuyHScale(3);
     scene.add(guy1.group);
+    const globalAlpha = 1;
     guy1.group.traverse( (obj) => {
         if(obj.type === 'Mesh'){
             const mesh = obj;
             const mud = mesh.userData;
-            console.log(mud);
+            console.log('**********');
+            let ti = 0;
+            const ct = mud.pos.array.length;
+            // for each trinagle
+            while(ti < ct){
+                const a1 = ti / ct * globalAlpha;
+                // for each point of a triangle
+                let pi = 0;
+                while(pi < 3){
+                    const i = ti + pi * 3;
+                    // create vector3 from pos_home
+                    const x = mud.pos_home.array[ i ];
+                    const y = mud.pos_home.array[ i + 1];
+                    const z = mud.pos_home.array[ i + 2];
+                    const v_pos_home = new THREE.Vector3(x, y, z);
+                    const v_delta = new THREE.Vector3();
+                    const r = Math.PI * 2 * a1;
+                    v_delta.x = -2 * a1 + 4 * a1 + Math.cos(r) * 5 * a1;
+                    v_delta.z = -2 * a1 + 4 * a1 + Math.sin(r) * 5 * a1;
+                    const v_pos = v_pos_home.clone().add( v_delta );
+                    // update pos
+                    mud.pos.array[ i ] = v_pos.x;
+                    mud.pos.array[ i + 1] = v_pos.y;
+                    mud.pos.array[ i + 2] = v_pos.z;
+                    pi += 1;
+                }
+                ti += 9;
+            }
+            mud.pos.needsUpdate = true;
+            console.log('**********');
         }
     });
 
