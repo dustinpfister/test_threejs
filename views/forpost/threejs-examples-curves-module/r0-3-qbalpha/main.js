@@ -21,10 +21,13 @@ try{
 const debugAlphaFunction = (alphaFunc, opt) => {
     opt = opt || {};
     opt.count = opt.count === undefined ? 200 : opt.count;
-    opt.sx = -5;
-    opt.sz = 5;
-    opt.w = 10;
-    opt.h = -10;
+
+
+    opt.sx = opt.sx === undefined ? -5 : opt.sx;
+    opt.sz = opt.sz === undefined ? 5 : opt.sz;
+    opt.w = opt.w === undefined ? 10 : opt.w;
+    opt.h = opt.h === undefined ? -10 : opt.h;
+
     const v3Array = [];
     let i = 0;
     while(i < opt.count){
