@@ -56,7 +56,7 @@ const createAlphaCurve = (grc_points) => {
     while(i < len - 1){
         const s = grc_points[i];
         const e = grc_points[i + 1];
-        data.push([ s[0], s[1], 0,   e[0], e[1], 0,   0, s[2], 0 ]);
+        data.push([ 0, s[0], 0,   0, e[0], 0,   0, s[1], 0 ]);
         i += 1;
     }
     return curveMod.QBCurvePath(data);
@@ -90,7 +90,7 @@ const createAlphaFunciton = ( grc_points ) => {
 
 const debugAlphaFunction = (alphaFunc, opt) => {
     opt = opt || {};
-    opt.count = opt.count === undefined ? 100 : opt.count;
+    opt.count = opt.count === undefined ? 200 : opt.count;
     opt.sx = -5;
     opt.sz = 5;
     opt.w = 10;
@@ -112,16 +112,18 @@ const debugAlphaFunction = (alphaFunc, opt) => {
 };
 
 const grc_points = [
-    [0.00, 0.00,     0.5],
-    [0.25, 1.00,     0.25],
-    [0.75, 0.50,     -0.25],
-    [1.50, 0.10]
+    [0.00,     0],
+    [0.10,     0],
+    [0.45,     0],
+    [1.00,     0],
+    [0.50,     0],
+    [0.75,     0],
+    [0.85,     0],
+    [1.00,     0],
+    [0.50,     0],
+    [0]
 ];
 const curveAlpha = createAlphaFunciton( grc_points );
-
-
-console.log( curveAlpha(1 / 2.5) );
-
 const points = debugAlphaFunction(curveAlpha);
 scene.add(points);
 
