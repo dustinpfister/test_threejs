@@ -18,38 +18,6 @@ try{
     console.warn('OrbitControls JSM module not loaded.');
 }
 
-const createAlphaCurve = (grc_points) => {
-    let i = 0, len = grc_points.length;
-    const data = [];
-    while(i < len - 1){
-        const s = grc_points[i];
-        const e = grc_points[i + 1];
-        data.push([ 0, s[0], 0,   0, e[0], 0,   0, s[1], 0 ]);
-        i += 1;
-    }
-    return curveMod.QBCurvePath(data);
-};
-
-const createAlphaFunciton = ( grc_points ) => {
-
-//    const curve = createAlphaCurve(grc_points);
-//    return function(givenAlpha){
-//        return curve.getPoint(givenAlpha).y;
-//    };
-
-    // use each path by itself
-    const cp = createAlphaCurve(grc_points);
-    return function(alpha){
-        alpha = alpha === 1 ? 0.99999999 : alpha;
-        const cLen = cp.curves.length;
-        const curveIndex = Math.floor( cLen * alpha);
-        const cc = cp.curves[ curveIndex];
-        const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
-        const v3 = cc.getPoint( a_cc );
-        return v3.y;
-    };
-};
-
 const debugAlphaFunction = (alphaFunc, opt) => {
     opt = opt || {};
     opt.count = opt.count === undefined ? 200 : opt.count;
@@ -85,7 +53,7 @@ const grc_points = [
     [0.50,     0],
     [0]
 ];
-const curveAlpha = createAlphaFunciton( grc_points );
+const curveAlpha = curveMod.createAlphaFunciton2( grc_points );
 const points = debugAlphaFunction(curveAlpha);
 scene.add(points);
 

@@ -16,6 +16,17 @@
         });
         return collection;
     };
+    const createAlphaCurve = (grc_points) => {
+        let i = 0, len = grc_points.length;
+        const data = [];
+        while(i < len - 1){
+            const s = grc_points[i];
+            const e = grc_points[i + 1];
+            data.push([ 0, s[0], 0,   0, e[0], 0,   0, s[1], 0 ]);
+            i += 1;
+        }
+        return curveMod.QBCurvePath(data);
+    };
     //-------- ----------
     // RETURN CURVE
     //-------- ----------
@@ -80,6 +91,28 @@
             i += 1;
         }
         return v3Array;
+    };
+    //-------- ----------
+    // ALPHA FUNCTION
+    //-------- ----------
+    api.createAlphaFunciton1 = ( grc_points ) => {
+        const curve = createAlphaCurve(grc_points);
+        return function(givenAlpha){
+            return curve.getPoint(givenAlpha).y;
+        };
+    };
+    api.createAlphaFunciton2 = ( grc_points ) => {
+        // use each path by itself
+        const cp = createAlphaCurve(grc_points);
+        return function(alpha){
+            alpha = alpha === 1 ? 0.99999999 : alpha;
+            const cLen = cp.curves.length;
+            const curveIndex = Math.floor( cLen * alpha);
+            const cc = cp.curves[ curveIndex];
+            const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
+            const v3 = cc.getPoint( a_cc );
+            return v3.y;
+        };
     };
     //-------- ----------
     // DEBUG HELPERS
