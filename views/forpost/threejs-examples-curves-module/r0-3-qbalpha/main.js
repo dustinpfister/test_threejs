@@ -17,7 +17,7 @@ try{
 }catch(e){
     console.warn('OrbitControls JSM module not loaded.');
 }
-
+/*
 
 const curve1 = curveMod.QBC3(0.00, 0.00, 0,   0.25, 1.00, 0,         0, 0, 0);
 const curve2 = curveMod.QBC3(0.25, 1.00, 0,   0.50, 1.00, 0,         0, 0, 0);
@@ -35,6 +35,7 @@ cp1.add(curve4);
 //console.log(curve2.getPoint(0));
 
 let alpha = 0.77;
+alpha = alpha === 1 ? 0.99999999 : alpha;
 // CURVE PATHS ARE OFF
 console.log( 'return alpha = ' + cp1.getPoint( alpha ).y ); // 0.9377406055484174
 
@@ -44,16 +45,18 @@ const curveIndex = Math.floor( cLen * alpha);
 const cc = cp1.curves[ curveIndex];
 const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
 console.log('curveIndex= ' + curveIndex, 'a_cc=' + a_cc);
-console.log( cc.getPoint( a_cc ) ); // 1 
+console.log( cc.getPoint( a_cc ).y ); // 1 
+//console.log( curve4.getPoint(0.7) )
+*/
 
-/*
+
 const createAlphaCurve = (grc_points) => {
     let i = 0, len = grc_points.length;
     const data = [];
     while(i < len - 1){
         const s = grc_points[i];
         const e = grc_points[i + 1];
-        data.push([ s[0], s[1], 0, e[0], e[1], 0, 0, 0, 0 ]);
+        data.push([ s[0], s[1], 0,   e[0], e[1], 0,   0, s[2], 0 ]);
         i += 1;
     }
     return curveMod.QBCurvePath(data);
@@ -61,18 +64,28 @@ const createAlphaCurve = (grc_points) => {
 
 const createAlphaFunciton = ( grc_points ) => {
 
-//    const curve = createAlphaCurve(grc_points);
-//    return function(givenAlpha){
-//        return curve.getPoint(givenAlpha).y;
-//    };
+    //const curve = createAlphaCurve(grc_points);
+    //return function(givenAlpha){
+    //    return curve.getPoint(givenAlpha).y;
+    //};
 
     const cp = createAlphaCurve(grc_points);
+        return function(alpha){
+        alpha = alpha === 1 ? 0.99999999 : alpha;
+        const cLen = cp.curves.length;
+        const curveIndex = Math.floor( cLen * alpha);
+        const cc = cp.curves[ curveIndex];
+        const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
 
-    return function(alpha){
-        const cc = cp.curves[ Math.round( (cp.curves.length - 1) * alpha) ];
-        const i = alpha %  ( 1 / cp.curves.length ); 
-        return cc.getPoint( i ).y; 
+        const v3 = cc.getPoint( a_cc );
+
+        return v3.y;
     };
+
+//console.log('curveIndex= ' + curveIndex, 'a_cc=' + a_cc);
+//console.log( cc.getPoint( a_cc ).y ); // 1 
+//console.log( curve4.getPoint(0.7) )
+
 };
 
 const debugAlphaFunction = (alphaFunc, opt) => {
@@ -99,10 +112,10 @@ const debugAlphaFunction = (alphaFunc, opt) => {
 };
 
 const grc_points = [
-    [0.00, 0.00,     0,0],
-    [0.25, 1.00,     0,0],
-    [0.75, 0.50,     0,0],
-    [1.50, 0.10,     0,0]
+    [0.00, 0.00,     0.5],
+    [0.25, 1.00,     0.25],
+    [0.75, 0.50,     -0.25],
+    [1.50, 0.10]
 ];
 const curveAlpha = createAlphaFunciton( grc_points );
 
@@ -111,7 +124,7 @@ console.log( curveAlpha(1 / 2.5) );
 
 const points = debugAlphaFunction(curveAlpha);
 scene.add(points);
-*/
+
 
 //-------- ----------
 // MESH
@@ -133,10 +146,10 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
      const a1 = frame / frameMax;
-     //const a2 = curveAlpha(a1);
+     const a2 = curveAlpha(a1);
 
-     //mesh.position.x = -5 + 10 * a1;
-     //mesh.position.z = 5 - 10 * a2;
+     mesh.position.x = -5 + 10 * a1;
+     mesh.position.z = 5 - 10 * a2;
 
 };
 // loop
