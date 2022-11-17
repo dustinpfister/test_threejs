@@ -18,11 +18,11 @@ try{
     console.warn('OrbitControls JSM module not loaded.');
 }
 
-/*
+
 const curve1 = curveMod.QBC3(0.00, 0.00, 0,   0.25, 1.00, 0,         0, 0, 0);
 const curve2 = curveMod.QBC3(0.25, 1.00, 0,   0.50, 1.00, 0,         0, 0, 0);
 const curve3 = curveMod.QBC3(0.50, 1.00, 0,   0.75, 0.50, 0,         0, 0, 0);
-const curve4 = curveMod.QBC3(0.75, 0.50, 0,   1.00, 0.10, 0,         0, 0, 0);
+const curve4 = curveMod.QBC3(0.75, 0.50, 0,   1.00, 0.25, 0,         0, 0, 0);
 
 const cp1 = new THREE.CurvePath();
 cp1.add(curve1);
@@ -31,19 +31,22 @@ cp1.add(curve3);
 cp1.add(curve4);
 
 
-console.log(curve1.getPoint(1));
-console.log(curve2.getPoint(0));
+//console.log(curve1.getPoint(1));
+//console.log(curve2.getPoint(0));
 
-const alpha = 0.25;
+let alpha = 0.90;
 // CURVE PATHS ARE OFF
-console.log( cp1.getPoint( alpha ).y ); // 0.9377406055484174
+console.log( 'return alpha = ' + cp1.getPoint( alpha ).y ); // 0.9377406055484174
 
 // SOMETHING LIKE THIS THEN SEEMS TO WORK BETTER
-const cc = cp1.curves[ Math.round( (cp1.curves.length - 1) * alpha) ];
-const i = alpha %  ( 1 / cp1.curves.length ); 
-console.log( cc.getPoint( i ).y ); // 1 
-*/
+const cLen = cp1.curves.length;
+const curveIndex = Math.floor( cLen * alpha);
+const cc = cp1.curves[ curveIndex];
+const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
+console.log('curveIndex= ' + curveIndex, 'a_cc=' + a_cc);
+console.log( 'return alpha = ' + cc.getPoint( a_cc ).y ); // 1 
 
+/*
 const createAlphaCurve = (grc_points) => {
     let i = 0, len = grc_points.length;
     const data = [];
@@ -57,12 +60,12 @@ const createAlphaCurve = (grc_points) => {
 };
 
 const createAlphaFunciton = ( grc_points ) => {
-/*
-    const curve = createAlphaCurve(grc_points);
-    return function(givenAlpha){
-        return curve.getPoint(givenAlpha).y;
-    };
-*/
+
+//    const curve = createAlphaCurve(grc_points);
+//    return function(givenAlpha){
+//        return curve.getPoint(givenAlpha).y;
+//    };
+
     const cp = createAlphaCurve(grc_points);
 
     return function(alpha){
@@ -108,7 +111,7 @@ console.log( curveAlpha(1 / 2.5) );
 
 const points = debugAlphaFunction(curveAlpha);
 scene.add(points);
-
+*/
 
 //-------- ----------
 // MESH
@@ -130,10 +133,10 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
      const a1 = frame / frameMax;
-     const a2 = curveAlpha(a1);
+     //const a2 = curveAlpha(a1);
 
-     mesh.position.x = -5 + 10 * a1;
-     mesh.position.z = 5 - 10 * a2;
+     //mesh.position.x = -5 + 10 * a1;
+     //mesh.position.z = 5 - 10 * a2;
 
 };
 // loop
