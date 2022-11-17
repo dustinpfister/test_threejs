@@ -18,6 +18,32 @@ try{
     console.warn('OrbitControls JSM module not loaded.');
 }
 
+/*
+const curve1 = curveMod.QBC3(0.00, 0.00, 0,   0.25, 1.00, 0,         0, 0, 0);
+const curve2 = curveMod.QBC3(0.25, 1.00, 0,   0.50, 1.00, 0,         0, 0, 0);
+const curve3 = curveMod.QBC3(0.50, 1.00, 0,   0.75, 0.50, 0,         0, 0, 0);
+const curve4 = curveMod.QBC3(0.75, 0.50, 0,   1.00, 0.10, 0,         0, 0, 0);
+
+const cp1 = new THREE.CurvePath();
+cp1.add(curve1);
+cp1.add(curve2);
+cp1.add(curve3);
+cp1.add(curve4);
+
+
+console.log(curve1.getPoint(1));
+console.log(curve2.getPoint(0));
+
+const alpha = 0.25;
+// CURVE PATHS ARE OFF
+console.log( cp1.getPoint( alpha ).y ); // 0.9377406055484174
+
+// SOMETHING LIKE THIS THEN SEEMS TO WORK BETTER
+const cc = cp1.curves[ Math.round( (cp1.curves.length - 1) * alpha) ];
+const i = alpha %  ( 1 / cp1.curves.length ); 
+console.log( cc.getPoint( i ).y ); // 1 
+*/
+
 const createAlphaCurve = (grc_points) => {
     let i = 0, len = grc_points.length;
     const data = [];
@@ -25,19 +51,24 @@ const createAlphaCurve = (grc_points) => {
         const s = grc_points[i];
         const e = grc_points[i + 1];
         data.push([ s[0], s[1], 0, e[0], e[1], 0, 0, 0, 0 ]);
-
-//const s = grc_points[i];
-//data.push([ s[0], s[1], 0, s[2], s[3], 0, 0, 0, 0 ]);
-
         i += 1;
     }
     return curveMod.QBCurvePath(data);
 };
 
 const createAlphaFunciton = ( grc_points ) => {
+/*
     const curve = createAlphaCurve(grc_points);
     return function(givenAlpha){
         return curve.getPoint(givenAlpha).y;
+    };
+*/
+    const cp = createAlphaCurve(grc_points);
+
+    return function(alpha){
+        const cc = cp.curves[ Math.round( (cp.curves.length - 1) * alpha) ];
+        const i = alpha %  ( 1 / cp.curves.length ); 
+        return cc.getPoint( i ).y; 
     };
 };
 
@@ -65,9 +96,6 @@ const debugAlphaFunction = (alphaFunc, opt) => {
 };
 
 const grc_points = [
-//    [0.00, 0.00, 0.25, 1.00,     0,0],
-//    [0.25, 1.00, 0.75, 0.50,     0,0],
-//    [0.75, 0.50, 1.00, 0.10,     0,0]
     [0.00, 0.00,     0,0],
     [0.25, 1.00,     0,0],
     [0.75, 0.50,     0,0],
@@ -80,6 +108,7 @@ console.log( curveAlpha(1 / 2.5) );
 
 const points = debugAlphaFunction(curveAlpha);
 scene.add(points);
+
 
 //-------- ----------
 // MESH
