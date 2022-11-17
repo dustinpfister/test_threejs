@@ -10,14 +10,14 @@ camera.lookAt(0, 0, 0);
 //-------- ----------
 // MESH
 //-------- ----------
-var mesh = new THREE.Mesh(
+const mesh = new THREE.Mesh(
     new THREE.SphereGeometry(1, 30, 30),
     new THREE.MeshNormalMaterial());
 scene.add(mesh);
 //-------- ----------
 // IS WEBGL TEST
 //-------- ----------
-if (!WebGL.isWebGL()) {
+if (WebGL.isWebGL()) {
     // if we have webGl so I will default to using webgl1, but might replace
     // with the webgl 2 renderer if there
     console.log('We have webgl.');
