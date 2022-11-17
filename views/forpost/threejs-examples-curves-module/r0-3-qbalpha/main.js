@@ -17,32 +17,9 @@ try{
 }catch(e){
     console.warn('OrbitControls JSM module not loaded.');
 }
-
-const debugAlphaFunction = (alphaFunc, opt) => {
-    opt = opt || {};
-    opt.count = opt.count === undefined ? 200 : opt.count;
-    opt.sx = opt.sx === undefined ? -5 : opt.sx;
-    opt.sz = opt.sz === undefined ? 5 : opt.sz;
-    opt.w = opt.w === undefined ? 10 : opt.w;
-    opt.h = opt.h === undefined ? -10 : opt.h;
-    opt.size = opt.size === undefined ? 0.2 : opt.size;
-    opt.color = opt.color === undefined ? new THREE.Color(0,1,1) : opt.color;
-    const v3Array = [];
-    let i = 0;
-    while(i < opt.count){
-        const a1 = i / opt.count;
-        const x = opt.sx + a1 * opt.w;
-        const z = opt.sz + alphaFunc(a1) * opt.h;
-        v3Array.push( new THREE.Vector3( x, 0 , z) );
-        i += 1;
-    }
-    const points = new THREE.Points(
-        new THREE.BufferGeometry().setFromPoints( v3Array ),
-        new THREE.PointsMaterial({ size: opt.size, color: opt.color})
-    );
-    return points;
-};
-
+// ---------- ----------
+// CURVE ALPHA
+// ---------- ----------
 const grc_points = [
     [0.00,     0],
     [0.10,     0],
@@ -56,10 +33,8 @@ const grc_points = [
     [0]
 ];
 const curveAlpha = curveMod.createAlphaFunciton2( grc_points );
-const points = debugAlphaFunction(curveAlpha);
+const points = curveMod.debugAlphaFunction(curveAlpha);
 scene.add(points);
-
-
 //-------- ----------
 // MESH
 //-------- ----------
