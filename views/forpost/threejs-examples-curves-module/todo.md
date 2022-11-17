@@ -1,7 +1,7 @@
 # threejs-examples-curves-module todo list
 
 
-## r0-x-qbcurvealpha demo
+## r0-x-qbalpha demo
 * () demo of the alpha method
 
 ## r0-x-qbcurvepath demo
