@@ -32,18 +32,28 @@ const grc_points = [
     [0.50,     0],
     [0]
 ];
-
+const curveAlpha = curveMod.createAlphaFunciton2( grc_points );
+// ---------- ----------
+// OTHER GET ALPHA
+// ---------- ----------
 const getAlpha = (alpha) => {
     return alpha * 8 % 1;
 };
+const getBias = (alpha) => {
+    return 1 - Math.abs(0.5 - (alpha * 3 % 1) ) / 0.5;
+};
 
-const curveAlpha = curveMod.createAlphaFunciton2( grc_points );
 
 
+// ---------- ----------
+// ALPHA FUNC TO USE
+// ---------- ----------
 //var alphaFunc = curveAlpha;
 var alphaFunc = getAlpha;
-
-
+var alphaFunc = getBias;
+// ---------- ----------
+// DEBUG ALPHA FUNC
+// ---------- ----------
 const points = curveMod.debugAlphaFunction(alphaFunc);
 scene.add(points);
 //-------- ----------
