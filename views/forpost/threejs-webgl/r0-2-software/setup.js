@@ -22,17 +22,15 @@ if (WebGL.isWebGL()) {
     // if we have webGl so I will default to using webgl1, but might replace
     // with the webgl 2 renderer if there
     console.log('We have webgl.');
-    let renderer = new THREE.WebGL1Renderer();
-    if(WebGL.isWebGL2()){
-        console.log('We have webgl 2');
-        renderer = new THREE.WebGLRenderer();
-    }
+    let renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
     container.appendChild(renderer.domElement);
     renderer.render(scene, camera);
 } else {
-    console.log('We do not have webgl, so I am using THREE.SVGRenderer');
-    const renderer = new THREE.SVGRenderer();
+    // in the event that webgl is not supported I can give an error message to the
+    // use, or in this case use some other option for rendering
+    console.log('We do not have webgl, so I am using THREE.SoftwareRenderer');
+    const renderer = new THREE.SoftwareRenderer();
     renderer.setSize(640, 480);
     container.appendChild(renderer.domElement);
     renderer.render(scene, camera);
