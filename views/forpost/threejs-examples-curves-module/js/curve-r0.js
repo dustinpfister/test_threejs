@@ -1,5 +1,8 @@
 // curve.js - r0 - r146 prototype
 (function(api){
+    //-------- ----------
+    // RETURN CURVE
+    //-------- ----------
     // just a short hand for THREE.QuadraticBezierCurve3
     api.QBC3 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3){
         let vs = x1;
@@ -24,6 +27,9 @@
         const curve = api.QBC3(vs, ve, vc);
         return curve;
     };
+    //-------- ----------
+    // RETURN V3ARRAY
+    //-------- ----------
     // QBV3Array
     api.QBV3Array = function(data) {
         const v3Array = [];
@@ -56,7 +62,10 @@
         }
         return v3Array;
     };
-
+    //-------- ----------
+    // DEBUG HELPERS
+    //-------- ----------
+    // debug lines
     api.debugLines = ( arrays ) => {
         const line_debug = new THREE.Line(
             new THREE.BufferGeometry().setFromPoints(arrays.flat()),
@@ -64,13 +73,12 @@
         );
         return line_debug;
     };
-
+    // debug points
     api.debugPoints = ( arrays ) => {
-const points_debug = new THREE.Points(
-    new THREE.BufferGeometry().setFromPoints(arrays.flat()),
-    new THREE.PointsMaterial({ size: 0.25, color: new THREE.Color(0, 1, 0)})
-);
-return points_debug;
+        const points_debug = new THREE.Points(
+            new THREE.BufferGeometry().setFromPoints(arrays.flat()),
+            new THREE.PointsMaterial({ size: 0.25, color: new THREE.Color(0, 1, 0)})
+        );
+        return points_debug;
     };
-
 }(this['curveMod'] = {} ));
