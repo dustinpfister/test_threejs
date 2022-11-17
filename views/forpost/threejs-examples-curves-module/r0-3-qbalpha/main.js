@@ -17,38 +17,6 @@ try{
 }catch(e){
     console.warn('OrbitControls JSM module not loaded.');
 }
-/*
-
-const curve1 = curveMod.QBC3(0.00, 0.00, 0,   0.25, 1.00, 0,         0, 0, 0);
-const curve2 = curveMod.QBC3(0.25, 1.00, 0,   0.50, 1.00, 0,         0, 0, 0);
-const curve3 = curveMod.QBC3(0.50, 1.00, 0,   0.75, 0.50, 0,         0, 0, 0);
-const curve4 = curveMod.QBC3(0.75, 0.50, 0,   1.00, 0.25, 0,         0, 0, 0);
-
-const cp1 = new THREE.CurvePath();
-cp1.add(curve1);
-cp1.add(curve2);
-cp1.add(curve3);
-cp1.add(curve4);
-
-
-//console.log(curve1.getPoint(1));
-//console.log(curve2.getPoint(0));
-
-let alpha = 0.77;
-alpha = alpha === 1 ? 0.99999999 : alpha;
-// CURVE PATHS ARE OFF
-console.log( 'return alpha = ' + cp1.getPoint( alpha ).y ); // 0.9377406055484174
-
-// SOMETHING LIKE THIS THEN SEEMS TO WORK BETTER
-const cLen = cp1.curves.length;
-const curveIndex = Math.floor( cLen * alpha);
-const cc = cp1.curves[ curveIndex];
-const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
-console.log('curveIndex= ' + curveIndex, 'a_cc=' + a_cc);
-console.log( cc.getPoint( a_cc ).y ); // 1 
-//console.log( curve4.getPoint(0.7) )
-*/
-
 
 const createAlphaCurve = (grc_points) => {
     let i = 0, len = grc_points.length;
@@ -64,28 +32,22 @@ const createAlphaCurve = (grc_points) => {
 
 const createAlphaFunciton = ( grc_points ) => {
 
-    //const curve = createAlphaCurve(grc_points);
-    //return function(givenAlpha){
-    //    return curve.getPoint(givenAlpha).y;
-    //};
+//    const curve = createAlphaCurve(grc_points);
+//    return function(givenAlpha){
+//        return curve.getPoint(givenAlpha).y;
+//    };
 
+    // use each path by itself
     const cp = createAlphaCurve(grc_points);
-        return function(alpha){
+    return function(alpha){
         alpha = alpha === 1 ? 0.99999999 : alpha;
         const cLen = cp.curves.length;
         const curveIndex = Math.floor( cLen * alpha);
         const cc = cp.curves[ curveIndex];
         const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
-
         const v3 = cc.getPoint( a_cc );
-
         return v3.y;
     };
-
-//console.log('curveIndex= ' + curveIndex, 'a_cc=' + a_cc);
-//console.log( cc.getPoint( a_cc ).y ); // 1 
-//console.log( curve4.getPoint(0.7) )
-
 };
 
 const debugAlphaFunction = (alphaFunc, opt) => {
