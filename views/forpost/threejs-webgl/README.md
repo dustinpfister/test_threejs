@@ -1,0 +1,3 @@
+# threejs-webgl
+
+I wrote a post on the subject of webgl and threejs in general, for the most part though this post is just on testing if webgl is there to begin with. In the event that webgl is not there to work with at all I can use some kind of software renderer, or just let the user know that there browser does not support webgl. In the event that webgl is there to work with it is possible that I might only have webgl 1 to work with. I like to work on raspberry pi so I can say first hand that this is very much the case with some of us odd balls that like to work and play on that kind of a system.
