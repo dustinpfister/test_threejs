@@ -76,7 +76,7 @@ const grc_points = [
 const curveAlpha = createAlphaFunciton( grc_points );
 
 
-console.log( curveAlpha(0.25) );
+console.log( curveAlpha(1 / 2.5) );
 
 const points = debugAlphaFunction(curveAlpha);
 scene.add(points);
