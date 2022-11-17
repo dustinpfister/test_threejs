@@ -37,13 +37,11 @@ while(i < len - 1){
 
    i += 1;
 }
+const curve = curveMod.QBCurvePath(data)
 
-console.log(data);
+const alpha = curve.getPoint(0.1).y;
 
-//curveMod.QBCurvePath([
-//   [5, 0, 5, -5, 0, -5,    5,0,-5]
-//])
-
+console.log( alpha )
 
 
 //-------- ----------
