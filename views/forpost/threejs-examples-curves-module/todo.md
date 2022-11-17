@@ -1,8 +1,16 @@
 # threejs-examples-curves-module todo list
 
+
+## r0-x-qbcurvealpha demo
+* () demo of the alpha method
+
+## r0-x-qbcurvepath demo
+* () demo of the qbcurvepath method
+
 ## curvesjs - r0 
-* () I will want to have a curve path rather than v3arrays
-* () a method where I can pass a curve path, and an array of alpha values
+* () have a curveMod.QBCurvePath method
+* () have a common privater helper used by both curveMod.QBCurvePath and curveMod.QBV3Array
+* () have a qbcurvepath method
 
 ## ( done 11/17/2022 ) - start for post folder
 * (done) for post folder started

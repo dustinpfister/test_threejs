@@ -34,7 +34,7 @@
     api.QBV3Array = function(data) {
         const v3Array = [];
         data.forEach( ( a ) => {
-            const curve = api.QBDelta.apply(null, a.slice(0, a.length - 1))
+            const curve = api.QBDelta.apply(null, a.slice(0, a.length - 1));
             v3Array.push( curve.getPoints( a[9]) );
         });
         return v3Array.flat();
