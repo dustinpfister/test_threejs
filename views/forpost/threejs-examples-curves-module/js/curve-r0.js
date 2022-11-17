@@ -42,6 +42,9 @@
         const curve = api.QBC3(vs, ve, vc);
         return curve;
     };
+    api.QBCurvePath = function(data){
+        return forPathData(data);
+    };
     //-------- ----------
     // RETURN V3ARRAY
     //-------- ----------

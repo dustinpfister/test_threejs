@@ -18,6 +18,16 @@ try{
     console.warn('OrbitControls JSM module not loaded.');
 }
 //-------- ----------
+// CURVE PATH
+//-------- ----------
+const cp_meshpos = curveMod.QBCurvePath([
+   [5, 0, 5, -5, 0, -5,    5,0,-5]
+])
+
+
+console.log()
+
+//-------- ----------
 // MESH
 //-------- ----------
 const mesh = new THREE.Mesh(
@@ -30,13 +40,15 @@ scene.add(mesh);
 // ---------- ----------
 const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 400;
+FRAME_MAX = 90;
 let secs = 0,
 frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
      const a1 = frame / frameMax;
+     const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+     mesh.position.copy(cp_meshpos.getPoint(a2));
 };
 // loop
 const loop = () => {
