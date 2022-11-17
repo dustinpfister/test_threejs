@@ -24,7 +24,11 @@ const createAlphaCurve = (grc_points) => {
     while(i < len - 1){
         const s = grc_points[i];
         const e = grc_points[i + 1];
-        data.push([ s[0], s[1], 0, e[0], e[1], 0, s[2], s[3], 0 ]);
+        data.push([ s[0], s[1], 0, e[0], e[1], 0, 0, 0, 0 ]);
+
+//const s = grc_points[i];
+//data.push([ s[0], s[1], 0, s[2], s[3], 0, 0, 0, 0 ]);
+
         i += 1;
     }
     return curveMod.QBCurvePath(data);
@@ -40,12 +44,16 @@ const createAlphaFunciton = ( grc_points ) => {
 const debugAlphaFunction = (alphaFunc, opt) => {
     opt = opt || {};
     opt.count = opt.count === undefined ? 100 : opt.count;
+    opt.sx = -5;
+    opt.sz = 5;
+    opt.w = 10;
+    opt.h = -10;
     const v3Array = [];
     let i = 0;
     while(i < opt.count){
         const a1 = i / opt.count;
-        const x = a1;
-        const z = alphaFunc(a1);
+        const x = opt.sx + a1 * opt.w;
+        const z = opt.sz + alphaFunc(a1) * opt.h;
         v3Array.push( new THREE.Vector3( x, 0 , z) );
         i += 1;
     }
@@ -57,12 +65,18 @@ const debugAlphaFunction = (alphaFunc, opt) => {
 };
 
 const grc_points = [
-    [0.00, 0.00,     1,0.5],
-    [0.25, 1.00,     -1,0],
-    [0.75, 0.70,     1,0],
-    [1.00, 0.10]
+//    [0.00, 0.00, 0.25, 1.00,     0,0],
+//    [0.25, 1.00, 0.75, 0.50,     0,0],
+//    [0.75, 0.50, 1.00, 0.10,     0,0]
+    [0.00, 0.00,     0,0],
+    [0.25, 1.00,     0,0],
+    [0.75, 0.50,     0,0],
+    [1.50, 0.10,     0,0]
 ];
 const curveAlpha = createAlphaFunciton( grc_points );
+
+
+console.log( curveAlpha(0.25) );
 
 const points = debugAlphaFunction(curveAlpha);
 scene.add(points);
