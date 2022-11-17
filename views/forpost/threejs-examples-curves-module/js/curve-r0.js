@@ -3,6 +3,7 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
+    // for path data helper used by QBCurvePath and QBV3Array
     const forPathData = (data, collection, forCurve) => {
         collection = collection || new THREE.CurvePath();
         forCurve = forCurve || function(a, curve, curvePath, data){
@@ -42,6 +43,7 @@
         const curve = api.QBC3(vs, ve, vc);
         return curve;
     };
+    // return a path curve by just calling the for path data helper with default options
     api.QBCurvePath = function(data){
         return forPathData(data);
     };
