@@ -32,8 +32,19 @@ const grc_points = [
     [0.50,     0],
     [0]
 ];
+
+const getAlpha = (alpha) => {
+    return alpha * 8 % 1;
+};
+
 const curveAlpha = curveMod.createAlphaFunciton2( grc_points );
-const points = curveMod.debugAlphaFunction(curveAlpha);
+
+
+//var alphaFunc = curveAlpha;
+var alphaFunc = getAlpha;
+
+
+const points = curveMod.debugAlphaFunction(alphaFunc);
 scene.add(points);
 //-------- ----------
 // MESH
@@ -55,7 +66,7 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
      const a1 = frame / frameMax;
-     const a2 = curveAlpha(a1);
+     const a2 = alphaFunc(a1);
 
      mesh.position.x = -5 + 10 * a1;
      mesh.position.z = 5 - 10 * a2;
