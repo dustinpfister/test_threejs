@@ -18,7 +18,7 @@ scene.add(mesh);
 //-------- ----------
 // IS WEBGL TEST
 //-------- ----------
-if (isWebGL()) {
+if (WebGL.isWebGL()) {
     // if we have webGl we can use the webGL renderer
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
