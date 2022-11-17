@@ -1,42 +1,38 @@
+//-------- ----------
+// SCENE, CAMERA
+//-------- ----------
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0,0,0);
 const container = (document.getElementById('demo') || document.body);
-camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
 camera.position.set(2, 2, 2);
 camera.lookAt(0, 0, 0);
-// A mesh with more than one material, by default the
-// geometry of the sphere will use the Depth material as all the faces
-// have a material index set of 1
-var mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 30, 30),
-        [
-            new THREE.MeshDepthMaterial(),
-            new THREE.MeshStandardMaterial({
-                color: 0xff0000,
-                emissive: 0x00001a
-            })
-        ]);
+//-------- ----------
+// MESH
+//-------- ----------
+var mesh = new THREE.Mesh(
+    new THREE.SphereGeometry(1, 30, 30),
+    new THREE.MeshNormalMaterial());
 scene.add(mesh);
 //-------- ----------
 // IS WEBGL TEST
 //-------- ----------
-if (WebGL.isWebGL()) {
-    // if we have webGl we can use the webGL renderer
-    var renderer = new THREE.WebGLRenderer();
+if (!WebGL.isWebGL()) {
+    // if we have webGl so I will default to using webgl1, but might replace
+    // with the webgl 2 renderer if there
+    console.log('We have webgl.');
+    let renderer = new THREE.WebGL1Renderer();
+    if(WebGL.isWebGL2()){
+        console.log('We have webgl 2');
+        renderer = new THREE.WebGLRenderer();
+    }
     renderer.setSize(640, 480, false);
     container.appendChild(renderer.domElement);
-    // Light might still not work, depending on how well
-    // supported webGL is, but assuming support is good we
-    // can do things with light
-    mesh.geometry.faces.forEach(function (face) {
-        face.materialIndex = 1;
-    });
-    var light = new THREE.PointLight(0xffffff);
-    light.position.set(0, 2, 2);
-    scene.add(light);
     renderer.render(scene, camera);
 } else {
-    // Use the software renderer
-    var renderer = new THREE.SoftwareRenderer();
-    renderer.setSize(640, 480, false);
+    console.log('We do not have webgl, so I am using THREE.SVGRenderer');
+    const renderer = new THREE.SVGRenderer();
+    renderer.setSize(640, 480);
     container.appendChild(renderer.domElement);
     renderer.render(scene, camera);
 }
