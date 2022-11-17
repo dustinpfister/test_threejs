@@ -37,6 +37,25 @@ const createAlphaFunciton = ( grc_points ) => {
     };
 };
 
+const debugAlphaFunction = (alphaFunc, opt) => {
+    opt = opt || {};
+    opt.count = opt.count === undefined ? 100 : opt.count;
+    const v3Array = [];
+    let i = 0;
+    while(i < opt.count){
+        const a1 = i / opt.count;
+        const x = a1;
+        const z = alphaFunc(a1);
+        v3Array.push( new THREE.Vector3( x, 0 , z) );
+        i += 1;
+    }
+    const points = new THREE.Points(
+        new THREE.BufferGeometry().setFromPoints( v3Array ),
+        new THREE.PointsMaterial({ size: 0.25, color: new THREE.Color(0, 1, 0)})
+    );
+    return points;
+};
+
 const grc_points = [
     [0.00, 0.00,     1,0.5],
     [0.25, 1.00,     -1,0],
@@ -44,6 +63,9 @@ const grc_points = [
     [1.00, 0.10]
 ];
 const curveAlpha = createAlphaFunciton( grc_points );
+
+const points = debugAlphaFunction(curveAlpha);
+scene.add(points);
 
 //-------- ----------
 // MESH
