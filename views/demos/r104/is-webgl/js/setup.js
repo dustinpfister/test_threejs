@@ -1,5 +1,5 @@
-var container = document.getElementById('demo'),
-scene = new THREE.Scene(),
+const scene = new THREE.Scene();
+const container = (document.getElementById('demo') || document.body);
 camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(2, 2, 2);
 camera.lookAt(0, 0, 0);
@@ -16,15 +16,14 @@ var mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 30, 30),
             })
         ]);
 scene.add(mesh);
-
-// test for web gl
+//-------- ----------
+// IS WEBGL TEST
+//-------- ----------
 if (isWebGL()) {
-
     // if we have webGl we can use the webGL renderer
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480, false);
     container.appendChild(renderer.domElement);
-
     // Light might still not work, depending on how well
     // supported webGL is, but assuming support is good we
     // can do things with light
@@ -35,11 +34,10 @@ if (isWebGL()) {
     light.position.set(0, 2, 2);
     scene.add(light);
     renderer.render(scene, camera);
-
 } else {
     // Use the software renderer
     var renderer = new THREE.SoftwareRenderer();
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480, false);
     container.appendChild(renderer.domElement);
     renderer.render(scene, camera);
 }
