@@ -1,6 +1,21 @@
 // curve.js - r0 - r146 prototype
 (function(api){
     //-------- ----------
+    // HELPERS
+    //-------- ----------
+    const forPathData = (data, collection, forCurve) => {
+        collection = collection || new THREE.CurvePath();
+        forCurve = forCurve || function(a, curve, curvePath, data){
+            curvePath.add(curve);
+        };
+        data.forEach( ( a ) => {
+            const curve = api.QBDelta.apply(null, a.slice(0, a.length - 1));
+            forCurve(a, curve, collection, data);
+            //v3Array.push( curve.getPoints( a[9]) );
+        });
+        return collection;
+    };
+    //-------- ----------
     // RETURN CURVE
     //-------- ----------
     // just a short hand for THREE.QuadraticBezierCurve3
@@ -33,8 +48,7 @@
     // QBV3Array
     api.QBV3Array = function(data) {
         const v3Array = [];
-        data.forEach( ( a ) => {
-            const curve = api.QBDelta.apply(null, a.slice(0, a.length - 1));
+        forPathData(data, v3Array, function(a, curve, v3Array){
             v3Array.push( curve.getPoints( a[9]) );
         });
         return v3Array.flat();
