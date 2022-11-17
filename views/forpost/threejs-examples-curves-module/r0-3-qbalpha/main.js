@@ -34,7 +34,7 @@ cp1.add(curve4);
 //console.log(curve1.getPoint(1));
 //console.log(curve2.getPoint(0));
 
-let alpha = 0.90;
+let alpha = 0.77;
 // CURVE PATHS ARE OFF
 console.log( 'return alpha = ' + cp1.getPoint( alpha ).y ); // 0.9377406055484174
 
@@ -44,7 +44,7 @@ const curveIndex = Math.floor( cLen * alpha);
 const cc = cp1.curves[ curveIndex];
 const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
 console.log('curveIndex= ' + curveIndex, 'a_cc=' + a_cc);
-console.log( 'return alpha = ' + cc.getPoint( a_cc ).y ); // 1 
+console.log( cc.getPoint( a_cc ) ); // 1 
 
 /*
 const createAlphaCurve = (grc_points) => {
