@@ -17,6 +17,35 @@ try{
 }catch(e){
     console.warn('OrbitControls JSM module not loaded.');
 }
+
+const grc_points = [
+    [0.00, 0.00,     0,0],
+    [0.25, 1.00,     0,0],
+    [0.75, 0.50,     0,0],
+    [1.00, 0.10]
+];
+//console.log(grc_points)
+
+let i = 0, len = grc_points.length;
+const data = [];
+while(i < len - 1){
+
+   const s = grc_points[i];
+   const e = grc_points[i + 1];
+
+   data.push([ s[0], s[1], 0, e[0], e[1], 0, s[2], s[3], 0 ]);
+
+   i += 1;
+}
+
+console.log(data);
+
+//curveMod.QBCurvePath([
+//   [5, 0, 5, -5, 0, -5,    5,0,-5]
+//])
+
+
+
 //-------- ----------
 // MESH
 //-------- ----------
