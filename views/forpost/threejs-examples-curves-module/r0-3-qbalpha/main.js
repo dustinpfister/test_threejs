@@ -18,7 +18,6 @@ try{
     console.warn('OrbitControls JSM module not loaded.');
 }
 
-
 const createAlphaCurve = (grc_points) => {
     let i = 0, len = grc_points.length;
     const data = [];
@@ -39,18 +38,12 @@ const createAlphaFunciton = ( grc_points ) => {
 };
 
 const grc_points = [
-    [0.00, 0.00,     0,0],
-    [0.25, 1.00,     0,0],
-    [0.75, 0.50,     0,0],
+    [0.00, 0.00,     1,0.5],
+    [0.25, 1.00,     -1,0],
+    [0.75, 0.70,     1,0],
     [1.00, 0.10]
 ];
 const curveAlpha = createAlphaFunciton( grc_points );
-console.log( curveAlpha(0.3) )
-
-
-//const alpha = curve.getPoint(0.1).y;
-//console.log( alpha );
-
 
 //-------- ----------
 // MESH
@@ -65,13 +58,18 @@ scene.add(mesh);
 // ---------- ----------
 const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 400;
+FRAME_MAX = 90;
 let secs = 0,
 frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
      const a1 = frame / frameMax;
+     const a2 = curveAlpha(a1);
+
+     mesh.position.x = -5 + 10 * a1;
+     mesh.position.z = 5 - 10 * a2;
+
 };
 // loop
 const loop = () => {
