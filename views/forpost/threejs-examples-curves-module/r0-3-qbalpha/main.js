@@ -21,13 +21,12 @@ try{
 const debugAlphaFunction = (alphaFunc, opt) => {
     opt = opt || {};
     opt.count = opt.count === undefined ? 200 : opt.count;
-
-
     opt.sx = opt.sx === undefined ? -5 : opt.sx;
     opt.sz = opt.sz === undefined ? 5 : opt.sz;
     opt.w = opt.w === undefined ? 10 : opt.w;
     opt.h = opt.h === undefined ? -10 : opt.h;
-
+    opt.size = opt.size === undefined ? 0.2 : opt.size;
+    opt.color = opt.color === undefined ? new THREE.Color(0,1,1) : opt.color;
     const v3Array = [];
     let i = 0;
     while(i < opt.count){
@@ -39,7 +38,7 @@ const debugAlphaFunction = (alphaFunc, opt) => {
     }
     const points = new THREE.Points(
         new THREE.BufferGeometry().setFromPoints( v3Array ),
-        new THREE.PointsMaterial({ size: 0.25, color: new THREE.Color(0, 1, 0)})
+        new THREE.PointsMaterial({ size: opt.size, color: opt.color})
     );
     return points;
 };
