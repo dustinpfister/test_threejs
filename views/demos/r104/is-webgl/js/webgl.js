@@ -8,3 +8,4 @@ const isWebGL = function () {
         return false;
     }
 };
+

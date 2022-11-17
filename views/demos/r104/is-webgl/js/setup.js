@@ -3,7 +3,6 @@ const container = (document.getElementById('demo') || document.body);
 camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
 camera.position.set(2, 2, 2);
 camera.lookAt(0, 0, 0);
-
 // A mesh with more than one material, by default the
 // geometry of the sphere will use the Depth material as all the faces
 // have a material index set of 1
