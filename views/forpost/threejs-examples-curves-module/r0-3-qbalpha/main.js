@@ -64,14 +64,12 @@ const update = function(frame, frameMax){
      if(a2 < 0 || a2 > 1){
         console.log( 'out!' )
      }
-
-
+     // useing mesh to to show point along get alpha
      mesh2.position.x = -5 + 10 * a1;
      mesh2.position.z = 5 - 10 * a2;
-
-mesh1.position.copy( cp_meshpos.getPoint(a2) );
-
-
+     // using mesh1 to show how that can apply to the point
+     // spacing along another curve
+     mesh1.position.copy( cp_meshpos.getPoint(a2) );
 };
 // loop
 const loop = () => {
