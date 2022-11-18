@@ -94,23 +94,33 @@
     //-------- ----------
     // ALPHA FUNCTION
     //-------- ----------
-    api.createAlphaFunciton1 = ( grc_points ) => {
+    api.createAlphaFunciton1 = ( grc_points, clamp ) => {
+        clamp = clamp === undefined ? true : clamp;
         const curve = createAlphaCurve(grc_points);
         return function(givenAlpha){
-            return curve.getPoint(givenAlpha).y;
+            let a = curve.getPoint(givenAlpha).y;
+            if(clamp){
+                a = THREE.MathUtils.clamp(a, 0, 1);
+            }
+            return a;
         };
     };
-    api.createAlphaFunciton2 = ( grc_points ) => {
+    api.createAlphaFunciton2 = ( grc_points, clamp ) => {
+        clamp = clamp === undefined ? true : clamp;
         // use each path by itself
         const cp = createAlphaCurve(grc_points);
         return function(alpha){
-            alpha = alpha === 1 ? 0.99999999 : alpha;
+            alpha = alpha === 1 ? 0.9999999999 : alpha;
             const cLen = cp.curves.length;
             const curveIndex = Math.floor( cLen * alpha);
             const cc = cp.curves[ curveIndex];
             const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
             const v3 = cc.getPoint( a_cc );
-            return v3.y;
+            let a = v3.y;
+            if(clamp){
+                a = THREE.MathUtils.clamp(a, 0, 0.9999999999);
+            }
+            return a;
         };
     };
     //-------- ----------
