@@ -40,9 +40,15 @@ const getAlpha = (alpha) => {
     return alpha * 8 % 1;
 };
 const getBias = (alpha) => {
-    return 1 - Math.abs(0.5 - (alpha * 3 % 1) ) / 0.5;
+    return 1 - Math.abs(0.5 - (alpha * 1 % 1) ) / 0.5;
 };
-
+const getSinBias = function(alpha){
+    const b = getBias(alpha * 4 % 1);
+    return Math.sin( Math.PI * 0.5 * b );
+};
+const smoothStep = function(alpha){
+    return THREE.MathUtils.smoothstep(alpha, 0, 1);
+};
 
 
 // ---------- ----------
@@ -51,10 +57,12 @@ const getBias = (alpha) => {
 //var alphaFunc = curveAlpha;
 var alphaFunc = getAlpha;
 var alphaFunc = getBias;
+var alphaFunc = getSinBias;
+var alphaFunc = smoothStep;
 // ---------- ----------
 // DEBUG ALPHA FUNC
 // ---------- ----------
-const points = curveMod.debugAlphaFunction(alphaFunc);
+const points = curveMod.debugAlphaFunction(alphaFunc, { count: 400 });
 scene.add(points);
 //-------- ----------
 // MESH
@@ -69,7 +77,7 @@ scene.add(mesh);
 // ---------- ----------
 const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 90;
+FRAME_MAX = 180;
 let secs = 0,
 frame = 0,
 lt = new Date();
