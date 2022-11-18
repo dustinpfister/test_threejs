@@ -21,25 +21,33 @@ try{
 // CURVE ALPHA
 // ---------- ----------
 const grc_points = [
-    [0.00,     0.5],
-    [1.00,     0.25],
-    [0.50,     -0.5],
-    [0.1]
+    [0.00, 0.5],[1.00, 0.25], [0.50, -0.5], [0.1]
 ];
 const curveAlpha = curveMod.createAlphaFunciton2( grc_points, false );
 // ---------- ----------
 // DEBUG ALPHA FUNC
 // ---------- ----------
-const points = curveMod.debugAlphaFunction(curveAlpha, { count: 400 });
-scene.add(points);
+const pointsA = curveMod.debugAlphaFunction(curveAlpha, { count: 400, color: new THREE.Color(1, 1, 1) });
+scene.add(pointsA);
+//-------- ----------
+// CURVE PATH
+//-------- ----------
+const cp_meshpos = curveMod.QBCurvePath([
+   [5, 0, 5, -5, 0, -5,    5,0,-5]
+]);
 //-------- ----------
 // MESH
 //-------- ----------
-const mesh = new THREE.Mesh(
+const mesh1 = new THREE.Mesh(
     new THREE.SphereGeometry(0.5, 30, 30),
     new THREE.MeshNormalMaterial()
 );
-scene.add(mesh);
+scene.add(mesh1);
+const mesh2 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.25, 30, 30),
+    new THREE.MeshNormalMaterial()
+);
+scene.add(mesh2);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -56,8 +64,14 @@ const update = function(frame, frameMax){
      if(a2 < 0 || a2 > 1){
         console.log( 'out!' )
      }
-     mesh.position.x = -5 + 10 * a1;
-     mesh.position.z = 5 - 10 * a2;
+
+
+     mesh2.position.x = -5 + 10 * a1;
+     mesh2.position.z = 5 - 10 * a2;
+
+mesh1.position.copy( cp_meshpos.getPoint(a2) );
+
+
 };
 // loop
 const loop = () => {
