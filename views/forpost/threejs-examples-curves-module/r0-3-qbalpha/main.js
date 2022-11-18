@@ -21,21 +21,16 @@ try{
 // CURVE ALPHA
 // ---------- ----------
 const grc_points = [
-    [0.00,     0],
-    [0.10,     0],
-    [0.45,     0],
-    [1.00,     0],
-    [0.50,     0],
-    [0.75,     0],
-    [0.85,     0],
-    [1.00,     0],
-    [0.50,     0],
-    [0]
+    [0.00,     0.5],
+    [1.00,     0.25],
+    [0.50,     -0.5],
+    [0.1]
 ];
 const curveAlpha = curveMod.createAlphaFunciton2( grc_points );
 // ---------- ----------
 // OTHER GET ALPHA
 // ---------- ----------
+/*
 // create map linear method
 const createMapLinear = function(startAlpha, endAlpha){
     startAlpha = startAlpha === undefined ? 0 : startAlpha;
@@ -57,11 +52,11 @@ const getSinBias = function(alpha){
 const smoothStep = function(alpha){
     return THREE.MathUtils.smoothstep(alpha, 0, 1);
 };
-
+*/
 // ---------- ----------
 // ALPHA FUNC TO USE
 // ---------- ----------
-var alphaFunc = curveAlpha;
+//var alphaFunc = curveAlpha;
 //var alphaFunc = getAlpha;
 //var alphaFunc = getBias;
 //var alphaFunc = getSinBias;
@@ -70,7 +65,7 @@ var alphaFunc = curveAlpha;
 // ---------- ----------
 // DEBUG ALPHA FUNC
 // ---------- ----------
-const points = curveMod.debugAlphaFunction(alphaFunc, { count: 400 });
+const points = curveMod.debugAlphaFunction(curveAlpha, { count: 400 });
 scene.add(points);
 //-------- ----------
 // MESH
@@ -92,7 +87,7 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
      const a1 = frame / frameMax;
-     const a2 = alphaFunc(a1);
+     const a2 = curveAlpha(a1);
      mesh.position.x = -5 + 10 * a1;
      mesh.position.z = 5 - 10 * a2;
 };
