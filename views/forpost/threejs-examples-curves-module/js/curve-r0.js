@@ -12,7 +12,6 @@
         data.forEach( ( a ) => {
             const curve = api.QBDelta.apply(null, a.slice(0, a.length - 1));
             forCurve(a, curve, collection, data);
-            //v3Array.push( curve.getPoints( a[9]) );
         });
         return collection;
     };
