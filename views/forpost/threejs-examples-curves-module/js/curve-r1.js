@@ -1,4 +1,4 @@
-// curve.js - r0 - r146 prototype
+// curve.js - r1 - from threejs-examples-curves-module
 (function(api){
     //-------- ----------
     // HELPERS
