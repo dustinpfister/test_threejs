@@ -21,20 +21,26 @@ try{
 // CURVE ALPHA
 // ---------- ----------
 const grc_points = [
-    [0.00, 0.5],[1.00, 0.25], [0.50, -0.5], [0.1]
+    [0.00, 0],[1.00, 0.25], [0.50, -0.2], [0]
 ];
 const curveAlpha = curveMod.createAlphaFunciton2( grc_points, false );
-// ---------- ----------
-// DEBUG ALPHA FUNC
-// ---------- ----------
-const pointsA = curveMod.debugAlphaFunction(curveAlpha, { count: 400, color: new THREE.Color(1, 1, 1) });
-scene.add(pointsA);
+
+
 //-------- ----------
 // CURVE PATH
 //-------- ----------
 const cp_meshpos = curveMod.QBCurvePath([
-   [5, 0, 5, -5, 0, -5,    5,0,-5]
+   [5, 1, 5, -5, 1, -5,    5,0,-5]
 ]);
+
+// ---------- ----------
+// DEBUG POINTS
+// ---------- ----------
+const pointsA = curveMod.debugAlphaFunction(curveAlpha, { count: 400, color: new THREE.Color(1, 1, 1) });
+scene.add(pointsA);
+const pointsM = curveMod.debugPointsCurve(cp_meshpos, { getAlpha: curveAlpha, color: new THREE.Color(0, 1, 0) });
+scene.add(pointsM);
+
 //-------- ----------
 // MESH
 //-------- ----------

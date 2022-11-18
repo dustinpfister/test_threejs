@@ -142,6 +142,25 @@
         );
         return points_debug;
     };
+    // debug points for a curve
+    api.debugPointsCurve = ( curve, opt ) => {
+        opt = opt || {};
+        opt.count = opt.count === undefined ? 100 : opt.count;
+        opt.getAlpha = opt.getAlpha || function(alpha){ return alpha; };
+        opt.size = opt.size === undefined ? 0.2 : opt.size;
+        opt.color = opt.color === undefined ? new THREE.Color(0,1,1) : opt.color;
+        const v3Array = [];
+        let i = 0;
+        while(i < opt.count){
+            v3Array.push( curve.getPoint( opt.getAlpha(i / opt.count ) ) );
+            i += 1;
+        }
+        const points_debug = new THREE.Points(
+            new THREE.BufferGeometry().setFromPoints(v3Array),
+            new THREE.PointsMaterial({ size: opt.size, color: opt.color})
+        );
+        return points_debug;
+    };
     // debug and alpha function
     api.debugAlphaFunction = (alphaFunc, opt) => {
         opt = opt || {};
