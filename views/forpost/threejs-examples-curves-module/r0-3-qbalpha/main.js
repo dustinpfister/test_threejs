@@ -61,12 +61,12 @@ const smoothStep = function(alpha){
 // ---------- ----------
 // ALPHA FUNC TO USE
 // ---------- ----------
-//var alphaFunc = curveAlpha;
-var alphaFunc = getAlpha;
-var alphaFunc = getBias;
-var alphaFunc = getSinBias;
-var alphaFunc = smoothStep;
-var alphaFunc = createMapLinear(0.25, 0.6);
+var alphaFunc = curveAlpha;
+//var alphaFunc = getAlpha;
+//var alphaFunc = getBias;
+//var alphaFunc = getSinBias;
+//var alphaFunc = smoothStep;
+//var alphaFunc = createMapLinear(0.25, 0.6);
 // ---------- ----------
 // DEBUG ALPHA FUNC
 // ---------- ----------
@@ -93,10 +93,8 @@ lt = new Date();
 const update = function(frame, frameMax){
      const a1 = frame / frameMax;
      const a2 = alphaFunc(a1);
-
      mesh.position.x = -5 + 10 * a1;
      mesh.position.z = 5 - 10 * a2;
-
 };
 // loop
 const loop = () => {
