@@ -13,11 +13,11 @@
 * () can set up canvas objects for map, emissveMap, alphaMap
 * () default material should now be phong
 
-### () - r1-x-transtext
+### () - r2-x-transtext
 * () demo where I amm adjusting the trans state value use in the draw method
 * () I will want to have maybe to planes one in which the effect is disabled and the other showing this difference
 
-## () - r1 - Position attribute, main update method, smoothV2 helper
+## () - r2 - Position attribute, main update method, smoothV2 helper
 <!-- canvas and tween many-->
 * () I might want to see what I need to improve with the canvas module first and if so use the latest revision for that
 * () I will want the latest revision of tween many as well for this
@@ -43,8 +43,13 @@
 <!-- draw method-->
 * () update the draw method used to allow for a state value that can be used to adjust a transparency effect
 
-## () - r0-4-position
-* () demo of mutation of position attribute just four points for now
+
+
+## r1 - Varible text size
+* () I will need a new smoothY method that will work well with varible font size
+* () new createTextLines method that will return an array that also contains style info for each line
+
+
 
 ## ( done 10/15/2022 ) - r0-3-customdraw
 * (done) have an example in which I am using a plane geomerty but outside the module
