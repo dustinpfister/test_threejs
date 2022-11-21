@@ -1,13 +1,11 @@
 (function (api) {
-
     // CREATE A BOX GROUP HELPERS
-
     // creating a group
-    var createBoxGroup = function (count, groupNamePrefix, groupNameCount, childNamePrefix) {
-        var group = new THREE.Group();
+    const createBoxGroup = function (count, groupNamePrefix, groupNameCount, childNamePrefix) {
+        const group = new THREE.Group();
         // SETTING A NAME FOR THE GROUP
         group.name = groupNamePrefix + '_' + groupNameCount;
-        var i = 0,
+        let i = 0,
         box,
         len = count;
         while (i < len) {
@@ -22,29 +20,28 @@
         }
         return group;
     };
-
     // position children
-    var positionChildren = function (group) {
-        var prefix = group.name + '_' + 'box_'
-            // front
-            var box = group.getObjectByName(prefix + '0');
-        box.scale.set(1, 1, 3);
-        box.position.set(0, 0, 1);
+    const positionChildren = function (group) {
+        const prefix = group.name + '_' + 'box_';
+        // front
+        const box1 = group.getObjectByName(prefix + '0');
+        box1.scale.set(1, 1, 3);
+        box1.position.set(0, 0, 1);
         // side box objects
-        box = group.getObjectByName(prefix + '1');
-        box.scale.set(1, 1, 1);
-        box.position.set(2, 0, 0);
-        box = group.getObjectByName(prefix + '2');
-        box.scale.set(1, 1, 1);
-        box.position.set(-2, 0, 0);
+        const box2 = group.getObjectByName(prefix + '1');
+        box2.scale.set(1, 1, 1);
+        box2.position.set(2, 0, 0);
+        const box3 = group.getObjectByName(prefix + '2');
+        box3.scale.set(1, 1, 1);
+        box3.position.set(-2, 0, 0);
         // rear
-        box = group.getObjectByName(prefix + '3');
-        box.scale.set(1, 1, 1);
-        box.position.set(0, 0, -2);
+        const box4 = group.getObjectByName(prefix + '3');
+        box4.scale.set(1, 1, 1);
+        box4.position.set(0, 0, -2);
     };
     // create user data object
-    var createUserData = function (wrap, group) {
-        var ud = wrap.userData;
+    const createUserData = function (wrap, group) {
+        const ud = wrap.userData;
         ud.group = group;
         ud.heading = 0; // heading 0 - 359
         ud.pitch = 0; // pitch -180 - 180
@@ -54,13 +51,12 @@
                 new THREE.MeshNormalMaterial());
         wrap.add(ud.dir);
     };
-
     // CREATE A BOX GROUP
-    var groupCount = 0;
+    let groupCount = 0;
     // main update method
     api.create = function () {
-        var wrap = new THREE.Group();
-        var group = createBoxGroup(4, 'boxgroup', groupCount, 'box');
+        const wrap = new THREE.Group();
+        const group = createBoxGroup(4, 'boxgroup', groupCount, 'box');
         wrap.add(group);
         positionChildren(group);
         createUserData(wrap, group);
@@ -72,10 +68,10 @@
     };
     // UPDATE A BOX GROUP
     api.update = function (wrap) {
-        var ud = wrap.userData,
+        const ud = wrap.userData,
         group = ud.group;
-        var headingRadian = Math.PI / 180 * ud.heading;
-        var x = Math.cos(headingRadian) * 5,
+        const headingRadian = Math.PI / 180 * ud.heading;
+        const x = Math.cos(headingRadian) * 5,
         z = Math.sin(headingRadian) * 5,
         // might light to work out a better expression for pitch
         y = Math.abs(ud.pitch) / 180 * 5 * (ud.pitch < 0 ? -1 : 1);
