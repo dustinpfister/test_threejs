@@ -57,6 +57,7 @@
 
     // CREATE A BOX GROUP
     var groupCount = 0;
+    // main update method
     api.create = function () {
         var wrap = new THREE.Group();
         var group = createBoxGroup(4, 'boxgroup', groupCount, 'box');
@@ -64,14 +65,12 @@
         positionChildren(group);
         createUserData(wrap, group);
         api.update(wrap);
-        group.add(new THREE.BoxHelper(group, 0xffffff));
+        //group.add(new THREE.BoxHelper(group, 0xffffff));
         // step group count
         groupCount += 1;
         return wrap;
     };
-
     // UPDATE A BOX GROUP
-
     api.update = function (wrap) {
         var ud = wrap.userData,
         group = ud.group;
@@ -82,8 +81,9 @@
         y = Math.abs(ud.pitch) / 180 * 5 * (ud.pitch < 0 ? -1 : 1);
         ud.dir.position.set(x, y, z);
         // look at is relative to world space, so this needs to be adjusted for that
-        group.lookAt(ud.dir.getWorldPosition());
+        const v = new THREE.Vector3();
+        ud.dir.getWorldPosition(v)
+        group.lookAt(v);
     };
-
 }
     (this['BoxGroup'] = {}));
