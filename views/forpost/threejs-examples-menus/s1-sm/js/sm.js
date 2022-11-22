@@ -60,8 +60,8 @@ var smMod = (function(){
             fps: 30,
             raycaster: new THREE.Raycaster(),
             pointer: new THREE.Vector2(1, 1),
-            camera : new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000),
-            renderer : new THREE.WebGLRenderer(),
+            camera : new THREE.PerspectiveCamera(50, 320 / 240, 0.1, 1000),
+            renderer : new THREE.WebGL1Renderer(),
             scene : new THREE.Scene(),
             buttons: createButtonGroup()
         };
@@ -73,8 +73,8 @@ var smMod = (function(){
         sm.camera.position.set(4, 2, 2);
         sm.camera.lookAt(0, 0, 0);
         // renderer
-        sm.renderer.setSize(640, 480);
-        document.getElementById('demo').appendChild(sm.renderer.domElement);
+        sm.renderer.setSize(640, 480, false);
+        (document.getElementById('demo') || document.body ).appendChild(sm.renderer.domElement);
         // EVENTS
         sm.renderer.domElement.addEventListener( 'pointerdown', createPointerDownHandler(sm), false );
         // return the sm object
