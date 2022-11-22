@@ -32,9 +32,9 @@
         var i = 0;
         while(i < opt.count){
             var button = new THREE.Mesh(
-                new THREE.BoxGeometry(1, 1, 2),
+                new THREE.BoxGeometry(opt.d, opt.h, opt.w),
                 new THREE.MeshNormalMaterial());
-            button.position.y = 1 - 1.25 * i;
+            button.position.y = opt.h - ( opt.h + opt.space ) * i;
             button.name = opt.prefix + '_' + i;
             var data = button.userData;
             data.i = i;
@@ -60,6 +60,10 @@
         // create button mesh objects
         opt.count = opt.count === undefined ? 4 : opt.count;
         opt.prefix = opt.prefix || 'menu';
+        opt.d = opt.d === undefined ? 0.5 : opt.d;
+        opt.h = opt.h === undefined ? 1.0 : opt.h;
+        opt.w = opt.w === undefined ? 3.0 : opt.w;
+        opt.space = opt.space === undefined ? 0.25 : opt.space;
         menu.buttons = createButtonGroup(opt, menu);
         // add grid helper to the scene
         menu.scene.add(new THREE.GridHelper(9, 9));

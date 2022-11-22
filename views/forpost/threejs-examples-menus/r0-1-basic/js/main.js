@@ -3,8 +3,8 @@
 // ---------- ---------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 1.5, 100);
-camera.position.set(2.5, 2.5, 2.5);
-camera.lookAt(0,0,0);
+camera.position.set(2.75, 2.75, 2.75);
+camera.lookAt(0, -0.25, 0 );
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
@@ -15,13 +15,14 @@ var menu = menuMod.create({
     renderer: renderer,
     scene: scene,
     camera: camera,
-    count: 2,
+    count: 3,
     prefix: 'menu1',
     onClick: function(menu, button, v2, mud ){
         console.log('Button ' + mud.i + ' clicked at: ' + v2.x.toFixed(2) + ', ' + v2.y.toFixed(2));
     }
 });
 // style buttons
+/*
 menu.buttons.traverse( (obj) => {
     if(obj.type === 'Mesh'){
         const button = obj;
@@ -29,9 +30,9 @@ menu.buttons.traverse( (obj) => {
         button.material = new THREE.MeshDepthMaterial();
     }
 });
-
+*/
 // ORBIT CONTROLS
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
+//var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // ---------- ----------
 // ANIMATION LOOP

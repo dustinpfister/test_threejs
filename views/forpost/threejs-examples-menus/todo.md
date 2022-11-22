@@ -4,7 +4,10 @@
 * (done) start a new main js folder with a menus-r0.js file
 * (done) leave code that has to do with a basic threejs project setup in the demo files
 * (done) have a custom on click method for the basic example
-* () name prefix
+* (done) name prefix
+* (done) ref to user data object in on click method
+* () can adjust size of buttons by way of create option
+
 
 ## ( done 12/03/2021 ) - first state of examples done
 * started an sm.js file for the first section
