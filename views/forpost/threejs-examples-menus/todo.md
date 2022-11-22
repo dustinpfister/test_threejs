@@ -1,8 +1,11 @@
 # threejs-examples-menus todo list
 
-## () r0-1-basic
+## () r0-2-canvas
+* () example with canvas lables
+
+## ( done 11/22/2022 ) r0-1-basic
 * (done) new basic example started 
-* () have scale of button go up when clicked and then go back down over time
+* (done) have scale of button go up when clicked and then go back down over time
 
 ## ( done 11/22/2022 ) r0 - first version of menus.js, new demos
 * (done) start a new main js folder with a menus-r0.js file

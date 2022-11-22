@@ -22,7 +22,7 @@ var menu = menuMod.create({
         mud.scaleDelta = 0.25;
     }
 });
-// style buttons
+// set up buttons
 menu.buttons.traverse( (obj) => {
     if(obj.type === 'Mesh'){
         const button = obj;
@@ -32,10 +32,6 @@ menu.buttons.traverse( (obj) => {
         mud.scale = 1;
     }
 });
-
-// ORBIT CONTROLS
-//var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
