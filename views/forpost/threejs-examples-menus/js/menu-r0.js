@@ -9,7 +9,7 @@
         if(intersects.length > 0){
             var button = intersects[0].object,
             data = button.userData;
-            data.onClick(menu, button, menu.pointer.x, menu.pointer.y);
+            data.onClick(menu, button, menu.pointer);
         }
     };
     // create and return a pointer down hander for the given sm object

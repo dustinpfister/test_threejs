@@ -16,7 +16,11 @@ var menu = menuMod.create({
     renderer: renderer,
     scene: scene,
     camera: camera,
-    count: 2
+    count: 2,
+    onClick: function(menu, button, v2_canvas ){
+        console.log('Button clicked');
+        console.log(v2_canvas);
+    }
 });
 
 
