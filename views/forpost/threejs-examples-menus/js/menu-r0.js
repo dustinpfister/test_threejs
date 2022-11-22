@@ -1,7 +1,6 @@
+(function(api){
 
-var smMod = (function(){
-
-    var api = {};
+    //var api = {};
 
     var checkButtons = function(sm){
         // set raycaster
@@ -80,6 +79,6 @@ var smMod = (function(){
         return sm;
     };
 
-    return api;
+    //return api;
 
-}());
+}( this['menuMod'] = {} ));

@@ -11,7 +11,8 @@ renderer.setSize(640, 480, false);
 // ---------- ---------- ----------
 // CREATE MENU
 // ---------- ---------- ----------
-var sm = smMod.create({
+
+var sm = menuMod.create({
     renderer: renderer,
     scene: scene,
     camera: camera
