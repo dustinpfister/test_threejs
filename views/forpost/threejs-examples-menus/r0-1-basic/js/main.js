@@ -19,32 +19,41 @@ var menu = menuMod.create({
     prefix: 'menu1',
     onClick: function(menu, button, v2, mud ){
         console.log('Button ' + mud.i + ' clicked at: ' + v2.x.toFixed(2) + ', ' + v2.y.toFixed(2));
+        mud.scaleDelta = 0.25;
     }
 });
 // style buttons
-/*
 menu.buttons.traverse( (obj) => {
     if(obj.type === 'Mesh'){
         const button = obj;
-        console.log(button.userData)
-        button.material = new THREE.MeshDepthMaterial();
+        const mud = button.userData;
+        mud.scaleDelta = 0;
+        console.log(mud);
+        mud.scale = 1;
     }
 });
-*/
+
 // ORBIT CONTROLS
 //var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
-FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 120;
+const FPS_UPDATE = 20;
 let secs = 0,
-frame = 0,
 lt = new Date();
 // update
-const update = function(frame, frameMax){
+const update = function(secs){
+    menu.buttons.traverse( (obj) => {
+        if(obj.type === 'Mesh'){
+            const button = obj;
+            const mud = button.userData;
+            mud.scaleDelta -= 0.5 * secs;
+            mud.scaleDelta = mud.scaleDelta < 0 ? 0 : mud.scaleDelta;
+            mud.scale = 1 + mud.scaleDelta;
+            button.scale.set(mud.scale, mud.scale, mud.scale);
+        }
+    });
 };
 // loop
 const loop = () => {
@@ -53,11 +62,8 @@ const loop = () => {
     requestAnimationFrame(loop);
     if(secs > 1 / FPS_UPDATE){
         // update, render
-        update( Math.floor(frame), FRAME_MAX);
+        update( secs );
         renderer.render(scene, camera);
-        // step frame
-        frame += FPS_MOVEMENT * secs;
-        frame %= FRAME_MAX;
         lt = now;
     }
 };
