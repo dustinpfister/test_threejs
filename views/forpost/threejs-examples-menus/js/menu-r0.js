@@ -1,3 +1,5 @@
+// menu.js - r0 - from threejs-examples-menus
+// https://dustinpfister.github.io/2021/12/03/threejs-examples-menus/
 (function(api){
     // create menu buttons
     var checkButtons = function(menu){
