@@ -26,11 +26,10 @@
         };
     };
     // create a button group;
-    var createButtonGroup = function(opt){
-        opt = opt || {};
+    var createButtonGroup = function(opt, menu){
         var group = new THREE.Group();
         var i = 0;
-        while(i < 3){
+        while(i < opt.count){
             var button = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 2),
                 new THREE.MeshNormalMaterial());
@@ -56,7 +55,9 @@
             scene : opt.scene || new THREE.Scene(),
             buttons: null
         };
-        menu.buttons = createButtonGroup(menu);
+        // create button mesh objects
+        opt.count = opt.count === undefined ? 4 : opt.count;
+        menu.buttons = createButtonGroup(opt, menu);
         // add grid helper to the scene
         menu.scene.add(new THREE.GridHelper(9, 9));
         // adding a button group to the scene

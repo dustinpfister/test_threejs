@@ -2,7 +2,7 @@
 
 ## () r0 - first version of menus.js, new demos
 * (done) start a new main js folder with a menus-r0.js file
-* () leave code that has to do with a basic threejs project setup in the demo files
+* (done) leave code that has to do with a basic threejs project setup in the demo files
 
 
 
