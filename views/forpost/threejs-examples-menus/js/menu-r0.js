@@ -28,12 +28,14 @@
     // create a button group;
     var createButtonGroup = function(opt, menu){
         var group = new THREE.Group();
+        group.name = opt.prefix;
         var i = 0;
         while(i < opt.count){
             var button = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 2),
                 new THREE.MeshNormalMaterial());
             button.position.y = 1 - 1.25 * i;
+            button.name = opt.prefix + '_' + i;
             var data = button.userData;
             data.i = i;
             data.onClick = opt.onClick || function(menu, button, x, y){
@@ -57,6 +59,7 @@
         };
         // create button mesh objects
         opt.count = opt.count === undefined ? 4 : opt.count;
+        opt.prefix = opt.prefix || 'menu';
         menu.buttons = createButtonGroup(opt, menu);
         // add grid helper to the scene
         menu.scene.add(new THREE.GridHelper(9, 9));

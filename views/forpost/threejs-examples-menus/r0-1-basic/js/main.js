@@ -17,16 +17,20 @@ var menu = menuMod.create({
     scene: scene,
     camera: camera,
     count: 2,
+    prefix: 'menu1',
     onClick: function(menu, button, v2_canvas ){
         console.log('Button clicked');
         console.log(v2_canvas);
     }
 });
 
+// get by name
+const group = scene.getObjectByName('menu1_1');
+console.log(group)
 
 
 // ORBIT CONTROLS
-//var controls = new THREE.OrbitControls(sm.camera, sm.renderer.domElement);
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // ---------- ----------
 // ANIMATION LOOP
