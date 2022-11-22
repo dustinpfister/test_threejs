@@ -9,7 +9,7 @@
         if(intersects.length > 0){
             var button = intersects[0].object,
             data = button.userData;
-            data.onClick(menu, button, menu.pointer);
+            data.onClick(menu, button, menu.pointer, button.userData);
         }
     };
     // create and return a pointer down hander for the given sm object
@@ -38,8 +38,8 @@
             button.name = opt.prefix + '_' + i;
             var data = button.userData;
             data.i = i;
-            data.onClick = opt.onClick || function(menu, button, x, y){
-                 console.log('button ' + button.userData.i + ' clicked')
+            data.onClick = opt.onClick || function(menu, button, v2, mud){
+                 console.log('button ' + mud.i + ' clicked')
             };
             group.add(button);
             i += 1;

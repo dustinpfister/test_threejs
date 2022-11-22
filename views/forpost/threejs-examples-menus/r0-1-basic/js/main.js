@@ -2,8 +2,8 @@
 // SCENE, CAMERA, and RENDERER
 // ---------- ---------- ----------
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, 32 / 24, 1, 1000);
-camera.position.set(4, 2, 4);
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 1.5, 100);
+camera.position.set(2.5, 2.5, 2.5);
 camera.lookAt(0,0,0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -11,23 +11,24 @@ renderer.setSize(640, 480, false);
 // ---------- ---------- ----------
 // CREATE MENU
 // ---------- ---------- ----------
-
 var menu = menuMod.create({
     renderer: renderer,
     scene: scene,
     camera: camera,
     count: 2,
     prefix: 'menu1',
-    onClick: function(menu, button, v2_canvas ){
-        console.log('Button clicked');
-        console.log(v2_canvas);
+    onClick: function(menu, button, v2, mud ){
+        console.log('Button ' + mud.i + ' clicked at: ' + v2.x.toFixed(2) + ', ' + v2.y.toFixed(2));
     }
 });
-
-// get by name
-const group = scene.getObjectByName('menu1_1');
-console.log(group)
-
+// style buttons
+menu.buttons.traverse( (obj) => {
+    if(obj.type === 'Mesh'){
+        const button = obj;
+        console.log(button.userData)
+        button.material = new THREE.MeshDepthMaterial();
+    }
+});
 
 // ORBIT CONTROLS
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
