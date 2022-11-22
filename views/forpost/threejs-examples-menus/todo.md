@@ -1,7 +1,7 @@
 # threejs-examples-menus todo list
 
 ## () r0 - first version of menus.js, new demos
-* () start a new main js folder with a menus-r0.js file
+* (done) start a new main js folder with a menus-r0.js file
 * () leave code that has to do with a basic threejs project setup in the demo files
 
 

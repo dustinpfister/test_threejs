@@ -4,10 +4,8 @@ var smMod = (function(){
     var api = {};
 
     var checkButtons = function(sm){
-
         // set raycaster
         sm.raycaster.setFromCamera( sm.pointer, sm.camera );
-
         // check buttons group
         var intersects = sm.raycaster.intersectObjects( sm.buttons.children, true );
         // if button clicked
@@ -54,15 +52,16 @@ var smMod = (function(){
     };
 
     // STATE MACHINE (sm) OBJECT
-    api.createSMObject = function(){
+    api.create = function(opt){
+        opt = opt || {};
         var sm = {
-            lt: new Date(),
-            fps: 30,
+            //lt: new Date(),
+            //fps: 30,
             raycaster: new THREE.Raycaster(),
             pointer: new THREE.Vector2(1, 1),
-            camera : new THREE.PerspectiveCamera(50, 320 / 240, 0.1, 1000),
-            renderer : new THREE.WebGL1Renderer(),
-            scene : new THREE.Scene(),
+            camera : opt.camera || new THREE.PerspectiveCamera(50, 320 / 240, 0.1, 1000),
+            renderer : opt.renderer || new THREE.WebGL1Renderer(),
+            scene : opt.scene || new THREE.Scene(),
             buttons: createButtonGroup()
         };
         // add grid helper to the scene
@@ -70,11 +69,11 @@ var smMod = (function(){
         // adding a button group to the scene
         sm.scene.add(sm.buttons);
         // starting positon and look at for camera
-        sm.camera.position.set(4, 2, 2);
-        sm.camera.lookAt(0, 0, 0);
+        //sm.camera.position.set(4, 2, 2);
+        //sm.camera.lookAt(0, 0, 0);
         // renderer
-        sm.renderer.setSize(640, 480, false);
-        (document.getElementById('demo') || document.body ).appendChild(sm.renderer.domElement);
+        //sm.renderer.setSize(640, 480, false);
+        //(document.getElementById('demo') || document.body ).appendChild(sm.renderer.domElement);
         // EVENTS
         sm.renderer.domElement.addEventListener( 'pointerdown', createPointerDownHandler(sm), false );
         // return the sm object
