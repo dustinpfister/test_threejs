@@ -28,7 +28,7 @@
     camera.add(light);
     scene.add(camera);
     // Render
-    var renderer = new THREE.WebGLRenderer();
+    const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer;
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
  
