@@ -1,7 +1,7 @@
 # threejs-vector3-apply-axis-angle todo list
 
 ## ( done 11/26/2022) s2-2-loop-group
-* (done) new animaiton loop example that will be video1 for this post
+* (done) new animation loop example that will be video1 for this post
 
 ## ( done 11/26/2022 ) - update examples
 * (done) update source code examples to new standards for r146
