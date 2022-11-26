@@ -2,8 +2,14 @@
 (function () {
 
     // scene
-    var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(6, 6));
+    const scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(6, 6) );
+    const camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
+    camera.position.set(5, 5, 5);
+    camera.lookAt(0, 0, 0);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(640, 480);
+    document.getElementById('demo').appendChild(renderer.domElement);
 
     // mesh
     var mesh = new THREE.Mesh(
@@ -20,13 +26,6 @@
 
     console.log(mesh.position.clone().round()); // {x: -1, y: 0, z: -1}
 
-    // camera, render
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(5, 5, 5);
-    camera.lookAt(0, 0, 0);
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
 
 }
