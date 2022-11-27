@@ -20,7 +20,7 @@
 * () start new section on the source code of video projects for this post
 * () new example based on the source code for video1 in videoground-blog-posts
 
-## () sx-raycaster section
+## () sx-x-raycaster section
 * () start a raycaster section with at least one basic example with say a torus geometry
 * () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
 * () at least a basic menu example
@@ -32,7 +32,6 @@
 ## () sx-wrap-clamp section
 * () animation involving the use of clamp
 * () animation involving wrap
-
 
 ## () s3-3-curve-getalpha
 * () have an example in which I at least touch base on get alpha methods
