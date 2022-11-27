@@ -47,8 +47,8 @@
 * () start new section on the source code of video projects for this post
 * () new example based on the source code for video1 in videoground-blog-posts
 
-## () s1-1-curve-basic
-* () new basic curve example
+## ( done 11/27/2022 ) s1-1-curve-basic
+* (done) new basic curve example
 
 ## ( done 10/31/2022 ) s4-3-loop-curve
 * (done) new loop based on curve example
