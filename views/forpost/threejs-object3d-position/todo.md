@@ -1,5 +1,25 @@
 # threejs-object3d-position todo list
 
+## () sx-ani-stochastic section
+* () start a section for stochastic animation examples
+
+## () s4-x-loop-world-local
+* () this will be an animation in which I have two groups
+* () the two groups will be in motion
+* () the children of both groups will be in motion
+* () I will then have at least one 'free' mesh that is just a child of scene
+* () use the getWorldPositon method to get the world space location of a current group
+* () move the mesh object to a location relative to groups, children of groups, and the scene object
+
+## () s4-x-video-second
+* () should have mesh objects being set over time using apply euler
+* () make use of curves for setting object positions
+* () raycaster mesh objects
+
+## () s4-x-video-first
+* () start new section on the source code of video projects for this post
+* () new example based on the source code for video1 in videoground-blog-posts
+
 ## () sx-raycaster section
 * () start a raycaster section with at least one basic example with say a torus geometry
 * () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
@@ -13,24 +33,10 @@
 * () animation involving the use of clamp
 * () animation involving wrap
 
-## () sx-ani-stochastic section
-* () start a section for stochastic animation examples
 
-## () s4-x-loop-world-local
-* () this will be an animation in which I have two groups
-* () the two groups will be in motion
-* () the children of both groups will be in motion
-* () I will then have at least one 'free' mesh that is just a child of scene
-* () use the getWorldPositon method to get the world space location of a current group
-* () move the mesh object to a location relative to groups, children of groups, and the scene object
-
-## () s4-x-video-showcase
-* () new video that showcases more about setting the position of objects
-* () have more than one video file, or make a longer than normal video
-
-## () s4-x-video-first
-* () start new section on the source code of video projects for this post
-* () new example based on the source code for video1 in videoground-blog-posts
+## () s3-3-curve-getalpha
+* () have an example in which I at least touch base on get alpha methods
+* () use at least some math util functions for this
 
 ## ( done 11/27/2022 ) have all loop examples use r146
 * (done) update all loop exmaples to r146
