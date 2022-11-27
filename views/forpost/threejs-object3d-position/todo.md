@@ -41,8 +41,8 @@
 ## () have all children examples use r146
 * () update all children exmaples to r146
 
-## () expand basic even more
-* () s1-6-apply-euler
+## ( done 11/27/2022  ) expand basic even more
+* ( done ) s1-6-apply-euler
 
 ## ( done 11/27/2022 ) - update source of basic examples for r146
 * (done) use r146 for all basic examples
