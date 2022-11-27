@@ -3,8 +3,11 @@
     // SCENE, CAMERA, and RENDERER
     //-------- ----------
     const scene = new THREE.Scene();
+    // grid helper
+    const grid = new THREE.GridHelper(10, 10);
+    scene.add(grid);
     const camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
-    camera.position.set(6, 6, 6);
+    camera.position.set(5, 7, 5);
     camera.lookAt(0,0,0);
     const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer;
     renderer.setSize(640, 480, false);
@@ -43,40 +46,37 @@
         return points;
     };
     // smooth get alpha
-    const getAlphaSmooth = (a1) => {
-        return THREE.MathUtils.smoothstep(a1, 0, 1);
+    const getAlphaSmoother = (a1) => {
+        return THREE.MathUtils.smootherstep(a1, 0, 1);
+    };
+    // curve mesh objects helper
+    const addCurveMeshObjects = (parent, curve, mesh_count, get_alpha) => {
+        get_alpha = get_alpha || function(a1){ return a1; };
+        let i = 0;
+        while(i < mesh_count){
+            const mesh = new THREE.Mesh(
+                new THREE.BoxGeometry(0.5, 0.5, 0.5),
+                new THREE.MeshNormalMaterial({transparent: true, opacity: 0.5}));
+            const v3 =  curve.getPoint( get_alpha( i / mesh_count ) );
+            mesh.position.copy( v3 );
+            parent.add(mesh);
+            i += 1;
+        }
     };
     //-------- ----------
     // CURVE
     //-------- ----------
-    const curve1 = QBC3(2, 0, 5, 2, 0, -5, 6, 0, 0);
+    const curve1 = QBC3(-2, 0, 5, -2, 0, -5, 2, 0, 0);
+    const curve2 = QBC3(2, 0, 5, 2, 0, -5, 6, 0, 0);
     //-------- ----------
     // OBJECTS
     //-------- ----------
-    // mesh object that will be positioned along the curve
-    const MESH_COUNT = 10;
-    const POINT_COUNT = 100;
-    let i = 0;
-    while(i < MESH_COUNT){
-        const mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(0.75, 0.75, 0.75),
-            new THREE.MeshNormalMaterial({transparent: true, opacity: 0.5}));
-        const a1 = Math.round(i / MESH_COUNT * POINT_COUNT) / (POINT_COUNT - POINT_COUNT / MESH_COUNT );
-        const v3 =  curve1.getPoint(getAlphaSmooth(a1));
-        mesh.position.copy( v3 );
-        mesh.lookAt(0, 0, 0);
-        scene.add(mesh);
-        i += 1;
-    }
-    // grid helper
-    const grid = new THREE.GridHelper(10, 10);
-    scene.add(grid);
-
-    scene.add( createCurvePoints(curve1, 50, 0.125, new THREE.Color(0,1,0), getAlphaSmooth ) )
-
+    addCurveMeshObjects(scene, curve1, 20);
+    scene.add( createCurvePoints(curve1, 40, 0.125, new THREE.Color(0,1,1) ) );
+    addCurveMeshObjects(scene, curve2, 20, getAlphaSmoother);
+    scene.add( createCurvePoints(curve2, 40, 0.125, new THREE.Color(0,1,0), getAlphaSmoother ) );
     //-------- ----------
     // RENDER
     //-------- ----------
     renderer.render(scene, camera);
-
 }());
