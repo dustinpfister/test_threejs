@@ -1,17 +1,5 @@
 # threejs-object3d-position todo list
 
-## () sx-clone
-* more advanced example of s3-rotation but now have two or more clones of a bash group
-
-## () sx-rotation
-* more advanced example of the s2-children example but using rotation also
-
-## () sx-svg-movement
-* () start an svg-path section using my threejs example module code for this
-
-## () sx-curve-class
-* () start a curve class section
-
 ## () sx-raycaster section
 * () start a raycaster section with at least one basic example with say a torus geometry
 * () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
@@ -28,9 +16,6 @@
 ## () sx-ani-stochastic section
 * () start a section for stochastic animation examples
 
-## () expand basic even more
-* () s1-6-apply-euler
-
 ## () s4-x-loop-world-local
 * () this will be an animation in which I have two groups
 * () the two groups will be in motion
@@ -46,6 +31,9 @@
 ## () s4-x-video-first
 * () start new section on the source code of video projects for this post
 * () new example based on the source code for video1 in videoground-blog-posts
+
+## () expand basic even more
+* () s1-6-apply-euler
 
 ## ( done 11/27/2022 ) - update source of basic examples for r146
 * (done) use r146 for all basic examples
