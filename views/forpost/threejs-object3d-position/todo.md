@@ -32,16 +32,13 @@
 * () start new section on the source code of video projects for this post
 * () new example based on the source code for video1 in videoground-blog-posts
 
-## () have all loop examples use r146
-* () update all loop exmaples to r146
+## ( done 11/27/2022 ) have all loop examples use r146
+* (done) update all loop exmaples to r146
 
-## () have all curve examples use r146
-* () update all curve exmaples to r146
+## ( done 11/27/2022 ) have all children examples use r146
+* (done 11/27/2022 ) update all children exmaples to r146
 
-## () have all children examples use r146
-* () update all children exmaples to r146
-
-## ( done 11/27/2022  ) expand basic even more
+## ( done 11/27/2022 ) expand basic even more
 * ( done ) s1-6-apply-euler
 
 ## ( done 11/27/2022 ) - update source of basic examples for r146
