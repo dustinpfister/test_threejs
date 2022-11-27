@@ -1,23 +1,34 @@
-// scene
-var scene = new THREE.Scene();
-
-var state = {
+// ---------- ---------- ----------
+// SCENE, CAMERA, and RENDERER
+// ---------- ---------- ----------
+const scene = new THREE.Scene();
+scene.add( new THREE.GridHelper(10,10) );
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 1, 1000);
+camera.position.set(7,7,7);
+camera.lookAt(0,0,0);
+const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer;
+renderer.setSize(640, 480, false);
+( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+// ---------- ---------- ----------
+// STATE
+// ---------- ---------- ----------
+const state = {
     lt: new Date,
     fps: 30,
     groups: new THREE.Group()
 };
 scene.add(state.groups);
-
-// a group created with the cube group module
-var i = 0,
-len = 6,
-radius = 3,
-radian, x, z;
+// ---------- ---------- ----------
+// OBJECTS
+// ---------- ---------- ----------
+// Groups created with the module
+let i = 0;
+const len = 6, radius = 3
 while (i < len) {
-    radian = Math.PI * 2 / len * i;
-    x = Math.cos(radian) * radius;
-    z = Math.sin(radian) * radius;
-    var group = CubeGroup.create({
+    const radian = Math.PI * 2 / len * i;
+    const x = Math.cos(radian) * radius;
+    const z = Math.sin(radian) * radius;
+    const group = CubeGroup.create({
             frame: Math.floor(120 * (i / len)),
             maxFrame: 120
         });
@@ -25,20 +36,11 @@ while (i < len) {
     group.position.set(x, 0, z);
     i += 1;
 }
-
-var grid = new THREE.GridHelper(7, 7);
-scene.add(grid);
-
-// camera and renderer
-var camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.1, 100);
-camera.position.set(7, 7, 7);
-camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-
-var loop = function () {
-    var now = new Date(),
+// ---------- ---------- ----------
+// LOOP
+// ---------- ---------- ----------
+const loop = function () {
+    const now = new Date(),
     secs = (now - state.lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / state.fps) {
