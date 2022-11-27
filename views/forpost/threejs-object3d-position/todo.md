@@ -33,9 +33,9 @@
 * () animation involving the use of clamp
 * () animation involving wrap
 
-## () s3-3-curve-getalpha
-* () have an example in which I at least touch base on get alpha methods
-* () use at least some math util functions for this
+## ( done 11/27/2022 ) s3-3-curve-getalpha
+* (done) have an example in which I at least touch base on get alpha methods
+* (done) use at least some math util functions for this
 
 ## ( done 11/27/2022 ) have all loop examples use r146
 * (done) update all loop exmaples to r146
