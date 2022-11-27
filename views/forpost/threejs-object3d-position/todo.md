@@ -47,9 +47,9 @@
 * () start new section on the source code of video projects for this post
 * () new example based on the source code for video1 in videoground-blog-posts
 
-## () - update source of basic examples for r146
+## ( done 11/27/2022 ) - update source of basic examples for r146
 * (done) use r146 for all basic examples
-* () make renderer changes
+* (done) make renderer changes
 
 ## ( done 11/27/2022 ) s1-1-curve-basic
 * (done) new basic curve example
