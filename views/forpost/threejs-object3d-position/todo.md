@@ -39,13 +39,16 @@
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
 
-## () s5-2-video-showcase
+## () s4-x-video-showcase
 * () new video that showcases more about setting the position of objects
 * () have more than one video file, or make a longer than normal video
 
-## () s5-1-video-first
+## () s4-x-video-first
 * () start new section on the source code of video projects for this post
 * () new example based on the source code for video1 in videoground-blog-posts
+
+## () s1-1-curve-basic
+* () new basic curve example
 
 ## ( done 10/31/2022 ) s4-3-loop-curve
 * (done) new loop based on curve example
