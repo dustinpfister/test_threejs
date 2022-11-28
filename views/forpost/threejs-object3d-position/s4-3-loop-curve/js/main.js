@@ -25,18 +25,6 @@
         }
         return new THREE.QuadraticBezierCurve3( vs, vc, ve );
     };
-    // QBDelta helper using QBC3
-    // this works by giving deltas from the point that is half way between
-    // the two start and end points rather than a direct control point for x3, y3, and x3
-    const QBDelta = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
-        const vs = new THREE.Vector3(x1, y1, z1);
-        const ve = new THREE.Vector3(x2, y2, z2);
-        // deltas
-        const vDelta = new THREE.Vector3(x3, y3, z3);
-        const vc = vs.clone().lerp(ve, 0.5).add(vDelta);
-        const curve = QBC3(vs, ve, vc);
-        return curve;
-    };
     // custom get alpha method
     const getAlpha = (a1) => {
         const a2 = THREE.MathUtils.pingpong(a1, 0.5);
@@ -58,7 +46,7 @@
         new THREE.MeshNormalMaterial());
     scene.add(mesh);
     // points
-    const POINT_COUNT = 300;
+    const POINT_COUNT = 100;
     let i = 0, v3Array = [];
     while(i < POINT_COUNT){
         const a2 = getAlpha( i / POINT_COUNT);
@@ -67,7 +55,7 @@
     }
     const points = new THREE.Points(
         new THREE.BufferGeometry().setFromPoints( v3Array ),
-        new THREE.PointsMaterial({size: 0.075})
+        new THREE.PointsMaterial({size: 0.15})
     );
     scene.add(points);
     //-------- ----------
