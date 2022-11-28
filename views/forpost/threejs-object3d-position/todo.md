@@ -28,8 +28,7 @@
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
 
 ## () s4-5-loop-video2
-* () use the position attribute of a torus geomerty as a way to set the position of a group of mesh objects
-* () have another collection of mesh objects moving over a sphere
+* (done) have some groups os mesh objects that are updated by position attributes of geomerty
 * () have another collection of mesh objects moving along a curve
 
 ## ( done 11/28/2022 ) s4-4-loop-video1
