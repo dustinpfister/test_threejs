@@ -27,10 +27,10 @@
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
 
-## () s4-5-video-second
+## () s4-5-loop-video2
 * () use the position attribute of a torus geomerty as a way to set the position of a group of mesh objects
-* () then switch to a sphere geometry as a way to set position
-* () finish with a cube.
+* () have another collection of mesh objects moving over a sphere
+* () have another collection of mesh objects moving along a curve
 
 ## ( done 11/28/2022 ) s4-4-loop-video1
 * (done) start new section on the source code of video projects for this post
