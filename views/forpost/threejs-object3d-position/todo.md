@@ -27,9 +27,9 @@
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
 
-## () s4-5-loop-video2
+## ( done 11/28/2022  ) s4-5-loop-video2
 * (done) have some groups os mesh objects that are updated by position attributes of geomerty
-* () have another collection of mesh objects moving along a curve
+* (done) have another mesh object moving along a curve
 
 ## ( done 11/28/2022 ) s4-4-loop-video1
 * (done) start new section on the source code of video projects for this post
