@@ -32,9 +32,9 @@
 * () then switch to a sphere geometry as a way to set position
 * () finish with a cube.
 
-## () s4-4-video-first
-* () start new section on the source code of video projects for this post
-* () new example based on the source code for video1 in videoground-blog-posts
+## ( done 11/28/2022 ) s4-4-loop-video1
+* (done) start new section on the source code of video projects for this post
+* (done) new example based on the source code for video1 in videoground-blog-posts
 
 ## ( done 11/27/2022 ) s3-3-curve-getalpha
 * (done) have an example in which I at least touch base on get alpha methods
