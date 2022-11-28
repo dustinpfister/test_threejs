@@ -3,8 +3,8 @@
     // SCENE, CAMERA, and RENDERER
     //-------- ----------
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#202020');
-    scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff));
+    scene.background = new THREE.Color('#000000');
+    //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff));
     const camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
     camera.position.set(7, 7, 7);
     camera.lookAt(0,0,0);
@@ -15,6 +15,7 @@
     // LIGHT
     //-------- ----------
     const dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 1, -3);
     scene.add(dl);
     //-------- ----------
     // HELPERS
@@ -77,16 +78,40 @@
     const group3 = makeGroup({ count: 10, color: new THREE.Color(0, 0, 1)  })
     scene.add(group3);
     // geometry used to update group1, group2, and group3
-    const geo1 = new THREE.SphereGeometry(4, 16, 16);
+    const geo1 = new THREE.SphereGeometry(4, 10, 10);
     const geo2 = new THREE.BoxGeometry(2, 2, 2);
-    const geo3 = new THREE.TorusGeometry(6, 1, 20, 20);
-    geo3.rotateX(Math.PI * 0.5)
+    const geo3 = new THREE.TorusGeometry(6, 1, 10, 40);
+    geo3.rotateX(Math.PI * 0.5);
+    //-------- ----------
+    // MESH OBJECTS FOR UPDATE GEOS
+    //-------- ----------
+    const mesh1 = new THREE.Mesh(geo1, 
+        new THREE.MeshBasicMaterial({
+            color: new THREE.Color(1, 0, 0),
+            transparent: true, opacity: 0.2, wireframe: true, wireframeLinewidth: 2
+        })
+    );
+    scene.add(mesh1);
+    const mesh2 = new THREE.Mesh(geo2, 
+        new THREE.MeshBasicMaterial({
+            color: new THREE.Color(0, 1, 0),
+            transparent: true, opacity: 0.8, wireframe: true, wireframeLinewidth: 4
+        })
+    );
+    scene.add(mesh2);
+    const mesh3 = new THREE.Mesh(geo3, 
+        new THREE.MeshBasicMaterial({
+            color: new THREE.Color(0, 0, 1),
+            transparent: true, opacity: 0.2, wireframe: true, wireframeLinewidth: 1
+        })
+    );
+    scene.add(mesh3);
     //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
     const FPS_UPDATE = 20,    // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;        // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 1000;
+    FRAME_MAX = 800;
     let secs = 0,
     frame = 0,
     lt = new Date();
@@ -96,7 +121,7 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-        positionGroupToGeometry(group1, geo1, a2);
+        positionGroupToGeometry(group1, geo1, a1);
         positionGroupToGeometry(group2, geo2, a2);
         positionGroupToGeometry(group3, geo3, a2);
     };
