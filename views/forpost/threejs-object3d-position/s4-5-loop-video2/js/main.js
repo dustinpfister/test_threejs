@@ -12,13 +12,19 @@
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     //-------- ----------
+    // LIGHT
+    //-------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    scene.add(dl);
+    //-------- ----------
     // HELPERS
     //-------- ----------
     // Make a single mesh object
-    const makeMesh = () => {
+    const makeMesh = (color) => {
         var mesh = new THREE.Mesh(
             new THREE.SphereGeometry(0.5, 20, 20),
-            new THREE.MeshNormalMaterial({
+            new THREE.MeshPhongMaterial({
+                color: color || new THREE.Color(1, 1, 1),
                 transparent: true,
                 opacity: 1
             })
@@ -29,10 +35,11 @@
     const makeGroup = (opt) => {
         opt = opt || {};
         opt.count = opt.count === undefined ? 10 : opt.count;
+        opt.color = opt.color || new THREE.Color(1, 1, 1);
         const group = new THREE.Group();
         let i = 0;
         while(i < opt.count){
-            const mesh = makeMesh();
+            const mesh = makeMesh(opt.color);
             group.add(mesh);
             i+= 1;
         };
@@ -63,19 +70,17 @@
     //-------- ----------
     // GROUPS
     //-------- ----------
-    const group1 = makeGroup({ count: 10 })
+    const group1 = makeGroup({ count: 10, color: new THREE.Color(1, 0, 0) })
     scene.add(group1);
-    const group2 = makeGroup({ count: 10 })
+    const group2 = makeGroup({ count: 10, color: new THREE.Color(0, 1, 0)  })
     scene.add(group2);
-    const group3 = makeGroup({ count: 10 })
+    const group3 = makeGroup({ count: 10, color: new THREE.Color(0, 0, 1)  })
     scene.add(group3);
     // geometry used to update group1, group2, and group3
     const geo1 = new THREE.SphereGeometry(4, 16, 16);
     const geo2 = new THREE.BoxGeometry(2, 2, 2);
     const geo3 = new THREE.TorusGeometry(6, 1, 20, 20);
     geo3.rotateX(Math.PI * 0.5)
-
-
     //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
