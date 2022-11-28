@@ -10,8 +10,7 @@
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     //-------- ----------
-    // HELPERS - from 'frink3' project in videoground-beta-world
-    //           ( https://github.com/dustinpfister/videoground-beta-world )
+    // HELPERS 
     //-------- ----------
     // just a short hand for THREE.QuadraticBezierCurve3
     const QBC3 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3){
