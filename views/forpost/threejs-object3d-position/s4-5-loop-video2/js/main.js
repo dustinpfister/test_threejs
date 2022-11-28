@@ -38,8 +38,8 @@
         };
         return group;
     };
+    // clamp helper
     const clamp = (i, d) => {
-        // clamp i
         i = i < 0 ? 0 : i;
         i = i >= d ? d - 1 : i;
         return i;
@@ -49,41 +49,31 @@
         const pos = geo.getAttribute('position');
         const len1 = pos.count;
         const len2 = group.children.length;
-        //const a1 = Math.floor( len1  * alpha ) / len1;
         const a2 = len1  * alpha / len1;
         const a3 = a2 % ( 1 / len1 ) * len1;
-        //console.log(a1, a2 % ( 1 / len1 ) * len1)
-
         group.children.forEach( (mesh, mi) => {
-
             const i = Math.floor( len1 * alpha);
-            //const i2 = clamp(i + mi, len1) //(i + mi) % len1;
             const i2 = (i + mi) % len1;;
-            //const i2 = (len2 / len1 * mi)  % len1;;
             const v_c = new THREE.Vector3(pos.getX(i2), pos.getY(i2), pos.getZ(i2));
-            //const i3 = clamp(i2 + 1, len1); //(i2 + 1) % len1;
             const i3 = (i2 + 1) % len1;
             const v_n = new THREE.Vector3(pos.getX(i3), pos.getY(i3), pos.getZ(i3));
             mesh.position.copy( v_c.lerp( v_n, a3) );
-
-            //let i = clamp( Math.floor( len1  * a1 ) + mi + 5 * mi, len1);
-            //let i = clamp( Math.floor( mi / len2 * len1  * a1 ), len1);
-            //const v_c = new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i));
-            //const i2 = clamp(i + 1, len1);
-            //const v_n = new THREE.Vector3(pos.getX(i2), pos.getY(i2), pos.getZ(i2));
-            //mesh.position.copy( v_c.lerp(v_n, a3 ) );
         });
     };
     //-------- ----------
-    // groups
+    // GROUPS
     //-------- ----------
     const group1 = makeGroup({ count: 10 })
     scene.add(group1);
     const group2 = makeGroup({ count: 10 })
     scene.add(group2);
-
-    const geo1 = new THREE.SphereGeometry(3, 10, 10);
-    const geo2 = new THREE.BoxGeometry(3, 3, 3);
+    const group3 = makeGroup({ count: 10 })
+    scene.add(group3);
+    // geometry used to update group1, group2, and group3
+    const geo1 = new THREE.SphereGeometry(4, 16, 16);
+    const geo2 = new THREE.BoxGeometry(2, 2, 2);
+    const geo3 = new THREE.TorusGeometry(6, 1, 20, 20);
+    geo3.rotateX(Math.PI * 0.5)
 
 
     //-------- ----------
@@ -103,6 +93,7 @@
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
         positionGroupToGeometry(group1, geo1, a2);
         positionGroupToGeometry(group2, geo2, a2);
+        positionGroupToGeometry(group3, geo3, a2);
     };
     // loop
     const loop = () => {
