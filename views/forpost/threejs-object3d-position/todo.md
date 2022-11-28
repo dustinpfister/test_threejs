@@ -1,5 +1,21 @@
 # threejs-object3d-position todo list
 
+## () sx-wrap-clamp section
+* () animation involving the use of clamp
+* () animation involving wrap
+
+## () sx-box3 section
+* () use box3 to set an area where mesh objects can be
+* () use box3 to make it so the position of objects will not go below a plane
+
+## () sx-x-raycaster section
+* () start a raycaster section with at least one basic example with say a torus geometry
+* () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
+* () at least a basic menu example
+
+## () sx-x-geometry
+* () section in which geometry is used to set position of objects
+
 ## () sx-ani-stochastic section
 * () start a section for stochastic animation examples
 
@@ -11,27 +27,14 @@
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
 
-## () s4-x-video-second
-* () should have mesh objects being set over time using apply euler
-* () make use of curves for setting object positions
-* () raycaster mesh objects
+## () s4-5-video-second
+* () use the position attribute of a torus geomerty as a way to set the position of a group of mesh objects
+* () then switch to a sphere geometry as a way to set position
+* () finish with a cube.
 
-## () s4-x-video-first
+## () s4-4-video-first
 * () start new section on the source code of video projects for this post
 * () new example based on the source code for video1 in videoground-blog-posts
-
-## () sx-x-raycaster section
-* () start a raycaster section with at least one basic example with say a torus geometry
-* () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
-* () at least a basic menu example
-
-## () sx-box3 section
-* () use box3 to set an area where mesh objects can be
-* () use box3 to make it so the position of objects will not go below a plane
-
-## () sx-wrap-clamp section
-* () animation involving the use of clamp
-* () animation involving wrap
 
 ## ( done 11/27/2022 ) s3-3-curve-getalpha
 * (done) have an example in which I at least touch base on get alpha methods
