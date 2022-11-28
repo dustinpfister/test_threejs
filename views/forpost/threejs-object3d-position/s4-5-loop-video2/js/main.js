@@ -68,6 +68,40 @@
             mesh.position.copy( v_c.lerp( v_n, a3) );
         });
     };
+    // just a short hand for THREE.QuadraticBezierCurve3
+    const QBC3 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3){
+        let vs = x1;
+        let ve = y1;
+        let vc = z1;
+        if(arguments.length === 9){
+            vs = new THREE.Vector3(x1, y1, z1);
+            ve = new THREE.Vector3(x2, y2, z2);
+            vc = new THREE.Vector3(x3, y3, z3);
+        }
+        return new THREE.QuadraticBezierCurve3( vs, vc, ve );
+    };
+    // create curve points
+    const createCurvePoints = (curve, point_count, point_size, point_color, get_alpha) => {
+        point_count = point_count === undefined ? 100 : point_count;
+        point_size = point_size === undefined ? 1 : point_size;
+        point_color = point_color || new THREE.Color(1, 1, 1);
+        get_alpha = get_alpha || function(a1){ return a1; };
+        const v3_array = [];
+        let i = 0;
+        while(i < point_count){
+            v3_array.push( curve.getPoint( get_alpha(i / point_count) ));
+            i += 1;
+        }
+        const points = new THREE.Points(
+            new THREE.BufferGeometry().setFromPoints( v3_array ),
+            new THREE.PointsMaterial({size: point_size, color: point_color})
+        );
+        return points;
+    };
+    // smooth get alpha
+    const getAlphaSmoother = (a1) => {
+        return THREE.MathUtils.smootherstep(a1, 0, 1);
+    };
     //-------- ----------
     // GROUPS
     //-------- ----------
@@ -107,6 +141,24 @@
     );
     scene.add(mesh3);
     //-------- ----------
+    // CURVE
+    //-------- ----------
+    const curve1 = QBC3(-4, 0, 5, -2, 0, -5, 10, 10, 0);
+    //-------- ----------
+    // POINTS
+    //-------- ----------
+    scene.add( createCurvePoints(curve1, 100, 0.125, new THREE.Color(1,1,1), getAlphaSmoother ) );
+    //-------- ----------
+    // MESH TO MOVE ALONG CURVE
+    //-------- ----------
+    const mesh_curve1 = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1), 
+        new THREE.MeshNormalMaterial({
+            transparent: true, opacity: 0.8
+        })
+    );
+    scene.add(mesh_curve1)
+    //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
     const FPS_UPDATE = 20,    // fps rate to update ( low fps for low CPU use, but choppy video )
@@ -124,6 +176,11 @@
         positionGroupToGeometry(group1, geo1, a1);
         positionGroupToGeometry(group2, geo2, a2);
         positionGroupToGeometry(group3, geo3, a2);
+
+
+        mesh_curve1.position.copy( curve1.getPoint( getAlphaSmoother(a1) ) );
+        mesh_curve1.lookAt(0, 0, 0);
+
     };
     // loop
     const loop = () => {
