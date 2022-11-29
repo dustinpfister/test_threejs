@@ -82,10 +82,6 @@ rings.children.forEach( (r, ri) => {
         scene.add(box);
     });
 });
-
-
-//const g1 = makeGroup(10);
-//scene.add(g1);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
