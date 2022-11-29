@@ -8,7 +8,9 @@
 ## () s4-1-video1-toggle-rings
 * (done) start a project where we have a bunch of groups of mesh objects set up in rings that form an over all sphere
 * (done) have every other child or each ring toggle on and off
-* () fix the deal with the number of rings and radius
+* (done) fix the deal with the number of rings and radius
+* (done) smoother reduection of y
+* () radian offsets
 
 ## ( done 11/29/2022 ) - s1-2-basic-condition
 * (done) new condition basic example

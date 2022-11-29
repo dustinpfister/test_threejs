@@ -63,27 +63,17 @@ const setGroupAsRing = (group, opt) => {
 scene.add( new THREE.GridHelper(10, 10));
 const rings = new THREE.Group();
 let ri = 0;
-while(ri < 16){
+while(ri < 10){
     rings.add( makeGroup(40) );
     ri += 1;
 }
-/*
-rings.add( makeGroup(20) );
-rings.add( makeGroup(20) );
-rings.add( makeGroup(20) );
-rings.add( makeGroup(20) );
-rings.add( makeGroup(20) );
-rings.add( makeGroup(20) );
-rings.add( makeGroup(20) );
-rings.add( makeGroup(20) );
-*/
 scene.add(rings);
-
 //const g1 = makeGroup(10);
 //scene.add(g1);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 900;
@@ -96,10 +86,11 @@ const update = function(frame, frameMax){
    rings.children.forEach((r, ri)=>{
        const a_r = ri / rings.children.length;
        const a_r2 = Math.abs(0.5 - a_r) / 0.5;
+       const a3 = Math.sin( Math.PI * 0.25 * a_r);
        setGroupAsRing(r, {
            radius: 5 - 5 * a_r2,
-           y: -5 + 10 * a_r,
-           scale: 0.8 - 0.75 * a_r2,
+           y: 5 - 10 * a3,
+           scale: 0.75 - 0.5 * a_r2,
            alpha: a1
        });
    });
