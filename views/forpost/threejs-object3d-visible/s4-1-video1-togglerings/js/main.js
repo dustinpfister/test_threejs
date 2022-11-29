@@ -35,11 +35,12 @@ const setGroupAsRing = (group, opt) => {
     opt.y = opt.y === undefined ? 0 : opt.y;
     opt.scale = opt.scale === undefined ? 1 : opt.scale;
     opt.radius = opt.radius === undefined ? 5 : opt.radius;
+    opt.radianOffset = opt.radianOffset === undefined ? 0 : opt.radianOffset;
     opt.toggleAlpha = opt.toggleAlpha === undefined ? 0.10 : opt.toggleAlpha;
     const len = group.children.length;
     group.children.forEach( (mesh, i) => {
         const alpha_mesh = i / len;
-        const radian = Math.PI * 2 * alpha_mesh;
+        const radian = Math.PI * 2 * alpha_mesh + opt.radianOffset * Math.PI * 2;
         mesh.position.x = Math.cos(radian) * opt.radius;
         mesh.position.z = Math.sin(radian) * opt.radius;
         mesh.position.y = opt.y;
@@ -89,6 +90,7 @@ const update = function(frame, frameMax){
        const a3 = Math.sin( Math.PI * 0.25 * a_r);
        setGroupAsRing(r, {
            radius: 5 - 5 * a_r2,
+           radianOffset: Math.PI * 0.25 * a_r,
            y: 5 - 10 * a3,
            scale: 0.75 - 0.5 * a_r2,
            alpha: a1

@@ -10,7 +10,7 @@
 * (done) have every other child or each ring toggle on and off
 * (done) fix the deal with the number of rings and radius
 * (done) smoother reduection of y
-* () radian offsets
+* (done) radian offsets
 
 ## ( done 11/29/2022 ) - s1-2-basic-condition
 * (done) new condition basic example
