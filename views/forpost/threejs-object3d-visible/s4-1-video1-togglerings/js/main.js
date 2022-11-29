@@ -57,8 +57,15 @@ const setGroupAsRing = (group, opt) => {
 // OBJECTS
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10));
-const g1 = makeGroup(10);
-scene.add(g1);
+
+const rings = new THREE.Group();
+rings.add( makeGroup(10) );
+rings.add( makeGroup(10) );
+rings.add( makeGroup(10) );
+scene.add(rings)
+
+//const g1 = makeGroup(10);
+//scene.add(g1);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -71,7 +78,10 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
    const a1 = frame / frameMax;
-   setGroupAsRing(g1, { radius: 4, y: 0, alpha: a1 });
+   rings.children.forEach((r, ri)=>{
+       const a_r = ri / rings.children.length;
+       setGroupAsRing(r, { radius: 4, y: -2 + 4 * a_r, alpha: a1 });
+   });
 };
 // loop
 const loop = () => {
