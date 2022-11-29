@@ -23,7 +23,8 @@ const makeGroup = (count) => {
     let i = 0;
     const group = new THREE.Group();
     while(i < count){
-        group.add( makeBox() );
+        const mesh = makeBox();
+        group.add( mesh );
         i += 1;
     }
     return group;
@@ -55,20 +56,34 @@ const setGroupAsRing = (group, opt) => {
         // scale
         mesh.scale.set(1, 1, 1).multiplyScalar(opt.scale)
         // look at group
-        mesh.lookAt(group.position)
+        mesh.lookAt(group.position);
     });
 }
 //-------- ----------
 // OBJECTS
 //-------- ----------
+// box helpers
 scene.add( new THREE.GridHelper(10, 10));
 const rings = new THREE.Group();
 let ri = 0;
 while(ri < 10){
-    rings.add( makeGroup(40) );
+    rings.add( makeGroup(10) );
     ri += 1;
 }
 scene.add(rings);
+// add box helpers
+rings.children.forEach( (r, ri) => {
+    r.children.forEach( (m, mi) => {
+        const box = new THREE.BoxHelper( m, 0xffff00 );
+        box.material.transparent = true;
+        box.material.opacity = 0.25;
+        box.material.linewidth = 3;
+        box.name = 'box_' + ri + '_' + mi;
+        scene.add(box);
+    });
+});
+
+
 //const g1 = makeGroup(10);
 //scene.add(g1);
 // ---------- ----------
@@ -95,6 +110,11 @@ const update = function(frame, frameMax){
            scale: 0.75 - 0.5 * a_r2,
            alpha: a1
        });
+       // update box helpers
+       r.children.forEach((m, mi) => {
+           const box = scene.getObjectByName('box_' + ri + '_' + mi);
+           box.update();
+       })
    });
 };
 // loop

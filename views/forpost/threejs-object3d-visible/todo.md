@@ -11,6 +11,7 @@
 * (done) fix the deal with the number of rings and radius
 * (done) smoother reduection of y
 * (done) radian offsets
+* (done) box helpers for all mesh objects
 
 ## ( done 11/29/2022 ) - s1-2-basic-condition
 * (done) new condition basic example
