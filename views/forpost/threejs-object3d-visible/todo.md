@@ -9,8 +9,8 @@
 * () start a project where we have a bunch of groups of mesh objects set up in rings that form an over all sphere
 * () have every other child or each ring toggle on and off
 
-## () - s1-2-basic-condition
-* () new condition basic example
+## ( done 11/29/2022 ) - s1-2-basic-condition
+* (done) new condition basic example
 
 ## ( done 11/29/2022 ) - for post folder started
 * (done) started the for post folder based on the r127 demos
