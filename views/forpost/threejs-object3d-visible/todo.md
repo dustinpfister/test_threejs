@@ -5,7 +5,7 @@
 * () have a condition where an object will be removed from the scene group to the pool group
 * () have a condiiton where an object will be spawned from the pool to the scene group
 
-## () s4-1-video1-toggle-rings
+## ( done 11/29/2022 ) s4-1-video1-toggle-rings
 * (done) start a project where we have a bunch of groups of mesh objects set up in rings that form an over all sphere
 * (done) have every other child or each ring toggle on and off
 * (done) fix the deal with the number of rings and radius
