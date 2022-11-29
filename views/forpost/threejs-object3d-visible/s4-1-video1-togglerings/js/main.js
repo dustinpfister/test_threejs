@@ -33,6 +33,7 @@ const setGroupAsRing = (group, opt) => {
     opt = opt || {};
     opt.alpha = opt.alpha === undefined ? 0 : opt.alpha;
     opt.y = opt.y === undefined ? 0 : opt.y;
+    opt.scale = opt.scale === undefined ? 1 : opt.scale;
     opt.radius = opt.radius === undefined ? 5 : opt.radius;
     opt.toggleAlpha = opt.toggleAlpha === undefined ? 0.10 : opt.toggleAlpha;
     const len = group.children.length;
@@ -50,6 +51,9 @@ const setGroupAsRing = (group, opt) => {
         if(c){
             mesh.visible = false;
         }
+        // scale
+        mesh.scale.set(1, 1, 1).multiplyScalar(opt.scale)
+        // look at group
         mesh.lookAt(group.position)
     });
 }
@@ -57,12 +61,23 @@ const setGroupAsRing = (group, opt) => {
 // OBJECTS
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10));
-
 const rings = new THREE.Group();
-rings.add( makeGroup(10) );
-rings.add( makeGroup(10) );
-rings.add( makeGroup(10) );
-scene.add(rings)
+let ri = 0;
+while(ri < 16){
+    rings.add( makeGroup(40) );
+    ri += 1;
+}
+/*
+rings.add( makeGroup(20) );
+rings.add( makeGroup(20) );
+rings.add( makeGroup(20) );
+rings.add( makeGroup(20) );
+rings.add( makeGroup(20) );
+rings.add( makeGroup(20) );
+rings.add( makeGroup(20) );
+rings.add( makeGroup(20) );
+*/
+scene.add(rings);
 
 //const g1 = makeGroup(10);
 //scene.add(g1);
@@ -71,7 +86,7 @@ scene.add(rings)
 // ---------- ----------
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 300;
+FRAME_MAX = 900;
 let secs = 0,
 frame = 0,
 lt = new Date();
@@ -80,7 +95,13 @@ const update = function(frame, frameMax){
    const a1 = frame / frameMax;
    rings.children.forEach((r, ri)=>{
        const a_r = ri / rings.children.length;
-       setGroupAsRing(r, { radius: 4, y: -2 + 4 * a_r, alpha: a1 });
+       const a_r2 = Math.abs(0.5 - a_r) / 0.5;
+       setGroupAsRing(r, {
+           radius: 5 - 5 * a_r2,
+           y: -5 + 10 * a_r,
+           scale: 0.8 - 0.75 * a_r2,
+           alpha: a1
+       });
    });
 };
 // loop

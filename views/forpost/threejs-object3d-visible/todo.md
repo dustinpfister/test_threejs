@@ -6,8 +6,9 @@
 * () have a condiiton where an object will be spawned from the pool to the scene group
 
 ## () s4-1-video1-toggle-rings
-* () start a project where we have a bunch of groups of mesh objects set up in rings that form an over all sphere
-* () have every other child or each ring toggle on and off
+* (done) start a project where we have a bunch of groups of mesh objects set up in rings that form an over all sphere
+* (done) have every other child or each ring toggle on and off
+* () fix the deal with the number of rings and radius
 
 ## ( done 11/29/2022 ) - s1-2-basic-condition
 * (done) new condition basic example
