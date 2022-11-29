@@ -28,11 +28,13 @@ const makeGroup = (count) => {
     }
     return group;
 };
+// set a group as a ring with options
 const setGroupAsRing = (group, opt) => {
     opt = opt || {};
     opt.alpha = opt.alpha === undefined ? 0 : opt.alpha;
     opt.y = opt.y === undefined ? 0 : opt.y;
     opt.radius = opt.radius === undefined ? 5 : opt.radius;
+    opt.toggleAlpha = opt.toggleAlpha === undefined ? 0.10 : opt.toggleAlpha;
     const len = group.children.length;
     group.children.forEach( (mesh, i) => {
         const alpha_mesh = i / len;
@@ -40,6 +42,14 @@ const setGroupAsRing = (group, opt) => {
         mesh.position.x = Math.cos(radian) * opt.radius;
         mesh.position.z = Math.sin(radian) * opt.radius;
         mesh.position.y = opt.y;
+        // VISIBLE BASED ON i AS WELL AS opt.alpha
+        const a = opt.alpha % opt.toggleAlpha;
+        const b = a < opt.toggleAlpha / 2 ? 0 : 1;
+        const c = (i + b) % 2;
+        mesh.visible = true;
+        if(c){
+            mesh.visible = false;
+        }
         mesh.lookAt(group.position)
     });
 }
@@ -47,30 +57,21 @@ const setGroupAsRing = (group, opt) => {
 // OBJECTS
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10));
-
 const g1 = makeGroup(10);
 scene.add(g1);
-const g2 = makeGroup(10);
-scene.add(g2);
-const g3 = makeGroup(10);
-scene.add(g3);
-
-
-setGroupAsRing(g1, { radius: 4, y: -1 });
-setGroupAsRing(g2, { radius: 5, y: 0 });
-setGroupAsRing(g3, { radius: 4, y: 1 });
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 120;
+FRAME_MAX = 300;
 let secs = 0,
 frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
+   const a1 = frame / frameMax;
+   setGroupAsRing(g1, { radius: 4, y: 0, alpha: a1 });
 };
 // loop
 const loop = () => {
