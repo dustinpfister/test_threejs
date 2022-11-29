@@ -10,7 +10,7 @@ var colors = new Uint8Array([
             255, 0, 0,
         ]);
 // Don't forget to normalize the array! (third param = true)
-geometry.addAttribute('color', new THREE.BufferAttribute(colors, 3, true));
+geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3, true));
 
 // SCENE
 var scene = new THREE.Scene();
