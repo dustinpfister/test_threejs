@@ -13,6 +13,7 @@
     // ---------- ----------
     // HELPERS
     // ---------- ----------
+    // create 4 count helper
     const create4Count = (radius) => {
         const geo_source = new THREE.TetrahedronGeometry(radius === undefined ? 1 : radius, 0);
         const pos = geo_source.getAttribute('position');
@@ -25,10 +26,44 @@
         geo.computeVertexNormals();
         return geo;
     }
+    // test helper
+    const testTetrahedron = (geo) => {
+        const pos = geo.getAttribute('position');
+        // if count is not 4 then false
+        if(pos.count != 4){
+            return false;
+        }
+        let i_p = 0;
+        // check lengths of all edges
+        const points = [];
+        while(i_p < pos.count){
+            points.push( new THREE.Vector3( pos.getX(i_p), pos.getY(i_p),pos.getZ(i_p) ) )
+            i_p += 1;
+        }
+        let point_indices = [ [0,1], [1,2], [2,3], [3,1], [0,2], [0,3] ];
+        let n;
+        let i2 = 0;
+        while(i2 < point_indices.length){
+            const a = point_indices[i2]
+            const d = points[ a[0] ].distanceTo( points[ a[1] ] );
+            if(n === undefined){
+                n = d;
+            }else{
+                if(d != n){
+                    return false;
+                }
+            }
+            i2 += 1;
+        }
+        return true;
+    };
     // ---------- ----------
     // CUSTOM GEOMETRY MADE FROM THREE.TetrahedronGeometry
     // ---------- ----------
     const geo = create4Count(2);
+    console.log( testTetrahedron(geo) ); // true
+
+/*
     const pos = geo.getAttribute('position');
     let i = 0;
     const points = [];
@@ -36,14 +71,33 @@
         points.push( new THREE.Vector3( pos.getX(i), pos.getY(i),pos.getZ(i) ) )
         i += 1;
     }
-    console.log(points);
+
+    let point_indices = [ [0,1], [1,2], [2,3], [3,1], [0,2], [0,3] ];
+    let n;
+    let i2 = 0;
+    while(i2 < point_indices.length){
+       const a = point_indices[i2]
+       const d = points[ a[0] ].distanceTo( points[ a[1] ] );
+       i2 += 1;
+    }
+*/
+
+    //console.log( points[0].distanceTo( points[1] ) );
+    //console.log( points[1].distanceTo( points[2] ) );
+    //console.log( points[2].distanceTo( points[3] ) );
+
+    //console.log( points[3].distanceTo( points[1] ) );
+    //console.log( points[0].distanceTo( points[2] ) );
+    //console.log( points[0].distanceTo( points[3] ) );
 
     // cretaing mesh objects at each vert
+/*
     points.forEach( (v) => {
         const mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 10, 10) );
         mesh.position.copy(v);
         scene.add(mesh);
     });
+*/
 
     // ---------- ----------
     // LIGHT
