@@ -3,8 +3,9 @@
     // SCENE, CAMERA, RENDERER
     // ---------- ----------
     const scene = new THREE.Scene();
+    scene.add( new THREE.GridHelper(10, 10) );
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(2, 2, 2);
+    camera.position.set(3, 3, 3);
     camera.lookAt(0, 0, 0);
     const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer;
     renderer.setSize(640, 480, false);
@@ -12,7 +13,17 @@
     // ---------- ----------
     // Tetrahedron Geometry
     // ---------- ----------
-    const geo = new THREE.TetrahedronGeometry(1, 0);
+    const geo = new THREE.TetrahedronGeometry(5, 0);
+    // adjusting rotation
+    geo.rotateY( Math.PI * 0.25);
+    geo.rotateZ( Math.PI * -0.19555 );
+
+    //geo.rotateY( Math.PI / 4 );
+    //geo.rotateZ( Math.PI / 3 );
+
+    //geo.rotateX(Math.PI / 180 * 315);
+    //geo.rotateY(Math.PI / 180 * 45);
+    //geo.rotateZ(Math.PI / 180 * -35.2);
     // ---------- ----------
     // GROUP - made of mesh and line
     // ---------- ----------
