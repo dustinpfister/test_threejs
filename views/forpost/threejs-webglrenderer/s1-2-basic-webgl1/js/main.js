@@ -1,8 +1,8 @@
 (function () {
     //-------- ----------
-    // CREATING A WEBGL RENDERER
+    // CREATING A WEBL1 RENDER IF THERE, ELSE WEBGL RENDERER THAT WILL USE WEBGL 2 AS OF R118+
     //-------- ----------
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer : new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     const scene = new THREE.Scene();
