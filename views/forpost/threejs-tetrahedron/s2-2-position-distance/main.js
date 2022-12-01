@@ -5,48 +5,58 @@
     const scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10) );
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(2, 2, 2);
+    camera.position.set(1, 2, 3);
     camera.lookAt(0, 0 ,0);
     const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer;
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
     // ---------- ----------
-    // CHECKING OUT THE POSITION ATTRIBUTE
+    // HELPERS
     // ---------- ----------
-    const geo = new THREE.TetrahedronGeometry(1, 0);
-    // getting position attribute
+    const create4Count = (radius) => {
+        const geo_source = new THREE.TetrahedronGeometry(radius === undefined ? 1 : radius, 0);
+        const pos = geo_source.getAttribute('position');
+        const geo = new THREE.BufferGeometry();
+        const posB = new THREE.BufferAttribute( pos.array.slice(0, 4 * 3), 3);
+        geo.setAttribute('position', posB);
+        const data = new Uint8Array([1,2,0,  3,1,0,  2,3,0,  1,3,2]);
+        const index = new THREE.BufferAttribute(data, 1);
+        geo.setIndex(index);
+        geo.computeVertexNormals();
+        return geo;
+    }
+    // ---------- ----------
+    // CUSTOM GEOMETRY MADE FROM THREE.TetrahedronGeometry
+    // ---------- ----------
+    const geo = create4Count(2);
     const pos = geo.getAttribute('position');
-    // it has a count of 12 becuase it is not indexed
-    console.log(pos.count); // 12 ?!
-    console.log(geo.index); // null
+    let i = 0;
+    const points = [];
+    while(i < pos.count){
+        points.push( new THREE.Vector3( pos.getX(i), pos.getY(i),pos.getZ(i) ) )
+        i += 1;
+    }
+    console.log(points);
+
+    // cretaing mesh objects at each vert
+    points.forEach( (v) => {
+        const mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 10, 10) );
+        mesh.position.copy(v);
+        scene.add(mesh);
+    });
+
     // ---------- ----------
-    // NEW POSITION ATTRIBUTE FROM THE FIRST 4
+    // LIGHT
     // ---------- ----------
-    const geo2 = new THREE.BufferGeometry();
-    console.log( pos.array.slice(0, 4 * 3) );
-    const posB = new THREE.BufferAttribute( pos.array.slice(0, 4 * 3), 3);
-    geo2.setAttribute('position', posB);
-    // making an index for it
-    const data = new Uint8Array([1,2,0,  3,1,0,  2,3,0,  1,3,2]);
-    const index = new THREE.BufferAttribute(data, 1)
-
-    geo2.setIndex(index);
-
-    geo2.computeVertexNormals();
-
-    console.log(geo2.getAttribute('position').count); // 4
-
-
-
+    //const dl = new THREE.DirectionalLight();
+    //dl.position.set(0, 1, 2);
+    //scene.add(dl);
     // ---------- ----------
     // MESH 
     // ---------- ----------
+    //const mesh1 = new THREE.Mesh( geo, new THREE.MeshPhongMaterial({ emissive: new THREE.Color(1,1,1), emissiveIntensity: 0.1 }) );
     const mesh1 = new THREE.Mesh( geo, new THREE.MeshNormalMaterial() );
-    mesh1.position.set(-2,0,0)
     scene.add(mesh1);
-
-    const mesh2 = new THREE.Mesh( geo2, new THREE.MeshNormalMaterial() );
-    scene.add(mesh2);
     // ---------- ----------
     // CONTROLS
     // ---------- ----------
