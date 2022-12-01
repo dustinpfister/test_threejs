@@ -9,8 +9,8 @@
 ## () s2-3-basic-use-canvas
 * () example in which I use a canvas that was created before hand
 
-## () s1-2-basic-webgl1
-* () example in which I use the webgl1 renderer first if there
+## ( done 12/01/2022 ) s1-2-basic-webgl1
+* (done) example in which I use the webgl1 renderer first if there
 
 ## ( done 12/01/2022 ) - for post folder started
 * (done) start for post folder based on r127 demos
