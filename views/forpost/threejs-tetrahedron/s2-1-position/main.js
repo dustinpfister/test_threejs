@@ -20,20 +20,16 @@
     console.log(pos.count); // 12 ?!
     console.log(geo.index); // null
     // ---------- ----------
-    // NEW POSITION ATTRIBUTE FROM THE FIRST 4
+    // NEW GEOMETRY WITH A POS COUNT OF 4, WITH INDEX
     // ---------- ----------
     const geo2 = new THREE.BufferGeometry();
-    console.log( pos.array.slice(0, 4 * 3) );
     const posB = new THREE.BufferAttribute( pos.array.slice(0, 4 * 3), 3);
     geo2.setAttribute('position', posB);
     // making an index for it
     const data = new Uint8Array([1,2,0,  3,1,0,  2,3,0,  1,3,2]);
     const index = new THREE.BufferAttribute(data, 1)
-
     geo2.setIndex(index);
-
     geo2.computeVertexNormals();
-
     console.log(geo2.getAttribute('position').count); // 4
 
 
