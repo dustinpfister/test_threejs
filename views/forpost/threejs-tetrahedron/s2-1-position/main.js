@@ -5,7 +5,7 @@
     const scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10) );
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(2, 2, 2);
+    camera.position.set(1, 3, 5);
     camera.lookAt(0, 0 ,0);
     const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer;
     renderer.setSize(640, 480, false);
@@ -31,18 +31,17 @@
     geo2.setIndex(index);
     geo2.computeVertexNormals();
     console.log(geo2.getAttribute('position').count); // 4
-
-
-
     // ---------- ----------
     // MESH 
     // ---------- ----------
     const mesh1 = new THREE.Mesh( geo, new THREE.MeshNormalMaterial() );
-    mesh1.position.set(-2,0,0)
+    mesh1.position.set(-2,0,0);
     scene.add(mesh1);
-
     const mesh2 = new THREE.Mesh( geo2, new THREE.MeshNormalMaterial() );
     scene.add(mesh2);
+    // vertex helpers
+    scene.add( new THREE.VertexNormalsHelper(mesh1) );
+    scene.add( new THREE.VertexNormalsHelper(mesh2) );
     // ---------- ----------
     // CONTROLS
     // ---------- ----------
