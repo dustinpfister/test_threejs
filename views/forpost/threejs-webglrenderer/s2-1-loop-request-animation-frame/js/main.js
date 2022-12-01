@@ -3,8 +3,8 @@
 (function () {
 
     // RENDER
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
+    const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer : new THREE.WebGLRenderer();
+    renderer.setSize(640, 480, false);
     document.getElementById('demo').appendChild(renderer.domElement);
 
     // SCENE
