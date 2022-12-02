@@ -1,8 +1,15 @@
-# threejs-terahedron
+# threejs-tetrahedron
+
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=2-B_dzUrN8w">
+         <img src="https://img.youtube.com/vi/2-B_dzUrN8w/0.jpg" style="width:50%;">
+      </a>
+</div>
 
 ## Regular tetrahedron
 
-It would seem that the THREE.Terahedron Constructor creates what is really called a "[Regular tetrahedron](https://en.wikipedia.org/wiki/Tetrahedron)"
+It would seem that the THREE.Tetrahedron Constructor creates what is really called a "[Regular tetrahedron](https://en.wikipedia.org/wiki/Tetrahedron)"
 
 ## Irregular tetrahedron
 
