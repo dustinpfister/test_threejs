@@ -10,6 +10,10 @@
 ## (  ) s2-3-position-custom1
 * () have a custom buffer geo function that wil create a buffer geometry with any four Vector3 objects
 
+## () - source code changes
+* () make all basic examples static render examples, remove orbit controls
+* () regular tetrahedron test should also be used with some addtiona geos
+
 ## ( done 12/01/2022 ) s2-1-position-distance
 * (done) start a section where I am taking a look at the position attributes of terahedron like geometry
 * (done) use the distanceTo Vector3 class method to compare distances of all edges
