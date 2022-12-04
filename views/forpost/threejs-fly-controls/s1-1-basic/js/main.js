@@ -60,16 +60,22 @@ drawDebugInfo(canvas_debug, ctx_debug, camera, flyControls);
 // With FLY CONTROLS the camera is given as the first argument, and
 // the DOM element must now be given as a second argument
 var flyControls = new THREE.FlyControls(camera, canvas_debug);
-
+  flyControls.dragToLook = true;
+  flyControls.movementSpeed = 3;
+  flyControls.rollSpeed = Math.PI / 24;
+  flyControls.autoForward = false;
+// chnage event
 flyControls.addEventListener('change', (evnt) => {
-    //console.log( camera.position.z );
     drawDebugInfo(canvas_debug, ctx_debug, camera, flyControls);
 });
-
-
-//flyControls.dragToLook = true;
-//flyControls.movementSpeed = 3;
-//flyControls.rollSpeed = 1;
+// supress up and down
+const supressKeys = (evnt) => {
+    if(evnt.key === 'ArrowUp' || evnt.key === 'ArrowDown'){
+        evnt.preventDefault();
+    }
+};
+window.addEventListener('keyup', supressKeys);
+window.addEventListener('keydown', supressKeys);
 //-------- ----------
 // LOOP
 //-------- ----------
