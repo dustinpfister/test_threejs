@@ -82,7 +82,7 @@ const ctx_debug = canvas_debug.getContext('2d');
 // I am giving the debug cnavas
 const flyControls = new THREE.FlyControls(camera, canvas_debug);
 console.log(flyControls);
-flyControls.dragToLook = false;
+flyControls.dragToLook = true;
 flyControls.movementSpeed = 3;
 flyControls.rollSpeed = Math.PI / 24;
 flyControls.autoForward = false;
