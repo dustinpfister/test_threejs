@@ -22,7 +22,7 @@ const appendDebugCanvas = (parent) => {
     parent.parentNode.insertBefore(canvas, parent);
     return canvas;
 };
-const drawDebugInfo = (canvas, ctx, camera, flyControls) => {
+const drawDebugInfo = (canvas, ctx, camera, fc) => {
     // clear and draw black overlay
     ctx.clearRect(0,0, canvas.width, canvas.height)
     ctx.fillStyle = 'rgba(0,0,0,0.25)';
@@ -32,12 +32,16 @@ const drawDebugInfo = (canvas, ctx, camera, flyControls) => {
     ctx.font = '15px arial';
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
-    // draw camera object into
+    // draw camera position object into
     const v = camera.position;
     const cx = v.x.toFixed(2);
     const cy = v.y.toFixed(2);
     const cz = v.z.toFixed(2);
     ctx.fillText('campos: ' + cx + ', '  + cy + ', ' + cz, 10, 10);
+    // draw yaw flight control movement
+    const yl = fc.moveState.yawLeft;
+    const yr = fc.moveState.yawRight;
+    ctx.fillText('yaw: ' + yl + ' left, ' + yr + ' right', 10, 25);
 };
 //-------- ----------
 // MESH
@@ -54,21 +58,21 @@ scene.add(box);
 //-------- ----------
 // FLY CONTROLS
 //-------- ----------
-
 // debug canvas
 const canvas_debug = appendDebugCanvas(renderer.domElement);
 const ctx_debug = canvas_debug.getContext('2d');
 // With FLY CONTROLS the camera is given as the first argument, and
-// the DOM element must now be given as a second argument
+// the DOM element must now be given as a second argument for this example
+// I am giving the debug cnavas
 const flyControls = new THREE.FlyControls(camera, canvas_debug);
+console.log(flyControls);
 flyControls.dragToLook = true;
 flyControls.movementSpeed = 3;
 flyControls.rollSpeed = Math.PI / 24;
 flyControls.autoForward = false;
 // draw debug into for first time
 drawDebugInfo(canvas_debug, ctx_debug, camera, flyControls);
-
-// chnage event
+// change event
 flyControls.addEventListener('change', (evnt) => {
     drawDebugInfo(canvas_debug, ctx_debug, camera, flyControls);
 });
