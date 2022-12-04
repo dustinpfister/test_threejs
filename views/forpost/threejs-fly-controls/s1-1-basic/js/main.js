@@ -34,7 +34,10 @@ const drawDebugInfo = (canvas, ctx, camera, flyControls) => {
     ctx.textAlign = 'left';
     // draw camera object into
     const v = camera.position;
-    ctx.fillText('campos: ' + v.x.toFixed(2) + ', '  + v.y.toFixed(2) + ', ' +  + v.z.toFixed(2), 10, 10);
+    const cx = v.x.toFixed(2);
+    const cy = v.y.toFixed(2);
+    const cz = v.z.toFixed(2);
+    ctx.fillText('campos: ' + cx + ', '  + cy + ', ' + cz, 10, 10);
 };
 //-------- ----------
 // MESH
@@ -51,23 +54,27 @@ scene.add(box);
 //-------- ----------
 // FLY CONTROLS
 //-------- ----------
+
 // debug canvas
 const canvas_debug = appendDebugCanvas(renderer.domElement);
 const ctx_debug = canvas_debug.getContext('2d');
-
-drawDebugInfo(canvas_debug, ctx_debug, camera, flyControls);
-
 // With FLY CONTROLS the camera is given as the first argument, and
 // the DOM element must now be given as a second argument
-var flyControls = new THREE.FlyControls(camera, canvas_debug);
-  flyControls.dragToLook = true;
-  flyControls.movementSpeed = 3;
-  flyControls.rollSpeed = Math.PI / 24;
-  flyControls.autoForward = false;
+const flyControls = new THREE.FlyControls(camera, canvas_debug);
+flyControls.dragToLook = true;
+flyControls.movementSpeed = 3;
+flyControls.rollSpeed = Math.PI / 24;
+flyControls.autoForward = false;
+// draw debug into for first time
+drawDebugInfo(canvas_debug, ctx_debug, camera, flyControls);
+
 // chnage event
 flyControls.addEventListener('change', (evnt) => {
     drawDebugInfo(canvas_debug, ctx_debug, camera, flyControls);
 });
+//-------- ----------
+// WINDOW EVENTS
+//-------- ----------
 // supress up and down
 const supressKeys = (evnt) => {
     if(evnt.key === 'ArrowUp' || evnt.key === 'ArrowDown'){
@@ -79,10 +86,9 @@ window.addEventListener('keydown', supressKeys);
 //-------- ----------
 // LOOP
 //-------- ----------
-
-var lt = new Date();
-var loop = function () {
-    var now = new Date(),
+let lt = new Date();
+const loop = function () {
+    const now = new Date(),
     secs = (now - lt) / 1000;
     lt = now;
     requestAnimationFrame(loop);
@@ -90,6 +96,4 @@ var loop = function () {
     flyControls.update(secs);
     renderer.render(scene, camera);
 };
-
 loop();
-
