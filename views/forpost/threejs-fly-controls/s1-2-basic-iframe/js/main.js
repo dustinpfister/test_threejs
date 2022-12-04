@@ -103,6 +103,10 @@ const supressKeys = (evnt) => {
 };
 window.addEventListener('keyup', supressKeys);
 window.addEventListener('keydown', supressKeys);
+// keybaod events attach
+iFrame.contentWindow.addEventListener('keydown', (event) => {
+    console.log('keyboard will not work when iframe is focus');
+});
 //-------- ----------
 // LOOP
 //-------- ----------
