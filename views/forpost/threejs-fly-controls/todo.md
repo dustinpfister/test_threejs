@@ -1,8 +1,12 @@
 # threejs-fly-controls todo list
 
-## () s1-2-basic-fullpage
-* () have a full page demo of fly controls
-* () rename s1-1-basic to s1-1-basic-iframe
+
+## ( done 12/04/2022 ) full page demo first basic example
+* (done) make it so that the full page example is s1-1-basic
+
+## ( done 12/04/2022 ) s1-2-basic-fullpage
+* ( done ) have a full page demo of fly controls
+* ( done) rename s1-1-basic to s1-1-basic-iframe
 
 ## ( done 12/04/2022 ) - s1-1-basic - iframe
 * (done) one way to fix the problem with the mouse might involve using an iframe
