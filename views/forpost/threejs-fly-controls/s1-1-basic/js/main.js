@@ -39,9 +39,13 @@ const drawDebugInfo = (canvas, ctx, camera, fc) => {
     const cz = v.z.toFixed(2);
     ctx.fillText('campos: ' + cx + ', '  + cy + ', ' + cz, 10, 10);
     // draw yaw flight control movement
-    const yl = fc.moveState.yawLeft;
-    const yr = fc.moveState.yawRight;
+    const yl = fc.moveState.yawLeft.toFixed(2);;
+    const yr = fc.moveState.yawRight.toFixed(2);;
     ctx.fillText('yaw: ' + yl + ' left, ' + yr + ' right', 10, 25);
+    // pitch
+    const pd = fc.moveState.pitchDown.toFixed(2);;
+    const pu = fc.moveState.pitchUp.toFixed(2);;
+    ctx.fillText('pitch: ' + pu + ' up, ' + pd + ' down', 10, 40);
 };
 //-------- ----------
 // MESH
