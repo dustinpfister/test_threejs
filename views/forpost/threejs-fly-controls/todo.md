@@ -1,8 +1,8 @@
 # threejs-fly-controls todo list
 
-## () see about fixing keyboad problem with iframe example
+## ( done 12/04/2022 ) see about fixing keyboad problem with iframe example
 * (done) logging a message when the container is focused at least
-* () maybe look at the source code and see about attahcing events for iframe window
+* (done) maybe look at the source code and see about attahcing events for iframe window
 
 ## ( done 12/04/2022 ) full page demo first basic example
 * (done) make it so that the full page example is s1-1-basic

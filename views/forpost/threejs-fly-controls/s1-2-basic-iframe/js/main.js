@@ -96,6 +96,7 @@ flyControls.addEventListener('change', (evnt) => {
 // WINDOW EVENTS
 //-------- ----------
 // supress up and down
+/*
 const supressKeys = (evnt) => {
     if(evnt.key === 'ArrowUp' || evnt.key === 'ArrowDown'){
         evnt.preventDefault();
@@ -103,10 +104,18 @@ const supressKeys = (evnt) => {
 };
 window.addEventListener('keyup', supressKeys);
 window.addEventListener('keydown', supressKeys);
-// keybaod events attach
+*/
+// iframe keyboard
+iFrame.contentWindow.addEventListener('keyup', flyControls.keyup.bind(flyControls) );
+iFrame.contentWindow.addEventListener('keydown', flyControls.keydown.bind(flyControls) );
+/*
 iFrame.contentWindow.addEventListener('keydown', (event) => {
     console.log('keyboard will not work when iframe is focus');
+
+    console.log( flyControls.keydown.bind(flyControls) )
+
 });
+*/
 //-------- ----------
 // LOOP
 //-------- ----------
