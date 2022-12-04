@@ -27,6 +27,12 @@ scene.add(box);
 // With FLY CONTROLS the camera is given as the first argument, and
 // the DOM element must now be given as a second argument
 var flyControls = new THREE.FlyControls(camera, renderer.domElement);
+
+flyControls.addEventListener('change', (evnt) => {
+  console.log( camera.position.z );
+});
+
+
 //flyControls.dragToLook = true;
 //flyControls.movementSpeed = 3;
 //flyControls.rollSpeed = 1;
@@ -40,7 +46,7 @@ var loop = function () {
     lt = now;
     requestAnimationFrame(loop);
     // UPDATE CONTROLS
-    flyControls.update(1 * secs);
+    flyControls.update(secs);
     renderer.render(scene, camera);
 };
 

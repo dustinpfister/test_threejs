@@ -2,7 +2,8 @@
 
 ## () - fix s1-1-basic
 * (done) updated to r146
-* () the controls always pull to the bottom right
+* (done) use the change event 
+* () find a way to draw camera position data to canvas
 
 ## ( done 12/04/2022 ) - started the for post folder
 * (done) for post folder started with the r127 demo
