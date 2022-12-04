@@ -9,11 +9,18 @@ camera.lookAt(0, 0, 0);
 const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer();
 renderer.setSize(640, 480, false);
 const container = ( document.getElementById('demo') || document.body );
-container.appendChild(renderer.domElement);
-// mouse motion only works well when 100% of window is used
-//container.style.position = 'absolute';
-//container.style.left = '0px';
-//container.style.top = '0px';
+//-------- ----------
+// IFRAME
+//-------- ----------
+const iFrame = document.createElement('iframe');
+iFrame.width = 640;
+iFrame.height = 480;
+iFrame.frameBorder = 0;
+container.appendChild(iFrame);
+const body = iFrame.contentWindow.document.body;
+body.appendChild(renderer.domElement);
+// some style
+body.style.margin = '0px';
 //-------- ----------
 // HELPERS
 //-------- ----------
@@ -75,7 +82,7 @@ const ctx_debug = canvas_debug.getContext('2d');
 // I am giving the debug cnavas
 const flyControls = new THREE.FlyControls(camera, canvas_debug);
 console.log(flyControls);
-flyControls.dragToLook = true;
+flyControls.dragToLook = false;
 flyControls.movementSpeed = 3;
 flyControls.rollSpeed = Math.PI / 24;
 flyControls.autoForward = false;
