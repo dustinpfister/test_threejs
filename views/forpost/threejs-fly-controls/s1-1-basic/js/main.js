@@ -8,7 +8,12 @@ camera.position.set(0, 0, 10);
 camera.lookAt(0, 0, 0);
 const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer();
 renderer.setSize(640, 480, false);
-( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+const container = ( document.getElementById('demo') || document.body );
+container.appendChild(renderer.domElement);
+// mouse motion only works well when 100% of window is used
+//container.style.position = 'absolute';
+//container.style.left = '0px';
+//container.style.top = '0px';
 //-------- ----------
 // HELPERS
 //-------- ----------
@@ -39,12 +44,12 @@ const drawDebugInfo = (canvas, ctx, camera, fc) => {
     const cz = v.z.toFixed(2);
     ctx.fillText('campos: ' + cx + ', '  + cy + ', ' + cz, 10, 10);
     // draw yaw flight control movement
-    const yl = fc.moveState.yawLeft.toFixed(2);;
-    const yr = fc.moveState.yawRight.toFixed(2);;
+    const yl = fc.moveState.yawLeft.toFixed(2);
+    const yr = fc.moveState.yawRight.toFixed(2);
     ctx.fillText('yaw: ' + yl + ' left, ' + yr + ' right', 10, 25);
     // pitch
-    const pd = fc.moveState.pitchDown.toFixed(2);;
-    const pu = fc.moveState.pitchUp.toFixed(2);;
+    const pd = fc.moveState.pitchDown.toFixed(2);
+    const pu = fc.moveState.pitchUp.toFixed(2);
     ctx.fillText('pitch: ' + pu + ' up, ' + pd + ' down', 10, 40);
 };
 //-------- ----------
