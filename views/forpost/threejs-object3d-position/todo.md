@@ -27,8 +27,9 @@
 * () use box3 to set an area where mesh objects can be
 * () use box3 to make it so the position of objects will not go below a plane
 
-## () sx-x-geometry
-* () section in which geometry is used to set position of objects
+## () s4-1-geometry
+* (done) rename all loop examples to sx-* for now as that section will get shiften down a few times
+* () start new s4-1-geometry example where I am using a Sphere and torus geo
 
 ## ( done 11/28/2022  ) s4-5-loop-video2
 * (done) have some groups os mesh objects that are updated by position attributes of geomerty
