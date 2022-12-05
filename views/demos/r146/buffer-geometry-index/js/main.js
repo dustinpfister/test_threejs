@@ -13,31 +13,46 @@
     // ---------- ----------
     // TWO GEOS ONE INDEX ONE NOT INDEXED
     // ---------- ----------
-    const geo_index = new THREE.BoxGeometry(1,1,1);
+    const geo_index = new THREE.BoxGeometry(1, 1, 1);
     const geo_noindex = geo_index.clone().toNonIndexed();
     console.log(geo_index.index);   // ( buffer attribute object )
     console.log(geo_noindex.index); // null
     // ---------- ----------
     // MESH OBJECTS USING EACH GEO
     // ---------- ----------
-    const material = new THREE.MeshNormalMaterial();
+    const material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide});
+    const group = new THREE.Group();
+    scene.add(group)
     const mesh1 = new THREE.Mesh(geo_index, material);
+    mesh1.userData.pos_home = mesh1.geometry.getAttribute('position').clone();
     const mesh2 = new THREE.Mesh(geo_noindex, material);
-    scene.add(mesh1);
-    scene.add(mesh2);
-    mesh1.position.set(-1, 0, 0);
-    mesh2.position.set(1, 0, 0);
+    mesh2.userData.pos_home = mesh2.geometry.getAttribute('position').clone();
+    group.add(mesh1);
+    group.add(mesh2);
+    mesh1.position.set(-2, 0, 0);
+    mesh2.position.set(2, 0, 0);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
     const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 120;
-    let secs = 0,
-    frame = 0,
-    lt = new Date();
+    FRAME_MAX = 300;
+    let secs = 0, frame = 0, lt = new Date();
     // update
     const update = function(frame, frameMax){
+        const a1 = frame / frameMax;
+        const a2 = 1 - Math.abs( 0.5 - a1 ) / 0.5;
+        // loop over group children
+        group.children.forEach( (mesh) => {
+            const pos = mesh.geometry.getAttribute('position');
+            const pos_home = mesh.userData.pos_home;
+            let i = 0;
+            let len = pos.array.length;
+            pos.array[9] = pos_home.array[9] + 2 * a2;
+            pos.array[12] = pos_home.array[12] + 2 * a2;
+            pos.array[15] = pos_home.array[15] + 2 * a2;
+            pos.needsUpdate = true;
+        });
     };
     // loop
     const loop = () => {
