@@ -3,9 +3,9 @@
     // SCENE TYPE OBJECT, CAMERA TYPE OBJECT, and RENDERER
     //-------- ----------
     const scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(9, 9));
+    scene.add(new THREE.GridHelper(10, 10));
     const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 100);
-    camera.position.set(5, 5, 5);
+    camera.position.set(0, 8, 8);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer;
@@ -28,27 +28,43 @@
     // create a 'pointer' mesh object
     const createPointerMesh = () => {
         return new THREE.Mesh(
-            new THREE.SphereGeometry(0.25, 20, 20),
+            new THREE.SphereGeometry(0.2, 20, 20),
             new THREE.MeshNormalMaterial()
         );
     };
     //-------- ----------
-    // MESH OBJECTS
+    // POSITION TO MESH OBJECTS
     //-------- ----------
-    // mesh_sphere that will be the position property used
-    const mesh_sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(2, 20, 20),
-        new THREE.MeshBasicMaterial({ wireframe: true})
-    );
-    scene.add(mesh_sphere);
-    // the mesh that will be positioned to mesh_sphere
-    const mesh_pointer = createPointerMesh();
-    scene.add(mesh_pointer);
+    const material_posto = new THREE.MeshBasicMaterial({ wireframe: true, transparent: true, opacity: 0.15});
+    const group = new THREE.Group();
+    scene.add(group);
+    // sphere that will be the position property used
+    const mesh1 = new THREE.Mesh( new THREE.SphereGeometry(2, 14, 14), material_posto );
+    group.add(mesh1);
+    // torus that will be the position property used
+    const mesh2 = new THREE.Mesh( new THREE.TorusGeometry(1.5, 0.75, 14, 14), material_posto);
+    mesh2.position.set(-5, 0, 0);
+    mesh2.geometry.rotateX(Math.PI * 0.5)
+    group.add(mesh2);
+    // cone that will be the position property used
+    const mesh3 = new THREE.Mesh( new THREE.ConeGeometry(2, 4, 14, 14), material_posto);
+    mesh3.position.set(5, 0, -5);
+    group.add(mesh3);
     //-------- ----------
-    // SET mesh_pointer to vector in mesh_sphere
+    // POINTER MESH OBJECTS
     //-------- ----------
-    const v = getGeoPosByAlpha(mesh_sphere.geometry, 0.43);
-    mesh_pointer.position.copy(v);
+    let i = 0;
+    const count = 16;
+    while(i < count){
+        const a1 = i / count;
+        group.children.forEach(( mesh ) => {
+            const mesh_pointer = createPointerMesh();
+            const v = getGeoPosByAlpha(mesh.geometry, a1);
+            mesh_pointer.position.copy(v).add(mesh.position);
+            scene.add(mesh_pointer);
+        });
+        i += 1;
+    }
     //-------- ----------
     // RENDER
     //-------- ----------
