@@ -27,11 +27,15 @@
 * () use box3 to set an area where mesh objects can be
 * () use box3 to make it so the position of objects will not go below a plane
 
-## () s4-1-geometry
+## ( ) s4-2-geometry-lerp
+* () same as before but now allow for lerp points between them with low polly geo
+
+## ( done 12/05/2022 ) s4-1-geometry
 * (done) rename all loop examples to sx-* for now as that section will get shiften down a few times
 * (done) start new s4-1-geometry example where I am just getting a Vector3 from position 
-* () have both a sphere, and torus mesh objects
-* () create a count of pointer mesh objects for both
+* (done) have both a sphere, and torus mesh objects
+* (done) create a count of pointer mesh objects for both
+* (done) cone geometry as well
 
 ## ( done 11/28/2022  ) s4-5-loop-video2
 * (done) have some groups os mesh objects that are updated by position attributes of geomerty
