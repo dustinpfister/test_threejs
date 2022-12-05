@@ -1,23 +1,6 @@
 # threejs-object3d-position todo list
 
-## () sx-wrap-clamp section
-* () animation involving the use of clamp
-* () animation involving wrap
 
-## () sx-box3 section
-* () use box3 to set an area where mesh objects can be
-* () use box3 to make it so the position of objects will not go below a plane
-
-## () sx-x-raycaster section
-* () start a raycaster section with at least one basic example with say a torus geometry
-* () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
-* () at least a basic menu example
-
-## () sx-x-geometry
-* () section in which geometry is used to set position of objects
-
-## () sx-ani-stochastic section
-* () start a section for stochastic animation examples
 
 ## () s4-x-loop-world-local
 * () this will be an animation in which I have two groups
@@ -26,6 +9,26 @@
 * () I will then have at least one 'free' mesh that is just a child of scene
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
+
+
+## () sx-x-raycaster section
+* () start a raycaster section with at least one basic example with say a torus geometry
+* () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
+* () at least a basic menu example
+
+## () sx-ani-stochastic section
+* () start a section for stochastic animation examples
+
+## () sx-wrap-clamp section
+* () animation involving the use of clamp
+* () animation involving wrap
+
+## () sx-box3 section
+* () use box3 to set an area where mesh objects can be
+* () use box3 to make it so the position of objects will not go below a plane
+
+## () sx-x-geometry
+* () section in which geometry is used to set position of objects
 
 ## ( done 11/28/2022  ) s4-5-loop-video2
 * (done) have some groups os mesh objects that are updated by position attributes of geomerty
