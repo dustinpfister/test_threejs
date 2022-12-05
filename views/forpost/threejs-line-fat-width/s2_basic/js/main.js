@@ -72,8 +72,8 @@ var createFatLine = function (opt) {
         });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setClearColor(0x000000, 0.0);
-    renderer.setSize(320, 240);
-    document.getElementById('demo').appendChild(renderer.domElement);
+    renderer.setSize(640, 480, false);
+    (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 
     // SCENE
     var scene = new THREE.Scene();
@@ -118,7 +118,7 @@ var createFatLine = function (opt) {
 
         // main scene
         renderer.setClearColor(0x000000, 0);
-        renderer.setViewport(0, 0, 320, 240);
+        renderer.setViewport(0, 0, 640, 480);
 
         // renderer will set this eventually
         renderer.render(scene, camera);
