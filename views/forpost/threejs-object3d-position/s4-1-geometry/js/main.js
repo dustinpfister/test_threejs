@@ -25,6 +25,13 @@
         v.z = pos.getZ(index);
         return v;
     };
+    // create a 'pointer' mesh object
+    const createPointerMesh = () => {
+        return new THREE.Mesh(
+            new THREE.SphereGeometry(0.25, 20, 20),
+            new THREE.MeshNormalMaterial()
+        );
+    };
     //-------- ----------
     // MESH OBJECTS
     //-------- ----------
@@ -35,15 +42,12 @@
     );
     scene.add(mesh_sphere);
     // the mesh that will be positioned to mesh_sphere
-    const mesh_pointer = new THREE.Mesh(
-        new THREE.SphereGeometry(0.25, 20, 20),
-        new THREE.MeshNormalMaterial()
-    );
+    const mesh_pointer = createPointerMesh();
     scene.add(mesh_pointer);
     //-------- ----------
     // SET mesh_pointer to vector in mesh_sphere
     //-------- ----------
-    const v = getGeoPosByAlpha(mesh_sphere.geometry, 1);
+    const v = getGeoPosByAlpha(mesh_sphere.geometry, 0.43);
     mesh_pointer.position.copy(v);
     //-------- ----------
     // RENDER

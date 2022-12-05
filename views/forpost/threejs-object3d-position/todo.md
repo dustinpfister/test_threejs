@@ -29,7 +29,9 @@
 
 ## () s4-1-geometry
 * (done) rename all loop examples to sx-* for now as that section will get shiften down a few times
-* () start new s4-1-geometry example where I am using a Sphere and torus geo
+* (done) start new s4-1-geometry example where I am just getting a Vector3 from position 
+* () have both a sphere, and torus mesh objects
+* () create a count of pointer mesh objects for both
 
 ## ( done 11/28/2022  ) s4-5-loop-video2
 * (done) have some groups os mesh objects that are updated by position attributes of geomerty
