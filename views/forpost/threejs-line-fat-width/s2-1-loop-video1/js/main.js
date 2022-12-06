@@ -29,19 +29,6 @@
         }
         return pos;
     };
-    // color wrap method
-/*
-    const colorWrap = (palette, pointCount) => {
-        const colors = [];
-        let i = 0;
-        while(i < pointCount){
-           const current = palette[ i % palette.length ];
-           colors.push(current[0], current[1], current[2]);
-           i += 1;
-        }
-        return colors;
-    }
-*/
     // color trans
     const colorTrans = (color1, color2, pointCount) => {
         const colors = [];
@@ -59,19 +46,23 @@
     //-------- ----------
     // LINE2
     //-------- ----------
-    const geo1 = new THREE.LineGeometry();
-    geo1.setColors( colorTrans( new THREE.Color(1,0,0), new THREE.Color(0,1,0.5), 80 ));
-    const geo2 = new THREE.LineGeometry();
-    geo2.setColors( colorTrans( new THREE.Color(1,0,0), new THREE.Color(0,1,0.5), 80 ));
     // use vertex colors when setting up the material
     const line_material = new THREE.LineMaterial({
         linewidth: 0.025,
         vertexColors: true
     });
-    const line1 = new THREE.Line2(geo1, line_material);
-    scene.add(line1);
-    const line2 = new THREE.Line2(geo2, line_material);
-    scene.add(line2);
+    const group = new THREE.Group();
+    scene.add(group);
+    let i = 0;
+    const count = 10;
+    while(i < count){
+        const a_line = i / (count - 1);
+        const geo = new THREE.LineGeometry();
+        geo.setColors( colorTrans( new THREE.Color(1,0,1 -a_line), new THREE.Color(a_line,1, 0), 80 ));
+        const line = new THREE.Line2(geo, line_material);
+        group.add(line);
+        i += 1;
+    }
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -85,8 +76,23 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-        geo1.setPositions( sinWave(5, -5, -5, 3, 2, 80, Math.PI * 2 * a1) );
-        geo2.setPositions( sinWave(5, -5, -4, 3, 2, 80, Math.PI / 180 * 180 + Math.PI * 2 * a1) );
+
+    let i = 0;
+    const count = 10;
+    while(i < count){
+        const a_line = i / (count - 1);
+        const a_line2 = 1 - Math.abs(0.5 - a_line) / 0.5;
+        const line = group.children[i];
+        const x = -5 + 10 * a_line;
+        const yMax = 1 + 3 * a_line2;
+        const radianOffset = Math.PI * 2 / count * i + Math.PI * 2 * a1; 
+        line.geometry.setPositions( sinWave(5, -5, x, 4, yMax, 80, radianOffset) );
+        i += 1;
+    }
+
+
+        //geo1.setPositions( sinWave(5, -5, -5, 3, 2, 80, Math.PI * 2 * a1) );
+        //geo2.setPositions( sinWave(5, -5, -4, 3, 2, 80, Math.PI / 180 * 180 + Math.PI * 2 * a1) );
     };
     // loop
     const loop = () => {
