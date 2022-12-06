@@ -15,7 +15,7 @@
     // HELPERS
     //-------- ----------
     // create sin wave position array to use with the setPositions method
-    const sinWave = (zStart, zEnd, waves, yMax, pointCount, radianOffset) => {
+    const sinWave = (zStart, zEnd, x, waves, yMax, pointCount, radianOffset) => {
         const pos = [];
         let i = 0;
         while(i < pointCount){
@@ -24,7 +24,7 @@
            let r = Math.PI * 2 * waves * a1 + radianOffset;
            r = THREE.MathUtils.euclideanModulo(r, Math.PI * 2);
            const y = Math.sin(r) * yMax;
-           pos.push(0, y, z);
+           pos.push(x, y, z);
            i += 1;
         }
         return pos;
@@ -59,17 +59,19 @@
     //-------- ----------
     // LINE2
     //-------- ----------
-    const geo = new THREE.LineGeometry();
-    geo.setColors( colorTrans( new THREE.Color(1,0,0), new THREE.Color(0,1,0.5), 80 ));
-
-    //geo.setColors([0,1,0, 0,1,1, 0,1,0]);
+    const geo1 = new THREE.LineGeometry();
+    geo1.setColors( colorTrans( new THREE.Color(1,0,0), new THREE.Color(0,1,0.5), 80 ));
+    const geo2 = new THREE.LineGeometry();
+    geo2.setColors( colorTrans( new THREE.Color(1,0,0), new THREE.Color(0,1,0.5), 80 ));
     // use vertex colors when setting up the material
     const line_material = new THREE.LineMaterial({
         linewidth: 0.025,
         vertexColors: true
     });
-    const line = new THREE.Line2(geo, line_material);
-    scene.add(line)
+    const line1 = new THREE.Line2(geo1, line_material);
+    scene.add(line1);
+    const line2 = new THREE.Line2(geo2, line_material);
+    scene.add(line2);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -83,7 +85,8 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-        geo.setPositions( sinWave(5, -5, 4, 2, 80, Math.PI * 2 * a1) );
+        geo1.setPositions( sinWave(5, -5, -5, 3, 2, 80, Math.PI * 2 * a1) );
+        geo2.setPositions( sinWave(5, -5, -4, 3, 2, 80, Math.PI / 180 * 180 + Math.PI * 2 * a1) );
     };
     // loop
     const loop = () => {
