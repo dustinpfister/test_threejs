@@ -1,5 +1,8 @@
 # threejs-line-fat-width todo list
 
+## () s2-1-loop-video1
+* () start a loop section and what i want for video1 for this post
+
 ## ( done 12/06/2022 ) - s1-2-basic-r140-color
 * (done) see about making a color example
 
