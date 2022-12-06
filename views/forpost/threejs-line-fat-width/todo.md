@@ -1,6 +1,9 @@
 # threejs-line-fat-width todo list
 
-## ( done 12/05/2022 ) - r140 folder and demos
+## () - s1-2-basic-r140-color
+* () see about making a color example
+
+## ( done 12/05/2022 ) - r140 folder and first demo
 * (done) create an r140 folder for the files that are needed
 * (done) make at least one simple demo
 
