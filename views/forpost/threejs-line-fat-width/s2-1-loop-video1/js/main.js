@@ -15,11 +15,12 @@
     // LINE2
     //-------- ----------
     const geo = new THREE.LineGeometry();
-    geo.setPositions([0,0,0, 0,1,0 ]);
-    geo.setColors([0,1,0, 0,1,1, 0,0.5,0, 0,0.5,0.5, 0,0.25,0, 0,0.25,0.25]);
+    geo.setPositions([0,0,0, 0,5,0, -5,0,5 ]);
+    geo.setColors([0,1,0, 0,1,1, 0,1,0]);
     // use vertex colors when setting up the material
     const line_material = new THREE.LineMaterial({
-        linewidth: 0.025, vertexColors: true
+        linewidth: 0.025,
+        vertexColors: true
     });
     const line = new THREE.Line2(geo, line_material);
     scene.add(line)
@@ -39,7 +40,7 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-        geo.setPositions([0,0,0, -10 + 20 * a2,1,0 ]);
+    geo.setPositions([0,0,0, -5 + 10 * a2,5,0, -5,0,5 ]);
     };
     // loop
     const loop = () => {
