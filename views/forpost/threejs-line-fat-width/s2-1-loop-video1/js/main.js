@@ -14,6 +14,7 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
+    // create sin wave position array to use with the setPositions method
     const sinWave = (zStart, zEnd, waves, yMax, pointCount, radianOffset) => {
         const pos = [];
         let i = 0;
@@ -28,18 +29,28 @@
         }
         return pos;
     };
-
+    // color wrap method
+    const colorWrap = (palette, pointCount) => {
+        const colors = [];
+        let i = 0;
+        while(i < pointCount){
+           const current = palette[ i % palette.length ];
+           colors.push(current[0], current[1], current[2]);
+           i += 1;
+        }
+        return colors;
+    }
     //-------- ----------
     // LINE2
     //-------- ----------
     const geo = new THREE.LineGeometry();
-
+    geo.setColors( colorWrap( [ [0,0.5,0], [0,0.5,0.5] ], 80 ));
 
     //geo.setColors([0,1,0, 0,1,1, 0,1,0]);
     // use vertex colors when setting up the material
     const line_material = new THREE.LineMaterial({
         linewidth: 0.025,
-        //vertexColors: true
+        vertexColors: true
     });
     const line = new THREE.Line2(geo, line_material);
     scene.add(line)
