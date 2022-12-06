@@ -12,21 +12,37 @@
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
     //-------- ----------
+    // HELPERS
+    //-------- ----------
+    const sinWave = (zStart, zEnd, waves, yMax, pointCount, radianOffset) => {
+        const pos = [];
+        let i = 0;
+        while(i < pointCount){
+           const a1 = i / (pointCount - 1);
+           const z = zStart - (zStart - zEnd) * a1;
+           let r = Math.PI * 2 * waves * a1 + radianOffset;
+           r = THREE.MathUtils.euclideanModulo(r, Math.PI * 2);
+           const y = Math.sin(r) * yMax;
+           pos.push(0, y, z);
+           i += 1;
+        }
+        return pos;
+    };
+
+    //-------- ----------
     // LINE2
     //-------- ----------
     const geo = new THREE.LineGeometry();
-    geo.setPositions([0,0,0, 0,5,0, -5,0,5 ]);
-    geo.setColors([0,1,0, 0,1,1, 0,1,0]);
+
+
+    //geo.setColors([0,1,0, 0,1,1, 0,1,0]);
     // use vertex colors when setting up the material
     const line_material = new THREE.LineMaterial({
         linewidth: 0.025,
-        vertexColors: true
+        //vertexColors: true
     });
     const line = new THREE.Line2(geo, line_material);
     scene.add(line)
-    //-------- ----------
-    // RENDER
-    //-------- ----------
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -40,7 +56,7 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-    geo.setPositions([0,0,0, -5 + 10 * a2,5,0, -5,0,5 ]);
+        geo.setPositions( sinWave(5, -5, 4, 2, 80, Math.PI * 2 * a1) );
     };
     // loop
     const loop = () => {
