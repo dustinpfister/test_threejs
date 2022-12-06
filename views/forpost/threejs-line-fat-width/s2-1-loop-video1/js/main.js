@@ -30,6 +30,7 @@
         return pos;
     };
     // color wrap method
+/*
     const colorWrap = (palette, pointCount) => {
         const colors = [];
         let i = 0;
@@ -40,11 +41,26 @@
         }
         return colors;
     }
+*/
+    // color trans
+    const colorTrans = (color1, color2, pointCount) => {
+        const colors = [];
+        let i = 0;
+        while(i < pointCount){
+           const a1 = i / (pointCount - 1);
+           const r = color1.r * (1 - a1) + color2.r * a1;
+           const g = color1.g * (1 - a1) + color2.g * a1;
+           const b = color1.b * (1 - a1) + color2.b * a1;
+           colors.push(r, g, b);
+           i += 1;
+        }
+        return colors;
+    }
     //-------- ----------
     // LINE2
     //-------- ----------
     const geo = new THREE.LineGeometry();
-    geo.setColors( colorWrap( [ [0,0.5,0], [0,0.5,0.5] ], 80 ));
+    geo.setColors( colorTrans( new THREE.Color(1,0,0), new THREE.Color(0,1,0.5), 80 ));
 
     //geo.setColors([0,1,0, 0,1,1, 0,1,0]);
     // use vertex colors when setting up the material
