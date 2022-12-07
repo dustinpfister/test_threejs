@@ -4,9 +4,9 @@
     //-------- ----------
     const scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10))
-    const camera = new THREE.PerspectiveCamera(40, 320 / 240, 14, 24);
-    camera.position.set(12, 12, 12);
-    camera.lookAt(0, 0, 0);
+    const camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.5, 25);
+    //camera.position.set(12, 12, 12);
+    //camera.lookAt(0, 0, 0);
     const renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(640, 480, false);
@@ -43,9 +43,9 @@
            // vector3 in pos Array
            let v3 = new THREE.Vector3( posArray[i], posArray[i + 1], posArray[i + 2] );
            const d = v3.distanceTo(camera.position);
-           let a_d = 0.1;
+           let a_d = 0;
            if(d >= camera.near && d <= camera.far){
-                a_d = 1 - 0.9 * (d - camera.near) / ( camera.far - camera.near );
+                a_d = 1 - 1 * (d - camera.near) / ( camera.far - camera.near );
            }
            colors.push(r * a_d, g * a_d, b * a_d);
            i += 1;
@@ -57,7 +57,7 @@
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
         let i = 0;
         const count = l2Group.children.length;
-        const pointCount = 180;
+        const pointCount = 60;
         while(i < count){
             const a_line = i / (count);
             const a_line2 = 1 - Math.abs(0.5 - a_line) / 0.5;
@@ -100,15 +100,21 @@
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
-    const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
+    const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 120;
+    FRAME_MAX = 800;
     let secs = 0,
     frame = 0,
     lt = new Date();
     // update
+    const campos1 = new THREE.Vector3(15, 15, 15);
+    const campos2 = new THREE.Vector3(-5, 5, 5);
     const update = function(frame, frameMax){
-        updateLine2Group(group, camera, frame / frameMax);
+        const a1 = frame / frameMax;
+        const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+        camera.position.copy(campos1).lerp(campos2, a2);
+        camera.lookAt(0, 0, 0);
+        updateLine2Group(group, camera, a1);
     };
     // loop
     const loop = () => {
