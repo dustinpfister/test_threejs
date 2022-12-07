@@ -66,27 +66,28 @@
             i += 1;
         }
     };
+    const createLine2Group = (count) => {
+        const group = new THREE.Group();
+        scene.add(group);
+        let i = 0;
+        while(i < count){
+            const a_line = i / (count - 1);
+            const geo = new THREE.LineGeometry();
+            // use vertex colors when setting up the material
+            const line_material = new THREE.LineMaterial({
+                linewidth: 0.025 - 0.0125 * a_line,
+                vertexColors: true
+            });
+            const line = new THREE.Line2(geo, line_material);
+            group.add(line);
+            i += 1;
+        }
+        return group;
+    };
     //-------- ----------
     // LINE2
     //-------- ----------
-    const group = new THREE.Group();
-    scene.add(group);
-    let i = 0;
-    const count = 7;
-    while(i < count){
-        const a_line = i / (count - 1);
-        const geo = new THREE.LineGeometry();
-        //const colorArray = colorTrans( new THREE.Color(1,0,1 -a_line), new THREE.Color(a_line,1, 0), 80 );
-        //geo.setColors( colorArray);
-        // use vertex colors when setting up the material
-        const line_material = new THREE.LineMaterial({
-            linewidth: 0.025 - 0.0125 * a_line,
-            vertexColors: true
-        });
-        const line = new THREE.Line2(geo, line_material);
-        group.add(line);
-        i += 1;
-    }
+    const group = createLine2Group(10);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
