@@ -30,9 +30,10 @@
         return pos;
     };
     // color trans
-    const colorTrans = (color1, color2, pointCount) => {
+    const colorTrans = (color1, color2, posArray) => {
         const colors = [];
         let i = 0;
+        const pointCount = posArray.length / 3;
         while(i < pointCount){
            const a1 = i / (pointCount - 1);
            let r = color1.r * (1 - a1) + color2.r * a1;
@@ -61,7 +62,7 @@
             // color
             const c1 = new THREE.Color(1,0,1 - a_line);
             const c2 = new THREE.Color(a_line, 1, 0);
-            const colorArray = colorTrans( c1, c2, pointCount );
+            const colorArray = colorTrans( c1, c2, posArray );
             line.geometry.setColors( colorArray );
             i += 1;
         }
