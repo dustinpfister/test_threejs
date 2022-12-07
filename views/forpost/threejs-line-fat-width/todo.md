@@ -6,10 +6,10 @@
 * () use the pos array to get distance values to a camera 
 * () use distance values to increase and decrease the brightness of the colors
 
-## () - s2-1-loop-colortrans
+## ( done 12/07/2022 ) - s2-1-loop-colortrans
 * (done) removed old code before group was started
-* () start s2-1-loop-colortrans based off of s2-1-loop-video1
-* () rename s2-1-loop-video1 to s2-2-loop-video1-depth
+* (done) start s2-1-loop-colortrans based off of s2-1-loop-video1
+* (done) rename s2-1-loop-video1 to s2-2-loop-video1-depth
 
 ## ( done 12/06/2022 ) s2-1-loop-video1 started
 * (done) start a loop section and what i want for video1 for this post

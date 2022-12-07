@@ -46,11 +46,6 @@
     //-------- ----------
     // LINE2
     //-------- ----------
-    // use vertex colors when setting up the material
-    const line_material = new THREE.LineMaterial({
-        linewidth: 0.025,
-        vertexColors: true
-    });
     const group = new THREE.Group();
     scene.add(group);
     let i = 0;
@@ -60,6 +55,11 @@
         const geo = new THREE.LineGeometry();
         const colorArray = colorTrans( new THREE.Color(1,0,1 -a_line), new THREE.Color(a_line,1, 0), 80 );
         geo.setColors( colorArray);
+        // use vertex colors when setting up the material
+        const line_material = new THREE.LineMaterial({
+            linewidth: 0.025 - 0.0125 * a_line,
+            vertexColors: true
+        });
         const line = new THREE.Line2(geo, line_material);
         group.add(line);
         i += 1;
