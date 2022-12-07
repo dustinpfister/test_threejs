@@ -4,7 +4,7 @@
     //-------- ----------
     const scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10))
-    const camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.5, 25);
+    const camera = new THREE.PerspectiveCamera(40, 320 / 240, 2.5, 25);
     //camera.position.set(12, 12, 12);
     //camera.lookAt(0, 0, 0);
     const renderer = new THREE.WebGLRenderer();
@@ -57,7 +57,7 @@
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
         let i = 0;
         const count = l2Group.children.length;
-        const pointCount = 60;
+        const pointCount = 120;
         while(i < count){
             const a_line = i / (count);
             const a_line2 = 1 - Math.abs(0.5 - a_line) / 0.5;
@@ -84,7 +84,7 @@
             const geo = new THREE.LineGeometry();
             // use vertex colors when setting up the material
             const line_material = new THREE.LineMaterial({
-                linewidth: 0.025 - 0.0125 * a_line,
+                linewidth: 0.05, //0.05 - 0.025 * a_line,
                 vertexColors: true
             });
             const line = new THREE.Line2(geo, line_material);
@@ -114,7 +114,7 @@
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
         camera.position.copy(campos1).lerp(campos2, a2);
         camera.lookAt(0, 0, 0);
-        updateLine2Group(group, camera, a1);
+        updateLine2Group(group, camera, a1 * 4 % 1);
     };
     // loop
     const loop = () => {
