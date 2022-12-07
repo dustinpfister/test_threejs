@@ -1,6 +1,7 @@
 # threejs-line-fat-width todo list
 
 ## () - s2-2-loop-video1-depth
+* () have a create and update line group methods
 * () have an updated color trans helper that will create a new color array based off a current pos array
 * () pass a camera object as an argument
 * () use the pos array to get distance values to a camera 

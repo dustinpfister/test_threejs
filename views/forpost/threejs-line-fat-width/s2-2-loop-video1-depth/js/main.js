@@ -42,7 +42,23 @@
            i += 1;
         }
         return colors;
-    }
+    };
+    // update line group
+    const updateLine2Group = (l2Group, a1 ) => {
+        const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+        let i = 0;
+        const count = l2Group.children.length;
+        while(i < count){
+            const a_line = i / (count - 1);
+            const a_line2 = 1 - Math.abs(0.5 - a_line) / 0.5;
+            const line = l2Group.children[i];
+            const x = -5 + 10 * a_line;
+            const yMax = 1 + 3 * a_line2;
+            const radianOffset = Math.PI * 2 / count * i + Math.PI * 2 * a1; 
+            line.geometry.setPositions( sinWave(5, -5, x, 4, yMax, 80, radianOffset) );
+            i += 1;
+        }
+    };
     //-------- ----------
     // LINE2
     //-------- ----------
@@ -75,20 +91,7 @@
     lt = new Date();
     // update
     const update = function(frame, frameMax){
-        const a1 = frame / frameMax;
-        const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-        let i = 0;
-        const count = group.children.length;
-        while(i < count){
-            const a_line = i / (count - 1);
-            const a_line2 = 1 - Math.abs(0.5 - a_line) / 0.5;
-            const line = group.children[i];
-            const x = -5 + 10 * a_line;
-            const yMax = 1 + 3 * a_line2;
-            const radianOffset = Math.PI * 2 / count * i + Math.PI * 2 * a1; 
-            line.geometry.setPositions( sinWave(5, -5, x, 4, yMax, 80, radianOffset) );
-            i += 1;
-        }
+        updateLine2Group(group, frame / frameMax);
     };
     // loop
     const loop = () => {
