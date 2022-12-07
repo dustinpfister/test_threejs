@@ -48,14 +48,21 @@
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
         let i = 0;
         const count = l2Group.children.length;
+        const pointCount = 35;
         while(i < count){
             const a_line = i / (count - 1);
             const a_line2 = 1 - Math.abs(0.5 - a_line) / 0.5;
             const line = l2Group.children[i];
             const x = -5 + 10 * a_line;
             const yMax = 1 + 3 * a_line2;
-            const radianOffset = Math.PI * 2 / count * i + Math.PI * 2 * a1; 
-            line.geometry.setPositions( sinWave(5, -5, x, 4, yMax, 80, radianOffset) );
+            const radianOffset = Math.PI * 2 / count * i + Math.PI * 2 * a1;
+            const posArray = sinWave(5, -5, x, 4, yMax, pointCount, radianOffset);
+            line.geometry.setPositions( posArray );
+            // color
+            const c1 = new THREE.Color(1,0,1 - a_line);
+            const c2 = new THREE.Color(a_line, 1, 0);
+            const colorArray = colorTrans( c1, c2, pointCount );
+            line.geometry.setColors( colorArray );
             i += 1;
         }
     };
@@ -69,8 +76,8 @@
     while(i < count){
         const a_line = i / (count - 1);
         const geo = new THREE.LineGeometry();
-        const colorArray = colorTrans( new THREE.Color(1,0,1 -a_line), new THREE.Color(a_line,1, 0), 80 );
-        geo.setColors( colorArray);
+        //const colorArray = colorTrans( new THREE.Color(1,0,1 -a_line), new THREE.Color(a_line,1, 0), 80 );
+        //geo.setColors( colorArray);
         // use vertex colors when setting up the material
         const line_material = new THREE.LineMaterial({
             linewidth: 0.025 - 0.0125 * a_line,
