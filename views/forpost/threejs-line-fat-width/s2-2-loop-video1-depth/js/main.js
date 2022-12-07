@@ -77,7 +77,6 @@
     };
     const createLine2Group = (count) => {
         const group = new THREE.Group();
-        scene.add(group);
         let i = 0;
         while(i < count){
             const a_line = i / (count - 1);
@@ -97,6 +96,7 @@
     // LINE2
     //-------- ----------
     const group = createLine2Group(10);
+    scene.add(group);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
