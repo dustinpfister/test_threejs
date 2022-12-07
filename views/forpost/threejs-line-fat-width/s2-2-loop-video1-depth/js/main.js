@@ -4,8 +4,8 @@
     //-------- ----------
     const scene = new THREE.Scene();
     scene.add( new THREE.GridHelper(10, 10))
-    const camera = new THREE.PerspectiveCamera(40, 320 / 240, 1, 1000);
-    camera.position.set(15, 15, 15);
+    const camera = new THREE.PerspectiveCamera(40, 320 / 240, 14, 24);
+    camera.position.set(12, 12, 12);
     camera.lookAt(0, 0, 0);
     const renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -30,28 +30,36 @@
         return pos;
     };
     // color trans
-    const colorTrans = (color1, color2, posArray) => {
+    const colorTrans = (color1, color2, posArray, camera) => {
         const colors = [];
         let i = 0;
         const pointCount = posArray.length / 3;
         while(i < pointCount){
            const a1 = i / (pointCount - 1);
+           // raw color values
            let r = color1.r * (1 - a1) + color2.r * a1;
            let g = color1.g * (1 - a1) + color2.g * a1;
            let b = color1.b * (1 - a1) + color2.b * a1;
-           colors.push(r,g,b);
+           // vector3 in pos Array
+           let v3 = new THREE.Vector3( posArray[i], posArray[i + 1], posArray[i + 2] );
+           const d = v3.distanceTo(camera.position);
+           let a_d = 0.1;
+           if(d >= camera.near && d <= camera.far){
+                a_d = 1 - 0.9 * (d - camera.near) / ( camera.far - camera.near );
+           }
+           colors.push(r * a_d, g * a_d, b * a_d);
            i += 1;
         }
         return colors;
     };
     // update line group
-    const updateLine2Group = (l2Group, a1 ) => {
+    const updateLine2Group = (l2Group, camera, a1 ) => {
         const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
         let i = 0;
         const count = l2Group.children.length;
-        const pointCount = 35;
+        const pointCount = 180;
         while(i < count){
-            const a_line = i / (count - 1);
+            const a_line = i / (count);
             const a_line2 = 1 - Math.abs(0.5 - a_line) / 0.5;
             const line = l2Group.children[i];
             const x = -5 + 10 * a_line;
@@ -62,7 +70,7 @@
             // color
             const c1 = new THREE.Color(1,0,1 - a_line);
             const c2 = new THREE.Color(a_line, 1, 0);
-            const colorArray = colorTrans( c1, c2, posArray );
+            const colorArray = colorTrans( c1, c2, posArray, camera );
             line.geometry.setColors( colorArray );
             i += 1;
         }
@@ -100,7 +108,7 @@
     lt = new Date();
     // update
     const update = function(frame, frameMax){
-        updateLine2Group(group, frame / frameMax);
+        updateLine2Group(group, camera, frame / frameMax);
     };
     // loop
     const loop = () => {
