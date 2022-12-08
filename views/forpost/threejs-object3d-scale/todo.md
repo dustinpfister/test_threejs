@@ -1,7 +1,10 @@
 # threejs-object3d-scale todo
 
-### () - s4-1-video
-* () example on the video1 project for this post
+### () -
+
+### ( done 12/08/2022 ) - s4-2-loop-video1
+* (done) start example on the video1 project for this post
+* (done) use code from video1 file in videoground blog posts
 
 ### ( done 11/30/2022 ) - s4-1-geo-scale
 * (done) - example that makes use of buffer geometry method to scale a geometry once
