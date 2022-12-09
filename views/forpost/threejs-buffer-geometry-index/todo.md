@@ -2,8 +2,8 @@
 
 ## s1-2-loop-plane
 * (done) see about making a loop example with two plane geos
-* () make more helper functions
-* () use phong material
+* (done) make more helper functions
+* (done) use phong material
 * () rename this as video1 loop example
 
 ## ( done 12/08/2022 ) s1-2-basic-compare

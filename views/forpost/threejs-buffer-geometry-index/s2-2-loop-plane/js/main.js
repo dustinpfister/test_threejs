@@ -36,7 +36,9 @@
         // material
         const material = new THREE.MeshPhongMaterial({
             side: THREE.DoubleSide,
-            color: 0xffffff
+            color: new THREE.Color(0,1,0),
+            emissive: new THREE.Color(1,1,1),
+            emissiveIntensity: 0.1
         });
         // geo indexed and non indxed
         const geo_index = new THREE.PlaneGeometry(4, 5, 20, 25);
@@ -76,11 +78,40 @@
             mesh.geometry.computeVertexNormals();
         });
     };
+    const createCanvasTexture = function (draw, size) {
+        var canvas = document.createElement('canvas'),
+        ctx = canvas.getContext('2d');
+        canvas.width = size || 32;
+        canvas.height = size || 32;
+        draw(ctx, canvas);
+        return new THREE.CanvasTexture(canvas);
+    };
+    // ---------- ----------
+    // TEXTURE
+    // ---------- ----------
+    const texture_map = createCanvasTexture(function (ctx, canvas) {
+        const w = 16, h = 16;
+        let i = 0, len = w * h;
+        while(i < len){
+            const x = i % w;
+            const y = Math.floor(i / w);
+            const px = canvas.width / w * x;
+            const py = canvas.height / h * y;
+            const v = 0.5 * Math.random().toFixed(2);
+            const color = new THREE.Color(v,v,v);
+            ctx.fillStyle = color.getStyle();
+            ctx.fillRect(px, py, canvas.width / w, canvas.width / h);
+            i += 1;
+        }
+    }, 64);
     // ---------- ----------
     // GROUP
     // ---------- ----------
     const group = createGroup();
     scene.add(group);
+    group.children.forEach((mesh) => {
+        mesh.material.map = texture_map;
+    });
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
