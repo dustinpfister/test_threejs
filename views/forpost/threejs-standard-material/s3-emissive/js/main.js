@@ -76,21 +76,27 @@ scene.add(sun);
 //-------- ----------
 // LOOP
 //-------- ----------
-let lt = new Date(),
-radian = 0;
+const frameMax = 300;
+let lt = new Date(), frame = 0;
 const loop = function () {
-    const now = new Date(),
-    secs = (now - lt) / 1000;
-    lt = now;
+    const now = new Date();
     requestAnimationFrame(loop);
-
-
-    radian += 1.57 * secs;
-    radian %= Math.PI * 2;
+    // alphas
+    const a1 = frame / frameMax;
+    const a2 = 1 - Math.abs(0.5 - a1 * 5 % 1 ) / 0.5;
+    // update emissive intensity
+    box.material.emissiveIntensity = a2;
+    // update sun pos
+    const radian = Math.PI * 2 * a1;
     const x = Math.cos(radian) * 5,
     y = 2 - 2 * Math.cos(radian),
     z = Math.sin(radian) * 5;
     sun.position.set(x, y, z);
+    // render
     renderer.render(scene, camera);
+    // step frame
+    frame += 1;
+    frame %= frameMax;
+    lt = now;
 };
 loop();

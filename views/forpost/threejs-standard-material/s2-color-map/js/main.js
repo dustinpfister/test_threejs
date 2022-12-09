@@ -37,7 +37,7 @@ const colorMap = createCanvasTexture(function (ctx, canvas) {
 //-------- ----------
 // creating a box with the standard material
 const box = new THREE.Mesh(
-        new THREE.BoxGeometry(3, 3, 3),
+        new THREE.BoxGeometry(4, 4, 4),
         new THREE.MeshStandardMaterial({
             map: colorMap
         }));
@@ -53,19 +53,24 @@ scene.add(sun);
 //-------- ----------
 // LOOP
 //-------- ----------
-let lt = new Date(),
-radian = 0;
+const frameMax = 300;
+let lt = new Date(), frame = 0;
 const loop = function () {
-    const now = new Date(),
-    secs = (now - lt) / 1000;
-    lt = now;
+    const now = new Date();
     requestAnimationFrame(loop);
-    radian += 1.57 * secs;
-    radian %= Math.PI * 2;
+    // alphas
+    const a1 = frame / frameMax;
+    // update sun pos
+    const radian = Math.PI * 2 * a1;
     const x = Math.cos(radian) * 5,
     y = 2 - 2 * Math.cos(radian),
     z = Math.sin(radian) * 5;
     sun.position.set(x, y, z);
+    // render
     renderer.render(scene, camera);
+    // step frame
+    frame += 1;
+    frame %= frameMax;
+    lt = now;
 };
 loop();
