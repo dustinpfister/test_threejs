@@ -27,7 +27,12 @@
     };
     // create group helper
     const createGroup = () => {
+        // material
         const material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide });
+        // geo indexed and non indxed
+        const geo_index = new THREE.PlaneGeometry(4, 5, 20, 25);
+        geo_index.rotateX(Math.PI * 1.5)
+        const geo_noindex = geo_index.clone().toNonIndexed();
         const group = new THREE.Group();
         // indexed mesh
         const mesh1 = new THREE.Mesh(geo_index, material);
@@ -43,18 +48,28 @@
         mesh2.position.set(2.5, 0, 0);
         return group;
     };
+    const updateGroup = (group, alpha) => {
+        // loop over group children
+        group.children.forEach( (mesh) => {
+            const pos = mesh.geometry.getAttribute('position');
+            const pos_home = mesh.userData.pos_home;
+            let len_tri = Math.floor(pos.array.length / 9);
+            let i_tri = 0;
+            while(i_tri < len_tri){
+                let i = i_tri * 9;
+                 const delta = mesh.userData.deltas[i_tri];
+                 pos.array[i + 1] = pos_home.array[ i + 1] + delta * alpha;
+                 pos.array[i + 4] = pos_home.array[i + 4] + delta * alpha;
+                 pos.array[i + 7] = pos_home.array[ i + 7] + delta * alpha;
+                 i_tri += 1;
+            }
+            pos.needsUpdate = true;
+            mesh.geometry.computeVertexNormals();
+        });
+    };
     // ---------- ----------
-    // TWO GEOS ONE INDEX ONE NOT INDEXED
+    // GROUP
     // ---------- ----------
-    const geo_index = new THREE.PlaneGeometry(4, 5, 20, 25);
-    geo_index.rotateX(Math.PI * 1.5)
-    const geo_noindex = geo_index.clone().toNonIndexed();
-    console.log(geo_index.index);   // ( buffer attribute object )
-    console.log(geo_noindex.index); // null
-    // ---------- ----------
-    // MESH OBJECTS USING EACH GEO
-    // ---------- ----------
-
     const group = createGroup();
     scene.add(group);
     // ---------- ----------
@@ -68,23 +83,7 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         const a2 = 1 - Math.abs( 0.5 - a1 ) / 0.5;
-        // loop over group children
-        group.children.forEach( (mesh) => {
-            const pos = mesh.geometry.getAttribute('position');
-            const pos_home = mesh.userData.pos_home;
-            let len_tri = Math.floor(pos.array.length / 9);
-            let i_tri = 0;
-            while(i_tri < len_tri){
-                let i = i_tri * 9;
-                 const delta = mesh.userData.deltas[i_tri];
-                 pos.array[i + 1] = pos_home.array[ i + 1] + delta * a2;
-                 pos.array[i + 4] = pos_home.array[i + 4] + delta * a2;
-                 pos.array[i + 7] = pos_home.array[ i + 7] + delta * a2;
-                 i_tri += 1;
-            }
-            pos.needsUpdate = true;
-            mesh.geometry.computeVertexNormals();
-        });
+        updateGroup(group, a2);
     };
     // loop
     const loop = () => {
