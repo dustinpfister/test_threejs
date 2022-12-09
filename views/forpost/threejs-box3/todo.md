@@ -1,5 +1,13 @@
 # threejs-box3 todo list
 
+## () - sx-x-obb ( Oriented Bounding Box )
+```
+There may not be any way to do this in threejs alone at least
+
+check it:
+https://discourse.threejs.org/t/does-three-js-have-a-way-to-detect-if-an-arbitrarily-rotated-box-intersects-another-object/9154
+```
+
 ## ( ) - sx-collision
 * () have a s3-collision section folder
 
