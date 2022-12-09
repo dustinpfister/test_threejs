@@ -11,6 +11,12 @@
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
     // ---------- ----------
+    // LIGHT
+    // ---------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(0, 1, 2)
+    scene.add(dl);
+    // ---------- ----------
     // HELPERS
     // ---------- ----------
     // create ddeltas for the traingle y values
@@ -28,7 +34,10 @@
     // create group helper
     const createGroup = () => {
         // material
-        const material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide });
+        const material = new THREE.MeshPhongMaterial({
+            side: THREE.DoubleSide,
+            color: 0xffffff
+        });
         // geo indexed and non indxed
         const geo_index = new THREE.PlaneGeometry(4, 5, 20, 25);
         geo_index.rotateX(Math.PI * 1.5)
