@@ -13,6 +13,7 @@
     // ---------- ----------
     // HELPERS
     // ---------- ----------
+    // create ddeltas for the traingle y values
     const createTriDeltas = (geo) => {
         const pos = geo.getAttribute('position');
         const len_tri = Math.floor(pos.array.length / 9);
@@ -23,7 +24,25 @@
             i_tri += 1;
         }
         return deltas;
-    }
+    };
+    // create group helper
+    const createGroup = () => {
+        const material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide });
+        const group = new THREE.Group();
+        // indexed mesh
+        const mesh1 = new THREE.Mesh(geo_index, material);
+        mesh1.userData.pos_home = mesh1.geometry.getAttribute('position').clone();
+        mesh1.userData.deltas = createTriDeltas(mesh1.geometry);
+        // no index mesh
+        const mesh2 = new THREE.Mesh(geo_noindex, material);
+        mesh2.userData.pos_home = mesh2.geometry.getAttribute('position').clone();
+        mesh2.userData.deltas = createTriDeltas(mesh2.geometry);
+        group.add(mesh1);
+        group.add(mesh2);
+        mesh1.position.set(-2.5, 0, 0);
+        mesh2.position.set(2.5, 0, 0);
+        return group;
+    };
     // ---------- ----------
     // TWO GEOS ONE INDEX ONE NOT INDEXED
     // ---------- ----------
@@ -35,19 +54,9 @@
     // ---------- ----------
     // MESH OBJECTS USING EACH GEO
     // ---------- ----------
-    const material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide });
-    const group = new THREE.Group();
-    scene.add(group)
-    const mesh1 = new THREE.Mesh(geo_index, material);
-    mesh1.userData.pos_home = mesh1.geometry.getAttribute('position').clone();
-    mesh1.userData.deltas = createTriDeltas(mesh1.geometry);
-    const mesh2 = new THREE.Mesh(geo_noindex, material);
-    mesh2.userData.pos_home = mesh2.geometry.getAttribute('position').clone();
-    mesh2.userData.deltas = createTriDeltas(mesh2.geometry);
-    group.add(mesh1);
-    group.add(mesh2);
-    mesh1.position.set(-2.5, 0, 0);
-    mesh2.position.set(2.5, 0, 0);
+
+    const group = createGroup();
+    scene.add(group);
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
