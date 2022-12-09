@@ -13,32 +13,30 @@ renderer.setSize(640, 480, false);
 // HELPERS
 //-------- ----------
 const createCanvasTexture = function (draw, size) {
-        var canvas = document.createElement('canvas'),
-        ctx = canvas.getContext('2d');
-        canvas.width = size || 32;
-        canvas.height = size || 32;
-        canvas.style.imageRendering = 'pixelated';
-        ctx.imageSmoothingEnabled = false;
-        draw(ctx, canvas);
-        return new THREE.CanvasTexture(canvas);
-    };
+    var canvas = document.createElement('canvas'),
+    ctx = canvas.getContext('2d');
+    canvas.width = size || 32;
+    canvas.height = size || 32;
+    draw(ctx, canvas);
+    return new THREE.CanvasTexture(canvas);
+};
 //-------- ----------
 // TEXTURE
 //-------- ----------
-var colorMap = createCanvasTexture(function (ctx, canvas) {
+const colorMap = createCanvasTexture(function (ctx, canvas) {
     ctx.fillStyle = 'red';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = 'white';
     ctx.beginPath();
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 5;
     ctx.rect(1, 1, canvas.width - 2, canvas.height - 2);
     ctx.stroke();
-});
+}, 64);
 //-------- ----------
 // MESH, LIGHT
 //-------- ----------
 // creating a box with the standard material
-var box = new THREE.Mesh(
+const box = new THREE.Mesh(
         new THREE.BoxGeometry(3, 3, 3),
         new THREE.MeshStandardMaterial({
             map: colorMap
@@ -46,7 +44,7 @@ var box = new THREE.Mesh(
 // add the box mesh to the scene
 scene.add(box);
 // adding a light source
-var sun = new THREE.Mesh(
+const sun = new THREE.Mesh(
         new THREE.SphereGeometry(0.25, 40, 40),
         new THREE.MeshBasicMaterial());
 sun.add(new THREE.PointLight(0xffffff, 1));
