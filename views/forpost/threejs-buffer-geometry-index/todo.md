@@ -1,7 +1,10 @@
 # threejs-buffer-geometry-index todo list
 
 ## s1-2-loop-plane
-* () see about making a loop example with two plane geos
+* (done) see about making a loop example with two plane geos
+* () make more helper functions
+* () use phong material
+* () rename this as video1 loop example
 
 ## ( done 12/08/2022 ) s1-2-basic-compare
 * (done) make two geos each of just two trangles one indexed and one not

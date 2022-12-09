@@ -11,9 +11,23 @@
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
     // ---------- ----------
+    // HELPERS
+    // ---------- ----------
+    const createTriDeltas = (geo) => {
+        const pos = geo.getAttribute('position');
+        const len_tri = Math.floor(pos.array.length / 9);
+        let i_tri = 0;
+        const deltas = [];
+        while(i_tri < len_tri){
+            deltas.push(-2 + 4 * Math.random() );
+            i_tri += 1;
+        }
+        return deltas;
+    }
+    // ---------- ----------
     // TWO GEOS ONE INDEX ONE NOT INDEXED
     // ---------- ----------
-    const geo_index = new THREE.PlaneGeometry(4, 5, 4, 5);
+    const geo_index = new THREE.PlaneGeometry(4, 5, 20, 25);
     geo_index.rotateX(Math.PI * 1.5)
     const geo_noindex = geo_index.clone().toNonIndexed();
     console.log(geo_index.index);   // ( buffer attribute object )
@@ -26,8 +40,10 @@
     scene.add(group)
     const mesh1 = new THREE.Mesh(geo_index, material);
     mesh1.userData.pos_home = mesh1.geometry.getAttribute('position').clone();
+    mesh1.userData.deltas = createTriDeltas(mesh1.geometry);
     const mesh2 = new THREE.Mesh(geo_noindex, material);
     mesh2.userData.pos_home = mesh2.geometry.getAttribute('position').clone();
+    mesh2.userData.deltas = createTriDeltas(mesh2.geometry);
     group.add(mesh1);
     group.add(mesh2);
     mesh1.position.set(-2.5, 0, 0);
@@ -45,22 +61,20 @@
         const a2 = 1 - Math.abs( 0.5 - a1 ) / 0.5;
         // loop over group children
         group.children.forEach( (mesh) => {
-
             const pos = mesh.geometry.getAttribute('position');
             const pos_home = mesh.userData.pos_home;
-
-            let i = 0;
-            let len = pos.array.length;
-
-            pos.array[1] = pos_home.array[1] + 2 * a2;
-            pos.array[4] = pos_home.array[4] + 2 * a2;
-            pos.array[7] = pos_home.array[7] + 2 * a2;
-
-
+            let len_tri = Math.floor(pos.array.length / 9);
+            let i_tri = 0;
+            while(i_tri < len_tri){
+                let i = i_tri * 9;
+                 const delta = mesh.userData.deltas[i_tri];
+                 pos.array[i + 1] = pos_home.array[ i + 1] + delta * a2;
+                 pos.array[i + 4] = pos_home.array[i + 4] + delta * a2;
+                 pos.array[i + 7] = pos_home.array[ i + 7] + delta * a2;
+                 i_tri += 1;
+            }
             pos.needsUpdate = true;
-
             mesh.geometry.computeVertexNormals();
-
         });
     };
     // loop
