@@ -12,9 +12,9 @@ renderer.setSize(640, 480);
 //-------- ----------
 // CREATE A NEW BOX3
 //-------- ----------
-const min = new THREE.Vector3(-2.5, -2.5, -2.5);
-const max = new THREE.Vector3(2.5, 2.5, 2.5);
-const box3 = new THREE.Box3(min, max);
+const box3 = new THREE.Box3(
+    new THREE.Vector3(-2.5, -2.5, -2.5),
+    new THREE.Vector3(2.5, 2.5, 2.5));
 //-------- ----------
 // MESH - position with box3 values
 //-------- ----------

@@ -6,6 +6,11 @@
 ## () s3-1-ani-seeded-random
 * () animation loop example of seeded random
 
+## () s1-7-basic-contains-point 
+
+## () s1-6-basic-intersects-box
+* () have intersectsBox method demo
+
 ## ( done 10/02/2022 ) s1-5-basic-setfromobject
 * (done) have a set from object example that is a group of mesh object
 
