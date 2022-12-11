@@ -1,5 +1,14 @@
 # threejs-basic-material
 
+## () -s1-5-basic-lines
+* () line segements exmaple
+
+## () - s1-4-basic-groups
+* () groups example
+
+## () - s1-3-basic-vertexcolors
+* () use vertex colors demo
+
 ## ( done 12/11/2022 ) s1-1-basic-default
 * ( done ) example where I make a mesh object and do not give any material at all
 
