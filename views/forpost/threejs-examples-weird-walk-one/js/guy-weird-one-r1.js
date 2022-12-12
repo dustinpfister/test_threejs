@@ -1,6 +1,7 @@
 // ********** **********
-// WEIRD GUY MODULE
-// r1 - adding a setArms method, and data textures
+// WEIRD GUY MODULE - r1 - from threeks-examples-weird-walk-one
+// * adding a setArms method
+// * data textures
 // ********** **********
 var weirdGuy = (function(){
     // DATA TEXTURE FOR MATERIALS

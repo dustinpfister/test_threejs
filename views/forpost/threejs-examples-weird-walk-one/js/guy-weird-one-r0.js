@@ -1,5 +1,5 @@
 // ********** **********
-// WEIRD GUY MODULE
+// WEIRD GUY MODULE - r0 - from threeks-examples-weird-walk-one
 // ********** **********
 var weirdGuy = (function(){
     var materials = [

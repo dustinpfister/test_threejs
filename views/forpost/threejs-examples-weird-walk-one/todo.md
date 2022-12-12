@@ -1,11 +1,15 @@
 # threejs-examples-weird-walk-one
 
-## () - s3-more-than-one
+## () - r0-3-many
 * () start a demo that will be more than one instance of this weird guy module
 * () new materials created for each guy or not depeding on create options
 * () new setTalk method
 * () new setEyes method
 * () a3 argument for setArm method
+
+## () - main js folder, and r0-x-demos
+* () have a main js folder with r0 of the module in it
+* () rename all current demos as r0-x-demoname
 
 ## ( done 04/19/2022 ) - have a s2-arms-ground mesh in demo
 * (done) new setArm method for weird guy module
