@@ -7,9 +7,10 @@
 * () new setEyes method
 * () a3 argument for setArm method
 
-## () - main js folder, and r0-x-demos
-* () have a main js folder with r0 of the module in it
-* () rename all current demos as r0-x-demoname
+## ( done 12/12/2022 ) - main js folder, and r0-x-demos
+* (done) have a main js folder with r0 of the module in it
+* (done) rename all current demos as r0-x-demoname
+* () update code to work well with r146
 
 ## ( done 04/19/2022 ) - have a s2-arms-ground mesh in demo
 * (done) new setArm method for weird guy module
