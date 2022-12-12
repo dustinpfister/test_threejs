@@ -1,5 +1,5 @@
 //******** **********
-// Weird Walk Module - r0
+// Weird Walk Module - r1
 //******** **********
 var WeirdWalk = (function(){
     // public API

@@ -2,38 +2,32 @@
 // SCENE, CAMERA, RENDERER
 //******** **********
 var scene = new THREE.Scene();
-scene.background = new THREE.Color('#004a4a');
+scene.background = new THREE.Color('#000000');
 //scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0xffffff) )
 var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-13, 3, -6);
+camera.position.set(-12, 3, -7);
 
 
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
+var renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //******** **********
 // LIGHT
 //******** **********
 var dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(-2, 1, 3);
 scene.add(dl);
-scene.add( new THREE.AmbientLight(0xffffff, 0.15));
-//******** **********
-// TEXTURE
-//******** **********
-var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [128,255]);
-var texture_rnd2 = datatex.seededRandom(100, 100, 1, 1, 1, [128,255]);
 //******** **********
 // GRID OPTIONS
 //******** **********
 var tw = 9,
 th = 15,
-space = 4;
+space = 3;
 // source objects
 var mkGround = function(){
     var ground = new THREE.Mesh(
         new THREE.BoxGeometry( space, 0.1, space),
-        new THREE.MeshStandardMaterial({ color: 0x00af00, map: texture_rnd1}) );
+        new THREE.MeshStandardMaterial({ color: 0xffffff}) );
     ground.position.y = 0.05 * -1;
     return ground;
 };
@@ -42,7 +36,7 @@ var mkBox = function(color, h){
     var a = space * 0.5;
     var mesh = new THREE.Mesh(
         new THREE.BoxGeometry( a, h, a),
-        new THREE.MeshStandardMaterial({ color: color, map: texture_rnd1}) );
+        new THREE.MeshStandardMaterial({ color: color}) );
     mesh.position.y = h / 2;
     //mesh.rotation.y = Math.PI / 180 * 20 * -1;
     var ground = mkGround();
@@ -82,11 +76,12 @@ var array_oi = [
 // CREATE GRID
 //******** **********
 var grid = ObjectGridWrap.create({
-    space: space + 0.5,
+    space: space,
     tw: tw,
     th: th,
+    //aOpacity: 1.25,
     dAdjust: 1.25,
-    //effects: ['scale'],
+    effects: ['opacity'],
     sourceObjects: array_source_objects,
     objectIndices: array_oi
 });
@@ -94,37 +89,12 @@ scene.add(grid);
 //******** **********
 // WERID WALK THREE
 //******** **********
-var m = new THREE.MeshStandardMaterial({
-    map: texture_rnd1,
-    color: 0xafafaf
-});
-var m2 = new THREE.MeshStandardMaterial({
-    map: texture_rnd2,
-    color: 0xdfdfdf
-});
-var ww3_1 = WeirdWalk.create({
-    legCount: 3,
-    radius: 2.25,
-    bodyLegChild: true,
-    materials: {
-        foot: m,
-        calf: m,
-        center: m2
-    }
-});
+var ww3_1 = WeirdWalk.create();
 var s = 0.5;
 ww3_1.scale.set(s, s, s);
 ww3_1.position.set(-7, 2.7, -3);
 scene.add(ww3_1);
-//******** **********
-// STATIC GROUND
-//******** **********
 
-var staticGround = mkGround();
-staticGround.position.y = -0.25;
-staticGround.material = new THREE.MeshStandardMaterial({color: 0x00faf00})
-staticGround.scale.set(20, 1, 20);
-scene.add(staticGround);
 
 //******** **********
 // LOOP
@@ -143,11 +113,11 @@ var loop = function () {
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         //ObjectGridWrap.setPos(grid, (1 - per) * 2, Math.cos(Math.PI * bias) * 0.25 );
-        ObjectGridWrap.setPos(grid, 0.1, per * 1 );
+        ObjectGridWrap.setPos(grid, 0.10 - 0.10 * bias, per * 1 );
         ObjectGridWrap.update(grid);
 
-        ww3_1.userData.legs.rotation.x = -Math.PI * 6 * per;
-        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 5;
+        ww3_1.userData.legs.rotation.x = -Math.PI * 4 * per;
+        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 20;
 
         camera.lookAt(ww3_1.position.clone().add(new THREE.Vector3(0,-0.5,0)));
 
