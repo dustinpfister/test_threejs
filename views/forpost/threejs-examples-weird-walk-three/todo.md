@@ -7,7 +7,7 @@
 
 ## ( done 12/12/2022 ) main js folder, update code
 * (done) main js folder
-* () update demos to work well with r146
+* (done) update demos to work well with r146
 
 ## ( done 05/24/2022 ) - r1 - start r1
 * (done) use standard material for werid walk group
