@@ -11,28 +11,6 @@
         return opt;
     };
 
-/*
- 0    1    2    3    4 
- 5    6    7    8    9 
- 10   11   12   13   14
- 15   16   17   18   19
- 20   21   22   23   24
-
-
-0,1,5
-1,2,6
-2,3,7
-3,4,8
-
-5,6,10
-6,7,11
-7,8,12,
-8,9,13
-
-10,11,15
-
-*/
-
     // update the geometry
     api.update = function (geo, opt) {
         opt = api.parseOpt(opt);
@@ -41,12 +19,18 @@
         const len = opt.widthSegs * opt.heightSegs;
         let i = 0;
         while(i < len){
+            // grid pos
             const x = i % opt.widthSegs;
-            const z = Math.floor(i / opt.widthSegs);
-            const y = 0;
-            
-            att_pos.setXYZ(i, x, y, z);
-
+            const z = Math.floor(i / opt.heightSegs);
+            // alphas
+            //const a1 = (x + 1) / opt.widthSegs;
+            //const a2 = (z + 1) / opt.heightSegs;
+            // 'pixel' pos
+            //const px = opt.width * (x / (opt.widthSegs - 1));
+            //const pz = opt.height * (z / (opt.heightSegs - 1));
+            //const py = 0; //0.5 * Math.sin( Math.PI * 2 * a2);
+            // set pos values
+            att_pos.setXYZ(i, x, 0, z);
             i += 1;
         }
         att_pos.needsUpdate = true;
@@ -78,9 +62,11 @@
         while(i < len_index){
             const x = i % (opt.widthSegs - 1);
             const z = Math.floor(i / ( opt.widthSegs - 1) );
-            const ia = opt.widthSegs * z + x;
+
+            const ia = opt.widthSegs  * z + x;
             const ib = ia + 1;
-            const ic = opt.widthSegs + z * opt.widthSegs + x;
+            const ic = opt.widthSegs  + z * opt.widthSegs + x;
+
             data_index.push( ic, ib, ia );
             data_index.push( ia + 1, ic, ic + 1 );
             i += 1;
