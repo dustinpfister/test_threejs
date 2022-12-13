@@ -14,9 +14,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 const wave_opt = waveMod.parseOpt({
     width: 2,
-    height: 2,
-    widthSegs: 5,
-    heightSegs: 5
+    height: 2
 });
 
 const geo = waveMod.create( wave_opt );
