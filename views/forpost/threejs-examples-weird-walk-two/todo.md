@@ -1,7 +1,8 @@
 # threejs-examples-weird-walk-two todo list
 
-## () - s2- animate mouth and eyes
-* animate mouse and eyes
+## () r0-2-many
+* () have a demo in which there are many of these werid walk models
+* () have them move along a curve
 
 ## ( done 12/22/2022 ) - main js folder, r146
 * (done) have a main js folder
