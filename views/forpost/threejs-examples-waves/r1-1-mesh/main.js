@@ -21,8 +21,9 @@ console.log(wave_opt);
 const geo = waveMod.create( wave_opt );
 console.log(geo);
 
-const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ side: THREE.DoubleSide }))
+const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ side: THREE.FrontSide }))
 scene.add(mesh);
+mesh.position.set(-2, 0, -2)
 
 //-------- ----------
 // LOOP

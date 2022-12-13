@@ -57,10 +57,7 @@
     };
 
     // create a geometry and update it for the first time
-    api.create = function (opt) {
-        opt = api.parseOpt(opt);
-        const geo = new THREE.BufferGeometry();
-        // position
+    const create_position = (geo, opt) => {
         const data_pos = [];
         const len = opt.widthSegs * opt.heightSegs;
         let i = 0;
@@ -70,28 +67,34 @@
         }
         const att_pos = new THREE.BufferAttribute( new Float32Array(data_pos), 3);
         geo.setAttribute('position', att_pos);
+    };
+
+
+    api.create = function (opt) {
+        opt = api.parseOpt(opt);
+        const geo = new THREE.BufferGeometry();
+
+        // position
+        create_position(geo, opt);
+
+
         // index
         const data_index = [];
         len_index = (opt.widthSegs - 1) * (opt.heightSegs - 1);
         i = 0;
         while(i < len_index){
             const x = i % (opt.widthSegs - 1);
-            const z = Math.floor(i / (opt.widthSegs - 1));
-
+            const z = Math.floor(i / ( opt.widthSegs - 1) );
             const ia = opt.widthSegs * z + x;
             const ib = ia + 1;
             const ic = opt.widthSegs + z * opt.widthSegs + x;
-
-            data_index.push( ia, ib, ic );
-
-
+            data_index.push( ic, ib, ia );
+            data_index.push( ia + 1, ic, ic + 1 );
             i += 1;
         }
-
         const att_index = new THREE.BufferAttribute( new Uint8Array(data_index), 1);
         geo.setIndex(att_index);
-console.log(data_index);
-
+        console.log(data_index);
         api.update(geo, opt);
         return geo;
     };
