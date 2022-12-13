@@ -15,17 +15,18 @@ renderer.setSize(640, 480, false);
 const wave_opt = waveMod.parseOpt({
     width: 2,
     height: 2,
-    widthSegs: 32,
-    heightSegs: 32
+    widthSegs: 5,
+    heightSegs: 5
 });
-console.log(wave_opt);
 
 const geo = waveMod.create( wave_opt );
-console.log(geo);
 
 const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ side: THREE.DoubleSide }))
 scene.add(mesh);
-mesh.position.set(0, 0, 0);
+mesh.position.set( -8, 0, -8 )
+
+//const points = new THREE.Points(geo);
+//scene.add(points);
 
 //-------- ----------
 // LOOP

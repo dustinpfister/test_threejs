@@ -57,18 +57,24 @@
     // create an index for the position attribute
     const create_index = (geo, opt) => {
         const data_index = [];
+
         const len_index = (opt.widthSegs - 1) * (opt.heightSegs - 1);
         let i = 0;
         while(i < len_index){
             const x = i % (opt.widthSegs - 1);
             const z = Math.floor(i / ( opt.widthSegs - 1) );
 
-            const ia = opt.widthSegs  * z + x;
+            const ia = opt.widthSegs * z + x;
+            const ic = opt.widthSegs + z * opt.widthSegs + x;
             const ib = ia + 1;
-            const ic = opt.widthSegs  + z * opt.widthSegs + x;
 
-            data_index.push( ic, ib, ia );
-            data_index.push( ia + 1, ic, ic + 1 );
+data_index.push( ia, ib, ic );
+
+            //data_index.push( ic, ib, ia );
+            //data_index.push( ia + 1, ic, ic + 1 );
+            console.log(i, ic, ib, ia)
+
+
             i += 1;
         }
         const att_index = new THREE.BufferAttribute( new Uint8Array(data_index), 1);
