@@ -1,6 +1,6 @@
 # threejs-examples-waves
 
-Source for my [waves threejs example](https://dustinpfister.github.io/2018/11/14/threejs-examples-waves/).
+Source code for my [waves threejs example](https://dustinpfister.github.io/2018/11/14/threejs-examples-waves/).
 
 <div align="center">
       <a href="https://www.youtube.com/watch?v=7vrx8646Y7s">
