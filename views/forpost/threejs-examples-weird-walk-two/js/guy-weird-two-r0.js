@@ -1,5 +1,5 @@
 // ********** **********
-// WEIRD GUY TWO MODULE
+// WEIRD GUY TWO MODULE - r0 - from threejs-examples-weird-walk-two
 // 
 // ********** **********
 (function(api){
