@@ -55,8 +55,10 @@
         // update the normal attribute
         geo.computeVertexNormals();
     };
-
-    // create a geometry and update it for the first time
+    //-------- ----------
+    // CREATE METHOD AND HELPERS
+    //-------- ----------
+    // create a position attribute
     const create_position = (geo, opt) => {
         const data_pos = [];
         const len = opt.widthSegs * opt.heightSegs;
@@ -68,20 +70,11 @@
         const att_pos = new THREE.BufferAttribute( new Float32Array(data_pos), 3);
         geo.setAttribute('position', att_pos);
     };
-
-
-    api.create = function (opt) {
-        opt = api.parseOpt(opt);
-        const geo = new THREE.BufferGeometry();
-
-        // position
-        create_position(geo, opt);
-
-
-        // index
+    // create an index for the position attribute
+    const create_index = (geo, opt) => {
         const data_index = [];
-        len_index = (opt.widthSegs - 1) * (opt.heightSegs - 1);
-        i = 0;
+        const len_index = (opt.widthSegs - 1) * (opt.heightSegs - 1);
+        let i = 0;
         while(i < len_index){
             const x = i % (opt.widthSegs - 1);
             const z = Math.floor(i / ( opt.widthSegs - 1) );
@@ -94,7 +87,15 @@
         }
         const att_index = new THREE.BufferAttribute( new Uint8Array(data_index), 1);
         geo.setIndex(att_index);
-        console.log(data_index);
+    };
+    // create a geometry and update it for the first time
+    api.create = function (opt) {
+        opt = api.parseOpt(opt);
+        const geo = new THREE.BufferGeometry();
+        // position, and index
+        create_position(geo, opt);
+        create_index(geo, opt);
+        // update
         api.update(geo, opt);
         return geo;
     };
