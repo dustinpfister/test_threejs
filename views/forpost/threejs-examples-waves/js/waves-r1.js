@@ -6,8 +6,8 @@
         opt = opt || {};
         //opt.width = opt.width === undefined ? 1 : opt.width;
         //opt.height = opt.height === undefined ? 1 : opt.height;
-        opt.widthSegs = opt.widthSegs === undefined ? 17 : opt.widthSegs;
-        opt.heightSegs = opt.heightSegs === undefined ? 17 : opt.heightSegs;
+        opt.widthSegs = opt.widthSegs === undefined ? 16 : opt.widthSegs;
+        opt.heightSegs = opt.heightSegs === undefined ? 16 : opt.heightSegs;
         return opt;
     };
 
@@ -23,17 +23,15 @@
             const x = i % opt.widthSegs;
             const z = Math.floor(i  / opt.heightSegs );
 
-console.log(i, x, z)
-
             // alphas
             //const a1 = (x + 1) / opt.widthSegs;
-            //const a2 = (z + 1) / opt.heightSegs;
+            const a2 = (z + 1) / opt.heightSegs;
             // 'pixel' pos
             //const px = opt.width * (x / (opt.widthSegs - 1));
             //const pz = opt.height * (z / (opt.heightSegs - 1));
-            //const py = 0; //0.5 * Math.sin( Math.PI * 2 * a2);
+            const py = 0; //0.5 * Math.sin( Math.PI * 2 * a2);
             // set pos values
-            att_pos.setXYZ(i, x, 0, z);
+            att_pos.setXYZ(i, x, py, z);
             i += 1;
         }
         att_pos.needsUpdate = true;
@@ -98,11 +96,7 @@ console.log(i, x, z)
 
             // positon index values
             const ia = opt.widthSegs * z + x;
-
-            //const ic = opt.widthSegs + z * opt.widthSegs + x;
-
             const ic = opt.widthSegs * z + x + opt.widthSegs;
-
             const ib = ia + 1;
 
 //if(i === 224){
@@ -112,14 +106,27 @@ if(i === 255){
 console.log( 18 * 15 + 15);
 
 }
-            //data_index.push( ia, ib, ic );
 
-            data_index.push( ic, ib, ia );
+
+            // THESE ORDERS SEEM TO WORK WELL
+            //data_index.push( ia, ic, ib );
+            data_index.push( ib, ia, ic );
+            //data_index.push( ic, ib, ia );
+
+            // THESE DO NOT!?
+            //data_index.push( ia, ib, ic );
+            //data_index.push( ib, ic, ia );
+            //data_index.push( ic, ia, ib );
+
+
             data_index.push( ia + 1, ic, ic + 1 );
 
 
             i += 1;
         }
+
+console.log(data_index.length)
+
         const att_index = new THREE.BufferAttribute( new Uint8Array(data_index), 1);
         geo.setIndex(att_index);
     };
@@ -129,7 +136,7 @@ console.log( 18 * 15 + 15);
         const geo = new THREE.BufferGeometry();
         // position, and index
         create_position(geo, opt);
-        create_index(geo, opt);
+        //create_index(geo, opt);
         // update
         api.update(geo, opt);
         return geo;
