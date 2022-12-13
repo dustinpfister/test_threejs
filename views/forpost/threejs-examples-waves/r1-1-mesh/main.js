@@ -2,7 +2,7 @@
 // SCENE
 //-------- ----------
 const scene = new THREE.Scene();
-//scene.add( new THREE.GridHelper(10, 10));
+scene.add( new THREE.GridHelper(10, 10));
 const camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.001, 1000);
 camera.position.set(20, 20, 20);
 camera.lookAt(0,0,0);
@@ -19,17 +19,17 @@ const wave_opt = waveMod.parseOpt({
 
 const geo = waveMod.create( wave_opt );
 
-//const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ side: THREE.DoubleSide }))
-//scene.add(mesh);
-//mesh.position.set( -8, 0, -8 )
+const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ side: THREE.DoubleSide }))
+scene.add(mesh);
+mesh.position.set( -8, 0, -8 )
 
 //const points = new THREE.Points(geo);
 //scene.add(points);
 //points.position.set(-8, 0, -8);
 
-const line = new THREE.LineSegments(geo);
-scene.add(line);
-line.position.set(-8, 0, -8);
+//const line = new THREE.LineSegments(geo);
+//scene.add(line);
+//line.position.set(-8, 0, -8);
 
 
 //const line2 = new THREE.LineSegments( new THREE.PlaneGeometry(20,20, 18, 18) )
