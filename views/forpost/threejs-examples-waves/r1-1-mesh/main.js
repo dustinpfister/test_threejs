@@ -27,7 +27,7 @@ const geo = waveMod.create( wave_opt );
 //scene.add(points);
 //points.position.set(-8, 0, -8);
 
-const line = new THREE.Line(geo);
+const line = new THREE.LineSegments(geo);
 scene.add(line);
 line.position.set(-8, 0, -8);
 

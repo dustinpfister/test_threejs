@@ -6,8 +6,8 @@
         opt = opt || {};
         //opt.width = opt.width === undefined ? 1 : opt.width;
         //opt.height = opt.height === undefined ? 1 : opt.height;
-        opt.widthSegs = opt.widthSegs === undefined ? 16 : opt.widthSegs;
-        opt.heightSegs = opt.heightSegs === undefined ? 16 : opt.heightSegs;
+        opt.widthSegs = opt.widthSegs === undefined ? 10 : opt.widthSegs;
+        opt.heightSegs = opt.heightSegs === undefined ? 10 : opt.heightSegs;
         return opt;
     };
 
@@ -109,8 +109,8 @@ console.log( 18 * 15 + 15);
 
 
             // THESE ORDERS SEEM TO WORK WELL
-            //data_index.push( ia, ic, ib );
-            data_index.push( ib, ia, ic );
+            data_index.push( ia, ic, ib );
+            //data_index.push( ib, ia, ic );
             //data_index.push( ic, ib, ia );
 
             // THESE DO NOT!?
@@ -136,7 +136,7 @@ console.log(data_index.length)
         const geo = new THREE.BufferGeometry();
         // position, and index
         create_position(geo, opt);
-        //create_index(geo, opt);
+        create_index(geo, opt);
         // update
         api.update(geo, opt);
         return geo;
