@@ -6,8 +6,8 @@
         opt = opt || {};
         //opt.width = opt.width === undefined ? 1 : opt.width;
         //opt.height = opt.height === undefined ? 1 : opt.height;
-        opt.widthSegs = opt.widthSegs === undefined ? 10 : opt.widthSegs;
-        opt.heightSegs = opt.heightSegs === undefined ? 10 : opt.heightSegs;
+        opt.widthSegs = opt.widthSegs === undefined ? 17 : opt.widthSegs;
+        opt.heightSegs = opt.heightSegs === undefined ? 17 : opt.heightSegs;
         return opt;
     };
 
@@ -109,7 +109,7 @@ console.log( 18 * 15 + 15);
 
 
             // THESE ORDERS SEEM TO WORK WELL
-            data_index.push( ia, ic, ib );
+            //data_index.push( ia, ic, ib );
             //data_index.push( ib, ia, ic );
             //data_index.push( ic, ib, ia );
 
@@ -119,8 +119,12 @@ console.log( 18 * 15 + 15);
             //data_index.push( ic, ia, ib );
 
 
-            data_index.push( ia + 1, ic, ic + 1 );
+            //data_index.push( ia + 1, ic, ic + 1 );
 
+
+            // WHOLE NEW DEAL
+            data_index.push( ia, ic + 1, ic );
+            data_index.push( ia, ib, ic + 1 );
 
             i += 1;
         }

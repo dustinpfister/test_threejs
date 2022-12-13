@@ -32,6 +32,9 @@ scene.add(line);
 line.position.set(-8, 0, -8);
 
 
+//const line2 = new THREE.LineSegments( new THREE.PlaneGeometry(20,20, 18, 18) )
+//scene.add(line2);
+
 //-------- ----------
 // LOOP
 //-------- ----------
