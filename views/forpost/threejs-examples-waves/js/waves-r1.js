@@ -6,7 +6,9 @@
         opt = opt || {};
         opt.width = opt.width === undefined ? 1 : opt.width;
         opt.height = opt.height === undefined ? 1 : opt.height;
-        opt.waveHeight = opt.waveHeight === undefined ? 0.25 : opt.waveHeight;
+        opt.waveHeight = opt.waveHeight === undefined ? 0.5 : opt.waveHeight;
+        opt.xWaveCount = opt.xWaveCount === undefined ? 4 : opt.xWaveCount;
+        opt.zWaveCount = opt.zWaveCount === undefined ? 2 : opt.zWaveCount;
         opt.widthSegs = opt.widthSegs === undefined ? 20 : opt.widthSegs;
         opt.heightSegs = opt.heightSegs === undefined ? 20 : opt.heightSegs;
         opt.alpha = opt.alpha === undefined ? 0 : opt.alpha;
@@ -28,15 +30,15 @@
         // update
         for ( let iz = 0; iz < gridY1; iz ++ ) {
             const z = iz * segment_height - height_half;
+            const a1 = iz / gridY1;
             for ( let ix = 0; ix < gridX1; ix ++ ) {
                 const x = ix * segment_width - width_half;
                 const i = iz * gridX1 + ix;
                 // alphas
                 const a2 = ix / gridX1;
-                const a1 = iz / gridY1;
                 // radian
-                const r1 = Math.PI * 4 * a1;
-                const r2 = Math.PI * 4 * a2;
+                const r1 = Math.PI * opt.zWaveCount * a1;
+                const r2 = Math.PI * opt.xWaveCount * a2;
                 const r3 = Math.PI * 2 * opt.alpha;
                 // y
                 const y = Math.sin( r1 + r2 + r3 ) * opt.waveHeight;
