@@ -10,6 +10,7 @@
         opt.zWaveCount = opt.zWaveCount === undefined ? 2 : opt.zWaveCount;
         opt.widthSegs = opt.widthSegs === undefined ? 20 : opt.widthSegs;
         opt.heightSegs = opt.heightSegs === undefined ? 20 : opt.heightSegs;
+        opt.degree = opt.degree === undefined ? 45 : opt.degree;
         opt.alpha = opt.alpha === undefined ? 0 : opt.alpha;
         return opt;
     };
@@ -36,8 +37,9 @@
                 // alphas
                 const a2 = ix / gridX1;
                 // radian
-                const r1 = Math.PI * opt.zWaveCount * a1;
-                const r2 = Math.PI * opt.xWaveCount * a2;
+                const radian_dir = Math.PI / 180 * opt.degree;
+                const r1 = Math.PI * 2 * Math.sin( radian_dir ) * opt.zWaveCount * a1;
+                const r2 = Math.PI * 2 * Math.cos( radian_dir ) * opt.xWaveCount * a2;
                 const r3 = Math.PI * 2 * opt.alpha;
                 // y
                 const y = Math.sin( r1 + r2 + r3 ) * opt.waveHeight;
