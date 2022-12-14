@@ -51,15 +51,14 @@ const wave_opt = waveMod.parseOpt({
     widthSegs: 50,
     heightSegs: 50
 });
-
 const geo = waveMod.create( wave_opt );
-
-//const material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide, wireframe: true });
+//-------- ----------
+// MESH, MATERIAL
+//-------- ----------
 const material = new THREE.MeshPhongMaterial({ side: THREE.DoubleSide, map: texture });
 const mesh = new THREE.Mesh(geo, material);
 scene.add(mesh);
 mesh.position.set( 0, 0, 0 )
-
 //-------- ----------
 // LOOP
 //-------- ----------

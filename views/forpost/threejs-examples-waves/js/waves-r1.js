@@ -45,12 +45,8 @@
                 const y = Math.sin( (r1 + r2 + r3) % (Math.PI * 2) ) * opt.waveHeight;
                 // set x,y,z
                 att_pos.setXYZ(i, x, y, z);
-                // might use plane geo code to set UV
-                //uvs.push( ix / gridX );
-                //uvs.push( 1 - ( iy / gridY ) );
-
+                // set uv
                 att_uv.setXY(i, ix / gridX, 1 - ( iz / gridY ));
-
             }
         }
         att_pos.needsUpdate = true;
