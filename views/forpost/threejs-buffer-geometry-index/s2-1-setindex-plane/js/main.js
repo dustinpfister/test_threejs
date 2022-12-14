@@ -3,15 +3,14 @@
     // SCENE, CAMERA, RENDERER
     //-------- ----------
     const scene = new THREE.Scene();
-    scene.add( new THREE.GridHelper(10, 10) );
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(4, 4, 4);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(8, 8, 8);
+    camera.lookAt(0, -2, 0);
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
     //-------- ----------
-    // HELPER FUNCTIONS
+    // HELPER FUNCTION
     //-------- ----------
     // custom plane geo function based off of THREE.PlaneGeometry source code found at:
     // https://github.com/mrdoob/three.js/blob/r146/src/geometries/PlaneGeometry.js
@@ -40,7 +39,12 @@
                 uvs.push( 1 - ( iz / gridZ ) );
              }
         }
-        // THE BUFFER GEOMETRY INDEX DATA
+        geo.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+        geo.setAttribute( 'normal', new THREE.Float32BufferAttribute( normals, 3 ) );
+        geo.setAttribute( 'uv', new THREE.Float32BufferAttribute( uvs, 2 ) );
+        //-------- ----------
+        // THE BUFFER GEOMETRY INDEX DATA, and the BufferGeometry setIndex method
+        //-------- ----------
         for ( let iz = 0; iz < gridZ; iz ++ ) {
             for ( let ix = 0; ix < gridX; ix ++ ) {
                 const a = ix + gridX1 * iz;
@@ -51,17 +55,28 @@
                 indices.push( b, c, d );
             }
         }
-        geo.setIndex( indices );
-        geo.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
-        geo.setAttribute( 'normal', new THREE.Float32BufferAttribute( normals, 3 ) );
-        geo.setAttribute( 'uv', new THREE.Float32BufferAttribute( uvs, 2 ) );
+        // UISNG THE SET INDEX METHOD TO CREATE THE INDEX FOR THE BUFFER GEOMETRY
+        // PASSING AN ARRAY, AND NOT A BUFFER ATTRIBUTE. IF A BUFFER ATTRIBUTE IS PASSED
+        // MAKE SURE IT IS NOT A Uint8 TYPED ARRAY AS INDEX VALUES CAN GO BEYOND 255
+        //--------
+        // YES
+        geo.setIndex(indices);
+        // geo.setIndex( new THREE.Float32BufferAttribute( indices, 1) );
+        //--------
+        // NO!!
+        // geo.setIndex( new THREE.BufferAttribute( new Uint8Array(indices), 1) );
+        // geo.setIndex( new THREE.Uint8BufferAttribute( indices, 1) );
         return geo;
     };
     //-------- ----------
     // GEO, MATERIAL, MESH
     //-------- ----------
-    const geo = PlaneGeo();
-    const material = new THREE.MeshNormalMaterial({ side: THREE.FrontSide });
+    const geo = PlaneGeo(10, 10, 20, 20);
+    const material = new THREE.MeshBasicMaterial({
+        color: new THREE.Color(0, 1, 0),
+        wireframe: true,
+        wireframeLinewidth: 3
+    });
     const mesh = new THREE.Mesh(geo, material);
     scene.add(mesh);
     //-------- ----------
