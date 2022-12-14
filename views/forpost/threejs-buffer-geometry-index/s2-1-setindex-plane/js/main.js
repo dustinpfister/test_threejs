@@ -3,9 +3,9 @@
     // SCENE, CAMERA, RENDERER
     //-------- ----------
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(8, 8, 8);
-    camera.lookAt(0, -2, 0);
+    const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 2000);
+    camera.position.set(500, 500, 500);
+    camera.lookAt(0, 0, 0);
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -59,13 +59,13 @@
         // PASSING AN ARRAY, AND NOT A BUFFER ATTRIBUTE. IF A BUFFER ATTRIBUTE IS PASSED
         // MAKE SURE IT IS NOT A Uint8 TYPED ARRAY AS INDEX VALUES CAN GO BEYOND 255
         //--------
-        // YES - Number.MAX_SAFE_INTEGER is 9007199254740991
+        // YES - Just give an array and let setIndex figure out what Attribute Type to use
         geo.setIndex(indices);
         //--------
-        // MAYBE - There are some typed options that might still work okay
-        // geo.setIndex( new THREE.Float64BufferAttribute( indices, 1) );
-        // geo.setIndex( new THREE.Float32BufferAttribute( indices, 1) );
+        // MAYBE - There is passing a BufferAttribute to make things explicit. 
+        //         Just be mindful of the number range limits.
         // geo.setIndex( new THREE.Uint32BufferAttribute( indices, 1) );
+        // geo.setIndex( new THREE.Float64BufferAttribute( indices, 1) );
         //--------
         // NO!! - limit of Unit8Array is 255
         // geo.setIndex( new THREE.BufferAttribute( new Uint8Array(indices), 1) );
@@ -73,15 +73,32 @@
         return geo;
     };
     //-------- ----------
-    // GEO, MATERIAL, MESH
+    // GEO
     //-------- ----------
-    const geo = PlaneGeo(10, 10, 20, 20);
+    // geo1 is a 1000 x 1000 size with a 1 * 1 with segment size
+    // that results in 4 points which results in a Uint16Array
+    const geo1 = PlaneGeo(1000, 1000, 1, 1);
+    console.log(geo1.getAttribute('position').count); // 4
+    console.log(geo1.index.array.constructor.name);   // Uint16Array
+    // geo2 is a 1000 x 1000 size with a 100 * 100 with segment size
+    // that results in 10201 points which results in a Uint16Array
+    const geo2 = PlaneGeo(1000, 1000, 100, 100);
+    console.log(geo2.getAttribute('position').count); // 10201
+    console.log(geo2.index.array.constructor.name);   // Uint16Array
+    // geo3 is a 1000 x 1000 size with a 280 * 280 with segment size
+    // that results in a total of 78961 points which results in a Uint32Array
+    const geo3 = PlaneGeo(1000, 1000, 280, 280);
+    console.log(geo3.getAttribute('position').count); // 78961
+    console.log(geo3.index.array.constructor.name);   // Uint32Array
+    //-------- ----------
+    // MATERIAL, MESH
+    //-------- ----------
     const material = new THREE.MeshBasicMaterial({
         color: new THREE.Color(0, 1, 0),
         wireframe: true,
-        wireframeLinewidth: 3
+        wireframeLinewidth: 1
     });
-    const mesh = new THREE.Mesh(geo, material);
+    const mesh = new THREE.Mesh(geo2, material);
     scene.add(mesh);
     //-------- ----------
     // RENDER
