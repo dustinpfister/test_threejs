@@ -4,11 +4,17 @@
 const scene = new THREE.Scene();
 //scene.add( new THREE.GridHelper(10, 10));
 const camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.001, 1000);
-camera.position.set(8, 8, 8);
-camera.lookAt(0,0,0);
+camera.position.set(10, 8, 10);
+camera.lookAt(0, -2, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+//-------- ----------
+// HELPERS
+//-------- ----------
+const getAlpha = (n, d, c) => {
+    return (n / d * c) % 1;
+};
 //-------- ----------
 // LIGHT
 //-------- ----------
@@ -40,8 +46,8 @@ const wave_opt = waveMod.parseOpt({
     width: 10,
     height: 10,
     waveHeight: 0.5,
-    xWaveCount: 4,
-    zWaveCount: 4,
+    xWaveCount: 2,
+    zWaveCount: 2,
     widthSegs: 50,
     heightSegs: 50
 });
@@ -57,19 +63,19 @@ mesh.position.set( 0, 0, 0 )
 //-------- ----------
 // LOOP
 //-------- ----------
-new THREE.OrbitControls(camera, renderer.domElement);
+//new THREE.OrbitControls(camera, renderer.domElement);
 let frame = 0, lt = new Date();
-const maxFrame = 300, fps = 30;
+const maxFrame = 800, fps = 30;
 const loop = function () {
     const now = new Date(),
-    secs = (now - lt) / 1000,
-    per = frame / maxFrame,
-    bias = 1 - Math.abs(per - 0.5) / 0.5;
+    secs = (now - lt) / 1000;
+    //per = frame / maxFrame,
+    //bias = 1 - Math.abs(per - 0.5) / 0.5;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
         // wave options and update of wave geo
-        wave_opt.alpha = per;
-        wave_opt.degree = 360 * per;
+        wave_opt.alpha = getAlpha(frame, maxFrame, 32);
+        wave_opt.degree = 360 * getAlpha(frame, maxFrame, 1);
         waveMod.update(geo, wave_opt);
         // render
         renderer.render(scene, camera);

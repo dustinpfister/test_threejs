@@ -42,7 +42,7 @@
                 const r2 = Math.PI * 2 * Math.cos( radian_dir ) * opt.xWaveCount * a2;
                 const r3 = Math.PI * 2 * opt.alpha;
                 // y
-                const y = Math.sin( r1 + r2 + r3 ) * opt.waveHeight;
+                const y = Math.sin( (r1 + r2 + r3) % (Math.PI * 2) ) * opt.waveHeight;
                 // set x,y,z
                 att_pos.setXYZ(i, x, y, z);
                 // might use plane geo code to set UV
