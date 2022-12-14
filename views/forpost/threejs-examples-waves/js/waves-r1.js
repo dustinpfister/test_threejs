@@ -4,8 +4,8 @@
     // parse options
     api.parseOpt = function (opt) {
         opt = opt || {};
-        //opt.width = opt.width === undefined ? 1 : opt.width;
-        //opt.height = opt.height === undefined ? 1 : opt.height;
+        opt.width = opt.width === undefined ? 1 : opt.width;
+        opt.height = opt.height === undefined ? 1 : opt.height;
         opt.widthSegs = opt.widthSegs === undefined ? 20 : opt.widthSegs;
         opt.heightSegs = opt.heightSegs === undefined ? 20 : opt.heightSegs;
         return opt;
@@ -17,18 +17,21 @@
 
         const att_pos = geo.getAttribute('position');
 
-        //const width_half = width / 2;
-        //const height_half = height / 2;
+        const width_half = opt.width / 2;
+        const height_half = opt.height / 2;
 
         const gridY = opt.heightSegs;
         const gridX = opt.widthSegs;
         const gridX1 = gridX + 1;
         const gridY1 = gridY + 1;
 
+        const segment_width = opt.width / gridX;
+        const segment_height = opt.height / gridY;
+
         for ( let iy = 0; iy < gridY1; iy ++ ) {
-            const y = iy * 2 - 0.5;
+            const y = iy * segment_height - height_half;
             for ( let ix = 0; ix < gridX1; ix ++ ) {
-                const x = ix * 2 - 0.5;
+                const x = ix * segment_width - width_half;
                 const i = iy * gridX1 + ix;
                 att_pos.setXYZ(i, x, 0, y);
 

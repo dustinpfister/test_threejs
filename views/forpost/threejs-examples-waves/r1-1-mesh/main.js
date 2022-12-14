@@ -4,7 +4,7 @@
 const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10));
 const camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.001, 1000);
-camera.position.set(20, 20, 20);
+camera.position.set(8, 8, 8);
 camera.lookAt(0,0,0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -13,15 +13,15 @@ renderer.setSize(640, 480, false);
 // GEO
 //-------- ----------
 const wave_opt = waveMod.parseOpt({
-    width: 2,
-    height: 2
+    width: 6,
+    height: 6
 });
 
 const geo = waveMod.create( wave_opt );
 
 const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ side: THREE.DoubleSide }))
 scene.add(mesh);
-mesh.position.set( -8, 0, -8 )
+mesh.position.set( 0, 0, 0 )
 
 //const points = new THREE.Points(geo);
 //scene.add(points);
