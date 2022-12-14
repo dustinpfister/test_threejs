@@ -1,6 +1,9 @@
 # threejs-examples-weird-walk-one
 
 ## () r2 - better textures, new mouth, eye state
+* (done) guy1, guy2, ... default names
+* (done) wrap radian helper
+
 * () better custom textures
 * () work out groups / uv attribite changes
 * () new custom geo for the mouth
