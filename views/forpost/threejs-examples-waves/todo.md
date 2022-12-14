@@ -1,10 +1,10 @@
 # threejs-examples-waves todo list
 
 ## () - r1 mod form
-* () I am going to want to start over, but still have just a create an update method
-* () create and update normal attribute
+* (done) I am going to want to start over, but still have just a create an update method
+* (done) create and update normal attribute
+* (done) have a mesh object example
 * () see about having a uv attribute as well
-* () have a mesh object example
 
 ## ( done 12/13/2022 ) - r0 mod form of example
 * (done) started a r0 mod form of the example 

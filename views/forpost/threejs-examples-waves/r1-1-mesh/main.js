@@ -22,10 +22,10 @@ const wave_opt = waveMod.parseOpt({
     width: 10,
     height: 10,
     waveHeight: 0.5,
-    xWaveCount: 2,
+    xWaveCount: 4,
     zWaveCount: 2,
-    widthSegs: 40,
-    heightSegs: 40
+    widthSegs: 10,
+    heightSegs: 5
 });
 
 const geo = waveMod.create( wave_opt );
@@ -51,7 +51,6 @@ const loop = function () {
     if (secs > 1 / fps) {
         // wave options and update of wave geo
         wave_opt.alpha = per;
-        wave_opt.zWaveCount = -2 + 4 * bias;
         waveMod.update(geo, wave_opt);
         // render
         renderer.render(scene, camera);
