@@ -5,7 +5,7 @@
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 8 / 9, 0.05, 100);
     camera.position.set(5, 5, 5);
-    camera.lookAt(0, 1.75, 0);
+    camera.lookAt(0, 0, 0);
     scene.add(camera);
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
@@ -19,17 +19,8 @@
     //-------- ----------
     // WEIRD GUY INSTANCE
     //-------- ----------
-    const guy = weirdGuy.create({
-    });
-
-
-    guy.position.y = 2.75;
+    const guy = weirdGuy.create({});
     scene.add(guy);
-    weirdGuy.setWalk(guy, 0);
-
-
-    weirdGuy.setArm(guy, 1, 45, 700);
-
     //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
@@ -42,20 +33,14 @@
         requestAnimationFrame(loop);
         if (secs > 1 / 24) {
             const per = frame / maxFrame * 5 % 1,
-            bias = Math.abs(0.5 - per) / 0.5;
-            // walk
+            bias = 1 - Math.abs(0.5 - per) / 0.5;
+            // Set walk will just move the legs
             weirdGuy.setWalk(guy, bias);
-
-            // arms
-            //const arm1 = guy.getObjectByName(guy.name + '_arm1'),
-            //arm2 = guy.getObjectByName(guy.name + '_arm2');
-            //arm1.rotation.x = Math.PI / 180 * (180 - 20 + 40 * bias);
-            //arm2.rotation.x = Math.PI / 180 * (180 + 20 - 40 * bias);
-
-            // rotate
-            const per2 = frame / maxFrame * 1 % 1,
-            bias2 = Math.abs(0.5 - per2) / 0.5;
-            guy.rotation.y = -0.5 + 2.5 * bias2;
+ 
+            // using set arm method to swing the arms
+            weirdGuy.setArm(guy, 1, -20 + 40 * bias, 0);
+            weirdGuy.setArm(guy, 2, 20 - 40 * bias, 0);
+ 
             // draw
             renderer.render(scene, camera);
             frame += 20 * secs;

@@ -4,11 +4,14 @@
 * (done) guy1, guy2, ... default names
 * (done) wrap radian helper
 
+
 * () better custom textures
 * () work out groups / uv attribite changes
 * () new custom geo for the mouth
 * () box geos for eye brows
-* () update method has options for setting eye state chnages to adjust emotion
+* () set eye state method
+* () set scale option / method
+
 
 ## ( done 12/12/2022 ) - main js folder, and r0-x-demos
 * (done) have a main js folder with r0 of the module in it
