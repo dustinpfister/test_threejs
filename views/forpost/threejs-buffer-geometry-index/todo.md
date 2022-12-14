@@ -6,8 +6,9 @@
 ## () s2-2-setindex-buffatt
 * () example that shows what the deal is with set index and uisng a buffer attribute rather than an array
 
-## () s2-1-setindex-plane
-* () start a section on the set index method alone starting with code that makes a plane
+## ( done 12/14/2022 ) s2-1-setindex-plane
+* (done) start a section on the set index method alone starting with code that makes a plane
+* (done) base the helper on the source code for the THREE.PlaneGeometry constructor
 
 ## ( done 12/14/2022 ) update examples to use array rather than buffer attribute
 * (done) make changes to all examples that use set index so that an array is passed
