@@ -49,6 +49,7 @@
     const state = {
        mode: 'walk',
        n: 0, d: 80, // used to get walk alpha
+       c: 0
     };
     // walk update method
     state.walk = function(state){
@@ -59,6 +60,23 @@
 
         state.n += 1;
         state.n %= state.d;
+        state.c += 1;
+
+        if(state.c >= 30){
+            state.mode = 'walk_trans_out'
+            state.c = 0;
+        }
+
+    };
+    state.walk_trans_out = function(state){
+        const a1 = state.n / state.d;
+        const a2 = 1 - Math.abs(0.5 - a1 * 4 % 1) / 0.5;
+
+        transLegs(guy, a2, state.c / 30);
+        state.c += 1;
+        if(state.c >= 30){
+            state.c = 30;
+        }
     };
     //-------- ----------
     // ANIMATION LOOP
