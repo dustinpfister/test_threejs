@@ -79,18 +79,7 @@
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / 24) {
-
             state[state.mode](state);
-
-            //const per = frame / maxFrame * 5 % 1,
-            //bias = 1 - Math.abs(0.5 - per) / 0.5;
-            // Set walk will just move the legs
-            //weirdGuy.setWalk(guy, bias);
- 
-            // using set arm method to swing the arms
-            //weirdGuy.setArm(guy, 1, -20 + 40 * bias, 0);
-            //weirdGuy.setArm(guy, 2, 20 - 40 * bias, 0);
- 
             // draw
             renderer.render(scene, camera);
             //frame += 20 * secs;
