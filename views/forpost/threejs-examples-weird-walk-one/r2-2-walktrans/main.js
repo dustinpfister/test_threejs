@@ -14,8 +14,10 @@
     // LIGHT
     //-------- ----------
     const dl = new THREE.DirectionalLight(0xffffff, 0.8);
-    dl.position.set(0.1, 1.0, 0);
+    dl.position.set(3, 1.0, 0.5);
     scene.add(dl);
+    const al = new THREE.AmbientLight(0xffffff, 0.8);
+    scene.add(al);
     //-------- ----------
     // WEIRD GUY INSTANCE
     //-------- ----------

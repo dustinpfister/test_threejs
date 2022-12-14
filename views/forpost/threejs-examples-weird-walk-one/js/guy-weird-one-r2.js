@@ -3,7 +3,7 @@
 //-------- ----------
 (function(api){
     //-------- ----------
-    //
+    // HELPERS
     //-------- ----------
     // return the next default guy name string (guy1, guy2, ...)
     const genGuyName = (function(){
@@ -21,12 +21,13 @@
 
 
     // DATA TEXTURE FOR MATERIALS
-    const width = 20, height = 100;
+/*
+    const width = 20, height = 20;
     const size = width * height;
     const data = new Uint8Array( 4 * size );
     for ( let i = 0; i < size; i ++ ) {
         const stride = i * 4;
-        const v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
+        const v = 150 + Math.floor( THREE.MathUtils.seededRandom() * 105 );
         data[ stride ] = v;
         data[ stride + 1 ] = v;
         data[ stride + 2 ] = v;
@@ -34,12 +35,13 @@
     }
     const texture = new THREE.DataTexture( data, width, height );
     texture.needsUpdate = true;
+*/
     // MATERIALS
-    const materials = [
-        new THREE.MeshStandardMaterial( { map: texture, emissive: 0x9a8800, emissiveIntensity: 0.9, wireframe:false } ),
-        new THREE.MeshStandardMaterial( { map: texture, emissive: 0x00aaff, emissiveIntensity: 0.4 } ),
-        new THREE.MeshStandardMaterial( { map: texture, emissive: 0xffffff, emissiveIntensity: 0.8 } ),
-        new THREE.MeshStandardMaterial( { map: texture, emissive: 0x1a1a1a, emissiveIntensity: 0.1 } )
+    const MATERIALS = [
+        new THREE.MeshStandardMaterial( { color: 0x9a8800} ),
+        new THREE.MeshStandardMaterial( { color: 0x00aaff} ),
+        new THREE.MeshStandardMaterial( { color: 0xffffff} ),
+        new THREE.MeshStandardMaterial( { color: 0x1a1a1a} )
     ];
     //-------- ----------
     // CREATE A NEW WEIRD GUY OBJECT
@@ -47,12 +49,13 @@
     // create a new weird guy
     api.create = function(opt){
         opt = opt || {};
+        opt.materials = opt.materials || MATERIALS;
         const guy = new THREE.Group();
         guy.name = opt.guyID || genGuyName();
         // BODY
         const body = new THREE.Mesh(
             new THREE.BoxGeometry(1, 2.0, 1),
-            materials[0]
+            opt.materials[0]
         );
         body.position.y = 0.25;
         body.name = guy.name + '_body';
@@ -61,13 +64,13 @@
         ['eye1', 'eye2'].forEach(function(nameStr, i){
             const eye = new THREE.Mesh(
                 new THREE.SphereGeometry(0.2, 30, 30),
-                materials[2]
+                opt.materials[2]
             );
             eye.name = guy.name + '_' + nameStr;
             eye.position.set(-0.2 + 0.4 * i, 0.2, 0.5);
             const innerEye = new THREE.Mesh(
                 new THREE.SphereGeometry(0.1, 30, 30),
-                materials[3]
+                opt.materials[3]
             );
             innerEye.position.set(0, 0, 0.125);
             eye.add(innerEye);
@@ -76,7 +79,7 @@
         // ADD MOUTH
         const mouth = new THREE.Mesh(
             new THREE.BoxGeometry(0.5, 0.125, 0.25),
-            materials[3]
+            opt.materials[3]
         );
         mouth.name = guy.name + '_mouth';
         mouth.position.set(0, -0.3, 0.5);
@@ -85,14 +88,14 @@
         ['arm1', 'arm2'].forEach(function(nameStr, i){
             const arm = new THREE.Mesh(
                 new THREE.BoxGeometry(0.25, 1.0, 0.25),
-                materials[0]
+                opt.materials[0]
             );
             arm.geometry.translate( 0, 0.5, 0 );
             arm.name = guy.name + '_' + nameStr;
             arm.position.set(-0.625 + 1.25 * i, 0.5, 0);
             const tri = new THREE.Mesh(
                 new THREE.BoxGeometry(0.25, 1.0, 0.25),
-                materials[0]
+                opt.materials[0]
             );
             tri.geometry.translate( 0, 0.5, 0 );
             tri.name = guy.name + '_' + nameStr + '_tri';
@@ -103,7 +106,7 @@
         // ADD PELVIS
         const pelvis = new THREE.Mesh(
             new THREE.BoxGeometry(1, 0.5, 1),
-            materials[1]
+            opt.materials[1]
         );
         pelvis.name = guy.name + '_pelvis';
         pelvis.position.set(0, -1.0, 0);
@@ -112,7 +115,7 @@
         ['leg1', 'leg2'].forEach(function(nameStr, i){
             const leg = new THREE.Mesh(
                 new THREE.BoxGeometry(0.25, 1.5, 1),
-                materials[1]
+                opt.materials[1]
             );
             leg.name = guy.name + '_' + nameStr;
             leg.position.set(-0.25 + 0.5 * i, -1, 0);
