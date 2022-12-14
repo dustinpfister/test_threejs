@@ -1,6 +1,5 @@
 // waves - r1 - from threejs-examples-waves
 (function (api) {
-
     // parse options
     api.parseOpt = function (opt) {
         opt = opt || {};
@@ -14,11 +13,11 @@
         opt.alpha = opt.alpha === undefined ? 0 : opt.alpha;
         return opt;
     };
-
     // update the geometry
     api.update = function (geo, opt) {
         opt = api.parseOpt(opt);
         const att_pos = geo.getAttribute('position');
+        const att_uv = geo.getAttribute('uv');
         const width_half = opt.width / 2;
         const height_half = opt.height / 2;
         const gridY = opt.heightSegs;
@@ -47,6 +46,9 @@
                 // might use plane geo code to set UV
                 //uvs.push( ix / gridX );
                 //uvs.push( 1 - ( iy / gridY ) );
+
+                att_uv.setXY(i, ix / gridX, 1 - ( iz / gridY ));
+
             }
         }
         att_pos.needsUpdate = true;
@@ -57,16 +59,18 @@
     // CREATE METHOD AND HELPERS
     //-------- ----------
     // create a position attribute
-    const create_position = (geo, opt) => {
+    const create_position_uv = (geo, opt) => {
         const data_pos = [];
+        const data_uv = [];
         const len = (opt.widthSegs + 1) * (opt.heightSegs + 1);
         let i = 0;
         while(i < len){
             data_pos.push(0, 0, 0);
+            data_uv.push(0, 0);
             i += 1;
         }
-        const att_pos = new THREE.BufferAttribute( new Float32Array(data_pos), 3);
-        geo.setAttribute('position', att_pos);
+        geo.setAttribute('position', new THREE.BufferAttribute( new Float32Array(data_pos), 3));
+        geo.setAttribute('uv', new THREE.BufferAttribute( new Float32Array(data_uv), 2));
     };
     // create an index for the position attribute
     const create_index = (geo, opt) => {
@@ -96,7 +100,7 @@
         opt = api.parseOpt(opt);
         const geo = new THREE.BufferGeometry();
         // position, and index
-        create_position(geo, opt);
+        create_position_uv(geo, opt);
         create_index(geo, opt);
         // update
         api.update(geo, opt);

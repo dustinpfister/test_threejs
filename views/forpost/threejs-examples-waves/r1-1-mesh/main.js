@@ -16,6 +16,24 @@ const dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(3, 2, 1);
 scene.add(dl);
 //-------- ----------
+// TEXTURE
+//-------- ----------
+// USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
+// Uisng the seeded random method of the MathUtils object
+const width = 32, height = 32;
+const size = width * height;
+const data = new Uint8Array( 4 * size );
+for ( let i = 0; i < size; i ++ ) {
+    const stride = i * 4;
+    const v = 50 + Math.floor( THREE.MathUtils.seededRandom() * 205 );
+    data[ stride ] = 0;
+    data[ stride + 1 ] = v;
+    data[ stride + 2 ] = 0;
+    data[ stride + 3 ] = 255;
+}
+const texture = new THREE.DataTexture( data, width, height );
+texture.needsUpdate = true;
+//-------- ----------
 // GEO
 //-------- ----------
 const wave_opt = waveMod.parseOpt({
@@ -31,7 +49,7 @@ const wave_opt = waveMod.parseOpt({
 const geo = waveMod.create( wave_opt );
 
 //const material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide, wireframe: true });
-const material = new THREE.MeshPhongMaterial({ side: THREE.DoubleSide });
+const material = new THREE.MeshPhongMaterial({ side: THREE.DoubleSide, map: texture });
 const mesh = new THREE.Mesh(geo, material);
 scene.add(mesh);
 mesh.position.set( 0, 0, 0 )
