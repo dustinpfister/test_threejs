@@ -1,7 +1,7 @@
 # threejs-examples-weird-walk-one
 
-## () r2-2-walktrans
-* () example where a walk cycle is trans in and out of
+## ( done 12/14/2022 ) r2-2-walktrans
+* (done) example where a walk cycle is trans in and out of
 
 ## () r2 - better textures, more update method
 * (done) guy1, guy2, ... default names

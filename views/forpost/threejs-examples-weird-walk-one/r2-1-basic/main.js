@@ -21,102 +21,28 @@
     //-------- ----------
     const guy = weirdGuy.create({});
     scene.add(guy);
-
-    const a1 = 0.25;
-    weirdGuy.setWalk(guy, a1);
-
-
-    // trans legs out of a walk cycle
-    const transLegs = (guy, a_walkstart, a2) => {
-        const leg1 = guy.getObjectByName('guy1_leg1');
-        const leg2 = guy.getObjectByName('guy1_leg2');
-        // set from last walk state using a1 alpha
-        weirdGuy.setWalk(guy, a_walkstart);
-        const d1 = 1 - leg1.scale.y;
-        const d2 = 1 - leg2.scale.y;
-        leg1.scale.y = leg1.scale.y + d1 * a2;
-        leg2.scale.y = leg2.scale.y + d2 * a2;
-        leg1.position.y = -1 * leg1.scale.y;
-        leg2.position.y = -1 * leg2.scale.y;; 
-    };
-
-    transLegs(guy, 0.25, 0);
-
-
-    //-------- ----------
-    // STATE
-    //-------- ----------
-    const state = {
-       mode: 'walk',
-       n: 0, d: 80, // used to get walk alpha
-       c: 0
-    };
-    // walk update method
-    state.walk = function(state){
-        const a1 = state.n / state.d;
-        const a2 = 1 - Math.abs(0.5 - a1 * 4 % 1) / 0.5;
-        weirdGuy.setWalk(guy, a2);
-        state.n += 1;
-        state.n %= state.d;
-        state.c += 1;
-        if(state.c >= 90){
-            state.mode = 'walk_trans_out';
-            state.c = 0;
-        }
-    };
-    state.walk_trans_out = function(state){
-        const a1 = state.n / state.d;
-        const a2 = 1 - Math.abs(0.5 - a1 * 4 % 1) / 0.5;
-        transLegs(guy, a2, state.c / 30);
-        state.c += 1;
-        if(state.c >= 30){
-            state.mode = 'rest';
-            state.c = 0;
-        }
-    };
-    state.rest = function(state){
-        transLegs(guy, 0, 1);
-        state.c += 1;
-        if(state.c >= 90){
-            state.mode = 'walk_trans_in';
-            state.c = 0;
-        }
-    };
-    state.walk_trans_in = function(state){
-        const a1 = state.n / state.d;
-        const a2 = 1 - Math.abs(0.5 - a1 * 4 % 1) / 0.5;
-        transLegs(guy, a2, 1 - state.c / 30);
-        state.c += 1;
-        if(state.c >= 30){
-            state.mode = 'walk';
-            state.c = 0;
-        }
-    };
     //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
-    let lt = new Date();
+    let frame = 0,
+    lt = new Date();
+    const maxFrame = 60;
     const loop = function () {
         const now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / 24) {
-
-            state[state.mode](state);
-
-            //const per = frame / maxFrame * 5 % 1,
-            //bias = 1 - Math.abs(0.5 - per) / 0.5;
+            const per = frame / maxFrame * 5 % 1,
+            bias = 1 - Math.abs(0.5 - per) / 0.5;
             // Set walk will just move the legs
-            //weirdGuy.setWalk(guy, bias);
- 
+            weirdGuy.setWalk(guy, bias);
             // using set arm method to swing the arms
-            //weirdGuy.setArm(guy, 1, -20 + 40 * bias, 0);
-            //weirdGuy.setArm(guy, 2, 20 - 40 * bias, 0);
- 
+            weirdGuy.setArm(guy, 1, -20 + 40 * bias, 0);
+            weirdGuy.setArm(guy, 2, 20 - 40 * bias, 0);
             // draw
             renderer.render(scene, camera);
-            //frame += 20 * secs;
-            //frame %= maxFrame;
+            frame += 20 * secs;
+            frame %= maxFrame;
             lt = now;
         }
     };

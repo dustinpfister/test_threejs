@@ -137,6 +137,18 @@
         leg1.position.y = -1.0 + 0.75 * (1 - walkPer);
         leg2.position.y = -1.0 + 0.75 * walkPer;
     };
+    api.transLegs = (guy, a_walkstart, a2) => {
+        const leg1 = guy.getObjectByName(guy.name + '_leg1');
+        const leg2 = guy.getObjectByName(guy.name + '_leg2');
+        // set from last walk state using a1 alpha
+        api.setWalk(guy, a_walkstart);
+        const d1 = 1 - leg1.scale.y;
+        const d2 = 1 - leg2.scale.y;
+        leg1.scale.y = leg1.scale.y + d1 * a2;
+        leg2.scale.y = leg2.scale.y + d2 * a2;
+        leg1.position.y = -1 * leg1.scale.y;
+        leg2.position.y = -1 * leg2.scale.y;; 
+    };
     // set arms method
     api.setArm = function(guy, armNum, a1, a2){
         armNum = armNum === undefined ? 1 : armNum;
