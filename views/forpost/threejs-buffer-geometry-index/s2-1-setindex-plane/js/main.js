@@ -59,11 +59,15 @@
         // PASSING AN ARRAY, AND NOT A BUFFER ATTRIBUTE. IF A BUFFER ATTRIBUTE IS PASSED
         // MAKE SURE IT IS NOT A Uint8 TYPED ARRAY AS INDEX VALUES CAN GO BEYOND 255
         //--------
-        // YES
+        // YES - Number.MAX_SAFE_INTEGER is 9007199254740991
         geo.setIndex(indices);
-        // geo.setIndex( new THREE.Float32BufferAttribute( indices, 1) );
         //--------
-        // NO!!
+        // MAYBE - There are some typed options that might still work okay
+        // geo.setIndex( new THREE.Float64BufferAttribute( indices, 1) );
+        // geo.setIndex( new THREE.Float32BufferAttribute( indices, 1) );
+        // geo.setIndex( new THREE.Uint32BufferAttribute( indices, 1) );
+        //--------
+        // NO!! - limit of Unit8Array is 255
         // geo.setIndex( new THREE.BufferAttribute( new Uint8Array(indices), 1) );
         // geo.setIndex( new THREE.Uint8BufferAttribute( indices, 1) );
         return geo;
