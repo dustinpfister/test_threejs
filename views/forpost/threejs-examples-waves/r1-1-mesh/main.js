@@ -38,12 +38,12 @@ const loop = function () {
     bias = 1 - Math.abs(per - 0.5) / 0.5;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
-
-wave_opt.alpha = per;
+        // wave options and update of wave geo
+        wave_opt.alpha = per;
         waveMod.update(geo, wave_opt);
-
+        // render
         renderer.render(scene, camera);
-
+        // step frame
         frame += fps * secs;
         frame %= maxFrame;
         lt = now;

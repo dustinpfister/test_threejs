@@ -84,7 +84,9 @@
         }
         // THIS WAS WHAT THE DEAL WAS!
         // THE DOCS SAY TO PASS A BUFFER ATTRIBUTE, BUT PASSING AN ARRAY WORKS
-        //const att_index = new THREE.BufferAttribute( new Uint8Array(data_index), 1);
+        // FOUND THIS OUT BY READING THE PLANE GEO SOURCE CODE AT
+        // https://github.com/mrdoob/three.js/blob/dev/src/geometries/PlaneGeometry.js
+        // const att_index = new THREE.BufferAttribute( new Uint8Array(data_index), 1);
         geo.setIndex(data_index);
     };
     // create a geometry and update it for the first time
