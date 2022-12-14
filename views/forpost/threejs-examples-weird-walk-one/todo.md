@@ -1,16 +1,16 @@
 # threejs-examples-weird-walk-one
 
-## () - r0-3-many
-* () start a demo that will be more than one instance of this weird guy module
-* () new materials created for each guy or not depeding on create options
-* () new setTalk method
-* () new setEyes method
-* () a3 argument for setArm method
+## () r2 - better textures, new mouth, eye state
+* () better custom textures
+* () work out groups / uv attribite changes
+* () new custom geo for the mouth
+* () box geos for eye brows
+* () update method has options for setting eye state chnages to adjust emotion
 
 ## ( done 12/12/2022 ) - main js folder, and r0-x-demos
 * (done) have a main js folder with r0 of the module in it
 * (done) rename all current demos as r0-x-demoname
-* () update code to work well with r146
+* (done) update code to work well with r146
 
 ## ( done 04/19/2022 ) - have a s2-arms-ground mesh in demo
 * (done) new setArm method for weird guy module
