@@ -1,15 +1,20 @@
 //-------- ----------
 // WEIRD GUY MODULE - r2 - from threeks-examples-weird-walk-one
+// * removed data textures
+// * materials create option
+// * walk trans update method
+// * get guy name, and wrap radian helpers
 //-------- ----------
 (function(api){
     //-------- ----------
     // MATERIALS
     //-------- ----------
     const MATERIALS = [
-        new THREE.MeshPhongMaterial( { color: 0x9a8800} ),
-        new THREE.MeshPhongMaterial( { color: 0x00aaff} ),
-        new THREE.MeshPhongMaterial( { color: 0xffffff} ),
-        new THREE.MeshPhongMaterial( { color: 0x1a1a1a} )
+        new THREE.MeshPhongMaterial( { color: 0x9a8800} ), // body
+        new THREE.MeshPhongMaterial( { color: 0x00aaff} ), // legs
+        new THREE.MeshPhongMaterial( { color: 0xffffff} ), // eyes1
+        new THREE.MeshPhongMaterial( { color: 0x1a1a1a} ), // eyes2
+        new THREE.MeshPhongMaterial( { color: 0xaa0000} )  // mouh
     ];
     //-------- ----------
     // HELPERS
@@ -27,24 +32,6 @@
     const wrapRadian = (r) => {
         return THREE.MathUtils.euclideanModulo(r, Math.PI * 2);
     };
-
-
-    // DATA TEXTURE FOR MATERIALS
-/*
-    const width = 20, height = 20;
-    const size = width * height;
-    const data = new Uint8Array( 4 * size );
-    for ( let i = 0; i < size; i ++ ) {
-        const stride = i * 4;
-        const v = 150 + Math.floor( THREE.MathUtils.seededRandom() * 105 );
-        data[ stride ] = v;
-        data[ stride + 1 ] = v;
-        data[ stride + 2 ] = v;
-        data[ stride + 3 ] = 255;
-    }
-    const texture = new THREE.DataTexture( data, width, height );
-    texture.needsUpdate = true;
-*/
     //-------- ----------
     // CREATE A NEW WEIRD GUY OBJECT
     //-------- ----------
@@ -81,7 +68,7 @@
         // ADD MOUTH
         const mouth = new THREE.Mesh(
             new THREE.BoxGeometry(0.5, 0.125, 0.25),
-            opt.materials[3]
+            opt.materials[4]
         );
         mouth.name = guy.name + '_mouth';
         mouth.position.set(0, -0.3, 0.5);

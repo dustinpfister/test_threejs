@@ -1,25 +1,34 @@
 # threejs-examples-weird-walk-one
 
-## ( done 12/14/2022 ) r2-2-walktrans
-* (done) example where a walk cycle is trans in and out of
 
-## () r2 - better textures, more update method
-* (done) guy1, guy2, ... default names
-* (done) wrap radian helper
-* (done) using wrap radian method for the set arm method
-* (done) set legs method that can be used to set state of legs into and out of a walk cycle
+## () r3-1-scale
 
-
-* () better custom textures
-* () work out groups / uv attribite changes
-<!-- mouth -->
-* () new custom geo for the mouth
+## () r3 - scale, more controls, brow mesh objects
+<!-- set scale -->
+* () set scale option / method
 <!-- Brows -->
 * () box geos for eye brows
 <!-- update methods -->
 * () set eye state method
-* () set scale option / method
 
+## () r3 - Mouth
+<!-- mouth -->
+* () new custom geo for the mouth
+
+## ( done 12/14/2022 ) r2-3-textures
+* ( done ) start a textures demo
+* ( done ) still use data texures for a custom set of materials
+
+## ( done 12/14/2022 ) r2-2-walktrans
+* (done) example where a walk cycle is trans in and out of
+
+## ( done 12/14/2022 ) r2 - remove data textures, new mouth, more update methods
+* (done) guy1, guy2, ... default names
+* (done) wrap radian helper
+* (done) using wrap radian method for the set arm method
+* (done) set legs method that can be used to set state of legs into and out of a walk cycle
+* (done) remove built in data texture
+* (done) mouth mesh shoud have its own material
 
 ## ( done 12/12/2022 ) - main js folder, and r0-x-demos
 * (done) have a main js folder with r0 of the module in it
