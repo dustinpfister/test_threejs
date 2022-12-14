@@ -3,6 +3,15 @@
 //-------- ----------
 (function(api){
     //-------- ----------
+    // MATERIALS
+    //-------- ----------
+    const MATERIALS = [
+        new THREE.MeshPhongMaterial( { color: 0x9a8800} ),
+        new THREE.MeshPhongMaterial( { color: 0x00aaff} ),
+        new THREE.MeshPhongMaterial( { color: 0xffffff} ),
+        new THREE.MeshPhongMaterial( { color: 0x1a1a1a} )
+    ];
+    //-------- ----------
     // HELPERS
     //-------- ----------
     // return the next default guy name string (guy1, guy2, ...)
@@ -36,13 +45,6 @@
     const texture = new THREE.DataTexture( data, width, height );
     texture.needsUpdate = true;
 */
-    // MATERIALS
-    const MATERIALS = [
-        new THREE.MeshStandardMaterial( { color: 0x9a8800} ),
-        new THREE.MeshStandardMaterial( { color: 0x00aaff} ),
-        new THREE.MeshStandardMaterial( { color: 0xffffff} ),
-        new THREE.MeshStandardMaterial( { color: 0x1a1a1a} )
-    ];
     //-------- ----------
     // CREATE A NEW WEIRD GUY OBJECT
     //-------- ----------
