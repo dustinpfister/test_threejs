@@ -4,7 +4,7 @@
     //-------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 8 / 9, 0.05, 100);
-    camera.position.set(5, 5, 5);
+    camera.position.set(4, 3, 4);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
     const renderer = new THREE.WebGL1Renderer();
@@ -21,6 +21,32 @@
     //-------- ----------
     const guy = weirdGuy.create({});
     scene.add(guy);
+
+    const a1 = 0.25;
+    weirdGuy.setWalk(guy, a1);
+
+
+    // trans legs out of a walk cycle
+    const transLegsOut = (guy, a1, a2) => {
+        const leg1 = guy.getObjectByName('guy1_leg1');
+        const leg2 = guy.getObjectByName('guy1_leg2');
+        // set from last walk state using a1 alpha
+        weirdGuy.setWalk(guy, a1);
+        const d1 = 1 - leg1.scale.y;
+        const d2 = 1 - leg2.scale.y;
+        leg1.scale.y = leg1.scale.y + d1 * a2;
+        leg2.scale.y = leg2.scale.y + d2 * a2;
+        leg1.position.y = -1 * leg1.scale.y;
+        leg2.position.y = -1 * leg2.scale.y;; 
+    };
+
+    transLegsOut(guy, a1, 0.80);
+
+
+        const leg1 = guy.getObjectByName('guy1_leg1');
+        const leg2 = guy.getObjectByName('guy1_leg2');
+console.log(leg1.scale.y, leg2.scale.y)
+
     //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
@@ -35,11 +61,11 @@
             const per = frame / maxFrame * 5 % 1,
             bias = 1 - Math.abs(0.5 - per) / 0.5;
             // Set walk will just move the legs
-            weirdGuy.setWalk(guy, bias);
+            //weirdGuy.setWalk(guy, bias);
  
             // using set arm method to swing the arms
-            weirdGuy.setArm(guy, 1, -20 + 40 * bias, 0);
-            weirdGuy.setArm(guy, 2, 20 - 40 * bias, 0);
+            //weirdGuy.setArm(guy, 1, -20 + 40 * bias, 0);
+            //weirdGuy.setArm(guy, 2, 20 - 40 * bias, 0);
  
             // draw
             renderer.render(scene, camera);

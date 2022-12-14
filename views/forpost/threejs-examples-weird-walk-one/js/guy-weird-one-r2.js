@@ -135,7 +135,7 @@
         leg2.scale.y = 1 - walkPer;
         // adjust position of legs
         leg1.position.y = -1.0 + 0.75 * (1 - walkPer);
-        leg2.position.y = -1.0 + 0.75 * walkPer;   
+        leg2.position.y = -1.0 + 0.75 * walkPer;
     };
     // set arms method
     api.setArm = function(guy, armNum, a1, a2){

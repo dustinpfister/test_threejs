@@ -1,16 +1,20 @@
 # threejs-examples-weird-walk-one
 
-## () r2 - better textures, new mouth, eye state
+## () r2 - better textures, more update method
 * (done) guy1, guy2, ... default names
 * (done) wrap radian helper
-
+* (done) using wrap radian method for the set arm method
 
 * () better custom textures
 * () work out groups / uv attribite changes
+<!-- mouth -->
 * () new custom geo for the mouth
+<!-- Brows -->
 * () box geos for eye brows
+<!-- update methods -->
 * () set eye state method
 * () set scale option / method
+* () set legs method that can be used to set state of legs into and out of a walk cycle
 
 
 ## ( done 12/12/2022 ) - main js folder, and r0-x-demos
