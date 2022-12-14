@@ -27,11 +27,11 @@
 
 
     // trans legs out of a walk cycle
-    const transLegsOut = (guy, a1, a2) => {
+    const transLegs = (guy, a_walkstart, a2) => {
         const leg1 = guy.getObjectByName('guy1_leg1');
         const leg2 = guy.getObjectByName('guy1_leg2');
         // set from last walk state using a1 alpha
-        weirdGuy.setWalk(guy, a1);
+        weirdGuy.setWalk(guy, a_walkstart);
         const d1 = 1 - leg1.scale.y;
         const d2 = 1 - leg2.scale.y;
         leg1.scale.y = leg1.scale.y + d1 * a2;
@@ -40,26 +40,40 @@
         leg2.position.y = -1 * leg2.scale.y;; 
     };
 
-    transLegsOut(guy, a1, 0.80);
+    transLegs(guy, 0.25, 0);
 
 
-        const leg1 = guy.getObjectByName('guy1_leg1');
-        const leg2 = guy.getObjectByName('guy1_leg2');
-console.log(leg1.scale.y, leg2.scale.y)
+    //-------- ----------
+    // STATE
+    //-------- ----------
+    const state = {
+       mode: 'walk',
+       n: 0, d: 80, // used to get walk alpha
+    };
+    // walk update method
+    state.walk = function(state){
+        const a1 = state.n / state.d;
+        const a2 = 1 - Math.abs(0.5 - a1 * 4 % 1) / 0.5;
 
+        weirdGuy.setWalk(guy, a2);
+
+        state.n += 1;
+        state.n %= state.d;
+    };
     //-------- ----------
     // ANIMATION LOOP
     //-------- ----------
-    let frame = 0,
-    lt = new Date();
-    const maxFrame = 60;
+    let lt = new Date();
     const loop = function () {
         const now = new Date(),
         secs = (now - lt) / 1000;
         requestAnimationFrame(loop);
         if (secs > 1 / 24) {
-            const per = frame / maxFrame * 5 % 1,
-            bias = 1 - Math.abs(0.5 - per) / 0.5;
+
+            state[state.mode](state);
+
+            //const per = frame / maxFrame * 5 % 1,
+            //bias = 1 - Math.abs(0.5 - per) / 0.5;
             // Set walk will just move the legs
             //weirdGuy.setWalk(guy, bias);
  
@@ -69,8 +83,8 @@ console.log(leg1.scale.y, leg2.scale.y)
  
             // draw
             renderer.render(scene, camera);
-            frame += 20 * secs;
-            frame %= maxFrame;
+            //frame += 20 * secs;
+            //frame %= maxFrame;
             lt = now;
         }
     };
