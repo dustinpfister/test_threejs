@@ -18,8 +18,7 @@
     geo_indexed.setAttribute('position',
         new THREE.BufferAttribute(new Float32Array([0,0,0, 0,2,0, -2,0,0, 0,0,-2]), 3)
     );
-    const index = new THREE.BufferAttribute( new Uint8Array([0,1,2,0,1,3]), 1);
-    geo_indexed.setIndex(index)
+    geo_indexed.setIndex([0,1,2,0,1,3]);
     geo_indexed.computeVertexNormals();
     //-------- ----------
     // INDEX GEO
