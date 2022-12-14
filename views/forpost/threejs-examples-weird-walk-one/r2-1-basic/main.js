@@ -55,18 +55,14 @@
     state.walk = function(state){
         const a1 = state.n / state.d;
         const a2 = 1 - Math.abs(0.5 - a1 * 4 % 1) / 0.5;
-
         weirdGuy.setWalk(guy, a2);
-
         state.n += 1;
         state.n %= state.d;
         state.c += 1;
-
-        if(state.c >= 30){
+        if(state.c >= 90){
             state.mode = 'walk_trans_out';
             state.c = 0;
         }
-
     };
     state.walk_trans_out = function(state){
         const a1 = state.n / state.d;
@@ -80,6 +76,16 @@
     };
     state.rest = function(state){
         transLegs(guy, 0, 1);
+        state.c += 1;
+        if(state.c >= 90){
+            state.mode = 'walk_trans_in';
+            state.c = 0;
+        }
+    };
+    state.walk_trans_in = function(state){
+        const a1 = state.n / state.d;
+        const a2 = 1 - Math.abs(0.5 - a1 * 4 % 1) / 0.5;
+        transLegs(guy, a2, 1 - state.c / 30);
         state.c += 1;
         if(state.c >= 30){
             state.mode = 'walk';
