@@ -2,7 +2,7 @@
 // SCENE
 //-------- ----------
 const scene = new THREE.Scene();
-scene.add( new THREE.GridHelper(10, 10));
+//scene.add( new THREE.GridHelper(10, 10));
 const camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.001, 1000);
 camera.position.set(8, 8, 8);
 camera.lookAt(0,0,0);
@@ -14,7 +14,9 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 const wave_opt = waveMod.parseOpt({
     width: 6,
-    height: 6
+    height: 6,
+    widthSegs: 40,
+    heightSegs: 40
 });
 
 const geo = waveMod.create( wave_opt );
@@ -23,24 +25,12 @@ const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ side: THREE.Doub
 scene.add(mesh);
 mesh.position.set( 0, 0, 0 )
 
-//const points = new THREE.Points(geo);
-//scene.add(points);
-//points.position.set(-8, 0, -8);
-
-//const line = new THREE.LineSegments(geo);
-//scene.add(line);
-//line.position.set(-8, 0, -8);
-
-
-//const line2 = new THREE.LineSegments( new THREE.PlaneGeometry(20,20, 18, 18) )
-//scene.add(line2);
-
 //-------- ----------
 // LOOP
 //-------- ----------
 new THREE.OrbitControls(camera, renderer.domElement);
 let frame = 0, lt = new Date();
-const maxFrame = 300, fps = 30;
+const maxFrame = 90, fps = 30;
 const loop = function () {
     const now = new Date(),
     secs = (now - lt) / 1000,
@@ -48,6 +38,9 @@ const loop = function () {
     bias = 1 - Math.abs(per - 0.5) / 0.5;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
+
+wave_opt.alpha = per;
+        waveMod.update(geo, wave_opt);
 
         renderer.render(scene, camera);
 
