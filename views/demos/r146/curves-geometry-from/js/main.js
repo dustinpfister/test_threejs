@@ -2,6 +2,7 @@
 // SCENE, CAMERA, RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(1, 1, 1);
 //scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
 camera.position.set(8, 8, 0);
@@ -22,10 +23,10 @@ scene.add(dl2);
 // CURVES
 // ---------- ----------
 const c1_start = new THREE.Vector3(-5,0,5), 
-c1_control = new THREE.Vector3(0, 0, 0), 
+c1_control = new THREE.Vector3(0, 5, 0), 
 c1_end = new THREE.Vector3(5,0,5),
 c2_start = new THREE.Vector3(-5,0,-5), 
-c2_control = new THREE.Vector3(0, 0, 0), 
+c2_control = new THREE.Vector3(0, -5, 0), 
 c2_end = new THREE.Vector3(5,0,-5);
 const curve1 = new THREE.QuadraticBezierCurve3(c1_start, c1_control, c1_end);
 const curve2 = new THREE.QuadraticBezierCurve3(c2_start, c2_control, c2_end);
@@ -72,8 +73,6 @@ while(pi2 < 50 - 1){
     data_index.push(b,c,d,c,b,a);
     pi2 += 1;
 }
-
-
 geo.setIndex(data_index);
 // ---------- ----------
 // GEO NORMAL
@@ -83,7 +82,7 @@ geo.computeVertexNormals();
 // TEXTURE
 // ---------- ----------
 // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-const width = 32, height = 32;
+const width = 128, height = 128;
 const size = width * height;
 const data = new Uint8Array( 4 * size );
 for ( let i = 0; i < size; i ++ ) {
@@ -96,15 +95,15 @@ for ( let i = 0; i < size; i ++ ) {
     const a_rnd1 = THREE.MathUtils.seededRandom();
     const a_rnd2 = THREE.MathUtils.seededRandom();
     const a_rnd3 = THREE.MathUtils.seededRandom();
-    let a_dist = v2.distanceTo( new THREE.Vector2( 0, 0) ) / (width / 4);
+    let a_dist = v2.distanceTo( new THREE.Vector2( width * 0.25, height * 0.75) ) / (width / 16);
     a_dist = a_dist % 1;
     const a_x = xi / width;
     const a_y = yi / height;
-    const cv = 100 * (a_dist * 0.5 + a_x * 0.25 + a_y * 0.25 );
+    const cv = 255 * (a_dist);
     // red, green, blue, alpha
-    data[ stride ] = cv + 100 * a_rnd1;
-    data[ stride + 1 ] = cv + 100 * a_y;
-    data[ stride + 2 ] = cv + 100 * a_x;
+    data[ stride ] = cv;
+    data[ stride + 1 ] = 0;
+    data[ stride + 2 ] = 255 - cv;
     data[ stride + 3 ] = 255;
 }
 const texture = new THREE.DataTexture( data, width, height );
@@ -115,7 +114,6 @@ texture.needsUpdate = true;
 const material = new THREE.MeshPhongMaterial({ map: texture, wireframe: false, side: THREE.DoubleSide});
 const mesh = new THREE.Mesh(geo, material);
 scene.add(mesh);
-
 // ---------- ----------
 // CONTROLS
 // ---------- ----------
