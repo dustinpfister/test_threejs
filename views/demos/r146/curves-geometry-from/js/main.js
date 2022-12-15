@@ -4,7 +4,7 @@
 const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
-camera.position.set(-8, 8, 8);
+camera.position.set(8, 8, 0);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -13,7 +13,7 @@ renderer.setSize(640, 480, false);
 // CURVES
 // ---------- ----------
 const c1_start = new THREE.Vector3(-5,0,5), 
-c1_control = new THREE.Vector3(-2,2,-2.5), 
+c1_control = new THREE.Vector3(-2,7,-2.5), 
 c1_end = new THREE.Vector3(5,0,5),
 c2_start = new THREE.Vector3(-5,0,-5), 
 c2_control = new THREE.Vector3(2,2,2.5), 
@@ -23,14 +23,14 @@ const curve2 = new THREE.QuadraticBezierCurve3(c2_start, c2_control, c2_end);
 // ---------- ----------
 // DEBUG CURVE LINES - just get a state of the curves - also yes this is a demo of 'geometry from curves'
 // ---------- ----------
-const material_line = new THREE.LineBasicMaterial({ linewidth: 4, color: 0xff0000});
+//const material_line = new THREE.LineBasicMaterial({ linewidth: 4, color: 0xff0000});
 //const line1 = new THREE.Line( new THREE.BufferGeometry().setFromPoints( curve1.getPoints(50) ), material_line );
 //scene.add(line1);
 //const line2 = new THREE.Line( new THREE.BufferGeometry().setFromPoints( curve2.getPoints(50) ), material_line );
 //scene.add(line2);
 
 // ---------- ----------
-// GEO - POSITION
+// GEO POSITION
 // ---------- ----------
 const geo = new THREE.BufferGeometry();
 
@@ -46,8 +46,28 @@ while(pi < points_per_line){
     pi += 1;
 }
 geo.setAttribute('position', new THREE.Float32BufferAttribute( pos_data, 3 ) );
+// ---------- ----------
+// GEO INDEX
+// ---------- ----------
+//geo.setIndex([0, 1, 2,  3, 2, 1 ]);
 
-// normals
+const data_index = [];
+let pi2 = 0;
+while(pi2 < 20 - 1){
+    const a = pi2 * 2;
+    const b = a + 1;
+    const c = a + 2;
+    const d = a + 3;
+    //data_index.push(a, b, c,  d, c, b);
+    data_index.push(b,c,d,c,b,a);
+    pi2 += 1;
+}
+
+
+geo.setIndex(data_index);
+// ---------- ----------
+// GEO NORMAL
+// ---------- ----------
 geo.computeVertexNormals();
 
 
