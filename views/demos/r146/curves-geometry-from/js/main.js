@@ -22,10 +22,10 @@ scene.add(dl2);
 // CURVES
 // ---------- ----------
 const c1_start = new THREE.Vector3(-5,0,5), 
-c1_control = new THREE.Vector3(-2,2,-4.5), 
+c1_control = new THREE.Vector3(0, 0, 0), 
 c1_end = new THREE.Vector3(5,0,5),
 c2_start = new THREE.Vector3(-5,0,-5), 
-c2_control = new THREE.Vector3(2,2,2.5), 
+c2_control = new THREE.Vector3(0, 0, 0), 
 c2_end = new THREE.Vector3(5,0,-5);
 const curve1 = new THREE.QuadraticBezierCurve3(c1_start, c1_control, c1_end);
 const curve2 = new THREE.QuadraticBezierCurve3(c2_start, c2_control, c2_end);
@@ -51,7 +51,10 @@ while(pi < points_per_line){
     const v1 = curve1.getPoint(a1);
     const v2 = curve2.getPoint(a1);
     pos_data.push(v1.x, v1.y, v1.z, v2.x, v2.y, v2.z);
-    uv_data.push(0, 1, 0, 1);
+
+    const b = pi / 50;
+    uv_data.push(b, 0, b, 1);
+
     pi += 1;
 }
 geo.setAttribute('position', new THREE.Float32BufferAttribute( pos_data, 3 ) );
@@ -77,10 +80,40 @@ geo.setIndex(data_index);
 // ---------- ----------
 geo.computeVertexNormals();
 // ---------- ----------
+// TEXTURE
+// ---------- ----------
+// USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
+const width = 32, height = 32;
+const size = width * height;
+const data = new Uint8Array( 4 * size );
+for ( let i = 0; i < size; i ++ ) {
+    const stride = i * 4;
+    // x and y pos
+    const xi = i % width;
+    const yi = Math.floor(i / width);
+    const v2 = new THREE.Vector2(xi, yi);
+    // alphas
+    const a_rnd1 = THREE.MathUtils.seededRandom();
+    const a_rnd2 = THREE.MathUtils.seededRandom();
+    const a_rnd3 = THREE.MathUtils.seededRandom();
+    let a_dist = v2.distanceTo( new THREE.Vector2( 0, 0) ) / (width / 4);
+    a_dist = a_dist % 1;
+    const a_x = xi / width;
+    const a_y = yi / height;
+    const cv = 100 * (a_dist * 0.5 + a_x * 0.25 + a_y * 0.25 );
+    // red, green, blue, alpha
+    data[ stride ] = cv + 100 * a_rnd1;
+    data[ stride + 1 ] = cv + 100 * a_y;
+    data[ stride + 2 ] = cv + 100 * a_x;
+    data[ stride + 3 ] = 255;
+}
+const texture = new THREE.DataTexture( data, width, height );
+texture.needsUpdate = true;
+// ---------- ----------
 // MATERIAL AND MESH
 // ---------- ----------
-const material = new THREE.MeshPhongMaterial({ wireframe: false, side: THREE.DoubleSide});
-const mesh = new THREE.Mesh(geo, material)
+const material = new THREE.MeshPhongMaterial({ map: texture, wireframe: false, side: THREE.DoubleSide});
+const mesh = new THREE.Mesh(geo, material);
 scene.add(mesh);
 
 // ---------- ----------
