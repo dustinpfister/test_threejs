@@ -15,7 +15,6 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 // get position data array helper
 const getCurvePosData = (curve1, curve2, points_per_line) => {
-    points_per_line = points_per_line === undefined ? 50 : points_per_line;
     const pos_data = [];
     let pi = 0;
     while(pi < points_per_line){
@@ -29,7 +28,6 @@ const getCurvePosData = (curve1, curve2, points_per_line) => {
 };
 // get uv data array helper
 const getCurveUVData = (curve1, curve2, points_per_line) => {
-    points_per_line = points_per_line === undefined ? 50 : points_per_line;
     const uv_data = [];
     let pi = 0;
     while(pi < points_per_line){
@@ -39,20 +37,45 @@ const getCurveUVData = (curve1, curve2, points_per_line) => {
    }
    return uv_data;
 };
+// set index
+const setCurveGeoIndex = (geo, points_per_line) => {
+    const data_index = [];
+    let pi2 = 0;
+    while(pi2 < points_per_line - 1){
+        const a = pi2 * 2;
+        const b = a + 1;
+        const c = a + 2;
+        const d = a + 3;
+        data_index.push(b, c, d, c, b, a);
+        pi2 += 1;
+    }
+    geo.setIndex(data_index);
+};
+// create curve geo
+const createCurveGeo = (curve1, curve2, points_per_line) => {
+    const geo = new THREE.BufferGeometry();
+    const uv_data = getCurveUVData(curve1, curve2, points_per_line);
+    // position/index
+    const pos_data = getCurvePosData(curve1, curve2, points_per_line);
+    geo.setAttribute('position', new THREE.Float32BufferAttribute( pos_data, 3 ) );
+    setCurveGeoIndex(geo, points_per_line);
+    // uv
+    geo.setAttribute('uv', new THREE.Float32BufferAttribute( uv_data, 2 ) );
+    // normal
+    geo.computeVertexNormals();
+    return geo;
+};
 // ---------- ----------
 // LIGHT
 // ---------- ----------
 const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(2, 1, 0);
+dl.position.set(0.8, 1, 0.6);
 scene.add(dl);
-const dl2 = new THREE.DirectionalLight(0xffffff, 1);
-dl2.position.set(2, -1, 0);
-scene.add(dl2);
 // ---------- ----------
 // CURVES
 // ---------- ----------
 const c1_start = new THREE.Vector3(-5,0,5), 
-c1_control = new THREE.Vector3(0, 5, 0), 
+c1_control = new THREE.Vector3(0, 10, 0), 
 c1_end = new THREE.Vector3(5,0,5),
 c2_start = new THREE.Vector3(-5,0,-5), 
 c2_control = new THREE.Vector3(0, -5, 0), 
@@ -62,29 +85,7 @@ const curve2 = new THREE.QuadraticBezierCurve3(c2_start, c2_control, c2_end);
 // ---------- ----------
 // GEO POSITION / UV
 // ---------- ----------
-const geo = new THREE.BufferGeometry();
-const pos_data = getCurvePosData(curve1, curve2, 20);
-const uv_data = getCurveUVData(curve1, curve2, 20);
-geo.setAttribute('position', new THREE.Float32BufferAttribute( pos_data, 3 ) );
-geo.setAttribute('uv', new THREE.Float32BufferAttribute( uv_data, 2 ) );
-// ---------- ----------
-// GEO INDEX
-// ---------- ----------
-const data_index = [];
-let pi2 = 0;
-while(pi2 < 20 - 1){
-    const a = pi2 * 2;
-    const b = a + 1;
-    const c = a + 2;
-    const d = a + 3;
-    data_index.push(b,c,d,c,b,a);
-    pi2 += 1;
-}
-geo.setIndex(data_index);
-// ---------- ----------
-// GEO NORMAL
-// ---------- ----------
-geo.computeVertexNormals();
+const geo = createCurveGeo(curve1, curve2, 50);
 // ---------- ----------
 // TEXTURE
 // ---------- ----------
@@ -120,9 +121,9 @@ texture.needsUpdate = true;
 // ---------- ----------
 const material = new THREE.MeshPhongMaterial({ map: texture, wireframe: false, side: THREE.DoubleSide});
 const mesh = new THREE.Mesh(geo, material);
-const line = new THREE.LineSegments(geo, new THREE.LineBasicMaterial({linewidth: 4, color: 0x000000}));
-mesh.add(line);
-line.position.y = 0.025;
+//const line = new THREE.LineSegments(geo, new THREE.LineBasicMaterial({linewidth: 2, color: 0xafafaf}));
+//mesh.add(line);
+//line.position.y = 0.025;
 scene.add(mesh);
 // ---------- ----------
 // CONTROLS
