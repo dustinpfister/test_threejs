@@ -1,7 +1,7 @@
 # threejs-curve-geometry-from todo list
 
 
-## () s3-1-loop-custom
+## () s3-1-loop-video1-custom
 * () break down code into helper functions
 * () have a helper that will create and return just a position data array from two curves
 * () use position data helper to create geo for first time
