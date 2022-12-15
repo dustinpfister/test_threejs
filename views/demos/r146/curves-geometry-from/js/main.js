@@ -15,23 +15,41 @@ renderer.setSize(640, 480, false);
 const c1_start = new THREE.Vector3(-5,0,5), 
 c1_control = new THREE.Vector3(-2,2,-2.5), 
 c1_end = new THREE.Vector3(5,0,5),
-
 c2_start = new THREE.Vector3(-5,0,-5), 
 c2_control = new THREE.Vector3(2,2,2.5), 
 c2_end = new THREE.Vector3(5,0,-5);
-
 const curve1 = new THREE.QuadraticBezierCurve3(c1_start, c1_control, c1_end);
 const curve2 = new THREE.QuadraticBezierCurve3(c2_start, c2_control, c2_end);
-
-
 // ---------- ----------
-// DEBUG LINES
+// DEBUG CURVE LINES - just get a state of the curves - also yes this is a demo of 'geometry from curves'
 // ---------- ----------
 const material_line = new THREE.LineBasicMaterial({ linewidth: 4, color: 0xff0000});
-const line1 = new THREE.Line( new THREE.BufferGeometry().setFromPoints( curve1.getPoints(50) ), material_line );
-scene.add(line1);
-const line2 = new THREE.Line( new THREE.BufferGeometry().setFromPoints( curve2.getPoints(50) ), material_line );
-scene.add(line2);
+//const line1 = new THREE.Line( new THREE.BufferGeometry().setFromPoints( curve1.getPoints(50) ), material_line );
+//scene.add(line1);
+//const line2 = new THREE.Line( new THREE.BufferGeometry().setFromPoints( curve2.getPoints(50) ), material_line );
+//scene.add(line2);
+
+// ---------- ----------
+// GEO - POSITION
+// ---------- ----------
+const geo = new THREE.BufferGeometry();
+
+// position attribute data
+const pos_data = [];
+let pi = 0;
+const points_per_line = 20;
+while(pi < points_per_line){
+    const a1 = pi / (points_per_line - 1);
+    const v1 = curve1.getPoint(a1);
+    const v2 = curve2.getPoint(a1);
+    pos_data.push(v1.x, v1.y, v1.z, v2.x, v2.y, v2.z);
+    pi += 1;
+}
+geo.setAttribute('position', new THREE.Float32BufferAttribute( pos_data, 3 ) );
+
+
+const line3 = new THREE.Line( geo, material_line );
+scene.add(line3);
 
 // ---------- ----------
 // CONTROLS
