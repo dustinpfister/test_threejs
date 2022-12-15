@@ -11,6 +11,35 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 // ---------- ----------
+// HELPERS
+// ---------- ----------
+// get position data array helper
+const getCurvePosData = (curve1, curve2, points_per_line) => {
+    points_per_line = points_per_line === undefined ? 50 : points_per_line;
+    const pos_data = [];
+    let pi = 0;
+    while(pi < points_per_line){
+        const a1 = pi / (points_per_line - 1);
+        const v1 = curve1.getPoint(a1);
+        const v2 = curve2.getPoint(a1);
+        pos_data.push(v1.x, v1.y, v1.z, v2.x, v2.y, v2.z);
+        pi += 1;
+   }
+   return pos_data;
+};
+// get uv data array helper
+const getCurveUVData = (curve1, curve2, points_per_line) => {
+    points_per_line = points_per_line === undefined ? 50 : points_per_line;
+    const uv_data = [];
+    let pi = 0;
+    while(pi < points_per_line){
+        const a1 = pi / (points_per_line - 1);
+        uv_data.push(a1, 0, a1, 1);
+        pi += 1;
+   }
+   return uv_data;
+};
+// ---------- ----------
 // LIGHT
 // ---------- ----------
 const dl = new THREE.DirectionalLight(0xffffff, 1);
@@ -31,32 +60,11 @@ c2_end = new THREE.Vector3(5,0,-5);
 const curve1 = new THREE.QuadraticBezierCurve3(c1_start, c1_control, c1_end);
 const curve2 = new THREE.QuadraticBezierCurve3(c2_start, c2_control, c2_end);
 // ---------- ----------
-// DEBUG CURVE LINES - just get a state of the curves - also yes this is a demo of 'geometry from curves'
-// ---------- ----------
-//const material_line = new THREE.LineBasicMaterial({ linewidth: 4, color: 0xff0000});
-//const line1 = new THREE.Line( new THREE.BufferGeometry().setFromPoints( curve1.getPoints(50) ), material_line );
-//scene.add(line1);
-//const line2 = new THREE.Line( new THREE.BufferGeometry().setFromPoints( curve2.getPoints(50) ), material_line );
-//scene.add(line2);
-// ---------- ----------
 // GEO POSITION / UV
 // ---------- ----------
 const geo = new THREE.BufferGeometry();
-// position attribute data
-const pos_data = [];
-const uv_data = [];
-let pi = 0;
-const points_per_line = 20;
-while(pi < points_per_line){
-    // position
-    const a1 = pi / (points_per_line - 1);
-    const v1 = curve1.getPoint(a1);
-    const v2 = curve2.getPoint(a1);
-    pos_data.push(v1.x, v1.y, v1.z, v2.x, v2.y, v2.z);
-    // uv
-    uv_data.push(a1, 0, a1, 1);
-    pi += 1;
-}
+const pos_data = getCurvePosData(curve1, curve2, 20);
+const uv_data = getCurveUVData(curve1, curve2, 20);
 geo.setAttribute('position', new THREE.Float32BufferAttribute( pos_data, 3 ) );
 geo.setAttribute('uv', new THREE.Float32BufferAttribute( uv_data, 2 ) );
 // ---------- ----------
@@ -64,7 +72,7 @@ geo.setAttribute('uv', new THREE.Float32BufferAttribute( uv_data, 2 ) );
 // ---------- ----------
 const data_index = [];
 let pi2 = 0;
-while(pi2 < points_per_line - 1){
+while(pi2 < 20 - 1){
     const a = pi2 * 2;
     const b = a + 1;
     const c = a + 2;
