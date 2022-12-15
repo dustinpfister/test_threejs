@@ -46,7 +46,7 @@ const geo = new THREE.BufferGeometry();
 const pos_data = [];
 const uv_data = [];
 let pi = 0;
-const points_per_line = 50;
+const points_per_line = 20;
 while(pi < points_per_line){
     // position
     const a1 = pi / (points_per_line - 1);
@@ -64,7 +64,7 @@ geo.setAttribute('uv', new THREE.Float32BufferAttribute( uv_data, 2 ) );
 // ---------- ----------
 const data_index = [];
 let pi2 = 0;
-while(pi2 < 50 - 1){
+while(pi2 < points_per_line - 1){
     const a = pi2 * 2;
     const b = a + 1;
     const c = a + 2;
@@ -112,6 +112,9 @@ texture.needsUpdate = true;
 // ---------- ----------
 const material = new THREE.MeshPhongMaterial({ map: texture, wireframe: false, side: THREE.DoubleSide});
 const mesh = new THREE.Mesh(geo, material);
+const line = new THREE.LineSegments(geo, new THREE.LineBasicMaterial({linewidth: 4, color: 0x000000}));
+mesh.add(line);
+line.position.y = 0.025;
 scene.add(mesh);
 // ---------- ----------
 // CONTROLS
