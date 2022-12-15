@@ -5,7 +5,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(1, 1, 1);
 //scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 1000);
-camera.position.set(8, 8, 0);
+camera.position.set(8, 8, -8);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -65,11 +65,23 @@ const createCurveGeo = (curve1, curve2, points_per_line) => {
     geo.computeVertexNormals();
     return geo;
 };
+const updateCurveGeo = (geo, curve1, curve2, points_per_line) => {
+    const pos_data = getCurvePosData(curve1, curve2, points_per_line);
+    const pos = geo.getAttribute('position');
+    pos.array = pos.array.map((n, i) => { return pos_data[i] });
+    pos.needsUpdate = true;
+    // normal
+    geo.computeVertexNormals();
+    return geo;
+};
+const QBC3 = (c1_start, c1_control, c1_end) => {
+    return new THREE.QuadraticBezierCurve3(c1_start, c1_control, c1_end);
+};
 // ---------- ----------
 // LIGHT
 // ---------- ----------
 const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(0.8, 1, 0.6);
+dl.position.set(0.25, 0.5, 0.5);
 scene.add(dl);
 // ---------- ----------
 // CURVES
@@ -85,7 +97,21 @@ const curve2 = new THREE.QuadraticBezierCurve3(c2_start, c2_control, c2_end);
 // ---------- ----------
 // GEO POSITION / UV
 // ---------- ----------
-const geo = createCurveGeo(curve1, curve2, 50);
+const geo = createCurveGeo(
+     QBC3(c1_start, c1_control, c1_end),
+     QBC3(c2_start, c2_control, c2_end),
+     50
+);
+/*
+c1_control.set(0,0,0)
+updateCurveGeo(
+     geo,
+     QBC3(c1_start, c1_control, c1_end),
+     QBC3(c2_start, c2_control, c2_end),
+     50
+);
+*/
+
 // ---------- ----------
 // TEXTURE
 // ---------- ----------
@@ -121,9 +147,6 @@ texture.needsUpdate = true;
 // ---------- ----------
 const material = new THREE.MeshPhongMaterial({ map: texture, wireframe: false, side: THREE.DoubleSide});
 const mesh = new THREE.Mesh(geo, material);
-//const line = new THREE.LineSegments(geo, new THREE.LineBasicMaterial({linewidth: 2, color: 0xafafaf}));
-//mesh.add(line);
-//line.position.y = 0.025;
 scene.add(mesh);
 // ---------- ----------
 // CONTROLS
@@ -144,7 +167,16 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-     const a1 = frame / frameMax;
+    const a1 = frame / frameMax;
+    const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+    c1_control.set(-10 + 20 * a2,-10 + 20 * a2,0);
+    c2_control.set(0, 0, -10);
+    updateCurveGeo(
+        geo,
+        QBC3(c1_start, c1_control, c1_end),
+        QBC3(c2_start, c2_control, c2_end),
+        50
+    );
 };
 // loop
 const loop = () => {
