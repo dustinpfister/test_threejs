@@ -48,14 +48,13 @@ const uv_data = [];
 let pi = 0;
 const points_per_line = 50;
 while(pi < points_per_line){
+    // position
     const a1 = pi / (points_per_line - 1);
     const v1 = curve1.getPoint(a1);
     const v2 = curve2.getPoint(a1);
     pos_data.push(v1.x, v1.y, v1.z, v2.x, v2.y, v2.z);
-
-    const b = pi / 50;
-    uv_data.push(b, 0, b, 1);
-
+    // uv
+    uv_data.push(a1, 0, a1, 1);
     pi += 1;
 }
 geo.setAttribute('position', new THREE.Float32BufferAttribute( pos_data, 3 ) );
