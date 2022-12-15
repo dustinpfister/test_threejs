@@ -47,9 +47,12 @@ while(pi < points_per_line){
 }
 geo.setAttribute('position', new THREE.Float32BufferAttribute( pos_data, 3 ) );
 
+// normals
+geo.computeVertexNormals();
 
-const line3 = new THREE.Line( geo, material_line );
-scene.add(line3);
+
+const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ wireframe: false, side: THREE.DoubleSide}))
+scene.add(mesh);
 
 // ---------- ----------
 // CONTROLS
