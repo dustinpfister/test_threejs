@@ -102,16 +102,6 @@ const geo = createCurveGeo(
      QBC3(c2_start, c2_control, c2_end),
      50
 );
-/*
-c1_control.set(0,0,0)
-updateCurveGeo(
-     geo,
-     QBC3(c1_start, c1_control, c1_end),
-     QBC3(c2_start, c2_control, c2_end),
-     50
-);
-*/
-
 // ---------- ----------
 // TEXTURE
 // ---------- ----------

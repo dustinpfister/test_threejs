@@ -31,14 +31,6 @@ c2_end = new THREE.Vector3(5,0,-5);
 const curve1 = new THREE.QuadraticBezierCurve3(c1_start, c1_control, c1_end);
 const curve2 = new THREE.QuadraticBezierCurve3(c2_start, c2_control, c2_end);
 // ---------- ----------
-// DEBUG CURVE LINES - just get a state of the curves - also yes this is a demo of 'geometry from curves'
-// ---------- ----------
-//const material_line = new THREE.LineBasicMaterial({ linewidth: 4, color: 0xff0000});
-//const line1 = new THREE.Line( new THREE.BufferGeometry().setFromPoints( curve1.getPoints(50) ), material_line );
-//scene.add(line1);
-//const line2 = new THREE.Line( new THREE.BufferGeometry().setFromPoints( curve2.getPoints(50) ), material_line );
-//scene.add(line2);
-// ---------- ----------
 // GEO POSITION / UV
 // ---------- ----------
 const geo = new THREE.BufferGeometry();
