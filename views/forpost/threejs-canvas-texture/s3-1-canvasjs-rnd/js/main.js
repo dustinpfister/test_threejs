@@ -27,7 +27,9 @@ let canObj2 = canvasMod.create({
     draw:'rnd',
     size: 64,
     update_mode: 'dual',
-    state: {},
+    state: {
+        gSize: 20
+    },
     palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
 });
 //-------- ----------
