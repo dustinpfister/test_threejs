@@ -1,7 +1,7 @@
 # threejs-curve-geometry-from todo list
 
-## () s1-2-basic-get-point
-* () basic example in which I am using the get point method
+## ( done 12/16/2022 ) s1-2-basic-get-point
+* (done) basic example in which I am using the get point method
 
 ## ( done 12/15/2022 ) s3-1-loop-video1-custom
 * (done) break down code into helper functions
