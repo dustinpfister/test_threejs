@@ -53,23 +53,33 @@
     // SCENE CHILD OBJECTS
     //-------- ----------
     scene.add( new THREE.GridHelper(10, 10) );
+    // seconds
     const count_sec = countDown.create({
         countID: 'sec',
         digits: 2,
         width: 1.25,
         source_objects: SOURCE_OBJECTS
     });
+    count_sec.position.set(-1, 0, 0);
     scene.add(count_sec);
-
+    const count_ms = countDown.create({
+        countID: 'ms',
+        digits: 3,
+        width: 1.15,
+        source_objects: SOURCE_OBJECTS
+    });
+    count_ms.scale.set(0.5, 0.5, 0.5);
+    count_ms.position.set(1.25, 0, 0.5);
+    scene.add(count_ms);
+    // frame counter
     const count_frames = countDown.create({
         countID: 'frames',
         digits: 3,
         width: 1.25,
         source_objects: SOURCE_OBJECTS
     });
-    count_frames.position.set(-3.5,0,-5)
+    count_frames.position.set(-3.5,0,-5);
     scene.add(count_frames);
-
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -83,8 +93,11 @@
     const update = function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(30 - 30 * a1);
+        let a2 = (30 - 30 * a1) % 1;
+        let ms = Math.floor(1000 * a2);
         //const timeStr = String(secs).padStart(3, '0');
         countDown.set(count_sec, secs);
+        countDown.set(count_ms, ms);
         countDown.set(count_frames, frame);
     };
     // loop
