@@ -16,6 +16,18 @@
         // assume we where given a custom function
         return opt.draw;
     };
+    // parse state data objects
+    const parseStateData = (canObj, opt) => {
+        const data = canObj.state.data
+        // all of this only applys to data strings
+        if(typeof data != 'string'){
+            return;
+        }
+        // plain data string ex '0,0,0,0,0,0,0,0'
+        if(opt.dataParse === 'string'){
+            canObj.state.data = data.split(',');
+        }
+    };
     // draw grid helper for built in draw methods 'grid_palette' and 'rnd'
     const draw_grid_fill = (ctx, canvas, iw, ih, getColor) => {
         getColor = getColor || function(color){ return color };
@@ -102,6 +114,7 @@
         const canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d', { willReadFrequently: true } );
         opt.size = opt.size === undefined ? 16 : opt.size;
+        opt.dataParse = opt.dataParse || 'string'; // parse data strings into arrays 
         canvas.width = opt.size;
         canvas.height = opt.size;
         // create canvas object
@@ -116,6 +129,8 @@
             state: opt.state || {},
             draw: parseDrawOption(opt)
         };
+        // parse data strings into arrays
+        parseStateData(canObj, opt);
         // create texture object
         canObj.texture = new THREE.CanvasTexture(canvas);
         canObj.texture_data = api.toDataTexture(canObj);

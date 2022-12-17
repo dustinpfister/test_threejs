@@ -22,6 +22,8 @@
 * (done) willReadFrequently bool to true
 * (done) using ctx ref in UPDATE.dual and toDataTexture
 
+* () parse state data helper for create method
+
 * () DRAW.grid\_rgb method that will use an rgb data array rather than palette array
 
 
