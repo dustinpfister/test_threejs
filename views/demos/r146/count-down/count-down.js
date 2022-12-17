@@ -18,8 +18,8 @@
     // position a digit group
     const positionDigit = (digit, di, digits, width) => {
         const hd = digits / 2;
-        const sx = hd * -1;
-        digit.position.x = sx + digits * width * di;
+        const sx = hd * width * -1;
+        digit.position.x = width / 2 + sx + width * di;
     };
  
     // set to the given time string
