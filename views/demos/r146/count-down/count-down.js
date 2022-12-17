@@ -10,12 +10,20 @@
         i += 1;
     }
 
+    // position a digit group
+    const positionDigit = (digit, di, digits, width) => {
+        const hd = digits / 2;
+        const sx = hd * -1;
+        digit.position.x = sx + digits * width * di;
+    };
+
     // create a count group
     api.create = (opt) => {
         opt = opt || {};
         opt.digits = opt.digits === undefined ? 2 : opt.digits;  // 2 digits
         opt.nMax = opt.nMax === undefined ? 60 : opt.nMax;       // 60 => 0 - 59
         opt.source_objects = opt.source_objects || DEFAULT_OBJECTS;
+        opt.width = opt.width === undefined ? 1 : opt.width;
         opt.countID = opt.countID || '';
         // main count object
         const countObj = new THREE.Group();
@@ -25,6 +33,8 @@
         while(di < opt.digits){
             const digit = new THREE.Group();
             digit.name = opt.countID + '_' + di;
+            // position digit group
+            positionDigit(digit, di, opt.digits, opt.width);
             countObj.add(digit);
             let ni = 0;
             while(ni < 10){
