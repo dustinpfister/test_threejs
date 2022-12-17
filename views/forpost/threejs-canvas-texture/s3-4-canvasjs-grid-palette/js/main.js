@@ -12,17 +12,19 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // CANVAS OBJECT
 //-------- ----------
+
 let canObj = canvasMod.create({
     draw: 'grid_palette',
     size: 512,
     update_mode: 'canvas',
-    dataParse: 'string',
+    dataParse: 'lzstring',
     state: {
        w: 8, h: 8,
-       data: '1,1,2,2,1,1,1,1,1,2,2,2,2,2,1,1,1,2,3,3,3,2,1,1,2,2,3,4,3,2,2,1,2,3,3,4,4,3,2,1,2,3,3,4,3,3,2,2,2,2,3,3,3,2,2,2,1,2,2,2,2,2,1,1'
+       data: '⌁ꔉ蔴泲ᔦ술㌻㵹⌁拙崰₍뒃紷⥄갱唒氠'
     },
     palette: ['white', '#004400', '#008800', '#00cc00', '#00ff00']
 });
+
 //-------- ----------
 // GEO, MATERIAL, MESH
 //-------- ----------

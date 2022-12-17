@@ -26,6 +26,17 @@
         // plain data string ex '0,0,0,0,0,0,0,0'
         if(opt.dataParse === 'string'){
             canObj.state.data = data.split(',');
+            return;
+        }
+        // try to use LZString if it is there
+        if(opt.dataParse === 'lzstring'){
+           try{
+               const str = LZString.decompress(data);
+               canObj.state.data = str.split(',');
+               return;
+           }catch(e){
+               console.log('looks like we do not have lz-string.js ');
+           }
         }
     };
     // draw grid helper for built in draw methods 'grid_palette' and 'rnd'

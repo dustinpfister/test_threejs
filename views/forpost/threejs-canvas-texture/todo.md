@@ -21,7 +21,7 @@
 * (done) base draw grid helper function for DRAW.grid\_palette and draw_rnd
 * (done) willReadFrequently bool to true
 * (done) using ctx ref in UPDATE.dual and toDataTexture
-
+* (done) can use lz-string if there to work with
 * () parse state data helper for create method
 
 * () DRAW.grid\_rgb method that will use an rgb data array rather than palette array
