@@ -1,11 +1,22 @@
 // canvas.js - r2 - from threejs-canvas-texture
 (function(api){
     //-------- ----------
-    // built in draw methods
+    // HELEPRS
     //-------- ----------
-    const DRAW = {};
-
-
+    // parse draw option helper
+    const parseDrawOption = (opt) => {
+        // if opt.draw is false for any reason return DRAW.square
+        if(!opt.draw){
+            return DRAW.square;
+        }
+        // if a string is given assume it is a key for a built in draw method
+        if(typeof opt.draw === 'string'){
+            return DRAW[opt.draw];
+        }
+        // assume we where given a custom function
+        return opt.draw;
+    };
+    // draw grid helper for built in draw methods 'grid_palette' and 'rnd'
     const draw_grid_fill = (ctx, canvas, iw, ih, getColor) => {
         getColor = getColor || function(color){ return color };
         const len = iw * ih;
@@ -16,18 +27,18 @@
         while(i < len){
             const x = i % iw;
             const y = Math.floor(i / iw);
-
-            //const ci =  data[i] || 0;
             const color = getColor( new THREE.Color(), x, y, i);
-            ctx.fillStyle = color.getStyle(); //canObj.palette[ci];
-
+            ctx.fillStyle = color.getStyle();
             const px = x * pxW;
             const py = y * pxH;
             ctx.fillRect(px, py, pxW, pxH);
             i += 1;
         }
-    }
-
+    };
+    //-------- ----------
+    // built in draw methods
+    //-------- ----------
+    const DRAW = {};
     // draw a grid with palette data
     DRAW.grid_palette = (canObj, ctx, canvas, state) => {
         const w =  state.w === undefined ? 16 : state.w;
@@ -36,18 +47,10 @@
         const len = w * h;
         const pxW = canObj.size / w;
         const pxH = canObj.size / h;
-        let i = 0;
-        ctx.clearRect(0,0, canvas.width, canvas.height);
-        while(i < len){
-            const ci =  data[i] || 0;
-            const x = i % w;
-            const y = Math.floor(i / w);
-            ctx.fillStyle = canObj.palette[ci];
-            const px = x * pxW;
-            const py = y * pxH;
-            ctx.fillRect(px, py, pxW, pxH);
-            i += 1;
-        }
+        draw_grid_fill(ctx, canvas, w, h, function(color, x, y, i){
+            const ci = data[i];
+            return color.setStyle( canObj.palette[ci] );
+        });
     };
     // random using palette colors
     DRAW.rnd = (canObj, ctx, canvas, state) => {
@@ -57,8 +60,7 @@
         const pxSize = canObj.size / gSize;
         draw_grid_fill(ctx, canvas, gSize, gSize, function(color, x, y, i){
             const ci = Math.floor( canObj.palette.length * Math.random() );
-            palColor = canObj.palette[ci];
-            return color.setStyle(palColor);
+            return color.setStyle(canObj.palette[ci]);
         });
     };
     // square draw method
@@ -82,22 +84,6 @@
             ctx.stroke();
             i += 1;
         }
-    };
-    //-------- ----------
-    // HELEPRS
-    //-------- ----------
-    // parse draw option helper
-    const parseDrawOption = (opt) => {
-        // if opt.draw is false for any reason return DRAW.square
-        if(!opt.draw){
-            return DRAW.square;
-        }
-        // if a string is given assume it is a key for a built in draw method
-        if(typeof opt.draw === 'string'){
-            return DRAW[opt.draw];
-        }
-        // assume we where given a custom function
-        return opt.draw;
     };
     //-------- ----------
     // PUBLIC API

@@ -24,6 +24,17 @@ const makeCube = (texture, size) => {
 // CANVAS OBJECT
 //-------- ----------
 let canObj2 = canvasMod.create({
+    draw:'grid_palette',
+    size: 64,
+    update_mode: 'dual',
+    state: {
+        w: 2, h: 2,
+        data: [1,2,3,4]
+    },
+    palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
+});
+/*
+let canObj2 = canvasMod.create({
     draw:'rnd',
     size: 64,
     update_mode: 'dual',
@@ -32,6 +43,7 @@ let canObj2 = canvasMod.create({
     },
     palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
 });
+*/
 //-------- ----------
 // MESH
 //-------- ----------
