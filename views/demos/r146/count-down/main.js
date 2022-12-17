@@ -55,6 +55,8 @@
     //scene.add( new THREE.GridHelper(10, 10) );
     const count_sec = countDown.create({
         countID: 'sec',
+        digits: 3,
+        width: 0.5,
         source_objects: SOURCE_OBJECTS
     });
     scene.add(count_sec);
@@ -70,13 +72,9 @@
     // update
     const update = function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
-
         let secs = Math.floor(30 - 30 * a1);
-
-        const timeStr = String(secs).padStart(2, '0');
-        countDown.set(count_sec, timeStr);
-
-        //updateTimeGroup(timeGroup, );
+        //const timeStr = String(secs).padStart(3, '0');
+        countDown.set(count_sec, secs);
     };
     // loop
     const loop = () => {

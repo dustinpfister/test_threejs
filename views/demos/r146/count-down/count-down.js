@@ -9,6 +9,11 @@
         DEFAULT_OBJECTS[i] = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ wireframe: true}));
         i += 1;
     }
+ 
+    // to pad string ( 9 to 009 if 3 digits )
+    const toPadString = (a, digits) => {
+        return String(a).padStart(digits, '0');
+    };
 
     // position a digit group
     const positionDigit = (digit, di, digits, width) => {
@@ -16,11 +21,12 @@
         const sx = hd * -1;
         digit.position.x = sx + digits * width * di;
     };
-
+ 
     // set to the given time string
     api.set = (countObj, timeStr) => {
         let di = 0;
         const digits = countObj.children.length;
+        timeStr = toPadString(timeStr, digits);
         while(di < digits){
             let ni = 0;
             while(ni < 10){
@@ -35,7 +41,7 @@
             di += 1;
         }
     };
-
+ 
     // create a count group
     api.create = (opt) => {
         opt = opt || {};
