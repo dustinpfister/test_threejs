@@ -3,6 +3,7 @@
 ## () canvasjs - r3
 * () default values for translate that can be adjusted as needed see 'pxa' from r0 of uvmap-cube.js
 * () no text select event for what this is used to create and inject canvas directly as dom elements
+* () DRAW.grid\_rgb method that will use an rgb data array rather than palette array
 
 ## () - sx-x-cigrid section
 * () start a color index grid section
@@ -16,16 +17,13 @@
 ## ( done 12/17/2022 ) - s3-4-canvasjs-grid-palette
 * (done) start new grid-palette demo to test out new palette draw feature of r2
 
-## () canvasjs - r2
+## ( done 12/17/2022 ) canvasjs - r2
 * (done) DRAW.grid\_palette added from palette\_grid method from threejs-examples-uvmap-cube-canvas-update.
 * (done) base draw grid helper function for DRAW.grid\_palette and draw_rnd
 * (done) willReadFrequently bool to true
 * (done) using ctx ref in UPDATE.dual and toDataTexture
 * (done) parse state data helper for create method
 * (done) can use lz-string if there to work with
-
-* () DRAW.grid\_rgb method that will use an rgb data array rather than palette array
-
 
 ## ( done 10/14/2022 ) - s3-3-canvasjs-textplane
 * (done) have a textplane demo
