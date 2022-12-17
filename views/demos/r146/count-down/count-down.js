@@ -78,5 +78,5 @@
         api.set(countObj, opt.timeStr);
         return countObj;
     };
-
+ 
 }( this['countDown'] = {} ));
