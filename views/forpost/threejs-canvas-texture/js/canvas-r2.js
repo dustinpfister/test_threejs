@@ -35,7 +35,19 @@
                canObj.state.data = str.split(',');
                return;
            }catch(e){
-               console.log('looks like we do not have lz-string.js ');
+               console.log('some error with lz-string.js');
+               console.log(e);
+           }
+        }
+        // try to use LZString if it is there base64 style
+        if(opt.dataParse === 'lzstring64'){
+           try{
+               const str = LZString.decompressFromBase64(data);
+               canObj.state.data = str.split(',');
+               return;
+           }catch(e){
+               console.log('some error with lz-string.js');
+               console.log(e);
            }
         }
     };
