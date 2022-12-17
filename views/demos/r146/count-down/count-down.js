@@ -17,11 +17,30 @@
         digit.position.x = sx + digits * width * di;
     };
 
+    // set to the given time string
+    api.set = (countObj, timeStr) => {
+        let di = 0;
+        const digits = countObj.children.length;
+        while(di < digits){
+            let ni = 0;
+            while(ni < 10){
+                const mesh = countObj.getObjectByName(countObj.name + '_' + di + '_' + ni);
+                const n = parseInt(timeStr[di]);
+                mesh.visible = false;
+                if(n === ni){
+                    mesh.visible = true;
+                }
+                ni += 1;
+            }
+            di += 1;
+        }
+    };
+
     // create a count group
     api.create = (opt) => {
         opt = opt || {};
+        opt.timeStr = opt.timeStr || '00';
         opt.digits = opt.digits === undefined ? 2 : opt.digits;  // 2 digits
-        opt.nMax = opt.nMax === undefined ? 60 : opt.nMax;       // 60 => 0 - 59
         opt.source_objects = opt.source_objects || DEFAULT_OBJECTS;
         opt.width = opt.width === undefined ? 1 : opt.width;
         opt.countID = opt.countID || '';
@@ -41,6 +60,7 @@
                 // clone the mesh object
                 const mesh = opt.source_objects[ni].clone();
                 mesh.name = opt.countID + '_' + di + '_' + ni;
+                mesh.visible = false; // mesh objects viable gets set true based on time value
                 // I will want a clone for the geometry and material also
                 mesh.geometry = mesh.geometry.clone();
                 mesh.material = mesh.material.clone();
@@ -49,6 +69,7 @@
             }
             di += 1;
         }
+        api.set(countObj, opt.timeStr);
         return countObj;
     };
 

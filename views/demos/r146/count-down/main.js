@@ -66,9 +66,8 @@
     //-------- ----------
     scene.add( new THREE.GridHelper(10, 10) );
 
-const count_sec = countDown.create({ countID: 'sec'});
-console.log(count_sec)
-scene.add(count_sec);
+    const count_sec = countDown.create({ countID: 'sec', timeStr:'09'});
+    scene.add(count_sec);
 
     // create and add the time group
     //const timeGroup = createTimeGroup('00');
