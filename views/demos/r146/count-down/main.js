@@ -4,7 +4,7 @@
     // ---------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(5, 5, 5);
+    camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
@@ -79,7 +79,7 @@
     // ---------- ----------
     const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 120;
+    FRAME_MAX = 900;
     let secs = 0,
     frame = 0,
     lt = new Date();
@@ -87,7 +87,11 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         let secs = Math.floor(30 - 30 * a1);
-        //updateTimeGroup(timeGroup, String(secs).padStart(2, '0'));
+
+        const timeStr = String(secs).padStart(2, '0');
+        countDown.set(count_sec, timeStr);
+
+        //updateTimeGroup(timeGroup, );
     };
     // loop
     const loop = () => {

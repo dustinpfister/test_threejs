@@ -4,9 +4,9 @@
     const DEFAULT_OBJECTS = {};
     let i = 0;
     while(i < 10){
-        const n = 5 + 5 * i;
+        const n = 5 + 10 * i;
         const geo = new THREE.SphereGeometry(0.5, n, n);
-        DEFAULT_OBJECTS[i] = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());
+        DEFAULT_OBJECTS[i] = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ wireframe: true}));
         i += 1;
     }
 
