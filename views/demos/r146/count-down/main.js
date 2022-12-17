@@ -4,7 +4,7 @@
     // ---------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(0, 3, 3);
+    camera.position.set(1, 3, 5);
     camera.lookAt(0, 0, 0);
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
@@ -55,11 +55,21 @@
     scene.add( new THREE.GridHelper(10, 10) );
     const count_sec = countDown.create({
         countID: 'sec',
-        digits: 4,
-        width: 1.1,
+        digits: 2,
+        width: 1.25,
         source_objects: SOURCE_OBJECTS
     });
     scene.add(count_sec);
+
+    const count_frames = countDown.create({
+        countID: 'frames',
+        digits: 3,
+        width: 1.25,
+        source_objects: SOURCE_OBJECTS
+    });
+    count_frames.position.set(-3.5,0,-5)
+    scene.add(count_frames);
+
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -75,6 +85,7 @@
         let secs = Math.floor(30 - 30 * a1);
         //const timeStr = String(secs).padStart(3, '0');
         countDown.set(count_sec, secs);
+        countDown.set(count_frames, frame);
     };
     // loop
     const loop = () => {
