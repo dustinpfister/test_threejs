@@ -4,7 +4,7 @@
     // ---------- ----------
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-    camera.position.set(2, 2, 2);
+    camera.position.set(3, 3, 3);
     camera.lookAt(0, 0, 0);
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
@@ -12,18 +12,22 @@
     //-------- ----------
     // CUSTOM OBJECTS
     //-------- ----------
-
     // draw method
     const drawNumber = (canObj, ctx, canvas, state) => {
+        // black background
         ctx.fillStyle = canObj.palette[0];
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // white outline
+        ctx.strokeStyle = canObj.palette[1];
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+        // white text
         ctx.fillStyle = canObj.palette[1];
         ctx.textBaseline = 'middle';
         ctx.textAlign = 'center';
         ctx.font = '16px arial';
         ctx.fillText(state.char, 16, 16);
     };
-
+    // createing custom objects using canvas.js r2
     const SOURCE_OBJECTS = {};
     let i = 0;
     while(i < 10){
@@ -45,66 +49,15 @@
         );
         i += 1;
     }
-
-
-/*
-    const createTimeGroup = (str_time) => {
-        str_time = str_time || '00:00:00';
-        const timeGroup = new THREE.Group();
-        str_time.split('').forEach((char, i, arr) => {
-            const canObj = canvasMod.create({
-                size: 32,
-                update_mode: 'canvas',
-                palette: ['black', 'white'],
-                state: {
-                   char: char,
-                },
-                draw: drawNumber
-            });
-            canvasMod.update(canObj);
-            const mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({
-                map: canObj.texture
-            }));
-            mesh.userData.canObj = canObj;
-            const a_charpos = i / arr.length;
-            mesh.position.x = -0.6 + 2.4 * a_charpos;
-            mesh.position.y = 0.5;
-            timeGroup.add(mesh);
-        });
-        return timeGroup;
-    };
-    // update time group helper
-    const updateTimeGroup = (timeGroup, str_time) => {
-        str_time = str_time || '00:00:00';
-        timeGroup.children.forEach((mesh, i, arr) => {
-            const canObj = mesh.userData.canObj;
-            const char = str_time[i];
-            canObj.state.char = char;
-            canvasMod.update(canObj);
-        });
-    };
-*/
-    //-------- ----------
-    // CANVAS OBJ
-    //-------- ----------
-
-
     //-------- ----------
     // SCENE CHILD OBJECTS
     //-------- ----------
-    scene.add( new THREE.GridHelper(10, 10) );
-
+    //scene.add( new THREE.GridHelper(10, 10) );
     const count_sec = countDown.create({
         countID: 'sec',
         source_objects: SOURCE_OBJECTS
     });
     scene.add(count_sec);
-
-    // create and add the time group
-    //const timeGroup = createTimeGroup('00');
-    //timeGroup.scale.set(2,4,1)
-    //scene.add(timeGroup);
-    //updateTimeGroup(timeGroup, '30');
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
