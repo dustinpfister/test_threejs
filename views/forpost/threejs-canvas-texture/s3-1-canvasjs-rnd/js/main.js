@@ -37,8 +37,8 @@ let canObj2 = canvasMod.create({
 */
 let canObj2 = canvasMod.create({
     draw:'rnd',
-    size: 64,
-    update_mode: 'dual',
+    size: 256,
+    update_mode: 'canvas',
     state: {
         gSize: 20
     },
@@ -47,7 +47,7 @@ let canObj2 = canvasMod.create({
 //-------- ----------
 // MESH
 //-------- ----------
-let cube1 = makeCube(canObj2.texture_data, 2);
+let cube1 = makeCube(canObj2.texture, 2);
 cube1.position.set(0, 0, 0);
 scene.add(cube1);
 // ---------- ----------

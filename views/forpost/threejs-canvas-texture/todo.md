@@ -9,6 +9,9 @@
 ## () sx-texture section
 * () I will want to stat a section on TEXTURE class features such as flip warp ect
 
+## ( done 12/17/2022 ) - s3-4-canvasjs-grid-palette
+* (done) start new grid-palette demo to test out new palette draw feature of r2
+
 ## () canvasjs - r2
 * (done) DRAW.grid\_palette added from palette\_grid method from threejs-examples-uvmap-cube-canvas-update.
 * (done) base draw grid helper function for DRAW.grid\_palette and draw_rnd
