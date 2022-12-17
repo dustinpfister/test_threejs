@@ -5,6 +5,30 @@
     //-------- ----------
     const DRAW = {};
 
+
+    const draw_grid_fill = (ctx, canvas, iw, ih, getColor) => {
+        getColor = getColor || function(color){ return color };
+        const len = iw * ih;
+        const pxW = canvas.width / iw;
+        const pxH = canvas.height / ih;
+        let i = 0;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        while(i < len){
+            const x = i % iw;
+            const y = Math.floor(i / iw);
+
+            //const ci =  data[i] || 0;
+            const color = getColor( new THREE.Color(), x, y, i);
+            ctx.fillStyle = color.getStyle(); //canObj.palette[ci];
+
+            const px = x * pxW;
+            const py = y * pxH;
+            ctx.fillRect(px, py, pxW, pxH);
+            i += 1;
+        }
+    }
+
+    // draw a grid with palette data
     DRAW.grid_palette = (canObj, ctx, canvas, state) => {
         const w =  state.w === undefined ? 16 : state.w;
         const h =  state.h === undefined ? 16 : state.h;
@@ -25,7 +49,18 @@
             i += 1;
         }
     };
-
+    // random using palette colors
+    DRAW.rnd = (canObj, ctx, canvas, state) => {
+        let i = 0;
+        const gSize =  state.gSize === undefined ? 5 : state.gSize;
+        const len = gSize * gSize;
+        const pxSize = canObj.size / gSize;
+        draw_grid_fill(ctx, canvas, gSize, gSize, function(color, x, y, i){
+            const ci = Math.floor( canObj.palette.length * Math.random() );
+            palColor = canObj.palette[ci];
+            return color.setStyle(palColor);
+        });
+    };
     // square draw method
     DRAW.square = (canObj, ctx, canvas, state) => {
         const squares = state.squares || [ {
@@ -45,22 +80,6 @@
             ctx.rect.apply(ctx, sq.rect);
             ctx.fill();
             ctx.stroke();
-            i += 1;
-        }
-    };
-    // random using palette colors
-    DRAW.rnd = (canObj, ctx, canvas, state) => {
-        let i = 0;
-        const gSize =  state.gSize === undefined ? 5 : state.gSize;
-        const len = gSize * gSize;
-        const pxSize = canObj.size / gSize;
-        ctx.clearRect(0,0, canvas.width, canvas.height);
-        while(i < len){
-            const ci = Math.floor( canObj.palette.length * Math.random() );
-            const x = i % gSize;
-            const y = Math.floor(i / gSize);
-            ctx.fillStyle = canObj.palette[ci];
-            ctx.fillRect(0.5 + x * pxSize, 0.5 + y * pxSize, pxSize, pxSize);
             i += 1;
         }
     };

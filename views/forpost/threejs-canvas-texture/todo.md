@@ -10,8 +10,10 @@
 * () I will want to stat a section on TEXTURE class features such as flip warp ect
 
 ## () canvasjs - r2
+* (done) DRAW.grid\_palette added from palette\_grid method from threejs-examples-uvmap-cube-canvas-update.
+* () base draw grid helper function for DRAW.grid\_palette and draw_rnd
+
 * () willReadFrequently bool to true
-* () add palette_grid method from threejs-examples-uvmap-cube-canvas-update as built in draw method.
 * () default values for translate that can be adjusted as needed see 'pxa' from r0 of uvmap-cube.js
 * () no text select event for what this is used to create and inject canvas directly as dom elements
 
