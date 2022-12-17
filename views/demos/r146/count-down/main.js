@@ -12,6 +12,7 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
+/*
     const createTimeGroup = (str_time) => {
         str_time = str_time || '00:00:00';
         const timeGroup = new THREE.Group();
@@ -59,15 +60,21 @@
         ctx.font = '16px arial';
         ctx.fillText(state.char, 16, 16);
     };
+*/
     //-------- ----------
     // SCENE CHILD OBJECTS
     //-------- ----------
     scene.add( new THREE.GridHelper(10, 10) );
+
+const count_sec = countDown.create({ countID: 'sec'});
+console.log(count_sec)
+scene.add(count_sec);
+
     // create and add the time group
-    const timeGroup = createTimeGroup('00');
-    timeGroup.scale.set(2,4,1)
-    scene.add(timeGroup);
-    updateTimeGroup(timeGroup, '30');
+    //const timeGroup = createTimeGroup('00');
+    //timeGroup.scale.set(2,4,1)
+    //scene.add(timeGroup);
+    //updateTimeGroup(timeGroup, '30');
     // ---------- ----------
     // ANIMATION LOOP
     // ---------- ----------
@@ -81,7 +88,7 @@
     const update = function(frame, frameMax){
         const a1 = frame / frameMax;
         let secs = Math.floor(30 - 30 * a1);
-        updateTimeGroup(timeGroup, String(secs).padStart(2, '0'));
+        //updateTimeGroup(timeGroup, String(secs).padStart(2, '0'));
     };
     // loop
     const loop = () => {
