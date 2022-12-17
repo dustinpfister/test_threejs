@@ -12,8 +12,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // CANVAS OBJECT
 //-------- ----------
-
-let canObj = canvasMod.create({
+let canObj2 = canvasMod.create({
     draw: 'grid_palette',
     size: 512,
     update_mode: 'canvas',
@@ -24,15 +23,14 @@ let canObj = canvasMod.create({
     },
     palette: ['white', '#004400', '#008800', '#00cc00', '#00ff00']
 });
-
 //-------- ----------
 // GEO, MATERIAL, MESH
 //-------- ----------
 const geo = new THREE.PlaneGeometry(10, 10, 1, 1);
 geo.rotateX(Math.PI * 1.5);
-const material = new THREE.MeshBasicMaterial({ map: canObj.texture });
-const mesh = new THREE.Mesh(geo, material);
-scene.add(mesh)
+const material = new THREE.MeshBasicMaterial({ map: canObj2.texture });
+const mesh2 = new THREE.Mesh(geo, material);
+scene.add(mesh2)
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
