@@ -6,8 +6,8 @@ scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(75, 320 / 240, 0.025, 1000);
 camera.position.set(0, 1.5, 2.75);
 camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
 // HELPERS
@@ -23,6 +23,7 @@ const makeCube = (texture, size) => {
 //-------- ----------
 // CANVAS OBJECT
 //-------- ----------
+/*
 let canObj2 = canvasMod.create({
     draw:'grid_palette',
     size: 64,
@@ -33,7 +34,7 @@ let canObj2 = canvasMod.create({
     },
     palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
 });
-/*
+*/
 let canObj2 = canvasMod.create({
     draw:'rnd',
     size: 64,
@@ -43,7 +44,6 @@ let canObj2 = canvasMod.create({
     },
     palette: ['black', 'white', 'cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
 });
-*/
 //-------- ----------
 // MESH
 //-------- ----------

@@ -11,13 +11,12 @@
 
 ## () canvasjs - r2
 * (done) DRAW.grid\_palette added from palette\_grid method from threejs-examples-uvmap-cube-canvas-update.
-* () base draw grid helper function for DRAW.grid\_palette and draw_rnd
+* (done) base draw grid helper function for DRAW.grid\_palette and draw_rnd
+* (done) willReadFrequently bool to true
+* (done) using ctx ref in UPDATE.dual and toDataTexture
 
-* () willReadFrequently bool to true
 * () default values for translate that can be adjusted as needed see 'pxa' from r0 of uvmap-cube.js
 * () no text select event for what this is used to create and inject canvas directly as dom elements
-
-* () update curent examples to work with r2
 
 ## ( done 10/14/2022 ) - s3-3-canvasjs-textplane
 * (done) have a textplane demo

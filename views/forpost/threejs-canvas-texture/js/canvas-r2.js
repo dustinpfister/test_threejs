@@ -90,7 +90,7 @@
     //-------- ----------
     // to data texture method
     api.toDataTexture = (canObj) => {
-        const canvasData = canObj.texture.image.getContext('2d').getImageData(0, 0, canObj.size, canObj.size);
+        const canvasData = canObj.ctx.getImageData(0, 0, canObj.size, canObj.size);
         const texture_data = new THREE.DataTexture(canvasData.data, canObj.size, canObj.size );
         texture_data.needsUpdate = true;
         return texture_data;
@@ -100,7 +100,7 @@
         opt = opt || {};
         // create canvas, get context, set size
         const canvas = document.createElement('canvas'),
-        ctx = canvas.getContext('2d');
+        ctx = canvas.getContext('2d', { willReadFrequently: true } );
         opt.size = opt.size === undefined ? 16 : opt.size;
         canvas.width = opt.size;
         canvas.height = opt.size;
@@ -110,7 +110,8 @@
             texture_data: null,
             update_mode: opt.update_mode || 'dual',
             size: opt.size,
-            canvas: canvas, ctx: ctx,
+            canvas: canvas, 
+            ctx: ctx,
             palette: opt.palette || ['black', 'white'],
             state: opt.state || {},
             draw: parseDrawOption(opt)
@@ -118,6 +119,7 @@
         // create texture object
         canObj.texture = new THREE.CanvasTexture(canvas);
         canObj.texture_data = api.toDataTexture(canObj);
+        // update for first time
         api.update(canObj);
         return canObj;
     };
@@ -133,7 +135,7 @@
     UPDATE.dual = (canObj) => {
         UPDATE.canvas(canObj);
         // update data texture
-        const canvasData = canObj.texture.image.getContext('2d').getImageData(0, 0, canObj.size, canObj.size);
+        const canvasData = canObj.ctx.getImageData(0, 0, canObj.size, canObj.size);
         const data = canObj.texture_data.image.data;
         const len = data.length;
         let i = 0;
