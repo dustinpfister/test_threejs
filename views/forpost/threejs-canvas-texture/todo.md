@@ -1,11 +1,5 @@
 # threejs-canvas-texture todo list
 
-## () canvasjs - r2
-* () willReadFrequently bool to true
-* () add palette_grid method from threejs-examples-uvmap-cube-canvas-update as built in draw method.
-* () default values for translate that can be adjusted as needed see 'pxa' from r0 of uvmap-cube.js
-* () no text select event for what this is used to create and inject canvas directly as dom elements
-
 ## () - sx-x-cigrid section
 * () start a color index grid section
 
@@ -14,6 +8,14 @@
 
 ## () sx-texture section
 * () I will want to stat a section on TEXTURE class features such as flip warp ect
+
+## () canvasjs - r2
+* () willReadFrequently bool to true
+* () add palette_grid method from threejs-examples-uvmap-cube-canvas-update as built in draw method.
+* () default values for translate that can be adjusted as needed see 'pxa' from r0 of uvmap-cube.js
+* () no text select event for what this is used to create and inject canvas directly as dom elements
+
+* () update curent examples to work with r2
 
 ## ( done 10/14/2022 ) - s3-3-canvasjs-textplane
 * (done) have a textplane demo
