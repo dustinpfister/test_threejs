@@ -10,8 +10,43 @@
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
     //-------- ----------
-    // HELPERS
+    // CUSTOM OBJECTS
     //-------- ----------
+
+    // draw method
+    const drawNumber = (canObj, ctx, canvas, state) => {
+        ctx.fillStyle = canObj.palette[0];
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = canObj.palette[1];
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'center';
+        ctx.font = '16px arial';
+        ctx.fillText(state.char, 16, 16);
+    };
+
+    const SOURCE_OBJECTS = {};
+    let i = 0;
+    while(i < 10){
+        const canObj = canvasMod.create({
+            size: 32,
+            update_mode: 'canvas',
+            palette: ['black', 'white'],
+            state: {
+               char: i,
+            },
+            draw: drawNumber
+        });
+        canvasMod.update(canObj);
+        SOURCE_OBJECTS[i] = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshBasicMaterial({
+                map: canObj.texture
+            })
+        );
+        i += 1;
+    }
+
+
 /*
     const createTimeGroup = (str_time) => {
         str_time = str_time || '00:00:00';
@@ -48,25 +83,21 @@
             canvasMod.update(canObj);
         });
     };
+*/
     //-------- ----------
     // CANVAS OBJ
     //-------- ----------
-    const drawNumber = (canObj, ctx, canvas, state) => {
-        ctx.fillStyle = canObj.palette[0];
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = canObj.palette[1];
-        ctx.textBaseline = 'middle';
-        ctx.textAlign = 'center';
-        ctx.font = '16px arial';
-        ctx.fillText(state.char, 16, 16);
-    };
-*/
+
+
     //-------- ----------
     // SCENE CHILD OBJECTS
     //-------- ----------
     scene.add( new THREE.GridHelper(10, 10) );
 
-    const count_sec = countDown.create({ countID: 'sec', timeStr:'09'});
+    const count_sec = countDown.create({
+        countID: 'sec',
+        source_objects: SOURCE_OBJECTS
+    });
     scene.add(count_sec);
 
     // create and add the time group
@@ -85,7 +116,8 @@
     lt = new Date();
     // update
     const update = function(frame, frameMax){
-        const a1 = frame / frameMax;
+        const a1 = (frame + 1) / frameMax;
+
         let secs = Math.floor(30 - 30 * a1);
 
         const timeStr = String(secs).padStart(2, '0');
