@@ -1,5 +1,9 @@
 # threejs-canvas-texture todo list
 
+## () canvasjs - r3
+* () default values for translate that can be adjusted as needed see 'pxa' from r0 of uvmap-cube.js
+* () no text select event for what this is used to create and inject canvas directly as dom elements
+
 ## () - sx-x-cigrid section
 * () start a color index grid section
 
@@ -18,8 +22,8 @@
 * (done) willReadFrequently bool to true
 * (done) using ctx ref in UPDATE.dual and toDataTexture
 
-* () default values for translate that can be adjusted as needed see 'pxa' from r0 of uvmap-cube.js
-* () no text select event for what this is used to create and inject canvas directly as dom elements
+* () DRAW.grid\_rgb method that will use an rgb data array rather than palette array
+
 
 ## ( done 10/14/2022 ) - s3-3-canvasjs-textplane
 * (done) have a textplane demo
