@@ -38,8 +38,12 @@
             countObj.add(digit);
             let ni = 0;
             while(ni < 10){
+                // clone the mesh object
                 const mesh = opt.source_objects[ni].clone();
                 mesh.name = opt.countID + '_' + di + '_' + ni;
+                // I will want a clone for the geometry and material also
+                mesh.geometry = mesh.geometry.clone();
+                mesh.material = mesh.material.clone();
                 digit.add(mesh);
                 ni += 1;
             }
