@@ -53,6 +53,7 @@ const update = function(frame, frameMax){
         m.opacity = 0.85 - 0.80 * ( i / arr.length);
     });
     LinesSphereCircles.setByFrame(g1, frame, frameMax, opt);
+    g1.rotation.y = Math.PI * 2 * a1;
 };
 // loop
 const loop = () => {
