@@ -12,7 +12,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // LINES
 //-------- ----------
-const opt = { maxRadius: 5, pointsPerCircle: 70, circleCount: 50 }
+const opt = { maxRadius: 5, pointsPerCircle: 70, circleCount: 50, linewidth: 4 }
 const g1 = LinesSphereCircles.create(opt);
 scene.add(g1);
 //-------- ----------

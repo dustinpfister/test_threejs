@@ -1,9 +1,7 @@
 # threejs-examples-lines-sphere-circles todo list
 
-## () r1-2-shell example
-
-## () r1-1-basic example
-* () basic example like that of the r0 example
+## ( done 12/18/2022 ) r1-x-basic examples
+* (done) split r1 example into three for each demo of the module
 
 ## (done 06/08/2022 ) - see about fixing r1 "loss of context" bug
 * (done) see if update geometry "the hard way" as I have come to call it will fix the loss of context bug	
