@@ -38,8 +38,8 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-    const a1 = frame / frameMax * 4 % 1;
-    const a2 = 1 - Math.abs( 0.5 - a1 * 8 % 1 ) / 0.5;
+    const a1 = frame / frameMax * 2 % 1;
+    const a2 = 1 - Math.abs( 0.5 - a1 * 4 % 1 ) / 0.5;
     g1.children.forEach( (line, i, arr) => {
         // rotate
         const count = Math.floor(i + 1);
