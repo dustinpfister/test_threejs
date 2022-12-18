@@ -1,7 +1,9 @@
 # threejs-examples-lines-sphere-circles todo list
 
-## () - r2 - opt, initState, hooks
-* start new revistion in which I am working with options, start state, frame state, and hooks
+## () r1-2-shell example
+
+## () r1-1-basic example
+* () basic example like that of the r0 example
 
 ## (done 06/08/2022 ) - see about fixing r1 "loss of context" bug
 * (done) see if update geometry "the hard way" as I have come to call it will fix the loss of context bug	
