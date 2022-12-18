@@ -1,5 +1,8 @@
 # threejs-examples-lines-sphere-circles todo list
 
+## () r1-4-rotation
+* () have an example where the circles rotate
+
 ## ( done 12/18/2022 ) r1-x-basic examples
 * (done) split r1 example into three for each demo of the module
 
