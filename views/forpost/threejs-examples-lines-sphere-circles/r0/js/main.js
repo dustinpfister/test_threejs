@@ -1,6 +1,7 @@
-//******** **********
+// line-sphere-circles - r0 - from threejs-examples-lines-sphere-circles
+//-------- ----------
 // SCENE, CAMERA, RENDERER
-//******** **********
+//-------- ----------
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
 scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0x4a4a4a) )
@@ -10,9 +11,9 @@ camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-//******** **********
+//-------- ----------
 // LINES
-//******** **********
+//-------- ----------
 // just create one circle for a set of circles that form a sphere like shape
 const createSphereCirclePoints = function(maxRadius, circleCount, circleIndex, pointsPerCircle, randomDelta){
     const points = [];
