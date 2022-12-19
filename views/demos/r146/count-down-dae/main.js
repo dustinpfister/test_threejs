@@ -46,10 +46,10 @@
         const count_sec = countDown.create({
             countID: 'sec',
             digits: 2,
-            width: 1.25,
+            width: 1.05,
             source_objects: SOURCE_OBJECTS
         });
-        count_sec.position.set(-1, 0, 0);
+        count_sec.position.set(0, 1, 0);
         scene.add(count_sec);
         // ---------- ----------
         // ANIMATION LOOP
