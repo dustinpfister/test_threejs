@@ -98,13 +98,12 @@
     // all DAE files are loaded
     var manager = new THREE.LoadingManager();
     manager.onLoad = function(){
-        console.log('All Load.');
+        console.log('Done Loading.');
         loop();
     };
     // the collada loader instance
     var loader = new THREE.ColladaLoader(manager);
-    loader.load('/dae/box_house_1/box_house1.dae', DAELoad);
-    loader.load('/dae/rpi4/rpi4_start_box.dae', DAELoad);
+    loader.load('/dae/count_down_basic/cd1.dae', DAELoad);
 
     
 }());
