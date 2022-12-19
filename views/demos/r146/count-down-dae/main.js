@@ -87,5 +87,24 @@
             lt = now;
         }
     };
-    loop();
+    // ---------- ----------
+    // LOADER
+    // ---------- ----------
+    // what to do for a DAE result object
+    const DAELoad = (result) => {
+        console.log(result)
+    };
+    // I will want a manager for this to start loop when
+    // all DAE files are loaded
+    var manager = new THREE.LoadingManager();
+    manager.onLoad = function(){
+        console.log('All Load.');
+        loop();
+    };
+    // the collada loader instance
+    var loader = new THREE.ColladaLoader(manager);
+    loader.load('/dae/box_house_1/box_house1.dae', DAELoad);
+    loader.load('/dae/rpi4/rpi4_start_box.dae', DAELoad);
+
+    
 }());
