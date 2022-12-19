@@ -9,14 +9,21 @@
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(640, 480, false);
     (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-    // createing custom objects using canvas.js r2
+    // ---------- ----------
+    // LIGHT
+    // ---------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(3, 1, 2);
+    scene.add(dl);
+    // ---------- ----------
+    // SOURCE_OBJECTS OBJECT that will hold the number objects
+    // ---------- ----------
     const SOURCE_OBJECTS = {};
     // ---------- ----------
     // ON DAE LOAD
     // ---------- ----------
     // what to do for a DAE result object
     const DAELoad = (result) => {
-        console.log(result)
         let i = 0;
         while(i < 10){
             const obj = result.scene.getObjectByName('num_' + i);
