@@ -5,10 +5,10 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.79.0</authoring_tool>
     </contributor>
-    <created>2022-12-19T15:27:05</created>
-    <modified>2022-12-19T15:27:05</modified>
+    <created>2022-12-19T15:39:55</created>
+    <modified>2022-12-19T15:39:55</modified>
     <unit name="meter" meter="1"/>
-    <up_axis>Y_UP</up_axis>
+    <up_axis>Z_UP</up_axis>
   </asset>
   <library_cameras>
     <camera id="Camera-camera" name="Camera">
@@ -688,9 +688,9 @@
     <geometry id="num_0_geo-mesh" name="num_0_geo">
       <mesh>
         <source id="num_0_geo-mesh-positions">
-          <float_array id="num_0_geo-mesh-positions-array" count="24">0.5000001 0.5 -1 0.5000001 -0.5 -1 -0.5000001 -0.4999998 -1 -0.4999996 0.5000004 -1 0.5000005 0.4999995 1 0.4999994 -0.5000005 1 -0.5000003 -0.4999996 1 -0.4999999 0.5 1</float_array>
+          <float_array id="num_0_geo-mesh-positions-array" count="180">0.5000001 0.5 -1 0.5000001 -0.5 -1 -0.5000001 -0.4999998 -1 -0.4999996 0.5000004 -1 0.5000005 0.4999995 1 0.4999994 -0.5000005 1 -0.5000003 -0.4999996 1 -0.4999999 0.5 1 0.5000001 0 -1 -0.4999998 3.27826e-7 -1 0.5 -5.06639e-7 1 -0.5000001 2.08616e-7 1 0.5000001 -0.25 -1 2.38419e-7 0.5000002 -1 0.5000003 0.4999997 0 0 -0.4999999 -1 0.4999997 -0.5000002 0 -0.4999997 0.2500004 -1 -0.5000002 -0.4999997 0 -0.4999997 0.5000002 0 0.4999997 -0.2500005 1 2.98023e-7 0.4999998 1 -4.47035e-7 -0.5000001 1 -0.5 0.2500001 1 0.5000001 0.25 -1 -0.5 -0.2499997 -1 0.5000002 0.2499995 1 -0.5000002 -0.2499997 1 0 -1.49012e-7 1 1.19209e-7 1.78814e-7 -1 1.78814e-7 0.2500002 -1 1.19209e-7 0.2499998 1 0.5000001 0.2499997 0 -0.5000001 -0.2499997 0 2.98023e-7 0.5 0 -0.4999998 0.2500002 0 -2.08616e-7 -0.5 0 0.4999999 -0.2500002 0 -2.5332e-7 -0.2500001 1 0 -0.2499998 -1 0.5000004 0.4999996 0.5 0.4999996 -0.5000004 0.5 -0.5000002 -0.4999997 0.5 -0.4999998 0.5000001 0.5 -0.4999999 2.98023e-7 -0.5 0.5 0 -0.5 0.5000002 0.4999998 -0.5 0.4999999 -0.5000001 -0.5 -0.5000001 -0.4999998 -0.5 -0.4999997 0.5000004 -0.5 -0.5000001 2.38419e-7 0.5 0.5 -3.72529e-7 0.5 0.5000001 0.2499998 -0.5 0.5000002 0.2499996 0.5 -0.5 -0.2499997 -0.5 -0.5000001 -0.2499997 0.5 -0.4999998 0.2500003 -0.5 -0.5 0.2500002 0.5 0.5 -0.2500001 -0.5 0.4999998 -0.2500004 0.5</float_array>
           <technique_common>
-            <accessor source="#num_0_geo-mesh-positions-array" count="8" stride="3">
+            <accessor source="#num_0_geo-mesh-positions-array" count="60" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
@@ -698,9 +698,9 @@
           </technique_common>
         </source>
         <source id="num_0_geo-mesh-normals">
-          <float_array id="num_0_geo-mesh-normals-array" count="36">0 0 -1 0 0 1 1 0 -2.38419e-7 -1.49012e-7 -1 -2.98023e-7 -1 4.76837e-7 -1.49012e-7 5.06639e-7 1 1.78814e-7 0 0 -1 1.78814e-7 0 1 1 -1.13249e-6 3.27825e-7 -9.23872e-7 -1 0 -1 4.17233e-7 -1.19209e-7 4.47035e-7 1 1.78814e-7</float_array>
+          <float_array id="num_0_geo-mesh-normals-array" count="246">0 0 -1 0 0 1 1 -9.53674e-7 1.78814e-7 -8.9407e-7 -1 0 -1 4.76837e-7 0 4.76837e-7 1 2.38419e-7 -1 0 0 1 -9.53674e-7 -1.19209e-7 -2.38419e-7 0 1 -2.38419e-7 0 1 1 0 -2.38419e-7 1 -9.53674e-7 -2.38419e-7 6.55651e-7 1 0 -1 0 -1.1921e-7 -1 0 -1.19209e-7 4.76837e-7 1 1.19209e-7 5.36442e-7 1 2.38419e-7 4.76837e-7 1 0 -1 4.76837e-7 -1.78814e-7 -1 2.38419e-7 0 -5.36442e-7 -1 2.38419e-7 -3.8743e-7 -1 -1.78814e-7 -6.85454e-7 -1 0 1 -4.76837e-7 1.78814e-7 1 -9.53674e-7 0 1 0 0 1 0 1.78814e-7 -4.17233e-7 -1 -2.68221e-7 -1 4.76837e-7 0 -1 4.76837e-7 0 -1 9.53674e-7 -1.19209e-7 -1 9.53674e-7 -1.19209e-7 -1 4.76837e-7 0 1 -9.53674e-7 -2.38419e-7 1 0 -2.38419e-7 1 0 0 -1 4.76837e-7 -1.78814e-7 1 -4.76837e-7 1.78814e-7 1 -1.19209e-6 3.57627e-7 -5.36442e-7 -1 1.19209e-7 -7.45058e-7 -1 -1.19209e-7 -1 4.76837e-7 0 4.76837e-7 1 4.76837e-7 5.36442e-7 1 1.19209e-7 -1 4.76837e-7 -2.38419e-7 1 -9.53674e-7 0 2.38419e-7 0 1 2.38419e-7 0 1 1 -9.53674e-7 0 1 -9.53674e-7 -1.1921e-7 3.57628e-7 1 2.98023e-7 -1 9.53674e-7 0 -1 4.76837e-7 -2.38419e-7 4.76837e-7 1 2.38418e-7 4.76837e-7 1 2.38419e-7 5.36442e-7 1 2.38418e-7 5.36442e-7 1 2.38419e-7 5.36442e-7 1 2.38418e-7 4.17233e-7 1 2.38419e-7 -1 4.76837e-7 -1.78814e-7 -1 9.53675e-7 0 -1.78814e-7 -1 0 -3.27826e-7 -1 -1.19209e-7 0 -1 -3.57628e-7 -5.36442e-7 -1 -2.38419e-7 -5.36442e-7 -1 -2.38419e-7 -9.53675e-7 -1 -2.38419e-7 1 -4.76837e-7 2.98023e-7 1 -9.53674e-7 1.78814e-7 1 0 1.78814e-7 1 -2.38419e-7 3.57628e-7 -5.66244e-7 -1 -1.19209e-7 -1 4.76837e-7 0 -1 4.76837e-7 0 -1 0 -1.19209e-7 -1 2.38419e-7 -1.19209e-7 -1 4.76837e-7 -1.19209e-7 1 -9.53674e-7 -1.1921e-7 1 0 -1.19209e-7 1 -9.53674e-7 0 -1 4.76837e-7 -1.78814e-7 1 -9.53674e-7 2.98023e-7</float_array>
           <technique_common>
-            <accessor source="#num_0_geo-mesh-normals-array" count="12" stride="3">
+            <accessor source="#num_0_geo-mesh-normals-array" count="82" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
@@ -710,10 +710,10 @@
         <vertices id="num_0_geo-mesh-vertices">
           <input semantic="POSITION" source="#num_0_geo-mesh-positions"/>
         </vertices>
-        <triangles material="num_0_mat-material" count="12">
+        <triangles material="num_0_mat-material" count="112">
           <input semantic="VERTEX" source="#num_0_geo-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#num_0_geo-mesh-normals" offset="1"/>
-          <p>0 0 2 0 3 0 7 1 5 1 4 1 4 2 1 2 0 2 5 3 2 3 1 3 2 4 7 4 3 4 0 5 7 5 4 5 0 6 1 6 2 6 7 7 6 7 5 7 4 8 5 8 1 8 5 9 6 9 2 9 2 10 6 10 7 10 0 11 3 11 7 11</p>
+          <p>15 0 25 0 39 0 38 1 6 1 22 1 20 2 41 2 59 2 22 3 6 3 42 3 57 4 7 4 43 4 13 5 3 5 49 5 55 6 11 6 50 6 26 7 51 7 53 7 31 1 11 1 28 1 29 0 17 0 30 0 13 0 17 0 3 0 0 0 30 0 13 0 24 0 29 0 30 0 31 8 10 8 26 8 21 1 26 1 4 1 7 9 31 9 21 9 14 10 52 10 46 10 4 11 53 11 40 11 59 12 54 12 55 12 18 13 54 13 48 13 6 14 55 14 42 14 34 15 19 15 43 15 40 16 34 16 21 16 46 17 13 17 34 17 56 18 19 18 49 18 53 0 55 0 57 0 50 19 23 19 57 19 36 20 18 20 48 20 47 21 36 21 15 21 41 22 22 22 36 22 37 23 47 23 58 23 10 24 59 24 51 24 38 1 5 1 20 1 28 1 20 1 10 1 28 1 27 1 38 1 39 0 9 0 29 0 8 0 39 0 29 0 12 0 15 0 39 0 45 25 12 25 8 25 58 26 1 26 12 26 53 27 56 27 52 27 9 28 56 28 17 28 17 29 49 29 3 29 42 30 33 30 18 30 48 31 25 31 2 31 25 32 44 32 9 32 40 33 32 33 14 33 46 34 24 34 0 34 52 35 8 35 24 35 52 1 54 1 58 1 35 36 43 36 19 36 59 37 16 37 37 37 15 0 2 0 25 0 38 1 27 1 6 1 20 38 5 38 41 38 18 39 36 39 42 39 36 40 22 40 42 40 57 41 23 41 7 41 19 42 34 42 49 42 34 43 13 43 49 43 55 44 27 44 11 44 26 45 10 45 51 45 31 1 23 1 11 1 29 0 9 0 17 0 13 0 30 0 17 0 0 0 24 0 30 0 24 0 8 0 29 0 31 46 28 46 10 46 21 1 31 1 26 1 7 47 23 47 31 47 14 48 32 48 52 48 4 49 26 49 53 49 59 50 58 50 54 50 18 51 33 51 54 51 6 52 27 52 55 52 7 53 21 53 43 53 21 54 34 54 43 54 21 55 4 55 40 55 40 56 14 56 34 56 34 57 14 57 46 57 46 58 0 58 13 58 56 59 35 59 19 59 53 0 59 0 55 0 50 60 11 60 23 60 2 61 15 61 48 61 15 62 36 62 48 62 15 63 1 63 47 63 47 64 16 64 36 64 36 65 16 65 41 65 41 66 5 66 22 66 37 67 16 67 47 67 10 68 20 68 59 68 38 1 22 1 5 1 28 1 38 1 20 1 28 1 11 1 27 1 39 0 25 0 9 0 8 0 12 0 39 0 12 0 1 0 15 0 45 69 58 69 12 69 58 70 47 70 1 70 53 71 57 71 56 71 9 72 44 72 56 72 17 73 56 73 49 73 42 74 55 74 33 74 48 75 54 75 25 75 25 76 54 76 44 76 40 77 53 77 32 77 46 78 52 78 24 78 52 79 45 79 8 79 52 1 56 1 54 1 35 80 57 80 43 80 59 81 41 81 16 81</p>
         </triangles>
       </mesh>
     </geometry>
@@ -722,7 +722,7 @@
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
       <node id="num_9" name="num_9" type="NODE">
-        <matrix sid="transform">1 0 0 6.5 0 -4.37114e-8 1 1.35419 0 -1 -4.37114e-8 1.395445 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 -1 -4.37114e-8 3.004599 0 -4.37114e-8 1 1.354191 -1 -7.54979e-8 -3.30012e-15 -1.349591 0 0 0 1</matrix>
         <instance_geometry url="#num_9_geo-mesh" name="num_9">
           <bind_material>
             <technique_common>
@@ -732,7 +732,7 @@
         </instance_geometry>
       </node>
       <node id="num_8" name="num_8" type="NODE">
-        <matrix sid="transform">1 0 0 6.5 0 -4.37114e-8 1 1.35419 0 -1 -4.37114e-8 3.395445 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 -1 -4.37114e-8 5.0046 0 -4.37114e-8 1 1.354191 -1 -7.54979e-8 -3.30012e-15 -1.349591 0 0 0 1</matrix>
         <instance_geometry url="#num_8_geo-mesh" name="num_8">
           <bind_material>
             <technique_common>
@@ -742,7 +742,7 @@
         </instance_geometry>
       </node>
       <node id="num_7" name="num_7" type="NODE">
-        <matrix sid="transform">1 0 0 3.5 0 -4.37114e-8 1 1.354191 0 -1 -4.37114e-8 -2.604555 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 -1 -4.37114e-8 -0.9954004 0 -4.37114e-8 1 1.354191 -1 -7.54979e-8 -3.30012e-15 1.650409 0 0 0 1</matrix>
         <instance_geometry url="#num_7_geo-mesh" name="num_7">
           <bind_material>
             <technique_common>
@@ -752,7 +752,7 @@
         </instance_geometry>
       </node>
       <node id="num_6" name="num_6" type="NODE">
-        <matrix sid="transform">1 0 0 3.5 0 -4.37114e-8 1 1.35419 0 -1 -4.37114e-8 -0.6045548 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 -1 -4.37114e-8 1.004599 0 -4.37114e-8 1 1.35419 -1 -7.54979e-8 -3.30012e-15 1.650409 0 0 0 1</matrix>
         <instance_geometry url="#num_6_geo-mesh" name="num_6">
           <bind_material>
             <technique_common>
@@ -762,7 +762,7 @@
         </instance_geometry>
       </node>
       <node id="num_5" name="num_5" type="NODE">
-        <matrix sid="transform">1 0 0 3.5 0 -4.37114e-8 1 1.35419 0 -1 -4.37114e-8 1.395445 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 -1 -4.37114e-8 3.0046 0 -4.37114e-8 1 1.354191 -1 -7.54979e-8 -3.30012e-15 1.650409 0 0 0 1</matrix>
         <instance_geometry url="#num_5_geo-mesh" name="num_5">
           <bind_material>
             <technique_common>
@@ -772,7 +772,7 @@
         </instance_geometry>
       </node>
       <node id="num_4" name="num_4" type="NODE">
-        <matrix sid="transform">1 0 0 3.5 0 -4.37114e-8 1 1.35419 0 -1 -4.37114e-8 3.395445 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 -1 -4.37114e-8 5.0046 0 -4.37114e-8 1 1.354191 -1 -7.54979e-8 -3.30012e-15 1.650409 0 0 0 1</matrix>
         <instance_geometry url="#num_4_geo-mesh" name="num_4">
           <bind_material>
             <technique_common>
@@ -782,7 +782,7 @@
         </instance_geometry>
       </node>
       <node id="num_3" name="num_3" type="NODE">
-        <matrix sid="transform">1 0 0 0.5 0 -4.37114e-8 1 1.354191 0 -1 -4.37114e-8 -2.604555 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 -1 -4.37114e-8 -0.9954007 0 -4.37114e-8 1 1.354191 -1 -7.54979e-8 -3.30012e-15 4.650409 0 0 0 1</matrix>
         <instance_geometry url="#num_3_geo-mesh" name="num_3">
           <bind_material>
             <technique_common>
@@ -792,7 +792,7 @@
         </instance_geometry>
       </node>
       <node id="num_2" name="num_2" type="NODE">
-        <matrix sid="transform">1 0 0 0.5 0 -4.37114e-8 1 1.35419 0 -1 -4.37114e-8 -0.6045548 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 -1 -4.37114e-8 1.0046 0 -4.37114e-8 1 1.35419 -1 -7.54979e-8 -3.30012e-15 4.650409 0 0 0 1</matrix>
         <instance_geometry url="#num_2_geo-mesh" name="num_2">
           <bind_material>
             <technique_common>
@@ -802,7 +802,7 @@
         </instance_geometry>
       </node>
       <node id="num_1" name="num_1" type="NODE">
-        <matrix sid="transform">1 0 0 0.5 0 -4.37114e-8 1 1.35419 0 -1 -4.37114e-8 1.395445 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 -1 -4.37114e-8 3.0046 0 -4.37114e-8 1 1.354191 -1 -7.54979e-8 -3.30012e-15 4.650409 0 0 0 1</matrix>
         <instance_geometry url="#num_1_geo-mesh" name="num_1">
           <bind_material>
             <technique_common>
@@ -812,15 +812,15 @@
         </instance_geometry>
       </node>
       <node id="Camera" name="Camera" type="NODE">
-        <matrix sid="transform">0.6859207 -0.3240135 0.6515582 7.481132 8.67745e-9 0.8953956 0.4452714 5.697856 -0.7276763 -0.3054208 0.6141704 10.40308 0 0 0 1</matrix>
+        <matrix sid="transform">-0.7276764 -0.3054209 0.6141703 12.01224 8.67745e-9 0.8953956 0.4452714 5.697856 -0.6859207 0.3240135 -0.6515582 -2.330723 0 0 0 1</matrix>
         <instance_camera url="#Camera-camera"/>
       </node>
       <node id="Lamp" name="Lamp" type="NODE">
-        <matrix sid="transform">-0.2908646 -0.7711008 0.5663932 4.076245 -0.05518905 0.6045247 0.7946723 6.258052 -0.9551712 0.1998834 -0.2183912 2.889991 0 0 0 1</matrix>
+        <matrix sid="transform">-0.9551711 0.1998835 -0.2183913 4.499146 -0.05518904 0.6045247 0.7946723 6.258052 0.2908648 0.7711009 -0.5663931 1.074163 0 0 0 1</matrix>
         <instance_light url="#Lamp-light"/>
       </node>
       <node id="num_0" name="num_0" type="NODE">
-        <matrix sid="transform">1 0 0 0.5 0 -4.37114e-8 1 1.35419 0 -1 -4.37114e-8 3.395445 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 -1 -4.37114e-8 5.0046 0 -4.37114e-8 1 1.354191 -1 -7.54979e-8 -3.30012e-15 4.650409 0 0 0 1</matrix>
         <instance_geometry url="#num_0_geo-mesh" name="num_0">
           <bind_material>
             <technique_common>
