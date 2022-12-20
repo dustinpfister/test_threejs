@@ -3,8 +3,8 @@
 // ---------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-camera.position.set(3, 3, 5);
-camera.lookAt(0, 0, 0);
+camera.position.set(2.5, 2.5, 2.5);
+camera.lookAt(0, 1, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -14,6 +14,17 @@ renderer.setSize(640, 480, false);
 const dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(3, 1, 2);
 scene.add(dl);
+// ---------- ----------
+// TEXTURE
+// ---------- ----------
+const canObj = canvasMod.create({
+    size: 512,
+    draw: 'rnd',
+    palette: ['#ffffff', '#eeeeee', '#dddddd'],
+    state: {
+        gSize: 128
+    }
+});
 // ---------- ----------
 // SOURCE_OBJECTS OBJECT that will hold the number objects
 // ---------- ----------
@@ -26,6 +37,7 @@ const DAE_on_loaded_item = (result) => {
     let i = 0;
     while(i < 10){
         const obj = result.scene.getObjectByName('num_' + i);
+        obj.material.map = canObj.texture;
         obj.position.set(0, 0, 0);
         SOURCE_OBJECTS[i] = obj;
         i += 1;
