@@ -35,7 +35,7 @@
     // ---------- ----------
     // LOADING MANAGER
     // ---------- ----------
-    var manager = new THREE.LoadingManager();
+    const manager = new THREE.LoadingManager();
     manager.onLoad = function(){
         console.log('Done Loading.');
         //-------- ----------
@@ -56,7 +56,7 @@
         // ---------- ----------
         const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
         FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-        FRAME_MAX = 100;
+        FRAME_MAX = 800;
         let secs = 0,
         frame = 0,
         lt = new Date();
@@ -88,6 +88,6 @@
     // ---------- ----------
     // DAE LOADER
     // ---------- ----------
-    var loader = new THREE.ColladaLoader(manager);
+    const loader = new THREE.ColladaLoader(manager);
     loader.load('/dae/count_down_basic/cd1.dae', DAELoad);
 }());
