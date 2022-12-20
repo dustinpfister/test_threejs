@@ -5,10 +5,10 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.79.0</authoring_tool>
     </contributor>
-    <created>2022-12-20T13:23:09</created>
-    <modified>2022-12-20T13:23:09</modified>
+    <created>2022-12-20T13:59:19</created>
+    <modified>2022-12-20T13:59:19</modified>
     <unit name="meter" meter="1"/>
-    <up_axis>Y_UP</up_axis>
+    <up_axis>Z_UP</up_axis>
   </asset>
   <library_cameras>
     <camera id="Camera-camera" name="Camera">
