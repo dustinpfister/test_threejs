@@ -2,6 +2,7 @@
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0, 0.8, 0.8);
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
 camera.position.set(1.5, 2.5, 4.0);
 camera.lookAt(0, 0.85, 0);
