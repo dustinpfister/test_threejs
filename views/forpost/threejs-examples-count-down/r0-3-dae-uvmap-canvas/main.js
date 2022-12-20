@@ -26,7 +26,7 @@ const canObj = canvasMod.create({
         '#ffffff', '#eeeeee', '#dddddd', '#cccccc',
         '#bbbbbb', '#aaaaaa', '#999999', '#888888'
     ],
-    state: { gSize: 128 }
+    state: { gSize: 64 }
 });
 // ---------- ----------
 // SOURCE_OBJECTS OBJECT that will hold the number objects
