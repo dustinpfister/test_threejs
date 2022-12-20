@@ -112,7 +112,8 @@ const DAE_loader = function( dae_url, on_loaded_item ){
 // ---------- ----------
 // LOADING MANAGER
 // ---------- ----------
-DAE_loader('/dae/count_down_basic/cd1-uv.dae', DAE_on_loaded_item)
+//DAE_loader('/dae/count_down_basic/cd1-uv.dae', DAE_on_loaded_item)
+DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
 .then( () => {
     console.log('Done Loading.');
     //-------- ----------
@@ -128,7 +129,7 @@ DAE_loader('/dae/count_down_basic/cd1-uv.dae', DAE_on_loaded_item)
     const update = function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(30 - 30 * a1);
-        countDown.set(count_sec, secs);
+        countDown.set(count_sec, '44');
         // camera
         camera.position.x = 5 - 10 * a1;
         camera.lookAt( count_sec.position );
