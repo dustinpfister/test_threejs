@@ -65,7 +65,7 @@ const create_count_sec = ( objects ) => {
         width: 1.1,
         source_objects: objects
     });
-    count_sec.position.set(0, 1, 0);
+    count_sec.position.set(0, 1.5, 0);
     return count_sec;
 };
 // create a count_sec count down object
@@ -153,7 +153,7 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
 
         // camera
         camera.position.x = 2 - 4 * a1;
-        camera.lookAt( count_sec.position );
+        camera.lookAt( 0, 1.15, 0 );
     };
     const loop = create_loop(update);
     loop();
