@@ -22,12 +22,9 @@ const canObj = canvasMod.create({
     draw: 'rnd',
     palette: [
         '#ffffff', '#eeeeee', '#dddddd', '#cccccc',
-        '#bbbbbb', '#aaaaaa', '#999999', '#888888',
-//        '#444444', '#555555', '#666666', '#777777'
+        '#bbbbbb', '#aaaaaa', '#999999', '#888888'
     ],
-    state: {
-        gSize: 128
-    }
+    state: { gSize: 128 }
 });
 // ---------- ----------
 // SOURCE_OBJECTS OBJECT that will hold the number objects
@@ -41,8 +38,18 @@ const DAE_on_loaded_item = (result) => {
     let i = 0;
     while(i < 10){
         const obj = result.scene.getObjectByName('num_' + i);
+        // using a single texture
         obj.material.map = canObj.texture;
         obj.position.set(0, 0, 0);
+        // adding line
+        const material_line = new THREE.LineBasicMaterial({
+            color: 0xffffff, 
+            linewidth: 6,
+            transparent: true, opacity: 0.25
+        });
+        const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
+        obj.add(line);
+
         SOURCE_OBJECTS[i] = obj;
         i += 1;
     }
