@@ -44,13 +44,14 @@ const DAE_on_loaded_item = (result) => {
         obj.material.map = canObj.texture;
         obj.position.set(0, 0, 0);
         // adding line
-        //const material_line = new THREE.LineBasicMaterial({
-        //    color: 0xffffff, 
-        //    linewidth: 6,
-        //    transparent: true, opacity: 0.25
-        //});
-        //const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
-        //obj.add(line);
+        const material_line = new THREE.LineBasicMaterial({
+            color: 0xffffff, 
+            linewidth: 6,
+            transparent: true, opacity: 1
+        });
+        const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
+        obj.add(line);
+        line.scale.set(1.02,1.02,1.02);
         SOURCE_OBJECTS[i] = obj;
         i += 1;
     }
@@ -59,8 +60,8 @@ const DAE_on_loaded_item = (result) => {
 const create_count_sec = ( objects ) => {
     const count_sec = countDown.create({
         countID: 'sec',
-        digits: 1,
-        width: 1.05,
+        digits: 2,
+        width: 1.1,
         source_objects: objects
     });
     count_sec.position.set(0, 1, 0);
@@ -129,9 +130,9 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
     const update = function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(30 - 30 * a1);
-        countDown.set(count_sec, '1');
+        countDown.set(count_sec, secs);
 
-count_sec.rotation.y = Math.PI * 4 * a1;
+        //count_sec.rotation.y = Math.PI * 4 * a1;
 
         // camera
         camera.position.x = 5 - 10 * a1;
