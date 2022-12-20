@@ -1,5 +1,5 @@
+// count-down.js - r0 - from threejs-examples-count-down
 (function(api){
-
     // DEFAULT SOURCE OBJECTS
     const DEFAULT_OBJECTS = {};
     let i = 0;
@@ -9,19 +9,16 @@
         DEFAULT_OBJECTS[i] = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ wireframe: true}));
         i += 1;
     }
- 
     // to pad string ( 9 to 009 if 3 digits )
     const toPadString = (a, digits) => {
         return String(a).padStart(digits, '0');
-    };
-
+    }
     // position a digit group
     const positionDigit = (digit, di, digits, width) => {
         const hd = digits / 2;
         const sx = hd * width * -1;
         digit.position.x = width / 2 + sx + width * di;
     };
- 
     // set to the given time string
     api.set = (countObj, timeStr) => {
         let di = 0;
@@ -41,7 +38,6 @@
             di += 1;
         }
     };
- 
     // create a count group
     api.create = (opt) => {
         opt = opt || {};
@@ -78,5 +74,5 @@
         api.set(countObj, opt.timeStr);
         return countObj;
     };
- 
 }( this['countDown'] = {} ));
+ 
