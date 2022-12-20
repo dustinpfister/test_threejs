@@ -3,7 +3,7 @@
 // ---------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-camera.position.set(1.5, 2.5, 2.5);
+camera.position.set(1.5, 2.5, 3.0);
 camera.lookAt(0, 0.85, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -135,7 +135,7 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
         //count_sec.rotation.y = Math.PI * 4 * a1;
 
         // camera
-        camera.position.x = 5 - 10 * a1;
+        camera.position.x = 2 - 4 * a1;
         camera.lookAt( count_sec.position );
     };
     const loop = create_loop(update);
