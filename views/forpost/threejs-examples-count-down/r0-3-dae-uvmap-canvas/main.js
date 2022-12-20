@@ -20,7 +20,11 @@ scene.add(dl);
 const canObj = canvasMod.create({
     size: 512,
     draw: 'rnd',
-    palette: ['#ffffff', '#eeeeee', '#dddddd'],
+    palette: [
+        '#ffffff', '#eeeeee', '#dddddd', '#cccccc',
+        '#bbbbbb', '#aaaaaa', '#999999', '#888888',
+//        '#444444', '#555555', '#666666', '#777777'
+    ],
     state: {
         gSize: 128
     }
