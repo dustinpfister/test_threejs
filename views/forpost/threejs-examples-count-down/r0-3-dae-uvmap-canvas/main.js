@@ -128,6 +128,9 @@ DAE_loader('/dae/count_down_basic/cd1-uv.dae', DAE_on_loaded_item)
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(30 - 30 * a1);
         countDown.set(count_sec, secs);
+        // camera
+        camera.position.x = 5 - 10 * a1;
+        camera.lookAt( count_sec.position );
     };
     const loop = create_loop(update);
     loop();
