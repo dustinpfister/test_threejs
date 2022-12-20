@@ -3,8 +3,8 @@
 // ---------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-camera.position.set(2.5, 2.5, 2.5);
-camera.lookAt(0, 1, 0);
+camera.position.set(1.5, 2.5, 2.5);
+camera.lookAt(0, 0.85, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
