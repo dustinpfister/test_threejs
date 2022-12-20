@@ -14,6 +14,8 @@ renderer.setSize(640, 480, false);
 const dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(3, 1, 2);
 scene.add(dl);
+const al = new THREE.AmbientLight(0xffffff, 0.15);
+scene.add(al);
 // ---------- ----------
 // TEXTURE
 // ---------- ----------
