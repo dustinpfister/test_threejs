@@ -42,14 +42,13 @@ const DAE_on_loaded_item = (result) => {
         obj.material.map = canObj.texture;
         obj.position.set(0, 0, 0);
         // adding line
-        const material_line = new THREE.LineBasicMaterial({
-            color: 0xffffff, 
-            linewidth: 6,
-            transparent: true, opacity: 0.25
-        });
-        const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
-        obj.add(line);
-
+        //const material_line = new THREE.LineBasicMaterial({
+        //    color: 0xffffff, 
+        //    linewidth: 6,
+        //    transparent: true, opacity: 0.25
+        //});
+        //const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
+        //obj.add(line);
         SOURCE_OBJECTS[i] = obj;
         i += 1;
     }
