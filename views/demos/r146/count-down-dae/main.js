@@ -43,6 +43,33 @@
         count_sec.position.set(0, 1, 0);
         return count_sec;
     };
+    // create loop method with given update method
+    const create_loop = (update) => {
+        const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
+        FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+        FRAME_MAX = 800;
+        let secs = 0,
+        frame = 0,
+        lt = new Date();
+        // update
+        update = update || function(frame, frameMax){};
+        // loop
+        const loop = function() {
+            const now = new Date(),
+            secs = (now - lt) / 1000;
+            requestAnimationFrame(loop);
+            if(secs > 1 / FPS_UPDATE){
+                // update, render
+                update( Math.floor(frame), FRAME_MAX);
+                renderer.render(scene, camera);
+                // step frame
+                frame += FPS_MOVEMENT * secs;
+                frame %= FRAME_MAX;
+                lt = now;
+            }
+        };
+        return loop;
+    };
     // ---------- ----------
     // LOADING MANAGER
     // ---------- ----------
@@ -57,15 +84,8 @@
         const count_sec = create_count_sec(SOURCE_OBJECTS);
         scene.add(count_sec);
         // ---------- ----------
-        // ANIMATION LOOP
+        // UPDATE / ANIMATION LOOP
         // ---------- ----------
-        const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
-        FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-        FRAME_MAX = 800;
-        let secs = 0,
-        frame = 0,
-        lt = new Date();
-        // update
         const update = function(frame, frameMax){
             const a1 = (frame + 1) / frameMax;
             let secs = Math.floor(30 - 30 * a1);
@@ -73,21 +93,7 @@
             let ms = Math.floor(1000 * a2);
             countDown.set(count_sec, secs);
         };
-        // loop
-        const loop = () => {
-            const now = new Date(),
-            secs = (now - lt) / 1000;
-            requestAnimationFrame(loop);
-            if(secs > 1 / FPS_UPDATE){
-                // update, render
-                update( Math.floor(frame), FRAME_MAX);
-                renderer.render(scene, camera);
-                // step frame
-                frame += FPS_MOVEMENT * secs;
-                frame %= FRAME_MAX;
-                lt = now;
-            }
-        };
+        const loop = create_loop(update);
         loop();
     };
     // ---------- ----------
