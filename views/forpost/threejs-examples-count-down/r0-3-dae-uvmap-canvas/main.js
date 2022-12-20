@@ -3,7 +3,7 @@
 // ---------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-camera.position.set(1.5, 2.5, 3.0);
+camera.position.set(1.5, 2.5, 4.0);
 camera.lookAt(0, 0.85, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -46,7 +46,7 @@ const DAE_on_loaded_item = (result) => {
         // adding line
         const material_line = new THREE.LineBasicMaterial({
             color: 0xffffff, 
-            linewidth: 6,
+            linewidth: 4,
             transparent: true, opacity: 1
         });
         const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
@@ -66,6 +66,18 @@ const create_count_sec = ( objects ) => {
     });
     count_sec.position.set(0, 1, 0);
     return count_sec;
+};
+// create a count_sec count down object
+const create_count_frames = ( objects ) => {
+    const count = countDown.create({
+        countID: 'frames',
+        digits: 3,
+        width: 1.4,
+        source_objects: objects
+    });
+    count.position.set(0, 0.25, 1);
+    count.scale.set(0.25, 0.25, 0.25);
+    return count;
 };
 // create loop method with given update method
 const create_loop = (update) => {
@@ -124,6 +136,10 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
     // count secs count down object
     const count_sec = create_count_sec(SOURCE_OBJECTS);
     scene.add(count_sec);
+
+    const count_frames = create_count_frames(SOURCE_OBJECTS);
+    scene.add(count_frames);
+
     // ---------- ----------
     // UPDATE / ANIMATION LOOP
     // ---------- ----------
@@ -131,7 +147,7 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(30 - 30 * a1);
         countDown.set(count_sec, secs);
-
+        countDown.set(count_frames, frame);
         //count_sec.rotation.y = Math.PI * 4 * a1;
 
         // camera
