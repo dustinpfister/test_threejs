@@ -59,7 +59,7 @@ const DAE_on_loaded_item = (result) => {
 const create_count_sec = ( objects ) => {
     const count_sec = countDown.create({
         countID: 'sec',
-        digits: 2,
+        digits: 1,
         width: 1.05,
         source_objects: objects
     });
@@ -129,7 +129,10 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
     const update = function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(30 - 30 * a1);
-        countDown.set(count_sec, '44');
+        countDown.set(count_sec, '4');
+
+count_sec.rotation.y = Math.PI * 4 * a1;
+
         // camera
         camera.position.x = 5 - 10 * a1;
         camera.lookAt( count_sec.position );
