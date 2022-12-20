@@ -23,7 +23,7 @@
     // HELPERS
     // ---------- ----------
     // what to do for a DAE result object
-    const DAELoad = (result) => {
+    const DAE_on_loaded_item = (result) => {
         let i = 0;
         while(i < 10){
             const obj = result.scene.getObjectByName('num_' + i);
@@ -70,10 +70,19 @@
         };
         return loop;
     };
+    const DAE_loader = function(){
+
+    }
     // ---------- ----------
     // LOADING MANAGER
     // ---------- ----------
     const manager = new THREE.LoadingManager();
+    // ERROR WHEN LOADING
+    manager.onError = function(url){
+        console.log('there was an error when loading: ')
+        console.log(url);
+    };
+    // WHEN ALL LOADING IS DONE
     manager.onLoad = function(){
         console.log('Done Loading.');
         //-------- ----------
@@ -100,5 +109,5 @@
     // DAE LOADER
     // ---------- ----------
     const loader = new THREE.ColladaLoader(manager);
-    loader.load('/dae/count_down_basic/cd1.dae', DAELoad);
+    loader.load('/dae/count_down_basic/cd1.dae', DAE_on_loaded_item );
 }());
