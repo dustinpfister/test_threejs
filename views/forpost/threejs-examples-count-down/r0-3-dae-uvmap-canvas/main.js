@@ -117,7 +117,7 @@ DAE_loader('/dae/count_down_basic/cd1-uv.dae', DAE_on_loaded_item)
     //-------- ----------
     // SCENE CHILD OBJECTS
     //-------- ----------
-    scene.add( new THREE.GridHelper(10, 10) );
+    //scene.add( new THREE.GridHelper(10, 10) );
     // count secs count down object
     const count_sec = create_count_sec(SOURCE_OBJECTS);
     scene.add(count_sec);
@@ -127,8 +127,6 @@ DAE_loader('/dae/count_down_basic/cd1-uv.dae', DAE_on_loaded_item)
     const update = function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(30 - 30 * a1);
-        let a2 = (30 - 30 * a1) % 1;
-        let ms = Math.floor(1000 * a2);
         countDown.set(count_sec, secs);
     };
     const loop = create_loop(update);

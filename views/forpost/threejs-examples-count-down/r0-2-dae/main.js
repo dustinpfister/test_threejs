@@ -104,8 +104,6 @@ DAE_loader('/dae/count_down_basic/cd1.dae', DAE_on_loaded_item)
     const update = function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(30 - 30 * a1);
-        let a2 = (30 - 30 * a1) % 1;
-        let ms = Math.floor(1000 * a2);
         countDown.set(count_sec, secs);
     };
     const loop = create_loop(update);
