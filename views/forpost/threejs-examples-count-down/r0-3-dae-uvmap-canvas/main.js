@@ -129,7 +129,7 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
     const update = function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(30 - 30 * a1);
-        countDown.set(count_sec, '4');
+        countDown.set(count_sec, '1');
 
 count_sec.rotation.y = Math.PI * 4 * a1;
 
