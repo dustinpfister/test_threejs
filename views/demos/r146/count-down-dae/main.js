@@ -20,7 +20,7 @@
     // ---------- ----------
     const SOURCE_OBJECTS = {};
     // ---------- ----------
-    // ON DAE LOAD
+    // HELPERS
     // ---------- ----------
     // what to do for a DAE result object
     const DAELoad = (result) => {
@@ -32,6 +32,17 @@
             i += 1;
         }
     };
+    // create a count_sec count down object
+    const create_count_sec = ( objects ) => {
+        const count_sec = countDown.create({
+            countID: 'sec',
+            digits: 2,
+            width: 1.05,
+            source_objects: objects
+        });
+        count_sec.position.set(0, 1, 0);
+        return count_sec;
+    };
     // ---------- ----------
     // LOADING MANAGER
     // ---------- ----------
@@ -42,14 +53,8 @@
         // SCENE CHILD OBJECTS
         //-------- ----------
         scene.add( new THREE.GridHelper(10, 10) );
-        // seconds
-        const count_sec = countDown.create({
-            countID: 'sec',
-            digits: 2,
-            width: 1.05,
-            source_objects: SOURCE_OBJECTS
-        });
-        count_sec.position.set(0, 1, 0);
+        // count secs count down object
+        const count_sec = create_count_sec(SOURCE_OBJECTS);
         scene.add(count_sec);
         // ---------- ----------
         // ANIMATION LOOP
