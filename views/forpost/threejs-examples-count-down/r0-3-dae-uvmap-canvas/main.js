@@ -21,7 +21,7 @@ scene.add(al);
 // TEXTURE
 // ---------- ----------
 const canObj_rnd1 = canvasMod.create({
-    size: 512,
+    size: 1024,
     draw: 'rnd',
     palette: [
         '#ffffff', '#fefefe','#fdfdfd','#fcfcfc',
@@ -33,12 +33,15 @@ const canObj_rnd1 = canvasMod.create({
     state: { gSize: 64 }
 });
 const canObj_rnd2 = canvasMod.create({
-    size: 512,
+    size: 1024,
     draw: 'rnd',
     palette: [
-        '#008800','#00aa00','#00cc00','#00ee00'
+        '#007700','#009900','#00bb00','#00dd00','#00ff00', // light greens
+        '#007733','#009944','#00bb55','#00dd66','#00ff77', // light cyans
+        '#004400','#005500','#006600', // dark greens
+        '#003311' // drak cyan
     ],
-    state: { gSize: 64 }
+    state: { gSize: 128 }
 });
 // ---------- ----------
 // SOURCE_OBJECTS OBJECT that will hold the number objects
@@ -54,7 +57,7 @@ const DAE_on_loaded_item = (result) => {
     while(i < 10){
         const obj = result.scene.getObjectByName('num_' + i);
         // using a single texture
-        obj.material.map = canObj_rnd1.texture;
+        obj.material.map = canObj_rnd1.texture_data;
         obj.position.set(0, 0, 0);
         // adding line
         const material_line = new THREE.LineBasicMaterial({
@@ -70,7 +73,7 @@ const DAE_on_loaded_item = (result) => {
     }
     // add ground object(s)
     const obj_ground = SOURCE_OBJECTS['ground_0'] = result.scene.getObjectByName('ground_0');
-    obj_ground.material.map = canObj_rnd2.texture;
+    obj_ground.material.map = canObj_rnd2.texture_data;
     obj_ground.position.set(0, 0, 0);
 };
 // create a count_sec count down object
