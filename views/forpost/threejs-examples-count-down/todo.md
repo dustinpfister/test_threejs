@@ -10,9 +10,7 @@
 * (done) So then DAE\_loader should PARSE A SOURCE\_OBJECTS
 * (done) remove calls of add lines, and make it a public method
 * (done) I want to be able to load more than one DAE File
-
-* () DAE\_on\_loaded\_item method can loop children and set objects that way
-
+* (done) DAE\_on\_loaded\_item method can loop children and set objects that way
 
 * () test out that textures work out okay with DAE Files by making a demo that loads one DAE each for numbers and other objects
 
