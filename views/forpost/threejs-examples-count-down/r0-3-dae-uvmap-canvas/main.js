@@ -42,6 +42,7 @@ const SOURCE_OBJECTS = {};
 // what to do for a DAE result object
 const DAE_on_loaded_item = (result) => {
     let i = 0;
+    // add numbers
     while(i < 10){
         const obj = result.scene.getObjectByName('num_' + i);
         // using a single texture
@@ -59,6 +60,10 @@ const DAE_on_loaded_item = (result) => {
         SOURCE_OBJECTS[i] = obj;
         i += 1;
     }
+    // add ground object(s)
+    const obj_ground = SOURCE_OBJECTS['ground_0'] = result.scene.getObjectByName('ground_0');
+    obj_ground.position.set(0, 0, 0);
+    
 };
 // create a count_sec count down object
 const create_count_sec = ( objects ) => {
@@ -68,7 +73,8 @@ const create_count_sec = ( objects ) => {
         width: 1.1,
         source_objects: objects
     });
-    count_sec.position.set(0, 1.5, 0);
+    count_sec.scale.set(0.65, 0.65, 0.65);
+    count_sec.position.set(0, 2.2, -0.5);
     return count_sec;
 };
 // create a count_sec count down object
@@ -79,8 +85,8 @@ const create_count_frames = ( objects ) => {
         width: 1.4,
         source_objects: objects
     });
-    count.position.set(0, 0.25, 1);
     count.scale.set(0.25, 0.25, 0.25);
+    count.position.set(0, 0.80, 0.30);
     return count;
 };
 // create loop method with given update method
@@ -136,14 +142,14 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
     //-------- ----------
     // SCENE CHILD OBJECTS
     //-------- ----------
-    //scene.add( new THREE.GridHelper(10, 10) );
     // count secs count down object
     const count_sec = create_count_sec(SOURCE_OBJECTS);
     scene.add(count_sec);
-
+    // adding a frame count
     const count_frames = create_count_frames(SOURCE_OBJECTS);
     scene.add(count_frames);
-
+    // add ground object
+    scene.add( SOURCE_OBJECTS['ground_0'] );
     // ---------- ----------
     // UPDATE / ANIMATION LOOP
     // ---------- ----------
