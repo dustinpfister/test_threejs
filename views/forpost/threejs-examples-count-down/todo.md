@@ -1,5 +1,9 @@
 # threejs-examples-count-down todo list
 
+## () - final r0 form
+* (done) DAE loader method built in
+* ()
+
 ## ( done 12/21/2022 ) - r0-2-dae-uvmap-canvas - add ground mesh
 * (done) add ground mesh object
 * (done) other texture for ground mesh object

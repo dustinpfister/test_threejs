@@ -135,27 +135,11 @@ const create_loop = (update) => {
     };
     return loop;
 };
-// dae loader
-const DAE_loader = function( dae_url, on_loaded_item ){
-    const manager = new THREE.LoadingManager();
-    return new Promise( (resolve, reject) => {
-        // ERROR WHEN LOADING
-        manager.onError = function(url){
-            reject(new Error( 'error when loading: ' + url ));
-        };
-        // WHEN ALL LOADING IS DONE
-        manager.onLoad = function(){
-            resolve();
-        };
-        const loader = new THREE.ColladaLoader(manager);
-        loader.load(dae_url, on_loaded_item );
-    });
-};
 // ---------- ----------
 // LOADING MANAGER
 // ---------- ----------
 //DAE_loader('/dae/count_down_basic/cd1-uv.dae', DAE_on_loaded_item)
-DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
+countDown.DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
 .then( () => {
     console.log('Done Loading.');
     //-------- ----------
