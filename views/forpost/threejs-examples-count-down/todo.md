@@ -2,9 +2,9 @@
 
 ## () - final r0 form
 * (done) DAE loader method built in
-* () I want to bake in the core funciton of DAE\_on\_loaded\_item as part of the load DAE Process
-* () So then DAE\_loader should PARSE A SOURCE\_OBJECTS
-* () have an option to turn adding of lines off and on
+* (done) I want to bake in the core funciton of DAE\_on\_loaded\_item as part of the load DAE Process
+* (done) So then DAE\_loader should PARSE A SOURCE\_OBJECTS
+* () remove calls of add lines, and make it a public method
 
 ## ( done 12/21/2022 ) - r0-2-dae-uvmap-canvas - add ground mesh
 * (done) add ground mesh object

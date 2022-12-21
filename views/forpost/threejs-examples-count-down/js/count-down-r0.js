@@ -24,31 +24,17 @@
         const sx = hd * width * -1;
         digit.position.x = width / 2 + sx + width * di;
     };
-    const addLine = (obj, s, pos, lw, color) => {
-        s = s === undefined ? 1 : s;
-        pos = pos || new THREE.Vector3();
-        const material_line = new THREE.LineBasicMaterial({
-            color: color || 0xffffff, 
-            linewidth: lw === undefined ? 8: lw,
-            transparent: true, opacity: 1
-        });
-        const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
-        line.scale.set(s, s, s);
-        line.position.copy(pos);
-        obj.add(line);
-    };
     // what to do for a DAE result object
     const DAE_on_loaded_item = (result, SOURCE_OBJECTS) => {
         let i = 0;
         // add numbers
         while(i < 10){
-            const obj = result.scene.getObjectByName('num_' + i);
+            const obj = SOURCE_OBJECTS[i] = result.scene.getObjectByName('num_' + i);
             // using a single texture
             //obj.material.map = canObj_rnd1.texture_data;
             obj.position.set(0, 0, 0);
             // adding line
-            addLine(obj, 1.01, new THREE.Vector3(), 2, 0xffffff);
-            SOURCE_OBJECTS[i] = obj;
+            //addLine(obj, 1, new THREE.Vector3(), 4, 0xffffff);
             i += 1;
         }
         // add ground object
@@ -57,7 +43,7 @@
             SOURCE_OBJECTS['ground_0'] = obj_ground;
             //obj_ground.material.map = canObj_rnd2.texture_data;
             obj_ground.position.set(0, 0, 0);
-            addLine(obj_ground, 1, new THREE.Vector3(0.01,0,0.01), 4, 0x994400);
+            //addLine(obj_ground, 1, new THREE.Vector3(0.01,0,0.01), 4, 0xffffff);
         }
     };
     //-------- ----------
@@ -138,10 +124,25 @@
             };
             const loader = new THREE.ColladaLoader(manager);
             loader.load(dae_url, function(result){
+                // what to do for each DAE by calling the built in helper for this
                 DAE_on_loaded_item(result, SOURCE_OBJECTS);
                 on_loaded_item(result, SOURCE_OBJECTS );
             });
         });
+    };
+    // add lines for a mesh object
+    api.addLine = (obj, s, pos, lw, color) => {
+        s = s === undefined ? 1 : s;
+        pos = pos || new THREE.Vector3();
+        const material_line = new THREE.LineBasicMaterial({
+            color: color || 0xffffff, 
+            linewidth: lw === undefined ? 8: lw,
+            transparent: true, opacity: 1
+        });
+        const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
+        line.scale.set(s, s, s);
+        line.position.copy(pos);
+        obj.add(line);
     };
 }( this['countDown'] = {} ));
  

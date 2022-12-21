@@ -106,8 +106,10 @@ countDown.DAE_loader('/dae/count_down_basic/cd2.dae')
         const obj = SOURCE_OBJECTS[key];
         if(parseInt(key) + '' != 'NaN'){
             obj.material.map = canObj_rnd1.texture_data;
+            countDown.addLine(obj, 1, new THREE.Vector3(), 2, 0xffffff);
         }else{
             obj.material.map = canObj_rnd2.texture_data;
+            countDown.addLine(obj, 1, new THREE.Vector3(0.01,0,0.01), 2, 0xffffff);
         }
     });
     //-------- ----------
