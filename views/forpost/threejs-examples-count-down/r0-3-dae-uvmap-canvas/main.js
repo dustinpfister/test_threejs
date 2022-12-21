@@ -12,15 +12,15 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 // LIGHT
 // ---------- ----------
-const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(3, 1, 2);
+const dl = new THREE.DirectionalLight(0xffffff, 0.8);
+dl.position.set(-2, 1, 2);
 scene.add(dl);
-const al = new THREE.AmbientLight(0xffffff, 0.15);
+const al = new THREE.AmbientLight(0xffffff, 0.1);
 scene.add(al);
 // ---------- ----------
 // TEXTURE
 // ---------- ----------
-const canObj_rnd = canvasMod.create({
+const canObj_rnd1 = canvasMod.create({
     size: 512,
     draw: 'rnd',
     palette: [
@@ -29,6 +29,14 @@ const canObj_rnd = canvasMod.create({
         '#f7f7f7', '#f6f6f6','#f5f5f5','#f4f4f4',
         '#eeeeee', '#dddddd', '#cccccc','#bbbbbb',
         '#aaaaaa', '#999999', '#888888', '#666666'
+    ],
+    state: { gSize: 64 }
+});
+const canObj_rnd2 = canvasMod.create({
+    size: 512,
+    draw: 'rnd',
+    palette: [
+        '#008800','#00aa00','#00cc00','#00ee00'
     ],
     state: { gSize: 64 }
 });
@@ -46,12 +54,12 @@ const DAE_on_loaded_item = (result) => {
     while(i < 10){
         const obj = result.scene.getObjectByName('num_' + i);
         // using a single texture
-        obj.material.map = canObj_rnd.texture;
+        obj.material.map = canObj_rnd1.texture;
         obj.position.set(0, 0, 0);
         // adding line
         const material_line = new THREE.LineBasicMaterial({
             color: 0xffffff, 
-            linewidth: 4,
+            linewidth: 2,
             transparent: true, opacity: 1
         });
         const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
@@ -62,8 +70,8 @@ const DAE_on_loaded_item = (result) => {
     }
     // add ground object(s)
     const obj_ground = SOURCE_OBJECTS['ground_0'] = result.scene.getObjectByName('ground_0');
+    obj_ground.material.map = canObj_rnd2.texture;
     obj_ground.position.set(0, 0, 0);
-    
 };
 // create a count_sec count down object
 const create_count_sec = ( objects ) => {
