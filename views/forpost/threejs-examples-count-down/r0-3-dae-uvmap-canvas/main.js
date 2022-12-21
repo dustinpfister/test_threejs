@@ -50,6 +50,19 @@ const SOURCE_OBJECTS = {};
 // ---------- ----------
 // HELPERS
 // ---------- ----------
+const addLine = (obj, s, pos, lw, color) => {
+    s = s === undefined ? 1 : s;
+    pos = pos || new THREE.Vector3();
+    const material_line = new THREE.LineBasicMaterial({
+        color: color || 0xffffff, 
+        linewidth: lw === undefined ? 8: lw,
+        transparent: true, opacity: 1
+    });
+    const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
+    line.scale.set(s, s, s);
+    line.position.copy(pos);
+    obj.add(line);
+};
 // what to do for a DAE result object
 const DAE_on_loaded_item = (result) => {
     let i = 0;
@@ -60,14 +73,7 @@ const DAE_on_loaded_item = (result) => {
         obj.material.map = canObj_rnd1.texture_data;
         obj.position.set(0, 0, 0);
         // adding line
-        const material_line = new THREE.LineBasicMaterial({
-            color: 0xffffff, 
-            linewidth: 2,
-            transparent: true, opacity: 1
-        });
-        const line = new THREE.LineSegments( new THREE.EdgesGeometry(obj.geometry), material_line );
-        obj.add(line);
-        line.scale.set(1.02,1.02,1.02);
+        addLine(obj, 1.01, new THREE.Vector3(), 2, 0xffffff);
         SOURCE_OBJECTS[i] = obj;
         i += 1;
     }
@@ -75,6 +81,7 @@ const DAE_on_loaded_item = (result) => {
     const obj_ground = SOURCE_OBJECTS['ground_0'] = result.scene.getObjectByName('ground_0');
     obj_ground.material.map = canObj_rnd2.texture_data;
     obj_ground.position.set(0, 0, 0);
+    addLine(obj_ground, 1, new THREE.Vector3(0.01,0,0.01), 4, 0x994400);
 };
 // create a count_sec count down object
 const create_count_sec = ( objects ) => {
