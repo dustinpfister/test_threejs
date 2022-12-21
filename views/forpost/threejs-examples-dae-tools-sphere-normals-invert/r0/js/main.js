@@ -1,4 +1,4 @@
-
+// Sphere Normals invert demo - r0 - from threejs-examples-dae-tools-sphere-normals-invert
 (function () {
     //------ ----------
     // SCENE
@@ -13,12 +13,6 @@
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(640, 480, false);
     ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-    //------ ----------
-    // LIGHT
-    //------ ----------
-    const dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, 3)
-    scene.add(dl);
     //------ ----------
     // LOOP
     //------ ----------
@@ -48,8 +42,8 @@
         });
         mesh.material = newMaterial;
         // BASE GROUND MESH
-        const baseGround = new THREE.Mesh( new THREE.BoxGeometry(1, 0.1, 1), new THREE.MeshPhongMaterial({
-             color: 0x00ff00
+        const baseGround = new THREE.Mesh( new THREE.BoxGeometry(1, 0.1, 1), new THREE.MeshBasicMaterial({
+             color: 0x008800
         }));
         baseGround.position.y = -0.125;
         baseGround.scale.set(60, 1, 60);
