@@ -47,6 +47,7 @@ const canObj_rnd2 = canvasMod.create({
 // SOURCE_OBJECTS OBJECT that will hold the number objects
 // ---------- ----------
 const SOURCE_OBJECTS = {};
+const SECS = 30;
 // ---------- ----------
 // HELPERS
 // ---------- ----------
@@ -91,8 +92,8 @@ const create_count_sec = ( objects ) => {
         width: 1.1,
         source_objects: objects
     });
-    count_sec.scale.set(0.65, 0.65, 0.65);
-    count_sec.position.set(0, 2.2, -0.5);
+    count_sec.scale.set(0.75, 0.75, 0.75);
+    count_sec.position.set(0, 2.05, -0.5);
     return count_sec;
 };
 // create a count_sec count down object
@@ -111,7 +112,7 @@ const create_count_frames = ( objects ) => {
 const create_loop = (update) => {
     const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
     FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-    FRAME_MAX = 800;
+    FRAME_MAX = SECS * FPS_UPDATE;
     let secs = 0,
     frame = 0,
     lt = new Date();
@@ -173,14 +174,14 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
     // ---------- ----------
     const update = function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
-        let secs = Math.floor(30 - 30 * a1);
+        let secs = Math.floor(SECS - SECS * a1);
         countDown.set(count_sec, secs);
         countDown.set(count_frames, frame);
         //count_sec.rotation.y = Math.PI * 4 * a1;
 
         // camera
         camera.position.x = 2 - 4 * a1;
-        camera.lookAt( 0, 1.15, 0 );
+        camera.lookAt( 0, 1.20, 0 );
     };
     const loop = create_loop(update);
     loop();
