@@ -1,8 +1,8 @@
 # threejs-examples-count-down todo list
 
-## () - r0-2-dae-uvmap-canvas - add ground mesh
-* () add ground mesh object
-* () other texture for ground mesh object
+## ( done 12/21/2022 ) - r0-2-dae-uvmap-canvas - add ground mesh
+* (done) add ground mesh object
+* (done) other texture for ground mesh object
 
 ## ( done 12/20/2022 ) - r0-2-dae-uvmap-canvas
 * (done) use r2 of canvas module for this one
