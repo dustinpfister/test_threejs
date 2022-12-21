@@ -172,7 +172,7 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
     // ---------- ----------
     // UPDATE / ANIMATION LOOP
     // ---------- ----------
-    const update = function(frame, frameMax){
+    const loop = create_loop(function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(SECS - SECS * a1);
         countDown.set(count_sec, secs);
@@ -180,8 +180,7 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
         // camera
         camera.position.x = 2 - 4 * a1;
         camera.lookAt( 0, 1.20, 0 );
-    };
-    const loop = create_loop(update);
+    });
     loop();
 })
 .catch( (e) => {
