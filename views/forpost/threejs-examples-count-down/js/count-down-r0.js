@@ -30,20 +30,14 @@
         // add numbers
         while(i < 10){
             const obj = SOURCE_OBJECTS[i] = result.scene.getObjectByName('num_' + i);
-            // using a single texture
-            //obj.material.map = canObj_rnd1.texture_data;
             obj.position.set(0, 0, 0);
-            // adding line
-            //addLine(obj, 1, new THREE.Vector3(), 4, 0xffffff);
             i += 1;
         }
         // add ground object
         const obj_ground = result.scene.getObjectByName('ground_0');
         if(obj_ground){
             SOURCE_OBJECTS['ground_0'] = obj_ground;
-            //obj_ground.material.map = canObj_rnd2.texture_data;
             obj_ground.position.set(0, 0, 0);
-            //addLine(obj_ground, 1, new THREE.Vector3(0.01,0,0.01), 4, 0xffffff);
         }
     };
     //-------- ----------
