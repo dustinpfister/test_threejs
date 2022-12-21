@@ -18,6 +18,10 @@ scene.add(dl);
 const al = new THREE.AmbientLight(0xffffff, 0.1);
 scene.add(al);
 // ---------- ----------
+// CONST
+// ---------- ----------
+const SECS = 30;
+// ---------- ----------
 // TEXTURE
 // ---------- ----------
 const canObj_rnd1 = canvasMod.create({
@@ -41,33 +45,8 @@ const canObj_rnd2 = canvasMod.create({
     state: { gSize: 128 }
 });
 // ---------- ----------
-// CONST
+// HELPERS
 // ---------- ----------
-const SECS = 30;
-// create a count_sec count down object
-const create_count_sec = ( objects ) => {
-    const count_sec = countDown.create({
-        countID: 'sec',
-        digits: 2,
-        width: 1.1,
-        source_objects: objects
-    });
-    count_sec.scale.set(0.75, 0.75, 0.75);
-    count_sec.position.set(0, 2.05, -0.5);
-    return count_sec;
-};
-// create a count_sec count down object
-const create_count_frames = ( objects ) => {
-    const count = countDown.create({
-        countID: 'frames',
-        digits: 3,
-        width: 1.4,
-        source_objects: objects
-    });
-    count.scale.set(0.25, 0.25, 0.25);
-    count.position.set(0, 0.80, 0.30);
-    return count;
-};
 // create loop method with given update method
 const create_loop = (update) => {
     const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
@@ -116,10 +95,24 @@ countDown.DAE_loader([ '/dae/count_down_basic/cd2.dae' ])
     // SCENE CHILD OBJECTS
     //-------- ----------
     // count secs count down object
-    const count_sec = create_count_sec(SOURCE_OBJECTS);
+    const count_sec = countDown.create({
+        countID: 'sec',
+        digits: 2,
+        width: 1.1,
+        source_objects: SOURCE_OBJECTS
+    });
+    count_sec.scale.set(0.75, 0.75, 0.75);
+    count_sec.position.set(0, 2.05, -0.5);
     scene.add(count_sec);
     // adding a frame count
-    const count_frames = create_count_frames(SOURCE_OBJECTS);
+    const count_frames = countDown.create({
+        countID: 'frames',
+        digits: 3,
+        width: 1.4,
+        source_objects: SOURCE_OBJECTS
+    });
+    count_frames.scale.set(0.25, 0.25, 0.25);
+    count_frames.position.set(0, 0.80, 0.30);
     scene.add(count_frames);
     // add ground object
     scene.add( SOURCE_OBJECTS['ground_0'] );
