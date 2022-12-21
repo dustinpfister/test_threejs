@@ -177,8 +177,6 @@ DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
         let secs = Math.floor(SECS - SECS * a1);
         countDown.set(count_sec, secs);
         countDown.set(count_frames, frame);
-        //count_sec.rotation.y = Math.PI * 4 * a1;
-
         // camera
         camera.position.x = 2 - 4 * a1;
         camera.lookAt( 0, 1.20, 0 );
