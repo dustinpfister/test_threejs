@@ -20,12 +20,15 @@ scene.add(al);
 // ---------- ----------
 // TEXTURE
 // ---------- ----------
-const canObj = canvasMod.create({
+const canObj_rnd = canvasMod.create({
     size: 512,
     draw: 'rnd',
     palette: [
-        '#ffffff', '#eeeeee', '#dddddd', '#cccccc',
-        '#bbbbbb', '#aaaaaa', '#999999', '#888888'
+        '#ffffff', '#fefefe','#fdfdfd','#fcfcfc',
+        '#fbfbfb', '#fafafa','#f9f9f9','#f8f8f8',
+        '#f7f7f7', '#f6f6f6','#f5f5f5','#f4f4f4',
+        '#eeeeee', '#dddddd', '#cccccc','#bbbbbb',
+        '#aaaaaa', '#999999', '#888888', '#666666'
     ],
     state: { gSize: 64 }
 });
@@ -42,7 +45,7 @@ const DAE_on_loaded_item = (result) => {
     while(i < 10){
         const obj = result.scene.getObjectByName('num_' + i);
         // using a single texture
-        obj.material.map = canObj.texture;
+        obj.material.map = canObj_rnd.texture;
         obj.position.set(0, 0, 0);
         // adding line
         const material_line = new THREE.LineBasicMaterial({
