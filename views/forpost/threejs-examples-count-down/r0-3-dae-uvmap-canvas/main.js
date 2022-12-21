@@ -78,11 +78,14 @@ const DAE_on_loaded_item = (result) => {
         SOURCE_OBJECTS[i] = obj;
         i += 1;
     }
-    // add ground object(s)
-    const obj_ground = SOURCE_OBJECTS['ground_0'] = result.scene.getObjectByName('ground_0');
-    obj_ground.material.map = canObj_rnd2.texture_data;
-    obj_ground.position.set(0, 0, 0);
-    addLine(obj_ground, 1, new THREE.Vector3(0.01,0,0.01), 4, 0x994400);
+    // add ground object
+    const obj_ground = result.scene.getObjectByName('ground_0');
+    if(obj_ground){
+        SOURCE_OBJECTS['ground_0'] = obj_ground;
+        obj_ground.material.map = canObj_rnd2.texture_data;
+        obj_ground.position.set(0, 0, 0);
+        addLine(obj_ground, 1, new THREE.Vector3(0.01,0,0.01), 4, 0x994400);
+    }
 };
 // create a count_sec count down object
 const create_count_sec = ( objects ) => {

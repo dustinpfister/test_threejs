@@ -2,7 +2,7 @@
 
 ## () - final r0 form
 * (done) DAE loader method built in
-* ()
+* () might want to have DAE LOADER PARSE A SOURCE OBJECTS
 
 ## ( done 12/21/2022 ) - r0-2-dae-uvmap-canvas - add ground mesh
 * (done) add ground mesh object
