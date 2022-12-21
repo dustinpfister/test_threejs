@@ -24,11 +24,8 @@ const canObj_rnd1 = canvasMod.create({
     size: 1024,
     draw: 'rnd',
     palette: [
-        '#ffffff', '#fefefe','#fdfdfd','#fcfcfc',
-        '#fbfbfb', '#fafafa','#f9f9f9','#f8f8f8',
-        '#f7f7f7', '#f6f6f6','#f5f5f5','#f4f4f4',
-        '#eeeeee', '#dddddd', '#cccccc','#bbbbbb',
-        '#aaaaaa', '#999999', '#888888', '#666666'
+        '#ffffff', '#fefefe','#fdfdfd','#fcfcfc', '#fbfbfb', '#fafafa', '#f9f9f9','#f8f8f8', '#f7f7f7', '#f6f6f6',
+        '#f5f5f5','#f4f4f4', '#eeeeee', '#dddddd', '#cccccc','#bbbbbb', '#aaaaaa', '#999999', '#888888', '#666666'
     ],
     state: { gSize: 64 }
 });
@@ -101,11 +98,18 @@ const create_loop = (update) => {
 // ---------- ----------
 // LOADING MANAGER
 // ---------- ----------
-//DAE_loader('/dae/count_down_basic/cd1-uv.dae', DAE_on_loaded_item)
-//countDown.DAE_loader('/dae/count_down_basic/cd2.dae', DAE_on_loaded_item)
 countDown.DAE_loader('/dae/count_down_basic/cd2.dae')
 .then( (SOURCE_OBJECTS) => {
     console.log('Done Loading.');
+    // use canvas textures
+    Object.keys(SOURCE_OBJECTS).forEach( (key) => {
+        const obj = SOURCE_OBJECTS[key];
+        if(parseInt(key) + '' != 'NaN'){
+            obj.material.map = canObj_rnd1.texture_data;
+        }else{
+            obj.material.map = canObj_rnd2.texture_data;
+        }
+    });
     //-------- ----------
     // SCENE CHILD OBJECTS
     //-------- ----------
