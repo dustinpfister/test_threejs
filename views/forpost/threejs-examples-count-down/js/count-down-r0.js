@@ -26,19 +26,19 @@
     };
     // what to do for a DAE result object
     const DAE_on_loaded_item = (result, SOURCE_OBJECTS) => {
-        let i = 0;
-        // add numbers
-        while(i < 10){
-            const obj = SOURCE_OBJECTS[i] = result.scene.getObjectByName('num_' + i);
-            obj.position.set(0, 0, 0);
-            i += 1;
-        }
-        // add ground object
-        const obj_ground = result.scene.getObjectByName('ground_0');
-        if(obj_ground){
-            SOURCE_OBJECTS['ground_0'] = obj_ground;
-            obj_ground.position.set(0, 0, 0);
-        }
+        // loop children of scene object
+        result.scene.children.forEach( (obj) => {
+            // if an object is a mesh object
+            if(obj.type === 'Mesh'){
+                let key = obj.name;
+                // if name begins with num_ replace with ''
+                if(key.match(/num_/)){
+                    key = key.replace('num_', '');
+                }
+                SOURCE_OBJECTS[key] = obj;
+                obj.position.set(0, 0, 0);
+            }
+        });
     };
     //-------- ----------
     // CREATE METHOD
@@ -103,7 +103,7 @@
     //-------- ----------
     // DAE FILE LOADER 
     //-------- ----------
-    api.DAE_loader = function( dae_url, on_loaded_item ){
+    api.DAE_loader = function( dae_urls, on_loaded_item ){
         on_loaded_item = on_loaded_item || function(){};
         const manager = new THREE.LoadingManager();
         const SOURCE_OBJECTS = {};
@@ -116,11 +116,13 @@
             manager.onLoad = function(){
                 resolve(SOURCE_OBJECTS);
             };
-            const loader = new THREE.ColladaLoader(manager);
-            loader.load(dae_url, function(result){
-                // what to do for each DAE by calling the built in helper for this
-                DAE_on_loaded_item(result, SOURCE_OBJECTS);
-                on_loaded_item(result, SOURCE_OBJECTS );
+            dae_urls.forEach((url) => {
+                const loader = new THREE.ColladaLoader(manager);
+                loader.load(url, function(result){
+                    // what to do for each DAE by calling the built in helper for this
+                    DAE_on_loaded_item(result, SOURCE_OBJECTS);
+                    on_loaded_item(result, SOURCE_OBJECTS );
+                });
             });
         });
     };

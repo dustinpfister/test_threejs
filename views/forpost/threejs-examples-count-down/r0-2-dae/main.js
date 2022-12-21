@@ -72,7 +72,7 @@ const create_loop = (update) => {
 // ---------- ----------
 // LOADING MANAGER
 // ---------- ----------
-countDown.DAE_loader('/dae/count_down_basic/cd1.dae', DAE_on_loaded_item)
+countDown.DAE_loader(['/dae/count_down_basic/cd1.dae'], DAE_on_loaded_item)
 .then( () => {
     console.log('Done Loading.');
     //-------- ----------

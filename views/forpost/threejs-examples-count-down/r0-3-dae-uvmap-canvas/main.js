@@ -98,7 +98,7 @@ const create_loop = (update) => {
 // ---------- ----------
 // LOADING MANAGER
 // ---------- ----------
-countDown.DAE_loader('/dae/count_down_basic/cd2.dae')
+countDown.DAE_loader([ '/dae/count_down_basic/cd2.dae' ])
 .then( (SOURCE_OBJECTS) => {
     console.log('Done Loading.');
     // use canvas textures
