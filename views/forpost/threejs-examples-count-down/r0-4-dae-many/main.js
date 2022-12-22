@@ -63,15 +63,6 @@ countDown.DAE_loader(
 .then( (SOURCE_OBJECTS) => {
     console.log('Done Loading.');
     console.log(SOURCE_OBJECTS);
-    // use canvas textures
-    Object.keys(SOURCE_OBJECTS).forEach( (key) => {
-        const obj = SOURCE_OBJECTS[key];
-        if(parseInt(key) + '' != 'NaN'){
-            countDown.addLine(obj, 1, new THREE.Vector3(), 2, 0xffffff);
-        }else{
-            countDown.addLine(obj, 1, new THREE.Vector3(0.01,0,0.01), 2, 0xffffff);
-        }
-    });
     //-------- ----------
     // SCENE CHILD OBJECTS
     //-------- ----------
