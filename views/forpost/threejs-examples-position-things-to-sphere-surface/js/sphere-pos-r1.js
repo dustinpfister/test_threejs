@@ -1,4 +1,4 @@
-/*  spher-pos.js - r1 - from threejs-examples-position-things-to-sphere-surface
+/*  sphere-pos.js - r1 - from threejs-examples-position-things-to-sphere-surface
  *  
  */
 (function (api) {
