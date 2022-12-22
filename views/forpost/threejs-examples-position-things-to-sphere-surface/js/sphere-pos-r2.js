@@ -7,7 +7,7 @@
 (function (api) {
  
     // for a given sphere mesh, position a given object to it
-    api.positionToSphere = function(sphereMesh, obj, lat, long, alt){
+    api.positionToSphere1 = function(sphereMesh, obj, lat, long, alt){
         // get geometry of the sphere mesh
         var sGeo = sphereMesh.geometry;
         // computer bounding sphere for geometry of the sphere mesh

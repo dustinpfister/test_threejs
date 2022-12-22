@@ -38,7 +38,7 @@ const loop = function () {
         // position to sphere
         const p = per * 6 % 1,
         b = 1 - Math.abs(0.5 - p) / 0.5;
-        SphereWrap.positionToSphere(sphere1, box1, 0.75 - 0.5 * b, per, 0.25);
+        SphereWrap.positionToSphere1(sphere1, box1, 0.75 - 0.5 * b, per, 0.25);
         // using lookAt method to set box rotation
         box1.lookAt(sphere1.position);
         renderer.render(scene, camera);
