@@ -4,7 +4,7 @@
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0, 0.8, 0.8);
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-camera.position.set(1.5, 2.5, 4.0);
+camera.position.set(1.5, 1.5, 5.0);
 camera.lookAt(0, 0.85, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -73,8 +73,8 @@ countDown.DAE_loader(
         width: 1.1,
         source_objects: SOURCE_OBJECTS
     });
-    count_sec.scale.set(0.75, 0.75, 0.75);
-    count_sec.position.set(0, 2.05, -0.5);
+    //count_sec.scale.set(0.75, 0.75, 0.75);
+    count_sec.position.set(0, 1.25, 0.4);
     scene.add(count_sec);
     // adding a frame count
     const count_frames = countDown.create({
@@ -84,7 +84,7 @@ countDown.DAE_loader(
         source_objects: SOURCE_OBJECTS
     });
     count_frames.scale.set(0.25, 0.25, 0.25);
-    count_frames.position.set(0, 0.80, 0.30);
+    count_frames.position.set(0, 0, 1.50);
     scene.add(count_frames);
     // add ground object
     scene.add( SOURCE_OBJECTS['ground_0'] );
@@ -98,7 +98,7 @@ countDown.DAE_loader(
         countDown.set(count_frames, frame);
         // camera
         camera.position.x = 2 - 4 * a1;
-        camera.lookAt( 0, 1.20, 0 );
+        camera.lookAt( 0, 0.5, 0 );
     });
     loop();
 })
