@@ -5,20 +5,41 @@
  *    * positionToSphere method gets radius by using computeBoundingSphere while getPositionOnSphere takes a radius argument
  */
 (function (api) {
- 
-    // for a given sphere mesh, position a given object to it
-    api.positionToSphere1 = function(sphereMesh, obj, lat, long, alt){
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
+    const getRadius = (sphereMesh) => {
         // get geometry of the sphere mesh
         var sGeo = sphereMesh.geometry;
         // computer bounding sphere for geometry of the sphere mesh
         sGeo.computeBoundingSphere();
         // use radius value of Sphere instance at 
         // boundingSphere of the geometry of sphereMesh
-        var radius = sGeo.boundingSphere.radius;
+        return sGeo.boundingSphere.radius;
+    };
+    //-------- ----------
+    // Position an Object to a sphere mesh
+    //-------- ----------
+    // for a given sphere mesh, position a given object to it
+    api.positionToSphere1 = function(sphereMesh, obj, lat, long, alt){
+        var radius = getRadius(sphereMesh);
         const pos = api.getPositionOnSphere(sphereMesh, radius, lat, long, alt);
         obj.position.copy(pos);
     };
- 
+    //-------- ----------
+    // Get A Vector3
+    //-------- ----------
+    // get position by raycaster
+    const raycaster = new THREE.Raycaster();
+    api.getRaycasterPositionOnSphere = function(sphereMesh, radius, lat, long, alt){
+
+        const dir = api.getPositionOnSphere(sphereMesh, radius, lat, long, alt);
+        dir.negate()
+        raycaster.set(sphereMesh.position, dir);
+
+
+    };
+
     // for a given sphere mesh, get a Vector3 object on the surface
     api.getPositionOnSphere = function(sphereMesh, radius, lat, long, alt){
         // defaults for lat, long, and alt
