@@ -2,7 +2,6 @@
  *  
  */
 (function (api) {
-
     // position a mesh to a sphere mesh with a given lat, long, and alt
     api.positionToSphere = function(sphereMesh, mesh, lat, long, alt){
         // defaults for lat, long, and alt
@@ -25,6 +24,5 @@
         var e1 = new THREE.Euler(x, 0, z)
         mesh.position.copy(sphereMesh.position).add(v1).applyEuler(e1);
     };
-
 }
     (this['SphereWrap'] = {}));
