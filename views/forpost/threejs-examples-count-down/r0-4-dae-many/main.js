@@ -22,29 +22,6 @@ scene.add(al);
 // ---------- ----------
 const SECS = 30;
 // ---------- ----------
-// TEXTURE
-// ---------- ----------
-const canObj_rnd1 = canvasMod.create({
-    size: 1024,
-    draw: 'rnd',
-    palette: [
-        '#ffffff', '#fefefe','#fdfdfd','#fcfcfc', '#fbfbfb', '#fafafa', '#f9f9f9','#f8f8f8', '#f7f7f7', '#f6f6f6',
-        '#f5f5f5','#f4f4f4', '#eeeeee', '#dddddd', '#cccccc','#bbbbbb', '#aaaaaa', '#999999', '#888888', '#666666'
-    ],
-    state: { gSize: 64 }
-});
-const canObj_rnd2 = canvasMod.create({
-    size: 1024,
-    draw: 'rnd',
-    palette: [
-        '#007700','#009900','#00bb00','#00dd00','#00ff00', // light greens
-        '#007733','#009944','#00bb55','#00dd66','#00ff77', // light cyans
-        '#004400','#005500','#006600', // dark greens
-        '#003311' // drak cyan
-    ],
-    state: { gSize: 128 }
-});
-// ---------- ----------
 // HELPERS
 // ---------- ----------
 // create loop method with given update method
@@ -84,10 +61,8 @@ countDown.DAE_loader([ '/dae/count_down_basic/cd2.dae' ])
     Object.keys(SOURCE_OBJECTS).forEach( (key) => {
         const obj = SOURCE_OBJECTS[key];
         if(parseInt(key) + '' != 'NaN'){
-            obj.material.map = canObj_rnd1.texture_data;
             countDown.addLine(obj, 1, new THREE.Vector3(), 2, 0xffffff);
         }else{
-            obj.material.map = canObj_rnd2.texture_data;
             countDown.addLine(obj, 1, new THREE.Vector3(0.01,0,0.01), 2, 0xffffff);
         }
     });
