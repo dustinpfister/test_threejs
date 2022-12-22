@@ -1,3 +1,6 @@
+//-------- ----------
+// SCENE, CAMERA, RENDERER
+//-------- ----------
 const scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(10, 10));
 const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
@@ -6,13 +9,14 @@ camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-
+//-------- ----------
+// MESH OBJECTS
+//-------- ----------
 // add wrap the the scene, and some cube objects
 const wrap = SphereWrap.createWrap();
 scene.add(wrap);
 SphereWrap.addObjectToWrap(wrap, 'cube');
 SphereWrap.addObjectToWrap(wrap, 'cube2');
-
 // adding a cone rather than the default cube
 // some times I might want to rotate the geometry when doing so
 // rather than Object3d as I will always have that looking at the origin of the
@@ -24,13 +28,13 @@ const cone = new THREE.Mesh(
         }));
 cone.geometry.rotateX(Math.PI * 1.5);
 SphereWrap.addObjectToWrap(wrap, 'cone', cone);
+//-------- ----------
+// LOOP
+//-------- ----------
 // dist and lat log values
 let dist = 1.25, // radius + half of mesh height
 latPer = 0.75, // 0 - 1
 longPer = 0.5; // 0 - 1
-SphereWrap.setObjToLatLong(wrap, 'cube', latPer, longPer, dist);
-SphereWrap.setObjToLatLong(wrap, 'cube2', 0, 0, 1.25);
-SphereWrap.setObjToLatLong(wrap, 'cone', 0.9, 1, 1.25);
 // loop
 let lt = new Date(),
 frame = 0;
