@@ -57,11 +57,12 @@ const create_loop = (update) => {
 countDown.DAE_loader(
     [
         '/dae/count_down_basic/cd3-nums.dae',
-        '/dae/count_down_basic/cd3-ground.dae',
+        '/dae/count_down_basic/cd3-ground.dae'
     ]
 )
 .then( (SOURCE_OBJECTS) => {
     console.log('Done Loading.');
+    console.log(SOURCE_OBJECTS);
     // use canvas textures
     Object.keys(SOURCE_OBJECTS).forEach( (key) => {
         const obj = SOURCE_OBJECTS[key];
