@@ -11,9 +11,17 @@ This blender file, and all DAE files after it is the first set of number objects
 
 ## cd2.blend - fix uv mapping, add other objects
 
-I ran into a werid problem with the DAE Loader when editing a mesh object. This made me create this first cd2 file as a way to try to figure out what the deal is with this, while not messing up what I have going on with cd1. The main goal here is to reduce the number of points in the numbers, and not end up with the weird problem loadind the mesh obejcts.
+I ran into a weird problem with the DAE Loader when editing a mesh object. This made me create this first cd2 file as a way to try to figure out what the deal is with this, while not messing up what I have going on with cd1. So With this DAE file I want to fix these problems. Also while I am at it make an additional object that will be the rest of the scene for a set of 'basic count down' video projects
 
-* (done) fix werid uv rendreing with num 4
+* (done) fix weird uv rendering with num 4
 * (done) fix uv with 1
+* (done) add base object on which to place numbers
 
-* () add base object on which to place numbers
+## cd3-nums.blend, cd3-ground.blend, DAE Textures
+
+I want to have two DAE files now one for numbers, and the other for the rest of the scene. The general idea with this is that I might want to have more than one dae file for the rest of the objects while still using the same numbers. This might prove to be a better option compared to having everything in a single DAE file. The other thing that I would like to work out is having textures for the objects as well.
+
+* () have a cd3-nums.blend that will just be the numbers
+* () have a cd3-ground.blend that will be the rest of the scene
+* () work out a texture for cd3-ground.blend
+* () make textures for cd3-nums.blend
