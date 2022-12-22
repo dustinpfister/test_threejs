@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
     </contributor>
-    <created>2022-12-22T15:49:56</created>
-    <modified>2022-12-22T15:49:56</modified>
+    <created>2022-12-22T16:06:37</created>
+    <modified>2022-12-22T16:06:37</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -102,6 +102,33 @@
     </light>
   </library_lights>
   <library_images>
+    <image id="cd3-nums-9_png" name="cd3-nums-9_png">
+      <init_from>cd3-nums-9.png</init_from>
+    </image>
+    <image id="cd3-nums-8_png" name="cd3-nums-8_png">
+      <init_from>cd3-nums-8.png</init_from>
+    </image>
+    <image id="cd3-nums-7_png" name="cd3-nums-7_png">
+      <init_from>cd3-nums-7.png</init_from>
+    </image>
+    <image id="cd3-nums-6_png" name="cd3-nums-6_png">
+      <init_from>cd3-nums-6.png</init_from>
+    </image>
+    <image id="cd3-nums-5_png" name="cd3-nums-5_png">
+      <init_from>cd3-nums-5.png</init_from>
+    </image>
+    <image id="cd3-nums-4_png" name="cd3-nums-4_png">
+      <init_from>cd3-nums-4.png</init_from>
+    </image>
+    <image id="cd3-nums-3_png" name="cd3-nums-3_png">
+      <init_from>cd3-nums-3.png</init_from>
+    </image>
+    <image id="cd3-nums-2_png" name="cd3-nums-2_png">
+      <init_from>cd3-nums-2.png</init_from>
+    </image>
+    <image id="cd3-nums-1_png" name="cd3-nums-1_png">
+      <init_from>cd3-nums-1.png</init_from>
+    </image>
     <image id="cd3-nums-0_png" name="cd3-nums-0_png">
       <init_from>cd3-nums-0.png</init_from>
     </image>
@@ -109,6 +136,16 @@
   <library_effects>
     <effect id="num_9_mat-effect">
       <profile_COMMON>
+        <newparam sid="cd3-nums-9_png-surface">
+          <surface type="2D">
+            <init_from>cd3-nums-9_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="cd3-nums-9_png-sampler">
+          <sampler2D>
+            <source>cd3-nums-9_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -118,7 +155,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
+              <texture texture="cd3-nums-9_png-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -135,6 +172,16 @@
     </effect>
     <effect id="num_8_mat-effect">
       <profile_COMMON>
+        <newparam sid="cd3-nums-8_png-surface">
+          <surface type="2D">
+            <init_from>cd3-nums-8_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="cd3-nums-8_png-sampler">
+          <sampler2D>
+            <source>cd3-nums-8_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -144,7 +191,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
+              <texture texture="cd3-nums-8_png-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -161,6 +208,16 @@
     </effect>
     <effect id="num_7_mat-effect">
       <profile_COMMON>
+        <newparam sid="cd3-nums-7_png-surface">
+          <surface type="2D">
+            <init_from>cd3-nums-7_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="cd3-nums-7_png-sampler">
+          <sampler2D>
+            <source>cd3-nums-7_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -170,7 +227,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
+              <texture texture="cd3-nums-7_png-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -187,6 +244,16 @@
     </effect>
     <effect id="num_6_mat-effect">
       <profile_COMMON>
+        <newparam sid="cd3-nums-6_png-surface">
+          <surface type="2D">
+            <init_from>cd3-nums-6_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="cd3-nums-6_png-sampler">
+          <sampler2D>
+            <source>cd3-nums-6_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -196,7 +263,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
+              <texture texture="cd3-nums-6_png-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -213,6 +280,16 @@
     </effect>
     <effect id="num_5_mat-effect">
       <profile_COMMON>
+        <newparam sid="cd3-nums-5_png-surface">
+          <surface type="2D">
+            <init_from>cd3-nums-5_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="cd3-nums-5_png-sampler">
+          <sampler2D>
+            <source>cd3-nums-5_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -222,7 +299,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
+              <texture texture="cd3-nums-5_png-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -239,6 +316,16 @@
     </effect>
     <effect id="num_4_mat-effect">
       <profile_COMMON>
+        <newparam sid="cd3-nums-4_png-surface">
+          <surface type="2D">
+            <init_from>cd3-nums-4_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="cd3-nums-4_png-sampler">
+          <sampler2D>
+            <source>cd3-nums-4_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -248,7 +335,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
+              <texture texture="cd3-nums-4_png-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -265,6 +352,16 @@
     </effect>
     <effect id="num_3_mat-effect">
       <profile_COMMON>
+        <newparam sid="cd3-nums-3_png-surface">
+          <surface type="2D">
+            <init_from>cd3-nums-3_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="cd3-nums-3_png-sampler">
+          <sampler2D>
+            <source>cd3-nums-3_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -274,7 +371,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
+              <texture texture="cd3-nums-3_png-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -291,6 +388,16 @@
     </effect>
     <effect id="num_2_mat-effect">
       <profile_COMMON>
+        <newparam sid="cd3-nums-2_png-surface">
+          <surface type="2D">
+            <init_from>cd3-nums-2_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="cd3-nums-2_png-sampler">
+          <sampler2D>
+            <source>cd3-nums-2_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -300,7 +407,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
+              <texture texture="cd3-nums-2_png-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -317,6 +424,16 @@
     </effect>
     <effect id="num_1_mat-effect">
       <profile_COMMON>
+        <newparam sid="cd3-nums-1_png-surface">
+          <surface type="2D">
+            <init_from>cd3-nums-1_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="cd3-nums-1_png-sampler">
+          <sampler2D>
+            <source>cd3-nums-1_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -326,7 +443,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
+              <texture texture="cd3-nums-1_png-sampler"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -836,7 +953,7 @@
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
       <node id="num_9" name="num_9" type="NODE">
-        <matrix sid="transform">7.54979e-8 1 4.37114e-8 3.754963 0 -4.37114e-8 1 1.354191 1 -7.54979e-8 -3.30012e-15 4.890846 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 1 4.37114e-8 3.798257 0 -4.37114e-8 1 1.712794 1 -7.54979e-8 -3.30012e-15 4.48895 0 0 0 1</matrix>
         <instance_geometry url="#num_9_geo-mesh" name="num_9">
           <bind_material>
             <technique_common>
@@ -846,7 +963,7 @@
         </instance_geometry>
       </node>
       <node id="num_8" name="num_8" type="NODE">
-        <matrix sid="transform">7.54979e-8 1 4.37114e-8 1.754963 0 -4.37114e-8 1 1.354191 1 -7.54979e-8 -3.30012e-15 4.890846 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 1 4.37114e-8 1.798256 0 -4.37114e-8 1 1.712794 1 -7.54979e-8 -3.30012e-15 4.48895 0 0 0 1</matrix>
         <instance_geometry url="#num_8_geo-mesh" name="num_8">
           <bind_material>
             <technique_common>
@@ -856,7 +973,7 @@
         </instance_geometry>
       </node>
       <node id="num_7" name="num_7" type="NODE">
-        <matrix sid="transform">7.54979e-8 1 4.37114e-8 7.754964 0 -4.37114e-8 1 1.35419 1 -7.54979e-8 -3.30012e-15 1.890846 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 1 4.37114e-8 7.798256 0 -4.37114e-8 1 1.712793 1 -7.54979e-8 -3.30012e-15 1.48895 0 0 0 1</matrix>
         <instance_geometry url="#num_7_geo-mesh" name="num_7">
           <bind_material>
             <technique_common>
@@ -866,7 +983,7 @@
         </instance_geometry>
       </node>
       <node id="num_6" name="num_6" type="NODE">
-        <matrix sid="transform">7.54979e-8 1 4.37114e-8 5.754964 0 -4.37114e-8 1 1.35419 1 -7.54979e-8 -3.30012e-15 1.890846 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 1 4.37114e-8 5.798257 0 -4.37114e-8 1 1.712793 1 -7.54979e-8 -3.30012e-15 1.48895 0 0 0 1</matrix>
         <instance_geometry url="#num_6_geo-mesh" name="num_6">
           <bind_material>
             <technique_common>
@@ -876,7 +993,7 @@
         </instance_geometry>
       </node>
       <node id="num_5" name="num_5" type="NODE">
-        <matrix sid="transform">7.54979e-8 1 4.37114e-8 3.754963 0 -4.37114e-8 1 1.354191 1 -7.54979e-8 -3.30012e-15 1.890846 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 1 4.37114e-8 3.798257 0 -4.37114e-8 1 1.712794 1 -7.54979e-8 -3.30012e-15 1.48895 0 0 0 1</matrix>
         <instance_geometry url="#num_5_geo-mesh" name="num_5">
           <bind_material>
             <technique_common>
@@ -886,7 +1003,7 @@
         </instance_geometry>
       </node>
       <node id="num_4" name="num_4" type="NODE">
-        <matrix sid="transform">7.54979e-8 1 4.37114e-8 1.754963 0 -4.37114e-8 1 1.354191 1 -7.54979e-8 -3.30012e-15 1.890846 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 1 4.37114e-8 1.798257 0 -4.37114e-8 1 1.712794 1 -7.54979e-8 -3.30012e-15 1.488949 0 0 0 1</matrix>
         <instance_geometry url="#num_4_geo-mesh" name="num_4">
           <bind_material>
             <technique_common>
@@ -896,7 +1013,7 @@
         </instance_geometry>
       </node>
       <node id="num_3" name="num_3" type="NODE">
-        <matrix sid="transform">7.54979e-8 1 4.37114e-8 7.754964 0 -4.37114e-8 1 1.35419 1 -7.54979e-8 -3.30012e-15 -1.109154 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 1 4.37114e-8 7.798256 0 -4.37114e-8 1 1.712793 1 -7.54979e-8 -3.30012e-15 -1.51105 0 0 0 1</matrix>
         <instance_geometry url="#num_3_geo-mesh" name="num_3">
           <bind_material>
             <technique_common>
@@ -906,7 +1023,7 @@
         </instance_geometry>
       </node>
       <node id="num_2" name="num_2" type="NODE">
-        <matrix sid="transform">7.54979e-8 1 4.37114e-8 5.754964 0 -4.37114e-8 1 1.35419 1 -7.54979e-8 -3.30012e-15 -1.109154 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 1 4.37114e-8 5.798257 0 -4.37114e-8 1 1.712793 1 -7.54979e-8 -3.30012e-15 -1.51105 0 0 0 1</matrix>
         <instance_geometry url="#num_2_geo-mesh" name="num_2">
           <bind_material>
             <technique_common>
@@ -916,7 +1033,7 @@
         </instance_geometry>
       </node>
       <node id="num_1" name="num_1" type="NODE">
-        <matrix sid="transform">7.54979e-8 1 4.37114e-8 3.754964 0 -4.37114e-8 1 1.354191 1 -7.54979e-8 -3.30012e-15 -1.109154 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 1 4.37114e-8 3.798257 0 -4.37114e-8 1 1.712794 1 -7.54979e-8 -3.30012e-15 -1.51105 0 0 0 1</matrix>
         <instance_geometry url="#num_1_geo-mesh" name="num_1">
           <bind_material>
             <technique_common>
@@ -926,15 +1043,15 @@
         </instance_geometry>
       </node>
       <node id="Camera" name="Camera" type="NODE">
-        <matrix sid="transform">0.7276763 0.3054209 -0.6141704 -5.252676 -3.18077e-8 0.8953956 0.4452714 5.697856 0.6859207 -0.3240135 0.6515582 5.871976 0 0 0 1</matrix>
+        <matrix sid="transform">0.7276763 0.3054209 -0.6141704 -5.209382 -3.18077e-8 0.8953956 0.4452714 6.056458 0.6859207 -0.3240135 0.6515582 5.47008 0 0 0 1</matrix>
         <instance_camera url="#Camera-camera"/>
       </node>
       <node id="Lamp" name="Lamp" type="NODE">
-        <matrix sid="transform">0.9551712 -0.1998833 0.2183912 2.260418 -0.0551891 0.6045247 0.7946723 6.258052 -0.2908646 -0.7711008 0.5663933 2.467091 0 0 0 1</matrix>
+        <matrix sid="transform">0.9551712 -0.1998833 0.2183912 5.463934 -0.0551891 0.6045247 0.7946723 5.473642 -0.2908646 -0.7711008 0.5663933 5.744936 0 0 0 1</matrix>
         <instance_light url="#Lamp-light"/>
       </node>
       <node id="num_0" name="num_0" type="NODE">
-        <matrix sid="transform">7.54979e-8 1 4.37114e-8 1.754964 0 -4.37114e-8 1 1.354191 1 -7.54979e-8 -3.30012e-15 -1.109154 0 0 0 1</matrix>
+        <matrix sid="transform">7.54979e-8 1 4.37114e-8 1.798257 0 -4.37114e-8 1 1.712794 1 -7.54979e-8 -3.30012e-15 -1.51105 0 0 0 1</matrix>
         <instance_geometry url="#num_0_geo-mesh" name="num_0">
           <bind_material>
             <technique_common>
