@@ -1,4 +1,4 @@
-/*  sphere_wrap.js - r1 - from threejs-examples-position-things-to-sphere-surface
+/*  spher-pos.js - r1 - from threejs-examples-position-things-to-sphere-surface
  *  
  */
 (function (api) {
