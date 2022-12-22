@@ -3,6 +3,7 @@
  *    * getPositionOnSphere method that will give a Vector3
  *    * positionToSphere method calls getPositionOnSphere to get position
  *    * positionToSphere method gets radius by using computeBoundingSphere while getPositionOnSphere takes a radius argument
+ *    * getRaycasterPositionOnSphere method started
  */
 (function (api) {
     //-------- ----------
@@ -30,16 +31,31 @@
     // Get A Vector3
     //-------- ----------
     // get position by raycaster
-    const raycaster = new THREE.Raycaster();
-    api.getRaycasterPositionOnSphere = function(sphereMesh, radius, lat, long, alt){
-
-        const dir = api.getPositionOnSphere(sphereMesh, radius, lat, long, alt);
-        dir.negate()
-        raycaster.set(sphereMesh.position, dir);
-
-
+    api.getRaycasterPositionOnSphere = function(sphereMesh, radius, deg1, deg2, alt){
+        // defaults for lat, long, and alt
+        deg1 = deg1 === undefined ? 0 : deg1;
+        deg2 = deg2 === undefined ? 0 : deg2;
+        alt = alt === undefined ? 0 : alt;
+        // orign for raycaster
+        const angle1 = Math.PI / 180 * deg1;
+        const angle2 = Math.PI / 180 * deg2;
+        // using applyEuler and multiplyScalar to set origin for rayster
+        const origin = new THREE.Vector3(1, 0, 0);
+        origin.applyEuler( new THREE.Euler( 0, angle1, angle2) ).multiplyScalar(radius);
+        // direction for raycaster
+        // using vector3 clone, lerp, negate, and normalize methods to get a dir
+        const dir = origin.clone().lerp(sphereMesh.position, 0.5).negate().normalize();
+        // create and set raycaster
+        const raycaster = new THREE.Raycaster();
+        raycaster.set( origin, dir );
+        const arr = raycaster.intersectObjects([ sphereMesh ]);
+        if(arr.length === 1){
+            // copy position
+            const pos = arr[0].point;
+            return pos.setLength( pos.length() + alt )
+        }
+        return new THREE.Vector3();
     };
-
     // for a given sphere mesh, get a Vector3 object on the surface
     api.getPositionOnSphere = function(sphereMesh, radius, lat, long, alt){
         // defaults for lat, long, and alt
