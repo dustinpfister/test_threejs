@@ -83,7 +83,7 @@ countDown.DAE_loader(
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(SECS - SECS * a1);
         //countDown.set(count_sec, secs);
-		countDown.set(count_sec, '2');
+		countDown.set(count_sec, '3');
 		count_sec.rotation.y = Math.PI * 4 * a1;
         //countDown.set(count_frames, frame);
         // camera
