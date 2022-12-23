@@ -69,12 +69,12 @@ countDown.DAE_loader(
     // count secs count down object
     const count_sec = countDown.create({
         countID: 'sec',
-        digits: 2,
+        digits: 1,
         width: 1.1,
         source_objects: SOURCE_OBJECTS
     });
     //count_sec.scale.set(0.75, 0.75, 0.75);
-    count_sec.position.set(0, 1.25, 0.4);
+    count_sec.position.set(0, 1.30, 0.4);
     scene.add(count_sec);
     // adding a frame count
     const count_frames = countDown.create({
@@ -94,7 +94,9 @@ countDown.DAE_loader(
     const loop = create_loop(function(frame, frameMax){
         const a1 = (frame + 1) / frameMax;
         let secs = Math.floor(SECS - SECS * a1);
-        countDown.set(count_sec, secs);
+        //countDown.set(count_sec, secs);
+		countDown.set(count_sec, '1');
+		count_sec.rotation.y = Math.PI * 4 * a1;
         countDown.set(count_frames, frame);
         // camera
         camera.position.x = 2 - 4 * a1;
