@@ -63,6 +63,19 @@ countDown.DAE_loader(
 .then( (SOURCE_OBJECTS) => {
     console.log('Done Loading.');
     console.log(SOURCE_OBJECTS);
+
+Object.keys( SOURCE_OBJECTS ).forEach( ( key ) => {
+    const obj = SOURCE_OBJECTS[key];
+    const mat = obj.material;
+    if(mat.map){
+        const tex = mat.map;
+        //tex.magFilter = THREE.NearestFilter;
+        //tex.minFilter = THREE.NearestFilter;
+        console.log(mat.map);
+    }
+
+});
+
     //-------- ----------
     // SCENE CHILD OBJECTS
     //-------- ----------
