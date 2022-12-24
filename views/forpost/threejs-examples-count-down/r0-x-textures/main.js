@@ -85,7 +85,7 @@ countDown.DAE_loader(
         //countDown.set(count_sec, secs);
 		countDown.set(count_sec, '9');
 		count_sec.rotation.y = Math.PI * 4 * a1;
-		count_sec.rotation.x = Math.PI / 180 * -45;
+		count_sec.rotation.x = Math.PI / 180 * 45;
         //countDown.set(count_frames, frame);
         // camera
         camera.position.x = 2 - 4 * a1;
