@@ -7,8 +7,8 @@
 * () basic example that makes use of canvas elemets to create textures
 * () use textures for map and emissive options
 
-## () s1-2-basic-light
-* () basic example that makes use of a light source
+## ( done 12/34/2022 ) s1-2-basic-light
+* (done) basic example that makes use of a light source
 
 ## ( done 12/34/2022 ) - start for post folder
 * (done) start for post folder with a basic phong material example
