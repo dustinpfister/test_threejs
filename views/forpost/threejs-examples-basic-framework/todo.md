@@ -1,9 +1,16 @@
 # threejs-examples-basic-framework todo list
 
+## () r1-3-seqhooks
+* () have an example that makes use of a simple seghooks lib
+
+## () r1-2-frames
+* () have a frame by frame update demo
+* () have some get alpha methods
+
 ## ( done 12/28/2022 ) r1-1-cube demo
 * (done) again a basic cube demo that showcases new features
 
-## ( done 12/28/2022 ) r1 - start, stop, fps update, create options
+## ( done 12/28/2022 ) r1 - start, stop, create options
 * (done) remove add cube method
 * (done) remove materials
 * (done) use let and const
