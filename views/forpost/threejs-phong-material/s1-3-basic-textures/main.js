@@ -12,7 +12,7 @@ renderer.setSize(640, 480, false);
 // LIGHT
 // ---------- ---------- ----------
 const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(0.1, 0.7, 0.2);
+dl.position.set(0, 0.4, -0.6);
 scene.add(dl);
 // ---------- ---------- ----------
 // TEXTURES
@@ -47,17 +47,39 @@ const texture_map = createCanvasTexture( (ctx, canvas) => {
       i += 1;
    }
 }, 64);
+// texture for the map property
+const texture_emissive = createCanvasTexture( (ctx, canvas) => {
+   const w = 32, h = 32;
+   const len = w * h;
+   let i = 0;
+   while(i < len){
+      const x = i % w;
+      const y = Math.floor(i / w);
+      const pw = canvas.width / w;
+      const ph = canvas.height / h;
+      const px = pw * x;
+      const py = ph * y;
+      let v  = x % 2 === 0 ? 1 : 0;
+      const color = new THREE.Color(v, v, v);
+      ctx.fillStyle = color.getStyle();
+      ctx.fillRect(px, py, pw, ph);
+      i += 1;
+   }
+}, 64);
 // ---------- ---------- ----------
 // MATERIAL
 // ---------- ---------- ----------
 const material_phong = new THREE.MeshPhongMaterial({
-   map: texture_map
+   map: texture_map,
+   emissive: new THREE.Color(1,1,1),
+   emissiveMap: texture_emissive,
+   emissiveIntensity: 0.05
 });
 // ---------- ---------- ----------
 // MESH
 // ---------- ---------- ----------
 const mesh = new THREE.Mesh(
-    new THREE.SphereGeometry(1, 30, 30),
+    new THREE.SphereGeometry(2, 30, 30),
     material_phong);
 scene.add(mesh);
 // ---------- ---------- ----------
