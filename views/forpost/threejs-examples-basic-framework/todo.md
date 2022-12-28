@@ -5,10 +5,10 @@
 * (done) remove materials
 * (done) use let and const
 * (done) userData object for project state data
+* (done) api.lt and api.loop
+* (done) start method
 * () can pass renderer, camera, and scene options for create method
-* () start method
 * () stop method
-* () api.lt and api.loop
 
 ## ( done 12/28/2022 ) main js folder, r0 file, r0-1-hello demo
 * (done) have a main js folder with r0 of the framework

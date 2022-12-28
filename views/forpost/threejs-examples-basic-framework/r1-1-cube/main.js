@@ -25,5 +25,4 @@ const tf = threeFrame.create({
         api.camera.lookAt( 0, 0, 0);
     }
 });
-
 threeFrame.start(tf);

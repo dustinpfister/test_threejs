@@ -9,11 +9,13 @@
         api.loop = function () {
             const now = new Date(),
             secs = (now - api.lt) / 1000;
-            requestAnimationFrame(api.loop);
-            if (secs >= 1 / api.fps_target) {
-                api.update(api, secs); ;
-                api.renderer.render(api.scene, api.camera);
-                api.lt = now;
+            if(tf.active){
+                requestAnimationFrame(api.loop);
+                if (secs >= 1 / api.fps_target) {
+                    api.update(api, secs); ;
+                    api.renderer.render(api.scene, api.camera);
+                    api.lt = now;
+                }
             }
         };
     };
@@ -37,6 +39,9 @@
             renderer: renderer,
             canvas: renderer.domElement,
             fps_target: 24,
+            active: false,
+            lt:null,        // lt and null set up by create loop function helper
+            loop: null,
             init: opt.init,
             update: opt.update
         };
@@ -53,14 +58,18 @@
         const api = createAPIObject(opt);
         // call init method
         api.init(api);
-        // start loop
-        //const loop = createLoopFunction(api);
         //loop();
         return api;
     };
     // start the loop
     threeFrame.start = (tf) => {
+        tf.active = true;
         tf.lt = new Date();
         tf.loop();
+    };
+    // start the loop
+    threeFrame.stop = (tf) => {
+        tf.active = false;
+        tf.lt = new Date();
     };
 }(typeof threeFrame === 'undefined' ? this['threeFrame'] = {} : threeFrame));
