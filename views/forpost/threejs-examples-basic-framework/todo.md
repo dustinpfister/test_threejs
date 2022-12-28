@@ -1,5 +1,8 @@
 # threejs-examples-basic-framework todo list
 
+## () r1-5-dae
+* () example in which I am using the dae loader, and passing the scene object to the create method as an option
+
 ## () r1-4-ui
 * () simple demo that makes use of user input
 
