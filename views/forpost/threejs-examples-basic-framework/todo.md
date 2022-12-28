@@ -1,12 +1,13 @@
 # threejs-examples-basic-framework todo list
 
 ## () r1 - start, stop, fps update, create options
+* (done) remove add cube method
+* (done) remove materials
+* (done) use let and const
+* (done) userData object for project state data
 * () can pass renderer, camera, and scene options for create method
-* () remove add cube method
-* () remove materials
 * () start method
 * () stop method
-* () use let and const
 * () api.lt and api.loop
 
 ## ( done 12/28/2022 ) main js folder, r0 file, r0-1-hello demo

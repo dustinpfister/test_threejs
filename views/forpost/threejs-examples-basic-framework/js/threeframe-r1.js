@@ -17,6 +17,7 @@
         renderer.render(scene, camera);
         // return an object with refs to scene and other items of interest
         return {
+            userData: opt.userData || {},
             scene: scene,
             camera: camera,
             renderer: renderer,
