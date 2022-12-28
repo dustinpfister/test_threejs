@@ -1,6 +1,5 @@
-
+// threeframe.js - r0 - from threejs-examples-basic-framework
 (function (threeFrame) {
-
     // Just an add cube method for now
     threeFrame.addCube = function (api, obj3d, x, y, z, size, materialIndex) {
         x = x === undefined ? 0 : x;
@@ -13,7 +12,6 @@
         obj3d.add(cube);
         return cube;
     };
-
     // create a basic scene
     var createAPIObject = function (opt) {
         // scene
@@ -23,8 +21,8 @@
         camera.position.set(2.5, 2.5, 2.5);
         camera.lookAt(0, 0, 0);
         // RENDERER
-        var renderer = new THREE.WebGLRenderer();
-        document.getElementById('demo').appendChild(renderer.domElement);
+        var renderer = new THREE.WebGL1Renderer();
+        ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
         renderer.render(scene, camera);
         // return an object with refs to scene and other items of interest
         return {
@@ -41,7 +39,6 @@
                 })]
         };
     };
-
     // create a main app loop function, for the given api object
     var createLoopFunction = function (api) {
         var lt = new Date();
@@ -57,7 +54,6 @@
         };
         return loop;
     };
-
     // create a main project object
     threeFrame.create = function (opt) {
         opt = opt || {};
@@ -70,7 +66,4 @@
         loop();
         return api;
     };
-
-}
-    (typeof threeFrame === 'undefined' ? this['threeFrame'] = {}
-        : threeFrame));
+}(typeof threeFrame === 'undefined' ? this['threeFrame'] = {} : threeFrame));

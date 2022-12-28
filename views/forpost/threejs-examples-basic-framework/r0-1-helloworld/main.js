@@ -11,9 +11,11 @@ threeFrame.create({
         api.rotation = 0;
     },
     update: function (api, secs) {
+        api.renderer.setSize(640, 480, false);
         api.rotation += 1 * secs;
         api.rotation %= Math.PI * 2;
         api.cube1.rotation.set(0, api.rotation, 0);
         api.cube2.rotation.set(0, api.rotation, api.rotation);
+        api.camera.lookAt(api.cube1.position);
     }
 });
