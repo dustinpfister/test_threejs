@@ -1,5 +1,14 @@
 # threejs-examples-basic-framework todo list
 
+## () r2 - Hooks, Loop Modes ( tf.loop vs renderer.setAnimationLoop )
+* () container create method option
+* () value for container can be a DOM Object or string to pass to querySelector
+* () onStart hook method that will fire each time the loop starts
+* () onStop hook method that will fire each time the loop stops
+* () defaults for renderer.setSize in create method
+* () use THREE.Clock to keep time for the loop
+* () have a loop mode option that can be used to switch between tf.loop and renderer.setAnimationLoop
+
 ## () r1-5-dae
 * () example in which I am using the dae loader, and passing the scene object to the create method as an option
 
