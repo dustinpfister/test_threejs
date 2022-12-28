@@ -1,17 +1,8 @@
 // threeframe.js - r0 - from threejs-examples-basic-framework
 (function (threeFrame) {
-    // Just an add cube method for now
-    threeFrame.addCube = function (api, obj3d, x, y, z, size, materialIndex) {
-        x = x === undefined ? 0 : x;
-        y = y === undefined ? 0 : y;
-        z = z === undefined ? 0 : z;
-        size = size === undefined ? 2 : size;
-        var geometry = new THREE.BoxGeometry(size, size, size);
-        var cube = new THREE.Mesh(geometry, api.materials[materialIndex || 0]);
-        cube.position.set(x, y, z);
-        obj3d.add(cube);
-        return cube;
-    };
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
     // create a basic scene
     var createAPIObject = function (opt) {
         // scene
@@ -53,6 +44,21 @@
             }
         };
         return loop;
+    };
+    //-------- ----------
+    // PUBLIC METHODS
+    //-------- ----------
+    // Just an add cube method for now
+    threeFrame.addCube = function (api, obj3d, x, y, z, size, materialIndex) {
+        x = x === undefined ? 0 : x;
+        y = y === undefined ? 0 : y;
+        z = z === undefined ? 0 : z;
+        size = size === undefined ? 2 : size;
+        var geometry = new THREE.BoxGeometry(size, size, size);
+        var cube = new THREE.Mesh(geometry, api.materials[materialIndex || 0]);
+        cube.position.set(x, y, z);
+        obj3d.add(cube);
+        return cube;
     };
     // create a main project object
     threeFrame.create = function (opt) {
