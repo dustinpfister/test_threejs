@@ -23,7 +23,10 @@ const createCanvasTexture = function (draw, size) {
     canvas.width = size;
     canvas.height = size;
     draw(ctx, canvas);
-    return new THREE.CanvasTexture(canvas);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.magFilter = THREE.NearestFilter;
+    texture.minFilter = THREE.NearestFilter;
+    return texture;
 };
 // texture for the map property
 const texture_map = createCanvasTexture( (ctx, canvas) => {
@@ -44,6 +47,7 @@ const texture_map = createCanvasTexture( (ctx, canvas) => {
       i += 1;
    }
 }, 32);
+console.log(texture_map);
 // ---------- ---------- ----------
 // MATERIAL
 // ---------- ---------- ----------

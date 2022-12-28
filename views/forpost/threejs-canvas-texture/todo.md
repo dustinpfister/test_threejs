@@ -1,6 +1,7 @@
 # threejs-canvas-texture todo list
 
 ## () canvasjs - r3
+* () texture.magFilter and texture.minFilter = THREE.NearestFilter, should be the default
 * () default values for translate that can be adjusted as needed see 'pxa' from r0 of uvmap-cube.js
 * () no text select event for what this is used to create and inject canvas directly as dom elements
 * () DRAW.grid\_rgb method that will use an rgb data array rather than palette array
