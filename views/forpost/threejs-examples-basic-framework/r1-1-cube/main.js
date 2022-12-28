@@ -1,5 +1,5 @@
 // basic rotating cube
-threeFrame.create({
+const tf = threeFrame.create({
     // user data object
     userData: {
         radian: 0,
@@ -25,3 +25,5 @@ threeFrame.create({
         api.camera.lookAt( 0, 0, 0);
     }
 });
+
+threeFrame.start(tf);

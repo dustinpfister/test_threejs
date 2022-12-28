@@ -3,6 +3,20 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
+    // create a main app loop function, for the given api object
+    const createLoopFunction = function (api) {
+        api.lt = new Date();
+        api.loop = function () {
+            const now = new Date(),
+            secs = (now - api.lt) / 1000;
+            requestAnimationFrame(api.loop);
+            if (secs >= 1 / api.fps_target) {
+                api.update(api, secs); ;
+                api.renderer.render(api.scene, api.camera);
+                api.lt = now;
+            }
+        };
+    };
     // create a basic scene
     const createAPIObject = function (opt) {
         // SCENE
@@ -16,7 +30,7 @@
         ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
         renderer.render(scene, camera);
         // return an object with refs to scene and other items of interest
-        return {
+        const tf = {
             userData: opt.userData || {},
             scene: scene,
             camera: camera,
@@ -26,21 +40,8 @@
             init: opt.init,
             update: opt.update
         };
-    };
-    // create a main app loop function, for the given api object
-    const createLoopFunction = function (api) {
-        let lt = new Date();
-        const loop = function () {
-            const now = new Date(),
-            secs = (now - lt) / 1000;
-            requestAnimationFrame(loop);
-            if (secs >= 1 / api.fps_target) {
-                api.update(api, secs); ;
-                api.renderer.render(api.scene, api.camera);
-                lt = now;
-            }
-        };
-        return loop;
+        createLoopFunction(tf);
+        return tf;
     };
     //-------- ----------
     // PUBLIC METHODS
@@ -53,8 +54,13 @@
         // call init method
         api.init(api);
         // start loop
-        const loop = createLoopFunction(api);
-        loop();
+        //const loop = createLoopFunction(api);
+        //loop();
         return api;
+    };
+    // start the loop
+    threeFrame.start = (tf) => {
+        tf.lt = new Date();
+        tf.loop();
     };
 }(typeof threeFrame === 'undefined' ? this['threeFrame'] = {} : threeFrame));
