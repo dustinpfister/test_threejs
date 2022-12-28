@@ -30,7 +30,7 @@ const createCanvasTexture = function (draw, size) {
 };
 // texture for the map property
 const texture_map = createCanvasTexture( (ctx, canvas) => {
-   const w = 16, h = 16;
+   const w = 30, h = 30;
    const len = w * h;
    let i = 0;
    while(i < len){
@@ -41,13 +41,12 @@ const texture_map = createCanvasTexture( (ctx, canvas) => {
       const px = pw * x;
       const py = ph * y;
       const color = new THREE.Color(0,0,0);
-      color.r = Math.random();
+      color.r = 0.2 + 0.6 * Math.random();
       ctx.fillStyle = color.getStyle();
       ctx.fillRect(px, py, pw, ph);
       i += 1;
    }
-}, 32);
-console.log(texture_map);
+}, 64);
 // ---------- ---------- ----------
 // MATERIAL
 // ---------- ---------- ----------
