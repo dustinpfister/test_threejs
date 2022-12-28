@@ -8,7 +8,7 @@
         // SCENE
         const scene = new THREE.Scene();
         // CAMERA
-        const camera = new THREE.PerspectiveCamera(75, 320 / 240, 1, 1000);
+        const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
         camera.position.set(5, 5, 5);
         camera.lookAt(0, 0, 0);
         // RENDERER
@@ -23,11 +23,7 @@
             canvas: renderer.domElement,
             fps_target: 24,
             init: opt.init,
-            update: opt.update,
-            materials: opt.materials || [new THREE.MeshBasicMaterial({
-                    color: 0x00ffff,
-                    wireframe: true
-                })]
+            update: opt.update
         };
     };
     // create a main app loop function, for the given api object
@@ -48,18 +44,6 @@
     //-------- ----------
     // PUBLIC METHODS
     //-------- ----------
-    // Just an add cube method for now
-    threeFrame.addCube = function (api, obj3d, x, y, z, size, materialIndex) {
-        x = x === undefined ? 0 : x;
-        y = y === undefined ? 0 : y;
-        z = z === undefined ? 0 : z;
-        size = size === undefined ? 2 : size;
-        var geometry = new THREE.BoxGeometry(size, size, size);
-        var cube = new THREE.Mesh(geometry, api.materials[materialIndex || 0]);
-        cube.position.set(x, y, z);
-        obj3d.add(cube);
-        return cube;
-    };
     // create a main project object
     threeFrame.create = function (opt) {
         opt = opt || {};

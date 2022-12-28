@@ -6,12 +6,12 @@ threeFrame.create({
         }),
         new THREE.MeshNormalMaterial({})],
     init: function (api) {
+        api.renderer.setSize(640, 480, false);
         api.cube1 = threeFrame.addCube(api, api.scene, 0, 0, 0, 1, 1);
         api.cube2 = threeFrame.addCube(api, api.scene, -2.5, 1, 0, 1, 0);
         api.rotation = 0;
     },
     update: function (api, secs) {
-        api.renderer.setSize(640, 480, false);
         api.rotation += 1 * secs;
         api.rotation %= Math.PI * 2;
         api.cube1.rotation.set(0, api.rotation, 0);
