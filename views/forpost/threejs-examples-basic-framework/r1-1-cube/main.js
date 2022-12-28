@@ -25,4 +25,13 @@ const tf = threeFrame.create({
         api.camera.lookAt( 0, 0, 0);
     }
 });
+// start loop for first time
 threeFrame.start(tf);
+// start and stop by clicking canvas
+tf.canvas.addEventListener('click', ()=>{
+   if(tf.active){
+      threeFrame.stop(tf);
+   }else{
+      threeFrame.start(tf);
+   }
+});
