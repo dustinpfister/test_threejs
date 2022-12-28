@@ -22,7 +22,7 @@ const material_phong = new THREE.MeshPhongMaterial();
 // MESH
 // ---------- ---------- ----------
 const mesh = new THREE.Mesh(
-    new THREE.BoxGeometry(2, 2, 2),
+   new THREE.SphereGeometry(1, 30, 30),
     material_phong);
 scene.add(mesh);
 // ---------- ---------- ----------
