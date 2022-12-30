@@ -36,13 +36,15 @@ const createCanvasCube = function (draw, size_canvas, size_cube) {
         })
     );
 };
-// add cube to scene that makes use
-// of the canvas texture
-scene.add( createCanvasCube(function(ctx, canvas){
+// draw square method to use with create canvas texture
+const draw_square = function(ctx, canvas){
     ctx.lineWidth = 3;
     ctx.strokeStyle = '#af0000';
     ctx.strokeRect(3, 3, canvas.width - 6, canvas.height - 6);
-}, 16, 1.1) );
+};
+// add cube to scene that makes use
+// of the canvas texture
+scene.add( createCanvasCube(draw_square, 16, 1.1) );
 //-------- ----------
 // RENDER
 //-------- ----------
