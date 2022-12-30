@@ -3,11 +3,11 @@
 //-------- ----------
 const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
-const camera = new THREE.PerspectiveCamera(75, 320 / 240, .025, 20);
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, .025, 100);
 camera.position.set(2, 2, 2);
 camera.lookAt(0, 0, 1);
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
+renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
 // HELPERS
