@@ -19,7 +19,8 @@
 * (done) have all basic examples use r146
 * (done) use setSize\(x,y, false\)
 * (done) use webgl 1 renderer
-* () use magFilter and minFilter for all basic examples
+* (done) use magFilter and minFilter for all basic examples
+* () new arguments for size for helper functions basic example
 
 ## ( done 12/17/2022 ) - s3-4-canvasjs-grid-palette
 * (done) start new grid-palette demo to test out new palette draw feature of r2

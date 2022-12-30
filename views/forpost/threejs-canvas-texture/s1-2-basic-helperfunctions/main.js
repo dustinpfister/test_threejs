@@ -13,11 +13,12 @@ renderer.setSize(640, 480, false);
 // HELPERS
 //-------- ----------
 // create and return a canvas texture
-const createCanvasTexture = function (draw) {
+const createCanvasTexture = function (draw, size_canvas) {
+    size_canvas = size_canvas === undefined ? 32 : size_canvas;
     const canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d');
-    canvas.width = 32;
-    canvas.height = 32;
+    canvas.width = size_canvas;
+    canvas.height = size_canvas;
     draw(ctx, canvas);
     const texture = new THREE.CanvasTexture(canvas);
     texture.magFilter = THREE.NearestFilter;
@@ -25,23 +26,23 @@ const createCanvasTexture = function (draw) {
     return texture;
 };
 // create a cube the makes use of a canvas texture
-const createCanvasCube = function (draw) {
+const createCanvasCube = function (draw, size_canvas, size_cube) {
+    draw = draw || function(){};
+    size_cube = size_cube === undefined ? 1 : size_cube;
     return new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.BoxGeometry(size_cube, size_cube, size_cube),
         new THREE.MeshBasicMaterial({
-            map: createCanvasTexture(draw)
+            map: createCanvasTexture(draw, size_canvas)
         })
     );
 };
 // add cube to scene that makes use
 // of the canvas texture
-scene.add(createCanvasCube(function(ctx, canvas){
-    ctx.fillStyle = '#222222';
-    ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
+scene.add( createCanvasCube(function(ctx, canvas){
     ctx.lineWidth = 3;
     ctx.strokeStyle = '#af0000';
-    ctx.strokeRect(2.5, 2.5, canvas.width - 4, canvas.height - 4);
-}));
+    ctx.strokeRect(3, 3, canvas.width - 6, canvas.height - 6);
+}, 16, 1.1) );
 //-------- ----------
 // RENDER
 //-------- ----------
