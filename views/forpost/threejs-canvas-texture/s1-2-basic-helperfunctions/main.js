@@ -6,7 +6,7 @@ scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, .025, 100);
 camera.position.set(1, 1, 1);
 camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
@@ -19,7 +19,10 @@ const createCanvasTexture = function (draw) {
     canvas.width = 32;
     canvas.height = 32;
     draw(ctx, canvas);
-    return new THREE.CanvasTexture(canvas);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.magFilter = THREE.NearestFilter;
+    texture.minFilter = THREE.NearestFilter;
+    return texture;
 };
 // create a cube the makes use of a canvas texture
 const createCanvasCube = function (draw) {

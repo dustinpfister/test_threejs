@@ -16,9 +16,10 @@
 * () I will want to stat a section on TEXTURE class features such as flip warp ect
 
 ## () update basic examples to r146
-* () have all basic examples use r146
+* (done) have all basic examples use r146
+* (done) use setSize\(x,y, false\)
+* (done) use webgl 1 renderer
 * () use magFilter and minFilter for all basic examples
-* () use setSize\(x,y, false\)
 
 ## ( done 12/17/2022 ) - s3-4-canvasjs-grid-palette
 * (done) start new grid-palette demo to test out new palette draw feature of r2

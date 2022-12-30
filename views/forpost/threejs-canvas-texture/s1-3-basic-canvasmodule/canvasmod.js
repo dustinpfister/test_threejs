@@ -65,6 +65,8 @@
         };
         // create texture object
         canObj.texture = new THREE.CanvasTexture(canvas);
+        canObj.texture.magFilter = THREE.NearestFilter;
+        canObj.texture.minFilter = THREE.NearestFilter;
         api.update(canObj);
         return canObj;
     };

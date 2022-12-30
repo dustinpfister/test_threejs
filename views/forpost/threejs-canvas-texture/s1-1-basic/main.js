@@ -6,7 +6,7 @@ scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, .025, 100);
 camera.position.set(1.25, 1.25, 1.25);
 camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
