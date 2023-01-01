@@ -27,6 +27,7 @@ const arrow = new THREE.ArrowHelper(
         LENGTH,
         // color
         0x00ff00);
+arrow.children[0].material.linewidth = 3;
 scene.add(arrow);
 //-------- ----------
 // MESH OBJECT OF CUBE
@@ -35,6 +36,7 @@ const cube = new THREE.Mesh(
         new THREE.BoxGeometry(0.5, 0.5, 0.5),
         new THREE.MeshBasicMaterial({
             wireframe: true,
+            wireframeLinewidth: 3,
             color: 'yellow'
         }));
 scene.add(cube);
@@ -44,30 +46,33 @@ scene.add(cube);
 let frame = 0, lt = new Date();
 const maxFrame = 300, fps = 30;
 // update
-const update = function (secs, per, bias) {
+const update = function (secs) {
+    const a1 = frame / maxFrame,
+    a2 = 1 - Math.abs(0.5 - a1) / 0.5;
     // updaing Vector
-    V.z = -5 + 10 * bias;
+    V.z = -5 + 10 * a2;
     // UPDATING DIR Vector
     DIR = V.clone().normalize();
     // setting direction With DIR vector3 object
     arrow.setDirection(DIR);
     // setting position of the cube along the direction of the arrow
     // USING DIR Vector and LENGTH CONST with bias alpha
-    const x = DIR.x * LENGTH * bias,
-    y = DIR.y * LENGTH * bias,
-    z = DIR.z * LENGTH * bias;
+    const x = DIR.x * LENGTH * a2,
+    y = DIR.y * LENGTH * a2,
+    z = DIR.z * LENGTH * a2;
     cube.position.set(x, y, z);
     cube.lookAt(0, 0, 0);
+    camera.position.z = z + 3;
 };
 // loop function
 const loop = function () {
     const now = new Date(),
-    secs = (now - lt) / 1000,
-    per = frame / maxFrame,
-    bias = 1 - Math.abs(0.5 - per) / 0.5;
+    secs = (now - lt) / 1000;
+    //per = frame / maxFrame,
+    //bias = 1 - Math.abs(0.5 - per) / 0.5;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
-        update(secs, per, bias)
+        update(secs)
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
