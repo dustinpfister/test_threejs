@@ -1,5 +1,11 @@
 # threejs-arrow-helper todo list
 
+## () - s3-2-loop-video2
+* () start a video2 for the post
+
+## () - s3-1-loop-video1
+* () loop demo based on source code for video1 project
+
 ## () - s1-x-basic-linewidth
 * () line width demo
 
