@@ -68,8 +68,6 @@ const update = function (secs) {
 const loop = function () {
     const now = new Date(),
     secs = (now - lt) / 1000;
-    //per = frame / maxFrame,
-    //bias = 1 - Math.abs(0.5 - per) / 0.5;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
         update(secs)
