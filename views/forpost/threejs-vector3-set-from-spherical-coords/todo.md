@@ -6,7 +6,8 @@
 
 ## ( ) - rename folders, use r146
 * (done) rename folders
-* () use r146
+* (done) use r146
+* () update code examples
 
 ## ( done 02/04/2022 ) - s2-simple-scene
 * (done) start a simple scene example of the method
