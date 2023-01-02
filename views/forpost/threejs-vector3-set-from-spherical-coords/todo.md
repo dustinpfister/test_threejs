@@ -6,6 +6,10 @@
 * create a method that will create and return a standard mesh object with phi, theta and radius values in the data object of the mesh.
 * set position of a sphere over time using from spherical coords
 
+## () - rename folders, use r146
+* () rename folders
+* () use r146
+
 ## ( done 02/04/2022 ) - s2-simple-scene
 * (done) start a simple scene example of the method
 * (done) create a sphere and change the position of the sphere over time using from spherical coords
