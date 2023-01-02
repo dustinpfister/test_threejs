@@ -1,52 +1,45 @@
-
-(function () {
- 
-    // scene
-    var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(20, 20));
-    scene.background = new THREE.Color('black');
- 
-    // camera
-    var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    //camera.position.set(-17, 10, -17);
-    camera.position.setFromSphericalCoords(
-        25,
-        THREE.MathUtils.degToRad(70),
-        THREE.MathUtils.degToRad(225)
-    );
-    camera.lookAt(0, 0, 0);
-    scene.add(camera);
- 
-    // render
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    var container = document.getElementById('demo');
-    container.appendChild(renderer.domElement);
- 
-    // point light
-    //var pl = new THREE.PointLight(0xffffff);
-    //pl.position.set(2, 5, 3);
-    //camera.add(pl);
-    //scene.add(pl);
- 
-    // A Mesh with a Sphere for geometry and using the Standard Material
-    var mesh = new THREE.Mesh(
-        new THREE.SphereGeometry(3, 30, 30),
-        new THREE.MeshBasicMaterial({
-            color: new THREE.Color('red'),
-            wireframe: true
-        })
-    );
-    scene.add(mesh);
- 
-    // USING setFromSphericalCoords to set position of the Mesh
-    var radius = 10,
-    phi = THREE.MathUtils.degToRad(90),
-    theta = THREE.MathUtils.degToRad(270);
-    mesh.position.setFromSphericalCoords(radius, phi, theta);
- 
-    // render
-    renderer.render(scene, camera);
- 
-}
-    ());
+// ---------- ---------- ----------
+// SCENE, CAMERA, and RENDERER
+// ---------- ---------- ----------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 1, 1000);
+camera.position.set(250, 250, 250);
+camera.lookAt(0,0,0);
+const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer;
+renderer.setSize(640, 480, false);
+( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+// ---------- ---------- ----------
+// ADD A MESH
+// ---------- ---------- ----------
+let mesh = new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200), new THREE.MeshNormalMaterial());
+scene.add(mesh);
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 120;
+let secs = 0,
+frame = 0,
+lt = new Date();
+// update
+const update = function(frame, frameMax){
+    const degree = 360 * (frame / frameMax);
+    mesh.rotation.x = THREE.MathUtils.degToRad(degree);
+};
+// loop
+const loop = () => {
+    const now = new Date(),
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / FPS_UPDATE){
+        // update, render
+        update( Math.floor(frame), FRAME_MAX);
+        renderer.render(scene, camera);
+        // step frame
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
+        lt = now;
+    }
+};
+loop();
