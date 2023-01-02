@@ -4,10 +4,10 @@
 * (done) start an animated scene example
 * () make the example just based on what was made for video1 for the post
 
-## ( ) - rename folders, use r146
+## ( done 01/02/2023 ) - rename folders, use r146
 * (done) rename folders
 * (done) use r146
-* () update code examples
+* (done) update code examples
 
 ## ( done 02/04/2022 ) - s2-simple-scene
 * (done) start a simple scene example of the method
