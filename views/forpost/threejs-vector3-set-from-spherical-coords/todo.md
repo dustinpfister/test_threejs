@@ -1,13 +1,11 @@
 # threejs-vector3-set-from-spherical-coords todo list
 
-## () - s3-av-animated-scene
-* start an animated scene example
-* use a point light and the standard material
-* create a method that will create and return a standard mesh object with phi, theta and radius values in the data object of the mesh.
-* set position of a sphere over time using from spherical coords
+## () - s3-1-loop-video1
+* (done) start an animated scene example
+* () make the example just based on what was made for video1 for the post
 
-## () - rename folders, use r146
-* () rename folders
+## ( ) - rename folders, use r146
+* (done) rename folders
 * () use r146
 
 ## ( done 02/04/2022 ) - s2-simple-scene
