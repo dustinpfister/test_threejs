@@ -1,8 +1,17 @@
 # threejs-vector3-set-from-spherical-coords todo list
 
-## () - s3-1-loop-video1
+## () - s2-2-loop-video2
+* () start a loop exmaple that will be a video2 for this post
+
+## () s3-2-alt-raycaster
+* () have an example of the raycaster method
+
+## () s3-1-alt-apply-euler
+* () start a section on alternatives to the set from spherical coords method with one on the applyEuler method
+
+## ( done 01/02/2023 ) - s3-1-loop-video1
 * (done) start an animated scene example
-* () make the example just based on what was made for video1 for the post
+* (done) make the example just based on what was made for video1 for the post
 
 ## ( done 01/02/2023 ) - rename folders, use r146
 * (done) rename folders
