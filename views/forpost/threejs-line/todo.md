@@ -1,7 +1,11 @@
 # threejs-line todo list
 
-## () - s2-2-getpoints-curve
-* () demo in which points are created using a curve
+## () - s2-3-getpoints-curve-getpoint
+* () example that uses the getpoint and not the getpoints method of the curve class
+* () directly create the position attribuite for this one ( DO NOT USE SET FROM POINTS )
+
+## ( done 12/03/2023 ) - s2-2-getpoints-curve
+* (done) demo in which points are created using a curve
 
 ## ( done 12/03/2023 ) - rename folders
 * (done) rename s2-create-points to s2-1-getpoints-helper
