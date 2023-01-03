@@ -21,57 +21,49 @@ shader_hatch.uniforms = {
         uDirLightColor: { type: 'c', value: new THREE.Color(0xeeeeee) },
         uAmbientLightColor: { type: 'c', value: new THREE.Color(0x050505) },
         uBaseColor: { type: 'c', value: new THREE.Color(0xffffff) },
-        uLineColor0: { type: 'c', value: new THREE.Color(0x000000) },
-        uLineColor1: { type: 'c', value: new THREE.Color(0x000000) },
-        uLineColor2: { type: 'c', value: new THREE.Color(0x000000) },
-        uLineColor3: { type: 'c', value: new THREE.Color(0x000000) },
-        uLineColor4: { type: 'c', value: new THREE.Color(0x000000) }
+        uLineColor1: { type: 'c', value: new THREE.Color(0x000000) }
 };
 // vertex shader for hatching shader
 shader_hatch.vertexShader = [
     'varying vec3 vNormal;',
     'void main() {',
-    'gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
-    'vNormal = normalize( normalMatrix * normal );',
+    '     gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
+    '     vNormal = normalize( normalMatrix * normal );',
     '}'
 ].join('\n');
 // fragment shader for hatching shader
 shader_hatch.fragmentShader = [
     'uniform vec3 uBaseColor;',
-    'uniform vec3 uLineColor0;',
     'uniform vec3 uLineColor1;',
-    'uniform vec3 uLineColor2;',
-    'uniform vec3 uLineColor3;',
-    'uniform vec3 uLineColor4;',
     'uniform vec3 uDirLightPos;',
     'uniform vec3 uDirLightColor;',
     'uniform vec3 uAmbientLightColor;',
     'varying vec3 vNormal;',
     '',
     'void main() {',
-    'float directionalLightWeighting = max( dot( vNormal, uDirLightPos ), 0.0);',
-    'vec3 lightWeighting = uAmbientLightColor + uDirLightColor * directionalLightWeighting;',
-    'gl_FragColor = vec4( uBaseColor, 1.0 );',
-    'if ( length(lightWeighting) < 1.00 ) {',
-    'if (mod(gl_FragCoord.x + gl_FragCoord.y, 10.0) == 0.0) {',
-    'gl_FragColor = vec4( uLineColor1, 1.0 );',
-    '}',
-    '}',
-    'if ( length(lightWeighting) < 0.75 ) {',
-    'if (mod(gl_FragCoord.x - gl_FragCoord.y, 10.0) == 0.0) {',
-    'gl_FragColor = vec4( uLineColor2, 1.0 );',
-    '}',
-    '}',
-    'if ( length(lightWeighting) < 0.50 ) {',
-    'if (mod(gl_FragCoord.x + gl_FragCoord.y - 5.0, 10.0) == 0.0) {',
-    'gl_FragColor = vec4( uLineColor3, 1.0 );',
-    '}',
-    '}',
-    'if ( length(lightWeighting) < 0.3465 ) {',
-    'if (mod(gl_FragCoord.x - gl_FragCoord.y - 5.0, 10.0) == 0.0) {',
-    'gl_FragColor = vec4( uLineColor4, 1.0 );',
-    '}',
-    '}',
+    '    float directionalLightWeighting = max( dot( vNormal, uDirLightPos ), 0.0);',
+    '    vec3 lightWeighting = uAmbientLightColor + uDirLightColor * directionalLightWeighting;',
+    '    gl_FragColor = vec4( uBaseColor, 1.0 );',
+    '    if ( length(lightWeighting) < 1.00 ) {',
+    '        if (mod(gl_FragCoord.x + gl_FragCoord.y, 8.0) == 0.0) {',
+    '            gl_FragColor = vec4( uLineColor1, 1.0 );',
+    '        }',
+    '    }',
+    '    if ( length(lightWeighting) < 0.50 ) {',
+    '        if (mod(gl_FragCoord.x - gl_FragCoord.y, 8.0) == 0.0) {',
+    '            gl_FragColor = vec4( uLineColor1, 1.0 );',
+    '        }',
+    '    }',
+    '    if ( length(lightWeighting) < 0.25 ) {',
+    '        if (mod(gl_FragCoord.x + gl_FragCoord.y - 5.0, 8.0) == 0.0) {',
+    '            gl_FragColor = vec4( uLineColor1, 1.0 );',
+    '        }',
+    '    }',
+    '    if ( length(lightWeighting) < 0.12 ) {',
+    '        if (mod(gl_FragCoord.x - gl_FragCoord.y - 5.0, 8.0) == 0.0) {',
+    '            gl_FragColor = vec4( uLineColor1, 1.0 );',
+    '        }',
+    '    }',
     '}'
 ].join('\n');
 // ---------- ----------
@@ -88,15 +80,11 @@ const material1 = new THREE.ShaderMaterial({
     vertexShader: shader_hatch.vertexShader,
     fragmentShader: shader_hatch.fragmentShader
 });
-const lineColor1 = 0x000000;
 material1.uniforms.uDirLightColor.value = dl.color;
 material1.uniforms.uDirLightPos.value = dl.position;
-material1.uniforms.uBaseColor.value.setHex(0xffffff);
-material1.uniforms.uLineColor0.value.setHex(lineColor1);
-material1.uniforms.uLineColor1.value.setHex(lineColor1);
-material1.uniforms.uLineColor2.value.setHex(lineColor1);
-material1.uniforms.uLineColor3.value.setHex(lineColor1);
-material1.uniforms.uLineColor4.value.setHex(0x000000);
+//const lineColor1 = 0xff0000;
+//material1.uniforms.uBaseColor.value.setHex(0xffffff);
+//material1.uniforms.uLineColor1.value.setHex(lineColor1);
 // ---------- ----------
 // GEOMETRY, MESH
 // ---------- ----------
