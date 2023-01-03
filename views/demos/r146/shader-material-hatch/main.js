@@ -39,7 +39,7 @@ shader_hatch.fragmentShader = [
     'uniform vec3 uDirLightColor;',
     'uniform vec3 uAmbientLightColor;',
     'varying vec3 vNormal;',
-    'float fSpace = 12.0;',    // added an fSpace Float
+    'const float fSpace = 12.0;',    // added an fSpace Float
     '',
     'void main() {',
     '    float directionalLightWeighting = max( dot( vNormal, uDirLightPos ), 0.0);',
