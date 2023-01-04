@@ -2,7 +2,8 @@
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
 const scene = new THREE.Scene();
-scene.add( new THREE.GridHelper(10, 10) );
+scene.background = new THREE.Color(0.2,0.2, 0.2);
+//scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
 camera.position.set(5, 5, 5);
 camera.lookAt(0, 0, 0);
@@ -39,7 +40,7 @@ shader_hatch.fragmentShader = [
     'uniform vec3 uDirLightColor;',
     'uniform vec3 uAmbientLightColor;',
     'varying vec3 vNormal;',
-    'const float fSpace = 12.0;',    // added an fSpace Float
+    'const float fSpace = 8.0;',    // added an fSpace Float
     '',
     'void main() {',
     '    float directionalLightWeighting = max( dot( vNormal, uDirLightPos ), 0.0);',
@@ -50,17 +51,17 @@ shader_hatch.fragmentShader = [
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
-    '    if ( length(lightWeighting) < 0.50 ) {',
+    '    if ( length(lightWeighting) < 0.95 ) {',
     '        if (mod(gl_FragCoord.x - gl_FragCoord.y, fSpace) == 0.0) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
-    '    if ( length(lightWeighting) < 0.25 ) {',
+    '    if ( length(lightWeighting) < 0.50 ) {',
     '        if (mod(gl_FragCoord.x + gl_FragCoord.y - 5.0, fSpace) == 0.0) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
-    '    if ( length(lightWeighting) < 0.12 ) {',
+    '    if ( length(lightWeighting) < 0.15 ) {',
     '        if (mod(gl_FragCoord.x - gl_FragCoord.y - 5.0, fSpace) == 0.0) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
@@ -89,7 +90,7 @@ material1.uniforms.uDirLightPos.value = dl.position;
 // ---------- ----------
 // GEOMETRY, MESH
 // ---------- ----------
-const geo = new THREE.SphereGeometry( 3, 20, 20);
+const geo = new THREE.SphereGeometry( 3, 60, 60);
 const mesh = new THREE.Mesh(geo, material1);
 scene.add(mesh);
 // ---------- ----------
