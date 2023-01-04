@@ -3,11 +3,13 @@
 ## ( ) - sx -
 * () use THREE.MathUtils.seededRandom for parseSOPIndices helper
 
+## () r0-1-basic demo
+* () start a r0-1-basic demo
+
 ## () - main js folder, using r146 for r0 example
 * (done) have a main js folder for this project
 * (done) move all r0 files to main js folder
-* () rename s1-first to r0-2-soparray 
-* () start a r0-1-basic demo
+* (done) rename s1-first to r0-2-soparray 
 
 ## ( done 05/02/2022 ) - s1-first
 * (done) start with source code from s2 section of cube-stack example
