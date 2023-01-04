@@ -12,12 +12,12 @@
 * () add canvas texture
 * () use phong matreial
 
-## () s1-2-basic-mesh
-* () start an example where the goal will be to make a geometry for a mesh object
-* () use just 4 points in space
-* () create an index for the points
-* () create a normal attribute
-* () just use normal material for now
+## ( done 01/04/2023 ) s1-2-basic-mesh
+* (done) start an example where the goal will be to make a geometry for a mesh object
+* (done) use just 4 points in space
+* (done) create an index for the points
+* (done) create a normal attribute
+* (done) just use normal material for now
 
 ## ( done 01/04/2023 ) - for post folder
 * (done) for post folder started with single r146 demo on lines
