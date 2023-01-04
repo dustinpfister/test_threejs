@@ -47,26 +47,27 @@ shader_hatch.fragmentShader = [
     'void main() {',
     '    float directionalLightWeighting = max( dot( vNormal, uDirLightPos ), 0.0);',
     '    vec3 lightWeighting = uAmbientLightColor + uDirLightColor * directionalLightWeighting;',
+    '    float len = length(lightWeighting);',
     '    gl_FragColor = vec4( uBaseColor, 1.0 );',
-    '    if ( length(lightWeighting) < 1.00 ) {',
+    '    if ( len < 1.00 ) {',
     '        float n = mod(gl_FragCoord.x + gl_FragCoord.y, fSpace);',
     '        if ( n < 3.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
-    '    if ( length(lightWeighting) < 0.75 ) {',
+    '    if ( len < 0.75 ) {',
     '        float n = mod(gl_FragCoord.x - gl_FragCoord.y, fSpace);',
     '        if ( n < 3.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
-    '    if ( length(lightWeighting) < 0.50 ) {',
+    '    if ( len < 0.50 ) {',
     '        float n = mod(gl_FragCoord.x + gl_FragCoord.y - 5.0, fSpace);',
     '        if ( n < 3.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
-    '    if ( length(lightWeighting) < 0.25 ) {',
+    '    if ( len < 0.25 ) {',
     '        float n = mod(gl_FragCoord.x - gl_FragCoord.y - 5.0, fSpace);',
     '        if ( n < 3.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
@@ -91,13 +92,15 @@ const material1 = new THREE.ShaderMaterial({
 material1.uniforms.uDirLightColor.value = dl.color;
 material1.uniforms.uDirLightPos.value = dl.position;
 //const lineColor1 = 0xff0000;
-//material1.uniforms.uBaseColor.value.setHex(0xffffff);
+//material1.uniforms.uBaseColor.value.setHex(0xff0000);
 //material1.uniforms.uLineColor1.value.setHex(lineColor1);
 // ---------- ----------
 // GEOMETRY, MESH
 // ---------- ----------
-const geo = new THREE.SphereGeometry( 3, 60, 60);
+const geo = new THREE.TorusGeometry( 3, 1, 100, 100);
+geo.rotateX(Math.PI * 0.5);
 const mesh = new THREE.Mesh(geo, material1);
+mesh.position.y = 1;
 scene.add(mesh);
 // ---------- ----------
 // ANIMATION LOOP
