@@ -1,11 +1,9 @@
 // ********** **********
-// data textures
+// data textures - r0 - from threejs-examples-cube-stack-grid
 // module for creating data textures
 // ********** **********
 var datatex = (function () {
-
     var api = {};
-
     // mk data texture helper
     api.mkDataTexture = function (data, w) {
         data = data || [];
@@ -16,7 +14,6 @@ var datatex = (function () {
         texture.needsUpdate = true;
         return texture;
     };
-
     // create a data texture with a method that will be called for each pix
     api.forEachPix = function (w, h, forEach) {
         var width = w === undefined ? 5 : w,
@@ -36,7 +33,6 @@ var datatex = (function () {
         }
         return api.mkDataTexture(data, width)
     };
-
     // from px data method
     api.fromPXDATA = function(pxData, width, palette){
         palette = palette || [
@@ -55,7 +51,6 @@ var datatex = (function () {
             return obj;
         });
     };
-
     // simple gray scale seeded random texture
     api.seededRandom = function (w, h, rPer, gPer, bPer, range) {
         w = w === undefined ? 5 : w,
@@ -76,7 +71,6 @@ var datatex = (function () {
         }
         return api.mkDataTexture(data, w);
     };
-
     // return the api
     return api;
 }
