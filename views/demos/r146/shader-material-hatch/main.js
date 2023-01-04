@@ -47,11 +47,11 @@ shader_hatch.fragmentShader = [
     'void main() {',
     '    float directionalLightWeighting = max( dot( vNormal, uDirLightPos ), 0.0);',
     '    vec3 lightWeighting = uAmbientLightColor + uDirLightColor * directionalLightWeighting;',
-    '    float len = length(lightWeighting);',
+    '    float len = length(lightWeighting);',     // added a len Float
     '    gl_FragColor = vec4( uBaseColor, 1.0 );',
     '    if ( len < 1.00 ) {',
-    '        float n = mod(gl_FragCoord.x + gl_FragCoord.y, fSpace);',
-    '        if ( n < 3.0 ) {',
+    '        float n = mod(gl_FragCoord.x + gl_FragCoord.y, fSpace);', // added a n Float for each of these
+    '        if ( n < 3.0 ) {', // new expression that allows for thicker lines
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
