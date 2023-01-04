@@ -21,12 +21,10 @@ var CubeStack = (function () {
         plane.rotation.set(-Math.PI / 2, 0, 0);
         return plane;
     };
-
     var getCubeStack = function(stack, x, y){
         var name = 'cubestack_' + x + '_' + y;
         return stack.userData.cubeGroups.getObjectByName(name);
     };
-
     // append cube groups for what should be a new stack group
     var appendCubeGroups = function(stack, opt){
         var i = 0,
@@ -55,7 +53,6 @@ var CubeStack = (function () {
     //******** **********
     //  APPEND MESH METHOD AND HELPERS
     //******** **********
-
     var getPos = {};
     // random get pos method
     getPos.random = function(stack, opt, i){
@@ -75,7 +72,6 @@ var CubeStack = (function () {
         opt = opt || {};
         opt.boxCount = opt.boxCount === undefined ? 30 : opt.boxCount;
         opt.posArray = opt.posArray || [];
-
         // default get pos method
         var getPosMethod = getPos.seededRandom;
         // if getPos option is a string
@@ -87,7 +83,6 @@ var CubeStack = (function () {
         }
         var boxIndex = 0;
         while (boxIndex < opt.boxCount) {
-
             // get the cube stack group to place the new mesh by checking the posArray first
             var a = opt.posArray[boxIndex], pos;
             if(typeof a === 'number'){
@@ -116,7 +111,6 @@ var CubeStack = (function () {
             boxIndex += 1;
         }
     };
-
     // public create method
     api.create = function (opt) {
         var stack = new THREE.Group();
@@ -140,7 +134,6 @@ var CubeStack = (function () {
         return stack;
     };
     var EFFECTS = {};
-
     // effect to scale all cubes up and down by scaling the y value of the cubes group
     EFFECTS.scaleCubeGroup = function(stack, opt){
         opt = opt || {};
@@ -151,7 +144,6 @@ var CubeStack = (function () {
         cubes.scale.set(1, y ,1);
         cubes.position.set(0, (opt.yMax - y) * -1 / 2,0);
     };
-
     // scale all cubes on a cube by cube basis
     EFFECTS.scaleCubes = function(stack, opt){
         opt = opt || {};
@@ -166,8 +158,6 @@ var CubeStack = (function () {
             });
         });
     };
-
-
     // apply effect method
     api.applyEffect = function(stack, effectKey, opt){
         EFFECTS[effectKey](stack, opt);
