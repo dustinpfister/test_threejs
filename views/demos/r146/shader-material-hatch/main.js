@@ -89,10 +89,41 @@ material1.uniforms.uDirLightPos.value = dl.position;
 // ---------- ----------
 // GEOMETRY, MESH
 // ---------- ----------
-const geo = new THREE.SphereGeometry( 2, 20, 20);
+const geo = new THREE.SphereGeometry( 3, 20, 20);
 const mesh = new THREE.Mesh(geo, material1);
 scene.add(mesh);
 // ---------- ----------
-// RENDER
+// ANIMATION LOOP
 // ---------- ----------
-renderer.render(scene, camera);
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 300;
+let secs = 0,
+frame = 0,
+lt = new Date();
+// update
+const update = function(frame, frameMax){
+    const a1 = frame / frameMax;
+    const v = new THREE.Vector3();
+    const e = new THREE.Euler();
+    e.x = Math.PI * 4 * a1;
+    e.z = Math.PI * 2 * a1;
+    v.set(0,1,0).applyEuler(e);
+    dl.position.copy(v);
+};
+// loop
+const loop = () => {
+    const now = new Date(),
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / FPS_UPDATE){
+        // update, render
+        update( Math.floor(frame), FRAME_MAX);
+        renderer.render(scene, camera);
+        // step frame
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
+        lt = now;
+    }
+};
+loop();
