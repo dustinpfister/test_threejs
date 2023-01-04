@@ -17,6 +17,7 @@ renderer.setSize(640, 480, false);
 // by EvanBacon ( https://codepen.io/EvanBacon , https://twitter.com/baconbrix )
 // * made it so that there are just two colors
 // * figured out how to make the lines thicker
+// * figured out how to mutate color
 const shader_hatch = {};
 // unifrom values for hatching shader
 shader_hatch.uniforms = {
@@ -48,28 +49,31 @@ shader_hatch.fragmentShader = [
     '    float directionalLightWeighting = max( dot( vNormal, uDirLightPos ), 0.0);',
     '    vec3 lightWeighting = uAmbientLightColor + uDirLightColor * directionalLightWeighting;',
     '    float len = length(lightWeighting);',     // added a len Float
-    '    gl_FragColor = vec4( uBaseColor, 1.0 );',
+    //'    gl_FragColor = vec4( uBaseColor, 1.0 );',
+    '    vec3 color = vec3(len * 0.50);', // figured out how to mutate color
+    //'    color[0] = len * 0.40;',
+    '    gl_FragColor = vec4(color, 1.0);',
     '    if ( len < 1.00 ) {',
     '        float n = mod(gl_FragCoord.x + gl_FragCoord.y, fSpace);', // added a n Float for each of these
-    '        if ( n < 3.0 ) {', // new expression that allows for thicker lines
+    '        if ( n < 4.0 ) {', // new expression that allows for thicker lines
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
     '    if ( len < 0.75 ) {',
     '        float n = mod(gl_FragCoord.x - gl_FragCoord.y, fSpace);',
-    '        if ( n < 3.0 ) {',
+    '        if ( n < 2.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
     '    if ( len < 0.50 ) {',
     '        float n = mod(gl_FragCoord.x + gl_FragCoord.y - 5.0, fSpace);',
-    '        if ( n < 3.0 ) {',
+    '        if ( n < 2.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
     '    if ( len < 0.25 ) {',
     '        float n = mod(gl_FragCoord.x - gl_FragCoord.y - 5.0, fSpace);',
-    '        if ( n < 3.0 ) {',
+    '        if ( n < 2.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
