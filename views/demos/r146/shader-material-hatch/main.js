@@ -37,13 +37,13 @@ shader_hatch.vertexShader = [
 ].join('\n');
 // fragment shader for hatching shader
 shader_hatch.fragmentShader = [
-    'uniform vec3 uBaseColor;',
+    //'uniform vec3 uBaseColor;',
     'uniform vec3 uLineColor1;',
     'uniform vec3 uDirLightPos;',
     'uniform vec3 uDirLightColor;',
     'uniform vec3 uAmbientLightColor;',
     'varying vec3 vNormal;',
-    'const float fSpace = 8.0;',    // added an fSpace Float
+    'const float fSpace = 10.0;',    // added an fSpace Float
     '',
     'void main() {',
     '    float directionalLightWeighting = max( dot( vNormal, uDirLightPos ), 0.0);',
@@ -61,19 +61,19 @@ shader_hatch.fragmentShader = [
     '    }',
     '    if ( len < 0.75 ) {',
     '        float n = mod(gl_FragCoord.x - gl_FragCoord.y, fSpace);',
-    '        if ( n < 2.0 ) {',
+    '        if ( n < 4.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
     '    if ( len < 0.50 ) {',
     '        float n = mod(gl_FragCoord.x + gl_FragCoord.y - 5.0, fSpace);',
-    '        if ( n < 2.0 ) {',
+    '        if ( n < 4.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
     '    if ( len < 0.25 ) {',
     '        float n = mod(gl_FragCoord.x - gl_FragCoord.y - 5.0, fSpace);',
-    '        if ( n < 2.0 ) {',
+    '        if ( n < 4.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
