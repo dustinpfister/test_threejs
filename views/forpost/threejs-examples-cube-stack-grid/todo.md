@@ -1,7 +1,13 @@
 # threejs-examples-cube-stack-grid todo list
 
-## ( ) - s2 -
-* use THREE.MathUtils.seededRandom for parseSOPIndices helper
+## ( ) - sx -
+* () use THREE.MathUtils.seededRandom for parseSOPIndices helper
+
+## () - main js folder, using r146 for r0 example
+* () have a main js folder for this project
+* () move all r0 files to main js folder
+* () rename s1-first to r0-2-soparray 
+* () start a r0-1-basic demo
 
 ## ( done 05/02/2022 ) - s1-first
 * (done) start with source code from s2 section of cube-stack example
