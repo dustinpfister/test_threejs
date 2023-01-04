@@ -6,7 +6,7 @@
 ## () r0-1-basic demo
 * () start a r0-1-basic demo
 
-## () - main js folder, using r146 for r0 example
+## ( done 01/04/2023 ) - main js folder, using r146 for r0 example
 * (done) have a main js folder for this project
 * (done) move all r0 files to main js folder
 * (done) rename s1-first to r0-2-soparray 
