@@ -73,7 +73,6 @@ var CubeStack = (function () {
         ];
         var cubes = stack.cubes = new THREE.Group();
         // scale cubes effect
-
         stack.add(cubes)
         appendBoxMeshObjects(cubes, opt);
         var plane = stack.plane = createPlane(opt);
@@ -81,7 +80,6 @@ var CubeStack = (function () {
         return stack;
     };
     var EFFECTS = {};
-
     // effect to scale all cubes up and down by scaling the y value of the cubes group
     EFFECTS.scaleCubes = function(stack, opt){
         opt = opt || {};

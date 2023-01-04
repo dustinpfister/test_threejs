@@ -1,6 +1,6 @@
 (function () {
     // ********** **********
-    // SCENE, CAMERA, LIGHT, and RENDERER
+    // SCENE, CAMERA, RENDERER
     // ********** **********
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0.1, 0.1, 0.1);
@@ -8,12 +8,15 @@
     camera.position.set(7, 7, 7);
     camera.lookAt(0, 0, 0);
     scene.add(camera);
+    var renderer = new THREE.WebGL1Renderer();
+    renderer.setSize(640, 480, false);
+    (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+    // ********** **********
+    // LIGHT
+    // ********** **********
     var dl = new THREE.DirectionalLight(0xffffff, 0.8);
     dl.position.set(5, 10, 1);
     scene.add(dl);
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
-    document.getElementById('demo').appendChild(renderer.domElement);
     // STACK
     var stack = CubeStack.create({
             gx: 7,
