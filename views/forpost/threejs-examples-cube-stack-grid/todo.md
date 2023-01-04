@@ -4,8 +4,8 @@
 * () use THREE.MathUtils.seededRandom for parseSOPIndices helper
 
 ## () - main js folder, using r146 for r0 example
-* () have a main js folder for this project
-* () move all r0 files to main js folder
+* (done) have a main js folder for this project
+* (done) move all r0 files to main js folder
 * () rename s1-first to r0-2-soparray 
 * () start a r0-1-basic demo
 

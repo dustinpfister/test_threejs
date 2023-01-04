@@ -1,9 +1,7 @@
-// Cube Stack Grid example from threejs-examples-cube-stack-grid
+// cube-stack-grid.js - r0 - from threejs-examples-cube-stack-grid
 var CubeStackGrid = (function () {
-
     // default for each cell function
     var DEFAULT_FOR_EACH_TILE = function(sopIndex, i, csg, opt){};
-
     // defualt stack option palette
     var DEFAULT_STACK_OPTION_PALETTE = [
         { boxCount: 5 },
@@ -11,9 +9,7 @@ var CubeStackGrid = (function () {
         { boxCount: 50 },
         { boxCount: 100 }
     ];
-
     var DEFAULT_SOP_INDICES = [];
-
     // parse stack option indices array
     var parseSOPIndices = function(csg, sopArray){
         sopArray = sopArray || [];
@@ -27,10 +23,8 @@ var CubeStackGrid = (function () {
         }
         return array;
     };
-
     // the public api
     var api = {};
-
     // create a new Cube Stack Grid (csg) object
     api.create = function (opt) {
         opt = opt || {};
