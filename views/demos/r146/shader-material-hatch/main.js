@@ -15,6 +15,8 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 // based on what as found at: https://codepen.io/EvanBacon/pen/xgEBPX
 // by EvanBacon ( https://codepen.io/EvanBacon , https://twitter.com/baconbrix )
+// * made it so that there are just two colors
+// * figured out how to make the lines thicker
 const shader_hatch = {};
 // unifrom values for hatching shader
 shader_hatch.uniforms = {
@@ -47,22 +49,26 @@ shader_hatch.fragmentShader = [
     '    vec3 lightWeighting = uAmbientLightColor + uDirLightColor * directionalLightWeighting;',
     '    gl_FragColor = vec4( uBaseColor, 1.0 );',
     '    if ( length(lightWeighting) < 1.00 ) {',
-    '        if (mod(gl_FragCoord.x + gl_FragCoord.y, fSpace) == 0.0) {',
+    '        float n = mod(gl_FragCoord.x + gl_FragCoord.y, fSpace);',
+    '        if ( n < 3.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
-    '    if ( length(lightWeighting) < 0.95 ) {',
-    '        if (mod(gl_FragCoord.x - gl_FragCoord.y, fSpace) == 0.0) {',
+    '    if ( length(lightWeighting) < 0.75 ) {',
+    '        float n = mod(gl_FragCoord.x - gl_FragCoord.y, fSpace);',
+    '        if ( n < 3.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
     '    if ( length(lightWeighting) < 0.50 ) {',
-    '        if (mod(gl_FragCoord.x + gl_FragCoord.y - 5.0, fSpace) == 0.0) {',
+    '        float n = mod(gl_FragCoord.x + gl_FragCoord.y - 5.0, fSpace);',
+    '        if ( n < 3.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
-    '    if ( length(lightWeighting) < 0.15 ) {',
-    '        if (mod(gl_FragCoord.x - gl_FragCoord.y - 5.0, fSpace) == 0.0) {',
+    '    if ( length(lightWeighting) < 0.25 ) {',
+    '        float n = mod(gl_FragCoord.x - gl_FragCoord.y - 5.0, fSpace);',
+    '        if ( n < 3.0 ) {',
     '            gl_FragColor = vec4( uLineColor1, 1.0 );',
     '        }',
     '    }',
