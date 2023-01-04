@@ -13,7 +13,7 @@ renderer.setSize(640, 480, false);
 // HELPERS
 //-------- ----------
 const draw_tri = function(ctx, canvas){
-    const w = 5;
+    const w = 10;
     const hw = w / 2;
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -61,27 +61,12 @@ geo.computeVertexNormals();
 // uv attribute
 const pos = geo.getAttribute('position');
 let i = 0;
-const uv = [
-    1,1,
-    0,1,
-    0,0,
-    1,1,
-    0,1,
-    0,0,
-    1,1,
-    0,1,
-    0,0,
-    1,1,
-    0,1,
-    0,0
-];
-/*
+const uv = [];
+const a = 1, b = 0;
 while(i < pos.count){
-   const faceIndex = Math.floor(i / 3);
-   uv.push(0,1);
-   i += 1;
+   uv.push(a,a,b,a,b,b);
+   i += 3;
 }
-*/
 geo.setAttribute('uv', new THREE.BufferAttribute( new Float32Array(uv), 2 ))
 console.log(geo)
 // ---------- ----------
@@ -93,16 +78,13 @@ scene.add(dl);
 //-------- ----------
 // TEXTURE
 //-------- ----------
-const texture = createCanvasTexture(draw_tri, 64);
+const texture = createCanvasTexture(draw_tri, 128);
 // ---------- ----------
 // Mesh, MeshPhongMaterial
 // ---------- ----------
 const material = new THREE.MeshPhongMaterial({map: texture});
 const mesh = new THREE.Mesh(geo, material);
 scene.add(mesh);
-//const box = new THREE.Mesh( new THREE.BoxGeometry(2,2,2), material );
-//scene.add(box);
-
 // ---------- ----------
 // RENDER
 // ---------- ----------

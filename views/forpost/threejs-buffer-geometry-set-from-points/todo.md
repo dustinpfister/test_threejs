@@ -5,12 +5,12 @@
 * () create new buffer geometry from a points array
 * () update a buffer geometry with a points array
 
-## () s1-3-basic-mesh-uv
-* () continue from s1-2-basic-mesh
-* () add uv attribute
-* () add light source
-* () add canvas texture
-* () use phong matreial
+## ( done 01/04/2023 ) s1-3-basic-mesh-uv
+* (done) continue from s1-2-basic-mesh
+* (done) add uv attribute
+* (done) add light source
+* (done) add canvas texture
+* (done) use phong matreial
 
 ## ( done 01/04/2023 ) s1-2-basic-mesh
 * (done) start an example where the goal will be to make a geometry for a mesh object
