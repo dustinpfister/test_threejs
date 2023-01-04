@@ -1,6 +1,6 @@
 # threejs-examples-cube-stack todo list
 
-## () - s3
+## () - sx
 * main id for a stack object
 * uname for groups (with main id)
 * uname for mesh obejcts (with main id)
@@ -11,7 +11,14 @@
 * I will want a simular option to that if the posArray but with texture methods
 * start at least one more effect
 
-## () - s2 - groups for each stack, pos methods, texture control, and new effects
+
+## () - main js folder
+* (done) main js folder
+* () rename folders
+* () use r146
+
+
+## ( done 04/29/2022) - s2 - groups for each stack, pos methods, texture control, and new effects
 * (done) rename EFFECTS.scaleCubes to EFFECTS.scaleCubeGroup
 * (done) new EFFECTS.scaleCubes effect that will scale each cube in one or more stacks
 * (done) opt.gx should be opt.gw, and opt.gy should be opt.gh
