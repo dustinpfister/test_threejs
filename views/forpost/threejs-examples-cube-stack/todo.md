@@ -12,11 +12,10 @@
 * start at least one more effect
 
 
-## () - main js folder
+## ( done 01/04/2022 ) - main js folder
 * (done) main js folder
-* () rename folders
-* () use r146
-
+* (done) rename folders
+* (done) use r146
 
 ## ( done 04/29/2022) - s2 - groups for each stack, pos methods, texture control, and new effects
 * (done) rename EFFECTS.scaleCubes to EFFECTS.scaleCubeGroup
