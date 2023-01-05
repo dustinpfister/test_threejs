@@ -5,9 +5,9 @@
 * () create new buffer geometry from a points array
 * () update a buffer geometry with a points array
 
-## () start new basic section
-* () the current basic section is not so basic, rename the examples to to s2-\(n\)-mesh-\(subname\)
-* () start a new s1-1-basic-points demo
+## ( done 01.05/2023 ) start new basic section
+* (done) the current basic section is not so basic, rename the examples to to s2-\(n\)-mesh-\(subname\)
+* (done) start a new s1-1-basic-points demo
 
 ## ( done 01/04/2023 ) s1-3-basic-mesh-uv
 * (done) continue from s1-2-basic-mesh
