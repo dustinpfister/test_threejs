@@ -1,9 +1,13 @@
 # threejs-buffer-geometry-set-from-points todo list
 
-## () s2-1-position
+## () sx-1-position
 * () basic position attribite example in which I am not using set from points
 * () create new buffer geometry from a points array
 * () update a buffer geometry with a points array
+
+## () start new basic section
+* () the current basic section is not so basic, rename the examples to to s2-\(n\)-mesh-\(subname\)
+* () start a new s1-1-basic-points demo
 
 ## ( done 01/04/2023 ) s1-3-basic-mesh-uv
 * (done) continue from s1-2-basic-mesh
