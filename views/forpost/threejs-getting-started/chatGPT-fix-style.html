@@ -31,11 +31,11 @@
     // SCENE, CAMERA, AND RENDERER CORE OBJECTS
     //-------- ----------
     // I like to block together the core objects of a threejs project together at the very top like this
-    // It was using var rather than const and let. Not to big of a deal for me at least but it has been a while
-    // now snese ES2015 spec javaScript came out.
+    // It was using var rather than const and let. Not to big of a deal for me at least, but it has been a while
+    // now sense ES2015 spec javaScript came out.
     const WIDTH = 400, HEIGHT = 300;
     const scene = new THREE.Scene();
-    const FOV = 50, NEAR = 0.1, FAR = 1000; // added Field Of View
+    const FOV = 50, NEAR = 0.1, FAR = 1000; // added Field Of View, NEAR and FAR const to help make
     const camera = new THREE.PerspectiveCamera(FOV, WIDTH / HEIGHT, NEAR, FAR);
     camera.position.z = 150; // set this at 300, halted it to 150 to get a closer view of the sphere
     const renderer = new THREE.WebGL1Renderer(); // using webGL1 Renderer so that I do not get errors on RPI OS
@@ -47,9 +47,9 @@
     const RADIUS = 50,SEGMENTS = 16, RINGS = 16;
     // pulled geometry out of the THREE.Mesh Call
     const sphereGeometry = new THREE.SphereGeometry(RADIUS, SEGMENTS, RINGS);
-    // CHAT GPT went with the Lambert Material But I think A good starting point
+    // CHAT GPT went with the Lambert Material but I think a good starting point
     // is to go with the Normal Material as that does not require a light source which helps to reduce complexity
-    // for people that are new to threejs
+    // for people that are new to threejs.
     const sphereMaterial = new THREE.MeshNormalMaterial();
     const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial);
     scene.add(sphere);
