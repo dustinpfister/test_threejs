@@ -2,18 +2,21 @@
 <html>
 <head>
   <title>Hello, World!</title>
+  <!-- CSS Was not so good, and the rules for canvas where not being used at all -->
   <style>
     body {
       margin: 0;
     }
-    canvas {
-      width: 100%;
-      height: 100%;
+    canvas{ 
+       width: 50%;
+       margin-right: auto;
+       margin-left:auto;
     }
   </style>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.119.1/build/three.min.js"></script>
+  <!-- Using r148 over r119 -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/build/three.min.js"></script>
   <script>
     // Set up the scene, camera, and renderer as global variables
     // THE ONLY THING THAT CHAT GPT MESSED UP ON IS THAT IT DID NOT CREATE THE SCENE OBJECT
@@ -64,7 +67,7 @@
     // Set up the renderer
     renderer = new THREE.WebGLRenderer();
 
-    renderer.setSize(WIDTH, HEIGHT);
+    renderer.setSize(WIDTH, HEIGHT, false);
 
     // Add the sphere to the scene
     scene.add(sphere);
