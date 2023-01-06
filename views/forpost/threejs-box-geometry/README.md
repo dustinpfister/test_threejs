@@ -1,6 +1,6 @@
 # threejs-box-geometry
 
-
+This is what I have in terms of source code examples for my [blog post on the THREE.BoxGeometry constructor funciton](https://dustinpfister.github.io/2021/04/26/threejs-box-geometry/) in threejs.
 
 <div align="center">
       <a href="https://www.youtube.com/watch?v=B52qkEjf8K8">
