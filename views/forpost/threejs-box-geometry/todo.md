@@ -4,7 +4,7 @@
 * (done) s1-1-basic-mesh example
 * (done) s2-1-posrotate-geometry
 * (done) s2-2-posrotate-mesh
-* () s3-1-matarray-six
+* (done) s3-1-matarray-six
 * () s3-2-matarray-materialindex
 * () s4-1-canvas-helper-map ( from 4.1, and 4.2 )
 * () s4-2-canvas-light
