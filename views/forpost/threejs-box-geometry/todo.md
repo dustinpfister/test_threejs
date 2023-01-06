@@ -5,8 +5,8 @@
 * (done) s2-1-posrotate-geometry
 * (done) s2-2-posrotate-mesh
 * (done) s3-1-matarray-six
-* () s3-2-matarray-materialindex
-* () s4-1-canvas-helper-map ( from 4.1, and 4.2 )
+* (done) s3-2-matarray-materialindex
+* (done) s4-1-canvas-helper-map ( from 4.1, and 4.2 )
 * () s4-2-canvas-light
 * () s5-1-edgegeo-basic
 
