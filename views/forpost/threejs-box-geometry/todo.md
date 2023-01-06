@@ -7,6 +7,6 @@
 * (done) s3-1-matarray-six
 * (done) s3-2-matarray-materialindex
 * (done) s4-1-canvas-helper-map ( from 4.1, and 4.2 )
-* () s4-2-canvas-light
+* (done) s4-2-canvas-light
 * () s5-1-edgegeo-basic
 
