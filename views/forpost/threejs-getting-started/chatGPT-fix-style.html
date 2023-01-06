@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<!-- Source code example given by CHAT GPT when asked: 
+     "Can you give me a threejs hello world program example?" -->
+<!--  EDITS BY ~Dustin Pfister - https://dustinpfister.github.io -->
+<head>
+  <title>Hello, World!</title>
+  <!-- Not so good CSS, in fact was not working at all because it did not pass false when calling the setSize method
+       of the renderer which results in style being appended that will override what is set here. Fixed that and also
+       changed up the CSS so that it will not result in a situation in which I will have to scroll when I do get it working
+  -->
+  <style>
+    body { margin: 0; }
+    canvas{ 
+       width: 50%;
+       margin-right: auto;
+       margin-left:auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+      First off ChatGPT used a CDN, maybe that is not always such a bad thing, but I prefer to use my own locally hosed assets 
+      for a long list of reasons that I do not care to get into detail with here.
+      The other problem is that used an out dated version of threejs (R119) and a whole lot has changed sense that release.
+      For now I will keep the CDN link, but will at least update to R148 which as the current revision when I asked GPT this
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/build/three.min.js"></script>
+  <script>
+    //-------- ----------
+    // SCENE, CAMERA, AND RENDERER CORE OBJECTS
+    //-------- ----------
+    // I like to block together the core objects of a threejs project together at the very top like this
+    // It was using var rather than const and let. Not to big of a deal for me at least but it has been a while
+    // now snese ES2015 spec javaScript came out.
+    const WIDTH = 400, HEIGHT = 300;
+    const scene = new THREE.Scene();
+    const FOV = 50, NEAR = 0.1, FAR = 1000; // added Field Of View
+    const camera = new THREE.PerspectiveCamera(FOV, WIDTH / HEIGHT, NEAR, FAR);
+    camera.position.z = 150; // set this at 300, halted it to 150 to get a closer view of the sphere
+    const renderer = new THREE.WebGL1Renderer(); // using webGL1 Renderer so that I do not get errors on RPI OS
+    renderer.setSize(WIDTH, HEIGHT, false);      // added false when calling set size so that canvas CSS will work
+    document.body.appendChild(renderer.domElement);
+    //-------- ----------
+    // GEOMETRY, MATERIAL, AND MESH
+    //-------- ----------
+    const RADIUS = 50,SEGMENTS = 16, RINGS = 16;
+    // pulled geometry out of the THREE.Mesh Call
+    const sphereGeometry = new THREE.SphereGeometry(RADIUS, SEGMENTS, RINGS);
+    // CHAT GPT went with the Lambert Material But I think A good starting point
+    // is to go with the Normal Material as that does not require a light source which helps to reduce complexity
+    // for people that are new to threejs
+    const sphereMaterial = new THREE.MeshNormalMaterial();
+    const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial);
+    scene.add(sphere);
+    //-------- ----------
+    // RENDER
+    //-------- ----------
+    renderer.render(scene, camera);
+  </script>
+</body>
+</html>
