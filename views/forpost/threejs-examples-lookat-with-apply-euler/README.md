@@ -1,3 +1,5 @@
+# threejs-examples-lookat-with-apply-euler
+
 
 The idea I have here is to make use of a group of objects that resembale and object with a clear top, bottom, left side, right side, and back. There is then just creating a collection of these objects, and then using vector3 apply euler to positon them in a spherical way around a center point, and calling the lookAt method for each object having it point to the center. 
 
