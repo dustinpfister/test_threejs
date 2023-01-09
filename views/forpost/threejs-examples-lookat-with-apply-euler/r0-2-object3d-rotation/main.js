@@ -14,17 +14,20 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // HELPER FUNCTION
 //-------- ----------
-const setPlanePosition = (ap, a_p1, a_p2, a_r1, a_r2, radius) => {
+// set position
+const setObjectPosition = (ap, a_p1, a_p2, radius) => {
     // NEW SET POS METHOD
     const x = Math.PI * 2 * a_p1, 
-    y = Math.PI * 2 * a_p2, 
-    z = 0;
+    y = Math.PI * 2 * a_p2;
     // USING APPLY EULER TO SET POSITION
-    const e = new THREE.Euler(x, y, z);
+    const e = new THREE.Euler(x, y, 0);
     ap.position.set(0, 0, radius).applyEuler( e );
+};
+// rotation set
+const setObjectRotation = (obj, a_r1, a_r2 ) => {
     // object3d rotation being used in place of Look At
-    ap.rotation.y = Math.PI * 2 * a_r1;
-    ap.rotation.x = Math.PI * 2 * a_r2;
+    obj.rotation.y = Math.PI * 2 * a_r1;
+    obj.rotation.x = Math.PI * 2 * a_r2;
 };
 //-------- ----------
 // LIGHT
@@ -37,8 +40,6 @@ scene.add(dl);
 //-------- ----------
 const ap1 = airplane.create('g-1');
 scene.add(ap1);
-const ap2 = airplane.create('g-2');
-scene.add(ap2);
 //-------- ----------
 // LOOP
 //-------- ----------
@@ -50,8 +51,10 @@ const fps = 30, maxFrame = 300;
 const update = (frame, maxFrame, secs) => {
     const a1 = frame / maxFrame,
     a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-    setPlanePosition(ap1, a1, 0, 0.5, a1, 5);
-    setPlanePosition(ap2, a1, 0.65, 0.18, a1, 10);
+    setObjectPosition(ap1, a1, a1, 5);
+    let s = a1 < 0.5 ? 1 : -1;
+    setObjectRotation(ap1, 0.5 + 0.5 * a2 * s, a1);
+    //ap1.lookAt(0,0,0);
 };
 const loop = function () {
     var now = new Date(),
