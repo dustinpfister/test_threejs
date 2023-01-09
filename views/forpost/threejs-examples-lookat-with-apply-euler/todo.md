@@ -7,6 +7,7 @@
 ## ( done 01/09/2023 ) - airplane-r0.js, airplane-wrap.js, and r0-1-wrap
 * (done) break the first example down into airplane-r0.js, and airplane-wrap.js files
 * (done) have these r0 js files into a root js folder
+* (done) color code wings for these new modules
 
 ## ( done 01/09/2023 ) - update to r146
 * (done) using const and let over var
