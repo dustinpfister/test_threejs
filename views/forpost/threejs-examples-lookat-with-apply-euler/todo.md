@@ -1,7 +1,19 @@
 # threejs-examples-lookat-with-apply-euler todo list
 
-## () - update to r146
-* () update example to r146
+## () - r0-2-curves
+* () start an airplane-curves-r0.js file
+* () have a loop example in which an airplane will loop around a point
+* () use cruves as a way to set position
+* () have a control airplane that uses airplane-wrap-r0.js
+
+## () - airplane-r0.js, airplane-wrap.js, and r0-1-wrap
+* () break the first example down into airplane-r0.js, and airplane-wrap.js files
+* () have these r0 js files into a root js folder
+
+## ( done 01/09/2023 ) - update to r146
+* (done) using const and let over var
+* (done) using webgl 1 renderer
+* (done) update example to r146
 
 ## ( done 05/08/2022 ) - started for post folder
 * (done) strat for post folder
