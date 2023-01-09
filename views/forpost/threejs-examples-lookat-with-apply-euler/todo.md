@@ -1,10 +1,12 @@
 # threejs-examples-lookat-with-apply-euler todo list
 
-## () - r0-2-curves
-* () start a r0-2-curves example in which an airplane will loop around a point
-* () use cruves as a way to set position
-* () start an airplane-curves-r0.js file
-* () have a control that uses just apply euler
+## () - r0-x-curves
+* () look into using curves as a way to set rotation
+
+
+## () - r0-2-object3d-rotation
+* (done) start a r0-2-object3d-rotation example in which I am not using the look at method
+* () have just a helper function for the demo
 
 ## ( done 01/09/2023 ) - airplane-r0.js, airplane-wrap.js, and r0-1-wrap
 * (done) break the first example down into airplane-r0.js, and airplane-wrap.js files
