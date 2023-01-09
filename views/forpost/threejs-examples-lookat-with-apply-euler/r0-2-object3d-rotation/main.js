@@ -1,4 +1,4 @@
-// r0-2-curves demo from threejs-examples-lookat-with-apply-euler
+// r0-2-object3d-rotation demo - from threejs-examples-lookat-with-apply-euler
 //-------- ----------
 // SCENE, CAMERA, RENDERER
 //-------- ----------
@@ -12,6 +12,21 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
+// HELPER FUNCTION
+//-------- ----------
+const setPlanePosition = (ap, a_p1, a_p2, a_r1, a_r2, radius) => {
+    // NEW SET POS METHOD
+    const x = Math.PI * 2 * a_p1, 
+    y = Math.PI * 2 * a_p2, 
+    z = 0;
+    // USING APPLY EULER TO SET POSITION
+    const e = new THREE.Euler(x, y, z);
+    ap.position.set(0, 0, radius).applyEuler( e );
+    // object3d rotation being used in place of Look At
+    ap.rotation.y = Math.PI * 2 * a_r1;
+    ap.rotation.x = Math.PI * 2 * a_r2;
+};
+//-------- ----------
 // LIGHT
 //-------- ----------
 const dl = new THREE.DirectionalLight(0xffffff, 1);
@@ -20,9 +35,10 @@ scene.add(dl);
 //-------- ----------
 // MESH
 //-------- ----------
-const obj1 = airplane.create('g-0');
-scene.add(obj1);
-obj1.lookAt(1,0,0)
+const ap1 = airplane.create('g-1');
+scene.add(ap1);
+const ap2 = airplane.create('g-2');
+scene.add(ap2);
 //-------- ----------
 // LOOP
 //-------- ----------
@@ -35,17 +51,9 @@ const update = (frame, maxFrame, secs) => {
     const a1 = frame / maxFrame,
     a2 = 1 - Math.abs(0.5 - a1) / 0.5;
 
-    // NEW SET POS METHOD
-    const x = Math.PI * 2 * a1, 
-    y = Math.PI * 1.25, 
-    z = 0;
-    const radius = 5;
-    // USING APPLY EULER TO SET POSITION
-    const e = new THREE.Euler(x, y, z);
-    obj1.position.set(0, 0, radius).applyEuler( e );
-    // object3d rotation being used in place of Look At
-    obj1.rotation.y = Math.PI * 0.25;
-    obj1.rotation.x = Math.PI * 2 * a1;
+    setPlanePosition(ap1, a1, 0, 0.5, a1, 5);
+    setPlanePosition(ap2, a1, 0.65, 0.18, a1, 10);
+
 };
 const loop = function () {
     var now = new Date(),

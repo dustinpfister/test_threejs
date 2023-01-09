@@ -4,9 +4,9 @@
 * () look into using curves as a way to set rotation
 
 
-## () - r0-2-object3d-rotation
+## ( done 01/09/2023 ) - r0-2-object3d-rotation
 * (done) start a r0-2-object3d-rotation example in which I am not using the look at method
-* () have just a helper function for the demo
+* (done) have just a helper function for the demo
 
 ## ( done 01/09/2023 ) - airplane-r0.js, airplane-wrap.js, and r0-1-wrap
 * (done) break the first example down into airplane-r0.js, and airplane-wrap.js files
