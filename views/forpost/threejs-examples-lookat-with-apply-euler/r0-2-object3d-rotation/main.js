@@ -50,10 +50,8 @@ const fps = 30, maxFrame = 300;
 const update = (frame, maxFrame, secs) => {
     const a1 = frame / maxFrame,
     a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-
     setPlanePosition(ap1, a1, 0, 0.5, a1, 5);
     setPlanePosition(ap2, a1, 0.65, 0.18, a1, 10);
-
 };
 const loop = function () {
     var now = new Date(),

@@ -3,6 +3,9 @@
 ## () - r0-x-curves
 * () look into using curves as a way to set rotation
 
+## () airplane.js - r1
+* () color code wings
+* () built in position method
 
 ## ( done 01/09/2023 ) - r0-2-object3d-rotation
 * (done) start a r0-2-object3d-rotation example in which I am not using the look at method
