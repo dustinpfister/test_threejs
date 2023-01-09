@@ -1,13 +1,5 @@
 # threejs-examples-lookat-with-apply-euler todo list
 
-## () r1-1-basic
-* () basic demo
-
-## () airplane.js - r1
-* () color code wings lime for left, and red for right
-* () built in set position method that will just set position of the airplane
-* () helper method for setting rotation
-
 ## ( done 01/09/2023 ) - r0-2-object3d-rotation
 * (done) start a r0-2-object3d-rotation example in which I am not using the look at method
 * (done) have just a helper function for the demo
