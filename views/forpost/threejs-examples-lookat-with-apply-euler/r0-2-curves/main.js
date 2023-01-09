@@ -34,6 +34,18 @@ const fps = 30, maxFrame = 300;
 const update = (frame, maxFrame, secs) => {
     const a1 = frame / maxFrame,
     a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+
+    // NEW SET POS METHOD
+    const x = Math.PI * 2 * a1, 
+    y = Math.PI * 1.25, 
+    z = 0;
+    const radius = 5;
+    // USING APPLY EULER TO SET POSITION
+    const e = new THREE.Euler(x, y, z);
+    obj1.position.set(0, 0, radius).applyEuler( e );
+    // object3d rotation being used in place of Look At
+    obj1.rotation.y = Math.PI * 0.25;
+    obj1.rotation.x = Math.PI * 2 * a1;
 };
 const loop = function () {
     var now = new Date(),
