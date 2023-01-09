@@ -6,9 +6,9 @@
 * () use cruves as a way to set position
 * () have a control airplane that uses airplane-wrap-r0.js
 
-## () - airplane-r0.js, airplane-wrap.js, and r0-1-wrap
-* () break the first example down into airplane-r0.js, and airplane-wrap.js files
-* () have these r0 js files into a root js folder
+## ( done 01/09/2023 ) - airplane-r0.js, airplane-wrap.js, and r0-1-wrap
+* (done) break the first example down into airplane-r0.js, and airplane-wrap.js files
+* (done) have these r0 js files into a root js folder
 
 ## ( done 01/09/2023 ) - update to r146
 * (done) using const and let over var
