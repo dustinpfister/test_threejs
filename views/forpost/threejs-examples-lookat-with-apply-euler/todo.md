@@ -1,10 +1,10 @@
 # threejs-examples-lookat-with-apply-euler todo list
 
 ## () - r0-2-curves
-* () start an airplane-curves-r0.js file
-* () have a loop example in which an airplane will loop around a point
+* () start a r0-2-curves example in which an airplane will loop around a point
 * () use cruves as a way to set position
-* () have a control airplane that uses airplane-wrap-r0.js
+* () start an airplane-curves-r0.js file
+* () have a control that uses just apply euler
 
 ## ( done 01/09/2023 ) - airplane-r0.js, airplane-wrap.js, and r0-1-wrap
 * (done) break the first example down into airplane-r0.js, and airplane-wrap.js files
