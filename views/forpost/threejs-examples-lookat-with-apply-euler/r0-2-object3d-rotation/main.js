@@ -53,8 +53,8 @@ const update = (frame, maxFrame, secs) => {
     a2 = 1 - Math.abs(0.5 - a1) / 0.5;
     setObjectPosition(ap1, a1, a1, 5);
     let s = a1 < 0.5 ? 1 : -1;
-    setObjectRotation(ap1, 0.5 + 0.5 * a2 * s, a1);
-    //ap1.lookAt(0,0,0);
+    //setObjectRotation(ap1, 0.5 + 0.5 * a2 * s, a1);
+    ap1.lookAt(0,0,0);
 };
 const loop = function () {
     var now = new Date(),
