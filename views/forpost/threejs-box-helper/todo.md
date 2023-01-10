@@ -1,5 +1,13 @@
 # threejs-box-helper todo list
 
+## () update examples to r146
+* (done) have all examples use r146
+* (done) loose undeed js folders
+* () document.body default
+* () const and let
+* () wbgl1 renderer
+* () pass false for setSize
+
 ## ( done 05/08/2022 ) - s5-set-from-object
 * (done) I will want a set from object helper example
 
