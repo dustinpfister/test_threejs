@@ -1,5 +1,8 @@
 # threejs-box-helper todo list
 
+## ( done 01/10/23 ) s6-points
+* (done) quick example using THREE.Points
+
 ## ( done 01/10/23 ) update examples to r146
 * (done) have all examples use r146
 * (done) loose undeed js folders
