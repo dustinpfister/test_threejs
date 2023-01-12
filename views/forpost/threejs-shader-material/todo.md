@@ -12,9 +12,11 @@
 * () use 'x-shader/x-fragment' for a script tag that will include the fragment shader
 * () the basic example can just be the same as s1-1-basic-diffuse
 
+## () - sx-1-depth - start a section on custom depth shading
+* () the next step with this might be some kind of depth shading
+
 <!-- NEXT -->
 
-## () - 
 
 <!-- DONE -->
 

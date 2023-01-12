@@ -108,7 +108,7 @@ const shdaer_basic =  {
 // SHADER MATERIAL
 // ---------- ----------
 const material = new THREE.ShaderMaterial(shdaer_basic);
-console.log(material.vertexShader)
+console.log(material.vertexShader);
 // ---------- ----------
 // GEOMETRY, MESH
 // ---------- ----------
