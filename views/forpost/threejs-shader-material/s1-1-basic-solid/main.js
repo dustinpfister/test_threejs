@@ -19,7 +19,7 @@ shader_basic.uniforms = {
 // vertex shader for basic shader
 shader_basic.vertexShader = [
     'void main() {',
-    '     gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
+    '    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
     '}'
 ].join('\n');
 // fragment shader for hatching shader
