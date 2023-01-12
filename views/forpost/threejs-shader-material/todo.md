@@ -1,17 +1,20 @@
 # threejs-shader-material todo list
 
 <!-- Section ideas -->
-## () - sx-x-outline
-* () continue with the basic solid color one, only now see about having an outline for each triangle
 
-## () - sx-1-inline
+## () - sx-2-examples-outline - exmaples section
+* () continue with the basic solid color one, only now see about having an outline for each triangle
+* () rename sx-1-crosshatch to sx-2-examples-crosshatch
+
+## () - sx-1-inline - using script tags for GLSL code
 * () start a inline GLSL section with a basic example using script tags
 * () use 'x-shader/x-vertex' for a script tag that will include the vertex shader
 * () use 'x-shader/x-fragment' for a script tag that will include the fragment shader
 * () the basic example can just be the same as s1-1-basic-diffuse
 
+<!-- NEXT -->
 
-
+## () - 
 
 <!-- DONE -->
 
