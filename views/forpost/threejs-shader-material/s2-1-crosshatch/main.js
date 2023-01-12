@@ -1,5 +1,3 @@
-
-
 // ---------- ----------
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
@@ -13,8 +11,19 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// SHADER MATERIAL
+// LIGHT
 // ---------- ----------
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(0.8, 1, 0.5);
+scene.add(dl);
+// ---------- ----------
+// SHADER OBJECT
+// ---------- ----------
+// based on what as found at: https://codepen.io/EvanBacon/pen/xgEBPX
+// by EvanBacon ( https://codepen.io/EvanBacon , https://twitter.com/baconbrix )
+// * made it so that there are just two colors
+// * figured out how to make the lines thicker
+// * figured out how to mutate color
 const shader_hatch = {};
 // unifrom values for hatching shader
 shader_hatch.uniforms = {
@@ -76,12 +85,6 @@ shader_hatch.fragmentShader = [
     '    }',
     '}'
 ].join('\n');
-// ---------- ----------
-// LIGHT
-// ---------- ----------
-const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(0.8, 1, 0.5);
-scene.add(dl);
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
