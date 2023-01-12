@@ -1,3 +1,5 @@
+
+
 // ---------- ----------
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
@@ -13,19 +15,14 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
-// based on what as found at: https://codepen.io/EvanBacon/pen/xgEBPX
-// by EvanBacon ( https://codepen.io/EvanBacon , https://twitter.com/baconbrix )
-// * made it so that there are just two colors
-// * figured out how to make the lines thicker
-// * figured out how to mutate color
 const shader_hatch = {};
 // unifrom values for hatching shader
 shader_hatch.uniforms = {
-        uDirLightPos: { type: 'v3', value: new THREE.Vector3() },
-        uDirLightColor: { type: 'c', value: new THREE.Color(0xeeeeee) },
-        uAmbientLightColor: { type: 'c', value: new THREE.Color(0x050505) },
-        uBaseColor: { type: 'c', value: new THREE.Color(0xffffff) },
-        uLineColor1: { type: 'c', value: new THREE.Color(0x000000) }
+    uDirLightPos: { type: 'v3', value: new THREE.Vector3() },
+    uDirLightColor: { type: 'c', value: new THREE.Color(0xeeeeee) },
+    uAmbientLightColor: { type: 'c', value: new THREE.Color(0x050505) },
+    uBaseColor: { type: 'c', value: new THREE.Color(0xffffff) },
+    uLineColor1: { type: 'c', value: new THREE.Color(0x000000) }
 };
 // vertex shader for hatching shader
 shader_hatch.vertexShader = [
