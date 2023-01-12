@@ -1,5 +1,15 @@
 # threejs-shader-material todo list
 
+* RawShaderMaterial might be a better choice for getting started with GLSL alone
+* THREE.ShaderChunk can be used to get built in GLSL code
+* It might be best to stick to THREE.ShaderChunk and the TRHEEJS repo for code examples
+
+GLSL Ref guid
+
+```
+https://registry.khronos.org/OpenGL-Refpages/gl4/
+```
+
 <!-- Section ideas -->
 
 ## () - sx-2-examples-outline - exmaples section
