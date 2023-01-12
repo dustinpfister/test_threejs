@@ -47,7 +47,7 @@ const mesh = new THREE.Mesh(geo, material1);
 mesh.position.y = 1;
 scene.add(mesh);
 // ---------- ----------
-// ANIMATION LOOP
+// RENDER
 // ---------- ----------
 renderer.render(scene, camera);
 
