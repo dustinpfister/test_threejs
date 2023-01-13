@@ -44,7 +44,7 @@ const shdaer_basic =  {
         '}'
     ].join('\n')
 };
-console.log(THREE.ShaderChunk[ 'output_fragment' ])
+//console.log(THREE.ShaderChunk[ 'output_fragment' ])
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
