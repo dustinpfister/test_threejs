@@ -44,7 +44,9 @@ const shader_basevert =  {
     ].join('\n')
 };
 //console.log(THREE.ShaderChunk[ 'common' ])
-
+// ---------- ----------
+// HELPER
+// ---------- ----------
 const MeshBaseAndVertexMaterial = (opt) => {
     opt = opt || {};
     const mat = new THREE.ShaderMaterial({
@@ -60,7 +62,6 @@ const MeshBaseAndVertexMaterial = (opt) => {
     mat.uniforms.opacity.value = opt.opacity === undefined ? 1 : opt.opacity;
     return mat;
 };
-
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
