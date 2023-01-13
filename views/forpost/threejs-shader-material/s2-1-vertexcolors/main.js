@@ -107,13 +107,31 @@ const shdaer_basic =  {
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
-const material = new THREE.ShaderMaterial(shdaer_basic);
-console.log(material.vertexShader);
+const material_shader = new THREE.ShaderMaterial(shdaer_basic);
+material_shader.vertexColors = true;
+//console.log(material_shader);
+const material_basic = new THREE.MeshBasicMaterial();
+material_basic.vertexColors = true;
 // ---------- ----------
 // GEOMETRY, MESH
 // ---------- ----------
-const geo = new THREE.BoxGeometry( 2, 2, 2);
-const mesh = new THREE.Mesh(geo, material);
+const geo = new THREE.PlaneGeometry( 5, 5, 20, 20);
+// adding a color attribute
+const len = geo.getAttribute('position').count;
+const color_array = [];
+let i = 0;
+while(i < len){
+   const a1 = i / len;
+   const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+   color_array.push(a1, a2, 1 - a1)
+   i += 1;
+}
+
+const color_attribute = new THREE.BufferAttribute(new Float32Array(color_array), 3);
+geo.setAttribute('color', color_attribute)
+
+
+const mesh = new THREE.Mesh(geo, material_basic);
 scene.add(mesh);
 // ---------- ----------
 // RENDER
