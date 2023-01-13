@@ -15,6 +15,7 @@ const shdaer_basic =  {
     // just a default diffuse color of cyan for uniforms
     uniforms: { 
         diffuse: { value: new THREE.Color(1, 1, 1) },
+        uBaseColor: { value: new THREE.Color(1, 1, 1) },
         opacity: { value: 0.25 }
     },
     // just using the same code from 'MeshBasicMaterial' for
@@ -29,6 +30,7 @@ const shdaer_basic =  {
         '}'
     ].join('\n'),
     fragmentShader: [
+        'uniform vec3 uBaseColor;',
         'uniform vec3 diffuse;',
         'uniform float opacity;',
         '#include <common>',
@@ -40,9 +42,11 @@ const shdaer_basic =  {
         //'        reflectedLight.indirectDiffuse += vec3( 1.0 );',
         //'    reflectedLight.indirectDiffuse *= diffuseColor.rgb;',
         //'    vec3 outgoingLight = reflectedLight.indirectDiffuse;',
-        'vec3 baseColor = vec3(1.0);',
         //'    gl_FragColor = vec4( outgoingLight, diffuseColor.a );', // FROM: #include <output_fragment>',
-        '    gl_FragColor = vec4( diffuseColor.rgb, diffuseColor.a );',
+        '    vec4 baseColor = vec4(uBaseColor, 1.0);',
+        '    baseColor *= 0.25;',
+        '    baseColor += diffuseColor * 0.75;',
+        '    gl_FragColor = vec4( baseColor.rgb, diffuseColor.a );',
         '}'
     ].join('\n')
 };
@@ -66,7 +70,7 @@ let i = 0;
 while(i < len){
    const a1 = i / len;
    const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-   color_array.push(a1, a2, 1 - a1)
+   color_array.push(0, a2, 1 - a2)
    i += 1;
 }
 
