@@ -15,7 +15,8 @@ const shader_basevert =  {
     // just uBaseColor and opacity
     uniforms: { 
         uBaseColor: { value: new THREE.Color(0,0,0) },
-        opacity: { value: 1.0 }
+        uBaseVertRatio: { value: new THREE.Vector2(0.50,0.50) },
+        opacity: { value: 1.0 },
     },
     vertexShader: [
         '#include <common>',
@@ -31,14 +32,14 @@ const shader_basevert =  {
     ].join('\n'),
     fragmentShader: [
         'uniform vec3 uBaseColor;',
-        'uniform vec3 diffuse;',
         'uniform float opacity;',
+        'uniform vec2 uBaseVertRatio;',
         '#include <common>',
         'varying vec3 vColor;',
         'void main() {',
         '    vec4 color = vec4(uBaseColor, 1.0);',
-        '    color *= 0.25;',
-        '    color += vec4(vColor, 1.0) * 0.75;',
+        '    color *= uBaseVertRatio.x;',
+        '    color += vec4(vColor, 1.0) * uBaseVertRatio.y;',
         '    gl_FragColor = vec4( color.rgb, opacity );',
         '}'
     ].join('\n')
@@ -59,14 +60,22 @@ const MeshBaseAndVertexMaterial = (opt) => {
     if(opt.uBaseColor){
         mat.uniforms.uBaseColor.value = new THREE.Color(opt.uBaseColor);
     }
+    if(opt.uBaseVertRatio){
+         mat.uniforms.uBaseVertRatio.value = opt.uBaseVertRatio;
+    }
     mat.uniforms.opacity.value = opt.opacity === undefined ? 1 : opt.opacity;
     return mat;
 };
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
-const material1 = MeshBaseAndVertexMaterial({ uBaseColor: 0xff0000, opacity: 0.5 });
-const material2 = MeshBaseAndVertexMaterial({ uBaseColor: 0xff00ff, opacity: 0.8 });
+const material1 = MeshBaseAndVertexMaterial({
+    uBaseColor: 0x888888,
+    uBaseVertRatio: new THREE.Vector2(0.1, 0.9),
+    opacity: 0.75 });
+const material2 = MeshBaseAndVertexMaterial({
+    uBaseColor: 0xff00ff,
+    opacity: 0.5 });
 // ---------- ----------
 // GEOMETRY
 // ---------- ----------
