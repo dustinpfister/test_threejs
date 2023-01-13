@@ -12,13 +12,11 @@ renderer.setSize(640, 480, false);
 // SHADER OBJECT - Using GLSL code from THREE.ShaderChunk
 // ---------- ----------
 const shdaer_basic =  {
-    // just a default diffuse color of cyan for uniforms
+    // just uBaseColor and opacity
     uniforms: { 
         uBaseColor: { value: new THREE.Color(1, 1, 1) },
         opacity: { value: 0.25 }
     },
-    // just using the same code from 'MeshBasicMaterial' for
-    // vertex and fragment shaders but now I am puling the actual shader code in
     vertexShader: [
         '#include <common>',
         'varying vec3 vColor;',

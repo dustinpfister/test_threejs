@@ -30,7 +30,8 @@ https://registry.khronos.org/OpenGL-Refpages/gl4/
 ## () - sx-2-crosshatch-opacity
 * () see about adding opacity for this
 
-
+## () - s2-1-vertexcolors - vec2 for ration
+* () I should be able to define a vec2 for the ratio of base color to vertex color
 
 <!-- DONE -->
 
