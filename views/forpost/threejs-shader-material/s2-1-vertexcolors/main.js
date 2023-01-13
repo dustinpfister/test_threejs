@@ -14,7 +14,6 @@ renderer.setSize(640, 480, false);
 const shdaer_basic =  {
     // just a default diffuse color of cyan for uniforms
     uniforms: { 
-        diffuse: { value: new THREE.Color(1, 1, 1) },
         uBaseColor: { value: new THREE.Color(1, 1, 1) },
         opacity: { value: 0.25 }
     },
@@ -34,18 +33,16 @@ const shdaer_basic =  {
         'uniform vec3 diffuse;',
         'uniform float opacity;',
         '#include <common>',
-        '#include <color_pars_fragment>',
+        'varying vec3 vColor;',
         'void main() {',
-        '    vec4 diffuseColor = vec4( diffuse, opacity );',
-        '    diffuseColor.rgb *= vColor;', // FROM #include <color_fragment>'
-        '    vec4 baseColor = vec4(uBaseColor, 1.0);',
-        '    baseColor *= 0.25;',
-        '    baseColor += diffuseColor * 0.75;',
-        '    gl_FragColor = vec4( baseColor.rgb, diffuseColor.a );',
+        '    vec4 color = vec4(uBaseColor, 1.0);',
+        '    color *= 0.25;',
+        '    color += vec4(vColor, 1.0) * 0.75;',
+        '    gl_FragColor = vec4( color.rgb, opacity );',
         '}'
     ].join('\n')
 };
-//console.log(THREE.ShaderChunk[ 'output_fragment' ])
+console.log(THREE.ShaderChunk[ 'project_vertex' ])
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
