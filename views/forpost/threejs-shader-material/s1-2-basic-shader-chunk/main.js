@@ -21,9 +21,6 @@ const shdaer_basic =  {
     vertexShader: THREE.ShaderChunk[ 'meshbasic_vert' ],
     fragmentShader: THREE.ShaderChunk[ 'meshbasic_frag' ],
 };
-
-//console.log(THREE.ShaderChunk[ 'meshbasic_vert' ])
-
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
