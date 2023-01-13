@@ -21,11 +21,14 @@ const shdaer_basic =  {
     // vertex and fragment shaders but now I am puling the actual shader code in
     vertexShader: [
         '#include <common>',
-        '#include <color_pars_vertex>',
+        'varying vec3 vColor;',
         'void main() {',
-        '    #include <color_vertex>',
-        '    #include <begin_vertex>',
-        '    #include <project_vertex>',
+        '    vColor = vec3( 1.0 );',
+        '    vColor *= color;',
+        '    vec3 transformed = vec3( position );',
+        '    vec4 mvPosition = vec4( transformed, 1.0 );',
+        '    mvPosition = modelViewMatrix * mvPosition;',
+        '    gl_Position = projectionMatrix * mvPosition;',
         '}'
     ].join('\n'),
     fragmentShader: [
@@ -42,7 +45,7 @@ const shdaer_basic =  {
         '}'
     ].join('\n')
 };
-console.log(THREE.ShaderChunk[ 'project_vertex' ])
+//console.log(THREE.ShaderChunk[ 'common' ])
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------

@@ -30,11 +30,13 @@ https://registry.khronos.org/OpenGL-Refpages/gl4/
 ## () - sx-2-crosshatch-opacity
 * () see about adding opacity for this
 
-## () - s2-1-vertexcolors - some changes
-* () there should just be a uBasecolor and opacity value for uniforms
-* () expand remaining #includes
+
 
 <!-- DONE -->
+
+## ( done 01/13/2023 ) - s2-1-vertexcolors - some changes
+* (done) there should just be a uBasecolor and opacity value for uniforms
+* (done) expand remaining #includes with the exception of 'common'
 
 ## ( done 01/13/2023 ) - s2-1-vertexcolors
 * (done) start a section in which vertexcolors are used starting with a basic example
