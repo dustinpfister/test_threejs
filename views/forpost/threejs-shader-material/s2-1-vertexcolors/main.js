@@ -14,7 +14,8 @@ renderer.setSize(640, 480, false);
 const shdaer_basic =  {
     // just a default diffuse color of cyan for uniforms
     uniforms: { 
-        diffuse: { value: new THREE.Color(1, 1, 1) }
+        diffuse: { value: new THREE.Color(1, 1, 1) },
+        opacity: { value: 0.25 }
     },
     // just using the same code from 'MeshBasicMaterial' for
     // vertex and fragment shaders but now I am puling the actual shader code in
@@ -109,9 +110,13 @@ const shdaer_basic =  {
 // ---------- ----------
 const material_shader = new THREE.ShaderMaterial(shdaer_basic);
 material_shader.vertexColors = true;
+material_shader.transparent = true;
+material_shader.uniforms.opacity.value = 0.25;
 //console.log(material_shader);
 const material_basic = new THREE.MeshBasicMaterial();
-material_basic.vertexColors = true;
+//material_basic.vertexColors = true;
+//material_basic.transparent = true;
+//material_basic.opacity = 0.25;
 // ---------- ----------
 // GEOMETRY, MESH
 // ---------- ----------
@@ -131,7 +136,7 @@ const color_attribute = new THREE.BufferAttribute(new Float32Array(color_array),
 geo.setAttribute('color', color_attribute)
 
 
-const mesh = new THREE.Mesh(geo, material_basic);
+const mesh = new THREE.Mesh(geo, material_shader);
 scene.add(mesh);
 // ---------- ----------
 // RENDER
