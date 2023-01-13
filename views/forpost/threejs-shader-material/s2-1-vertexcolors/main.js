@@ -52,11 +52,6 @@ const material_shader = new THREE.ShaderMaterial(shdaer_basic);
 material_shader.vertexColors = true;
 material_shader.transparent = true;
 material_shader.uniforms.opacity.value = 0.5;
-//console.log(material_shader);
-const material_basic = new THREE.MeshBasicMaterial();
-//material_basic.vertexColors = true;
-//material_basic.transparent = true;
-//material_basic.opacity = 0.25;
 // ---------- ----------
 // GEOMETRY, MESH
 // ---------- ----------
