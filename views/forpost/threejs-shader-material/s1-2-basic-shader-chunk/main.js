@@ -14,7 +14,7 @@ renderer.setSize(640, 480, false);
 const shdaer_basic =  {
     // just a default diffuse color of cyan for uniforms
     uniforms: { 
-        'diffuse': { value: new THREE.Color(0.5, 1, 1) }
+        diffuse: { value: new THREE.Color(0.5, 1, 1) }
     },
     // just using the same code from 'MeshBasicMaterial' for
     // vertex and fragment shaders
