@@ -45,7 +45,8 @@ const shader_basevert =  {
 };
 //console.log(THREE.ShaderChunk[ 'common' ])
 
-const MeshBaseAndVertexMaterial = () => {
+const MeshBaseAndVertexMaterial = (opt) => {
+    opt = opt || {};
     const mat = new THREE.ShaderMaterial({
         uniforms: THREE.UniformsUtils.clone(shader_basevert.uniforms),
         vertexShader: shader_basevert.vertexShader,
@@ -53,18 +54,18 @@ const MeshBaseAndVertexMaterial = () => {
     });
     mat.vertexColors = true;
     mat.transparent = true;
+    if(opt.uBaseColor){
+        mat.uniforms.uBaseColor.value = new THREE.Color(opt.uBaseColor);
+    }
+    mat.uniforms.opacity.value = opt.opacity === undefined ? 1 : opt.opacity;
     return mat;
 };
 
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
-const material1 = MeshBaseAndVertexMaterial();
-material1.uniforms.uBaseColor.value = new THREE.Color(1,0,0);
-material1.uniforms.opacity.value = 0.75;
-const material2 = MeshBaseAndVertexMaterial();
-material2.uniforms.uBaseColor.value = new THREE.Color(1,1,1);
-material2.uniforms.opacity.value = 1;
+const material1 = MeshBaseAndVertexMaterial({ uBaseColor: 0xff0000, opacity: 0.5 });
+const material2 = MeshBaseAndVertexMaterial({ uBaseColor: 0xff00ff, opacity: 0.8 });
 // ---------- ----------
 // GEOMETRY
 // ---------- ----------
