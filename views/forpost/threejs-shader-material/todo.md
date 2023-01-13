@@ -25,6 +25,11 @@ https://registry.khronos.org/OpenGL-Refpages/gl4/
 ## () - sx-1-depth - start a section on custom depth shading
 * () the next step with this might be some kind of depth shading
 
+<!-- NEXT -->
+
+## () - sx-2-crosshatch-opacity
+* () see about adding opacity for this
+
 ## () - sx-1-vertexcolors
 * (done) start a section in which vertexcolors are used starting with a basic example
 * (done) start with the mesh basic material GLSL code
@@ -33,9 +38,6 @@ https://registry.khronos.org/OpenGL-Refpages/gl4/
 * () remove code that does not have to do with vertex colors
 
 * () have vertex colors just be part of what effects the over all diffuse color
-
-<!-- NEXT -->
-
 
 <!-- DONE -->
 
