@@ -26,8 +26,12 @@ https://registry.khronos.org/OpenGL-Refpages/gl4/
 * () the next step with this might be some kind of depth shading
 
 ## () - sx-1-vertexcolors
-* () start a section in which vertexcolors are used starting with a basic example
-* () start with the mesh basic material GLSL code
+* (done) start a section in which vertexcolors are used starting with a basic example
+* (done) start with the mesh basic material GLSL code
+* () have a plane geometry
+* () create a color attribute for the plane geometry
+* () remove code that does not have to do with vertex colors
+
 * () have vertex colors just be part of what effects the over all diffuse color
 
 <!-- NEXT -->
