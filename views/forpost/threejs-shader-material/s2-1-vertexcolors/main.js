@@ -3,18 +3,18 @@
 // ---------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-camera.position.set(5, 5, 5);
+camera.position.set(0, 5, 10);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// SHADER OBJECT - Using GLSL code from THREE.ShaderChunk
+// SHADER OBJECT - 
 // ---------- ----------
-const shdaer_basic =  {
+const shader_basevert =  {
     // just uBaseColor and opacity
     uniforms: { 
-        uBaseColor: { value: new THREE.Color(1, 1, 1) },
+        uBaseColor: { value: new THREE.Color(0,0,0) },
         opacity: { value: 1.0 }
     },
     vertexShader: [
@@ -44,14 +44,27 @@ const shdaer_basic =  {
     ].join('\n')
 };
 //console.log(THREE.ShaderChunk[ 'common' ])
+
+const MeshBaseAndVertexMaterial = () => {
+    const mat = new THREE.ShaderMaterial({
+        uniforms: THREE.UniformsUtils.clone(shader_basevert.uniforms),
+        vertexShader: shader_basevert.vertexShader,
+        fragmentShader: shader_basevert.fragmentShader
+    });
+    mat.vertexColors = true;
+    mat.transparent = true;
+    return mat;
+};
+
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
-const material_shader = new THREE.ShaderMaterial(shdaer_basic);
-material_shader.vertexColors = true;
-material_shader.transparent = true;
-material_shader.uniforms.uBaseColor.value = new THREE.Color(1,0,0);
-material_shader.uniforms.opacity.value = 0.75;
+const material1 = MeshBaseAndVertexMaterial();
+material1.uniforms.uBaseColor.value = new THREE.Color(1,0,0);
+material1.uniforms.opacity.value = 0.75;
+const material2 = MeshBaseAndVertexMaterial();
+material2.uniforms.uBaseColor.value = new THREE.Color(1,1,1);
+material2.uniforms.opacity.value = 1;
 // ---------- ----------
 // GEOMETRY
 // ---------- ----------
@@ -71,8 +84,12 @@ geo.setAttribute('color', color_attribute)
 // ---------- ----------
 // MESH
 // ---------- ----------
-const mesh = new THREE.Mesh(geo, material_shader);
-scene.add(mesh);
+const mesh1 = new THREE.Mesh(geo, material1);
+mesh1.position.x = 3.2;
+scene.add(mesh1);
+const mesh2 = new THREE.Mesh(geo, material2);
+mesh2.position.x = -3.2;
+scene.add(mesh2);
 // ---------- ----------
 // RENDER
 // ---------- ----------
