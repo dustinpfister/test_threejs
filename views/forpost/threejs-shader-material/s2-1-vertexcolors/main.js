@@ -111,7 +111,7 @@ const shdaer_basic =  {
 const material_shader = new THREE.ShaderMaterial(shdaer_basic);
 material_shader.vertexColors = true;
 material_shader.transparent = true;
-material_shader.uniforms.opacity.value = 0.25;
+material_shader.uniforms.opacity.value = 0.5;
 //console.log(material_shader);
 const material_basic = new THREE.MeshBasicMaterial();
 //material_basic.vertexColors = true;
@@ -120,7 +120,8 @@ const material_basic = new THREE.MeshBasicMaterial();
 // ---------- ----------
 // GEOMETRY, MESH
 // ---------- ----------
-const geo = new THREE.PlaneGeometry( 5, 5, 20, 20);
+//const geo = new THREE.PlaneGeometry( 5, 5, 20, 20);
+const geo = new THREE.SphereGeometry( 3, 60, 60 );
 // adding a color attribute
 const len = geo.getAttribute('position').count;
 const color_array = [];
