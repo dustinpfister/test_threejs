@@ -15,7 +15,7 @@ const shdaer_basic =  {
     // just uBaseColor and opacity
     uniforms: { 
         uBaseColor: { value: new THREE.Color(1, 1, 1) },
-        opacity: { value: 0.25 }
+        opacity: { value: 1.0 }
     },
     vertexShader: [
         '#include <common>',
@@ -50,11 +50,11 @@ const shdaer_basic =  {
 const material_shader = new THREE.ShaderMaterial(shdaer_basic);
 material_shader.vertexColors = true;
 material_shader.transparent = true;
-material_shader.uniforms.opacity.value = 0.5;
+material_shader.uniforms.uBaseColor.value = new THREE.Color(1,0,0);
+material_shader.uniforms.opacity.value = 0.75;
 // ---------- ----------
-// GEOMETRY, MESH
+// GEOMETRY
 // ---------- ----------
-//const geo = new THREE.PlaneGeometry( 5, 5, 20, 20);
 const geo = new THREE.SphereGeometry( 3, 60, 60 );
 // adding a color attribute
 const len = geo.getAttribute('position').count;
@@ -66,11 +66,11 @@ while(i < len){
    color_array.push(0, a2, 1 - a2)
    i += 1;
 }
-
 const color_attribute = new THREE.BufferAttribute(new Float32Array(color_array), 3);
 geo.setAttribute('color', color_attribute)
-
-
+// ---------- ----------
+// MESH
+// ---------- ----------
 const mesh = new THREE.Mesh(geo, material_shader);
 scene.add(mesh);
 // ---------- ----------
