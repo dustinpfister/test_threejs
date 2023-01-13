@@ -36,11 +36,13 @@ const shdaer_basic =  {
         'void main() {',
         '    vec4 diffuseColor = vec4( diffuse, opacity );',
         '    diffuseColor.rgb *= vColor;', // FROM #include <color_fragment>'
-        '    ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );',
-        '        reflectedLight.indirectDiffuse += vec3( 1.0 );',
-        '    reflectedLight.indirectDiffuse *= diffuseColor.rgb;',
-        '    vec3 outgoingLight = reflectedLight.indirectDiffuse;',
-        '    gl_FragColor = vec4( outgoingLight, diffuseColor.a );', // FROM: #include <output_fragment>',
+        //'    ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );',
+        //'        reflectedLight.indirectDiffuse += vec3( 1.0 );',
+        //'    reflectedLight.indirectDiffuse *= diffuseColor.rgb;',
+        //'    vec3 outgoingLight = reflectedLight.indirectDiffuse;',
+        'vec3 baseColor = vec3(1.0);',
+        //'    gl_FragColor = vec4( outgoingLight, diffuseColor.a );', // FROM: #include <output_fragment>',
+        '    gl_FragColor = vec4( diffuseColor.rgb, diffuseColor.a );',
         '}'
     ].join('\n')
 };
