@@ -86,7 +86,7 @@ let i = 0;
 while(i < len){
    const a1 = i / len;
    const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-   color_array.push(0, a2, 1 - a2)
+   color_array.push(0, a2, 1 - a2);
    i += 1;
 }
 const color_attribute = new THREE.BufferAttribute(new Float32Array(color_array), 3);
