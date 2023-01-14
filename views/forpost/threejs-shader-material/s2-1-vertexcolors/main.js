@@ -9,14 +9,13 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// SHADER OBJECT - 
+// SHADER OBJECT - a custom shader that uses vertex colors along with a base color
 // ---------- ----------
 const shader_basevert =  {
-    // just uBaseColor and opacity
     uniforms: { 
         uBaseColor: { value: new THREE.Color(0,0,0) },
         uBaseVertRatio: { value: new THREE.Vector2(0.50,0.50) },
-        opacity: { value: 1.0 },
+        opacity: { value: 1.0 }
     },
     vertexShader: [
         '#include <common>',
