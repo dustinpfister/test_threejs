@@ -9,9 +9,10 @@
 ## () - sx-1-vector3lerp
 * () basic example of using the vector3 lerp method
 
-## () - combine s2-lookat into basic section as s1-2-basic-lookat
-* () rename s2-look-at to s1-2-basic-lookat
-* () use r146 and make needed style changes
+## ( done 01/15/2023 ) - combine s2-lookat into basic section as s1-2-basic-lookat
+* (done) rename s2-look-at to s1-2-basic-lookat
+* (done) use r146 and make needed style changes
+* (done) renamed folder
 
 ## ( done 01/15/2023 ) s1-world-pos to s1-1-basic-worldpos
 * (done) rename s1-world-pos to s1-1-basic-worldpos
