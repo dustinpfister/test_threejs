@@ -8,12 +8,12 @@
 * () make sure r2 works okay with old example
 * () start new example that makes use of curves
 
+## () - s1-4-basic-curves
+* () have at least a basic curve example
+
 ## () - s3-1-curvemod
 * () start a root js folder and copy over the latest version of the curve.js threejs example module
 * () start and example of the curves module
-
-## () - s1-4-basic-curves
-* () have at least a basic curve example
 
 ## ( done 01/15/2023 ) - s1-3-basic-vector3-lerp
 * (done) basic example of using the vector3 lerp method
