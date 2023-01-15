@@ -1,17 +1,18 @@
 # threejs-camera-move
 
-## () - improve 2-move-camera-helper
-* () yet another camera move method this time one that is fixed at the back of the mesh
-* () have constants at the top of the file
-
-## () - new event based movement section
+## () - sx-1-events - new event based movement section
 * () start a new section example that has to do with event driven movement
 
-## () - s6-1-curves
+## () - sx-1-curves
 * () start a section that has to do with using curves
 
-## () - s5-1-vector3lerp
+## () - sx-1-vector3lerp
 * () basic example of using the vector3 lerp method
+
+## ( done 01/15/2023 ) s1-world-pos to s1-1-basic-worldpos
+* (done) rename s1-world-pos to s1-1-basic-worldpos
+* (done) use r146 and make other related code style changes
+* (done) update method, and changes for alpha values
 
 ## ( done 05/10/2022 ) - s4-sequences
 * (done) have an example with a collection of update methods

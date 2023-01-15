@@ -21,17 +21,22 @@ let secs = 0,
 lt = new Date(),
 frame = 0;
 const fps_update = 20,   // fps rate to update ( low fps for low CPU use, but choppy video )
-fps_movement = 30,      // fps rate to move camera
+fps_movement = 30,       // fps rate to move camera
 frameMax = 300;
+// update function
+const update = () => {
+    const per = frame / frameMax;
+    const bias = (1 - Math.abs(per - 0.5) / 0.5);
+    camera.position.set(3 * bias, 1 + 2 * bias, 10);
+};
+// loop function
 const loop = function () {
     const now = new Date(),
-    secs = (now - lt) / 1000,
-    per = frame / frameMax,
-    bias = (1 - Math.abs(per - 0.5) / 0.5);
+    secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps_update){
         // MOVING THE CAMERA IN THE LOOP
-        camera.position.set(3 * bias, 1 + 2 * bias, 10);
+        update(secs);
         renderer.render(scene, camera);
         frame += fps_movement * secs;
         frame %= frameMax;
