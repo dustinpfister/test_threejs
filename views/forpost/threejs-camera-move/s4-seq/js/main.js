@@ -21,7 +21,7 @@
         new THREE.MeshNormalMaterial());
     scene.add(mesh2);
 
-    // a sequnces object
+    // a sequences object
     var seq = {
         objectIndex: 0,
         per: 0,

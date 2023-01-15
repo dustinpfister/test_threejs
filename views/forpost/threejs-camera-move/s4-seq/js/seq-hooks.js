@@ -1,7 +1,5 @@
 var seqHooks = (function () {
-
     var api = {};
-
     // HELPERS
     var getPer = function(a, b){
         return a / b;
@@ -9,7 +7,6 @@ var seqHooks = (function () {
     var getBias = function(per){
         return 1 - Math.abs( 0.5 - per ) / 0.5;
     };
-
     // set frame method
     api.setFrame = function(seq, frame){
         seq.frame = frame;
@@ -44,8 +41,6 @@ var seqHooks = (function () {
         // call after objects hook
         seq.afterObjects(seq);
     };
-
     return api;
-
 }
     ());
