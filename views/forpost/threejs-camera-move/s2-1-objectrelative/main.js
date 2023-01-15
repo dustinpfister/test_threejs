@@ -23,19 +23,22 @@ fps_movement = 30,
 frame = 0,
 frameMax = 300,
 lt = new Date();
+const update = (secs) => {
+    const per = frame / frameMax,
+    bias = (1 - Math.abs(per - 0.5) / 0.5);
+    // MOVEING THE MESH OBJECT
+    mesh.position.x = -5 + 10 * bias
+    // SETTING POSITION OF THE CAMERA RELATIVE TO THE POSITION OF THE MESH
+    camera.position.copy(mesh.position).add( new THREE.Vector3(3, 3 - 6 * bias, 3) );
+    // CALLING THE LOOKAT METHOD OF THE CAMERA
+    camera.lookAt(mesh.position);
+};
 const loop = function () {
     const now = new Date(),
-    secs = (now - lt) / 1000,
-    per = frame / frameMax,
-    bias = (1 - Math.abs(per - 0.5) / 0.5);
+    secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps_update){
-        // MOVEING THE MESH OBJECT
-        mesh.position.x = -5 + 10 * bias
-        // SETTING POSITION OF THE CAMERA RELATIVE TO THE POSITION OF THE MESH
-        camera.position.copy(mesh.position).add( new THREE.Vector3(3, 3 - 6 * bias, 3) );
-        // CALLING THE LOOKAT METHOD OF THE CAMERA
-        camera.lookAt(mesh.position);
+        update(secs);
         renderer.render(scene, camera);
         frame += fps_movement * secs;
         frame %= frameMax;
