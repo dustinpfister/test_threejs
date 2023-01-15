@@ -15,8 +15,8 @@
 ## () - s1-4-basic-curves
 * () have at least a basic curve example
 
-## () - s1-3-basic-vector3-lerp
-* () basic example of using the vector3 lerp method
+## ( done 01/15/2023 ) - s1-3-basic-vector3-lerp
+* (done) basic example of using the vector3 lerp method
 
 ## ( done 01/15/2023 ) rename other folders and update code
 * (done) rename s3-object-relative-pos to s2-1-objectrelative
