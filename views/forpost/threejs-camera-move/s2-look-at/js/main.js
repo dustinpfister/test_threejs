@@ -1,45 +1,51 @@
-(function () {
-    // SCENE, CAMERA, and RENDERER
-    var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(10, 10))
-    var width = 640, height = 480,
-    fieldOfView = 40, aspectRatio = width / height,
-    near = 0.1, far = 1000,
-    camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far);
-    var renderer = new THREE.WebGLRenderer();
-    document.getElementById('demo').appendChild(renderer.domElement);
-    renderer.setSize(width, height);
-    // MESH
-    var mesh = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial());
-    scene.add(mesh);
-    // SETTING CAMERA POSITION ONCE HERE
-    camera.position.set(0, 5, 5);
-    // APP LOOP
-    var secs = 0,
-    fps_update = 20,
-    fps_movement = 30,
-    frame = 0,
-    frameMax = 300,
-    lt = new Date();
-    var loop = function () {
-        var now = new Date(),
-        secs = (now - lt) / 1000,
-        per = frame / frameMax,
-        bias = (1 - Math.abs(per - 0.5) / 0.5);
-        requestAnimationFrame(loop);
-        if(secs > 1 / fps_update){
-            // CALLING THE LOOKAT METHOD OF THE CAMERA
-            camera.lookAt(mesh.position);
-            // MOVEING THE MESH OBJECT BUT NOT THE CAMERA
-            mesh.position.x = -5 + 10 * bias
-            renderer.render(scene, camera);
-            frame += fps_movement * secs;
-            frame %= frameMax;
-            lt = now;
-        }
-    };
-    loop();
-}
-    ());
+//-------- ----------
+// SCENE, CAMERA, and RENDERER
+//-------- ----------
+const scene = new THREE.Scene();
+scene.add(new THREE.GridHelper(20, 20));
+camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+//-------- ----------
+// MESH
+//-------- ----------
+const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshNormalMaterial());
+scene.add(mesh);
+//-------- ----------
+// APP LOOP
+//-------- ----------
+// SETTING CAMERA POSITION ONCE HERE
+camera.position.set(0, 5, 5);
+let secs = 0,
+lt = new Date(),
+frame = 0;
+const fps_update = 20,   // fps rate to update ( low fps for low CPU use, but choppy video )
+fps_movement = 30,       // fps rate to move camera
+frameMax = 300;
+// update function
+const update = () => {
+    const per = frame / frameMax;
+    const bias = (1 - Math.abs(per - 0.5) / 0.5);
+    // CALLING THE LOOKAT METHOD OF THE CAMERA
+    camera.lookAt(mesh.position);
+    // MOVEING THE MESH OBJECT BUT NOT THE CAMERA
+    mesh.position.x = -5 + 10 * bias
+};
+// loop function
+const loop = function () {
+    const now = new Date(),
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / fps_update){
+        // MOVING THE CAMERA IN THE LOOP
+        update(secs);
+        renderer.render(scene, camera);
+        frame += fps_movement * secs;
+        frame %= frameMax;
+        lt = now;
+    }
+};
+loop();
