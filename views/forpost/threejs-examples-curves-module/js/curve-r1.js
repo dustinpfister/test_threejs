@@ -209,6 +209,7 @@
     //-------- ----------
     // DEBUG HELPERS
     //-------- ----------
+/*
     // debug lines
     api.debugLines = ( arrays ) => {
         const line_debug = new THREE.Line(
@@ -269,4 +270,5 @@
         );
         return points;
     };
+*/
 }(this['curveMod'] = {} ));
