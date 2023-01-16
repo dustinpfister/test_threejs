@@ -180,8 +180,16 @@
         opt.ac_points = opt.ac_points || DEFAULT_AC_POINTS;
         // the main get alpha method
         const main_alpha_func = function(a, b, c){
-            // create the alpha function to use
-            const alphaFunc = ALPHA_FUNCTIONS[ opt.type ](main_alpha_func.opt);
+            // create the alpha function to use, defaults to NOOP
+            let alphaFunc = function(){};
+            // if type of opt.type is a string, assume this is a key for a built in type
+            if(typeof opt.type === 'string'){
+                alphaFunc = ALPHA_FUNCTIONS[ opt.type ](main_alpha_func.opt);
+            }
+            // if type is a function, assume that this is a custom get alpha method to use
+            if(typeof opt.type === 'function'){
+                alphaFunc = opt.type;
+            }
             // the alpha value defualts to 0
             let a1 = 0;
             // 1 arg : a is an alpha value
