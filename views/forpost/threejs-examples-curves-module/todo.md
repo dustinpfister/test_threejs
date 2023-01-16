@@ -6,10 +6,8 @@
 ## () r2 - create geometry
 * () at least one method that has to do with creating geometry with curves
 
-
-
-## () r1-3-custom-types
-* () demo the custom types feature
+## ( done 01/16/2022 ) r1-3-custom-types
+* (done) demo the custom types feature
 
 ## ( done 01/16/2022 ) r1-2-alpha-update
 * (done) start demo in which I am updating the state of a get alpha over time
