@@ -1,17 +1,12 @@
 # threejs-examples-curves-module todo list
 
+## () r2-1-create-geo
+* () start a demo in which I am createing geometry over time
+
 ## () r2 - create geometry
 * () at least one method that has to do with creating geometry with curves
 
-## () r1-3-create-geo
-* () start a demo in which I am createing geometry over time
 
-## () r1-3-dynamic-get-alpha
-* () start a demo where I call a method that will return a get alpha method that will have a state object attached
-* () the state object can just be a property of the get alpha function
-* () The state object can contain what get alpha method to use to begin with
-* () the state object can contain options to use with one or more get alpha methods
-* () There can be a trasiaitonal get alpha method that can be used to slowing change from one to another
 
 ## () r1-3-custom-types
 * () demo the custom types feature
