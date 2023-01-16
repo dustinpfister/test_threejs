@@ -13,8 +13,15 @@
 * () the state object can contain options to use with one or more get alpha methods
 * () There can be a trasiaitonal get alpha method that can be used to slowing change from one to another
 
+## () r1-3-custom-types
+* () demo the custom types feature
+
+## () r1-2-alpha-update
+* () start demo in which I am updating the state of a get alpha over time
+
 ## () r1-1-debug-alpha demo
-* () start a new demo that has to do with looking at other get alpha methods
+* (done) start a new demo that has to do with looking at other get alpha methods
+* () demo a few of the options for get alphas
 
 ## () curves.js - r1 - Better get alpha methods
 <!-- single main get alpha function -->
@@ -37,6 +44,8 @@
 <!-- single debug method -->
 * () have a single debug method that will work with arrays or curves and will return points or lines
 
+<!-- custom get alpha types -->
+* () can pass a function in place of a string as a way to define a custom get alpha function
 
 ## ( done 11/18/2022 ) r0-x-qbalpha clean up
 * (done) remove code that has to do more with the debug method

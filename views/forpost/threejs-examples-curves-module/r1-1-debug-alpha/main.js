@@ -26,8 +26,6 @@ const ac_points = [
     0.50,     -0.5,
     0.1
 ];
-//const curveAlpha = curveMod.createAlphaFunciton1( grc_points, true );
-
 const curveAlpha = curveMod.getAlphaFunction({
     type: 'curve2',
     ac_points: ac_points
