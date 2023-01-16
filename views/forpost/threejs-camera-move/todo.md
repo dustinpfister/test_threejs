@@ -7,9 +7,9 @@
 * () start new example that makes use of curves for at least one object
 * () make use of the various get alpha funcitons for various sequence objects
 
-## (  ) - s3-1-curvemod
+## ( done 01/16/2023 ) - s3-1-curvemod
 * (done) start a root js folder and copy over the latest version of the curvejs \(r1\) module
-* () start an example that uses the curves module
+* (done) start an example that uses the curves module
 
 ## ( done 01/16/2023 ) s4-1-sequencehooks
 * (done) have a root js folder and use r2 of sequence hooks
