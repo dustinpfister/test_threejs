@@ -34,8 +34,8 @@ const curveAlpha = curveMod.getAlphaFunction({
 // ---------- ----------
 // DEBUG ALPHA FUNC
 // ---------- ----------
-//const points = curveMod.debugAlphaFunction(curveAlpha, { count: 400 });
-//scene.add(points);
+const points = curveMod.debugAlphaFunction(curveAlpha, { });
+scene.add(points);
 //-------- ----------
 // MESH
 //-------- ----------

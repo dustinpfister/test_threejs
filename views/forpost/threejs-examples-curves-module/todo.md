@@ -40,9 +40,6 @@
 <!-- alpha function state objects -->
 * (done) attach a state object to the function that is returned by the getAlphaFunction
 * (done) this state object can be used as a way to tweak the state of a get alpha function over time
-
-<!-- single debug method -->
-* () have a single debug method that will work with arrays or curves and will return points or lines
 <!-- custom get alpha types -->
 * () can pass a function in place of a string as a way to define a custom get alpha function
 

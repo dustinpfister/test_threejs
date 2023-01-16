@@ -33,6 +33,17 @@
         }
         return api.QBCurvePath(data);
     };
+    // create debug points
+    const createDebugPoints = (v3Array, opt) => {
+        opt = opt || {};
+        opt.size = opt.size === undefined ? 0.25 : opt.size;
+        opt.color = opt.color || new THREE.Color(0, 1, 0);
+        return new THREE.Points(
+            new THREE.BufferGeometry().setFromPoints(v3Array),
+            new THREE.PointsMaterial({ size: opt.size, color: opt.color})
+        );
+    };
+    // alpha function collection
     const ALPHA_FUNCTIONS = {};
     // first curve alpha function that just uses the Curve.getPoint method
     // and then uses the y axis as the alpha values
@@ -209,52 +220,32 @@
     //-------- ----------
     // DEBUG HELPERS
     //-------- ----------
-/*
-    // debug lines
-    api.debugLines = ( arrays ) => {
-        const line_debug = new THREE.Line(
-            new THREE.BufferGeometry().setFromPoints(arrays.flat()),
-            new THREE.LineBasicMaterial({ transparent: true, opacity: 0.3})
-        );
-        return line_debug;
-    };
     // debug points
-    api.debugPoints = ( arrays ) => {
-        const points_debug = new THREE.Points(
-            new THREE.BufferGeometry().setFromPoints(arrays.flat()),
-            new THREE.PointsMaterial({ size: 0.25, color: new THREE.Color(0, 1, 0)})
-        );
-        return points_debug;
+    api.debugPointsArray = ( arrays, opt ) => {
+        const v3Array = arrays.flat();
+        return createDebugPoints(v3Array, opt);
     };
     // debug points for a curve
     api.debugPointsCurve = ( curve, opt ) => {
         opt = opt || {};
         opt.count = opt.count === undefined ? 100 : opt.count;
         opt.getAlpha = opt.getAlpha || function(alpha){ return alpha; };
-        opt.size = opt.size === undefined ? 0.2 : opt.size;
-        opt.color = opt.color === undefined ? new THREE.Color(0,1,1) : opt.color;
         const v3Array = [];
         let i = 0;
         while(i < opt.count){
             v3Array.push( curve.getPoint( opt.getAlpha(i / opt.count ) ) );
             i += 1;
         }
-        const points_debug = new THREE.Points(
-            new THREE.BufferGeometry().setFromPoints(v3Array),
-            new THREE.PointsMaterial({ size: opt.size, color: opt.color})
-        );
-        return points_debug;
+        return createDebugPoints(v3Array, opt);
     };
     // debug and alpha function
     api.debugAlphaFunction = (alphaFunc, opt) => {
         opt = opt || {};
-        opt.count = opt.count === undefined ? 200 : opt.count;
+        opt.count = opt.count === undefined ? 100 : opt.count;
         opt.sx = opt.sx === undefined ? -5 : opt.sx;
         opt.sz = opt.sz === undefined ? 5 : opt.sz;
         opt.w = opt.w === undefined ? 10 : opt.w;
         opt.h = opt.h === undefined ? -10 : opt.h;
-        opt.size = opt.size === undefined ? 0.2 : opt.size;
-        opt.color = opt.color === undefined ? new THREE.Color(0,1,1) : opt.color;
         const v3Array = [];
         let i = 0;
         while(i < opt.count){
@@ -264,11 +255,6 @@
             v3Array.push( new THREE.Vector3( x, 0 , z) );
             i += 1;
         }
-        const points = new THREE.Points(
-            new THREE.BufferGeometry().setFromPoints( v3Array ),
-            new THREE.PointsMaterial({ size: opt.size, color: opt.color})
-        );
-        return points;
+        return createDebugPoints(v3Array, opt);
     };
-*/
 }(this['curveMod'] = {} ));
