@@ -30,7 +30,6 @@
 <!-- ac points array in place of grc points -->
 * (done) rename grc\_points to ac\_points \( Alpha Control Points \)
 * (done) have it so that the ac points is a linear array of numbers
-
 <!-- alpha function state objects -->
 * () attach a state object to the function that is returned by the getAlphaFunction
 * () this state object can be used as a way to tweak the state of a get alpha function over time

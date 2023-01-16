@@ -3,19 +3,8 @@
     //-------- ----------
     // DEFAULTS
     //-------- ----------
-/*
-    const DEFAULT_GRC_POINTS = [
-        [0.00,     0.5],
-        [1.00,     0.5],
-        [0.0]
-    ];
-*/
     // Deafult Alpha Control Points ( ac_points )
-    const DEFAULT_AC_POINTS = [
-        0.00,     0.5,
-        1.00,     0.5,
-        0.0,      0.0
-    ];
+    const DEFAULT_AC_POINTS = [0.00,0.5,  1.00,0.5, 0.0];
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -32,20 +21,6 @@
         return collection;
     };
     // create an alpha curve helper function
-
-/*
-    const createAlphaCurve1 = (grc_points) => {
-        let i = 0, len = grc_points.length;
-        const data = [];
-        while(i < len - 1){
-            const s = grc_points[i];
-            const e = grc_points[i + 1];
-            data.push([ 0, s[0], 0,   0, e[0], 0,   0, s[1], 0 ]);
-            i += 1;
-        }
-        return api.QBCurvePath(data);
-    };
-*/
     const createAlphaCurve2 = (ac_points) => {
         let i = 0, len = ac_points.length;
         const data = [];
@@ -58,12 +33,11 @@
         }
         return api.QBCurvePath(data);
     };
-
     const ALPHA_FUNCTIONS = {};
     // first curve alpha function that just uses the Curve.getPoint method
     // and then uses the y axis as the alpha values
     ALPHA_FUNCTIONS.curve1 = ( opt ) => {
-        const cp = createAlphaCurve2(opt.grc_points);
+        const cp = createAlphaCurve2(opt.ac_points);
         return function(givenAlpha){
             let a = cp.getPoint(givenAlpha).y;
             return a;
@@ -73,12 +47,7 @@
     // then figure an alpha value to given when calling the Curve.getPoint method of a child curve object
     // of the curve path created with the createAlphaCurve helper
     ALPHA_FUNCTIONS.curve2 = ( opt ) => {
-        // use each path by itself
-//const cp1 = createAlphaCurve1(opt.grc_points);
-
-//console.log(opt.ac_points)
         const cp = createAlphaCurve2(opt.ac_points);
-
         return function(alpha){
             alpha = alpha === 1 ? 0.9999999999 : alpha;
             const cLen = cp.curves.length;
@@ -197,11 +166,7 @@
         opt = opt || {};
         opt.type = opt.type || 'curve2';
         opt.clamp = opt.clamp === undefined ? true : opt.clamp;
-
         opt.ac_points = opt.ac_points || DEFAULT_AC_POINTS;
-        //opt.grc_points = opt.grc_points || DEFAULT_GRC_POINTS;
-
-
         // create the alpha function to use
         const alphaFunc = ALPHA_FUNCTIONS[ opt.type ](opt);
         // the main get alpha method
