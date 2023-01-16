@@ -30,6 +30,9 @@ const curveAlpha = curveMod.getAlphaFunction({
     type: 'curve2',
     ac_points: ac_points
 });
+
+curveAlpha.opt.ac_points[2] = 0.5;
+
 // ---------- ----------
 // DEBUG ALPHA FUNC
 // ---------- ----------
@@ -58,6 +61,11 @@ const update = function(frame, frameMax){
      const a2 = curveAlpha(a1);
      mesh.position.x = -5 + 10 * a1;
      mesh.position.z = 5 - 10 * a2;
+
+     // state feature works
+     const a3 = curveMod.getAlpha('bias', frame, frameMax, 20);
+     curveAlpha.opt.ac_points[2] = 0.5 + 0.5 * a3;
+
 };
 // loop
 const loop = () => {

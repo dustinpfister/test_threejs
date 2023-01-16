@@ -167,10 +167,11 @@
         opt.type = opt.type || 'curve2';
         opt.clamp = opt.clamp === undefined ? true : opt.clamp;
         opt.ac_points = opt.ac_points || DEFAULT_AC_POINTS;
-        // create the alpha function to use
-        const alphaFunc = ALPHA_FUNCTIONS[ opt.type ](opt);
         // the main get alpha method
-        return function(a, b, c){
+        const main_alpha_func = function(a, b, c){
+            // create the alpha function to use
+            const alphaFunc = ALPHA_FUNCTIONS[ opt.type ](main_alpha_func.opt);
+            // the alpha value defualts to 0
             let a1 = 0;
             // 1 arg : a is an alpha value
             if(arguments.length === 1){
@@ -189,7 +190,21 @@
                 a1 = THREE.MathUtils.clamp(a1, 0, 0.9999999999);
             }
             return a1;
+        };
+        // making the opt object a pubic property of the main alpha function
+        main_alpha_func.opt = opt;
+        // return the main alpha function that will be called in the project that uses this
+        return main_alpha_func;
+    };
+    api.getAlpha = (type, a, b, c, opt) => {
+        opt = opt || {};
+        opt.type = type;
+        const alphaFunc = api.getAlphaFunction(opt);
+        if(c === undefined){
+            b = b === undefined ? 1 : b;
+            return alphaFunc(a, b);
         }
+        return alphaFunc(a, b, c);
     };
     //-------- ----------
     // DEBUG HELPERS
