@@ -70,6 +70,14 @@
             return a;
         };
     };
+    // plain olf linear get alpha function
+    ALPHA_FUNCTIONS.linear = (opt) => {
+        // the given alpha value should all ready be linear
+        // as long as that is true this option should work by just echoing that back
+        return function(alpha){
+            return alpha;
+        };
+    };
     //-------- ----------
     // RETURN CURVE
     //-------- ----------
