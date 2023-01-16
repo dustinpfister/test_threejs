@@ -32,18 +32,19 @@
         [1.00,     0.5],
         [0.0]
     ];
+    // Deafult Alpha Control Points ( ac_points )
+    const DEFAULT_AC_POINTS = [
+        [0.00,     0.5],
+        [1.00,     0.5],
+        [0.0]
+    ];
     const ALPHA_FUNCTIONS = {};
     // first curve alpha function that just uses the Curve.getPoint method
     // and then uses the y axis as the alpha values
     ALPHA_FUNCTIONS.curve1 = ( opt ) => {
-        const grc_points = opt.grc_points ||  DEFAULT_GRC_POINTS;
-        const clamp = opt.clamp === undefined ? true : opt.clamp;
-        const cp = createAlphaCurve(grc_points);
+        const cp = createAlphaCurve(opt.grc_points);
         return function(givenAlpha){
             let a = cp.getPoint(givenAlpha).y;
-            if(clamp){
-                a = THREE.MathUtils.clamp(a, 0, 1);
-            }
             return a;
         };
     };
@@ -51,11 +52,8 @@
     // then figure an alpha value to given when calling the Curve.getPoint method of a child curve object
     // of the curve path created with the createAlphaCurve helper
     ALPHA_FUNCTIONS.curve2 = ( opt ) => {
-        // default GRC POINTS
-        const grc_points = opt.grc_points ||  DEFAULT_GRC_POINTS;
-        const clamp = opt.clamp === undefined ? true : opt.clamp;
         // use each path by itself
-        const cp = createAlphaCurve(grc_points);
+        const cp = createAlphaCurve(opt.grc_points);
         return function(alpha){
             alpha = alpha === 1 ? 0.9999999999 : alpha;
             const cLen = cp.curves.length;
@@ -64,9 +62,6 @@
             const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
             const v3 = cc.getPoint( a_cc );
             let a = v3.y;
-            if(clamp){
-                a = THREE.MathUtils.clamp(a, 0, 0.9999999999);
-            }
             return a;
         };
     };
@@ -176,18 +171,29 @@
     api.getAlphaFunction = (opt) => {
         opt = opt || {};
         opt.type = opt.type || 'curve2';
+        opt.clamp = opt.clamp === undefined ? true : opt.clamp;
+        // create the alpha function to use
         const alphaFunc = ALPHA_FUNCTIONS[ opt.type ](opt);
+        // the main get alpha method
         return function(a, b, c){
+            let a1 = 0;
             // 1 arg : a is an alpha value
             if(arguments.length === 1){
-                return alphaFunc(a);
+                a1 = alphaFunc(a);
             }
             // 2 arg : a is an alpha value, and b is a count
             if(arguments.length === 2){
-                return alphaFunc(a * b % 1);
+                a1 = alphaFunc(a * b % 1);
             }
+            if(arguments.length > 2){
             // 3+ arg : a is a numerator, b is a denomanator, and c is a count
-            return alphaFunc(a / b * c % 1)
+               a1 = alphaFunc(a / b * c % 1);
+            }
+            // clamp?
+            if(opt.clamp){
+                a = THREE.MathUtils.clamp(a, 0, 0.9999999999);
+            }
+            return a1;
         }
     };
     //-------- ----------
