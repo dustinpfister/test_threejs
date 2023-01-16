@@ -18,7 +18,7 @@ try{
     console.warn('OrbitControls JSM module not loaded.');
 }
 // ---------- ----------
-// CURVE ALPHA
+// CURVE ALPHA FUNCTION
 // ---------- ----------
 const grc_points = [
     [0.00,     0.5],
@@ -26,7 +26,10 @@ const grc_points = [
     [0.50,     -0.5],
     [0.1]
 ];
-const curveAlpha = curveMod.createAlphaFunciton2( grc_points );
+//const curveAlpha = curveMod.createAlphaFunciton1( grc_points, true );
+
+const curveAlpha = curveMod.getAlphaFunction( { grc_points: grc_points } );
+
 // ---------- ----------
 // OTHER GET ALPHA
 // ---------- ----------

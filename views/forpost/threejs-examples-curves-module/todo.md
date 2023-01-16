@@ -14,7 +14,10 @@
 ## () r1-1-debug-alpha demo
 * () start a new demo that has to do with looking at other get alpha methods
 
-## () curvesjs - r1 - Better get alpha methods, create geometry wityh curves
+## () curves.js - r1 - Better get alpha methods, create geometry wityh curves
+* (done) have a main curveMod.getAlphaFunction method to create an array of get alpha functions
+
+
 * () have a single debug method that will work with arrays or curves and will return points or lines
 * () have a number of methods to choose from that will return a get alpha method
 * () when making the get alpha methods, I have attach a state object to the function which can be used to tweak the get alpha over time

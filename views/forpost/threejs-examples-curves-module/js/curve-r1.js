@@ -15,6 +15,7 @@
         });
         return collection;
     };
+    // create an alpha curve helper function
     const createAlphaCurve = (grc_points) => {
         let i = 0, len = grc_points.length;
         const data = [];
@@ -24,7 +25,7 @@
             data.push([ 0, s[0], 0,   0, e[0], 0,   0, s[1], 0 ]);
             i += 1;
         }
-        return curveMod.QBCurvePath(data);
+        return api.QBCurvePath(data);
     };
     //-------- ----------
     // RETURN CURVE
@@ -92,21 +93,31 @@
         return v3Array;
     };
     //-------- ----------
-    // ALPHA FUNCTION
+    // ALPHA FUNCTIONS
     //-------- ----------
-    api.createAlphaFunciton1 = ( grc_points, clamp ) => {
+
+    const ALPHA_FUNCTIONS = {};
+
+    ALPHA_FUNCTIONS.curveAlpha1 = ( grc_points, clamp ) => {
         clamp = clamp === undefined ? true : clamp;
-        const curve = createAlphaCurve(grc_points);
+        const cp = createAlphaCurve(grc_points);
         return function(givenAlpha){
-            let a = curve.getPoint(givenAlpha).y;
+            let a = cp.getPoint(givenAlpha).y;
             if(clamp){
                 a = THREE.MathUtils.clamp(a, 0, 1);
             }
             return a;
         };
     };
-    api.createAlphaFunciton2 = ( grc_points, clamp ) => {
-        clamp = clamp === undefined ? true : clamp;
+
+    ALPHA_FUNCTIONS.curveAlpha2 = ( opt ) => {
+        // default GRC POINTS
+        const grc_points = opt.grc_points ||  [
+            [0.00,     0.5],
+            [1.00,     0.5],
+            [0.0]
+        ]
+        const clamp = opt.clamp === undefined ? true : opt.clamp;
         // use each path by itself
         const cp = createAlphaCurve(grc_points);
         return function(alpha){
@@ -123,6 +134,13 @@
             return a;
         };
     };
+
+    api.getAlphaFunction = (opt) => {
+        opt = opt || {};
+        opt.type = 'curveAlpha2';
+        return ALPHA_FUNCTIONS[ opt.type ](opt);
+    };
+
     //-------- ----------
     // DEBUG HELPERS
     //-------- ----------
