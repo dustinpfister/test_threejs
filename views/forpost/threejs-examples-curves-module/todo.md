@@ -11,12 +11,11 @@
 ## () r1-3-custom-types
 * () demo the custom types feature
 
-## () r1-2-alpha-update
-* () start demo in which I am updating the state of a get alpha over time
+## ( done 01/16/2022 ) r1-2-alpha-update
+* (done) start demo in which I am updating the state of a get alpha over time
 
-## () r1-1-debug-alpha demo
+## ( done 01/16/2022 ) r1-1-debug-alpha demo
 * (done) start a new demo that has to do with looking at other get alpha methods
-* () demo a few of the options for get alphas
 
 ## ( done 01/16/2022 ) curves.js - r1 - Better get alpha methods
 <!-- single main get alpha function -->

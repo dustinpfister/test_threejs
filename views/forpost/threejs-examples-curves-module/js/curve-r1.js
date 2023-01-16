@@ -99,8 +99,8 @@
     };
     // using the mapLinear method of the THREE.MathUtils object
     ALPHA_FUNCTIONS.mapLinear = (opt) => {
-        const startAlpha = opt.grc_points[0][0] === undefined ? 0 : opt.grc_points[0][0];
-        const endAlpha = opt.grc_points[0][1] === undefined ? 1 : opt.grc_points[0][1];
+        const startAlpha = opt.ac_points[0] === undefined ? 0 : opt.ac_points[0];
+        const endAlpha = opt.ac_points[1] === undefined ? 1 : opt.ac_points[1];
         return function(alpha){
             return THREE.MathUtils.mapLinear(alpha, 0, 1, startAlpha, endAlpha);
         };
