@@ -1,6 +1,22 @@
 // curve.js - r1 - from threejs-examples-curves-module
 (function(api){
     //-------- ----------
+    // DEFAULTS
+    //-------- ----------
+/*
+    const DEFAULT_GRC_POINTS = [
+        [0.00,     0.5],
+        [1.00,     0.5],
+        [0.0]
+    ];
+*/
+    // Deafult Alpha Control Points ( ac_points )
+    const DEFAULT_AC_POINTS = [
+        0.00,     0.5,
+        1.00,     0.5,
+        0.0,      0.0
+    ];
+    //-------- ----------
     // HELPERS
     //-------- ----------
     // for path data helper used by QBCurvePath and QBV3Array
@@ -16,7 +32,9 @@
         return collection;
     };
     // create an alpha curve helper function
-    const createAlphaCurve = (grc_points) => {
+
+/*
+    const createAlphaCurve1 = (grc_points) => {
         let i = 0, len = grc_points.length;
         const data = [];
         while(i < len - 1){
@@ -27,22 +45,25 @@
         }
         return api.QBCurvePath(data);
     };
-    const DEFAULT_GRC_POINTS = [
-        [0.00,     0.5],
-        [1.00,     0.5],
-        [0.0]
-    ];
-    // Deafult Alpha Control Points ( ac_points )
-    const DEFAULT_AC_POINTS = [
-        [0.00,     0.5],
-        [1.00,     0.5],
-        [0.0]
-    ];
+*/
+    const createAlphaCurve2 = (ac_points) => {
+        let i = 0, len = ac_points.length;
+        const data = [];
+        while(i < len - 2){
+            const s = ac_points[i];
+            const s2 = ac_points[i + 1]
+            const e = ac_points[i + 2];
+            data.push([ 0, s, 0,   0, e, 0,   0, s2, 0 ]);
+            i += 2;
+        }
+        return api.QBCurvePath(data);
+    };
+
     const ALPHA_FUNCTIONS = {};
     // first curve alpha function that just uses the Curve.getPoint method
     // and then uses the y axis as the alpha values
     ALPHA_FUNCTIONS.curve1 = ( opt ) => {
-        const cp = createAlphaCurve(opt.grc_points);
+        const cp = createAlphaCurve2(opt.grc_points);
         return function(givenAlpha){
             let a = cp.getPoint(givenAlpha).y;
             return a;
@@ -53,7 +74,11 @@
     // of the curve path created with the createAlphaCurve helper
     ALPHA_FUNCTIONS.curve2 = ( opt ) => {
         // use each path by itself
-        const cp = createAlphaCurve(opt.grc_points);
+//const cp1 = createAlphaCurve1(opt.grc_points);
+
+//console.log(opt.ac_points)
+        const cp = createAlphaCurve2(opt.ac_points);
+
         return function(alpha){
             alpha = alpha === 1 ? 0.9999999999 : alpha;
             const cLen = cp.curves.length;
@@ -172,6 +197,11 @@
         opt = opt || {};
         opt.type = opt.type || 'curve2';
         opt.clamp = opt.clamp === undefined ? true : opt.clamp;
+
+        opt.ac_points = opt.ac_points || DEFAULT_AC_POINTS;
+        //opt.grc_points = opt.grc_points || DEFAULT_GRC_POINTS;
+
+
         // create the alpha function to use
         const alphaFunc = ALPHA_FUNCTIONS[ opt.type ](opt);
         // the main get alpha method
@@ -191,7 +221,7 @@
             }
             // clamp?
             if(opt.clamp){
-                a = THREE.MathUtils.clamp(a, 0, 0.9999999999);
+                a1 = THREE.MathUtils.clamp(a1, 0, 0.9999999999);
             }
             return a1;
         }

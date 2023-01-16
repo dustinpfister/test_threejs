@@ -27,10 +27,9 @@
 * (done) have a bias type alpha function
 * (done) have a sinBias get alpha function
 * (done) have a smoothStep get alpha function
-
 <!-- ac points array in place of grc points -->
-* () rename grc\_points to ac\_points \( Alpha Control Points \)
-* () have it so that the ac points is a linear array of numbers
+* (done) rename grc\_points to ac\_points \( Alpha Control Points \)
+* (done) have it so that the ac points is a linear array of numbers
 
 <!-- alpha function state objects -->
 * () attach a state object to the function that is returned by the getAlphaFunction

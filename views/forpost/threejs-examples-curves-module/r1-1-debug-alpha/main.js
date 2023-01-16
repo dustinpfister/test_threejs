@@ -20,17 +20,17 @@ try{
 // ---------- ----------
 // CURVE ALPHA FUNCTION
 // ---------- ----------
-const grc_points = [
-    [0.00,     0.5],
-    [1.00,     0.25],
-    [0.50,     -0.5],
-    [0.1]
+const ac_points = [
+    0.00,     0.5,
+    1.00,     0.25,
+    0.50,     -0.5,
+    0.1
 ];
 //const curveAlpha = curveMod.createAlphaFunciton1( grc_points, true );
 
 const curveAlpha = curveMod.getAlphaFunction({
     type: 'curve2',
-    grc_points: grc_points
+    ac_points: ac_points
 });
 // ---------- ----------
 // DEBUG ALPHA FUNC
