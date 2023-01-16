@@ -27,8 +27,8 @@ const ac_points = [
     0.1
 ];
 const curveAlpha = curveMod.getAlphaFunction({
-    //type: 'curve2',
-    type: function(alpha){ return alpha < 0.5 ? alpha / 0.5 : 1 },
+    type: 'curve2',
+    //type: function(alpha){ return alpha < 0.5 ? alpha / 0.5 : 1 },
     ac_points: ac_points
 });
 //curveAlpha.opt.ac_points[2] = 0.5;
