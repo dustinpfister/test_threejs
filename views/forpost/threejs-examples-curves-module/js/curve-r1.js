@@ -35,7 +35,7 @@
     const ALPHA_FUNCTIONS = {};
     // first curve alpha function that just uses the Curve.getPoint method
     // and then uses the y axis as the alpha values
-    ALPHA_FUNCTIONS.curveAlpha1 = ( opt ) => {
+    ALPHA_FUNCTIONS.curve1 = ( opt ) => {
         const grc_points = opt.grc_points ||  DEFAULT_GRC_POINTS;
         const clamp = opt.clamp === undefined ? true : opt.clamp;
         const cp = createAlphaCurve(grc_points);
@@ -50,7 +50,7 @@
     // second curve alpha function ( defualt for R1 ) will get a curve object from the array of curves
     // then figure an alpha value to given when calling the Curve.getPoint method of a child curve object
     // of the curve path created with the createAlphaCurve helper
-    ALPHA_FUNCTIONS.curveAlpha2 = ( opt ) => {
+    ALPHA_FUNCTIONS.curve2 = ( opt ) => {
         // default GRC POINTS
         const grc_points = opt.grc_points ||  DEFAULT_GRC_POINTS;
         const clamp = opt.clamp === undefined ? true : opt.clamp;
@@ -70,12 +70,20 @@
             return a;
         };
     };
-    // plain olf linear get alpha function
+    // plain old linear get alpha function
     ALPHA_FUNCTIONS.linear = (opt) => {
         // the given alpha value should all ready be linear
         // as long as that is true this option should work by just echoing that back
         return function(alpha){
             return alpha;
+        };
+    };
+    // using the mapLinear method of the THREE.MathUtils object
+    ALPHA_FUNCTIONS.mapLinear = (opt) => {
+        const startAlpha = opt.grc_points[0][0] === undefined ? 0 : opt.grc_points[0][0];
+        const endAlpha = opt.grc_points[0][1] === undefined ? 1 : opt.grc_points[0][1];
+        return function(alpha){
+            return THREE.MathUtils.mapLinear(alpha, 0, 1, startAlpha, endAlpha);
         };
     };
     //-------- ----------
@@ -148,7 +156,7 @@
     //-------- ----------
     api.getAlphaFunction = (opt) => {
         opt = opt || {};
-        opt.type = opt.type || 'curveAlpha2';
+        opt.type = opt.type || 'curve2';
         const alphaFunc = ALPHA_FUNCTIONS[ opt.type ](opt);
         return function(a, b, c){
             // 1 arg : a is an alpha value

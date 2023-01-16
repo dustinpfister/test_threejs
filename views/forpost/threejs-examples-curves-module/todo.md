@@ -19,7 +19,8 @@
 * (done) make the two options for creating a curve alpha function the first two 'type' options for curveMod.getAlphaFunction
 * (done) when calling a get alpha function I should be able to use it with one, two or three arguments
 
-* () have a plain old linear type alpha function
+* (done) have a plain old linear type alpha function
+* () have a MapLinear alpha function
 * () have a bias type alpah function
 * () have a sinBias get alpha function
 * () have a smoothStep get alpha function
