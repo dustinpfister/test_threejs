@@ -27,6 +27,49 @@
         }
         return api.QBCurvePath(data);
     };
+    const DEFAULT_GRC_POINTS = [
+        [0.00,     0.5],
+        [1.00,     0.5],
+        [0.0]
+    ];
+    const ALPHA_FUNCTIONS = {};
+    // first curve alpha function that just uses the Curve.getPoint method
+    // and then uses the y axis as the alpha values
+    ALPHA_FUNCTIONS.curveAlpha1 = ( opt ) => {
+        const grc_points = opt.grc_points ||  DEFAULT_GRC_POINTS;
+        const clamp = opt.clamp === undefined ? true : opt.clamp;
+        const cp = createAlphaCurve(grc_points);
+        return function(givenAlpha){
+            let a = cp.getPoint(givenAlpha).y;
+            if(clamp){
+                a = THREE.MathUtils.clamp(a, 0, 1);
+            }
+            return a;
+        };
+    };
+    // second curve alpha function ( defualt for R1 ) will get a curve object from the array of curves
+    // then figure an alpha value to given when calling the Curve.getPoint method of a child curve object
+    // of the curve path created with the createAlphaCurve helper
+    ALPHA_FUNCTIONS.curveAlpha2 = ( opt ) => {
+        // default GRC POINTS
+        const grc_points = opt.grc_points ||  DEFAULT_GRC_POINTS;
+        const clamp = opt.clamp === undefined ? true : opt.clamp;
+        // use each path by itself
+        const cp = createAlphaCurve(grc_points);
+        return function(alpha){
+            alpha = alpha === 1 ? 0.9999999999 : alpha;
+            const cLen = cp.curves.length;
+            const curveIndex = Math.floor( cLen * alpha);
+            const cc = cp.curves[ curveIndex];
+            const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
+            const v3 = cc.getPoint( a_cc );
+            let a = v3.y;
+            if(clamp){
+                a = THREE.MathUtils.clamp(a, 0, 0.9999999999);
+            }
+            return a;
+        };
+    };
     //-------- ----------
     // RETURN CURVE
     //-------- ----------
@@ -95,52 +138,11 @@
     //-------- ----------
     // ALPHA FUNCTIONS
     //-------- ----------
-
-    const ALPHA_FUNCTIONS = {};
-
-    ALPHA_FUNCTIONS.curveAlpha1 = ( grc_points, clamp ) => {
-        clamp = clamp === undefined ? true : clamp;
-        const cp = createAlphaCurve(grc_points);
-        return function(givenAlpha){
-            let a = cp.getPoint(givenAlpha).y;
-            if(clamp){
-                a = THREE.MathUtils.clamp(a, 0, 1);
-            }
-            return a;
-        };
-    };
-
-    ALPHA_FUNCTIONS.curveAlpha2 = ( opt ) => {
-        // default GRC POINTS
-        const grc_points = opt.grc_points ||  [
-            [0.00,     0.5],
-            [1.00,     0.5],
-            [0.0]
-        ]
-        const clamp = opt.clamp === undefined ? true : opt.clamp;
-        // use each path by itself
-        const cp = createAlphaCurve(grc_points);
-        return function(alpha){
-            alpha = alpha === 1 ? 0.9999999999 : alpha;
-            const cLen = cp.curves.length;
-            const curveIndex = Math.floor( cLen * alpha);
-            const cc = cp.curves[ curveIndex];
-            const a_cc = alpha %  ( 1 / cLen ) * ( cLen );
-            const v3 = cc.getPoint( a_cc );
-            let a = v3.y;
-            if(clamp){
-                a = THREE.MathUtils.clamp(a, 0, 0.9999999999);
-            }
-            return a;
-        };
-    };
-
     api.getAlphaFunction = (opt) => {
         opt = opt || {};
-        opt.type = 'curveAlpha2';
+        opt.type = opt.type || 'curveAlpha2';
         return ALPHA_FUNCTIONS[ opt.type ](opt);
     };
-
     //-------- ----------
     // DEBUG HELPERS
     //-------- ----------

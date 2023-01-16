@@ -28,7 +28,10 @@ const grc_points = [
 ];
 //const curveAlpha = curveMod.createAlphaFunciton1( grc_points, true );
 
-const curveAlpha = curveMod.getAlphaFunction( { grc_points: grc_points } );
+const curveAlpha = curveMod.getAlphaFunction({
+    type: 'curveAlpha2',
+    grc_points: grc_points
+});
 
 // ---------- ----------
 // OTHER GET ALPHA
