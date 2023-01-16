@@ -78,6 +78,20 @@
             return alpha;
         };
     };
+    // plain old bias get alpha function
+    ALPHA_FUNCTIONS.bias = (opt) => {
+        return function(alpha){
+            return 1 - Math.abs(0.5 - alpha ) / 0.5;
+        };
+    };
+    // plain old bias get alpha function
+    ALPHA_FUNCTIONS.sinBias = (opt) => {
+        return function(alpha){
+            //const b = getBias(alpha * 4 % 1);
+            const b = 1 - Math.abs(0.5 - alpha ) / 0.5;
+            return Math.sin( Math.PI * 0.5 * b );
+        };
+    };
     // using the mapLinear method of the THREE.MathUtils object
     ALPHA_FUNCTIONS.mapLinear = (opt) => {
         const startAlpha = opt.grc_points[0][0] === undefined ? 0 : opt.grc_points[0][0];

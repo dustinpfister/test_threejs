@@ -29,32 +29,13 @@ const grc_points = [
 //const curveAlpha = curveMod.createAlphaFunciton1( grc_points, true );
 
 const curveAlpha = curveMod.getAlphaFunction({
-    type: 'mapLinear',
+    type: 'sinBias',
     grc_points: [[0, 0.5]]
 });
 
 // ---------- ----------
 // OTHER GET ALPHA
 // ---------- ----------
-
-// create map linear method
-const createMapLinear = function(startAlpha, endAlpha){
-    startAlpha = startAlpha === undefined ? 0 : startAlpha;
-    endAlpha = endAlpha === undefined ? 0 : endAlpha;
-    return function(alpha){
-        return THREE.MathUtils.mapLinear(alpha, 0, 1, startAlpha, endAlpha);
-    };
-};
-const getAlpha = (alpha) => {
-    return alpha * 8 % 1;
-};
-const getBias = (alpha) => {
-    return 1 - Math.abs(0.5 - (alpha * 1 % 1) ) / 0.5;
-};
-const getSinBias = function(alpha){
-    const b = getBias(alpha * 4 % 1);
-    return Math.sin( Math.PI * 0.5 * b );
-};
 const smoothStep = function(alpha){
     return THREE.MathUtils.smoothstep(alpha, 0, 1);
 };
@@ -67,11 +48,10 @@ const smoothStep = function(alpha){
 //var alphaFunc = getBias;
 //var alphaFunc = getSinBias;
 //var alphaFunc = smoothStep;
-var alphaFunc = createMapLinear(0.25, 0.6);
 // ---------- ----------
 // DEBUG ALPHA FUNC
 // ---------- ----------
-const points = curveMod.debugAlphaFunction(alphaFunc, { count: 400 });
+const points = curveMod.debugAlphaFunction(curveAlpha, { count: 400 });
 scene.add(points);
 //-------- ----------
 // MESH

@@ -18,11 +18,11 @@
 * (done) have a main curveMod.getAlphaFunction method to create an array of get alpha functions
 * (done) make the two options for creating a curve alpha function the first two 'type' options for curveMod.getAlphaFunction
 * (done) when calling a get alpha function I should be able to use it with one, two or three arguments
-
 * (done) have a plain old linear type alpha function
-* () have a MapLinear alpha function
-* () have a bias type alpah function
-* () have a sinBias get alpha function
+* (done) have a MapLinear alpha function
+* (done) have a bias type alpha function
+* (done) have a sinBias get alpha function
+
 * () have a smoothStep get alpha function
 
 * () have a single debug method that will work with arrays or curves and will return points or lines
