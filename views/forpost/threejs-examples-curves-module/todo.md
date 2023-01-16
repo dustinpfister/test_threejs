@@ -1,5 +1,7 @@
 # threejs-examples-curves-module todo list
 
+## () r2 - create geometry
+* () at least one method that has to do with creating geometry with curves
 
 ## () r1-3-create-geo
 * () start a demo in which I am createing geometry over time
@@ -14,21 +16,29 @@
 ## () r1-1-debug-alpha demo
 * () start a new demo that has to do with looking at other get alpha methods
 
-## () curves.js - r1 - Better get alpha methods, create geometry wityh curves
+## () curves.js - r1 - Better get alpha methods
+<!-- single main get alpha function -->
 * (done) have a main curveMod.getAlphaFunction method to create an array of get alpha functions
 * (done) make the two options for creating a curve alpha function the first two 'type' options for curveMod.getAlphaFunction
 * (done) when calling a get alpha function I should be able to use it with one, two or three arguments
+<!-- Have a few options for types of get alpha functions -->
 * (done) have a plain old linear type alpha function
 * (done) have a MapLinear alpha function
 * (done) have a bias type alpha function
 * (done) have a sinBias get alpha function
+* (done) have a smoothStep get alpha function
 
-* () have a smoothStep get alpha function
+<!-- ac points array in place of grc points -->
+* () rename grc\_points to ac\_points \( Alpha Control Points \)
+* () have it so that the ac points is a linear array of numbers
 
+<!-- alpha function state objects -->
+* () attach a state object to the function that is returned by the getAlphaFunction
+* () this state object can be used as a way to tweak the state of a get alpha function over time
+
+<!-- single debug method -->
 * () have a single debug method that will work with arrays or curves and will return points or lines
-* () have a number of methods to choose from that will return a get alpha method
-* () when making the get alpha methods, I have attach a state object to the function which can be used to tweak the get alpha over time
-* () at least one method that has to do with createing geometry with curves
+
 
 ## ( done 11/18/2022 ) r0-x-qbalpha clean up
 * (done) remove code that has to do more with the debug method

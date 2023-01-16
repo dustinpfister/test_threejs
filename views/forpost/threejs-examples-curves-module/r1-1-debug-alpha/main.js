@@ -29,25 +29,9 @@ const grc_points = [
 //const curveAlpha = curveMod.createAlphaFunciton1( grc_points, true );
 
 const curveAlpha = curveMod.getAlphaFunction({
-    type: 'sinBias',
-    grc_points: [[0, 0.5]]
+    type: 'curve2',
+    grc_points: grc_points
 });
-
-// ---------- ----------
-// OTHER GET ALPHA
-// ---------- ----------
-const smoothStep = function(alpha){
-    return THREE.MathUtils.smoothstep(alpha, 0, 1);
-};
-
-// ---------- ----------
-// ALPHA FUNC TO USE
-// ---------- ----------
-//var alphaFunc = curveAlpha;
-//var alphaFunc = getAlpha;
-//var alphaFunc = getBias;
-//var alphaFunc = getSinBias;
-//var alphaFunc = smoothStep;
 // ---------- ----------
 // DEBUG ALPHA FUNC
 // ---------- ----------

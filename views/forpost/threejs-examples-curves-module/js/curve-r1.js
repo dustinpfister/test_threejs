@@ -84,12 +84,17 @@
             return 1 - Math.abs(0.5 - alpha ) / 0.5;
         };
     };
-    // plain old bias get alpha function
+    // sin bias get alpha function
     ALPHA_FUNCTIONS.sinBias = (opt) => {
         return function(alpha){
-            //const b = getBias(alpha * 4 % 1);
             const b = 1 - Math.abs(0.5 - alpha ) / 0.5;
             return Math.sin( Math.PI * 0.5 * b );
+        };
+    };
+    // smooth step
+    ALPHA_FUNCTIONS.smooth = (opt) => {
+        return function(alpha){
+            return THREE.MathUtils.smoothstep(alpha, 0, 1);
         };
     };
     // using the mapLinear method of the THREE.MathUtils object
