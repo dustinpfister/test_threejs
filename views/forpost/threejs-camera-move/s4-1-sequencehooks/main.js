@@ -21,12 +21,11 @@ scene.add(mesh2);
 //-------- ----------
 // SEQUENCE HOOKS OBJECT
 //-------- ----------
-const seq = {
-    objectIndex: 0,
-    per: 0,
-    bias: 0,
-    frame: 0,
-    frameMax: 300,
+const seq = seqHooks.create({
+    fps: 30,
+    frameMax: 90,
+    // before calling current sequence object
+    // move mesh2 around in a circle
     beforeObjects: function(seq){
         const r = Math.PI * 2 * seq.per;
         const x = Math.cos(r) * 4;
@@ -34,29 +33,31 @@ const seq = {
         mesh2.position.set(x, 0, z);
     },
     afterObjects: function(seq){
+        // camera always looks at the mesh object
         camera.lookAt(mesh.position);
     },
+    // using objects to define what will change with camera position over time
     objects: [
         {
-            per: 0,
+            secs: 5,
             update: function(seq, partPer, partBias){
                 camera.position.set(10, 10, 10);
             }
         },
         {
-            per: 0.25,
+            secs: 1,
             update: function(seq, partPer, partBias){
                camera.position.set(10 - 20 * partPer, 10, 10);
             }
         },
         {
-            per: 0.30,
+            secs: 1,
             update: function(seq, partPer, partBias){
                 camera.position.set(-10, 10 - 7 * partPer, 10);
             }
         },
         {
-            per: 0.35,
+            secs: 5,
             update: function(seq, partPer, partBias){
                 camera.position.set(-10, 3, 10);
                 const x = 10 * partBias;
@@ -64,17 +65,18 @@ const seq = {
             }
         },
         {
-            per: 0.75,
+            secs: 10,
             update: function(seq, partPer, partBias){
                 camera.position.set(-10, 3 - 10 * partPer, 10 - 30 * partPer);
             }
         }
     ]
-};
+});
 //-------- ----------
 // APP LOOP
 //-------- ----------
 let secs = 0,
+frame = 0,
 fps_update = 10,
 fps_movement = 30,
 lt = new Date();
@@ -83,7 +85,7 @@ const loop = function () {
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if(secs > 1 / fps_update){
-        seqHooks.setFrame(seq, seq.frame)
+        seqHooks.setFrame(seq, seq.frame, seq.frameMax )
         renderer.render(scene, camera);
         seq.frame += fps_movement * secs;
         seq.frame %= seq.frameMax;
