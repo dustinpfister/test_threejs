@@ -10,33 +10,18 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 // ---------- ----------
-// CONTROLS
+// ALPHA FUNCTION
 // ---------- ----------
-try{
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-}catch(e){
-    console.warn('OrbitControls JSM module not loaded.');
-}
-// ---------- ----------
-// CURVE ALPHA FUNCTION
-// ---------- ----------
-const ac_points = [
-    0.00,     0.5,
-    1.00,     0.25,
-    0.50,     -0.5,
-    0.1
-];
-const curveAlpha = curveMod.getAlphaFunction({
-    type: 'curve2',
-    //type: function(alpha){ return alpha < 0.5 ? alpha / 0.5 : 1 },
-    ac_points: ac_points
+const alphaFunc = curveMod.getAlphaFunction({
+    type: function(opt){
+        return function(alpha){
+             const i = Math.floor( alpha * opt.ac_points.length );
+             const n1 = opt.ac_points[i];
+             return n1
+        }
+    },
+    ac_points: [ 0.00, 0.125, 0.25, 0.125, 0.2, 0.3, 0.5, 0.6, 0.75, 1]
 });
-//curveAlpha.opt.ac_points[2] = 0.5;
-// ---------- ----------
-// DEBUG ALPHA FUNC
-// ---------- ----------
-const points = curveMod.debugAlphaFunction(curveAlpha, { });
-scene.add(points);
 //-------- ----------
 // MESH
 //-------- ----------
@@ -57,14 +42,9 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
      const a1 = frame / frameMax;
-     const a2 = curveAlpha(a1);
+     const a2 = alphaFunc(a1);
      mesh.position.x = -5 + 10 * a1;
      mesh.position.z = 5 - 10 * a2;
-
-     // state feature works
-     //const a3 = curveMod.getAlpha('bias', frame, frameMax, 20);
-     //curveAlpha.opt.ac_points[2] = 0.5 + 0.5 * a3;
-
 };
 // loop
 const loop = () => {

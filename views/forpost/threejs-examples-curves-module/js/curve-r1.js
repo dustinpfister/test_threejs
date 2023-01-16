@@ -188,7 +188,7 @@
             }
             // if type is a function, assume that this is a custom get alpha method to use
             if(typeof opt.type === 'function'){
-                alphaFunc = opt.type;
+                alphaFunc = opt.type(main_alpha_func.opt);
             }
             // the alpha value defualts to 0
             let a1 = 0;
