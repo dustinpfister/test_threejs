@@ -3,14 +3,17 @@
 ## () - sx-1-events - new event based movement section
 * () start a new section example that has to do with event driven movement
 
-## () s4-2-sequencehooks
-* () have a root js folder and use r2 of sequence hooks
-* () make sure r2 works okay with old example
-* () start new example that makes use of curves
+## () s4-2-sequencehooks-curves
+* () start new example that makes use of curves for at least one object
+* () make use of the various get alpha funcitons for various sequence objects
 
 ## (  ) - s3-1-curvemod
-* () start a root js folder and copy over the latest version of the curve.js threejs example module
-* () start and example of the curves module
+* (done) start a root js folder and copy over the latest version of the curvejs \(r1\) module
+* () start an example that uses the curves module
+
+## ( done 01/16/2023 ) s4-1-sequencehooks
+* (done) have a root js folder and use r2 of sequence hooks
+* (done) make sure r2 works okay with old example
 
 ## ( done 01/15/2023 ) - s1-4-basic-curves
 * (done) have at least a basic curve example
