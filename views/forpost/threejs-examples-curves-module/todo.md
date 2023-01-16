@@ -18,7 +18,7 @@
 * (done) start a new demo that has to do with looking at other get alpha methods
 * () demo a few of the options for get alphas
 
-## () curves.js - r1 - Better get alpha methods
+## ( done 01/16/2022 ) curves.js - r1 - Better get alpha methods
 <!-- single main get alpha function -->
 * (done) have a main curveMod.getAlphaFunction method to create an array of get alpha functions
 * (done) make the two options for creating a curve alpha function the first two 'type' options for curveMod.getAlphaFunction
@@ -36,7 +36,7 @@
 * (done) attach a state object to the function that is returned by the getAlphaFunction
 * (done) this state object can be used as a way to tweak the state of a get alpha function over time
 <!-- custom get alpha types -->
-* () can pass a function in place of a string as a way to define a custom get alpha function
+* (done) can pass a function in place of a string as a way to define a custom get alpha function
 
 ## ( done 11/18/2022 ) r0-x-qbalpha clean up
 * (done) remove code that has to do more with the debug method
