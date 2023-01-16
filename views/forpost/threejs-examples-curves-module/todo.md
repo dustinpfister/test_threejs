@@ -16,6 +16,8 @@
 
 ## () curves.js - r1 - Better get alpha methods, create geometry wityh curves
 * (done) have a main curveMod.getAlphaFunction method to create an array of get alpha functions
+* (done) make the two options for creating a curve alpha function the first two 'type' options for curveMod.getAlphaFunction
+* (done) when calling a get alpha function I should be able to use it with one, two or three arguments
 
 
 * () have a single debug method that will work with arrays or curves and will return points or lines

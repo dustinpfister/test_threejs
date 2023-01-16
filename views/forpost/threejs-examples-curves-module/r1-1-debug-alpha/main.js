@@ -30,7 +30,7 @@ const grc_points = [
 
 const curveAlpha = curveMod.getAlphaFunction({
     type: 'curveAlpha2',
-    grc_points: grc_points
+    //grc_points: grc_points
 });
 
 // ---------- ----------

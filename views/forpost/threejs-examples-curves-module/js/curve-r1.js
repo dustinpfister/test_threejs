@@ -141,7 +141,19 @@
     api.getAlphaFunction = (opt) => {
         opt = opt || {};
         opt.type = opt.type || 'curveAlpha2';
-        return ALPHA_FUNCTIONS[ opt.type ](opt);
+        const alphaFunc = ALPHA_FUNCTIONS[ opt.type ](opt);
+        return function(a, b, c){
+            // 1 arg : a is an alpha value
+            if(arguments.length === 1){
+                return alphaFunc(a);
+            }
+            // 2 arg : a is an alpha value, and b is a count
+            if(arguments.length === 2){
+                return alphaFunc(a * b % 1);
+            }
+            // 3+ arg : a is a numerator, b is a denomanator, and c is a count
+            return alphaFunc(a / b * c % 1)
+        }
     };
     //-------- ----------
     // DEBUG HELPERS
