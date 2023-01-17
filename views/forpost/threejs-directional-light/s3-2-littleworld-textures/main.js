@@ -12,15 +12,14 @@ renderer.setSize(640, 480, false);
 // LIGHT - directional and ambient
 //-------- ----------
 // directional light
-const dl = new THREE.DirectionalLight(0xffffff, 1);
+const dl = new THREE.DirectionalLight(0xffffff, 0.9);
 dl.castShadow = true;
 dl.shadow.mapSize.width = 256;
 dl.shadow.mapSize.height = 256;
 dl.shadow.camera.near = 0.5;
 dl.shadow.camera.far = 15;
 scene.add(dl);
-const al = new THREE.AmbientLight(0xffffff);
-al.intensity = 0.1;
+const al = new THREE.AmbientLight(0xffffff, 0.1);
 scene.add(al);
 //-------- ----------
 // HELPERS
@@ -66,22 +65,39 @@ const texture_grass = createCanvasTexture((ctx, canvas)=>{
         return color;
     });
 }, 32);
+const texture_emissive = createCanvasTexture((ctx, canvas) => {
+    const size = 8;
+    draw_grid_fill(ctx, canvas, size, size, (color, x, y, i) => {
+        let v = 0;
+        if(x === 0 || x === size - 1 || y === 0 || y === size - 1){
+           v = 1;
+        }
+        color.setRGB(v, v, v);
+        return color;
+    });
+}, 32);
 //-------- ----------
 // MATERIALS
 //-------- ----------
 const materials = {
-    house_sides: new THREE.MeshStandardMaterial({
-        color: 0xffffff
+    house: new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        emissive: 0xffffff,
+        emissiveMap: texture_emissive,
+        emissiveIntensity: 0
     }),
     ground: new THREE.MeshStandardMaterial({
         color: 0xffffff,
-        map: texture_grass
+        map: texture_grass,
+        emissive: 0xffffff,
+        emissiveMap: texture_emissive,
+        emissiveIntensity: 0
     })
 };
 //-------- ----------
 // MESH
 //-------- ----------
-const house = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), materials.house_sides);
+const house = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), materials.house);
 house.position.y = 1;
 house.castShadow = true; //default is false
 house.receiveShadow = false; //default
@@ -97,12 +113,19 @@ scene.add(plane);
 camera.position.set(8, 8, 8);
 camera.lookAt(house.position);
 let frame = 0,
-maxFrame = 100;
+maxFrame = 300;
 const loop = function () {
     setTimeout(loop, 33);
-    const per = frame / maxFrame,
-    r = Math.PI * 2 * per;
+    const a1 = frame / maxFrame;
+    const a2 = 1 - Math.abs(0.5 - a1)  / 0.5;
+    // light intesity
+    dl.intensity = 0.9 - 0.9 * a2;
+    al.intensity = 0.1 - 0.1 * a2;
+    // emmisve intensity
+    materials.house.emissiveIntensity = a2;
+    materials.ground.emissiveIntensity = a2;
     // change directional light position
+    const r = Math.PI * 2 * a1;
     dl.position.set(Math.cos(r) * 5, 5, Math.sin(r) * 5 );
     frame = (frame + 1) % maxFrame;
     renderer.render(scene, camera);
