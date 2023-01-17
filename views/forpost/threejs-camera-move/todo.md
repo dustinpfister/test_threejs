@@ -4,7 +4,7 @@
 * () start a new section example that has to do with event driven movement
 
 ## () s4-2-sequencehooks-curves
-* () start new example that makes use of the curves module
+* (done) start new example that makes use of the curves module
 * () make use of the various get alpha funcitons for various sequence objects
 * () have curves for all sequence objects that use them
 * () have mesh objects moving around in the scene
