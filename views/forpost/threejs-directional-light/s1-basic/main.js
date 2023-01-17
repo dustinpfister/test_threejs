@@ -1,22 +1,31 @@
+//-------- ----------
 // SCENE, CAMERA, RENDERER
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 1000);
-camera.position.set(1.2, 1.2, 1.2);
-camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-// DIRECTIONAL LIGHT
-var dl = new THREE.DirectionalLight(0xffffff, 1);
+//-------- ----------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+//-------- ----------
+// LIGHT
+//-------- ----------
+const dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(1, 10, 5);
 scene.add(dl);
-// Something in the scene
-var mesh = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshStandardMaterial({
-            color: 0xff0000,
-            emissive: 0x0a0a0a
-        }));
+//-------- ----------
+// MESH
+//-------- ----------
+const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshStandardMaterial({
+        color: 0xff0000,
+        emissive: 0x0a0a0a
+    })
+);
 scene.add(mesh);
-// render
+//-------- ----------
+// RENDER
+//-------- ----------
+camera.position.set(2, 2, 2);
+camera.lookAt(mesh.position);
 renderer.render(scene, camera);
