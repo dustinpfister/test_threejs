@@ -11,8 +11,8 @@
 * () have a starting example using the shader material
 * () can start with the example I all ready have based on the basic material (see the shader material for post folder)
 
-## () s2-1-loop
-* () have a basic animation loop in which the color attribute is mutated over time
+## ( done 01/18/2023 ) s2-1-loop
+* (done) have a basic animation loop in which the color attribute is mutated over time
 
 ## ( done 01/18/2023 ) s1-3-basic-lines
 * (done) example in which vertex colors are used with a line
