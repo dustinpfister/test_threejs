@@ -10,6 +10,7 @@
 
 ## () - update code examples to r146
 * (done) use r146 for all examples
+* () comnbine all ani demos into one section by renaming folders
 * () update code to new style
 
 ## ( done 05/15/2022 ) - HemisphereLight example
