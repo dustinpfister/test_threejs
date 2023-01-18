@@ -8,6 +8,10 @@
 ## () - RectAreaLight example
 * just a basic example of this kind of light
 
+## () - update code examples to r146
+* () use r146 for all examples
+* () update code to new style
+
 ## ( done 05/15/2022 ) - HemisphereLight example
 * (done) just a basic example of this kind of light
 
