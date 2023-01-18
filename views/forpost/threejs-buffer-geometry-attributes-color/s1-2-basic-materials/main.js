@@ -2,16 +2,18 @@
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-camera.position.set(0, 5, 10);
-camera.lookAt(0, 0, 0);
+scene.add( new THREE.GridHelper(10, 10) );
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 1.50, 20);
+camera.position.set(4, 2, 5);
+camera.lookAt(2.5, 0, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+
 // ---------- ----------
 // GEOMETRY
 // ---------- ----------
-const geo = new THREE.SphereGeometry( 4, 60, 60 );
+const geo = new THREE.SphereGeometry( 0.5, 60, 60 );
 // adding a color attribute
 const len = geo.getAttribute('position').count;
 const color_array = [];
@@ -23,18 +25,28 @@ while(i < len){
    i += 1;
 }
 const color_attribute = new THREE.BufferAttribute(new Float32Array(color_array), 3);
-geo.setAttribute('color', color_attribute);
+geo.setAttribute('color', color_attribute)
 // ---------- ----------
-// MATERIAL
+// MESH OBJECT FOR EACH BUILT IN MESH MATERIAL
 // ---------- ----------
-const material1 = new THREE.MeshBasicMaterial({
+const meshOpt = {
     vertexColors: true
+};
+// looks like vertex colors work with just about all of them, with the exception of Depth and Normal materials
+'Basic,Depth,Lambert,Matcap,Normal,Phong,Physical,Standard,Toon'.split(',').forEach( (matStr, i) => {
+    const x = i % 5;
+    const y = Math.floor(i / 5);
+    const material = new THREE['Mesh' + matStr + 'Material'](meshOpt);
+    const mesh = new THREE.Mesh(geo, material);
+    mesh.position.set(0.5 + x, 0, 0.5 + y)
+    scene.add(mesh);
 });
 // ---------- ----------
-// MESH
+// LIGHT
 // ---------- ----------
-const mesh1 = new THREE.Mesh(geo, material1);
-scene.add(mesh1);
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(2,1,0)
+scene.add(dl);
 // ---------- ----------
 // RENDER
 // ---------- ----------
