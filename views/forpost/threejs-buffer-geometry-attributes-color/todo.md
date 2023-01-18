@@ -1,5 +1,11 @@
 # threejs-buffer-geometry-attributes-color todo list
 
+## () s1-3-basic-lines
+* () example in which vertex colors are used with a line
+
+## () s1-2-basic-materials
+* () basic example in which vertex colors are used with all built in mesh materials
+
 ## () s3-2-shaders-light
 * () have a shader material that uses vertex colors along with light sources
 * () make is so that light will effect the over all frag color
@@ -11,9 +17,9 @@
 ## () s2-1-loop
 * () have a basic animation loop in which the color attribute is mutated over time
 
-## () start for post folder
-* () start for post folder on color attribute starting with the r146 basic demo
-* () have a todo list and readme file started
+## ( done 01/18/2023 ) start for post folder
+* (done) start for post folder on color attribute starting with the r146 basic demo
+* (done) have a todo list and readme file started
 
 
 
