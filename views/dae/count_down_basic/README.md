@@ -25,3 +25,9 @@ I want to have two DAE files now one for numbers, and the other for the rest of 
 * (done) have a cd3-ground.blend that will be the rest of the scene
 * (done) work out a texture for cd3-ground.blend
 * (done) make textures for cd3-nums.blend
+
+## cd4-nums.
+
+I wanted to add at least a colon object to use for timer values with cd4-nums.
+
+* () just add a colon object with the same textures as the numbers
