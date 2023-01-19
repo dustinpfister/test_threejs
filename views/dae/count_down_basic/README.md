@@ -30,4 +30,5 @@ I want to have two DAE files now one for numbers, and the other for the rest of 
 
 I wanted to add at least a colon object to use for timer values with cd4-nums.
 
-* () just add a colon object with the same textures as the numbers
+* (done) just add a colon object
+* () have a texture that is the same as the textures of the numbers for the colon object
