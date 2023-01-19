@@ -4,6 +4,9 @@
 
 ## () - custom depth material using canvas elements
 
+## ( done 01/19/2023 ) - updated to r146
+* (done) updated examples to use r146
+
 ## ( done 05/16/2022 ) - custom depth material using data textures
 * (done) see about having a data texture that is created by way of the distance of the mesh object from the camera
 

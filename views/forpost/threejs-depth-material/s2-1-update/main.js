@@ -1,27 +1,31 @@
+//-------- ----------
+// SCENE, CAMERA, RENDERER
+//-------- ----------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 320 / 240, 0.5, 3.0);
+camera.position.set(1.2, 1.2, 1.2);
+camera.lookAt(0, 0, 0);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+( document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+//-------- ----------
+// MESH, MATERIAL
+//-------- ----------
 // creating a box mesh with the Box Geometry constructor,
 // and the normal material
-var box = new THREE.Mesh(
-        new THREE.BoxGeometry(1.5, 1, 1.5),
+const box = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshDepthMaterial());
-box.position.set(-0.25, 0, -0.25);
-// creating a scene
-var scene = new THREE.Scene();
+box.position.set(0, 0.2, 0);
 // add the box mesh to the scene
 scene.add(box);
-// camera and renderer
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.8, 2.5);
-camera.position.set(1, 1, 1);
-camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-// loop
-var lt = new Date(),
-frame = 0,
-maxFrame = 100,
-fps = 30;
-var loop = function () {
-    var now = new Date(),
+//-------- ----------
+// LOOP
+//-------- ----------
+let lt = new Date(), frame = 0;
+const maxFrame = 100, fps = 30;
+const loop = function () {
+    const now = new Date(),
     secs = (now - lt) / 1000,
     per = frame / maxFrame,
     bias = 1 - Math.abs(per - 0.5) / 0.5;
