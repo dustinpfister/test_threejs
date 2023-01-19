@@ -1,5 +1,9 @@
 # threejs-examples-count-down todo list
 
+## ( done 01/19/2023 ) using cd4-nums.dae for dae-many demo
+* (done) using the cd4-nums.dae file for dae-many demo
+* (done) placing the colon object in the scene
+
 ## ( done 12/23/2022 ) r0-3-many-files
 * (done) demo in which I am loading a dae file for just numbers
 * (done) loding another dae file for the reast of the scene
