@@ -27,4 +27,6 @@ scene.add(mesh);
 //-------- ----------
 // RENDER
 //-------- ----------
+camera.position.set(2,2,2);
+camera.lookAt(mesh.position);
 renderer.render(scene, camera);
