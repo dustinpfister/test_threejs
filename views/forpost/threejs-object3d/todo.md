@@ -4,6 +4,15 @@
 ## () s2-4-type-line
 * () basic example of lines
 
+## () s6-1-userdata
+* () have a basic get world position demo
+
+## () s5-1-scale
+* () have a basic scale example
+
+## () s4-1-worldpos
+* () have a basic get world position demo
+
 ## ( done 01/23/2023 ) s3-1-getbyname
 * (done) new s3 section on the get by name method
 * (done) have a basic get by name demo
