@@ -1,31 +1,13 @@
 # threejs-object3d todo list
 
-## () - new s9-visible
+## () s4-1-getbyname
+* () have a basic get by name demo
 
-## () - new s8-parent
+## () s2-4-type-line
+* () basic example of lines
 
-## () - s7-user-data
-* have a user data example
-
-## () - s6-scale
-* have an example for scale
-
-## () - s5-name
-* have a source code example for name
-
-## ( done 05/18/2022 ) - s4-example-group
-
-## () - s3-6-scene
-* scene object example
-
-## () - s3-5-line
-* line example
-
-## () - s3-4-point-light
-* point light example
-
-## () - s3-3-group folder
-* group example
+## () s2-3-type-point
+* () demo of points type
 
 ## ( done 01/23/2023 ) - updated examples to r146
 * (done) updated s1-1-basic example
