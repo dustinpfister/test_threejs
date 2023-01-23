@@ -4,7 +4,8 @@
 ## () s2-4-type-line
 * () basic example of lines
 
-## () s4-1-getbyname
+## () s3-1-getbyname
+* () new s3 section on the get by name method
 * () have a basic get by name demo
 
 ## ( done 01/23/2023 ) s2-3-type-point
