@@ -20,4 +20,6 @@ mesh.lookAt(camera.position);
 //-------- ----------
 // RENDER
 //-------- ----------
+camera.position.set(3,3,3);
+camera.lookAt(mesh.position);
 renderer.render(scene, camera);

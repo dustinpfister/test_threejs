@@ -4,7 +4,6 @@
 const scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(9, 9));
 const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 100);
-camera.position.set(10, 10, 10);
 scene.add(camera);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -19,6 +18,8 @@ scene.add(box);
 //-------- ----------
 // LOOP
 //-------- ----------
+camera.position.set(10, 10, 10);
+camera.lookAt(box.position);
 // state object
 const state = {
     frame: 0,

@@ -1,10 +1,22 @@
+//-------- ----------
+// SCENE TYPE OBJECT, CAMERA TYPE OBJECT, and RENDERER
+//-------- ----------
+const scene = new THREE.Scene();
+scene.add(new THREE.GridHelper(9, 9));
+const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 100);
+scene.add(camera);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+//-------- ----------
+// HELPERS
+//-------- ----------
 // create cube stack method
-var createCubeStack = function (original) {
-    var stack = {},
+const createCubeStack = function (original) {
+    const stack = {};
     original = original || new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshNormalMaterial()),
-    cube;
+            new THREE.MeshNormalMaterial());
     // the group
     stack.group = new THREE.Object3D();
     // set method
@@ -19,7 +31,8 @@ var createCubeStack = function (original) {
         });
     };
     // create cubes for the group
-    var i = 0,
+    let i = 0,
+    cube,
     len = 3,
     per;
     while (i < len) {
@@ -32,21 +45,19 @@ var createCubeStack = function (original) {
     }
     return stack;
 };
-// Scene
-var scene = new THREE.Scene();
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-var camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-camera.position.set(5, 5, 5);
-camera.lookAt(0, 0, 0);
-// stack
-var stack = createCubeStack();
+//-------- ----------
+// STACK
+//-------- ----------
+const stack = createCubeStack();
 scene.add(stack.group);
-// loop
-var frame = 0,
+//-------- ----------
+// LOOP
+//-------- ----------
+camera.position.set(5,5,5);
+camera.lookAt(0,0,0);
+let frame = 0,
 maxFrame = 100;
-var loop = function () {
+const loop = function () {
     requestAnimationFrame(loop);
     renderer.render(scene, camera);
     stack.set(frame / maxFrame);
