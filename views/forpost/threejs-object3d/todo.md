@@ -27,6 +27,10 @@
 ## () - s3-3-group folder
 * group example
 
+## ( done 01/23/2023 ) - updated examples to r146
+* (done) updated s1-1-basic example
+* (done) renamed folders
+
 ## ( done 05/18/2022 ) - s3-2-mesh folder
 * mesh object example
 
