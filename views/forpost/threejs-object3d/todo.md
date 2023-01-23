@@ -1,13 +1,14 @@
 # threejs-object3d todo list
 
-## () s4-1-getbyname
-* () have a basic get by name demo
 
 ## () s2-4-type-line
 * () basic example of lines
 
-## () s2-3-type-point
-* () demo of points type
+## () s4-1-getbyname
+* () have a basic get by name demo
+
+## ( done 01/23/2023 ) s2-3-type-point
+* (done) demo of points type
 
 ## ( done 01/23/2023 ) - updated examples to r146
 * (done) updated s1-1-basic example
