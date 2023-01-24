@@ -1,5 +1,8 @@
 # threejs-object3d todo list
 
+## () s5-2-scale-position
+* () have an example where both scale and position are used
+* () see if box3 can be used to get scale size rather than geo size
 
 ## () s2-4-type-line
 * () basic example of lines
@@ -7,8 +10,8 @@
 ## () s6-1-userdata
 * () have a basic get world position demo
 
-## () s5-1-scale
-* () have a basic scale example
+## ( done 01/24/2023 ) s5-1-scale
+* (done) have a basic scale example
 
 ## ( done 01/23/2023 ) s4-1-worldpos
 * (done) have a basic get world position demo
