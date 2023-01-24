@@ -1,5 +1,11 @@
 # threejs-examples-count-down todo list
 
+## () r1 of count-down.js
+* () fix DAE loader so that the loading of resources works okay in windows as well as allowing for a skin change
+```
+  see the temp fix version of r0 in the js folder of videoground-beta-world
+```
+
 ## ( done 01/19/2023 ) using cd4-nums.dae for dae-many demo
 * (done) using the cd4-nums.dae file for dae-many demo
 * (done) placing the colon object in the scene
