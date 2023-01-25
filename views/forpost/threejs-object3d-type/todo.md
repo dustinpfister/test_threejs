@@ -3,8 +3,11 @@
 ## () s2-2-children-traverse
 * () have an example that makes use of the traverse method
 
-## () s1-2-basic-instanceof
-* () example of the instnaceof keyword in core javaScript
+## ( done 01/25/2023 ) s1-3-basic-constructor
+* () basic example where I am checking the constructor name
+
+## ( done 01/25/2023 ) s1-2-basic-instanceof
+* (done) example of the instnaceof keyword in core javaScript
 
 ## ( done 01/25/2023 ) rename s1-basic to s2-1-children-foreach, and new s1-1-basic
 * (done) rename the s1-basic example to the s2-1-children-foreach
