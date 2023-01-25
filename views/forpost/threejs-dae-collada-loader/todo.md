@@ -1,6 +1,6 @@
 # threejs-dae-collada-loader todo lost
 
-### () - more that one file example
+### () - s2-1-many
 * () have an example that involves loading a few dae files
 ```
   see the temp fix version of r0 in the js folder of videoground-beta-world
