@@ -1,5 +1,14 @@
 # threejs-dae-collada-loader todo lost
 
+### () s2-3-many-process
+* () new demo that is same as before, but now there is a progress option
+* () this process option is a funciton that will be called each time an item is loaded
+
+### () s2-2-many-cloner
+* () example in which I give an options object to the DAE loader helper
+* () with this DAE options object I can pass a custom cloner function
+* () the cloner function will be called for each object of each DAE file and will be used to clone that object
+
 ### ( done 01/25/2023 ) - s2-1-many
 * (done) start an example that involves loading a few dae files
 * (done) based off of the temp fix version of r0 of count-down.js in the js folder of videoground-beta-world
