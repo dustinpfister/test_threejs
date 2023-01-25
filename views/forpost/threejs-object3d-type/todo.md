@@ -28,8 +28,8 @@
 ## () s3-1-types-mesh
 * () demo of mesh objects
 
-## () s2-2-children-traverse
-* () have an example that makes use of the traverse method
+## ( done 01/25/2023 ) s2-2-children-traverse
+* (done) have an example that makes use of the traverse method
 
 ## ( done 01/25/2023 ) s1-3-basic-constructor
 * (done) basic example where I am checking the constructor name
