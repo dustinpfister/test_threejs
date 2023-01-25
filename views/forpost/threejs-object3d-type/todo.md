@@ -1,10 +1,38 @@
 # threejs-object3d-type todo list
 
+## () s3-7-types-helpers
+* () grid helper
+* () arrow helper
+
+## () s3-6-types-lights
+* () direcitonal light
+* () ambient light
+* () point light
+* () spot light
+* () hemasphere light
+
+## () s3-5-types-cameras
+* () perspective camera
+* () othological camera
+
+## () s3-4-types-group
+* () demo of groups
+
+## () s3-3-types-lines
+* () demo of Line, and LineSegements
+* () can also use EdgeGeometry for this
+
+## () s3-2-types-points
+* () demo of points objects
+
+## () s3-1-types-mesh
+* () demo of mesh objects
+
 ## () s2-2-children-traverse
 * () have an example that makes use of the traverse method
 
 ## ( done 01/25/2023 ) s1-3-basic-constructor
-* () basic example where I am checking the constructor name
+* (done) basic example where I am checking the constructor name
 
 ## ( done 01/25/2023 ) s1-2-basic-instanceof
 * (done) example of the instnaceof keyword in core javaScript
