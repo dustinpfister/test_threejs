@@ -1,15 +1,14 @@
 # threejs-object3d-type todo list
 
-## s3-transverse-and-type section
-* have one or more groups
-* have a few mesh objects for each group
-* use the transverse method off of the scene object and preform actions for for type 'Mesh'
+## () s2-2-children-traverse
+* () have an example that makes use of the traverse method
 
-## s2-group-mesh and type section
-* have an example that involves a collection of mesh objects that are children of an instance of object3d
+## () rename s1-basic to s2-1-children-foreach, and new s1-1-basic
+* () rename the s1-basic example to the s2-1-children-foreach
+* () start a new s1-1-basic example
 
-## first s1-basic section
-* Just start a basic example in which an instance of Object3d is used
-* have other types of objects based on Object3d of course such as Mesh
-* loop over all children of the main scene object
-* use the type prop of the scene object to know if certain things should change 
+## (done 01/25/2023 ) first s1-basic section
+* (done) Just start a basic example in which an instance of Object3d is used
+* (done) have other types of objects based on Object3d of course such as Mesh
+* (done) loop over all children of the main scene object
+* (done) use the type prop of the scene object to know if certain things should change 
