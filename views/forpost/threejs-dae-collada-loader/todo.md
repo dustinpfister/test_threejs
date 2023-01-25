@@ -1,10 +1,10 @@
 # threejs-dae-collada-loader todo lost
 
-### () - s2-1-many
+### ( done 01/25/2023 ) - s2-1-many
 * (done) start an example that involves loading a few dae files
 * (done) based off of the temp fix version of r0 of count-down.js in the js folder of videoground-beta-world
 * (done) using a scene object in place of plain object
-* () using traverse in place of array for each of children prop
+* (done) have a single helper function form of this
 
 ## (done 01/25/2023 ) new basic section
 * (done) make a new basic section with the current demos
