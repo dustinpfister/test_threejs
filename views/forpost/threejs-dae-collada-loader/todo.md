@@ -6,9 +6,9 @@
   see the temp fix version of r0 in the js folder of videoground-beta-world
 ```
 
-## () new basic section
-* ( ) make a new basic section with the current demos
-* ( ) update the code to r146 standards
+## (done 01/25/2023 ) new basic section
+* (done) make a new basic section with the current demos
+* (done) update the code to r146 standards
 
 ## ( done 04/01/2022 ) - set base url example
 * (done) I will want a base url example
