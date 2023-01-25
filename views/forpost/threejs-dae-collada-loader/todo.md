@@ -2,9 +2,16 @@
 
 ### () - more that one file example
 * () have an example that involves loading a few dae files
+```
+  see the temp fix version of r0 in the js folder of videoground-beta-world
+```
 
-### ( done 04/01/2022 ) - set base url example
+## () new basic section
+* ( ) make a new basic section with the current demos
+* ( ) update the code to r146 standards
+
+## ( done 04/01/2022 ) - set base url example
 * (done) I will want a base url example
 
-### ( done 04/01/2022 ) - Copy over examples for r127 demo folder
+## ( done 04/01/2022 ) - Copy over examples for r127 demo folder
 * (done) start with the single file example in the r127 demo folder
