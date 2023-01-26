@@ -8,54 +8,25 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
-// HELPERS
+// OBJECTS - a parent mesh, with a single child mesh
 //-------- ----------
-const createGroup = function (color) {
-    color = color || new THREE.Color(1, 1, 1);
-    // creating a group
-    const group = new THREE.Group();
-    // creating and adding a pointer mesh to the group
-    const geo = new THREE.CylinderGeometry(0, 0.5, 1, 12);
-    geo.rotateX(Math.PI * 0.5);
-    const pointer = group.userData.pointer = new THREE.Mesh(
-            geo,
-            new THREE.MeshNormalMaterial());
-    pointer.position.set(0, 0, 0);
-    pointer.rotation.y = 1.57; // BY DEFAULT THE POINTER IS NOT POINTING AT THE CUBE
-    group.add(pointer);
-    // creating and adding a cube
-    const cube = group.userData.cube = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.5 }));
-    cube.position.set(0, 0, 1);
-    group.add(cube);
-    // box helper for the group
-    group.add(new THREE.BoxHelper(group));
-    return group;
-};
+const mat = new THREE.MeshNormalMaterial();
+const parent = new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), mat );
+const child = new THREE.Mesh( new THREE.SphereGeometry(0.5, 30, 30), mat );
+parent.add(child);
+scene.add(parent);
 //-------- ----------
-// GROUPS
+// Setting position of parent and child
 //-------- ----------
-const group = createGroup(0xff0000); // group 1
-scene.add(group);
-group.position.set(-2.0, 0, 0.0);
-const group2 = createGroup(0x00ff00); // group2
-scene.add(group2);
-group2.position.set(2.0, 0, 0.0);
-// the first group in am just using the look at method, and passing
-// the value of the cube.position instance of vector3. THIS RESULTS IN THE
-// CONE NOT POINTING AT THE CUBE, but at the location of the cube if it where
-// positioned relative to world space rather than a location relative to the group
-group.userData.pointer.lookAt(group.userData.cube.position); 
-// IF I WANT TO HAVE THE POINTER LOOK AT THE CUBE
-// THAT IS A CHILD OF THE GROUP, THEN I WILL WANT TO ADJUST
-// FOR THAT FOR THIS THERE IS THE getWorldPosition METHOD
-const v = new THREE.Vector3(0, 0, 0);
-group2.userData.cube.getWorldPosition(v);
-group2.userData.pointer.lookAt(v);
+parent.position.set(-1.5,0.5,0.5); // realtive to scene object ( aligned with world space )
+child.position.set(1.2, 1.2, 1.2); // relative to parent object
 //-------- ----------
 // RENDER
 //-------- ----------
-camera.position.set(0, 4, 4);
-camera.lookAt(0, 0, 0);
+camera.position.set(1, 2, 4);
+// JUST PASSING child.position WILL RESULT IN THE CAMERA LOOKING AT WHERE THE LOCATION OF THE CHILD
+// MESH WOULD BE IF IT WAS RELATIVE TO WORLD SPACE RATHER THAN THE PARENT MESH. TO FIX THIS USE
+// THE Object3d.getWorldPosition METHOD
+//camera.lookAt( child.position );
+camera.lookAt( child.getWorldPosition(new THREE.Vector3()) );
 renderer.render(scene, camera);

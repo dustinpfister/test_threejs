@@ -7,6 +7,10 @@
 * () have the camera move to a position relative to a static object
 * () have the camera move to a position relative to a mesh of a nested group
 
+## ( done 01/26/2023 ) expand basic section
+* (done) rename s1-1-basic to s1-2-basic-compare
+* (done) start new s1-1-basic example
+
 ## ( done 01/26/2023 ) update to r146
 * (done) update examples to r146 style
 
