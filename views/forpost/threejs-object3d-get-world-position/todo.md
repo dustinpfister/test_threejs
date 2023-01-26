@@ -7,6 +7,9 @@
 * () have the camera move to a position relative to a static object
 * () have the camera move to a position relative to a mesh of a nested group
 
+## () update to r146
+* () update examples to r146 style
+
 ### ( done 10/12/2022 ) s2-1-loop-conecube
 * (done) animation loop example of the basic example
 
