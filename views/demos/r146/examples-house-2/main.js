@@ -7,16 +7,6 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// OBJECTS
-// ---------- ----------
-scene.add( new THREE.GridHelper( 10,10 ) );
-const box = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshNormalMaterial());
-scene.add(box);
-// render
-renderer.render(scene, camera);
-// ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
 camera.position.set(1.25, 1.25, 1.25);
@@ -47,3 +37,38 @@ const loop = () => {
     }
 };
 loop();
+//-------- ----------
+// LOADING
+//-------- ----------
+DAE_loader({
+    // custom cloner
+    cloner: (obj, scene_source ) => {
+        if(obj.type === 'Mesh'){
+            const mat = new THREE.MeshBasicMaterial({
+                map: obj.material.map 
+            });
+            const mesh = new THREE.Mesh(obj.geometry, mat);
+            mesh.name = obj.name;
+            mesh.rotation.copy(obj.rotation);
+            scene_source.add(mesh);
+        }
+    },
+    urls_dae: [
+        '/dae/count_down_basic/cd4-nums.dae'
+    ],
+    urls_resource: [
+        '/dae/count_down_basic/'
+    ]
+})
+.then( (scene_source) => {
+    console.log('done loading');
+    camera.position.set(8,8,8);
+
+    scene.add( scene_source.getObjectByName('num_0') )
+
+    camera.lookAt(0, 0, 0);
+    loop();
+})
+.catch( (e) => {
+    console.warn(e);
+});
