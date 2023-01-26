@@ -7,6 +7,12 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
+// LIGHT
+// ---------- ----------
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(0.5, 2, -1)
+scene.add(dl);
+// ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
 camera.position.set(1.25, 1.25, 1.25);
@@ -44,8 +50,8 @@ DAE_loader({
     // custom cloner
     cloner: (obj, scene_source ) => {
         if(obj.type === 'Mesh'){
-            const mat = new THREE.MeshBasicMaterial({
-                map: obj.material.map 
+            const mat = new THREE.MeshPhongMaterial({
+                
             });
             const mesh = new THREE.Mesh(obj.geometry, mat);
             mesh.name = obj.name;
@@ -54,19 +60,22 @@ DAE_loader({
         }
     },
     urls_dae: [
-        '/dae/count_down_basic/cd4-nums.dae'
+        '/dae/house_two/house_2.dae'
     ],
     urls_resource: [
-        '/dae/count_down_basic/'
+        '/dae/house_two/'
     ]
 })
 .then( (scene_source) => {
     console.log('done loading');
-    camera.position.set(8,8,8);
+    camera.position.set(2, 1, -2);
 
-    scene.add( scene_source.getObjectByName('num_0') )
+    scene.add( new THREE.GridHelper(10, 40) )
 
-    camera.lookAt(0, 0, 0);
+    const mesh_house = scene_source.getObjectByName('house_0').clone();
+    scene.add( mesh_house )
+
+    camera.lookAt(mesh_house.position);
     loop();
 })
 .catch( (e) => {
