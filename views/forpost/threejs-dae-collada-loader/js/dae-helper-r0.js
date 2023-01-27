@@ -8,7 +8,7 @@
     global.DAE_loader = function( opt ){
         opt = opt || {};
         opt.urls_dae = opt.urls_dae || [];
-        opt.urls_resource = opt.resource_urls || [];
+        opt.urls_resource = opt.urls_resource || [];
         // use given cloner or defult to add everything
         opt.cloner = opt.cloner || DEFAULT_CLONER;
         const manager = new THREE.LoadingManager();
