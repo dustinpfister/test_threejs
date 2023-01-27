@@ -21,12 +21,10 @@ let mesh_house = null;
 const update = function(frame, frameMax){
     const a1 = frame / FRAME_MAX;
     const a2 = 1 - Math.abs(0.5 - a1 * 2 % 1) / 0.5;
-
     const e = new THREE.Euler(0,0,0);
     e.y = Math.PI * 2 * a1;
     e.z = Math.PI / 180 * ( 20 + 20 * a2 );
     camera.position.set(1, 0, 0).applyEuler(e).normalize().multiplyScalar(4);
-
     if(mesh_house){
         camera.lookAt(mesh_house.position);
     }
@@ -72,9 +70,19 @@ DAE_loader({
 })
 .then( (scene_source) => {
     console.log('done loading');
-    scene.add( new THREE.GridHelper(10, 40) )
+    // adding the house_0 object to the scene
     mesh_house = scene_source.getObjectByName('house_0').clone();
     scene.add( mesh_house )
+    // plane geometry for the ground
+    const plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(10, 10, 1, 1), 
+        new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            side: THREE.DoubleSide
+        })
+    );
+    plane.geometry.rotateX(Math.PI * 1.5);
+    scene.add(plane)
     loop();
 })
 .catch( (e) => {
