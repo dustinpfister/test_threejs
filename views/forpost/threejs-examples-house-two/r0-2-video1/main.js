@@ -67,7 +67,7 @@ DAE_loader({
         '/dae/house_two/house_2.dae'
     ],
     urls_resource: [
-        '/dae/house_two/skins/'
+        '/dae/house_two/skins/windows/'
     ]
 })
 .then( (scene_source) => {
