@@ -46,6 +46,22 @@ const loop = () => {
 };
 loop();
 //-------- ----------
+// HELPERS
+//-------- ----------
+// create and return a canvas texture
+const createCanvasTexture = function (draw, size_canvas) {
+    size_canvas = size_canvas === undefined ? 32 : size_canvas;
+    const canvas = document.createElement('canvas'),
+    ctx = canvas.getContext('2d');
+    canvas.width = size_canvas;
+    canvas.height = size_canvas;
+    draw(ctx, canvas);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.magFilter = THREE.NearestFilter;
+    texture.minFilter = THREE.NearestFilter;
+    return texture;
+};
+//-------- ----------
 // LOADING
 //-------- ----------
 DAE_loader({
