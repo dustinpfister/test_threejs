@@ -9,16 +9,28 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-camera.position.set(1.25, 1.25, 1.25);
-camera.lookAt(0, 0, 0);
-const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 120;
+FRAME_MAX = 300;
 let secs = 0,
 frame = 0,
 lt = new Date();
+// will load this in
+let mesh_house = null;
 // update
-const update = function(frame, frameMax){};
+const update = function(frame, frameMax){
+    const a1 = frame / FRAME_MAX;
+    const a2 = 1 - Math.abs(0.5 - a1 * 2 % 1) / 0.5;
+
+    const e = new THREE.Euler(0,0,0);
+    e.y = Math.PI * 2 * a1;
+    e.z = Math.PI / 180 * ( 20 + 20 * a2 );
+    camera.position.set(1, 0, 0).applyEuler(e).normalize().multiplyScalar(4);
+
+    if(mesh_house){
+        camera.lookAt(mesh_house.position);
+    }
+};
 // loop
 const loop = () => {
     const now = new Date(),
@@ -60,11 +72,9 @@ DAE_loader({
 })
 .then( (scene_source) => {
     console.log('done loading');
-    camera.position.set(2, 1, -2);
     scene.add( new THREE.GridHelper(10, 40) )
-    const mesh_house = scene_source.getObjectByName('house_0').clone();
+    mesh_house = scene_source.getObjectByName('house_0').clone();
     scene.add( mesh_house )
-    camera.lookAt(mesh_house.position);
     loop();
 })
 .catch( (e) => {
