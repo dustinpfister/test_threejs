@@ -2,6 +2,7 @@
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0, 1, 1);
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -61,6 +62,36 @@ const createCanvasTexture = function (draw, size_canvas) {
     texture.minFilter = THREE.NearestFilter;
     return texture;
 };
+const draw_grid_fill = (ctx, canvas, iw, ih, getColor) => {
+    getColor = getColor || function(color){ return color };
+    const len = iw * ih;
+    const pxW = canvas.width / iw;
+    const pxH = canvas.height / ih;
+    let i = 0;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    while(i < len){
+        const x = i % iw;
+        const y = Math.floor(i / iw);
+        const color = getColor( new THREE.Color(), x, y, i);
+        ctx.fillStyle = color.getStyle();
+        const px = x * pxW;
+        const py = y * pxH;
+        ctx.fillRect(px, py, pxW, pxH);
+        i += 1;
+    }
+};
+const draw_grass = (ctx, canvas) => {
+    draw_grid_fill(ctx, canvas, 100, 100, function(color){
+       color.r = 0;
+       color.g = 0.15 + 0.85 * Math.random();
+       color.b = 0;
+       return color;
+    });
+};
+//-------- ----------
+// TEXTURES
+//-------- ----------
+const texture_grass = createCanvasTexture(draw_grass, 128);
 //-------- ----------
 // LOADING
 //-------- ----------
@@ -93,8 +124,8 @@ DAE_loader({
     const plane = new THREE.Mesh(
         new THREE.PlaneGeometry(10, 10, 1, 1), 
         new THREE.MeshBasicMaterial({
-            color: 0xffffff,
-            side: THREE.DoubleSide
+            map: texture_grass,
+            //side: THREE.DoubleSide
         })
     );
     plane.geometry.rotateX(Math.PI * 1.5);
