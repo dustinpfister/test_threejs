@@ -4,7 +4,7 @@
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
 camera.position.set(4, 4, 4);
-camera.lookAt(0, -2, 0);
+camera.lookAt(0, -1, -1);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -12,20 +12,31 @@ renderer.setSize(640, 480, false);
 // SHADER MATERIAL
 // ---------- ----------
 const geo = new THREE.BufferGeometry();
-
+// data position
 const data_pos = [
    0,-1, 1,
   -1,-1, 0,
-   0,-1,-4,
+   0,-2,-4,
    1,-1, 0,
    0,-2, 0,
    0, 0, 0
 ];
-
-geo.setAttribute('position', new THREE.BufferAttribute( new Float32Array(data_pos), 3))
+geo.setAttribute('position', new THREE.Float32BufferAttribute(data_pos, 3) );
 geo.setIndex([0,5,1, 0,3,5, 0,4,3, 0,1,4,  5,3,2, 4,2,3, 4,1,2, 1,5,2])
 geo.computeVertexNormals();
 
+
+const data_pos_deltas = [
+   0, 0, 0,
+   0, 0, 0,
+   0, 2, 0,
+   0, 0, 0,
+   0, 0, 0,
+   0, 0, 0
+];
+geo.morphAttributes.position = [];
+geo.morphTargetsRelative = true;
+geo.morphAttributes.position[ 0 ] = new THREE.Float32BufferAttribute( data_pos_deltas, 3 );
 
 /*
 const geo = new THREE.BoxGeometry(2, 2, 2, 32, 32, 32);
@@ -52,8 +63,8 @@ const material = new THREE.MeshNormalMaterial({});
 const mesh = new THREE.Mesh(geo, material);
 scene.add(mesh);
 
-//mesh.morphTargetInfluences[ 0 ] = 0.75;
-//mesh.geometry.computeVertexNormals();
+mesh.morphTargetInfluences[ 0 ] = 0.5;
+mesh.geometry.computeVertexNormals();
 // ---------- ----------
 // RENDER
 // ---------- ----------
@@ -61,7 +72,7 @@ scene.add(mesh);
 const loop = () => {
     requestAnimationFrame(loop);
     //mesh.rotation.z += Math.PI / 180 * 1;
-    mesh.rotation.y += Math.PI / 180 * 5;
+    //mesh.rotation.y += Math.PI / 180 * 5;
     renderer.render(scene, camera);
 
 };
