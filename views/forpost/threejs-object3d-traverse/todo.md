@@ -7,8 +7,8 @@
 * () for the use case of traverse I will just want to check each mesh object 
 * () when it comes to doing something for each group object DO NOT LOOP OVER CHILDREN!
 
-## () - update to r146
-* () update all examples to r146 style
+## ( done 01/30/2023 ) - update to r146
+* (done) update all examples to r146 style
 
 ## ( done 10/26/2022 ) - s3-1-loop-video1 section
 * (done) have an example that is based off of the source code of video1 for the post
