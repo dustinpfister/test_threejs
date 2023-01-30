@@ -41,29 +41,43 @@ loop();
 DAE_loader({
     // custom cloner
     cloner: (obj, scene_source ) => {
+        // If the current object is a mesh
         if(obj.type === 'Mesh'){
+            // use the basic material, but with the same map
             const mat = new THREE.MeshBasicMaterial({
                 map: obj.material.map
             });
+            // clone by cretaing a whole new mesh object
             const mesh = new THREE.Mesh(obj.geometry, mat);
             mesh.name = obj.name;
+            // copy rotation, but not position
             mesh.rotation.copy(obj.rotation);
+            // add as a source object
             scene_source.add(mesh);
+        }else{
+            // log out other kinds of objects just to see what else I am skiping
+            console.log('\n\n');
+            console.log('Other type of object from DAE file');
+            console.log(obj.type);
+            console.log(obj);
+            console.log('\n\n');
         }
     },
     urls_dae: [
         '/dae/house_two/house_2.dae'
     ],
     urls_resource: [
-        '/dae/house_two/skins/'
+        '/dae/house_two/skins/windows/'
     ]
 })
 .then( (scene_source) => {
     console.log('done loading');
-    camera.position.set(2, 1, -2);
+ 
     scene.add( new THREE.GridHelper(10, 40) )
     const mesh_house = scene_source.getObjectByName('house_0').clone();
-    scene.add( mesh_house )
+    scene.add( mesh_house );
+ 
+    camera.position.set(-2, 1, -2);
     camera.lookAt(mesh_house.position);
     loop();
 })
