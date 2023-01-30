@@ -4,7 +4,7 @@
 const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) )
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-camera.position.set(4, 4, 4);
+camera.position.set(4, 2, 4);
 camera.lookAt(0, -1, -1);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -51,7 +51,7 @@ const data_pos_deltas0 = [
    0, 0, 0,
 ];
 geo.morphAttributes.position[ 0 ] = new THREE.Float32BufferAttribute( data_pos_deltas0, 3 );
-// position deltas 1 - move tail up and down
+// position deltas 1 - move head side to side
 const data_pos_deltas1 = [
    1, 0, 0,
    0, 0, 0.5,
@@ -67,6 +67,22 @@ const data_pos_deltas1 = [
    0, 0, 0
 ];
 geo.morphAttributes.position[ 1 ] = new THREE.Float32BufferAttribute( data_pos_deltas1, 3 );
+// position deltas 2 - move wings
+const data_pos_deltas2 = [
+   0, 0, 0,
+   0, 0, 0,
+   0, 0, 0,
+   0, 0, 0,
+   0, 0, 0,
+   0, 0, 0,
+   0,-2,-1,   // wings
+   0,-2,-1,
+   0,-2,-1,
+   0,-2,-1,
+   0,-2,-1,
+   0,-2,-1
+];
+geo.morphAttributes.position[ 2 ] = new THREE.Float32BufferAttribute( data_pos_deltas2, 3 );
 // ---------- ----------
 // COLOR ATTRIBUTE
 // ---------- ----------
@@ -102,18 +118,23 @@ scene.add(mesh);
 // ---------- ----------
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 120;
+FRAME_MAX = 300;
 let secs = 0,
 frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
     const a1 = frame / frameMax;
-    const a2 = 1 - Math.abs(0.5 - a1 * 4 % 1) / 0.5;
-    const a3 = 1 - Math.abs(0.5 - a1 * 1 % 1) / 0.5;
+    const a2 = 1 - Math.abs(0.5 - a1 * 8 % 1) / 0.5;
+    const a3 = 1 - Math.abs(0.5 - a1 * 4 % 1) / 0.5;
+    const a4 = 1 - Math.abs(0.5 - a1 * 20 % 1) / 0.5;
     mesh.morphTargetInfluences[ 0 ] = a2;
     mesh.morphTargetInfluences[ 1 ] = a3;
+    mesh.morphTargetInfluences[ 2 ] = a4;
     mesh.geometry.computeVertexNormals();
+    const a5 = 1 - Math.abs(0.5 - a1 * 1 % 1) / 0.5;
+    camera.position.x = 2 - 4 * a5;
+    camera.lookAt(0,0,0);
 };
 // loop
 const loop = () => {
