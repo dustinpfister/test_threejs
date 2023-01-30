@@ -11,35 +11,26 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
-const geo = new THREE.BoxGeometry(1,1,1);
-
-
+const geo = new THREE.SphereGeometry(0.5,20,20);
 geo.morphAttributes.position = [];
 const pos = geo.attributes.position;
-const pos_sphere = [];
-
+const data_rnd = [];
 for ( let i = 0; i < pos.count; i ++ ) {
-    const x = pos.getX( i );
-    const y = pos.getY( i );
-    const z = pos.getZ( i );
-    pos_sphere.push(
-        x * Math.sqrt( 1 - ( y * y / 2 ) - ( z * z / 2 ) + ( y * y * z * z / 3 ) ),
-        y * Math.sqrt( 1 - ( z * z / 2 ) - ( x * x / 2 ) + ( z * z * x * x / 3 ) ),
-        z * Math.sqrt( 1 - ( x * x / 2 ) - ( y * y / 2 ) + ( x * x * y * y / 3 ) )
+    data_rnd.push(
+        -0.5 + Math.random(),
+        -0.5 + Math.random(),
+        -0.5 + Math.random()
     );
 }
-geo.morphAttributes.position[ 0 ] = new THREE.Float32BufferAttribute( pos_sphere, 3 );
-
-
+geo.morphAttributes.position[ 0 ] = new THREE.Float32BufferAttribute( data_rnd, 3 );
 // ---------- ----------
 // MATERIAL, MESH
 // ---------- ----------
-const material = new THREE.MeshNormalMaterial();
+const material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide});
 const mesh = new THREE.Mesh(geo, material);
 scene.add(mesh);
-
-mesh.morphTargetInfluences[ 0 ] = 0.5;
-
+mesh.morphTargetInfluences[ 0 ] = 0.10;
+mesh.geometry.computeVertexNormals();
 // ---------- ----------
 // RENDER
 // ---------- ----------
