@@ -49,12 +49,26 @@ const data_pos_deltas1 = [
 ];
 geo.morphAttributes.position[ 1 ] = new THREE.Float32BufferAttribute( data_pos_deltas1, 3 );
 // ---------- ----------
-// MATERIAL, MESH
+// COLOR ATTRIBUTE
 // ---------- ----------
-const material = new THREE.MeshNormalMaterial({});
+const data_color = [
+    1, 1, 0,
+    0, 1, 0,
+    1, 0, 0,
+    0, 1, 0,
+    0, 1, 1,
+    0, 0, 1
+];
+geo.setAttribute('color', new THREE.Float32BufferAttribute(data_color, 3) );
+// ---------- ----------
+// MATERIAL
+// ---------- ----------
+const material = new THREE.MeshBasicMaterial({ vertexColors: true });
+// ---------- ----------
+// MESH
+// ---------- ----------
 const mesh = new THREE.Mesh(geo, material);
 scene.add(mesh);
-mesh.geometry.computeVertexNormals();
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -71,6 +85,7 @@ const update = function(frame, frameMax){
     const a3 = 1 - Math.abs(0.5 - a1 * 1 % 1) / 0.5;
     mesh.morphTargetInfluences[ 0 ] = a2;
     mesh.morphTargetInfluences[ 1 ] = a3;
+    mesh.geometry.computeVertexNormals();
 };
 // loop
 const loop = () => {
