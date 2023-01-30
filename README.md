@@ -12,6 +12,7 @@ This is a collection of work using the javaScript library called [three.js](http
     </p>
 </div>
 
+
 ## The views folder
 
 The views folder is where I have all the draft prototypes, final for post source code examples, and additional assets like DAE files and textures. 
@@ -24,13 +25,27 @@ In the [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/
       <a href="https://www.youtube.com/watch?v=JPZL4wPPuCg">
          <img src="https://img.youtube.com/vi/JPZL4wPPuCg/0.jpg" style="width:50%;">
       </a>
+    <p>
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-edges-geometry">Edges Geometry</a>
+    </p>
 </div>
+
 
 This demo folder is also a place where I have drafts, or prototypes for project ideas that might end up being one of my [threejs examples](https://dustinpfister.github.io/2021/02/19/threejs-examples/) projects.
 
 ### The for post folder
 
-I have a [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost) folder that is serving as the standard location for final source code examples for each blog post that I write about on my website. When it comes to this I have got into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post. Each time I come around to edit an older post I will revise, and extend the source code examples a little and make sure things are working in the latest revision of threejs that I am  working with at the moment.
+I have a [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost) that is where I am parking source code examples for each blog post that I write about on my website on threejs. When it comes to this I have got into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post. Each time I come around to edit an older post I will revise, and extend the source code examples a little.
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=IXwmoSKA8dA">
+         <img src="https://img.youtube.com/vi/IXwmoSKA8dA/0.jpg" style="width:50%;">
+      </a>
+    <p>
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-phong-material">Phong Material</a>
+    </p>
+</div>
+
 
 ## 1 - Install
 
