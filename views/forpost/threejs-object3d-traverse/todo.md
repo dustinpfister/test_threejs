@@ -1,11 +1,14 @@
 # threejs-object3d-traverse
 
-## () - s3-2-loop-video2
+## () - s4-2-loop-video2
 * () start new animaiton project for a video2 for the post
 * () have nested groups
 * () make use of names as well as user data
 * () for the use case of traverse I will just want to check each mesh object 
 * () when it comes to doing something for each group object DO NOT LOOP OVER CHILDREN!
+
+## () - s3-1-daehelper
+* () A demo that makes use of the dae-helper-r0.js from threejs-dae-collada-loader post
 
 ## ( done 01/30/2023 ) - update to r146
 * (done) update all examples to r146 style
