@@ -15,7 +15,21 @@ This is a collection of work using the javaScript library called [three.js](http
 
 ## The views folder
 
-The views folder is where I have all the draft prototypes, final for post source code examples, and additional assets like DAE files and textures. 
+The views folder is where I have all the draft prototypes, final for post source code examples, and additional assets like DAE files and textures. This is also where I have the EJS templates that are used to render html when using the sever script to host all of this.
+
+### The DAE folder
+
+When it comes to working out geometry in a program like blender, and then exporting from there thus far I have come to like the DAE or Collada file format. So in this folder I have DAE files, as well as the blender files that I use to export such files from. This also has textures that I use with such files as well.
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=8aEF1H5nlYA">
+         <img src="https://img.youtube.com/vi/8aEF1H5nlYA/0.jpg" style="width:50%;">
+      </a>
+    <p>
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-house-two">House Two</a>
+    </p>
+</div>
+
 
 ### The demos folder
 
