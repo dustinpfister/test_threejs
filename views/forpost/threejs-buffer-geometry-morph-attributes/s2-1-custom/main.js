@@ -2,9 +2,10 @@
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0.7, 0.7, 0.7);
 scene.add( new THREE.GridHelper(10, 10) )
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-camera.position.set(4, 2, 4);
+camera.position.set(4, 1, 4);
 camera.lookAt(0, -1, -1);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -33,7 +34,6 @@ const data_pos = [
 ];
 geo.setAttribute('position', new THREE.Float32BufferAttribute(data_pos, 3) );
 geo.setIndex([0,5,1, 0,3,5, 0,4,3, 0,1,4,  5,3,2, 4,2,3, 4,1,2, 1,5,2,     6,7,8, 5,7,6,   10,9,11, 5,9,10 ]);
-geo.translate(0,1,0);
 geo.computeVertexNormals();
 // position deltas 0 - move tail up and down
 const data_pos_deltas0 = [
@@ -102,9 +102,17 @@ const data_color = [
 ];
 geo.setAttribute('color', new THREE.Float32BufferAttribute(data_color, 3) );
 // ---------- ----------
+// LIGHT
+// ---------- ----------
+const dl = new THREE.DirectionalLight();
+dl.position.set(2,1,0)
+scene.add(dl);
+const al = new THREE.AmbientLight(0xffffff, 0.2);
+scene.add(al);
+// ---------- ----------
 // MATERIAL
 // ---------- ----------
-const material = new THREE.MeshBasicMaterial({
+const material = new THREE.MeshPhongMaterial({
      vertexColors: true,
      side: THREE.DoubleSide
 });
@@ -133,8 +141,8 @@ const update = function(frame, frameMax){
     mesh.morphTargetInfluences[ 2 ] = a4;
     mesh.geometry.computeVertexNormals();
     const a5 = 1 - Math.abs(0.5 - a1 * 1 % 1) / 0.5;
-    camera.position.x = 2 - 4 * a5;
-    camera.lookAt(0,0,0);
+    camera.position.x = 4 - 8 * a5;
+    camera.lookAt(0, -1, 0);
 };
 // loop
 const loop = () => {
