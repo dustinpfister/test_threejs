@@ -22,10 +22,17 @@ const data_pos = [
    0.0,-1.5,-4.0,
    1.0,-1.0, 0.0,
    0.0,-2.0, 0.0,
-   0.0, 0.0, 0.0
+   0.0, 0.0, 0.0,
+   1.0, 1.0,-0.7,  // wings
+   1.0, 1.0, 0.7,
+   2.0, 1.0, 0.0,
+  -1.0, 1.0,-0.7,
+  -1.0, 1.0, 0.7,
+  -2.0, 1.0, 0.0
+
 ];
 geo.setAttribute('position', new THREE.Float32BufferAttribute(data_pos, 3) );
-geo.setIndex([0,5,1, 0,3,5, 0,4,3, 0,1,4,  5,3,2, 4,2,3, 4,1,2, 1,5,2]);
+geo.setIndex([0,5,1, 0,3,5, 0,4,3, 0,1,4,  5,3,2, 4,2,3, 4,1,2, 1,5,2,     6,7,8, 5,7,6,   10,9,11, 5,9,10 ]);
 geo.translate(0,1,0);
 geo.computeVertexNormals();
 // position deltas 0 - move tail up and down
@@ -35,7 +42,13 @@ const data_pos_deltas0 = [
    0, 1, 0,
    0, 0, 0,
    0, 0, 0,
-   0, 0, 0
+   0, 0, 0,
+   0, 0, 0,  // wings
+   0, 0, 0,
+   0, 0, 0,
+   0, 0, 0,
+   0, 0, 0,
+   0, 0, 0,
 ];
 geo.morphAttributes.position[ 0 ] = new THREE.Float32BufferAttribute( data_pos_deltas0, 3 );
 // position deltas 1 - move tail up and down
@@ -44,6 +57,12 @@ const data_pos_deltas1 = [
    0, 0, 0.5,
    0, 0, 0,
    0, 0,-0.5,
+   0, 0, 0,
+   0, 0, 0,
+   0, 0, 0,   // wings
+   0, 0, 0,
+   0, 0, 0,
+   0, 0, 0,
    0, 0, 0,
    0, 0, 0
 ];
@@ -57,13 +76,22 @@ const data_color = [
     1, 0, 0,
     0, 1, 0,
     0, 1, 1,
-    0, 0, 1
+    0, 0, 1,
+    1, 1, 1,  // wings
+    1, 1, 1,
+    1, 1, 0,
+    1, 1, 1,
+    1, 1, 1,
+    1, 1, 0
 ];
 geo.setAttribute('color', new THREE.Float32BufferAttribute(data_color, 3) );
 // ---------- ----------
 // MATERIAL
 // ---------- ----------
-const material = new THREE.MeshBasicMaterial({ vertexColors: true });
+const material = new THREE.MeshBasicMaterial({
+     vertexColors: true,
+     side: THREE.DoubleSide
+});
 // ---------- ----------
 // MESH
 // ---------- ----------
