@@ -1,4 +1,6 @@
 // dae-helper.js - r0 - from threejs-dae-collada-loader
+// * added some comments
+// * passing url to cloner
 (function(global){
     // a hard coded default cloner function
     const DEFAULT_CLONER = function(obj, scene_source, scene_result, result){
@@ -26,8 +28,9 @@
                     loader.setResourcePath( opt.urls_resource[i] );
                 }
                 loader.load(url, function(result){
+                    // USING Object3d.traverse off of the scene object of the result
                     result.scene.traverse( (obj) => {
-                          opt.cloner(obj, scene_source, result.scene, result);
+                          opt.cloner(obj, scene_source, result.scene, result, url);
                     });
                 });
             });

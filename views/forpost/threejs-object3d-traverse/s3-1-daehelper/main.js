@@ -40,7 +40,7 @@ loop();
 //-------- ----------
 DAE_loader({
     // custom cloner
-    cloner: (obj, scene_source ) => {
+    cloner: (obj, scene_source, scene_result, result, url) => {
         // If the current object is a mesh
         if(obj.type === 'Mesh'){
             // use the basic material, but with the same map
@@ -57,7 +57,7 @@ DAE_loader({
         }else{
             // log out other kinds of objects just to see what else I am skiping
             console.log('\n\n');
-            console.log('Other type of object from DAE file');
+            console.log('Other type of object from DAE file: ' + url);
             console.log(obj.type);
             console.log(obj);
             console.log('\n\n');
