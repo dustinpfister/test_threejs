@@ -1,6 +1,8 @@
 # threejs-buffer-geometry-compute-vertex-normals todo list
 
-
+## () s1-1-basic-position
+* () example in which I just start out with a position attribute only
+* () rename s1-1-basic to s1-2-basic-light
 
 ## ( done 01/31/2023 ) - update to r146
 * (done) update examples to r146 style
