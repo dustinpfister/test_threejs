@@ -9,13 +9,6 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
-// LIGHT
-//-------- ----------
-const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(3, 0, 3);
-scene.add(dl);
-scene.add(new THREE.AmbientLight(0xffffff, 0.1));
-//-------- ----------
 // GEOMETRY - creating from raw hard coded data
 //-------- ----------
 const geometry = new THREE.BufferGeometry();
@@ -26,16 +19,10 @@ const data_points = [
 ];
 // create attributes
 geometry.setAttribute('position', new THREE.Float32BufferAttribute(data_points, 3) );
-geometry.computeVertexNormals(); // COMPUTE VERTEX NORMALS FOR THE GEMOERTY
 //-------- ----------
 // MESH with GEOMETRY, and STANDARD MATERIAL
 //-------- ----------
-const mesh = new THREE.Mesh(
-    geometry,
-    new THREE.MeshStandardMaterial({
-        color: 0xff0000,
-        side: THREE.DoubleSide
-    }));
-scene.add(mesh);
+const points = new THREE.Points( geometry, new THREE.PointsMaterial({ size: 0.5 }));
+scene.add(points);
 // RENDER
 renderer.render(scene, camera);
