@@ -1,5 +1,11 @@
 # threejs-userdata todo list
 
+## () - s4-2-videos-cube-drop
+* () new video example where I drop cubes onto a plane
+
+## () - s4-1-videos-first
+* () start a demo based on the source code for the first video for this post
+
 ## ( done 02/01/2023 ) - code examples updated to r146 style
 * (done) all examples updated to r146 style
 
