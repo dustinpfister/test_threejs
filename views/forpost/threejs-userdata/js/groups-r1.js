@@ -1,3 +1,4 @@
+// groups.js - r1 - from threejs-userdata
 (function (api) {
     // CONST
     var ANGLES_A = [225, 315, 135, 45];
