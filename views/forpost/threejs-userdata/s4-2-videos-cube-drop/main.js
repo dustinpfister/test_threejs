@@ -27,7 +27,10 @@ const createCubes = () => {
     const group = new THREE.Group();
     while(i < count){
         const geometry = new THREE.BoxGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
-        const material = new THREE.MeshNormalMaterial({ transparent: true, opacity: 0.5 });
+        const material = new THREE.MeshPhongMaterial({
+            transparent: true, opacity: 0.7,
+            color: new THREE.Color(Math.random(),Math.random(),Math.random())
+        });
         const mesh = new THREE.Mesh( geometry, material );
         mesh.position.y = CUBE_MIN_HEIGHT - 10;
         // USER DATA FOR MESH OBJECTS
@@ -76,7 +79,20 @@ const updateCubes = (group, secs) => {
 // ---------- ----------
 const group = createCubes();
 scene.add(group);
-scene.add( new THREE.GridHelper(PLANE_SIZE, PLANE_SIZE) );
+const geometry = new THREE.PlaneGeometry(PLANE_SIZE, PLANE_SIZE);
+geometry.rotateX(Math.PI * 1.5)
+const plane = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({
+   color: new THREE.Color(0,1,1),
+   transparent: true,
+   opacity: 0.25
+}))
+scene.add( plane );
+// ---------- ----------
+// LIGHT
+// ---------- ----------
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(3,2,1);
+scene.add(dl);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
