@@ -6,9 +6,16 @@ const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 100);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-
-const CUBE_SIZE = 1;
+// ---------- ----------
+// SETTINGS
+// ---------- ----------
+const CUBE_COUNT = 40;
+const CUBE_SIZE = 0.5;
 const CUBE_HSIZE = CUBE_SIZE / 2;
+const CUBE_DROP_SPEED = 20;
+const CUBE_MOVE_SPEED = [30, 100];
+const CUBE_START_HEIGHT = [5, 15];
+const CUBE_MIN_HEIGHT = -5;
 const PLANE_SIZE = 5;
 const PLANE_HSIZE = PLANE_SIZE / 2;
 // ---------- ----------
@@ -16,17 +23,18 @@ const PLANE_HSIZE = PLANE_SIZE / 2;
 // ---------- ----------
 const createCubes = () => {
     let i = 0;
-    const count = 40;
+    const count = CUBE_COUNT;
     const group = new THREE.Group();
     while(i < count){
         const geometry = new THREE.BoxGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
         const material = new THREE.MeshNormalMaterial({ transparent: true, opacity: 0.5 });
         const mesh = new THREE.Mesh( geometry, material );
+        mesh.position.y = CUBE_MIN_HEIGHT - 10;
         // USER DATA FOR MESH OBJECTS
-        mesh.position.y = -10;
         const mud = mesh.userData;
         mud.radian = Math.PI * 2 * Math.random();
-        mud.ups = 30 + 70 * Math.random();
+        const sr = CUBE_MOVE_SPEED;
+        mud.ups = sr[0] + (sr[1] - sr[0]) * Math.random();
         group.add(mesh);
         i += 1;
     }
@@ -35,18 +43,19 @@ const createCubes = () => {
 // update the given group by a secs value
 const updateCubes = (group, secs) => {
     let i = 0;
-    const count = group.children.length;
+    const count = CUBE_COUNT;
     while(i < count){
         const mesh = group.children[i];
         const mud = mesh.userData;
         const v_pos = mesh.position;
         // reset to spawn location if y is too low
-        if(v_pos.y < -5){
-            v_pos.set(0, 3 + 30 * Math.random(), 0);
+        if(v_pos.y < CUBE_MIN_HEIGHT){
+            const sh = CUBE_START_HEIGHT;
+            v_pos.set(0, sh[0] + (sh[1] - sh[0]) * Math.random(), 0);
             break;
         }
         // y adjust
-        v_pos.y -= 20 * secs;
+        v_pos.y -= CUBE_DROP_SPEED * secs;
         // is mesh on the plane
         const n = PLANE_HSIZE + CUBE_HSIZE;
         if(v_pos.x <= n && v_pos.x >= n * -1 && v_pos.z <= n && v_pos.z >= n * -1){
