@@ -11,11 +11,18 @@
 * () frameData.getBias(times) method
 * () frameData.getBiasExp(times) method
 
-
 * () new line-group-delta-grid.js file
 * () base values of delta-grid include the width count, height count, and width and height size of each tile
 * () base values include an array of deltas for each point in each line
 
+## () - update to r146 code style
+* () update all code to r146 style
+
+## () - main js folder, rename folders
+* () have a main js folder
+* () have line-group-r0.js and line-group-r1.js in main js folder
+* () have plugins-r0 and plugins-r1 folders with all plug in there
+* () rename demo folders
 
 ## ( done 06/10/2022 ) - r0 of project
 * (done) start lineGroup module
