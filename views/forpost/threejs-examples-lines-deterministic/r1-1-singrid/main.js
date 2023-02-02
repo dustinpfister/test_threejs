@@ -1,20 +1,18 @@
-//******** **********
+//-------- ----------
 // SCENE, CAMERA, RENDERER
-//******** **********
-var scene = new THREE.Scene();
+//-------- ----------
+const scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
-//scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0x4a4a4a) )
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-//camera.position.set(-12, 5, 12);
-camera.position.set(0, 0, 25);
+const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+camera.position.set(25, 10, 25);
 camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-//******** **********
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+//-------- ----------
 // LINES GROUP(s)
-//******** **********
-var lgOpt = {
+//-------- ----------
+const lgOpt = {
     forLineStyle: function(m, lineIndex, lineCount, lineGroup, frameData, baseData){
         m.linewidth = 8;
         var arr = ['red', 'lime', 'cyan', 'purple', 'blue', 'yellow', 'orange', 'pink']
@@ -23,7 +21,7 @@ var lgOpt = {
         m.opacity = 0.4 + 0.6 * frameData.bias;
     }
 };
-var lgBaseData = {
+const lgBaseData = {
     waveHeight: 7,
     simpleWave: false,
     waveCount: 4,
@@ -31,33 +29,27 @@ var lgBaseData = {
     sizeWidth: 15,
     sizeHeight: 15
 };
-var lg1 = LineGroup.create('sinGrid', lgOpt);
+const lg1 = LineGroup.create('sinGrid', lgOpt);
 lg1.rotation.y = Math.PI * 0.0;
 scene.add(lg1);
-var lg2 = LineGroup.create('sinGrid', lgOpt);
+const lg2 = LineGroup.create('sinGrid', lgOpt);
 lg2.rotation.y = Math.PI * 0.5;
 scene.add(lg2);
-var lg3 = LineGroup.create('sinGrid', lgOpt);
+const lg3 = LineGroup.create('sinGrid', lgOpt);
 lg3.rotation.y = Math.PI * 1.0;
 scene.add(lg3);
-var lg4 = LineGroup.create('sinGrid', lgOpt);
+const lg4 = LineGroup.create('sinGrid', lgOpt);
 lg4.rotation.y = Math.PI * 1.5;
 scene.add(lg4);
-
-//******** **********
+//-------- ----------
 // LOOP
-//******** **********
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.target.set(0,-2, 0);
-controls.update();
-
-
-var fps = 30,
-lt = new Date(),
-frame = 0,
+//-------- ----------
+const fps = 30,
 frameMax = 90;
-var loop = function () {
-    var now = new Date(),
+let lt = new Date(),
+frame = 0;
+const loop = function () {
+    const now = new Date(),
     per = frame / frameMax,
     bias = 1 - Math.abs(0.5 - per) / 0.5,
     secs = (now - lt) / 1000;
