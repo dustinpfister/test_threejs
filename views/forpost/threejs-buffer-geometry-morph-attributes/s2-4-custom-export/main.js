@@ -67,5 +67,13 @@ renderer.render(scene, camera);
 
 const sceneObject = geo2.toJSON();
 
-console.log( JSON.stringify(sceneObject, null, 2) );
+const replacer = function(key, value){
+    // works but arrays are now strings
+    //if(value instanceof Array){
+    //    return JSON.stringify(value);
+    //}
+    return value;
+}
+
+console.log( JSON.stringify(sceneObject, replacer, 2) );
 
