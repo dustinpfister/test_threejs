@@ -3,17 +3,18 @@
 ## () - r1 of project
 * (done) new line-group-sin-grid.js started
 * (done) sin grid is an array of lines for two axis where Math.sin is what is used to change the position of the lines over time
-* (done) fuller range of values to work with when making a functio to update line style
+* (done) fuller range of values to work with when making a function to update line style
 * (done) create frameData object helper
-
-* () new frameData.biasExp prop
-* () frameData.getPer(times) method
-* () frameData.getBias(times) method
-* () frameData.getBiasExp(times) method
 
 * () new line-group-delta-grid.js file
 * () base values of delta-grid include the width count, height count, and width and height size of each tile
 * () base values include an array of deltas for each point in each line
+
+## () - fix up r0-3-rnd3
+* () change up what rnd3 plugin is
+
+## ( done 02/02/2023 ) - r0-3-rnd3 demo
+* (done) started an r0-3-rnd3 demo
 
 ## ( done 02/02/2023 ) - r0-1-tri
 * (done) new demo of built in 'tri' type
