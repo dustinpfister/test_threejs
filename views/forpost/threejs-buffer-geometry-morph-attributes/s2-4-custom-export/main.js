@@ -67,5 +67,5 @@ renderer.render(scene, camera);
 
 const sceneObject = geo2.toJSON();
 
-console.log( JSON.stringify(sceneObject) );
+console.log( JSON.stringify(sceneObject, null, 2) );
 
