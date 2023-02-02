@@ -15,6 +15,9 @@
 * () base values of delta-grid include the width count, height count, and width and height size of each tile
 * () base values include an array of deltas for each point in each line
 
+## ( done 02/02/2023 ) - r0-1-tri
+* (done) new demo of built in 'tri' type
+
 ## ( done 02/02/2023 ) - update to r146 code style
 * (done) update all demos to r146 style
 * (done) update r0 and r1 to r146 style
