@@ -1,5 +1,8 @@
 # threejs-buffer-geometry-morph-attributes todo list
 
+## () - s2-4-custom-export
+* () see about exporting as buffer geometry
+
 ## () - s2-3-custom-uv
 * () same as nonindex demo but adding a uv attribite
 * () add canvas texture
