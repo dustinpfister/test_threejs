@@ -1,5 +1,9 @@
 # threejs-buffer-geometry-morph-attributes todo list
 
+## () - s2-3-custom-uv
+* () same as nonindex demo but adding a uv attribite
+* () add canvas texture
+
 ## (done 02/02/2023 ) - s2-2-custom-nonindex
 * (done) non index version of custom demo
 
