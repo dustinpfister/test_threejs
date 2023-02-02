@@ -18,11 +18,11 @@
 ## () - update to r146 code style
 * () update all code to r146 style
 
-## () - main js folder, rename folders
-* () have a main js folder
-* () have line-group-r0.js and line-group-r1.js in main js folder
-* () have plugins-r0 and plugins-r1 folders with all plug in there
-* () rename demo folders
+## ( done 02/02/2023 ) - main js folder, rename folders
+* (done) have a main js folder
+* (done) have line-group-r0.js and line-group-r1.js in main js folder
+* (done) have plugins-r0 and plugins-r1 folders with all plug in there
+* (done) rename demo folders
 
 ## ( done 06/10/2022 ) - r0 of project
 * (done) start lineGroup module
