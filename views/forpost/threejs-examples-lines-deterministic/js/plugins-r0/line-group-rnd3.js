@@ -16,18 +16,18 @@ LineGroup.load({
         opt.rndPoints = [];
         // lerp to points for each point as option
         opt.lerpTo = [];
-        var li = 0;
+        let li = 0;
         while(li < opt.lineCount){
-            var v = new THREE.Vector3();
+            const v = new THREE.Vector3();
             v.x = -3 + THREE.MathUtils.seededRandom() * 6;
             v.y = -3 + THREE.MathUtils.seededRandom() * 6;
             v.z = -3 + THREE.MathUtils.seededRandom() * 6;
             opt.rndPoints.push(v);
             // lerp to points
-            var lerpToPoints = [];
-            var lt = 0;
+            const lerpToPoints = [];
+            let lt = 0;
             while(lt < opt.pointsPerLine){
-                var v2 = new THREE.Vector3();
+                const v2 = new THREE.Vector3();
                 v2.x = -3 + THREE.MathUtils.seededRandom() * 6;
                 v2.y = -3 + THREE.MathUtils.seededRandom() * 6;
                 v2.z = -3 + THREE.MathUtils.seededRandom() * 6;
@@ -42,7 +42,7 @@ LineGroup.load({
     forFrame : function(state, baseData, frameData, lineGroup){
         state.vDeltas = [];
         lineGroup.userData.opt.lerpTo.forEach(function(lerpToPoints){
-            var deltas = [];
+            const deltas = [];
             lerpToPoints.forEach(function(newPoint){
                 deltas.push( newPoint );
             });
@@ -52,16 +52,16 @@ LineGroup.load({
     },
     // create/update points of a line in the line group with 'current state' object
     forLine : function(points, state, lineIndex, lineCount, lineGroup){
-         var ud = lineGroup.userData,
+         const ud = lineGroup.userData,
          rndPoints = ud.opt.rndPoints;
-         var sp = rndPoints[lineIndex],
+         const sp = rndPoints[lineIndex],
          ep = rndPoints[ (lineIndex + 1) % lineCount];
-         var i = 0;
-         var vDeltas = state.vDeltas[lineIndex] || [];
+         let i = 0;
+         const vDeltas = state.vDeltas[lineIndex] || [];
          while(i < ud.opt.pointsPerLine){
-             var vd = vDeltas[i] || new THREE.Vector3();
-             var v1 = sp.clone().lerp(ep, i / ( ud.opt.pointsPerLine - 1 ) );
-             var v2 = v1.clone().lerp(vd, state.lerpPer);
+             const vd = vDeltas[i] || new THREE.Vector3();
+             const v1 = sp.clone().lerp(ep, i / ( ud.opt.pointsPerLine - 1 ) );
+             const v2 = v1.clone().lerp(vd, state.lerpPer);
              points[i].copy( v2 );
              i += 1;
          }

@@ -36,7 +36,7 @@ const lg2 = LineGroup.create('circleStack', { lineCount: 20 } );
 lg2.position.set(-5, 0, -5);
 scene.add(lg2);
 // the 'sphereCircles' type base off my other lines example
-const lg3 = LineGroup.create('sphereCircles', { } );
+const lg3 = LineGroup.create('sphereCircles', { lineCount: 20 } );
 lg3.position.set(-5, 0, 5);
 scene.add(lg3);
 //-------- ----------

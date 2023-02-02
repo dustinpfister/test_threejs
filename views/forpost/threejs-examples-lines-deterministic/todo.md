@@ -18,7 +18,7 @@
 ## () - update to r146 code style
 * (done) update all demos to r146 style
 * (done) update r0 and r1 to r146 style
-* () update r0 plugins to r146 style
+* (done) update r0 plugins to r146 style
 * () update r1 plugins to r146 style
 
 ## ( done 02/02/2023 ) - main js folder, rename folders

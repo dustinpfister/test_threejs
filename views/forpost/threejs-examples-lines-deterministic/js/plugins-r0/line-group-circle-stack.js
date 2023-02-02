@@ -14,31 +14,29 @@ LineGroup.load({
         waveCount: 2
     },
     // called just once in LineGroup.create before lines are created
-    create: function(opt, lineGroup){
-
-    },
+    create: function(opt, lineGroup){},
     // for frame method used to set the current 'state' with 'baseData', and 'frameData'
     forFrame : function(state, baseData, frameData, lineGroup){
         state.radius = [];
         state.yDelta = baseData.yDelta;
         // figure radius and other state values for each circle
-        var ud = lineGroup.userData;
-        var i = 0, len = ud.opt.lineCount;
-        var rDiff = baseData.radiusMax - baseData.radiusMin;
+        const ud = lineGroup.userData,len = ud.opt.lineCount;
+        let i = 0;
+        const rDiff = baseData.radiusMax - baseData.radiusMin;
         while(i < len){
-            var radian = Math.PI * baseData.waveCount * ( ( 1 / len * i + frameData.per) % 1);
+            const radian = Math.PI * baseData.waveCount * ( ( 1 / len * i + frameData.per) % 1);
             state.radius[i] = Math.cos(radian) * baseData.radiusMax;
             i += 1;
         }
     },
     // create/update points of a line in the line group with 'current state' object
     forLine : function(points, state, lineIndex, lineCount, lineGroup){
-         var ud = lineGroup.userData;
-         var i = 0, len = ud.opt.pointsPerLine;
+         const ud = lineGroup.userData, len = ud.opt.pointsPerLine;
+         let i = 0;
          while(i < len){
-             var v1 = new THREE.Vector3();
-             var cPer = i / (len - 1);
-             var r = Math.PI * 2 * cPer; 
+             const v1 = new THREE.Vector3();
+             const cPer = i / (len - 1);
+             const r = Math.PI * 2 * cPer; 
              v1.x = Math.cos(r) * state.radius[lineIndex];
              v1.z = Math.sin(r) * state.radius[lineIndex];
              v1.y = state.yDelta * lineIndex;
