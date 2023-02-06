@@ -27,10 +27,26 @@
     //-------- ----------
     // THE NEW R1+ CREATE FUNCTION
     //-------- ----------
+    // sort by count helper
+    const sortByCount = (sourceGeos) => {
+        return sourceGeos.map((geo) => { return geo }).sort( (a, b) => {
+            if(!a.position || !b.position){
+                return 1;
+            }
+            if(a.position.count > b.position.count){
+                return -1;
+            }
+            if(a.position.count < b.position.count){
+                return 1;
+            }
+            return 0;
+        });
+    };
+
     api.create = (sourceGeos) => {
 
 
-console.log(sourceGeos)
+console.log( sortByCount(sourceGeos))
 
     };
 }( this ));

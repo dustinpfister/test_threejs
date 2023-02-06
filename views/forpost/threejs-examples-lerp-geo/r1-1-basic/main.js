@@ -16,18 +16,23 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 const source_geo = [
     new THREE.SphereGeometry(1, 20, 20), // 441
-    new THREE.BoxGeometry(1, 1, 1, 12, 12) // 442
+    new THREE.BoxGeometry(1, 1, 1, 12, 12), // 442
+    new THREE.BufferGeometry()
 ];
 //console.log(geo_s0.getAttribute('position').count);
 //-------- ----------
 // GEO
 //-------- ----------
-const geo = source_geo[1].clone();
+const geo1 = source_geo[1].clone();
+
+lerpGeo.create(source_geo);
+
 //-------- ----------
-// LINE
+// MESH
 //-------- ----------
 const material = new THREE.MeshNormalMaterial({ })
-const mesh1 = new THREE.Mesh(geo, material);
+const mesh1 = new THREE.Mesh(geo1, material);
+mesh1.position.set(-2,0,0)
 scene.add(mesh1);
 //-------- ----------
 // GET ALPHA HELPERS
@@ -48,7 +53,7 @@ const loop = function () {
     requestAnimationFrame(loop);
     renderer.render(scene, camera);
     const a1 = getAlphaBias(frame, frameMax, 2);
-    lerpGeo(geo, source_geo[1], source_geo[0], a1);
+    lerpGeo(geo1, source_geo[1], source_geo[0], a1);
     frame += 1;
     frame %= frameMax;
 };
