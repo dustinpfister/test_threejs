@@ -11,16 +11,23 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // SOURCE GEOS
 //-------- ----------
+//const source_geo = [
+//    new THREE.SphereGeometry(1, 26, 25),
+//    new THREE.TorusGeometry(1, 0.25, 26, 25)
+//];
+
 const source_geo = [
-    new THREE.SphereGeometry(1, 26, 25),
-    new THREE.TorusGeometry(1, 0.25, 26, 25)
+    new THREE.ConeGeometry(0.25, 2, 20, 20),
+    new THREE.SphereGeometry(1, 21, 21)
 ];
+
+
 console.log(source_geo[0].getAttribute('position').count);
 console.log(source_geo[1].getAttribute('position').count);
 //-------- ----------
 // MATERIAL
 //-------- ----------
-const material = new THREE.MeshNormalMaterial({ wireframe: true });
+const material = new THREE.MeshNormalMaterial({ wireframe: false });
 //-------- ----------
 // MESH
 //-------- ----------
@@ -57,7 +64,7 @@ const loop = function () {
     // can still use old lerp go method
     lerpGeo(geo1, source_geo[1], source_geo[0], a1);
     // using morph target Influences of mesh object
-    mesh2.morphTargetInfluences[ 0 ] = a1;
+    lerpGeo.update(mesh2, [ a1 ] );
     frame += 1;
     frame %= frameMax;
 };

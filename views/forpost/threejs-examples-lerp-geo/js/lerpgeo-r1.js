@@ -64,7 +64,7 @@
              }
              i += att_geo.itemSize;
         }
-        const att = new THREE.BufferAttribute(new Float32Array(data_array), att_geo.itemSize);
+        const att = new THREE.BufferAttribute( new Float32Array(data_array), att_geo.itemSize);
         return att;
     };
     // public create method
@@ -91,5 +91,10 @@
         const geo = api.createGeo(sourceGeos);
         const mesh = new THREE.Mesh(geo, opt.material || new THREE.MeshBasicMaterial());
         return mesh;
+    };
+    api.update = (mesh, alphas, opt) => {
+        alphas.forEach( (a, i) => {
+            mesh.morphTargetInfluences[ i ] = a;
+        });
     };
 }( this ));
