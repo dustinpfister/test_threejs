@@ -14,13 +14,15 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // SOURCE GEOS
 //-------- ----------
-const geo_s0 = new THREE.BoxGeometry(1, 1, 1, 12, 12);  // 442
-const geo_s1 = new THREE.SphereGeometry(1, 20, 20);    // 441
-console.log(geo_s0.getAttribute('position').count);
+const source_geo = [
+    new THREE.SphereGeometry(1, 20, 20), // 441
+    new THREE.BoxGeometry(1, 1, 1, 12, 12) // 442
+];
+//console.log(geo_s0.getAttribute('position').count);
 //-------- ----------
 // GEO
 //-------- ----------
-const geo = geo_s0.clone();
+const geo = source_geo[1].clone();
 //-------- ----------
 // LINE
 //-------- ----------
@@ -46,7 +48,7 @@ const loop = function () {
     requestAnimationFrame(loop);
     renderer.render(scene, camera);
     const a1 = getAlphaBias(frame, frameMax, 2);
-    lerpGeo(geo, geo_s0, geo_s1, a1);
+    lerpGeo(geo, source_geo[1], source_geo[0], a1);
     frame += 1;
     frame %= frameMax;
 };

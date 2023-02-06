@@ -27,5 +27,10 @@
     //-------- ----------
     // THE NEW R1+ CREATE FUNCTION
     //-------- ----------
-    api.create
+    api.create = (sourceGeos) => {
+
+
+console.log(sourceGeos)
+
+    };
 }( this ));
