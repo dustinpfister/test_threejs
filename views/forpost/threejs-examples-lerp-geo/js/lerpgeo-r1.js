@@ -29,23 +29,46 @@
     //-------- ----------
     // sort by count helper
     const sortByCount = (sourceGeos) => {
-        return sourceGeos.map((geo) => { return geo }).sort( (a, b) => {
-            if(!a.position || !b.position){
+        return sourceGeos.map((geo) => { return geo; }).sort( (a, b) => {
+            const aPos = a.getAttribute('position'),
+            bPos = b.getAttribute('position');
+            if(!aPos || !bPos){
                 return 1;
             }
-            if(a.position.count > b.position.count){
+            if(aPos.count > bPos.count){
                 return -1;
             }
-            if(a.position.count < b.position.count){
+            if(aPos.count < bPos.count){
                 return 1;
             }
             return 0;
         });
     };
+    // new buffer attribute for the given geo, based on a given source geo
+    // placing 0,0,0 for any item not there
+    const newAttributeFromGeo = (type, geo, geo_source) => {
+        const att_source = geo_source.getAttribute(type);
+        const att_geo = geo.getAttribute(type);
+        const data_array = [];
+        let i = 0;
+        while(i < att_geo.count){
+
+             //console.log( att_source.array[i] )
+
+             i += att_geo.itemSize;
+        }
+        return att_source;
+    };
 
     api.create = (sourceGeos) => {
         const geo_array = sortByCount(sourceGeos);
+        // make new geo as clone of geo_array[0] which should have the largest count
         const geo = geo_array[0].clone();
+
+        geo.morphAttributes.position = [];
+        geo_array.forEach( (geo_source, i) => {
+             geo.morphAttributes.position[ i ] = newAttributeFromGeo('position', geo, geo_source);
+        });
         return geo;
     };
 }( this ));

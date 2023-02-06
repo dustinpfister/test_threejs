@@ -35,6 +35,9 @@ const mesh2 = new THREE.Mesh(geo2, material);
 mesh2.position.set(1,0,0)
 scene.add(mesh2);
 
+mesh2.morphTargetInfluences[ 0 ] = 0.0;
+//mesh2.morphTargetInfluences[ 1 ] = 0.0;
+
 //-------- ----------
 // GET ALPHA HELPERS
 //-------- ----------
