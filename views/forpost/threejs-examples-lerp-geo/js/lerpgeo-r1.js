@@ -51,23 +51,30 @@
         const att_geo = geo.getAttribute(type);
         const data_array = [];
         let i = 0;
-        while(i < att_geo.count){
-
-             //console.log( att_source.array[i] )
-
+        while(i < att_geo.array.length){
+             let d = 0;
+             while(d < att_geo.itemSize){
+                 const n = att_source.array[i + d];
+                 data_array.push( n === undefined ? 0 : n );
+                 d += 1;
+             }
              i += att_geo.itemSize;
         }
-        return att_source;
+        const att = new THREE.BufferAttribute(new Float32Array(data_array), att_geo.itemSize);
+        return att;
     };
 
     api.create = (sourceGeos) => {
         const geo_array = sortByCount(sourceGeos);
         // make new geo as clone of geo_array[0] which should have the largest count
         const geo = geo_array[0].clone();
-
         geo.morphAttributes.position = [];
+        geo.morphAttributes.normal = [];
+        geo.morphAttributes.uv = [];
         geo_array.forEach( (geo_source, i) => {
              geo.morphAttributes.position[ i ] = newAttributeFromGeo('position', geo, geo_source);
+             geo.morphAttributes.normal[ i ] = newAttributeFromGeo('normal', geo, geo_source);
+             geo.morphAttributes.uv[ i ] = newAttributeFromGeo('uv', geo, geo_source);
         });
         return geo;
     };

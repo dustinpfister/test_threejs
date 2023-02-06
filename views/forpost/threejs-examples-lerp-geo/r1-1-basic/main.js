@@ -12,10 +12,11 @@ renderer.setSize(640, 480, false);
 // SOURCE GEOS
 //-------- ----------
 const source_geo = [
-    new THREE.SphereGeometry(1, 20, 20), // 441
-    new THREE.BoxGeometry(1, 1, 1, 12, 12) // 442
+    new THREE.SphereGeometry(1, 26, 25), // 441
+    new THREE.BoxGeometry(1, 1, 1, 16, 16) // 442
 ];
-//console.log(geo_s0.getAttribute('position').count);
+console.log(source_geo[0].getAttribute('position').count);
+console.log(source_geo[1].getAttribute('position').count);
 //-------- ----------
 // GEO
 //-------- ----------
@@ -36,7 +37,7 @@ mesh2.position.set(1,0,0)
 scene.add(mesh2);
 
 mesh2.morphTargetInfluences[ 0 ] = 0.0;
-//mesh2.morphTargetInfluences[ 1 ] = 0.0;
+
 
 //-------- ----------
 // GET ALPHA HELPERS
@@ -60,6 +61,10 @@ const loop = function () {
     renderer.render(scene, camera);
     const a1 = getAlphaBias(frame, frameMax, 2);
     lerpGeo(geo1, source_geo[1], source_geo[0], a1);
+
+
+    mesh2.morphTargetInfluences[ 1 ] = a1;
+
     frame += 1;
     frame %= frameMax;
 };
