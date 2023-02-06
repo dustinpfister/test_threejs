@@ -1,5 +1,9 @@
 # threejs-examples-lerp-geo todo list
 
+## () r1-1-basic - test old old and new methods
+* (done) make sure old r0 lerp geo funciton still works
+* () test out new create method
+
 ## () r1 - using morph attributes now
 * (done) have it so that R1 can still be used as a drop in replacement for R0
 * () have a new create function that can be called off from the main lerpGeo global funciton
