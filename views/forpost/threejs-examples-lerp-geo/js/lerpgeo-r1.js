@@ -28,8 +28,9 @@
     // THE NEW R1+ CREATE FUNCTION + HELPERS AND CONSTS
     //-------- ----------
     // const values
-    const ATT_TYPES = 'position,normal,uv'.split(',');
-    const ATT_FOR_UNDEFINED_ITEMS = 0;
+    const ATT_TYPES = 'position,normal,uv'.split(','); // what attributes to use?
+    const ATT_FOR_UNDEFINED_ITEMS = 0;  // what value to use for value of undefined items in attribites?
+    const GEO_SOURCE_SHIFTOUT = true;   // shift out geo source index 0 that is used to create the main geometry?
     // sort by count helper
     const sortByCount = (sourceGeos) => {
         return sourceGeos.map((geo) => { return geo; }).sort( (a, b) => {
@@ -67,14 +68,15 @@
         return att;
     };
     // public create method
-    api.createGeo = (sourceGeos) => {
+    api.createGeo = (sourceGeos, opt) => {
+        opt = opt || {};
         const geo_source_array = sortByCount(sourceGeos);
         const geo = geo_source_array[0].clone();
-
-        geo_source_array.shift();
-
+        if(opt.GEO_SOURCE_SHIFTOUT === undefined ? GEO_SOURCE_SHIFTOUT : opt.GEO_SOURCE_SHIFTOUT){
+            geo_source_array.shift();
+        }
         geo_source_array.forEach( (geo_source, i) => {
-            ATT_TYPES.forEach( (attType) => {
+            (opt.ATT_TYPES || ATT_TYPES).forEach( (attType) => {
                if(geo.morphAttributes[attType] === undefined){
                    geo.morphAttributes[attType] = [];
                }
@@ -84,9 +86,10 @@
         return geo;
     };
     // public create method
-    api.create = (sourceGeos, material) => {
+    api.create = (sourceGeos, opt) => {
+        opt = opt || {};
         const geo = api.createGeo(sourceGeos);
-        const mesh = new THREE.Mesh(geo, material || new THREE.MeshBasicMaterial());
+        const mesh = new THREE.Mesh(geo, opt.material || new THREE.MeshBasicMaterial());
         return mesh;
     };
 }( this ));

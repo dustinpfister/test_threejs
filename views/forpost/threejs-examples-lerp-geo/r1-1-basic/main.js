@@ -30,7 +30,7 @@ const mesh1 = new THREE.Mesh(geo1, material);
 mesh1.position.set(-1,0,0)
 scene.add(mesh1);
 // mesh2 is created using lerpGeo.create
-const mesh2 = lerpGeo.create(source_geo, material);
+const mesh2 = lerpGeo.create(source_geo, { material: material});
 mesh2.position.set(1,0,0)
 scene.add(mesh2);
 //-------- ----------
