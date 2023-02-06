@@ -1,7 +1,8 @@
 // lerpgeo.js - r1 - from threejs-examples-lerp-geo
 (function (global) {
- 
-    // THE OLD R0 LERP GEO FUNCTION
+    //-------- ----------
+    // THE OLD R0 LERP GEO FUNCTION as the global API object ( for now )
+    //-------- ----------
     const api = global['lerpGeo'] = function(geo, geoA, geoB, alpha){
         alpha = alpha || 0;
         // get refs to position attributes
@@ -23,5 +24,8 @@
         pos.needsUpdate = true;
         geo.computeVertexNormals();
     };
- 
-}( global ));
+    //-------- ----------
+    // THE NEW R1+ CREATE FUNCTION
+    //-------- ----------
+    api.create
+}( this ));
