@@ -25,8 +25,11 @@
         geo.computeVertexNormals();
     };
     //-------- ----------
-    // THE NEW R1+ CREATE FUNCTION
+    // THE NEW R1+ CREATE FUNCTION + HELPERS AND CONSTS
     //-------- ----------
+    // const values
+    const ATT_TYPES = 'position,normal,uv'.split(',');
+    const ATT_FOR_UNDEFINED_ITEMS = 0;
     // sort by count helper
     const sortByCount = (sourceGeos) => {
         return sourceGeos.map((geo) => { return geo; }).sort( (a, b) => {
@@ -45,7 +48,7 @@
         });
     };
     // new buffer attribute for the given geo, based on a given source geo
-    // placing 0,0,0 for any item not there
+    // placing 0 for numbers of each item that is not there
     const newAttributeFromGeo = (type, geo, geo_source) => {
         const att_source = geo_source.getAttribute(type);
         const att_geo = geo.getAttribute(type);
@@ -55,7 +58,7 @@
              let d = 0;
              while(d < att_geo.itemSize){
                  const n = att_source.array[i + d];
-                 data_array.push( n === undefined ? 0 : n );
+                 data_array.push( n === undefined ? ATT_FOR_UNDEFINED_ITEMS : n );
                  d += 1;
              }
              i += att_geo.itemSize;
@@ -63,18 +66,17 @@
         const att = new THREE.BufferAttribute(new Float32Array(data_array), att_geo.itemSize);
         return att;
     };
-
+    // public create method
     api.create = (sourceGeos) => {
-        const geo_array = sortByCount(sourceGeos);
-        // make new geo as clone of geo_array[0] which should have the largest count
-        const geo = geo_array[0].clone();
-        geo.morphAttributes.position = [];
-        geo.morphAttributes.normal = [];
-        geo.morphAttributes.uv = [];
-        geo_array.forEach( (geo_source, i) => {
-             geo.morphAttributes.position[ i ] = newAttributeFromGeo('position', geo, geo_source);
-             geo.morphAttributes.normal[ i ] = newAttributeFromGeo('normal', geo, geo_source);
-             geo.morphAttributes.uv[ i ] = newAttributeFromGeo('uv', geo, geo_source);
+        const geo_source_array = sortByCount(sourceGeos);
+        const geo = geo_source_array[0].clone();
+        geo_source_array.forEach( (geo_source, i) => {
+            ATT_TYPES.forEach( (attType) => {
+               if(geo.morphAttributes[attType] === undefined){
+                   geo.morphAttributes[attType] = [];
+               }
+               geo.morphAttributes[attType][ i ] = newAttributeFromGeo(attType, geo, geo_source);
+            });
         });
         return geo;
     };
