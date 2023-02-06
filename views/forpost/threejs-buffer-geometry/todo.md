@@ -15,6 +15,9 @@
 * have one or more basic examples that involve the use of the built in geometry constructors
 * () combine all the examples that have to do with creating a custom geometry from the ground up into one section with sub sections.
 
+## () - new section on morph attributes
+* (done) started a new section on morph attributes with a code example from my new post on the subject
+
 ## ( done 11/14/2022 ) - fixed uv demo
 * (done) fixed the uv demo
 
