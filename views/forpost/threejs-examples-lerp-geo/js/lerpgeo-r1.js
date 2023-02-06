@@ -44,9 +44,8 @@
     };
 
     api.create = (sourceGeos) => {
-
-
-console.log( sortByCount(sourceGeos))
-
+        const geo_array = sortByCount(sourceGeos);
+        const geo = geo_array[0].clone();
+        return geo;
     };
 }( this ));

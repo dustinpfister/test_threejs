@@ -5,9 +5,6 @@ const scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(20, 20));
 scene.background = new THREE.Color('black');
 const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000);
-camera.position.set(2, 1, 2);
-camera.lookAt(0, 0, 0);
-scene.add(camera);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
@@ -16,8 +13,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 const source_geo = [
     new THREE.SphereGeometry(1, 20, 20), // 441
-    new THREE.BoxGeometry(1, 1, 1, 12, 12), // 442
-    new THREE.BufferGeometry()
+    new THREE.BoxGeometry(1, 1, 1, 12, 12) // 442
 ];
 //console.log(geo_s0.getAttribute('position').count);
 //-------- ----------
@@ -25,15 +21,20 @@ const source_geo = [
 //-------- ----------
 const geo1 = source_geo[1].clone();
 
-lerpGeo.create(source_geo);
+const geo2 = lerpGeo.create(source_geo);
 
 //-------- ----------
 // MESH
 //-------- ----------
 const material = new THREE.MeshNormalMaterial({ })
 const mesh1 = new THREE.Mesh(geo1, material);
-mesh1.position.set(-2,0,0)
+mesh1.position.set(-1,0,0)
 scene.add(mesh1);
+
+const mesh2 = new THREE.Mesh(geo2, material);
+mesh2.position.set(1,0,0)
+scene.add(mesh2);
+
 //-------- ----------
 // GET ALPHA HELPERS
 //-------- ----------
@@ -47,6 +48,8 @@ const getAlphaBias = (n, d, count) => {
 //-------- ----------
 // APP LOOP
 //-------- ----------
+camera.position.set(3, 3, 3);
+camera.lookAt(0, 0, 0);
 let frame = 0;
 const frameMax = 300;
 const loop = function () {
