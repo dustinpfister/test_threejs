@@ -12,30 +12,27 @@ renderer.setSize(640, 480, false);
 // SOURCE GEOS
 //-------- ----------
 const source_geo = [
-    new THREE.SphereGeometry(1, 26, 25), // 441
-    new THREE.BoxGeometry(1, 1, 1, 16, 16) // 442
+    new THREE.SphereGeometry(1, 26, 25),
+    new THREE.TorusGeometry(1, 0.25, 26, 25)
 ];
 console.log(source_geo[0].getAttribute('position').count);
 console.log(source_geo[1].getAttribute('position').count);
 //-------- ----------
-// GEO
+// MATERIAL
 //-------- ----------
-const geo1 = source_geo[1].clone();
-const geo2 = lerpGeo.create(source_geo);
+const material = new THREE.MeshNormalMaterial({ wireframe: true });
 //-------- ----------
 // MESH
 //-------- ----------
-const material = new THREE.MeshNormalMaterial({ })
+// mesh1 will be used with old lerpGeo method
+const geo1 = source_geo[1].clone();
 const mesh1 = new THREE.Mesh(geo1, material);
 mesh1.position.set(-1,0,0)
 scene.add(mesh1);
-
-const mesh2 = new THREE.Mesh(geo2, material);
+// mesh2 is created using lerpGeo.create
+const mesh2 = lerpGeo.create(source_geo, material);
 mesh2.position.set(1,0,0)
 scene.add(mesh2);
-
-
-
 //-------- ----------
 // GET ALPHA HELPERS
 //-------- ----------
@@ -60,8 +57,7 @@ const loop = function () {
     // can still use old lerp go method
     lerpGeo(geo1, source_geo[1], source_geo[0], a1);
     // using morph target Influences of mesh object
-    mesh2.morphTargetInfluences[ 0 ] = 0.0;
-    mesh2.morphTargetInfluences[ 1 ] = a1;
+    mesh2.morphTargetInfluences[ 0 ] = a1;
     frame += 1;
     frame %= frameMax;
 };

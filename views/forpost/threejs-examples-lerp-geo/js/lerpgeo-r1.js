@@ -67,9 +67,12 @@
         return att;
     };
     // public create method
-    api.create = (sourceGeos) => {
+    api.createGeo = (sourceGeos) => {
         const geo_source_array = sortByCount(sourceGeos);
         const geo = geo_source_array[0].clone();
+
+        geo_source_array.shift();
+
         geo_source_array.forEach( (geo_source, i) => {
             ATT_TYPES.forEach( (attType) => {
                if(geo.morphAttributes[attType] === undefined){
@@ -79,5 +82,11 @@
             });
         });
         return geo;
+    };
+    // public create method
+    api.create = (sourceGeos, material) => {
+        const geo = api.createGeo(sourceGeos);
+        const mesh = new THREE.Mesh(geo, material || new THREE.MeshBasicMaterial());
+        return mesh;
     };
 }( this ));
