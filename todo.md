@@ -2,12 +2,13 @@
 
 General todo list for this test_threejs repo in general. This is where I will write down notes when it comes to what I want to do with this project as a whole, such as adding new folders for various kinds of projects that have to do with threejs. I will not write down everything that I want to do here of course, I have additional files like this where I am planing things out when it comes to additions to the forpost folder in general, as well as for each nested forpost folder for example. So then in other words this is just a kind of global todo list, but not a todo list for a collection of examples, or a single example.
 
-## () make index.js use server-old in node folder
-* () have main index start server-old index file ( for now )
 
-## () node/server-new
+## () start node/server-new
 * () start a new nodejs sub folder called server-new
 * () start out with a server that will default to the use of server-static for files like js files and so forth
+
+## ( done 02/07/2023 ) make index.js use server-old in node folder
+* (done) have main index start server-old index file ( for now )
 
 ## ( done 02/07/2023 ) - NEW FOLDER: NODE folder
 * (done) start a /node folder
