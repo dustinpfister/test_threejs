@@ -1,6 +1,5 @@
-// dae tools r2
+// dae-tools.js - R2 = from threejs-examples-dae-tools
 (function (api) {
-
     // create aa daeObjects state object
     api.create = function (opt) {
         opt = opt || {};
@@ -12,7 +11,6 @@
         };
         return state;
     };
-
     // load one dae file
     api.loadOne = function(daeObjects, url, onFileLoad){
         // I will want a manager for this
@@ -48,7 +46,6 @@
              );
         });
     };
-
     // load a collection of dea files
     api.loadAll = function(daeObjects, opt){
         opt = opt || {};
@@ -73,7 +70,6 @@
             daeObjects.onLoad(daeObjects, daeObjects.results);
         });
     };
-
     // create a group from a dae result object
     api.createGroup = function(daeObjects, what){
         var result = typeof what === 'object' ? what : daeObjects.results[what];
@@ -88,7 +84,5 @@
         group.rotation.copy(result.scene.rotation);
         return group;
     };
-
-
 }
     (this['DAE'] = {}));
