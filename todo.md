@@ -2,10 +2,17 @@
 
 General todo list for this test_threejs repo in general. This is where I will write down notes when it comes to what I want to do with this project as a whole, such as adding new folders for various kinds of projects that have to do with threejs. I will not write down everything that I want to do here of course, I have additional files like this where I am planing things out when it comes to additions to the forpost folder in general, as well as for each nested forpost folder for example. So then in other words this is just a kind of global todo list, but not a todo list for a collection of examples, or a single example.
 
-## () - NEW FOLDER: NODE folder
-* () start a /node folder
-* () make index.js /node/server-old/index.js
-* () have main index start server-old index (for now)
+## () make index.js use server-old in node folder
+* () have main index start server-old index file ( for now )
+
+## () node/server-new
+* () start a new nodejs sub folder called server-new
+* () start out with a server that will default to the use of server-static for files like js files and so forth
+
+## ( done 02/07/2023 ) - NEW FOLDER: NODE folder
+* (done) start a /node folder
+* (done) make a copy of the main index.js as /node/server-old/index.js
+* (done) just make changes to this copy of the main server file to get it to work in the new location
 
 ## ( done 02/07/2023 ) - remove links to VIDEO and SPRITE SHEET SECTIONS
 * (done) remove link to VIDEO Section in nav as I am using videoground to make video projects
