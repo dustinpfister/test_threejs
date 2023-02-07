@@ -1,6 +1,8 @@
 # test_threejs
 
-This is a collection of work using the javaScript library called [three.js](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple demos of threejs features, and project examples. In other words I am just simply testing out threejs, along with a little extra vanilla javaScript code. I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/).
+This is a collection of work using the javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple demos of threejs features, and starting project examples. In other words I am just simply testing out threejs, and in the process writing a fare amount of vanilla javaScript code in the process. 
+
+I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far. I also have additional draft demos broken down on a reversion by revision basis as threejs is a very fast moving project in terms of development many of which may or may not become subjects to write about in future blog posts as I keep writing new posts, and editing older ones.
 
 <div align="center">
     <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
@@ -12,58 +14,9 @@ This is a collection of work using the javaScript library called [three.js](http
     </p>
 </div>
 
-
-## The views folder
-
-The views folder is where I have all the draft prototypes, final for post source code examples, and additional assets like DAE files and textures. This is also where I have the EJS templates that are used to render html when using the sever script to host all of this.
-
-### The DAE folder
-
-When it comes to working out geometry in a program like blender, and then exporting from there thus far I have come to like the DAE or Collada file format. So in this folder I have DAE files, as well as the blender files that I use to export such files from. This also has textures that I use with such files as well.
-
-<div align="center">
-      <a href="https://www.youtube.com/watch?v=8aEF1H5nlYA">
-         <img src="https://img.youtube.com/vi/8aEF1H5nlYA/0.jpg" style="width:50%;">
-      </a>
-    <p>
-        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-house-two">House Two</a>
-    </p>
-</div>
-
-
-### The demos folder
-
-In the [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/views/demos) I have folders for each revision number of three.js that I have worked with thus far going back to r91. This demos folder is then for testing out new features, and also figuring out how to fix things when they break each time code breaking changes are made in a new revision. 
-
-<div align="center">
-      <a href="https://www.youtube.com/watch?v=JPZL4wPPuCg">
-         <img src="https://img.youtube.com/vi/JPZL4wPPuCg/0.jpg" style="width:50%;">
-      </a>
-    <p>
-        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-edges-geometry">Edges Geometry</a>
-    </p>
-</div>
-
-
-This demo folder is also a place where I have drafts, or prototypes for project ideas that might end up being one of my [threejs examples](https://dustinpfister.github.io/2021/02/19/threejs-examples/) projects.
-
-### The for post folder
-
-I have a [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost) that is where I am parking source code examples for each blog post that I write about on my website on threejs. When it comes to this I have got into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post. Each time I come around to edit an older post I will revise, and extend the source code examples a little.
-
-<div align="center">
-      <a href="https://www.youtube.com/watch?v=IXwmoSKA8dA">
-         <img src="https://img.youtube.com/vi/IXwmoSKA8dA/0.jpg" style="width:50%;">
-      </a>
-    <p>
-        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-phong-material">Phong Material</a>
-    </p>
-</div>
-
-
 ## 1 - Install
 
-I do not have any intention to make this project an npm package or anything to that effect. So for now the best way to set things up and running with this on your end would be to clone it down with git, cd into the folder, and then do an npm install. This seems to work fine for me each time thus far with the various versions of nodejs and npm that I use at least. After that the main server script can be started as a way to navigate and view all the various demos, videos, and post related source code examples.
+I do not have any intention to make this project an npm package or anything to that effect. So for now the best way to get things up and running with this on your end would be to clone it down with git, cd into the folder, and then do an npm install. This seems to work fine for me each time thus far with the various versions of nodejs and npm that I use at least. After that the main server script can be started as a way to navigate and view all the various demos, videos, and post related source code examples.
 
 ```
 $ git clone --depth 1 https://github.com/dustinpfister/test_threejs
@@ -73,7 +26,7 @@ $ npm install
 
 ## 2 - Starting the server
 
-I made the server script a long time ago, and as long as it still works okay I can not say that I have much interest to sit down and write a new one. It is just a single index javaScript file at the root of this folder, and it runs on top of [express](https://dustinpfister.github.io/2018/06/12/express/) using [ejs](https://dustinpfister.github.io/2017/12/07/nodejs-ejs-javascript-templates/) for rendering of templates.
+I made the server script a long time ago, and it is not at all how I would go about making one these days. However as long as it still works okay I can not say that I have much interest to sit down and write a new one. It is just a single index javaScript file at the root of this folder, and it runs on top of [express](https://dustinpfister.github.io/2018/06/12/express/) using [ejs](https://dustinpfister.github.io/2017/12/07/nodejs-ejs-javascript-templates/) for rendering of templates.
 
 ### 2.1 - Start by calling index script directly
 
@@ -93,15 +46,62 @@ I also have a start.sh file that should work well for starting the sever in a Li
 $ ./start.sh
 ```
 
-## 3 - Notes on the back end
+## 3 - The views folder
 
-I am using express.js as a server side framework, and ejs as a template language. As of this writing I do not have a well thought out plain on how to structure the app, but I am not loosing sleep over it. This project is more about the demos themselves rarer than how I am serving them up anyway. Still for my own sanity I thought it would be a good idea to maintain some notes on how I am building this system.
+The views folder is where I have all the draft prototypes, final for post source code examples, and additional assets like DAE files and textures. This is also where I have the EJS templates that are used to render html when using the sever script to host all of this.
 
-### 3.1 - How demos are structured
+### 3.1 - The DAE folder
+
+When it comes to working out geometry in a program like blender, and then exporting from there thus far I have come to like the DAE or Collada file format. So in this folder I have DAE files, as well as the blender files that I use to export such files from. This also has textures that I use with such files as well.
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=8aEF1H5nlYA">
+         <img src="https://img.youtube.com/vi/8aEF1H5nlYA/0.jpg" style="width:50%;">
+      </a>
+    <p>
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-house-two">House Two</a>
+    </p>
+</div>
+
+
+### 3.2 -  The demos folder
+
+In the [demos folder](https://github.com/dustinpfister/test_threejs/tree/master/views/demos) I have folders for each revision number of three.js that I have worked with thus far going back to r91. This demos folder is then for testing out new features, and also figuring out how to fix things when older examples break when code breaking changes are made in a new revision of threejs, which is something that seems to happen fairly often. 
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=JPZL4wPPuCg">
+         <img src="https://img.youtube.com/vi/JPZL4wPPuCg/0.jpg" style="width:50%;">
+      </a>
+    <p>
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-edges-geometry">Edges Geometry</a>
+    </p>
+</div>
+
+
+This demo folder is also a place where I have drafts, or prototypes for project ideas that might end up being one of my [threejs examples](https://dustinpfister.github.io/2021/02/19/threejs-examples/) projects. Eah time I get a new idea for some kind of project with threejs be it a module, demo of a core threejs feature, or so forth the idea will start here. If I do write a post about it I will then copy over what I worked out into a new for post folder, and expand and refine there.
+
+### 3.3 -  The for post folder
+
+I have a [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost) that is where I am parking source code examples that will be embedded into each blog post that I write about on my website on threejs. When it comes to this I have got into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post. Each time I come around to edit an older post I will revise, and extend the source code examples a little.
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=IXwmoSKA8dA">
+         <img src="https://img.youtube.com/vi/IXwmoSKA8dA/0.jpg" style="width:50%;">
+      </a>
+    <p>
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-phong-material">Phong Material</a>
+    </p>
+</div>
+
+## 4 - Notes on the back end
+
+I am using express.js as a server side framework, and ejs as a template language. As of this writing I do not have a well thought out plain on how to structure the app, but I am not loosing sleep over it. This project is more about the demos themselves rather than how I am serving them up anyway. Still for my own sanity I thought it would be a good idea to maintain some notes on how I am building this system.
+
+### 4.1 - How demos are structured
 
 I have thought about making some complex system for this, but for now all the demos fall in a path that follows a /demos/r\[XXX\]/\[demoName\] pattern in the views folder.
 
-### 3.2 - How front end \*.js files are delivered
+### 4.2 - How front end \*.js files are delivered
 
 I have a /js path where \*.js files can be fetched with an absolute path. When doing so the variable r is the currently set revision number that is to be used for a threejs demo, or project which can be used with urls.
 
@@ -117,11 +117,11 @@ When it comes to working out the main index.ejs file relative paths can be used 
 <script src="<%= demoName %>/js/main.js"></script>
 ```
 
-### 3.3 - How the r (revision) variable is determined
+### 4.3 - How the r (revision) variable is determined
 
 As of this writing it is determined by the folder that the demo is in as that structuring follows a /demos/rXXX pattern where XXX is the revision number that is used for the demos in that path.
 
-### 3.4 - Generating index of demos
+### 4.4 - Generating index of demos
 
 I am using [klaw](https://github.com/jprichardson/node-klaw), and [through2](https://www.npmjs.com/package/through2) to help with building lists of links for demos.
 
