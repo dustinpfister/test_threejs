@@ -82,7 +82,7 @@ app.get('/forpost', function (req, res) {
 // render local index.ejs file, or send local resource
 app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
     const arr = req.url.replace(/\/forpost\/([\s\S]*?)/, '').split('/');
-    const DIR = path.join(DIR_ROOT, req.url);
+    const DIR = path.join(DIR_ROOT, 'views', req.url);
     // do we need to build an index?
     if (arr.length === 1 || arr[1] === '') {
         build_index({
@@ -101,7 +101,7 @@ app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
        // check for an index file and render the for post page if there is one
        fs.access(path.join(DIR, 'index.ejs'), (e) => {
            if(e){
-               res.send('no index.ejs file for: ' + DIR)
+               res.send('no index.ejs file for: ' + DIR);
            }else{
                res.render('index', {
                    page: 'forpost',
@@ -110,6 +110,7 @@ app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
                });
            }
       });
+      return;
    }
    // if we some how make it here, end the request
    res.end();
