@@ -10,7 +10,7 @@ Looks like this will be the last revision of threejs in which I use plain classi
 
 ### r146 style outline
 
-Starting with r146 I have finally stopped doing things like typing var over that of let and const. I am the kind of person that does lang behind a far amount when it comes to things like that however it has been over eight years all ready, so it is time to just start doing this and not worry so much about code breaking because of it. It is true that just simply using var would not be enough anyway when it comes to using late revisions of threejs anyway.
+Starting with r146 I have finally stopped doing things like typing var over that of let and const. I am the kind of person that does lag behind a far amount when it comes to things like that however it has been over eight years all ready, so it is time to just start doing this and not worry so much about code breaking because of it. It is true that just simply using var would not be enough anyway when it comes to using late revisions of threejs anyway.
 
 A good example of what code examples should look like as of r146 would be the getting started demo I made, ill park that here in this readme too.
 
