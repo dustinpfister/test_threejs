@@ -3,8 +3,7 @@
 // MODULES
 //-------- ----------
 const path = require('path'),
-//klaw = require('klaw'),
-//through2 = require('through2'),
+fs = require('fs'),
 express = require('express'),
 build_index = require('./build-index.js');
 //-------- ----------
@@ -21,7 +20,7 @@ app.set('views', path.join(DIR_ROOT, 'views') );
 //-------- ----------
 // STATIC FOLDERS
 //-------- ----------
-app.use('/', express.static( path.join(DIR_ROOT, 'views') ) );
+app.use('/', express.static( path.join(DIR_ROOT, 'views'), {index: false} ) );
 //-------- ----------
 // DEMOS PATH
 //-------- ----------
@@ -63,6 +62,57 @@ app.get(/\/demos\/r\d{1,3}/, function (req, res) {
             links: links
         });
     });
+});
+//-------- ----------
+// FORPOST PATH
+//-------- ----------
+// the main /videos index page
+app.get('/forpost', function (req, res) {
+    build_index({
+        DIR_ROOT: DIR_ROOT,
+        source: 'forpost'
+    }).then(function (links) {
+        res.render('index', {
+            page: 'forpost_index',
+            links: links
+        });
+    });
+});
+
+// render local index.ejs file, or send local resource
+app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
+    const arr = req.url.replace(/\/forpost\/([\s\S]*?)/, '').split('/');
+    const DIR = path.join(DIR_ROOT, req.url);
+    // do we need to build an index?
+    if (arr.length === 1 || arr[1] === '') {
+        build_index({
+            DIR_ROOT: DIR_ROOT,
+            source: 'forpost/' + arr[0]
+        }).then(function (links) {
+            res.render('index', {
+                page: 'forpost_index',
+                links: links
+            });
+        });
+       return;
+   }
+   // do we need to render a for post page?
+   if (arr.length === 2 || arr[2] === '') {
+       // check for an index file and render the for post page if there is one
+       fs.access(path.join(DIR, 'index.ejs'), (e) => {
+           if(e){
+               res.send('no index.ejs file for: ' + DIR)
+           }else{
+               res.render('index', {
+                   page: 'forpost',
+                   arr: arr,
+                   folderName: arr[0]
+               });
+           }
+      });
+   }
+   // if we some how make it here, end the request
+   res.end();
 });
 //-------- ----------
 // ROOT PATH
