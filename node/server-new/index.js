@@ -101,7 +101,13 @@ app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
        // check for an index file and render the for post page if there is one
        fs.access(path.join(DIR, 'index.ejs'), (e) => {
            if(e){
-               res.send('no index.ejs file for: ' + DIR);
+               //res.send('no index.ejs file for: ' + DIR);
+               res.render('index', {
+                   page: 'noindex',
+                   arr: arr,
+                   DIR: DIR,
+                   folderName: arr[0]
+               });
            }else{
                res.render('index', {
                    page: 'forpost',
