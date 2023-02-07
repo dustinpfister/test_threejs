@@ -2,7 +2,7 @@
 
 This is a collection of work using the javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple demos of threejs features, and starting project examples. In other words I am just simply testing out threejs, and in the process writing a fare amount of vanilla javaScript code in the process. 
 
-I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far. I also have additional draft demos broken down on a reversion by revision basis as threejs is a very fast moving project in terms of development many of which may or may not become subjects to write about in future blog posts as I keep writing new posts, and editing older ones.
+I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far. I also have additional draft demos broken down on a reversion by revision basis as threejs is a very fast moving project in terms of development. Many of these demos may or may not become subjects to write about in future blog posts as I keep writing new posts, and editing older ones.
 
 <div align="center">
     <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
