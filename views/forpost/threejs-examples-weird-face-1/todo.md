@@ -6,5 +6,10 @@
 * () additional argument for set eye method that can be used to adjust the radius for the pupil object
 * () have more than two mouth states to change form and to
 
+## () main js folder, r146 style update
+* (done) have a main js folder
+* () update file names in main js folder
+* () update code to r146 style
+
 ## ( done 07/06/2022 ) r0 of weird face one done
 * (done) first revision of this example done
