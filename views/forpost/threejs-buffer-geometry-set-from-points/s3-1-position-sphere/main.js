@@ -12,7 +12,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // HELPERS
 //-------- ----------
-
+// a function that creates and returns an array of vector3 objects
 const myV3Array = (point_count, sec_count, rotation_count, y_mag, radius) => { 
     const v3array = [];
     for ( let i = 0; i < point_count; i ++ ) {
@@ -29,13 +29,19 @@ const myV3Array = (point_count, sec_count, rotation_count, y_mag, radius) => {
     }
     return v3array;
 };
+// create a geometry to begin with
+const createGeometry = (point_count, sec_count, rotation_count, y_mag, radius) => {
+    const v3array =  myV3Array(point_count, sec_count, rotation_count, y_mag, radius);
+    const geometry = new THREE.BufferGeometry();
+    geometry.setFromPoints(v3array);
+    return geometry;
+};
+
 
 //-------- ----------
 // OBJECTS
 //-------- ----------
-const v3array =  myV3Array(200, 2, 2, 1, 3);
-const geometry = new THREE.BufferGeometry();
-geometry.setFromPoints(v3array);
+const geometry = createGeometry(200, 2, 2, 1, 3);
 const points1 = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.2}));
 scene.add(points1);
 
