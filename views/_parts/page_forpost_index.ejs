@@ -9,4 +9,16 @@
 <% links.forEach(function(link){ %>
  <a href="<%= link.href %>"><%= '' + link.name.replace(/-/g,'_') + '' || 'no name' %></a>  <br><br>
 <% }); %>
-</div>
+
+<% try{ %>
+    
+    <textarea style="width:100%;height:200px;">
+<%= text %>
+    </textarea>
+
+<% }catch(e){ %>
+
+    </textarea>
+
+
+<% } %>

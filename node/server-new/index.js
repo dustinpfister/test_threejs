@@ -7,6 +7,7 @@ fs = require('fs'),
 promisify = require('util').promisify,
 access = promisify(fs.access),
 readdir = promisify(fs.readdir),
+readFile = promisify(fs.readFile),
 express = require('express'),
 build_index = require('./build-index.js');
 //-------- ----------
@@ -91,13 +92,25 @@ app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
         build_index({
             DIR_ROOT: DIR_ROOT,
             source: 'forpost/' + arr[0]
-        }).then(function (links) {
-            res.render('index', {
-                page: 'forpost_index',
-                links: links
-            });
-        });
-       return;
+        })
+        .then((links) => {
+            let text = '';
+            readFile( path.join(DIR, 'README.md') )
+            .then((md)=>{
+                text = md;
+            })
+            .catch(()=>{
+                text = 'no read me file for this for post folder.'
+            })
+            .then(()=>{
+                res.render('index', {
+                    page: 'forpost_index',
+                    links: links,
+                    text: text
+                });
+            })
+        })
+        return;
     }
     // do we need to render a for post page?
     if (arr.length === 2 || arr[2] === '') {
