@@ -68,12 +68,14 @@ router.get(/\/forpost\/([\s\S]*?)/, [
         const demoName = arr[2];
         // do we need to render a for post page for a given demo?
         if (arr.length === 3) {
+            const uri_folder_index = path.join(DIR, 'index.ejs');
             // check for an index file and render the for post page if there is one
-            access( path.join(DIR, 'index.ejs') )
+            access( uri_folder_index )
             .then(()=>{
                 res.render('index', {
                     page: 'forpost',
                     //arr: arr,
+                    uri_folder_index:  uri_folder_index,
                     DIR: DIR,
                     folderName: folderName,
                     demoName: demoName

@@ -229,18 +229,15 @@ app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
         }
         return acc;
     }, []);
-console.log('******');
-console.log('For post path request: ');
-console.log(arr);
-console.log(req.url);
-console.log('******');
     // render an index.ejs for a given section folder
     // ( /views/forpost/threejs-examples-tree/basic/index.ejs )
     if (arr.length === 2 || arr[2] === '') {
         res.render('index', {
             page: 'forpost',
             arr: arr,
-            folderName: arr[0]
+            folderName: arr[0],
+            demoName: arr[1],
+            uri_folder_index: path.join(DIR_ROOT,'views/forpost/' + arr[0] + '/' + arr[1] + '/index.ejs')
         });
     } else {
         // build an index of section folders if we have something like
