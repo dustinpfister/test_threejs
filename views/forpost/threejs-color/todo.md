@@ -1,6 +1,7 @@
 # threejs-color
 
 ## () update to r146 style
+* (done) use r146 for all demos
 * () update current set of examples to r146 code style
 
 ## ( done 07/20/2022 ) s8-data-textures
