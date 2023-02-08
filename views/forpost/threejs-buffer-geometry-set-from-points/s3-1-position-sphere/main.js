@@ -36,13 +36,10 @@ const createGeometry = (point_count, sec_count, rotation_count, y_mag, radius) =
     geometry.setFromPoints(v3array);
     return geometry;
 };
-
+// update a geometry
 const updateGeometry = (geometry, sec_count, rotation_count, y_mag, radius) => {
     const att_pos = geometry.getAttribute('position');
-
-
     const v3array =  myV3Array(att_pos.count, sec_count, rotation_count, y_mag, radius);
-
     let i = 0;
     const len = att_pos.count;
     while(i < len){
@@ -54,28 +51,25 @@ const updateGeometry = (geometry, sec_count, rotation_count, y_mag, radius) => {
     }
     att_pos.needsUpdate = true;
 };
-
 //-------- ----------
 // OBJECTS
 //-------- ----------
 const geometry = createGeometry(50, 2, 2, 1, 3);
 const points1 = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.2}));
 scene.add(points1);
-
-
-updateGeometry(geometry, 2, 2, 1, 3)
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+const FPS_UPDATE = 20,  // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 120;
+FRAME_MAX = 800;
 let secs = 0,
 frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
+    const a1 = frame / frameMax;
+    updateGeometry(geometry, 2, 1 + 3 * a1, 1, 3);
 };
 // loop
 const loop = () => {
