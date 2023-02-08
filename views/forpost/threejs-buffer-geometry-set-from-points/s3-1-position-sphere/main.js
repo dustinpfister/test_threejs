@@ -63,7 +63,12 @@ const updateGeometry = (geometry, sec_count, rotation_count, y_mag, radius) => {
 // OBJECTS
 //-------- ----------
 const geometry = createGeometry(400, 1, 2, 1, 3);
-const points1 = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.5, vertexColors: true}));
+const points1 = new THREE.Points(geometry, new THREE.PointsMaterial({
+    size: 0.5,
+    transparent: true,
+    opacity: 0.8,
+    vertexColors: true
+}));
 scene.add(points1);
 // ---------- ----------
 // ANIMATION LOOP
