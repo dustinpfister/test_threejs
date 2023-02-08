@@ -4,6 +4,9 @@
 //-------- ----------
 const path = require('path'),
 fs = require('fs'),
+promisify = require('util').promisify,
+access = promisify(fs.access),
+readdir = promisify(fs.readdir),
 express = require('express'),
 build_index = require('./build-index.js');
 //-------- ----------
@@ -95,31 +98,37 @@ app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
             });
         });
        return;
-   }
-   // do we need to render a for post page?
-   if (arr.length === 2 || arr[2] === '') {
-       // check for an index file and render the for post page if there is one
-       fs.access(path.join(DIR, 'index.ejs'), (e) => {
-           if(e){
-               //res.send('no index.ejs file for: ' + DIR);
-               res.render('index', {
-                   page: 'noindex',
-                   arr: arr,
-                   DIR: DIR,
-                   folderName: arr[0]
-               });
-           }else{
-               res.render('index', {
-                   page: 'forpost',
-                   arr: arr,
-                   folderName: arr[0]
-               });
-           }
-      });
-      return;
-   }
-   // if we some how make it here, end the request
-   res.end();
+    }
+    // do we need to render a for post page?
+    if (arr.length === 2 || arr[2] === '') {
+        // check for an index file and render the for post page if there is one
+        access( path.join(DIR, 'index.ejs') )
+        .then(()=>{
+            res.render('index', {
+                page: 'forpost',
+                arr: arr,
+                DIR: DIR,
+                folderName: arr[0]
+            });
+        })
+        // catch happend when trying to get an index.ejs
+        .catch(() => {
+            return readdir(DIR);
+        })
+        .then((items)=>{
+            res.render('index', {
+                page: 'noindex',
+                arr: arr,
+                DIR: DIR,
+                URL: req.url,
+                items: items,
+                folderName: arr[0]
+            });
+        });
+        return;
+    }
+    // if we some how make it here, end the request
+    res.end();
 });
 //-------- ----------
 // ROOT PATH

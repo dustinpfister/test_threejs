@@ -1,1 +1,7 @@
 <h1>No index.ejs file for this path</h1>
+<p> DIR: <%= DIR %> </p>
+
+
+<% items.forEach( (item, i) => { %>
+    <p ><a href="<%= URL + item %>"><%= item %></a></p>
+<% }); %>
