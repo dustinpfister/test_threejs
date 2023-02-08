@@ -208,7 +208,8 @@ app.get('/forpost', function (req, res) {
     }).then(function (links) {
         res.render('index', {
             page: 'forpost_index',
-            links: links
+            links: links,
+            text: ''
         });
     });
 });
@@ -235,7 +236,8 @@ app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
             }).then(function (links) {
                 res.render('index', {
                     page: 'forpost_index',
-                    links: links
+                    links: links,
+                    text: ''
                 });
             });
         }else{

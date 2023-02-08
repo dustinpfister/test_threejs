@@ -23,7 +23,8 @@ router.get(/\/forpost\/([\s\S]*?)/, [
             .then(function (links) {
                 res.render('index', {
                     page: 'forpost_index',
-                    links: links
+                    links: links,
+                    text: ''
                 });
             });
         }else{
