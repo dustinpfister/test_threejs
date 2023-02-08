@@ -1,12 +1,18 @@
-//******** **********
+//-------- ----------
+// SCENE, CAMERA, RENDERER
+//-------- ----------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+//-------- ----------
 // DATA TEXTURE HELPER
-//******** **********
-// create data texture method
-let createDataTexture = function(opt){
+//-------- ----------
+const createDataTexture = function(opt){
     opt = opt || {};
     opt.width = opt.width === undefined ? 16: opt.width; 
     opt.height = opt.height === undefined ? 16: opt.height;
-    // default for pix method
     opt.forPix = opt.forPix || function(color, x, y, i, opt){
         let v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
         color.setRGB(v, v, v);
@@ -28,56 +34,48 @@ let createDataTexture = function(opt){
     texture.needsUpdate = true;
     return texture;
 };
-//******** **********
-// SCENE, CAMERA, RENDERER
-//******** **********
-var scene = new THREE.Scene();
-scene.add(new THREE.GridHelper(8,8))
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(4, 4, 4);
-camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-//******** **********
-// ADD A LIGHT BECUASE THIS IS THE STANDARD MATERIAL THAT I AM USING
-//******** **********
-var light = new THREE.PointLight(new THREE.Color(1, 1, 1));
-light.position.set(1, 3, 2);
-scene.add(light);
-//******** **********
-// MESH OBJECTS WITH DATA TEXTURES
-//******** **********
-// default sudo random texture
-var tex1 = createDataTexture();
-var mesh1 = new THREE.Mesh(
+//-------- ----------
+// LIGHT
+//-------- ----------
+const pl = new THREE.PointLight(new THREE.Color(1, 1, 1));
+pl.position.set(1, 3, 2);
+scene.add(pl);
+//-------- ----------
+// OBJECTS
+//-------- ----------
+const tex1 = createDataTexture();
+const mesh1 = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
     new THREE.MeshStandardMaterial({
         map: tex1
     })
 );
 scene.add(mesh1);
-//******** **********
-// LOOP
-//******** **********
-var lt = new Date(),
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+camera.position.set(1, 1.5, 1);
+camera.lookAt(0, 0, 0);
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 900;
+let secs = 0,
 frame = 0,
-maxFrame = 200,
-fps = 20;
-var loop = function () {
-    var now = new Date(),
-    per = frame / maxFrame,
-    bias = 1 - Math.abs(per - 0.5) / 0.5,
+lt = new Date();
+const update = function(frame, frameMax){
+    mesh1.material.map = createDataTexture();
+};
+const loop = () => {
+    const now = new Date(),
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
-    if (secs > 1 / fps) {
-        // new data texture for mesh1
-        mesh1.material.map = createDataTexture();
+    if(secs > 1 / FPS_UPDATE){
+        update( Math.floor(frame), FRAME_MAX);
         renderer.render(scene, camera);
-        frame += fps * secs;
-        frame %= maxFrame;
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
         lt = now;
     }
-
 };
 loop();
+

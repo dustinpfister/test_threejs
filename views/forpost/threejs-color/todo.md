@@ -1,8 +1,8 @@
 # threejs-color
 
-## () update to r146 style
+## ( done 02/08/2023 ) update to r146 style
 * (done) use r146 for all demos
-* () update current set of examples to r146 code style
+* (done) update current set of examples to r146 code style
 
 ## ( done 07/20/2022 ) s8-data-textures
 * (done) have an example that makes use of data textures and THREE.Color as a way to set the colors of a texture
