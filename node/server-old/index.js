@@ -218,6 +218,18 @@ app.get('/forpost', function (req, res) {
 // render local index.ejs file, or send local resource
 app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
     let arr = req.url.replace(/\/forpost\/([\s\S]*?)/, '').split('/');
+    // this fixed a weird bug becuase of blank strings
+    arr = arr.reduce((acc, str)=>{
+        if(str != ''){
+           acc.push(str);
+        }
+        return acc;
+    }, []);
+console.log('******');
+console.log('For post path request: ');
+console.log(arr);
+console.log(req.url);
+console.log('******');
     // render an index.ejs for a given section folder
     // ( /views/forpost/threejs-examples-tree/basic/index.ejs )
     if (arr.length === 2 || arr[2] === '') {
@@ -249,4 +261,5 @@ app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
 
 app.listen(port, function () {
     console.log('test_threejs demo site is up at port : ' + port);
+    console.log('DIR_ROOT' + DIR_ROOT);
 });
