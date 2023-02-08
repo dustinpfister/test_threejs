@@ -74,7 +74,6 @@ router.get(/\/forpost\/([\s\S]*?)/, [
             .then(()=>{
                 res.render('index', {
                     page: 'forpost',
-                    //arr: arr,
                     uri_folder_index:  uri_folder_index,
                     DIR: DIR,
                     folderName: folderName,
@@ -83,23 +82,39 @@ router.get(/\/forpost\/([\s\S]*?)/, [
             })
             // catch happend when trying to get an index.ejs
             .catch(() => {
-                return readdir(DIR)
-               .then((items)=>{
-                    res.render('index', {
-                        page: 'noindex',
-                        //arr: arr,
-                        DIR: DIR,
-                        URL: req.url,
-                        items: items,
-                        folderName: folderName,
-                        demoName: demoName
-                    });
-                });
+                next();
             })
-            return;
+        }else{
+            // we have somehting like /forpost/threejs-alpha-map/js/modules/foo/r0
+            next();
         }
-        // if we some how make it here, end the request
+    },
+    // we may have a folder that contains static files or somehting like that
+    (req, res, next) => {
+        const arr = req.url.split('/').filter( n => n );
+        const DIR = path.join(DIR_ROOT, 'views', req.url);
+        const folderName = arr[1];
+        const demoName = arr[2];
+        return readdir(DIR)
+        .then((items)=>{
+            res.render('index', {
+                page: 'noindex',
+                DIR: DIR,
+                URL: req.url,
+                items: items,
+                folderName: folderName,
+                demoName: demoName
+           });
+        })
+        // error reading dir
+        .catch(()=>{
+            next();
+        })
+    },
+    // if we make it here for some reason end the request
+    (req, res, next) => {
         res.end();
-}]);
+    }
+]);
 // export
 module.exports = router;
