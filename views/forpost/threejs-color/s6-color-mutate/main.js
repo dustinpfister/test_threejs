@@ -1,46 +1,56 @@
+//-------- ----------
 // SCENE, CAMERA, RENDERER
-var scene = new THREE.Scene();
+//-------- ----------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+//-------- ----------
+// LIGHT
+//-------- ----------
+const pl = new THREE.PointLight(new THREE.Color(1, 1, 1));
+pl.position.set(1, 3, 2);
+scene.add(pl);
+//-------- ----------
+// OBJECTS
+//-------- ----------
 scene.add(new THREE.GridHelper(8,8))
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(2, 2, 2);
-camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-// ADD A LIGHT BECUASE THIS IS THE STANDARD MATERIAL
-var light = new THREE.PointLight(new THREE.Color(1, 1, 1));
-light.position.set(1, 3, 2);
-scene.add(light);
-// Mesh
-var color = new THREE.Color(1, 0, 0);
-var material = new THREE.MeshStandardMaterial({
+const color = new THREE.Color(1, 0, 0);
+const material = new THREE.MeshStandardMaterial({
     color: color
 })
-var mesh = new THREE.Mesh(
+const mesh = new THREE.Mesh(
     new THREE.SphereGeometry(1, 30, 30),
     material
 );
 scene.add(mesh);
-// LOOP
-var lt = new Date(),
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+camera.position.set(2, 2, 2);
+camera.lookAt(0, 0, 0);
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 900;
+let secs = 0,
 frame = 0,
-maxFrame = 200,
-fps = 30;
-var loop = function () {
-    var now = new Date(),
-    per = frame / maxFrame,
-    bias = 1 - Math.abs(per - 0.5) / 0.5,
+lt = new Date();
+const update = function(frame, frameMax){
+    const a1 = frame / frameMax;
+    const a2 = 1 - Math.abs(a1 - 0.5) / 0.5;
+    material.color.setRGB(a2, 1 - a2, 0);
+};
+const loop = () => {
+    const now = new Date(),
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
-    if (secs > 1 / fps) {
-		
-		material.color.setRGB(bias, 1 - bias, 0);
-		
+    if(secs > 1 / FPS_UPDATE){
+        update( Math.floor(frame), FRAME_MAX);
         renderer.render(scene, camera);
-        frame += fps * secs;
-        frame %= maxFrame;
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
         lt = now;
     }
-
 };
 loop();
