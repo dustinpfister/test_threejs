@@ -12,20 +12,30 @@ DIR_ROOT = path.join(__dirname, '../..');
 router.get(/\/forpost\/([\s\S]*?)/, [
     // if we have ['forpost'] then render a forpost_index page for all for post folders
     (req, res, next) => {
+        // user data object
+        const DIR = path.join(DIR_ROOT, 'views', req.url);
         const arr = req.url.split('/').filter( n => n );
-        //console.log(req.url);
-        //console.log(arr)
-        if(arr.length === 1){
+        res.userData = {
+            page: 'main',
+            folderName: arr[1] || '',
+            demoName: arr[2] || '',
+            links: [],
+            items: [],
+            text: '',
+            arr: arr,
+            URL : req.url,
+            DIR : DIR,
+            uri_folder_index: path.join(DIR, 'index.ejs')
+        };
+        if(res.userData.arr.length === 1){
             build_index({
                 DIR_ROOT: DIR_ROOT,
                 source: 'forpost'
             })
             .then(function (links) {
-                res.render('index', {
-                    page: 'forpost_index',
-                    links: links,
-                    text: ''
-                });
+                // make a new object with res.userData, and whatever needs to override what is in there
+                const data = Object.assign({}, res.userData, { page:'forpost_index', links: links });
+                res.render('index', data);
             });
         }else{
             next();
@@ -33,16 +43,14 @@ router.get(/\/forpost\/([\s\S]*?)/, [
     },
     // if we have ['forpost', 'threejs-alpha-map'] then render an index of all demos for that for post folder
     (req, res, next) => {
-        const arr = req.url.split('/').filter( n => n );
-        const DIR = path.join(DIR_ROOT, 'views', req.url);
-        if(arr.length === 2){
+        if(res.userData.arr.length === 2){
             build_index({
                 DIR_ROOT: DIR_ROOT,
-                source: 'forpost/' + arr[1]
+                source: 'forpost/' + res.userData.arr[1]
             })
             .then((links) => {
                 let text = '';
-                readFile( path.join(DIR, 'README.md') )
+                readFile( path.join(res.userData.DIR, 'README.md') )
                 .then((md)=>{
                     text = md;
                 })
@@ -50,11 +58,8 @@ router.get(/\/forpost\/([\s\S]*?)/, [
                     text = 'no read me file for this for post folder.'
                 })
                 .then(()=>{
-                    res.render('index', {
-                        page: 'forpost_index',
-                        links: links,
-                        text: text
-                    });
+                    const data = Object.assign({}, res.userData, { page:'forpost_index', links: links, text: text });
+                    res.render('index', data);
                 })
             });
         }else{
@@ -63,23 +68,14 @@ router.get(/\/forpost\/([\s\S]*?)/, [
     },
     // if we have ['forpost', 'threejs-alpha-map', 's1-1-basic'] check if there is an index.ejs, if so render the demo
     (req, res, next) => {
-        const arr = req.url.split('/').filter( n => n );
-        const DIR = path.join(DIR_ROOT, 'views', req.url);
-        const folderName = arr[1];
-        const demoName = arr[2];
         // do we need to render a for post page for a given demo?
-        if (arr.length === 3) {
-            const uri_folder_index = path.join(DIR, 'index.ejs');
+        if (res.userData.arr.length === 3) {
             // check for an index file and render the for post page if there is one
-            access( uri_folder_index )
+            access( res.userData.uri_folder_index )
             .then(()=>{
-                res.render('index', {
-                    page: 'forpost',
-                    uri_folder_index:  uri_folder_index,
-                    DIR: DIR,
-                    folderName: folderName,
-                    demoName: demoName
-                });
+                // redner the forpost page
+                const data = Object.assign({}, res.userData, { page:'forpost' });
+                res.render('index', data);
             })
             // catch happend when trying to get an index.ejs
             .catch(() => {
@@ -92,20 +88,10 @@ router.get(/\/forpost\/([\s\S]*?)/, [
     },
     // we may have a folder that contains static files or somehting like that
     (req, res, next) => {
-        const arr = req.url.split('/').filter( n => n );
-        const DIR = path.join(DIR_ROOT, 'views', req.url);
-        const folderName = arr[1];
-        const demoName = arr[2];
-        return readdir(DIR)
+        return readdir(res.userData.DIR)
         .then((items)=>{
-            res.render('index', {
-                page: 'noindex',
-                DIR: DIR,
-                URL: req.url,
-                items: items,
-                folderName: folderName,
-                demoName: demoName
-           });
+            const data = Object.assign({}, res.userData, { page:'noindex', items: items });
+            res.render('index', data);
         })
         // error reading dir
         .catch(()=>{
