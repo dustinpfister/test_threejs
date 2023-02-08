@@ -209,6 +209,7 @@ app.get('/forpost', function (req, res) {
         res.render('index', {
             page: 'forpost_index',
             links: links,
+            URL: req.url,
             text: ''
         });
     });
@@ -223,6 +224,7 @@ app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
         res.render('index', {
             page: 'forpost',
             arr: arr,
+            URL: req.url,
             folderName: arr[0],
             demoName: arr[1],
             uri_folder_index: path.join(DIR_ROOT,'views/forpost/' + arr[0] + '/' + arr[1] + '/index.ejs')
@@ -237,7 +239,8 @@ app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
                 res.render('index', {
                     page: 'forpost_index',
                     links: links,
-                    text: ''
+                    text: '',
+                    URL: req.url
                 });
             });
         }else{
