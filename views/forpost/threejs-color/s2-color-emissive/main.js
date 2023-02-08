@@ -9,7 +9,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // OBJECTS
 //-------- ----------
-var mesh1 = new THREE.Mesh(
+const mesh1 = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
     new THREE.MeshStandardMaterial({
         color: new THREE.Color(1, 1, 1),
@@ -21,7 +21,7 @@ scene.add(mesh1);
 //-------- ----------
 // LIGHT
 //-------- ----------
-var pl = new THREE.PointLight(new THREE.Color(1, 1, 1));
+const pl = new THREE.PointLight(new THREE.Color(1, 1, 1));
 pl.position.set(1, 3, 2);
 scene.add(pl);
 //-------- ----------
