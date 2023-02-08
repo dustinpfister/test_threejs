@@ -12,7 +12,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
-(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+(document.querySelector('#demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
 // OBJECTS
 // ---------- ----------

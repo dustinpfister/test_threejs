@@ -1,21 +1,25 @@
 ## threejs r150 notes
 
-As of r150 forward I am going to have to start doing everything with JSM in place of ye old javaScript files. In r148 the examples/js folder was removed which is a major resource that I often mentioned in my blog posts so all ready I will need to start editing my blog posts in light of that to being with. On top of that it looks like three.js, and three.min.js are on the chopping block as well, although it will not happening in r150 at least. However even though three.min.js will be there to work with in r150 I am going to start updating my blog posts with pure JSM code as of r150 forward so that I get a jump on this way before these files are removed which [may happen in r160](
+As of r150 forward I am going to have to start doing everything with JSM in place of ye old javaScript files. In r148 the examples/js folder was removed which is a major resource that I often mentioned in my blog posts so all ready I will need to start editing my blog posts in light of that to begin with. On top of that it looks like three.js, and three.min.js are on the chopping block as well, although it will not happening in r150 at least. However even though three.min.js will be there to work with in r150 I am going to start updating my blog posts with pure JSM code as of r150 forward so that I get a jump on this way before these files are removed which [may happen in r160](
 https://github.com/mrdoob/three.js/pull/25435#issuecomment-1420622940).
 
-However I will have to start update my blog posts in a way so that the older source code exmaples and text are still there for pople that which to stick to using older revisions of threejs. With that said r146 will be the last revision that I will be observing where both the examples/js folder and three.min.js exist and I will have to write about this in each "Version Numbers Matter" section.
+However I will have to start to edit my blog posts in a way so that the older source code exmaples and text are still there for people that wish to stick to using older revisions of threejs. With that said r146 will be the last revision that I will be observing where both the examples/js folder and three.min.js exist, and I will have to write about this in each "Version Numbers Matter" section.
 
-### What I will be doing as of r150+
+### r150 code style 
 
-So then as of r150 I will be doing the following
+As of r150 I will be doing the following
 
-* use three.module.js over that of three.min.js, as three.min.js will be removed in a future revision
-* use addons from examples/jsm folder, as examples/js is no more
-* use import maps for each r150+ demo, and module script type for all javaScript files
-* use import maps when updating old for post folder examples to r150 style outline
-* use import and export over an IIFE pattern when making and updating various custom threejs modules
+* Use three.module.js over that of three.min.js, as three.min.js will be removed in a future revision
+* Use addons from examples/jsm folder, as examples/js is no more
+* Use import maps for each r150+ demo, an each for post demo that I am updating to r150+
+* Use import and export over the old IIFE pattern I was using for various custom threejs modules
 * THREE.Clock should be used over new Date() or Date.now() when getting time stamps for loops
 * Alpha values should follow a pattern like a1, a2, a3, ect.
+* Mesh objects should follow a pattern like mesh1, mesh2, mesh3, ect
+* Will be using the WebGL 1 Renderer by default to keep my examples Raspberry PI OS friendly
+* Only using WebGL 2 Renderer for demos on threejs features where WebGl 2 is required (SkinnedMesh, ect)
+* camera.position, and camera.lookAt calls sould be part of RENDER/LOOP code block sections
+* using (document.querySelector('#demo') || document.body) to get a ref to the mount point element for the renderer
 
 ### r150 style example
 
