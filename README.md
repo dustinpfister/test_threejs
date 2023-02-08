@@ -24,11 +24,11 @@ $ cd test_threejs
 $ npm install
 ```
 
-## 2 - Starting the server
+## 2 - Starting a server
 
-I made the server script a long time ago, and it is not at all how I would go about making one these days. However as long as it still works okay I can not say that I have much interest to sit down and write a new one. It is just a single index javaScript file at the root of this folder, and it runs on top of [express](https://dustinpfister.github.io/2018/06/12/express/) using [ejs](https://dustinpfister.github.io/2017/12/07/nodejs-ejs-javascript-templates/) for rendering of templates.
+I now have a node folder with two options for starting a server both of which make use of [express](https://dustinpfister.github.io/2018/06/12/express/) and [ejs](https://dustinpfister.github.io/2017/12/07/nodejs-ejs-javascript-templates/) for the rendering of templates. Both the new and old scripts use the same ejs templates at the time of this writing, but the new script is thus far working a little better when it comes to fully exploring the demo and for post folders.
 
-### 2.1 - Start by calling index script directly
+### 2.1 - Start the new server by calling index script directly
 
 Once all dependencies are installed, call the main index.js file at the root name space by one way or another, such as directly calling it when the current working directory is the root name space of the project.
 
@@ -45,6 +45,19 @@ I also have a start.sh file that should work well for starting the sever in a Li
 ```
 $ ./start.sh
 ```
+
+### 2.3 - If for some reason you want to run the older server script
+
+I have the current state of the older server file parked in the server-old folder in the main node folder. Thus far I just made a few changes that have to do with getting the script to work from the new location, but also fixed a few bugs as well. Still I can not say that I will be doing much more work on this when I do get around to working on nodejs scripts for this project. If for some reason you want to run it though there is using the npm script, or calling the script directly.
+
+```
+$ npm run start_old
+```
+
+```
+$ node ./node/server-old/index.js
+```
+
 
 ## 3 - The views folder
 
