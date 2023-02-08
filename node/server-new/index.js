@@ -21,21 +21,10 @@ const PORT = process.env.PORT || process.argv[2] || 8030;
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(DIR_ROOT, 'views') );
-//-------- ----------
-// STATIC FOLDERS
-//-------- ----------
+// paths
 app.use('/', express.static( path.join(DIR_ROOT, 'views'), {index: false} ) );
-//-------- ----------
-// DEMOS PATH
-//-------- ----------
 app.use(require('./path-demo.js'));
-//-------- ----------
-// FORPOST PATH
-//-------- ----------
 app.use(require('./path-forpost.js'));
-//-------- ----------
-// ROOT PATH
-//-------- ----------
 app.get('/', function (req, res) {
     res.render('index', {
         page: 'main'

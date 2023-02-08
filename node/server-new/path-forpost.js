@@ -9,19 +9,48 @@ build_index = require('./build-index.js'),
 router = express.Router(),
 DIR_ROOT = path.join(__dirname, '../..');
 
+/*
 router.get('/forpost', function (req, res) {
     build_index({
         DIR_ROOT: DIR_ROOT,
         source: 'forpost'
-    }).then(function (links) {
+    })
+    .then(function (links) {
         res.render('index', {
             page: 'forpost_index',
             links: links
         });
     });
 });
+*/
 // render local index.ejs file, or send local resource
-router.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
+//router.get(/\/forpost\/([\s\S]*?)/, [
+
+
+router.get(/\/forpost\/([\s\S]*?)/, [
+    // if we have ['forpost'] then render a forpost_index page for all for post folders
+    (req, res, next) => {
+        const arr = req.url.split('/').filter( n => n );
+        console.log(req.url);
+        console.log(arr)
+        if(arr.length === 1){
+            build_index({
+                DIR_ROOT: DIR_ROOT,
+                source: 'forpost'
+            })
+            .then(function (links) {
+                res.render('index', {
+                    page: 'forpost_index',
+                    links: links
+                });
+            });
+        }else{
+            next();
+        }
+    },
+
+    (req, res, next) => {
+
     let arr = req.url.replace(/\/forpost\/([\s\S]*?)/, '').split('/');
     arr = arr.reduce((acc, str)=>{
         if(str != ''){
@@ -85,7 +114,7 @@ router.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
     }
     // if we some how make it here, end the request
     res.end();
-});
+}]);
 
 
 module.exports = router;
