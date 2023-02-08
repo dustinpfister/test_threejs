@@ -1,82 +1,93 @@
-var randomColor = function () {
-    var r = Math.random(),
+//-------- ----------
+// SCENE, CAMERA, RENDERER
+//-------- ----------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+// ---------- ----------
+// HELPER FUNCTIONS
+// ---------- ----------
+const randomColor = function () {
+    const r = Math.random(),
     g = Math.random(),
     b = Math.random();
     return new THREE.Color(r, g, b);
 };
-var randomPosition = function () {
-    var x = -3 + 4 * Math.random(),
+const randomPosition = function () {
+    const x = -3 + 4 * Math.random(),
     y = -1 + 2 * Math.random(),
     z = 2 + Math.random() * 5 * -1;
     return new THREE.Vector3(x, y, z);
 };
-
-var createBoxGroup = function(){
+const createBoxGroup = function(){
     // creating a group of mesh object with random colors
-    var group = new THREE.Group();
-    var i = 0,
-    len = 15;
+    const group = new THREE.Group(), len = 15;
+    let i = 0;
     while (i < len) {
-        var box = new THREE.Mesh(
+        const mesh = new THREE.Mesh(
             new THREE.BoxGeometry(0.5, 0.5, 0.5),
             new THREE.MeshStandardMaterial({
                 color: randomColor()
-            }));
-        box.position.copy(randomPosition());
-        group.add(box);
+            })
+        );
+        mesh.position.copy(randomPosition());
+        group.add(mesh);
         i += 1;
     }
     return group;
 };
-
-// creating a scene
-var scene = new THREE.Scene();
+// ---------- ----------
+// OBJECTS
+// ---------- ----------
 scene.add(new THREE.GridHelper(8,8))
-var group = createBoxGroup();
+const group = createBoxGroup();
 scene.add(group);
-// ADD A LIGHT BECUASE THIS IS THE STANDARD MATERIAL
-var light = new THREE.PointLight(new THREE.Color(1, 1, 1));
-light.position.set(1, 3, 2);
-scene.add(light);
-
-// camera
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+// ---------- ----------
+// LIGHT
+// ---------- ----------
+const pl = new THREE.PointLight(new THREE.Color(1, 1, 1));
+pl.position.set(1, 3, 2);
+scene.add(pl);
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
 camera.position.set(4, 4, 4);
 camera.lookAt(0, 0, 0);
-// renderer
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-
-var lt = new Date(),
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 900;
+let secs = 0,
 frame = 0,
-maxFrame = 200,
-fps = 30;
-var loop = function () {
-    var now = new Date(),
-    per = frame / maxFrame,
-    bias = 1 - Math.abs(per - 0.5) / 0.5,
+lt = new Date();
+const update = function(frame, frameMax){
+    const a1 = frame / frameMax;
+    const a2 = 1 - Math.abs(a1 - 0.5) / 0.5;
+    group.children.forEach(function (box) {
+        const r = 0.05 * a1,
+        g = r, b = r,
+        color = box.material.color;
+        color.add( new THREE.Color(r, g, b) );
+        color.r = color.r > 1 ? 1 : color.r;
+        color.g = color.g > 1 ? 1 : color.g;
+        color.b = color.b > 1 ? 1 : color.b;
+        if(color.equals(new THREE.Color(1,1,1))){
+            box.material.color = randomColor();
+        }
+    });
+    group.rotation.y = Math.PI * 2 * a2;
+};
+const loop = () => {
+    const now = new Date(),
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
-    if (secs > 1 / fps) {
-        group.children.forEach(function (box) {
-            var r = 0.05 * per,
-            g = r, b = r,
-            color = box.material.color;
-            color.add( new THREE.Color(r, g, b) );
-            color.r = color.r > 1 ? 1 : color.r;
-            color.g = color.g > 1 ? 1 : color.g;
-            color.b = color.b > 1 ? 1 : color.b;
-            if(color.equals(new THREE.Color(1,1,1))){
-                box.material.color = randomColor();
-            }
-        });
-        group.rotation.y = Math.PI * 2 * per;
+    if(secs > 1 / FPS_UPDATE){
+        update( Math.floor(frame), FRAME_MAX);
         renderer.render(scene, camera);
-        frame += fps * secs;
-        frame %= maxFrame;
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
         lt = now;
     }
-
 };
 loop();
