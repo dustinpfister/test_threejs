@@ -14,6 +14,13 @@ So then as of r150 I will be doing the following
 * use import maps for each r150+ demo, and module script type for all javaScript files
 * use import maps when updating old for post folder examples to r150 style outline
 * use import and export over an IIFE pattern when making and updating various custom threejs modules
+* THREE.Clock should be used over new Date() or Date.now() when getting time stamps for loops
+* Alpha values should follow a pattern like a1, a2, a3, ect.
+
+### r150 style example
+
+As with older demo folders I have made the getting-started demo the first demo that will set the tone for just about all other demos. it would be best to check out the [source code of that example](https://github.com/dustinpfister/test_threejs/tree/master/views/demos/r150/getting-started) to get an index of what code style should be for r150+.
+
 
 ```html
 <script type="importmap">
@@ -25,87 +32,6 @@ So then as of r150 I will be doing the following
     }
 </script>
 <script type="module" src="/demos/r<%= r %>/<%= demoName %>/js/main.js"></script>
-```
-
-### r150 style example
-
-As with older demo folders I have made the getting-started demo the first demo that will set the tone for just about all other demos.
-
-```js
-// ---------- ----------
-// IMPORT THREEJS and ADDONS
-// ---------- ----------
-// need to start using import in order to use three.module.js over three.min.js
-// need to also use import for addons as examples/js is no more
-import * as THREE from 'three';
-import { OrbitControls } from 'OrbitControls';
-// ---------- ----------
-// SCENE, CAMERA, RENDERER
-// ---------- ----------
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-const renderer = new THREE.WebGL1Renderer();
-renderer.setSize(640, 480, false);
-(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-// ---------- ----------
-// OBJECTS
-// ---------- ----------
-scene.add( new THREE.GridHelper( 10,10 ) );
-const mesh = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshNormalMaterial());
-scene.add(mesh);
-// ---------- ----------
-// CONTROLS
-// ---------- ----------
-// try catch or some other kind of deal should be done more often then not when using
-// an optional add on. There is doing what I can to make sure code examples like this will still work
-// when just used with treejs alone, when and where possible.
-try{
-    const controls = new OrbitControls(camera, renderer.domElement);
-}catch(e){
-    console.warn('OrbitControls JSM module not loaded.');
-}
-// ---------- ----------
-// ANIMATION LOOP
-// ---------- ----------
-// fixed camera values should be done in the animation loop or render code section
-camera.position.set(1.25, 1.25, 1.25);
-camera.lookAt(0, 0, 0);
-// constant values and state for main app loop
-const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
-FPS_MOVEMENT = 30,     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 120;
-let secs = 0,
-frame = 0,
-lt = new Date();
-// update
-const update = (frame, frameMax) => {
-    // alpha values come up all the time. I have started getting in the habbit of having
-    // a Naming pattern for them like this:
-    const a1 = frame / frameMax;
-    const a2 = 1 - Math.abs(0.5 - a1 ) / 0.5;
-    const a3 = THREE.MathUtils.smoothstep(a2, 0, 1);
-    // update content
-    const degree = 360 * a3
-    mesh.rotation.x = THREE.MathUtils.degToRad(degree);
-};
-// loop
-const loop = () => {
-    const now = new Date(),
-    secs = (now - lt) / 1000;
-    requestAnimationFrame(loop);
-    if(secs > 1 / FPS_UPDATE){
-        // update, render
-        update( Math.floor(frame), FRAME_MAX);
-        renderer.render(scene, camera);
-        // step frame
-        frame += FPS_MOVEMENT * secs;
-        frame %= FRAME_MAX;
-        lt = now;
-    }
-};
-loop();
 ```
 
 ### Yes It does look like three.min.js is going to go bye bye
