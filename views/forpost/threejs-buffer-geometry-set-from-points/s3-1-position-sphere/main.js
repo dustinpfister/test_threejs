@@ -37,13 +37,33 @@ const createGeometry = (point_count, sec_count, rotation_count, y_mag, radius) =
     return geometry;
 };
 
+const updateGeometry = (geometry, sec_count, rotation_count, y_mag, radius) => {
+    const att_pos = geometry.getAttribute('position');
+
+
+    const v3array =  myV3Array(att_pos.count, sec_count, rotation_count, y_mag, radius);
+
+    let i = 0;
+    const len = att_pos.count;
+    while(i < len){
+        const v = v3array[i];
+        att_pos.setX(i, v.x);
+        att_pos.setY(i, v.y);
+        att_pos.setZ(i, v.z);
+        i += 1;
+    }
+    att_pos.needsUpdate = true;
+};
 
 //-------- ----------
 // OBJECTS
 //-------- ----------
-const geometry = createGeometry(200, 2, 2, 1, 3);
+const geometry = createGeometry(50, 2, 2, 1, 3);
 const points1 = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.2}));
 scene.add(points1);
+
+
+updateGeometry(geometry, 2, 2, 1, 3)
 
 // ---------- ----------
 // ANIMATION LOOP
