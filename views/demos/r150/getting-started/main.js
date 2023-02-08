@@ -41,10 +41,11 @@ camera.lookAt(0, 0, 0);
 // constant values and state for main app loop
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30,     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 120;
+FRAME_MAX = 120,
+CLOCK = new THREE.Clock(true); // USING THREE.Clock in place of new Date() or Date.now()
 let secs = 0,
 frame = 0,
-lt = new Date();
+lt = CLOCK.getElapsedTime();
 // update
 const update = (frame, frameMax) => {
     // alpha values come up all the time. I have started getting in the habbit of having
@@ -58,8 +59,8 @@ const update = (frame, frameMax) => {
 };
 // loop
 const loop = () => {
-    const now = new Date(),
-    secs = (now - lt) / 1000;
+    const now = CLOCK.getElapsedTime(),
+    secs = (now - lt);
     requestAnimationFrame(loop);
     if(secs > 1 / FPS_UPDATE){
         // update, render
