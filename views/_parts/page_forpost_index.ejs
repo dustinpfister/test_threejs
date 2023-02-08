@@ -1,6 +1,11 @@
 
 
 <h3>Forpost Index:</h3>
+<p><%= URL %></p>
+<br>
+<hr>
+<br>
+
 <div class="links">
 <% links.forEach(function(link){ %>
  <a href="<%= link.href %>"><%= '' + link.name.replace(/-/g,'_') + '' || 'no name' %></a>  <br><br>
