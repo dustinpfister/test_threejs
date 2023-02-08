@@ -2,7 +2,6 @@
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
 const scene = new THREE.Scene();
-scene.add(new THREE.GridHelper(10, 10));
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -32,6 +31,17 @@ const createGeometry = (point_count, sec_count, rotation_count, y_mag, radius) =
     const v3array =  myV3Array(point_count, sec_count, rotation_count, y_mag, radius);
     const geometry = new THREE.BufferGeometry();
     geometry.setFromPoints(v3array);
+    // adding vertex color to while I am at it
+    let i = 0;
+    const att_pos = geometry.getAttribute('position');
+    const len = att_pos.count;
+    const data_color = [];
+    while(i < len){
+        const n = 0.25 + 0.75 * (i / len);
+        data_color.push(0, 1 - n, n);
+        i += 1;
+    }
+    geometry.setAttribute('color', new THREE.Float32BufferAttribute(data_color, 3));
     return geometry;
 };
 // update a geometry
@@ -53,13 +63,13 @@ const updateGeometry = (geometry, sec_count, rotation_count, y_mag, radius) => {
 // OBJECTS
 //-------- ----------
 const geometry = createGeometry(400, 1, 2, 1, 3);
-const points1 = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.5}));
+const points1 = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.5, vertexColors: true}));
 scene.add(points1);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
 camera.position.set(5, 5, 5);
-camera.lookAt(0, 0, 0);
+camera.lookAt(0, -1, 0);
 const FPS_UPDATE = 20,  // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 300;

@@ -1,13 +1,13 @@
 # threejs-buffer-geometry-set-from-points todo list
 
-## () sx-1-position-sphere
-* () position attribite example in which I am not using set from points
-* () create an array of vector3 objects using the sphere code based on the morph attributes threejs example
-* () create new buffer geometry from a points array
-* () this example will involve an app loop
-* () update a buffer geometry with a points array
+## ( done 02/08/2023 ) s3-1-position-sphere
+* (done) position attribite example in which I am not using set from points to update
+* (done) create an array of vector3 objects
+* (done) create new buffer geometry from a points array
+* (done) this example will involve an app loop
+* (done) update a buffer geometry with a points array
 
-## ( done 01.05/2023 ) start new basic section
+## ( done 01/05/2023 ) start new basic section
 * (done) the current basic section is not so basic, rename the examples to to s2-\(n\)-mesh-\(subname\)
 * (done) start a new s1-1-basic-points demo
 
