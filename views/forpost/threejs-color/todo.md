@@ -1,5 +1,15 @@
 # threejs-color
 
+## () - sx-x-vertexcolors
+* () start a full vertex colors section
+
+## () - s1-3-basic-vertex-colors
+* () new basic example of vertex colors
+* () just use vertex colors for a built in geometry
+
+## () - consolidate demos
+* () Many of these demos should be consolidate into a few sections
+
 ## ( done 02/08/2023 ) - expand basic section
 * (done) rename s1-basic to s1-1-basic-material-color
 * (done) new s1-2-basic-lines example
