@@ -113,13 +113,7 @@ app.get(/\/demos\/r\d{1,3}/, function (req, res) {
         r = m[0].split('r')[1];
     }
     // fixed werid bug with this script
-    let arr = req.url.replace(/\/demos\/([\s\S]*?)/, '').split('/');
-    arr = arr.reduce((acc, str)=>{
-        if(str != ''){
-           acc.push(str);
-        }
-        return acc;
-    }, []);
+    let arr = req.url.replace(/\/demos\/([\s\S]*?)/, '').split('/').filter( n => n );
     // if arr length is 1 then we just need to built an index for all the demos of that R number
     if(arr.length === 1){
         buildIndex({
@@ -221,14 +215,7 @@ app.get('/forpost', function (req, res) {
 
 // render local index.ejs file, or send local resource
 app.get(/\/forpost\/([\s\S]*?)/, function (req, res) {
-    let arr = req.url.replace(/\/forpost\/([\s\S]*?)/, '').split('/');
-    // this fixed a weird bug becuase of blank strings
-    arr = arr.reduce((acc, str)=>{
-        if(str != ''){
-           acc.push(str);
-        }
-        return acc;
-    }, []);
+    let arr = req.url.replace(/\/forpost\/([\s\S]*?)/, '').split('/').filter( n => n );
     // render an index.ejs for a given section folder
     // ( /views/forpost/threejs-examples-tree/basic/index.ejs )
     if (arr.length === 2 || arr[2] === '') {
