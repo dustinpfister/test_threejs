@@ -103,25 +103,8 @@ app.get('/demos', function (req, res) {
     });
 });
 
-// demos list for a given revision
+// demos list for a given revision, as well as a demo of a revision number
 // ( /demos/r[revisionNumber] )
-app.get(/(\/demos\/r\d{1,3})$/, function (req, res) {
-    let r = 91,
-    m = req.url.match(/r\d{1,3}/);
-    if (m) {
-        r = m[0].split('r')[1];
-    }
-    buildIndex({
-        source: 'demos/r' + r
-    }).then(function (links) {
-        res.render('index', {
-            page: 'demo_index',
-            links: links
-        });
-    });
-});
-
-// demos paths for a given demo
 // ( /demos/r[revisionNumber]/[demoName] )
 app.get(/\/demos\/r\d{1,3}/, function (req, res) {
     let r = 91,
@@ -129,6 +112,27 @@ app.get(/\/demos\/r\d{1,3}/, function (req, res) {
     if (m) {
         r = m[0].split('r')[1];
     }
+    // fixed werid bug with this script
+    let arr = req.url.replace(/\/demos\/([\s\S]*?)/, '').split('/');
+    arr = arr.reduce((acc, str)=>{
+        if(str != ''){
+           acc.push(str);
+        }
+        return acc;
+    }, []);
+    // if arr length is 1 then we just need to built an index for all the demos of that R number
+    if(arr.length === 1){
+        buildIndex({
+            source: 'demos/r' + r
+        }).then(function (links) {
+            res.render('index', {
+                page: 'demo_index',
+                links: links
+            });
+        });
+        return;
+    }
+    // else we should have a demo folder
     res.render('index', {
         page: 'demo',
         r: r,
