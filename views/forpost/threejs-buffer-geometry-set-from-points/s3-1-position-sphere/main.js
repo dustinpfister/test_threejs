@@ -10,29 +10,30 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 //-------- ----------
-// 
+// HELPERS
 //-------- ----------
-const v3array = [];
-const point_count  = 200;
-const sec_count = 5;
-const rotation_count = 1;
-const y_mag = 1;
-const radius = 3;
-for ( let i = 0; i < point_count; i ++ ) {
-     const a1 = i / point_count;
-     const a2 = a1 * sec_count % 1;
-     const a3 = Math.floor(sec_count * a1) / sec_count;
-     const a4 = 1 - Math.abs(0.5 - a1) / 0.5;
-     const e = new THREE.Euler();
-     e.y = Math.PI * 2 * rotation_count * a2;
-     const v = new THREE.Vector3(1, 0, 0);
-     v.applyEuler(e).multiplyScalar(radius * a4);
-     v.y = y_mag * -1 + (y_mag * 2) * a3;
-     v3array.push(v);
-}
+
+const myV3Array = (point_count, sec_count, rotation_count, y_mag, radius) => { 
+    const v3array = [];
+    for ( let i = 0; i < point_count; i ++ ) {
+        const a1 = i / point_count;
+        const a2 = a1 * sec_count % 1;
+        const a3 = Math.floor(sec_count * a1) / sec_count;
+        const a4 = 1 - Math.abs(0.5 - a1) / 0.5;
+        const e = new THREE.Euler();
+        e.y = Math.PI * 2 * rotation_count * a2;
+        const v = new THREE.Vector3(1, 0, 0);
+        v.applyEuler(e).multiplyScalar(radius * a4);
+        v.y = y_mag * -1 + (y_mag * 2) * a3;
+        v3array.push(v);
+    }
+    return v3array;
+};
+
 //-------- ----------
 // OBJECTS
 //-------- ----------
+const v3array =  myV3Array(200, 2, 2, 1, 3);
 const geometry = new THREE.BufferGeometry();
 geometry.setFromPoints(v3array);
 const points1 = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.2}));
