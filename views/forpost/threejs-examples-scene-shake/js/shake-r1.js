@@ -1,4 +1,4 @@
-/*   r1 of shake.js for threejs-examples-scene-shake
+/*   shake.js -r1 - form threejs-examples-scene-shake
  *       * just an update public method
  *       * posRange, degRange, and intensity values
  */

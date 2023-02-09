@@ -1,9 +1,8 @@
-/*   r0 of shake.js for threejs-examples-scene-shake
+/*   shake.js - r0 - for threejs-examples-scene-shake
  *
  *
  */
 (function (api) {
-
     // degree to radian
     var deg = function (deg) {
         return Math.PI / 180 * deg;
@@ -20,7 +19,6 @@
         max = deg(state.deg * 2);
         return min + max * Math.random();
     };
-
     // create
     api.create = function (opt) {
         opt = opt || {};
@@ -33,7 +31,6 @@
         };
         return shake;
     };
-
     // just make a roll
     api.roll = function (shake) {
         shake.euler.x = rndDeg(shake);
@@ -43,7 +40,6 @@
         shake.vector.y = rndPos(shake);
         shake.vector.z = rndPos(shake);
     };
-
     // apply a new shake to object3d
     api.applyToObject3d = function (shake, obj3d) {
         // save home data
@@ -65,6 +61,4 @@
             obj3d.position.copy(sd.homeVector);
         }
     }
-
-}
-    (this['ShakeMod'] = {}));
+}(this['ShakeMod'] = {}));
