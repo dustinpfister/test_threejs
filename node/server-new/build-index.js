@@ -8,18 +8,22 @@ const build_index = function (opt) {
     opt.DIR_ROOT = opt.DIR_ROOT || __dirname;
     let uri = path.join(opt.DIR_ROOT, 'views/' + opt.source);
     opt.through2 = opt.through2 || through2.obj(function (item, enc, next) {
-            if (item.path != uri) {
-                if (item.stats.isDirectory()) {
-                    this.push(item);
-                }
+
+        if (item.path != uri) {
+            if (item.stats.isDirectory()) {
+                this.push(item);
             }
-            next()
-        });
+        }
+        next()
+    });
     // return a promise
     return new Promise(function (resolve, reject) {
         let links = [];
         klaw(uri, {
             depthLimit: 0
+        })
+        .on('error', (e) => {
+            reject(e)
         })
         .pipe(opt.through2)
         .on('data', function (item) {

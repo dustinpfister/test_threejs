@@ -36,7 +36,10 @@ router.get(/\/forpost\/([\s\S]*?)/, [
                 // make a new object with res.userData, and whatever needs to override what is in there
                 const data = Object.assign({}, res.userData, { page:'forpost_index', links: links });
                 res.render('index', data);
-            });
+            })
+            .catch(() => {
+                next();
+            })
         }else{
             next();
         }
@@ -61,6 +64,10 @@ router.get(/\/forpost\/([\s\S]*?)/, [
                     const data = Object.assign({}, res.userData, { page:'forpost_index', links: links, text: text });
                     res.render('index', data);
                 })
+            })
+            // catch happend when trying to render an index
+            .catch((e) => {
+                next();
             });
         }else{
             next();
