@@ -60,19 +60,17 @@ group_source.add( createSourceObject(4.0, 1.0,   2.0, 0.0,   -2.0, 0.0,   0.0, 0
 // ---------- ----------
 // TRACK OBJECTS
 // ---------- ----------
-const track1 = createTrackObject(group_source, 0, 4.5, -1)
-scene.add(track1);
-const track2 = createTrackObject(group_source, 1, 3.0,  3.0)
-scene.add(track2);
-const track3 = createTrackObject(group_source, 2, -1.0, 4.5)
-scene.add(track3);
-//-------- ----------
-// CURVE PATH - a curve path that will funciton as a track created from the Track Object Curves and Mesh Positions
-//-------- ----------
 const curve = new THREE.CurvePath();
-curve.add( createTrackCurvePart(track1) );
-curve.add( createTrackCurvePart(track2) );
-curve.add( createTrackCurvePart(track3) );
+[
+    [0,  4.5, -1.0,  0.0],
+    [1,  3.0,  3.0,  0.0],
+    [2, -1.0,  4.5,  0.0]
+].forEach((data)=>{
+    const track = createTrackObject(group_source, data[0], data[1], data[2], data[3]);
+    scene.add(track);
+    curve.add( createTrackCurvePart(track) );
+});
+// curve
 const geo_points = new THREE.BufferGeometry().setFromPoints( curve.getPoints(19) );
 scene.add( new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25}) ) );
 // ---------- ----------
