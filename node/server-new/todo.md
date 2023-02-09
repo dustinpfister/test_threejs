@@ -30,6 +30,9 @@
 * () have an array of functions for path-demo.js as with path-forpost.js
 * () have better error handing by adding catch promise calls like in path-forpost.js
 
+## (done 02/09/2023 ) - sending 500 status for bad reqs to forpost
+* (done) sendStatus(500) for last function
+
 ## (done 02/09/2023 ) - better error handling
 * (done) fixed the built index method would not reject a promise.
 * (done) add catch calls for all promsies in path-forpost.js

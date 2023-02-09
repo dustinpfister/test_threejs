@@ -8,6 +8,8 @@ express = require('express'),
 build_index = require('./build-index.js'),
 router = express.Router(),
 DIR_ROOT = path.join(__dirname, '../..');
+
+
 // for any get request to /forport path...
 router.get(/\/forpost\/([\s\S]*?)/, [
     // if we have ['forpost'] then render a forpost_index page for all for post folders
@@ -27,9 +29,6 @@ router.get(/\/forpost\/([\s\S]*?)/, [
             DIR : DIR,
             uri_folder_index: path.join(DIR, 'index.ejs')
         };
-
-console.log(res.userData)
-
         if(res.userData.arr.length === 1){
             build_index({
                 DIR_ROOT: DIR_ROOT,
@@ -88,13 +87,9 @@ console.log(res.userData)
                 res.render('index', data);
             })
             // catch happend when trying to get an index.ejs
-            .catch((e) => {
-                if(e.code === 'ENOENT'){
-                    res.send(404)
-                }else{
-                    next();
-                }
-            })
+            .catch( (e) => {
+                next();
+            });
         }else{
             // we have somehting like /forpost/threejs-alpha-map/js/modules/foo/r0
             next();
@@ -108,13 +103,14 @@ console.log(res.userData)
             res.render('index', data);
         })
         // error reading dir
-        .catch(()=>{
+        .catch(() => {
             next();
         })
     },
     // if we make it here for some reason end the request
     (req, res, next) => {
-        res.end();
+        // just send a 500 status
+        res.sendStatus(500);
     }
 ]);
 // export
