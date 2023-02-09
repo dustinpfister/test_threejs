@@ -27,6 +27,9 @@ router.get(/\/forpost\/([\s\S]*?)/, [
             DIR : DIR,
             uri_folder_index: path.join(DIR, 'index.ejs')
         };
+
+console.log(res.userData)
+
         if(res.userData.arr.length === 1){
             build_index({
                 DIR_ROOT: DIR_ROOT,
@@ -85,8 +88,12 @@ router.get(/\/forpost\/([\s\S]*?)/, [
                 res.render('index', data);
             })
             // catch happend when trying to get an index.ejs
-            .catch(() => {
-                next();
+            .catch((e) => {
+                if(e.code === 'ENOENT'){
+                    res.send(404)
+                }else{
+                    next();
+                }
             })
         }else{
             // we have somehting like /forpost/threejs-alpha-map/js/modules/foo/r0
