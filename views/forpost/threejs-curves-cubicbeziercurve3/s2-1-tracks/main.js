@@ -30,27 +30,6 @@ const createSourceObject = (w, d, sx, sz, ex, ez, dx, dz) => {
     //obj1.add( new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25}) ) );
     return obj1;
 };
-// ---------- ----------
-// SOURCE OBJECTS
-// ---------- ----------
-const group_source = new THREE.Group();
-scene.add(group_source)
-
-const obj1 = createSourceObject(1,4,   0,-2,   0,2,   0,0);
-obj1.position.set(4.5, 0.5, -1);
-group_source.add(obj1);
-
-
-
-const obj2 = createSourceObject(4,4,   1.5,-2,   -2,1.5,   1.5,1.5);
-obj2.position.set(3.0, 0.5, 3);
-group_source.add(obj2);
-
-
-//-------- ----------
-//-------- ----------
-const curve = new THREE.CurvePath();
-
 const createCurvePart = (obj) => {
     const c1 = obj.userData.curve;
     const v_objpos = new THREE.Vector3();
@@ -61,18 +40,25 @@ const createCurvePart = (obj) => {
     const v_end = v_objpos.clone().add(c1.v3);
     return new THREE.CubicBezierCurve3(v_start, v_c1, v_c2, v_end);
 };
-
-const c2 = createCurvePart(obj2)
-curve.add(c2);
-
-
-//curve.add( obj1.userData.curve );
-//curve.add( obj2.userData.curve );
-
+// ---------- ----------
+// SOURCE OBJECTS
+// ---------- ----------
+const group_source = new THREE.Group();
+scene.add(group_source)
+const obj1 = createSourceObject(1,4,   0,-2,   0,2,   0,0);
+obj1.position.set(4.5, 0.5, -1);
+group_source.add(obj1);
+const obj2 = createSourceObject(4,4,   1.5,-2,   -2,1.5,   1.5,1.5);
+obj2.position.set(3.0, 0.5, 3);
+group_source.add(obj2);
+//-------- ----------
+// CURVE PATH
+//-------- ----------
+const curve = new THREE.CurvePath();
+curve.add( createCurvePart(obj1) );
+curve.add( createCurvePart(obj2) );
 const geo_points = new THREE.BufferGeometry().setFromPoints( curve.getPoints(19) );
 scene.add( new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25}) ) );
-
-
 
 
 // ---------- ----------
@@ -80,9 +66,15 @@ scene.add( new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25}) 
 // ---------- ----------
 // grid helper
 scene.add( new THREE.GridHelper(10, 10) );
+const mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshNormalMaterial() )
+scene.add(mesh);
 // ---------- ----------
 // RENDER
 // ---------- ----------
 camera.position.set(-8,5,8);
 camera.lookAt(0,0,0);
+const a1 = 0.6;
+const a2 = ( a1 + 0.1 ) % 1;
+mesh.position.copy( curve.getPoint(a1) );
+mesh.lookAt( curve.getPoint( a2 ) );
 renderer.render(scene, camera);
