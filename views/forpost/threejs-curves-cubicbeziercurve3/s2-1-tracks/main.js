@@ -17,12 +17,7 @@ const createCurve = (v_start, v_end, v_d1, v_d2) => {
     const v_c2 = v_start.clone().lerp(v_end, 0.5).add(v_d2);
     return new THREE.CubicBezierCurve3(v_start, v_c1, v_c2, v_end);
 };
-// ---------- ----------
-// SOURCE OBJECTS
-// ---------- ----------
-const group_source = new THREE.Group();
-scene.add(group_source)
-
+// create a source object
 const createSourceObject = (w, d, sx, sz, ex, ez, dx, dz) => {
     const obj1 = new THREE.Group();
     const gud = obj1.userData;
@@ -31,18 +26,53 @@ const createSourceObject = (w, d, sx, sz, ex, ez, dx, dz) => {
     const v_d =  new THREE.Vector3(dx, 0.0, dz);
     gud.curve = createCurve(v_start, v_end, v_d, v_d);
     obj1.add( new THREE.Mesh( new THREE.BoxGeometry(w, 1, d), new THREE.MeshNormalMaterial()) )
-    const geo_points = new THREE.BufferGeometry().setFromPoints( gud.curve.getPoints(19) );
-    obj1.add( new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25}) ) );
+    //const geo_points = new THREE.BufferGeometry().setFromPoints( gud.curve.getPoints(19) );
+    //obj1.add( new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25}) ) );
     return obj1;
 };
+// ---------- ----------
+// SOURCE OBJECTS
+// ---------- ----------
+const group_source = new THREE.Group();
+scene.add(group_source)
 
 const obj1 = createSourceObject(1,4,   0,-2,   0,2,   0,0);
 obj1.position.set(4.5, 0.5, -1);
 group_source.add(obj1);
 
+
+
 const obj2 = createSourceObject(4,4,   1.5,-2,   -2,1.5,   1.5,1.5);
 obj2.position.set(3.0, 0.5, 3);
 group_source.add(obj2);
+
+
+//-------- ----------
+//-------- ----------
+const curve = new THREE.CurvePath();
+
+const createCurvePart = (obj) => {
+    const c1 = obj.userData.curve;
+    const v_objpos = new THREE.Vector3();
+    obj.getWorldPosition(v_objpos);
+    const v_start = v_objpos.clone().add(c1.v0);
+    const v_c1 = v_objpos.clone().add(c1.v1);
+    const v_c2 = v_objpos.clone().add(c1.v2);
+    const v_end = v_objpos.clone().add(c1.v3);
+    return new THREE.CubicBezierCurve3(v_start, v_c1, v_c2, v_end);
+};
+
+const c2 = createCurvePart(obj2)
+curve.add(c2);
+
+
+//curve.add( obj1.userData.curve );
+//curve.add( obj2.userData.curve );
+
+const geo_points = new THREE.BufferGeometry().setFromPoints( curve.getPoints(19) );
+scene.add( new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25}) ) );
+
+
 
 
 // ---------- ----------
