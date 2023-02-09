@@ -6,8 +6,9 @@
 * (done) a curve can be set to the userData object of the group of a source object
 * (done) the curve of a tack object can be used with the get get world position method of the group to create a curve path
 * (done) the curve path can funciton as a track by moving a mesh object that will be a train along the curve path
+* (done) create a whole bunch clones of these source objects to create a track
 
-* () create a whole bunch clones of these source objects to create a track
+* () I will want a helper method for creating track objects from source objects
 
 ## ( done 02/09/2023 ) s1-3-basic-object-position
 * (done) basic example where a curve is used to position objects
