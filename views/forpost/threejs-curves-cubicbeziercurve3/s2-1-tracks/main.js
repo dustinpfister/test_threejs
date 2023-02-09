@@ -52,15 +52,13 @@ const obj2 = createSourceObject(4,4,   1.5,-2,   -2,1.5,   1.5,1.5);
 obj2.position.set(3.0, 0.5, 3);
 group_source.add(obj2);
 //-------- ----------
-// CURVE PATH
+// CURVE PATH - a curve path that will funciton as a track created from the Track Object Curves and Mesh Positions
 //-------- ----------
 const curve = new THREE.CurvePath();
 curve.add( createCurvePart(obj1) );
 curve.add( createCurvePart(obj2) );
 const geo_points = new THREE.BufferGeometry().setFromPoints( curve.getPoints(19) );
 scene.add( new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25}) ) );
-
-
 // ---------- ----------
 // OBJECTS
 // ---------- ----------

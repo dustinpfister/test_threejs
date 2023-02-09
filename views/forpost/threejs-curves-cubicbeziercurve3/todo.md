@@ -1,8 +1,12 @@
 # threejs-curves-cubicbeziercurve3 todo list
 
 ## () s2-1-tracks
-* () start an example where I have a few source object options
-* () each source object is a group with a mesh, and a curve
+* (done) start an example where I have a few source object options
+* (done) each source object is a group with a mesh
+* (done) a curve can be set to the userData object of the group of a source object
+* (done) the curve of a tack object can be used with the get get world position method of the group to create a curve path
+* (done) the curve path can funciton as a track by moving a mesh object that will be a train along the curve path
+
 * () create a whole bunch clones of these source objects to create a track
 
 ## ( done 02/09/2023 ) s1-3-basic-object-position
