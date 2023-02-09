@@ -31,7 +31,7 @@ const createSourceObject = (w, d, sx, sz, ex, ez, dx, dz) => {
     return obj1;
 };
 // create a curve to be used as a track curve from a tack object
-const createTrackPart = (obj_track) => {
+const createTrackCurvePart = (obj_track) => {
     const c1 = obj_track.userData.curve;
     const v_objpos = new THREE.Vector3();
     obj_track.getWorldPosition(v_objpos);
@@ -40,6 +40,15 @@ const createTrackPart = (obj_track) => {
     const v_c2 = v_objpos.clone().add(c1.v2);
     const v_end = v_objpos.clone().add(c1.v3);
     return new THREE.CubicBezierCurve3(v_start, v_c1, v_c2, v_end);
+};
+// create a track object for the scene
+const createTrackObject = (group_source, index, x, z, dy) => {
+    dy = dy === undefined ? 0 : dy;
+    const obj_source = group_source.children[index];
+    const track = obj_source.clone();
+    track.userData.curve = obj_source.userData.curve;
+    track.position.set(x, 0.5 + dy, z);
+    return track;
 };
 // ---------- ----------
 // SOURCE OBJECTS
@@ -51,25 +60,19 @@ group_source.add( createSourceObject(4.0, 1.0,   2.0, 0.0,   -2.0, 0.0,   0.0, 0
 // ---------- ----------
 // TRACK OBJECTS
 // ---------- ----------
-const track1 = group_source.children[0].clone();
-track1.userData.curve = group_source.children[0].userData.curve;
-track1.position.set(4.5, 0.5, -1);
+const track1 = createTrackObject(group_source, 0, 4.5, -1)
 scene.add(track1);
-const track2 = group_source.children[1].clone();
-track2.userData.curve = group_source.children[1].userData.curve;
-track2.position.set(3.0, 0.5, 3);
+const track2 = createTrackObject(group_source, 1, 3.0,  3.0)
 scene.add(track2);
-const track3 = group_source.children[2].clone();
-track3.userData.curve = group_source.children[2].userData.curve;
-track3.position.set(-1, 0.5, 4.5);
-scene.add(track3)
+const track3 = createTrackObject(group_source, 2, -1.0, 4.5)
+scene.add(track3);
 //-------- ----------
 // CURVE PATH - a curve path that will funciton as a track created from the Track Object Curves and Mesh Positions
 //-------- ----------
 const curve = new THREE.CurvePath();
-curve.add( createTrackPart(track1) );
-curve.add( createTrackPart(track2) );
-curve.add( createTrackPart(track3) );
+curve.add( createTrackCurvePart(track1) );
+curve.add( createTrackCurvePart(track2) );
+curve.add( createTrackCurvePart(track3) );
 const geo_points = new THREE.BufferGeometry().setFromPoints( curve.getPoints(19) );
 scene.add( new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25}) ) );
 // ---------- ----------
