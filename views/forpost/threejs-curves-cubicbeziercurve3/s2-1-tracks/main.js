@@ -48,7 +48,6 @@ const group_source = new THREE.Group();
 group_source.add( createSourceObject(1.0, 4.0,   0.0,-2.0,    0.0, 2.0,   0.0, 0.0) );
 group_source.add( createSourceObject(4.0, 4.0,   1.5,-2.0,   -2.0, 1.5,   1.5, 1.5) );
 group_source.add( createSourceObject(4.0, 1.0,   2.0, 0.0,   -2.0, 0.0,   0.0, 0.0) );
-
 // ---------- ----------
 // TRACK OBJECTS
 // ---------- ----------
@@ -56,17 +55,14 @@ const track1 = group_source.children[0].clone();
 track1.userData.curve = group_source.children[0].userData.curve;
 track1.position.set(4.5, 0.5, -1);
 scene.add(track1);
-
 const track2 = group_source.children[1].clone();
 track2.userData.curve = group_source.children[1].userData.curve;
 track2.position.set(3.0, 0.5, 3);
 scene.add(track2);
-
 const track3 = group_source.children[2].clone();
 track3.userData.curve = group_source.children[2].userData.curve;
 track3.position.set(-1, 0.5, 4.5);
 scene.add(track3)
-
 //-------- ----------
 // CURVE PATH - a curve path that will funciton as a track created from the Track Object Curves and Mesh Positions
 //-------- ----------
@@ -88,8 +84,37 @@ scene.add(mesh);
 // ---------- ----------
 camera.position.set(-8,5,8);
 camera.lookAt(0,0,0);
-const a1 = 0.75;
-const a2 = ( a1 * 0.98 + 0.01 ) % 1;
-mesh.position.copy( curve.getPoint(a1) );
-mesh.lookAt( curve.getPoint( a2 ) );
-renderer.render(scene, camera);
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 800;
+let secs = 0,
+frame = 0,
+lt = new Date();
+// update
+const update = function(frame, frameMax){
+    const a1 = frame / frameMax;
+    const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+    const a3 = ( a2 * 0.98 + 0.01 ) % 1;
+    mesh.position.copy( curve.getPoint(a2) );
+    mesh.lookAt( curve.getPoint( a3 ) );
+};
+// loop
+const loop = () => {
+    const now = new Date(),
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if(secs > 1 / FPS_UPDATE){
+        // update, render
+        update( Math.floor(frame), FRAME_MAX);
+        renderer.render(scene, camera);
+        // step frame
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
+        lt = now;
+    }
+};
+loop();
+
