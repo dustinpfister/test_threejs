@@ -7,9 +7,17 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
+// LIGHT
+// ---------- ----------
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(2,1,10);
+scene.add(dl);
+const al = new THREE.AmbientLight(0xffffff, 0.1);
+scene.add(al);
+// ---------- ----------
 // MESH POINTERS
 // ---------- ----------
-const geo_pointer = new THREE.SphereGeometry(0.5, 20, 20);
+const geo_pointer = new THREE.SphereGeometry(0.4, 20, 20);
 const material_pointer = new THREE.MeshNormalMaterial();
 const mesh_start = new THREE.Mesh(geo_pointer, material_pointer);
 const mesh_end = new THREE.Mesh(geo_pointer, material_pointer);
@@ -22,7 +30,10 @@ scene.add(mesh_c2);
 // ---------- ----------
 // MESH GROUP
 // ---------- ----------
-const material_child = new THREE.MeshBasicMaterial({ color: new THREE.Color(1,0,0)});
+const material_child = new THREE.MeshPhongMaterial({
+    color: new THREE.Color(1,0,0),
+    specular: new THREE.Color(0.2,0.2,0.2)
+});
 const geometry_child = new THREE.SphereGeometry(0.25, 20, 20);
 const group = new THREE.Group();
 let i = 0; const len = 14;
@@ -39,7 +50,7 @@ const curve = new THREE.CubicBezierCurve3(mesh_start.position, mesh_c1.position,
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-camera.position.set(-8,5,8);
+camera.position.set(-8,8,8);
 camera.lookAt(0,0,0);
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate

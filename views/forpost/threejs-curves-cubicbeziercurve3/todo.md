@@ -3,10 +3,10 @@
 ## () - s2-3-tracks-full
 * () make a full example of tracks now that I have the rotation thing worked out
 
-## () - s3-1-loop-mesh-pointers
-* () start a loop section with an example that will be used for video1 for the blog post
-* () this first loop example will involve having a mesh object for the start point, end point, and control points
-* () can also have a collecton of mesh objects to place along the curve
+## ( done 02/10/2023 ) - s3-1-loop-mesh-pointers
+* (done) start a loop section with an example that will be used for video1 for the blog post
+* (done) this first loop example will involve having a mesh object for the start point, end point, and control points
+* (done) can also have a collecton of mesh objects to place along the curve
 
 ## ( done 02/09/2023 ) s2-2-tracks-rotate
 * (done) start a simple demo where I just check if I can mutate the vectors of a curve
