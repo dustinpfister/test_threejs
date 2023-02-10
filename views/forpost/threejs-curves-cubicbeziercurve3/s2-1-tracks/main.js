@@ -81,13 +81,10 @@ scene.add( new THREE.GridHelper(10, 10) );
 const mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshNormalMaterial() )
 scene.add(mesh);
 // ---------- ----------
-// RENDER
+// ANIMATION LOOP
 // ---------- ----------
 camera.position.set(-8,5,8);
 camera.lookAt(0,0,0);
-// ---------- ----------
-// ANIMATION LOOP
-// ---------- ----------
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 800;
