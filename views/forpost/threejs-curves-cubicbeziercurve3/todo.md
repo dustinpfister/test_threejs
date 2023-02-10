@@ -1,9 +1,12 @@
 # threejs-curves-cubicbeziercurve3 todo list
 
-## () s2-2-tracks-rotate
-* () start a simple demo where I just check if I can mutate the vectors of a curve
+## () - s2-3-tracks-full
+* () make a full example of tracks now that I have the rotation thing worked out
 
-## () s2-1-tracks
+## ( done 02/09/2023 ) s2-2-tracks-rotate
+* (done) start a simple demo where I just check if I can mutate the vectors of a curve
+
+## ( done 02/09/2023 ) s2-1-tracks
 * (done) start an example where I have a few source object options
 * (done) each source object is a group with a mesh
 * (done) a curve can be set to the userData object of the group of a source object
