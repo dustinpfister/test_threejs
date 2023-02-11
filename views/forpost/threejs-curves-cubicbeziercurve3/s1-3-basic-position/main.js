@@ -13,8 +13,8 @@ renderer.setSize(640, 480, false);
 const createCurve = (v_start, v_end, v_d1, v_d2) => {
     v_d1 = v_d1 || new THREE.Vector3();
     v_d2 = v_d2 || new THREE.Vector3();
-    const v_c1 = v_start.clone().lerp(v_end, 0.5).add(v_d1);
-    const v_c2 = v_start.clone().lerp(v_end, 0.5).add(v_d2);
+    const v_c1 = v_start.clone().lerp(v_end, 0.25).add(v_d1);
+    const v_c2 = v_start.clone().lerp(v_end, 0.75).add(v_d2);
     return new THREE.CubicBezierCurve3(v_start, v_c1, v_c2, v_end);
 };
 // ---------- ----------
