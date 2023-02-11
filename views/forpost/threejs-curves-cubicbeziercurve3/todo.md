@@ -3,6 +3,15 @@
 ## () - s2-3-tracks-full
 * () make a full example of tracks now that I have the rotation thing worked out
 
+## () - s1-4-basic-lines
+* () start a basic example where the goal is to make a line with a curve object
+* () use CubicBezierCurve3 for one curve object with 0.25 and 0.5 alpha lerp for control point locations
+* () use QuadraticBezierCurve3 for a curve object with a 0.5 alpha lerp location for the control point
+* () use LineCurve3 for one
+
+## ( done 02/11/2023 ) - Control point fix for s1-3-basic-position
+* (done) Using 0.25, and 0.75 for alpha values for lerp call in s1-3-basic-position 
+
 ## ( done 02/10/2023 ) - s3-1-loop-mesh-pointers
 * (done) start a loop section with an example that will be used for video1 for the blog post
 * (done) this first loop example will involve having a mesh object for the start point, end point, and control points
@@ -21,7 +30,7 @@
 * (done) I will want a helper method for creating track objects from source objects
 * (done) array of data for making track objects
 
-## ( done 02/09/2023 ) s1-3-basic-object-position
+## ( done 02/09/2023 ) s1-3-basic-position
 * (done) basic example where a curve is used to position objects
 
 ## ( done 02/09/2023 ) s1-2-basic-curvepaths
