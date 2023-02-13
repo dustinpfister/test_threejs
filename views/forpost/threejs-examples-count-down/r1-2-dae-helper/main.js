@@ -62,5 +62,5 @@ DAE_loader({
     });
     scene.add(group_cd);
     loop();
-})
+});
 
