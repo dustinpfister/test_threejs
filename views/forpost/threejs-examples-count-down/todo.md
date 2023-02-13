@@ -4,6 +4,9 @@
 * (done) use a scene object for source objects rather than a plain old javaScript object
 * (done) update default source object to new default scene object
 * (done) DEFAULT WIDTH const
+* (done) digits option renamed to digitCount
+* () DEFAULT DIGIT COUNT const
+* (done) default time strng and be an empty string, the first call of the set method in the create methid will deal with that
 
 * () remove the built in dae loader
 

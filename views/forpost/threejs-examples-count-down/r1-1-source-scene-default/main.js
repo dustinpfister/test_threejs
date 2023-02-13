@@ -27,7 +27,7 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
     //const a1 = (frame + 1) / frameMax;
-    countDown.set( group_cd, frame );
+    //countDown.set( group_cd, '' );
     //countDown.set(count_sec, secs);
     //countDown.set(count_ms, ms);
     //countDown.set(count_frames, frame);

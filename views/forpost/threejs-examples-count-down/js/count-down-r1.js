@@ -39,7 +39,7 @@
     api.create = (opt) => {
         opt = opt || {};
         opt.digitCount = opt.digitCount === undefined ? DEFAULT_DIGIT_COUNT : opt.digitCount;  // 2 digits
-        opt.timeStr = opt.timeStr || '00';
+        opt.timeStr = opt.timeStr || '';
         // USE A SCENE OBJECT
         opt.scene_source = opt.scene_source || DEFAULT_SCENE_SOURCE;
         opt.width = opt.width === undefined ? DEFAULT_WIDTH : opt.width;
