@@ -1,6 +1,6 @@
 // count-down.js - r1 - from threejs-examples-count-down
 //    * create method now takes a scene_source object that is a THREE.Scene Object
-//    * DAE loader removed in favor of using this on top of dae-helper-r0.js and THREE.ColladaLoader
+//    * DAE loader removed in favor of using things like demo-helper-r0 from threejs-dae-loader
 (function(api){
     //-------- ----------
     // DEFAULT OPTIONS
