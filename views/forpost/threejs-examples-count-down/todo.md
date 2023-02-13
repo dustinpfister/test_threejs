@@ -1,7 +1,7 @@
 # threejs-examples-count-down todo list
 
-## () - r1-2-dae-helper
-* () demo using dae helper
+## ( done 02/13/2023 ) - r1-2-dae-helper
+* (done) demo using dae helper
 
 ## ( done 02/13/2023 ) - r1-1-source-scene-default
 * (done) demo using default objects
