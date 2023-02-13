@@ -9,28 +9,26 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // OBJECTS
 //-------- ----------
-
-const group_cd = countDown.create();
-scene.add(group_cd)
-
+const group_cd_default = countDown.create();
+group_cd_default.position.set(0,0,-3)
+scene.add(group_cd_default);
+const group_cd = countDown.create({ digitCount: 3 });
+scene.add(group_cd);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
 camera.position.set(1, 3, 5);
 camera.lookAt(0, 0, 0);
-const FPS_UPDATE = 4,  // fps rate to update ( low fps for low CPU use, but choppy video )
-FPS_MOVEMENT = 1;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 90;
+const FPS_UPDATE = 30,  // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 300;
 let secs = 0,
 frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-    //const a1 = (frame + 1) / frameMax;
-    //countDown.set( group_cd, '' );
-    //countDown.set(count_sec, secs);
-    //countDown.set(count_ms, ms);
-    //countDown.set(count_frames, frame);
+    countDown.set( group_cd_default, frame );
+    countDown.set( group_cd, frame );
 };
 // loop
 const loop = () => {

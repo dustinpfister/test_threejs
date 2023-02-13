@@ -1,20 +1,21 @@
 # threejs-examples-count-down todo list
 
+## () - r1-2-dae-helper
+* () demo using dae helper
+
+## ( done 02/13/2023 ) - r1-1-source-scene-default
+* (done) demo using default objects
+
 ## () r1 of count-down.js, dae loader removed, scene object for source
 * (done) use a scene object for source objects rather than a plain old javaScript object
 * (done) update default source object to new default scene object
 * (done) DEFAULT WIDTH const
 * (done) digits option renamed to digitCount
-* () DEFAULT DIGIT COUNT const
+* (done) DEFAULT DIGIT COUNT const
 * (done) default time strng and be an empty string, the first call of the set method in the create methid will deal with that
+* (done) remove the built in dae loader
 
-* () remove the built in dae loader
-
-* () I will still want to have a custom cloner method to use, but this should maybe be indemo code
-
-```
-  see the temp fix version of r0 in the js folder of videoground-beta-world
-```
+* () 
 
 ## ( done 01/19/2023 ) using cd4-nums.dae for dae-many demo
 * (done) using the cd4-nums.dae file for dae-many demo
