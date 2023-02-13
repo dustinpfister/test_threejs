@@ -8,7 +8,7 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// 
+// THE COINT DOWN GROUP - using let here so that I can re-assign in loader code below
 // ---------- ----------
 let group_cd = countDown.create();
 // ---------- ----------
@@ -42,7 +42,7 @@ const loop = () => {
     }
 };
 //-------- ----------
-// OBJECTS
+// LOAD CUSTOM SCENE OBJECT FOR NUMBERS
 //-------- ----------
 DAE_loader({
     urls_dae: ['/dae/count_down_basic/cd4-nums.dae'],
@@ -63,5 +63,4 @@ DAE_loader({
     scene.add(group_cd);
     loop();
 })
-
 

@@ -9,7 +9,7 @@
         opt = opt || {};
         opt.urls_dae = opt.urls_dae || [];
         opt.urls_resource = opt.urls_resource || [];
-        // use given cloner or defult to add everything
+        // use given cloner or default to add everything
         opt.cloner = opt.cloner || DEFAULT_CLONER;
         const manager = new THREE.LoadingManager();
         const scene_source = new THREE.Scene();
