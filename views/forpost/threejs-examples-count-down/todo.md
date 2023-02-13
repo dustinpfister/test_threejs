@@ -1,8 +1,9 @@
 # threejs-examples-count-down todo list
 
 ## () r1 of count-down.js, dae loader removed, scene object for source
-* () use a scene object for source objects rather than a plain old javaScript object
-* () update default source object to new default scene object
+* (done) use a scene object for source objects rather than a plain old javaScript object
+* (done) update default source object to new default scene object
+* (done) DEFAULT WIDTH const
 
 * () remove the built in dae loader
 

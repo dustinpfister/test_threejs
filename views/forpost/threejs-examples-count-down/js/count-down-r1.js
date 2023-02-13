@@ -6,6 +6,7 @@
     // DEFAULT OPTIONS
     //-------- ----------
     const DEFAULT_WIDTH = 2;
+    const DEFAULT_DIGIT_COUNT = 2;
     //-------- ----------
     // DEFAULT SCENE SOURCE OBJECTS
     //-------- ----------
@@ -27,8 +28,8 @@
         return String(a).padStart(digits, '0');
     };
     // position a digit group
-    const positionDigit = (digit, di, digits, width) => {
-        const hd = digits / 2;
+    const positionDigit = (digit, di, digitCount, width) => {
+        const hd = digitCount / 2;
         const sx = hd * width * -1;
         digit.position.x = width / 2 + sx + width * di;
     };
@@ -37,8 +38,8 @@
     //-------- ----------
     api.create = (opt) => {
         opt = opt || {};
+        opt.digitCount = opt.digitCount === undefined ? DEFAULT_DIGIT_COUNT : opt.digitCount;  // 2 digits
         opt.timeStr = opt.timeStr || '00';
-        opt.digits = opt.digits === undefined ? 2 : opt.digits;  // 2 digits
         // USE A SCENE OBJECT
         opt.scene_source = opt.scene_source || DEFAULT_SCENE_SOURCE;
         opt.width = opt.width === undefined ? DEFAULT_WIDTH : opt.width;
@@ -48,11 +49,11 @@
         countObj.name = opt.countID;
         // for each digit, clone all source objects
         let di = 0;
-        while(di < opt.digits){
+        while(di < opt.digitCount){
             const digit = new THREE.Group();
             digit.name = opt.countID + '_' + di;
             // position digit group
-            positionDigit(digit, di, opt.digits, opt.width);
+            positionDigit(digit, di, opt.digitCount, opt.width);
             countObj.add(digit);
             let ni = 0;
             while(ni < 10){
@@ -77,9 +78,9 @@
     // set to the given time string
     api.set = (countObj, timeStr) => {
         let di = 0;
-        const digits = countObj.children.length;
-        timeStr = toPadString(timeStr, digits);
-        while(di < digits){
+        const digitCount = countObj.children.length;
+        timeStr = toPadString(timeStr, digitCount);
+        while(di < digitCount){
             let ni = 0;
             while(ni < 10){
                 const mesh = countObj.getObjectByName(countObj.name + '_' + di + '_' + ni);
