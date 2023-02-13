@@ -1,7 +1,13 @@
 # threejs-examples-count-down todo list
 
-## () r1 of count-down.js
-* () fix DAE loader so that the loading of resources works okay in windows as well as allowing for a skin change
+## () r1 of count-down.js, dae loader removed, scene object for source
+* () use a scene object for source objects rather than a plain old javaScript object
+* () update default source object to new default scene object
+
+* () remove the built in dae loader
+
+* () I will still want to have a custom cloner method to use, but this should maybe be indemo code
+
 ```
   see the temp fix version of r0 in the js folder of videoground-beta-world
 ```
