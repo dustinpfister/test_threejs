@@ -80,7 +80,6 @@ camera.position.set(5, 5, 5);
 camera.lookAt(0, 0, 0);
 const update = function (state, secs) {
     ShakeMod.update(state.shake);
-
 };
 // loop
 const loop = function () {

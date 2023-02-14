@@ -1,5 +1,6 @@
 /*   shake-module.js - r2 - from threejs-examples-scene-shake
  *       * module form of the shake.js
+ *       * degLock, and posLock feature
  */
 import * as THREE from 'three';
 //-------- ----------
@@ -48,11 +49,6 @@ const applyToObject3d = function (shake, obj3d) {
             shake.euler.z * shake.degLock.z
         );
         obj3d.position.copy(shake.vector).multiply(shake.posLock);
-
-
-//obj3d.position.set(shake.vector.x * shake.posLock.x, shake.vector.y * shake.posLock.y, shake.vector.z  * shake.posLock.z );
-
-
     } else {
         // else set back to home location
         const sd = obj3d.userData.shakeData;
