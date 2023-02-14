@@ -1,4 +1,4 @@
-/*   shake.js - r0 - for threejs-examples-scene-shake
+/*   shake.js - r0 - from threejs-examples-scene-shake
  *
  *
  */
