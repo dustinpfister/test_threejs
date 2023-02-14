@@ -36,8 +36,12 @@ const state = {
     lt: new Date(),
     shake: ShakeMod.create({
         scene: scene,
+        posRange: [1, 5],
+        degRange: [20, 45],
+        posLock: new THREE.Vector3(1, 0, 1),
+        degLock: new THREE.Vector3(0, 1, 0),
         intensity: 1
-    }) // ADJUSTING pos and DEG by EVENTS
+    })
 };
 //-------- ----------
 // EVENTS
