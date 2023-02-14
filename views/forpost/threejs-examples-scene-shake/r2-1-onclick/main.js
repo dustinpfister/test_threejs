@@ -16,7 +16,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.5, 100);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
-( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+( document.querySelector('#demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
 // GRID HELPER AND MESH OBJECT
 //-------- ----------
@@ -73,23 +73,37 @@ renderer.domElement.addEventListener('pointerdown', pointerDown);
 renderer.domElement.addEventListener('pointermove', pointerMove(state.shake, canvas));
 renderer.domElement.addEventListener('pointerup', pointerUp);
 renderer.domElement.addEventListener('pointerout', pointerUp);
-//-------- ----------
-// UPDATE AND LOOP
-//-------- ----------
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+// fixed camera values should be done in the animation loop or render code section
 camera.position.set(5, 5, 5);
 camera.lookAt(0, 0, 0);
-const update = function (state, secs) {
+// constant values and state for main app loop
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30,     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 120,
+CLOCK = new THREE.Clock(true); // USING THREE.Clock in place of new Date() or Date.now()
+let secs = 0,
+frame = 0,
+lt = CLOCK.getElapsedTime();
+// update
+const update = (frame, frameMax) => {
     ShakeMod.update(state.shake);
 };
 // loop
-const loop = function () {
-    const now = new Date();
-    const secs = (now - state.lt) / 1000;
+const loop = () => {
+    const now = CLOCK.getElapsedTime(),
+    secs = (now - lt);
     requestAnimationFrame(loop);
-    if (secs > 1 / state.fps) {
-        update(state, secs);
+    if(secs > 1 / FPS_UPDATE){
+        // update, render
+        update( Math.floor(frame), FRAME_MAX);
         renderer.render(scene, camera);
-        state.lt = now;
+        // step frame
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
+        lt = now;
     }
 };
 loop();
