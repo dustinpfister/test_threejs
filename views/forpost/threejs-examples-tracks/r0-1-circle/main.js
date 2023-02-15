@@ -10,9 +10,8 @@ renderer.setSize(640, 480, false);
 // SOURCE OBJECTS - The source objects that I will be using to create a track
 // ---------- ----------
 const group_source = new THREE.Group();
-group_source.add( createSourceObject(1.0, 4.0,   0.0,-2.0,    0.0, 2.0,   0.0, 0.0,  0.0, 0.0) );
-group_source.add( createSourceObject(4.0, 4.0,   1.5,-2.0,   -2.0, 1.5,   0.8, 0.8,  1.8, 1.0) );
-//group_source.add( createSourceObject(4.0, 1.0,   2.0, 0.0,   -2.0, 0.0,   0.0, 0.0,  0.0, 0.0) );
+group_source.add( trackMod.createSourceObject(1.0, 4.0,   0.0,-2.0,    0.0, 2.0,   0.0, 0.0,  0.0, 0.0) );
+group_source.add( trackMod.createSourceObject(4.0, 4.0,   1.5,-2.0,   -2.0, 1.5,   0.8, 0.8,  1.8, 1.0) );
 // ---------- ----------
 // TRACK OBJECTS - creating the tracks objects from the source objects
 // ---------- ----------
@@ -30,9 +29,9 @@ const curve = new THREE.CurvePath();
 
     [1,  3.0, -5.0,  0.0,  1],
 ].forEach((data)=>{
-    const track = createTrackObject(group_source, data[0], data[1], data[2], data[3], data[4]);
+    const track = trackMod.createTrackObject(group_source, data[0], data[1], data[2], data[3], data[4]);
     scene.add(track);
-    curve.add( createTrackCurvePart(track) );
+    curve.add( trackMod.createTrackCurvePart(track) );
 });
 // curve
 //const geo_points = new THREE.BufferGeometry().setFromPoints( curve.getPoints(19) );

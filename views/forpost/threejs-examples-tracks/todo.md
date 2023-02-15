@@ -1,14 +1,16 @@
 # threejs-examples-tracks
 
-## () - fix up r0-1 and 2 demos
-* () finish loop of r0-2-flip
-* () use module form of r0 now
+## r1 - 
 
-## (  ) - r0 - just get things working
+## () - fix up r0-1 and 2 demos
+* (done) use module form of tracks r0
+* () finish loop of r0-2-flip
+
+## ( done 02/15/2023 ) - r0 - just get things working
 * (done) start the r0 file of tracks.js based on what I all ready have with the tracks demo from threejs-curve-qubicbeziercurve3
 * (done) add rotation option for when placing track objects
 * (done) see about adding a flip option for the rotate curve that can be used to flip curves
-* () make the module in IIFE format if this will be a r146 style module
+* (done) make the module in IIFE format if this will be a r146 style module
 
 ## ( done 02/15/2023 ) - r0-2-flip
 * (done) start a demo of flip track option
