@@ -37,28 +37,36 @@ const createTrackCurvePart = (obj_track) => {
     const v_end = v_objpos.clone().add(c1.v3);
     return new THREE.CubicBezierCurve3(v_start, v_c1, v_c2, v_end);
 };
-
-const rotateCurve = (curve, r) => {
+// rotate a curve
+const rotateCurve = (curve, r, negateX, negateZ) => {
     r = r === undefined ? 0 : r;
+    negateX = negateX === undefined ? false : negateX;
+    negateZ = negateZ === undefined ? false : negateZ;
     let vi = 0;
     while(vi < 4){
         const v = curve['v' + vi];
         const e = new THREE.Euler();
         e.y = Math.PI * 2 / 4 * r;
         v.applyEuler(e);
+        const v3_negate = v.clone().negate();
+        if(negateX){
+           v.set(v3_negate.x, v.y, v.z );
+        }
+        if(negateZ){
+           v.set(v.x, v.y, v3_negate.z );
+        }
         vi += 1;
     };
 };
-
 // create a track object for the scene
-const createTrackObject = (group_source, index, x, z, dy, r) => {
+const createTrackObject = (group_source, index, x, z, dy, r, negate) => {
     dy = dy === undefined ? 0 : dy;
     const obj_source = group_source.children[index];
     const track = obj_source.clone();
     track.userData.curve = obj_source.userData.curve.clone();
     track.position.set(x, 0.5 + dy, z);
     track.rotation.y = Math.PI * 2 / 4 * r;
-    rotateCurve(track.userData.curve, r);
+    rotateCurve(track.userData.curve, r, negate);
     return track;
 };
 
