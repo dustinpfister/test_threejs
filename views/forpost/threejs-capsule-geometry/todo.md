@@ -1,12 +1,15 @@
 # threejs-capsule-geometry
 
+## () sx-1-materialindex
+* () start a section on material index and capsule geometry
+
 ## () - s3-2-ani-position
 * () position attribute mutation loop example
 * () could work out some morph attributes for this
 
 ## ( done 02/16/2023 ) - s1-2-basic-sphere
 * (done) basic example in which I make a sphere like geometry
-* (done) looks like when I set the length to 1/10th the radius this works well
+* (done) looks like when I set the length 0 the radius this works well
 
 ## ( done 02/16/2023 ) - r146 style
 * (done) update all current examples to r146 style
