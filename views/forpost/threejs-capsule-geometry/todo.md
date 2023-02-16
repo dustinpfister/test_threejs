@@ -3,6 +3,12 @@
 ## () s4 - geo update loop example
 * have an example like that of the s3 animation loop example, but do so by createing new geometry
 
+## () - r146 style
+* () update all current examples to r146 style
+
+## ( done 02/16/2023 ) rename folders
+* (done) rename folders to follow the pattern that I am using now
+
 ## ( done 07/22/2022 ) s3 - loop example
 * (done) see about starting an animation loop example based off of the s2-group example
 * (done) I might want to have a standard capsule geo and then just set scale, pos, and rotation as needed
