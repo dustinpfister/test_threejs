@@ -1,7 +1,5 @@
 # threejs-capsule-geometry
 
-## () s4 - geo update loop example
-* have an example like that of the s3 animation loop example, but do so by createing new geometry
 
 ## () - r146 style
 * () update all current examples to r146 style
