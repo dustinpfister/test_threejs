@@ -11,8 +11,8 @@ renderer.setSize(640, 480, false);
 // GEOMETRY
 //-------- ----------
 const radius = 1, length = 1;
-const capSegments = 10;
-const radialSegments = 20;
+const capSegments = 5;
+const radialSegments = 10;
 
 const geometry = new THREE.CapsuleGeometry(radius, length, capSegments, radialSegments);
 const geometry2 = geometry.toNonIndexed();
@@ -23,7 +23,8 @@ const w = radialSegments + capSegments * 2 + 1;
 while(i < count){
     const y = i % w;
     const x = Math.floor( i / w);
-    const mi = y <= radialSegments - 1 || y >= radialSegments + 1 ? 0 : 1;
+    //const mi = y <= radialSegments - 1 || y >= radialSegments + 1 ? 0 : 1;
+    const mi = y % 2 === 0 ? 0 : 1;
     geometry2.addGroup(i * 6, 6, mi);
     i += 1;
 }
