@@ -1,40 +1,38 @@
-//******** **********
+//-------- ----------
 // SCENE, CAMERA, RENDERER
-//******** **********
-var scene = new THREE.Scene();
+//-------- ----------
+const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(-10, 5, 10);
-camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
-//******** **********
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+//-------- ----------
 // LIGHT
-//******** **********
-var dl = new THREE.DirectionalLight(0xffffff, 1);
+//-------- ----------
+const dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(-3, 6, 0).normalize();
 scene.add(dl);
 scene.add( new THREE.AmbientLight(0xffffff, 0.03))
-//******** **********
+//-------- ----------
 // HELPERS
-//******** **********
+//-------- ----------
 // update a capsule line group with the given array of vector3 class instances
-var updateCapsuleLine = function(group, vectors, thickness){
+const updateCapsuleLine = function(group, vectors, thickness){
     // defaults for arguments
     vectors = vectors || [];
     thickness = thickness === undefined ? 0.25: thickness;
-    var i = 0,
-    len = vectors.length;
+    let i = 0;
+    const len = vectors.length;
     while(i < len - 1){
-        var v = vectors[i] || new THREE.Vector3(),
+        const v = vectors[i] || new THREE.Vector3(),
         nv = vectors[i + 1] || new THREE.Vector3(),
         d = v.distanceTo(nv); // distance from current vector to next vector
-        var mesh = group.children[i];
+        const mesh = group.children[i];
         // set scale
         mesh.scale.set(thickness, thickness, d / 2.0);
         // position should be a mid point between v and nv
-        var mv = v.clone().add(nv).divideScalar(2);
+        const mv = v.clone().add(nv).divideScalar(2);
         mesh.position.copy(mv);
         //  and set rotation
         mesh.lookAt(nv);
@@ -44,21 +42,21 @@ var updateCapsuleLine = function(group, vectors, thickness){
 };
 // create and return a new group of mesh objects using the capsule geometry
 // using a aray of vector3 class instances
-var createCapsuleLine = function(vectors, material, capsuleGeo){
+const createCapsuleLine = function(vectors, material, capsuleGeo){
     // defaults for arguments
     vectors = vectors || [];
     material = material || new THREE.MeshNormalMaterial({});
     capsuleGeo = capsuleGeo || new THREE.CapsuleGeometry(0.25, 1.5, 20, 20);
     // create a group and add that to the scene
-    var group = new THREE.Group();
+    const group = new THREE.Group();
     // make mesh objects and add them to the group
-    var i = 0,
-    len = vectors.length;
+    let i = 0;
+    const len = vectors.length;
     while(i < len - 1){
-        var v = vectors[i] || new THREE.Vector3(),
+        const v = vectors[i] || new THREE.Vector3(),
         nv = vectors[i + 1] || new THREE.Vector3(),
         d = v.distanceTo(nv); // distance from current vector to next vector
-        var mesh = new THREE.Mesh(
+        const mesh = new THREE.Mesh(
             capsuleGeo,
             material);
         // adjust geo to work well with lookAt
@@ -73,7 +71,7 @@ var createCapsuleLine = function(vectors, material, capsuleGeo){
 };
 // array of array of axis values to array of Vector3 class instances
 // if it is all ready an array of vector3S then return clones
-var vectorArrayToVector3Array = function(vectorArray){
+const vectorArrayToVector3Array = function(vectorArray){
     return vectorArray.map(function(a){
         if(a instanceof Array){
             return new THREE.Vector3( a[0], a[1], a[2] );
@@ -82,10 +80,10 @@ var vectorArrayToVector3Array = function(vectorArray){
         return a.clone();
     });
 };
-//******** **********
+//-------- ----------
 // VECTORS AND CAPSULE GROUP ONE
-//******** **********
-var vectors1 = vectorArrayToVector3Array([
+//-------- ----------
+const vectors1 = vectorArrayToVector3Array([
     [0, 0, 0 ],
     [ 0, -5, -5 ],
     [ 0, -5, 0 ],
@@ -95,7 +93,7 @@ var vectors1 = vectorArrayToVector3Array([
     [ 4, 5, -5 ],
     [ -5, 5, -5 ]
 ]);
-var vectors2 = vectorArrayToVector3Array([
+const vectors2 = vectorArrayToVector3Array([
     [0, 3, 0 ],
     [ 10, -6, -8 ],
     [ -5, -5, 0 ],
@@ -105,18 +103,20 @@ var vectors2 = vectorArrayToVector3Array([
     [ 4, 6, -5 ],
     [ -5, -5, -5 ]
 ]);
-var vectors = vectorArrayToVector3Array(vectors1);
-var g1 = createCapsuleLine(vectors, new THREE.MeshStandardMaterial());
+let vectors = vectorArrayToVector3Array(vectors1);
+const g1 = createCapsuleLine(vectors, new THREE.MeshStandardMaterial());
 scene.add( g1 );
-//******** **********
+//-------- ----------
 // LOOP
-//******** **********
-var fps = 30,
-lt = new Date(),
-frame = 0,
+//-------- ----------
+camera.position.set(-10, 5, 10);
+camera.lookAt(0, 0, 0);
+const fps = 30,
 maxFrame = 300;
-var loop = function () {
-    var now = new Date(),
+let lt = new Date(),
+frame = 0;
+const loop = function () {
+    const now = new Date(),
     per = frame / maxFrame,
     bias = 1 - Math.abs(0.5 - per) / 0.5,
     secs = (now - lt) / 1000;
@@ -124,8 +124,7 @@ var loop = function () {
     if(secs > 1 / fps){
         // lerp between vectors1 and vectors2 for vectors
         vectors = vectors.map(function(v, i){
-            var v1 = vectors1[i],
-            v2 = vectors2[i];
+            const v1 = vectors1[i], v2 = vectors2[i];
             return v1.clone().lerp(v2, bias);
         });
         // update g1 with current state of vectors

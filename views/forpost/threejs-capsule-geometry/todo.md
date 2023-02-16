@@ -1,8 +1,11 @@
 # threejs-capsule-geometry
 
+## () - s1-2-basic-sphere
+* () basic example in which I make a sphere like geometry
+* () looks like when I set the length to 1/10th the radius this works well
 
-## () - r146 style
-* () update all current examples to r146 style
+## ( done 02/16/2023 ) - r146 style
+* (done) update all current examples to r146 style
 
 ## ( done 02/16/2023 ) rename folders
 * (done) rename folders to follow the pattern that I am using now
