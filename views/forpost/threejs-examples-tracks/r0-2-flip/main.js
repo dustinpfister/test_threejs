@@ -14,21 +14,21 @@ group_source.add( trackMod.createSourceObject(4.0, 4.0,   1.5,-2.0,   -2.0, 1.5,
 // ---------- ----------
 // TRACK OBJECTS - creating the tracks objects from the source objects
 // ---------- ----------
+const n = 6;
 const curve = new THREE.CurvePath();
 [
-    [0,   3.0,  3.0,  0.0,  0, false, false],
-    [0,  -1.0,  6.0,  0.0,  1, true, false],
-    [0,  -4.0, 10.0,  0.0,  0, false, false],
-    [0,  -8.0, 10.0,  0.0,  3, false, false],
-    [0, -11.0,  6.0,  0.0,  2, true, false],
-    [0, -15.0,  3.0,  0.0,  3, false, false],
-    [0, -15.0, -1.0,  0.0,  0, true, true],
-    [0, -11.0, -4.0,  0.0,  1, false, true],
-    [0,  -8.0, -8.0,  0.0,  0, true, true],
-    [0,  -4.0, -8.0,  0.0,  3, true, true],
-    [0,  -1.0, -4.0,  0.0,  2, false, true],
-    [0,   3.0, -1.0,  0.0,  3, true, true]
-
+    [0,   9.0,  2.0,  0.0,  0, false, false],
+    [0,   5.0,  5.0,  0.0,  1, true, false],
+    [0,   2.0,  9.0,  0.0,  0, false, false],
+    [0,  -2.0,  9.0,  0.0,  3, false, false],
+    [0,  -5.0,  5.0,  0.0,  2, true, false],
+    [0,  -9.0,  2.0,  0.0,  3, false, false],
+    [0,  -9.0, -2.0,  0.0,  0, true, true],
+    [0,  -5.0, -5.0,  0.0,  1, false, true],
+    [0,  -2.0, -9.0,  0.0,  0, true, true],
+    [0,   2.0, -9.0,  0.0,  3, true, true],
+    [0,   5.0, -5.0,  0.0,  2, false, true],
+    [0,   9.0, -2.0,  0.0,  3, true, true]
 ].forEach((data)=>{
     const track = trackMod.createTrackObject(group_source, data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
     scene.add(track);
