@@ -63,14 +63,14 @@
         return new THREE.CubicBezierCurve3(v_start, v_c1, v_c2, v_end);
     };
     // create a track object for the scene
-    api.createTrackObject = (group_source, index, x, z, dy, r, negate) => {
+    api.createTrackObject = (group_source, index, x, z, dy, r, negateX, negateZ) => {
         dy = dy === undefined ? 0 : dy;
         const obj_source = group_source.children[index];
         const track = obj_source.clone();
         track.userData.curve = obj_source.userData.curve.clone();
         track.position.set(x, 0.5 + dy, z);
         track.rotation.y = Math.PI * 2 / 4 * r;
-        rotateCurve(track.userData.curve, r, negate);
+        rotateCurve(track.userData.curve, r, negateX, negateZ);
         return track;
     };
 }( this['trackMod'] ={} ));
