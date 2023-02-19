@@ -11,8 +11,8 @@
 * () see about making the first data texture exmaple more basic by mabe jjust having one mesh object
 * () reduce the volume of code by any means
 
-## () s2-1-loop-video1
-* () new demo based on what I made for video1 for the post
+## ( done 02/19/2023 ) s2-1-loop-video1
+* (done) new demo based on what I made for video1 for the post
 
 ## ( done 02/19/2023 ) rename folders and update to r146
 * (done) rename s1-data-texture to s1-1-basic-datatexture
