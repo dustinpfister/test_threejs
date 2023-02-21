@@ -1,8 +1,8 @@
 # threejs-camera-orthographic
 
-## () - rename folders, and r146 style for all demos
+## ( done 02/21/2023 ) - rename folders, and r146 style for all demos
 * (done) rename folders
-* () use r146 for all examples
+* (done) use r146 for all examples
 
 ## ( done 07/27/2022 ) - s4 - update method
 * (done) new example where the props of an orthographic camera are being updated
