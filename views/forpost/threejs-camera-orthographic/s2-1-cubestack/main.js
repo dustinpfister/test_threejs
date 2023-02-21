@@ -1,7 +1,7 @@
 
 (function () {
     // scene
-    var scene = new THREE.Scene();
+    const scene = new THREE.Scene();
     scene.add(new THREE.GridHelper(10, 10));
 
     // ORTHOGRAPHIC CAMERA
