@@ -1,4 +1,4 @@
-// Cube Stack example for s3-compare-to-perspective example in threejs-camera-orthographic
+// cube-stack.js - r1 - from threejs-camera-orthographic
 var CubeStack = (function () {
     // the public api
     var api = {};

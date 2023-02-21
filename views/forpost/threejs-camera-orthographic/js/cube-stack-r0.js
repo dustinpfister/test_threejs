@@ -1,4 +1,4 @@
-// Cube Stack example for s2-cube-stack example in threejs-camera-orthographic
+// cube-stack.js - r0 - from threejs-camera-orthographic
 var CubeStack = (function () {
     // the stack constructor
     return function (opt) {
