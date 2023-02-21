@@ -14,12 +14,12 @@ const box = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
     new THREE.MeshNormalMaterial());
 scene.add(box);
-// render
-renderer.render(scene, camera);
 // ---------- ----------
 // CONTROLS
 // ---------- ----------
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+if(THREE.OrbitControls){
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+}
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
