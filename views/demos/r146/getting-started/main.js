@@ -23,6 +23,8 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
+camera.position.set(2, 2, 2);
+camera.lookAt(0,0,0);
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 120;
@@ -31,7 +33,8 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-    const degree = 360 * (frame / frameMax);
+    const a1 = frame / frameMax;
+    const degree = 360 * a1;
     box.rotation.x = THREE.MathUtils.degToRad(degree);
 };
 // loop
