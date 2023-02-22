@@ -8,7 +8,12 @@
 
 ## () - rename folders, use r146
 * (done) rename all folders
-* () use r146 for all examples
+* (done) update s1-1-basic to r146 style
+* (done) update s2-1-edges-lines to r146 style
+* (done) update s3-1-canvas to r146 style
+* (done) update s4-1-lighting to r146 style
+* () update s5-1-materialoverride to r146 style
+
 
 ### ( done 08/03/2022 ) for post folder started
 * (done) this for post folder started
