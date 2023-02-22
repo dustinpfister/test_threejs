@@ -1,16 +1,16 @@
 //-------- ----------
 // SCENE, CAMERA, RENDERER
 //-------- ----------
-var scene = new THREE.Scene();
+const scene = new THREE.Scene();
 scene.background = new THREE.Color('blue');
-var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 100);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-document.getElementById('demo').appendChild(renderer.domElement);
+const camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 100);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
 // MESH, GEOMETRY, MATREIAL - in wireframe mode
 //-------- ----------
-var mesh = new THREE.Mesh(
+const mesh = new THREE.Mesh(
     new THREE.BoxGeometry(1.50, 1.50, 1.50),
     new THREE.MeshBasicMaterial({
         color: 0xffffff,
