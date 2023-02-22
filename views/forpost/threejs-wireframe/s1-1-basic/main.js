@@ -1,4 +1,4 @@
-(function () {
+
 
     // mesh in wire frame mode
     var mesh = new THREE.Mesh(
@@ -21,5 +21,4 @@
     renderer.setSize(640, 480);
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
-}
-    ());
+
