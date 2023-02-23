@@ -1,7 +1,14 @@
 # threejs-points todo list
 
-## () - s3-1-loop-video1
-* () start a loop exmaple that will be for video 1
+## () - s5-1-loop-video1-morphattributes
+* () start a loop example that will be used for video 1
+* () This first example can be based on the demo I used in my morph attribites example
+
+## () - s4-2-attposition-morphattributes
+* () position example on morph attribuites
+
+## () - s4-1-attposition
+* () basic custom geometry example
 
 ## () - s3-1-vertexcolors
 * () have a section on the use of color attribites and points
