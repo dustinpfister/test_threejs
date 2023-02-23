@@ -33,13 +33,12 @@ for ( let i = 0; i < pos.count; i ++ ) {
 geo.morphAttributes.position[ 0 ] = new THREE.Float32BufferAttribute( data_pos, 3 );
 geo.setAttribute('color', new THREE.Float32BufferAttribute( data_color, 3 ));
 // ---------- ----------
-// MATERIAL, MESH
+// MATERIAL, POINTS
 // ---------- ----------
 const material = new THREE.PointsMaterial({ size: 0.2, vertexColors: true });
 const points = new THREE.Points(geo, material);
 scene.add(points);
 points.morphTargetInfluences[ 0 ] = 1;
-points.geometry.computeVertexNormals();
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
