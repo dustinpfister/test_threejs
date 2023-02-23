@@ -55,7 +55,6 @@ const update = function(frame, frameMax){
     const a1 = frame / frameMax;
     const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
     points.morphTargetInfluences[ 0 ] = a2;
-    points.geometry.computeVertexNormals();
 };
 // loop
 const loop = () => {
