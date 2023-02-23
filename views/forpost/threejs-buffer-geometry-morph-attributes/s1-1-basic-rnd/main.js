@@ -9,7 +9,7 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// SHADER MATERIAL
+// GEOMETRY
 // ---------- ----------
 const geo = new THREE.SphereGeometry(0.5,20,20);
 geo.morphAttributes.position = [];
