@@ -6,8 +6,8 @@
 ## () - s3-1-vertexcolors
 * () have a section on the use of color attribites and points
 
-## () - s2-2-setfrompoints-update
-* () have a set from points example that also updates the points
+## ( done 02/23/2023 ) - s2-2-setfrompoints-update
+* (done) have a set from points example that also updates the points
 
 ## ( done 02/23/2023) - s1-4-basic-attribute-position
 * (done) have an example where I look at the position attribte of a box geometry
