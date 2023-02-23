@@ -1,9 +1,5 @@
 # threejs-points todo list
 
-## () - s5-1-loop-video1-morphattributes
-* () start a loop example that will be used for video 1
-* () This first example can be based on the demo I used in my morph attribites example
-
 ## () - s4-2-attposition-morphattributes
 * () position example on morph attribuites
 
@@ -12,6 +8,10 @@
 
 ## () - s3-1-vertexcolors
 * () have a section on the use of color attribites and points
+
+## ( done 02/23/2023 ) - s5-1-loop-video1-morphattributes
+* (done) start a loop example that will be used for video 1
+* (done) This first example can be based on the demo I used in my morph attribites example
 
 ## ( done 02/23/2023 ) - s2-2-setfrompoints-update
 * (done) have a set from points example that also updates the points
