@@ -10,9 +10,9 @@ import * as THREE from 'three';
 // ---------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-//const renderer = new THREE.WebGL1Renderer();
-//renderer.setSize(640, 480, false);
-//(document.querySelector('#demo') || document.body).appendChild(renderer.domElement);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.querySelector('#demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
@@ -28,9 +28,9 @@ scene.add(mesh);
 // an optional add on. There is doing what I can to make sure code examples like this will still work
 // when just used with treejs alone, when and where possible.
 try{
-    //const controls = new OrbitControls(camera, renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement);
 }catch(e){
-    //console.warn('OrbitControls JSM module not loaded.');
+    console.warn('OrbitControls JSM module not loaded.');
 }
 // ---------- ----------
 // ANIMATION LOOP
@@ -65,7 +65,7 @@ const loop = () => {
     if(secs > 1 / FPS_UPDATE){
         // update, render
         update( Math.floor(frame), FRAME_MAX);
-        //renderer.render(scene, camera);
+        renderer.render(scene, camera);
         // step frame
         frame += FPS_MOVEMENT * secs;
         frame %= FRAME_MAX;
