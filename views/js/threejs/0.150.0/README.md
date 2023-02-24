@@ -1,4 +1,6 @@
-### It does look like three.min.js is going to go bye bye
+### Looks Like r150 is broken, and also three.min.js is being removed.
+
+I might have to start using r149 and also observe that as the last stable revision of threejs for now.
 
 three.min.js will be removed from the threejs repo at some point in the future, maybe r160 it would seem. However this will cause a whole lot of problems with new users of threejs that are trying to get all these old threejs examples to work that make use of these old js files. I do what I can to update my content here, but it is going to take months to run threw the whole catalog to update all my examples to this change.
 
