@@ -1,10 +1,10 @@
 # threejs-wireframe
 
-## () s6-1-vertexcolors
-* () have a baisc vertex colors example
+## () s1-3-vertexcolors
+* () have a basic vertex colors example
 
-### () - s1-2-basic-linewidth
-* () have an example where I am setting the line width
+### ( done 02/24/2023 ) - s1-2-basic-linewidth
+* (done) have an example where I am setting the line width
 
 ## ( done 02/22/2023 ) - rename folders, use r146
 * (done) rename all folders
