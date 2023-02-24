@@ -15,7 +15,7 @@ const mesh = new THREE.Mesh(
     new THREE.MeshBasicMaterial({
         color: 0xffffff,
         wireframe: true,
-        linewidth: 4, // setting line width to 4 here, but it might not work on all platforms
+        wireframeLinewidth: 4 // setting line width to 4 here, but it might not work on all platforms
     })
 );
 scene.add(mesh);
