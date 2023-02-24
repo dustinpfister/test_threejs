@@ -27,11 +27,11 @@ scene.add(mesh);
 // try catch or some other kind of deal should be done more often then not when using
 // an optional add on. There is doing what I can to make sure code examples like this will still work
 // when just used with treejs alone, when and where possible.
-try{
-    const controls = new OrbitControls(camera, renderer.domElement);
-}catch(e){
-    console.warn('OrbitControls JSM module not loaded.');
-}
+//try{
+//    const controls = new OrbitControls(camera, renderer.domElement);
+//}catch(e){
+//    console.warn('OrbitControls JSM module not loaded.');
+//}
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
