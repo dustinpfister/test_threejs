@@ -1,5 +1,5 @@
 // ---------- ----------
-// IMPORT THREEJS and ADDONS
+// IMPORT THREEJS and OrbitControls ADDONS
 // ---------- ----------
 // need to start using import in order to use three.module.js over three.min.js
 // need to also use import for addons as examples/js is no more
