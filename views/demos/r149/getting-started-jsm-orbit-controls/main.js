@@ -1,9 +1,10 @@
 // ---------- ----------
-// IMPORT THREEJS
+// IMPORT THREEJS and OrbitControls ADDONS
 // ---------- ----------
 // need to start using import in order to use three.module.js over three.min.js
 // need to also use import for addons as examples/js is no more
 import * as THREE from 'three';
+import { OrbitControls } from 'OrbitControls';
 // ---------- ----------
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
@@ -20,6 +21,17 @@ const mesh = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
     new THREE.MeshNormalMaterial());
 scene.add(mesh);
+// ---------- ----------
+// CONTROLS
+// ---------- ----------
+// try catch or some other kind of deal should be done more often then not when using
+// an optional add on. There is doing what I can to make sure code examples like this will still work
+// when just used with treejs alone, when and where possible.
+try{
+    const controls = new OrbitControls(camera, renderer.domElement);
+}catch(e){
+    console.warn('OrbitControls JSM module not loaded.');
+}
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
