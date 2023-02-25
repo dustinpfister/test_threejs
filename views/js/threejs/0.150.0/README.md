@@ -9,8 +9,8 @@ three.min.js will be removed from the threejs repo at some point in the future, 
 I am starting with a dev version of threejs r150 so I should take note of the commit hash that I am using
 
 ```
-             Feb/14/2022 - https://github.com/mrdoob/three.js/tree/e5bf1a843b081c145c902f5f5aca3b91f96fab5b/ <= too many errors
-Using this > Feb/10/2022 - https://github.com/mrdoob/three.js/tree/ec3e38a25ffcfdc4f8eaacfecd57b317900bb595/ <= Works
+Feb/14/2022 - https://github.com/mrdoob/three.js/tree/e5bf1a843b081c145c902f5f5aca3b91f96fab5b/ <= too many errors
+Feb/10/2022 - https://github.com/mrdoob/three.js/tree/ec3e38a25ffcfdc4f8eaacfecd57b317900bb595/ <= Works
 ```
 
 ```

@@ -38,18 +38,18 @@ const update = function(frame, frameMax){
     box.rotation.x = THREE.MathUtils.degToRad(degree);
 };
 // loop
-const loop = () => {
-    const now = new Date(),
-    secs = (now - lt) / 1000;
-    requestAnimationFrame(loop);
-    if(secs > 1 / FPS_UPDATE){
+//const loop = () => {
+//    const now = new Date(),
+//    secs = (now - lt) / 1000;
+//    requestAnimationFrame(loop);
+//    if(secs > 1 / FPS_UPDATE){
         // update, render
         update( Math.floor(frame), FRAME_MAX);
         renderer.render(scene, camera);
         // step frame
-        frame += FPS_MOVEMENT * secs;
-        frame %= FRAME_MAX;
-        lt = now;
-    }
-};
-loop();
+//        frame += FPS_MOVEMENT * secs;
+//        frame %= FRAME_MAX;
+//        lt = now;
+//    }
+//};
+//loop();
