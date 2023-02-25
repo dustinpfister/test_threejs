@@ -4,9 +4,8 @@ I might have to start using r149 and also observe that as the last stable revisi
 
 three.min.js will be removed from the threejs repo at some point in the future, maybe r160 it would seem. However this will cause a whole lot of problems with new users of threejs that are trying to get all these old threejs examples to work that make use of these old js files. I do what I can to update my content here, but it is going to take months to run threw the whole catalog to update all my examples to this change.
 
-### Starting with a dev version
+### The last stable dev version of r150
 
-I am starting with a dev version of threejs r150 so I should take note of the commit hash that I am using
 
 ```
 Feb/14/2022 - https://github.com/mrdoob/three.js/tree/e5bf1a843b081c145c902f5f5aca3b91f96fab5b/ <= too many errors
