@@ -1,0 +1,5 @@
+### r149 notes
+
+Because of [major breaking changes that where made with the webgl renderer in r150]() it would like like r149 is the last revision of threejs that works on Raspberry PI OS. I get that the Raspberry pi 4 is a little limited when it comes to Open GL support however it would also seem that  these chances also case threejs to now work on a wide range of other devices that I own as well which includes well, all  of them actually.
+
+So when it comes to updating my threejs content this might be the last revision that I do so with because of these errors. It would seem that the problem is just with the webgl rendreer, so I could keep going headless and try making use with one of the other add on renderers but for now it would seem that this is the end with what I have to work with beteen now and the point that these erros are fixed, or I start using newer hardware that works with these new revisions.
