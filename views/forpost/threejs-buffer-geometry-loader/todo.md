@@ -4,7 +4,6 @@
 * () rename the old s1-1-basic to s1-2-basic-loop
 * () start a new s1-1-basic that is just a static render of a scene
 
-
 ## () - s4-2-manager-many
 * () start a s4-2-manager-many demo where I load more than one file
 
