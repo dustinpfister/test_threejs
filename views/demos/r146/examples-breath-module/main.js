@@ -16,13 +16,27 @@ scene.add(dl);
 // BREATH GROUP
 //-------- ----------
 const group = BreathMod.create({
-    curveCount: 12,
-    meshPerCurve: 32,
+    curveCount: 20,
+    meshPerCurve: 16,
     radiusMin: 0.5, radiusMax: 8,
     curveUpdate: (curve, alpha, v_c1, v_c2, v_start, v_end, gud, group) => {
         const e1 = new THREE.Euler();
-        e1.z = Math.PI / 180 * 100 * alpha;
-        v_c1.copy( v_start.clone().lerp(v_end, 0.25).applyEuler(e1).multiplyScalar(1 + 2 * alpha) );
+        e1.z = Math.PI / 180 * 60 * alpha;
+        const e2 = new THREE.Euler();
+        e2.z = Math.PI / 180 * -60 * alpha;
+        v_c1.copy( v_start.clone().lerp(v_end, 0.25).applyEuler(e1) );
+        v_c2.copy( v_start.clone().lerp(v_end, 0.75).applyEuler(e2) );
+    },
+    meshUpdate: (mesh, curve, alpha, index, count, group) => {
+        // position
+        const a_meshpos = (index + 1) / count;
+        mesh.position.copy( curve.getPoint(a_meshpos * alpha) );
+        // opacity
+        const a_meshopacity = (1 - a_meshpos) * 0.50 + 0.50 * alpha;
+        mesh.material.opacity = a_meshopacity;
+        // scale
+        const s = 0.25 + 2.25 * a_meshpos * Math.sin(Math.PI * 0.5 * alpha);
+        mesh.scale.set( s, s, s );
     },
     material: new THREE.MeshPhongMaterial({
         color: 0x00ffff,

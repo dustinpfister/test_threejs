@@ -1,15 +1,17 @@
 // breath.js - r0 - r146 prototype
 (function(api){
-
+    //-------- ----------
+    // DEFAULTS
+    //-------- ----------
     const DEFAULT_CURVE_UPDATE = (curve, alpha, v_c1, v_c2, v_start, v_end, gud, group) => {
         const e1 = new THREE.Euler();
-        e1.z = Math.PI / 180 * 70 * alpha;
-        const e2 = new THREE.Euler();
-        e2.z = Math.PI / 180 * -70 * alpha;
-        v_c1.copy( v_start.clone().lerp(v_end, 0.25).applyEuler(e1) );
-        v_c2.copy( v_start.clone().lerp(v_end, 0.75).applyEuler(e2) );
+        e1.z = Math.PI / 180 * 90 * alpha;
+        v_c1.copy( v_start.clone().lerp(v_end, 0.25).applyEuler(e1).multiplyScalar(1 + 0.5 * alpha) );
     };
-
+    const DEFAULT_MESH_UPDATE = (mesh, curve, alpha, index, count, group) => {
+        const a_meshpos = (index + 1) / count;
+        mesh.position.copy( curve.getPoint(a_meshpos * alpha) );
+    };
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -22,30 +24,17 @@
     //-------- ----------
     // update curve control points and mesh object values
     api.update = (group, alpha) => {
-
-
         const gud = group.userData;
         let index_curve = 0;
         while(index_curve < gud.curveCount){
             const curve = gud.curvePath.curves[index_curve];
             const v_start = curve.v0, v_c1 = curve.v1, v_c2 = curve.v2, v_end = curve.v3;
-
             gud.curveUpdate(curve, alpha, v_c1, v_c2, v_start, v_end, gud, group);
-
             let index_mesh = 0;
             while(index_mesh < gud.meshPerCurve){
                 const name = getMeshName(gud, index_curve, index_mesh);
                 const mesh = group.getObjectByName(name);
-
-                const a_meshpos = (index_mesh + 1) / gud.meshPerCurve;
-                mesh.position.copy( curve.getPoint(a_meshpos * alpha) );
-
-                // opacity
-                const a_meshopacity = (1 - a_meshpos) * 0.50 + 0.50 * alpha;
-                mesh.material.opacity = a_meshopacity;
-                // scale
-                const s = 0.25 + 2.25 * a_meshpos * Math.sin(Math.PI * 0.5 * alpha);
-                mesh.scale.set( s, s, s );
+                gud.meshUpdate(mesh, curve, alpha, index_mesh, gud.meshPerCurve, group);
                 index_mesh += 1;
             }
             index_curve += 1;
@@ -64,6 +53,7 @@
         gud.material = opt.material || new THREE.MeshPhongMaterial();
 
         gud.curveUpdate = opt.curveUpdate || DEFAULT_CURVE_UPDATE;
+        gud.meshUpdate = opt.meshUpdate || DEFAULT_MESH_UPDATE;
 
         gud.curvePath = new THREE.CurvePath();
         gud.id = opt.id || '1';
