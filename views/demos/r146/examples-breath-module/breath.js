@@ -43,26 +43,25 @@
     const getBreathPartsSum = (breathParts) => {
         return Object.keys( breathParts ).reduce( ( acc, key ) => { return acc + breathParts[key]; }, 0);
     };
+    // get the alpha value targets for each breath part
+    const getBreathAlphaTargets = (breathParts) => {
+        return BREATH_KEYS.reduce((acc, key, i, arr) => {
+            let a = breathParts[ key ];
+            if(i > 0){
+                a += acc[i - 1]
+            }
+            acc.push( a );
+            return acc;
+        }, []).map((n)=>{
+            return n / getBreathPartsSum(breathParts);
+        });
+    };
 
-    console.log( getBreathPartsSum(DEFAULT_BREATH_PARTS) );
-
-/*
-    const BREATH_ALPHA_TARGETS = BREATH_KEYS.reduce((acc, key, i, arr) => {
-        let a = BREATH_PARTS[ key ];
-        if(i > 0){
-            a += acc[i - 1]
-        }
-        acc.push( a );
-        return acc;
-    }, []).map((n)=>{
-        return n / BREATH_PARTS_SUM;
-    });
-*/
+console.log( getBreathAlphaTargets(DEFAULT_BREATH_PARTS) );
 
     //-------- ----------
     // PUBLIC API
     //-------- ----------
-
     // main update method
     api.update = (group, alpha) => {
         updateGroup(group, alpha);
