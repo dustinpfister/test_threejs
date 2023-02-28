@@ -20,7 +20,7 @@ const group = BreathMod.create({
     meshPerCurve: 16,
     radiusMin: 0.5, radiusMax: 8,
     breathsPerMinute: 5,
-    breathParts: {restLow: 1, breathIn: 3, restHigh: 1, breathOut: 10},
+    breathParts: {restLow: 1, breathIn: 4, restHigh: 1, breathOut: 4},
     curveUpdate: (curve, alpha, v_c1, v_c2, v_start, v_end, gud, group) => {
         const e1 = new THREE.Euler();
         e1.z = Math.PI / 180 * 60 * alpha;
