@@ -8,8 +8,8 @@
 ## () - s4-2-manager-many
 * () start a s4-2-manager-many demo where I load more than one file
 
-## () - s4-1-manager
-* () start a s4-1-manager demo that will be a basic getting started type demo of the loading manager
+## ( done 02/28/2023 ) - s4-1-manager
+* (done) start a s4-1-manager demo that will be a basic getting started type demo of the loading manager
 
 ## ( done 02/28/2023 ) rename folders, and update to r146 style
 * (done) rename demo folders
