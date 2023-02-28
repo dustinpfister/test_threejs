@@ -23,7 +23,7 @@
     // PUBLIC API
     //-------- ----------
     // update curve control points and mesh object values
-    api.update = (group, alpha) => {
+    const updateGroup = (group, alpha) => {
         const gud = group.userData;
         let index_curve = 0;
         while(index_curve < gud.curveCount){
@@ -39,6 +39,10 @@
             }
             index_curve += 1;
         };
+    };
+    // main update method
+    api.update = (group, alpha) => {
+        updateGroup(group, alpha);
     };
     // main create method
     api.create = (opt) => {
