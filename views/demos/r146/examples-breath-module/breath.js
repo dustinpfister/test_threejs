@@ -56,15 +56,37 @@
             return n / getBreathPartsSum(breathParts);
         });
     };
-
-console.log( getBreathAlphaTargets(DEFAULT_BREATH_PARTS) );
-
     //-------- ----------
     // PUBLIC API
     //-------- ----------
     // main update method
-    api.update = (group, alpha) => {
-        updateGroup(group, alpha);
+    api.update = (group, a_fullvid) => {
+        const gud = group.userData;
+        const sec = gud.totalBreathSecs * a_fullvid;
+        const a1 = (sec % 60 / 60) * gud.breathsPerMinute % 1;
+        let ki = 0;
+        while(ki < BREATH_KEYS.length){
+            if(a1 < gud.breathAlphaTargts[ki]){
+                const a_base = ki > 0 ? gud.breathAlphaTargts[ki - 1] : 0;
+                const a_breathpart = (a1 - a_base) / (gud.breathAlphaTargts[ki] - a_base);
+                if(BREATH_KEYS[ki] === 'restLow'){
+                    updateGroup(group, 0);
+                }
+                if(BREATH_KEYS[ki] === 'restHigh'){
+                    updateGroup(group, 1);
+                }
+                if(BREATH_KEYS[ki] === 'breathIn'){
+                    const a_breath = Math.sin(Math.PI * 0.5 * a_breathpart);
+                    updateGroup(group, a_breath);
+                }
+                if(BREATH_KEYS[ki] === 'breathOut'){
+                    const a_breath = 1 - Math.sin(Math.PI * 0.5 * a_breathpart);
+                    updateGroup(group, 1 - Math.sin(Math.PI * 0.5 * a_breathpart));
+                }
+                break;
+            }
+            ki += 1;;
+        }
     };
     // main create method
     api.create = (opt) => {
@@ -77,10 +99,11 @@ console.log( getBreathAlphaTargets(DEFAULT_BREATH_PARTS) );
         gud.meshPerCurve = opt.meshPerCurve === undefined ? 10 : opt.meshPerCurve;
         gud.geometry = opt.geometry || new THREE.SphereGeometry(0.1, 20, 20);
         gud.material = opt.material || new THREE.MeshPhongMaterial();
-
         gud.curveUpdate = opt.curveUpdate || DEFAULT_CURVE_UPDATE;
         gud.meshUpdate = opt.meshUpdate || DEFAULT_MESH_UPDATE;
-
+        gud.totalBreathSecs = opt.totalBreathSecs === undefined ? 300 : opt.totalBreathSecs;
+        gud.breathsPerMinute = opt.breathsPerMinute === undefined ? 5 : opt.breathsPerMinute;
+        gud.breathAlphaTargts = getBreathAlphaTargets(opt.breathParts || DEFAULT_BREATH_PARTS);
         gud.curvePath = new THREE.CurvePath();
         gud.id = opt.id || '1';
         let index_curve = 0;

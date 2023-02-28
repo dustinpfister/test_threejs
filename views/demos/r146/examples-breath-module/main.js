@@ -19,6 +19,8 @@ const group = BreathMod.create({
     curveCount: 20,
     meshPerCurve: 16,
     radiusMin: 0.5, radiusMax: 8,
+    breathsPerMinute: 5,
+    breathParts: {restLow: 1, breathIn: 3, restHigh: 1, breathOut: 10},
     curveUpdate: (curve, alpha, v_c1, v_c2, v_start, v_end, gud, group) => {
         const e1 = new THREE.Euler();
         e1.z = Math.PI / 180 * 60 * alpha;
@@ -52,7 +54,7 @@ camera.position.set(0, 0, 8);
 camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 150;
+FRAME_MAX = 30 * 300;
 let secs = 0,
 frame = 0,
 lt = new Date();
