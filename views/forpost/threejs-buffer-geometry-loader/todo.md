@@ -1,8 +1,15 @@
 # threejs-buffer-geometry-loader todo list
 
+## () new s1-1-basic example
+* () rename the old s1-1-basic to s1-2-basic-loop
+* () start a new s1-1-basic that is just a static render of a scene
 
-## () - s4-more-than-one
-* have a s3-more-than-one example
+
+## () - s4-2-manager-many
+* () start a s4-2-manager-many demo where I load more than one file
+
+## () - s4-1-manager
+* () start a s4-1-manager demo that will be a basic getting started type demo of the loading manager
 
 ## () rename folders, and update to r146 style
 * (done) rename demo folders
