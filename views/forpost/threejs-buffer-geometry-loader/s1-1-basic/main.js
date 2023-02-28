@@ -3,8 +3,6 @@
 //-------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 100);
-camera.position.set(10, 10, 10);
-camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -21,6 +19,8 @@ let mesh = null;
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
+camera.position.set(10, 10, 10);
+camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 12, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 300;
