@@ -1,7 +1,7 @@
 // breath.js - r0 - r146 prototype
 (function(api){
 
-    const DEFAULT_CURVE_UPDATE = (curve, alpha, v_c1, v_c2, v_start, v_end) => {
+    const DEFAULT_CURVE_UPDATE = (curve, alpha, v_c1, v_c2, v_start, v_end, gud, group) => {
         const e1 = new THREE.Euler();
         e1.z = Math.PI / 180 * 70 * alpha;
         const e2 = new THREE.Euler();
@@ -30,7 +30,7 @@
             const curve = gud.curvePath.curves[index_curve];
             const v_start = curve.v0, v_c1 = curve.v1, v_c2 = curve.v2, v_end = curve.v3;
 
-            DEFAULT_CURVE_UPDATE(curve, alpha, v_c1, v_c2, v_start, v_end, gud, group);
+            gud.curveUpdate(curve, alpha, v_c1, v_c2, v_start, v_end, gud, group);
 
             let index_mesh = 0;
             while(index_mesh < gud.meshPerCurve){
@@ -62,6 +62,9 @@
         gud.meshPerCurve = opt.meshPerCurve === undefined ? 10 : opt.meshPerCurve;
         gud.geometry = opt.geometry || new THREE.SphereGeometry(0.1, 20, 20);
         gud.material = opt.material || new THREE.MeshPhongMaterial();
+
+        gud.curveUpdate = opt.curveUpdate || DEFAULT_CURVE_UPDATE;
+
         gud.curvePath = new THREE.CurvePath();
         gud.id = opt.id || '1';
         let index_curve = 0;
