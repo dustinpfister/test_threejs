@@ -1,8 +1,10 @@
 // breath.js - r0 - r146 prototype
 (function(api){
+    const BREATH_KEYS = 'restLow,breathIn,restHigh,breathOut'.split(',');
     //-------- ----------
     // DEFAULTS
     //-------- ----------
+    const DEFAULT_BREATH_PARTS = {restLow: 1, breathIn: 5, restHigh: 1, breathOut: 5};
     const DEFAULT_CURVE_UPDATE = (curve, alpha, v_c1, v_c2, v_start, v_end, gud, group) => {
         const e1 = new THREE.Euler();
         e1.z = Math.PI / 180 * 90 * alpha;
@@ -14,13 +16,6 @@
     };
     //-------- ----------
     // HELPERS
-    //-------- ----------
-    // get a mesh object name to be used when creating and getting mesh objects in breath group
-    const getMeshName = (gud, index_curve, index_mesh) => {
-        return 'breath_id' + gud.id + '_curve' + index_curve + '_mesh' + index_mesh;
-    };
-    //-------- ----------
-    // PUBLIC API
     //-------- ----------
     // update curve control points and mesh object values
     const updateGroup = (group, alpha) => {
@@ -40,6 +35,34 @@
             index_curve += 1;
         };
     };
+    // get a mesh object name to be used when creating and getting mesh objects in breath group
+    const getMeshName = (gud, index_curve, index_mesh) => {
+        return 'breath_id' + gud.id + '_curve' + index_curve + '_mesh' + index_mesh;
+    };
+    // get the sum of a breath parts object
+    const getBreathPartsSum = (breathParts) => {
+        return Object.keys( breathParts ).reduce( ( acc, key ) => { return acc + breathParts[key]; }, 0);
+    };
+
+    console.log( getBreathPartsSum(DEFAULT_BREATH_PARTS) );
+
+/*
+    const BREATH_ALPHA_TARGETS = BREATH_KEYS.reduce((acc, key, i, arr) => {
+        let a = BREATH_PARTS[ key ];
+        if(i > 0){
+            a += acc[i - 1]
+        }
+        acc.push( a );
+        return acc;
+    }, []).map((n)=>{
+        return n / BREATH_PARTS_SUM;
+    });
+*/
+
+    //-------- ----------
+    // PUBLIC API
+    //-------- ----------
+
     // main update method
     api.update = (group, alpha) => {
         updateGroup(group, alpha);
