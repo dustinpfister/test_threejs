@@ -49,24 +49,38 @@ const group = BreathMod.create({
         v_c1.copy( v_start.clone().lerp(v_end, 0.25) );
         v_c2.copy( v_start.clone().lerp(v_end, 0.75) );
     },
-    meshUpdate: (mesh, curve, alpha, index, count, group) => {
+    meshUpdate: (mesh, curve, alpha, index, count, group, gud) => {
         const a_meshpos = (index + 1) / count;
         mesh.position.copy( curve.getPoint(a_meshpos * alpha) );
+        mesh.material.color = new THREE.Color(1,1,1);
+        const a1 = gud.a_breathpart;
+        if(gud.currentBreathKey === 'restLow'){
+            mesh.material.color = new THREE.Color(0,1,1);
+        }
+        if(gud.currentBreathKey === 'restHigh'){
+            mesh.material.color = new THREE.Color(1,0,0);
+        }
+        if(gud.currentBreathKey === 'breathIn'){
+            mesh.material.color = new THREE.Color(a1, 1 - a1, 1 - a1);
+        }
+        if(gud.currentBreathKey === 'breathOut'){
+            mesh.material.color = new THREE.Color(1 - a1, a1, a1);
+        }
     },
     hooks : {
-        restLow : (updateGroup, group, a_breathpart, a_fullvid) => {
+        restLow : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
             updateGroup(group, 0.05 * a_breathpart);
             group.rotation.y = Math.PI * 2 * a_breathpart;
         },
-        restHigh : (updateGroup, group, a_breathpart, a_fullvid) => {
+        restHigh : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
             updateGroup(group, 1 - 0.05 * a_breathpart);
             group.rotation.y = Math.PI * 2 * a_breathpart * -1;
         },
-        breathIn : (updateGroup, group, a_breathpart, a_fullvid) => {
+        breathIn : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
             updateGroup(group, 0.05 + 0.95 * Math.sin(Math.PI * 0.5 * a_breathpart) );
             group.rotation.y = 0;
         },
-        breathOut : (updateGroup, group, a_breathpart, a_fullvid) => {
+        breathOut : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
             updateGroup(group, 0.95 - 0.95 * Math.sin(Math.PI * 0.5 * a_breathpart) );
             group.rotation.y = 0;
         }

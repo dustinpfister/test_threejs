@@ -15,16 +15,16 @@
         mesh.position.copy( curve.getPoint(a_meshpos * alpha) );
     };
     const DEFAULT_HOOKS = {
-        restLow : (updateGroup, group, a_breathpart, a_fullvid) => {
+        restLow : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
             updateGroup(group, 0);
         },
-        restHigh : (updateGroup, group, a_breathpart, a_fullvid) => {
+        restHigh : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
             updateGroup(group, 1);
         },
-        breathIn : (updateGroup, group, a_breathpart, a_fullvid) => {
+        breathIn : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
             updateGroup(group, Math.sin(Math.PI * 0.5 * a_breathpart));
         },
-        breathOut : (updateGroup, group, a_breathpart, a_fullvid) => {
+        breathOut : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
             updateGroup(group, 1 - Math.sin(Math.PI * 0.5 * a_breathpart));
         }
     };
@@ -43,7 +43,7 @@
             while(index_mesh < gud.meshPerCurve){
                 const name = getMeshName(gud, index_curve, index_mesh);
                 const mesh = group.getObjectByName(name);
-                gud.meshUpdate(mesh, curve, alpha, index_mesh, gud.meshPerCurve, group);
+                gud.meshUpdate(mesh, curve, alpha, index_mesh, gud.meshPerCurve, group, group.userData);
                 index_mesh += 1;
             }
             index_curve += 1;
@@ -76,16 +76,17 @@
     // main update method
     api.update = (group, a_fullvid) => {
         const gud = group.userData;
-        const sec = gud.totalBreathSecs * a_fullvid;
+        gud.a_fullvid = a_fullvid;
+        const sec = gud.totalBreathSecs * gud.a_fullvid;
         const a1 = (sec % 60 / 60) * gud.breathsPerMinute % 1;
         let ki = 0;
         while(ki < BREATH_KEYS.length){
             if(a1 < gud.breathAlphaTargts[ki]){
-                const a_base = ki > 0 ? gud.breathAlphaTargts[ki - 1] : 0;
-                const a_breathpart = (a1 - a_base) / (gud.breathAlphaTargts[ki] - a_base);
+                gud.a_base = ki > 0 ? gud.breathAlphaTargts[ki - 1] : 0;
+                gud.a_breathpart = (a1 - gud.a_base) / (gud.breathAlphaTargts[ki] - gud.a_base);
                 gud.currentBreathKey = BREATH_KEYS[ki];
                 const hook = gud.hooks[ gud.currentBreathKey ] || DEFAULT_HOOKS[ gud.currentBreathKey ];
-                hook(updateGroup, group, a_breathpart, a_fullvid);
+                hook(updateGroup, group, gud.a_breathpart, gud.a_fullvid, group.userData);
                 break;
             }
             ki += 1;;
@@ -111,6 +112,11 @@
         gud.curvePath = new THREE.CurvePath();
         gud.hooks = opt.hooks || {};
         gud.id = opt.id || '1';
+        // set in api.update
+        gud.currentBreathKey = '';
+        gud.a_fullvid = 0;
+        gud.a_base = 0;
+        gud.a_breathpart = 0;
         let index_curve = 0;
         while(index_curve < gud.curveCount){
             const a_curve_index = index_curve / gud.curveCount;
