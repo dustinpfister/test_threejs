@@ -1,12 +1,12 @@
 # threejs-materials todo list
 
-## () s5-1-loop-all-features
+## () s5-1-loop-all
 * () make it so the s5 "all features example" also mutates near and far along with everything else
 
 
 
 ## () update s2-x-change demos to r146 style
-* () update s2-1-change-fov to r146 style
+* (done) update s2-1-change-fov to r146 style
 * () update s2-2-change-near-far to r146 style
 * () update s2-3-change-zoom to r146 style
 
