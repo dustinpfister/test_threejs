@@ -14,6 +14,22 @@
         const a_meshpos = (index + 1) / count;
         mesh.position.copy( curve.getPoint(a_meshpos * alpha) );
     };
+    const DEFAULT_HOOKS = {
+        restLow : (updateGroup, group, a_breathpart, a_fullvid) => {
+            updateGroup(group, 0);
+        },
+        restHigh : (updateGroup, group, a_breathpart, a_fullvid) => {
+            updateGroup(group, 1);
+        },
+        breathIn : (updateGroup, group, a_breathpart, a_fullvid) => {
+                    const a_breath = Math.sin(Math.PI * 0.5 * a_breathpart);
+                    updateGroup(group, a_breath);
+        },
+        breathOut : (updateGroup, group, a_breathpart, a_fullvid) => {
+                    const a_breath = 1 - Math.sin(Math.PI * 0.5 * a_breathpart);
+                    updateGroup(group, 1 - Math.sin(Math.PI * 0.5 * a_breathpart));
+        }
+    };
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -69,20 +85,8 @@
             if(a1 < gud.breathAlphaTargts[ki]){
                 const a_base = ki > 0 ? gud.breathAlphaTargts[ki - 1] : 0;
                 const a_breathpart = (a1 - a_base) / (gud.breathAlphaTargts[ki] - a_base);
-                if(BREATH_KEYS[ki] === 'restLow'){
-                    updateGroup(group, 0);
-                }
-                if(BREATH_KEYS[ki] === 'restHigh'){
-                    updateGroup(group, 1);
-                }
-                if(BREATH_KEYS[ki] === 'breathIn'){
-                    const a_breath = Math.sin(Math.PI * 0.5 * a_breathpart);
-                    updateGroup(group, a_breath);
-                }
-                if(BREATH_KEYS[ki] === 'breathOut'){
-                    const a_breath = 1 - Math.sin(Math.PI * 0.5 * a_breathpart);
-                    updateGroup(group, 1 - Math.sin(Math.PI * 0.5 * a_breathpart));
-                }
+                const hook = gud.hooks[ BREATH_KEYS[ki] ] || DEFAULT_HOOKS[ BREATH_KEYS[ki] ];
+                hook(updateGroup, group, a_breathpart, a_fullvid);
                 break;
             }
             ki += 1;;
@@ -105,6 +109,7 @@
         gud.breathsPerMinute = opt.breathsPerMinute === undefined ? 5 : opt.breathsPerMinute;
         gud.breathAlphaTargts = getBreathAlphaTargets(opt.breathParts || DEFAULT_BREATH_PARTS);
         gud.curvePath = new THREE.CurvePath();
+		gud.hooks = opt.hooks || {};
         gud.id = opt.id || '1';
         let index_curve = 0;
         while(index_curve < gud.curveCount){
