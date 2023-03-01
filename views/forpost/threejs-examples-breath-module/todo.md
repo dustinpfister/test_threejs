@@ -1,6 +1,9 @@
 # threejs-examples-breath-module r146 demo todo list
 
-## () - r0-1-default
+## () - r0-3-hooks
+* () demo of new hooks feature
+
+## ( done 03/01/2023 ) - r0-1-default
 * () have an r0-1-default that is a demo where I have a breath module with default options
 
 ## ( done 03/01/2023 ) r0-2-custom
