@@ -107,7 +107,7 @@
         gud.meshUpdate = opt.meshUpdate || DEFAULT_MESH_UPDATE;
         gud.totalBreathSecs = opt.totalBreathSecs === undefined ? 300 : opt.totalBreathSecs;
         gud.breathsPerMinute = opt.breathsPerMinute === undefined ? 5 : opt.breathsPerMinute;
-        gud.breathParts = opt.breathPaths || DEFAULT_BREATH_PARTS;
+        gud.breathParts = opt.breathParts || DEFAULT_BREATH_PARTS;
         gud.breathAlphaTargts = getBreathAlphaTargets(gud.breathParts);
         gud.curvePath = new THREE.CurvePath();
         gud.hooks = opt.hooks || {};
