@@ -15,17 +15,17 @@
         mesh.position.copy( curve.getPoint(a_meshpos * alpha) );
     };
     const DEFAULT_HOOKS = {
-        restLow : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
+        restLow : (updateGroup, group, a_breathPart, a_fullvid, gud) => {
             updateGroup(group, 0);
         },
-        restHigh : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
+        restHigh : (updateGroup, group, a_breathPart, a_fullvid, gud) => {
             updateGroup(group, 1);
         },
-        breathIn : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
-            updateGroup(group, Math.sin(Math.PI * 0.5 * a_breathpart));
+        breathIn : (updateGroup, group, a_breathPart, a_fullvid, gud) => {
+            updateGroup(group, Math.sin(Math.PI * 0.5 * a_breathPart));
         },
-        breathOut : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
-            updateGroup(group, 1 - Math.sin(Math.PI * 0.5 * a_breathpart));
+        breathOut : (updateGroup, group, a_breathPart, a_fullvid, gud) => {
+            updateGroup(group, 1 - Math.sin(Math.PI * 0.5 * a_breathPart));
         }
     };
     //-------- ----------
@@ -83,10 +83,10 @@
         while(ki < BREATH_KEYS.length){
             if(a1 < gud.breathAlphaTargts[ki]){
                 gud.a_base = ki > 0 ? gud.breathAlphaTargts[ki - 1] : 0;
-                gud.a_breathpart = (a1 - gud.a_base) / (gud.breathAlphaTargts[ki] - gud.a_base);
+                gud.a_breathPart = (a1 - gud.a_base) / (gud.breathAlphaTargts[ki] - gud.a_base);
                 gud.currentBreathKey = BREATH_KEYS[ki];
                 const hook = gud.hooks[ gud.currentBreathKey ] || DEFAULT_HOOKS[ gud.currentBreathKey ];
-                hook(updateGroup, group, gud.a_breathpart, gud.a_fullvid, group.userData);
+                hook(updateGroup, group, gud.a_breathPart, gud.a_fullvid, group.userData);
                 break;
             }
             ki += 1;;
@@ -116,7 +116,7 @@
         gud.currentBreathKey = '';
         gud.a_fullvid = 0;
         gud.a_base = 0;
-        gud.a_breathpart = 0;
+        gud.a_breathPart = 0;
         let index_curve = 0;
         while(index_curve < gud.curveCount){
             const a_curve_index = index_curve / gud.curveCount;

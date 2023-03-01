@@ -53,7 +53,7 @@ const group = BreathMod.create({
         const a_meshpos = (index + 1) / count;
         mesh.position.copy( curve.getPoint(a_meshpos * alpha) );
         mesh.material.color = new THREE.Color(1,1,1);
-        const a1 = gud.a_breathpart;
+        const a1 = gud.a_breathPart;
         if(gud.currentBreathKey === 'restLow'){
             mesh.material.color = new THREE.Color(0,1,1);
         }
@@ -68,20 +68,20 @@ const group = BreathMod.create({
         }
     },
     hooks : {
-        restLow : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
-            updateGroup(group, 0.05 * a_breathpart);
-            group.rotation.y = Math.PI * 2 * a_breathpart;
+        restLow : (updateGroup, group, a_breathPart, a_fullvid, gud) => {
+            updateGroup(group, 0.05 * a_breathPart);
+            group.rotation.y = Math.PI * 2 * a_breathPart;
         },
-        restHigh : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
-            updateGroup(group, 1 - 0.05 * a_breathpart);
-            group.rotation.y = Math.PI * 2 * a_breathpart * -1;
+        restHigh : (updateGroup, group, a_breathPart, a_fullvid, gud) => {
+            updateGroup(group, 1 - 0.05 * a_breathPart);
+            group.rotation.y = Math.PI * 2 * a_breathPart * -1;
         },
-        breathIn : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
-            updateGroup(group, 0.05 + 0.95 * Math.sin(Math.PI * 0.5 * a_breathpart) );
+        breathIn : (updateGroup, group, a_breathPart, a_fullvid, gud) => {
+            updateGroup(group, 0.05 + 0.95 * Math.sin(Math.PI * 0.5 * a_breathPart) );
             group.rotation.y = 0;
         },
-        breathOut : (updateGroup, group, a_breathpart, a_fullvid, gud) => {
-            updateGroup(group, 0.95 - 0.95 * Math.sin(Math.PI * 0.5 * a_breathpart) );
+        breathOut : (updateGroup, group, a_breathPart, a_fullvid, gud) => {
+            updateGroup(group, 0.95 - 0.95 * Math.sin(Math.PI * 0.5 * a_breathPart) );
             group.rotation.y = 0;
         }
     }
@@ -101,8 +101,8 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
     const a1 = frame / frameMax;
-    const a_breathpart = a1;
-    const a_breath = Math.sin(Math.PI * 0.5 * a_breathpart);
+    const a_breathPart = a1;
+    const a_breath = Math.sin(Math.PI * 0.5 * a_breathPart);
     BreathMod.update(group, a_breath);
 };
 // loop

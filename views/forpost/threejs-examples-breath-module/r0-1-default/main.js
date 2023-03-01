@@ -31,8 +31,8 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
     const a1 = frame / frameMax;
-    const a_breathpart = a1;
-    const a_breath = Math.sin(Math.PI * 0.5 * a_breathpart);
+    const a_breathPart = a1;
+    const a_breath = Math.sin(Math.PI * 0.5 * a_breathPart);
     BreathMod.update(group, a_breath);
 };
 // loop
