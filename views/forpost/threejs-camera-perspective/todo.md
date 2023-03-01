@@ -7,7 +7,7 @@
 
 ## () update s2-x-change demos to r146 style
 * (done) update s2-1-change-fov to r146 style
-* () update s2-2-change-near-far to r146 style
+* (done) update s2-2-change-near-far to r146 style
 * () update s2-3-change-zoom to r146 style
 
 ## ( done 03/01/2023 ) update s3 and s4 demos to r146 style
