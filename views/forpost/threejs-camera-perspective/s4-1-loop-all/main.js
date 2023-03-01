@@ -1,23 +1,15 @@
-// a scene is needed to place objects in
-var scene = new THREE.Scene();
+const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
-// so here I am setting the values of the perspective camera
-var fieldOfView = 45,
-aspectRatio = 4 / 3,
-near = 1,
-far = 15,
-camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, near, far);
-// In order to see anything I will also need a renderer
-// to use with my scene, and camera
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-// I must append the dom element used by the renderer to the html
-// that I am using.
-document.getElementById('demo').appendChild(renderer.domElement);
-// initialize method
-var init = function () {
+camera = new THREE.PerspectiveCamera(50, 4 / 3, 1, 15);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+// ---------- ----------
+// INIT METHOD
+// ---------- ----------
+const init = function () {
     // add plane to the scene
-    var plane = new THREE.Mesh(
+    const plane = new THREE.Mesh(
             new THREE.PlaneGeometry(5, 5, 8, 8),
             new THREE.MeshDepthMaterial({
                 side: THREE.DoubleSide
@@ -25,7 +17,7 @@ var init = function () {
     plane.rotation.x = Math.PI / 2;
     scene.add(plane);
     // add a cube to the scene
-    var cube = new THREE.Mesh(
+    const cube = new THREE.Mesh(
             new THREE.BoxGeometry(2, 2, 2),
             new THREE.MeshDepthMaterial({}));
     cube.position.set(0, 1.1, 0);
@@ -36,43 +28,45 @@ var init = function () {
     camera.position.set(4, 4, 4);
     camera.lookAt(0, 0, 0);
 };
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 900;
+let secs = 0,
+frame = 0,
+lt = new Date();
 // update method
-var update = function (per, bias, secs) {
+const update = function (frame, frameMax) {
+    const a1 = frame / frameMax;
+    const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
     // update aspect and fov
-    camera.aspect = .5 + 1.5 * bias;
-    camera.fov = 50 + 25 * bias;
+    camera.aspect = .5 + 1.5 * a2;
+    camera.fov = 50 + 25 * a2;
     camera.updateProjectionMatrix();
     // change position
-    var radian = Math.PI * 2 * per;
+    const radian = Math.PI * 2 * a1;
     camera.position.set(
         Math.cos(radian) * 5, 
-        5 * Math.sin(Math.PI * 4 * per), 
+        5 * Math.sin(Math.PI * 4 * a1), 
         Math.sin(radian) * 5);
     camera.lookAt(0, 0, 0);
 };
 // loop
-var per = 0,
-bias = 0,
-now = new Date(),
-secs = 0,
-lt = now,
-frame = 0,
-frameMax = 300,
-fps = 30;
-var loop = function () {
-    now = new Date();
+const loop = () => {
+    const now = new Date(),
     secs = (now - lt) / 1000;
-    per = frame / frameMax;
-    bias = 1 - Math.abs(0.5 - per) / 0.5;
     requestAnimationFrame(loop);
-    if(secs > 1 / fps){
-        update(per, bias, secs);
+    if(secs > 1 / FPS_UPDATE){
+        // update, render
+        update( Math.floor(frame), FRAME_MAX);
         renderer.render(scene, camera);
-        frame += fps * secs;
-        frame %= frameMax;
+        // step frame
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
         lt = now;
     }
 };
-// call init, and start loop
 init();
 loop();
