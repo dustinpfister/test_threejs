@@ -1,7 +1,18 @@
 # threejs-materials todo list
 
-## () Update all features example
-* make it so the s5 "all features example" also mutates near and far along with everything else
+## () s5-1-loop-all-features
+* () make it so the s5 "all features example" also mutates near and far along with everything else
+
+## () s1-1-basic update to r146 style
+* () update s1-1-basic to r146 style
+
+## () rename folders
+* () rename s1-basic to s1-1-basic
+* () rename s2-change-fov to s2-1-change-fov
+* () rename s3-change-near-far to s2-2-change-near-far
+* () rename s6-zoom to s2-3-change-zoom
+* () rename s4-camera-helper to s3-1-helper
+* () rename s5-all-features-example to s5-1-loop-all-features
 
 ## ( done 08/18/2022 ) - s6-zoom example
 * (done) have a simple example of the zoom property
