@@ -3,17 +3,25 @@
 ## () s5-1-loop-all-features
 * () make it so the s5 "all features example" also mutates near and far along with everything else
 
-## () s1-1-basic update to r146 style
-* () update s1-1-basic to r146 style
+## () update s3 and s4 demos to r146 style
+* () update s3-1-helper to r146 style
+* () update s4-1-loop-all to r146 style
 
-## () rename folders
+## () update s2-x-change demos to r146 style
+* () update s2-1-change-fov to r146 style
+* () update s2-2-change-near-far to r146 style
+* () update s2-3-change-zoom to r146 style
+
+## (done 03/01/2023 ) s1-1-basic update to r146 style
+* (done) update s1-1-basic to r146 style
+
+## ( done 03/01/2023 ) rename folders
 * (done) rename s1-basic to s1-1-basic
 * (done) rename s2-change-fov to s2-1-change-fov
 * (done) rename s3-change-near-far to s2-2-change-near-far
 * (done) rename s6-zoom to s2-3-change-zoom
 * (done) rename s4-camera-helper to s3-1-helper
-
-* () rename s5-all-features-example to s4-1-loop-all-features
+* (done) rename s5-all-features-example to s4-1-loop-all-features
 
 ## ( done 08/18/2022 ) - s6-zoom example
 * (done) have a simple example of the zoom property
