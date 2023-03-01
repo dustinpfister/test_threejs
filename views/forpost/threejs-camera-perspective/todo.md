@@ -13,7 +13,7 @@
 * (done) rename s6-zoom to s2-3-change-zoom
 * (done) rename s4-camera-helper to s3-1-helper
 
-* () rename s5-all-features-example to s5-1-loop-all-features
+* () rename s5-all-features-example to s4-1-loop-all-features
 
 ## ( done 08/18/2022 ) - s6-zoom example
 * (done) have a simple example of the zoom property
