@@ -1,0 +1,10 @@
+# threejs-examples-breath-module r146 demo todo list
+
+## () - r0-1-default
+* () have an r0-1-default that is a demo where I have a breath module with default options
+
+## ( done 03/01/2023 ) r0-2-custom
+* (done) start with an r0-2-custom that is just the demo from the r146 prototype
+
+## () r0 - Starting with the r146 demo
+* (done) start with what I all ready have in the r146 demo
