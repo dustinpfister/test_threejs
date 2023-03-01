@@ -3,14 +3,16 @@
 ## () s5-1-loop-all-features
 * () make it so the s5 "all features example" also mutates near and far along with everything else
 
-## () update s3 and s4 demos to r146 style
-* () update s3-1-helper to r146 style
-* (done) update s4-1-loop-all to r146 style
+
 
 ## () update s2-x-change demos to r146 style
 * () update s2-1-change-fov to r146 style
 * () update s2-2-change-near-far to r146 style
 * () update s2-3-change-zoom to r146 style
+
+## ( done 03/01/2023 ) update s3 and s4 demos to r146 style
+* (done) update s3-1-helper to r146 style
+* (done) update s4-1-loop-all to r146 style
 
 ## (done 03/01/2023 ) s1-1-basic update to r146 style
 * (done) update s1-1-basic to r146 style
