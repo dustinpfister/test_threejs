@@ -22,12 +22,10 @@
             updateGroup(group, 1);
         },
         breathIn : (updateGroup, group, a_breathpart, a_fullvid) => {
-                    const a_breath = Math.sin(Math.PI * 0.5 * a_breathpart);
-                    updateGroup(group, a_breath);
+            updateGroup(group, Math.sin(Math.PI * 0.5 * a_breathpart));
         },
         breathOut : (updateGroup, group, a_breathpart, a_fullvid) => {
-                    const a_breath = 1 - Math.sin(Math.PI * 0.5 * a_breathpart);
-                    updateGroup(group, 1 - Math.sin(Math.PI * 0.5 * a_breathpart));
+            updateGroup(group, 1 - Math.sin(Math.PI * 0.5 * a_breathpart));
         }
     };
     //-------- ----------
@@ -85,7 +83,8 @@
             if(a1 < gud.breathAlphaTargts[ki]){
                 const a_base = ki > 0 ? gud.breathAlphaTargts[ki - 1] : 0;
                 const a_breathpart = (a1 - a_base) / (gud.breathAlphaTargts[ki] - a_base);
-                const hook = gud.hooks[ BREATH_KEYS[ki] ] || DEFAULT_HOOKS[ BREATH_KEYS[ki] ];
+                gud.currentBreathKey = BREATH_KEYS[ki];
+                const hook = gud.hooks[ gud.currentBreathKey ] || DEFAULT_HOOKS[ gud.currentBreathKey ];
                 hook(updateGroup, group, a_breathpart, a_fullvid);
                 break;
             }
@@ -107,9 +106,10 @@
         gud.meshUpdate = opt.meshUpdate || DEFAULT_MESH_UPDATE;
         gud.totalBreathSecs = opt.totalBreathSecs === undefined ? 300 : opt.totalBreathSecs;
         gud.breathsPerMinute = opt.breathsPerMinute === undefined ? 5 : opt.breathsPerMinute;
-        gud.breathAlphaTargts = getBreathAlphaTargets(opt.breathParts || DEFAULT_BREATH_PARTS);
+        gud.breathParts = opt.breathPaths || DEFAULT_BREATH_PARTS;
+        gud.breathAlphaTargts = getBreathAlphaTargets(gud.breathParts);
         gud.curvePath = new THREE.CurvePath();
-		gud.hooks = opt.hooks || {};
+        gud.hooks = opt.hooks || {};
         gud.id = opt.id || '1';
         let index_curve = 0;
         while(index_curve < gud.curveCount){
