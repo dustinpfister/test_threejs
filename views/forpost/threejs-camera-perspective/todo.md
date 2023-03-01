@@ -9,7 +9,7 @@
 ## () rename folders
 * (done) rename s1-basic to s1-1-basic
 * (done) rename s2-change-fov to s2-1-change-fov
-* () rename s3-change-near-far to s2-2-change-near-far
+* (done) rename s3-change-near-far to s2-2-change-near-far
 * () rename s6-zoom to s2-3-change-zoom
 * () rename s4-camera-helper to s3-1-helper
 * () rename s5-all-features-example to s5-1-loop-all-features
