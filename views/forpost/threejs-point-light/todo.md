@@ -1,5 +1,9 @@
 # threejs-point-light todo
 
+## () s2-1-loop-video1
+* () have a demo that is based on the code of the first video
+* () rename s2-1-loop-helper-functions to s2-2-loop-helper-functions
+
 ## (done 03/02/2023 ) - s1-2-basic-helper 
 * (done) have a new point light helper section
 
