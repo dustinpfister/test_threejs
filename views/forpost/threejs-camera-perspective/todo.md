@@ -1,9 +1,9 @@
 # threejs-materials todo list
 
-## () s5-1-loop-all
+## () s4-1-loop-all
 * () make it so the s5 "all features example" also mutates near and far along with everything else
 
-## () s5-2-loop-plane-aspect
+## () s4-2-loop-plane-aspect
 * () new loop demo where I have a plane geometry scaled to the aspect ratio of the camera
 * () have the plane geometry move back and forth in front of the camera
 * () have a canvas texture on the plane
