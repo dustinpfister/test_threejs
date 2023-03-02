@@ -2,23 +2,31 @@
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
 const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(40, 4 / 3, 0.05, 10);
+const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.05, 20);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 // ---------- ----------
+// GRID
+// ---------- ----------
+const grid = new THREE.GridHelper(30, 30);
+scene.add(grid);
+// ---------- ----------
 // MESH
 // ---------- ----------
-const material_plane = new THREE.MeshBasicMaterial();
+const material_plane = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
 const geometry_plane = new THREE.PlaneGeometry(1, 1, 1, 1);
 const mesh_plane_1 = new THREE.Mesh(geometry_plane, material_plane);
 mesh_plane_1.scale.set(
    camera.aspect,
    1,
    1
-)
-mesh_plane_1.position.z = 8.6;
-scene.add(mesh_plane_1);
+);
+const group = new THREE.Group();
+group.add(mesh_plane_1);
+group.add(camera);
+scene.add(group);
+
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -34,6 +42,11 @@ lt = new Date();
 const update = function (frame, frameMax) {
     const a1 = frame / frameMax;
     const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+
+    mesh_plane_1.position.z = 8.9 - a2 * 8.9;
+    group.position.y = 1;
+    group.position.z = 10 - 20 * a2;
+    group.rotation.y = Math.PI / 180 * 45 * a2;
 };
 // loop
 const loop = () => {
