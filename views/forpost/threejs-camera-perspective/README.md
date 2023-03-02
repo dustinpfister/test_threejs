@@ -7,3 +7,10 @@ These are the source code examples that I am using for [my post on the perspecti
          <img src="https://img.youtube.com/vi/8kc1egTCLrE/0.jpg" style="width:50%;">
       </a>
 </div>
+
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=8kc1egTCLrE">
+         <img src="https://img.youtube.com/vi/8kc1egTCLrE/0.jpg" style="width:50%;">
+      </a>
+</div>
