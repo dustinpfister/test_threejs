@@ -10,7 +10,7 @@ These are the source code examples that I am using for [my post on the perspecti
 
 
 <div align="center">
-      <a href="https://www.youtube.com/watch?v=8kc1egTCLrE">
-         <img src="https://img.youtube.com/vi/8kc1egTCLrE/0.jpg" style="width:50%;">
+      <a href="https://www.youtube.com/watch?v=EGPi9VSE-AU">
+         <img src="https://img.youtube.com/vi/EGPi9VSE-AU/0.jpg" style="width:50%;">
       </a>
 </div>
