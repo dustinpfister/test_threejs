@@ -4,7 +4,7 @@
 * () have a new point light helper section
 
 ## () update to r146 style
-* () update s1-1-basic to r146 style
+* (done) update s1-1-basic to r146 style
 * () update s2-1-loop-helper-functions to r146 style
 
 ## ( done 03/02/2023 ) rename folders
