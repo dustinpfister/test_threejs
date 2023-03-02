@@ -1,7 +1,7 @@
 # threejs-point-light todo
 
-## () - s1-2-basic-helper 
-* () have a new point light helper section
+## (done 03/02/2023 ) - s1-2-basic-helper 
+* (done) have a new point light helper section
 
 ## ( done 03/02/2023 ) update to r146 style
 * (done) update s1-1-basic to r146 style
