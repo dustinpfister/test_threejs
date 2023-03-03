@@ -1,6 +1,7 @@
 # threejs-examples-breath-module r146 demo todo list
 
 ## () r1 - Removal of curves, add plugins
+* () gud.a-breathCycle alpha
 * () start a plugin system
 * () create a breath-curve-collection.js plugin that will be the same functionality of the curve groups built into breath.js
 * () remove update curve and update method methods as they should now be pulled out into an optional plugin
