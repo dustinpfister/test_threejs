@@ -1,22 +1,23 @@
 # test_threejs
 
-This is a collection of work using the javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple demos of threejs features, and starting project examples. In other words I am just simply testing out threejs, and in the process writing a fare amount of vanilla javaScript code in the process. 
+This is a collection of work using the javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple demos of threejs features, as well as starting project examples. In other words I am just simply testing out threejs, and in the process writing a fare amount of vanilla javaScript code in the process of doing so. 
 
-I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far. I also have additional draft demos broken down on a reversion by revision basis as threejs is a very fast moving project in terms of development. Many of these demos may or may not become subjects to write about in future blog posts as I keep writing new posts, and editing older ones.
+I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far. 
+
+I also have additional draft demos broken down on a reversion by revision basis as threejs is a very fast moving project in terms of development. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. Future for post folders typically start here in one of these demo revision folders.
 
 <div align="center">
-    <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
-        <img src="https://img.youtube.com/vi/AzuB6ExUE64/0.jpg" style="width:50%;">
+    <a href="https://www.youtube.com/watch?v=IXwmoSKA8dA">
+        <img src="https://img.youtube.com/vi/IXwmoSKA8dA/0.jpg" style="width:50%;">
     </a><br>
     <p>
-        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-weird-face-1">Weird Face one</a> from my 
-        <a href="https://dustinpfister.github.io/2021/02/19/threejs-examples/">threejs example Project Collection</a>
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-phong-material">Video for my post on the Phong Material</a> I am also making use of my <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-sphere-mutate">sphere mutate threejs project examples</a> here as well.
     </p>
 </div>
 
 ## 1 - Install
 
-I do not have any intention to make this project an npm package or anything to that effect. So for now the best way to get things up and running with this on your end would be to clone it down with git, cd into the folder, and then do an npm install. This seems to work fine for me each time thus far with the various versions of nodejs and npm that I use at least. After that the main server script can be started as a way to navigate and view all the various demos, videos, and post related source code examples.
+I do not have any intention to make this project an npm package or anything to that effect. So for now the best way to get things up and running with this on your end would be to clone it down with git, cd into the folder, and then do an npm install. This seems to work fine for me each time thus far with the various versions of nodejs and npm that I use at least. After that the main server script can be started as a way to navigate and view all the various demos, and post related source code examples.
 
 ```
 $ git clone --depth 1 https://github.com/dustinpfister/test_threejs
@@ -57,6 +58,16 @@ $ npm run start_old
 ```
 $ node ./node/server-old/index.js
 ```
+
+<div align="center">
+    <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
+        <img src="https://img.youtube.com/vi/AzuB6ExUE64/0.jpg" style="width:50%;">
+    </a><br>
+    <p>
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-weird-face-1">Weird Face one</a> from my 
+        <a href="https://dustinpfister.github.io/2021/02/19/threejs-examples/">threejs example Project Collection</a>
+    </p>
+</div>
 
 
 ## 3 - The views folder
