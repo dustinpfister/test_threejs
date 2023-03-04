@@ -6,12 +6,15 @@ I [write about the state of the source code examples worked out here in blog pos
 
 I also have additional draft demos broken down on a reversion by revision basis as threejs is a very fast moving project in terms of development. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. Future for post folders typically start here in one of these demo revision folders.
 
+
+
+
 <div align="center">
-    <a href="https://www.youtube.com/watch?v=IXwmoSKA8dA">
-        <img src="https://img.youtube.com/vi/IXwmoSKA8dA/0.jpg" style="width:50%;">
+    <a href="https://www.youtube.com/watch?v=nQ0rDFbFwK0">
+        <img src="https://img.youtube.com/vi/nQ0rDFbFwK0/0.jpg" style="width:50%;">
     </a><br>
     <p>
-        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-phong-material">Video for my post on the Phong Material</a> I am also making use of my <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-sphere-mutate">sphere mutate threejs project examples</a> here as well.
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-lines-sphere-circles">Lines Sphere Circles</a> Video for my <a href="https://dustinpfister.github.io/2022/06/03/threejs-examples-lines-sphere-circles/">threejs project example post</a>.
     </p>
 </div>
 
@@ -109,11 +112,11 @@ This demo folder is also a place where I have drafts, or prototypes for project 
 I have a [for post folder](https://github.com/dustinpfister/test_threejs/tree/master/views/forpost) that is where I am parking source code examples that will be embedded into each blog post that I write about on my website on threejs. When it comes to this I have got into the habit of sticking with a certain revision number, and making sure to always mention what that version is in the content of the blog post. Each time I come around to edit an older post I will revise, and extend the source code examples a little.
 
 <div align="center">
-      <a href="https://www.youtube.com/watch?v=IXwmoSKA8dA">
-         <img src="https://img.youtube.com/vi/IXwmoSKA8dA/0.jpg" style="width:50%;">
-      </a>
+    <a href="https://www.youtube.com/watch?v=IXwmoSKA8dA">
+        <img src="https://img.youtube.com/vi/IXwmoSKA8dA/0.jpg" style="width:50%;">
+    </a><br>
     <p>
-        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-phong-material">Phong Material</a>
+        <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-phong-material">Video for my post on the Phong Material</a> I am also making use of my <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-sphere-mutate">sphere mutate threejs project examples</a> here as well.
     </p>
 </div>
 
