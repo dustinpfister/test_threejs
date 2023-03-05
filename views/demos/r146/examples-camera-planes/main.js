@@ -16,19 +16,19 @@ scene.add( new THREE.GridHelper(10,10) );
 // MESH
 //-------- ----------
 const material_plane = new THREE.MeshBasicMaterial({
-    side: THREE.DoubleSide
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.5
 });
 const geometry_plane = new THREE.PlaneGeometry(1, 1, 1, 1);
 const mesh_plane_1 = new THREE.Mesh(geometry_plane, material_plane);
-mesh_plane_1.scale.set(
-   camera.aspect,
-   1,
-   1
-);
+mesh_plane_1.scale.set(camera.aspect,1,1);
 const group = new THREE.Group();
 group.add(mesh_plane_1);
 group.add(camera);
-camera.position.set(0, 0, 1);
+
+mesh_plane_1.position.set(0,0, 9)
+camera.position.set(0, 0, 10);
 camera.lookAt(group.position);
 scene.add(group);
 // ---------- ----------
