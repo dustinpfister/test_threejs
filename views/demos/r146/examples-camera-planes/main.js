@@ -7,33 +7,18 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// OBJECTS
+// GRID
 // ---------- ----------
 scene.add( new THREE.GridHelper(10,10) );
-
-
 //-------- ----------
-// MESH
+// camera group
 //-------- ----------
-const material_plane = new THREE.MeshBasicMaterial({
-    side: THREE.DoubleSide,
-    transparent: true,
-    opacity: 0.5
-});
-const geometry_plane = new THREE.PlaneGeometry(1, 1, 1, 1);
-const mesh_plane_1 = new THREE.Mesh(geometry_plane, material_plane);
-mesh_plane_1.scale.set(camera.aspect,1,1);
-const group = new THREE.Group();
-group.add(mesh_plane_1);
-group.add(camera);
-
-mesh_plane_1.position.set(0,0, 9)
-camera.position.set(0, 0, 10);
-camera.lookAt(group.position);
-scene.add(group);
+const group_camera = cameraPlanes.create({camera: camera});
+scene.add(group_camera);
 // ---------- ----------
 // RENDER
 // ---------- ----------
-group.position.set(5,1,-3);
-group.rotation.y = Math.PI / 180 * 45;
-renderer.render(scene, camera);
+// it is then the group that I would want to move and rotate rather than the camera
+group_camera.position.set(5,1,-3);
+group_camera.rotation.y = Math.PI / 180 * 45;
+renderer.render(scene, group_camera.userData.camera);
