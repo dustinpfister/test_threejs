@@ -9,9 +9,9 @@
 * () over time the geometry of each will mutate as they move back
 * () I will need to remove old meach objects when they get far back enough
 
-## () s3-2-children-mat-geo
-* () same as first only clone the material, and geometry
-* () use the traverse method to loop over clones of each
+## ( done 03/06/2023 ) s3-2-children-mat-geo
+* (done) same as first only clone the material, and geometry
+* (done) use the traverse method to loop over clones of each
 
 ## ( done 03/06/2023) s3-1-children
 * (done) start an s3-1-children example
