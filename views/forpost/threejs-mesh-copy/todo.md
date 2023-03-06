@@ -1,5 +1,14 @@
 # threejs-mesh-copy todo list
 
+## () s4-2-loop-object-pool
+* () have an object pool loop example
+
+## () s4-1-loop-on-the-fly
+* () start a new loop section
+* () this example will involve creating a new mesh objects from a single source mesh
+* () over time the geometry of each will mutate as they move back
+* () I will need to remove old meach objects when they get far back enough
+
 ## () s3-1-children
 * () start an s3-1-children example
 
