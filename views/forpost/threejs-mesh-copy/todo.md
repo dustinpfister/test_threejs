@@ -3,8 +3,8 @@
 ## () s3-1-children
 * () start an s3-1-children example
 
-## () update s2-1-create to r146 style
-* () update s2-1-create to r146 style rues
+## ( done 03/06/2023 ) update s2-1-create to r146 style
+* (done) update s2-1-create to r146 style rues
 
 ## ( done 03/06/2023 ) update s1-x-basic section to r146 style
 * (done) update s1-1-basic-clonemany to r146 style rules
