@@ -6,10 +6,10 @@
 ## () update s2-1-create to r146 style
 * () update s2-1-create to r146 style rues
 
-## () update s1-x-basic section to r146 style
+## ( done 03/06/2023 ) update s1-x-basic section to r146 style
 * (done) update s1-1-basic-clonemany to r146 style rules
 * (done) update s1-2-basic-material to r146 style rules
-* () updates1-3-basic-geometry to r146 style rules
+* (done) updates1-3-basic-geometry to r146 style rules
 
 ## ( done 03/06/2023 ) rename folders
 * (done) rename s1-basic to s1-1-basic-clonemany
