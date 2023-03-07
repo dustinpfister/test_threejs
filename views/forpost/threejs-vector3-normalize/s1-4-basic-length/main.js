@@ -7,31 +7,31 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
-// HELPERS
+// OBJECTS
 //-------- ----------
-const createCube = function(){
-    const cube = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial());
-    return cube;
-};
-const setPosByDirAndLength = function(obj, dir, len){
-    const v = dir.normalize().multiplyScalar(len);
-    return obj.position.copy(v);
-};
-//-------- ----------
-// OBEJCTS
-//-------- ----------
-scene.add(new THREE.GridHelper(10, 10));
-const mesh1 = createCube();
+scene.add( new THREE.GridHelper(6, 6) );
+const mesh1 = new THREE.Mesh( new THREE.SphereGeometry(0.1, 10, 10) );
+mesh1.position.set(3, 0.5, 0);
 scene.add(mesh1);
-const dir = new THREE.Vector3(-5, 5, -5);
-setPosByDirAndLength(mesh1, dir, 4);
-console.log( mesh1.position.length() ); // 4
+//-------- ----------
+// RENDER
+//-------- ----------
+// using the length method to get the unit length of mesh1
+// using normalize to get a vector with a length of one from that position
+// and using the vector3 lerp method to get vector3 objects between the two
+const mesh_unit_length = mesh1.position.length();
+const v2 = mesh1.position.clone().normalize();
+let i = 0, count = 5;
+while(i < count){
+    const alpha = ( i + 1 ) / count;
+    const mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 10, 10) );
+    mesh.position.copy(mesh1.position).lerp(v2, alpha);
+    scene.add(mesh);
+    i += 1;
+};
 //-------- ----------
 // RENDER
 //-------- ----------
 camera.position.set(5, 5, 5);
 camera.lookAt(0, 0, 0);
 renderer.render(scene, camera);
-
