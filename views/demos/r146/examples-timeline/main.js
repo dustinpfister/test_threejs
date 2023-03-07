@@ -11,13 +11,20 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 const tl = timeLine.create({
     st: '08:00:00.000',
-    et: '12:30:51.125'
+    et: '12:00:00.000'
 });
 
+timeLine.add(tl, {
+   st: '09:00:00.000',
+   et: '10:00:00.000',
+   update: (state) => {
+       console.log('foo');
+   }
+})
+
 timeLine.set(tl, 0.5);
-
-console.log(tl.ct);
-
+console.log(tl.ct, tl.time + '/' + tl.totalTime, tl.a_total.toFixed(2));
+console.log(tl.events[0])
 // ---------- ----------
 // GRID
 // ---------- ----------

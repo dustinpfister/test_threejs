@@ -39,7 +39,8 @@
 
     api.set = (tl, alpha) => {
         tl.time = Math.floor( tl.totalTime * alpha );
-        tl.ct = getTimeStr(tl)
+        tl.ct = getTimeStr(tl);
+        tl.a_total = tl.time / tl.totalTime;
     };
 
 
@@ -50,6 +51,7 @@
            et: opt.et || '22:59:59.999',
            ct: '00:00:00.000'
         };
+        tl.events = [];
         tl.totalTime = getTotalTime(tl);
         api.set(tl, 0);
         return tl;
@@ -57,9 +59,19 @@
 
 
 
-    api.add = (opt) => {
-        const tl = {};
-        return tl;
+    api.add = (tl, opt) => {
+        opt = opt || {};
+        const event = {};
+        event.st = opt.st || tl.st;
+        event.et = opt.et || tl.et;
+
+        const ms_start = getDayMS(event.st) - getDayMS(tl.st);
+        const ms_end = ms_start + ( getDayMS(event.et) - getDayMS(event.st));
+
+        event.a_start = ms_start / tl.totalTime;
+        event.a_end = ms_end / tl.totalTime;
+
+        tl.events.push(event);
     };
 
 }( this['timeLine'] = {} ));
