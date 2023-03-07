@@ -10,11 +10,13 @@ renderer.setSize(640, 480, false);
 // TIMELINE
 // ---------- ----------
 const tl = timeLine.create({
-    st: '09:30:00.000',
-    et: '09:32:01.005'
+    st: '08:00:00.000',
+    et: '12:30:51.125'
 });
 
-console.log(tl);
+timeLine.set(tl, 0.5);
+
+console.log(tl.ct);
 
 // ---------- ----------
 // GRID
