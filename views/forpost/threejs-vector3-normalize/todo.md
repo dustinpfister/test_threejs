@@ -4,7 +4,7 @@
 * () new basic example on the subject of mutaiton in place and how to use clone to address that
 
 ## () - update sphere, apply euler, and loop 1 section to r146 style
-* () update s2-1-sphere to r146 style
+* (done) update s2-1-sphere to r146 style
 * () update s3-1-applyeuler to r146 style
 * () update s4-1-loop to r146 style
 
