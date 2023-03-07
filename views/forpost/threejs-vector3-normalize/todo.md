@@ -8,9 +8,9 @@
 ## () - new s1-1-basic demo
 * () new basic demo that just makes use of vector3 normalize
 
-## () - update basic section to r146 style
+## ( done 03/07/2023 ) - update basic section to r146 style
 * (done) update s1-2-basic-multiply to r146 style
-* () update s1-3-basic-length to r146 style
+* (done) update s1-3-basic-length to r146 style
 
 ## ( done 03/07/2023 ) - rename folders
 * (done) rename s1-normalize to s1-2-basic-multiply-scalar
