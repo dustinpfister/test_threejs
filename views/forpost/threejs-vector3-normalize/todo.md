@@ -8,9 +8,9 @@
 ## () - new s1-1-basic and s1-3-applyeuler demos, improve other basic examples
 * (done) new basic demo that just makes use of vector3 normalize
 * (done) make s1-2-basic-multiply a hacked over copy of this demo
+* (done) new s1-3-basic-applyeuler demo based on the new s1-2-basic-multiply demo
+* (done) rename s1-3-basic-length to s1-4-basic-length
 
-* () new s1-3-basic-applyeuler demo based on the new s1-2-basic-multiply demo
-* () rename s1-3-basic-length to s1-4-basic-length
 * () make s1-4-basic-length based on s1-1-basic
 
 ## ( done 03/07/2023 ) - update basic section to r146 style
