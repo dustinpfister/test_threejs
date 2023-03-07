@@ -9,7 +9,7 @@
 * () new basic demo that just makes use of vector3 normalize
 
 ## () - update basic section to r146 style
-* () update s1-2-basic-multiply to r146 style
+* (done) update s1-2-basic-multiply to r146 style
 * () update s1-3-basic-length to r146 style
 
 ## ( done 03/07/2023 ) - rename folders
