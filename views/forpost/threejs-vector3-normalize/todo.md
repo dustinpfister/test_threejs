@@ -3,10 +3,10 @@
 ## () s1-x-basic-clone
 * () new basic example on the subject of mutaiton in place and how to use clone to address that
 
-## () - update sphere, apply euler, and loop 1 section to r146 style
+## ( done 03/08/2023 ) - update sphere, apply euler, and loop 1 section to r146 style
 * (done) update s2-1-sphere to r146 style
-* () update s3-1-applyeuler to r146 style
-* () update s4-1-loop to r146 style
+* (done) update s3-1-applyeuler to r146 style
+* (done) update s4-1-loop to r146 style
 
 ## ( done 03/07/2023 ) - new s1-1-basic and s1-3-applyeuler demos, improve other basic examples
 * (done) new basic demo that just makes use of vector3 normalize
