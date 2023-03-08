@@ -13,12 +13,12 @@
 * () update s1-1-basic-clamp to r146 style
 * () update s1-2-basic-clamplength to r146 style
 
-## () rename folders
-* () rename s1-basic to s1-1-basic-clamp
-* () rename s2-length to s1-2-basic-clamplength
-* () rename s3-wrap to s2-1-wrap
-* () rename s4-loop to s3-1-loop-clamp
-* () rename s5-loop-2 to s3-2-loop-clamptypes
+## ( done 03/08/2023 ) rename folders
+* (done) rename s1-basic to s1-1-basic-clamp
+* (done) rename s2-length to s1-2-basic-clamplength
+* (done) rename s3-wrap to s2-1-wrap
+* (done) rename s4-loop to s3-1-loop-clamp
+* (done) rename s5-loop-2 to s3-2-loop-clamptypes
 
 ## ( done 09/01/2022 ) - new s2-loop example
 * (done) start a new loop example that uses the clamp method
