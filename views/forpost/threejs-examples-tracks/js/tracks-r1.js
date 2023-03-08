@@ -51,11 +51,6 @@
         const mesh = new THREE.Mesh( new THREE.BoxGeometry(w, 1, d), new THREE.MeshNormalMaterial());
         mesh.name = 'ground';
         obj1.add( mesh );
-        // points
-        const geo_points = new THREE.BufferGeometry().setFromPoints( gud.curve.getPoints(19) );
-        const points = new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25, color: new THREE.Color('lime')}) );
-        points.name = 'points';
-        obj1.add( points );
         return obj1;
     };
     // create a curve to be used as a track curve from a tack object
@@ -74,35 +69,11 @@
         dy = dy === undefined ? 0 : dy;
         const obj_source = group_source.children[index];
         const track = obj_source.clone();
-
-
         track.position.set(x, 0.5 + dy, z);
         track.rotation.y = Math.PI * 2 / 4 * r;
-
         // clone and rotate the curve
         track.userData.curve = obj_source.userData.curve.clone();
         rotateCurve(track.userData.curve, r, negateX, negateZ);
- 
-        //const points = track.getObjectByName('points');
-        
-
-        //const geo_points = new THREE.BufferGeometry().setFromPoints( gud.curve.getPoints(19) );
-        //const points = new THREE.Points( geo_points, new THREE.PointsMaterial({size: 0.25, color: new THREE.Color('lime')}) );
-
-        // update points
-/*
-        const points = track.getObjectByName('points');
-        points.rotation.y = Math.PI * 2 / 4 * r;
-        const att_pos = points.geometry.getAttribute('position');
-        let i = 0;
-        while(i < att_pos.count){
-            const v = track.userData.curve.getPoint(i / att_pos.count);
-            att_pos.setXYZ(i, v.x, v.y, v.z);
-            i += 1;
-        }
-        att_pos.needsUpdate = true;
-*/
-
         return track;
     };
 }( this['trackMod'] ={} ));

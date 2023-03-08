@@ -4,9 +4,6 @@
 * () start with the source from r0-2-flip
 
 ## () r1 - create track method
-* (done) have it so that points are always created for a source object
-* (done) add names for points and mesh objects when creating a source object
-
 * () start a new create track method that will be used to lay down a full track
 
 ## ( done FEB/17/2023 ) - fix up r0-1 and 2 demos
