@@ -10,7 +10,7 @@
 * () start a new s1-1-wrap-basic example that is just a simple wrap method
 
 ## () update basic to r146 style, and expand
-* () update s1-1-basic-clamp to r146 style
+* (done) update s1-1-basic-clamp to r146 style
 * () update s1-2-basic-clamplength to r146 style
 
 ## ( done 03/08/2023 ) rename folders
