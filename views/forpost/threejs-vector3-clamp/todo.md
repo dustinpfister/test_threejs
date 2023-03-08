@@ -6,7 +6,7 @@
 
 ## () update and expand wrap section
 * () rename s1-1-wrap to s1-2-wrap-helpers
-* () update s1-2-wrap-helpers to r146 style
+* (done) update s1-2-wrap-helpers to r146 style
 * () start a new s1-1-wrap-basic example that is just a simple wrap method
 
 ## ( done 03/08/2023 ) update basic to r146 style, and expand
