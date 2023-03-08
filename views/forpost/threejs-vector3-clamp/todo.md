@@ -1,6 +1,24 @@
 # threejs-vector3-clamp todo list
 
-## () - make examples on length and wrap animations
+## () update loop section to r146 style
+* () update s3-1-loop-clamp to r146 style
+* () update s3-2-loop-clamptypes to r146 style
+
+## () update and expand wrap section
+* () rename s1-1-wrap to s1-2-wrap-helpers
+* () update s1-2-wrap-helpers to r146 style
+* () start a new s1-1-wrap-basic example that is just a simple wrap method
+
+## () update basic to r146 style, and expand
+* () update s1-1-basic-clamp to r146 style
+* () update s1-2-basic-clamplength to r146 style
+
+## () rename folders
+* () rename s1-basic to s1-1-basic-clamp
+* () rename s2-length to s1-2-basic-clamplength
+* () rename s3-wrap to s2-1-wrap
+* () rename s4-loop to s3-1-loop-clamp
+* () rename s5-loop-2 to s3-2-loop-clamptypes
 
 ## ( done 09/01/2022 ) - new s2-loop example
 * (done) start a new loop example that uses the clamp method
