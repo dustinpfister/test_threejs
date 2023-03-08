@@ -4,10 +4,10 @@
 * () update s3-1-loop-clamp to r146 style
 * () update s3-2-loop-clamptypes to r146 style
 
-## () update and expand wrap section
+## ( done 03/08/2023 ) update and expand wrap section
 * (done) rename s2-1-wrap to s2-2-wrap-helpers
 * (done) update s2-2-wrap-helpers to r146 style
-* () start a new s2-1-wrap-number example that is just a simple wrap method
+* (done) start a new s2-1-wrap-number example that is just a simple wrap method
 
 ## ( done 03/08/2023 ) update basic to r146 style, and expand
 * (done) update s1-1-basic-clamp to r146 style
