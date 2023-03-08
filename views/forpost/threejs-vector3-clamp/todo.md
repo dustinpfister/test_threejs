@@ -1,7 +1,7 @@
 # threejs-vector3-clamp todo list
 
-## () s3-3-loop-clamptogrid
-* () new clamp to grid loop demo
+## ( done 03/08/2023 ) s3-3-loop-clamptogrid
+* (done) new clamp to grid loop demo
 
 ## ( done 03/08/2023 ) update loop section to r146 style
 * (done) update s3-1-loop-clamp to r146 style

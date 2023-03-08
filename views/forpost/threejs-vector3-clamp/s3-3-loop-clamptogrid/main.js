@@ -15,8 +15,8 @@ scene.add(dl);
 //-------- ----------
 // CONST
 //-------- ----------
-const V_MIN = new THREE.Vector3( -4.5, 0.5, -4.5 );
-const V_MAX = new THREE.Vector3( 4.5, 0.5, 4.5 );
+const V_MIN = new THREE.Vector3( -4.5, 0, -4.5 );
+const V_MAX = new THREE.Vector3( 4.5, 0, 4.5 );
 const COLORS = [0xffffff, 0xff0000, 0x00ff00, 0x0000ff, 0xff00ff];
 const CHECKS = ['x,1,180','x,2,0','z,3,270','z,4,90'].map((str) => { return str.split(',') });
 //-------- ----------
@@ -26,9 +26,16 @@ const createGroup = (count) => {
     const group = new THREE.Group();
     let i = 0;
     while(i < count){
-        const mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshPhongMaterial() );
+        const mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(1,1 + Math.random(),1),
+            new THREE.MeshPhongMaterial({
+                transparent: true,
+                opacity: 0.75
+            })
+        );
         const mud = mesh.userData;
         mud.heading = Math.PI * 2 * Math.random();
+        mud.upd = 0.25 + 1.75 * Math.random();
         group.add(mesh);
         i += 1;
     }
@@ -41,8 +48,8 @@ const updateGroup = (group, delta) => {
     group.children.forEach( (mesh, i) => {
         const mud = mesh.userData;
         const v_delta = new THREE.Vector3();
-        v_delta.x = Math.cos(mud.heading) * delta;
-        v_delta.z = Math.sin(mud.heading) * delta;
+        v_delta.x = Math.cos(mud.heading) * mud.upd * delta;
+        v_delta.z = Math.sin(mud.heading) * mud.upd * delta;
         mesh.position.add(v_delta).clamp(V_MIN, V_MAX);
         let ic = 0;
         while(ic < 4){
@@ -61,7 +68,7 @@ const updateGroup = (group, delta) => {
 // OBJECTS
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
-const group = createGroup(50);
+const group = createGroup(100);
 scene.add(group);
 // ---------- ----------
 // ANIMATION LOOP
