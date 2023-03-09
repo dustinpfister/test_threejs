@@ -14,8 +14,9 @@ scene.add( new THREE.GridHelper(10,10) );
 // camera group
 //-------- ----------
 const group_camera = cameraPlanes.create({
-    planeScale: 0.75,
-    camera: new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000)
+    planeScale: 0.9,
+    camera: new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000),
+    zMax: 3
 });
 scene.add(group_camera);
 // ---------- ----------
