@@ -28,9 +28,7 @@ const X_DEG = 10;
 scene.add( new THREE.GridHelper(10, 10) );
 const group = new THREE.Group();
 scene.add(group);
-
 let i = 0;
-
 while(i < COUNT){
     const a_index = i / COUNT;
     const color = new THREE.Color();
@@ -58,17 +56,13 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
     const a1 = frame / frameMax;
- 
     group.children.forEach( (mesh, i, arr) => {
         const a2 = i / arr.length;
         const a3 = a1 + 1 / (TOTAL_LENGTH * 2.5) * i;
         const sin_loops = SIN_LOOP_RANGE[0] + (SIN_LOOP_RANGE[1] - SIN_LOOP_RANGE[0]) * a1;
         const a4 = Math.sin(Math.PI * sin_loops * (a2 * 1 % 1));
-
         let unit_length = TOTAL_LENGTH * a3;
-
         unit_length = THREE.MathUtils.euclideanModulo(unit_length, MAX_LENGTH);
-    
         const e = new THREE.Euler();
         const yfc = Y_ROTATION_OFFSET;
         const degY = ( yfc * -1 + yfc * 2 * a2) + (360 * Y_ROTATION_COUNT ) * a1;
@@ -76,9 +70,9 @@ const update = function(frame, frameMax){
         const degX = xd * -1 + xd * 2 * a4;
         e.y = THREE.MathUtils.degToRad( degY);
         e.x = THREE.MathUtils.degToRad(degX);
-
         mesh.position.set(1, 0, 0).normalize().applyEuler(e).multiplyScalar(0.5 + unit_length);
         mesh.lookAt(0,0,0);
+        mesh.rotation.y = Math.PI * 2 * ( (a2 + a2) * 64 % 1);
     });
 };
 // loop
