@@ -1,5 +1,4 @@
-/* vector-wrap.js - r0 - A Wrap Vector Module prototype 
- *     for the post: https://dustinpfister.github.io/2022/09/02/threejs-vector3-wrap
+/* vector-wrap.js - r0 - A Wrap Vector Module prototype - from threejs-vector3-wrap
  * 
  *
  */
