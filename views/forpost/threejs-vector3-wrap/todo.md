@@ -6,7 +6,10 @@
 * () new s1-2-basic-mathutils demo that is a simple demo of THREE.MathUtils
 
 ## () - s5-2-loop-wraplength new loop section
-* () new loop demo where I just wrap the vector unit length
+* (done) start a new loop demo where I just wrap the vector unit length
+* () have more mesh objects
+* () have a transpancy effect
+* () add deltas for each mesh object
 
 ## ( done 03/09/2023 ) - update demos to r146 style
 * (done) update s1-1-basic-mod to 146 style
