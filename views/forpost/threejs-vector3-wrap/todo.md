@@ -7,9 +7,9 @@
 
 ## () - s5-2-loop-wraplength new loop section
 * (done) start a new loop demo where I just wrap the vector unit length
-* () have more mesh objects
-* () have a transpancy effect
+* (done) have more mesh objects
 * () add deltas for each mesh object
+* () have a transpancy effect
 
 ## ( done 03/09/2023 ) - update demos to r146 style
 * (done) update s1-1-basic-mod to 146 style

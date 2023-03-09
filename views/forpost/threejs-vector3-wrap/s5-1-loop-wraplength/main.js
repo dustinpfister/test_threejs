@@ -10,6 +10,7 @@ renderer.setSize(640, 480, false);
 // CONST
 // ---------- ---------- ----------
 const TOTAL_LENGTH = 200;
+const COUNT = 200;
 // ---------- ---------- ----------
 // OBJECTS
 // ---------- ---------- ----------
@@ -18,8 +19,8 @@ const group = new THREE.Group();
 scene.add(group);
 
 let i = 0;
-const count = 10;
-while(i < count){
+
+while(i < COUNT){
     const color = new THREE.Color();
 
     if(i === 0){
@@ -28,7 +29,7 @@ while(i < count){
         color.b = 0;
     }
 
-    if(i === count - 1){
+    if(i === COUNT - 1){
         color.r = 1;
         color.g = 0;
         color.b = 0;
@@ -36,7 +37,7 @@ while(i < count){
 
     const mesh = new THREE.Mesh(
         new THREE.BoxGeometry(0.25, 0.25, 0.25),
-        new THREE.MeshBasicMaterial({color: color})
+        new THREE.MeshBasicMaterial({color: color, transparent: true, opacity: 0.5})
     );
     group.add(mesh);
     i += 1;
@@ -57,15 +58,20 @@ const update = function(frame, frameMax){
     const a1 = frame / frameMax;
  
     group.children.forEach( (mesh, i, arr) => {
-
+        const a2 = i / arr.length;
         const a3 = a1 + 1 / (TOTAL_LENGTH * 2.5) * i;
+        const a4 = Math.sin(Math.PI * 1 * (a2 * 10 % 1));
+
         let unit_length = TOTAL_LENGTH * a3;
 
         unit_length = THREE.MathUtils.euclideanModulo(unit_length, 4);
     
         const e = new THREE.Euler();
-        e.y = THREE.MathUtils.degToRad(720 * a1);
-        e.x = THREE.MathUtils.degToRad(360 * a1);
+        const degY = 720;
+        const degX = -45 + 90 * a4;
+        e.y = THREE.MathUtils.degToRad( ( -45 + 90 * a2) + degY * a1);
+        e.x = THREE.MathUtils.degToRad(degX);
+
         mesh.position.set(1, 0, 0).normalize().applyEuler(e).multiplyScalar(0.5 + unit_length);
         mesh.lookAt(0,0,0);
     });
