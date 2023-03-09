@@ -8,14 +8,13 @@
 ## () - s5-2-loop-wraplength new loop section
 * () new loop demo where I just wrap the vector unit length
 
-## () - update demos to r146 style
+## ( done 03/09/2023 ) - update demos to r146 style
 * (done) update s1-1-basic-mod to 146 style
 * (done) update s2-1-wrapaxis-dist to 146 style
 * (done) update s2-2-wrapaxis-phaser to 146 style
 * (done) update s3-1-wrapvector to 146 style
-
-* () update s4-1-module-basic to 146 style
-* () update s4-2-module-seededrandom to 146 style
+* (done) update s4-1-module-basic to 146 style
+* (done) update s4-2-module-seededrandom to 146 style
 
 ## ( done 03/09/2023 ) - rename folders
 * (done) rename folders like s1-1-mod to s1-1-basic-mod
