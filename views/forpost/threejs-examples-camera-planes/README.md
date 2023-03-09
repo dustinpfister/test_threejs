@@ -1,0 +1,3 @@
+# threejs-examples-camera-planes
+
+I started a demo for my post threejs-camera-perspective in which I create a group and then have a camera, and a mesh object with plane geometry as children of this group. I can then position the plane in such a way that it works as a kind of 2d layer even though it is actually a mesh object. This not only allows for having a simply 2d overlay of sorts, but it also allows for all kinds of effets that han be done by moving and rotating the mesh object of the group.
