@@ -7,14 +7,21 @@ const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.W
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 // ---------- ---------- ----------
+// LIGHT
+// ---------- ---------- ----------
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(3, 2, 1);
+scene.add(dl);
+// ---------- ---------- ----------
 // CONST
 // ---------- ---------- ----------
-const TOTAL_LENGTH = 200;
+const TOTAL_LENGTH = 100;
 const MAX_LENGTH = 15;
 const COUNT = 400;
-const SIN_LOOP_RANGE = [16, 64];
-const Y_ROTATION_COUNT = 2;
-const Y_ROTATION_OFFSET = 20;
+const SIN_LOOP_RANGE = [32, 64];
+const Y_ROTATION_COUNT = 1;
+const Y_ROTATION_OFFSET = 40;
+const X_DEG = 10;
 // ---------- ---------- ----------
 // OBJECTS
 // ---------- ---------- ----------
@@ -25,23 +32,14 @@ scene.add(group);
 let i = 0;
 
 while(i < COUNT){
+    const a_index = i / COUNT;
     const color = new THREE.Color();
-
-    if(i === 0){
-        color.r = 0;
-        color.g = 1;
-        color.b = 0;
-    }
-
-    if(i === COUNT - 1){
-        color.r = 1;
-        color.g = 0;
-        color.b = 0;
-    }
-
+    color.r = 0.1 + 0.9 * a_index;
+    color.g = 1 - a_index;
+    color.b = Math.random();
     const mesh = new THREE.Mesh(
-        new THREE.BoxGeometry(0.25, 0.25, 0.25),
-        new THREE.MeshBasicMaterial({color: color, transparent: true, opacity: 0.5})
+        new THREE.BoxGeometry(0.5, 0.5, 0.5),
+        new THREE.MeshPhongMaterial({color: color, transparent: true, opacity: 0.5})
     );
     group.add(mesh);
     i += 1;
@@ -72,9 +70,10 @@ const update = function(frame, frameMax){
         unit_length = THREE.MathUtils.euclideanModulo(unit_length, MAX_LENGTH);
     
         const e = new THREE.Euler();
-        const yfc = Y_ROTATION_OFFSET * ( 1 + a1 );
-        const degY = ( yfc * -1 + yfc * 2 * a2) + (360 * Y_ROTATION_COUNT ) * a1
-        const degX = -5 + 10 * a4;
+        const yfc = Y_ROTATION_OFFSET;
+        const degY = ( yfc * -1 + yfc * 2 * a2) + (360 * Y_ROTATION_COUNT ) * a1;
+        const xd = X_DEG;
+        const degX = xd * -1 + xd * 2 * a4;
         e.y = THREE.MathUtils.degToRad( degY);
         e.x = THREE.MathUtils.degToRad(degX);
 
