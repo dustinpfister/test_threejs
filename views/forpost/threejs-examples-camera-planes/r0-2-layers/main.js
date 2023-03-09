@@ -13,7 +13,17 @@ scene.add( new THREE.GridHelper(10,10) );
 //-------- ----------
 // camera group
 //-------- ----------
-const group_camera = cameraPlanes.create();
+const group_camera = cameraPlanes.create({
+    planeScale: 0.9,
+    camera: new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000),
+    zMax: 3,
+    count: 5,
+    effect: (group, mesh_plane, gud, mud, a_plane, alpha) => {
+        const z = gud.zMax - gud.zMax * a_plane * alpha;
+        mesh_plane.position.set(0, 0, z);
+        mesh_plane.material.opacity = alpha * 0.25;
+    }
+});
 scene.add(group_camera);
 // ---------- ----------
 // RENDER
