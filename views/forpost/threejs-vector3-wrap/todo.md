@@ -1,5 +1,10 @@
 # threejs-vector3-wrap todo list
 
+## () expand basic section
+* () rename s1-basic-mod to s1-3-basic-mod-and-mathutils
+* () new s1-1-basic-mod demo that is a static demo of just javaScript modulo
+* () new s1-2-basic-mathutils demo that is a simple demo of THREE.MathUtils
+
 ## () - s5-2-loop-wraplength new loop section
 * () new loop demo where I just wrap the vector unit length
 
