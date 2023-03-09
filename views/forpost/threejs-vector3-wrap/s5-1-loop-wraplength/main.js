@@ -10,7 +10,8 @@ renderer.setSize(640, 480, false);
 // CONST
 // ---------- ---------- ----------
 const TOTAL_LENGTH = 200;
-const COUNT = 200;
+const MAX_LENGTH = 10;
+const COUNT = 400;
 // ---------- ---------- ----------
 // OBJECTS
 // ---------- ---------- ----------
@@ -60,15 +61,16 @@ const update = function(frame, frameMax){
     group.children.forEach( (mesh, i, arr) => {
         const a2 = i / arr.length;
         const a3 = a1 + 1 / (TOTAL_LENGTH * 2.5) * i;
-        const a4 = Math.sin(Math.PI * 1 * (a2 * 10 % 1));
+        const sin_loops = 32;
+        const a4 = Math.sin(Math.PI * sin_loops * (a2 * 1 % 1));
 
         let unit_length = TOTAL_LENGTH * a3;
 
-        unit_length = THREE.MathUtils.euclideanModulo(unit_length, 4);
+        unit_length = THREE.MathUtils.euclideanModulo(unit_length, MAX_LENGTH);
     
         const e = new THREE.Euler();
         const degY = 720;
-        const degX = -45 + 90 * a4;
+        const degX = -20 + 40 * a4;
         e.y = THREE.MathUtils.degToRad( ( -45 + 90 * a2) + degY * a1);
         e.x = THREE.MathUtils.degToRad(degX);
 
