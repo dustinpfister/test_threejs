@@ -7,17 +7,46 @@ const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.W
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 // ---------- ---------- ----------
+// CONST
+// ---------- ---------- ----------
+const TOTAL_LENGTH = 200;
+// ---------- ---------- ----------
 // OBJECTS
 // ---------- ---------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
-let mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial());
-scene.add(mesh);
+const group = new THREE.Group();
+scene.add(group);
+
+let i = 0;
+const count = 10;
+while(i < count){
+    const color = new THREE.Color();
+
+    if(i === 0){
+        color.r = 0;
+        color.g = 1;
+        color.b = 0;
+    }
+
+    if(i === count - 1){
+        color.r = 1;
+        color.g = 0;
+        color.b = 0;
+    }
+
+    const mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(0.25, 0.25, 0.25),
+        new THREE.MeshBasicMaterial({color: color})
+    );
+    group.add(mesh);
+    i += 1;
+}
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
 camera.position.set(12, 12, 12);
 camera.lookAt(0,0,0);
-const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 800;
 let secs = 0,
@@ -26,20 +55,20 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
     const a1 = frame / frameMax;
+ 
+    group.children.forEach( (mesh, i, arr) => {
 
-    let unit_length = 200 * a1;
-    unit_length = THREE.MathUtils.euclideanModulo(unit_length, 4);
+        const a3 = a1 + 1 / (TOTAL_LENGTH * 2.5) * i;
+        let unit_length = TOTAL_LENGTH * a3;
+
+        unit_length = THREE.MathUtils.euclideanModulo(unit_length, 4);
     
-
-    const e = new THREE.Euler();
-    e.y = THREE.MathUtils.degToRad(720 * a1);
-    e.x = THREE.MathUtils.degToRad(360 * a1);
-    mesh.position.set(1, 0, 0).normalize().applyEuler(e).multiplyScalar(0.5 + unit_length);
-    mesh.lookAt(0,0,0);
-
-
-    //const degree = 360 * (frame / frameMax);
-    //mesh.rotation.x = THREE.MathUtils.degToRad(degree);
+        const e = new THREE.Euler();
+        e.y = THREE.MathUtils.degToRad(720 * a1);
+        e.x = THREE.MathUtils.degToRad(360 * a1);
+        mesh.position.set(1, 0, 0).normalize().applyEuler(e).multiplyScalar(0.5 + unit_length);
+        mesh.lookAt(0,0,0);
+    });
 };
 // loop
 const loop = () => {
