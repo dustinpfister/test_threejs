@@ -10,8 +10,11 @@ renderer.setSize(640, 480, false);
 // CONST
 // ---------- ---------- ----------
 const TOTAL_LENGTH = 200;
-const MAX_LENGTH = 10;
+const MAX_LENGTH = 15;
 const COUNT = 400;
+const SIN_LOOP_RANGE = [16, 64];
+const Y_ROTATION_COUNT = 2;
+const Y_ROTATION_OFFSET = 20;
 // ---------- ---------- ----------
 // OBJECTS
 // ---------- ---------- ----------
@@ -46,7 +49,7 @@ while(i < COUNT){
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-camera.position.set(12, 12, 12);
+camera.position.set(12, 6, 12);
 camera.lookAt(0,0,0);
 const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
@@ -61,7 +64,7 @@ const update = function(frame, frameMax){
     group.children.forEach( (mesh, i, arr) => {
         const a2 = i / arr.length;
         const a3 = a1 + 1 / (TOTAL_LENGTH * 2.5) * i;
-        const sin_loops = 32;
+        const sin_loops = SIN_LOOP_RANGE[0] + (SIN_LOOP_RANGE[1] - SIN_LOOP_RANGE[0]) * a1;
         const a4 = Math.sin(Math.PI * sin_loops * (a2 * 1 % 1));
 
         let unit_length = TOTAL_LENGTH * a3;
@@ -69,9 +72,10 @@ const update = function(frame, frameMax){
         unit_length = THREE.MathUtils.euclideanModulo(unit_length, MAX_LENGTH);
     
         const e = new THREE.Euler();
-        const degY = 720;
-        const degX = -20 + 40 * a4;
-        e.y = THREE.MathUtils.degToRad( ( -45 + 90 * a2) + degY * a1);
+        const yfc = Y_ROTATION_OFFSET * ( 1 + a1 );
+        const degY = ( yfc * -1 + yfc * 2 * a2) + (360 * Y_ROTATION_COUNT ) * a1
+        const degX = -5 + 10 * a4;
+        e.y = THREE.MathUtils.degToRad( degY);
         e.x = THREE.MathUtils.degToRad(degX);
 
         mesh.position.set(1, 0, 0).normalize().applyEuler(e).multiplyScalar(0.5 + unit_length);
