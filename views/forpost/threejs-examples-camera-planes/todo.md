@@ -1,5 +1,10 @@
 # threejs-examples-camera-planes todo list
 
+# #() r0-5-move-planes
+* () a demo in which I move the group around as before, but also move the plane method objects as well
+
+## () r0-4-move-group
+* () a loop example in which I move the group aorund with the layers fixed
 
 ## () r0-3-canvas
 * () just a basic demo using a canvas texture
