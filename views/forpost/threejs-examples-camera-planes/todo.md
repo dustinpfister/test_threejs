@@ -6,8 +6,8 @@
 ## () r0-4-move-group
 * () a loop example in which I move the group aorund with the layers fixed
 
-## () r0-3-canvas
-* () just a basic demo using a canvas texture
+## ( done 03/10/2023 ) r0-3-canvas
+* (done) just a basic demo using a canvas texture
 
 ## ( done 03/09/2023 ) r0-2-layers
 * (done) more that one plane
