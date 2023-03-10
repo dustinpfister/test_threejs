@@ -84,7 +84,7 @@ scene.add(group_camera);
 // ---------- ----------
 const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 800;
+FRAME_MAX = 900;
 let secs = 0,
 frame = 0,
 lt = new Date();
@@ -101,7 +101,7 @@ const update = function(frame, frameMax){
     updateCanvasObject(can);
     group_camera.position.copy(v1).lerp(v2, a2);
     group_camera.lookAt( 0, 0, 5 * a2 );
-    let a3 = a2 * 3;
+    let a3 = a2 * 2;
     a3 = a3 > 1 ? 1 : a3;
     cameraPlanes.update(group_camera, a3);
 };
