@@ -6,20 +6,7 @@ const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.01, 10000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-// ---------- ----------
-// OBJECTS
-// ---------- ----------
-scene.add(new THREE.GridHelper(100, 10))
 
-SVGTools.load({
-   scene: scene,
-   urls: ['/img/svg-test/test2.svg']
-})
-.then(()=>{
-
-console.log('done')
-
-})
 
 // ---------- ----------
 // ANIMATION LOOP
@@ -51,4 +38,16 @@ const loop = () => {
         lt = now;
     }
 };
-loop();
+// ---------- ----------
+// LOAD SVG, OBJECTS
+// ---------- ----------
+scene.add(new THREE.GridHelper(100, 10));
+SVGTools.load({
+   scene: scene,
+   urls: ['/img/svg-test/test2.svg'],
+   opt_extrude: { depth: 5 }
+})
+.then(() => {
+    console.log('done loading')
+    loop();
+})

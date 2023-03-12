@@ -1,38 +1,47 @@
 // svg-tools.js - r0 - r146 prototype
 (function(api){
     //-------- ----------
-    // PROCESSORS - hard coded options for functions that are used to procress SVG data and add objects to a scene
-    //-------- ----------
-    
-    //-------- ----------
-    // HELPERS - internal helper funcitons used by the public api
+    // HELPERS - internal helper funcitons used by the public api, and other built in features
     //-------- ----------
     // what to do for each SVG file that loads
-    const onFileLoaded = (opt_load, resolve, reject) => {
+    const onFileLoaded = (url, loader, opt_load, resolve, reject) => {
         const scene = opt_load.scene;
         return (data) => {
-            console.log('SVG data loaded');
-            console.log(data);
-            const shapes = THREE.SVGLoader.createShapes( data.paths[0] );
-            const geo = new THREE.ExtrudeGeometry(shapes[0], {depth: 10});
-            //geo.rotateZ(Math.PI * 1);
-            //geo.rotateY(Math.PI * 0);
-            //geo.translate(32, 32, -5)
-            //geo.scale(0.05, 0.05, 0.05);
-            const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());
-            scene.add(mesh);
-            resolve(opt_load)
+            console.log('file loaded **********');
+            console.log(url);
+            console.log('paths: ' + data.paths.length);
+            console.log('**********************');
+            opt_load.processor(opt_load, data);
         }
     };
     // on file progress and error methods
-    const onFileProgress = (opt_load, resolve, reject) => {
+    const onFileProgress = (url, loader, opt_load, resolve, reject) => {
         return (xhr) => {
         };
     };
-    const onFileError = (opt_load, resolve, reject) => {
+    const onFileError = (url, loader, opt_load, resolve, reject) => {
         return (error) => {
             reject(error);
         };
+    };
+    //-------- ----------
+    // PROCESSORS - hard coded options for functions that are used to procress SVG data and add objects to a scene
+    //-------- ----------
+    const SVG_PROCESSOR = {};
+    // extrude
+    SVG_PROCESSOR.extrude = (opt_load, data) => {
+        let pi = 0;
+        while(pi < data.paths.length){
+            const shapes = THREE.SVGLoader.createShapes( data.paths[pi] );
+            let si = 0;
+            while(si < shapes.length){
+                const geo = new THREE.ExtrudeGeometry(shapes[si], opt_load.opt_extrude || { depth: 1 } );
+                const mesh = new THREE.Mesh(geo, opt_load.material || new THREE.MeshNormalMaterial());
+                opt_load.scene.add(mesh);
+                si += 1;
+            }
+            pi += 1;
+        }
     };
     //-------- ----------
     // PUBLIC API
@@ -40,17 +49,31 @@
     api.load = (opt_load) => {
         opt_load = opt_load || {};
         opt_load.urls = opt_load.urls || [];
-        opt_load.scene = opt_load.scene || new THREE.Scene()
+        opt_load.scene = opt_load.scene || new THREE.Scene();
+        opt_load.processor = opt_load.processor || SVG_PROCESSOR.extrude;
+        if(typeof opt_load.processor === 'string'){
+            opt_load.processor = SVG_PROCESSOR[opt_load.processor];
+        }
+
         // return a promise
         return new Promise((resolve, reject)=>{
+
+        // loading manager
+        const loading_manager = new THREE.LoadingManager();
+            loading_manager.onLoad = () => {
+                console.log('All Files loaded.');
+                resolve(opt_load)
+            };
+
             // svg loader instance a loader
-            const loader = new THREE.SVGLoader();
+            const loader = new THREE.SVGLoader(loading_manager);
             // load a SVG resource
+            const url = opt_load.urls[0];
             loader.load(
-                opt_load.urls[0],
-                onFileLoaded(opt_load, resolve, reject),
-                onFileProgress(opt_load, resolve, reject),
-                onFileError(opt_load, resolve, reject)
+                url,
+                onFileLoaded(url, loader, opt_load, resolve, reject),
+                onFileProgress(url, loader, opt_load, resolve, reject),
+                onFileError(url, loader, opt_load, resolve, reject)
             );
         });
     }
