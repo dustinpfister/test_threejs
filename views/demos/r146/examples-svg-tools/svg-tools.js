@@ -1,22 +1,11 @@
 // svg-tools.js - r0 - r146 prototype
 (function(api){
-
-
-/*
-const shapes = THREE.SVGLoader.createShapes( data.paths[0] );
-const geo = new THREE.ShapeGeometry(shapes[0]);
-
-geo.rotateZ(Math.PI * 1)
-geo.rotateY(Math.PI * 0)
-geo.scale(0.05, 0.05, 0.05);
-geo.translate(1.5, 1.5, 0)
-
-const mesh = new THREE.Mesh(geo);
-scene.add(mesh);
-*/
-
     //-------- ----------
-    // SVG LOADER
+    // PROCESSORS - hard coded options for functions that are used to procress SVG data and add objects to a scene
+    //-------- ----------
+    
+    //-------- ----------
+    // HELPERS - internal helper funcitons used by the public api
     //-------- ----------
     // what to do for each SVG file that loads
     const onFileLoaded = (opt_load, resolve, reject) => {
@@ -25,16 +14,29 @@ scene.add(mesh);
             console.log('SVG data loaded');
             console.log(data);
             const shapes = THREE.SVGLoader.createShapes( data.paths[0] );
-            const geo = new THREE.ShapeGeometry(shapes[0]);
-            geo.rotateZ(Math.PI * 1)
-            geo.rotateY(Math.PI * 0)
-            geo.scale(0.05, 0.05, 0.05);
-            geo.translate(1.5, 1.5, 0)
-            const mesh = new THREE.Mesh(geo);
+            const geo = new THREE.ExtrudeGeometry(shapes[0], {depth: 10});
+            //geo.rotateZ(Math.PI * 1);
+            //geo.rotateY(Math.PI * 0);
+            //geo.translate(32, 32, -5)
+            //geo.scale(0.05, 0.05, 0.05);
+            const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial());
             scene.add(mesh);
+            resolve(opt_load)
         }
     };
-    // main public load method
+    // on file progress and error methods
+    const onFileProgress = (opt_load, resolve, reject) => {
+        return (xhr) => {
+        };
+    };
+    const onFileError = (opt_load, resolve, reject) => {
+        return (error) => {
+            reject(error);
+        };
+    };
+    //-------- ----------
+    // PUBLIC API
+    //-------- ----------
     api.load = (opt_load) => {
         opt_load = opt_load || {};
         opt_load.urls = opt_load.urls || [];
@@ -47,11 +49,8 @@ scene.add(mesh);
             loader.load(
                 opt_load.urls[0],
                 onFileLoaded(opt_load, resolve, reject),
-            ( xhr ) => { // progress
-            },
-            ( error ) => { // error
-                    reject(error);
-                }
+                onFileProgress(opt_load, resolve, reject),
+                onFileError(opt_load, resolve, reject)
             );
         });
     }

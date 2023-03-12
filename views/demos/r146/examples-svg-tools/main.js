@@ -2,24 +2,29 @@
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.01, 10000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
-scene.add(new THREE.GridHelper(10, 10))
+scene.add(new THREE.GridHelper(100, 10))
 
 SVGTools.load({
    scene: scene,
    urls: ['/img/svg-test/test1.svg']
-});
+})
+.then(()=>{
+
+console.log('done')
+
+})
 
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-camera.position.set(7, 7, 12);
+camera.position.set(100, 100, 100);
 camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 20;     // fps rate to move object by that is independent of frame update rate
