@@ -1,8 +1,19 @@
 <svg version="1.1"
-     width="60" height="90"
+     width="60" height="80"
      xmlns="http://www.w3.org/2000/svg">
+
+  <image href="self.png" height="60" width="60" />
+
   <path 
     fill="#afafaf"
     stroke="#000000"
-    d="M 0,0 60,0 30,90 Z" />
+    opacity="0.5"
+    d="M 7,14 
+       L 9,13 9,6 12,10
+       Q 17,4 30, 2
+       C 38,2, 45,8 49,16
+
+       L 58,18
+       L 54,24
+       Z" />
 </svg>
