@@ -18,8 +18,9 @@ lt = new Date();
 // update
 const update = function(frame, frameMax){
     const a1 = frame / frameMax;
+    const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
     const e = new THREE.Euler();
-    e.y = 0; //Math.PI * 2 * a1;
+    e.y = THREE.MathUtils.degToRad(-20 + 40 * a2);
     camera.position.set(100, 100, 100).applyEuler(e);
     camera.lookAt(0,0,0);
 };
