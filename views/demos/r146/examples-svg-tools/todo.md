@@ -10,3 +10,5 @@
 * (done) data to mesh helper
 * (done) can use to data mesh helper in custom processor by starting an API that is part of the st object
 * (done) simple shape built in processor
+* (done) extrude processor will position on z based on depth, and url data index
+* (done) get width and height of svg, and use that to translate geo?

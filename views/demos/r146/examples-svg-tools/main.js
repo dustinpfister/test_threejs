@@ -52,14 +52,18 @@ SVGTools.load({
    //processor: 'shape',
    //material: new THREE.MeshNormalMaterial({ side: THREE.DoubleSide })
    processor: (st, data, i_url, url) => {
+        const svg_width = data.xml.width.baseVal.value;
+        const svg_height = data.xml.height.baseVal.value;
         const depth = st.opt_extrude.depth;
         const count = st.urls.length;
-        const sz = count * depth / 2 * -1;
+        const zSpace = count + 2;
+        const sz = zSpace * depth / 2 * -1;
         const a_data = i_url / count;
         st.dataToShape(data, (shape, si, pi) => {
             const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
+            geo.translate(svg_width / 2 * -1, svg_height / 2 * -1, 0);
             const mesh = new THREE.Mesh(geo, st.material);
-            mesh.position.z = sz + (count * depth) * a_data;
+            mesh.position.z = sz + (zSpace * depth) * a_data;
             st.scene.add(mesh);
         });
    }
