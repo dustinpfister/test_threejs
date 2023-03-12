@@ -1,7 +1,7 @@
 <svg version="1.1"
      width="60" height="80"
      xmlns="http://www.w3.org/2000/svg"
-     xmlns:svgtools="http://dustinpfister.github.io/about"
+     xmlns:svgtools="https://dustinpfister.github.io/2022/09/16/threejs-svg-loader/"
   >
 
   <image href="self.png" height="60" width="60" />
@@ -20,5 +20,16 @@
        L 40,36
        Q 34,40 27,36
        Q 22,34 14,28
+       Z" />
+  <path
+    svgtools:zindex="0"
+    fill="#afafaf"
+    stroke="#ff0000"
+    opacity="0.5"
+    d="M 23,35
+       Q 29,39 32,39
+       Q 36,40 40,37
+       L 35,42
+       L 29,42
        Z" />
 </svg>
