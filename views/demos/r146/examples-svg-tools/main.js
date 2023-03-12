@@ -44,7 +44,10 @@ const loop = () => {
 scene.add(new THREE.GridHelper(100, 10));
 SVGTools.load({
    scene: scene,
-   urls: ['/img/svg-test/test2.svg'],
+   urls: [
+       '/img/svg-test/test1.svg',
+       '/img/svg-test/test2.svg'
+   ],
    opt_extrude: { depth: 5 }
 })
 .then(() => {
