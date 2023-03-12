@@ -62,9 +62,12 @@ SVGTools.load({
         //const sz = zSpace * depth / 2 * -1;
         //const a_data = i_url / count;
         st.dataToShape(data, (shape, si, pi) => {
+
+            const zindex = parseFloat(data.paths[pi].userData.node.getAttribute('svgtools:zindex') || -1);
+
             const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
             geo.rotateX(Math.PI * 1);
-            geo.translate( svg_width / 2 * -1, svg_height / 2 * 1, 0);
+            geo.translate( svg_width / 2 * -1, svg_height / 2 * 1, zindex);
             const mesh = new THREE.Mesh(geo, st.material);
             //mesh.position.z = sz + (zSpace * depth) * a_data;
             st.scene.add(mesh);

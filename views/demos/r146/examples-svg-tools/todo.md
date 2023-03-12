@@ -12,3 +12,6 @@
 * (done) simple shape built in processor
 * (done) extrude processor will position on z based on depth, and url data index
 * (done) get width and height of svg, and use that to translate geo?
+* (done) can do custom attributes as needed in main.js
+
+* () I might want to see if I can pass a ref to the node for each call of dataToShape

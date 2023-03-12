@@ -1,10 +1,12 @@
 <svg version="1.1"
      width="60" height="80"
-     xmlns="http://www.w3.org/2000/svg">
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:svgtools="http://dustinpfister.github.io/about"
+  >
 
   <image href="self.png" height="60" width="60" />
-
-  <path 
+  <path
+    svgtools:zindex="0"
     fill="#afafaf"
     stroke="#000000"
     opacity="0.5"
