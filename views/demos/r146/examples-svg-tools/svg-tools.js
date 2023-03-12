@@ -1,21 +1,50 @@
-// alpha-methods.js - r0 - r146 prototype
+// svg-tools.js - r0 - r146 prototype
 (function(api){
-    // the basic linear get alpha
-    api.linear = function(a, b, c){
-        if(c === undefined ){
-            b = b === undefined ? 1 : b;
-            return a * b % 1;
+
+
+/*
+const shapes = THREE.SVGLoader.createShapes( data.paths[0] );
+const geo = new THREE.ShapeGeometry(shapes[0]);
+
+geo.rotateZ(Math.PI * 1)
+geo.rotateY(Math.PI * 0)
+geo.scale(0.05, 0.05, 0.05);
+geo.translate(1.5, 1.5, 0)
+
+const mesh = new THREE.Mesh(geo);
+scene.add(mesh);
+*/
+
+    //-------- ----------
+    // SVG LOADER
+    //-------- ----------
+    const onFileLoaded = (opt_load, resolve, reject) => {
+
+        return (data) => {
+            console.log('SVG data loaded');
+            console.log(data)
         }
-        return a / b * c % 1;
     };
-    // bias get alpha 0 to 1 and then back down to 0
-    api.bias = function(a, b, c){
-        const a1 = api.linear(a, b, c);
-        return 1 - Math.abs(0.5 - a1) / 0.5;
-    };
-    // bias get alpha 0 to 1 and then back down to 0
-    api.sinBias = function(a, b, c){
-        const a1 = api.linear(a, b, c);
-        return Math.sin( Math.PI * 1 * a1 );
-    };
-}( this['getAlpha'] = {} ));
+    api.load = (opt_load) => {
+        opt_load.urls = opt_load.urls || [];
+
+
+
+
+        return new Promise((resolve, reject)=>{
+            // svg loader instance a loader
+            const loader = new THREE.SVGLoader();
+            // load a SVG resource
+            loader.load(
+                opt.urls[0],
+                onFileLoaded(opt_load, resolve, reject),
+            ( xhr ) => { // progress
+            },
+            ( error ) => { // error
+                    reject(error);
+                }
+            );
+        });
+    }
+
+}( this['SVGTools'] = {} ));

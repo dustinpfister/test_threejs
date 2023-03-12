@@ -10,8 +10,7 @@ renderer.setSize(640, 480, false);
 // OBJECTS
 // ---------- ----------
 scene.add(new THREE.GridHelper(10, 10))
-const mesh = new THREE.Mesh( new THREE.BoxGeometry(3, 2, 1) );
-scene.add(mesh);
+
 
 // ---------- ----------
 // ANIMATION LOOP
@@ -26,12 +25,7 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-    const a1 = getAlpha.linear(frame, frameMax, 1);
-    const a2 = getAlpha.sinBias(a1, 1);
-    mesh.position.y = 1;
-    mesh.position.x = -3.5 + 7 * a2;
 
-    //console.log(a1)
 };
 // loop
 const loop = () => {
