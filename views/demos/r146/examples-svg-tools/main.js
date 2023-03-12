@@ -20,8 +20,8 @@ const update = function(frame, frameMax){
     const a1 = frame / frameMax;
     const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
     const e = new THREE.Euler();
-    e.y = THREE.MathUtils.degToRad(-20 + 40 * a2);
-    camera.position.set(100, 100, 100).applyEuler(e);
+    e.y = THREE.MathUtils.degToRad(-45 + 90 * a2);
+    camera.position.set(100, 50, 100).applyEuler(e);
     camera.lookAt(0,0,0);
 };
 // loop
@@ -67,7 +67,7 @@ SVGTools.load({
 
             const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
             geo.rotateX(Math.PI * 1);
-            geo.translate( svg_width / 2 * -1, svg_height / 2 * 1, zindex * 10);
+            geo.translate( svg_width / 2 * -1, svg_height / 2 * 1, zindex * 5);
             const mesh = new THREE.Mesh(geo, st.material);
             //mesh.position.z = sz + (zSpace * depth) * a_data;
             st.scene.add(mesh);
