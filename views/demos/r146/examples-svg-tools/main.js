@@ -48,7 +48,22 @@ SVGTools.load({
        '/img/svg-test/test1.svg',
        '/img/svg-test/test2.svg'
    ],
-   opt_extrude: { depth: 5 }
+   opt_extrude: { depth: 5 },
+   processor: (opt_load, data, i_url, url) => {
+        let pi = 0;
+        while(pi < data.paths.length){
+            const shapes = THREE.SVGLoader.createShapes( data.paths[pi] );
+            let si = 0;
+            while(si < shapes.length){
+                const geo = new THREE.ExtrudeGeometry(shapes[si], opt_load.opt_extrude || { depth: 1 } );
+                const mesh = new THREE.Mesh(geo, opt_load.material || new THREE.MeshNormalMaterial());
+                mesh.position.z = -50 + 95 * (i_url / (opt_load.urls.length - 1));
+                opt_load.scene.add(mesh);
+                si += 1;
+            }
+            pi += 1;
+        }
+   }
 })
 .then(() => {
     console.log('done loading')
