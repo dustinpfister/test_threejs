@@ -11,6 +11,10 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 scene.add(new THREE.GridHelper(10, 10))
 
+SVGTools.load({
+   scene: scene,
+   urls: ['/img/svg-test/test1.svg']
+});
 
 // ---------- ----------
 // ANIMATION LOOP
