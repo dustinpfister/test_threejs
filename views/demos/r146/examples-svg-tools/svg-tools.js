@@ -8,6 +8,7 @@
         processor: 'extrude',
         scene: new THREE.Scene(),
         opt_extrude: { depth: 1 },
+        opt_shape: { depth: 1 },
         material: new THREE.MeshNormalMaterial()
     };
     //-------- ----------
@@ -17,10 +18,6 @@
     const onFileLoaded = (url, i_url, loader, st, resolve, reject) => {
         const scene = st.scene;
         return (data) => {
-            console.log('file loaded **********');
-            console.log(url);
-            console.log('paths: ' + data.paths.length);
-            console.log('**********************');
             st.processor(st, data, i_url, url);
         }
     };
@@ -35,39 +32,57 @@
         };
     };
     //-------- ----------
-    // PROCESSORS - hard coded options for functions that are used to procress SVG data and add objects to a scene
+    // ST OBJECT API - an api that is acessible by way of the st object ( used in processor functions )
     //-------- ----------
-    const SVG_PROCESSOR = {};
-    // extrude
-    SVG_PROCESSOR.extrude = (st, data, i_url, url) => {
+    const st_api = {};
+    // data to shape funciton so that I can quickly just start working with shape objects
+    // when writing a new processor
+    st_api.dataToShape = (data, forShape) => {
+        forShape = forShape || function(){};
         let pi = 0;
         while(pi < data.paths.length){
             const shapes = THREE.SVGLoader.createShapes( data.paths[pi] );
             let si = 0;
             while(si < shapes.length){
-                const geo = new THREE.ExtrudeGeometry(shapes[si], st.opt_extrude || { depth: 1 } );
-                const mesh = new THREE.Mesh(geo, st.material || new THREE.MeshNormalMaterial());
-                //mesh.position.z = 50 * i_url;
-                st.scene.add(mesh);
+                forShape(shapes[si], si, pi);
                 si += 1;
             }
             pi += 1;
         }
     };
     //-------- ----------
+    // PROCESSORS - hard coded options for functions that are used to procress SVG data and add objects to a scene
+    //-------- ----------
+    const SVG_PROCESSOR = {};
+    // extrude
+    SVG_PROCESSOR.extrude = (st, data, i_url, url) => {
+        const depth = st.opt_extrude.depth;
+        const count = st.urls.length;
+        const sz = count * depth / 2 * -1;
+        const a_data = i_url / count;
+        st.dataToShape(data, (shape, si, pi) => {
+            const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
+            const mesh = new THREE.Mesh(geo, st.material);
+            mesh.position.z = sz + (count * depth) * a_data;
+            st.scene.add(mesh);
+        });
+    };
+    // shape
+    SVG_PROCESSOR.shape = (st, data, i_url, url) => {
+        st.dataToShape(data, (shape, si, pi) => {
+            const geo = new THREE.ShapeGeometry(shape, st.opt_shape);
+            const mesh = new THREE.Mesh(geo, st.material);
+            st.scene.add(mesh);
+        });
+    };
+    //-------- ----------
     // PUBLIC API
     //-------- ----------
-    api.load = (st) => {
-
-        st = st || {};
-        st.urls = st.urls || [];
-        st.scene = st.scene || new THREE.Scene();
-        st.processor = st.processor || SVG_PROCESSOR.extrude;
-
+    api.load = (opt) => {
+        const st = Object.assign({}, DEFAULT_LOAD_OPTIONS, opt, st_api);
         if(typeof st.processor === 'string'){
             st.processor = SVG_PROCESSOR[st.processor];
         }
-
         // return a promise
         return new Promise((resolve, reject)=>{
             // loading manager
@@ -93,5 +108,4 @@
             }
         });
     }
-
 }( this['SVGTools'] = {} ));

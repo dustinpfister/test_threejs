@@ -6,22 +6,22 @@ const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.01, 10000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-camera.position.set(100, 100, 100);
-camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 20;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 60;
+FRAME_MAX = 150;
 let secs = 0,
 frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-
+    const a1 = frame / frameMax;
+    const e = new THREE.Euler();
+    e.y = Math.PI * 2 * a1;
+    camera.position.set(100, 100, 100).applyEuler(e);
+    camera.lookAt(0,0,0);
 };
 // loop
 const loop = () => {
@@ -49,20 +49,19 @@ SVGTools.load({
        '/img/svg-test/test2.svg'
    ],
    opt_extrude: { depth: 5 },
-   processor: (opt_load, data, i_url, url) => {
-        let pi = 0;
-        while(pi < data.paths.length){
-            const shapes = THREE.SVGLoader.createShapes( data.paths[pi] );
-            let si = 0;
-            while(si < shapes.length){
-                const geo = new THREE.ExtrudeGeometry(shapes[si], opt_load.opt_extrude || { depth: 1 } );
-                const mesh = new THREE.Mesh(geo, opt_load.material || new THREE.MeshNormalMaterial());
-                mesh.position.z = -50 + 95 * (i_url / (opt_load.urls.length - 1));
-                opt_load.scene.add(mesh);
-                si += 1;
-            }
-            pi += 1;
-        }
+   //processor: 'shape',
+   //material: new THREE.MeshNormalMaterial({ side: THREE.DoubleSide })
+   processor: (st, data, i_url, url) => {
+        const depth = st.opt_extrude.depth;
+        const count = st.urls.length;
+        const sz = count * depth / 2 * -1;
+        const a_data = i_url / count;
+        st.dataToShape(data, (shape, si, pi) => {
+            const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
+            const mesh = new THREE.Mesh(geo, st.material);
+            mesh.position.z = sz + (count * depth) * a_data;
+            st.scene.add(mesh);
+        });
    }
 })
 .then(() => {
