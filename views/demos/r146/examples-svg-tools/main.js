@@ -13,7 +13,7 @@ scene.add(new THREE.GridHelper(100, 10))
 
 SVGTools.load({
    scene: scene,
-   urls: ['/img/svg-test/test1.svg']
+   urls: ['/img/svg-test/test2.svg']
 })
 .then(()=>{
 
