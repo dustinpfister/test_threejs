@@ -7,9 +7,9 @@
 ## () s1-2-length basic example
 * () have a s1-2-length example that is on the length method
 
-## () rename folders, update to r146
+## ( done 03/13/2023 ) rename folders, update to r146
 * (done) rename folders
-* () update all current demos to r146
+* (done) update all current demos to r146
 
 ## ( done 09/07/2022 ) s3-opacity
 * (done) new example with opacity effect for materials used
