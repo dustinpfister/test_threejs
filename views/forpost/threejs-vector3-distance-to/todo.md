@@ -1,11 +1,12 @@
 # vector3-distance-to todo list
 
-## () expand basic section 
-* () rename s1-basic to s1-1-distance-to
-* () have a s1-3-groups example that is a comparison to distnace to and length in groups
+## () s2-3-loop-length
+* () animation loop demo based on what I started with the s1-2-basic-length demo
+* () have a grid of spheres and move this grid around
+* () I will want to wrap the mesh objects also
 
-## () s1-2-length basic example
-* () have a s1-2-length example that is on the length method
+## ( done 03/13/2023 ) s1-2-length basic example
+* (done) have a s1-2-length example that is on the length method
 
 ## ( done 03/13/2023 ) rename folders, update to r146
 * (done) rename folders
