@@ -10,9 +10,9 @@ renderer.setSize(640, 480, false);
 // HELPER
 //-------- ----------
 const createCube = function () {
-    var cube = new THREE.Mesh(
-           new THREE.BoxGeometry(1, 1, 1),
-           new THREE.MeshNormalMaterial());
+    const cube = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial());
     return cube;
 };
 //-------- ---------
