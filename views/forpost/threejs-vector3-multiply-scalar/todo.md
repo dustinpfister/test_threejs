@@ -3,6 +3,10 @@
 ## () - art-example-1
 * () have an example that makes use of everything covered in the post that will be used to make a video
 
+## () rename folders, 146 style
+* () rename demo folders
+* () quick update to r146 style
+
 ## ( done 09/08/2022 ) - changing direction and scale of vectors
 * (done) animation loop example that shows use of applyEuler along with multiply scalar
 
