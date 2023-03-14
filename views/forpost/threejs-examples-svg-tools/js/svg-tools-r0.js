@@ -70,6 +70,7 @@
             const material = st.material.clone();
             material.color = new THREE.Color(svgNode.getAttribute('fill'));
             const mesh = new THREE.Mesh(geo, material);
+            mesh.name = 'shape_' + i_url + '_' + pi + '_' + si;
             st.scene.add(mesh);
         });
     };
@@ -87,7 +88,7 @@
             const loading_manager = new THREE.LoadingManager();
             loading_manager.onLoad = () => {
                 console.log('All Files loaded.');
-                resolve(st)
+                resolve(st);
             };
             let i_url = 0;
             const len_url = st.urls.length;

@@ -8,4 +8,4 @@
 
 ## () r0 - first version
 * (done) start with the source code for the r146 demo
-* ()
+* (done) assign names to mesh objects with the built in processor
