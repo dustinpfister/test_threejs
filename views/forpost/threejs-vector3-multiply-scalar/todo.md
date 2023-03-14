@@ -1,8 +1,15 @@
 # threejs-vector3-multiply-scalar todo list
 
-## () - s3-2-loop-video2
-* () start a video2 loop example
-* () video2 can just be a bunch of mesh objects that move in and out from the origin
+## () - s2-3-copy-curve
+* () have an example that involves the use of a curve
+* () use the get point method to get a Vector3 along the curve
+* () use the copy method to copy the position of a green mesh to that point
+* () create a few white mesh objects and copy the curve point for that as well
+* () however add a new vector in using multiply scalar
+
+## ( done 03/14/2023 ) - s3-2-loop-move-many-along
+* (done) start a video2 loop example
+* (done) video2 can just be a bunch of mesh objects that move in and out from the origin
 
 ## ( done 03/14/2023 ) new s1-2-basic-normalize
 * (done) new basic example that uses the length method to check the unit length of the vector
