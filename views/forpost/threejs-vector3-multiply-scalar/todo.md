@@ -3,8 +3,12 @@
 ## () - art-example-1
 * () have an example that makes use of everything covered in the post that will be used to make a video
 
+## () new s1-2-basic-normalize
+* () new basic example that uses the length method to check the unit length of the vector
+* () I will also what to use normalize in this demo
+
 ## () rename folders, 146 style
-* () rename demo folders
+* (done) rename demo folders
 * () quick update to r146 style
 
 ## ( done 09/08/2022 ) - changing direction and scale of vectors
