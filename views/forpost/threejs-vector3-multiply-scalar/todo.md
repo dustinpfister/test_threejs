@@ -7,9 +7,9 @@
 * () new basic example that uses the length method to check the unit length of the vector
 * () I will also what to use normalize in this demo
 
-## () rename folders, 146 style
+## ( done 03/14/2023 ) rename folders, 146 style
 * (done) rename demo folders
-* () quick update to r146 style
+* (done) quick update to r146 style
 
 ## ( done 09/08/2022 ) - changing direction and scale of vectors
 * (done) animation loop example that shows use of applyEuler along with multiply scalar
