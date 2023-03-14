@@ -16,8 +16,9 @@ const cube1 = new THREE.Mesh(
 const cube2 = cube1.clone();
 scene.add(cube1);
 scene.add(cube2); 
-// SETTING POSITION WITH Vector3.set and Vector3.multiplyScalar
-cube1.position.set(-1, 0, -1).multiplyScalar(4);
+// SETTING POSITION WITH Vector3.set
+cube1.position.set(1, 0, 0);
+cube1.position.multiplyScalar(1.5);
 //-------- ----------
 // RENDER
 //-------- ----------
