@@ -52,7 +52,7 @@ SVGTools.load({
    ],
    opt_extrude: { depth: 5 },
    //processor: 'shape',
-   //material: new THREE.MeshNormalMaterial({ side: THREE.DoubleSide })
+   material: new THREE.MeshBasicMaterial({ }),
    processor: (st, data, i_url, url) => {
         const svg_width = data.xml.width.baseVal.value;
         const svg_height = data.xml.height.baseVal.value;
