@@ -11,13 +11,11 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 scene.add(new THREE.GridHelper(100, 10));
 SVGTools.load({
-   //scene: scene,
    urls: [ '/img/svg-logo/logo_base.svg' ]
 })
 .then( ( st ) => {
-
-console.log( st.scene.children )
-
+    // add st.scene to the main scene object
+    scene.add(st.scene);
     camera.position.set( 100, 50, 100);
     camera.lookAt(0,0,0);
     renderer.render(scene, camera);
