@@ -51,28 +51,24 @@ SVGTools.load({
        '/img/svg-logo/logo_base.svg'
    ],
    opt_extrude: { depth: 5 },
-   //processor: 'shape',
-   material: new THREE.MeshBasicMaterial({ }),
+   material: new THREE.MeshBasicMaterial({ side: THREE.DoubleSide }),
+/*
    processor: (st, data, i_url, url) => {
         const svg_width = data.xml.width.baseVal.value;
         const svg_height = data.xml.height.baseVal.value;
         st.dataToShape(data, (shape, si, pi) => {
-
             const svgNode = data.paths[pi].userData.node;
-
             const zindex = parseFloat( svgNode.getAttribute('svgtools:zindex') || -10);
             const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
             geo.rotateX(Math.PI * 1);
             geo.translate( svg_width / 2 * -1, svg_height / 2 * 1, zindex * 5);
             const material = st.material.clone();
-
-console.log(  )
-material.color = new THREE.Color(svgNode.getAttribute('fill'));
-
+            material.color = new THREE.Color(svgNode.getAttribute('fill'));
             const mesh = new THREE.Mesh(geo, material);
             st.scene.add(mesh);
         });
    }
+*/
 })
 .then(() => {
     console.log('done loading')

@@ -9,7 +9,9 @@
         scene: new THREE.Scene(),
         opt_extrude: { depth: 1 },
         opt_shape: { depth: 1 },
-        material: new THREE.MeshNormalMaterial()
+        material: new THREE.MeshBasicMaterial(),
+        zDepth: 1,
+        zIndex: 0
     };
     //-------- ----------
     // HELPERS - internal helper funcitons used by the public api, and other built in features
@@ -58,24 +60,15 @@
     SVG_PROCESSOR.extrude = (st, data, i_url, url) => {
         const svg_width = data.xml.width.baseVal.value;
         const svg_height = data.xml.height.baseVal.value;
-        const depth = st.opt_extrude.depth;
-        const count = st.urls.length;
-        const sz = count * depth / 2 * -1;
-        const a_data = i_url / count;
         st.dataToShape(data, (shape, si, pi) => {
+            const svgNode = data.paths[pi].userData.node;
+            const zindex = parseFloat( svgNode.getAttribute('svgtools:zindex') || st.zIndex);
+            const zDepth = parseFloat( svgNode.getAttribute('svgtools:zDepth') || st.zDepth);
             const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
-            geo.translate(svg_width / 2 * -1, svg_height / 2 * -1, 0);
+            geo.rotateX(Math.PI * 1);
+            geo.translate( svg_width / 2 * -1, svg_height / 2 * 1, zindex * zDepth);
             const material = st.material.clone();
-            const mesh = new THREE.Mesh(geo, material);
-            mesh.position.z = sz + (count * depth) * a_data;
-            st.scene.add(mesh);
-        });
-    };
-    // shape
-    SVG_PROCESSOR.shape = (st, data, i_url, url) => {
-        st.dataToShape(data, (shape, si, pi) => {
-            const geo = new THREE.ShapeGeometry(shape, st.opt_shape);
-            const material = st.material.clone();
+            material.color = new THREE.Color(svgNode.getAttribute('fill'));
             const mesh = new THREE.Mesh(geo, material);
             st.scene.add(mesh);
         });
