@@ -1,11 +1,12 @@
 # threejs-vector3-multiply-scalar todo list
 
-## () - art-example-1
-* () have an example that makes use of everything covered in the post that will be used to make a video
+## () - s3-2-loop-video2
+* () start a video2 loop example
+* () video2 can just be a bunch of mesh objects that move in and out from the origin
 
-## () new s1-2-basic-normalize
-* () new basic example that uses the length method to check the unit length of the vector
-* () I will also what to use normalize in this demo
+## ( done 03/14/2023 ) new s1-2-basic-normalize
+* (done) new basic example that uses the length method to check the unit length of the vector
+* (done) I will also what to use normalize in this demo
 
 ## ( done 03/14/2023 ) rename folders, 146 style
 * (done) rename demo folders
