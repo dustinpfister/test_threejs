@@ -7,7 +7,7 @@
   <image href="self.png" height="60" width="60" />
   <path
     svgtools:zindex="0"
-    fill="#afafaf"
+    fill="#bb8800"
     stroke="#000000"
     opacity="0.5"
     d="M 7,14 
@@ -23,7 +23,7 @@
        Z" />
   <path
     svgtools:zindex="0"
-    fill="#afafaf"
+    fill="#bb8800"
     stroke="#000000"
     opacity="0.5"
     d="M 23,35
@@ -34,13 +34,13 @@
        Z" />
    <circle
        svgtools:zindex="1"
-       fill="#afafaf"
+       fill="#888888"
        stroke="#000000"
        opacity="0.5"
        cx="26" cy="23" r="6" />
    <circle
        svgtools:zindex="1"
-       fill="#afafaf"
+       fill="#888888"
        stroke="#000000"
        opacity="0.5"
        cx="42" cy="24" r="6" />
