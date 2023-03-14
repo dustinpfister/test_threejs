@@ -46,7 +46,8 @@
             const shapes = THREE.SVGLoader.createShapes( data.paths[pi] );
             let si = 0;
             while(si < shapes.length){
-                forShape(shapes[si], si, pi);
+                const svgNode = data.paths[pi].userData.node;
+                forShape(shapes[si], si, pi, svgNode);
                 si += 1;
             }
             pi += 1;
@@ -60,9 +61,8 @@
     SVG_PROCESSOR.extrude = (st, data, i_url, url) => {
         const svg_width = data.xml.width.baseVal.value;
         const svg_height = data.xml.height.baseVal.value;
-        st.dataToShape(data, (shape, si, pi) => {
-            const svgNode = data.paths[pi].userData.node;
-            const zindex = parseFloat( svgNode.getAttribute('svgtools:zindex') || st.zIndex);
+        st.dataToShape(data, (shape, si, pi, svgNode) => {
+            const zindex = parseInt( svgNode.getAttribute('svgtools:zindex') || st.zIndex);
             const zDepth = parseFloat( svgNode.getAttribute('svgtools:zDepth') || st.zDepth);
             const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
             geo.rotateX(Math.PI * 1);

@@ -14,13 +14,7 @@
 * (done) get width and height of svg, and use that to translate geo?
 * (done) can do custom attributes as needed in main.js
 * (done) clone materials with built in processors as well as with the custom demo in main.js
-
-
-* () see about using the svg fill color for the map color with the custom processor in main.js
-* () make the mesh normal material the default material
-* () make the style chnages in the custom processor standard with the built in processor.js
-
-
-* () I want to see if I can pass a ref to the svg node for each call of dataToShape
-
-* () see about adding custom svg attributes to set what colors the fill and stroke colors are mapped to
+* (done) see about using the svg fill color for the map color with the custom processor in main.js
+* (done) make the mesh basic material the default material
+* (done) make the style changes in the custom processor standard with the built in processor.js
+* (done) I want to see if I can pass a ref to the svg node for each call of dataToShape

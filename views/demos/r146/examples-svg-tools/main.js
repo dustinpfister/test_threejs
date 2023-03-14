@@ -56,18 +56,18 @@ SVGTools.load({
        //'/img/svg-test/test2.svg',
        '/img/svg-logo/logo_base.svg'
    ],
-   opt_extrude: { depth: 5 },
+   opt_extrude: { depth: 1 },
+   zDepth: 5,
    material: new THREE.MeshPhongMaterial(),
    processor: (st, data, i_url, url) => {
         const svg_width = data.xml.width.baseVal.value;
         const svg_height = data.xml.height.baseVal.value;
-        st.dataToShape(data, (shape, si, pi) => {
-            const svgNode = data.paths[pi].userData.node;
+        st.dataToShape(data, (shape, si, pi, svgNode) => {
             const zindex = parseFloat( svgNode.getAttribute('svgtools:zindex') || st.zIndex);
             const zDepth = parseFloat( svgNode.getAttribute('svgtools:zDepth') || st.zDepth);
             const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
             geo.rotateX(Math.PI * 1);
-            geo.translate( svg_width / 2 * -1, svg_height / 2 * 1, zindex * 5);
+            geo.translate( svg_width / 2 * -1, svg_height / 2 * 1, zindex * zDepth);
             const material = st.material.clone();
             material.color = new THREE.Color( svgNode.getAttribute('fill') );
             const mesh = new THREE.Mesh(geo, material);

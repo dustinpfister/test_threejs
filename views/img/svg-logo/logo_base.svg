@@ -34,12 +34,14 @@
        Z" />
    <circle
        svgtools:zindex="1"
+       svgtools:zDepth="1"
        fill="#888888"
        stroke="#000000"
        opacity="0.5"
        cx="26" cy="23" r="6" />
    <circle
        svgtools:zindex="1"
+       svgtools:zDepth="1"
        fill="#888888"
        stroke="#000000"
        opacity="0.5"
