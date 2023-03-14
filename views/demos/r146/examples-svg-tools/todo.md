@@ -13,5 +13,8 @@
 * (done) extrude processor will position on z based on depth, and url data index
 * (done) get width and height of svg, and use that to translate geo?
 * (done) can do custom attributes as needed in main.js
+* (done) clone materials with built in processors as well as with the custom demo in main.js
 
-* () I might want to see if I can pass a ref to the node for each call of dataToShape
+
+
+* () I want to see if I can pass a ref to the svg node for each call of dataToShape

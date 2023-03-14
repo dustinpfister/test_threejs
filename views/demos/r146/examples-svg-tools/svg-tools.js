@@ -65,7 +65,8 @@
         st.dataToShape(data, (shape, si, pi) => {
             const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
             geo.translate(svg_width / 2 * -1, svg_height / 2 * -1, 0);
-            const mesh = new THREE.Mesh(geo, st.material);
+            const material = st.material.clone();
+            const mesh = new THREE.Mesh(geo, material);
             mesh.position.z = sz + (count * depth) * a_data;
             st.scene.add(mesh);
         });
@@ -74,7 +75,8 @@
     SVG_PROCESSOR.shape = (st, data, i_url, url) => {
         st.dataToShape(data, (shape, si, pi) => {
             const geo = new THREE.ShapeGeometry(shape, st.opt_shape);
-            const mesh = new THREE.Mesh(geo, st.material);
+            const material = st.material.clone();
+            const mesh = new THREE.Mesh(geo, material);
             st.scene.add(mesh);
         });
     };

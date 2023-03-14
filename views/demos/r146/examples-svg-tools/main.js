@@ -56,20 +56,13 @@ SVGTools.load({
    processor: (st, data, i_url, url) => {
         const svg_width = data.xml.width.baseVal.value;
         const svg_height = data.xml.height.baseVal.value;
-        //const depth = st.opt_extrude.depth;
-        //const count = (st.urls.length - 1);
-        //const zSpace = count + 2;
-        //const sz = zSpace * depth / 2 * -1;
-        //const a_data = i_url / count;
         st.dataToShape(data, (shape, si, pi) => {
-
-            const zindex = parseFloat(data.paths[pi].userData.node.getAttribute('svgtools:zindex') || -10);
-
+            const zindex = parseFloat( data.paths[pi].userData.node.getAttribute('svgtools:zindex') || -10);
             const geo = new THREE.ExtrudeGeometry(shape, st.opt_extrude);
             geo.rotateX(Math.PI * 1);
             geo.translate( svg_width / 2 * -1, svg_height / 2 * 1, zindex * 5);
-            const mesh = new THREE.Mesh(geo, st.material);
-            //mesh.position.z = sz + (zSpace * depth) * a_data;
+            const material = st.material.clone();
+            const mesh = new THREE.Mesh(geo, material);
             st.scene.add(mesh);
         });
    }
