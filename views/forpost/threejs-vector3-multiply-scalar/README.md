@@ -9,3 +9,12 @@ The [multiply scalar method](https://dustinpfister.github.io/2022/03/23/threejs-
       </a>
 </div>
 
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=JBli1qv_mOI">
+         <img src="https://img.youtube.com/vi/JBli1qv_mOI/0.jpg" style="width:50%;">
+      </a>
+</div>
+
+
+
