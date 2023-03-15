@@ -10,8 +10,8 @@
 ## () s6-lerp example
 * () example on the lerp and inverseLerp methods
 
-## () update demos to r146 style
-* () quick update of all demos to r146 style
+## ( done 03/15/2023 ) update demos to r146 style
+* (done) quick update of all demos to r146 style
 
 ## ( done 03/15/2023 ) rename folders
 * (done) rename all folders
