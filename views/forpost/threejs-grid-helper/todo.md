@@ -1,8 +1,8 @@
 # threejs-grid-helper
 
-## () - rename folders and update to r146 style
+## ( done 03/16/2023 ) - rename folders and update to r146 style
 * (done) rename folders
-* () update to r146 style
+* (done) update to r146 style
 
 ## ( done 09/13/202 ) - default to document body in examples
 * (done) sense a lot of people might just copy and pase source code from posts, I should do this.
