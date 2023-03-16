@@ -5,13 +5,13 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 1, 1000);
 camera.position.set(250, 250, 250);
 camera.lookAt(0,0,0);
-const renderer = THREE.WebGL1Renderer ? new THREE.WebGL1Renderer() : new THREE.WebGLRenderer;
+const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 // ---------- ---------- ----------
 // ADD A MESH
 // ---------- ---------- ----------
-let mesh = new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200), new THREE.MeshNormalMaterial());
+const mesh = new THREE.Mesh(new THREE.BoxGeometry(200, 200, 200), new THREE.MeshNormalMaterial());
 scene.add(mesh);
 // ---------- ----------
 // ANIMATION LOOP
@@ -24,7 +24,8 @@ frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
-    const degree = 360 * (frame / frameMax);
+    const a1 = frame / frameMax;
+    const degree = 360 * a1;
     mesh.rotation.x = THREE.MathUtils.degToRad(degree);
 };
 // loop
