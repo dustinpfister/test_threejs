@@ -7,8 +7,8 @@
 * () it should be possible to add a color attribite and use vertex coloring
 * () have transparent effects also
 
-## () - start a s2-2-loop-transparent example
-* () have just a very simple transparent transparent grid example
+## ( done 03/16/2023 ) - start a s2-2-loop-transparent example
+* (done) have just a very simple transparent transparent grid example
 
 ## ( done 03/16/2023 ) - rename folders and update to r146 style
 * (done) rename folders
