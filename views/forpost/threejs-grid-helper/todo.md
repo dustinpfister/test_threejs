@@ -1,5 +1,15 @@
 # threejs-grid-helper
 
+## () - start a s2-4-loop-video1 example
+* () start a loop example based on what I made for the first video
+
+## () - start a s2-3-loop-vertex-colors
+* () it should be possible to add a color attribite and use vertex coloring
+* () have transparent effects also
+
+## () - start a s2-2-loop-transparent example
+* () have just a very simple transparent transparent grid example
+
 ## ( done 03/16/2023 ) - rename folders and update to r146 style
 * (done) rename folders
 * (done) update to r146 style
