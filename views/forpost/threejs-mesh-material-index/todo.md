@@ -1,26 +1,13 @@
 # threejs-material-index todo list
 
-## () sx-custom-geo
-* () custom geo example from the ground up
-* () position attribute worked out
-* () use compute vertex normals method, or make the attribute by other means and use vertex normal helper
-* () I will want to have uvs attribute
-* () data textures use for materials
+## () s3-2-loop-matreialoptions
+* () have just a simple rotation of cube loop example
+* () have a material for each side
+* () use lambert, standard, phong, basic, normal, basic in wireframe
 
-## () sx-sphere-geo example
-* have one or more examples for groups and a sphere geometry
-
-## () sx-data-textures-uv
-* () create a single data texture for one material that is used for all but one face
-* () create another data texture for just one last face 
-
-## () sx-data-textures
-* () have an example in which I am cretaing data textures
-* () have one mesh object where I just create custom textures for each face of a cube
-
-## () rename folders and update to r146 style
+## ( done 03/17/2023 ) rename folders and update to r146 style
 * (done) rename folders
-* () update all new group examples to r146 style
+* (done) update all new group examples to r146 style
 
 ## ( done 09/14/2022 ) sx-art-example-one
 * (done) start a first art example that will be used for video1 for the post
