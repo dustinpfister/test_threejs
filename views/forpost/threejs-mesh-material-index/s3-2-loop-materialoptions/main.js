@@ -20,7 +20,8 @@ scene.add(al);
 const opt_mat_all = {
     transparent: true,
     opacity: 0.5,
-    side: THREE.DoubleSide
+    side: THREE.DoubleSide,
+    depthFunc: THREE.AlwaysDepth
 };
 const createMatOpt = (opt) => {
     return Object.assign({}, opt_mat_all, opt);
@@ -52,7 +53,7 @@ scene.add(mesh);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-camera.position.set(3, 3, 3);
+camera.position.set(2, 2, 2);
 camera.lookAt(0,0,0);
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
