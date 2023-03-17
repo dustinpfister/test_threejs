@@ -19,7 +19,7 @@
 * () have one mesh object where I just create custom textures for each face of a cube
 
 ## () rename folders and update to r146 style
-* () rename folders
+* (done) rename folders
 * () update all new group examples to r146 style
 
 ## ( done 09/14/2022 ) sx-art-example-one
