@@ -18,7 +18,11 @@
 * () have an example in which I am cretaing data textures
 * () have one mesh object where I just create custom textures for each face of a cube
 
-## ( done 09/14/202 ) sx-art-example-one
+## () rename folders and update to r146 style
+* () rename folders
+* () update all new group examples to r146 style
+
+## ( done 09/14/2022 ) sx-art-example-one
 * (done) start a first art example that will be used for video1 for the post
 * (done) have a plane geometry set up with a 16 by 16 grid
 * (done) use an array of 8 colors to choose from
