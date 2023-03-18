@@ -20,13 +20,12 @@ scene.add(mesh1);
 const times = [ 0, 10];
 const values = [0, 0, -5, 0, 0, 5];
 const kf_pos = new THREE.VectorKeyframeTrack('.position', times, values );
-const kf_rot = new THREE.QuaternionKeyframeTrack('.quaternion', times, [ 0,0,0,0, 0,0,0,0 ] );
 // ---------- ----------
 // ANIMATION MIXER / CLIP / ACTION
 // ---------- ----------
 const mixer = new THREE.AnimationMixer(mesh1);
 const length = -1;
-const tracks = [ kf_pos, kf_rot];
+const tracks = [ kf_pos];
 const clip = new THREE.AnimationClip("slowmove", length, tracks);
 const action = mixer.clipAction(clip);
 action.play();
