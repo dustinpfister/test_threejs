@@ -3,6 +3,10 @@
 ### () - s5-compute-vertex-normals
 * () have a compute vertex normals buffer geometry example
 
+### () rename folders and update to r146 style
+* (done) - rename folders
+* () update demos to r146 style
+
 ### ( done 09/15/2022 ) - s4-side property
 * (done) have an example that shows what the deal is with the side property and normals
 
