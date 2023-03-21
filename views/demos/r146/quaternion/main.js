@@ -18,7 +18,6 @@ scene.add(mesh1);
 const q = new THREE.Quaternion();
 q.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 180 * 45 );
 mesh1.rotation.setFromQuaternion(q);
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
