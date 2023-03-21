@@ -10,8 +10,8 @@
 ## ( ) - s5-2-object3d-position
 * () demo in which I change the position of a whole scene object over time
 
-## ( ) - s3-4-bg-transparent
-* () have a transparent background demo
+## ( done 03/21/2023 ) - s3-4-bg-transparent
+* (done) have a transparent background demo
 
 ## ( done 03/21/2023 ) - rename folders, r146 style
 * (done) rename all demo folders
