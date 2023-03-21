@@ -3,15 +3,18 @@
 //-------- ----------
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0, 0.4, 0.6);
-//-------- ----------
-// CAMERA, RENDERER, MESH
-//-------- ----------
 const camera = new THREE.PerspectiveCamera(45, 4 / 3, .5, 100);
-camera.position.set(2, 2, 2); 
-camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+//-------- ----------
+// OBJECTS
+//-------- ----------
 const mesh = new THREE.Mesh(new THREE.SphereGeometry(0.5, 30, 30), new THREE.MeshNormalMaterial());
 scene.add(mesh);
+//-------- ----------
+// RENDER
+//-------- ----------
+camera.position.set(2, 2, 2); 
+camera.lookAt(0, 0, 0);
 renderer.render(scene, camera);

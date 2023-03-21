@@ -2,10 +2,14 @@
 // SCENE OBJECT - CREATING A TEXTURE WITH CANVAS
 //-------- ----------
 const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 100);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 //-------- ----------
 // CREATE CANVAS, GET CONTEXT, SET SIZE
 //-------- ----------
-var canvas = document.createElement('canvas'),
+const canvas = document.createElement('canvas'),
 ctx = canvas.getContext('2d');
 canvas.width = 512;  // width and height need to be powers of two
 canvas.height = 256;
@@ -42,15 +46,14 @@ scene.background.repeat.x = factor > 1 ? 1 / factor : 1;
 scene.background.offset.y = factor > 1 ? 0 : (1 - factor) / 2;
 scene.background.repeat.y = factor > 1 ? 1 : factor;
 //-------- ----------
-// CAMERA, RENDERER, MESH
+// MESH
 //-------- ----------
-const camera = new THREE.PerspectiveCamera(50, 640 / 480, 0.1, 100);
-camera.position.set(2, 2, 2); 
-camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 const mesh = new THREE.Mesh(new THREE.SphereGeometry(0.5, 30, 30), new THREE.MeshNormalMaterial());
 scene.add(mesh);
-scene.add( new THREE.GridHelper(10, 10))
+scene.add( new THREE.GridHelper(10, 10));
+//-------- ----------
+// RENDER
+//-------- ----------
+camera.position.set(2, 2, 2); 
+camera.lookAt(0, 0, 0);
 renderer.render(scene, camera);
