@@ -1,8 +1,7 @@
 # threejs-scene todo list
 
-### () - sx-x-loop
-* () have a collection of examples in which I am using an animation loop
-* () start with the loop example from the getting started post
+## ( ) - rename folders, r146 style
+* (done) rename all demo folders
 
 ### ( done 09/18/2022 ) -s3-x-background - expand background section
 * (done) rename s3-background to s3-1-bg-basic
