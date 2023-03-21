@@ -16,11 +16,12 @@
 ## ( ) - s5-3-object3d-traverse
 * () have a demo where I traverse over all the children of a scene object
 
-## ( ) - s5-3-object3d-scale
-* () have a simple scale demo of a scene object
 
-## ( ) - s5-2-object3d-position
+## ( ) - s5-3-object3d-position
 * () demo in which I change the position of a whole scene object over time
+
+## ( done 03/21/2023 ) - s5-2-object3d-scale
+* (done) have a simple scale demo of a scene object
 
 ## ( done 03/21/2023 ) - s3-4-bg-transparent
 * (done) have a transparent background demo
