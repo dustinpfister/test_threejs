@@ -77,5 +77,4 @@
         event.update = opt.update || function(){};
         tl.events.push(event);
     };
-
 }( this['timeLine'] = {} ));
