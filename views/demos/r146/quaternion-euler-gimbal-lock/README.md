@@ -1,6 +1,6 @@
 # quaternion-euler-gimbal-lock r146 demo
 
-For this demo I would like to explore what the deal is with gimbal lock when it comes to using the Euler class to rotate objects, and how the use of quaternion helps with this.
+For this demo I would like to explore what the deal is with gimbal lock when it comes to using the Euler class to rotate objects, and how the use of quaternion helps with this. I followed a description from a Wikipedia article and have found what the deal is with eulers. As a mesh object that is like that of an airplane pitches up to 90 degrees, changes in yaw are lost. In other words it would seem that yaw becomes a new kind of roll.
 
 ### RESOURCES
 
