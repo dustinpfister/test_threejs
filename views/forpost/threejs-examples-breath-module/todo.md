@@ -1,11 +1,9 @@
 # threejs-examples-breath-module r146 demo todo list
 
-## () r1 - Removal of curves, add plugins
-* () gud.a-breathCycle alpha
-* () start a plugin system
-* () create a breath-curve-collection.js plugin that will be the same functionality of the curve groups built into breath.js
-* () remove update curve and update method methods as they should now be pulled out into an optional plugin
-* () have a main, generic update hook in place of update curves and update method options
+## () r1 - Removal of curves, focus more so on just alpha values
+* () remove all code that adds curves
+* () add public helper method that help with conversion, creating string values
+* () solid main update hook method with alpha values for current breath state
 
 ## ( done 03/01/2023 ) - r0-3-hooks
 * (done) demo of new hooks feature
