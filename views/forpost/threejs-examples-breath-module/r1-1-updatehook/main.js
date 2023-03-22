@@ -23,13 +23,17 @@ scene.add(mesh3);
 //-------- ----------
 // BREATH GROUP - creating with default settings
 //-------- ----------
+const BREATH_SECS = 60;
 const group = BreathMod.create({
-    breathsPerMinute: 5.88,
+    totalBreathSecs: BREATH_SECS,
+    breathsPerMinute: 6,
     breathParts: {restLow: 1, breathIn: 1, restHigh: 1, breathOut: 1},
-    before: (group, a1, a2, a_fullvid, a_breathPart, breathPart) => {
+    before: (group, a1, a2, a_fullvid, a_breathPart, breathPart, gud) => {
         mesh1.position.x = -5 + 10 * a1;
         mesh2.position.x = -5 + 10 * a2;
         mesh3.position.x = -5 + 10 * a_fullvid;
+
+
     },
     hooks: {
         breathIn : (group, a_breathPart, a_fullvid, gud) => {
@@ -43,7 +47,9 @@ scene.add(group);
 
 const gud = group.userData;
 console.log(gud.secsPerBreathCycle)
-console.log(gud)
+console.log(gud.breathPartsString);
+console.log(gud.totalTimeString);
+console.log(gud.timeString);
 
 // ---------- ----------
 // ANIMATION LOOP
@@ -52,7 +58,7 @@ camera.position.set(4, 4, 8);
 camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 30 * 300;
+FRAME_MAX = 30 * BREATH_SECS;
 let secs = 0,
 frame = 0,
 lt = new Date();

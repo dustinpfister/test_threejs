@@ -1,6 +1,7 @@
 // breath.js - r1 - from threejs-examples-breath-module
 (function(api){
     const BREATH_KEYS = 'restLow,breathIn,restHigh,breathOut'.split(',');
+    const BREATH_DISP_NAMES = 'rest low, breath in, rest high, breath out'.split(',');
     //-------- ----------
     // DEFAULTS
     //-------- ----------
@@ -38,9 +39,14 @@
             const n = gud.breathParts[key];
             const a = n / gud.breathPartsSum;
             const s = gud.secsPerBreathCycle * a;
-            acc += s.toFixed(2) + 's ' + key + (i === 3 ? '' : ', ');
+            acc += s.toFixed(2) + 's ' + BREATH_DISP_NAMES[i] + (i === 3 ? '' : ', ');
             return acc;
         }, '');
+    };
+    const secsToTimeStr = (totalSecs) => {
+        const minutes = Math.floor( totalSecs / 60 );
+        const secs = Math.floor(totalSecs % 60);
+        return String(minutes).padStart(2, '0') + ':' + String(secs).padStart(2, '0')
     };
     //-------- ----------
     // PUBLIC API
@@ -50,6 +56,7 @@
         const gud = group.userData;
         gud.a_fullvid = a_fullvid;
         gud.sec = gud.totalBreathSecs * gud.a_fullvid;
+        gud.timeString = secsToTimeStr(gud.sec);
         gud.a1 = (gud.sec % 60 / 60) * gud.breathsPerMinute % 1;
         let ki = 0;
         while(ki < BREATH_KEYS.length){
@@ -86,17 +93,20 @@
         gud.before = opt.before || function(){};
         gud.hooks = Object.assign({}, DEFAULT_HOOKS , opt.hooks );
         gud.id = opt.id || '1';
+        gud.sec = 0;
         // set in api.update
         gud.currentBreathKey = '';
         gud.a_fullvid = 0;
         gud.a_base = 0;
         gud.a_breathPart = 0;  // alpha value of the current breath part
-        // string display values
+        gud.a1 = 0;
+        gud.a2 = 0;
+        // display values
         gud.breathPartsSum = getBreathPartsSum(gud.breathParts);
         gud.secsPerBreathCycle = 60 / gud.breathsPerMinute;
         gud.breathPartsString = getBreathPartsString(group);
-
-
+        gud.totalTimeString = secsToTimeStr(gud.totalBreathSecs);
+        gud.timeString = secsToTimeStr(gud.sec);
         // update and return
         api.update(group, 0);
         return group;
