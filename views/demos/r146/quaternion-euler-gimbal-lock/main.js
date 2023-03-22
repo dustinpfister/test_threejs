@@ -27,6 +27,14 @@ scene.add( axesHelper );
 // mesh
 const mesh1 = createMesh();
 scene.add(mesh1);
+const mesh2 = createMesh();
+mesh2.position.set(0,0,-2)
+scene.add(mesh2);
+
+//mesh2.rotation.z = Math.PI * 0.5;
+//mesh2.rotation.y = Math.PI * 1.5;
+console.log(mesh2.quaternion);
+
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -51,6 +59,12 @@ const update = function(frame, frameMax){
     mesh1.rotation.x = Math.PI / 180 * 0;
     mesh1.rotation.y = Math.PI / 180 * (-45 + 90 * a3);
     mesh1.rotation.z = Math.PI / 180 * ( -45 + 135 * a2);
+
+    //mesh2.quaternion.x = 0;
+    //mesh2.quaternion.y = a1;
+    //mesh2.quaternion.z = 0.65;
+    //mesh2.quaternion.w = 1;
+
 };
 // loop
 const loop = () => {
