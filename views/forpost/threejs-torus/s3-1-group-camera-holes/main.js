@@ -1,4 +1,20 @@
 //-------- ----------
+// SCENE, CAMERA, RENDERER
+//-------- ----------
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xafafaf);
+const camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.1, 100);
+scene.add(camera);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+//-------- ----------
+// LIGHT
+//-------- ----------
+const light = new THREE.PointLight(0xffffff, 0.5);
+light.position.set(2, 0, 0);
+camera.add(light);
+//-------- ----------
 // HELPERS
 //-------- ----------
 const MAIN_RADIUS = 8,
@@ -37,21 +53,6 @@ const createDoughnutGroup = () => {
     return group;
 };
 //-------- ----------
-// SCENE, CAMERA, LIGHT, RENDERER
-//-------- ----------
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xafafaf);
-const camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.1, 100);
-camera.position.set(6, 4, 4.5);
-camera.lookAt(0, 0, 0.5);
-const light = new THREE.PointLight(0xffffff, 0.5);
-light.position.set(2, 0, 0);
-camera.add(light);
-scene.add(camera);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-//-------- ----------
 // ADDING GROUP TO SCENE
 //-------- ----------
 const group = createDoughnutGroup();
@@ -59,6 +60,8 @@ scene.add(group);
 //-------- ----------
 // LOOP
 //-------- ----------
+camera.position.set(6, 4, 4.5);
+camera.lookAt(0, 0, 0.5);
 let lt = new Date(),
 frame = 0;
 const maxFrame = 1200,
