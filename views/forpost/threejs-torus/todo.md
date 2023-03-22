@@ -1,8 +1,8 @@
 # threejs-torus todo list
 
-## () update to r146 style
+## ( done 03/22/2023 ) update to r146 style
 * (done) rename folders
-* () update demos to r146 style
+* (done) update demos to r146 style
 
 ## ( done 09/19/2022 ) s2-2-points-mesh-for-every
 * (done) example where I make a mesh object using sphere geometry for every point in a torus geometry
