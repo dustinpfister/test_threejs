@@ -7,28 +7,27 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// LIGHT
+// OBJECTS
 // ---------- ----------
-const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(5, 2, 1)
-scene.add(dl);
+scene.add( new THREE.GridHelper(10, 10) );
+const mesh1 = new THREE.Mesh( new THREE.SphereGeometry(1, 20, 20), new THREE.MeshNormalMaterial());
+mesh1.position.z = -5;
+scene.add(mesh1);
+const mesh2 = new THREE.Mesh( new THREE.SphereGeometry(1, 20, 20), new THREE.MeshNormalMaterial());
+scene.add(mesh2);
 //-------- ----------
 // BREATH GROUP - creating with default settings
 //-------- ----------
 const group = BreathMod.create({
-
+    breathParts: {restLow: 1, breathIn: 1, restHigh: 1, breathOut: 1},
+    before: (group, a1, a2, a_fullvid, a_breathPart, breathPart) => {
+        mesh1.position.x = -5 + 10 * a1;
+        mesh2.position.x = -5 + 10 * a2;
+    },
     hooks: {
-        restLow : (group, a_breathPart, a_fullvid, gud) => {
-console.log('restLow');
-        },
-        restHigh : (group, a_breathPart, a_fullvid, gud) => {
-console.log('resthigh');
-        },
         breathIn : (group, a_breathPart, a_fullvid, gud) => {
-console.log('breathIn');
         },
         breathOut : (group, a_breathPart, a_fullvid, gud) => {
-console.log('breathOut');
         }
     }
 
@@ -37,9 +36,9 @@ scene.add(group);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-camera.position.set(0, 0, 8);
+camera.position.set(4, 4, 8);
 camera.lookAt(0, 0, 0);
-const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 30 * 300;
 let secs = 0,

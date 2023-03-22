@@ -1,4 +1,4 @@
-// breath.js - r0 - from threejs-examples-breath-module
+// breath.js - r1 - from threejs-examples-breath-module
 (function(api){
     const BREATH_KEYS = 'restLow,breathIn,restHigh,breathOut'.split(',');
     //-------- ----------
@@ -6,18 +6,10 @@
     //-------- ----------
     const DEFAULT_BREATH_PARTS = {restLow: 1, breathIn: 5, restHigh: 1, breathOut: 5};
     const DEFAULT_HOOKS = {
-        restLow : (group, a_breathPart, a_fullvid, gud) => {
-console.log(a_breathPart)
-        },
-        restHigh : (group, a_breathPart, a_fullvid, gud) => {
-console.log(a_breathPart)
-        },
-        breathIn : (group, a_breathPart, a_fullvid, gud) => {
-console.log(a_breathPart)
-        },
-        breathOut : (group, a_breathPart, a_fullvid, gud) => {
-console.log(a_breathPart)
-        }
+        restLow : (group, a_breathPart, a_fullvid, gud) => {},
+        restHigh : (group, a_breathPart, a_fullvid, gud) => {},
+        breathIn : (group, a_breathPart, a_fullvid, gud) => {},
+        breathOut : (group, a_breathPart, a_fullvid, gud) => {}
     };
     //-------- ----------
     // HELPERS
@@ -46,16 +38,26 @@ console.log(a_breathPart)
     api.update = (group, a_fullvid) => {
         const gud = group.userData;
         gud.a_fullvid = a_fullvid;
-        const sec = gud.totalBreathSecs * gud.a_fullvid;
-        const a1 = (sec % 60 / 60) * gud.breathsPerMinute % 1;
+        gud.sec = gud.totalBreathSecs * gud.a_fullvid;
+        gud.a1 = (gud.sec % 60 / 60) * gud.breathsPerMinute % 1;
         let ki = 0;
         while(ki < BREATH_KEYS.length){
-            if(a1 < gud.breathAlphaTargts[ki]){
+            if(gud.a1 < gud.breathAlphaTargts[ki]){
                 gud.a_base = ki > 0 ? gud.breathAlphaTargts[ki - 1] : 0;
-                gud.a_breathPart = (a1 - gud.a_base) / (gud.breathAlphaTargts[ki] - gud.a_base);
+                gud.a_breathPart = (gud.a1 - gud.a_base) / (gud.breathAlphaTargts[ki] - gud.a_base);
                 gud.currentBreathKey = BREATH_KEYS[ki];
-                const hook = gud.hooks[ gud.currentBreathKey ] || DEFAULT_HOOKS[ gud.currentBreathKey ];
-                hook(group, gud.a_breathPart, gud.a_fullvid, group.userData);
+                gud.a2 = gud.currentBreathKey === 'restLow' ? 0 : 1;
+                if( gud.currentBreathKey === 'breathIn'){
+                    gud.a2 = Math.sin(Math.PI * 0.5 * gud.a_breathPart);
+                }
+                if( gud.currentBreathKey === 'breathOut'){
+                    gud.a2 = 1 - Math.sin(Math.PI * 0.5 * gud.a_breathPart);
+                }
+                // call before hook
+                gud.before(group, gud.a1, gud.a2, gud.a_fullvid, gud.a_breathPart, gud.currentBreathKey, gud);
+                // call the current breath hook
+                const hook = gud.hooks[ gud.currentBreathKey ];
+                hook(group, gud.a_breathPart, gud.a_fullvid, gud);
                 break;
             }
             ki += 1;;
@@ -70,14 +72,14 @@ console.log(a_breathPart)
         gud.breathsPerMinute = opt.breathsPerMinute === undefined ? 5 : opt.breathsPerMinute;
         gud.breathParts = opt.breathParts || DEFAULT_BREATH_PARTS;
         gud.breathAlphaTargts = getBreathAlphaTargets(gud.breathParts);
-        //gud.curvePath = new THREE.CurvePath();
-        gud.hooks = opt.hooks || {};
+        gud.before = opt.before || function(){};
+        gud.hooks = Object.assign({}, DEFAULT_HOOKS , opt.hooks );
         gud.id = opt.id || '1';
         // set in api.update
         gud.currentBreathKey = '';
         gud.a_fullvid = 0;
         gud.a_base = 0;
-        gud.a_breathPart = 0;
+        gud.a_breathPart = 0;  // alpha value of the current breath part
         api.update(group, 0);
         return group;
     };
