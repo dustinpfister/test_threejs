@@ -24,6 +24,7 @@ scene.add(mesh3);
 // BREATH GROUP - creating with default settings
 //-------- ----------
 const group = BreathMod.create({
+    breathsPerMinute: 5.88,
     breathParts: {restLow: 1, breathIn: 1, restHigh: 1, breathOut: 1},
     before: (group, a1, a2, a_fullvid, a_breathPart, breathPart) => {
         mesh1.position.x = -5 + 10 * a1;
@@ -39,6 +40,11 @@ const group = BreathMod.create({
 
 });
 scene.add(group);
+
+const gud = group.userData;
+console.log(gud.secsPerBreathCycle)
+console.log(gud)
+
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------

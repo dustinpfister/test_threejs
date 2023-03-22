@@ -8,7 +8,10 @@
 * (done) have it so that I can define just some hooks, and leave others to default
 * (done) add a before hook method that will be called before the current breath part hook
 
-* () add public helper method that help with conversion, creating string values
+* () secs to time obj helper
+
+* () getTimeString public method
+* () getBreathPartsString method
 
 ## ( done 03/01/2023 ) - r0-3-hooks
 * (done) demo of new hooks feature

@@ -31,6 +31,17 @@
             return n / getBreathPartsSum(breathParts);
         });
     };
+    // get a breath parts string for display
+    const getBreathPartsString = (group) => {
+        const gud = group.userData;
+        return Object.keys(gud.breathParts).reduce( (acc, key, i) => {
+            const n = gud.breathParts[key];
+            const a = n / gud.breathPartsSum;
+            const s = gud.secsPerBreathCycle * a;
+            acc += s.toFixed(2) + 's ' + key + (i === 3 ? '' : ', ');
+            return acc;
+        }, '');
+    };
     //-------- ----------
     // PUBLIC API
     //-------- ----------
@@ -80,7 +91,15 @@
         gud.a_fullvid = 0;
         gud.a_base = 0;
         gud.a_breathPart = 0;  // alpha value of the current breath part
+        // string display values
+        gud.breathPartsSum = getBreathPartsSum(gud.breathParts);
+        gud.secsPerBreathCycle = 60 / gud.breathsPerMinute;
+        gud.breathPartsString = getBreathPartsString(group);
+
+
+        // update and return
         api.update(group, 0);
         return group;
     };
+
 }(this['BreathMod'] = {} ));
