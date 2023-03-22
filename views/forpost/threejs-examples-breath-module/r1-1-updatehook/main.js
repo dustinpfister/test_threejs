@@ -32,8 +32,10 @@ const group = BreathMod.create({
         mesh1.position.x = -5 + 10 * a1;
         mesh2.position.x = -5 + 10 * a2;
         mesh3.position.x = -5 + 10 * a_fullvid;
-
-
+        scene.background = new THREE.Color(0,0,0);
+        if(gud.breath){
+            scene.background = new THREE.Color(0,1,1);
+        }
     },
     hooks: {
         breathIn : (group, a_breathPart, a_fullvid, gud) => {

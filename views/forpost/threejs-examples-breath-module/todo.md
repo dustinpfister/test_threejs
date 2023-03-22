@@ -10,6 +10,7 @@
 * (done) gud.breathPartsString
 * (done) gud.totalTimeString
 * (done) gud.timeString
+* (done) gud.rest bool, gud.breath bool, gud.low bool
 
 ## ( done 03/01/2023 ) - r0-3-hooks
 * (done) demo of new hooks feature
