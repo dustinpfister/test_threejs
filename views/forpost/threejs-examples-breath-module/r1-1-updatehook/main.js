@@ -10,11 +10,16 @@ renderer.setSize(640, 480, false);
 // OBJECTS
 // ---------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
-const mesh1 = new THREE.Mesh( new THREE.SphereGeometry(1, 20, 20), new THREE.MeshNormalMaterial());
-mesh1.position.z = -5;
+const geo = new THREE.SphereGeometry(1, 20, 20);
+const material = new THREE.MeshNormalMaterial();
+const mesh1 = new THREE.Mesh( geo, material);
+mesh1.position.z = -2.5;
 scene.add(mesh1);
-const mesh2 = new THREE.Mesh( new THREE.SphereGeometry(1, 20, 20), new THREE.MeshNormalMaterial());
+const mesh2 = new THREE.Mesh( geo, material);
 scene.add(mesh2);
+const mesh3 = new THREE.Mesh( geo, material);
+mesh3.position.z = 2.5;
+scene.add(mesh3);
 //-------- ----------
 // BREATH GROUP - creating with default settings
 //-------- ----------
@@ -23,6 +28,7 @@ const group = BreathMod.create({
     before: (group, a1, a2, a_fullvid, a_breathPart, breathPart) => {
         mesh1.position.x = -5 + 10 * a1;
         mesh2.position.x = -5 + 10 * a2;
+        mesh3.position.x = -5 + 10 * a_fullvid;
     },
     hooks: {
         breathIn : (group, a_breathPart, a_fullvid, gud) => {
