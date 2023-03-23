@@ -38,11 +38,19 @@ const quaternionHelper = (q, opt) => {
     const geo_torus = new THREE.TorusGeometry(gud.radius_common, gud.radius_torus, 20, 60);
     const torus = new THREE.Mesh( geo_torus, gud.material_torus);
 
-    //torus.geometry.rotateX(Math.PI * 0.5);
+    torus.geometry.rotateX(Math.PI * 0.5);
     //torus.geometry.rotateY(Math.PI * 0.0);
-    torus.rotation.setFromQuaternion(q);
-    torus.rotation.x = Math.PI * 0.0;
-    torus.rotation.y = Math.PI * 0.5;
+    //torus.rotation.setFromQuaternion(q);
+
+    console.log(q.x.toFixed(2), q.y.toFixed(2), q.z.toFixed(2), q.w.toFixed(2));
+    //torus.rotation.x = Math.PI * q.x;
+    //torus.rotation.y = Math.PI * q.y;
+    torus.rotation.z = Math.PI * 0.5;
+    torus.rotation.y = Math.PI * 0.5
+
+
+    //torus.rotation.x = Math.PI * q.y;
+    //torus.rotation.y = Math.PI * q.x;
 
     group.add(torus);
     return group;
@@ -55,7 +63,7 @@ const q = new THREE.Quaternion();
 // I can use degree values for the angle with this custom
 // set rotation by axis method
 const v_axis = new THREE.Vector3( 1, 0, 0);
-const degree = 60;
+const degree = 270;
 setRotationByAxis(q, v_axis, degree);
 
 // ---------- ----------
