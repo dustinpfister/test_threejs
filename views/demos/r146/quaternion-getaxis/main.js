@@ -19,6 +19,20 @@ const getAxisFromQuaternion = (q) => {
 const getRadianFromQuaternion = (q) => {
     return 2 * Math.acos( q.w );
 };
+// get a vector to use to make an arrow for an angle
+const getAngleVector = (deg) => {
+    const v = new THREE.Vector3();
+    const e = new THREE.Euler();
+    e.y = THREE.MathUtils.degToRad(deg);
+    return v.set(1,0,0).applyEuler(e);
+};
+// create an arrow and set the direction to the given vector3
+const createArrow = (v3, x) => {
+    const arrow = new THREE.ArrowHelper();
+    arrow.position.set(x, 0.01, 0);
+    arrow.setDirection(v3);
+    return arrow;
+};
 // ---------- ----------
 // QUATERNION
 // ---------- ----------
@@ -37,16 +51,10 @@ console.log( v_axis2, deg2 );
 // OBJECTS
 // ---------- ----------
 scene.add(new THREE.GridHelper(10, 10));
-const arrow1 = new THREE.ArrowHelper();
-arrow1.position.y = 0.01;
-arrow1.setDirection(v_axis);
-scene.add(arrow1);
-scene.add(new THREE.GridHelper(10, 10));
-const arrow2 = new THREE.ArrowHelper();
-arrow2.position.set(1, 0.01, 0)
-arrow2.setDirection(v_axis2);
-scene.add(arrow2);
-
+scene.add( createArrow(v_axis, 0) );
+scene.add( createArrow(v_axis2, 1) );
+scene.add( createArrow(getAngleVector(deg), 0) );
+scene.add( createArrow(getAngleVector(deg2), 1) );
 // ---------- ----------
 // RENDER
 // ---------- ----------
