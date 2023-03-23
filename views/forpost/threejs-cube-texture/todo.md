@@ -21,18 +21,18 @@
 * (done) this time have six grids one for each face
 * (done) see about drawing something that looks like a kind of landscape
 * (done) try adding an offset argument for the remap method
+* () update s2-5-canvas to r146 style 
 
 * () try a new remap method that is the same general idea, but go by distance to edges
 * () try another method that involves the use of a sin wave
 
-## () rename folders, r146 style
+## ( done 03/23/2023 ) rename folders, r146 style
 * (done) renamed folders
 * (done) updated s1-1-basic-loader to r146 style
 * (done) update s2-1-canvas to r146 style
 * (done) update s2-2-canvas to r146 style
-* () update s2-3-canvas to r146 style
-* () update s2-4-canvas to r146 style
-* () update s2-5-canvas to r146 style 
+* (done) update s2-3-canvas to r146 style
+* (done) update s2-4-canvas to r146 style
 
 ## ( done 09/19/2022 )  - canvas grid dist example 2
 * (done) start a new draft example continue with the canvas-dist example

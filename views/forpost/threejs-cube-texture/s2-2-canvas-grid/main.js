@@ -5,10 +5,11 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 640 / 480, 1, 1000);
 camera.position.set(14, 6, 14);
 camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGL1Renderer();
 renderer.domElement.width = 640;
 renderer.domElement.height = 480;
 renderer.setViewport(0, 0, 640, 480);
+renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
 // CREATING A CUBE TEXTURE WITH CANVAS
