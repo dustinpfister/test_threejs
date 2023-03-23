@@ -35,11 +35,27 @@ After checking out the other solutions, and reading the comments I starting maki
 
 ```js
 const getAxisAndAngelFromQuaternion = (q) => {
-  const radian = 2 * Math.acos( q.w );
   let s = 1;
   if ( !(1 - q.w * q.w < Number.MIN_VALUE) ) {
     s = Math.sqrt(1 - q.w * q.w);
   }
-  return { axis: new THREE.Vector3(q.x / s, q.y / s, q.z / s), radian: radian };
+  return { axis: new THREE.Vector3(q.x / s, q.y / s, q.z / s), radian: 2 * Math.acos( q.w ) };
+};
+```
+
+## Break Down into two functions
+
+Seems to me that it might be best to have two funcitons here then. One to get the axis vector in the event that it is not known, and another to get the angle.
+
+```js
+const getAxisFromQuaternion = (q) => {
+  let s = 1;
+  if ( !(1 - q.w * q.w < Number.MIN_VALUE) ) {
+    s = Math.sqrt(1 - q.w * q.w);
+  }
+  return new THREE.Vector3(q.x / s, q.y / s, q.z / s);
+};
+const getRadianFromQuaternion = (q) => {
+    return 2 * Math.acos( q.w );
 };
 ```
