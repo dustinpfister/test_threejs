@@ -57,7 +57,7 @@ const q = new THREE.Quaternion();
 // I can use degree values for the angle with this custom
 // set rotation by axis method
 const v_axis = new THREE.Vector3( 1, 1, 1);
-const degree = 90.001;
+const degree = 90.001
 setRotationByAxis(q, v_axis, degree);
 
 // ---------- ----------
