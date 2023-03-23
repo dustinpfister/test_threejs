@@ -7,6 +7,18 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
+// Helpers
+// ---------- ----------
+const setRotationByAxis = (q, v_axis, n_degree) => {
+    const vector = v_axis.normalize();
+    const angle = THREE.MathUtils.degToRad(n_degree);
+    const halfAngle = angle / 2, s = Math.sin( halfAngle );
+    q.x = vector.x * s;
+    q.y = vector.y * s;
+    q.z = vector.z * s;
+    q.w = Math.cos( halfAngle );
+};
+// ---------- ----------
 // OBJECTS
 // ---------- ----------
 scene.add( new THREE.GridHelper( 10,10 ) );
@@ -18,15 +30,9 @@ scene.add(mesh1);
 // SETTING ROTATION WITH QUATERNION
 // ---------- ----------
 const q = new THREE.Quaternion();
-
-const vector = new THREE.Vector3( -1, 0, 0 ).normalize();
-q.x = vector.x;
-q.y = vector.y;
-q.z = vector.z;
-q.w = -0.5;
-
-//q.setFromAxisAngle( new THREE.Vector3( -1, 0, 0 ).normalize(), Math.PI / 180 * 180 );
-
+const v_axis = new THREE.Vector3(0,1,1);
+const degree = 90;
+setRotationByAxis(q, v_axis, degree);
 mesh1.rotation.setFromQuaternion(q);
 // ---------- ----------
 // ANIMATION LOOP
