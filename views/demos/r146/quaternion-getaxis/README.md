@@ -1,6 +1,7 @@
 # quaternion-getaxis r146 demo
 
-It would seem that there is no method to get an axis vector and angle from a quaternion in the event that such values are not known. So for this demo I am looking into this subject.
+It would seem that there is no method to get an axis vector and angle from a quaternion in the event that such values are not known. So for this demo I am looking into this subject. I have found a stack overflow post on this subject that was very helpful and I should link to it in any post in which I might use what I worked out here.
+
 
 ## Resources
 

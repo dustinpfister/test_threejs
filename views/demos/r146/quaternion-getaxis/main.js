@@ -37,8 +37,8 @@ const createArrow = (v3, x) => {
 // QUATERNION
 // ---------- ----------
 const q = new THREE.Quaternion();
-const v_axis = new THREE.Vector3( 1, 1, 0 ).normalize();
-const deg = 65;
+const v_axis = new THREE.Vector3( -1, 1, 0 ).normalize();
+const deg = 360 - 0.001;
 q.setFromAxisAngle( v_axis, Math.PI / 180 * deg );
 // ---------- ----------
 // GET AXIS AND ANGLE FROM QUATERNION
