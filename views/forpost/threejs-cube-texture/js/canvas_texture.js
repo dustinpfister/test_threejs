@@ -1,3 +1,4 @@
+// canvas_texture.js  - r0 - from threejs-cube-texture
 (function (canvasTextureMod) {
     // create a canvas texture with a draw method and size
     canvasTextureMod.createCanvasTexture = function (draw, size) {
