@@ -16,53 +16,37 @@ const setRotationByAxis = (q, v_axis, n_degree) => {
     const radian = THREE.MathUtils.degToRad(n_degree);
     q.setFromAxisAngle(vector, radian);
 };
+const getAxisFromQuaternion = (q) => {
+  let s = 1;
+  if ( !(1 - q.w * q.w < Number.MIN_VALUE) ) {
+    s = Math.sqrt(1 - q.w * q.w);
+  }
+  return new THREE.Vector3(q.x / s, q.y / s, q.z / s);
+};
+const getRadianFromQuaternion = (q) => {
+    return 2 * Math.acos( q.w );
+};
 // create an object that will display the current state
 // of a quaternion object
 const quaternionHelper = (q, opt) => {
 
-    console.log(q.x.toFixed(2), q.y.toFixed(2), q.z.toFixed(2), q.w.toFixed(2));
-    const v_dir = new THREE.Vector3(q.x, q.y, q.z);
-
+    const v_axis = getAxisFromQuaternion(q)
     opt = opt = {};
     const group = new THREE.Group();
     const gud = group.userData;
     gud.q = q;
-    gud.material_arrow = opt.material_arrow || new THREE.MeshBasicMaterial({color: 0x00ff00});
-    gud.material_torus = opt.material_arrow || new THREE.MeshBasicMaterial({color: 0xffff00});
-    gud.radius_common = opt.radius_common === undefined ? 1 : opt.radius_common;
-    gud.radius_torus = opt.radius_torus === undefined ? 0.05 : opt.radius_torus;
-    // arrow can be a cone that points in the direction
-    // of the vector compontent
-    const geo_arrow = new THREE.CylinderGeometry(0, 0.2, gud.radius_common * 2 - gud.radius_torus, 20);
-    const arrow = new THREE.Mesh( geo_arrow, gud.material_arrow);
-    arrow.geometry.rotateX(Math.PI * 0.5);
 
+    const arrow_axis = new THREE.ArrowHelper();
+    arrow_axis.setDirection(v_axis);
+    group.add(arrow_axis);
 
-    arrow.rotation.setFromQuaternion(q);
-    
+    const mesh = new THREE.Mesh(
+        new THREE.CylinderGeometry(0, 0.125, 1, 20)
+    );
+    mesh.rotation.setFromQuaternion(q);
 
-    group.add(arrow);
-    // torus for showing the range of an angle component
-/*
-    const geo_torus = new THREE.TorusGeometry(gud.radius_common, gud.radius_torus, 20, 60);
-    const torus = new THREE.Mesh( geo_torus, gud.material_torus);
+    group.add(mesh);
 
-    torus.geometry.rotateX(Math.PI * 0.5);
-    //torus.geometry.rotateY(Math.PI * 0.0);
-    //torus.rotation.setFromQuaternion(q);
-
-    console.log(q.x.toFixed(2), q.y.toFixed(2), q.z.toFixed(2), q.w.toFixed(2));
-    //torus.rotation.x = Math.PI * q.x;
-    //torus.rotation.y = Math.PI * q.y;
-    torus.rotation.z = Math.PI * 0.5;
-    torus.rotation.y = Math.PI * 0.5
-
-
-    //torus.rotation.x = Math.PI * q.y;
-    //torus.rotation.y = Math.PI * q.x;
-
-    group.add(torus);
-*/
     return group;
 };
 // ---------- ----------
@@ -72,8 +56,8 @@ const q = new THREE.Quaternion();
 // vector does not need to be normalized, and
 // I can use degree values for the angle with this custom
 // set rotation by axis method
-const v_axis = new THREE.Vector3( 0, 0, -1);
-const degree = 1;
+const v_axis = new THREE.Vector3( 1, 1, 1);
+const degree = 90.001;
 setRotationByAxis(q, v_axis, degree);
 
 // ---------- ----------
