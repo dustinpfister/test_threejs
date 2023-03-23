@@ -7,35 +7,19 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// Helpers
-// ---------- ----------
-const setRotationByAxis = (q, v_axis, n_degree) => {
-    const vector = v_axis.normalize();
-    const angle = THREE.MathUtils.degToRad(n_degree);
-    const halfAngle = angle / 2, s = Math.sin( halfAngle );
-    q.x = vector.x * s;
-    q.y = vector.y * s;
-    q.z = vector.z * s;
-    q.w = Math.cos( halfAngle );
-};
-// ---------- ----------
 // OBJECTS
 // ---------- ----------
 scene.add( new THREE.GridHelper( 10,10 ) );
-const mesh1 = new THREE.Mesh( new THREE.CylinderGeometry(0, 0.25, 1), new THREE.MeshNormalMaterial());
-mesh1.geometry.rotateX(Math.PI * 0.5);
-//mesh1.lookAt(0, 0, 1);
+const mesh1 = new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial());
 scene.add(mesh1);
 // ---------- ----------
 // SETTING ROTATION WITH QUATERNION
 // ---------- ----------
 const q = new THREE.Quaternion();
-const v_axis = new THREE.Vector3(0,1,1);
-const degree = 90;
-setRotationByAxis(q, v_axis, degree);
+q.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 180 * 45 );
 mesh1.rotation.setFromQuaternion(q);
 // ---------- ----------
-// ANIMATION LOOP
+// RENDER
 // ---------- ----------
 camera.position.set(2, 2, 2);
 camera.lookAt(0,0,0);
