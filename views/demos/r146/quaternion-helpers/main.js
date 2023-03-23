@@ -19,6 +19,10 @@ const setRotationByAxis = (q, v_axis, n_degree) => {
 // create an object that will display the current state
 // of a quaternion object
 const quaternionHelper = (q, opt) => {
+
+    console.log(q.x.toFixed(2), q.y.toFixed(2), q.z.toFixed(2), q.w.toFixed(2));
+    const v_dir = new THREE.Vector3(q.x, q.y, q.z);
+
     opt = opt = {};
     const group = new THREE.Group();
     const gud = group.userData;
@@ -32,9 +36,14 @@ const quaternionHelper = (q, opt) => {
     const geo_arrow = new THREE.CylinderGeometry(0, 0.2, gud.radius_common * 2 - gud.radius_torus, 20);
     const arrow = new THREE.Mesh( geo_arrow, gud.material_arrow);
     arrow.geometry.rotateX(Math.PI * 0.5);
+
+
     arrow.rotation.setFromQuaternion(q);
+    
+
     group.add(arrow);
     // torus for showing the range of an angle component
+/*
     const geo_torus = new THREE.TorusGeometry(gud.radius_common, gud.radius_torus, 20, 60);
     const torus = new THREE.Mesh( geo_torus, gud.material_torus);
 
@@ -53,6 +62,7 @@ const quaternionHelper = (q, opt) => {
     //torus.rotation.y = Math.PI * q.x;
 
     group.add(torus);
+*/
     return group;
 };
 // ---------- ----------
@@ -62,8 +72,8 @@ const q = new THREE.Quaternion();
 // vector does not need to be normalized, and
 // I can use degree values for the angle with this custom
 // set rotation by axis method
-const v_axis = new THREE.Vector3( 1, 0, 0);
-const degree = 270;
+const v_axis = new THREE.Vector3( 0, 0, -1);
+const degree = 1;
 setRotationByAxis(q, v_axis, degree);
 
 // ---------- ----------
