@@ -11,8 +11,8 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 const setRotationByAxis = (q, v_axis, n_degree) => {
     const vector = v_axis.normalize();
-    const angle = THREE.MathUtils.degToRad(n_degree);
-    const halfAngle = angle / 2, s = Math.sin( halfAngle );
+    const radian = THREE.MathUtils.degToRad(n_degree);
+    const halfAngle = radian / 2, s = Math.sin( halfAngle );
     q.x = vector.x * s;
     q.y = vector.y * s;
     q.z = vector.z * s;
