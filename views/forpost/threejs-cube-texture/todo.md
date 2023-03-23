@@ -28,7 +28,7 @@
 ## () rename folders, r146 style
 * (done) renamed folders
 * (done) updated s1-1-basic-loader to r146 style
-* () update s2-1-canvas to r146 style
+* (done) update s2-1-canvas to r146 style
 * () update s2-1-canvas to r146 style
 * () update s2-1-canvas to r146 style
 * () update s2-1-canvas to r146 style
