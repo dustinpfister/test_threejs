@@ -1,3 +1,3 @@
 # quaternion-xyzw r146 demo
 
-demo in which I am directly setting the x,y,z, and w values of a quaternion
+demo in which I am directly setting the x,y,z, and w values of a quaternion in a effort to gain a better sense of how to mutate these kinds of objects this way. For now it would seem that the best way to work with these is in fact to use the setFromAxis angle method. Still when it comes to Euler objects I know what the deal is with the value range of the tree components, and I would like to do the same when it comes to quaternions
