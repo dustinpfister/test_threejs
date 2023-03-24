@@ -37,7 +37,6 @@ v_axis.applyEuler(e);
 mesh1.geometry.rotateZ(e.z); // can rotate the geometry once two if i want
 const update = function(frame, frameMax){
     const a1 = frame / frameMax;
-    //q.copy(q1).slerp(q2, a2)
     mesh1.quaternion.setFromAxisAngle( v_axis, Math.PI * 2 * a1 );
     arrowHelper.setDirection(v_axis);
 };
