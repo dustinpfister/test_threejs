@@ -15,9 +15,9 @@ scene.add(mesh1);
 // ---------- ----------
 // SETTING ROTATION WITH QUATERNION
 // ---------- ----------
-const q = new THREE.Quaternion();
-q.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 180 * 45 );
-mesh1.rotation.setFromQuaternion(q);
+const axis = new THREE.Vector3( 1, 0, 0 );
+const degree = 45;
+mesh1.quaternion.setFromAxisAngle( axis.normalize(), THREE.MathUtils.degToRad(degree) );
 // ---------- ----------
 // RENDER
 // ---------- ----------
