@@ -24,7 +24,6 @@ const setRotationByAxis = (q, v_axis, n_degree) => {
 scene.add( new THREE.GridHelper( 10,10 ) );
 const mesh1 = new THREE.Mesh( new THREE.CylinderGeometry(0, 0.25, 1), new THREE.MeshNormalMaterial());
 mesh1.geometry.rotateX(Math.PI * 0.5);
-//mesh1.lookAt(0, 0, 1);
 scene.add(mesh1);
 // ---------- ----------
 // SETTING ROTATION WITH QUATERNION
