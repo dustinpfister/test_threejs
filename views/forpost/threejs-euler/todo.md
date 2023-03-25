@@ -3,8 +3,8 @@
 ## () s3-1-gimballock
 * () start a demo that shows what the deal is with gimbal lock
 
-## () s2-2-vector3-multiplyscalar
-* () demo using apply euler and multiply scalar methods
+## (done 03/25/2023 ) s2-2-vector3-multiplyscalar
+* (done) demo using apply euler and multiply scalar methods
 
 ## ( done 03/25/2023 ) s2-1-vector3-applyeuler simple
 * (done) add a grid helper
