@@ -1,8 +1,8 @@
 # threejs-vector3-apply-euler todo list
 
-## () update demos to r146 style
+## ( done 03/25/2023 ) update demos to r146 style
 * (done) rename folders
-* () update demos to r146 style
+* (done) update demos to r146 style
 
 ## ( done 09/26/2022 ) new s2-2-group-pos example
 * (done) start group of objects example between obj-pos, and geo-pos
