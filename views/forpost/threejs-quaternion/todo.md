@@ -1,5 +1,7 @@
 # threejs-quaternion todo list
 
+## () sx-1-stochastic
+* () start a stochastic loop example that allows for me to use input to chage rotation
 
 ## () sx-1-getaxis
 * () have a get axis demo that is about how to get the axis of a quaternion when it is not known
