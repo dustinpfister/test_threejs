@@ -70,12 +70,14 @@ const update = function(frame, frameMax){
 
     const deg1 = 90;
     const deg2 = 360 * a3;
+    // set q1 and q2 using setFromAxisAngle method
     q1.setFromAxisAngle( axis1.normalize(), THREE.MathUtils.degToRad(deg1) );
     q2.setFromAxisAngle( axis2.normalize(), THREE.MathUtils.degToRad(deg2) );
-
+    // update mesh object local rotations with quaternion objects
+    // where mesh1 and mesh 2 are just the current state of q1 and q2
+    // and the rotation of mesh3 is q1 premultiplyed by q2
     mesh1.quaternion.copy(q1);
     mesh2.quaternion.copy(q2);
-
     mesh3.quaternion.copy(q1).premultiply(q2);
 };
 // loop
