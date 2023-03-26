@@ -49,8 +49,8 @@ const update = function(frame, frameMax){
     mesh1.quaternion.copy(q1);
     const q2 = new THREE.Quaternion();
     q2.setFromAxisAngle(v_axis, Math.PI * 2 * a4);
-    // premultiply with q2 and q1
-    mesh1.quaternion.premultiply(q2, q1);
+    // premultiply with q2
+    mesh1.quaternion.premultiply(q2);
     arrowHelper.setDirection(v_axis);
 };
 // loop

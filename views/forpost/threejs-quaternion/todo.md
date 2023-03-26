@@ -12,6 +12,7 @@
 
 ## () s2-3-methods-premultiply
 * () start a demo on the premultiply method
+* () 
 
 ## ( done 03/25/2023 ) s3-1-loop-sphererotation demo
 * (done) start this demo based on the code from my quaternion-rotate-sphere r146 demo
