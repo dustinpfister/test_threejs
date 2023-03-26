@@ -98,3 +98,33 @@ const loop = () => {
 };
 loop();
 
+
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+
+renderer.domElement.addEventListener('pointerdown', (evnt) => {
+    const canvas = evnt.target,
+    box = canvas.getBoundingClientRect(),
+    x = evnt.clientX - box.left,
+    y = evnt.clientY - box.top;
+    pointer.x = ( x / canvas.width ) * 2 - 1;
+    pointer.y = - ( y / canvas.height ) * 2 + 1;
+    raycaster.setFromCamera( pointer, camera );
+    const intersects = raycaster.intersectObjects( [mesh1, mesh2] );
+    controls.enabled = true;
+    if(intersects.length > 0){
+         controls.enabled = false;
+         const mesh = intersects[0];
+         console.log(mesh)
+    }else{
+        console.log('no mesh objects');
+    }
+});
+
+renderer.domElement.addEventListener('pointermove', ()=>{
+});
+
+renderer.domElement.addEventListener('pointerup', ()=>{
+    controls.enabled = true;
+});
+
