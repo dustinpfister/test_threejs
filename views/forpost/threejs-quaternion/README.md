@@ -20,11 +20,15 @@ For this post I am going to want to have a section in which I demo most, if not 
 
 ## Animation Loop Section
 
-Some animaiton loop examples are called for. 
+Some animaiton loop examples are called for. These can include at least one that demos the core set of prototype methods that I should be aware of in order to just do what it is that I want to do with them when it comes to rotations. After that I might expand into one or more demos that make use of many other threejs features if I get around to it in future edits.
 
 <div align="center">
       <a href="https://www.youtube.com/watch?v=C_BMlJqrJIc">
-         <img src="https://img.youtube.com/vi/4X4qaK0ei28/0.jpg" style="width:50%;">
+         <img src="https://img.youtube.com/vi/C_BMlJqrJIc/0.jpg" style="width:50%;">
       </a>
 </div>
+
+## A get axis method section
+
+I might want to add a get axis method section to the post. That is getting an axis vector from a quaternion when it is not known. I have a working demo on this thus far, but I think I would like to see abotu just working with the prototype methods more first.
 

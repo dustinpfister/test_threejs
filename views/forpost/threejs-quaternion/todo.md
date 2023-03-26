@@ -3,7 +3,7 @@
 
 ## () sx-1-getaxis
 * () have a get axis demo that is about how to get the axis of a quaternion when it is not known
-
+* () much of this can be based on the quaternion-getaxis r146 demo
 
 ## () s2-4-methods-setfromunitvectors
 * () start a demo on the setfromunitvectors method
