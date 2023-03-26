@@ -24,6 +24,7 @@ const makeMesh = (name, q) => {
     mud.q = q || mesh_parent.quaternion;
     mud.axis = new THREE.Vector3(0, 1, 0);
     mud.deg = 0;
+    mud.e = new THREE.Euler();
     return mesh_parent;
 };
 // ---------- ----------
@@ -61,29 +62,7 @@ FRAME_MAX = 900;
 let secs = 0,
 frame = 0,
 lt = new Date();
-// update
-//const axis1 = new THREE.Vector3( 0, 0, 1 );
-//const e1 = new THREE.Euler();
-//const axis2 = new THREE.Vector3( 1, 0, 0 );
 const update = function(frame, frameMax){
-    /*
-    const a1 = 0;
-    const a2 = 0;
-    const a3 = 0;
-    const radian1 = Math.PI * 2 * a2;
-    e1.x = Math.cos(radian1);
-    e1.y = 0;
-    e1.z = Math.sin(radian1);
-    axis1.set( 0, 1, 0 ).applyEuler(e1);
-    const deg1 = 90;
-    const deg2 = 360 * a3;
-    // set q1 and q2 using setFromAxisAngle method
-    q1.setFromAxisAngle( axis1.normalize(), THREE.MathUtils.degToRad(deg1) );
-    q2.setFromAxisAngle( axis2.normalize(), THREE.MathUtils.degToRad(deg2) );
-    // update mesh object local rotations with quaternion objects
-    // where mesh1 and mesh 2 are just the current state of q1 and q2
-    // and the rotation of mesh3 is q1 premultiplyed by q2
-    */
     mesh1.quaternion.copy(q1);
     mesh2.quaternion.copy(q2);
     mesh3.quaternion.copy(q1).premultiply(q2);
@@ -104,13 +83,13 @@ const loop = () => {
     }
 };
 loop();
-
-
+// ---------- ----------
+// EVENTS
+// ---------- ----------
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 let pointer_down = false;
 let mesh_current = null;
-
 renderer.domElement.addEventListener('pointerdown', (evnt) => {
     const canvas = evnt.target,
     box = canvas.getBoundingClientRect(),
@@ -127,19 +106,29 @@ renderer.domElement.addEventListener('pointerdown', (evnt) => {
          controls.enabled = false;
          mesh_current = intersects[0].object;
     }
-    console.log(mesh_current);
 });
-
-renderer.domElement.addEventListener('pointermove', () => {
+renderer.domElement.addEventListener('pointermove', (evnt) => {
+    const canvas = evnt.target,
+    box = canvas.getBoundingClientRect(),
+    x = evnt.clientX - box.left,
+    y = evnt.clientY - box.top;
+    const pointer_move = new THREE.Vector2();
+    pointer_move.x = ( x / canvas.width ) * 2 - 1;
+    pointer_move.y = - ( y / canvas.height ) * 2 + 1;
    if(mesh_current && pointer_down){
+        const dx = pointer.x - pointer_move.x;
+        const dy = pointer.y - pointer_move.y;
         const mud = mesh_current.userData;
-        mud.deg += 1;
+        // angle
+        mud.deg = THREE.MathUtils.euclideanModulo(mud.deg += dx, 360);
+        mud.deg = parseFloat(mud.deg.toFixed(3));
+        // axis
+        mud.e.z += Math.PI / 180 * (dy / 100);
+        mud.axis.applyEuler(mud.e);
         mud.q.setFromAxisAngle( mud.axis.normalize(), THREE.MathUtils.degToRad(mud.deg) );
    }
 });
-
 renderer.domElement.addEventListener('pointerup', () => {
     controls.enabled = true;
     pointer_down = false;
 });
-
