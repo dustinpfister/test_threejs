@@ -10,9 +10,11 @@
 ## () s2-4-methods-setfromunitvectors
 * () start a demo on the setfromunitvectors method
 
-## () s2-3-methods-premultiply
-* () start a demo on the premultiply method
-* () 
+## ( done 03/26/2023 ) s2-3-methods-premultiply
+* (done) start a demo on the premultiply method
+* (done) make this a loop example
+* (done) update axis angle for just q2, while keeping q1 axis angle fixed 
+* (done) update axis vector3 only for q1
 
 ## ( done 03/25/2023 ) s3-1-loop-sphererotation demo
 * (done) start this demo based on the code from my quaternion-rotate-sphere r146 demo
