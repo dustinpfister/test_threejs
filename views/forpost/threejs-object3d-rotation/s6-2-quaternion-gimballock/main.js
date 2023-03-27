@@ -36,6 +36,35 @@ const mkObject = function(){
     mesh_body.add(mesh_tail);
     return mesh_body;
 };
+// update Euler
+const updateByEuler = (obj1, a1) => {
+    obj1.rotation.y = 0;
+    obj1.rotation.z = Math.PI / 180 * 90;
+    if(a1 < 0.25){
+        // yaw back and forth
+        const a2 = Math.sin( Math.PI * 4 * ( ( a1 - 0.25 ) / 0.25 ) );
+        obj1.rotation.y = Math.PI / 180 * (45 * a2);
+    }
+    if(a1 >= 0.25 && a1 < 0.5){
+       obj1.rotation.y = 0;
+       // pitch up 90
+       let a3 = ( a1 - 0.25 ) / 0.25; 
+       obj1.rotation.z = Math.PI / 180 * (90 - 90 * a3);
+    }
+    if(a1 >= 0.5 && a1 < 0.75){
+        // "yaw" back and forth
+        obj1.rotation.z = Math.PI / 180 * 0;
+        const a4 = ( a1 - 0.5 ) / 0.25
+        const a5 = Math.sin( Math.PI * 4 * a4 );
+        obj1.rotation.y = Math.PI / 180 * (45 * a5);
+    }
+    if(a1 >= 0.75){
+       obj1.rotation.y = 0;
+       // pitch up 90
+       let a3 = ( a1 - 0.75 ) / 0.25; 
+       obj1.rotation.z = Math.PI / 180 * (90 * a3);
+    }
+};
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
@@ -52,33 +81,14 @@ camera.lookAt(0,0,0);
 // ---------- ----------
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 200;
+FRAME_MAX = 400;
 let secs = 0,
 frame = 0,
 lt = new Date();
 // update
 const update = function(frame, frameMax){
     const a1 = frame / frameMax;
-    obj1.rotation.y = 0;
-    obj1.rotation.z = Math.PI / 180 * 90;
-    if(a1 < 0.25){
-        // yaw back and forth
-        const a2 = Math.sin( Math.PI * 2 * (a1 * 4 % 1 ) );
-        obj1.rotation.y = Math.PI / 180 * (45 * a2);
-    }
-    if(a1 > 0.25 && a1 < 0.75){
-       obj1.rotation.y = 0;
-       // pitch up 90
-       let a3 = ( a1 - 0.25 ) / 0.5;
-       a3 = a3 > 1 ? 1 : a3; 
-       obj1.rotation.z = Math.PI / 180 * (90 - 90 * a3);
-    }
-    if(a1 >= 0.75){
-        obj1.rotation.z = Math.PI / 180 * 0;
-        const a4 = ( a1 - 0.75 ) / 0.25
-        const a5 = Math.sin( Math.PI * 2 * a4 );
-        obj1.rotation.y = Math.PI / 180 * (45 * a5);
-    }
+    updateByEuler(obj1, a1);
 };
 // loop
 const loop = () => {
