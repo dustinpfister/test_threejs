@@ -8,8 +8,8 @@
 * () move the cube and and back down over time
 
 ## () s6-2-quaternion-gimbal-lock
-* () have a demo of gimbal lock and show how quaternion objects help with that
-* () this can be a simple staic demo
+* (done) have a demo of gimbal lock that shows what the problem is with this
+* (done) This might have to be a loop Demo
 
 ## ( done 03/27/2023 ) new s6-1-quaternion
 * (done) rename s6-1-loop-groups to s7-1-loop-groups
