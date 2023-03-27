@@ -8,6 +8,13 @@ This is the collection of source code examples that I have together for my [blog
       </a>
 </div>
 
+## Future Edits
+
+* () expand basic section
+* () start/expand section on quaternion objects as an alterative
+* () more animaiton loop demos making use of Euler objects first and formost over altertaives
+
+
 ## With Mesh objects there is also the rotation of the geometry
 
 If the type of object3d class based object is a mesh, then there is also the buffer geometry that is used with that mesh. In some cases I might not want to rotate the mesh object, but rather the [rotation of the position attribute of the buffer geometry](https://dustinpfister.github.io/2021/05/20/threejs-buffer-geometry-rotation/). In that case I will want to use the rotation methods of the buffer geometry class.
