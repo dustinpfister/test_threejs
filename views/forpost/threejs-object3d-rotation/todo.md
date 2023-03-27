@@ -1,8 +1,8 @@
 # threejs-object3d-rotation todo list
 
-## () - rename folders, r146 style
+## ( done 03/27/2023 ) - rename folders, r146 style
 * (done) rename folders
-* () update demos to r146 style
+* (done) update demos to r146 style
 
 ## ( done 09/13/2022 ) - s6 - set-from-vector3
 * (done) have another mesh where the rotation is effected by the posiiton of another
