@@ -38,38 +38,36 @@ const mkObject = function(){
 };
 // update By Euler ( object3d.rotation )
 const updateByEuler = (obj, a1) => {
-    obj.rotation.y = 0;
-    obj.rotation.z = Math.PI / 180 * 90;
+    let yaw = 90;
+    let pitch = 90;
     if(a1 < 0.25){
         // yaw back and forth
         const a2 = ( ( a1 - 0.25 ) / 0.25 );
         const a3 = Math.sin( Math.PI * 4 * a2 );
-        obj.rotation.y = Math.PI / 180 * (45 * a3);
+        yaw = 90 - 45 * a3;
     }
     if(a1 >= 0.25 && a1 < 0.5){
        obj.rotation.y = 0;
        // pitch up 90
-       let a2 = ( a1 - 0.25 ) / 0.25; 
-       obj.rotation.z = Math.PI / 180 * (90 - 90 * a2);
+       let a2 = ( a1 - 0.25 ) / 0.25;
+       pitch = 90 - 90 * a2;
     }
     if(a1 >= 0.5 && a1 < 0.75){
-        // "yaw" back and forth
-        obj.rotation.z = Math.PI / 180 * 0;
         const a2 = ( a1 - 0.5 ) / 0.25;
         const a3 = Math.sin( Math.PI * 4 * a2 );
-        obj.rotation.y = Math.PI / 180 * (45 * a3);
+        pitch = 0;
+        yaw = 90 - 45 * a3;
     }
     if(a1 >= 0.75){
-       obj.rotation.y = 0;
-       // pitch up 90
+       // pitch back down 90
        let a2 = ( a1 - 0.75 ) / 0.25; 
-       obj.rotation.z = Math.PI / 180 * (90 * a2);
+       pitch = 90 * a2;
     }
+    obj.rotation.z = Math.PI / 180 * pitch;
+    obj.rotation.y = Math.PI / 180 * yaw;
 };
 // update By Quaternion ( object3d.quaternion )
 const updateByQuaternion = (obj, a1) => {
-    //obj.rotation.y = 0;
-    //obj.rotation.z = Math.PI / 180 * 90;
     let yaw = 0;
     let pitch = 90;
     if(a1 < 0.25){
@@ -79,7 +77,6 @@ const updateByQuaternion = (obj, a1) => {
         yaw = 45 * a3;
     }
     if(a1 >= 0.25 && a1 < 0.5){
-       //obj.rotation.y = 0;
        // pitch up 90
        let a2 = ( a1 - 0.25 ) / 0.25; 
        pitch = 90 - 90 * a2;
@@ -93,21 +90,15 @@ const updateByQuaternion = (obj, a1) => {
     }
     if(a1 >= 0.75){
        obj.rotation.y = 0;
-       // pitch up 90
+       // pitch back down 90
        let a2 = ( a1 - 0.75 ) / 0.25; 
        pitch = 90 * a2;
     }
-
     const v_axis_pitch = new THREE.Vector3(1, 0, 0);
     const q_pitch = new THREE.Quaternion().setFromAxisAngle(v_axis_pitch, THREE.MathUtils.degToRad(pitch) );
-
     const v_axis_yaw = new THREE.Vector3(0, 0, 1);
     const q_yaw = new THREE.Quaternion().setFromAxisAngle(v_axis_yaw, THREE.MathUtils.degToRad(yaw) );
-
-
-    //obj.quaternion.copy(q_yaw);
     obj.quaternion.setFromUnitVectors(v_axis_yaw, v_axis_pitch).premultiply(q_yaw).premultiply(q_pitch);
-
 };
 // ---------- ----------
 // OBJECTS
@@ -122,7 +113,7 @@ scene.add(obj2);
 // RENDER
 // ---------- ----------
 camera.position.set(-4, 4, 4);
-camera.lookAt(0,0,0);
+camera.lookAt(0,0,-1.5);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------

@@ -7,12 +7,12 @@
 * () rotate 90 at a time, one axis at a time
 * () move the cube and and back down over time
 
-## () s6-2-quaternion-gimbal-lock
+## ( done 03/27/2023 ) s6-2-quaternion-gimbal-lock
 * (done) have a demo of gimbal lock that shows what the problem is with this
 * (done) This might have to be a loop Demo
 * (done) update by euler helper
 * (done) have a pitch back down part for the update by euler method
-* () make an update by quaternion demo 
+* (done) make an update by quaternion demo 
 
 ## ( done 03/27/2023 ) new s6-1-quaternion
 * (done) rename s6-1-loop-groups to s7-1-loop-groups
