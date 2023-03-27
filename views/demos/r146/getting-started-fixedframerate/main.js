@@ -25,28 +25,31 @@ if(THREE.OrbitControls){
 // ---------- ----------
 camera.position.set(2, 2, 2);
 camera.lookAt(0,0,0);
-const FPS_UPDATE = 1,
-FRAME_MAX = 800;
-let secs = 0,
-frame = 0,
-lt = new Date();
-const update = function(frame, frameMax){
-    const a1 = frame / frameMax;
+const sm = {
+   FPS_UPDATE: 30,    // FPS RATE
+   FRAME_MAX: 450,
+   secs: 0,
+   frame: 0,         // 30 / 450
+   tick: 0,          //  1 / 450 ( about 1 FPS then )
+   now: new Date(),
+   lt: new Date()
+};
+const update = function(sm){
+    const a1 = sm.frame / sm.FRAME_MAX;
     const degree = 360 * a1;
     box.rotation.x = THREE.MathUtils.degToRad(degree);
 };
 const loop = () => {
-    const now = new Date(),
-    secs = (now - lt) / 1000;
+    sm.now = new Date();
+    sm.secs = (sm.now - sm.lt) / 1000;
     requestAnimationFrame(loop);
-    if(secs > 1 / FPS_UPDATE){
+    if(sm.secs > 1 / sm.FPS_UPDATE){
         // update, render
-        update( Math.floor(frame), FRAME_MAX);
+        update(sm);
         renderer.render(scene, camera);
         // step frame
-        frame += 1;
-        frame %= FRAME_MAX;
-        lt = now;
+        sm.frame = ( sm.frame += 1 ) % sm.FRAME_MAX;
+        sm.lt = sm.now;
     }
 };
 loop();
