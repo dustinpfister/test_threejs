@@ -1,5 +1,9 @@
 # threejs-getting-started
 
+## ( done 03/27/2023 ) expand loop section
+* (done) fixed frame by frame loop template
+* (done) 2d canvas loop template 
+
 ## ( done 03/27/2023 ) rename folders and update to r146 style
 * (done) rename folders
 * (done) update to r146 style
