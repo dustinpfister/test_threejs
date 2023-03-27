@@ -36,68 +36,47 @@ const mkObject = function(){
     mesh_body.add(mesh_tail);
     return mesh_body;
 };
-// update By Euler ( object3d.rotation )
-const updateByEuler = (obj, a1) => {
-    let yaw = 90;
-    let pitch = 90;
+// get an alpha that is a part of an alpha
+const getPartAlpha = (a1, a_start, a_length) => {
+    return (a1 - a_start) / a_length;
+};
+// get pitch and yaw in deg values
+const getPitchYaw = (a1) => {
+    const result = { yaw:0, pitch:90 };
     if(a1 < 0.25){
-        // yaw back and forth
-        const a2 = ( ( a1 - 0.25 ) / 0.25 );
-        const a3 = Math.sin( Math.PI * 4 * a2 );
-        yaw = 90 - 45 * a3;
+        const a2 = getPartAlpha(a1, 0, 0.25);
+        result.yaw = 45 * Math.sin( Math.PI * 4 * a2 );
     }
     if(a1 >= 0.25 && a1 < 0.5){
-       obj.rotation.y = 0;
-       // pitch up 90
-       let a2 = ( a1 - 0.25 ) / 0.25;
-       pitch = 90 - 90 * a2;
+       let a2 = getPartAlpha(a1, 0.25, 0.25);
+       result.pitch = 90 - 90 * a2;
+       result.yaw = 22 * Math.sin( Math.PI * 8 * a2 );
     }
     if(a1 >= 0.5 && a1 < 0.75){
-        const a2 = ( a1 - 0.5 ) / 0.25;
-        const a3 = Math.sin( Math.PI * 4 * a2 );
-        pitch = 0;
-        yaw = 90 - 45 * a3;
+        const a2 = getPartAlpha(a1, 0.5, 0.25);
+        result.pitch = 0;
+        result.yaw = 45 * Math.sin( Math.PI * 4 * a2 );
     }
     if(a1 >= 0.75){
-       // pitch back down 90
-       let a2 = ( a1 - 0.75 ) / 0.25; 
-       pitch = 90 * a2;
+       let a2 = getPartAlpha(a1, 0.75, 0.25);
+       result.pitch = 90 * a2;
+       result.yaw = 22 * Math.sin( Math.PI * 8 * a2 );
     }
-    obj.rotation.z = Math.PI / 180 * pitch;
-    obj.rotation.y = Math.PI / 180 * yaw;
+    return result;
+};
+// update By Euler ( object3d.rotation )
+const updateByEuler = (obj, a1) => {
+    const result = getPitchYaw(a1);
+    obj.rotation.z = Math.PI / 180 * result.pitch;
+    obj.rotation.y = Math.PI / 180 * (90 - result.yaw);
 };
 // update By Quaternion ( object3d.quaternion )
 const updateByQuaternion = (obj, a1) => {
-    let yaw = 0;
-    let pitch = 90;
-    if(a1 < 0.25){
-        // yaw back and forth
-        const a2 = ( ( a1 - 0.25 ) / 0.25 );
-        const a3 = Math.sin( Math.PI * 4 * a2 );
-        yaw = 45 * a3;
-    }
-    if(a1 >= 0.25 && a1 < 0.5){
-       // pitch up 90
-       let a2 = ( a1 - 0.25 ) / 0.25; 
-       pitch = 90 - 90 * a2;
-    }
-    if(a1 >= 0.5 && a1 < 0.75){
-        // yaw back and forth
-        const a2 = ( a1 - 0.5 ) / 0.25;
-        const a3 = Math.sin( Math.PI * 4 * a2 );
-        pitch = 0;
-        yaw = 45 * a3;
-    }
-    if(a1 >= 0.75){
-       obj.rotation.y = 0;
-       // pitch back down 90
-       let a2 = ( a1 - 0.75 ) / 0.25; 
-       pitch = 90 * a2;
-    }
+    const result = getPitchYaw(a1);
     const v_axis_pitch = new THREE.Vector3(1, 0, 0);
-    const q_pitch = new THREE.Quaternion().setFromAxisAngle(v_axis_pitch, THREE.MathUtils.degToRad(pitch) );
+    const q_pitch = new THREE.Quaternion().setFromAxisAngle(v_axis_pitch, THREE.MathUtils.degToRad(result.pitch) );
     const v_axis_yaw = new THREE.Vector3(0, 0, 1);
-    const q_yaw = new THREE.Quaternion().setFromAxisAngle(v_axis_yaw, THREE.MathUtils.degToRad(yaw) );
+    const q_yaw = new THREE.Quaternion().setFromAxisAngle(v_axis_yaw, THREE.MathUtils.degToRad(result.yaw) );
     obj.quaternion.setFromUnitVectors(v_axis_yaw, v_axis_pitch).premultiply(q_yaw).premultiply(q_pitch);
 };
 // ---------- ----------
