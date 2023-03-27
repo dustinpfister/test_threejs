@@ -36,41 +36,88 @@ const mkObject = function(){
     mesh_body.add(mesh_tail);
     return mesh_body;
 };
-// update Euler
-const updateByEuler = (obj1, a1) => {
-    obj1.rotation.y = 0;
-    obj1.rotation.z = Math.PI / 180 * 90;
+// update By Euler ( object3d.rotation )
+const updateByEuler = (obj, a1) => {
+    obj.rotation.y = 0;
+    obj.rotation.z = Math.PI / 180 * 90;
     if(a1 < 0.25){
         // yaw back and forth
-        const a2 = Math.sin( Math.PI * 4 * ( ( a1 - 0.25 ) / 0.25 ) );
-        obj1.rotation.y = Math.PI / 180 * (45 * a2);
+        const a2 = ( ( a1 - 0.25 ) / 0.25 );
+        const a3 = Math.sin( Math.PI * 4 * a2 );
+        obj.rotation.y = Math.PI / 180 * (45 * a3);
     }
     if(a1 >= 0.25 && a1 < 0.5){
-       obj1.rotation.y = 0;
+       obj.rotation.y = 0;
        // pitch up 90
-       let a3 = ( a1 - 0.25 ) / 0.25; 
-       obj1.rotation.z = Math.PI / 180 * (90 - 90 * a3);
+       let a2 = ( a1 - 0.25 ) / 0.25; 
+       obj.rotation.z = Math.PI / 180 * (90 - 90 * a2);
     }
     if(a1 >= 0.5 && a1 < 0.75){
         // "yaw" back and forth
-        obj1.rotation.z = Math.PI / 180 * 0;
-        const a4 = ( a1 - 0.5 ) / 0.25
-        const a5 = Math.sin( Math.PI * 4 * a4 );
-        obj1.rotation.y = Math.PI / 180 * (45 * a5);
+        obj.rotation.z = Math.PI / 180 * 0;
+        const a2 = ( a1 - 0.5 ) / 0.25;
+        const a3 = Math.sin( Math.PI * 4 * a2 );
+        obj.rotation.y = Math.PI / 180 * (45 * a3);
     }
     if(a1 >= 0.75){
-       obj1.rotation.y = 0;
+       obj.rotation.y = 0;
        // pitch up 90
-       let a3 = ( a1 - 0.75 ) / 0.25; 
-       obj1.rotation.z = Math.PI / 180 * (90 * a3);
+       let a2 = ( a1 - 0.75 ) / 0.25; 
+       obj.rotation.z = Math.PI / 180 * (90 * a2);
     }
+};
+// update By Quaternion ( object3d.quaternion )
+const updateByQuaternion = (obj, a1) => {
+    //obj.rotation.y = 0;
+    //obj.rotation.z = Math.PI / 180 * 90;
+    let yaw = 0;
+    let pitch = 90;
+    if(a1 < 0.25){
+        // yaw back and forth
+        const a2 = ( ( a1 - 0.25 ) / 0.25 );
+        const a3 = Math.sin( Math.PI * 4 * a2 );
+        yaw = 45 * a3;
+    }
+    if(a1 >= 0.25 && a1 < 0.5){
+       //obj.rotation.y = 0;
+       // pitch up 90
+       let a2 = ( a1 - 0.25 ) / 0.25; 
+       pitch = 90 - 90 * a2;
+    }
+    if(a1 >= 0.5 && a1 < 0.75){
+        // yaw back and forth
+        const a2 = ( a1 - 0.5 ) / 0.25;
+        const a3 = Math.sin( Math.PI * 4 * a2 );
+        pitch = 0;
+        yaw = 45 * a3;
+    }
+    if(a1 >= 0.75){
+       obj.rotation.y = 0;
+       // pitch up 90
+       let a2 = ( a1 - 0.75 ) / 0.25; 
+       pitch = 90 * a2;
+    }
+
+    const v_axis_pitch = new THREE.Vector3(1, 0, 0);
+    const q_pitch = new THREE.Quaternion().setFromAxisAngle(v_axis_pitch, THREE.MathUtils.degToRad(pitch) );
+
+    const v_axis_yaw = new THREE.Vector3(0, 0, 1);
+    const q_yaw = new THREE.Quaternion().setFromAxisAngle(v_axis_yaw, THREE.MathUtils.degToRad(yaw) );
+
+
+    //obj.quaternion.copy(q_yaw);
+    obj.quaternion.setFromUnitVectors(v_axis_yaw, v_axis_pitch).premultiply(q_yaw).premultiply(q_pitch);
+
 };
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
 const obj1 = mkObject();
+obj1.position.set(0,0, 0);
 scene.add(obj1);
-obj1.rotation.z = Math.PI * 0.5;
+const obj2 = mkObject();
+obj1.position.set(0,0, -3);
+scene.add(obj2);
 // ---------- ----------
 // RENDER
 // ---------- ----------
@@ -89,6 +136,7 @@ lt = new Date();
 const update = function(frame, frameMax){
     const a1 = frame / frameMax;
     updateByEuler(obj1, a1);
+    updateByQuaternion(obj2, a1);
 };
 // loop
 const loop = () => {
