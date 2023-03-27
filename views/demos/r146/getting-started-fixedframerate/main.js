@@ -25,13 +25,10 @@ if(THREE.OrbitControls){
 // ---------- ----------
 camera.position.set(2, 2, 2);
 camera.lookAt(0,0,0);
-const FPS_UPDATE = 2, // fps rate to update ( low fps for low CPU use, but choppy video )
-FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 450;
+const FPS_UPDATE = 1,
+FRAME_MAX = 800;
 let secs = 0,
-frame_frac = 0,
 frame = 0,
-tick = 0,
 lt = new Date();
 const update = function(frame, frameMax){
     const a1 = frame / frameMax;
@@ -44,14 +41,11 @@ const loop = () => {
     requestAnimationFrame(loop);
     if(secs > 1 / FPS_UPDATE){
         // update, render
-        update( frame, FRAME_MAX);
+        update( Math.floor(frame), FRAME_MAX);
         renderer.render(scene, camera);
-        console.log(tick, frame_frac, frame)
         // step frame
-        frame_frac += FPS_MOVEMENT * secs;
-        frame_frac %= FRAME_MAX;
-        frame = Math.floor(frame_frac);
-        tick = (tick += 1) % FRAME_MAX;
+        frame += 1;
+        frame %= FRAME_MAX;
         lt = now;
     }
 };
