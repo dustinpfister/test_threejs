@@ -11,9 +11,9 @@
 * () have a demo of gimbal lock and show how quaternion objects help with that
 * () this can be a simple staic demo
 
-## () new s6-1-quaternion
-* () rename s6-1-loop-groups to s7-1-loop-groups
-* () start new s6-1-quaternion demo that will be just a basic example
+## ( done 03/27/2023 ) new s6-1-quaternion
+* (done) rename s6-1-loop-groups to s7-1-loop-groups
+* (done) start new s6-1-quaternion demo that will be just a basic example
 
 ## ( done 03/27/2023 ) - rename folders, r146 style
 * (done) rename folders
