@@ -89,13 +89,10 @@ const obj2 = mkObject();
 obj1.position.set(0,0, -3);
 scene.add(obj2);
 // ---------- ----------
-// RENDER
+// ANIMATION LOOP
 // ---------- ----------
 camera.position.set(-4, 4, 4);
 camera.lookAt(0,0,-1.5);
-// ---------- ----------
-// ANIMATION LOOP
-// ---------- ----------
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 400;
