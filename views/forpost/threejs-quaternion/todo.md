@@ -13,8 +13,9 @@
 * () see about using raycaster to find out if I am clicking a mesh or not
 * () have two mesh objects that can be clicked
 
-## () s3-1-euler-gimballock
-* () have a gimbal lock demo based on the demo that I made for threejs-object3d-rotation
+## () s3-x-euler-gimballock
+* () have a basic euler to quaternion and back again demo
+* (done) have a gimbal lock demo based on the demo that I made for threejs-object3d-rotation
 
 ## ( done 03/26/2023 ) s2-3-methods-premultiply
 * (done) start a demo on the premultiply method

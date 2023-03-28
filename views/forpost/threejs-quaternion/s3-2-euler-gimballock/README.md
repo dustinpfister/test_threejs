@@ -1,0 +1,3 @@
+# euler-gimballock
+
+This is based off of the code from a demo that I made for my post on the rotation property of the objet3d class. The demo works fairly well to help show what the deal is with Gimbal Lock when it comes to working with Euler angles, and also why Quaternions work well to break free from that problem. So I think that I should also make this demo part of my main post on quaternion in general as well.
