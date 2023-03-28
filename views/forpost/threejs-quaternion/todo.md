@@ -1,17 +1,22 @@
 # threejs-quaternion todo list
 
-## () sx-1-getaxis
-* () have a get axis demo that is about how to get the axis of a quaternion when it is not known
-* () much of this can be based on the quaternion-getaxis r146 demo
 
 ## () s2-4-methods-setfromunitvectors
 * () start a demo on the setfromunitvectors method
 
-## () s5-1-stochastic-premultiply
+## () s6-1-stochastic-premultiply
 * () start a stochastic loop example that allows for me to use input to chage rotation
 * () I am going to want to use orbit controls
 * () see about using raycaster to find out if I am clicking a mesh or not
 * () have two mesh objects that can be clicked
+
+## () s4-2-userspace-getaxisangle
+* () get axis angle demo example
+
+## () s4-1-userspace-getaxis
+* () rename s4-1-loop-sphererotation to s5-1-loop-sphererotation
+* () have a get axis demo that is about how to get the axis of a quaternion when it is not known
+* () much of this can be based on the quaternion-getaxis r146 demo
 
 ## ( done 03/28/2023 ) s3-x-euler-gimballock
 * (done) have a basic euler to quaternion and back again demo
