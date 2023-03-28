@@ -12,6 +12,10 @@
 * () use line segments in examples rather than points
 * () start a new points section
 
+## () rename folders, r146 style update
+* (done) rename folders
+* () update to r146 style for demos
+
 ## ( done 09/21/2022 ) new s3-points section
 * (done) new s3-1-attributes - example where I look at what attributes are given in edges geometry
 * (done) new s3-2-points-counts - example where I look at the count of points in source and edge geos
