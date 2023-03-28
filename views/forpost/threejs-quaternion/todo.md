@@ -7,7 +7,7 @@
 ## () s2-4-methods-setfromunitvectors
 * () start a demo on the setfromunitvectors method
 
-## () s4-1-stochastic-premultiply
+## () s5-1-stochastic-premultiply
 * () start a stochastic loop example that allows for me to use input to chage rotation
 * () I am going to want to use orbit controls
 * () see about using raycaster to find out if I am clicking a mesh or not

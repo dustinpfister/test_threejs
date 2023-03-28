@@ -4,12 +4,12 @@ There is a lot to take in when it comes to quaternion objects in threejs as they
 
 ### Plan for future Edits
 
-* gimbal lock section
+* get axis angle section
+* stochastic loop section
 * expand methods section
 * Simplify / expand basic section examples if possible
 * expand animation loop section
-* get axis angle section ( maybe )
-* stochastic loop section ( maybe )
+
 
 ## Focus on the basic section, and with that the set from axis angle method
 
