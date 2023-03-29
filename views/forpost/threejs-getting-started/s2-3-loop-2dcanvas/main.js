@@ -25,8 +25,9 @@ scene.add(box);
 // ---------- ----------
 // CONTROLS
 // ---------- ----------
+let controls = null;
 if(THREE.OrbitControls){
-    const controls = new THREE.OrbitControls(camera, canvas_2d);
+    controls = new THREE.OrbitControls(camera, canvas_2d);
 }
 // ---------- ----------
 // ANIMATION LOOP

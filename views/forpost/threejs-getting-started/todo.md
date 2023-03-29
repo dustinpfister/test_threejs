@@ -2,7 +2,9 @@
 
 ## () s3-1-stochastic-basic animation loop
 * (done) start new stochastic animation loop start point based off of loop-2dcanvas
-* () I will want to have some event handlers for pointer events
+* (done) I will want to have some event handlers for pointer events
+* (done) have a common pointer event method that sets a current vector2 mouse pointer
+* (done) I will want to have a alpha controls object where each item has a desc, and alpha value
 * () have control ui for some alphas that ca be used to control things like speed of rotation
 
 ## ( done 03/27/2023 ) expand loop section
