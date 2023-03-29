@@ -1,15 +1,16 @@
 # threejs-cone
 
-## () expand animation section
-* () new animation example based off of source code used in video1
 
 ## () expand basic section
 * () start a new s1-2-group example
 
-## () s3-x-curve-section
+## () expand animation section
+* () new animation example based off of source code used in video1
+
+## ( done 03/29/2023 ) s3-x-curve-section
 * (done) rename loop demos to s4-x-loop...
 * (done) start a new s3-1-curve-basic demo
-* () start a new s3-2-curve-cubic demo
+* (done) start a new s3-2-curve-cubic demo
 
 ## ( done 03/29/2023 ) - rename folders and update to r146 style
 * (done) folders renamed
