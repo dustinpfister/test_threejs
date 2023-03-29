@@ -32,12 +32,12 @@ if(THREE.OrbitControls){
 // ALPHA CONTROLS
 // ---------- ----------
 const ac = {
-    x: 440, y:0,
+    x: 420, y:20,
     h: 100, w: 200,
     items: []
 };
 ac.items[0] = { desc: 'speed', a: 1.0 };
-ac.items[1] = { desc: 'axisY', a: 0.1 };
+ac.items[1] = { desc: 'axisX', a: 0.25 };
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -58,7 +58,8 @@ const sm = {
 const update = function(sm){
     const a1 = sm.frame / sm.FRAME_MAX;
     const degree = 360 * (20 * ac.items[0].a) * a1;
-    box.rotation.x = THREE.MathUtils.degToRad(degree);
+    box.rotation.x = THREE.MathUtils.degToRad( 90 * ac.items[1].a);
+    box.rotation.y = THREE.MathUtils.degToRad(degree);
 };
 const render2d = (sm) => {
     // background
@@ -128,6 +129,12 @@ const pointerEventCommon = (e) => {
     sm.uidown = false;
     if( boundingBox(x, y, 1, 1, ac.x, ac.y, ac.w, ac.h) ){
         sm.uidown = true;
+        let a_y = (y - ac.y) / ac.h;
+        a_y = THREE.MathUtils.clamp(a_y, 0, 0.99);
+        a_x = (x - ac.x) / ac.w;
+        a_x = THREE.MathUtils.clamp(a_x, 0, 0.99);
+        i_item = Math.floor(ac.items.length * a_y);
+        ac.items[i_item].a = a_x;
     }
     if(THREE.OrbitControls){
         controls.enabled = !sm.uidown;
