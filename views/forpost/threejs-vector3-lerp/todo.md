@@ -7,8 +7,8 @@
 * () start a new s1-2-group example
 
 ## () s3-x-curve-section
-* () rename loop demos to s4-x-loop...
-* () start a new s3-1-curve-line demo
+* (done) rename loop demos to s4-x-loop...
+* (done) start a new s3-1-curve-basic demo
 * () start a new s3-2-curve-cubic demo
 
 ## ( done 03/29/2023 ) - rename folders and update to r146 style
