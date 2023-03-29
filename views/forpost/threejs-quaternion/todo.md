@@ -10,8 +10,8 @@
 * () see about using raycaster to find out if I am clicking a mesh or not
 * () have two mesh objects that can be clicked
 
-## () s4-2-userspace-getaxisvector
-* () have a get axis demo that is about how to get the axis vector of a quaternion when it is not known
+## ( done 03/29/2023 ) s4-2-userspace-getaxisvector
+* (done) have a get axis demo that is about how to get the axis vector of a quaternion when it is not known
 
 ## ( done 03/29/2023 ) s4-1-userspace-getaxisangle
 * (done) rename s4-1-loop-sphererotation to s5-1-loop-sphererotation
