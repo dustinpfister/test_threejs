@@ -1,6 +1,6 @@
 # threejs-getting-started
 
-This is what I have together for source code examples that I aim t write about in [my getting started with threejs post](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). When it comes to first starting out with threejs the very first thing that I wanted to do is to just have that simple static box example up and running. So the of course the first main source code example that I have here is just that, a very simple hello world style example that is just a single fixed image of a view of a cube.
+This is what I have together for source code examples that I aim to write about in [my getting started with threejs post](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). When it comes to first starting out with threejs the very first thing that I wanted to do is to just have that simple static box example up and running. So of course the first main source code example that I have here is just that, a very simple hello world style example that is just a single fixed image view of a cube. After that I have a number of starting points for various kinds of animation loops that I often copy and paste form each time I start a new demo. As such this is a kind of post that I come to edit and expand often.
 
 <div align="center">
       <a href="https://www.youtube.com/watch?v=ClD09l-Fu-I">
