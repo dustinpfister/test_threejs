@@ -5,10 +5,11 @@
 * () start a demo on the setfromunitvectors method
 
 ## () s6-1-stochastic-premultiply
-* () start a stochastic loop example that allows for me to use input to chage rotation
-* () I am going to want to use orbit controls
-* () see about using raycaster to find out if I am clicking a mesh or not
-* () have two mesh objects that can be clicked
+* () start a stochastic loop example that allows for me to use input to change rotation
+* () I will want three mesh objects two of which can be controlled by user input
+* () mesh1 object can be used to set a first rotation
+* () mesh2 object can be used to set another rotation
+* () mesh3 will then be a the first two rotations.
 
 ## ( done 03/29/2023 ) s4-2-userspace-getaxisvector
 * (done) have a get axis demo that is about how to get the axis vector of a quaternion when it is not known
