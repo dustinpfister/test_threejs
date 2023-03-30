@@ -8,6 +8,9 @@
 * () start animation example in which mesh objects combine when they overlap
 * () see about using the lerp geo method as part of this
 
+## ( done 03/30/2023 ) r146 update
+* (done) r146 style update for all demos
+
 ## ( done 10/06/2022 ) s2-1-loop-sizepos
 * (done) start an animation example in which size and position are used to position objects to grid
 
