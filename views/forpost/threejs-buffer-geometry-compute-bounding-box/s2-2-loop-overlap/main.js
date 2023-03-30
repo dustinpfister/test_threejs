@@ -87,11 +87,9 @@ const update = function(frame, frameMax){
             }
             mesh.position.copy(mud.dir).multiplyScalar(mud.unit_length);
             hitCheck(mesh);
-			let a_hits = (mud.hits / 100);
-			a_hits = a_hits > 1 ? 1 : a_hits;
-			const v = 1 - 0.75 * a_hits;
-			
-			
+            let a_hits = (mud.hits / 100);
+            a_hits = a_hits > 1 ? 1 : a_hits;
+            const v = 1 - 0.75 * a_hits;
             mesh.material.color = new THREE.Color(v, v, v);
             if(mud.overlap){
                 mesh.material.color = new THREE.Color(v,0,0);
