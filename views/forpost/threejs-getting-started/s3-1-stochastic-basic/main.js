@@ -45,6 +45,8 @@ camera.position.set(2, 2, 2);
 camera.lookAt(0,0,0);
 const sm = {
    pointer_current: new THREE.Vector2(),
+   uidown: false,
+   pointerdown: false,
    FPS_UPDATE: 20,     // fps rate to update ( low fps for low CPU use, but choppy video )
    FPS_MOVEMENT: 30,  // fps rate to move object by that is independent of frame update rate
    FRAME_MAX: 900,
@@ -77,7 +79,7 @@ const render2d = (sm) => {
     ctx.fillText('tick              : ' + sm.tick, 5, 5)
     ctx.fillText('frame_frac        : ' + sm.frame_frac.toFixed(3), 5, 20);
     ctx.fillText('frame / FRAME_MAX : ' + sm.frame + '/' + sm.FRAME_MAX, 5, 35);
-    ctx.fillText('pos current : ' + sm.pointer_current.x + ',' + sm.pointer_current.y, 5, 45);
+    ctx.fillText('pos current : ' + sm.pointer_current.x.toFixed(2) + ',' + sm.pointer_current.y.toFixed(2), 5, 45);
     // alpha controls
     ctx.fillStyle = 'gray';
     ctx.fillRect(ac.x, ac.y, ac.w, ac.h);
@@ -127,7 +129,7 @@ const pointerEventCommon = (e) => {
     const y = sm.pointer_current.y = e.clientY - bx.top;
     // was the alpha control ui clicked? and if so which item
     sm.uidown = false;
-    if( boundingBox(x, y, 1, 1, ac.x, ac.y, ac.w, ac.h) ){
+    if( boundingBox(x, y, 1, 1, ac.x, ac.y, ac.w, ac.h) && sm.pointerdown){
         sm.uidown = true;
         let a_y = (y - ac.y) / ac.h;
         a_y = THREE.MathUtils.clamp(a_y, 0, 0.99);
@@ -136,17 +138,19 @@ const pointerEventCommon = (e) => {
         i_item = Math.floor(ac.items.length * a_y);
         ac.items[i_item].a = a_x;
     }
+};
+canvas_2d.addEventListener('pointerdown', (e) => {
+    sm.pointerdown = true;
+    pointerEventCommon(e);
     if(THREE.OrbitControls){
         controls.enabled = !sm.uidown;
     }
-};
-canvas_2d.addEventListener('pointerdown', (e) => {
+});
+canvas_2d.addEventListener('pointermove', (e) => {
     pointerEventCommon(e);
 });
-//canvas_2d.addEventListener('pointermove', (e) => {
-//    pointerEventCommon(e);
-//});
 canvas_2d.addEventListener('pointerup', (e) => {
+    sm.pointerdown = false;
     pointerEventCommon(e);
     if(THREE.OrbitControls){
         controls.enabled = true;

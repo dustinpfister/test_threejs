@@ -6,7 +6,10 @@
 * (done) have a common pointer event method that sets a current vector2 mouse pointer
 * (done) I will want to have a alpha controls object where each item has a desc, and alpha value
 * (done) have control ui for some alphas that ca be used to control things like speed of rotation
-* () move pointer event can be used to adjust alpha controls
+* (done) move pointer event can be used to adjust alpha controls
+
+* () better system for getting and setting ui alphas
+
 
 ## ( done 03/27/2023 ) expand loop section
 * (done) fixed frame by frame loop template
