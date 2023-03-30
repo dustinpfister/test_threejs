@@ -38,6 +38,15 @@ const ac = {
 };
 ac.items[0] = { desc: 'speed', a: 1.0 };
 ac.items[1] = { desc: 'axisX', a: 0.25 };
+ac.itemCount = Object.keys(ac.items).length;
+// for each item method
+ac.forEachItem = (forItem) => {
+    const keys = Object.keys(ac.items);
+    keys.forEach( (key, i, arr) => {
+        const item = ac.items[key];
+        forItem(item, i, arr);
+    });
+};
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -83,7 +92,7 @@ const render2d = (sm) => {
     // alpha controls
     ctx.fillStyle = 'gray';
     ctx.fillRect(ac.x, ac.y, ac.w, ac.h);
-    ac.items.forEach( (item, i, arr) => {
+    ac.forEachItem( (item, i, arr) => {
         ctx.fillStyle = 'red';
         const h = ac.h / arr.length;
         ctx.fillRect(ac.x, ac.y + h * i, ac.w * item.a, h);
@@ -91,7 +100,7 @@ const render2d = (sm) => {
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(item.desc, ac.x + ac.w / 2, h / 2  + h * i);
-    });
+    } );
 };
 const loop = () => {
     sm.now = new Date();
@@ -135,7 +144,7 @@ const pointerEventCommon = (e) => {
         a_y = THREE.MathUtils.clamp(a_y, 0, 0.99);
         a_x = (x - ac.x) / ac.w;
         a_x = THREE.MathUtils.clamp(a_x, 0, 0.99);
-        i_item = Math.floor(ac.items.length * a_y);
+        i_item = Math.floor(ac.itemCount * a_y);
         ac.items[i_item].a = a_x;
     }
 };
