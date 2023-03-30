@@ -34,10 +34,11 @@ if(THREE.OrbitControls){
 const ac = {
     x: 420, y:20,
     h: 100, w: 200,
-    items: []
+    items: {}
 };
-ac.items[0] = { desc: 'speed', a: 1.0 };
-ac.items[1] = { desc: 'axisX', a: 0.25 };
+ac.items.speed = { desc: 'speed', a: 0.75 };
+ac.items.axisx = { desc: 'axisX', a: 0.25 };
+ac.items.axisz = { desc: 'axisZ', a: 0.25 };
 ac.itemCount = Object.keys(ac.items).length;
 // for each item method
 ac.forEachItem = (forItem) => {
@@ -46,6 +47,11 @@ ac.forEachItem = (forItem) => {
         const item = ac.items[key];
         forItem(item, i, arr);
     });
+};
+// get an item by index
+ac.getItem = (i) => {
+    const keys = Object.keys(ac.items);
+    return ac.items[keys[i]];
 };
 // ---------- ----------
 // ANIMATION LOOP
@@ -68,9 +74,10 @@ const sm = {
 };
 const update = function(sm){
     const a1 = sm.frame / sm.FRAME_MAX;
-    const degree = 360 * (20 * ac.items[0].a) * a1;
-    box.rotation.x = THREE.MathUtils.degToRad( 90 * ac.items[1].a);
+    const degree = 360 * (20 * ac.items.speed.a) * a1;
+    box.rotation.x = THREE.MathUtils.degToRad( 90 * ac.items.axisx.a);
     box.rotation.y = THREE.MathUtils.degToRad(degree);
+    box.rotation.z = THREE.MathUtils.degToRad( 90 * ac.items.axisz.a);
 };
 const render2d = (sm) => {
     // background
@@ -95,11 +102,11 @@ const render2d = (sm) => {
     ac.forEachItem( (item, i, arr) => {
         ctx.fillStyle = 'red';
         const h = ac.h / arr.length;
-        ctx.fillRect(ac.x, ac.y + h * i, ac.w * item.a, h);
+        ctx.fillRect(ac.x, ac.y + h * i + 2, ac.w * item.a, h - 2);
         ctx.fillStyle = 'black';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(item.desc, ac.x + ac.w / 2, h / 2  + h * i);
+        ctx.fillText(item.desc, ac.x + ac.w / 2, ac.y + h / 2 + h * i);
     } );
 };
 const loop = () => {
@@ -145,7 +152,7 @@ const pointerEventCommon = (e) => {
         a_x = (x - ac.x) / ac.w;
         a_x = THREE.MathUtils.clamp(a_x, 0, 0.99);
         i_item = Math.floor(ac.itemCount * a_y);
-        ac.items[i_item].a = a_x;
+        ac.getItem(i_item).a = a_x;
     }
 };
 canvas_2d.addEventListener('pointerdown', (e) => {
