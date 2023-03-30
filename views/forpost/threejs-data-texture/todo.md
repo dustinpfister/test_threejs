@@ -6,12 +6,9 @@
 ## () - sx-1-canvas-datafrom
 * () start a section that has to do with canvas elements by starting with a data texture from canvas exampe
 
-## ( ) - s2-1-forpix
-* () distance-forpix method
-
-## () - move files, r146 style
+## ( done 03/30/2023 ) - move files, r146 style
 * (done) move main.js file to root of each demo folder and delete js folders
-* () update all demos to r146 style
+* (done) update all demos to r146 style
 
 ## ( done 10/04/2022 ) - s2-1-forpix
 * (done) use new loop template from getting started post
