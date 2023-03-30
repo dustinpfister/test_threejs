@@ -9,6 +9,10 @@
 ## ( ) - s2-1-forpix
 * () distance-forpix method
 
+## () - move files, r146 style
+* (done) move main.js file to root of each demo folder and delete js folders
+* () update all demos to r146 style
+
 ## ( done 10/04/2022 ) - s2-1-forpix
 * (done) use new loop template from getting started post
 * (done) new update method that involves updating a texture rather than creating a new one each frame
