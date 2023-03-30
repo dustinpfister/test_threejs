@@ -4,9 +4,9 @@
 * () example where raycaster is used to get the position to place an object on a mutated sphere
 * () use bounding box to adjust position for this
 
-## () s2-2-loop-intersect
-* () start animation example in which mesh objects combine when they overlap
-* () see about using the lerp geo method as part of this
+## (done 03/30/2023 ) s2-2-loop-overlap
+* (done) start animation example in which mesh objects combine when they overlap
+* (done) see about using the lerp geo method as part of this
 
 ## ( done 03/30/2023 ) r146 update
 * (done) r146 style update for all demos
