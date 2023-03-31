@@ -17,10 +17,10 @@ container.appendChild(canvas_2d);
 // OBJECTS
 // ---------- ----------
 scene.add( new THREE.GridHelper( 10,10 ) );
-const box = new THREE.Mesh(
+const mesh1 = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
     new THREE.MeshNormalMaterial());
-scene.add(box);
+scene.add(mesh1);
 // ---------- ----------
 // CONTROLS
 // ---------- ----------
@@ -33,7 +33,7 @@ if(THREE.OrbitControls){
 // ---------- ----------
 const ac = {
     x: 420, y:20,
-    h: 100, w: 200,
+    h: 125, w: 200,
     items: {}
 };
 ac.items.speed = { desc: 'speed', a: 0.75 };
@@ -75,9 +75,9 @@ const sm = {
 const update = function(sm){
     const a1 = sm.frame / sm.FRAME_MAX;
     const degree = 360 * (20 * ac.items.speed.a) * a1;
-    box.rotation.x = THREE.MathUtils.degToRad( 90 * ac.items.axisx.a);
-    box.rotation.y = THREE.MathUtils.degToRad(degree);
-    box.rotation.z = THREE.MathUtils.degToRad( 90 * ac.items.axisz.a);
+    mesh1.rotation.x = THREE.MathUtils.degToRad( 90 * ac.items.axisx.a);
+    mesh1.rotation.y = THREE.MathUtils.degToRad(degree);
+    mesh1.rotation.z = THREE.MathUtils.degToRad( 90 * ac.items.axisz.a);
 };
 const render2d = (sm) => {
     // background
@@ -100,12 +100,17 @@ const render2d = (sm) => {
     ctx.fillStyle = 'gray';
     ctx.fillRect(ac.x, ac.y, ac.w, ac.h);
     ac.forEachItem( (item, i, arr) => {
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = 'cyan';
+        ctx.strokeStyle = '#8a8a8a';
         const h = ac.h / arr.length;
-        ctx.fillRect(ac.x, ac.y + h * i + 2, ac.w * item.a, h - 2);
+        ctx.beginPath();
+        ctx.rect(ac.x, ac.y + h * i, ac.w * item.a, h);
+        ctx.fill();
+        ctx.stroke();
         ctx.fillStyle = 'black';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
+        ctx.font = Math.floor(h / 2) + 'px arial'
         ctx.fillText(item.desc, ac.x + ac.w / 2, ac.y + h / 2 + h * i);
     } );
 };
@@ -164,7 +169,8 @@ canvas_2d.addEventListener('pointerdown', (e) => {
 canvas_2d.addEventListener('pointermove', (e) => {
     pointerEventCommon(e);
     if(sm.uidown){
-        const a_x = (sm.pointer.x - ac.x) / ac.w;
+        let a_x = (sm.pointer.x - ac.x) / ac.w;
+        a_x = THREE.MathUtils.clamp(a_x, 0, 0.99);
         ac.getItem(sm.i_item).a = a_x;
     }
 });
