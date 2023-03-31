@@ -21,7 +21,6 @@ const makeMesh = () => {
     mesh_parent.add(mesh_child);
     return mesh_parent;
 };
-
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
@@ -60,13 +59,11 @@ const update = function(frame, frameMax){
     const a1 = frame / frameMax;
     const a2 = a1 * 1 % 1;
     const a3 = a1 * (16 * Math.sin(Math.PI * a1) ) % 1;
-
     const radian1 = Math.PI * 2 * a2;
     e1.x = Math.cos(radian1);
     e1.y = 0;
     e1.z = Math.sin(radian1);
     axis1.set( 0, 1, 0 ).applyEuler(e1);
-
     const deg1 = 90;
     const deg2 = 360 * a3;
     // set q1 and q2 using setFromAxisAngle method
