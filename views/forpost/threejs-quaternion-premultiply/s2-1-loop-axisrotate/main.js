@@ -45,6 +45,7 @@ const ac = {
 };
 ac.items.angel = { desc: 'Axis Angle', a: 0.5 };
 ac.items.speed = { desc: 'Rotaiton Speed', a: 0.5 };
+ac.items.slerp = { desc: 'Slerp', a: 0 };
 ac.itemCount = Object.keys(ac.items).length;
 // for each item method
 ac.forEachItem = (forItem) => {
@@ -85,7 +86,9 @@ const update = function(sm){
     const angle2 = Math.PI * 0.5 * ac.items.angel.a
     q1.setFromAxisAngle(axis1, angle1);
     q2.setFromAxisAngle(axis2, angle2);
-    mesh1.quaternion.copy(q1).premultiply(q2)
+    const q3 = q1.clone().slerp(q2, ac.items.slerp.a);
+    const q4 = q2.clone().slerp(q1, ac.items.slerp.a);
+    mesh1.quaternion.copy(q3).premultiply(q4)
 };
 const render2d = (sm) => {
     // background
