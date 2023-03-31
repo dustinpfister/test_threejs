@@ -1,5 +1,8 @@
 # threejs-getting-started
 
+## () s3-1-stochastic-basic - binary alpha options 
+* () I am also going to want to have binary alpha options that I can just turn on and off
+
 ## ( done 03/30/2023 ) s3-1-stochastic-basic animation loop
 * (done) start new stochastic animation loop start point based off of loop-2dcanvas
 * (done) I will want to have some event handlers for pointer events
