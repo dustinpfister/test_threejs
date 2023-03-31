@@ -32,7 +32,6 @@ scene.add(mesh1);
 const mesh2 = makeMesh();
 mesh2.position.set(0, 0, 2.5);
 scene.add(mesh2);
-
 const mesh3 = makeMesh();
 mesh3.position.set(0, 0, 0);
 scene.add(mesh3);
