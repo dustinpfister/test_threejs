@@ -25,7 +25,7 @@ const q2 = q1.clone();
 // ---------- ----------
 scene.add( new THREE.GridHelper( 10,10 ) );
 const mesh1 = new THREE.Mesh(
-    new THREE.SphereGeometry(1.25, 20, 20),
+    new THREE.SphereGeometry(1.25, 16, 16),
     new THREE.MeshNormalMaterial({ wireframe: true}));
 scene.add(mesh1);
 // ---------- ----------
@@ -40,7 +40,7 @@ if(THREE.OrbitControls){
 // ---------- ----------
 const ac = {
     x: 420, y:20,
-    h: 100, w: 200,
+    h: 125, w: 200,
     items: {}
 };
 ac.items.angel = { desc: 'Axis Angle', a: 0.5 };
@@ -80,13 +80,12 @@ const sm = {
 };
 const update = function(sm){
     const a1 = sm.frame / sm.FRAME_MAX;
-    const a2 = a1 * (16 * ac.items.speed.a) % 1;
+    const a2 = a1 * (8 * ac.items.speed.a) % 1;
     const angle1 = Math.PI * 2 * a2;
     const angle2 = Math.PI * 0.5 * ac.items.angel.a
     q1.setFromAxisAngle(axis1, angle1);
     q2.setFromAxisAngle(axis2, angle2);
     mesh1.quaternion.copy(q1).premultiply(q2)
-
 };
 const render2d = (sm) => {
     // background
@@ -101,17 +100,25 @@ const render2d = (sm) => {
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left'
     ctx.font = '10px monospace';
-    ctx.fillText('frame/totalframes : ' + sm.frame + '/' + sm.FRAME_MAX, 5, 5);
+    ctx.fillText('tick              : ' + sm.tick, 5, 5)
+    ctx.fillText('frame_frac        : ' + sm.frame_frac.toFixed(3), 5, 20);
+    ctx.fillText('frame / FRAME_MAX : ' + sm.frame + '/' + sm.FRAME_MAX, 5, 35);
+    ctx.fillText('pointer : ' + sm.pointer.x.toFixed(2) + ',' + sm.pointer.y.toFixed(2), 5, 50);
     // alpha controls
     ctx.fillStyle = 'gray';
     ctx.fillRect(ac.x, ac.y, ac.w, ac.h);
     ac.forEachItem( (item, i, arr) => {
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = 'cyan';
+        ctx.strokeStyle = '#8a8a8a';
         const h = ac.h / arr.length;
-        ctx.fillRect(ac.x, ac.y + h * i + 2, ac.w * item.a, h - 2);
+        ctx.beginPath();
+        ctx.rect(ac.x, ac.y + h * i, ac.w * item.a, h);
+        ctx.fill();
+        ctx.stroke();
         ctx.fillStyle = 'black';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
+        ctx.font = Math.floor(h / 4) + 'px arial'
         ctx.fillText(item.desc, ac.x + ac.w / 2, ac.y + h / 2 + h * i);
     } );
 };
