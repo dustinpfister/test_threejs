@@ -1,8 +1,12 @@
 # threejs-quaternion todo list
 
+## () break animation loop section into stochastic and deterministic sections
+* () rename s2-1-loop-axisrotate to s3-1-stochastic-axisrotate
+* () rename s2-2-loop-threespheres to s2-1-deterministic-threespheres
+
 ## () expand basic section
-* () s1-2-basic-order demo that hoes that the order does matter
-* () s1-3-basic-threeplus demo that involves three or more rotations
+* () s1-2-basic-order demo that shows that the order does matter verry much
+* () s1-3-basic-many demo that involves three or more rotations
 
 ## ( done 03/31/2023 ) - new s2-1-loop-axisrotate
 * (done) rename s2-1-loop-threespheres to s2-2-loop-threespheres
