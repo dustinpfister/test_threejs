@@ -10,7 +10,7 @@ renderer.setSize(640, 480, false);
 // OBJECTS
 // ---------- ----------
 scene.add(new THREE.GridHelper(10, 10));
-const material = new THREE.MeshNormalMaterial({wireframe: true, wireframeLinewidth: 1 });
+const material = new THREE.MeshNormalMaterial({wireframe: true, wireframeLinewidth: 3 });
 const geometry = new THREE.CylinderGeometry(0, 1, 3, 10, 10);
 const mesh1 = new THREE.Mesh( geometry, material);
 scene.add(mesh1);
