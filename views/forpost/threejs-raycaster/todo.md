@@ -4,6 +4,10 @@
 * () example involving a group of mesh objects to position to the surface
 * () reuse the same raycaster by setting orgin and dection each time a mesh is updated
 
+## ( done 04/03/2023 ) update to r146 style
+* (done) rename folders and using r146
+* (done) update demos to r146 style
+
 ## ( done 10/07/2022 ) s4-2-loop-toruslerp
 * (done) use the origin prop of the ray for a look at point for the mesh
 * (done) use the lerp method from the point on the surface of the mesh to the ray origin

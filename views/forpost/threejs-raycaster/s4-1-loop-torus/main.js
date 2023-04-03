@@ -2,12 +2,9 @@
 // SPHERE, CAMERA, RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
-scene.add(new THREE.GridHelper(10, 10));
 const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(5, 5, 5);
-camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
 // HELPERS
@@ -36,8 +33,9 @@ const getLookAt = (deg, radius) => {
     return new THREE.Vector3(1, 0, 0).applyEuler( new THREE.Euler(0, radian, 0) ).multiplyScalar(radius);
 };
 //-------- ----------
-// MESH - SPHERE
+// OBJECTS
 //-------- ----------
+scene.add(new THREE.GridHelper(10, 10));
 const torus_radius = 4;
 const torus = new THREE.Mesh(
         new THREE.TorusGeometry(torus_radius, 1.25, 20, 20),
@@ -57,6 +55,8 @@ const raycaster = new THREE.Raycaster();
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
+camera.position.set(5, 5, 5);
+camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 300;

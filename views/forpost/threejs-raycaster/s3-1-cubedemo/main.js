@@ -1,9 +1,19 @@
-var raycaster = new THREE.Raycaster();
-var mouse = new THREE.Vector2(1, 1);
-
+//-------- ----------
+// SCENE, CAMERA, RENDERER
+//-------- ----------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
+//-------- ----------
+// RAYCASTER
+//-------- ----------
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2(1, 1);
 // on mouse move
-var onMouseMove = function( event ) {
-    var canvas = event.target,
+const onMouseMove = function( event ) {
+    const canvas = event.target,
     box = canvas.getBoundingClientRect(),
     x = event.clientX - box.left,
     y = event.clientY - box.top;
@@ -11,81 +21,71 @@ var onMouseMove = function( event ) {
     mouse.y = - ( y / canvas.scrollHeight ) * 2 + 1;
 };
 
+renderer.domElement.addEventListener( 'mousemove', onMouseMove, false );
+//-------- ----------
+// OBJECTS
+//-------- ----------
+scene.add(new THREE.GridHelper(9, 9));
+const cubeGroups = new THREE.Group();
+scene.add(cubeGroups);
+const cg1 = CubeGroupMod.create({
+   maxFrame: 30,
+   yDelta: 0.5,
+   xzDelta: 0.5
+});
+cg1.position.x = 0;
+cubeGroups.add(cg1);
+const cg2 = CubeGroupMod.create({
+   maxFrame: 30,
+   yDelta: 0.5,
+   xzDelta: 0.5
+});
+cg2.position.x = 3;
+cubeGroups.add(cg2);
+const cg3 = CubeGroupMod.create({
+   maxFrame: 30,
+   yDelta: 0.5,
+   xzDelta: 0.5
+});
+cg3.position.x = -3;
+cubeGroups.add(cg3);
+//-------- ----------
+// ORBIT CONTROLS
+//-------- ----------
+let controls = null
+if(THREE.OrbitControls){
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+}
+//-------- ----------
+// LOOP
+//-------- ----------
+camera.position.set(5, 5, 5);
+camera.lookAt(0, 0, 0);
+let lt = new Date(),
+frame = 0;
+const maxFrame = 300,
+fps = 30;
 // update the picking ray with the camera and mouse position
-var update = function(cubeGroups, secs){
+const update = function(cubeGroups, secs){
     raycaster.setFromCamera( mouse, camera );
     cubeGroups.children.forEach(function(cubeGroup){
-        var intersects = raycaster.intersectObjects( cubeGroup.children, true );
+        const intersects = raycaster.intersectObjects( cubeGroup.children, true );
         if(intersects.length > 0){
-            var mesh = intersects[0].object,
+            let mesh = intersects[0].object,
             group = mesh.parent;
             group.userData.active = true;
         }
         CubeGroupMod.update(cubeGroup, secs);
     });
 };
-
-// creating a scene
-var scene = new THREE.Scene();
-scene.add(new THREE.GridHelper(9, 9));
-
-
-var cubeGroups = new THREE.Group();
-scene.add(cubeGroups);
-
-var cg = CubeGroupMod.create({
-   maxFrame: 30,
-   yDelta: 0.5,
-   xzDelta: 0.5
-});
-cg.position.x = 0;
-cubeGroups.add(cg);
-
-var cg = CubeGroupMod.create({
-   maxFrame: 30,
-   yDelta: 0.5,
-   xzDelta: 0.5
-});
-cg.position.x = 3;
-cubeGroups.add(cg);
-
-var cg = CubeGroupMod.create({
-   maxFrame: 30,
-   yDelta: 0.5,
-   xzDelta: 0.5
-});
-cg.position.x = -3;
-cubeGroups.add(cg);
- 
-// camera and renderer
-var camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(5, 5, 5);
-camera.lookAt(0, 0, 0);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
-( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-
-
-renderer.domElement.addEventListener( 'mousemove', onMouseMove, false );
-
-
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-// loop
-var lt = new Date(),
-frame = 0,
-maxFrame = 300,
-fps = 30;
-var loop = function () {
-    var now = new Date(),
+const loop = function () {
+    const now = new Date(),
     per = frame / maxFrame,
     bias = 1 - Math.abs(per - 0.5) / 0.5,
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
-
         update(cubeGroups, secs);
-
         renderer.render(scene, camera);
         frame += fps * secs;
         frame %= maxFrame;
@@ -93,5 +93,3 @@ var loop = function () {
     }
 }
 loop();
-
-

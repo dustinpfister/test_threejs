@@ -4,10 +4,8 @@
 const scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(9, 9));
 const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(5, 5, 5);
-camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
 // MOUSE OVER EVENT
@@ -60,6 +58,8 @@ boxGroup.add(box);
 //-------- ----------
 // LOOP
 //-------- ----------
+camera.position.set(5, 5, 5);
+camera.lookAt(0, 0, 0);
 // orbit controls
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 let lt = new Date();
