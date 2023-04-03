@@ -1,7 +1,14 @@
 # threejs-quaternion-setfromunitvectors todo list
 
+## () s2-2-loop-applyeuler
+* () start an animated demo of the s1-3-basic-applyeuler demo
+
 ## () s1-3-basic-applyeuler
 * () basic demo that makes use of applyEuler and euler objects to set the state of the to vector3 object
+* () have a mesh2 object that can be somehting other that the sphere
+* () use the apply euler method, and multiply scalar method to set the direction and vector unit length of mesh2
+* () I can also use this as an example to write about the normalize method with this mesh2 object
+* () use the normalized vector3 object as the to vector3 object
 
 ## ( done 04/02/2023 ) s1-2-basic-vector3lerp and new s1-1-basic
 * (done) rename s1-1-basic to s1-2-basic-vector3lerp
