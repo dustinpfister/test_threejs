@@ -15,27 +15,16 @@ const canvas_3d = renderer.domElement;
 const container = document.getElementById('demo') || document.body;
 container.appendChild(canvas_2d);
 // ---------- ----------
-// V3 ARRAY
-// ---------- ----------
-const v3array = [
-    [0, 1, 0],
-    [1, 0, 0],
-    [0, 1, 0],
-    [0, 0, 1],
-    [0, 1, 0],
-    [1, 0, 0],
-    [0, 0, 1]
-].map( (arr) => {
-    return new THREE.Vector3().fromArray(arr).normalize();
-});
-// ---------- ----------
 // OBJECTS
 // ---------- ----------
-scene.add( new THREE.GridHelper( 10,10 ) );
-const mesh1 = new THREE.Mesh(
-    new THREE.SphereGeometry(1, 20, 20),
-    new THREE.MeshNormalMaterial({ wireframe: true}));
+scene.add(new THREE.GridHelper(10, 10));
+const material = new THREE.MeshNormalMaterial({wireframe: true, wireframeLinewidth: 2 });
+const geometry = new THREE.SphereGeometry(2, 20, 20);
+const mesh1 = new THREE.Mesh( geometry, material);
 scene.add(mesh1);
+const mesh2 = new THREE.Mesh( geometry, material);
+mesh2.scale.set(0.25, 0.25, 0.25);
+scene.add(mesh2);
 // ---------- ----------
 // CONTROLS
 // ---------- ----------
@@ -46,7 +35,7 @@ if(THREE.OrbitControls){
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-camera.position.set(2, 2, 2);
+camera.position.set(5, 5, 5);
 camera.lookAt(0,0,0);
 const sm = {
    FPS_UPDATE: 12,     // fps rate to update ( low fps for low CPU use, but choppy video )
@@ -59,20 +48,18 @@ const sm = {
    now: new Date(),
    lt: new Date()
 };
-const q_home = new THREE.Quaternion();
-q_home.setFromAxisAngle( v3array[1], Math.PI * 0.5 );
 const update = function(sm){
     const a1 = sm.frame / sm.FRAME_MAX;
-    const a2 = a1 * v3array.length % 1;
-    const a3 = 1 - Math.abs(0.5 - a2) / 0.5;
-    const vi1 = Math.floor( v3array.length * a1 );
-    const vi2 = ( vi1 + 1 ) % v3array.length;
-    const v1 = v3array[vi1];
-    const v2 = v3array[vi2];
-    const v_from = v1.clone();
-    const v_to = v_from.clone().lerp(v2, a3).normalize();
-    const q2 = new THREE.Quaternion().setFromUnitVectors(v_from, v_to);
-    mesh1.quaternion.copy(q2);
+    const a2 = Math.sin( Math.PI * (a1 * 32 % 1) );
+    const e2 = new THREE.Euler(0, 0, 0);
+    e2.y = Math.PI / 180 * (360 * a1);
+    e2.z = Math.PI / 180 * (90 * Math.sin( Math.PI * 8 * a1 ) ) ;
+    const radius2 = 3 + 1.5 * a2;
+    mesh2.position.set(1, 0, 0).applyEuler(e2).multiplyScalar(radius2);
+    const v_from = new THREE.Vector3(0, 1, 0);
+    const v_to = mesh2.position.clone().normalize();
+    mesh1.quaternion.setFromUnitVectors(v_from, v_to);
+
 };
 const render2d = (sm) => {
     ctx.fillStyle = 'black';
@@ -83,9 +70,7 @@ const render2d = (sm) => {
     ctx.fillStyle = 'white';
     ctx.textBaseline = 'top';
     ctx.font = '10px monospace';
-    ctx.fillText('tick              : ' + sm.tick, 5, 5)
-    ctx.fillText('frame_frac        : ' + sm.frame_frac.toFixed(3), 5, 20);
-    ctx.fillText('frame / FRAME_MAX : ' + sm.frame + '/' + sm.FRAME_MAX, 5, 35);
+    ctx.fillText('frame: ' + sm.frame + '/' + sm.FRAME_MAX, 5, 5);
 };
 const loop = () => {
     sm.now = new Date();
@@ -105,3 +90,46 @@ const loop = () => {
     }
 };
 loop();
+
+
+/*
+// ---------- ----------
+// SCENE, CAMERA, RENDERER
+// ---------- ----------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+// ---------- ----------
+// OBJECTS
+// ---------- ----------
+scene.add(new THREE.GridHelper(10, 10));
+const material = new THREE.MeshNormalMaterial({wireframe: true, wireframeLinewidth: 2 });
+const geometry = new THREE.SphereGeometry(2, 20, 20);
+const mesh1 = new THREE.Mesh( geometry, material);
+scene.add(mesh1);
+const mesh2 = new THREE.Mesh( geometry, material);
+mesh2.scale.set(0.25, 0.25, 0.25);
+scene.add(mesh2);
+// ---------- ----------
+// SET MESH2 POSITION - using euler objects amd vector3 class methods
+// ---------- ----------
+const e2 = new THREE.Euler(0, 0, 0);
+e2.y = Math.PI / 180 * 270;
+e2.z = Math.PI / 180 * 40;
+let radius2 = 3.5;
+mesh2.position.set(1, 0, 0).applyEuler(e2).multiplyScalar(radius2);
+// ---------- ----------
+// ROTATE MESH1 WITH QUATERNIONS
+// ---------- ----------
+const v_from = new THREE.Vector3(0, 1, 0);
+const v_to = mesh2.position.clone().normalize();
+mesh1.quaternion.setFromUnitVectors(v_from, v_to);
+// ---------- ----------
+// RENDER
+// ---------- ----------
+camera.position.set(4, 4, 4);
+camera.lookAt(0,0,0);
+renderer.render(scene, camera);
+*/
