@@ -17,8 +17,11 @@ scene.add(mesh);
 // ---------- ----------
 // ROTATE WITH QUATERNIONS
 // ---------- ----------
-const v_from = new THREE.Vector3(0, 1, 0);
-const v_to = new THREE.Vector3(0, 0, 1);
+const alpha = 0.5;
+const v1 = new THREE.Vector3(0, 1, 0);
+const v2 = new THREE.Vector3(1, 0, 0);
+const v_from = v1.clone();
+const v_to = v_from.clone().lerp(v2, alpha).normalize();
 mesh.quaternion.setFromUnitVectors(v_from, v_to);
 // ---------- ----------
 // RENDER

@@ -65,19 +65,14 @@ const update = function(sm){
     const a1 = sm.frame / sm.FRAME_MAX;
     const a2 = a1 * v3array.length % 1;
     const a3 = 1 - Math.abs(0.5 - a2) / 0.5;
-
     const vi1 = Math.floor( v3array.length * a1 );
     const vi2 = ( vi1 + 1 ) % v3array.length;
     const v1 = v3array[vi1];
     const v2 = v3array[vi2];
-
     const v_from = v1.clone();
     const v_to = v_from.clone().lerp(v2, a3).normalize();
-
     const q2 = new THREE.Quaternion().setFromUnitVectors(v_from, v_to);
-
     mesh1.quaternion.copy(q2);
-
 };
 const render2d = (sm) => {
     ctx.fillStyle = 'black';
