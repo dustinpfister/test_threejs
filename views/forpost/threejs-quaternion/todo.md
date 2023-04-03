@@ -1,8 +1,7 @@
 # threejs-quaternion todo list
 
 
-## () s2-4-methods-setfromunitvectors
-* () start a demo on the setfromunitvectors method
+
 
 ## () s6-1-stochastic-premultiply
 * () start a stochastic loop example that allows for me to use input to change rotation
@@ -10,6 +9,9 @@
 * () mesh1 object can be used to set a first rotation
 * () mesh2 object can be used to set another rotation
 * () mesh3 will then be a the first two rotations.
+
+## ( done 04/03/2023) s2-4-methods-setfromunitvectors
+* (done) start a demo on the setfromunitvectors method
 
 ## ( done 03/29/2023 ) s4-2-userspace-getaxisvector
 * (done) have a get axis demo that is about how to get the axis vector of a quaternion when it is not known
