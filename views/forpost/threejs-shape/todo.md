@@ -4,6 +4,11 @@
 * () s2-1-path-lineto that is just another example using moveto and line to
 * () rename old exmaples
 
+## () move files, use r146
+* () move js files to root of demo folders
+* () use r146 for each demo
+* () update to r146 style for each demo
+
 ## ( done 10/10/2022 ) new s5-x-loop section
 * (done) start with a loop example based off of heart
 
