@@ -4,9 +4,7 @@
 const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(60, 64 / 48, 0.1, 1000);
-camera.position.set(4, 4, 4);
-camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
@@ -46,4 +44,6 @@ scene.add(mesh);
 //-------- ---------- 
 // RENDER
 //-------- ----------
+camera.position.set(4, 4, 4);
+camera.lookAt(0, 0, 0);
 renderer.render(scene, camera);

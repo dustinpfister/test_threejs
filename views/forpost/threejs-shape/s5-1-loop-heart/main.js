@@ -4,9 +4,7 @@
 const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(60, 64 / 48, 0.1, 1000);
-camera.position.set(3, 3, 3);
-camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
@@ -54,10 +52,6 @@ const updateGeo = (geoA, geoB) => {
 // GEOMETRY
 //-------- ----------
 const geometry = makeHeartGeo();
-
-
-
-
 //-------- ----------
 // MESH
 //-------- ----------
@@ -66,10 +60,11 @@ let s = 0.25;
 mesh.scale.set(s, s, s);
 // add the mesh to the scene
 scene.add(mesh);
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
+camera.position.set(3, 3, 3);
+camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
 FRAME_MAX = 300;
