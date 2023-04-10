@@ -1,5 +1,8 @@
 # threejs-buffer-geometry-attributes-uv
 
+## ( done 04/10/2023 ) update to r146 style
+* (done) update demos to r146 style
+
 ## ( done 11/02/2022 ) s1-2-basic-triangle
 * (done) basic example that involves a custom buffer geometry of a triangle
 * (done) use compute vertex normals to create normals attribute
