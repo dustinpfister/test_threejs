@@ -1,9 +1,9 @@
 # threejs-examples-breath-module r146 demo todo list
 
-## () r1-1-updatehook
+## ( done 04/10/2023 ) r1-1-updatehook
 * (done) start a new demo for the new before hook feature
 
-## () r1 - Removal of curves, focus more so on just alpha values
+## ( done 04/10/2023 ) r1 - Removal of curves, focus more so on just alpha values
 * (done) remove all code that adds curves
 * (done) have it so that I can define just some hooks, and leave others to default
 * (done) add a before hook method that will be called before the current breath part hook
@@ -11,6 +11,7 @@
 * (done) gud.totalTimeString
 * (done) gud.timeString
 * (done) gud.rest bool, gud.breath bool, gud.low bool
+* (done) changed alpha names to be more descriptive
 
 ## ( done 03/01/2023 ) - r0-3-hooks
 * (done) demo of new hooks feature

@@ -13,13 +13,17 @@ scene.add( new THREE.GridHelper(10, 10) );
 const geo = new THREE.SphereGeometry(1, 20, 20);
 const material = new THREE.MeshNormalMaterial();
 const mesh1 = new THREE.Mesh( geo, material);
-mesh1.position.z = -2.5;
+mesh1.position.z = -4;
 scene.add(mesh1);
 const mesh2 = new THREE.Mesh( geo, material);
+mesh2.position.z = -2;
 scene.add(mesh2);
 const mesh3 = new THREE.Mesh( geo, material);
-mesh3.position.z = 2.5;
+mesh3.position.z = 0;
 scene.add(mesh3);
+const mesh4 = new THREE.Mesh( geo, material);
+mesh4.position.z = 2;
+scene.add(mesh4);
 //-------- ----------
 // BREATH GROUP - creating with default settings
 //-------- ----------
@@ -27,32 +31,24 @@ const BREATH_SECS = 60;
 const group = BreathMod.create({
     totalBreathSecs: BREATH_SECS,
     breathsPerMinute: 6,
-    breathParts: {restLow: 1, breathIn: 1, restHigh: 1, breathOut: 1},
-    before: (group, a1, a2, a_fullvid, a_breathPart, breathPart, gud) => {
-        mesh1.position.x = -5 + 10 * a1;
-        mesh2.position.x = -5 + 10 * a2;
+    breathParts: {restLow: 1, breathIn: 7, restHigh: 1, breathOut: 3},
+    before: (group, a_breath, a_state, a_fullvid, a_breath_part, breathPart, gud) => {
+        mesh1.position.x = -5 + 10 * a_breath;
+        mesh2.position.x = -5 + 10 * a_state;
         mesh3.position.x = -5 + 10 * a_fullvid;
+        mesh4.position.x = -5 + 10 * a_breath_part;
         scene.background = new THREE.Color(0,0,0);
         if(gud.breath){
             scene.background = new THREE.Color(0,1,1);
         }
-    },
-    hooks: {
-        breathIn : (group, a_breathPart, a_fullvid, gud) => {
-        },
-        breathOut : (group, a_breathPart, a_fullvid, gud) => {
-        }
     }
-
 });
 scene.add(group);
-
 const gud = group.userData;
 console.log(gud.secsPerBreathCycle)
 console.log(gud.breathPartsString);
 console.log(gud.totalTimeString);
 console.log(gud.timeString);
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------

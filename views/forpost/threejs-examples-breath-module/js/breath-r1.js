@@ -57,39 +57,38 @@
         gud.a_fullvid = a_fullvid;
         gud.sec = gud.totalBreathSecs * gud.a_fullvid;
         gud.timeString = secsToTimeStr(gud.sec);
-        gud.a1 = (gud.sec % 60 / 60) * gud.breathsPerMinute % 1;
+        gud.a_breath = (gud.sec % 60 / 60) * gud.breathsPerMinute % 1;
         gud.rest = true;
         gud.breath = false;
         gud.low = false;
         let ki = 0;
         while(ki < BREATH_KEYS.length){
-            if(gud.a1 < gud.breathAlphaTargts[ki]){
+            if(gud.a_breath < gud.breathAlphaTargts[ki]){
                 gud.a_base = ki > 0 ? gud.breathAlphaTargts[ki - 1] : 0;
-                gud.a_breathPart = (gud.a1 - gud.a_base) / (gud.breathAlphaTargts[ki] - gud.a_base);
-                gud.currentBreathKey = BREATH_KEYS[ki];
-                //gud.a2 = gud.currentBreathKey === 'restLow' ? 0 : 1;
+                gud.a_breathPart = (gud.a_breath - gud.a_base) / (gud.breathAlphaTargts[ki] - gud.a_base);
+                gud.currentBreathKey = BREATH_KEYS[ki]
                 if( gud.currentBreathKey === 'restLow'){
-                    gud.a2 = 0;
+                    gud.a_breath_state = 0;
                     gud.low = true;
                 }
                 if( gud.currentBreathKey === 'restHigh'){
-                    gud.a2 = 1;
+                    gud.a_breath_state = 1;
                     gud.low = false;
                 }
                 if( gud.currentBreathKey === 'breathIn'){
-                    gud.a2 = Math.sin(Math.PI * 0.5 * gud.a_breathPart);
+                    gud.a_breath_state = Math.sin(Math.PI * 0.5 * gud.a_breathPart);
                     gud.rest = false;
                     gud.breath = true;
                     gud.low = true;
                 }
                 if( gud.currentBreathKey === 'breathOut'){
-                    gud.a2 = 1 - Math.sin(Math.PI * 0.5 * gud.a_breathPart);
+                    gud.a_breath_state = 1 - Math.sin(Math.PI * 0.5 * gud.a_breathPart);
                     gud.rest = false;
                     gud.breath = true;
                     gud.low = false;
                 }
                 // call before hook
-                gud.before(group, gud.a1, gud.a2, gud.a_fullvid, gud.a_breathPart, gud.currentBreathKey, gud);
+                gud.before(group, gud.a_breath, gud.a_breath_state, gud.a_fullvid, gud.a_breathPart, gud.currentBreathKey, gud);
                 // call the current breath hook
                 const hook = gud.hooks[ gud.currentBreathKey ];
                 hook(group, gud.a_breathPart, gud.a_fullvid, gud);
@@ -116,8 +115,8 @@
         gud.a_fullvid = 0;
         gud.a_base = 0;
         gud.a_breathPart = 0;  // alpha value of the current breath part
-        gud.a1 = 0;
-        gud.a2 = 0;
+        gud.a_breath = 0;
+        gud.a_breath_state = 0;
         // booleans that can be used in hooks
         gud.rest = false;
         gud.breath = false;
