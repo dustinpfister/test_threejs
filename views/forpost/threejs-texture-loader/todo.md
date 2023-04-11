@@ -1,5 +1,6 @@
 # threejs-texture-loader todo list
 
+
 ## () - s3-2-module-canvas-sheet
 * () start a section on using the texture loader and canvas elements with this one on canvas sheets
 * () I will want to load more than one image
@@ -7,12 +8,17 @@
 * () check out threejs-examples-uvmap-cube-canvas-update to make quick work of setting uvs
 * () I will then draw to each face with a given image
 
-## () - s3-1-module-load
-* () basic load example of the texture module started
-
-## () - r0 of texture.js
-* (done) start the module based off of what I started in uvmap cube
+## () r1 - sprite sheets
 * () add a method that will return a new texture that is a cell from another texture
+
+## () update to r146 style
+* () update demos to r146 style
+
+## ( done 11/02/2022 ) - s3-1-module-load
+* (done) basic load example of the texture module started
+
+## ( done 11/02/2022 ) - r0 of texture.js
+* (done) start the module based off of what I started in uvmap cube
 
 ## ( done 11/01/2022 ) - s2-1-many-manager
 * (done) many file example that makes use of a custom loader manager
