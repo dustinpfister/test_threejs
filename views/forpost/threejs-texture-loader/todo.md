@@ -11,8 +11,8 @@
 ## () r1 - sprite sheets
 * () add a method that will return a new texture that is a cell from another texture
 
-## () update to r146 style
-* () update demos to r146 style
+## ( done 04/11/2023 ) update to r146 style
+* (done) update demos to r146 style
 
 ## ( done 11/02/2022 ) - s3-1-module-load
 * (done) basic load example of the texture module started
