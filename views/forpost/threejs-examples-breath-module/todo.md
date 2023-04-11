@@ -1,5 +1,9 @@
 # threejs-examples-breath-module r146 demo todo list
 
+## () r2 - After hook, Breath Helper
+* () after hook option like before hook, only it is called after the current breath part hook
+* () BreathMod.helper public Method that will create and return a Mesh Object
+
 ## ( done 04/10/2023 ) r1-1-updatehook
 * (done) start a new demo for the new before hook feature
 
