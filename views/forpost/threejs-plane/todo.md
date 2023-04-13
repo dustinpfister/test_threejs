@@ -1,6 +1,8 @@
 # threejs-plane todo list
 
-<!-- BASIC SECTION -->
+## () update groups to r146+ style
+* () update groups section to r146 or lateset style
+
 
 <!-- Raycaster -->
 
