@@ -12,8 +12,6 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 ## () s2-3-groups-map
 * () example where I can give an array of material index values
 
-
-
 <!-- TEXTURES -->
 
 ## () - s3-3-texture-wrapst
@@ -53,6 +51,9 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 * () example on having a non indexed plane geometry
 
 <!-- DONE -->
+
+## ( done 04/13/2023 ) s1-x-basic updated to r146 style
+* (done) update basic section to r146 style rules
 
 ## ( done 10/22/2022 ) s4-2-attribute-normal
 * (done) start new normal example
