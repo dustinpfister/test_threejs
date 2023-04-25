@@ -33,7 +33,7 @@ if (WebGL.isWebGL()) {
 } else {
     console.log('We do not have webgl, so I am using THREE.SVGRenderer');
     const renderer = new THREE.SVGRenderer();
-    renderer.setSize(640, 480);
+    renderer.setSize(640, 480, false);
     container.appendChild(renderer.domElement);
     renderer.render(scene, camera);
 }
