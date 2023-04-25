@@ -6,8 +6,8 @@
 ## () s2-2-helloworld-shadertags
 * () hello world webgl example that makes use of shader tags
 
-## () s2-1-helloworld-scripttag
-* () have a webgl hello world demo that just makes use of a single script tag
+## ( done 04/25/2023 ) s2-1-helloworld-scripttag
+* (done) have a webgl hello world demo that just makes use of a single script tag
 
 ## ( done 04/25/2023 ) - rename folders
 * (done) renamed folders for webgl test demos

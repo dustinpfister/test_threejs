@@ -6,7 +6,7 @@ I [wrote a post on the subject of webgl and threejs in general](https://dustinpf
 
 If this is an area where I think I should expand there is of course making this the general post on threejs in which case I am going to want to expand on other topics rather than just feature testing if webgl is supported. Some ideas for other sections, and new posts to link to might included
 
-* webgl hello world program
+* webgl hello world programs
 * using raw GLSL code in place of threejs
 * using the shader lib of threejs
 * expanding on the use of other alternative renders
