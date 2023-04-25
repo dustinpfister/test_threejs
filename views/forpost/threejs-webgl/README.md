@@ -6,6 +6,28 @@ I [wrote a post on the subject of webgl and threejs in general](https://dustinpf
 
 If this is an area where I think I should expand there is of course making this the general post on threejs in which case I am going to want to expand on other topics rather than just feature testing if webgl is supported. Some ideas for other sections, and new posts to link to might included
 
+* webgl hello world program
 * using raw GLSL code in place of threejs
+* using the shader lib of threejs
 * expanding on the use of other alternative renders
 * having a section in which I go over webgl renderer features (event though I have another post on that)
+
+
+## WebGl Hello world
+
+I did some quick googling for an example of a WebGl hello World program and have found a [decent post](https://jameshfisher.com/2017/09/27/webgl-hello-world/) on what I had in mind for that kind of program.
+
+```html
+<div><canvas id="canvas" width="100" height="100"></canvas></div>
+ 
+<script>
+  const canvasEl = document.getElementById("canvas");
+  const ctx = canvasEl.getContext("webgl");
+  ctx.clientWidth = canvas.width;
+  ctx.clientHeight = canvas.height;
+  ctx.clearColor(0,1,0,1);
+  ctx.clear(ctx.COLOR_BUFFER_BIT);
+</script>
+```
+
+I am sure that there are a number of other ways to make this kind of program. There is making use of shader type script tags, byut maybe that sort of thing should be on a subject that has to do with raw GLSL code.
