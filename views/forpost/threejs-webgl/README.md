@@ -32,3 +32,11 @@ I did some quick googling for an example of a WebGl hello World program and have
 
 There is exapnding from this kind of example to have a welth of options when it comes to getting started with raw webgl. I could also have one or more demos that make use of the shader lib in threejs.
 
+### Resources
+
+Great Script tag only example
+https://jameshfisher.com/2017/09/27/webgl-hello-world/
+
+Shader script tags demo
+https://codepen.io/urishaked/pen/PEpoYo
+

@@ -1,0 +1,15 @@
+
+<script id="vertex-shader" type="shader">
+    attribute vec4 a_Position;
+    void main() {
+        gl_Position = a_Position;
+        gl_PointSize = 40.0;
+    }
+</script>
+<script id="fragment-shader" type="shader">
+    void main(void) {
+        gl_FragColor = vec4(1.0, 0.0, 0.0, 1);
+    }
+</script>
+
+<script src="/forpost/threejs-webgl/s2-2-helloworld-shadertags/main.js"></script>

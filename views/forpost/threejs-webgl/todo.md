@@ -3,8 +3,8 @@
 ## () s2-3-helloworld-shaderlib
 * () hello world example that makes use of the shader lib in threejs
 
-## () s2-2-helloworld-shadertags
-* () hello world webgl example that makes use of shader tags
+## ( done 04/25/2023 ) s2-2-helloworld-shadertags
+* (done) hello world webgl example that makes use of shader tags
 
 ## ( done 04/25/2023 ) s2-1-helloworld-scripttag
 * (done) have a webgl hello world demo that just makes use of a single script tag
