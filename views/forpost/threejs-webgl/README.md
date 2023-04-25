@@ -30,4 +30,5 @@ I did some quick googling for an example of a WebGl hello World program and have
 </script>
 ```
 
-I am sure that there are a number of other ways to make this kind of program. There is making use of shader type script tags, byut maybe that sort of thing should be on a subject that has to do with raw GLSL code.
+There is exapnding from this kind of example to have a welth of options when it comes to getting started with raw webgl. I could also have one or more demos that make use of the shader lib in threejs.
+
