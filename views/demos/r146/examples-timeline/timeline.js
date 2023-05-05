@@ -1,6 +1,24 @@
 // timeline.js - r0 - r146 prototype
 (function(api){
     //-------- ----------
+    // DEFAULT ON IDLE
+    //-------- ----------
+    const DEFAULT_ON_IDLE = (tl, index_next, index_last) => {
+        let index = null;
+        let alpha = 1;
+        // have a last index?
+        if( typeof index_last === 'number' ){
+            index = index_last;
+        }
+        // have a next index?
+        if( typeof index_next === 'number'){
+           index = index_next;
+           alpha = 0;
+        }
+        const event = tl.events[index];
+        event.update(tl, alpha );
+    };
+    //-------- ----------
     // CONST VALUES
     //-------- ----------
     const MS_PER_HOUR = 1000 * 60 * 60;
@@ -44,16 +62,16 @@
         tl.a_main = tl.time / tl.totalTime;
         let index_event = 0;
         let event_called = false;
-        let index_event_last = null;
-        let index_event_next = null;
+        let index_last = null;
+        let index_next = null;
         const event_count = tl.events.length;
         while(index_event < event_count){
             const event = tl.events[index_event];
-            if(tl.a_main <= event.a_start && index_event_next === null ){
-                index_event_next = index_event;
+            if(tl.a_main <= event.a_start && index_next === null ){
+                index_next = index_event;
             }
             if(tl.a_main >= event.a_end ){
-                index_event_last = index_event;
+                index_last = index_event;
             }
             if(tl.a_main >= event.a_start && tl.a_main < event.a_end){
                 const a_event = (event.a_start - tl.a_main) / ( event.a_start - event.a_end );
@@ -65,19 +83,7 @@
         }
         // idle?
         if(!event_called){
-            let index = null;
-            let alpha = 1;
-            // have a last index?
-            if( typeof index_event_last === 'number' ){
-                index = index_event_last;
-            }
-            // have a next index?
-            if( typeof index_event_next === 'number'){
-               index = index_event_next;
-               alpha = 0;
-            }
-            const event = tl.events[index];
-            event.update(tl, alpha );
+            tl.on_idle(tl, index_next, index_last);
         }
     };
     api.create = (opt) => {
@@ -85,7 +91,8 @@
         const tl = {
            st: opt.st || '00:00:00.000',
            et: opt.et || '22:59:59.999',
-           ct: '00:00:00.000'
+           ct: '00:00:00.000',
+           on_idle : opt.on_idle || DEFAULT_ON_IDLE
         };
         tl.events = [];
         tl.totalTime = getTotalTime(tl);
