@@ -15,7 +15,7 @@ scene.add(mesh1);
 // TIMELINE
 // ---------- ----------
 const tl = timeLine.create({
-    st: '08:00:00.000',
+    st: '07:00:00.000',
     et: '17:00:00.000'
 });
 timeLine.add(tl, {
@@ -50,7 +50,7 @@ camera.position.set(10, 10, 10);
 camera.lookAt(0,0,0);
 const FPS_UPDATE = 30, // fps rate to update ( low fps for low CPU use, but choppy video )
 FPS_MOVEMENT = 30;     // fps rate to move object by that is independent of frame update rate
-FRAME_MAX = 800;
+FRAME_MAX = 300;
 let secs = 0,
 frame = 0,
 lt = new Date();

@@ -43,14 +43,41 @@
         tl.ct = getTimeStr(tl);
         tl.a_main = tl.time / tl.totalTime;
         let index_event = 0;
+        let event_called = false;
+        let index_event_last = null;
+        let index_event_next = null;
         const event_count = tl.events.length;
         while(index_event < event_count){
             const event = tl.events[index_event];
+            if(tl.a_main <= event.a_start && index_event_next === null ){
+                index_event_next = index_event;
+            }
+            if(tl.a_main >= event.a_end ){
+                index_event_last = index_event;
+            }
             if(tl.a_main >= event.a_start && tl.a_main < event.a_end){
                 const a_event = (event.a_start - tl.a_main) / ( event.a_start - event.a_end );
                 event.update(tl, a_event );
+                event_called = true;
+                break;
             }
             index_event += 1;
+        }
+        // idle?
+        if(!event_called){
+            let index = null;
+            let alpha = 1;
+            // have a last index?
+            if( typeof index_event_last === 'number' ){
+                index = index_event_last;
+            }
+            // have a next index?
+            if( typeof index_event_next === 'number'){
+               index = index_event_next;
+               alpha = 0;
+            }
+            const event = tl.events[index];
+            event.update(tl, alpha );
         }
     };
     api.create = (opt) => {
@@ -62,7 +89,7 @@
         };
         tl.events = [];
         tl.totalTime = getTotalTime(tl);
-        api.set(tl, 0);
+        //api.set(tl, 0);
         return tl;
     };
     api.add = (tl, opt) => {
