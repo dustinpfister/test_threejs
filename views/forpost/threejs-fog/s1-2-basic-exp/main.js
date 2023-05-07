@@ -12,7 +12,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 const fogColor = new THREE.Color(0xffffff);
 scene.background = fogColor; 
-scene.fog = new THREE.Fog(fogColor, 0.25, 4);
+scene.fog = new THREE.FogExp2(fogColor, 0.6);
 //-------- ----------
 // MESH
 //-------- ----------
