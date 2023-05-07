@@ -9,8 +9,12 @@ check it: https://www.youtube.com/watch?v=k1zGz55EqfU
 ## () section on material fog property
 * () have a section on the material fog boolean
 
-## () linear vs exponential fog
+## () s1-2-basic-exp fog
 * () have an example that will help show the difference between the two fog constructors
+
+## (done 05/07/2023 ) rename static section demo
+* (done) rename s1-1-static-scene to s1-1-basic-linear
+* (done) use the basic material for this demo
 
 ## ( done 05/07/2023 ) - moved js files
 * (done) moved js files to root of demo folders

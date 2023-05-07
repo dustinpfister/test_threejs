@@ -8,14 +8,6 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
-// LIGHT
-//-------- ----------
-// adding a point light to the camera
-const light = new THREE.PointLight(0xffffff);
-light.position.y = 0.5;
-camera.add(light);
-scene.add(camera);
-//-------- ----------
 // FOG AND BACKGROUND
 //-------- ----------
 // ADDING BACKGROUND AND FOG
@@ -29,7 +21,7 @@ scene.fog = new THREE.Fog(fogColor, 0.25, 4);
 // when making a Mesh such as the standard material
 const mesh = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshStandardMaterial({
+    new THREE.MeshBasicMaterial({
         color: 0xff0000
     }));
 scene.add(mesh);
