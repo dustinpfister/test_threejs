@@ -12,6 +12,10 @@
 ## () s1-3-basic-parent
 * () example in which I get the parent object of a child, and also of the group
 
+## () moving js files, format
+* (done) move js folders for all demos
+* () style and format fix for all demos
+
 ## ( done 01/09/2022 ) new geo rotate example
 * (done) new geo rotation example
 
