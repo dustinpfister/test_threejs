@@ -1,20 +1,23 @@
 # threejs-threejs-grouping-mesh-objects todo list
 
-## () s1-7-basic-applyeuler
+## () s1-x-basic-applyeuler
 
-## () s1-6-basic-userdata
+## () s1-x-basic-userdata
 
-## () s1-5-basic-traverse
+## () s1-x-basic-traverse
 
-## () s1-4-basic-children
+## () s1-x-basic-children
 * () basic example of the children array
 
-## () s1-3-basic-parent
-* () example in which I get the parent object of a child, and also of the group
+## () s1-4-basic-getbyname
+* () demo of the get by name method of the object3d class
 
-## () moving js files, format
+## ( done 05/08/2023 ) moving js files, format
 * (done) move js folders for all demos
-* () style and format fix for all demos
+* (done) style and format fix for all demos
+
+## ( done 11/10/2022 ) s1-3-basic-parent
+* (done) example in which I get the parent object of a child, and also of the group
 
 ## ( done 01/09/2022 ) new geo rotate example
 * (done) new geo rotation example
