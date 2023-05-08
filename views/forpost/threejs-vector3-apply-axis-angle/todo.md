@@ -1,5 +1,8 @@
 # threejs-vector3-apply-axis-angle todo list
 
+## ( done 05/08/2023 ) s1-2-basic-normalize
+* (done) basic example of using copy, normalize and multiply scalar
+
 ## ( done 05/08/2023 ) - move files, format
 * (done) move js files
 * (done) format change for demos
