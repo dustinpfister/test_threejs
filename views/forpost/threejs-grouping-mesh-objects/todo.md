@@ -9,8 +9,8 @@
 ## () s1-x-basic-children
 * () basic example of the children array
 
-## () s1-4-basic-getbyname
-* () demo of the get by name method of the object3d class
+## ( done 05/08/2023 ) s1-4-basic-getbyname
+* (done) demo of the get by name method of the object3d class
 
 ## ( done 05/08/2023 ) moving js files, format
 * (done) move js folders for all demos
