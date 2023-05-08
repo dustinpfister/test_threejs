@@ -14,18 +14,18 @@ const mesh = new THREE.Mesh(
         new THREE.ConeGeometry(0.5, 1, 30, 30),
         new THREE.MeshNormalMaterial());
 mesh.geometry.rotateX(Math.PI * 0.5);
-mesh.position.set(1, 0, 1);
+mesh.position.set(0, 0, 1);
 scene.add(mesh);
 // ---------- ---------- ----------
 // USING APPLY AXIS ANGLE
 // ---------- ---------- ----------
 const v = new THREE.Vector3(0, 1, 0);
-mesh.position.applyAxisAngle(v, Math.PI / 180 * 180);
-console.log( mesh.position.clone().round() ); // {x: -1, y: 0, z: -1}
+mesh.position.applyAxisAngle(v, Math.PI / 180 * 90);
+mesh.lookAt(0, 0, 0);
 // ---------- ---------- ----------
 // RENDER
 // ---------- ---------- ----------
-camera.position.set(2, 2, 2);
+camera.position.set(3, 3, 3);
 camera.lookAt(0,0,0);
 renderer.render(scene, camera);
 
