@@ -13,9 +13,9 @@
 * () see about moving each point
 * () still use an indexed box geometry
 
-## () move files, r146 style
+## ( done 05/09/2023 ) move files, r146 style
 * (done) move js file to root of demo folders
-* () r146 style
+* (done) r146 style
 
 ## ( done 10/06/2022 ) - s2-4-boxgeometry-nonindexed
 * (done) start a n example where I pull apart a geometry that is non indexed and thus has an array size of 108.
