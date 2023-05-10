@@ -1,5 +1,7 @@
 # threejs-face3 todo list
 
+## ( done 05/10/2023 ) s1-1-groups
+* (done) update groups example to r146 style
 
 ## ( done 04/27/2022 ) - new example for groups that will work in r127+
 * (done) have a new s2 example at the top that makes use of the material index value of the group objects of a geometry
