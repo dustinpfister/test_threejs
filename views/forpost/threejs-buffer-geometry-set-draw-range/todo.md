@@ -1,7 +1,7 @@
 
-## () s2-1-loop-sphere
+## ( done 05/12/2023 ) s2-1-loop-sphere
 * (done) start a simple animation loop example using a non indexed sphere geometry
-* () see about making a nice helper function for the effect
+* (done) see about making a nice helper function for the effect
 
 ## ( done 05/12/2023 ) s1-2-basic-non-indexed
 * (done) Another basic example that is with an indexed geometry

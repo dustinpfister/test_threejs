@@ -15,18 +15,26 @@ const canvas_3d = renderer.domElement;
 const container = document.getElementById('demo') || document.body;
 container.appendChild(canvas_2d);
 // ---------- ----------
+// HELPERS
+// ---------- ----------
+// create a non indexed geometry
+const createGeometry = () => {
+    return new THREE.SphereGeometry(1, 30, 30).toNonIndexed();
+};
+//
+const updateGeometry = (geometry, alpha, tri_count) => {
+    const att_pos = geometry.getAttribute('position');
+    const total_tri = att_pos.count / 3;
+
+
+    const start = Math.floor( total_tri * alpha) * 3;
+    const count = Math.round( 3 * tri_count );
+    geometry.setDrawRange( start, count );
+};
+// ---------- ----------
 // GEOMETRY
 // ---------- ----------
-const geometry = new THREE.SphereGeometry(1, 30, 30).toNonIndexed();
-const att_pos = geometry.getAttribute('position')
-const total = att_pos.count;
-const total_tri = total / 3;
-
-
-
-
-
-
+const geometry = createGeometry();
 // ---------- ----------
 // SCENE CHILDREN
 // ---------- ----------
@@ -51,12 +59,8 @@ const sm = {
 };
 const update = function(sm){
     const a1 = sm.frame / sm.FRAME_MAX;
-    const a2 = 1 - Math.abs( 0.5 - a1 ) / 0.5;
-
-
-    const start = Math.floor( total_tri * a2) * 3;
-    const count = Math.round( 3 * 200 );
-    geometry.setDrawRange( start, count );
+    const a2 = 1 - Math.abs( 0.5 - (a1 * 4 % 1) ) / 0.5;
+    updateGeometry(geometry, a2, 200);
 };
 const render2d = (sm) => {
     ctx.clearRect(0,0, canvas_2d.width, canvas_2d.height);
