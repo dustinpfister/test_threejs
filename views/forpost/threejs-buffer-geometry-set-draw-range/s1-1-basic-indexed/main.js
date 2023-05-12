@@ -11,11 +11,14 @@ renderer.setSize(640, 480, false);
 // GEOMETRY
 // ---------- ----------
 const geometry = new THREE.SphereGeometry(1, 30, 30);
+const att_pos = geometry.getAttribute('position')
 const index = geometry.index;
 const start = Math.round( index.count * 0.50 );
 const count = Math.round( index.count * 0.10 );
 geometry.setDrawRange(start, count );
-console.log(geometry.drawRange);
+console.log(att_pos.count);      // 961
+console.log(index.count);        // 5220
+console.log(geometry.drawRange); // {start: 2610, count: 522}
 // ---------- ----------
 // MESH
 // ---------- ----------
