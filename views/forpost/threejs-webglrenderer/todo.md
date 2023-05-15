@@ -9,6 +9,9 @@
 ## () s2-3-basic-use-canvas
 * () example in which I use a canvas that was created before hand
 
+## () moved js file
+* (done) all js files of all demos are in the root of the demo folders
+
 ## ( done 12/01/2022 ) s1-2-basic-webgl1
 * (done) example in which I use the webgl1 renderer first if there
 
