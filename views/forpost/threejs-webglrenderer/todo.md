@@ -1,7 +1,7 @@
 # threejs-webglrenderer todo list
 
-## () s3-4-basic-alpha
-* () exmaple in which I have a transparent backgorund
+## ( done 05/15/2023 ) s3-4-basic-alpha
+* (done) exmaple in which I have a transparent backgorund
 
 ## ( done 05/15/2023 ) s2-3-basic-use-canvas
 * (done) example in which I use a canvas that was created before hand
