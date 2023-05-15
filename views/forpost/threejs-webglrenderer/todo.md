@@ -1,15 +1,12 @@
 # threejs-webglrenderer todo list
 
-## () s3-1-alpha
+## () s3-4-basic-alpha
 * () exmaple in which I have a transparent backgorund
 
-## () s2-4-basic-set-size
-* () exmaple in which I set size and false for attaching css
+## ( done 05/15/2023 ) s2-3-basic-use-canvas
+* (done) example in which I use a canvas that was created before hand
 
-## () s2-3-basic-use-canvas
-* () example in which I use a canvas that was created before hand
-
-## () moved js file
+## ( done 05/15/2023 ) moved js file
 * (done) all js files of all demos are in the root of the demo folders
 
 ## ( done 12/01/2022 ) s1-2-basic-webgl1
