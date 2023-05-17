@@ -1,9 +1,8 @@
 // ---------- ----------
-// IMPORT THREEJS
+// IMPORT - threejs and any addons I want to use
 // ---------- ----------
-// need to start using import in order to use three.module.js over three.min.js
-// need to also use import for addons as examples/js is no more
 import * as THREE from 'three';
+import { OrbitControls } from 'OrbitControls';
 // ---------- ----------
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
@@ -21,9 +20,17 @@ const mesh = new THREE.Mesh(
     new THREE.MeshNormalMaterial());
 scene.add(mesh);
 // ---------- ----------
+// CONTROLS
+// ---------- ----------
+let controls = null;
+try {
+    controls = new OrbitControls(camera, renderer.domElement);
+}catch(e){
+    console.warn('OrbitControls was not imported');
+}
+// ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-// fixed camera values should be done in the animation loop or render code section
 camera.position.set(1.25, 1.25, 1.25);
 camera.lookAt(0, 0, 0);
 // constant values and state for main app loop
