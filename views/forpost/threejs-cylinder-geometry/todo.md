@@ -1,10 +1,13 @@
 # threejs-cylinder-geometry todo list
 
-## () s3.2 - addtional group exmaple
-* () have an additonal groups example where I am adding custom groups for the geometry
+## () s3.2 - additional group example
+* () have an additional groups example where I am adding custom groups for the geometry
 
 ## () s6 - buffer copy
-* exmaple where I am updaing over time in a loop by mmaking use of the copy method
+* example where I am updating over time in a loop by making use of the copy method
+
+## ( done 05/17/2023 ) update to r146 style
+* (done) update all demos to r146 style
 
 ## ( done 08/12/2022 ) s5 - points, and Lines
 * (done) have an example that using THREE.Points and THREE.LineSegments
