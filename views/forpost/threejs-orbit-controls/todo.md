@@ -1,6 +1,15 @@
 # threejs-orbit-controls todo list
 
-## () - s2-1-autorotate
+## () - s2-4-props-damping
+* () minmax demo
+
+## () - s2-3-props-panning
+* () minmax demo
+
+## () - s2-2-props-minmax
+* () minmax demo
+
+## () - s2-1-props-autorotate
 * () have a single autorotate demo
 
 ## ( done 05/18/2023 ) - s1-x-basic section with r146, and r152 style demos
