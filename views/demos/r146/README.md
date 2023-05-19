@@ -1,6 +1,8 @@
 ## threejs r146 notes
 
-Looks like this will be the last revision of threejs in which I use plain classic javaScript tags when working out my demos, and updating the for post folders.
+Looks like this will be the last revision of threejs in which I use plain classic javaScript tags when working out new demos, and updating older ones when editing my blog posts as well.
+
+So with r146 the following is what I will need to observe:
 
 * I observe that the examples/js folder exists in the threejs Github repo
 * Use old type="text/javascript" style script tags and NOT JSM
