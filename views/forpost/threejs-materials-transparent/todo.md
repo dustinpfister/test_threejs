@@ -1,5 +1,9 @@
 # threejs-materials-transparent todo list
 
+## ( done 05/22/2023 ) move files
+* (done) move js files to root of demo folders
+* (done) some style fixes
+
 ## ( done 11/14/2022 ) s2-1-map-rgba
 * (done) basic example involing a material with a map option
 * (done) use canvas textures
