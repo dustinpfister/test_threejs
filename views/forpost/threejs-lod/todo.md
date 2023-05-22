@@ -11,7 +11,7 @@
 
 ## () s2-1-loop-spheres
 * (done) start a loop example where I am just expanding on the basic example
-* () I would like to create a collection of these LOD sphere with a new helper funcition
+* () I would like a helper to create a collection of these LOD sphere with a new helper funcition
 * () The colleciton can just be a bunch of the lod spheres in a circle
 * () I can just move the spheres around the center of the group
 * () I can then move a whole group back and forth
