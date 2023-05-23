@@ -3,6 +3,11 @@
 ## () s1-3-basic-tononindex
 * () I should have a basic example of the two non index method
 
+## ( done 05/23/2023 ) move files
+* (done) move js files to roots of demo folders
+* (done) removed IIFES from demos
+* (done) other minor style changes
+
 ## ( done 12/14/2022 ) s2-1-setindex-plane
 * (done) start a section on the set index method alone starting with code that makes a plane
 * (done) base the helper on the source code for the THREE.PlaneGeometry constructor
