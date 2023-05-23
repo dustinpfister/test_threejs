@@ -16,6 +16,11 @@ https://discourse.threejs.org/t/does-three-js-have-a-way-to-detect-if-an-arbitra
 
 ## () s1-7-basic-contains-point 
 
+## ( done 05/23/2023 ) - moved files
+* (done) more files to root of demo folders
+* (done) some minor style changes
+* (done) using r146 for all demos now 
+
 ## ( done 12/09/2022 ) s1-6-basic-intersects-box
 * ( done) have intersectsBox method demo
 

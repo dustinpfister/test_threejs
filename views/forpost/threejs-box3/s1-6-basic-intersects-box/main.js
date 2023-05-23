@@ -2,10 +2,7 @@
 // SCENE, CAMERA, RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
-scene.add( new THREE.GridHelper(4, 4, 0xffffff, 0x008800 ));
 const camera = new THREE.PerspectiveCamera(50, 320 / 240, 0.1, 1000);
-camera.position.set(5, 8, 10);
-camera.lookAt(0, -0.8, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -48,7 +45,11 @@ while(i < len){
     i += 1;
 }
 scene.add(group);
+// grid helper
+scene.add( new THREE.GridHelper(4, 4, 0xffffff, 0x008800 ));
 //-------- ----------
 // RENDER
 //-------- ----------
+camera.position.set(5, 8, 10);
+camera.lookAt(0, -0.8, 0);
 renderer.render(scene, camera);
