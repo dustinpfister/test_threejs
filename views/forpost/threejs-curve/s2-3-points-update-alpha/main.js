@@ -40,20 +40,6 @@ const v_end = new THREE.Vector3(-5, 0, -5);
 const v_control = v_start.clone().lerp(v_end, 0.5).add( new THREE.Vector3(-5,0,5) );
 const curve = new THREE.QuadraticBezierCurve3( v_start, v_control, v_end);
 //-------- ----------
-// v3_array
-//-------- ----------
-/*
-const v3array = [];
-let i = 0;
-const len = 50;
-while(i < len){
-   const a = get_alpha(i, len, 0);
-   const v = curve.getPoint( a );
-   v3array.push( v );
-   i += 1;
-};
-*/
-//-------- ----------
 // GEOMETRY
 //-------- ----------
 const geometry = createCurveGeometry(curve, 25); //new THREE.BufferGeometry().setFromPoints(v3array);
