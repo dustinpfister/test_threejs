@@ -9,19 +9,25 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // CURVE
 //-------- ----------
-const v1 = new THREE.Vector3(5, 0, 5);
-const v2 = new THREE.Vector3(-5, 0, -5);
-const curve = new THREE.LineCurve3( v1, v2);
+const v_start = new THREE.Vector3(5, 0, 5);
+const v_end = new THREE.Vector3(-5, 0, -5);
+const v_control = v_start.clone().lerp(v_end, 0.5).add( new THREE.Vector3(-5,0,5) );
+const curve = new THREE.QuadraticBezierCurve3( v_start, v_control, v_end);
+//-------- ----------
+// v3_array
+//-------- ----------
+const v3array = curve.getPoints(50);
+//-------- ----------
+// GEOMETRY
+//-------- ----------
+const geometry = new THREE.BufferGeometry().setFromPoints(v3array);
 //-------- ----------
 // SCENE CHILD OBJECTS
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0x4a4a4a) );
-// points
-const v3Array = curve.getPoints(20);
-const geometry = new THREE.BufferGeometry();
-geometry.setFromPoints(v3Array);
-const points = new THREE.Points(geometry, new THREE.PointsMaterial({color: 0xff0000, size: 0.25 }));
-scene.add(points);
+const material = new THREE.PointsMaterial({ size: 0.25, color: 0xffff00})
+const points1 = new THREE.Points(geometry, material);
+scene.add(points1);
 //-------- ----------
 // RENDER
 //-------- ----------

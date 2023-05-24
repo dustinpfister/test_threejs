@@ -7,9 +7,9 @@
 * () have a simple demo that is about getting a single point along a curve
 * () use the get point method
 
-## () s2-1-points-getpoints
-* () have a simple demo that is about getting a count of points
-* () use the get points curve class method
+## ( done 05/24/2023 ) s2-1-points-getpoints
+* (done) have a simple demo that is about getting a count of points
+* (done) use the get points curve class method
 
 ## ( done 05/24/2023 ) move files, r146 style
 * (done) move files to root of demo folders
