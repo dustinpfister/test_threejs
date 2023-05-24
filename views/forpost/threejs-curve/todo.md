@@ -3,10 +3,10 @@
 ## () - finish sx-data-curve section
 * finish the data curve section
 
-## ( ) - s2-3-points-update-alpha
-* () continue with the get point method by starting a demo where the alpha will be updated over time
-* () this will then need to be an update loop example
-* () use the lerp method of the math utils object to lerp an alpha value from one state to another
+## ( done 05/24/2023 ) - s2-3-points-update-alpha
+* (done) continue with the get point method by starting a demo where the alpha will be updated over time
+* (done) this will then need to be an update loop example
+* (done) use the lerp method of the math utils object to lerp an alpha value from one state to another
 
 ## ( done 05/24/2023 ) s2-2-points-getpoint
 * (done) have a simple demo that is about getting a single point along a curve
