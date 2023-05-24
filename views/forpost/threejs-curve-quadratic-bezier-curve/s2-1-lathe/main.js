@@ -13,9 +13,9 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 // CURVE
 // ---------- ----------
-const v_start = new THREE.Vector2(0, 0);
-const v_end = new THREE.Vector2(5, 3);
-const v_control = v_start.clone().lerp(v_end, 0.5).add( new THREE.Vector2(5, -2) );
+const v_start = new THREE.Vector2(0, -2.5);
+const v_end = new THREE.Vector2(0, 2.5);
+const v_control = v_start.clone().lerp(v_end, 0.5).add( new THREE.Vector2(5, 7) );
 const curve = new THREE.QuadraticBezierCurve(v_start, v_control, v_end);
 // ---------- ----------
 // SHAPE/GEOMETRY
