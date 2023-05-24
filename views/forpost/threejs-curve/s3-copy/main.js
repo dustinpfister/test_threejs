@@ -1,25 +1,23 @@
-//******** **********
+//-------- ----------
 // SCENE, CAMERA, RENDERER
-//******** **********
-let scene = new THREE.Scene();
+//-------- ----------
+const scene = new THREE.Scene();
 scene.background = new THREE.Color('#000000');
 scene.add( new THREE.GridHelper(10, 10, 0x00ff00, 0x4a4a4a) )
-let camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-camera.position.set(10, 10, 10);
-camera.lookAt(0, 0, 0);
-let renderer = new THREE.WebGLRenderer();
-renderer.setSize(640, 480);
+const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
 document.getElementById('demo').appendChild(renderer.domElement);
-//******** **********
+//-------- ----------
 // LIGHT
-//******** **********
+//-------- ----------
 let dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(3, 10, 1).normalize();
 scene.add(dl);
 scene.add( new THREE.AmbientLight(0xffffff, 0.05) )
-//******** **********
+//-------- ----------
 // CURVE CLASS
-//******** **********
+//-------- ----------
 class CustomSinCurve extends THREE.Curve {
     constructor( a = 0.5, b = 0.25, scale = 1 ) {
         super();
@@ -34,9 +32,9 @@ class CustomSinCurve extends THREE.Curve {
         return optionalTarget.set( tx, ty, tz ).multiplyScalar( this.scale );
     }
 };
-//******** **********
+//-------- ----------
 // MESH
-//******** **********
+//-------- ----------
 let path = new CustomSinCurve( 5 ),
 tubularSegments = 800,
 radius = 0.25,
@@ -47,9 +45,11 @@ let mesh = new THREE.Mesh(
     new THREE.MeshStandardMaterial( { color: 0xff0000, side: THREE.DoubleSide })
 );
 scene.add( mesh );
-//******** **********
+//-------- ----------
 // LOOP
-//******** **********
+//-------- ----------
+camera.position.set(10, 10, 10);
+camera.lookAt(0, 0, 0);
 let controls = new THREE.OrbitControls(camera, renderer.domElement);
 let fps = 30,
 frame = 0,
@@ -71,5 +71,5 @@ let loop = function () {
         frame %= frameMax;
     }
 };
-loop();    
+loop();
 
