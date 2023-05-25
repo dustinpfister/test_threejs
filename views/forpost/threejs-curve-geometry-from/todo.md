@@ -1,5 +1,9 @@
 # threejs-curve-geometry-from todo list
 
+## ( done 05/25/2023 ) moved files
+* (done) moved js files to roots od demo folders
+* (done) removed light that is not being used in s1-1-basic-setfrompoints
+
 ## ( done 12/16/2022 ) s1-2-basic-get-point
 * (done) basic example in which I am using the get point method
 

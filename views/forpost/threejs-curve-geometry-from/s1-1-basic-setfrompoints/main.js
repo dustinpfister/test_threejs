@@ -18,15 +18,6 @@ const geoFromCurve = (curve, detail) => {
     return new THREE.BufferGeometry().setFromPoints( curve.getPoints(detail) );
 };
 // ---------- ----------
-// LIGHT
-// ---------- ----------
-const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(2, 1, 0);
-scene.add(dl);
-const dl2 = new THREE.DirectionalLight(0xffffff, 1);
-dl2.position.set(2, -1, 0);
-scene.add(dl2);
-// ---------- ----------
 // CURVES
 // ---------- ----------
 const c1_start = new THREE.Vector3(-5,0,5), 
@@ -40,7 +31,7 @@ const curve2 = new THREE.QuadraticBezierCurve3(c2_start, c2_control, c2_end);
 // ---------- ----------
 // LINES
 // ---------- ----------
-const material_line = new THREE.LineBasicMaterial({ linewidth: 8, color: 0xff0000});
+const material_line = new THREE.LineBasicMaterial({ linewidth: 8, color: 0x00ff00});
 const line1 = new THREE.Line( geoFromCurve(curve1, 50), material_line );
 scene.add(line1);
 const line2 = new THREE.Line( geoFromCurve(curve2, 50), material_line );
