@@ -1,5 +1,13 @@
 # threejs-curve-geometry-from todo list
 
+## () s2-3-2dcurves-lathegeometry
+
+## () s2-2-2dcurves-extrudegeometry
+
+## ( done 05/25/2023 ) s2-1-2dcurves-shapegeometry
+* (done) start a seciton on making geometry from 2D curves starting with a shape geometry demo
+* (done) rename older demo seciton numbers
+
 ## ( done 05/25/2023 ) moved files
 * (done) moved js files to roots od demo folders
 * (done) removed light that is not being used in s1-1-basic-setfrompoints
