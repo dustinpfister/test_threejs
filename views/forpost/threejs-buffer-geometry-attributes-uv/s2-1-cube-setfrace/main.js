@@ -57,25 +57,28 @@ ctx = canvas.getContext('2d');
 canvas.width = 128;
 canvas.height = 128;
 // draw to canvas
-const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-gradient.addColorStop(0, "black");
-gradient.addColorStop(1, "lime");
-// Set the fill style and draw a rectangle
-ctx.fillStyle = gradient;
-ctx.fillRect(0, 0, canvas.width, canvas.height);
 let i = 0;
 const len = CELL_SIZE * 2;
 const cellsize = canvas.width / CELL_SIZE;
-ctx.fillStyle = 'white';
+const COLORS = 'red,lime,blue,yellow,purple,cyan'.split(',');
 ctx.textAlign = 'center';
 ctx.textBaseline = 'middle';
 ctx.font = '32px arial';
 while(i < len){
     const gx = i % CELL_SIZE;
     const gy = Math.floor( i / CELL_SIZE );
-    const x = cellsize * gx + cellsize / 2;
-    const y = cellsize * gy + cellsize / 2;
-    ctx.fillText(i + 1, x, y);
+    const x = cellsize * gx;
+    const y = cellsize * gy 
+    // gradient for background
+    const gradient = ctx.createLinearGradient(x, y, x + cellsize, y + cellsize);
+    gradient.addColorStop(0.00, 'black');
+    gradient.addColorStop(0.50, COLORS[i] || '#888888');
+    gradient.addColorStop(1.00, 'black');
+    // Set the fill style and draw a rectangle
+    ctx.fillStyle = gradient;
+    ctx.fillRect(x, y, cellsize, cellsize);
+    ctx.fillStyle = 'white';
+    ctx.fillText(i + 1, x  + cellsize / 2, y + cellsize / 2);
     i += 1;
 }
 // draw to cells
