@@ -1,9 +1,9 @@
 # threejs-basic-material
 
-## () s2-2-map-uv-attribute
+## ( done 05/26/2023 ) s2-2-map-uv-attribute
 * (done) start a demo that will use a texture, and uv mapping
 * (done) I can base this example off of what I all read worked out for my threejs-example-uvmap-cube-canvas-update project
-* () work out a custom sheet for this
+* (done) work out a custom sheet for this
 
 ## ( done 05/26/2023 ) - moved files
 * (done) moved files to roots of demo folders

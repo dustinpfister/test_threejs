@@ -1,5 +1,19 @@
+//-------- ----------
+// SCENE
+//-------- ----------
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xafafaf);
+const camera = new THREE.PerspectiveCamera(50, 320 / 240, 0.1, 10);
+camera.position.set(1.25, 1.25, 1.25);
+camera.lookAt(0, 0, 0);
+const renderer = new THREE.WebGL1Renderer();
+renderer.setSize(640, 480, false);
+(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
+//-------- ----------
+// HELPER FUNCITONS
+//-------- ----------
 // get a uvData array for a given uv face index and cell index
-const getUVData = (uv, faceIndex, cellIndex, gridSize) => {
+const getUVData = (faceIndex, cellIndex, gridSize) => {
     faceIndex = faceIndex === undefined ? 0: faceIndex;
     cellIndex = cellIndex === undefined ? 0: cellIndex;
     gridSize = gridSize === undefined ? 4: gridSize;
@@ -32,53 +46,47 @@ const setUVData = (uv, uvData, order ) => {
 };
 // main helper
 const setUVFace = (uv, faceIndex, cellIndex, order, gridSize) => {
-    const uvData = getUVData(uv, faceIndex, cellIndex, gridSize);
+    const uvData = getUVData(faceIndex, cellIndex, gridSize);
     setUVData(uv, uvData, order );
 };
-//-------- ----------
-// SCENE
-//-------- ----------
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xafafaf);
-const camera = new THREE.PerspectiveCamera(50, 320 / 240, 0.1, 10);
-camera.position.set(1.25, 1.25, 1.25);
-camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGL1Renderer();
-renderer.setSize(640, 480, false);
-(document.getElementById('demo') || document.body).appendChild(renderer.domElement);
 //-------- ---------- 
 // CANVAS
 //-------- ----------
+const CELL_SIZE = 2;
 const canvas = document.createElement('canvas'),
 ctx = canvas.getContext('2d');
 // set canvas native size
-canvas.width = 32;
-canvas.height = 32;
+canvas.width = 64;
+canvas.height = 64;
 // draw to canvas
-ctx.fillStyle = '#00ffff';
+ctx.fillStyle = '#000000';
 ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.lineWidth = 3;
+let i = 0;
+const len = CELL_SIZE * 2;
+const cellsize = canvas.width / CELL_SIZE;
 ctx.fillStyle = 'white';
-ctx.strokeStyle = '#000000';
-ctx.beginPath();
-ctx.arc(canvas.width / 2, canvas.height / 2, 14, 0, Math.PI * 2);
-ctx.closePath();
-ctx.stroke();
-ctx.fill();
-ctx.beginPath();
-ctx.rect(0,0,canvas.height,canvas.height)
-ctx.stroke();
-
-
+ctx.textAlign = 'center';
+ctx.textBaseline = 'middle';
+ctx.font = '32px arial';
+while(i < len){
+    const gx = i % CELL_SIZE;
+    const gy = Math.floor( i / CELL_SIZE );
+    const x = cellsize * gx + cellsize / 2;
+    const y = cellsize * gy + cellsize / 2;
+    ctx.fillText(i, x, y);
+    i += 1;
+}
+// draw to cells
+//-------- ---------- 
+// GEOMETRY
+//-------- ----------
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const att_uv = geometry.getAttribute('uv');
-
-setUVFace(att_uv, 0, 0, [0,1,2,3], 2)
-
+setUVFace(att_uv, 0, 0, [0,1,2,3], CELL_SIZE);
 //-------- ---------- 
-// CUBE
+// MESH
 //-------- ----------
-const cube = new THREE.Mesh(
+const mesh = new THREE.Mesh(
     // box GEOMETRY
     geometry,
     // BASIC MATERIAL WITH A COLOR MAP
@@ -86,7 +94,7 @@ const cube = new THREE.Mesh(
         map: new THREE.CanvasTexture(canvas)
     })
 );
-scene.add(cube);
+scene.add(mesh);
 //-------- ----------
 // RENDER
 //-------- ----------
