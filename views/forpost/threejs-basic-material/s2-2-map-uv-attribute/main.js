@@ -4,8 +4,6 @@
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xafafaf);
 const camera = new THREE.PerspectiveCamera(50, 320 / 240, 0.1, 10);
-camera.position.set(1.25, 1.25, 1.25);
-camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -52,12 +50,12 @@ const setUVFace = (uv, faceIndex, cellIndex, order, gridSize) => {
 //-------- ---------- 
 // CANVAS
 //-------- ----------
-const CELL_SIZE = 2;
+const CELL_SIZE = 4;
 const canvas = document.createElement('canvas'),
 ctx = canvas.getContext('2d');
 // set canvas native size
-canvas.width = 64;
-canvas.height = 64;
+canvas.width = 128;
+canvas.height = 128;
 // draw to canvas
 ctx.fillStyle = '#000000';
 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -73,7 +71,7 @@ while(i < len){
     const gy = Math.floor( i / CELL_SIZE );
     const x = cellsize * gx + cellsize / 2;
     const y = cellsize * gy + cellsize / 2;
-    ctx.fillText(i, x, y);
+    ctx.fillText(i + 1, x, y);
     i += 1;
 }
 // draw to cells
@@ -82,20 +80,60 @@ while(i < len){
 //-------- ----------
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const att_uv = geometry.getAttribute('uv');
-setUVFace(att_uv, 0, 0, [0,1,2,3], CELL_SIZE);
+'0,1,2,3,4,5'.split(',').forEach( ( i ) => {
+    setUVFace(att_uv, i, i, [0,1,2,3], CELL_SIZE);
+});
+//-------- ---------- 
+// texture
+//-------- ----------
+const texture = new THREE.CanvasTexture(canvas);
+texture.magFilter = THREE.NearestFilter;
+//-------- ---------- 
+// MATERIAL
+//-------- ----------
+const material = new THREE.MeshBasicMaterial({
+    map: texture
+});
 //-------- ---------- 
 // MESH
 //-------- ----------
-const mesh = new THREE.Mesh(
-    // box GEOMETRY
+const mesh1 = new THREE.Mesh(
     geometry,
-    // BASIC MATERIAL WITH A COLOR MAP
-    new THREE.MeshBasicMaterial({
-        map: new THREE.CanvasTexture(canvas)
-    })
+    material
 );
-scene.add(mesh);
-//-------- ----------
-// RENDER
-//-------- ----------
-renderer.render(scene, camera);
+scene.add(mesh1);
+// ---------- ----------
+// ANIMATION LOOP
+// ---------- ----------
+camera.position.set(1.25, 1.25, 1.25);
+camera.lookAt(0, 0, 0);
+// constant values and state for main app loop
+const FPS_UPDATE = 20, // fps rate to update ( low fps for low CPU use, but choppy video )
+FPS_MOVEMENT = 30,     // fps rate to move object by that is independent of frame update rate
+FRAME_MAX = 900,
+CLOCK = new THREE.Clock(true); // USING THREE.Clock in place of new Date() or Date.now()
+let secs = 0,
+frame = 0,
+lt = CLOCK.getElapsedTime();
+// update
+const update = (frame, frameMax) => {
+    const a1 = frame / frameMax;
+    mesh1.rotation.y = Math.PI * 2 * a1;
+    mesh1.rotation.x = Math.PI * 8 * a1;
+};
+// loop
+const loop = () => {
+    const now = CLOCK.getElapsedTime(),
+    secs = (now - lt);
+    requestAnimationFrame(loop);
+    if(secs > 1 / FPS_UPDATE){
+        // update, render
+        update( Math.floor(frame), FRAME_MAX);
+        renderer.render(scene, camera);
+        // step frame
+        frame += FPS_MOVEMENT * secs;
+        frame %= FRAME_MAX;
+        lt = now;
+    }
+};
+loop();
