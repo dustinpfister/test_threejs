@@ -1,5 +1,9 @@
 # threejs-buffer-geometry-attributes-uv
 
+## ( done 05/26/2023 ) s2-1-uvmap-setfrace
+* (done) new uvmap setfrace demo based on the demo I made for threejs-basic-material
+* (done) rename older demos as neded
+
 ## ( done 04/10/2023 ) update to r146 style
 * (done) update demos to r146 style
 
