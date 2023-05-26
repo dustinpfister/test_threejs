@@ -57,7 +57,11 @@ ctx = canvas.getContext('2d');
 canvas.width = 128;
 canvas.height = 128;
 // draw to canvas
-ctx.fillStyle = '#000000';
+const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+gradient.addColorStop(0, "black");
+gradient.addColorStop(1, "lime");
+// Set the fill style and draw a rectangle
+ctx.fillStyle = gradient;
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 let i = 0;
 const len = CELL_SIZE * 2;
