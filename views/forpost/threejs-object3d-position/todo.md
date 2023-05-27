@@ -30,9 +30,9 @@
 ## ( ) s4-2-geometry-lerp
 * () same as before but now allow for lerp points between them with low polly geo
 
-## () style fix for basic section
-* () files should be in roots of each folder
-* () remove IIFEs from demos
+## ( done 05/27/2023 ) style fix for basic section
+* (done) files should be in roots of each folder
+* (done) remove IIFEs from demos
 
 ## ( done 12/05/2022 ) s4-1-geometry
 * (done) rename all loop examples to sx-* for now as that section will get shiften down a few times
