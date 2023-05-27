@@ -1,8 +1,6 @@
 # threejs-object3d-position todo list
 
-
-
-## () s4-x-loop-world-local
+## () s5-x-loop-world-local
 * () this will be an animation in which I have two groups
 * () the two groups will be in motion
 * () the children of both groups will be in motion
@@ -10,25 +8,24 @@
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
 
+## () sx-box3 section
+* () use box3 to set an area where mesh objects can be
+* () use box3 to make it so the position of objects will not go below a plane
 
 ## () sx-x-raycaster section
 * () start a raycaster section with at least one basic example with say a torus geometry
 * () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
 * () at least a basic menu example
 
-## () sx-ani-stochastic section
+## () sx-x-stochastic section
 * () start a section for stochastic animation examples
 
 ## () sx-wrap-clamp section
 * () animation involving the use of clamp
 * () animation involving wrap
 
-## () sx-box3 section
-* () use box3 to set an area where mesh objects can be
-* () use box3 to make it so the position of objects will not go below a plane
-
-## ( ) s4-2-geometry-lerp
-* () same as before but now allow for lerp points between them with low polly geo
+## ( done 05/27/2023 ) s4-2-geometry-lerp
+* (done) same as before but now allow for lerp points between them with low polly geo
 
 ## ( done 05/27/2023 ) style fix for basic section
 * (done) files should be in roots of each folder
