@@ -41,15 +41,11 @@ const update = function(frame, frameMax){
     const a1 = frame / frameMax;
     const a2 = 1 - Math.abs(0.5 - (a1 * 8 % 1)) / 0.5;
     const a3 = THREE.MathUtils.smootherstep(a2, 0, 1);
-
     const unit_length = -8 + 16 * a3;
-
     const e = new THREE.Euler();
     e.y = Math.PI * 2 * a1;
     mesh1.position.set(1,0,0).applyEuler(e).multiplyScalar(unit_length);
-
     mesh2.position.copy(mesh1.position).clamp(V_MIN, V_MAX);
-
 };
 // loop
 const loop = () => {
