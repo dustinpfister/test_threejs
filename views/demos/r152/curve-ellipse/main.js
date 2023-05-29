@@ -11,16 +11,20 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.querySelector('#demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
+// CURVE
+// ---------- ----------
+const curve = new THREE.EllipseCurve(0, 0, 5, 2.5);
+// ---------- ----------
 // OBJECTS
 // ---------- ----------
 scene.add( new THREE.GridHelper( 10,10 ) );
-const mesh = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshNormalMaterial());
-scene.add(mesh);
+const points1 = new THREE.Points(
+    new THREE.BufferGeometry().setFromPoints( curve.getPoints(50) ),
+    new THREE.PointsMaterial({ size: 0.4 }));
+scene.add(points1);
 // ---------- ----------
 // RENDER
 // ---------- ----------
-camera.position.set(2, 2, 2);
+camera.position.set(8, 8, 8);
 camera.lookAt(0, 0, 0);
 renderer.render(scene, camera);
