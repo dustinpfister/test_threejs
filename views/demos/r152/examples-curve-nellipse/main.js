@@ -2,7 +2,7 @@
 // IMPORT - threejs and any addons I want to use
 // ---------- ----------
 import * as THREE from 'three';
-import * as MultifocalEllipseCurve from 'MultifocalEllipseCurve';
+import { MultifocalEllipseCurve } from 'MultifocalEllipseCurve';
 // ---------- ----------
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
@@ -14,10 +14,7 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 // CURVE
 // ---------- ----------
-const curve = new THREE.EllipseCurve(0, 0, 5, 2.5);
-// ---------- ----------
-// OBJECTS
-// ---------- ----------
+const curve = new MultifocalEllipseCurve();
 scene.add( new THREE.GridHelper( 10,10 ) );
 const points1 = new THREE.Points(
     new THREE.BufferGeometry().setFromPoints( curve.getPoints(50) ),
