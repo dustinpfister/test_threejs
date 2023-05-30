@@ -1,4 +1,4 @@
-## examples-curve-nellipse
+## examples-curve-multifocal-ellipse
 
 I would like to start a module where I extend the base curve class to create a new curve class that is used to create an N-ellipse. Simply put this is just any ellipse that is three or more foci. I have looked into a number of resources as to how to go about making this kind of curve class, but thus far have not pieced something together that I really like with this.
 
