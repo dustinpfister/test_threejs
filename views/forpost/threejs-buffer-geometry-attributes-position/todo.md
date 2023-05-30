@@ -1,17 +1,10 @@
 # threejs-buffer-geometry-attributes-position todo list
 
-## () - expand s3-4-v3array-applyeuler
-* () work out something where the change in direction and unit length results in a kind of twist
+## () sx-1-extends-lathegeometry
+* () start a section on the subject of extending built in geometry, starting with lathe geometry
 
-## () - s4-x-loop-tween-many
-* () have a tween many example
-
-## () - s4-4-loop-boxgeometry-nonindexed
-* () have a non indexed animation in which I move all the triangles out
-
-## () - s4-3-loop-boxgeometry-vert
-* () see about moving each point
-* () still use an indexed box geometry
+## () sx-1-curves-cubic-bezier
+* () start an example where I create a curve to use as a way to create a position attribute
 
 ## ( done 05/09/2023 ) move files, r146 style
 * (done) move js file to root of demo folders
