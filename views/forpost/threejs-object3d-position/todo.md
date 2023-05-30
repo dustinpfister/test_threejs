@@ -20,8 +20,8 @@
 ## () sx-x-stochastic section
 * () start a section for stochastic animation examples
 
-## () sx-2-bounds-wrap
-* () animation involving wrap
+## ( done 05/30/2023 ) sx-2-bounds-wrap
+* (done) animation involving wrap
 
 ## ( done 05/27/2023 ) s5-1-bounds-clamp
 * (done) animation involving the use of clamp
