@@ -1,11 +1,16 @@
 # threejs-buffer-geometry-loader todo list
 
-## () new s1-1-basic example
-* () rename the old s1-1-basic to s1-2-basic-loop
-* () start a new s1-1-basic that is just a static render of a scene
+## () - s5-1-module-iife
+* () I would like to have a simple module that will contain a decent load method
+* () I can give many urls to this load method
+* () the load method must return a promise
 
-## () - s4-2-manager-many
-* () start a s4-2-manager-many demo where I load more than one file
+## ( done 05/30/2023 ) new s1-1-basic example
+* (done) rename the old s1-1-basic to s1-2-basic-loop
+* (done) start a new s1-1-basic that is just a static render of a scene
+
+## ( done 02/28/2023 ) - s4-2-manager-many
+* (done) start a s4-2-manager-many demo where I load more than one file
 
 ## ( done 02/28/2023 ) - s4-1-manager
 * (done) start a s4-1-manager demo that will be a basic getting started type demo of the loading manager
