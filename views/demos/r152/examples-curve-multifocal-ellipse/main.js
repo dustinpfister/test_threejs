@@ -23,7 +23,7 @@ const foci = [
 let i = 0;
 const count = 12;
 while(i < count){
-    const radius = 0.125 + 0.70 * ( i / count);
+    const radius = 0.25 + 1.75 * ( i / count);
     const curve = new MultifocalEllipseCurve(foci, radius);
     const line = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints( curve.getPoints(50) ),

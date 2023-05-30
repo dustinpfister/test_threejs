@@ -26,8 +26,9 @@ class MultifocalEllipseCurve extends THREE.Curve {
              d += Math.sqrt( Math.pow( x - u, 2) + Math.pow( y - v, 2)  );
              i += 1;
          }
-         return point.set(x, y).multiplyScalar(d);
+         return point.set(x, y).multiplyScalar(d / len);
     }
+
 }
 
 export { MultifocalEllipseCurve };
