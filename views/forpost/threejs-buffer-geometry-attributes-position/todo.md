@@ -3,8 +3,9 @@
 ## () sx-1-extends-lathegeometry
 * () start a section on the subject of extending built in geometry, starting with lathe geometry
 
-## () sx-1-curves-cubic-bezier
-* () start an example where I create a curve to use as a way to create a position attribute
+## ( done 05/30/2023 ) s4-1-curves-cubic-bezier
+* (done) start an example where I create a curve to use as a way to create a position attribute
+* (done) rename loop example folders
 
 ## ( done 05/09/2023 ) move files, r146 style
 * (done) move js file to root of demo folders
