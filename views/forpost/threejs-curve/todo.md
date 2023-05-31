@@ -3,10 +3,9 @@
 ## () - finish sx-data-curve section
 * finish the data curve section
 
-## () combine s3, and s4 demos in new s3-x-customsincurve section
-* () rename s3-spiral1 to s3-1-customsincurve-spiral
-* () rename s4-copy to s4-2-customsincurve-buffer-geometry-copy
-
+## ( done 05/31/2023 ) combine s3, and s4 demos in new s3-x-customsincurve section
+* (done) rename s3-spiral1 to s3-1-customsincurve-spiral
+* (done) rename s4-copy to s4-2-customsincurve-buffer-geometry-copy
 
 ## ( done 05/24/2023 ) - s2-3-points-update-alpha
 * (done) continue with the get point method by starting a demo where the alpha will be updated over time
