@@ -3,20 +3,28 @@
 ## () - finish sx-data-curve section
 * finish the data curve section
 
-## () - s6-2-object3d-rotation
-* () - 
+## () - s7-2-rotateobjects-moveandlook
+* () set up a curve path
+* () have a cone mesh move along the curve path
+* () have another mesh that will be th current lookat point along the curve path
 
-## () - s6-1-object3d-position
-* () - 
+## () - s7-1-rotateobjects-basic
+* () - start a new section where the focus is using curves to set the rotation of an object
+* () - have a mesh that uses the cone geoetry
+* () - use another mesh to mark the current point to look at in a curve
+
+## () - s6-1-moveobjects-basic
+* () - start a collection of demos that have to do with using curves to move objects
+* () - this first basic example can just be a single curve
 
 ## () - s5-1-alphas-line
 * () start the first of a collection of examples where I am using 2d curves to create alpha values
 
-## () - s4-2-2dcurves-lathe
-* () use the lathe geoetry and a 2dShape created with one or more curves
+## ( done 05/31/2023 ) - s4-2-2dcurves-lathe
+* (done) use the lathe geoetry and a 2dShape created with one or more curves
 
-## () - s4-1-2dcurves-shape
-* () have a simple 2d demo of a shape using the extrude geometry
+## ( done 05/31/2023 ) - s4-1-2dcurves-shape
+* (done) have a simple 2d demo of a shape using the extrude geometry
 
 ## ( done 05/31/2023 ) - s3-1-curvepaths
 * (done) start the first demo for a section on curve paths

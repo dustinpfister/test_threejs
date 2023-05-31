@@ -9,15 +9,12 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 // CURVE
 // ---------- ----------
-const v_start = new THREE.Vector2(0, -2.5);
-const v_end = new THREE.Vector2(0, 2.5);
-const v_control = v_start.clone().lerp(v_end, 0.5).add( new THREE.Vector2(5, 7) );
-const curve = new THREE.QuadraticBezierCurve(v_start, v_control, v_end);
+const radian_start = Math.PI * 1.8;
+const curve = new THREE.ArcCurve(0, 0, 5, radian_start, Math.PI * 0.2, false );
 // ---------- ----------
 // SHAPE/GEOMETRY
 // ---------- ----------
-const v2array = curve.getPoints(64);
-const geometry = new THREE.LatheGeometry( v2array, 40 );
+const geometry = new THREE.LatheGeometry( curve.getPoints(64), 40 );
 // ---------- ----------
 // SCENE CHILD OBJECTS
 // ---------- ----------
@@ -27,6 +24,6 @@ scene.add( new THREE.GridHelper(10, 10) );
 // ---------- ----------
 // RENDER
 // ---------- ----------
-camera.position.set(10, 10, 10);
+camera.position.set(8, 12, 8);
 camera.lookAt(0, 0, 0);
 renderer.render(scene, camera);
