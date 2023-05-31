@@ -30,13 +30,14 @@ const createCurveAlphaFunc = (curve, grain = 100) => {
       return 1 - ( Math.sqrt( Math.pow(v.y - y_max, 2) ) / range );
    };
 };
-
+// math utils get alphas functions
 const getSmoothAlpha = (n = 0, d = 1) => {
     return THREE.MathUtils.smoothstep(n / d, 0, 1);
 };
 const getSmootherAlpha = (n = 0, d = 1) => {
     return THREE.MathUtils.smootherstep(n / d, 0, 1);
 };
+// get bias get alpha function
 const getBiasAlpha = (n = 0, d = 1) => {
    const a = n / d;
    return 1 - Math.abs( 0.5 - a ) / 0.5;
@@ -139,12 +140,10 @@ const sm = {
 // main update method for the scene
 const update = function(sm){
     sm.a_frame = sm.frame / sm.FRAME_MAX;
-
     sm.a_bias = getBiasAlpha(sm.a_frame, 1); 
     sm.a_smooth = getSmoothAlpha(sm.a_frame, 1); //getAlpha(sm.a_bias, 1);
     sm.a_smoother = getSmootherAlpha(sm.a_frame, 1);
     sm.a_curve = getCurveAlpha(sm.a_frame, 1);
-
     mesh1.rotation.y = Math.PI * 2 * sm.a_bias;
     mesh1.scale.set(1,1,1).multiplyScalar(sm.a_bias);
     mesh2.rotation.y = Math.PI * 2 * sm.a_smooth;
@@ -166,7 +165,6 @@ const render2d = (sm) => {
     drawCurveGraph(ctx, getSmoothAlpha, sm.a_frame, 460, 120, 160, 100, 100, '#ff0000');
     drawCurveGraph(ctx, getSmootherAlpha, sm.a_frame, 460, 230, 160, 100, 100, '#00ff00');
     drawCurveGraph(ctx, getCurveAlpha, sm.a_frame, 460, 340, 160, 100, 100, '#0000ff');
-
     // simple text info
     ctx.fillStyle = 'white';
     ctx.textBaseline = 'top';
