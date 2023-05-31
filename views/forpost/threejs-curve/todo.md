@@ -19,6 +19,9 @@
 
 ## () - s5-1-alphas-line
 * () start the first of a collection of examples where I am using 2d curves to create alpha values
+* () I am going to want to start this demo with the canvas loop demo from threejs-getting-started
+* () I would like to have a simple 2d graph overlay for the 2d canvas layer
+* () this first curve alpha demo can be a single cubic bezier curve
 
 ## ( done 05/31/2023 ) - s4-2-2dcurves-lathe
 * (done) use the lathe geoetry and a 2dShape created with one or more curves
