@@ -17,7 +17,14 @@
 * () - start a collection of demos that have to do with using curves to move objects
 * () - this first basic example can just be a single curve
 
-## ( done 05/31/2023 ) - s5-1-alphas-line
+## () s5-2-alphas-mathutils
+* (done) make another demo that is a comparison to other math utils options
+* (done) mesh moved by MathUtils.smoothstep
+* (done) mesh moved by MathUtils.smootherstep
+* () have differing colors for each mesh and graph
+* () see about using a curve path for the get alpha that is created with a curve
+
+## ( done 05/31/2023 ) - s5-1-alphas
 * (done) start the first of a collection of examples where I am using 2d curves to create alpha values
 * (done) I am going to want to start this demo with the canvas loop demo from threejs-getting-started
 * (done) I would like to have a simple 2d graph overlay for the 2d canvas layer
