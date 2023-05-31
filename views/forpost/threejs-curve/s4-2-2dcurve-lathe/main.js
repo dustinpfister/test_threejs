@@ -10,7 +10,8 @@ renderer.setSize(640, 480, false);
 // CURVE
 // ---------- ----------
 const radian_start = Math.PI * 1.8;
-const curve = new THREE.ArcCurve(0, 0, 5, radian_start, Math.PI * 0.2, false );
+const radian_end = Math.PI * 0.2;
+const curve = new THREE.ArcCurve(0, 0, 5, radian_start, radian_end, false );
 // ---------- ----------
 // SHAPE/GEOMETRY
 // ---------- ----------
