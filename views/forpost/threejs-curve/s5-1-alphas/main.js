@@ -30,16 +30,50 @@ const createCurveAlphaFunc = (curve, grain = 100) => {
       return 1 - ( Math.sqrt( Math.pow(v.y - y_max, 2) ) / range );
    };
 };
+// draw a curve graph Line with a getApha function
+const drawCurveGraph = (ctx, getAlpha, a_pointer = 0.5, x = 460, y = 10, w = 160, h = 120, grain = 100 ) => {
+    // outline, background
+    ctx.beginPath();
+    ctx.rect(x, y, w, h);
+    ctx.fillStyle = 'rgba(0,0,0, 0.5)';
+    ctx.strokeStyle = 'white';
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    // alpha line
+    let i = 0;
+    while(i < grain){
+        const a_pt = i / ( grain - 1);
+        const alpha = getAlpha( a_pt, 1 );
+        const x2 = x + w * a_pt;
+        const y2 = y + h - h * alpha;
+        if(i === 0){
+            ctx.moveTo(x2, y2);
+        }
+        if(i > 0){
+            ctx.lineTo(x2, y2);
+        }
+        i += 1;
+    }
+    ctx.stroke();
+    // draw pointer
+    ctx.fillStyle = 'white';
+    const alpha = getAlpha( a_pointer, 1 );
+    const cx = x + w * a_pointer;
+    const cy = y + h - h * alpha;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 5, 0, Math.PI * 2, false);
+    ctx.fill();
+
+};
 // ---------- ----------
 // CURVE ALPHA
 // ---------- ----------
 const v_start = new THREE.Vector2(0, 0);
 const v_end = new THREE.Vector2(1, 1);
-const curve = new THREE.LineCurve(v_start, v_end);
+const v_control = v_start.clone().lerp(v_end, 0.25).add( new THREE.Vector2( 0, 2 ) );
+const curve = new THREE.QuadraticBezierCurve(v_start, v_control, v_end);
 const getAlpha = createCurveAlphaFunc(curve);
-
-console.log( getAlpha(0.75) );
-
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
@@ -69,11 +103,16 @@ const sm = {
    frame: 0,           // 30 / 450
    tick: 0,            //  1 / 450 ( about 1 FPS then )
    now: new Date(),
-   lt: new Date()
+   lt: new Date(),
+   a_frame: 0
 };
 // main update method for the scene
 const update = function(sm){
-    const a_frame = sm.frame / sm.FRAME_MAX;
+    sm.a_frame = sm.frame / sm.FRAME_MAX;
+    sm.a_bias = 1 - Math.abs( 0.5 - sm.a_frame ) / 0.5;
+    sm.a_curve = getAlpha(sm.a_bias, 1);
+    mesh1.rotation.y = Math.PI * 2 * sm.a_curve;
+    mesh1.scale.set(2,2,2).multiplyScalar(sm.a_curve);
 };
 // 2d render layer
 const render2d = (sm) => {
@@ -82,11 +121,14 @@ const render2d = (sm) => {
     ctx.fillRect(0,0, canvas_2d.width, canvas_2d.height);
     ctx.drawImage(canvas_3d, 0, 0, canvas_2d.width, canvas_2d.height);
     ctx.fillRect(0,0, canvas_2d.width, canvas_2d.height);
+    // draw the curve graph
+    drawCurveGraph(ctx, getAlpha, sm.a_bias)
     // simple text info
     ctx.fillStyle = 'white';
     ctx.textBaseline = 'top';
     ctx.font = '10px monospace';
     ctx.fillText('frame : ' + sm.frame + '/' + sm.FRAME_MAX, 5, 5);
+    ctx.fillText('a_curve : ' + sm.a_curve.toFixed(4), 5, 15);
 };
 const loop = () => {
     sm.now = new Date();

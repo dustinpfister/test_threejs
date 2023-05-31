@@ -17,12 +17,11 @@
 * () - start a collection of demos that have to do with using curves to move objects
 * () - this first basic example can just be a single curve
 
-## () - s5-1-alphas-line
+## ( done 05/31/2023 ) - s5-1-alphas-line
 * (done) start the first of a collection of examples where I am using 2d curves to create alpha values
 * (done) I am going to want to start this demo with the canvas loop demo from threejs-getting-started
-
-* () I would like to have a simple 2d graph overlay for the 2d canvas layer
-* () this first curve alpha demo can be a single cubic bezier curve
+* (done) I would like to have a simple 2d graph overlay for the 2d canvas layer
+* (done) this first curve alpha demo can be a single cubic bezier curve
 
 ## ( done 05/31/2023 ) - s4-2-2dcurves-lathe
 * (done) use the lathe geoetry and a 2dShape created with one or more curves
