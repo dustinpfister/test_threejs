@@ -42,12 +42,12 @@ const getBiasAlpha = (n = 0, d = 1) => {
    return 1 - Math.abs( 0.5 - a ) / 0.5;
 };
 // draw a curve graph Line with a getApha function
-const drawCurveGraph = (ctx, getAlpha, a_pointer = 0.5, x = 460, y = 10, w = 160, h = 120, grain = 100 ) => {
+const drawCurveGraph = (ctx, getAlpha, a_pointer = 0.5, x = 460, y = 10, w = 160, h = 120, grain = 100, style = 'white' ) => {
     // outline, background
     ctx.beginPath();
     ctx.rect(x, y, w, h);
     ctx.fillStyle = 'rgba(0,0,0, 0.5)';
-    ctx.strokeStyle = 'white';
+    ctx.strokeStyle = style;
     ctx.fill();
     ctx.stroke();
     ctx.beginPath();
@@ -68,7 +68,7 @@ const drawCurveGraph = (ctx, getAlpha, a_pointer = 0.5, x = 460, y = 10, w = 160
     }
     ctx.stroke();
     // draw pointer
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = style;
     const alpha = getAlpha( a_pointer, 1 );
     const cx = x + w * a_pointer;
     const cy = y + h - h * alpha;
@@ -90,25 +90,28 @@ const getCurveAlpha = createCurveAlphaFunc(curve);
 scene.add( new THREE.GridHelper( 10,10 ) );
 const mesh1 = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshNormalMaterial());
+    new THREE.MeshPhongMaterial({ color: 0xffffff }));
 mesh1.position.x = -3;
 scene.add(mesh1);
 const mesh2 = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshNormalMaterial());
+    new THREE.MeshPhongMaterial({ color: 0xff0000 }));
 mesh2.position.x = -1;
 scene.add(mesh2);
 const mesh3 = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshNormalMaterial());
+    new THREE.MeshPhongMaterial({ color: 0x00ff00 }));
 mesh3.position.x = 1;
 scene.add(mesh3);
-
 const mesh4 = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshNormalMaterial());
+    new THREE.MeshPhongMaterial({ color: 0x0000ff }));
 mesh4.position.x = 3;
 scene.add(mesh4);
+// light
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(0,2,1)
+scene.add(dl);
 // ---------- ----------
 // CONTROLS
 // ---------- ----------
@@ -159,10 +162,10 @@ const render2d = (sm) => {
     ctx.drawImage(canvas_3d, 0, 0, canvas_2d.width, canvas_2d.height);
     ctx.fillRect(0,0, canvas_2d.width, canvas_2d.height);
     // draw the curve graph
-    drawCurveGraph(ctx, getBiasAlpha, sm.a_frame, 460, 10, 160, 100);
-    drawCurveGraph(ctx, getSmoothAlpha, sm.a_frame, 460, 120, 160, 100);
-    drawCurveGraph(ctx, getSmootherAlpha, sm.a_frame, 460, 230, 160, 100);
-    drawCurveGraph(ctx, getCurveAlpha, sm.a_frame, 460, 340, 160, 100);
+    drawCurveGraph(ctx, getBiasAlpha, sm.a_frame, 460, 10, 160, 100, 100, '#ffffff');
+    drawCurveGraph(ctx, getSmoothAlpha, sm.a_frame, 460, 120, 160, 100, 100, '#ff0000');
+    drawCurveGraph(ctx, getSmootherAlpha, sm.a_frame, 460, 230, 160, 100, 100, '#00ff00');
+    drawCurveGraph(ctx, getCurveAlpha, sm.a_frame, 460, 340, 160, 100, 100, '#0000ff');
 
     // simple text info
     ctx.fillStyle = 'white';
