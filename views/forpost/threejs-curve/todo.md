@@ -3,6 +3,12 @@
 ## () - finish sx-data-curve section
 * finish the data curve section
 
+## () - s8-1-tubegeometry
+* () start a section for tube geometry with a basic demo
+* () just have a cubic bezier curve as the curve
+* () just create the geometry with the single curve with THREE.TubeGeometry
+* () use the mesh normal material
+
 ## () - s7-2-rotateobjects-moveandlook
 * () set up a curve path
 * () have a cone mesh move along the curve path
