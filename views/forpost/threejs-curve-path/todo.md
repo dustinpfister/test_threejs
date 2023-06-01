@@ -1,5 +1,13 @@
 # threejs-curve-path todo list
 
+## () s5-1-loop-tracks
+
+## () s4-1-shapes
+* () start a section on 2d curves paths and shapes
+
+## () s3-1-getpoint
+* () I would like to have a seciton on using the get point method in place of get spaced points
+
 ## () s2-1-update-lines
 * () I should have at least one if not more demos that have to do with updating curves
 * () the first demo of this section can just be line curves
