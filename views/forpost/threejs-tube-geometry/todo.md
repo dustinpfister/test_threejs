@@ -6,10 +6,10 @@
 * () switch to phong material
 * () use texture
 
-## () s2-2-curvepath-update
-* () start a loop example based on the code of the s2-1-curvepath example
-* () see about updating the curve children of the curve path
-* () I will then also need to update the geometry of the tube as well
+## ( done 06/02/2023 ) s2-2-curvepath-update
+* (done) start a loop example based on the code of the s2-1-curvepath example
+* (done) see about updating the curve children of the curve path
+* (done) I will then also need to update the geometry of the tube as well
 
 ## ( done 06/02/2023 ) s1-2-basic-texture
 * (done) use the basic material
