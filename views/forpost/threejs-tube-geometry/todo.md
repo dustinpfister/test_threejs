@@ -1,10 +1,17 @@
 # threejs-tube-geometry todo list
 
-## () s2-1-loop-pathstack
-* () start a loop example based on the code of the s1-2-basic example
+## () s2-3-curvepath-stack
+* () start a loop example based on the code of the s2-2-curvepath-update example
 * () I will want a group of these kinds of mesh objects
+* () switch to phong material
+* () use texture
 
-## ( ) s1-3-basic-texture
+## () s2-2-curvepath-update
+* () start a loop example based on the code of the s2-1-curvepath example
+* () see about updating the curve children of the curve path
+* () I will then also need to update the geometry of the tube as well
+
+## ( ) s1-2-basic-texture
 * () use the basic material
 * () canvas texture for the map option
 
