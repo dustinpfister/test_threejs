@@ -28,11 +28,9 @@ const curve_path = new THREE.CurvePath();
 const cp_radius = 4;
 while(i < len){
     const a_child = i / len;
-
     const y = -0.5 + 1 * a_child;
     const v_start = getCircleVector(i, 0, len, cp_radius, y);
     const v_end = getCircleVector(i, 1, len, cp_radius, y);
-
     const c_radius = cp_radius * 1.0 + 2 * a_child;
     const v_control1 = getCircleVector(i, 0.25, len, c_radius, y);
     const v_control2 = getCircleVector(i, 0.75, len, c_radius, y);
