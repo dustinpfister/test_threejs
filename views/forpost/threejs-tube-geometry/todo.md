@@ -11,9 +11,9 @@
 * () see about updating the curve children of the curve path
 * () I will then also need to update the geometry of the tube as well
 
-## ( ) s1-2-basic-texture
-* () use the basic material
-* () canvas texture for the map option
+## ( done 06/02/2023 ) s1-2-basic-texture
+* (done) use the basic material
+* (done) canvas texture for the map option
 
 ## ( done 06/02/2023 ) s2-1-curvepath
 * (done) I would like to have four cubic bezier curves for the path
