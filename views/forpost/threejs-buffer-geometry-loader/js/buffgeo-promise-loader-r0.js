@@ -2,7 +2,7 @@
 const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THREE.MeshNormalMaterial() ) => {
     const scene_source = new THREE.Scene();
     let i = 0;
-    const onBufferGeometryLoad =  (geometry) => {
+    const onBuffLoad =  (geometry) => {
         const x = i % w;
         const z = Math.floor( i / w);
         const mesh = new THREE.Mesh( geometry, material);
@@ -10,14 +10,20 @@ const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THR
         scene_source.add(mesh);
         i += 1;
     };
+    const onBuffProgress =  (geometry) => {};
     return new Promise( ( resolve, reject ) => {
         const manager = new THREE.LoadingManager();
         manager.onLoad = () => {
             resolve(scene_source);
         };
+        const onBuffError =  (err) => {
+           reject(err);
+        };
         const loader = new THREE.BufferGeometryLoader(manager);
-        urls.forEach( (url) => {
-           loader.load(url, onBufferGeometryLoad);
-        });
+        urls.forEach(
+            (url) => {
+                loader.load(url, onBuffLoad, onBuffProgress, onBuffError);
+            }
+        );
     });
 };

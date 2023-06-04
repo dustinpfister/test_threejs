@@ -1,5 +1,9 @@
 # threejs-buffer-geometry-loader todo list
 
+## ( done 06/04/2023 ) - on error handing
+* (done) fix s4-3-manager-promise to reject a promise on an error
+* (done) fix the same thing for buffgeo-promise-loader-r0.js
+
 ## ( done 06/04/2023 ) - s5-1-buffgeoprom-basic
 * (done) start r0 of a kind of module form of a buffer geometry loader helper
 

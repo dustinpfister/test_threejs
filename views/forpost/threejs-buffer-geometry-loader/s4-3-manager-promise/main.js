@@ -24,6 +24,9 @@ const loadBufferGeometryJSON = ( urls = [], material = new THREE.MeshNormalMater
         manager.onLoad = () => {
             resolve(scene_source);
         };
+        manager.onError = (url) => {
+            reject( new Error('Error with file: ' + url) );
+        };
         const loader = new THREE.BufferGeometryLoader(manager);
         urls.forEach( (url) => {
            loader.load(url, onBufferGeometryLoad);
