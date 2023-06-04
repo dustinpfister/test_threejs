@@ -1,9 +1,12 @@
 # threejs-buffer-geometry-loader todo list
 
-## () - s5-1-module-iife
-* () I would like to have a simple module that will contain a decent load method
-* () I can give many urls to this load method
-* () the load method must return a promise
+## ( done 06/04/2023 ) - s5-1-buffgeoprom-basic
+* (done) start r0 of a kind of module form of a buffer geometry loader helper
+
+## ( done 06/04/2023 ) - s4-3-manager-promise
+* (done) I would like to have a simple module that will contain a decent load method
+* (done) I can give many urls to this load method
+* (done) the load method must return a promise
 
 ## ( done 05/30/2023 ) new s1-1-basic example
 * (done) rename the old s1-1-basic to s1-2-basic-loop
