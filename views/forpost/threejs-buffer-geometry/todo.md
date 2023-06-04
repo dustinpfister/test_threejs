@@ -15,7 +15,13 @@
 * have one or more basic examples that involve the use of the built in geometry constructors
 * () combine all the examples that have to do with creating a custom geometry from the ground up into one section with sub sections.
 
-## () - new section on morph attributes
+## () s8-2-loader-promise
+* () demo using the promise helper function I worked out in in threejs-buffer-geometry-loader
+
+## ( done 06/04/2023 ) - update s8-1-loader to r146 style
+* (done) updated s8-1-loader to r146 style
+
+## ( done 02/06/2023 ) - new section on morph attributes
 * (done) started a new section on morph attributes with a code example from my new post on the subject
 
 ## ( done 11/14/2022 ) - fixed uv demo
