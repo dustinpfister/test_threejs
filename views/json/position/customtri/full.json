@@ -1,0 +1,36 @@
+{
+  "metadata":{
+    "version":4.5,
+    "type":"BufferGeometry",
+    "generator":"Hand Coded"
+  },
+  "type":"BufferGeometry",
+  "data":{
+    "attributes":{
+      "position":{
+        "itemSize":3,
+        "type":"Float32Array",
+        "array":[0,1,0,  1,-1,0,  -1,-1,0],
+        "normalized":false
+      },
+      "normal":{
+        "itemSize":3,
+        "type":"Float32Array",
+        "array":[0,0,1, 0,0,1, 0,0,1],
+        "normalized":false
+      },
+      "uv":{
+        "itemSize":2,
+        "type":"Float32Array",
+        "array":[1,0, 0,1, 1,1],
+        "normalized":false
+      },
+      "color":{
+        "itemSize":3,
+        "type":"Float32Array",
+        "array":[1,0,0,  0,1,0,  0,0,1],
+        "normalized":false
+      }
+    }
+  }
+}

@@ -3,21 +3,28 @@
 ## () sx-1-extends-lathegeometry
 * () start a section on the subject of extending built in geometry, starting with lathe geometry
 
-## ( done 06/04/2023 ) s4-3-curves-update
+
+## () - sx-1-morph-basic
+* () start a new section on using morph attributes to update position
+
+## () - s5-1-fromjson-customtri
+* () start a new section on loading from external json file
+
+## ( done 06/04/2023 ) - s4-3-curves-update
 * (done) curves demo in which I update the curve and geometry over time
 * (done) can do so with a single quadratic curve
 * (done) move the start and end points around in a circle
 * (done) set setfrompoints to create the geo, but directly mutate the position attribute to update
 
-## ( done 06/04/2023 ) s4-1-curves-setfrompoints
+## ( done 06/04/2023 ) - s4-1-curves-setfrompoints
 * (done) rename s1-1-curves t0 s1-2-curves-setattribute
 * (done) I think I should start out this section with a demo that makes use of the set from points demo
 
-## ( done 05/30/2023 ) s4-1-curves
+## ( done 05/30/2023 ) - s4-1-curves
 * (done) start an example where I create a curve to use as a way to create a position attribute
 * (done) rename loop example folders
 
-## ( done 05/09/2023 ) move files, r146 style
+## ( done 05/09/2023 ) - move files, r146 style
 * (done) move js file to root of demo folders
 * (done) r146 style
 
