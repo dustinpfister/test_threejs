@@ -28,8 +28,19 @@ const createCurve = (degree = 45, radius = 3, y = 5) => {
 };
 // create a curve geometry
 const createCurveGeometry = ( curve = createCurve() ) => {
-    const geometry = new THREE.BufferGeometry().setFromPoints( curve.getPoints(25) );
+    const geometry = new THREE.BufferGeometry().setFromPoints( curve.getPoints(19) );
     geometry.userData.curve = curve;
+    const len = geometry.getAttribute('position').count;
+    const color_array = [];
+    let i = 0;
+    while(i < len){
+        const a1 = i / len;
+        const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+        color_array.push(a1, a2, 1 - a2);
+        i += 1;
+    }
+    const color_attribute = new THREE.BufferAttribute(new Float32Array(color_array), 3);
+    geometry.setAttribute('color', color_attribute);
     return geometry;
 };
 // update a curve geometry to the given curve, or userData.curve of there
@@ -38,7 +49,7 @@ const updateCurveGeometry = (geometry, curve) => {
     const att_pos = geometry.getAttribute('position');
     let i = 0;
     while(i < att_pos.count){
-       const v = curve.getPoint(i / att_pos.count);
+       const v = curve.getPoint(i / ( att_pos.count - 1) );
        att_pos.setXYZ(i, v.x, v.y, v.z);
        i += 1;
     }
@@ -52,11 +63,10 @@ const getBiasAlpha = (a1, count) => {
 // GEOMETRY
 //-------- ----------
 const geometry = createCurveGeometry();
-
 //-------- ----------
 // POINTS
 //-------- ----------
-const points = new THREE.Points(geometry, new THREE.PointsMaterial({size: 0.5, color: 0x00ff00 }));
+const points = new THREE.Points(geometry, new THREE.PointsMaterial({size: 0.5, vertexColors: true }));
 scene.add(points);
 // ---------- ----------
 // ANIMATION LOOP
@@ -78,10 +88,8 @@ const update = function(sm){
     const a3 = getBiasAlpha(a1, 12);
     const a4 = getBiasAlpha(a1, 5);
     const a5 = getBiasAlpha(a1, 1);
-
     const deg = 360 * a1;
     const radius = 7 - 3.5 * a5;
-
     const x = 5 - 10 * a2;
     const y = 8 - 16 * a3;
     const z = -5 + 10 * a4
