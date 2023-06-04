@@ -3,11 +3,11 @@
 ## () sx-1-extends-lathegeometry
 * () start a section on the subject of extending built in geometry, starting with lathe geometry
 
-## () s4-3-curves-update
-* () curves demo in which I update the curve and geometry over time
-* () can do so with a single quadratic curve
-* () move the start and end points around in a circle
-* () set setfrompoints to create the geo, but directly mutate the position attribute to update
+## ( done 06/04/2023 ) s4-3-curves-update
+* (done) curves demo in which I update the curve and geometry over time
+* (done) can do so with a single quadratic curve
+* (done) move the start and end points around in a circle
+* (done) set setfrompoints to create the geo, but directly mutate the position attribute to update
 
 ## ( done 06/04/2023 ) s4-1-curves-setfrompoints
 * (done) rename s1-1-curves t0 s1-2-curves-setattribute
