@@ -37,16 +37,17 @@ loader.load(
     // resource URL
     '/json/static/box_house1_solid.json',
     // onLoad callback
-    function (geometry) {
-    // create a mesh with the geometry
-    // and a material, and add it to the scene
-    mesh = new THREE.Mesh(
+    (geometry) => {
+        // create a mesh with the geometry
+        // and a material, and add it to the scene
+        mesh = new THREE.Mesh(
             geometry,
             new THREE.MeshStandardMaterial({
                 color: 0x00ff0000,
                 emissive: 0x2a2a2a,
                 side: THREE.DoubleSide
             }));
-    scene.add(mesh);
-    loop();
-});
+        scene.add(mesh);
+        loop();
+    }
+);
