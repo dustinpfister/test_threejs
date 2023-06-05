@@ -10,12 +10,12 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // GEOMETRY, MESH
 //-------- ----------
-var geometry = new THREE.BufferGeometry();
-var vertices = new Float32Array([
-            -1, 0, 0,
-            1, 0, 0,
-            1, 1.25, 0
-        ]);
+const geometry = new THREE.BufferGeometry();
+const vertices = new Float32Array([
+    -1, 0, 0,
+     1, 0, 0,
+     1, 1, 0
+]);
 geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 const mesh = new THREE.Mesh(
     geometry,
