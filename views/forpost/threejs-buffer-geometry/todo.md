@@ -18,6 +18,10 @@
 ## () s8-2-loader-promise
 * () demo using the promise helper function I worked out in in threejs-buffer-geometry-loader
 
+## ( done 06/05/2023 ) update all demos to r146 style
+* (done) update all demos to r146 style
+* (done) consoladate the first few demos that have to do with buffer attriburtes into a basic sectin
+
 ## ( done 06/04/2023 ) - update s8-1-loader to r146 style
 * (done) updated s8-1-loader to r146 style
 
