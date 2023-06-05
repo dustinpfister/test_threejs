@@ -39,15 +39,12 @@
 * () same as s4-1-light-tri but add a uv attribute
 
 <!-------- ----------
-  // EXPAND BASIC SECTION
----------- --------->
-## - s1-5-basic-index
-* () have a basic example of an index
-* () just use one from the post on this subject
-
-<!-------- ----------
   // DONE
 ---------- --------->
+
+## ( done 06/05/2023 ) - s1-5-basic-index
+* (done) have a basic example of an index
+* (done) just use one from the post on this subject
 
 ## ( done 06/05/2023 ) s5-2-loader-many-promise
 * (done) demo using the promise helper function I worked out in in threejs-buffer-geometry-loader
