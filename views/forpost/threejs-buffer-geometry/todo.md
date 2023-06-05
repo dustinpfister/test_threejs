@@ -1,19 +1,53 @@
 # threejs-buffer-geometry todo list
 
-## () update examples to use textures
-* () update s4 group with texture
-* () update s5-light with texture
-* () update s6-rotation with texture
+<!-------- ----------
+  // START NEW SECTIONS?
+---------- --------->
+## () - sx-1-builtin
+* () start a section on built in geometry functions
+* () the first example might be on using the plane geometry class
 
-## () - new updating loop example
-* () have a new simple updating example, maybe using a plain geometry
+## () - sx-1-uvmapping
+* () start an in depth section of uv mapping
 
-## () - new copy example
-* () - have a new basic copy method example
+## () - sx-1-vertcolors
+* () start a section on vertex colors
 
-## () - built in constructor example
-* have one or more basic examples that involve the use of the built in geometry constructors
-* () combine all the examples that have to do with creating a custom geometry from the ground up into one section with sub sections.
+<!-------- ----------
+  // EXPAND METHODS SECTION
+---------- --------->
+## () - s3-x-apply-quaternion
+* () demo of the apply quaternion method
+
+## () - s3-x-copy
+* () - have a demo on the copy method of buffer geometry
+
+<!-------- ----------
+  // EXPAND LIGHT SECTION
+---------- --------->
+## () - s4-3-light-full
+* () rename s4-1-light to s4-3-light-full
+* () add a uv attribute
+* () add canvas texture
+
+## () - s4-1-light-tri
+* () simple triangle example
+* () use phong material
+* () just position, and normal attributes
+
+## () - s4-2-light-uv
+* () same as s4-1-light-tri but add a uv attribute
+
+<!-------- ----------
+  // EXPAND BASIC SECTION
+---------- --------->
+## - s1-5-basic-index
+* () have a basic example of an index
+* () just use one from the post on this subject
+
+<!-------- ----------
+  // DONE
+---------- --------->
 
 ## ( done 06/05/2023 ) s5-2-loader-many-promise
 * (done) demo using the promise helper function I worked out in in threejs-buffer-geometry-loader
