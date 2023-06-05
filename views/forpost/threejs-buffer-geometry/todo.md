@@ -15,8 +15,8 @@
 * have one or more basic examples that involve the use of the built in geometry constructors
 * () combine all the examples that have to do with creating a custom geometry from the ground up into one section with sub sections.
 
-## () s8-2-loader-promise
-* () demo using the promise helper function I worked out in in threejs-buffer-geometry-loader
+## ( done 06/05/2023 ) s5-2-loader-many-promise
+* (done) demo using the promise helper function I worked out in in threejs-buffer-geometry-loader
 
 ## ( done 06/05/2023 ) update all demos to r146 style
 * (done) update all demos to r146 style
