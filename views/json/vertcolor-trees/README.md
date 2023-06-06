@@ -1,0 +1,3 @@
+# vertcolor-trees
+
+The idea here is to just make some hand coded tree models using vertex color attributes. I stated this to just have some content to load when working on my buffer geometry loader abstraction methods and modules for my buffer-geometry-loader blog post, but I could also use them for any other relevant post such as the main buffer-geometry post, the post on color attributes and so forth.
