@@ -1,1 +1,0 @@
-// examples-glsl-es1-renderer
