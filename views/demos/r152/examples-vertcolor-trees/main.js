@@ -40,16 +40,10 @@ loader.load(
                 side: THREE.DoubleSide
             }));
         scene.add(mesh);
-
-        //const helper = new VertexNormalsHelper(mesh, 1, 0x00ff00);
-        //helper.material.linewidth = 3;
-        //scene.add(helper)
-
         const loop = () => {
             requestAnimationFrame(loop);
             renderer.render(scene, camera);
         };
         loop();
-
     }
 );
