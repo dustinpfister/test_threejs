@@ -29,10 +29,8 @@
         new THREE.Face3(2, 7, 6));
     // compute Normals
     geometry.computeVertexNormals();
-
-    // NORMALIZE AND SCALE THE GEOMETRY
-    geometry.normalize().scale(0.5, 1.5, 0.5).rotateY(Math.PI / 180 * -10);
-
+    // normalize the geometry
+    geometry.normalize();
     // MESH with GEOMETRY, and Normal MATERIAL
     scene.add(new THREE.Mesh(
             // geometry as first argument
@@ -43,10 +41,10 @@
             })));
     // RENDER, CAMERA
     var camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
-    camera.position.set(2, 2, 2);
+    camera.position.set(3, 2, 1);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
+    renderer.setSize(640, 480, false);
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
 }

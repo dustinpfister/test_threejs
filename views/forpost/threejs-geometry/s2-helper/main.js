@@ -53,7 +53,7 @@
     camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(640, 480);
+    renderer.setSize(640, 480, false);
     document.getElementById('demo').appendChild(renderer.domElement);
     renderer.render(scene, camera);
 }
