@@ -28,13 +28,13 @@
 ## () s1-4-basic-cubic
 * () demo using a cubic bezier curve
 
-## () s1-1-basic-v2array
-* () new s1-1-basic-v2arary demo to replace the current first basic example
-* () just have an array of three Vector2 Objects to define the points
-* () the points can just be from 0,1 to 1,0 to 0,-1
-* () rename all other basic examples as needed
-
 <!-- DONE -->
+
+## ( done 06/07/2023 ) s1-1-basic-v2array
+* (done) new s1-1-basic-v2arary demo to replace the current first basic example
+* (done) just have an array of three Vector2 Objects to define the points
+* (done) the points can just be from 0,1 to 1,0 to 0,-1
+* (done) rename all other basic examples as needed
 
 ## ( done 06/07/2023 ) s1-2-basic-ellipse
 * (done) use an ellipse directly rather than ArcCurve
