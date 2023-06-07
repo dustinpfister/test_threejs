@@ -11,6 +11,13 @@ As the name of this folder suggrest these are models that are just composed of s
 * vertex color attribute
 * do not have to have all triangles form solid shapes
 
+## 6tri-morph
+
+Same as with 6tri, but now I am adding in morph attributes.
+
+* () one or more more attributes for 'position'
+* () each model should also have more attributes for color as well.
+
 ## 12tri-plus
 
 With this collection of trees I am bumping up the number of triangles to at least 12, and if I want to I can add even more if need be. The aim is to make all of the parts solid, so I will want to have normal attributes with these.
