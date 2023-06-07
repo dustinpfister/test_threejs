@@ -46,16 +46,18 @@ const pl = new THREE.PointLight(0xffffff, 1, 100);
 pl.position.set(5, 5, 5);
 scene.add(pl);
 camera.position.set(-10, 15, 15);
-camera.lookAt(0,-1,0);
+camera.lookAt( 5, 0, 5);
 //-------- ----------
 // BUFFER GEOMETRY LOADER
 //-------- ----------
 const URLS = [
-   '/json/static/box_house1_solid.json',
-   '/json/static/cube_thing.json',
-   '/json/static/wheel.json'
+   '/json/vertcolor-trees/6tri/one.json',
+   '/json/vertcolor-trees/6tri/two.json',
+   '/json/vertcolor-trees/6tri/three.json',
+   '/json/vertcolor-trees/6tri/four.json'
 ];
-loadBufferGeometryJSON(URLS, 2, 10)
+const material = new THREE.MeshBasicMaterial({vertexColors: true, side: THREE.DoubleSide });
+loadBufferGeometryJSON(URLS, 2, 10, material)
 .then( (scene_source) => {
     console.log('JSON files are loaded!');
     scene.add( scene_source );
