@@ -9,7 +9,9 @@ import { VertexNormalsHelper } from 'VertexNormalsHelper';
 //-------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(65, 4 / 3, 0.1, 100);
-const renderer = new THREE.WebGL1Renderer();
+//!!! must use webgl2 for color morph to work
+// if I want to get it to work with webgl I will need some kind of work around
+const renderer = new THREE.WebGLRenderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo')  || document.body ).appendChild(renderer.domElement);
 //-------- ----------
@@ -29,7 +31,7 @@ const loader = new THREE.BufferGeometryLoader();
 // load a resource
 loader.load(
     // resource URL
-    '/json/vertcolor-trees/6tri-morph/one.json',
+    '/json/vertcolor-trees/colormorph/one.json',
     // onLoad callback
     (geometry) => {
         // add mesh

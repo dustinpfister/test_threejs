@@ -13,10 +13,10 @@ As the name of this folder suggrest these are models that are just composed of s
 
 ## 6tri-morph
 
-Same as with 6tri, but now I am adding in morph attributes. I would also like to have morph attributes for the color attribute, but saidly it would seem that [this is not possible](https://github.com/mrdoob/three.js/issues/20057) at least [not with webgl1](https://github.com/mrdoob/three.js/pull/22293). Looking at the source code for the webgl renerer though it does look like color attributes are being updated, it is just that it will not work for me if I want to stick with webgl1. So as far as I can tell I have to just be happy with updating position and normals only.
+Same as with 6tri, but now I am adding in morph attributes. I would also like to have morph attributes for the color attribute, but saidly it would seem that [this is not possible](https://github.com/mrdoob/three.js/issues/20057) at least [not with webgl1](https://github.com/mrdoob/three.js/pull/22293). Looking at the source code for the webgl renerer though it does look like color attributes are being updated, it is just that it will not work for me if I want to stick with webgl1. So as far as I can tell I have to just be happy with updating position and normals only with this collection at least.
 
-* one or more more attributes for 'position'
-
+* one or more morph attributes for 'position'
+* everything else is the same as 6tri models
 
 ## 12tri-plus
 
@@ -27,3 +27,11 @@ With this collection of trees I am bumping up the number of triangles to at leas
 * vertex color attribute
 * all triangles must form solid shapes
 * must have a normal attribute, and must look okay with THREE.FrontSide material option
+
+## colormorph
+
+For this collection of modules I am using color morph attributes along with position as well. On top of that I am also setting up normal attribuets as well.
+
+* have color morph attributes
+* use normal attributes so that THREE.FrontSide can be used
+
