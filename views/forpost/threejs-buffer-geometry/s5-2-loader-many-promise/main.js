@@ -11,14 +11,12 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THREE.MeshNormalMaterial() ) => {
     const scene_source = new THREE.Scene();
-    let i = 0;
-    const onBuffLoad =  (geometry) => {
+    const onBuffLoad =  (geometry, i) => {
         const x = i % w;
         const z = Math.floor( i / w);
         const mesh = new THREE.Mesh( geometry, material);
         mesh.position.set(x, 0, z).multiplyScalar(scale);
         scene_source.add(mesh);
-        i += 1;
     };
     const onBuffProgress =  (geometry) => {};
     return new Promise( ( resolve, reject ) => {
@@ -30,11 +28,9 @@ const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THR
            reject(err);
         };
         const loader = new THREE.BufferGeometryLoader(manager);
-        urls.forEach(
-            (url) => {
-                loader.load(url, onBuffLoad, onBuffProgress, onBuffError);
-            }
-        );
+        urls.forEach( (url, index) => {
+            loader.load(url, (geometry) => { onBuffLoad(geometry, index) }, onBuffProgress, onBuffError);
+        });
     });
 };
 //-------- ----------
