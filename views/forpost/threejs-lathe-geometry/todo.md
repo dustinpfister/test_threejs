@@ -1,5 +1,12 @@
 # threejs-lathe-geometry todo list
 
+<!-- LOOP DEMOS -->
+## () s3-1-loop-morph
+* () have a few geometry objects made from lathe geometry
+* () see about using morph attributes to transition between them
+
+<!-- EXTEND LATHE GEOMETRY DEMOS -->
+
 ## () s2-2-extend-jefferson
     https://www.monticello.org/research-education/thomas-jefferson-encyclopedia/jefferson-cups/
 * () make a jefferson cup geometry constructor
@@ -13,11 +20,21 @@
 * () start a section on extending lathe geometry starting with capsule geometry
 * () even though this is a built in geometry, make a custom class anyway based on the capsule geometry source code
 
-## () s1-4-basic-path
+<!-- EXPAND BASIC -->
+
+## () s1-5-basic-path
 * () demo using a curve path
 
-## () s1-3-basic-cubic
+## () s1-4-basic-cubic
 * () demo using a cubic bezier curve
+
+## () s1-1-basic-v2array
+* () new s1-1-basic-v2arary demo to replace the current first basic example
+* () just have an array of three Vector2 Objects to define the points
+* () the points can just be from 0,1 to 1,0 to 0,-1
+* () rename all other basic examples as needed
+
+<!-- DONE -->
 
 ## ( done 06/07/2023 ) s1-2-basic-ellipse
 * (done) use an ellipse directly rather than ArcCurve
