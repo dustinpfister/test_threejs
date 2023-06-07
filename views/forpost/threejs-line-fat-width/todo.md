@@ -1,5 +1,11 @@
 # threejs-line-fat-width todo list
 
+## ( done 06/07/2023 ) s4-1-tubegeometry-basic
+* (done) have a basic tube geometry demo for this post
+
+## ( done 06/07/2023 ) - moved js files
+* (done) move js file to root of demo folders
+
 ## ( done 12/07/2022 ) - s2-2-loop-video1-depth
 * (done) have a create and update line group methods
 * (done) have an updated color trans helper that will create a new color array based off a current pos array
