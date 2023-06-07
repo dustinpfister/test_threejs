@@ -15,6 +15,7 @@ const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THR
         const x = i % w;
         const z = Math.floor( i / w);
         const mesh = new THREE.Mesh( geometry, material);
+        mesh.name = 'buffer_source_' + i;
         mesh.position.set(x, 0, z).multiplyScalar(scale);
         scene_source.add(mesh);
     };

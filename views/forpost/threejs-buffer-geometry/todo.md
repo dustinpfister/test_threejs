@@ -42,6 +42,10 @@
   // DONE
 ---------- --------->
 
+## ( done 06/07/2023 ) - index and names for s5-2-loader-many-promise
+* (done) index values passed when buffer on load method called
+* (done) set names for the mesh objects
+
 ## ( done 06/05/2023 ) - s1-5-basic-index
 * (done) have a basic example of an index
 * (done) just use one from the post on this subject
