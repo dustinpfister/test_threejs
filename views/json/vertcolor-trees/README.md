@@ -13,10 +13,10 @@ As the name of this folder suggrest these are models that are just composed of s
 
 ## 6tri-morph
 
-Same as with 6tri, but now I am adding in morph attributes.
+Same as with 6tri, but now I am adding in morph attributes. I would also like to have morph attributes for the color attribute, but saidly it would seem that [this is not possible](https://github.com/mrdoob/three.js/issues/20057) at least [not with webgl1](https://github.com/mrdoob/three.js/pull/22293). Looking at the source code for the webgl renerer though it does look like color attributes are being updated, it is just that it will not work for me if I want to stick with webgl1. So as far as I can tell I have to just be happy with updating position and normals only.
 
-* () one or more more attributes for 'position'
-* () each model should also have more attributes for color as well.
+* one or more more attributes for 'position'
+
 
 ## 12tri-plus
 

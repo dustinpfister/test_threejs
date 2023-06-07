@@ -40,8 +40,36 @@ loader.load(
                 side: THREE.DoubleSide
             }));
         scene.add(mesh);
+
+console.log( geometry.morphAttributes.color[0] );
+
+
+const att_pos = geometry.getAttribute('position');
+
+
+mesh.morphTargetInfluences[ 0 ] = 1;
+console.log(att_pos.array[9]);
+
+
+
+        // loop
+        let frame = 0;
+        const frame_max = 90;
         const loop = () => {
             requestAnimationFrame(loop);
+
+            const a1 = frame / frame_max;
+            const a2 = 1 - Math.abs( 0.5 - a1 ) / 0.5;
+
+            //mesh.morphTargetInfluences[ 0 ] = a2;
+
+            //mesh.geometry.getAttribute('color').needsUpdate = true;
+            //mesh.material.needsUpdate = true;
+
+            frame += 1;
+            frame %= frame_max;
+
+
             renderer.render(scene, camera);
         };
         loop();
