@@ -48,10 +48,10 @@ camera.lookAt( 5, 0, 5);
 // BUFFER GEOMETRY LOADER
 //-------- ----------
 const URLS = [
-   '/json/vertcolor-trees/6tri/one.json',
-   '/json/vertcolor-trees/6tri/two.json',
-   '/json/vertcolor-trees/6tri/three.json',
-   '/json/vertcolor-trees/6tri/four.json'
+   '/json/vertcolor-trees/6tri/0.json',
+   '/json/vertcolor-trees/6tri/1.json',
+   '/json/vertcolor-trees/6tri/2.json',
+   '/json/vertcolor-trees/6tri/3.json'
 ];
 const material = new THREE.MeshBasicMaterial({vertexColors: true, side: THREE.DoubleSide });
 loadBufferGeometryJSON(URLS, 2, 10, material)

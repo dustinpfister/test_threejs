@@ -13,13 +13,13 @@ scene.add( new THREE.GridHelper(10, 10) );
 //-------- ----------
 // Loader
 //-------- ----------
-camera.position.set(3,4,7);
+camera.position.set(2,2,2);
 camera.lookAt(0, 2, 0);
 const loader = new THREE.BufferGeometryLoader();
 // load a resource
 loader.load(
     // resource URL
-    '/json/vertcolor-trees/6tri/one.json',
+    '/json/vertcolor-trees/6tri/0.json',
     // onLoad callback
     (geometry) => {
         const mesh = new THREE.Mesh(

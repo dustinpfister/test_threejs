@@ -13,7 +13,7 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo')  || document.body ).appendChild(renderer.domElement);
 //-------- ----------
-// GRID
+// OBJECTS
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
 //-------- ----------
@@ -23,13 +23,13 @@ new OrbitControls(camera, renderer.domElement);
 //-------- ----------
 // Loader
 //-------- ----------
-camera.position.set(8, 8, 8);
-camera.lookAt(0, 0, 0);
+camera.position.set(4, 4, 4);
+camera.lookAt(0, 3, 0);
 const loader = new THREE.BufferGeometryLoader();
 // load a resource
 loader.load(
     // resource URL
-    '/json/vertcolor-trees/6tri/two.json',
+    '/json/vertcolor-trees/6tri/3.json',
     // onLoad callback
     (geometry) => {
         // add mesh
