@@ -23,7 +23,7 @@ new OrbitControls(camera, renderer.domElement);
 //-------- ----------
 // Loader
 //-------- ----------
-camera.position.set(4, 4, 4);
+camera.position.set(4, 5, 4);
 camera.lookAt(0, 3, 0);
 const loader = new THREE.BufferGeometryLoader();
 // load a resource
