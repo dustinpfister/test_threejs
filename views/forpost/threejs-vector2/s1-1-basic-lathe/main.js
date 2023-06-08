@@ -28,8 +28,8 @@ const geometry = new THREE.LatheGeometry( v2array, segments_lathe, phi_start, ph
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
-const points1 = new THREE.Line(geometry);
-scene.add(points1);
+const line1 = new THREE.Line(geometry);
+scene.add(line1);
 // ---------- ----------
 // RENDER
 // ---------- ----------

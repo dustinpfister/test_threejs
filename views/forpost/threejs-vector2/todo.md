@@ -35,11 +35,11 @@
 * () have a shape example
 * () use the extrude geometry with the shape
 
-## () - s1-2-basic-curve2d
-* () start a basic 2d curve example
-* () this can also be a lathe geometry example
-
 <!-- DONE -->
+
+## ( done 06/08/2023 ) - s1-2-basic-curve2d
+* (done) start a basic 2d curve example
+* (done) this can also be a lathe geometry example
 
 ## ( done 06/08/2023 ) - s1-1-basic-lathe
 * (done) first basic example on the lathe geometry
