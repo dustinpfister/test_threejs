@@ -1,5 +1,9 @@
 # threejs-standard-material todo list
 
+## ( done 06/08/2023 ) move files, merge demos into new texture section 
+* (done) move js files to root of demo folders
+* (done) merge color-map, and emmisve demos into a new texture section
+
 ## ( done 12/09/2022 ) update examples
 * (done) clean up code for all examples
 * (done) new loop for s2 and s3 examples
