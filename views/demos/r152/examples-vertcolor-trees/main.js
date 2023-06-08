@@ -29,7 +29,7 @@ const loader = new THREE.BufferGeometryLoader();
 // load a resource
 loader.load(
     // resource URL
-    '/json/vertcolor-trees/6tri/3.json',
+    '/json/vertcolor-trees/6tri/4.json',
     // onLoad callback
     (geometry) => {
         // add mesh
