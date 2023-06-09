@@ -42,8 +42,8 @@ scene.add(grid)
 const pl = new THREE.PointLight(0xffffff, 1, 100);
 pl.position.set(5, 5, 5);
 scene.add(pl);
-camera.position.set(-10, 15, 15);
-camera.lookAt( 5, 0, 5);
+camera.position.set(25, 15, 25);
+camera.lookAt( 5, 0, 10);
 //-------- ----------
 // BUFFER GEOMETRY LOADER
 //-------- ----------
@@ -51,7 +51,9 @@ const URLS = [
    '/json/vertcolor-trees/6tri/0.json',
    '/json/vertcolor-trees/6tri/1.json',
    '/json/vertcolor-trees/6tri/2.json',
-   '/json/vertcolor-trees/6tri/3.json'
+   '/json/vertcolor-trees/6tri/3.json',
+   '/json/vertcolor-trees/6tri/4.json',
+   '/json/vertcolor-trees/6tri/5.json'
 ];
 const material = new THREE.MeshBasicMaterial({vertexColors: true, side: THREE.DoubleSide });
 loadBufferGeometryJSON(URLS, 2, 10, material)
