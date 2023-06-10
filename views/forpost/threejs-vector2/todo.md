@@ -19,15 +19,16 @@
 
 <!-- METHODS SECTION -->
 
-## () - sx-5-methods-distanceto 
+## () - s2-5-methods-distanceto 
 
-## () - sx-4-methods-lerp
+## () - s2-4-methods-lerp
 
-## () - sx-3-methods-normalize 
+## () - s2-3-methods-normalize 
 
-## () - sx-2-methods-multiplyscalar
+## () - s2-2-methods-multiplyscalar
 
-## () - sx-1-methods-clone
+## () - s2-1-methods-clone
+* () create a path by having a point follow a curve, and have another point that is cloned from that point
 
 <!-- EXPAND BASIC SECTION -->
 
