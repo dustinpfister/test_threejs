@@ -18,20 +18,9 @@ Same as with 6tri, but now I am adding in morph attributes. I would also like to
 * one or more morph attributes for 'position'
 * everything else is the same as 6tri models
 
-## 12tri-plus
-
-With this collection of trees I am bumping up the number of triangles to at least 12, and if I want to I can add even more if need be. The aim is to make all of the parts solid, so I will want to have normal attributes with these.
-
-* 12 or more triangles for each json file
-* indexed geometry
-* vertex color attribute
-* all triangles must form solid shapes
-* must have a normal attribute, and must look okay with THREE.FrontSide material option
-
 ## colormorph
 
-For this collection of modules I am using color morph attributes along with position as well. On top of that I am also setting up normal attribuets as well.
+For this collection of trees I am using morph attributes for the color attribute along with position as well. On top of that I am also setting up normal attributes. I might not go the distance with this collection as I want to keep these webgl1 friendly.
 
 * have color morph attributes
 * use normal attributes so that THREE.FrontSide can be used
-
