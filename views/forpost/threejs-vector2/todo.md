@@ -11,11 +11,19 @@
 
 ## () - sx-1-raycaster
 * () Start a section on the Vector2 class and the use of it with raycaster
+* () just start this with an example from the main post on raycaster
 
 <!-- Curve Alpha Section -->
 
 ## () - sx-1-alphas-curve
 * () example uisng curve alphas and the vector2 class
+* () if I am going to start a seciton on this I would start with a copy of the s5-1-alphas demo from threejs-curve
+
+## () - sx-2-alpha-v2array
+* () start a v2array get alpha method
+* () the x value of each vector can be a 0-1 range on the alpha-chart
+* () the y value of each vector can be used to set what the return value should be of the git alpha
+* () I think I would like to make it so that the given array is normalized so that any v2 array can be used
 
 <!-- METHODS SECTION -->
 
@@ -24,8 +32,6 @@
 ## () - s2-4-methods-lerp
 
 ## () - s2-3-methods-normalize 
-
-
 
 <!-- EXPAND BASIC SECTION -->
 
