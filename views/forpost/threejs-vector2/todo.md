@@ -26,9 +26,10 @@
 ## () - s2-3-methods-normalize 
 
 ## () - s2-2-methods-multiplyscalar
-
-## () - s2-1-methods-clone
-* () create a path by having a point follow a curve, and have another point that is cloned from that point
+* () create a shape and use it with extrude geometry
+* () use Math.cos, Math.sin, and a static radius value to get x and y values to use with Vector2.set
+* () use multiply scalar to adjust unit length back and forth
+* () use Math.sin for the values to use with multiply scalar
 
 <!-- EXPAND BASIC SECTION -->
 
@@ -37,6 +38,9 @@
 * () use the extrude geometry with the shape
 
 <!-- DONE -->
+
+## ( done 06/10/2023 ) - s2-1-methods-clone
+* (done) create a path by having a point follow a curve, and have another point that is cloned from that point
 
 ## ( done 06/08/2023 ) - s1-2-basic-curve2d
 * (done) start a basic 2d curve example
