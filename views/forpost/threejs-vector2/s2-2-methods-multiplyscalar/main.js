@@ -15,12 +15,14 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 const v2array_1 = [];
 let i = 0; 
-const len = 20;
+const len = 120;
 while(i < len){
-    const radian = Math.PI * 2 * (i / len);
-    const x = Math.cos(radian) * 1.5;
-    const y = Math.sin(radian) * 1.5;
-    const v = new THREE.Vector2(x, y).multiplyScalar(1 + Math.random());
+    const a_child = i / len;
+    const radian = Math.PI * 2 * a_child;
+    const x = Math.cos(radian);
+    const y = Math.sin(radian);
+    const m = 2 + Math.sin(Math.PI * 1.5 * (a_child * 8 % 1)  );
+    const v = new THREE.Vector2(x, y).multiplyScalar(m);
     v2array_1.push(v);
     i += 1;
 }
@@ -32,11 +34,7 @@ const geometry_1 = new THREE.ExtrudeGeometry( shape );
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
-const dl = new THREE.DirectionalLight(0xffffff, 0.95);
-dl.position.set(1, 0, 3);
-scene.add(dl);
-scene.add( new THREE.AmbientLight(0xffffff, 0.01) );
-const material = new THREE.MeshPhongMaterial({ color: 0x00ffff, specular: 0x8a8a8a, side: THREE.DoubleSide });
+const material = new THREE.MeshNormalMaterial();
 const mesh1 = new THREE.Mesh(geometry_1,  material);
 scene.add(mesh1);
 // ---------- ----------
