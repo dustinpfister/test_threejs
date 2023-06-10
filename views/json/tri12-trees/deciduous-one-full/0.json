@@ -1,0 +1,33 @@
+{
+  "metadata":{
+    "version":4.5,
+    "type":"BufferGeometry",
+    "generator":"Hand Coded"
+  },
+  "type":"BufferGeometry",
+  "data":{
+    "attributes":{
+      "position":{
+        "itemSize":3,
+        "type":"Float32Array",
+        "array":[-0.8,0,-0.3,  0.9,0,-0.4,  0,0,0.7,  0,4,0,
+           3, 4, 0,  
+           3, 5, 1,
+          -3, 5,-1, 
+          -3, 6, 0],
+        "normalized":false
+      },
+      "color":{
+        "itemSize":3,
+        "type":"Float32Array",
+        "array":[ 0.7,0.2,0.1, 0.4,0.1,0, 0.6,0.1,0, 0.6,0.8,0,
+          0,1,0, 
+          0,1,1,
+          0,1,0,
+          0,1,1 ],
+        "normalized":false
+      }
+    },
+    "index":{ "type": "Uint16Array","array": [ 0,1,2, 0,1,3, 0,2,3, 1,2,3, 3,4,5, 3,6,7 ] }
+  }
+}
