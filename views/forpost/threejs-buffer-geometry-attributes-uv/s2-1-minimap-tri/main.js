@@ -167,7 +167,7 @@ const render2d = (sm) => {
     // draw dom element
     ctx.drawImage(renderer.domElement, 0, 0, canvas_2d.width, canvas_2d.height);
     // draw uv minimap
-    drawMinimap(minimap, ctx)
+    drawMinimap(minimap, ctx);
     // text overlay
     ctx.fillStyle = 'rgba(0,0,0,0.4)';
     ctx.fillRect(0,0, canvas_2d.width, canvas_2d.height);
