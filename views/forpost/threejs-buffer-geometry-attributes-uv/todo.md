@@ -1,16 +1,15 @@
 # threejs-buffer-geometry-attributes-uv
 
-## () s2-1-minimap-tri
+## ( done 06/12/2023 ) s2-1-minimap-tri
 * (done) rename older demos as needed
 * (done) start a minimap demo where I have an area in the canvas that shows the current uv state.
 * (done) I will want to start with the canvas loop demo from threejs-getting-started
 * (done) have a very simple geometry of a triangle
 * (done) have a uv attribute for this trinagle geometry
 * (done) have a texture that is created with the 2d context
-
-* () draw the texture in a scaled down way in the lower right corner of the canvas
-* () display each UV point for this trangle in the texture area of the canvas
-* () move the uv points around and also update the texture display
+* (done) draw the texture in a scaled down way in the lower right corner of the canvas
+* (done) display each UV point for this trangle in the texture area of the canvas
+* (done) move the uv points around and also update the texture display
 
 ## ( done 05/26/2023 ) s2-1-uvmap-setfrace
 * (done) new uvmap setfrace demo based on the demo I made for threejs-basic-material

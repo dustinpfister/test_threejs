@@ -25,10 +25,12 @@ container.appendChild(canvas_2d);
 const canvas_texture = document.createElement('canvas');
 const ctx_texture = canvas_texture.getContext('2d');
 canvas_texture.height = canvas_texture.width = 32;
-
-const gradient = ctx_texture.createLinearGradient(0, 0, 32, 32);
-gradient.addColorStop(0, 'cyan');
-gradient.addColorStop(1, 'lime');
+const gradient = ctx_texture.createLinearGradient(0, 32, 32, 0);
+gradient.addColorStop(0.00, 'red');
+gradient.addColorStop(0.40, 'yellow');
+gradient.addColorStop(0.50, 'lime');
+gradient.addColorStop(0.60, 'cyan');
+gradient.addColorStop(1.00, 'blue');
 ctx_texture.fillStyle = gradient;
 ctx_texture.fillRect(0,0, 32, 32);
 const texture = new THREE.CanvasTexture(canvas_texture);
@@ -42,18 +44,21 @@ geometry.setAttribute('position', new THREE.BufferAttribute( new Float32Array(da
 // normal
 geometry.computeVertexNormals();
 // uv
-const data_uv = [ 0,0, 0,1, 1,0 ];
+const data_uv = [
+  0.20,0.90,
+  0.95,0.90,
+  0.01,0.01
+];
 geometry.setAttribute('uv', new THREE.BufferAttribute( new Float32Array(data_uv), 2) );
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
 // grid
-scene.add( new THREE.GridHelper( 10,10 ) );
-const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(-3,0,1);
-scene.add(dl);
+const grid = new THREE.GridHelper( 10,10 );
+grid.material.linewidth = 3;
+scene.add( grid );
 // mesh1
-const material = new THREE.MeshPhongMaterial({ side: THREE.DoubleSide, map:texture });
+const material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map:texture });
 const mesh1 = new THREE.Mesh(geometry, material);
 scene.add(mesh1);
 // ---------- ----------
@@ -62,14 +67,48 @@ scene.add(mesh1);
 const minimap = {
    pos: new THREE.Vector2( 370, 10 ),
    size: 256,
-   v2array: [
-      new THREE.Vector2(0.1, 0.1),
-      new THREE.Vector2(0.1, 0.9),
-      new THREE.Vector2(0.8, 0.9)
-   ]
+   v2array: []
 };
+// create the v2 array for the minimap based on the given geometry
+const setV2array = (minimap, geometry) => {
+    const att_uv = geometry.getAttribute('uv');
+    const v2array = [];
+    let i = 0;
+    const len = att_uv.count;
+    while(i < len){
+        v2array.push( new THREE.Vector2( att_uv.getX(i), 1 - att_uv.getY(i) ) );
+        i += 1;
+    }
+    minimap.v2array = v2array;
+};
+// get a vector2 from the v2 array that is scaled based on size
 const getMiniMapV2 = (minimap, i) => {
     return minimap.v2array[i].clone().multiplyScalar(minimap.size);
+};
+const drawMinimap = (minimap, ctx) => {
+    ctx.save();
+    ctx.globalAlpha = 0.7;
+    ctx.translate(minimap.pos.x, minimap.pos.y);
+    ctx.drawImage(canvas_texture, 0, 0, minimap.size, minimap.size);
+    let i = 0;
+    const len = minimap.v2array.length;
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = 'rgba(0,255,255, 0.2)';
+    ctx.lineWidth = 2;
+    while(i < len){
+        const v1 = getMiniMapV2(minimap, i);
+        const v2 = getMiniMapV2(minimap, i + 1);
+        const v3 = getMiniMapV2(minimap, i + 2);
+        ctx.beginPath();
+        ctx.moveTo(v1.x, v1.y);
+        ctx.lineTo(v2.x, v2.y);
+        ctx.lineTo(v3.x, v3.y);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+        i += 3;
+    }
+    ctx.restore();
 };
 // ---------- ----------
 // CONTROLS
@@ -78,6 +117,7 @@ const controls = new OrbitControls(camera, canvas_2d);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
+
 camera.position.set(1, 1, 2);
 camera.lookAt(0.4,0.1,0);
 const sm = {
@@ -93,36 +133,39 @@ const sm = {
 };
 const update = function(sm){
     const a_frame = sm.frame / sm.FRAME_MAX;
+
+    const att_uv = geometry.getAttribute('uv');
+
+    const radian_start = Math.PI * 2 * a_frame;
+    const radius = 0.5;
+    const center = new THREE.Vector2(0.5, 0.5);
+    let i = 0;
+    while(i < att_uv.count){
+        const a_count = (i / att_uv.count);
+        const radian = (radian_start + Math.PI * 2 * a_count) % Math.PI * 2;
+        const v = new THREE.Vector2();
+        v.x = center.x + Math.cos(radian) * radius;
+        v.y = center.y + Math.sin(radian) * radius;
+        att_uv.setXY(i, v.x, v.y);
+        i += 1;
+    }
+    att_uv.needsUpdate = true;
+
+    //att_uv.setXY(0, 0, 1);
+    //att_uv.setXY(1, 0, 1);
+    //att_uv.setXY(2, 0, 1);
+
+    setV2array(minimap, geometry);
+
 };
 const render2d = (sm) => {
     // background
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = '#2a2a2a';
     ctx.fillRect(0,0, canvas_2d.width, canvas_2d.height);
     // draw dom element
     ctx.drawImage(renderer.domElement, 0, 0, canvas_2d.width, canvas_2d.height);
     // draw uv minimap
-    ctx.save();
-    ctx.translate(minimap.pos.x, minimap.pos.y);
-    ctx.drawImage(canvas_texture, 0, 0, minimap.size, minimap.size);
-
-    let i = 0;
-    const len = minimap.v2array.length;
-    ctx.strokeStyle = 'black';
-    while(i < len){
-        const v1 = getMiniMapV2(minimap, i);
-        const v2 = getMiniMapV2(minimap, i + 1);
-        const v3 = getMiniMapV2(minimap, i + 2);
-        ctx.beginPath();
-        ctx.moveTo(v1.x, v1.y);
-        ctx.lineTo(v2.x, v2.y);
-        ctx.lineTo(v3.x, v3.y);
-        ctx.closePath();
-        ctx.stroke();
-        i += 3;
-    }
-
-    ctx.restore();
-
+    drawMinimap(minimap, ctx)
     // text overlay
     ctx.fillStyle = 'rgba(0,0,0,0.4)';
     ctx.fillRect(0,0, canvas_2d.width, canvas_2d.height);
