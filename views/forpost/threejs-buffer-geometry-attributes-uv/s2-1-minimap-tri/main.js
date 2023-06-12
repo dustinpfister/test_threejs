@@ -20,6 +20,77 @@ canvas_2d.height = 480;
 const container = document.getElementById('demo') || document.body;
 container.appendChild(canvas_2d);
 // ---------- ----------
+// HELPER FUNCTIONS
+// ---------- ----------
+const updateUVRotation = (geometry, a_rotation = 0, radius = 0.5, center = new THREE.Vector2(0.5, 0.5) ) => {
+    const att_uv = geometry.getAttribute('uv');
+    const radian_start = Math.PI * 2 * a_rotation;
+    let i = 0;
+    while(i < att_uv.count){
+        const a_count = (i / att_uv.count);
+        const radian = (radian_start + Math.PI * 2 * a_count) % Math.PI * 2;
+        const v = new THREE.Vector2();
+        v.x = center.x + Math.cos(radian) * radius;
+        v.y = center.y + Math.sin(radian) * radius;
+        att_uv.setXY(i, v.x, v.y);
+        i += 1;
+    }
+    att_uv.needsUpdate = true;
+};
+const createMiniMap = ( pos = new THREE.Vector2(), size = 256, geometry = null) => {
+    const minimap = {
+        pos: pos,
+        size: size,
+        v2array: []
+    };
+    if(geometry){
+        setV2array(minimap, geometry);
+    }
+    return minimap;
+};
+// create the v2 array for the minimap based on the given geometry
+const setV2array = (minimap, geometry) => {
+    const att_uv = geometry.getAttribute('uv');
+    const v2array = [];
+    let i = 0;
+    const len = att_uv.count;
+    while(i < len){
+        v2array.push( new THREE.Vector2( att_uv.getX(i), 1 - att_uv.getY(i) ) );
+        i += 1;
+    }
+    minimap.v2array = v2array;
+};
+// get a vector2 from the v2 array that is scaled based on size
+const getMiniMapV2 = (minimap, i) => {
+    return minimap.v2array[i].clone().multiplyScalar(minimap.size);
+};
+// draw the minimap
+const drawMinimap = (minimap, ctx) => {
+    ctx.save();
+    ctx.globalAlpha = 0.7;
+    ctx.translate(minimap.pos.x, minimap.pos.y);
+    ctx.drawImage(canvas_texture, 0, 0, minimap.size, minimap.size);
+    let i = 0;
+    const len = minimap.v2array.length;
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = 'rgba(0,255,255, 0.2)';
+    ctx.lineWidth = 2;
+    while(i < len){
+        const v1 = getMiniMapV2(minimap, i);
+        const v2 = getMiniMapV2(minimap, i + 1);
+        const v3 = getMiniMapV2(minimap, i + 2);
+        ctx.beginPath();
+        ctx.moveTo(v1.x, v1.y);
+        ctx.lineTo(v2.x, v2.y);
+        ctx.lineTo(v3.x, v3.y);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+        i += 3;
+    }
+    ctx.restore();
+};
+// ---------- ----------
 // TEXTURE
 // ---------- ----------
 const canvas_texture = document.createElement('canvas');
@@ -62,62 +133,13 @@ const material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map:textu
 const mesh1 = new THREE.Mesh(geometry, material);
 scene.add(mesh1);
 // ---------- ----------
-// MINIMAP
-// ---------- ----------
-const minimap = {
-   pos: new THREE.Vector2( 370, 10 ),
-   size: 256,
-   v2array: []
-};
-// create the v2 array for the minimap based on the given geometry
-const setV2array = (minimap, geometry) => {
-    const att_uv = geometry.getAttribute('uv');
-    const v2array = [];
-    let i = 0;
-    const len = att_uv.count;
-    while(i < len){
-        v2array.push( new THREE.Vector2( att_uv.getX(i), 1 - att_uv.getY(i) ) );
-        i += 1;
-    }
-    minimap.v2array = v2array;
-};
-// get a vector2 from the v2 array that is scaled based on size
-const getMiniMapV2 = (minimap, i) => {
-    return minimap.v2array[i].clone().multiplyScalar(minimap.size);
-};
-const drawMinimap = (minimap, ctx) => {
-    ctx.save();
-    ctx.globalAlpha = 0.7;
-    ctx.translate(minimap.pos.x, minimap.pos.y);
-    ctx.drawImage(canvas_texture, 0, 0, minimap.size, minimap.size);
-    let i = 0;
-    const len = minimap.v2array.length;
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = 'rgba(0,255,255, 0.2)';
-    ctx.lineWidth = 2;
-    while(i < len){
-        const v1 = getMiniMapV2(minimap, i);
-        const v2 = getMiniMapV2(minimap, i + 1);
-        const v3 = getMiniMapV2(minimap, i + 2);
-        ctx.beginPath();
-        ctx.moveTo(v1.x, v1.y);
-        ctx.lineTo(v2.x, v2.y);
-        ctx.lineTo(v3.x, v3.y);
-        ctx.closePath();
-        ctx.stroke();
-        ctx.fill();
-        i += 3;
-    }
-    ctx.restore();
-};
-// ---------- ----------
 // CONTROLS
 // ---------- ----------
 const controls = new OrbitControls(camera, canvas_2d);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
-
+const minimap = createMiniMap( new THREE.Vector2(430, 10), 200 );
 camera.position.set(1, 1, 2);
 camera.lookAt(0.4,0.1,0);
 const sm = {
@@ -133,30 +155,8 @@ const sm = {
 };
 const update = function(sm){
     const a_frame = sm.frame / sm.FRAME_MAX;
-
-    const att_uv = geometry.getAttribute('uv');
-
-    const radian_start = Math.PI * 2 * a_frame;
-    const radius = 0.5;
-    const center = new THREE.Vector2(0.5, 0.5);
-    let i = 0;
-    while(i < att_uv.count){
-        const a_count = (i / att_uv.count);
-        const radian = (radian_start + Math.PI * 2 * a_count) % Math.PI * 2;
-        const v = new THREE.Vector2();
-        v.x = center.x + Math.cos(radian) * radius;
-        v.y = center.y + Math.sin(radian) * radius;
-        att_uv.setXY(i, v.x, v.y);
-        i += 1;
-    }
-    att_uv.needsUpdate = true;
-
-    //att_uv.setXY(0, 0, 1);
-    //att_uv.setXY(1, 0, 1);
-    //att_uv.setXY(2, 0, 1);
-
+    updateUVRotation(geometry, 3 * a_frame, 0.01 + 0.49 * a_frame);
     setV2array(minimap, geometry);
-
 };
 const render2d = (sm) => {
     // background
