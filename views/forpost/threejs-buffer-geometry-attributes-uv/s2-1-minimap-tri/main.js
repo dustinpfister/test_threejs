@@ -155,7 +155,9 @@ const sm = {
 };
 const update = function(sm){
     const a_frame = sm.frame / sm.FRAME_MAX;
-    updateUVRotation(geometry, 3 * a_frame, 0.01 + 0.49 * a_frame);
+    const a2 = 1 - Math.abs( 0.5 - a_frame ) / 0.5;
+    const a3 = 0.01 + 0.49 * a_frame;
+    updateUVRotation(geometry, a2, a3);
     setV2array(minimap, geometry);
 };
 const render2d = (sm) => {
