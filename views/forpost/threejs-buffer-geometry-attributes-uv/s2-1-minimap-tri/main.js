@@ -20,6 +20,19 @@ canvas_2d.height = 480;
 const container = document.getElementById('demo') || document.body;
 container.appendChild(canvas_2d);
 // ---------- ----------
+// TEXTURE
+// ---------- ----------
+const canvas_texture = document.createElement('canvas');
+const ctx_texture = canvas_texture.getContext('2d');
+canvas_texture.height = canvas_texture.width = 32;
+
+const gradient = ctx_texture.createLinearGradient(0, 0, 32, 32);
+gradient.addColorStop(0, 'cyan');
+gradient.addColorStop(1, 'lime');
+ctx_texture.fillStyle = gradient;
+ctx_texture.fillRect(0,0, 32, 32);
+const texture = new THREE.CanvasTexture(canvas_texture);
+// ---------- ----------
 // GEOMETRY
 // ---------- ----------
 const geometry = new THREE.BufferGeometry();
@@ -29,7 +42,7 @@ geometry.setAttribute('position', new THREE.BufferAttribute( new Float32Array(da
 // normal
 geometry.computeVertexNormals();
 // uv
-const data_uv = [ 0,0, 0,1, 1,1 ];
+const data_uv = [ 0,0, 0,1, 1,0 ];
 geometry.setAttribute('uv', new THREE.BufferAttribute( new Float32Array(data_uv), 2) );
 // ---------- ----------
 // OBJECTS
@@ -40,9 +53,24 @@ const dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(-3,0,1);
 scene.add(dl);
 // mesh1
-const material = new THREE.MeshPhongMaterial({ side: THREE.DoubleSide });
+const material = new THREE.MeshPhongMaterial({ side: THREE.DoubleSide, map:texture });
 const mesh1 = new THREE.Mesh(geometry, material);
 scene.add(mesh1);
+// ---------- ----------
+// MINIMAP
+// ---------- ----------
+const minimap = {
+   pos: new THREE.Vector2( 370, 10 ),
+   size: 256,
+   v2array: [
+      new THREE.Vector2(0.1, 0.1),
+      new THREE.Vector2(0.1, 0.9),
+      new THREE.Vector2(0.8, 0.9)
+   ]
+};
+const getMiniMapV2 = (minimap, i) => {
+    return minimap.v2array[i].clone().multiplyScalar(minimap.size);
+};
 // ---------- ----------
 // CONTROLS
 // ---------- ----------
@@ -72,6 +100,29 @@ const render2d = (sm) => {
     ctx.fillRect(0,0, canvas_2d.width, canvas_2d.height);
     // draw dom element
     ctx.drawImage(renderer.domElement, 0, 0, canvas_2d.width, canvas_2d.height);
+    // draw uv minimap
+    ctx.save();
+    ctx.translate(minimap.pos.x, minimap.pos.y);
+    ctx.drawImage(canvas_texture, 0, 0, minimap.size, minimap.size);
+
+    let i = 0;
+    const len = minimap.v2array.length;
+    ctx.strokeStyle = 'black';
+    while(i < len){
+        const v1 = getMiniMapV2(minimap, i);
+        const v2 = getMiniMapV2(minimap, i + 1);
+        const v3 = getMiniMapV2(minimap, i + 2);
+        ctx.beginPath();
+        ctx.moveTo(v1.x, v1.y);
+        ctx.lineTo(v2.x, v2.y);
+        ctx.lineTo(v3.x, v3.y);
+        ctx.closePath();
+        ctx.stroke();
+        i += 3;
+    }
+
+    ctx.restore();
+
     // text overlay
     ctx.fillStyle = 'rgba(0,0,0,0.4)';
     ctx.fillRect(0,0, canvas_2d.width, canvas_2d.height);

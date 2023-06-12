@@ -6,8 +6,8 @@
 * (done) I will want to start with the canvas loop demo from threejs-getting-started
 * (done) have a very simple geometry of a triangle
 * (done) have a uv attribute for this trinagle geometry
+* (done) have a texture that is created with the 2d context
 
-* () have a texture that is created with the 2d context
 * () draw the texture in a scaled down way in the lower right corner of the canvas
 * () display each UV point for this trangle in the texture area of the canvas
 * () move the uv points around and also update the texture display
