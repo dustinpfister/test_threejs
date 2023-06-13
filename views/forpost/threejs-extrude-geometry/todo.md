@@ -1,4 +1,4 @@
 # threejs-extrude-geometry todo list
 
-## () - s1-1-basic
-* () start a basic example of the extrude geometry
+## ( done 06/13/2023 ) - s1-1-basic
+* (done) start a basic example of the extrude geometry
