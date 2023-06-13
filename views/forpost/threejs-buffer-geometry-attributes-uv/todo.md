@@ -1,5 +1,15 @@
 # threejs-buffer-geometry-attributes-uv
 
+<!-- MINIMAP -->
+## () - s2-3-minimap-sphere
+* () another one this time with a sphere
+
+## () - s2-2-minimap-cube
+* () start a new minimap demo that uses cubes
+* () I would like to have a fast way to switch between having all sides use the same texture and various other states. 
+
+<!-- DONE -->
+
 ## ( done 06/12/2023 ) s2-1-minimap-tri
 * (done) rename older demos as needed
 * (done) start a minimap demo where I have an area in the canvas that shows the current uv state.
