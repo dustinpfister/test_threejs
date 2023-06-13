@@ -15,10 +15,10 @@
 
 <!-- CUSTOM UV GENERATOR SECTION -->
 
-## () - s2-1-uvgen-start
+## ( done 06/13/2023 ) - s2-1-uvgen-start
 * (done) I would like to start a Basic uv generator section
 * (done) start with a uv mini map demo that I made for threejs-buffer-geometry-attributes-uv
-* () work out a start point for the custom UV Generator option.
+* (done) work out a start point for the custom UV Generator option.
 
 
 <!-- EXPAND BASIC SECTION -->

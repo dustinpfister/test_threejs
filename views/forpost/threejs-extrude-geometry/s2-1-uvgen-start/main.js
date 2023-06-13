@@ -93,12 +93,32 @@ const texture = new THREE.CanvasTexture(canvas_texture);
 // ---------- ----------
 // SHAPE/GEOMETRY
 // ---------- ----------
+const UVGenerator = {
+    generateTopUV: function ( geometry, vertices, indexA, indexB, indexC ) {
+        return [
+            new THREE.Vector2( 0, 0),
+            new THREE.Vector2( 1, 0),
+            new THREE.Vector2( 1, 1),
+        ];
+    },
+    generateSideWallUV: function ( geometry, vertices, indexA, indexB, indexC, indexD ) {
+        return [
+           new THREE.Vector2( 0, 0 ),
+           new THREE.Vector2( 1, 0 ),
+           new THREE.Vector2( 1, 1 ),
+           new THREE.Vector2( 0, 1 )
+        ];
+    }
+};
+// ---------- ----------
+// SHAPE/GEOMETRY
+// ---------- ----------
 const shape = new THREE.Shape();
 shape.moveTo(0, -0.5);
 shape.lineTo(0.5,  0);
 shape.lineTo(0,  0.5);
 shape.lineTo(-0.5,  0);
-const geometry = new THREE.ExtrudeGeometry(shape);
+const geometry = new THREE.ExtrudeGeometry(shape, { UVGenerator: UVGenerator });
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
