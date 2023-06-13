@@ -15,9 +15,11 @@
 
 <!-- CUSTOM UV GENERATOR SECTION -->
 
-## () - sx-1-uvgen-start
-* () I would like to start a Basic uv generator section
-* () start with a uv mini map demo that I made for threejs-buffer-geometry-attributes-uv
+## () - s2-1-uvgen-start
+* (done) I would like to start a Basic uv generator section
+* (done) start with a uv mini map demo that I made for threejs-buffer-geometry-attributes-uv
+* () work out a start point for the custom UV Generator option.
+
 
 <!-- EXPAND BASIC SECTION -->
 
