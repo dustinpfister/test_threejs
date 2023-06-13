@@ -58,7 +58,7 @@ const drawMinimap = (minimap, ctx) => {
     let i = 0;
     const len = minimap.v2array.length;
     ctx.strokeStyle = 'black';
-    ctx.fillStyle = 'rgba(0,255,255, 0.2)';
+    //ctx.fillStyle = 'rgba(0,255,255, 0.025)';
     ctx.lineWidth = 2;
     while(i < len){
         const v1 = getMiniMapV2(minimap, i);
@@ -70,7 +70,7 @@ const drawMinimap = (minimap, ctx) => {
         ctx.lineTo(v3.x, v3.y);
         ctx.closePath();
         ctx.stroke();
-        ctx.fill();
+        //ctx.fill();
         i += 3;
     }
     ctx.restore();
@@ -96,17 +96,17 @@ const texture = new THREE.CanvasTexture(canvas_texture);
 const UVGenerator = {
     generateTopUV: function ( geometry, vertices, indexA, indexB, indexC ) {
         return [
-            new THREE.Vector2( 0, 0),
-            new THREE.Vector2( 1, 0),
-            new THREE.Vector2( 1, 1),
+            new THREE.Vector2( 0.05, 0.45 ),
+            new THREE.Vector2( 0.05, 0.95 ),
+            new THREE.Vector2( 0.95, 0.45 ),
         ];
     },
     generateSideWallUV: function ( geometry, vertices, indexA, indexB, indexC, indexD ) {
         return [
-           new THREE.Vector2( 0, 0 ),
-           new THREE.Vector2( 1, 0 ),
-           new THREE.Vector2( 1, 1 ),
-           new THREE.Vector2( 0, 1 )
+           new THREE.Vector2( 0.05, 0.05 ),
+           new THREE.Vector2( 0.20, 0.05 ),
+           new THREE.Vector2( 0.20, 0.20 ),
+           new THREE.Vector2( 0.05, 0.05 )
         ];
     }
 };
@@ -114,10 +114,10 @@ const UVGenerator = {
 // SHAPE/GEOMETRY
 // ---------- ----------
 const shape = new THREE.Shape();
-shape.moveTo(0, -0.5);
-shape.lineTo(0.5,  0);
-shape.lineTo(0,  0.5);
-shape.lineTo(-0.5,  0);
+shape.moveTo( 0.0, -0.5);
+shape.lineTo( 0.5,  0.0);
+shape.lineTo( 0.0,  0.5);
+shape.lineTo(-0.5,  0.0);
 const geometry = new THREE.ExtrudeGeometry(shape, { UVGenerator: UVGenerator });
 // ---------- ----------
 // OBJECTS
