@@ -21,6 +21,50 @@ container.appendChild(canvas_2d);
 // ---------- ----------
 // HELPER FUNCTIONS
 // ---------- ----------
+// create a custom uv generator for the given shape
+const createUVGenerator = (shape) => {
+    // x max and min values
+    const shapeGeo = new THREE.ShapeGeometry(shape);
+    shapeGeo.computeBoundingBox();
+    const v3_max = shapeGeo.boundingBox.max;
+    const v3_min = shapeGeo.boundingBox.min;
+    // box2 class to get range vector2
+    const box2_top = new THREE.Box2( new THREE.Vector2(v3_min.x, v3_min.y), new THREE.Vector2(v3_max.x, v3_max.y) );
+    const v_range = new THREE.Vector2();
+    box2_top.getSize( v_range );
+    // get axis helper
+    const getAxisAlpha = (n, axis = 'x') => {
+        const b = axis === 'x' ? v3_min.x : v3_min.y;
+        const c = axis === 'x' ? v_range.x : v_range.y;
+        return new THREE.Vector2(n, 0).distanceTo( new THREE.Vector2(b, 0) ) / c;
+    };
+    // the generator object
+    const UVGenerator = {
+        generateTopUV: function ( geometry, vertices, vert_indexA, vert_indexB, vert_indexC ) {
+            const xa = getAxisAlpha( vertices[ vert_indexA * 3] , 'x');
+            const ya = getAxisAlpha( vertices[ vert_indexA * 3 + 1] , 'y');
+            const xb = getAxisAlpha( vertices[ vert_indexB * 3] , 'x');
+            const yb = getAxisAlpha( vertices[ vert_indexB * 3 + 1] , 'y');
+            const xc = getAxisAlpha( vertices[ vert_indexC * 3] , 'x');
+            const yc = getAxisAlpha( vertices[ vert_indexC * 3 + 1] , 'y');
+            return [
+                new THREE.Vector2( xa, ya ),
+                new THREE.Vector2( xb, yb ),
+                new THREE.Vector2( xc, yc ),
+            ];
+        },
+        generateSideWallUV: function ( geometry, vertices, indexA, indexB, indexC, indexD ) {
+            return [
+               new THREE.Vector2( 0, 0 ),
+               new THREE.Vector2( 1, 0 ),
+               new THREE.Vector2( 1, 1 ),
+               new THREE.Vector2( 0, 0 )
+            ];
+        }
+    };
+    return UVGenerator;
+};
+// create the minimap object
 const createMiniMap = ( pos = new THREE.Vector2(), size = 256, geometry = null) => {
     const minimap = {
         pos: pos,
@@ -89,51 +133,6 @@ gradient.addColorStop(1.00, 'blue');
 ctx_texture.fillStyle = gradient;
 ctx_texture.fillRect(0,0, 32, 32);
 const texture = new THREE.CanvasTexture(canvas_texture);
-// ---------- ----------
-// CUSTOM UV GENERATOR
-// ---------- ----------
-const createUVGenerator = (shape) => {
-    // x max and min values
-    const shapeGeo = new THREE.ShapeGeometry(shape);
-    shapeGeo.computeBoundingBox();
-    const v3_max = shapeGeo.boundingBox.max;
-    const v3_min = shapeGeo.boundingBox.min;
-    // box2 class to get range vector2
-    const box2_top = new THREE.Box2( new THREE.Vector2(v3_min.x, v3_min.y), new THREE.Vector2(v3_max.x, v3_max.y) );
-    const v_range = new THREE.Vector2();
-    box2_top.getSize( v_range );
-    // get axis helper
-    const getAxisAlpha = (n, axis = 'x') => {
-        const b = axis === 'x' ? v3_min.x : v3_min.y;
-        const c = axis === 'x' ? v_range.x : v_range.y;
-        return new THREE.Vector2(n, 0).distanceTo( new THREE.Vector2(b, 0) ) / c;
-    };
-    // the generator object
-    const UVGenerator = {
-        generateTopUV: function ( geometry, vertices, vert_indexA, vert_indexB, vert_indexC ) {
-            const xa = getAxisAlpha( vertices[ vert_indexA * 3] , 'x');
-            const ya = getAxisAlpha( vertices[ vert_indexA * 3 + 1] , 'y');
-            const xb = getAxisAlpha( vertices[ vert_indexB * 3] , 'x');
-            const yb = getAxisAlpha( vertices[ vert_indexB * 3 + 1] , 'y');
-            const xc = getAxisAlpha( vertices[ vert_indexC * 3] , 'x');
-            const yc = getAxisAlpha( vertices[ vert_indexC * 3 + 1] , 'y');
-            return [
-                new THREE.Vector2( xa, ya ),
-                new THREE.Vector2( xb, yb ),
-                new THREE.Vector2( xc, yc ),
-            ];
-        },
-        generateSideWallUV: function ( geometry, vertices, indexA, indexB, indexC, indexD ) {
-            return [
-               new THREE.Vector2( 0, 0 ),
-               new THREE.Vector2( 1, 0 ),
-               new THREE.Vector2( 1, 1 ),
-               new THREE.Vector2( 0, 0 )
-            ];
-        }
-    };
-    return UVGenerator;
-};
 // ---------- ----------
 // SHAPE/GEOMETRY
 // ---------- ----------
