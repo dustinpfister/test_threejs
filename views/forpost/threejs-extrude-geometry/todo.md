@@ -15,17 +15,11 @@
 
 <!-- CUSTOM UV GENERATOR SECTION -->
 
-## ( ) - s2-2-uvgen-top
-* (done) I should be able to find a way to get the trianges of the topuvs both front and back position in a good way
-* (done) I will want to create a helper funciton that will return a UV Generator Object
-* (done) this helper function should take the Shape object as an argument
-* (done) use the shape object to get the min and max axis values
+## ( ) - s2-2-uvgen-wall
+* () start with the code from s2-2-uvgen-top
+* () work out more logic to help with the process of what to do with wall uvs
 
-* () make a new shape object
-
-* () I will also want to create a new static texture
-
-## () - s2-3-uvgen-updatecanvas
+## () - s2-x-uvgen-updatecanvas
 * () I should be able to find a way to use the same vector2 objects as a way to darw tothe canvas element
 
 
@@ -45,6 +39,13 @@
 * () have a hole in a shape.
 
 <!-- DONE -->
+
+## ( done 06/14/2023 ) - s2-2-uvgen-top
+* (done) I should be able to find a way to get the trianges of the topuvs both front and back position in a good way
+* (done) I will want to create a helper funciton that will return a UV Generator Object
+* (done) this helper function should take the Shape object as an argument
+* (done) use the shape object to get the min and max axis values
+* (done) make a new shape object
 
 ## ( done 06/14/2023 ) - s2-1-uvgen-start - custom options
 * (done) do away with the bevel for these demos

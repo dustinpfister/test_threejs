@@ -125,10 +125,10 @@ const createUVGenerator = (shape) => {
         },
         generateSideWallUV: function ( geometry, vertices, indexA, indexB, indexC, indexD ) {
             return [
-               new THREE.Vector2( 0.05, 0.05 ),
-               new THREE.Vector2( 0.20, 0.05 ),
-               new THREE.Vector2( 0.20, 0.20 ),
-               new THREE.Vector2( 0.05, 0.05 )
+               new THREE.Vector2( 0, 0 ),
+               new THREE.Vector2( 1, 0 ),
+               new THREE.Vector2( 1, 1 ),
+               new THREE.Vector2( 0, 0 )
             ];
         }
     };
@@ -139,9 +139,9 @@ const createUVGenerator = (shape) => {
 // ---------- ----------
 const shape = new THREE.Shape();
 shape.moveTo( 0.00, -0.80);
-shape.lineTo( 0.75,  0.00);
-shape.lineTo( 0.00,  1.20);
-shape.lineTo(-0.75,  0.00);
+shape.bezierCurveTo( 0.3,0,   0.2,0.3,  0.75,  -0.20);
+shape.bezierCurveTo( 0.8,0.5,   0.4,0.5,   0.00,  1.20);
+shape.bezierCurveTo( -1,0.5, -1,-0.5,   0.00,  -0.80);
 const geometry = new THREE.ExtrudeGeometry(shape, {
     UVGenerator: createUVGenerator(shape),
     depth: 0.3,
