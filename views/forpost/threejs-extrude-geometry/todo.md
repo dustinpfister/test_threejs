@@ -15,12 +15,19 @@
 
 <!-- CUSTOM UV GENERATOR SECTION -->
 
-## ( ) - s2-2-uvgen-wall
+## ( ) - s2-3-uvgen-wall
 * () start with the code from s2-2-uvgen-top
 * () work out more logic to help with the process of what to do with wall uvs
 
-## () - s2-x-uvgen-updatecanvas
-* () I should be able to find a way to use the same vector2 objects as a way to darw tothe canvas element
+## ( ) - s2-4-uvgen-scalepos
+* () start with code for s2-3-uvgen-wall
+* () add features to help with setting the scale for top parts
+* () use z vertex values to find out if it is a top or bottom part
+* () set the positions of top parts
+* () set scale and position for wall parts also
+
+## () - s2-5-uvgen-updatecanvas
+* () I should be able to find a way to use the same vector2 objects as a way to darw to the canvas element
 
 
 
