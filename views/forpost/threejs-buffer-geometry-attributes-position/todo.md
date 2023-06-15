@@ -1,14 +1,42 @@
 # threejs-buffer-geometry-attributes-position todo list
 
-## () sx-1-extends-lathegeometry
+<!-- EXTENDS SECTION -->
+
+## () - sx-1-extends-lathegeometry
 * () start a section on the subject of extending built in geometry, starting with lathe geometry
 
+## () - sx-2-extends-buffergeometry
+* () demo in which I am making a whole new geometry function by extending the base buffer geometry class
+
+<!-- MORPH ATTRIBUTES SECTION -->
 
 ## () - sx-1-morph-basic
 * () start a new section on using morph attributes to update position
 
-## () - s5-1-fromjson-customtri
-* () start a new section on loading from external json file
+<!-- V2 ARRAY SECTION -->
+## () - sx-1-v2array-shape
+* () start a v2array section using shape, and shape geometry
+
+## () - sx-2-v2array-extrude
+* () extrude geometry demo
+
+## () - sx-2-v2array-lathe
+* () lathe geometry demo
+
+<!-- BOX GEOMETRY SECTION -->
+
+<!-- CURVES SECTION -->
+
+<!-- V3 ARRAY SECTION -->
+
+<!-- FROM JSON SECTION -->
+
+<!-- LOOP SECTION -->
+
+<!-- DONE -->
+
+## ( done 06/04/2023 ) - s5-1-fromjson-customtri
+* (done) start a new section on loading from external json file
 
 ## ( done 06/04/2023 ) - s4-3-curves-update
 * (done) curves demo in which I update the curve and geometry over time
