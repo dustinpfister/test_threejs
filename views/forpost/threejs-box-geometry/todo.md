@@ -2,11 +2,26 @@
 
 <!-- UV SECTION -->
 
-## s6-1-uv-setface
+## ( ) s6-1-uv-setface
 * () start a new section on uv mapping and box geometry
 * () this can start with the source code of the set face demo from threejs-buffer-geometry-attributes-uv
 
+<!-- BASIC SECTION -->
+
+<!-- POSROTATE SECTION -->
+
+<!-- MATARRAY SECTION -->
+
+<!-- CANVAS SECTION -->
+
+<!-- EDGE GEO SECTION -->
+
 <!-- DONE -->
+
+## ( done 06/15/2023 ) s1-2-basic-points
+* (done) use THREE.Points over THREE.Mesh
+* (done) have more than one object, and thus more that one geometry
+* (done) use this to also serve as a demo for ALL Arguments then
 
 ## ( done 01/06/2022 ) start for post folder from current set of examples in the post
 * (done) s1-1-basic-mesh example
