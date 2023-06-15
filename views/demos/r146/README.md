@@ -1,6 +1,6 @@
-## threejs r146 notes
+## threejs r146 Style Rules
 
-Looks like this will be the last revision of threejs in which I use plain classic javaScript tags when working out new demos, and updating older ones when editing my blog posts as well.
+Looks like this will be the last revision of threejs in which I use plain classic javaScript tags when working out new demos and updating new ones to the style rules for this revision.
 
 So with r146 the following is what I will need to observe:
 
@@ -9,12 +9,19 @@ So with r146 the following is what I will need to observe:
 * use let and const over var as it is time to do that, it has been time for a while actually.
 * loose IIFEs in examples in favor of just having top level code, will be doing that later anyway when using JSM
 * Have comment blocks that help clearly indicate differing blocks of code
+* indent with four spaces
 
 ### r146 style outline
 
-Starting with r146 I have finally stopped doing things like typing var over that of let and const. I am the kind of person that does lag behind a far amount when it comes to things like that however it has been over eight years all ready, so it is time to just start doing this and not worry so much about code breaking because of it. It is true that just simply using var would not be enough anyway when it comes to using late revisions of threejs anyway.
+This revision of threejs still has a js folder in the repo, and with that plain old text/javascript mime type scripts that will work fine with three.min.js. This was removed in later revisions of threejs, and in time three.min.js will no longer be rendered in the repo as well. However as long as I stick with this style all of these files are still there to work with. In future revisions of threejs code styles I will have to use module script tags and with that add on files that work with such tags as well.
 
-A good example of what code examples should look like as of r146 would be the getting started demo I made, ill park that here in this readme too.
+With r146 I have finally stopped doing things like typing var over that of let and const. I am the kind of person that does lag behind a fair amount when it comes to things like that. However it has been over eight years all ready, so it is time to just start doing this and not worry so much about code breaking because of it. It is true that just simply using var would not be enough anyway when it comes to using late revisions of threejs anyway.
+
+In older code styles I would often wrap all of the code into an IIFE as a way to not define to many global. For this style I am just not worrying to much about that, but also getting the code examples in better shape for JSM, as for the most part I will just need to add the use of import and some times export to get these code examples up to date with future JSM only revisions.
+
+I have found that I like to use comments to create large blocks of text to define major typical areas of a threejs code demo. For the example there is the typical task of setting up the scene object, camera, and renderer to use with the demo that I like to group together into one section of the over all code.
+
+A good example of what code examples should look like as of r146 would be the getting started demo I made. I will park that here in this readme file as well.
 
 ```js
 // ---------- ----------
