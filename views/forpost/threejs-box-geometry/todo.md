@@ -1,5 +1,13 @@
 # threejs-box-geometry todo list
 
+<!-- UV SECTION -->
+
+## s6-1-uv-setface
+* () start a new section on uv mapping and box geometry
+* () this can start with the source code of the set face demo from threejs-buffer-geometry-attributes-uv
+
+<!-- DONE -->
+
 ## ( done 01/06/2022 ) start for post folder from current set of examples in the post
 * (done) s1-1-basic-mesh example
 * (done) s2-1-posrotate-geometry
