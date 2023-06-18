@@ -1,9 +1,25 @@
 # threejs-box-helper todo list
 
-## ( done 01/10/23 ) s6-points
+<!-- EXPAND BASIC SECTION -->
+
+## s1-2-basic-material
+* () basic demo about the material that is used for the box helper
+
+<!-- EXPAND MOVE SECTION -->
+
+
+
+<!-- DONE -->
+
+## ( done 06/18/2023 ) - s2-2-move-update
+* (done) demo in which I am updating the state of the Box Helper
+* (done) use the update method of the box helper class
+* (done) have a color attribute and other custom matertail options
+
+## ( done 01/10/23 ) - s6-points
 * (done) quick example using THREE.Points
 
-## ( done 01/10/23 ) update examples to r146
+## ( done 01/10/23 ) - update examples to r146
 * (done) have all examples use r146
 * (done) loose undeed js folders
 * (done) document.body default
