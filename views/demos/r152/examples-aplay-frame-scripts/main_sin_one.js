@@ -12,19 +12,20 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.querySelector('#demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// Verts
+// GEOMETRY
 // ---------- ----------
-const v1 = new THREE.Vector3(0, -2, 0);
-const v2 = new THREE.Vector3(0, 2, 0);
+const geometry = new THREE.SphereGeometry(4, 40, 40);
 // ---------- ----------
 // SCENE CHILD OBJECTS
 // ---------- ----------
 scene.add( new THREE.GridHelper( 10, 10 ) );
+// points
+const material = new THREE.PointsMaterial( { size: 0.25 } );
+const points1 = new THREE.Points( geometry, material);
+scene.add(points1);
 // pointer mesh
-const mesh_pointer1 = new THREE.Mesh( new THREE.SphereGeometry(0.5, 16, 16), new THREE.MeshBasicMaterial({color: 0xff0000})  );
-scene.add(mesh_pointer1);
-const mesh_pointer2 = new THREE.Mesh( new THREE.SphereGeometry(0.5, 16, 16), new THREE.MeshBasicMaterial({color: 0x00ff00})  );
-scene.add(mesh_pointer2);
+const mesh_pointer = new THREE.Mesh( new THREE.SphereGeometry(0.5, 16, 16), new THREE.MeshNormalMaterial()  );
+scene.add(mesh_pointer);
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
@@ -38,32 +39,40 @@ frame = 0,
 lt = CLOCK.getElapsedTime();
 // THE DATA OBJECT
 const data = {
-    script: 'verts',
-    
+    script: 'sin_one',
     bytes_per_frame: '1400',
     frames: []
 };
 // update
+const att_pos = geometry.getAttribute('position');
+
+console.log( 'count: ' + att_pos.count );
+
 const update = (frame, frameMax) => {
-    const a1 = frame / (frameMax - 1);
 
-    v1.x = -5 + 10 * a1;
-    v1.y = -1 + 2 * Math.sin( Math.PI * 2 * 4 * a1 );
-    v1.z = -5;
+    const a1 = frame / frameMax;
 
-    const radian2 = Math.PI - Math.PI * a1;
-    v2.x = Math.cos( radian2 ) * 5;
-    v2.y = 0;
-    v2.z = Math.sin( radian2 ) * 5;
+    const i = Math.floor(a1 * att_pos.count);
+    const v = new THREE.Vector3( att_pos.getX(i), att_pos.getY(i), att_pos.getZ(i) );
+    mesh_pointer.position.copy(v);
 
-    v1.normalize();
-    v2.normalize();
+    // use x for smaples per wavecount
+    const a_x = ( mesh_pointer.position.x + 5 ) / 10;
+    const samps_per_wavecount = 1 + Math.round( 499 * a_x);
 
-    mesh_pointer1.position.copy(v1).multiply( new THREE.Vector3(5,5,5) );
-    mesh_pointer2.position.copy(v2).multiply( new THREE.Vector3(5,5,5) );
+    // using z axis for amp argumnet
+    const a_z = ( mesh_pointer.position.z + 5 ) / 10;
+    const amp = Math.round(5 + 35 * a_z);
+
+    // (z also effects opacity of mesh )
+    mesh_pointer.material.opacity = a_z;
+
+    // might use y for wave count then
+    const a_y = ( mesh_pointer.position.y + 5 ) / 10;
+    const wavecount = 1 + Math.round(19 * a_y);
 
     // set arguments for this frame
-    data.frames[frame] = [ v1.x,v1.y,v1.z,  v2.x,v2.y,v2.z ];
+    data.frames[frame] = [ samps_per_wavecount, amp, wavecount ];
 };
 // loop
 const loop = () => {
