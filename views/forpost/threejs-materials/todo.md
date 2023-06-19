@@ -1,7 +1,19 @@
 # threejs-materials todo list
 
-## () - s10-line
+<!-- BASE MATERIAL SECTION -->
+## () - s10-1-common-vertexcolor
+* () vertex color examples
+
+<!-- LINES SECTION-->
+
+## () - s10-1-lines
 * () section folder for this
+
+<!-- r146 style update -->
+
+## () - update all demos to r146 style
+* (done) s1-1-meshbasic updated to r146 style
+* () all demos updated to r146 style rules
 
 <!-- DONE -->
 
