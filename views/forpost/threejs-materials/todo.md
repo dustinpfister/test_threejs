@@ -13,6 +13,7 @@
 
 ## () - update all demos to r146 style
 * (done) s1-1-meshbasic updated to r146 style
+* (done) s2-1-meshdepth updated to r146 style
 * () all demos updated to r146 style rules
 
 <!-- DONE -->
