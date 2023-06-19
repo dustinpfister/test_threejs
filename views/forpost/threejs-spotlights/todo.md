@@ -1,20 +1,31 @@
 # threejs-spotlights todo list
 
-<!-- COMBINE ALL ANI demos to new LOOP SECTION-->
-## ( ) Rename dmeo folders
-* () have an s2-1-shadow demo folder
-* () have an s3-1-helper demo folder
-* () s2-ani-target to s4-1-loop-target
-* () s4-ani-values to s4-2-loop-values
-* () s6-ani-helper to s4-3-loop-helper
+<!-- LOOP SECTION -->
 
-<!-- UPDATE TO R146 STYLE-->
+## () s4-4-loop-collection
+* () start a new loop demo that is a collection of targets
+* () have more than one spot light
+* () use helpers
+* () switch between targets
 
-## ( ) update all demos to r146 style
-* () update all demos demos to r146 style
-* () move js files to root of demo folders
+<!-- BASIC SECTION -->
+
+<!-- SHADOW SECTION -->
+
+<!-- HELPER SECTION -->
 
 <!-- DONE -->
+
+## ( done 06/19/2023 ) Rename dmeo folders
+* (done) have an s2-1-shadow demo folder
+* (done) have an s3-1-helper demo folder
+* (done) s2-ani-target to s4-1-loop-target
+* (done) s4-ani-values to s4-2-loop-values
+* (done) s6-ani-helper to s4-3-loop-helper
+
+## ( done 06/19/2023 ) update all demos to r146 style
+* (done) update all demos demos to r146 style
+* (done) move js files to root of demo folders
 
 ## ( done 06/19/2023 ) - s2-ani-target - updated to r146 style
 * (done) updated s2-ani-target to r146 style
