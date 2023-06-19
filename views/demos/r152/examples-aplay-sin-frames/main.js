@@ -18,10 +18,16 @@ const curve = new THREE.CurvePath();
 
 [
   [
-       new THREE.Vector3(-5, -5, 5),
-       new THREE.Vector3(-5, 5, -5),
-       new THREE.Vector3(10, 5, 0),
-       new THREE.Vector3(10, -5, 0)
+       new THREE.Vector3(-5, -5, 5), // start
+       new THREE.Vector3(-5, 5, -5), // end
+       new THREE.Vector3(10, 5, 0),  // control 1
+       new THREE.Vector3(10, -5, 0)  // control 2
+  ],
+  [
+       new THREE.Vector3(-5, 5, -5), // start
+       new THREE.Vector3(0, 0, 0), // end
+       new THREE.Vector3(-5, 7, 2),  // control 1
+       new THREE.Vector3(-5, 3, 8)  // control 2
   ]
 ].forEach( (data) => {
     const v_start = data[0];
@@ -49,7 +55,7 @@ scene.add(points);
 camera.position.set(10, 5, 10);
 camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 30, // 30 frames per second
-FRAME_MAX = 90,
+FRAME_MAX = 300,
 CLOCK = new THREE.Clock(true); 
 let secs = 0,
 frame = 0,
