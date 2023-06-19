@@ -5,6 +5,9 @@
 ## () - sx-1-quaternion-basic
 * () start with a basic example of the use of the apply quaternion method of the buffer geometry class
 
+## () - sx-2-quaternion-setfromeuler
+* () looks like there is no apply euler buffer geometry method, but there is the setfromeuler method quaternion
+
 <!-- BASIC SECTION -->
 
 ## () s1-3-basic-geolookat
