@@ -16,7 +16,6 @@ const material = new THREE.MeshToonMaterial({ color: 0xff0000 });
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
 scene.add(new THREE.Mesh( new THREE.SphereGeometry(1, 30, 30), material ));
-scene.add(mesh);
 var dl = new THREE.DirectionalLight(0xffffff, 1.0);
 dl.position.set(4, 2, 1);
 scene.add(dl);
