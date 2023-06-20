@@ -4,13 +4,18 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
 // ---------- ----------
-// SCENE, CAMERA, RENDERER
+// SCENE, CAMERA, RENDERER, 2D CANVAS
 // ---------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
 const renderer = new THREE.WebGL1Renderer();
-renderer.setSize(640, 480, false);
-(document.querySelector('#demo') || document.body).appendChild(renderer.domElement);
+renderer.setSize(320, 240, false);
+renderer.setClearColor(0x00ffff, 0.05);
+const canvas_2d = document.createElement('canvas');
+const ctx = canvas_2d.getContext('2d');
+canvas_2d.width = 640;
+canvas_2d.height = 480;
+(document.querySelector('#demo') || document.body).appendChild(canvas_2d);
 // ---------- ----------
 // SCENE CHILD OBJECTS
 // ---------- ----------
@@ -29,6 +34,18 @@ lt = CLOCK.getElapsedTime();
 // update
 const update = (frame, frameMax) => {
     const a1 = frame / frameMax;
+};
+// render
+const render = () => {
+    // background
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0,0, canvas_2d.width, canvas_2d.height)
+
+    // draw webgl renderer state
+    renderer.render(scene, camera);
+    ctx.drawImage( renderer.domElement, 32, 32, 320, 240);
+
+    // other info
 
 };
 // loop
@@ -36,7 +53,7 @@ const loop = () => {
     if(frame < FRAME_MAX){
         requestAnimationFrame(loop);
         update( Math.floor(frame), FRAME_MAX);
-        renderer.render(scene, camera);
+        render();
         frame += 1;
     }
 };
