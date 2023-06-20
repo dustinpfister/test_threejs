@@ -4,6 +4,11 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
 // ---------- ----------
+// HELPERS
+// ---------- ----------
+
+
+// ---------- ----------
 // SCENE, CAMERA, RENDERER, 2D CANVAS
 // ---------- ----------
 const scene = new THREE.Scene();
@@ -17,6 +22,19 @@ canvas_2d.width = 640;
 canvas_2d.height = 480;
 (document.querySelector('#demo') || document.body).appendChild(canvas_2d);
 // ---------- ----------
+// sample array
+// ---------- ----------
+const sample_array = [];
+
+let i = 0;
+while(i < 8000){
+    const a_wave = i / 8000 * 30 % 1;
+    const n = Math.round( 127.5 + Math.sin( Math.PI * a_wave ) * 60 )
+    sample_array.push( n );
+    i += 1;
+}
+
+// ---------- ----------
 // SCENE CHILD OBJECTS
 // ---------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
@@ -26,7 +44,7 @@ scene.add( new THREE.GridHelper(10, 10) );
 camera.position.set(9, 5, 9);
 camera.lookAt(0, 0, 0);
 const FPS_UPDATE = 30,
-FRAME_MAX = 300,
+FRAME_MAX = 30,
 CLOCK = new THREE.Clock(true); 
 let secs = 0,
 frame = 0,
@@ -50,6 +68,15 @@ const render = () => {
 };
 // loop
 const loop = () => {
+
+    if(frame === FRAME_MAX){
+        const text = JSON.stringify(sample_array);
+        document.getElementById('raw').value = text;
+
+
+    }
+
+
     if(frame < FRAME_MAX){
         requestAnimationFrame(loop);
         update( Math.floor(frame), FRAME_MAX);
