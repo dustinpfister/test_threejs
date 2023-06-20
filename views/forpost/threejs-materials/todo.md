@@ -1,6 +1,13 @@
 # threejs-materials todo list
 
+<!-- TEXTURES SECTION -->
+
+Start a textures section where the focus is on textures and the various map options of materials
+
 <!-- BASE MATERIAL SECTION -->
+
+I think that I should maybe have a seciton on the base material class where the focus is on common features of all materials
+
 ## () - s10-1-common-vertexcolor
 * () vertex color examples
 
@@ -9,15 +16,13 @@
 ## () - s10-1-lines
 * () section folder for this
 
-<!-- r146 style update -->
+<!-- DONE -->
 
-## () - update all demos to r146 style
+## ( done 06/20/2023 ) - update all demos to r146 style
 * (done) s1-1-meshbasic updated to r146 style
 * (done) s2-1-meshdepth updated to r146 style
 * (done) s3-1-meshlambert demo updated to r146 style
-* () all demos updated to r146 style rules
-
-<!-- DONE -->
+* (done) all demos updated to r146 style rules
 
 ## ( done 06/19/2023 ) rename demo folders
 * (done) rename demo folders

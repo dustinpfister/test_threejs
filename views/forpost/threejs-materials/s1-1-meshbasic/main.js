@@ -2,7 +2,6 @@
 // SCENE CAMERA RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
-scene.add(new THREE.GridHelper(10, 10))
 scene.background = new THREE.Color('blue');
 const camera = new THREE.PerspectiveCamera(45, 4 / 3, 0.5, 10);
 const renderer = new THREE.WebGL1Renderer();
@@ -12,13 +11,13 @@ renderer.setSize(640, 480, false);
 // INSTANCE OF THE BASIC MATERIAL
 //-------- ----------
 const material = new THREE.MeshBasicMaterial({
-        color: 0xff0000
-    });
-// MESH with Box Geometry with the
-scene.add(new THREE.Mesh(
-        // box GEOMETRY
-        new THREE.BoxGeometry(1, 1, 1),
-        material));
+    color: 0xff0000
+});
+//-------- ----------
+// SCENE CHILD OBJECTS
+//-------- ----------
+scene.add(new THREE.GridHelper(10, 10))
+scene.add(new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), material));
 //-------- ----------
 // RENDER
 //-------- ----------
