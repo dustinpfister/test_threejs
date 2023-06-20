@@ -27,8 +27,9 @@ canvas_2d.height = 480;
 const sample_array = [];
 
 let i = 0;
-while(i < 8000){
-    const a_wave = i / 8000 * 30 % 1;
+const sample_count = 8000 * 10;
+while(i < sample_count){
+    const a_wave = i / sample_count * 30 % 1;
     const n = Math.round( 127.5 + Math.sin( Math.PI * a_wave ) * 60 )
     sample_array.push( n );
     i += 1;
