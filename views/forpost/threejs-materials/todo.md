@@ -1,5 +1,7 @@
 # threejs-materials todo list
 
+<!-- SHADER MATERIAL SECTION -->
+
 <!-- TEXTURES SECTION -->
 
 Start a textures section where the focus is on textures and the various map options of materials
@@ -8,15 +10,22 @@ Start a textures section where the focus is on textures and the various map opti
 
 I think that I should maybe have a seciton on the base material class where the focus is on common features of all materials
 
-## () - s10-1-common-vertexcolor
+## () - sx-1-common-opacity
 * () vertex color examples
 
-<!-- LINES SECTION-->
+## () - sx-2-common-vertexcolor
+* () vertex color examples
 
-## () - s10-1-lines
-* () section folder for this
+<!-- MeshMatcapMaterial SECTION-->
+
+## () - s10-1-meshmatcap
+* () demo of mesh matcap material
 
 <!-- DONE -->
+
+## ( done 06/20/2023 ) - s10-1-lines-edge
+* (done) section folder for this and first demo
+* (done) I went with the a demo I worked out for box geometry post, just hacked over it a little
 
 ## ( done 06/20/2023 ) - update all demos to r146 style
 * (done) s1-1-meshbasic updated to r146 style
