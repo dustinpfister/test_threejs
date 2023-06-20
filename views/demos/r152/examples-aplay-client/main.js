@@ -27,11 +27,17 @@ canvas_2d.height = 480;
 const sample_array = [];
 
 let i = 0;
-const sample_count = 8000 * 10;
+const sample_count = 8000;
 while(i < sample_count){
-    const a_wave = i / sample_count * 30 % 1;
-    const n = Math.round( 127.5 + Math.sin( Math.PI * a_wave ) * 60 )
-    sample_array.push( n );
+    const a_wave = i / sample_count * 5 % 1;
+
+    // for 8bit samples
+    //const n = Math.round( 127.5 + Math.sin( Math.PI * a_wave ) * 60 )
+
+    // for 32bit le
+    const n = Math.sin( Math.PI * a_wave ) * 2000;
+
+    sample_array.push( parseFloat( n.toFixed(2) ) );
     i += 1;
 }
 
