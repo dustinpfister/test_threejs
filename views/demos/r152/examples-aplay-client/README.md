@@ -1,0 +1,3 @@
+# examples-aplay-client r152 demo
+
+After making two demos that have to do with using threejs in the process of cretaing audio sample data to play with the linux aplay command. I am now of the mindset that the best way forward would be to do everything client side. This way I can do a better job of showing what the state of things are vishualy with the state of the audio data when it comes to things like graphs of audo data. I can then use Uint8ClampedArray as a way to create what will be the final raw data that will be played using aplay.
