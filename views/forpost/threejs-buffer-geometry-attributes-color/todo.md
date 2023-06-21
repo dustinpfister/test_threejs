@@ -1,15 +1,29 @@
 # threejs-buffer-geometry-attributes-color todo list
 
-## s1-4-basic-points
-* () basic section example in which vertex colors are used with points
+<!-- CUSOTM GEOMETRY SECTION -->
 
-## () s3-2-shaders-light
+I might want to start a custom geometry section for this post. If so I think that it would be nice to write about rhw buffer geometry loader, and my vertex color trees as one such example.
+
+<!-- MORPH ATTRIBUETS SECITON? -->
+
+I might want to make a morph attributes section for this post. If so I will want to make it clear that you need WebGL 2 for that fetaure to work.
+
+<!-- CUSOM SHADRERS SECTION? -->
+
+## () sx-2-shaders-light
 * () have a shader material that uses vertex colors along with light sources
 * () make is so that light will effect the over all frag color
 
-## () s3-1-shaders
+## () sx-1-shaders
 * () have a starting example using the shader material
 * () can start with the example I all ready have based on the basic material (see the shader material for post folder)
+
+<!-- Expand BASIC SECTION -->
+
+<!-- DONE -->
+
+## ( done 06/21/2023 ) s1-4-basic-points
+* (done) basic section example in which vertex colors are used with points
 
 ## ( done 01/18/2023 ) s2-1-loop
 * (done) have a basic animation loop in which the color attribute is mutated over time
