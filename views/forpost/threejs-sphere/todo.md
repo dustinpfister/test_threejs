@@ -1,8 +1,9 @@
 # threejs-sphere todo list
 
 <!-- Lathe Geometry Section -->
-## () sx-1-lathe-sphere
-* () have a demo where a sphere is made by way of a 2d curve and the lathe geometry
+
+## () - sx-2-lathe-ellipse
+* () another static demo of this, but use the ellipse curve class
 
 <!-- Vector3 section -->
 
@@ -10,8 +11,10 @@
 
 <!-- Basic Section -->
 
-
 <!-- DONE -->
+
+## ( done 06/22/2023 ) sx-1-lathe-sphere
+* (done) have a demo where a sphere is made by way of a 2d curve and the lathe geometry
 
 ## ( done 06/22/2023 ) - Combined demos into new basic section
 * (done) combine demos s1 - s4 into new basic section
