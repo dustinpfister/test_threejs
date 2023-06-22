@@ -8,6 +8,9 @@ The color attribute of a buffer geometry instance is how to go about defining a 
       </a>
 </div>
 
+## The deal with morph attribites and WEBGL 1
+
+I have found that in late revisions of threejs the updating of color attributes is part of what goes on when it comes to using morph attributes. However this will not work when it comes to the WebGl1 renderer.
 
 ## Works with just about all built in mesh materials
 
@@ -15,6 +18,6 @@ Sense the vertexColors boolen is a property of the base material class, this sho
 
 ## Works with Lines and Points
 
-Again because the vertexColors boolen is a base material class property vertex colors work with materials like LineBasicMaterial when it comes to Lines, and the PointsMaterial when it comes to Points.
+Again because the vertexColors boolean is a base material class property vertex colors work with materials like LineBasicMaterial when it comes to Lines, and the PointsMaterial when it comes to Points.
 
 

@@ -2,11 +2,11 @@
 
 <!-- CUSOTM GEOMETRY SECTION -->
 
-I might want to start a custom geometry section for this post. If so I think that it would be nice to write about rhw buffer geometry loader, and my vertex color trees as one such example.
+I might want to start a custom geometry section for this post. If so I think that it would be nice to write about the buffer geometry loader, and my vertex color trees as one such example.
 
 <!-- MORPH ATTRIBUETS SECITON? -->
 
-I might want to make a morph attributes section for this post. If so I will want to make it clear that you need WebGL 2 for that fetaure to work.
+I might want to make a morph attributes section for this post. If so I will want to make it clear that you need WebGL 2 for that feature to work.
 
 <!-- CUSOM SHADRERS SECTION? -->
 
