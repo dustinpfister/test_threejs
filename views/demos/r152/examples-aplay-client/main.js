@@ -4,11 +4,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
 // ---------- ----------
-// HELPERS
-// ---------- ----------
-
-
-// ---------- ----------
 // SCENE, CAMERA, RENDERER, 2D CANVAS
 // ---------- ----------
 const scene = new THREE.Scene();
@@ -25,22 +20,17 @@ canvas_2d.height = 480;
 // sample array
 // ---------- ----------
 const sample_array = [];
-
 let i = 0;
 const sample_count = 8000;
 while(i < sample_count){
     const a_wave = i / sample_count * 5 % 1;
-
     // for 8bit samples
-    //const n = Math.round( 127.5 + Math.sin( Math.PI * a_wave ) * 60 )
-
+    const n = Math.round( 127.5 + Math.sin( Math.PI * a_wave ) * 60 )
     // for 32bit le
-    const n = Math.sin( Math.PI * a_wave ) * 2000;
-
+    //const n = Math.sin( Math.PI * a_wave ) * 2000;
     sample_array.push( parseFloat( n.toFixed(2) ) );
     i += 1;
 }
-
 // ---------- ----------
 // SCENE CHILD OBJECTS
 // ---------- ----------
@@ -65,25 +55,17 @@ const render = () => {
     // background
     ctx.fillStyle = 'black';
     ctx.fillRect(0,0, canvas_2d.width, canvas_2d.height)
-
     // draw webgl renderer state
     renderer.render(scene, camera);
     ctx.drawImage( renderer.domElement, 32, 32, 320, 240);
-
     // other info
-
 };
 // loop
 const loop = () => {
-
     if(frame === FRAME_MAX){
         const text = JSON.stringify(sample_array);
         document.getElementById('raw').value = text;
-
-
     }
-
-
     if(frame < FRAME_MAX){
         requestAnimationFrame(loop);
         update( Math.floor(frame), FRAME_MAX);

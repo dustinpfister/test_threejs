@@ -1,11 +1,12 @@
 # examples-aplay-client r152 demo
 
-After making two demos that have to do with using threejs in the process of cretaing audio sample data to play with the linux aplay command. I am now of the mindset that the best way forward would be to do everything client side. This way I can do a better job of showing what the state of things are vishualy with the state of the audio data when it comes to things like graphs of audo data. I can then use Uint8ClampedArray as a way to create what will be the final raw data that will be played using aplay.
+After making two demos that have to do with using threejs in the process of creating audio sample data to play with the Linux aplay command. I am now of the mindset that the best way forward would be to do everything client side. This way I can do a better job of showing what the state of things are visually with the state of the audio data when it comes to things like graphs of audio data. I can then use Uint8ClampedArray as a way to create what will be the final raw data that will be played using aplay.
 
 
 
 ## EXPORTING
 
+One thing that is holding me back with this is how to go about exporting sample data. In other demos like this one I was going with a system where what I am exporting is JSON, and also the JSON is data that is arguments that are to be called for each frame of some video. It is then a nodejs script that converts this json data to the final binary data. However with this demo I am thinking more in terms of doing everything client side, as I would like to have access to the full set of data on this end to be used in the process of visualizing the data.
 
 ### AS JSON
 
