@@ -1,7 +1,6 @@
 # threejs-sphere todo list
 
-<!-- Lathe Goenetry Section -->
-
+<!-- Lathe Geometry Section -->
 ## () sx-1-lathe-sphere
 * () have a demo where a sphere is made by way of a 2d curve and the lathe geometry
 
@@ -9,13 +8,14 @@
 
 <!-- Material Array Section -->
 
-<!-- New basic Section -->
+<!-- Basic Section -->
 
-## () - Combined demos into new basic section
-* () combine demos s1 - s4 into new basic section
-* () rename older demos as needed
 
 <!-- DONE -->
+
+## ( done 06/22/2023 ) - Combined demos into new basic section
+* (done) combine demos s1 - s4 into new basic section
+* (done) rename older demos as needed
 
 ## (done 05/13/2022 ) - new section on Vector3 Length
 * (done) have an animation loop example that has to do with Vector3 length and direction
