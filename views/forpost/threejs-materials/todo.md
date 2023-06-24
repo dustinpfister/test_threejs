@@ -1,5 +1,10 @@
 # threejs-materials todo list
 
+<!-- MATERAL ARRAY SECTION -->
+
+It would be nice to have a section where I get into material arrays, and groups of buffer geometry. If so I should have at least one demo in which I am using the Phong for metal surfaces, and Lambert for wood surfaces.
+
+
 <!-- SHADER MATERIAL SECTION -->
 
 <!-- TEXTURES SECTION -->
