@@ -1,10 +1,10 @@
 # test_threejs
 
-This is a collection of work using the javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple demos of threejs features, as well as starting project examples. In other words I am just simply testing out threejs, and in the process writing a fare amount of vanilla javaScript code in the process of doing so. 
+This is a collection of work using the javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple threejs examples. Many of these are very basic demos of threejs features, but then a great deal more of them progress beyond just that into not so basic demos of features, and even some examples that start to form full finished projects.
 
-I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far. 
+I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far on threejs. 
 
-I also have additional draft demos broken down on a reversion by revision basis as threejs is a very fast moving project in terms of development. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. Future for post folders typically start here in one of these demo revision folders.
+I also have additional draft demos broken down on a reversion by revision basis as well . The main reason why is because threejs is a very fast moving project in terms of development. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. Future for post folders typically start here in one of these demo revision folders, so the demo folder is also used as a kind of sketchpad for examples that will get refined a little for final examples that show up in blog posts.
 
 
 
