@@ -1,8 +1,15 @@
 # threejs-depth-material
 
-## () - animation loop using data textures
+<!-- CUSTOM SECTION -->
 
-## () - custom depth material using canvas elements
+## () - s3-3-custom-shader
+* () custom depth material using THREE.ShaderMaterial
+
+
+<!-- DONE -->
+
+## ( done 06/26/2023 ) - s3-2-custom-canvas
+* (done) custom depth material using canvas elements
 
 ## ( done 01/19/2023 ) - updated to r146
 * (done) updated examples to use r146
