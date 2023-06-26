@@ -47,7 +47,6 @@ If I am going to start a basics section the focus should not just be one light o
 * (done) redu this demo to have it so that we have a collection of torus geometry mesh objects
 * (done) have the point light move threw the holes in the torus geometry mesh objects
 
-
 ## ( done 06/26/2023 ) - s4-1-point
 * (done) basic point light example
 * (done) rename loop demos 
