@@ -1,5 +1,9 @@
 # threejs-light todo list
 
+<!-- SHADOWS SECTION -->
+
+If I even get to it I also might want to have a section on shadows
+
 <!-- NOLIGHT SECTION -->
 
 If I start a section on not using light the focus should be one the features of the MeshBasicMaterial. There is just using the map option then with this material, and focusing on the state of textures as a way to add depth. I should also have at least one demo n using vertex color attributes of geometry and getting that to work with the basic material.
@@ -34,9 +38,15 @@ If I am going to start a basics section the focus should not just be one light o
 ## () s4-2-point-helper
 * () I should have at least one dmeo on the point light helper
 
+<!-- ANIMATION LOOP SECTION -->
+
+## () s5-3-ani-pointlight
+* () redu this demo to have it so that we have a collection of torus geometry mesh objects
+* () have the point light move threw the holes in the torus geometry mesh objects
+
 <!-- Done -->
 
-## () - s4-1-point
+## ( done 06/26/2023 ) - s4-1-point
 * (done) basic point light example
 * (done) rename loop demos 
 
