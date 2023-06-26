@@ -1,57 +1,82 @@
-// ---------- ----------
-// SCENE, CAMERA, AND RENDERER
-// ---------- ----------
-// creating a scene
+//-------- ----------
+// SCENE, CAMERA, RENDERER
+//-------- ----------
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.6, 100);
-camera.position.set(3, 3, 3);
-camera.lookAt(0, 0, 0);
+scene.background = new THREE.Color(0x000000);
+const camera = new THREE.PerspectiveCamera(40, 320 / 240, 0.1, 100);
 scene.add(camera);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-// ---------- ----------
-// POINT LIGHT
-// ---------- ----------
-const light = new THREE.PointLight(0xffffff, 1);
-light.add(new THREE.Mesh(new THREE.SphereGeometry(0.05, 20, 20)));
-scene.add(light);
-scene.add(new THREE.AmbientLight(0x2a2a2a, 0.3));
-// ---------- ----------
-// ADDING A FEW MESH OBJECTS TO THE SCENE
-// ---------- ----------
-const mesh1 = new THREE.Mesh(
-    new THREE.PlaneGeometry(5,5),
-    new THREE.MeshPhongMaterial( { color: new THREE.Color('cyan') } )
-);
-mesh1.rotation.x = -1.57;
-scene.add(mesh1);
-// ---------- ----------
-// CALLING RENDER OF RENDERER IN AN ANIMATION LOOP
-// ---------- ----------
-// APP LOOP
-let secs = 0,
-fps_update = 30,   // fps rate to update ( low fps for low CPU use, but choppy video )
-fps_movement = 30, // fps rate to move camera
-frame = 0,
-frameMax = 120,
-lt = new Date();
-// update
-const update = function(){
-    const per = Math.round(frame) / frameMax,
-    bias = 1 - Math.abs(0.5 - per) / 0.5;
-    light.position.set(-2 + 4 * bias, 2, 0);
+//-------- ----------
+// LIGHT
+//-------- ----------
+const pl = new THREE.PointLight(0xffffff, 1.00);
+scene.add(pl);
+const al = new THREE.AmbientLight(0xffffff, 0.05);
+scene.add(al);
+//-------- ----------
+// HELPERS
+//-------- ----------
+const MAIN_RADIUS = 8,
+DOUGHNUT_COUNT = 40;
+// create a DOUGHNUT child for a group
+const createDoughnutChild = (index, len) => {
+    const per = index / len,
+    bias = 1 - Math.abs(per - 0.5) / 0.5,
+    radius = 0.6 + 2.3 * bias,
+    tubeRadius = 0.05 + 0.2 * bias,
+    radialSegments = 32,
+    tubeSegments = 32;
+    const doughnut = new THREE.Mesh(
+        new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
+        new THREE.MeshStandardMaterial({
+           color: 0xffffff
+        }));
+    doughnut.geometry.rotateY(Math.PI * 0.5);
+    return doughnut;
 };
-// loop
-const loop = function () {
+// create a group of DOUGHNUTs
+const createDoughnutGroup = () => {
+    let i = 0;
+    const len = DOUGHNUT_COUNT,
+    group = new THREE.Group();
+    while(i < len){
+        const per = i / len,
+        radian = Math.PI * 2 * per;
+        const doughnut = createDoughnutChild(i, len);
+        doughnut.position.set(Math.cos(radian) * MAIN_RADIUS, 0, Math.sin(radian) * MAIN_RADIUS);
+        doughnut.lookAt(0, 0, 0);
+        group.add(doughnut);
+        i += 1;
+    }
+    return group;
+};
+//-------- ----------
+// ADDING GROUP TO SCENE
+//-------- ----------
+const group = createDoughnutGroup();
+scene.add(group);
+//-------- ----------
+// LOOP
+//-------- ----------
+camera.position.set(15, 15, 15);
+camera.lookAt(0, -1, 0);
+let lt = new Date(),
+frame = 0;
+const maxFrame = 90,
+fps = 24;
+const loop = function(){
     const now = new Date(),
+    per = frame / maxFrame,
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
-    if(secs > 1 / fps_update){
-        update();
+    if(secs > 1 / fps){
+        const radian = Math.PI * 2 * per;
+        pl.position.set(Math.cos(radian) * MAIN_RADIUS, 0, Math.sin(radian) * MAIN_RADIUS);
         renderer.render(scene, camera);
-        frame += fps_movement * secs;
-        frame %= frameMax;
+        frame += fps * secs;
+        frame %= maxFrame;
         lt = now;
     }
 };
