@@ -24,13 +24,21 @@ If I am going to start a basics section the focus should not just be one light o
 ## () - sx-1-rectarea
 * () just a basic example of this kind of light
 
+<!-- SPOTLIGHT SECTION -->
+
+## () sx-1-spotlight
+* () spot light section
+
 <!-- POINT AREA SECTION -->
+
+## () s4-2-point-helper
+* () I should have at least one dmeo on the point light helper
+
+<!-- Done -->
 
 ## () - s4-1-point
 * (done) basic point light example
 * (done) rename loop demos 
-
-<!-- Done -->
 
 ## ( done 06/26/2023 ) rename folders
 * (done) rename folders like s1-ambient to s1-1-ambient
