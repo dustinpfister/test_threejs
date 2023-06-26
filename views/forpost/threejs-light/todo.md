@@ -26,8 +26,9 @@ If I am going to start a basics section the focus should not just be one light o
 
 <!-- POINT AREA SECTION -->
 
-## () - sx-1-point
-* () basic point light example
+## () - s4-1-point
+* (done) basic point light example
+* (done) rename loop demos 
 
 <!-- Done -->
 
