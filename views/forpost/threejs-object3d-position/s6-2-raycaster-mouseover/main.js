@@ -53,18 +53,24 @@ camera.lookAt(0, 0, 0);
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 let lt = new Date();
 const fps = 30;
-const update = (group) => {
+const update = (group, secs) => {
     // default scale
-    group.children.forEach(function(obj){
-        obj.scale.set(1, 1, 1);
-    });
+
     // update the picking ray with the camera and mouse position
     raycaster.setFromCamera( mouse, camera );
     const intersects = raycaster.intersectObjects(group.children, true );
     if(intersects.length > 0){
         const mesh = intersects[0].object;
-        mesh.scale.set(2, 2, 2);
+        mesh.position.y = 1;
     }
+    group.children.forEach(function(obj){
+        let y = obj.position.y;
+        if(y > 0){
+            y -= 0.25 * secs;
+            obj.position.y = y;
+        }
+    });
+
 };
 const loop = function () {
     const now = new Date(),
@@ -72,7 +78,7 @@ const loop = function () {
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
         // update
-        update(boxGroup);
+        update(boxGroup, secs);
         // render
         renderer.render(scene, camera);
         lt = now;
