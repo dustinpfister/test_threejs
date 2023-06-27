@@ -65,7 +65,6 @@ const update = (group, secs) => {
             obj.position.y = y;
         }
     });
-
 };
 const loop = function () {
     const now = new Date(),
