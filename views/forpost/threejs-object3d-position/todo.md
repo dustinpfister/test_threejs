@@ -1,6 +1,12 @@
 # threejs-object3d-position todo list
 
-## () s5-x-loop-world-local
+<!-- STOCHASTIC SECTION -->
+
+If I am to make this kind of section many of these will be demos that involve human input.
+
+<!-- LOOP SECTION -->
+
+## () s8-6-loop-world-local
 * () this will be an animation in which I have two groups
 * () the two groups will be in motion
 * () the children of both groups will be in motion
@@ -8,17 +14,18 @@
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
 
-## () sx-box3 section
-* () use box3 to set an area where mesh objects can be
-* () use box3 to make it so the position of objects will not go below a plane
+<!-- BOX3 SECTION -->
 
-## () sx-x-raycaster section
+## () s7-1-box3 section
+* () start with a relevant demo from the post
+
+<!-- RAYCASTER SECTION -->
+
+## () s6-1-raycaster-torus
 * () start a raycaster section with at least one basic example with say a torus geometry
-* () start an exmaple that involves the use of the buffer geometry loader and a custom geometry with werid values
-* () at least a basic menu example
+* () just start with a demo from the post on raycatser for this one
 
-## () sx-x-stochastic section
-* () start a section for stochastic animation examples
+<!-- DONE -->
 
 ## ( done 05/30/2023 ) sx-2-bounds-wrap
 * (done) animation involving wrap

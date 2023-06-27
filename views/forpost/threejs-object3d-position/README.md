@@ -22,3 +22,7 @@ The Basics of getting started with this are simple enough. The vector3 object st
 ## The Children Section
 
 The main idea that I want to get solid in this section is the deal with what local space is compared to that of what is often referred to as world space. This applies to all object3d class based objects including the scene object.
+
+## The Curve Section
+
+One great tool for setting the position of objects would be curves. There is getting into making custom curve class, but for the most part I have found that doing so is not called for as there are many great options for these built into threejs itself to work with.
