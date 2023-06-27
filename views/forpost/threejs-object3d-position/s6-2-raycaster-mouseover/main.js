@@ -49,14 +49,9 @@ boxGroup.add(box);
 //-------- ----------
 camera.position.set(5, 5, 5);
 camera.lookAt(0, 0, 0);
-// orbit controls
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
 let lt = new Date();
 const fps = 30;
 const update = (group, secs) => {
-    // default scale
-
-    // update the picking ray with the camera and mouse position
     raycaster.setFromCamera( mouse, camera );
     const intersects = raycaster.intersectObjects(group.children, true );
     if(intersects.length > 0){
