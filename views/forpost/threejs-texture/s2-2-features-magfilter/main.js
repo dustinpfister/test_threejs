@@ -8,8 +8,6 @@ import * as THREE from 'three';
 const scene = new THREE.Scene();
 scene.add( new THREE.GridHelper(10, 10) );
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, .025, 100);
-camera.position.set(1.25, 1.25, 1.25);
-camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
@@ -46,10 +44,17 @@ texture2.magFilter = THREE.NearestFilter;
 // GEOMETRY, MATERIAL, MESH
 //-------- ----------
 const geo = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ map: texture2 });
-const mesh = new THREE.Mesh( geo, material);
-scene.add(mesh);
+const material1 = new THREE.MeshBasicMaterial({ map: texture1 });
+const material2 = new THREE.MeshBasicMaterial({ map: texture2 });
+const mesh1 = new THREE.Mesh( geo, material1);
+mesh1.position.x = -0.6;
+scene.add(mesh1);
+const mesh2 = new THREE.Mesh( geo, material2);
+mesh2.position.x = 0.6;
+scene.add(mesh2);
 //-------- ----------
 // RENDER
 //-------- ----------
+camera.position.set(0, 1, 2);
+camera.lookAt(0, 0, 0);
 renderer.render(scene, camera);
