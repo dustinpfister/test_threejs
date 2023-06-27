@@ -2,6 +2,10 @@
 
 <!-- RAYCASTER SECTION -->
 
+## s6-3-raycaster-world
+* () I will want a custom geometry that is like a sphere but with unit lengths adjust to get bumps
+* () use rayster to move one or more mesh objects around on the surface of this world
+
 <!-- STOCHASTIC SECTION -->
 
 If I am to make this kind of section many of these will be demos that involve human input.
