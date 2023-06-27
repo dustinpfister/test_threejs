@@ -6,8 +6,8 @@
 
 <!-- Features Sections -->
 
-## () s2-2-features-minfilter
-* () demo on the minfilter and how it applies with canvas textures.
+## () s2-2-features-magfilter
+* () demo on the magfilter and how it applies with canvas textures.
 
 ## () s2-3-features-image
 * () demo on the image property if texture objects
