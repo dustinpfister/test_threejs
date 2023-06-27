@@ -21,11 +21,17 @@ If I am to make this kind of section many of these will be demos that involve hu
 
 <!-- RAYCASTER SECTION -->
 
-## () s6-1-raycaster-torus
-* () start a raycaster section with at least one basic example with say a torus geometry
-* () just start with a demo from the post on raycatser for this one
+
 
 <!-- DONE -->
+
+## ( done 06/27/2023 ) s6-2-raycaster-mouseover
+* (done) start with the demo from the post
+* (done) I would like to just use the pointer move event for this one 
+
+## ( done 06/27/2023 ) s6-1-raycaster-torus
+* (done) start a raycaster section with at least one basic example with say a torus geometry
+* (done) just start with a demo from the post on raycatser for this one
 
 ## ( done 05/30/2023 ) sx-2-bounds-wrap
 * (done) animation involving wrap
