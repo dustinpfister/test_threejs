@@ -1,8 +1,16 @@
 # threejs-object3d-position todo list
 
+<!-- RAYCASTER SECTION -->
+
 <!-- STOCHASTIC SECTION -->
 
 If I am to make this kind of section many of these will be demos that involve human input.
+
+<!-- BOX3 SECTION -->
+
+## s7-2-box3-getsize
+* () use set size methd to get the size of various mesh objects
+* () use the size box3 objects in the process of setting, use guessed it position
 
 <!-- LOOP SECTION -->
 
@@ -14,16 +22,10 @@ If I am to make this kind of section many of these will be demos that involve hu
 * () use the getWorldPositon method to get the world space location of a current group
 * () move the mesh object to a location relative to groups, children of groups, and the scene object
 
-<!-- BOX3 SECTION -->
-
-## () s7-1-box3 section
-* () start with a relevant demo from the post
-
-<!-- RAYCASTER SECTION -->
-
-
-
 <!-- DONE -->
+
+## ( done 06/07/2023 ) s7-1-box3-seedrandom
+* (done) start with the relevant demo from the post on box3
 
 ## ( done 06/27/2023 ) s6-2-raycaster-mouseover
 * (done) start with the demo from the post
