@@ -109,6 +109,8 @@ loader.load(
 
             //mesh.morphTargetInfluences[ 0 ] = a_wings;
             updateByMorph(geometry, pos_att_home, a_wings, 0);
+            geometry.computeVertexNormals();
+
             helper.update();
 
             // object3d position
