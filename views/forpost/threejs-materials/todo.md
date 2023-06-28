@@ -4,6 +4,9 @@
 
 It would be nice to have a section where I get into material arrays, and groups of buffer geometry. If so I should have at least one demo in which I am using the Phong for metal surfaces, and Lambert for wood surfaces.
 
+<!-- MeshMatcapMaterial SECTION-->
+
+I should start a mesh matcap section when I have a post on this material option.
 
 <!-- SHADER MATERIAL SECTION -->
 
@@ -15,16 +18,12 @@ Start a textures section where the focus is on textures and the various map opti
 
 I think that I should maybe have a seciton on the base material class where the focus is on common features of all materials
 
-## () - sx-1-common-opacity
+## () - s11-1-common-opacity
 * () vertex color examples
 
-## () - sx-2-common-vertexcolor
+## () - s11-2-common-vertexcolor
 * () vertex color examples
 
-<!-- MeshMatcapMaterial SECTION-->
-
-## () - s10-1-meshmatcap
-* () demo of mesh matcap material
 
 <!-- DONE -->
 
