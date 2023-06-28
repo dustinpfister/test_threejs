@@ -48,8 +48,8 @@ const texture = new THREE.CanvasTexture(canvas);
 //-------- ----------
 // Loader
 //-------- ----------
-camera.position.set(4, 4, 4);
-camera.lookAt(0, 0, 0);
+camera.position.set(3, 3, 3);
+camera.lookAt(0, 1, 0);
 const loader = new THREE.BufferGeometryLoader();
 // load a resource
 loader.load(
@@ -98,17 +98,22 @@ loader.load(
         scene.add(helper);
         // loop
         let frame = 0;
-        const frame_max = 90;
+        const frame_max = 120;
         const loop = () => {
             requestAnimationFrame(loop);
             const a1 = frame / frame_max;
-            const a2 = 1 - Math.abs( 0.5 - a1 ) / 0.5;
+            const a_wings = 1 - Math.abs( 0.5 - (a1 * 8 % 1) ) / 0.5;
+
+            const a_bounce = a1;
 
 
-            //mesh.morphTargetInfluences[ 0 ] = a2;
-
-            updateByMorph(geometry, pos_att_home, a2, 0);
+            //mesh.morphTargetInfluences[ 0 ] = a_wings;
+            updateByMorph(geometry, pos_att_home, a_wings, 0);
             helper.update();
+
+            // object3d position
+            mesh.position.y = Math.sin( Math.PI * 2 * a_bounce ) * 0.5;
+
 
             frame += 1;
             frame %= frame_max;
