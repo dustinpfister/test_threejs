@@ -1,5 +1,7 @@
 # threejs-object3d-type todo list
 
+<!-- TYPES SECTION -->
+
 ## () s3-7-types-helpers
 * () grid helper
 * () arrow helper
@@ -25,8 +27,11 @@
 ## () s3-2-types-points
 * () demo of points objects
 
-## () s3-1-types-mesh
-* () demo of mesh objects
+<!-- DONE -->
+
+## ( done 06/28/2023 ) s3-1-types-mesh
+* (done) demo of mesh objects
+* (done) set color and position for all mesh objects in the demo
 
 ## ( done 01/25/2023 ) s2-2-children-traverse
 * (done) have an example that makes use of the traverse method
