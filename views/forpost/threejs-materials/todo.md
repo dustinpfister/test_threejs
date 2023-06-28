@@ -16,16 +16,14 @@ Start a textures section where the focus is on textures and the various map opti
 
 <!-- BASE MATERIAL SECTION -->
 
-I think that I should maybe have a seciton on the base material class where the focus is on common features of all materials
-
-## () - s11-1-common-opacity
-* () vertex color examples
-
 ## () - s11-2-common-vertexcolor
 * () vertex color examples
 
 
 <!-- DONE -->
+
+## ( done 06/28/2023 ) - s11-1-common-opacity
+* (done) opaciy demo using a lot of differing materials
 
 ## ( done 06/20/2023 ) - s10-1-lines-edge
 * (done) section folder for this and first demo
