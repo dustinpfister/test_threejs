@@ -15,7 +15,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // GRID
 //-------- ----------
-scene.add( new THREE.GridHelper(10, 10) );
+//scene.add( new THREE.GridHelper(10, 10) );
 //-------- ----------
 // ORBIT CONTROLS
 //-------- ----------
@@ -49,7 +49,7 @@ const texture = new THREE.CanvasTexture(canvas);
 // Loader
 //-------- ----------
 camera.position.set(3, 3, 3);
-camera.lookAt(0, 1, 0);
+camera.lookAt(0, 0.5, 0);
 const loader = new THREE.BufferGeometryLoader();
 // load a resource
 loader.load(
@@ -95,16 +95,16 @@ loader.load(
 
         // vertex helper
         const helper = new VertexNormalsHelper(mesh, 1, 0x00ff00);
-        scene.add(helper);
+        //scene.add(helper);
         // loop
         let frame = 0;
-        const frame_max = 120;
+        const frame_max = 30 * 5;
         const loop = () => {
             requestAnimationFrame(loop);
             const a1 = frame / frame_max;
             const a_wings = 1 - Math.abs( 0.5 - (a1 * 8 % 1) ) / 0.5;
-
-            const a_bounce = a1;
+            const a_bounce = a1 * 2 % 1;
+            const a_rock = Math.sin( Math.PI * 2 * a1 ) / Math.PI;
 
 
             //mesh.morphTargetInfluences[ 0 ] = a_wings;
@@ -113,9 +113,9 @@ loader.load(
 
             helper.update();
 
-            // object3d position
+            // object3d position / rotation
             mesh.position.y = Math.sin( Math.PI * 2 * a_bounce ) * 0.5;
-
+            mesh.rotation.y = Math.PI / 180 * ( 90 * a_rock );
 
             frame += 1;
             frame %= frame_max;
