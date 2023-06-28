@@ -23,7 +23,7 @@ new OrbitControls(camera, renderer.domElement);
 //-------- ----------
 // Loader
 //-------- ----------
-camera.position.set(8, 8, 8);
+camera.position.set(4, 4, 4);
 camera.lookAt(0, 0, 0);
 const loader = new THREE.BufferGeometryLoader();
 // load a resource
@@ -40,10 +40,9 @@ loader.load(
                 side: THREE.DoubleSide
             }));
         scene.add(mesh);
-
-//const helper = new VertexNormalsHelper(mesh)
-//scene.add(helper);
-
+        // vertex helper
+        const helper = new VertexNormalsHelper(mesh)
+        scene.add(helper);
         // loop
         let frame = 0;
         const frame_max = 90;
