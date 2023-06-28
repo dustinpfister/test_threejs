@@ -39,6 +39,22 @@
         ],
         "normalized":false
       },
+      "uv":{
+        "itemSize":2,
+        "type":"Float32Array",
+        "array":[
+            0,0,
+            1,0,
+            1,1,
+            1,0,
+            1,1,
+            1,0,
+            1,1,
+            1,0,
+            1,1
+        ],
+        "normalized":false
+      },
       "color":{
         "itemSize":3,
         "type":"Float32Array",

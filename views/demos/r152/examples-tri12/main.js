@@ -21,6 +21,31 @@ scene.add( new THREE.GridHelper(10, 10) );
 //-------- ----------
 new OrbitControls(camera, renderer.domElement);
 //-------- ----------
+// CANVAS TEXTURE
+//-------- ----------
+const canvas = document.createElement('canvas');
+canvas.width = 32;
+canvas.height = 32;
+const ctx = canvas.getContext('2d');
+const gSize = 8;
+const len = gSize * gSize;
+const color = new THREE.Color(0,0,0);
+const s = canvas.width / gSize;
+let i = 0;
+while(i < len){
+    const x = i % gSize;
+    const y = Math.floor( i / gSize );
+    const r = 0.25 + 0.75 * Math.random();
+    const g = Math.random() * 0.05;
+    const b = Math.random() * 0.05;
+    color.setRGB(r, g, b);
+    ctx.fillStyle = color.getStyle();
+    ctx.fillRect(x * s, y * s, s, s);
+    i += 1;
+}
+// texture from canvas
+const texture = new THREE.CanvasTexture(canvas);
+//-------- ----------
 // Loader
 //-------- ----------
 camera.position.set(4, 4, 4);
@@ -36,12 +61,13 @@ loader.load(
         const mesh = new THREE.Mesh(
             geometry,
             new THREE.MeshBasicMaterial({
-                vertexColors: true, 
-                side: THREE.DoubleSide
+                vertexColors: false, 
+                side: THREE.DoubleSide,
+                map: texture
             }));
         scene.add(mesh);
         // vertex helper
-        const helper = new VertexNormalsHelper(mesh)
+        const helper = new VertexNormalsHelper(mesh, 1, 0x00ff00);
         scene.add(helper);
         // loop
         let frame = 0;
