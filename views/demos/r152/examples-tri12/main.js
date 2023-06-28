@@ -57,6 +57,9 @@ loader.load(
     '/json/tri12-bufferfly/set1/0.json',
     // onLoad callback
     (geometry) => {
+
+
+
         // add mesh
         const mesh = new THREE.Mesh(
             geometry,
@@ -73,6 +76,23 @@ loader.load(
 
         );
         scene.add(mesh);
+
+
+        const pos_att = geometry.getAttribute('position');
+        const pos_att_home = pos_att.clone();
+
+
+        const updateByMorph = (geometry, pos_att_home, alpha = 1, index = 0) => {
+            const att_morph = geometry.morphAttributes.position[index];
+            pos_att.array = pos_att_home.array.map( (n, i) => {
+                return n + (att_morph.array[i] * alpha);
+            });
+            pos_att.needsUpdate = true;
+        };
+
+        updateByMorph(geometry, pos_att_home, 1, 0);
+
+
         // vertex helper
         const helper = new VertexNormalsHelper(mesh, 1, 0x00ff00);
         scene.add(helper);
@@ -83,7 +103,13 @@ loader.load(
             requestAnimationFrame(loop);
             const a1 = frame / frame_max;
             const a2 = 1 - Math.abs( 0.5 - a1 ) / 0.5;
-            mesh.morphTargetInfluences[ 0 ] = a2;
+
+
+            //mesh.morphTargetInfluences[ 0 ] = a2;
+
+            updateByMorph(geometry, pos_att_home, a2, 0);
+            helper.update();
+
             frame += 1;
             frame %= frame_max;
             renderer.render(scene, camera);
