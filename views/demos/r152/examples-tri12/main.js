@@ -60,11 +60,18 @@ loader.load(
         // add mesh
         const mesh = new THREE.Mesh(
             geometry,
+
+//            new THREE.MeshNormalMaterial({
+//                side: THREE.DoubleSide
+//            })
+
             new THREE.MeshBasicMaterial({
                 vertexColors: false, 
                 side: THREE.DoubleSide,
                 map: texture
-            }));
+            })
+
+        );
         scene.add(mesh);
         // vertex helper
         const helper = new VertexNormalsHelper(mesh, 1, 0x00ff00);
@@ -74,9 +81,9 @@ loader.load(
         const frame_max = 90;
         const loop = () => {
             requestAnimationFrame(loop);
-            //const a1 = frame / frame_max;
-            //const a2 = 1 - Math.abs( 0.5 - a1 ) / 0.5;
-            //mesh.morphTargetInfluences[ 0 ] = a2;
+            const a1 = frame / frame_max;
+            const a2 = 1 - Math.abs( 0.5 - a1 ) / 0.5;
+            mesh.morphTargetInfluences[ 0 ] = a2;
             frame += 1;
             frame %= frame_max;
             renderer.render(scene, camera);
