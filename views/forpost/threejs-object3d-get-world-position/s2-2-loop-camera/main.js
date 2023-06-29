@@ -30,6 +30,7 @@ scene.add( new THREE.GridHelper(10, 10) );
 const material = new THREE.MeshNormalMaterial();
 const geometry = new THREE.SphereGeometry(0.5, 20, 20);
 const group = new THREE.Group();
+group.position.set(3, 0, 1)
 let i = 0;
 const len = 10;
 while(i < len){
