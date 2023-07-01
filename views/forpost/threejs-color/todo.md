@@ -1,5 +1,11 @@
 # threejs-color
 
+<!-- LOOP SECTION -->
+
+## () - s7-2-loop-setfromvector3
+* () start with the source for for the methods section
+* () see about working out new logic where both direciton and unit length have effect
+
 <!-- VERTEX COLOR SECTION -->
 
 ## () - sx-1-vertexcolors
@@ -11,11 +17,6 @@
 
 <!-- METHODS SECTION -->
 
-## () - s5-2-methods-setfromvector3
-* () this might need to be a loop demo
-* () this is a method that was added in r151, if I am sticking with r146 I will need to have a pony fill
-* () looks like this method does not normalize so Is hould do that
-
 ## () - s5-3-methods-getstyle
 * () I should have a stand alone get style demo
 
@@ -25,6 +26,11 @@
 * () I will want to do so by diretcly updateing the color attribuite
 
 <!-- DONE -->
+
+## ( done 06/01/2023 ) - s5-2-methods-setfromvector3
+* (done) this might need to be a loop demo
+* (done) this is a method that was added in r151, if I am sticking with r146 I will need to have a pony fill
+* (done) looks like this method does not normalize so Is hould do that
 
 ## ( done 06/01/2023 ) - consolidate demos
 * (done) s2 and s3 can be consolidated into a new materials section
