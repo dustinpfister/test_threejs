@@ -27,12 +27,12 @@
 
 <!-- DONE -->
 
-## ( done 06/01/2023 ) - s5-2-methods-setfromvector3
+## ( done 07/01/2023 ) - s5-2-methods-setfromvector3
 * (done) this might need to be a loop demo
 * (done) this is a method that was added in r151, if I am sticking with r146 I will need to have a pony fill
 * (done) looks like this method does not normalize so Is hould do that
 
-## ( done 06/01/2023 ) - consolidate demos
+## ( done 07/01/2023 ) - consolidate demos
 * (done) s2 and s3 can be consolidated into a new materials section
 * (done) s8 can be part of a new texture section
 * (done) background, methods, random, and loop sections
