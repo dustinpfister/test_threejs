@@ -1,5 +1,25 @@
 # threejs-buffer-geometry-set-from-points todo list
 
+
+<!-- CURVES SECTION -->
+
+## s4-1-curves-line
+* () line curve demo using tube geometry, and just a line curve 3
+
+## s4-2-curves-cubic
+* () line curve demo using tube geometry, but now a qubic curve
+
+## s4-3-curves-path
+* () line curve demo using tube geometry, now with a curve path
+
+
+<!-- BASIC SECTION -->
+
+## s1-2-basic-lines
+* () have a lines demo of set from points
+
+<!-- DONE -->
+
 ## ( done 02/08/2023 ) s3-1-position-sphere
 * (done) position attribite example in which I am not using set from points to update
 * (done) create an array of vector3 objects
