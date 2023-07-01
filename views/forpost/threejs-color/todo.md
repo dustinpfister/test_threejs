@@ -1,13 +1,28 @@
 # threejs-color
 
-## () - sx-x-vertexcolors
-* () start a full vertex colors section
+<!-- VERTEX COLOR SECTION -->
+
+## () - sx-1-vertexcolors
+* () new basic example of vertex colors
+* () just use vertex colors for a built in geometry
+
 
 <!-- BASIC SECTION -->
 
-## () - s1-3-basic-vertex-colors
-* () new basic example of vertex colors
-* () just use vertex colors for a built in geometry
+<!-- METHODS SECTION -->
+
+## () - s5-2-methods-setfromvector3
+* () this might need to be a loop demo
+* () this is a method that was added in r151, if I am sticking with r146 I will need to have a pony fill
+* () looks like this method does not normalize so Is hould do that
+
+## () - s5-3-methods-getstyle
+* () I should have a stand alone get style demo
+
+## () - s5-4-methods-lerp
+* () I think it would be cool to make this a vertex color demo
+* () have two sets of colors and lerp between the two
+* () I will want to do so by diretcly updateing the color attribuite
 
 <!-- DONE -->
 
