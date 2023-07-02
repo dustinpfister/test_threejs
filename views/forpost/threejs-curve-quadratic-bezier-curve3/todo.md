@@ -1,5 +1,7 @@
 # threejs-curve-quadratic-bezier-curve3 todo list
 
+<!-- LOOP SECTION -->
+
 ## () s3-x-loop-curve-update
 * () have a an example where a curves are being updated over time
 
@@ -7,6 +9,15 @@
 * () example in which I continue with the curve alpha method that I started in s3-3-loop-getpoint
 * () see about using a 2d curve path
 * () in any case the curve needs to be strick assending monotonic
+
+<!-- CURVE PATH SECTION -->
+
+<!-- BASIC SECTION -->
+
+<!-- DONE -->
+
+## ( done 07/02/2023 ) - updated demos to r146 style
+* (done) all demos updated to r146 style
 
 ## ( done 10/23/2022 ) s1-2-basic-tube
 * (done) tube geometry example
