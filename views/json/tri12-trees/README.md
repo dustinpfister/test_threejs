@@ -2,7 +2,7 @@
 
 I want to work out what a good over all standard will be for making external JSON assets in the buffer geometry format by way of hand coding data. So I am thinking that I should go with vertex coloring, but also add uv attributes, keep the number of triangles very low, and so forth.
 
-These trees can then be used in pojects for various subjects such as
+These trees can then be used in projects for various subjects such as
 
 * The Buffer Geometry Loader
 * color, uv, position + index, normal, and morph attributes

@@ -1,3 +1,3 @@
 # tri12-butterfly
 
-I would like to work out everything that needs to happen when it comes to starting an over all style for hand coded 3d models
+I would like to work out everything that needs to happen when it comes to starting an over all style for hand coded 3d models. With that said I have started this JSON folder that contains a JSON file for a model of a butterfly that is composed of just four triangles. This then falls under a set of rules that I started with my other JSON folder 'tri12-trees' in which I am making trees that are composed of no more than 12 triangles.
