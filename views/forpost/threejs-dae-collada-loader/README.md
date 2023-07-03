@@ -10,3 +10,7 @@ These are the source code examples that I have together for my [post on the DAE 
 
 
 So far I have to say that I like the DAE standard because of its plain text format that allows for me to just look at, and if need be edit, the state of the file with a text editor if need be. When it comes to using software to create and edit models so far I tend to just like using blender and the DAE file format works great when it comes to exporting from blender. 
+
+## Alternative Options
+
+Although The DAE format is a great option as it seems to be a fairly universal format, there are a lot of things to say about the various alternatives. For one thing I do tend to like to use the buffer geometry format, as that is an option that I can use with the core threejs library alone. Also although I tend to like plain text formats, I should at some point look into at least some of the binary file formats that there are to work with.
