@@ -47,6 +47,13 @@ const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THR
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
 //-------- ----------
+// loop
+//-------- ----------
+const loop = ()=> {
+    requestAnimationFrame(loop);
+    renderer.render(scene, camera);
+};
+//-------- ----------
 // LOAD GEOMETRY
 //-------- ----------
 camera.position.set(-8, 8, 12);
@@ -62,8 +69,19 @@ const material = new THREE.MeshBasicMaterial({
     side: THREE.DoubleSide,
     vertexColors: true
 });
+// load the geometry
 loadBufferGeometryJSON(urls, 2, 5, material)
 .then(( scene_source ) => {
-    scene.add(scene_source);
-    renderer.render(scene, camera);
+ 
+    //scene.add(scene_source);
+    const mesh_bf = scene_source.getObjectByName('buffer_source_0').clone();
+    mesh_bf.position.set( 0, 7, 0);
+    scene.add(mesh_bf);
+
+    const mesh = scene_source.getObjectByName('buffer_source_1').clone();
+    mesh.position.set( 0, 0, 0);
+    mesh.rotation.set( 0, Math.PI / 180 * 45, 0);
+    scene.add(mesh);
+ 
+    loop();
 });
