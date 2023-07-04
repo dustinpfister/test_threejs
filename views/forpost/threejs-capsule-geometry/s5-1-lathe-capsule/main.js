@@ -2,7 +2,6 @@
 // SCENE, CAMERA, RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
-
 const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -14,8 +13,8 @@ const v1 = new THREE.Vector2(  0.0, -1.0 );
 const v2 = new THREE.Vector2(  1.0, -0.5 );
 const v3 = new THREE.Vector2(  1.0,  0.5 );
 const v4 = new THREE.Vector2(  0.0,  1.0 );
-const c1 = v1.clone().lerp(v2, 0.5).add( new THREE.Vector2(  0.4, -0.4 ) );
-const c2 = v3.clone().lerp(v4, 0.5).add( new THREE.Vector2(  0.4,  0.4 ) );
+const c1 = v1.clone().lerp(v2, 0.5).add( new THREE.Vector2(  0.35, -0.35 ) );
+const c2 = v3.clone().lerp(v4, 0.5).add( new THREE.Vector2(  0.35,  0.35 ) );
 // curve path and child curves
 const curve = new THREE.CurvePath();
 curve.add( new THREE.QuadraticBezierCurve( v1, c1, v2 ) );
@@ -24,7 +23,9 @@ curve.add( new THREE.QuadraticBezierCurve( v3, c2, v4 ) );
 //-------- ----------
 // GEOMETRY
 //-------- ----------
-const geometry = new THREE.LatheGeometry(curve.getPoints(), 30);
+const lathe_segments = 50;
+const v2_array = curve.getSpacedPoints(200);
+const geometry = new THREE.LatheGeometry(v2_array, lathe_segments);
 //-------- ----------
 // SCENE CHILD OBJECTS
 //-------- ----------
