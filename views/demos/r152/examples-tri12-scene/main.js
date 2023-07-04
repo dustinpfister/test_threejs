@@ -15,6 +15,8 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // HELPER
 //-------- ----------
+// helper for loading many JSON Buffer Geometrys from threejs-buffer-geometry-loader post:
+// https://dustinpfister.github.io/2018/04/12/threejs-buffer-geometry-loader/
 const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THREE.MeshNormalMaterial() ) => {
     const scene_source = new THREE.Scene();
     const onBuffLoad =  (geometry, i) => {
@@ -61,7 +63,7 @@ const material = new THREE.MeshBasicMaterial({
     vertexColors: true
 });
 loadBufferGeometryJSON(urls, 2, 5, material)
-.then(( scene_source )=>{
+.then(( scene_source ) => {
     scene.add(scene_source);
     renderer.render(scene, camera);
 });
