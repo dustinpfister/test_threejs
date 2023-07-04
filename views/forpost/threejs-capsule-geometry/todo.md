@@ -1,11 +1,24 @@
 # threejs-capsule-geometry
 
-## () sx-1-materialindex
-* () start a section on material index and capsule geometry
+<!-- Lathe Geometry Section -->
+
+<!-- Basic Section -->
+
+<!-- THREE.Group section -->
+
+<!-- Animation loop section -->
 
 ## () - s3-2-ani-position
 * () position attribute mutation loop example
 * () could work out some morph attributes for this
+
+<!-- DONE -->
+
+## ( done 07/04/2023 ) s5-1-lathe-capsule
+* (done) basic demo of the use of the lathe geometry to create a capsule
+
+## ( done 02/16/2023 ) s4-1-materialindex
+* (done) start a section on material index and capsule geometry
 
 ## ( done 02/16/2023 ) - s1-2-basic-sphere
 * (done) basic example in which I make a sphere like geometry
