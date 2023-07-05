@@ -1,7 +1,12 @@
 # threejs-points-material todo list
 
-### () - Animation loop example section
-* () start a new section for animation loop examples with just one example for now
+<!-- consolidate demos-->
+* () demos should be consolidated into a basic section
+
+<!-- DONE -->
+
+## ( done 07/05/2023 ) - r146 update
+* (done) all demos updated to r146 style
 
 ### ( done 10/01/2022 ) - clean up s1 basic examples
 * (done) I made these examples more complex than they need to be, just use setFromPoints
