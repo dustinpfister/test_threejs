@@ -1,5 +1,10 @@
 # threejs-text-geometry todo list
 
+<!-- FACETYPE SECTION?-->
+The threejs docs says that a font can be converted by using a lib called facetype.js
+
+https://gero3.github.io/facetype.js/
+
 <!-- BASIC SECTION-->
 
 <!-- DONE -->
