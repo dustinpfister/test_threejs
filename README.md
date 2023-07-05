@@ -1,11 +1,10 @@
 # test_threejs
 
-This is a collection of work using the javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple threejs examples. Many of these are very basic demos of threejs features, but then a great deal more of them progress beyond just that into not so basic demos of features, and even some examples that start to form full finished projects.
+This is a collection of work using the javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple threejs examples. Many of these are very basic demos of threejs features, but then a great deal more of them progress beyond that into collections of code that at least stat to look like finished projects working on top of the library.
 
-I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far on threejs. 
+I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far on threejs in the view folder. 
 
-I also have additional draft demos broken down on a reversion by revision basis as well . The main reason why is because threejs is a very fast moving project in terms of development. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. Future for post folders typically start here in one of these demo revision folders, so the demo folder is also used as a kind of sketchpad for examples that will get refined a little for final examples that show up in blog posts.
-
+Another folder of interest is the demos folder which is broken down on a reversion by revision basis. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. I test out new features, as well as ideas for basic projects and so forth here in the demos folder. So then this collection of examples is more of a kind of sketch pad of sorts, while the for post folder is where I will park, and update the file code examples that will show up in blog posts.
 
 
 
@@ -30,7 +29,7 @@ $ npm install
 
 ## 2 - Starting a server
 
-I now have a node folder with two options for starting a server both of which make use of [express](https://dustinpfister.github.io/2018/06/12/express/) and [ejs](https://dustinpfister.github.io/2017/12/07/nodejs-ejs-javascript-templates/) for the rendering of templates. Both the new and old scripts use the same ejs templates at the time of this writing, but the new script is thus far working a little better when it comes to fully exploring the demo and for post folders.
+I now have a node folder with two options for starting a server both of which make use of [express](https://dustinpfister.github.io/2018/06/12/express/) and [ejs](https://dustinpfister.github.io/2017/12/07/nodejs-ejs-javascript-templates/) for the rendering of templates. Both the new and old scripts use the same ejs templates at the time of this writing, but the new script is thus far working a little better when it comes to fully exploring the demo and for post folders. These scripts are still very much an after thought, but for me at least they are working well enough.
 
 ### 2.1 - Start the new server by calling index script directly
 
@@ -75,7 +74,7 @@ $ node ./node/server-old/index.js
 
 ## 3 - The views folder
 
-The views folder is where I have all the draft prototypes, final for post source code examples, and additional assets like DAE files and textures. This is also where I have the EJS templates that are used to render html when using the sever script to host all of this.
+As I have stated in the opneing of this readme the views folder is where I have all the source code examples for all the blog posts on threejs that I have wrote thus far as well as all the draft demos I have made as well. However this is also the public folder where I store all kinds of additional assets that I am using for the various demos. This included copies of threejs itself, as well as additional add on files. I also have a number of addtional assets in terms of textures, external geometry, and so forth.
 
 ### 3.1 - The DAE folder
 
@@ -119,6 +118,10 @@ I have a [for post folder](https://github.com/dustinpfister/test_threejs/tree/ma
         <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-phong-material">Video for my post on the Phong Material</a> I am also making use of my <a href="https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-examples-sphere-mutate">sphere mutate threejs project examples</a> here as well.
     </p>
 </div>
+
+### 3.4 - The JSON folder
+
+The json folder contains various kinds of JSON files, many of which are buffer geometry, but I am also using this to park any kind of JSON data that I am using for some of these demos here and there.
 
 ## 4 - Notes on the back end
 
