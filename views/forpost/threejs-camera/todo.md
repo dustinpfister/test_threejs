@@ -1,8 +1,15 @@
 # threejs-camera-
 
-## () - expand s3 section on camera movement
-* () have one example on the Vector3 lerp method
-* () link to camera-kit threejs example
+<!-- camera movement section -->
+
+## () - s3-2-move-curves
+* () new camera moment demo using curves
+
+<!-- DONE -->
+
+## ( done 07/05/2023 ) - update to r146 style
+* (done) js files now in root of demo folders
+* (done) all demos updated to r146 style
 
 ## ( done 08/15/2022 ) - s2 example on orthographic
 * (done) have at least one example on the orthographic camera
