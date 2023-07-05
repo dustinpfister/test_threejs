@@ -259,7 +259,7 @@ const loop = ()=> {
 //-------- ----------
 // LOAD GEOMETRY
 //-------- ----------
-camera.position.set(-8, 8, 12);
+camera.position.set(-12, 12, 12);
 camera.lookAt(0, 0.5, 0);
 const urls = [
     '/json/tri12-bufferfly/set1/0.json',
@@ -293,15 +293,18 @@ loadBufferGeometryJSON(urls, 2, 5, material)
         effects: ['opacity'],
         sourceObjects: [
             //scene_source.getObjectByName('buffer_source_0').clone(),
-            scene_source.getObjectByName('buffer_source_1').clone()
+            scene_source.getObjectByName('buffer_source_1').clone(),
+			scene_source.getObjectByName('buffer_source_2').clone(),
+			scene_source.getObjectByName('buffer_source_3').clone(),
+			scene_source.getObjectByName('buffer_source_4').clone()
         ],
         objectIndices: [
-            0,0,0,0,0,
-            0,0,0,0,0,
-            0,0,0,0,0,
-            0,0,0,0,0,
-            0,0,0,0,0,
-            0,0,0,0,0
+            1,1,1,1,1,
+            1,0,1,1,1,
+            1,0,2,3,1,
+            1,0,1,0,1,
+            1,2,3,0,1,
+            1,1,1,1,1
         ]
     });
     scene.add(state.grid);
