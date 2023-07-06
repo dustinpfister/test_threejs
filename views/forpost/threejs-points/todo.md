@@ -1,13 +1,24 @@
 # threejs-points todo list
 
-## () - s4-2-attposition-morphattributes
+<!-- position attribute section -->
+
+## () - sx-2-attposition-morphattributes
 * () position example on morph attribuites
 
-## () - s4-1-attposition
+## () - sx-1-attposition
 * () basic custom geometry example
 
-## () - s3-1-vertexcolors
+<!-- Vertex colors section -->
+
+## () - sx-1-vertexcolors
 * () have a section on the use of color attribites and points
+
+<!-- Material array section -->
+
+<!-- DONE -->
+
+## ( done 07/06/2023 ) s3-1-materialarray
+* (done) start a material array example
 
 ## ( done 02/23/2023 ) - s5-1-loop-video1-morphattributes
 * (done) start a loop example that will be used for video 1
