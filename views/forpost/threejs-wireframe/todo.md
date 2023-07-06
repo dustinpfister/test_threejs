@@ -1,7 +1,11 @@
 # threejs-wireframe
 
-## () s1-3-vertexcolors
+<!-- Basic section-->
+
+## () s1-3-basic-vertexcolors
 * () have a basic vertex colors example
+
+<!-- DONE -->
 
 ### ( done 02/24/2023 ) - s1-2-basic-linewidth
 * (done) have an example where I am setting the line width
