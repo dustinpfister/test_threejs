@@ -15,6 +15,17 @@
 
 <!-- Material array section -->
 
+## () s3-2-materialarray-change-index-values
+* () demo like this first one only now I use just two materials
+* () I thne just want to loop over the groups propery and set the index values that I want
+
+## () s3-3-materialarray-plane
+* () demo using the plane geometry
+* () there are new groups to begin with so they must be added
+
+## () s3-4-materialarray-custom
+* () custom geometry demo of groups
+
 <!-- DONE -->
 
 ## ( done 07/06/2023 ) s3-1-materialarray
