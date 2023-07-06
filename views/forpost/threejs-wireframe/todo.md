@@ -2,10 +2,12 @@
 
 <!-- Basic section-->
 
-## () s1-3-basic-vertexcolors
-* () have a basic vertex colors example
+
 
 <!-- DONE -->
+
+## ( done 07/06/2023 ) s1-3-basic-vertexcolors
+* (done) have a basic vertex colors example
 
 ### ( done 02/24/2023 ) - s1-2-basic-linewidth
 * (done) have an example where I am setting the line width
