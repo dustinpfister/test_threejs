@@ -2,13 +2,13 @@
 
 <!-- LOOP SECTION -->
 
-## s4-3-loop-mirror
-* () a loop example where a camera is used to create a texture
-* () a camera can be placed under a plane looking up threw the plane
-* () the rendered scene from that point can then me used for the map texture of the plane
-* () have one or more objects moving around so that there is somehting to look at
-
 <!-- DONE -->
+
+## ( done 07/07/2023 ) s4-3-loop-mirror
+* (done) a loop example where a camera is used to create a texture
+* (done) a camera can be placed under a plane looking up threw the plane
+* (done) the rendered scene from that point can then me used for the map texture of the plane
+* (done) have one or more objects moving around so that there is somehting to look at
 
 ## ( done 03/02/2023 ) s4-2-loop-plane-aspect
 * (done) new loop demo where I have a plane geometry scaled to the aspect ratio of the camera

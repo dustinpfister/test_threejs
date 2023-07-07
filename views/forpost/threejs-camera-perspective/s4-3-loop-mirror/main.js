@@ -9,46 +9,75 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // BACKGROUND
 //-------- ----------
-scene.background = new THREE.Color('cyan');
+scene.background = new THREE.Color('#006f6f');
 //-------- ----------
 // LIGHT
 //-------- ----------
 const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(3, 2, 1);
+dl.position.set(3, -2, 1);
 scene.add(dl);
-const al = new THREE.AmbientLight(0xffffff, 0.1);
-scene.add(al);
+const pl = new THREE.DirectionalLight(0xffffff, 1);
+pl.position.set(4, 8, 4);
+scene.add(pl);
 //-------- ----------
 // SCENE CHILD OBJECTS
 //-------- ----------
 const renderer_mirror = new THREE.WebGL1Renderer();
-renderer_mirror.setSize(128, 128, false);
+renderer_mirror.setSize(256, 256, false);
 const camera_mirror = new THREE.PerspectiveCamera(45, 1 / 1, 0.05, 1000);
-camera_mirror.zoom = 0.5;
+camera_mirror.zoom = 0.42;
 camera_mirror.updateProjectionMatrix();
 // things to look at
 const group = new THREE.Group();
 scene.add(group);
 const mesh_sphere = new THREE.Mesh(
-    new THREE.SphereGeometry(0.5, 20, 20),
+    new THREE.SphereGeometry(0.75, 20, 20),
     new THREE.MeshPhongMaterial({
         color: 0xff0000
     })
 );
 group.add( mesh_sphere );
-mesh_sphere.position.y = 6;
+mesh_sphere.position.set(0, 6, 0);
+const mesh_box = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshPhongMaterial({
+        color: 0x00ff00
+    })
+);
+group.add( mesh_box );
+mesh_box.position.set(0, -6, 0);
+const mesh_cone = new THREE.Mesh(
+    new THREE.ConeGeometry(0.75, 3, 20, 20),
+    new THREE.MeshPhongMaterial({
+        color: 0x0000ff
+    })
+);
+group.add( mesh_cone );
+mesh_cone.position.set(0, 0, -6);
+const mesh_torus = new THREE.Mesh(
+    new THREE.TorusGeometry(1, 0.25, 20, 20),
+    new THREE.MeshPhongMaterial({
+        color: 0xff00ff
+    })
+);
+group.add( mesh_torus );
+mesh_torus.position.set(0, 0, 6);
 // the plane
 const mesh_plane = new THREE.Mesh(
     new THREE.PlaneGeometry(10, 10),
     new THREE.MeshPhongMaterial({
-        emissive: 0x8a8a8a,
+        emissive: 0x2f2f2f,
         map: new THREE.CanvasTexture( renderer_mirror.domElement )
     })
 );
 mesh_plane.geometry.rotateX( Math.PI * 1.5 );
 mesh_plane.geometry.rotateY( Math.PI * 1.0 );
 scene.add(mesh_plane);
-camera_mirror.position.copy(mesh_plane.position).add( new THREE.Vector3( 0, -1, 0 ) );
+// helper
+//const helper = new THREE.CameraHelper(camera_mirror);
+//scene.add(helper);
+// position and rotation of camera_mirror
+camera_mirror.position.copy(mesh_plane.position).add( new THREE.Vector3( 0, -5, 0 ) );
 camera_mirror.lookAt( mesh_plane.position );
 //-------- ----------
 // ANIMATION LOOP
@@ -66,13 +95,10 @@ const update = function (frame, frameMax) {
     const a_frame = frame / frameMax;
     const a_group = a_frame * 8 % 1;
     const a2 = 1 - Math.abs(0.5 - a_frame) / 0.5;
-
     group.rotation.x = Math.PI * 2 * a_group;
-
+    group.rotation.y = Math.PI * 2 * a_frame;
     renderer_mirror.render(scene, camera_mirror);
-
     mesh_plane.material.map.needsUpdate = true;
-
 };
 // loop
 const loop = () => {
