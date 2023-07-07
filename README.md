@@ -123,35 +123,15 @@ I have a [for post folder](https://github.com/dustinpfister/test_threejs/tree/ma
 
 The json folder contains various kinds of JSON files, many of which are buffer geometry, but I am also using this to park any kind of JSON data that I am using for some of these demos here and there.
 
-## 4 - Notes on the back end
+## 4 - Code Style
 
-I am using express.js as a server side framework, and ejs as a template language. As of this writing I do not have a well thought out plain on how to structure the app, but I am not loosing sleep over it. This project is more about the demos themselves rather than how I am serving them up anyway. Still for my own sanity I thought it would be a good idea to maintain some notes on how I am building this system.
+Threejs is a very fast moving project in terms of development compared to many other libraries out on the open web. There is a whole lot to say about what has all ready broke, and will continue to break as things move forward with each new revision that comes out. As such many of us that use threejs will end up sticking with a certain given revision number of threejs for a while, maybe even indefinitely for various reasons. With that said as of this writing there are two general style rules that I am following as I write posts for new demos, and edit old ones.
 
-### 4.1 - How demos are structured
+### The r152 style rules
 
-I have thought about making some complex system for this, but for now all the demos fall in a path that follows a /demos/r\[XXX\]/\[demoName\] pattern in the views folder.
+My [r152 style rules](https://github.com/dustinpfister/test_threejs/blob/master/views/demos/r152/README.md) is what I am following when it comes to writing new blog posts at this time. At this point I am now using module type script tags, which means that you will see the use of import and export in code examples. 
 
-### 4.2 - How front end \*.js files are delivered
+### The r146 style rules
 
-I have a /js path where \*.js files can be fetched with an absolute path. When doing so the variable r is the currently set revision number that is to be used for a threejs demo, or project which can be used with urls.
-
-```html
-<!-- loading three.js -->
-<script src="/js/threejs/0.<%= r %>.0/three.min.js" ></script>
-```
-
-When it comes to working out the main index.ejs file relative paths can be used for scripts local to the demo
-
-```html
-<!-- load demo script -->
-<script src="<%= demoName %>/js/main.js"></script>
-```
-
-### 4.3 - How the r (revision) variable is determined
-
-As of this writing it is determined by the folder that the demo is in as that structuring follows a /demos/rXXX pattern where XXX is the revision number that is used for the demos in that path.
-
-### 4.4 - Generating index of demos
-
-I am using [klaw](https://github.com/jprichardson/node-klaw), and [through2](https://www.npmjs.com/package/through2) to help with building lists of links for demos.
+For now the [r146 style rules](https://github.com/dustinpfister/test_threejs/blob/master/views/demos/r146/README.md) are the default style rules that I use when editing older demos, and will most likley remain so for a while to say the least. The very next revision after this one is the last revision where js file versions of add on files can be found in the github repo of threejs. So this revison marks the end of the use of text/javaScript mimie type script tags as part of the over all code style.
 
