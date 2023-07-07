@@ -280,8 +280,8 @@ const material = new THREE.MeshBasicMaterial({
 loadBufferGeometryJSON(urls, 2, 5, material)
 .then(( scene_source ) => {
     state.grid = ObjectGridWrap.create({
-        spaceW: 5,
-        spaceH: 5,
+        spaceW: 6,
+        spaceH: 6,
         tw: 5,
         th: 5,
         effects: ['opacity3'],
