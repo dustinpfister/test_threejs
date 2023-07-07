@@ -43,6 +43,7 @@ const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THR
     });
 }
 // ObjectGridWrap based on R2 of the module from threejs-examples-object-grid-wrap
+// * hard coded in the opacity2 effect as just simply opacity
 const ObjectGridWrap = (function(){
     // public API
     const api = {};
@@ -73,13 +74,10 @@ const ObjectGridWrap = (function(){
         const ud = grid.userData;
         const obj = grid.children[objectIndex];
         const v_adjust = getAdjustedPos(grid, objectIndex);
-        // use spacing
         let x = v_adjust.x * ud.spaceW;
         let z = v_adjust.y * ud.spaceH;
-        // subtract so that objects are centered
         x -= (ud.tw - 1) * ud.spaceW / 2;
         z -= (ud.th - 1) * ud.spaceH / 2;
-        // set position
         obj.position.set(x, 0, z);
     };
     // get a 'true' position in the form of a Vector2 for the given object index
@@ -95,26 +93,59 @@ const ObjectGridWrap = (function(){
     const getAdjustedPos = function(grid, objectIndex){
         const ud = grid.userData,
         v_true = getTruePos(grid, objectIndex);
-        // adjusted by alphas
         const ax = (v_true.x + ud.tw * ud.alphaX) % ud.tw;
         const az = (v_true.y + ud.th * ud.alphaZ) % ud.th;
-        return new THREE.Vector2(ax, az);        
+        return new THREE.Vector2(ax, az);
     };
     // final getPos in which space is applyed
     const getPos = function(grid, objectIndex){
         const ud = grid.userData,
         v_adjust = getAdjustedPos(grid, objectIndex);
-        // use spacing
         let x = v_adjust.x * ud.spaceW;
         let z = v_adjust.y * ud.spaceH;
-        // subtract so that objects are centered
         x -= (ud.tw - 1) * ud.spaceW / 2;
         z -= (ud.th - 1) * ud.spaceH / 2;
         return new THREE.Vector2(x, z);        
     };
-    //******** **********
-    //  CREATE METHOD
-    //******** **********
+    // set opacity helper function
+    const setOpacity = function(obj_root, alpha){
+        obj_root.traverse(function(obj){
+            if(obj.material){
+                if(obj.material instanceof Array){
+                    obj.material.forEach(function(m){
+                        m.transparent = true;
+                        m.opacity = alpha;
+                    });
+                }else{
+                    obj.material.transparent = true;
+                    obj.material.opacity = alpha;
+                }
+            }
+        });
+    };
+    // opacity3
+    EFFECTS.opacity3 = function(grid, obj, objData, ud){
+
+        const v_pos = objData.pos;
+
+        let alpha = 1 - v_pos.distanceTo( grid.userData.center ) / 16;
+
+        setOpacity(obj, alpha);
+/*
+        const minB = grid.userData.minB === undefined ? 0.5: grid.userData.minB;
+        if(objData.b <= minB){
+            let alpha = objData.b / minB;
+            alpha = alpha < 0 ? 0 : alpha;
+            //alpha = Math.pow(2, 4 * alpha) / Math.pow(2, 4);
+            setOpacity(obj, alpha);
+         }else{
+            setOpacity(obj, 1);
+         }
+*/
+    }
+    //-------- ----------
+    //  PUBLIC API
+    //-------- ----------
     // The create method will create and return a new THREE.Group with desired source objects
     // and induces for where clones of these objects shall be placed
     api.create = function(opt){
@@ -129,7 +160,6 @@ const ObjectGridWrap = (function(){
         const grid = new THREE.Group();
         const ud = grid.userData;
         ud.effects = opt.effects || [];
-        // use opt.space to set ud.spaceW + H or set them by opt.spaceW + H 
         if(opt.space){
             ud.spaceW = opt.space;
             ud.spaceH = opt.space;
@@ -137,26 +167,21 @@ const ObjectGridWrap = (function(){
             ud.spaceW = opt.spaceW === undefined ? 1 : opt.spaceW;
             ud.spaceH = opt.spaceH === undefined ? 1 : opt.spaceH;
         }
-        // alphaX and Z values for setting offsets of grid
         ud.alphaX = opt.alphaX;
         ud.alphaZ = opt.alphaZ;
         ud.tw = opt.tw;
         ud.th = opt.th;
-        // ud.dAdjust aka ud.aOpacity 
         ud.aOpacity = ud.dAdjust = opt.dAdjust === undefined ? 1.0 : opt.dAdjust;
-        // ud center, and ud.distMax
         ud.center = new THREE.Vector2(ud.tw / 2, ud.th / 2);
         ud.distMax = ud.center.distanceTo( new THREE.Vector2(0.5, 0.5) );
         let i = 0;
         const len = opt.tw * opt.th;
         while(i < len){
             const objIndex = opt.objectIndices[i];
-            // if we have a vailid index clone the source object of that index
             if(typeof objIndex === 'number' && objIndex >= 0 && objIndex <= opt.sourceObjects.length - 1){
                 var obj = opt.cloner(opt, objIndex);
                 grid.add(obj);
             }else{
-                // else push a blank object
                 grid.add(new THREE.Object3D());
             }
             i += 1;
@@ -173,28 +198,21 @@ const ObjectGridWrap = (function(){
     // main update method
     api.update = function(grid){
         const ud = grid.userData;
-        // for all children
         grid.children.forEach(function(obj, i){
-            // set the position of all objects based on 
-            // the current state of alphaX and alphaY
             setGridToAlphas(grid, i);
-            // create objData object that will be used for all effects
             const objData = { i : i };
             objData.truePos = getTruePos(grid, objData.i );
             objData.adjustPos = getAdjustedPos(grid, objData.i );
             objData.pos = getPos(grid, objData.i);
-            // d and da
             const v2 = new THREE.Vector2(objData.adjustPos.x + 0.5, objData.adjustPos.y + 0.5),
             d = objData.d = v2.distanceTo( ud.center );
             let da = d * ud.dAdjust;
             da = da < 0 ? 0 : da;
             da = da > ud.distMax ? ud.distMax : da;
             objData.da = da;
-            // 'b' value
             let b = objData.da / ud.distMax;
             b = 1 - b;
             objData.b = parseFloat( b.toFixed(2) );
-            // apply all effects
             ud.effects.forEach(function(effectKey){
                 const effect = EFFECTS[effectKey];
                 if(effect){ 
@@ -205,7 +223,6 @@ const ObjectGridWrap = (function(){
     };
     // load a plug in
     api.load = function(plugObj){
-        // load any effects given
         if(plugObj.EFFECTS){
             Object.keys( plugObj.EFFECTS ).forEach(function(effectKey){
                  EFFECTS[effectKey] = plugObj.EFFECTS[effectKey]
@@ -235,7 +252,7 @@ const loop = ()=> {
     requestAnimationFrame(loop);
     if(secs > 1 / state.fps){
         const a_frame = state.frame / state.frameMax;
-        ObjectGridWrap.setPos(state.grid, 0, 1 - a_frame );
+        ObjectGridWrap.setPos(state.grid, 0, 1 - (a_frame * 4 % 1) );
         ObjectGridWrap.update(state.grid);
         state.frame += 1;
         state.frame %= state.frameMax;
@@ -246,7 +263,7 @@ const loop = ()=> {
 //-------- ----------
 // LOAD GEOMETRY
 //-------- ----------
-camera.position.set(-12, 12, 12);
+camera.position.set(-15, 15, 15);
 camera.lookAt(0, 0.5, 0);
 const urls = [
     '/json/tri12-bufferfly/set1/0.json',
@@ -262,28 +279,17 @@ const material = new THREE.MeshBasicMaterial({
 // load the geometry
 loadBufferGeometryJSON(urls, 2, 5, material)
 .then(( scene_source ) => {
- 
-    //scene.add(scene_source);
-    //const mesh_bf = scene_source.getObjectByName('buffer_source_0').clone();
-    //mesh_bf.position.set( 0, 0, 0);
-    //scene.add(mesh_bf);
- 
-    //const mesh = scene_source.getObjectByName('buffer_source_1').clone();
-    //mesh.position.set( 0, 0, 0);
-    //scene.add(mesh);
-
     state.grid = ObjectGridWrap.create({
-        spaceW: 8,
-        spaceH: 8,
+        spaceW: 5,
+        spaceH: 5,
         tw: 5,
         th: 5,
-        effects: ['opacity'],
+        effects: ['opacity3'],
         sourceObjects: [
-            //scene_source.getObjectByName('buffer_source_0').clone(),
             scene_source.getObjectByName('buffer_source_1').clone(),
-			scene_source.getObjectByName('buffer_source_2').clone(),
-			scene_source.getObjectByName('buffer_source_3').clone(),
-			scene_source.getObjectByName('buffer_source_4').clone()
+            scene_source.getObjectByName('buffer_source_2').clone(),
+            scene_source.getObjectByName('buffer_source_3').clone(),
+            scene_source.getObjectByName('buffer_source_4').clone()
         ],
         objectIndices: [
             1,1,1,1,1,
