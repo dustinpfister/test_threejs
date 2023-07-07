@@ -2,8 +2,11 @@
 
 <!-- LOOP SECTION -->
 
-## () s4-1-loop-all
-* () make it so the s5 "all features example" also mutates near and far along with everything else
+## s4-3-loop-mirror
+* () a loop example where a camera is used to create a texture
+* () a camera can be placed under a plane looking up threw the plane
+* () the rendered scene from that point can then me used for the map texture of the plane
+* () have one or more objects moving around so that there is somehting to look at
 
 <!-- DONE -->
 
@@ -11,6 +14,9 @@
 * (done) new loop demo where I have a plane geometry scaled to the aspect ratio of the camera
 * (done) have the plane geometry move back and forth in front of the camera
 * (done) have a canvas texture on the plane
+
+## ( done 03/01/2023 ) s4-1-loop-all
+* (done) make it so the s5 "all features example" also mutates near and far along with everything else
 
 ## ( done 03/01/2023 ) update s2-x-change demos to r146 style
 * (done) update s2-1-change-fov to r146 style

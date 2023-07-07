@@ -76,7 +76,6 @@ lt = new Date();
 const update = function (frame, frameMax) {
     const a1 = frame / frameMax;
     const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
-
     mesh_plane_1.position.z = 8.9 - a2 * 8.9;
     group.position.y = 1;
     group.position.z = 10 - 20 * a2;
