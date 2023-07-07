@@ -43,20 +43,14 @@ const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THR
     });
 }
 // ObjectGridWrap based on R2 of the module from threejs-examples-object-grid-wrap
-var ObjectGridWrap = (function(){
+const ObjectGridWrap = (function(){
     // public API
-    var api = {};
-    //******** **********
-    //  DEFAULTS
-    //******** **********
-    var  DEFAULT_SOURCE_OBJECTS = [
-        new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1), new THREE.MeshNormalMaterial()),
-        new THREE.Mesh( new THREE.SphereGeometry( 0.5, 30, 30), new THREE.MeshNormalMaterial())
-    ];
-    var DEFAULT_OBJECT_INDICES = [1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1];
-    // DEFAULT CLONER METHOD
-    var DEFAULT_CLONER = function(opt, objectIndex){
-        var obj_root = opt.sourceObjects[objectIndex].clone();
+    const api = {};
+    // defaults
+    const DEFAULT_SOURCE_OBJECTS = [ ];
+    const DEFAULT_OBJECT_INDICES = [ ];
+    const DEFAULT_CLONER = function(opt, objectIndex){
+        const obj_root = opt.sourceObjects[objectIndex].clone();
         obj_root.traverse(function(obj){
             if(obj.material){
                 if(obj.material instanceof Array){
@@ -70,38 +64,49 @@ var ObjectGridWrap = (function(){
         });
         return obj_root;
     };
-    //******** **********
-    //  EFFECTS OBJECT - BUILT IN EFFECTS + HELPERS
-    //******** **********
-    var EFFECTS = {};
-    //******** **********
-    //  POSITION HELPERS
-    //******** **********
+    const EFFECTS = {};
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
+    // set grid to alphas helper
+    const setGridToAlphas = function(grid, objectIndex){
+        const ud = grid.userData;
+        const obj = grid.children[objectIndex];
+        const v_adjust = getAdjustedPos(grid, objectIndex);
+        // use spacing
+        let x = v_adjust.x * ud.spaceW;
+        let z = v_adjust.y * ud.spaceH;
+        // subtract so that objects are centered
+        x -= (ud.tw - 1) * ud.spaceW / 2;
+        z -= (ud.th - 1) * ud.spaceH / 2;
+        // set position
+        obj.position.set(x, 0, z);
+    };
     // get a 'true' position in the form of a Vector2 for the given object index
     // by true position I mean how things are with the state of the objectIndices array
     // it can also be thought of as a kind of 'home position' as well
-    var getTruePos = function(grid, objectIndex){
-        var ud = grid.userData,
+    const getTruePos = function(grid, objectIndex){
+        const ud = grid.userData,
         trueX = objectIndex % ud.tw,
         trueZ = Math.floor(objectIndex / ud.tw);
         return new THREE.Vector2(trueX, trueZ);
     };
     // get the adjusted position in which alphaX, and alphaZ values are applyed
-    var getAdjustedPos = function(grid, objectIndex){
-        var ud = grid.userData,
+    const getAdjustedPos = function(grid, objectIndex){
+        const ud = grid.userData,
         v_true = getTruePos(grid, objectIndex);
         // adjusted by alphas
-        var ax = (v_true.x + ud.tw * ud.alphaX) % ud.tw;
-        var az = (v_true.y + ud.th * ud.alphaZ) % ud.th;
+        const ax = (v_true.x + ud.tw * ud.alphaX) % ud.tw;
+        const az = (v_true.y + ud.th * ud.alphaZ) % ud.th;
         return new THREE.Vector2(ax, az);        
     };
     // final getPos in which space is applyed
-    var getPos = function(grid, objectIndex){
-        var ud = grid.userData,
+    const getPos = function(grid, objectIndex){
+        const ud = grid.userData,
         v_adjust = getAdjustedPos(grid, objectIndex);
         // use spacing
-        var x = v_adjust.x * ud.spaceW;
-        var z = v_adjust.y * ud.spaceH;
+        let x = v_adjust.x * ud.spaceW;
+        let z = v_adjust.y * ud.spaceH;
         // subtract so that objects are centered
         x -= (ud.tw - 1) * ud.spaceW / 2;
         z -= (ud.th - 1) * ud.spaceH / 2;
@@ -121,8 +126,8 @@ var ObjectGridWrap = (function(){
         opt.alphaX = 0; // alpha x and z values
         opt.alphaZ = 0;
         opt.cloner = opt.cloner || DEFAULT_CLONER;
-        var grid = new THREE.Group();
-        var ud = grid.userData;
+        const grid = new THREE.Group();
+        const ud = grid.userData;
         ud.effects = opt.effects || [];
         // use opt.space to set ud.spaceW + H or set them by opt.spaceW + H 
         if(opt.space){
@@ -142,9 +147,10 @@ var ObjectGridWrap = (function(){
         // ud center, and ud.distMax
         ud.center = new THREE.Vector2(ud.tw / 2, ud.th / 2);
         ud.distMax = ud.center.distanceTo( new THREE.Vector2(0.5, 0.5) );
-        var i = 0, len = opt.tw * opt.th;
+        let i = 0;
+        const len = opt.tw * opt.th;
         while(i < len){
-            var objIndex = opt.objectIndices[i];
+            const objIndex = opt.objectIndices[i];
             // if we have a vailid index clone the source object of that index
             if(typeof objIndex === 'number' && objIndex >= 0 && objIndex <= opt.sourceObjects.length - 1){
                 var obj = opt.cloner(opt, objIndex);
@@ -158,65 +164,46 @@ var ObjectGridWrap = (function(){
         api.update(grid);
         return grid;
     };
-    //******** **********
-    //  SET / UPDATE GRID + HELPERS
-    //******** **********
-    // set grid to alphas helper
-    var setGridToAlphas = function(grid, objectIndex){
-        var ud = grid.userData;
-        var obj = grid.children[objectIndex];
-        var v_adjust = getAdjustedPos(grid, objectIndex);
-        // use spacing
-        var x = v_adjust.x * ud.spaceW;
-        var z = v_adjust.y * ud.spaceH;
-        // subtract so that objects are centered
-        x -= (ud.tw - 1) * ud.spaceW / 2;
-        z -= (ud.th - 1) * ud.spaceH / 2;
-        // set position
-        obj.position.set(x, 0, z);
-    };
     // set position
     api.setPos = function(grid, x, z){
-        var ud = grid.userData;
+        const ud = grid.userData;
         ud.alphaX = THREE.MathUtils.euclideanModulo(x, 1);
         ud.alphaZ = THREE.MathUtils.euclideanModulo(z, 1);
     };
     // main update method
     api.update = function(grid){
-        var ud = grid.userData;
+        const ud = grid.userData;
         // for all children
         grid.children.forEach(function(obj, i){
             // set the position of all objects based on 
             // the current state of alphaX and alphaY
             setGridToAlphas(grid, i);
             // create objData object that will be used for all effects
-            var objData = { i : i };
+            const objData = { i : i };
             objData.truePos = getTruePos(grid, objData.i );
             objData.adjustPos = getAdjustedPos(grid, objData.i );
             objData.pos = getPos(grid, objData.i);
             // d and da
-            var v2 = new THREE.Vector2(objData.adjustPos.x + 0.5, objData.adjustPos.y + 0.5),
+            const v2 = new THREE.Vector2(objData.adjustPos.x + 0.5, objData.adjustPos.y + 0.5),
             d = objData.d = v2.distanceTo( ud.center );
-            var da = d * ud.dAdjust;       
+            let da = d * ud.dAdjust;
             da = da < 0 ? 0 : da;
             da = da > ud.distMax ? ud.distMax : da;
             objData.da = da;
             // 'b' value
-            var b = objData.da / ud.distMax;
+            let b = objData.da / ud.distMax;
             b = 1 - b;
             objData.b = parseFloat( b.toFixed(2) );
             // apply all effects
             ud.effects.forEach(function(effectKey){
-                var effect = EFFECTS[effectKey];
+                const effect = EFFECTS[effectKey];
                 if(effect){ 
                     effect(grid, obj, objData, obj.userData);
                 }
             });
         });
     };
-    //******** **********
-    //  LOAD PLUG-IN
-    //******** **********
+    // load a plug in
     api.load = function(plugObj){
         // load any effects given
         if(plugObj.EFFECTS){
@@ -231,7 +218,7 @@ var ObjectGridWrap = (function(){
 //-------- ----------
 // GRID
 //-------- ----------
-scene.add( new THREE.GridHelper(10, 10) );
+//scene.add( new THREE.GridHelper(10, 10) );
 //-------- ----------
 // loop
 //-------- ----------
