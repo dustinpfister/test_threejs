@@ -1,5 +1,21 @@
 # threejs-camera-orthographic
 
+<!-- FEATURES SECTION -->
+
+## () s2-1-features-zoom
+* () example of the zoom property
+
+## () s2-1-features-setviewoffset
+* () demo of the set view offset feature
+* () this is used for situations in which we are dealing with more than one display
+
+<!-- BASIC SECTION -->
+
+<!-- DONE -->
+
+## ( done 07/08/2023 ) s1-2-basic-move
+* (done) basic example that has to do with just moving the camera around
+
 ## ( done 02/21/2023 ) - rename folders, and r146 style for all demos
 * (done) rename folders
 * (done) use r146 for all examples
