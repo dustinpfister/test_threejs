@@ -105,7 +105,14 @@ const ObjectGridWrap = (function(){
         let z = v_adjust.y * ud.spaceH;
         x -= (ud.tw - 1) * ud.spaceW / 2;
         z -= (ud.th - 1) * ud.spaceH / 2;
-        return new THREE.Vector2(x, z);        
+        return new THREE.Vector2(x, z);
+    };
+    // apply and gud values in opt.gud ( used in create method )
+    const applyOptGUDObject = (opt, gud) => {
+        opt.gud = opt.gud || {};
+        Object.keys(opt.gud).forEach( (key) => {
+            gud[key] = opt.gud[key];
+        });
     };
     // set opacity helper function
     const setOpacity = function(obj_root, alpha){
@@ -123,26 +130,14 @@ const ObjectGridWrap = (function(){
             }
         });
     };
-    // opacity3
-    EFFECTS.opacity3 = function(grid, obj, objData, ud){
-
+    // 'opacity3' EFFECT built into module
+    EFFECTS.opacity3 = function(grid, obj, objData, oud, gud){
         const v_pos = objData.pos;
-
-        let alpha = 1 - v_pos.distanceTo( grid.userData.center ) / 16;
-
-        setOpacity(obj, alpha);
-/*
-        const minB = grid.userData.minB === undefined ? 0.5: grid.userData.minB;
-        if(objData.b <= minB){
-            let alpha = objData.b / minB;
-            alpha = alpha < 0 ? 0 : alpha;
-            //alpha = Math.pow(2, 4 * alpha) / Math.pow(2, 4);
-            setOpacity(obj, alpha);
-         }else{
-            setOpacity(obj, 1);
-         }
-*/
-    }
+        const maxDist = gud.maxOpacityDist === undefined ? 8 : gud.maxOpacityDist;
+        let alpha = 1 - v_pos.distanceTo( new THREE.Vector2() ) / maxDist;
+        alpha = THREE.MathUtils.smootherstep(alpha, 0, 1);
+        setOpacity(obj, THREE.MathUtils.clamp(alpha, 0, 1) );
+    };
     //-------- ----------
     //  PUBLIC API
     //-------- ----------
@@ -152,28 +147,29 @@ const ObjectGridWrap = (function(){
         opt = opt || {};
         opt.sourceObjects = opt.sourceObjects || DEFAULT_SOURCE_OBJECTS;
         opt.objectIndices = opt.objectIndices || DEFAULT_OBJECT_INDICES;
-        opt.tw = opt.tw === undefined ? 5: opt.tw; // tile width and height
+        opt.tw = opt.tw === undefined ? 5: opt.tw;
         opt.th = opt.th === undefined ? 5: opt.th;
-        opt.alphaX = 0; // alpha x and z values
+        opt.alphaX = 0;
         opt.alphaZ = 0;
         opt.cloner = opt.cloner || DEFAULT_CLONER;
         const grid = new THREE.Group();
-        const ud = grid.userData;
-        ud.effects = opt.effects || [];
+        const gud = grid.userData;
+        gud.effects = opt.effects || [];
         if(opt.space){
-            ud.spaceW = opt.space;
-            ud.spaceH = opt.space;
+            gud.spaceW = opt.space;
+            gud.spaceH = opt.space;
         }else{
-            ud.spaceW = opt.spaceW === undefined ? 1 : opt.spaceW;
-            ud.spaceH = opt.spaceH === undefined ? 1 : opt.spaceH;
+            gud.spaceW = opt.spaceW === undefined ? 1 : opt.spaceW;
+            gud.spaceH = opt.spaceH === undefined ? 1 : opt.spaceH;
         }
-        ud.alphaX = opt.alphaX;
-        ud.alphaZ = opt.alphaZ;
-        ud.tw = opt.tw;
-        ud.th = opt.th;
-        ud.aOpacity = ud.dAdjust = opt.dAdjust === undefined ? 1.0 : opt.dAdjust;
-        ud.center = new THREE.Vector2(ud.tw / 2, ud.th / 2);
-        ud.distMax = ud.center.distanceTo( new THREE.Vector2(0.5, 0.5) );
+        gud.alphaX = opt.alphaX;
+        gud.alphaZ = opt.alphaZ;
+        gud.tw = opt.tw;
+        gud.th = opt.th;
+        gud.aOpacity = gud.dAdjust = opt.dAdjust === undefined ? 1.0 : opt.dAdjust;
+        gud.center = new THREE.Vector2(gud.tw / 2, gud.th / 2);
+        gud.distMax = gud.center.distanceTo( new THREE.Vector2(0.5, 0.5) );
+        applyOptGUDObject(opt, gud);
         let i = 0;
         const len = opt.tw * opt.th;
         while(i < len){
@@ -216,7 +212,7 @@ const ObjectGridWrap = (function(){
             ud.effects.forEach(function(effectKey){
                 const effect = EFFECTS[effectKey];
                 if(effect){ 
-                    effect(grid, obj, objData, obj.userData);
+                    effect(grid, obj, objData, obj.userData, grid.userData);
                 }
             });
         });
@@ -232,10 +228,6 @@ const ObjectGridWrap = (function(){
     // return public API
     return api;
 }());
-//-------- ----------
-// GRID
-//-------- ----------
-//scene.add( new THREE.GridHelper(10, 10) );
 //-------- ----------
 // loop
 //-------- ----------
@@ -261,9 +253,13 @@ const loop = ()=> {
     }
 };
 //-------- ----------
+// GRID
+//-------- ----------
+scene.add( new THREE.GridHelper(100, 10) );
+//-------- ----------
 // LOAD GEOMETRY
 //-------- ----------
-camera.position.set(-15, 15, 15);
+camera.position.set(-20, 15, 20);
 camera.lookAt(0, 0.5, 0);
 const urls = [
     '/json/tri12-bufferfly/set1/0.json',
@@ -280,10 +276,13 @@ const material = new THREE.MeshBasicMaterial({
 loadBufferGeometryJSON(urls, 2, 5, material)
 .then(( scene_source ) => {
     state.grid = ObjectGridWrap.create({
-        spaceW: 6,
-        spaceH: 6,
+        spaceW: 5.8,
+        spaceH: 5.8,
         tw: 5,
         th: 5,
+        gud: {
+           maxOpacityDist: 14
+        },
         effects: ['opacity3'],
         sourceObjects: [
             scene_source.getObjectByName('buffer_source_1').clone(),
