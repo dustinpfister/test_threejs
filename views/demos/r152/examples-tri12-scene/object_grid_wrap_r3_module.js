@@ -94,7 +94,8 @@ const setOpacity = function(obj_root, alpha){
 EFFECTS.opacity3 = function(grid, obj, objData, oud, gud){
     const v_pos = objData.pos;
     const maxDist = gud.maxOpacityDist === undefined ? 8 : gud.maxOpacityDist;
-    let alpha = 1 - v_pos.distanceTo( new THREE.Vector2() ) / maxDist;
+    const pos_center = new THREE.Vector2(grid.position.x, grid.position.z);
+    let alpha = 1 - v_pos.distanceTo( pos_center ) / maxDist;
     alpha = THREE.MathUtils.smootherstep(alpha, 0, 1);
     setOpacity(obj, THREE.MathUtils.clamp(alpha, 0, 1) );
 };

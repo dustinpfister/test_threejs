@@ -9,7 +9,7 @@ import { VertexNormalsHelper } from 'VertexNormalsHelper';
 // SCENE, CAMERA, RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(65, 4 / 3, 0.1, 100);
+const camera = new THREE.PerspectiveCamera(65, 4 / 3, 0.1, 1000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo')  || document.body ).appendChild(renderer.domElement);
@@ -47,6 +47,7 @@ const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THR
 // loop
 //-------- ----------
 const state = {
+    fly: null,
     grid: null,
     lt: new Date(),
     frame: 0,
@@ -59,8 +60,21 @@ const loop = ()=> {
     requestAnimationFrame(loop);
     if(secs > 1 / state.fps){
         const a_frame = state.frame / state.frameMax;
+        const a_wings = 1 - Math.abs( 0.5 - (a_frame * 128 % 1) ) / 0.5;
+        const a_bounce = a_frame * 16 % 1;
+        const a_rock = Math.sin( Math.PI * 16 * a_frame ) / Math.PI;
+        // fly
+        state.fly.position.set( 0, 0, 0 );
+        state.fly.morphTargetInfluences[ 0 ] = a_wings;
+        state.fly.position.y = 7 + Math.sin( Math.PI * 2 * a_bounce ) * 0.5;
+        state.fly.rotation.y = Math.PI / 180 * ( 90 * a_rock );
+        // grid
         ObjectGridWrap.setPos(state.grid, 0, 1 - (a_frame * 4 % 1) );
         ObjectGridWrap.update(state.grid);
+        // camera
+        camera.position.set(3, 9, 3);
+        camera.lookAt(0, 7, 0);
+        // step, render, ect...
         state.frame += 1;
         state.frame %= state.frameMax;
         renderer.render(scene, camera);
@@ -74,8 +88,6 @@ scene.add( new THREE.GridHelper(100, 10) );
 //-------- ----------
 // LOAD GEOMETRY
 //-------- ----------
-camera.position.set(-20, 15, 20);
-camera.lookAt(0, 0.5, 0);
 const urls = [
     '/json/tri12-bufferfly/set1/0.json',
     '/json/tri12-trees/deciduous-one-full/0.json',
@@ -90,13 +102,17 @@ const material = new THREE.MeshBasicMaterial({
 // load the geometry
 loadBufferGeometryJSON(urls, 2, 5, material)
 .then(( scene_source ) => {
+    // the butterfly
+    state.fly = scene_source.getObjectByName('buffer_source_0').clone();
+    scene.add(state.fly);
+    // set up the grid
     state.grid = ObjectGridWrap.create({
-        spaceW: 5.8,
-        spaceH: 5.8,
-        tw: 5,
-        th: 5,
+        spaceW: 15,
+        spaceH: 15,
+        tw: 8,
+        th: 8,
         gud: {
-           maxOpacityDist: 14
+           maxOpacityDist: 55
         },
         effects: ['opacity3'],
         sourceObjects: [
@@ -106,14 +122,18 @@ loadBufferGeometryJSON(urls, 2, 5, material)
             scene_source.getObjectByName('buffer_source_4').clone()
         ],
         objectIndices: [
-            1,1,1,1,1,
-            1,0,1,1,1,
-            1,0,2,3,1,
-            1,0,1,0,1,
-            1,2,3,0,1,
-            1,1,1,1,1
+            1,3,1,1,1,3,1,1,
+            1,0,1,1,1,1,1,3,
+            1,0,2,3,1,1,1,1,
+            1,0,1,0,1,1,3,1,
+            1,2,3,0,1,1,2,1,
+            1,1,1,1,1,3,0,3,
+            3,1,0,2,1,2,2,1,
+            1,1,1,2,0,2,0,1,
+            1,1,1,1,1,1,3,1
         ]
     });
+    state.grid.position.set( -10, 0, -10 );
     scene.add(state.grid);
     loop();
 });
