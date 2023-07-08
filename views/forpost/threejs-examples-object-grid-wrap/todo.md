@@ -1,10 +1,13 @@
 # proto object grid wrap - todo
 
-## () - rx - CLONERS OBJECT, Plugin system
-* () start a CLONERS Object that wlll be a collection of cloner methods
+<!-- r3 and JSM version of module -->
 
-## () - rx -
-* () have a demo in which I am using a box geometry, cone geometry, and extrude geometry to create base objects that can then be used to create a mounties scene
+I am sure that I will want the next revision of this module to be in JSM format. I all ready have a work in progress for this that I started in my examples-tri12-scene r152 demo. So be sure to start with that source code as a good start point for this to say the least.
+
+## () - r3 - JSM module format
+* () start with the source code that you all ready have in the examples-tri12-scene demo
+
+<!-- DONE -->
 
 ## ( done 07/12/2022 ) - r2 - plug in system, spaceW + spaceH
 * (done) have a spaceW and spaceH option in place of just space option
