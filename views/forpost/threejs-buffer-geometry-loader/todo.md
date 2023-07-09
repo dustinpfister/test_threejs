@@ -2,7 +2,16 @@
 
 <!-- JSON SECTION -->
 
-## () - s3-3-json-userdata
+## () - s3-3-json-attributes
+* () have a json data example that is a good example of all basic attributes
+* () should have position, normal, and uv, and color attributes
+* () have an index
+* () add some morph attributes
+
+## () - s3-4-json-userdata
+* () this focus of this demo should be on user data
+* () add a name_prefix for the user data
+* () in the code create a bunch of objects with names based on the name\_prefix property
 
 <!-- DONE -->
 
