@@ -9,7 +9,7 @@ import { VertexNormalsHelper } from 'VertexNormalsHelper';
 // SCENE, CAMERA, RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
-scene.background = new THREE.Color('#000044');
+scene.background = new THREE.Color('#0022af');
 const camera = new THREE.PerspectiveCamera(65, 4 / 3, 0.1, 1000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -94,7 +94,7 @@ const loop = ()=> {
         ObjectGridWrap.setPos(state.grid, 0, 1 - (a_frame * 2 % 1) );
         ObjectGridWrap.update(state.grid);
         // camera
-        camera.position.set(4, 9, 4);
+        camera.position.set(5, 9, 5);
         camera.lookAt(0, 7.5, 0);
         // step, render, ect...
         state.frame += 1;
@@ -143,10 +143,6 @@ loadBufferGeometryJSON(urls, 2, 5, material)
             createGridSource(scene_source, 5, [2,0,0] ),
             createGridSource(scene_source, 5, [3,0,0] ),
             createGridSource(scene_source, 5, [4,0,0] )
-            //getObj(scene_source, 1),
-            //getObj(scene_source, 2),
-            //getObj(scene_source, 3),
-            //getObj(scene_source, 4)
         ],
         objectIndices: [
             1,3,1,1,1,3,1,1,
