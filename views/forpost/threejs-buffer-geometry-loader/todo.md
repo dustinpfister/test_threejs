@@ -1,5 +1,16 @@
 # threejs-buffer-geometry-loader todo list
 
+<!-- JSON SECTION -->
+
+## () - s3-3-json-userdata
+
+<!-- DONE -->
+
+## ( done 07/09/2023 ) - s3-2-json-handcode
+* (done) rename s3-1-tojson to s3-1-json-tofrom
+* (done) start a s3-2-json-handcode demo
+* (done) see about having text in the demo, and using the parse method of the loader
+
 ## ( done 06/04/2023 ) - on error handing
 * (done) fix s4-3-manager-promise to reject a promise on an error
 * (done) fix the same thing for buffgeo-promise-loader-r0.js
