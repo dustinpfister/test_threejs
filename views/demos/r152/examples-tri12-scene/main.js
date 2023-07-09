@@ -43,6 +43,10 @@ const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THR
         });
     });
 };
+// get object by index
+const getObj = (scene_source, index = 0) => {
+    return scene_source.getObjectByName('buffer_source_' + index);
+};
 //-------- ----------
 // loop
 //-------- ----------
@@ -94,6 +98,7 @@ const urls = [
     '/json/tri12-trees/deciduous-one-full/1.json',
     '/json/tri12-trees/deciduous-one-full/2.json',
     '/json/tri12-trees/deciduous-one-full/3.json',
+    '/json/tri12-landtiles/set1/0.json'
 ];
 const material = new THREE.MeshBasicMaterial({
     side: THREE.DoubleSide,
@@ -107,8 +112,8 @@ loadBufferGeometryJSON(urls, 2, 5, material)
     scene.add(state.fly);
     // set up the grid
     state.grid = ObjectGridWrap.create({
-        spaceW: 15,
-        spaceH: 15,
+        spaceW: 16,
+        spaceH: 16,
         tw: 8,
         th: 8,
         gud: {
@@ -116,10 +121,10 @@ loadBufferGeometryJSON(urls, 2, 5, material)
         },
         effects: ['opacity3'],
         sourceObjects: [
-            scene_source.getObjectByName('buffer_source_1').clone(),
-            scene_source.getObjectByName('buffer_source_2').clone(),
-            scene_source.getObjectByName('buffer_source_3').clone(),
-            scene_source.getObjectByName('buffer_source_4').clone()
+            getObj(scene_source, 1),
+            getObj(scene_source, 2),
+            getObj(scene_source, 3),
+            getObj(scene_source, 4)
         ],
         objectIndices: [
             1,3,1,1,1,3,1,1,
