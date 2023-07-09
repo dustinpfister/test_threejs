@@ -9,6 +9,7 @@ import { VertexNormalsHelper } from 'VertexNormalsHelper';
 // SCENE, CAMERA, RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
+scene.background = new THREE.Color('#0000ff');
 const camera = new THREE.PerspectiveCamera(65, 4 / 3, 0.1, 1000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -47,6 +48,22 @@ const loadBufferGeometryJSON = ( urls = [], w = 2, scale = 5, material = new THR
 const getObj = (scene_source, index = 0) => {
     return scene_source.getObjectByName('buffer_source_' + index);
 };
+// create land tile object for the object grid wrap source object collection
+const createGridSource = (scene_source, index_land, objects = [] ) => {
+    const land_tile = getObj(scene_source, index_land).clone();
+    let i = 0;
+    const len = Math.floor(objects.length / 3);
+    while(i < len){
+        const index_object = objects[i * 3];
+        const x = objects[i * 3 + 1];
+        const z = objects[i * 3 + 2];
+        const obj = getObj(scene_source, index_object).clone();
+        obj.position.set(x, 0, z);
+        land_tile.add(obj);
+        i += 1;
+    }
+    return land_tile;
+};
 //-------- ----------
 // loop
 //-------- ----------
@@ -72,12 +89,13 @@ const loop = ()=> {
         state.fly.morphTargetInfluences[ 0 ] = a_wings;
         state.fly.position.y = 7 + Math.sin( Math.PI * 2 * a_bounce ) * 0.5;
         state.fly.rotation.y = Math.PI / 180 * ( 90 * a_rock );
+        state.fly.scale.set(1.5, 1.5, 1.5);
         // grid
         ObjectGridWrap.setPos(state.grid, 0, 1 - (a_frame * 4 % 1) );
         ObjectGridWrap.update(state.grid);
         // camera
-        camera.position.set(3, 9, 3);
-        camera.lookAt(0, 7, 0);
+        camera.position.set(4, 9, 4);
+        camera.lookAt(0, 7.5, 0);
         // step, render, ect...
         state.frame += 1;
         state.frame %= state.frameMax;
@@ -88,7 +106,7 @@ const loop = ()=> {
 //-------- ----------
 // GRID
 //-------- ----------
-scene.add( new THREE.GridHelper(100, 10) );
+//scene.add( new THREE.GridHelper(100, 10) );
 //-------- ----------
 // LOAD GEOMETRY
 //-------- ----------
@@ -121,10 +139,14 @@ loadBufferGeometryJSON(urls, 2, 5, material)
         },
         effects: ['opacity3'],
         sourceObjects: [
-            getObj(scene_source, 1),
-            getObj(scene_source, 2),
-            getObj(scene_source, 3),
-            getObj(scene_source, 4)
+            createGridSource(scene_source, 5, [1,0,0] ),
+            createGridSource(scene_source, 5, [2,0,0] ),
+            createGridSource(scene_source, 5, [3,0,0] ),
+            createGridSource(scene_source, 5, [4,0,0] )
+            //getObj(scene_source, 1),
+            //getObj(scene_source, 2),
+            //getObj(scene_source, 3),
+            //getObj(scene_source, 4)
         ],
         objectIndices: [
             1,3,1,1,1,3,1,1,
