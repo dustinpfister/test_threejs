@@ -1,5 +1,7 @@
 # threejs-mesh-copy todo list
 
+<!-- LOOP SECTION -->
+
 ## () s4-2-loop-object-pool
 * () have an object pool loop example
 
@@ -8,6 +10,14 @@
 * () this example will involve creating a new mesh objects from a single source mesh
 * () over time the geometry of each will mutate as they move back
 * () I will need to remove old meach objects when they get far back enough
+
+<!-- CREATE SECTION -->
+
+<!-- DONE -->
+
+## ( done 07/09/2023 ) s2-2-create-shareoption
+* (done) create helper with a share option for material
+* (done) have a share option for geometry
 
 ## ( done 03/06/2023 ) s3-2-children-mat-geo
 * (done) same as first only clone the material, and geometry

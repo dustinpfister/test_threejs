@@ -24,7 +24,8 @@ const createBox = function(w, h, d){
         new THREE.BoxGeometry(w, h, d),
         new THREE.MeshStandardMaterial({
             color: 'red'
-        }));
+        })
+    );
 };
 //-------- ----------
 // GROUP
