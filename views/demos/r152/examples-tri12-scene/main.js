@@ -9,7 +9,7 @@ import { VertexNormalsHelper } from 'VertexNormalsHelper';
 // SCENE, CAMERA, RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
-scene.background = new THREE.Color('#0000ff');
+scene.background = new THREE.Color('#000044');
 const camera = new THREE.PerspectiveCamera(65, 4 / 3, 0.1, 1000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
@@ -81,7 +81,7 @@ const loop = ()=> {
     requestAnimationFrame(loop);
     if(secs > 1 / state.fps){
         const a_frame = state.frame / state.frameMax;
-        const a_wings = 1 - Math.abs( 0.5 - (a_frame * 128 % 1) ) / 0.5;
+        const a_wings = 1 - Math.abs( 0.5 - (a_frame * 64 % 1) ) / 0.5;
         const a_bounce = a_frame * 16 % 1;
         const a_rock = Math.sin( Math.PI * 16 * a_frame ) / Math.PI;
         // fly
@@ -91,7 +91,7 @@ const loop = ()=> {
         state.fly.rotation.y = Math.PI / 180 * ( 90 * a_rock );
         state.fly.scale.set(1.5, 1.5, 1.5);
         // grid
-        ObjectGridWrap.setPos(state.grid, 0, 1 - (a_frame * 4 % 1) );
+        ObjectGridWrap.setPos(state.grid, 0, 1 - (a_frame * 2 % 1) );
         ObjectGridWrap.update(state.grid);
         // camera
         camera.position.set(4, 9, 4);
