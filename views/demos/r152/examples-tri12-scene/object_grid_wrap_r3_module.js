@@ -97,10 +97,10 @@ EFFECTS.opacity3 = function(grid, obj, objData, oud, gud){
     const pos_center = new THREE.Vector2(grid.position.x, grid.position.z);
     let alpha = 1 - v_pos.distanceTo( pos_center ) / maxDist;
     //alpha = THREE.MathUtils.smootherstep(alpha, 0, 1);
-    if(alpha > 0.6 ){
+    if(alpha > 0.8 ){
         alpha = 1;
     }else{
-        alpha = THREE.MathUtils.smootherstep( alpha / 0.7, 0, 1);
+        alpha = THREE.MathUtils.smootherstep( alpha / 0.68, 0, 1);
     }
 
 

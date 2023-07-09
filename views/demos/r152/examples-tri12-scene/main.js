@@ -132,10 +132,10 @@ loadBufferGeometryJSON(urls, 2, 5, material)
     state.grid = ObjectGridWrap.create({
         spaceW: 16,
         spaceH: 16,
-        tw: 8,
-        th: 8,
+        tw: 10,
+        th: 10,
         gud: {
-           maxOpacityDist: 55
+           maxOpacityDist: 75 //67
         },
         effects: ['opacity3'],
         sourceObjects: [
@@ -145,15 +145,17 @@ loadBufferGeometryJSON(urls, 2, 5, material)
             createGridSource(scene_source, 5, [4,0,0] )
         ],
         objectIndices: [
-            1,3,1,1,1,3,1,1,
-            1,0,1,1,1,1,1,3,
-            1,0,2,3,1,1,1,1,
-            1,0,1,0,1,1,3,1,
-            1,2,3,0,1,1,2,1,
-            1,1,1,1,1,3,0,3,
-            3,1,0,2,1,2,2,1,
-            1,1,1,2,0,2,0,1,
-            1,1,1,1,1,1,3,1
+            1,3,1,1,1,3,1,1,1,1,
+            1,0,1,1,1,1,1,3,1,1,
+            1,0,2,3,1,1,1,1,1,1,
+            1,0,1,0,1,1,3,1,1,1,
+            1,2,3,0,1,1,2,1,1,1,
+            1,1,1,1,1,3,0,3,1,1,
+            3,1,0,2,1,2,2,1,1,1,
+            1,1,1,2,0,2,0,1,1,1,
+            1,1,1,1,1,1,3,1,1,1,
+            1,1,1,1,1,1,3,1,1,1,
+            1,1,1,1,1,1,3,1,1,1
         ]
     });
     state.grid.position.set( -10, 0, -10 );
