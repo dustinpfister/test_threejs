@@ -1,7 +1,11 @@
 # threejs-vector3-normalize todo list
 
-## () s1-x-basic-clone
-* () new basic example on the subject of mutaiton in place and how to use clone to address that
+<!-- BASIC SECTION -->
+
+<!-- DONE -->
+
+## ( done 07/10/2023 ) s1-5-basic-clone
+* (done) new basic example on the subject of mutaiton in place and how to use clone to address that
 
 ## ( done 03/08/2023 ) - update sphere, apply euler, and loop 1 section to r146 style
 * (done) update s2-1-sphere to r146 style

@@ -13,9 +13,6 @@ scene.add( new THREE.GridHelper(6, 6) );
 const mesh1 = new THREE.Mesh( new THREE.SphereGeometry(0.1, 10, 10) );
 mesh1.position.set(3, 0.5, 0);
 scene.add(mesh1);
-//-------- ----------
-// RENDER
-//-------- ----------
 // using the length method to get the unit length of mesh1
 // using normalize to get a vector with a length of one from that position
 // and using the vector3 lerp method to get vector3 objects between the two
