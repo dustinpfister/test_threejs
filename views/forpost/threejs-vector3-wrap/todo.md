@@ -5,6 +5,8 @@
 * () new s1-1-basic-mod demo that is a static demo of just javaScript modulo
 * () new s1-2-basic-mathutils demo that is a simple demo of THREE.MathUtils
 
+<!-- DONE -->
+
 ## ( done 03/09/2023 ) - s5-2-loop-wraplength new loop section
 * (done) start a new loop demo where I just wrap the vector unit length
 * (done) have more mesh objects

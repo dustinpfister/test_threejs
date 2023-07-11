@@ -1,22 +1,29 @@
 # threejs-vector3-clamp todo list
 
-## ( done 03/08/2023 ) s3-3-loop-clamptogrid
+<!-- WRAP SECTION -->
+
+<!-- DONE -->
+
+## ( done 07/11/2023 ) - s2-3-wrap-length
+* (done) unit length wrap demo
+
+## ( done 03/08/2023 ) - s3-3-loop-clamptogrid
 * (done) new clamp to grid loop demo
 
-## ( done 03/08/2023 ) update loop section to r146 style
+## ( done 03/08/2023 ) - update loop section to r146 style
 * (done) update s3-1-loop-clamp to r146 style
 * (done) update s3-2-loop-clamptypes to r146 style
 
-## ( done 03/08/2023 ) update and expand wrap section
+## ( done 03/08/2023 ) - update and expand wrap section
 * (done) rename s2-1-wrap to s2-2-wrap-helpers
 * (done) update s2-2-wrap-helpers to r146 style
 * (done) start a new s2-1-wrap-number example that is just a simple wrap method
 
-## ( done 03/08/2023 ) update basic to r146 style, and expand
+## ( done 03/08/2023 ) - update basic to r146 style, and expand
 * (done) update s1-1-basic-clamp to r146 style
 * (done) update s1-2-basic-clamplength to r146 style
 
-## ( done 03/08/2023 ) rename folders
+## ( done 03/08/2023 ) - rename folders
 * (done) rename s1-basic to s1-1-basic-clamp
 * (done) rename s2-length to s1-2-basic-clamplength
 * (done) rename s3-wrap to s2-1-wrap
