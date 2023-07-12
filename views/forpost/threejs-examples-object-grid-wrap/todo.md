@@ -3,9 +3,11 @@
 <!-- r3 and JSM version of module -->
 
 I am sure that I will want the next revision of this module to be in JSM format. I all ready have a work in progress for this that I started in my examples-tri12-scene r152 demo. So be sure to start with that source code as a good start point for this to say the least.
+I also have a great grid loop demo in my threeks-vector3-wrap post
 
 ## () - r3 - JSM module format
 * () start with the source code that you all ready have in the examples-tri12-scene demo
+* () take into account the clean, simple example that was worked out for threejs-vector3-wrap ( s5-2-loop-grid )
 
 <!-- DONE -->
 
