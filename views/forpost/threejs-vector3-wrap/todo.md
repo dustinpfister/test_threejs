@@ -1,15 +1,21 @@
 # threejs-vector3-wrap todo list
 
-<!-- WRAP VALUE SECTION -->
-
 <!-- BASIC SECTION -->
 
-## () s1-2-basic-mathutils
+## ( ) s1-2-basic-mathutils
 * () rename s1-basic-mod to s1-3-basic-mod-and-mathutils
 * () new s1-1-basic-mod demo that is a static demo of just javaScript modulo
 * () new s1-2-basic-mathutils demo that is a simple demo of THREE.MathUtils
 
+<!-- LOOP  SECTION -->
+
+<!-- WRAP VALUE SECTION -->
+
 <!-- DONE -->
+
+## ( done 07/12/2023 ) s5-2-loop-grid
+* (done) I would like to have a simple version of the grid wrap module threejs example
+* (done) see about making a nice, clean opacity effect for this
 
 ## ( done 07/12/2023  ) s2-1-wrapvalue-mathutils
 * (done) rename wrap axis section to wrap value section
