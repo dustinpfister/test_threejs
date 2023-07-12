@@ -5,6 +5,8 @@
 * () have a grid of spheres and move this grid around
 * () I will want to wrap the mesh objects also
 
+<!-- DONE -->
+
 ## ( done 03/13/2023 ) s1-2-length basic example
 * (done) have a s1-2-length example that is on the length method
 

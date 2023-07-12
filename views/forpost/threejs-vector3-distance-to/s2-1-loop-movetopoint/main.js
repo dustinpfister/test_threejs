@@ -44,30 +44,30 @@ const newRandomStartPos = function (maxLength) {
     maxLength = maxLength === undefined ? 10 : maxLength;
     return new THREE.Vector3().random().subScalar(0.5).normalize().multiplyScalar(maxLength);
 };
-
-// cubes
+//-------- ----------
+// SCENE CHILD OBJECTS
+//-------- ----------
 const cube1 = createCube();
 cube1.position.set(0.001, 0, 0);
 scene.add(cube1);
 const cube2 = createCube();
 cube2.position.copy(newRandomStartPos());
 scene.add(cube2);
-
+//-------- ----------
+// LOOP
+//-------- ----------
 camera.position.set(8, 10, 8);
 camera.lookAt(0, 0, 0);
-
-
 const update = function () {
     moveObjByDistDiff(cube2, cube1.position, 2, 0.125);
     if (minDistCheck(cube2, cube1.position, 0.25)) {
         cube2.position.copy(newRandomStartPos());
     }
 };
-
-var lt = new Date(),
+let lt = new Date(),
 fps = 30;
-var loop = function () {
-    var now = new Date(),
+const loop = function () {
+    const now = new Date(),
     secs = (now - lt) / 1000;
     requestAnimationFrame(loop);
     if (secs > 1 / fps) {
