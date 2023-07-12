@@ -1,11 +1,17 @@
 # vector3-distance-to todo list
 
-## () s2-3-loop-length
-* () animation loop demo based on what I started with the s1-2-basic-length demo
-* () have a grid of spheres and move this grid around
-* () I will want to wrap the mesh objects also
+<!-- LOOP SECTION -->
+
+## () s2-3-loop-grid
+* () start a demo based on the source code of s5-2-loop-grid in threejs-vector3-wrap
+
+<!-- BASIC SECTION -->
+
 
 <!-- DONE -->
+
+## ( done 07/12/2023 ) s1-1-basic
+* (done) start a true basic example where I am just getting the distance between two points
 
 ## ( done 03/13/2023 ) s1-2-length basic example
 * (done) have a s1-2-length example that is on the length method
