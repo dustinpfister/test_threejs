@@ -2,13 +2,10 @@
 // SCENE, CAMERA, RENDERER
 //-------- ----------
 const scene = new THREE.Scene();
-scene.add(new THREE.GridHelper(10, 10));
 const camera = new THREE.PerspectiveCamera(50, 4 / 3, .5, 1000);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
-
-
 //-------- ----------
 // HELPERS
 //-------- ----------
@@ -35,6 +32,7 @@ const wrapAxis = function(vec, vecMin, vecMax, axis){
 //-------- ----------
 // MESH
 //-------- ----------
+scene.add(new THREE.GridHelper(3, 3));
 const mesh1 = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
@@ -45,11 +43,11 @@ scene.add(mesh1);
 //-------- ----------
 camera.position.set(5, 5, 5);
 camera.lookAt(0, 0, 0);
-const vMin = new THREE.Vector3(-2, 0, 0),
-vMax  = new THREE.Vector3(2, 0, 0);
+const vMin = new THREE.Vector3(-1.0, 0, 0),
+vMax  = new THREE.Vector3(1.0, 0, 0);
 let frame = 0,
 lt = new Date();
-const maxFrame = 300,
+const maxFrame = 900,
 fps = 20;
 const loop = function () {
     const now = new Date(),

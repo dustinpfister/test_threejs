@@ -1,11 +1,19 @@
 # threejs-vector3-wrap todo list
 
-## () expand basic section
+<!-- WRAP VALUE SECTION -->
+
+<!-- BASIC SECTION -->
+
+## () s1-2-basic-mathutils
 * () rename s1-basic-mod to s1-3-basic-mod-and-mathutils
 * () new s1-1-basic-mod demo that is a static demo of just javaScript modulo
 * () new s1-2-basic-mathutils demo that is a simple demo of THREE.MathUtils
 
 <!-- DONE -->
+
+## ( done 07/12/2023  ) s2-1-wrapvalue-mathutils
+* (done) rename wrap axis section to wrap value section
+* (done) new s2-1-wrapvalue-mathutils demo where I am using a wrap method that uses MathUtils
 
 ## ( done 03/09/2023 ) - s5-2-loop-wraplength new loop section
 * (done) start a new loop demo where I just wrap the vector unit length
