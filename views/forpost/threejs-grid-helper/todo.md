@@ -1,11 +1,20 @@
 # threejs-grid-helper
 
+<!-- LOOP SECTION -->
+
 ## () - start a s2-4-loop-video1 example
 * () start a loop example based on what I made for the first video
 
 ## () - start a s2-3-loop-vertex-colors
 * () it should be possible to add a color attribite and use vertex coloring
 * () have transparent effects also
+
+<!-- BASIC SECTION -->
+
+<!-- DONE -->
+
+## ( done 07/13/2023 ) s1-4-basic-vertexcolors
+* (done) see about making a basic vertex colors demo
 
 ## ( done 03/16/2023 ) - start a s2-2-loop-transparent example
 * (done) have just a very simple transparent transparent grid example
@@ -15,7 +24,7 @@
 * (done) update to r146 style
 
 ## ( done 09/13/202 ) - default to document body in examples
-* (done) sense a lot of people might just copy and pase source code from posts, I should do this.
+* (done) sense a lot of people might just copy and parse source code from posts, I should do this.
 
 ## ( done 05/11/2022 ) - new s3-linewidth folder
 * (done) start a new s3-linewidtb folder
