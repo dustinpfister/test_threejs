@@ -1,11 +1,13 @@
 # threejs-vector3-multiply-scalar todo list
 
-## () - s2-3-copy-curve
-* () have an example that involves the use of a curve
-* () use the get point method to get a Vector3 along the curve
-* () use the copy method to copy the position of a green mesh to that point
-* () create a few white mesh objects and copy the curve point for that as well
-* () however add a new vector in using multiply scalar
+<!-- DONE -->
+
+## ( done 07/13/2023 ) - s2-3-copy-curve
+* (done) have an example that involves the use of a curve
+* (done) use the get point method to get a Vector3 along the curve
+* (done) use the copy method to copy the position of a green mesh to that point
+* (done) create a few white mesh objects and copy the curve point for that as well
+* (done) however add a new vector in using multiply scalar
 
 ## ( done 03/14/2023 ) - s3-2-loop-move-many-along
 * (done) start a video2 loop example
