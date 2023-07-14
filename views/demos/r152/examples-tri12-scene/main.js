@@ -111,7 +111,7 @@ const loop = ()=> {
 // LOAD GEOMETRY
 //-------- ----------
 const urls = [
-    '/json/tri12-bufferfly/set1/0.json',
+    '/json/tri12-butterfly/set1-buffergeometry/0.json',
     '/json/tri12-trees/deciduous-one-full/0.json',
     '/json/tri12-trees/deciduous-one-full/1.json',
     '/json/tri12-trees/deciduous-one-full/2.json',

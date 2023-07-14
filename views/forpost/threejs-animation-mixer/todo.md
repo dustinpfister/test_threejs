@@ -2,11 +2,14 @@
 
 <!-- TRI12 SECTION -->
 
+## s2-1-tri12-butterfly
+
+
 <!-- BASIC SECTION -->
 
 <!-- DONE -->
 
-## ( done 07/13/2023 ) - s2-1-tri12-bufferfly
+## ( done 07/13/2023 ) - s2-1-tri12-butterfly
 * (done) use the buffer geometry of the bufferfly that has a morph attribute
 
 ## ( done 07/13/2023 ) - s1-1-basic-vector

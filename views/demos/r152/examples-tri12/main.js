@@ -54,7 +54,7 @@ const loader = new THREE.BufferGeometryLoader();
 // load a resource
 loader.load(
     // resource URL
-    '/json/tri12-bufferfly/set1/0.json',
+    '/json/tri12-butterfly/set1-buffergeometry/0.json',
     // onLoad callback
     (geometry) => {
         // add mesh
