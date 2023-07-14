@@ -19,13 +19,17 @@
   I would also like to to use strings that follow the JSON Object Scene format 4
   https://github.com/mrdoob/three.js/wiki/JSON-Object-Scene-format-4
   
-## s2-1-tri-object
+## () s2-2-tri-multi
+* () this demo should have more than one animation clip
+* () at least one animation clip should have more than one track
+
+<!-- DONE -->
+
+## (done 07/14/2023 ) s2-1-tri-object
 * (done) start with a demo that is just the object and geometry values
 * (done) the parse method of THREE.ObjectLoader should work for this
 * (done) I just want to work out the basic core idea with this, so just one clip and one track
-* () the single track of the single clip should mutate the morph target influences
-
-<!-- DONE -->
+* (done) the single track of the single clip should mutate the morph target influences
 
 ## ( done 07/14/2023 ) s1-2-basic-parse-clip-json
 * (done) parse json demo using AnimationClip.parse method

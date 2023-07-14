@@ -32,6 +32,21 @@ const str_json = `{
                         "array": [0,0,0, 4,0,0, 0,0,4 ],
                         "normalized": false
                     }
+                },
+                "morphTargetsRelative": true,
+                "morphAttributes": {
+                    "position": [
+                        {
+                            "itemSize":3,
+                            "type":"Float32Array",
+                            "array":[
+                                0.0, 3.0, 0.0,
+                               -4.0, 3.0, 0.0,
+                                0.0, 3.0,-4.0
+                            ],
+                            "normalized":false
+                        }
+                    ]
                 }
             }
         }
@@ -46,14 +61,14 @@ const str_json = `{
     ],
     "animations": [
         {
-            "name": "move",
+            "name": "converge",
             "duration": 1,
             "tracks": [
                 {
-                    "name": ".position",
-                    "times": [0, 1],
-                    "values": [5, 0, -5, -5, 0, 5],
-                    "type": "vector"
+                    "name": ".morphTargetInfluences[0]",
+                    "times": [0, 0.5, 1],
+                    "values": [0, 1, 0],
+                    "type": "number"
                 }
             ],
             "uuid": "584702c7-efb2-4fa1-ae37-43d18b5f7fb5",
