@@ -2,7 +2,6 @@
 // IMPORT - threejs and any addons I want to use
 // ---------- ----------
 import * as THREE from 'three';
-import { OrbitControls } from 'OrbitControls';
 // ---------- ----------
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
@@ -15,13 +14,19 @@ renderer.setSize(640, 480, false);
 // CLIP
 // ---------- ----------
 const str_json = `{
-  "name":"move",
+  "name":"scale",
   "duration":3,
   "tracks":[
     {
-      "name":".position",
+      "name":".scale",
       "times":[0,1.5,3],
-      "values":[2,0,-5,-5,0,5,2,0,-5],
+      "values":[ 1,1,1, 0.5,3,0.5, 1,1,1],
+      "type":"vector"
+    },
+    {
+      "name":".position",
+      "times":[0, 0.5, 1.5, 2.5, 3],
+      "values":[ 0,0.5,0, 2,1.5,0, -2,1.5,0, -2,1.5,2, 0,0.5,0],
       "type":"vector"
     }
   ],

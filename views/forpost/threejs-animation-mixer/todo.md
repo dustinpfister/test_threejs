@@ -12,6 +12,9 @@
 
 <!-- DONE -->
 
+## ( done 07/14/2023 ) s1-2-basic-parse-clip-json
+* (done) parse json demo using AnimationClip.parse method
+
 ## (done 07/14/2023 ) - s2-1-tri12-butterfly - revise
 * (done) remove the canvas texture in favor of using vertex color attribute
 * (done) update url to new name with fixed typo 
