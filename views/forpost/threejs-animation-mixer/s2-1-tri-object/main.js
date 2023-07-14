@@ -93,18 +93,10 @@ const str_json = `{
     }
 }`;
 const scene = new THREE.ObjectLoader().parse( JSON.parse( str_json ) );
-
 const points = scene.getObjectByName('tri_one');
-
 const mixer = new THREE.AnimationMixer( points );
 const action = mixer.clipAction( points.animations[0] );
 action.play();
-
-console.log(mixer);
-
-//console.log( JSON.stringify(scene.toJSON()) );
-
-
 // ---------- ----------
 // ANIMATION LOOP
 // ---------- ----------
