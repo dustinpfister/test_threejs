@@ -19,7 +19,6 @@ const state = {
    mesh: null,
    mixer: null
 };
-// loop
 let frame = 0;
 const frame_max = 30;
 const loop = () => {

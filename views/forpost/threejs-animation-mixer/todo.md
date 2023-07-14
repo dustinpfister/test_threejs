@@ -20,7 +20,8 @@
   https://github.com/mrdoob/three.js/wiki/JSON-Object-Scene-format-4
   
 ## s2-1-tri-object
-* () start with a demo that is just the object and geometry values
+* (done) start with a demo that is just the object and geometry values
+* (done) the parse method of THREE.ObjectLoader should work for this
 * () I just want to work out the basic core idea with this, so just one clip and one track
 * () the single track of the single clip should mutate the morph target influences
 
