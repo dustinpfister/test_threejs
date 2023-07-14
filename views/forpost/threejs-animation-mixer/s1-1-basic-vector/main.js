@@ -29,7 +29,7 @@ scene.add(mesh);
 // ---------- ----------
 // MIXER/ACTION
 // ---------- ----------
-const mixer = new THREE.AnimationMixer( mesh )
+const mixer = new THREE.AnimationMixer( mesh );
 const action = mixer.clipAction( clip );
 action.play();
 // ---------- ----------

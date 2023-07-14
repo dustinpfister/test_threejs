@@ -44,6 +44,22 @@ const str_json = `{
             "color": 65280
         }
     ],
+    "animations": [
+        {
+            "name": "move",
+            "duration": 1,
+            "tracks": [
+                {
+                    "name": ".position",
+                    "times": [0, 1],
+                    "values": [5, 0, -5, -5, 0, 5],
+                    "type": "vector"
+                }
+            ],
+            "uuid": "584702c7-efb2-4fa1-ae37-43d18b5f7fb5",
+            "blendMode": 2500
+        }
+    ],
     "object": {
         "uuid": "ad1ecebd-b665-4e10-9ead-6d0205bec011",
         "type": "Scene",
@@ -55,20 +71,24 @@ const str_json = `{
                 "type": "Points",
                 "geometry": "bce89f32-4cab-41c8-b3f6-15e04b1dd68e",
                 "material": "0246dafa-bf34-4460-a7eb-f5098b2120af",
-                "matrix": [ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 ]
+                "matrix": [ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 ],
+                "animations": ["584702c7-efb2-4fa1-ae37-43d18b5f7fb5"]
             }
         ]
     }
 }`;
 const scene = new THREE.ObjectLoader().parse( JSON.parse( str_json ) );
- 
-// this can be used to get numbers for colors
-//  console.log( new THREE.Color(0,1,0).toJSON() );
 
-// This can be used to generate UUIDs for geometry, objects, materials, ect
-//console.log(  THREE.MathUtils.generateUUID() );
+const points = scene.getObjectByName('tri_one');
 
-scene.add(   new THREE.GridHelper(10, 10) );
+const mixer = new THREE.AnimationMixer( points );
+const action = mixer.clipAction( points.animations[0] );
+action.play();
+
+console.log(mixer);
+
+//console.log( JSON.stringify(scene.toJSON()) );
+
 
 // ---------- ----------
 // ANIMATION LOOP
@@ -86,6 +106,7 @@ lt = CLOCK.getElapsedTime();
 // update
 const update = (frame, frameMax) => {
     const a1 = frame / frameMax;
+    mixer.setTime(a1);
 };
 // loop
 const loop = () => {
