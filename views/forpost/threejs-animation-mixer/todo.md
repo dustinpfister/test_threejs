@@ -2,13 +2,27 @@
 
 <!-- TRI12 SECTION -->
 
-## () s2-2-tri12-butterfly-object
+## () s3-2-tri12-butterfly-object
 * () If I have an object format version of the butterfly model used that for this demo
 
-## () s2-3-tri12-scene
+## () s3-3-tri12-scene
 * () demo in which I am loading many files to create an over all scene
 
 <!-- BASIC SECTION -->
+
+## () s1-3-basic-quaternion
+* () basic quaternion demo for local local rotation of objects over time
+
+<!-- TRINAGLE SECTION -->
+  The idea that I have with this section is that I will create a custom geometry that is just a single triangle in space.
+  To help keep things simple this geometry can just have a position attribute, and THREE.Points can be used in place of mesh
+  I would also like to to use strings that follow the JSON Object Scene format 4
+  https://github.com/mrdoob/three.js/wiki/JSON-Object-Scene-format-4
+  
+## s2-1-tri-object
+* () start with a demo that is just the object and geometry values
+* () I just want to work out the basic core idea with this, so just one clip and one track
+* () the single track of the single clip should mutate the morph target influences
 
 <!-- DONE -->
 
