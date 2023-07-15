@@ -1,11 +1,21 @@
 # threejs-math-utils todo list
 
-## () s9-ping-pong
+<!-- NEW SECTIONS  -->
 
-## () s8-mapLinear
+There are still a lot of methods that I have not wrote about just yet. I think that it might be best to have a section for each method in theory at least. I say in theory because it should go without saying that methods that I actually use should take priority.
 
-## () s7-damp
+## () sx-1-pingpong
+
+## () sx-1-maplinear
+
+## () sx-1-damp
 * () example on the damp method
+
+## () s7-1-generateuuid
+* () start a basic example of generating uuids
+* () see about making custom json as an example such as what I am doing in the animation mixer post
+
+<!-- DONE -->
 
 ## ( done 03/15/2023 ) s6-lerp example
 * (done) example on the lerp and inverseLerp methods
