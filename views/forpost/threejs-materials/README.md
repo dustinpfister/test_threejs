@@ -37,7 +37,7 @@ So I have found that I am getting out ranked by posts that are saying they are C
 
 ### Consolation of mesh material demos into a “Mesh Options” Section
 
-When I started this post I have a section for  each mesh material option, that is one section for the BasicMaterial, another for PhongMaterial, and so forth. This might make sense if I am going to have many demos for each material, however thus far that is not the case at this time. When it comes to many of the plans that I have for future edits I am going to start to have a lot of sections that apply to materials in general, and also subjects where there are some overlap. So I am thinking that I should consolidate all of the simple mesh material demos into a single mesh options section. If I do start to wrote deep dive sections I can have a Basic Material Deep Dive Section, Phong Deep Dive Section, and so forth
+When I started this post I have a section for  each mesh material option, that is one section for the BasicMaterial, another for PhongMaterial, and so forth. This might make sense if I am going to have many demos for each material, however thus far that is not the case at this time. When it comes to many of the plans that I have for future edits I am going to start to have a lot of sections that apply to materials in general, and also subjects where there are some overlap with many other threejs features in the geometry class, textures, and so forth. So I am thinking that I should consolidate all of the simple mesh material demos into a single mesh options section. If I do start to write deep dive sections I can have a Basic Material Deep Dive Section, Phong Deep Dive Section, and so forth.
 
 ### Proper Basic Section
 

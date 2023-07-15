@@ -4,6 +4,15 @@
 
 It would be nice to have a section where I get into material arrays, and groups of buffer geometry. If so I should have at least one demo in which I am using the Phong for metal surfaces, and Lambert for wood surfaces.
 
+## sx-1-matarray-cube
+* () a mesh that uses the cube geometry is a good start for this kind of subject as always
+* () start with code from the mesh-material-index post if need be
+
+## sx-2-matarray-plane
+* () a mesh using a plane might be a good start when it comes to the add group method
+* () see about making a custom one where we have an area that is a 'lake'
+* () use the phong matreial for the lake area, and lambert for the rest
+
 <!-- MeshMatcapMaterial -->
 
 I should start a mesh matcap section when I have a post on this material option.
@@ -27,7 +36,8 @@ Start a textures section where the focus is on textures and the various map opti
 I should start a basic section in which I just have a few very simple examples of the use of materials
 
 ## s1-1-basic-meshnormal
-* () very simple mesh normal material example
+* (done) very simple mesh normal material example
+* () make the normal material for the mesh options section not so simple then
 
 <!-- DONE -->
 
