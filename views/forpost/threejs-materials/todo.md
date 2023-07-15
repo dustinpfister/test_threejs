@@ -4,11 +4,14 @@
 
 It would be nice to have a section where I get into material arrays, and groups of buffer geometry. If so I should have at least one demo in which I am using the Phong for metal surfaces, and Lambert for wood surfaces.
 
-<!-- MeshMatcapMaterial SECTION-->
+<!-- MeshMatcapMaterial -->
 
 I should start a mesh matcap section when I have a post on this material option.
 
 <!-- SHADER MATERIAL SECTION -->
+
+## sx-1-shader-white
+* () This will be a very basic hello word type example where I just have a blob of white area
 
 <!-- TEXTURES SECTION -->
 
@@ -16,9 +19,15 @@ Start a textures section where the focus is on textures and the various map opti
 
 <!-- BASE MATERIAL SECTION -->
 
-## () - s11-2-common-vertexcolor
+## () - sx-2-common-vertexcolor
 * () vertex color examples
 
+<!-- BASIC SECTION -->
+
+I should start a basic section in which I just have a few very simple examples of the use of materials
+
+## s1-1-basic-meshnormal
+* () very simple mesh normal material example
 
 <!-- DONE -->
 
