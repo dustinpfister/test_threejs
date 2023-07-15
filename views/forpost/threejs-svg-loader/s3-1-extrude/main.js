@@ -1,4 +1,3 @@
-
 //-------- ----------
 // SCENE, CAMERA, RENDERER, LIGHT
 //-------- ----------
@@ -10,42 +9,48 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
+// LIGHT
+//-------- ----------
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(2, 1, 3)
+scene.add(dl);
+const al = new THREE.AmbientLight(0xffffff, 0.25);
+scene.add(al);
+//-------- ----------
 // HELPERS
 //-------- ----------
-// create an array of shape geometry from SVG data loaded with the SVGLoader
-const createShapeGeosFromSVG = (data, si, ei) => {
+// create an array of Extrude geometry from SVG data loaded with the SVGLoader
+const createExtrudeGeosFromSVG = (data, si, ei) => {
     si = si === undefined ? 0 : si;
     ei = ei === undefined ? data.paths.length : ei;
+    //const paths = data.paths;
     const paths = data.paths.slice(si, data.paths.length);
     const geoArray = [];
     for (let i = 0; i < paths.length; i++) {
         const path = paths[i];
         // create a shape
         const shapes = THREE.SVGLoader.createShapes(path);
-        // for each shape create a shape geometry and push it to the array
+        // for each shape create a mesh and add it to the group
         for (let j = 0; j < shapes.length; j++) {
             const shape = shapes[j];
-            // when calling the THREE.ShapeGeometry constructor I pass the shape
-            // and then if I want the curveSegments to be higher or lower than the
-            // default ( 12 ) I can pass that as the second argument.
-            geoArray.push(new THREE.ShapeGeometry(shape, 8));
+            geoArray.push(new THREE.ExtrudeGeometry(shape, {
+                    curveSegments: 20,
+                    steps: 20,
+                    depth: 10,
+                    bevelEnabled: false,
+                }));
         }
     }
     return geoArray;
 };
 // create mesh group from SVG
 const createMeshGroupFromSVG = (data, si, ei) => {
-    si = si === undefined ? 0 : si;
-    ei = ei === undefined ? data.paths.length : ei;
-    const geoArray = createShapeGeosFromSVG(data, si, ei);
+    const geoArray = createExtrudeGeosFromSVG(data, si, ei);
     const group = new THREE.Group();
     geoArray.forEach((geo, i) => {
         // each mesh gets its own material
-        const material = new THREE.MeshBasicMaterial({
-                color: data.paths[si + i].color, // using paths data for color
-                side: THREE.DoubleSide,
-                depthWrite: false,
-                wireframe: false
+        const material = new THREE.MeshPhongMaterial({
+                color: data.paths[si + i].color // using paths data for color
             });
         const mesh = new THREE.Mesh(geo, material);
         group.add(mesh);
@@ -53,10 +58,33 @@ const createMeshGroupFromSVG = (data, si, ei) => {
     return group;
 };
 //-------- ----------
+// OBJECTS
+//-------- ----------
+let group;
+//-------- ----------
+// LOOP
+//-------- ----------
+let fps = 30,
+degree = 0,
+lt = new Date();
+const loop = function () {
+    let now = new Date(),
+    secs = (now - lt) / 1000;
+    requestAnimationFrame(loop);
+    if (secs > 1 / fps) {
+        group.rotation.y = Math.PI / 180 * degree;
+        degree += 20 * secs;
+        degree %= 360;
+        // render
+        renderer.render(scene, camera);
+        lt = now;
+    }
+};
+//-------- ----------
 // SVG LOADER
 //-------- ----------
 camera.position.set(100, 100, 100);
-camera.lookAt(0, 0, 0);
+camera.lookAt(0, -0.1, 0);
 // instantiate a loader
 const loader = new THREE.SVGLoader();
 // load a SVG resource
@@ -65,10 +93,10 @@ loader.load(
     '/forpost/threejs-svg-loader/svg/fff2.svg',
     // called when the resource is loaded
     function (data) {
-    var group = createMeshGroupFromSVG(data, 1);
+    group = createMeshGroupFromSVG(data, 1);
     scene.add(group);
-    // render
-    renderer.render(scene, camera);
+    // start loop
+    loop();
 },
     // called when loading is in progresses
     function (xhr) {

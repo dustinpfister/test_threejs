@@ -1,4 +1,3 @@
-
 //-------- ----------
 // SCENE, CAMERA, RENDERER, LIGHT
 //-------- ----------
@@ -28,34 +27,29 @@ const createShapeGeosFromSVG = (data, si, ei) => {
             // when calling the THREE.ShapeGeometry constructor I pass the shape
             // and then if I want the curveSegments to be higher or lower than the
             // default ( 12 ) I can pass that as the second argument.
-            geoArray.push(new THREE.ShapeGeometry(shape, 8));
+            geoArray.push(new THREE.ShapeGeometry(shape, 16));
         }
     }
     return geoArray;
 };
-// create mesh group from SVG
-const createMeshGroupFromSVG = (data, si, ei) => {
-    si = si === undefined ? 0 : si;
-    ei = ei === undefined ? data.paths.length : ei;
-    const geoArray = createShapeGeosFromSVG(data, si, ei);
-    const group = new THREE.Group();
-    geoArray.forEach((geo, i) => {
-        // each mesh gets its own material
-        const material = new THREE.MeshBasicMaterial({
-                color: data.paths[si + i].color, // using paths data for color
-                side: THREE.DoubleSide,
-                depthWrite: false,
-                wireframe: false
-            });
-        const mesh = new THREE.Mesh(geo, material);
-        group.add(mesh);
-    });
-    return group;
+// create a single mesh from SVG data
+const createGeoFromSVG = (data, si, ei) => {
+    const geoArray = createShapeGeosFromSVG(data, si, ei)
+        const geo = THREE.BufferGeometryUtils.mergeBufferGeometries(geoArray);
+    return geo;
 };
+//-------- ----------
+// GRID
+//-------- ----------
+const grid = new THREE.GridHelper(10, 10, 0xffffff, 0xff0000);
+grid.material.linewidth = 3;
+grid.material.transparent = true;
+grid.material.opacity = 0.25; ;
+scene.add(grid);
 //-------- ----------
 // SVG LOADER
 //-------- ----------
-camera.position.set(100, 100, 100);
+camera.position.set(10, 10, 10);
 camera.lookAt(0, 0, 0);
 // instantiate a loader
 const loader = new THREE.SVGLoader();
@@ -65,9 +59,15 @@ loader.load(
     '/forpost/threejs-svg-loader/svg/fff2.svg',
     // called when the resource is loaded
     function (data) {
-    var group = createMeshGroupFromSVG(data, 1);
-    scene.add(group);
-    // render
+    // create a single geo
+    const geo = createGeoFromSVG(data, 1);
+    geo.center();
+    geo.scale(0.1, 0.1, 0.1);
+    // create a
+    const mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+                side: THREE.DoubleSide
+            }));
+    scene.add(mesh);
     renderer.render(scene, camera);
 },
     // called when loading is in progresses
