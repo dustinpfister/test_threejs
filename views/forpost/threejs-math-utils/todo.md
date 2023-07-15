@@ -11,11 +11,11 @@ There are still a lot of methods that I have not wrote about just yet. I think t
 ## () sx-1-damp
 * () example on the damp method
 
-## () s7-1-generateuuid
-* () start a basic example of generating uuids
-* () see about making custom json as an example such as what I am doing in the animation mixer post
-
 <!-- DONE -->
+
+## ( done 07/15/2023 ) s7-1-generateuuid
+* (done) start a basic example of generating uuids
+* (done) see about making custom json as an example such as what I am doing in the animation mixer post
 
 ## ( done 03/15/2023 ) s6-lerp example
 * (done) example on the lerp and inverseLerp methods
