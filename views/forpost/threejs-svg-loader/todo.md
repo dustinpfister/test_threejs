@@ -3,9 +3,6 @@
 
 <!-- SHAPES SECTION --> 
 
-## () - s1-1-shape-parse
-* () see about making a very simple example that make use of hard coded SVG as text and the parse method
-
 ## () - s1-2-shape-punchout example
 * () see about making a shape with a hole in it that is the same shape scaled down?
 
@@ -26,6 +23,9 @@
 * () get objects by name and move them around
 
 <!-- DONE -->
+
+## ( done 07/15/2023 ) - s1-1-shape-parse
+* (done) see about making a very simple example that make use of hard coded SVG as text and the parse method
 
 ## ( done 07/15/2023 )
 * (done) updated all demos to r146 style
