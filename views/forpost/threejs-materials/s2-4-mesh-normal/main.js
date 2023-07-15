@@ -12,10 +12,17 @@ document.getElementById('demo').appendChild(renderer.domElement);
 //-------- ----------
 const material = new THREE.MeshNormalMaterial();
 //-------- ----------
-// MESH with Box Geometry with the 
+// MESH with Box Geometry and mutaiton of normal attribute
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
-scene.add(new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), material ));
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const att_normal = geometry.getAttribute('normal');
+// messing up the normals so that one side looks weird
+att_normal.setXYZ(0, -0.5, 0.5, 0);
+att_normal.setXYZ(1,  0, 0.5, 1);
+att_normal.setXYZ(2,  1, 0, 0);
+att_normal.setXYZ(3,  1, 0, -1);
+scene.add(new THREE.Mesh( geometry, material ));
 scene.add( new THREE.GridHelper(10, 10) )
 //-------- ----------
 // RENDER

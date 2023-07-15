@@ -35,11 +35,11 @@ Start a textures section where the focus is on textures and the various map opti
 
 I should start a basic section in which I just have a few very simple examples of the use of materials
 
-## s1-1-basic-meshnormal
-* (done) very simple mesh normal material example
-* () make the normal material for the mesh options section not so simple then
-
 <!-- DONE -->
+
+## ( done 07/15/2023 ) s1-1-basic-meshnormal
+* (done) very simple mesh normal material example
+* (done) make the normal material for the mesh options section not so simple then
 
 ## ( done 06/28/2023 ) - s11-1-common-opacity
 * (done) opaciy demo using a lot of differing materials
