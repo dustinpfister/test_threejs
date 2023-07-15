@@ -74,7 +74,7 @@ $ node ./node/server-old/index.js
 
 ## 3 - The views folder
 
-As I have stated in the opneing of this readme the views folder is where I have all the source code examples for all the blog posts on threejs that I have wrote thus far as well as all the draft demos I have made as well. However this is also the public folder where I store all kinds of additional assets that I am using for the various demos. This included copies of threejs itself, as well as additional add on files. I also have a number of addtional assets in terms of textures, external geometry, and so forth.
+As I have stated in the opening of this readme the views folder is where I have all the source code examples for all the blog posts on threejs that I have wrote thus far as well as all the draft demos I have made as well. However this is also the public folder where I store all kinds of additional assets that I am using for the various demos. This included copies of threejs itself, as well as additional add on files. I also have a number of additional assets in terms of textures, external geometry, and so forth.
 
 ### 3.1 - The DAE folder
 
@@ -121,7 +121,7 @@ I have a [for post folder](https://github.com/dustinpfister/test_threejs/tree/ma
 
 ### 3.4 - The JSON folder
 
-The json folder contains various kinds of JSON files, many of which are buffer geometry, but I am also using this to park any kind of JSON data that I am using for some of these demos here and there.
+The json folder contains various kinds of JSON files in various kinds of formats that are used with threejs feature such as THREE.BufferGeometryLoader. However there are of course a number of formats to be aware of when it comes to JSON data that will work with many other features such as THREE.FontLoader, and THREE.ObjectLoader just to name a few.
 
 ## 4 - Code Style
 
@@ -133,5 +133,5 @@ My [r152 style rules](https://github.com/dustinpfister/test_threejs/blob/master/
 
 ### The r146 style rules
 
-For now the [r146 style rules](https://github.com/dustinpfister/test_threejs/blob/master/views/demos/r146/README.md) are the default style rules that I use when editing older demos, and will most likley remain so for a while to say the least. The very next revision after this one is the last revision where js file versions of add on files can be found in the github repo of threejs. So this revison marks the end of the use of text/javaScript mimie type script tags as part of the over all code style.
+For now the [r146 style rules](https://github.com/dustinpfister/test_threejs/blob/master/views/demos/r146/README.md) are the default style rules that I use when editing older demos, and will most likley remain so for a while to say the least. The very next revision after this one is the last revision where js file versions of add on files can be found in the github repo of threejs. So this revision marks the end of the use of text/javaScript mimie type script tags as part of the over all code style.
 
