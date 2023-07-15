@@ -10,15 +10,17 @@ This is what I have when it comes to the source code examples that I am writing 
 
 ## Other posts on materials in general that are "Comprehensive"
 
-When I do a google search for "threejs materials" I am showing up but I am getting out ranked by [this post](https://chriscourses.com/blog/a-comprehensive-guide-to-materials-in-threejs). It is not that bad of a post, well maybe a little, but what floors me is that the Author has titled it "A Comprehensive Guide to Materials in Three.js". The content piece does not even mention all of the mesh materials options, let alone the options for lines and points, features of the base material class, groups AKA arrays of materials and therefor material index values, so forth and so on. Oh and there is no talk at all about textures.
+When I do a google search for "threejs materials" I am showing up but I am getting out ranked by [this post](https://chriscourses.com/blog/a-comprehensive-guide-to-materials-in-threejs). It is not that bad of a post, well maybe a little, but what floors me is that the Author has titled it "A Comprehensive Guide to Materials in Three.js". The content piece does not even mention all of the mesh materials options, let alone the options for lines and points, features of the base material class, groups AKA arrays of materials and therefor material index values, so forth and so on. Oh and there is no talk at all about textures, and the various options that make use of textures, or much of any other base options, or options for specific materials. No mention at all of the Shader Material, Raw Shader Material, so forth and so on, you get the idea. The post is on no way at all  comprehensive, but there is more.
 
-```
-Let's refer to the docs once more for a strict definition: MeshStandardMaterial is a standard physically based material, using Metallic-Roughness workflow.
+This bit of text also sticks out for me:
 
-All I can say is... wtf?
 
-There is no way anyone knows what this actually means. To help do away with ambiguous definitions, let's see what a MeshStandardMaterial looks like by default with the following code:
-```
+>Let's refer to the docs once more for a strict definition: MeshStandardMaterial is a standard physically based material, using Metallic-Roughness workflow.
+>
+>All I can say is... wtf?
+>
+>There is no way anyone knows what this actually means. To help do away with ambiguous definitions, let's see what a MeshStandardMaterial looks like by default with the following code:
+
 
 Okay so a quick google search for the term "physically based material" gaive me this: 
 
