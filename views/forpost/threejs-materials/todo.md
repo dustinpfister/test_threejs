@@ -33,24 +33,23 @@ Start a textures section where the focus is on textures and the various map opti
 
 <!-- BASIC SECTION -->
 
-## () - s1-2-basic-objects
-* () demo in which there is more than one kind of object used
-* () use a single box geometry
-* () add lines and points as children of the mesh
-
-## () - s1-3-basic-common
-* () common options demo
-* () this can start out the same as s1-2-basic-objects only add a color attribute
-* () set the use vertex colors boolen for all of the materials used
+## () - s1-3-basic-texture
+* () basic demo that involves a canvas texture, and uv mapping edits
 
 ## () - s1-4-basic-matarray
 * () basic demo that involved the use of an array of materials
 
-
-## () - s1-5-basic-texture
-* () basic demo that involves a canvas texture, and uv mapping edits
+## () - s1-5-basic-common
+* () common options demo
+* () this can start out the same as s1-2-basic-objects only add a color attribute
+* () set the use vertex colors boolen for all of the materials used
 
 <!-- DONE -->
+
+## ( done 07/16/2023 ) - s1-2-basic-objects
+* (done) demo in which there is more than one kind of object used
+* (done) use a single box geometry
+* (done) add lines and points as children of the mesh
 
 ## ( done 07/15/2023 ) - s1-1-basic-meshnormal
 * (done) very simple mesh normal material example
