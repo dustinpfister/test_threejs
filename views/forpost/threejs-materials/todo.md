@@ -33,9 +33,6 @@ Start a textures section where the focus is on textures and the various map opti
 
 <!-- BASIC SECTION -->
 
-## () - s1-4-basic-matarray
-* () basic demo that involved the use of an array of materials
-
 ## () - s1-5-basic-uvmapping
 * () simular to that of texture demo but doing uv edits
 
@@ -51,6 +48,9 @@ Start a textures section where the focus is on textures and the various map opti
 * () set the use vertex colors boolen for all of the materials used
 
 <!-- DONE -->
+
+## ( done 07/15/2023 ) - s1-4-basic-matarray
+* (done) basic demo that involved the use of an array of materials
 
 ## ( done 07/16/2023 ) - s1-3-basic-texture
 * (done) basic demo that involves a canvas texture
