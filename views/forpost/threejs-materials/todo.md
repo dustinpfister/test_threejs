@@ -33,18 +33,27 @@ Start a textures section where the focus is on textures and the various map opti
 
 <!-- BASIC SECTION -->
 
-## () - s1-3-basic-texture
-* () basic demo that involves a canvas texture, and uv mapping edits
-
 ## () - s1-4-basic-matarray
 * () basic demo that involved the use of an array of materials
 
-## () - s1-5-basic-common
+## () - s1-5-basic-uvmapping
+* () simular to that of texture demo but doing uv edits
+
+## () - s1-6-basic-light
+* () use a material like phong
+* () add a direcitonal light source
+* () both map and emissive maps used
+* () color, emissive, and emissive intesnity options used
+
+## () - s1-7-basic-common
 * () common options demo
 * () this can start out the same as s1-2-basic-objects only add a color attribute
 * () set the use vertex colors boolen for all of the materials used
 
 <!-- DONE -->
+
+## ( done 07/16/2023 ) - s1-3-basic-texture
+* (done) basic demo that involves a canvas texture
 
 ## ( done 07/16/2023 ) - s1-2-basic-objects
 * (done) demo in which there is more than one kind of object used
