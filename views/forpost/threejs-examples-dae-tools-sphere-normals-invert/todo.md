@@ -1,13 +1,10 @@
 # threejs-examples-dae-tools-sphere-normals-invert todo
 
-## () - r1 -
-* (done) new image file for a background
-* () module form of this project.
+<!-- !!! VERTEX ORDER ISSHUE !!! -->
 
-## () - r0 - module from for r0
-* () start a module from of r0
-* () loose the dae tools in favor of a simple loadDae method like that which was used in count-down.js
-* () rename demo to r0-1-basicmaterial
+When I first wrote this post I assumed that the normals attribute was used to set what side of a triangle is the front side, which is wrong. It case you have forgot it is the order of the points of a tringale in the position attribute, or index for that matter, that is used to set the sides. As such the source code, and text of this post might need a total work over.
+
+<!-- DONE -->
 
 ## ( done 12/21/2022) - r0 - cleaned up r0 of the project
 * (done) working well with r146
