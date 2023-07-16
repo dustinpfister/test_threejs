@@ -33,11 +33,26 @@ Start a textures section where the focus is on textures and the various map opti
 
 <!-- BASIC SECTION -->
 
-I should start a basic section in which I just have a few very simple examples of the use of materials
+## () - s1-2-basic-objects
+* () demo in which there is more than one kind of object used
+* () use a single box geometry
+* () add lines and points as children of the mesh
+
+## () - s1-3-basic-common
+* () common options demo
+* () this can start out the same as s1-2-basic-objects only add a color attribute
+* () set the use vertex colors boolen for all of the materials used
+
+## () - s1-4-basic-matarray
+* () basic demo that involved the use of an array of materials
+
+
+## () - s1-5-basic-texture
+* () basic demo that involves a canvas texture, and uv mapping edits
 
 <!-- DONE -->
 
-## ( done 07/15/2023 ) s1-1-basic-meshnormal
+## ( done 07/15/2023 ) - s1-1-basic-meshnormal
 * (done) very simple mesh normal material example
 * (done) make the normal material for the mesh options section not so simple then
 
@@ -54,7 +69,7 @@ I should start a basic section in which I just have a few very simple examples o
 * (done) s3-1-meshlambert demo updated to r146 style
 * (done) all demos updated to r146 style rules
 
-## ( done 06/19/2023 ) rename demo folders
+## ( done 06/19/2023 ) - rename demo folders
 * (done) rename demo folders
 * (done) js files now at rot of each demo folder
 

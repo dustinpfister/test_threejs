@@ -8,14 +8,24 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
-// INSTANCE OF THE NORMAL MATERIAL
+// MATERIALS
 //-------- ----------
-const material = new THREE.MeshNormalMaterial();
+const material_mesh = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+const material_line = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 6});
+const material_points = new THREE.PointsMaterial({ color: 0xff0000, size: 0.25 });
 //-------- ----------
-// MESH with Box Geometry with the 
+// GEOMETRY
+//-------- ----------
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const geometry_edge = new THREE.EdgesGeometry( geometry );
+//-------- ----------
+// OBJECTS
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
-scene.add(new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), material ));
+const mesh = new THREE.Mesh( geometry, material_mesh );
+mesh.add( new THREE.LineSegments( geometry_edge, material_line ) );
+mesh.add( new THREE.Points( geometry_edge, material_points ) );
+scene.add(mesh);
 //-------- ----------
 // RENDER
 //-------- ----------
