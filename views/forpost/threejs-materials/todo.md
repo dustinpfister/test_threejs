@@ -1,12 +1,6 @@
 # threejs-materials todo list
 
-<!-- LOADERS SECTION -->
 
-There are of course a lot of options when it comes to loading in material data. The main loader of intereset with materials alone would be the MaterialLoader of course. However I think that I should also use this section to write a thing or two about the THREE.ObjectLoader also as this is the more general kind of loader that can eb used to load a whole scene.
-
-<!-- BLENDING SECTION -->
-
-At this time I do have one demo on the subject of blending and materials, but I can see that this is a subject that should have its own section. This is not a situation in which there are just a few constants for one property and that is it. Some of the constants for the blending property enabled other properties as well.
 
 <!-- MATERAL ARRAY SECTION -->
 
@@ -29,6 +23,21 @@ It would be nice to have a section where I get into material arrays, and groups 
 <!-- TEXTURES SECTION -->
 
 Start a textures section where the focus is on textures and the various map options of materials. This is also where I can adress in detail much about subjects that overlap the use of textures such as the uv attributes of geometry.
+
+<!-- LOADERS SECTION -->
+
+There are of course a lot of options when it comes to loading in material data. The main loader of intereset with materials alone would be the MaterialLoader of course. However I think that I should also use this section to write a thing or two about the THREE.ObjectLoader also as this is the more general kind of loader that can eb used to load a whole scene.
+
+<!-- BLENDING SECTION -->
+
+At this time I do have one demo on the subject of blending and materials, but I can see that this is a subject that should have its own section. This is not a situation in which there are just a few constants for one property and that is it. Some of the constants for the blending property enabled other properties as well.
+
+## () s6-1-blending-none
+* () start a demo where we are using canvas2d rendering and drawing to that canvas with the renderer
+* () this will be a comparision demo with normal blending, and no blending
+
+## () s6-2-blending-additive
+* () demo about additive compared to normal
 
 <!-- BASIC SECTION -->
 
