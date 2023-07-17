@@ -28,6 +28,20 @@ Start a textures section where the focus is on textures and the various map opti
 
 There are of course a lot of options when it comes to loading in material data. The main loader of intereset with materials alone would be the MaterialLoader of course. However I think that I should also use this section to write a thing or two about the THREE.ObjectLoader also as this is the more general kind of loader that can eb used to load a whole scene.
 
+## () s7-1-loader-material-parse
+* () a demo in which I parse json as hard coded text
+* () the json text can just be some data for the MeshBasicMaterial
+
+## () s7-2-loader-material-file
+* () load a single json file of a materail demo
+
+## () s7-3-loader-object-parse
+* () parse json txt, but now in the object format
+
+## () s7-4-loader-many
+* () load many files demo
+* () use material, texture, and buffergeometry loaders
+
 <!-- BLENDING SECTION -->
 
 At this time I do have one demo on the subject of blending and materials, but I can see that this is a subject that should have its own section. This is not a situation in which there are just a few constants for one property and that is it. Some of the constants for the blending property enabled other properties as well.
