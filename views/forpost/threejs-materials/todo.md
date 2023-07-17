@@ -42,10 +42,6 @@ There are of course a lot of options when it comes to loading in material data. 
 
 At this time I do have one demo on the subject of blending and materials, but I can see that this is a subject that should have its own section. This is not a situation in which there are just a few constants for one property and that is it. Some of the constants for the blending property enabled other properties as well.
 
-## () s6-1-blending-none
-* () start a demo where we are using canvas2d rendering and drawing to that canvas with the renderer
-* () this will be a comparision demo with normal blending, and no blending
-
 ## () s6-2-blending-additive
 * () demo about additive compared to normal
 
@@ -84,6 +80,10 @@ At this time I do have one demo on the subject of blending and materials, but I 
 * () depth function demo
 
 <!-- DONE -->
+
+## ( done 07/17/2023 ) s6-1-blending-none
+* (done) start a demo where we are using canvas2d rendering and drawing to that canvas with the renderer
+* (done) this will be a comparision demo with normal blending, and no blending
 
 ## ( done 07/17/2023 ) s7-1-loader-material-parse
 * (done) a demo in which I parse json as hard coded text
