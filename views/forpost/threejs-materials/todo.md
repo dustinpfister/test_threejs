@@ -35,6 +35,9 @@ Start a textures section where the focus is on textures and the various map opti
 ## () - sx-3-common-vertexcolor
 * () vertex color examples
 
+## () - sx-4-common-depthfunc
+* () depth function demo
+
 <!-- BASIC SECTION -->
 
 ## () - s1-5-basic-uvmapping
