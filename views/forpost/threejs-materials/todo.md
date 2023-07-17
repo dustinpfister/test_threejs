@@ -17,7 +17,7 @@ It would be nice to have a section where I get into material arrays, and groups 
 
 <!-- SHADER MATERIAL SECTION -->
 
-## sx-1-shader-white
+## () sx-1-shader-white
 * () This will be a very basic hello word type example where I just have a blob of white area
 
 <!-- TEXTURES SECTION -->
@@ -27,10 +27,6 @@ Start a textures section where the focus is on textures and the various map opti
 <!-- LOADERS SECTION -->
 
 There are of course a lot of options when it comes to loading in material data. The main loader of intereset with materials alone would be the MaterialLoader of course. However I think that I should also use this section to write a thing or two about the THREE.ObjectLoader also as this is the more general kind of loader that can eb used to load a whole scene.
-
-## () s7-1-loader-material-parse
-* () a demo in which I parse json as hard coded text
-* () the json text can just be some data for the MeshBasicMaterial
 
 ## () s7-2-loader-material-file
 * () load a single json file of a materail demo
@@ -88,6 +84,10 @@ At this time I do have one demo on the subject of blending and materials, but I 
 * () depth function demo
 
 <!-- DONE -->
+
+## ( done 07/17/2023 ) s7-1-loader-material-parse
+* (done) a demo in which I parse json as hard coded text
+* (done) the json text can just be some data for the MeshBasicMaterial
 
 ## ( done 07/17/2023 ) - s2-8-mesh-toon - gradient map
 * (done) see about adding a gradient map
