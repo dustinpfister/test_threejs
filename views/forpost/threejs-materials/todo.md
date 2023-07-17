@@ -1,5 +1,9 @@
 # threejs-materials todo list
 
+<!-- BLENDING SECTION -->
+
+At this time I do have one demo on the subject of blending and materials, but I can see that this is a subject that should have its own section. This is not a situation in which there are just a few constants for one property and that is it. Some of the constants for the blending property enabled other properties as well.
+
 <!-- MATERAL ARRAY SECTION -->
 
 It would be nice to have a section where I get into material arrays, and groups of buffer geometry. If so I should have at least one demo in which I am using the Phong for metal surfaces, and Lambert for wood surfaces.
