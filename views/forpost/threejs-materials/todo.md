@@ -57,11 +57,12 @@ Start a textures section where the focus is on textures and the various map opti
 
 <!-- MESH SECTION -->
 
-## () - s2-8-mesh-toon - gradient map
-* () see about adding a gradient map
-* () write more about this demo
 
 <!-- DONE -->
+
+## ( done 07/17/2023 ) - s2-8-mesh-toon - gradient map
+* (done) see about adding a gradient map
+* (done) write more about this demo
 
 ## ( done 07/17/2023 ) - sx-2-common-blending
 * ( done ) have a box geometry and a grid
