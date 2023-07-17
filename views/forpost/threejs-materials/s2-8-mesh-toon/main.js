@@ -8,9 +8,32 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 document.getElementById('demo').appendChild(renderer.domElement);
 //-------- ----------
+// CANVAS ELEMENT for gradientMap used in toon material
+//-------- ----------
+const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d');
+canvas.width = 64; canvas.height = 64;
+const s = 8;
+const len = s * s;
+const ps = canvas.width / s;
+let i = 0;
+while( i < len ){
+    const x = i % s;
+    const y = Math.floor( i / s );
+    let gValue = ( x / s + y / s ) / 2;
+    ctx.fillStyle = new THREE.Color( gValue, gValue, gValue).getStyle();
+    ctx.fillRect(x * ps, y * ps, ps, ps);
+    i += 1;
+}
+//-------- ----------
+// CANVAS TEXTURE
+//-------- ----------
+const texture = new THREE.CanvasTexture(canvas);
+texture.magFilter = THREE.NearestFilter;
+texture.minFilter = THREE.NearestFilter;
+//-------- ----------
 // INSTANCE OF THE TOON MATERIAL
 //-------- ----------
-const material = new THREE.MeshToonMaterial({ color: 0xff0000 });
+const material = new THREE.MeshToonMaterial({ color: 0xff0000, gradientMap: texture });
 //-------- ----------
 // SCENE CHILD OBJECTS
 //-------- ----------
