@@ -26,9 +26,9 @@ I should start a mesh matcap section when I have a post on this material option.
 
 Start a textures section where the focus is on textures and the various map options of materials
 
-<!-- BASE MATERIAL SECTION -->
+<!-- COMMON ( BASE MATERIAL CLASS ) SECTION -->
 
-## () - sx-2-common-vertexcolor
+## () - sx-3-common-vertexcolor
 * () vertex color examples
 
 <!-- BASIC SECTION -->
@@ -43,11 +43,16 @@ Start a textures section where the focus is on textures and the various map opti
 * () color, emissive, and emissive intesnity options used
 
 ## () - s1-7-basic-common
-* () common options demo
+* () basic common options demo
 * () this can start out the same as s1-2-basic-objects only add a color attribute
 * () set the use vertex colors boolen for all of the materials used
+* () might also choose to use other common material class features such as blending, opacity, ect keep in basic though
 
 <!-- DONE -->
+
+## ( done 07/17/2023 ) - sx-2-common-blending
+* ( done ) have a box geometry and a grid
+* ( done ) use THREE.NoBlending for materials used for mesh and grid
 
 ## ( done 07/15/2023 ) - s1-4-basic-matarray
 * (done) basic demo that involved the use of an array of materials
