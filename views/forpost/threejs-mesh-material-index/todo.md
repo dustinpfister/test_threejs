@@ -1,9 +1,11 @@
 # threejs-material-index todo list
 
-## () s3-2-loop-matreialoptions
-* () have just a simple rotation of cube loop example
-* () have a material for each side
-* () use lambert, standard, phong, basic, normal, basic in wireframe
+<!-- DONE -->
+
+## ( done 03/17/2023 ) s3-2-loop-matreialoptions
+* (done) have just a simple rotation of cube loop example
+* (done) have a material for each side
+* (done) use lambert, standard, phong, basic, normal, basic in wireframe
 
 ## ( done 03/17/2023 ) rename folders and update to r146 style
 * (done) rename folders
