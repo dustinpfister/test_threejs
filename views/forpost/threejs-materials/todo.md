@@ -1,5 +1,9 @@
 # threejs-materials todo list
 
+<!-- LOADERS SECTION -->
+
+There are of course a lot of options when it comes to loading in material data. The main loader of intereset with materials alone would be the MaterialLoader of course. However I think that I should also use this section to write a thing or two about the THREE.ObjectLoader also as this is the more general kind of loader that can eb used to load a whole scene.
+
 <!-- BLENDING SECTION -->
 
 At this time I do have one demo on the subject of blending and materials, but I can see that this is a subject that should have its own section. This is not a situation in which there are just a few constants for one property and that is it. Some of the constants for the blending property enabled other properties as well.
@@ -17,10 +21,6 @@ It would be nice to have a section where I get into material arrays, and groups 
 * () see about making a custom one where we have an area that is a 'lake'
 * () use the phong matreial for the lake area, and lambert for the rest
 
-<!-- MeshMatcapMaterial -->
-
-I should start a mesh matcap section when I have a post on this material option.
-
 <!-- SHADER MATERIAL SECTION -->
 
 ## sx-1-shader-white
@@ -28,15 +28,7 @@ I should start a mesh matcap section when I have a post on this material option.
 
 <!-- TEXTURES SECTION -->
 
-Start a textures section where the focus is on textures and the various map options of materials
-
-<!-- COMMON ( BASE MATERIAL CLASS ) SECTION -->
-
-## () - sx-3-common-vertexcolor
-* () vertex color examples
-
-## () - sx-4-common-depthfunc
-* () depth function demo
+Start a textures section where the focus is on textures and the various map options of materials. This is also where I can adress in detail much about subjects that overlap the use of textures such as the uv attributes of geometry.
 
 <!-- BASIC SECTION -->
 
@@ -57,6 +49,20 @@ Start a textures section where the focus is on textures and the various map opti
 
 <!-- MESH SECTION -->
 
+## () - s2-9-mesh-matcap
+* () I should start a mesh matcap section when I have a post on this material option.
+
+<!-- POINTS SECTION -->
+
+<!-- LINES SECTION -->
+
+<!-- COMMON ( BASE MATERIAL CLASS ) SECTION -->
+
+## () - sx-3-common-vertexcolor
+* () vertex color examples
+
+## () - sx-4-common-depthfunc
+* () depth function demo
 
 <!-- DONE -->
 
