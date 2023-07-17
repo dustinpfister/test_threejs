@@ -55,6 +55,12 @@ Start a textures section where the focus is on textures and the various map opti
 * () set the use vertex colors boolen for all of the materials used
 * () might also choose to use other common material class features such as blending, opacity, ect keep in basic though
 
+<!-- MESH SECTION -->
+
+## () - s2-8-mesh-toon - gradient map
+* () see about adding a gradient map
+* () write more about this demo
+
 <!-- DONE -->
 
 ## ( done 07/17/2023 ) - sx-2-common-blending
