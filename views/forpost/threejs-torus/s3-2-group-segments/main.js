@@ -10,25 +10,25 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // HELPERS
 //-------- ----------
-const createDonutChild = function(index, len){
+const createDoughnutChild = function(index, len){
     const per = index / len,
     radius = 0.6,
     tubeRadius = 0.25,
     radialSegments = 4 + Math.round(20 * per),
     tubeSegments = 4 + Math.round(20 * per);
-    const donut = new THREE.Mesh(
+    const doughnut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
         new THREE.MeshNormalMaterial({wireframe:true}));
-    return donut;
+    return doughnut;
 };
-const createDonutGroup = function(){
+const createDoughnutGroup = function(){
     let i = 0;
     const len = 10,
     group = new THREE.Group();
     while(i < len){
-        const donut = createDonutChild(i, len);
-        donut.position.set(0, 0, 4 - i * 1.125);
-        group.add(donut);
+        const doughnut = createDoughnutChild(i, len);
+        doughnut.position.set(0, 0, 4 - i * 1.125);
+        group.add(doughnut);
         i += 1;
     }
     return group;
@@ -36,7 +36,7 @@ const createDonutGroup = function(){
 //-------- ----------
 // ADD GROUP TO SCENE
 //-------- ----------
-const group = createDonutGroup();
+const group = createDoughnutGroup();
 scene.add(group);
 //-------- ----------
 // RENDER SCENE

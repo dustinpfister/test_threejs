@@ -10,8 +10,8 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // HELPERS
 //-------- ----------
-// create a donut geo
-const createDonutGeo = (opt) => {
+// create a Doughnut geo
+const createDoughnutGeo = (opt) => {
     opt = opt || {};
     opt.r = opt.r === undefined ? 0.5 : opt.r;
     opt.tr = opt.tr === undefined ? 0.25 : opt.tr;
@@ -22,22 +22,22 @@ const createDonutGeo = (opt) => {
     return geo;
 };
 // create a donut Mesh
-const createDonutMesh = (opt) => {
+const createDoughnutMesh = (opt) => {
     opt = opt || {};
-    const geo = createDonutGeo(opt)
+    const geo = createDoughnutGeo(opt)
     // create mesh
-    const donut = new THREE.Mesh(
+    const doughnut = new THREE.Mesh(
         geo,
         opt.material || new THREE.MeshNormalMaterial());
-    return donut;
+    return doughnut;
 };
 
 //-------- ----------
 // ADD MESH TO SCENE
 //-------- ----------
-const mesh1 = createDonutMesh({});
+const mesh1 = createDoughnutMesh({});
 scene.add(mesh1);
-const mesh2 = createDonutMesh({});
+const mesh2 = createDoughnutMesh({});
 mesh2.position.x = -2;
 scene.add(mesh2);
 //-------- ----------
@@ -57,10 +57,10 @@ const loop = function(){
     requestAnimationFrame(loop);
     if(secs > 1 / fps){
         // copying new geos to old geo of mesh objects
-        mesh1.geometry.copy( createDonutGeo({
+        mesh1.geometry.copy( createDoughnutGeo({
             rs: 3 + 27 * bias, 
             ts: 3 + 27 * bias}));
-        mesh2.geometry.copy( createDonutGeo({
+        mesh2.geometry.copy( createDoughnutGeo({
             r: 0.75 + 0.125 * bias,
             tr: 0.25 - 0.125 * bias }));
         // render step

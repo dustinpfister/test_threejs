@@ -13,11 +13,11 @@ const radius = 1,
 tubeRadius = 0.25,
 radialSegments = 16,
 tubeSegments = 32;
-const donut = new THREE.Mesh(
+const doughnut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
         new THREE.MeshNormalMaterial());
 
-scene.add(donut); // add mesh to scene
+scene.add(doughnut); // add mesh to scene
 //-------- ----------
 // RENDER
 //-------- ----------
