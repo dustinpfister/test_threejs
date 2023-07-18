@@ -35,8 +35,8 @@ const material = new THREE.ShaderMaterial({
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
-scene.add( new THREE.GridHelper( 10,10 ) );
-const points = new THREE.Points( new THREE.BoxGeometry(1, 1, 1), material );
+scene.add( new THREE.GridHelper( 10, 10 ) );
+const points = new THREE.Points( new THREE.BoxGeometry(1, 1, 1), material);
 scene.add(points);
 // ---------- ----------
 // RENDER
