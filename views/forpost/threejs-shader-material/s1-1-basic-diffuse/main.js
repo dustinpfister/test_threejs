@@ -11,31 +11,19 @@ renderer.setSize(640, 480, false);
 // ---------- ----------
 // SHADER MATERIAL
 // ---------- ----------
-const shader_basic = {};
-// unifrom values for basic shader
-shader_basic.uniforms = {
-    diffuse: { value: new THREE.Color(0x1a1a1a) }
-};
-// vertex shader for basic shader
-shader_basic.vertexShader = [
-    'void main() {',
-    '    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
-    '}'
-].join('\n');
-// fragment shader for hatching shader
-shader_basic.fragmentShader = [
-    'uniform vec3 diffuse;',
-    'void main() {',
-    '    gl_FragColor = vec4( diffuse, 1.0 );',
-    '}'
-].join('\n');
-// ---------- ----------
-// SHADER MATERIAL
-// ---------- ----------
 const material1 = new THREE.ShaderMaterial({
-    uniforms: THREE.UniformsUtils.clone(shader_basic.uniforms),
-    vertexShader: shader_basic.vertexShader,
-    fragmentShader: shader_basic.fragmentShader
+    uniforms: {
+        diffuse: { value: new THREE.Color(0xffffff) }
+    },
+    vertexShader: `
+        void main() {
+            gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+        }`,
+    fragmentShader: `
+        uniform vec3 diffuse;
+        void main() {
+            gl_FragColor = vec4( diffuse, 1.0 );
+        }`
 });
 material1.uniforms.diffuse.value = new THREE.Color(0,1,0);
 // ---------- ----------

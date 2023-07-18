@@ -1,37 +1,25 @@
 # threejs-shader-material todo list
 
-* RawShaderMaterial might be a better choice for getting started with GLSL alone
-* THREE.ShaderChunk can be used to get built in GLSL code
-* It might be best to stick to THREE.ShaderChunk and the TRHEEJS repo for code examples
-
-GLSL Ref guid
-
 ```
 https://registry.khronos.org/OpenGL-Refpages/gl4/
 ```
 
-<!-- Section ideas -->
+<!-- s1 - BASIC SECTION -->
 
-## () - sx-2-examples-outline - exmaples section
-* () continue with the basic solid color one, only now see about having an outline for each triangle
-* () rename sx-1-crosshatch to sx-2-examples-crosshatch
 
-## () - sx-1-inline - using script tags for GLSL code
-* () start a inline GLSL section with a basic example using script tags
-* () use 'x-shader/x-vertex' for a script tag that will include the vertex shader
-* () use 'x-shader/x-fragment' for a script tag that will include the fragment shader
-* () the basic example can just be the same as s1-1-basic-diffuse
 
-## () - sx-1-depth - start a section on custom depth shading
-* () the next step with this might be some kind of depth shading
+<!-- s2 - VERTEX COLORS SECTION -->
 
-<!-- NEXT -->
+<!-- s3 - CROSSHATCH SECTION -->
 
 ## () - sx-2-crosshatch-opacity
 * () see about adding opacity for this
 
 
 <!-- DONE -->
+
+## ( done 07/18/2023 ) - backticks over arrays
+* (done) use backticks over arrays for all basic demos
 
 ## ( done 01/13/2023 ) - s2-1-vertexcolors - vec2 for ratio
 * (done) I should be able to define a vec2 for the ratio of base color to vertex color
