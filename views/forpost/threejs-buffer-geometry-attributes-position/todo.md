@@ -26,12 +26,6 @@
 
 <!-- s1 - CUSTOM TRIANGLE SECTION -->
 
-## s1-3-customtri-vertexorder
-* () This should be a demo where the focus is on the vertex order
-* () have a single triangle with set values for x,y,z of all three points
-* () clone this geometry at least two times
-* () for each geometry I will want to change the order of the points in the position array
-
 ## s1-4-customtri-index
 * () the focus here with this one should be on the use of an index
 
@@ -46,6 +40,13 @@
 <!-- s6 - LOOP SECTION -->
 
 <!-- DONE -->
+
+## ( done 07/19/2023 ) s1-3-customtri-vertexorder
+* (done) This should be a demo where the focus is on the vertex order
+* (done) have a single triangle with set values for x,y,z of all three points
+* (done) have another triangle with the same point values, but a different order of them resulting in the other side being rendered
+* (done) for each geometry I will want to change the order of the points in the position array
+* (done) I will want for this to be a loop
 
 ## ( done 06/04/2023 ) - s5-1-fromjson-customtri
 * (done) start a new section on loading from external json file
