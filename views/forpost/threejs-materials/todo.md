@@ -57,18 +57,16 @@ There are of course a lot of options when it comes to loading in material data. 
 
 <!-- S8 - TEXTURES SECTION -->
 
-Start a textures section where the focus is on textures and the various map options of materials. This is also where I can address in detail much about subjects that overlap the use of textures such as the uv attributes of geometry.
+## ( ) s8-1-texture-emissive - loop, rotation
+* () I want to add a loop for this demo
+* () work out a rotation feature for the setUVFace Helper
+* () I think I might want to also have an order array for this helper as well, be sure to check out code on older demos for this
 
-## () s8-1-texture-emissive
-* (done) start with the source code of s1-5-basic-uvmap
-* (done) have a light source
-* (done) I will want to use the standard material
-* (done) have a color map
-* (done) helper function for creating a canvas texture
-* (done) work out a better helper function for setting an area of a texture to the box
-* () The helper function should also allow for offset values to scroll the area over time
-* () I will want to use a 2d canvas as the final element to draw to
-* () have an emissive map
+## ( ) s8-1-texture-emissive - uvmap status rects
+* () the main element to render to should be a plain old 2d context canvas
+* () draw to the 2d canvas with the domElement of the renderer
+* () I would like to have a uv map status rect for the map texture
+* () I would like to have a uv map status rect for the emissive map
 
 <!-- S9 - LIGHT  -->
 
@@ -113,6 +111,16 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 * () draw points with a feature other than what is used with the points material as I am having problems with that on RPI OS
 
 <!-- DONE -->
+
+## ( done 07/19/2023 ) s8-1-texture-emissive
+* (done) start with the source code of s1-5-basic-uvmap
+* (done) have a light source
+* (done) I will want to use the standard material
+* (done) have a color map
+* (done) helper function for creating a canvas texture
+* (done) work out a better helper function for setting an area of a texture to the box
+* (done) The helper function should also allow for offset values to scroll the area over time
+* (done) have an emissive map
 
 ## ( done 07/18/2023 ) - s1-5-basic-uvmapping
 * (done) similar to that of texture demo but doing uv edits
