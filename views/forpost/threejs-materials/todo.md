@@ -4,14 +4,14 @@
 
 ## () - s1-6-basic-light
 * () use a material like phong
-* () add a direcitonal light source
+* () add a directional light source
 * () both map and emissive maps used
-* () color, emissive, and emissive intesnity options used
+* () color, emissive, and emissive intensity options used
 
 ## () - s1-7-basic-common
 * () basic common options demo
 * () this can start out the same as s1-2-basic-objects only add a color attribute
-* () set the use vertex colors boolen for all of the materials used
+* () set the use vertex colors boolean for all of the materials used
 * () might also choose to use other common material class features such as blending, opacity, ect keep in basic though
 
 ## () - s1-8-basic-shader
@@ -43,7 +43,7 @@ At this time I do have one demo on the subject of blending and materials, but I 
 
 <!-- S7 - LOADERS SECTION -->
 
-There are of course a lot of options when it comes to loading in material data. The main loader of intereset with materials alone would be the MaterialLoader of course. However I think that I should also use this section to write a thing or two about the THREE.ObjectLoader also as this is the more general kind of loader that can eb used to load a whole scene.
+There are of course a lot of options when it comes to loading in material data. The main loader of interest with materials alone would be the MaterialLoader of course. However I think that I should also use this section to write a thing or two about the THREE.ObjectLoader also as this is the more general kind of loader that can be used to load a whole scene.
 
 ## () s7-2-loader-material-file
 * () load a single json file of a materail demo
@@ -57,27 +57,32 @@ There are of course a lot of options when it comes to loading in material data. 
 
 <!-- S8 - TEXTURES SECTION -->
 
-Start a textures section where the focus is on textures and the various map options of materials. This is also where I can adress in detail much about subjects that overlap the use of textures such as the uv attributes of geometry.
+Start a textures section where the focus is on textures and the various map options of materials. This is also where I can address in detail much about subjects that overlap the use of textures such as the uv attributes of geometry.
 
-## () s8-1-texture-canvas-uvmap
-* () start a demo that is a continuation of the basic example on this subject
-* () I should set up the uv mapping so that I can set a cell index in the image to use
-* () light the basic example this will use the map option
-* () Not light the basic example I will also use the emissiveMap option with a whole other texture
+## () s8-1-texture-emissive
+* (done) start with the source code of s1-5-basic-uvmap
+* (done) have a light source
+* (done) I will want to use the standard material
+* (done) have a color map
+
+* () work out a better helper function for setting an area of a texture to the box
+* () The helper function should also allow for offset values to scroll the area over time
+* () I will want to use a 2d canvas as the final element to draw to
+* () have an emissive map
 
 <!-- S9 - LIGHT  -->
 
 I should have a section on the subject of light
 
 ## () s9-1-light
-* () first light demo should make use of ambient and direcitonal light
+* () first light demo should make use of ambient and directional light
 
 <!-- S10 - SHADOWS  -->
 
 Shadows should have there own section
 
 ## () s10-1-shadow
-* () start a first basic exmaple on shadows
+* () start a first basic example on shadows
 * () use a spot light as the light source
 
 <!-- s11 - MATERAL ARRAY SECTION -->
@@ -91,7 +96,7 @@ It would be nice to have a section where I get into material arrays, and groups 
 ## sx-2-matarray-plane
 * () a mesh using a plane might be a good start when it comes to the add group method
 * () see about making a custom one where we have an area that is a 'lake'
-* () use the phong matreial for the lake area, and lambert for the rest
+* () use the phong material for the lake area, and Lambert for the rest
 
 <!-- s12 - SHADER MATERIAL SECTION -->
 
@@ -110,11 +115,11 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 <!-- DONE -->
 
 ## ( done 07/18/2023 ) - s1-5-basic-uvmapping
-* (done) simular to that of texture demo but doing uv edits
+* (done) similar to that of texture demo but doing uv edits
 
 ## ( done 07/17/2023 ) s6-1-blending-none
 * (done) start a demo where we are using canvas2d rendering and drawing to that canvas with the renderer
-* (done) this will be a comparision demo with normal blending, and no blending
+* (done) this will be a comparison demo with normal blending, and no blending
 
 ## ( done 07/17/2023 ) s7-1-loader-material-parse
 * (done) a demo in which I parse json as hard coded text
