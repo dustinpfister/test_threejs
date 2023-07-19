@@ -66,7 +66,13 @@ loader.load(
                 map: texture
             })
         );
+		
         scene.add(mesh);
+		
+		
+		console.log(  JSON.stringify( scene.toJSON() ) );
+		
+		
         const pos_att = geometry.getAttribute('position');
         const pos_att_home = pos_att.clone();
         const updateByMorph = (geometry, pos_att_home, alpha = 1, index = 0) => {

@@ -1,0 +1,114 @@
+{
+    "metadata": {
+        "version": 4.5,
+        "type": "Object",
+        "generator": "Object3D.toJSON"
+    },
+    "geometries": [{
+            "uuid": "899cf75f-a9c3-4fed-8b55-6a37c4c96538",
+            "type": "BufferGeometry",
+            "data": {
+                "attributes": {
+                    "position": {
+                        "itemSize": 3,
+                        "type": "Float32Array",
+                        "array": [0, 0, 0, -1, 2, 0, -1, 0.5, 0, 1, 2, 0, 1, 0.5, 0, -0.699999988079071, -1, 0, -0.699999988079071, -0.10000000149011612, 0, 0.699999988079071, -1, 0, 0.699999988079071, -0.10000000149011612, 0],
+                        "normalized": false
+                    },
+                    "normal": {
+                        "itemSize": 3,
+                        "type": "Float32Array",
+                        "array": [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1],
+                        "normalized": false
+                    },
+                    "uv": {
+                        "itemSize": 2,
+                        "type": "Float32Array",
+                        "array": [0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
+                        "normalized": false
+                    },
+                    "color": {
+                        "itemSize": 3,
+                        "type": "Float32Array",
+                        "array": [1, 0, 0, 0.699999988079071, 0.5, 0, 0.699999988079071, 0.5, 0, 0.699999988079071, 0.5, 0, 0.699999988079071, 0.5, 0, 0.8999999761581421, 0.5, 0, 0.8999999761581421, 0.5, 0, 0.8999999761581421, 0.5, 0, 0.8999999761581421, 0.5, 0],
+                        "normalized": false
+                    }
+                },
+                "index": {
+                    "type": "Uint16Array",
+                    "array": [0, 1, 2, 0, 4, 3, 0, 6, 5, 0, 7, 8]
+                },
+                "morphAttributes": {
+                    "position": [{
+                            "itemSize": 3,
+                            "type": "Float32Array",
+                            "array": [0, 0, 0, 0, 0, -0.800000011920929, 0, 0, -0.800000011920929, 0, 0, -0.800000011920929, 0, 0, -0.800000011920929, 0, 0, -0.4000000059604645, 0, 0, -0.4000000059604645, 0, 0, -0.4000000059604645, 0, 0, -0.4000000059604645],
+                            "normalized": false
+                        }
+                    ]
+                },
+                "morphTargetsRelative": true
+            }
+        }
+    ],
+    "materials": [{
+            "uuid": "f3121f75-20c0-485d-949c-ab42240e8c0d",
+            "type": "MeshBasicMaterial",
+            "color": 16777215,
+            "map": "6e281008-fce7-4145-b7e5-afb64421ba51",
+            "reflectivity": 1,
+            "refractionRatio": 0.98,
+            "side": 2,
+            "depthFunc": 3,
+            "depthTest": true,
+            "depthWrite": true,
+            "colorWrite": true,
+            "stencilWrite": false,
+            "stencilWriteMask": 255,
+            "stencilFunc": 519,
+            "stencilRef": 0,
+            "stencilFuncMask": 255,
+            "stencilFail": 7680,
+            "stencilZFail": 7680,
+            "stencilZPass": 7680
+        }
+    ],
+    "textures": [{
+            "uuid": "6e281008-fce7-4145-b7e5-afb64421ba51",
+            "name": "",
+            "image": "336e0dfd-4b72-4589-91e6-5c7d26498267",
+            "mapping": 300,
+            "channel": 0,
+            "repeat": [1, 1],
+            "offset": [0, 0],
+            "center": [0, 0],
+            "rotation": 0,
+            "wrap": [1001, 1001],
+            "format": 1023,
+            "internalFormat": null,
+            "type": 1009,
+            "colorSpace": "",
+            "minFilter": 1008,
+            "magFilter": 1006,
+            "anisotropy": 1,
+            "flipY": true,
+            "generateMipmaps": true,
+            "premultiplyAlpha": false,
+            "unpackAlignment": 4
+        }
+    ],
+    "images": [{
+            "uuid": "336e0dfd-4b72-4589-91e6-5c7d26498267",
+            "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAWpJREFUWEftl0tLAlEYhud4ydJJR7xMSmAjJkFJE7QookUtolXb/mV0+QFCqy4Y0aqblViipWmMqJSXtj7+gbM5s3v4ZuDlfd/5OEecpqyRNvZsTpvjqHXNGtj7zbl79h7zpscAd0ZzYLPfBAslQLoDrbV5dKD0+4OMLCcD/pp5AQfdWXDR1QIn6kmwZ4GdEkqAdAeOt8LowEF5EZlpbYy1h+gU5gOjAi77huA9kQIfNf64B5QA6Q6cW9sIORBsI6OLdy/YDvvAoXiBnRmyI/nOMub7+kQHlADpDjTEBjpwFSgis2osAd6Nv4EvNRu8XuL3ujeNueE8cg8oAdIdeM6Y6EA6GkRGNw7PeNXex8QZkLv/sBLFvG67wPmnATugBEh34DobQQdWEl1kdFLPgXeMHvizy/d1wQ4k3TwvvJZ4rxBKgHQHzpa4B2IR7v5ao89d7ufdLnfL9+9W+d9bft4Tqk6Ie0AJkO3APz5+fQwL8GRoAAAAAElFTkSuQmCC"
+        }
+    ],
+    "object": {
+        "uuid": "ceeb94a8-dafa-42c8-9526-306bdc0062cd",
+        "type": "Mesh",
+        "layers": 1,
+        "matrix": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+        "up": [0, 1, 0],
+        "geometry": "899cf75f-a9c3-4fed-8b55-6a37c4c96538",
+        "material": "f3121f75-20c0-485d-949c-ab42240e8c0d"
+    }
+}
