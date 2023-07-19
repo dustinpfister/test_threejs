@@ -1,0 +1,3 @@
+# threejs-object-loader
+
+The Object loader is a built in way to load external assets that are in JSON data format. What is great about this kind of format is that the loader is built into the core of threejs itself so there is no need to bother with an external add on. Another great thing about this format is that creating the JSON data can be as simple as just calling the toJSON of the object that I want to concert to json and then pass that object to JSON.stringify.
