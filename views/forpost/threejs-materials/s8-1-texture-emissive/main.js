@@ -25,13 +25,15 @@ const createCanvasTexture = (opt) => {
     texture.userData = Object.assign(texture.userData, opt.userData);
     texture.magFilter = THREE.NearestFilter;
     texture.minFilter = THREE.NearestFilter;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
     return texture
 };
 // mutate the state of a BoxGeometrys UV attribute
-const setUVBoxFace = (geo, w = 8, face_index = 0, v_cell = new THREE.Vector2( 0, 0 )) => {
+const setUVBoxFace = (geo, w = 8, face_index = 0, v_cell = new THREE.Vector2( 0, 0 ), offset = new THREE.Vector2( 0, 0 )) => {
     const att_uv = geo.getAttribute('uv');
-    const cx = 1 / w * v_cell.x;
-    const cy = 1 / w * v_cell.y;
+    const cx = 1 / w * v_cell.x + offset.x;
+    const cy = 1 / w * v_cell.y + offset.y;
     const i2 = face_index * 4;
     att_uv.setXY(i2, 0.000 + cx, 1.000 - cy);
     att_uv.setXY(i2 + 1, 0.125 + cx, 1.000 - cy);
@@ -102,8 +104,8 @@ const material = new THREE.MeshStandardMaterial({
 // GEOMETRY - mutation of uv attribute
 //-------- ----------
 const geo = new THREE.BoxGeometry(1, 1, 1);
-const v_cell = new THREE.Vector2( 3, 5 );
-setUVBoxFace(geo, 8, 0, v_cell)
+const v_cell = new THREE.Vector2( -0.5, -0.5 );
+setUVBoxFace(geo, 8, 2, v_cell)
 //-------- ----------
 // LIGHT
 //-------- ----------
