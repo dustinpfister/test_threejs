@@ -27,6 +27,17 @@ const createCanvasTexture = (opt) => {
     texture.minFilter = THREE.NearestFilter;
     return texture
 };
+// mutate the state of a BoxGeometrys UV attribute
+const setUVBoxFace = (geo, w = 8, face_index = 0, v_cell = new THREE.Vector2( 0, 0 )) => {
+    const att_uv = geo.getAttribute('uv');
+    const cx = 1 / w * v_cell.x;
+    const cy = 1 / w * v_cell.y;
+    const i2 = face_index * 4;
+    att_uv.setXY(i2, 0.000 + cx, 1.000 - cy);
+    att_uv.setXY(i2 + 1, 0.125 + cx, 1.000 - cy);
+    att_uv.setXY(i2 + 2, 0.000 + cx, 0.875 - cy);
+    att_uv.setXY(i2 + 3, 0.125 + cx, 0.875 - cy);
+};
 //-------- ----------
 // TEXTURES
 //-------- ----------
@@ -90,18 +101,9 @@ const material = new THREE.MeshStandardMaterial({
 //-------- ----------
 // GEOMETRY - mutation of uv attribute
 //-------- ----------
-const w = texture_map.userData.w;
 const geo = new THREE.BoxGeometry(1, 1, 1);
-const att_uv = geo.getAttribute('uv');
-const cellX = 5, cellY = 3; // cellX and cellY can be used to set the cell to draw in the texture
-const cx = 1 / w * cellX;
-const cy = 1 / w * cellY;
-const faceIndex = 2; // the face index to use
-const i2 = faceIndex * 4;
-att_uv.setXY(i2, 0.000 + cx, 1.000 - cy);
-att_uv.setXY(i2 + 1, 0.125 + cx, 1.000 - cy);
-att_uv.setXY(i2 + 2, 0.000 + cx, 0.875 - cy);
-att_uv.setXY(i2 + 3, 0.125 + cx, 0.875 - cy);
+const v_cell = new THREE.Vector2( 3, 5 );
+setUVBoxFace(geo, 8, 0, v_cell)
 //-------- ----------
 // LIGHT
 //-------- ----------
