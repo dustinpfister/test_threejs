@@ -14,6 +14,7 @@
 * () start a new section on using morph attributes to update position
 
 <!-- V2 ARRAY SECTION -->
+
 ## () - sx-1-v2array-shape
 * () start a v2array section using shape, and shape geometry
 
@@ -23,15 +24,26 @@
 ## () - sx-2-v2array-lathe
 * () lathe geometry demo
 
-<!-- BOX GEOMETRY SECTION -->
+<!-- s1 - CUSTOM TRIANGLE SECTION -->
 
-<!-- CURVES SECTION -->
+## s1-3-customtri-vertexorder
+* () This should be a demo where the focus is on the vertex order
+* () have a single triangle with set values for x,y,z of all three points
+* () clone this geometry at least two times
+* () for each geometry I will want to change the order of the points in the position array
 
-<!-- V3 ARRAY SECTION -->
+## s1-4-customtri-index
+* () the focus here with this one should be on the use of an index
 
-<!-- FROM JSON SECTION -->
+<!-- s2 - BOX GEOMETRY SECTION -->
 
-<!-- LOOP SECTION -->
+<!-- s3 - V3 ARRAY SECTION -->
+
+<!-- s4 - CURVES SECTION -->
+
+<!-- s5 - FROM JSON SECTION -->
+
+<!-- s6 - LOOP SECTION -->
 
 <!-- DONE -->
 
