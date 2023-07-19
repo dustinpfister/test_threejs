@@ -57,6 +57,8 @@ There are of course a lot of options when it comes to loading in material data. 
 
 <!-- S8 - TEXTURES SECTION -->
 
+I would like to make my current s8-1-texture-emissive demo a real solid over all demo of the use of texture and uv mapping. However at some point I am going to want to rename this demo to something else that will be a more advanced demo later in the section. New demos should then just be more basic demos of various texture features that are must know features such as the filters and wrapping values.
+
 ## ( ) s8-1-texture-emissive - loop, rotation
 * () I want to add a loop for this demo
 * () work out a rotation feature for the setUVFace Helper
@@ -83,7 +85,9 @@ Shadows should have there own section
 * () start a first basic example on shadows
 * () use a spot light as the light source
 
-<!-- s11 - MATERAL ARRAY SECTION -->
+<!-- s11 - Fog -->
+
+<!-- s12 - MATERAL ARRAY SECTION -->
 
 It would be nice to have a section where I get into material arrays, and groups of buffer geometry. If so I should have at least one demo in which I am using the Phong for metal surfaces, and Lambert for wood surfaces.
 
@@ -96,13 +100,13 @@ It would be nice to have a section where I get into material arrays, and groups 
 * () see about making a custom one where we have an area that is a 'lake'
 * () use the phong material for the lake area, and Lambert for the rest
 
-<!-- s12 - SHADER MATERIAL SECTION -->
+<!-- s13 - SHADER MATERIAL SECTION -->
 
 ## () sx-1-shader-white
 * () This will be a very basic hello word type example where I just have a blob of white area
 
 
-<!-- s13 - RAW SHADER MATERIAL SECTION -->
+<!-- s14 - RAW SHADER MATERIAL SECTION -->
 
 When I get to it I should have at least one demo on the use of the raw shader material.
 

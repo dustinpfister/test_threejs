@@ -14,18 +14,22 @@ I am going to make this post on materials in general one of the posts that I wil
 
 I have started the following, but will be expanding and refineing the demos in these sections
 
-* A Basic section in which I touch base on every key detail about materials at least
-* A Mesh Section in which I have just one decent example of each mesh material
-* Sections for Line Materials, and the Points Material
-* A common section with mnay demos on features that are sharded for all materials
+* s1    - A Basic section in which I touch base on every key detail about materials at least
+* s2    - A Mesh Section in which I have just one decent example of each mesh material
+* s3-4  - Sections for Line Materials, and the Points Material
+* s5    - A common section with mnay demos on features that are sharded for all materials
+* s6    - Blending deep dive section
+* s7    - Loaders, THREE.MaterialLoader, THREE.ObjectLoader, ect
+* s8    - Textures and UV mapping Deep dive section
 
 I will want to start sections on a lot of topics also though
-* () the shader material, and with that the ShaderLib
-* () the Raw Shader material and with that RAW Shader GLSL code examples
-* () Loaders, THREE.MaterialLoader, THREE.ObjectLoader, ect
-* () Blending deep dive section
-* () Textures and UV mapping Deep dive section
-* () geometry.groups and material index deep dive section
+
+* section on light
+* section on shadows
+* section on fog
+* the shader material, and with that the ShaderLib
+* the Raw Shader material and with that RAW Shader GLSL code examples
+* geometry.groups and material index deep dive section
 
 ## Other posts on materials in general that are "Comprehensive"
 
