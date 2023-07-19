@@ -10,6 +10,7 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // HELPER FUNCTIONS
 //-------- ----------
+// function to help create a texture with javaScript code
 const createCanvasTexture = (opt) => {
     opt = opt || {};
     opt.size = opt.size === undefined ? 1024 : opt.size;
@@ -29,14 +30,12 @@ const createCanvasTexture = (opt) => {
 //-------- ----------
 // TEXTURES
 //-------- ----------
-const w = 8;
+// diffuse color map texture composed of a grid where each cell has and index number
 const texture_map = createCanvasTexture({
     userData: {
         w : 8
     },
     draw: (ctx, canvas, userData) => {
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
         const w = userData.w;
         const wp = canvas.width / w;
         const len = w * w;
@@ -59,16 +58,39 @@ const texture_map = createCanvasTexture({
         }
     }
 });
-console.log(texture_map);
+// texture for the emissive map where I have just random gray scale blocks
+const texture_emissive = createCanvasTexture({
+    userData: {
+        w : 32
+    },
+    draw: (ctx, canvas, userData) => {
+        let i = 0;
+        const w = userData.w;
+        const pw = canvas.width / w;
+        const len = w * w;
+        while(i < len){
+            const x = i % w;
+            const y = Math.floor( i / w );
+            const v = 0.25 * 0.75 * Math.random();
+            ctx.fillStyle = new THREE.Color( v, v, v ).getStyle();
+            ctx.fillRect(x * pw, y * pw, pw, pw)
+            i += 1;
+        }
+    }
+});
 //-------- ----------
-// MATERIAL - using basic material with the map option and the texture from canvas
+// MATERIAL - 
 //-------- ----------
 const material = new THREE.MeshStandardMaterial({
-        map: texture_map
-    });
+    map: texture_map,
+    emissive: new THREE.Color(1, 1, 1),
+    emissiveMap: texture_emissive,
+    emissiveIntensity: 1
+});
 //-------- ----------
 // GEOMETRY - mutation of uv attribute
 //-------- ----------
+const w = texture_map.userData.w;
 const geo = new THREE.BoxGeometry(1, 1, 1);
 const att_uv = geo.getAttribute('uv');
 const cellX = 5, cellY = 3; // cellX and cellY can be used to set the cell to draw in the texture
@@ -83,7 +105,7 @@ att_uv.setXY(i2 + 3, 0.125 + cx, 0.875 - cy);
 //-------- ----------
 // LIGHT
 //-------- ----------
-const dl = new THREE.DirectionalLight(0xffffff, 1);
+const dl = new THREE.DirectionalLight(0xffffff, 0.7);
 dl.position.set(1, 3, 2);
 scene.add(dl);
 //-------- ----------

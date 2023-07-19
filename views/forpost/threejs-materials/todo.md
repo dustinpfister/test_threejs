@@ -64,7 +64,7 @@ Start a textures section where the focus is on textures and the various map opti
 * (done) have a light source
 * (done) I will want to use the standard material
 * (done) have a color map
-
+* (done) helper function for creating a canvas texture
 * () work out a better helper function for setting an area of a texture to the box
 * () The helper function should also allow for offset values to scroll the area over time
 * () I will want to use a 2d canvas as the final element to draw to
