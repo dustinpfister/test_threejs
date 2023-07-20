@@ -59,12 +59,12 @@ There are of course a lot of options when it comes to loading in material data. 
 
 I would like to make my current s8-1-texture-emissive demo a real solid over all demo of the use of texture and uv mapping. However at some point I am going to want to rename this demo to something else that will be a more advanced demo later in the section. New demos should then just be more basic demos of various texture features that are must know features such as the filters and wrapping values.
 
-## ( ) s8-1-texture-emissive - loop, rotation
+## ( ) - s8-2-texture-emissive - loop, rotation
 * () I want to add a loop for this demo
 * () work out a rotation feature for the setUVFace Helper
 * () I think I might want to also have an order array for this helper as well, be sure to check out code on older demos for this
 
-## ( ) s8-1-texture-emissive - uvmap status rects
+## ( ) - s8-2-texture-emissive - uvmap status rects
 * () the main element to render to should be a plain old 2d context canvas
 * () draw to the 2d canvas with the domElement of the renderer
 * () I would like to have a uv map status rect for the map texture
@@ -115,6 +115,13 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 * () draw points with a feature other than what is used with the points material as I am having problems with that on RPI OS
 
 <!-- DONE -->
+
+## ( done 07/20/2023 ) - s8-1-texture-wrapS-wrapT
+* (done) start a basic demo of wrapS and WrapT
+* (done) I will want a simple canvas texture for the map option
+* (done) I will want to go with the plane geometry for this one
+* (done) mutate the uv attributes so that the values go into the negative range
+* (done) set the wrapS and wrapT properties to get a desired outcome
 
 ## ( done 07/19/2023 ) s8-1-texture-emissive
 * (done) start with the source code of s1-5-basic-uvmap
