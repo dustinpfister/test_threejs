@@ -47,7 +47,6 @@ const mesh_json = `
     }
 }
 `
-
 const mesh = new THREE.ObjectLoader().parse( JSON.parse( mesh_json ) );
 scene.add(mesh);
 // ---------- ----------
