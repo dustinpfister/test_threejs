@@ -11,7 +11,7 @@ const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.querySelector('#demo') || document.body).appendChild(renderer.domElement);
 // ---------- ----------
-// TRI12 bufferfly ( source of 1.json from set1-object )
+// TRI12 butterfly - /json/tri12-butterfly/set1-object/2.json as hard coded string with much that is not needed cut out
 // ---------- ----------
 const mesh_json = `
 {
@@ -66,21 +66,7 @@ const mesh_json = `
             "type": "MeshBasicMaterial",
             "color": 16777215,
             "map": "6e281008-fce7-4145-b7e5-afb64421ba51",
-            "reflectivity": 1,
-            "refractionRatio": 0.98,
-            "side": 2,
-            "depthFunc": 3,
-            "depthTest": true,
-            "depthWrite": true,
-            "colorWrite": true,
-            "stencilWrite": false,
-            "stencilWriteMask": 255,
-            "stencilFunc": 519,
-            "stencilRef": 0,
-            "stencilFuncMask": 255,
-            "stencilFail": 7680,
-            "stencilZFail": 7680,
-            "stencilZPass": 7680
+            "side": 2
         }
     ],
     "animations": [{
@@ -99,26 +85,7 @@ const mesh_json = `
     ],
     "textures": [{
             "uuid": "6e281008-fce7-4145-b7e5-afb64421ba51",
-            "name": "",
-            "image": "336e0dfd-4b72-4589-91e6-5c7d26498267",
-            "mapping": 300,
-            "channel": 0,
-            "repeat": [1, 1],
-            "offset": [0, 0],
-            "center": [0, 0],
-            "rotation": 0,
-            "wrap": [1001, 1001],
-            "format": 1023,
-            "internalFormat": null,
-            "type": 1009,
-            "colorSpace": "",
-            "minFilter": 1008,
-            "magFilter": 1006,
-            "anisotropy": 1,
-            "flipY": true,
-            "generateMipmaps": true,
-            "premultiplyAlpha": false,
-            "unpackAlignment": 4
+            "image": "336e0dfd-4b72-4589-91e6-5c7d26498267"
         }
     ],
     "images": [{
@@ -129,9 +96,6 @@ const mesh_json = `
     "object": {
         "uuid": "ea2f929d-85b7-4167-b5fd-c841702e0d1e",
         "type": "Mesh",
-        "layers": 1,
-        "matrix": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-        "up": [0, 1, 0],
         "geometry": "07d25b15-9d12-43f1-8322-5fc6794af50b",
         "material": "fcac10b3-e11a-49c9-94b8-575042930338",
         "animations": ["024eb45e-f782-443b-9fde-522a2897b585"]
