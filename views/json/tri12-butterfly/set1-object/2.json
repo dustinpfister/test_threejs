@@ -1,19 +1,3 @@
-// ---------- ----------
-// IMPORT - threejs and any addons I want to use
-// ---------- ----------
-import * as THREE from 'three';
-// ---------- ----------
-// SCENE, CAMERA, RENDERER
-// ---------- ----------
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-const renderer = new THREE.WebGL1Renderer();
-renderer.setSize(640, 480, false);
-(document.querySelector('#demo') || document.body).appendChild(renderer.domElement);
-// ---------- ----------
-// TRI12 bufferfly ( source of 1.json from set1-object )
-// ---------- ----------
-const mesh_json = `
 {
     "metadata": {
         "version": 4.5,
@@ -41,6 +25,12 @@ const mesh_json = `
                         "itemSize": 2,
                         "type": "Float32Array",
                         "array": [0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
+                        "normalized": false
+                    },
+                    "color": {
+                        "itemSize": 3,
+                        "type": "Float32Array",
+                        "array": [1, 0, 0, 0.699999988079071, 0.5, 0, 0.699999988079071, 0.5, 0, 0.699999988079071, 0.5, 0, 0.699999988079071, 0.5, 0, 0.8999999761581421, 0.5, 0, 0.8999999761581421, 0.5, 0, 0.8999999761581421, 0.5, 0, 0.8999999761581421, 0.5, 0],
                         "normalized": false
                     }
                 },
@@ -137,28 +127,3 @@ const mesh_json = `
         "animations": ["024eb45e-f782-443b-9fde-522a2897b585"]
     }
 }
-`
-const mesh = new THREE.ObjectLoader().parse( JSON.parse( mesh_json ) );
-scene.add(mesh);
-//-------- ----------
-// LOOP
-//-------- ----------
-camera.position.set(3, 3, 3);
-camera.lookAt(0, 0.5, 0);
-const state = {
-   mesh: mesh,
-   mixer: new THREE.AnimationMixer(mesh)
-};
-state.action = state.mixer.clipAction( state.mesh.animations[0] );
-state.action.play();
-let frame = 0;
-const frame_max = 30;
-const loop = () => {
-    requestAnimationFrame(loop);
-    const a1 = frame / frame_max;
-    state.mixer.setTime(1 * a1);
-    renderer.render(scene, camera);
-    frame += 1;
-    frame %= frame_max;
-};
-loop();
