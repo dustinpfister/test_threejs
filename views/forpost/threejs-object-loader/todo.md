@@ -13,8 +13,8 @@ I should have a section in which I am using the loading manager to load many fil
 Looks like the toJSON method of the object3d class will export matrix values in the JSON, but not position, rotation, scale, or quaternion keys. So I might want to start a section on the use of matrix4 objects to see if I can address some issues with this.
 
 ## () s3-1-matrix4-compose
-* () start with the source code of the s1-2-basic-json-create demo
-* () see about using the matrix4 compose method to fix this
+* () start with the source code from the matrix4-compose demo in which I all ready have this worked out
+* () at least change some of the details with the state of the mesh object
 
 <!-- S2 - TRI12 -->
 

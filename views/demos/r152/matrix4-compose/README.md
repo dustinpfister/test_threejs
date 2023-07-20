@@ -1,0 +1,3 @@
+# matrix4-compose demo for r152
+
+Looks like the toJSON method of the Object3d class will create JSON data with a matrix key, but no keys for position, scale, rotation, or quaternion. However if it is possible that this might be a feature rather than a bug as it would seem that matrx4 objects can be used to store position, scale, and rotation  all as one array of values. So I wanted to start at least one demo on the subject of matrix4 objects, started with a demo of the compose method of the class.
