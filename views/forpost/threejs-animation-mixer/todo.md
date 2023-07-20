@@ -25,7 +25,10 @@
 
 <!-- DONE -->
 
-## (done 07/14/2023 ) s2-1-tri-object
+## ( done 07/20/2023 ) - s3-1-tri12-butterfly - JSON text
+* (done) updated code to spit out JSON with animations in it
+
+## ( done 07/14/2023 ) s2-1-tri-object
 * (done) start with a demo that is just the object and geometry values
 * (done) the parse method of THREE.ObjectLoader should work for this
 * (done) I just want to work out the basic core idea with this, so just one clip and one track

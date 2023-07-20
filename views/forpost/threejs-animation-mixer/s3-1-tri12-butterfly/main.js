@@ -54,9 +54,12 @@ loader.load(
            [ 0, 0.30, 0.5, 0.15, 0]
         );
         const clip = new THREE.AnimationClip('flap', -1, [ track ] );
+        state.mesh.animations.push( clip );
         state.mixer = new THREE.AnimationMixer(state.mesh);
-        const action = state.mixer.clipAction( clip );
+        const action = state.mixer.clipAction( state.mesh.animations[0] );
         action.play();
+        // LOGGING OIT THE JSON FOR THIS TO USE WITH OBJECT LOADER
+        console.log( JSON.stringify( state.mesh.toJSON()) );
         // start loop
         loop();
     }
