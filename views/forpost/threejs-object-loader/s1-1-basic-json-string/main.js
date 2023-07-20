@@ -39,9 +39,6 @@ const mesh_json = `
     "object": {
         "uuid": "` + uuid_mesh + `",
         "type": "Mesh",
-        "layers": 1,
-        "matrix": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-        "up": [0, 1, 0],
         "geometry": "` + uuid_geometry + `",
         "material": "` + uuid_material + `"
     }
