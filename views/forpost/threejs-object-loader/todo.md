@@ -13,11 +13,10 @@ I should have a section in which I am using the loading manager to load many fil
 
 <!-- S1 - BASIC SECTION -->
 
-
-## () - s1-3-basic-load file
-* () demo in which I load one external json file of an object
-
 <!-- DONE -->
+
+## ( done 07/20/2023 ) - s1-3-basic-load-one file
+* (done) demo in which I load one external json file of an object
 
 ## (done 07/20/2023 ) - s1-2-basic-json-create
 * (done) demo in which I create a json string from an object

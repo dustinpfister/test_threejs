@@ -1,0 +1,44 @@
+{
+    "metadata": {
+        "version": 4.5,
+        "type": "Object",
+        "generator": "Hacked Over Object3D.toJSON Export"
+    },
+    "geometries": [{
+            "uuid": "5f3a2c7e-e238-4f8c-a68b-fe2190c4d7e5",
+            "type": "BoxGeometry",
+            "width": 1,
+            "height": 1,
+            "depth": 1
+        }
+    ],
+    "materials": [{
+            "uuid": "e12a0bbf-4405-4fb8-a000-f417d24c01c6",
+            "type": "MeshPhongMaterial",
+            "color": 16711680,
+            "emissive": 16777215,
+            "emissiveIntensity": 0.05,
+            "specular": 1118481,
+            "shininess": 30
+        }
+    ],
+    "object": {
+        "uuid": "d9157825-c7c5-4bd9-9c8c-21d21087f883",
+        "type": "Scene",
+        "position": [0,0,0],
+        "children": [{
+                "uuid": "87313a12-d689-403f-88d2-ad29743e7d2c",
+                "type": "Mesh",
+                "position": [0,0,0],
+                "geometry": "5f3a2c7e-e238-4f8c-a68b-fe2190c4d7e5",
+                "material": "e12a0bbf-4405-4fb8-a000-f417d24c01c6"
+            }, {
+                "uuid": "953c384f-755c-4658-94cd-a5bd246e8df7",
+                "type": "PointLight",
+                "position": [3,2,1],
+                "color": 16777215,
+                "intensity": 1
+            }
+        ]
+    }
+}
