@@ -20,11 +20,10 @@ cube.castShadow = true;
 scene.add(cube);
 const plane = new THREE.Mesh(
         new THREE.PlaneGeometry(10, 10, 8, 8),
-        new THREE.MeshStandardMaterial({
-            color: 0x00afaf,
-            side: THREE.DoubleSide
+        new THREE.MeshPhongMaterial({
+            color: 0x00afaf
         }));
-plane.rotation.x = Math.PI / 2;
+plane.geometry.rotateX(Math.PI * 1.5)
 plane.receiveShadow = true; // the plane will receive a shadow
 scene.add(plane);
 // ---------- ----------
