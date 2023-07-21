@@ -74,8 +74,11 @@ I would like to make my current s8-1-texture-emissive demo a real solid over all
 
 I should have a section on the subject of light
 
-## () s9-1-light
-* () first light demo should make use of ambient and directional light
+## () s9-2-light-ambient
+* () demo of just the use of ambient light alone
+
+## () s9-3-light-emissive
+* () demo on use of emissive color along with color when using a material
 
 <!-- S10 - SHADOWS  -->
 
@@ -115,6 +118,9 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 * () draw points with a feature other than what is used with the points material as I am having problems with that on RPI OS
 
 <!-- DONE -->
+
+## ( done 07/21/2023 ) s9-1-light
+* (done) first light demo should make use of directional light
 
 ## ( done 07/20/2023 ) - s8-1-texture-wrapS-wrapT
 * (done) start a basic demo of wrapS and WrapT
