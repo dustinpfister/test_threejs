@@ -1,6 +1,13 @@
 # threejs-canvas-texture todo list
 
-<!-- S4 LOOP SECTION -->
+<!-- SX - Object Loader Section -->
+I think it would be a good idea to have a section on the Object Loader and the JSON format used for that and the subject of data urls as the values for images in such a data format.
+
+## () sx-1-objectloader-images
+* () basi demo of adding images with canvas and then creating JSON data to be used with the Object Loader.
+
+
+<!-- S4 - LOOP SECTION -->
 
 ## () - s2-3-loop-uv
 * () loop example that involves static canvas texture, but updating uv attribute over time
