@@ -1,19 +1,28 @@
 # threejs-canvas-texture todo list
 
-## () canvasjs - r3
+<!-- S4 LOOP SECTION -->
+
+## () - s2-3-loop-uv
+* () loop example that involves static canvas texture, but updating uv attribute over time
+
+<!-- S3 - CANVAS MODULE SECTION -->
+
+## () - canvasjs - r3
 * () texture.magFilter and texture.minFilter = THREE.NearestFilter, should be the default
 * () default values for translate that can be adjusted as needed see 'pxa' from r0 of uvmap-cube.js
 * () no text select event for what this is used to create and inject canvas directly as dom elements
 * () DRAW.grid\_rgb method that will use an rgb data array rather than palette array
 
-## () - sx-x-cigrid section
-* () start a color index grid section
+<!-- S2 - DATA TEXTURE SECTION -->
 
-## () - s2-3-loop-uv
-* () loop example that involves static canvas texture, but updating uv attribute over time
+<!-- S1 - BASIC SECTION -->
 
-## () sx-texture section
-* () I will want to stat a section on TEXTURE class features such as flip warp ect
+<!-- r146 update -->
+
+## () - update all remaining demos to r146 style
+* () all demos after basic section updated to r146 style
+
+<!-- DONE -->
 
 ## ( done 12/20/2022 ) update basic examples to r146
 * (done) have all basic examples use r146
