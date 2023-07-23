@@ -6,12 +6,13 @@ scene.add(new THREE.GridHelper(5, 5));
 const camera = new THREE.PerspectiveCamera(60, 320 / 240, 1, 100);
 camera.position.set(0, 4, 4);
 camera.lookAt(0, 0, 0);
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
 //  GROUP, MESH
 //-------- ----------
+// creating a group
 const group = new THREE.Group();
 // creating and adding a pointer mesh to the group
 const geo = new THREE.CylinderGeometry(0, 0.5, 1, 12);
@@ -33,12 +34,8 @@ group.add(new THREE.BoxHelper(group));
 group.position.set(-2.0, 0, -2.0);
 // add group to the scene
 scene.add(group);
-// IF I WANT TO HAVE THE POINTER LOOK AT THE CUBE
-// THAT IS A CHILD OF THE GROUP, THEN I WILL WANT TO ADJUST 
-// FOR THAT FOR THIS THERE IS THE getWorldPosition Method
-const target = new THREE.Vector3();
-cube.getWorldPosition(target)
-pointer.lookAt( target );
+// POINTER LOOKS AT CUBE POSITION RELATIVE TO THE SCENE, BUT NOT RELATIVE TO THE GROUP
+pointer.lookAt(cube.position);
 //-------- ----------
 // RENDER
 //-------- ----------

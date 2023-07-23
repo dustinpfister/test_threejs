@@ -1,17 +1,14 @@
 # threejs-object3d-lookat todo
 
+<!-- LOOP SECTION -->
+
 ## () s3-x-loop-coneline
 * () animation of cones moving and looking at each other
 
+<!-- DONE -->
 
-## () sx-x-vector3 - new vector3 class section
-* () start a new section on vector3 class methods
-* () s1-3-basic-add - example involving the add method of vector3
-
-## () - sx-x-biplane - section on a biplane model
-* () start a new section on the use of the biplane model
-* () have an example that shows the problem with the biplane model
-* () have an alternative solution to setting the rotation of the biplane
+## ( done 07/23/2023 ) - r146 style update
+* (done) r146 style update for all demos 
 
 ## ( done 10/21/2022 ) - s3-2-loop-curve
 * (done) have a curve that is used to create an array of points that are look at points
