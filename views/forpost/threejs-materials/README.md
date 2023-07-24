@@ -39,7 +39,28 @@ So I have found that I am getting out ranked by posts that are saying they are C
 
 Of course there is just looking over what the DOCS have to say about each mesh, point, and line materials as well as other related features such as the base material class that all of these extend from. However the DOCS are a bit lacking with a lot of things, which is good for people like be that aim to write deep dive style content on subjects such as this.
 
+THREEJS DOCS for Base class, constants, core specific Mesh materials
+https://threejs.org/docs/#api/en/materials/Material
+https://threejs.org/docs/#api/en/constants/Materials
+https://threejs.org/docs/#api/en/materials/MeshBasicMaterial
+https://threejs.org/docs/#api/en/materials/MeshLambertMaterial
+https://threejs.org/docs/#api/en/materials/MeshStandardMaterial
 
+Source code ( r146 ) for the base material class, as well as some to the usual suspects for mesh materials
+
+https://github.com/mrdoob/three.js/blob/r146/src/materials/Material.js
+https://github.com/mrdoob/three.js/blob/r146/src/materials/MeshBasicMaterial.js
+https://github.com/mrdoob/three.js/blob/r146/src/materials/MeshLambertMaterial.js
+https://github.com/mrdoob/three.js/blob/r146/src/materials/MeshStandardMaterial.js
+
+Source code ( r146 ) for the Points Material, and the Line materials
+https://github.com/mrdoob/three.js/blob/r146/src/materials/LineBasicMaterial.js
+https://github.com/mrdoob/three.js/blob/r146/src/materials/LineDashedMaterial.js
+
+
+Source code ( r146 ) of the shader lib ( A good way to start to learn GLSL for THREE.ShaderMaterial, and THREE.RawShaderMaterial)
+https://github.com/mrdoob/three.js/tree/r146/src/renderers/shaders/ShaderChunk
+https://github.com/mrdoob/three.js/tree/r146/src/renderers/shaders/ShaderLib
 
 ## Other posts on materials in General
 
