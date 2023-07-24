@@ -1,20 +1,35 @@
 # threejs-object3d-rotation todo list
 
+<!-- S1 - BASIC SECTION -->
 
+<!-- S2 - LOOKAT SECTION -->
 
-## () s7-2-loop-smooth
+<!-- S3 - GEOMERTY SECTION -->
+
+<!-- S4 - VECTOR3 SECTION -->
+
+<!-- S5 - QUATERNION SECTION -->
+
+<!-- S6 - LOOP SECTION -->
+
+## () s6-2-loop-smooth
 * () demo that just involves smooth rotation of a single mesh object
 * () rotate 90 at a time, one axis at a time
 * () move the cube and and back down over time
 
-## ( done 03/27/2023 ) s6-2-quaternion-gimbal-lock
+<!-- DONE -->
+
+## ( done 07/24/2023 ) - consolidate demos
+* (done) consolidate demos into new vector3 section
+
+## ( done 03/27/2023 ) - s6-2-quaternion-gimbal-lock
 * (done) have a demo of gimbal lock that shows what the problem is with this
 * (done) This might have to be a loop Demo
 * (done) update by euler helper
 * (done) have a pitch back down part for the update by euler method
 * (done) make an update by quaternion demo 
 
-## ( done 03/27/2023 ) new s6-1-quaternion
+## ( done 03/27/2023 ) - s6-1-quaternion
 * (done) rename s6-1-loop-groups to s7-1-loop-groups
 * (done) start new s6-1-quaternion demo that will be just a basic example
 
