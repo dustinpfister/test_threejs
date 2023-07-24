@@ -34,6 +34,9 @@
 ## () - s5-4-common-depthfunc
 * () depth function demo
 
+## () - s5-5-common-clip-intersection
+* () I am going to want to have at least one demo on the subject of cliping here
+
 <!-- S6 - BLENDING SECTION -->
 
 At this time I do have one demo on the subject of blending and materials, but I can see that this is a subject that should have its own section. This is not a situation in which there are just a few constants for one property and that is it. Some of the constants for the blending property enabled other properties as well.
