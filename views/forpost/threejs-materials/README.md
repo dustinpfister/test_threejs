@@ -31,9 +31,23 @@ I will want to start sections on a lot of topics also though
 * the Raw Shader material and with that RAW Shader GLSL code examples
 * geometry.groups and material index deep dive section
 
-## Other posts on materials in general that are "Comprehensive"
+### Going the distance
 
-When I do a google search for "threejs materials" I am showing up but I am getting out ranked by [this post](https://chriscourses.com/blog/a-comprehensive-guide-to-materials-in-threejs). It is not that bad of a post, well maybe a little, but what floors me is that the author has titled it "A Comprehensive Guide to Materials in Three.js". The content piece does not even mention all of the mesh materials options, let alone the options for lines and points, features of the base material class, use of arrays of materials, so forth and so on. Oh and there is no talk at all about textures, uv mapping, and the various options that make use of textures, or much of any other base material class options, or options for specific materials. No mention at all of the Shader Material, Raw Shader Material, you get the idea. The post is in no way at all comprehensive, not even close, but there is more.
+So I have found that I am getting out ranked by posts that are saying they are Comprehensive in the title, but of course the post is in no way Comprehensive. However maybe I should not be so quick to judge sense my main blog post on materials here is far from comprehensive as well. Sure I am not saying that the content is Comprehensive in the title, but I could start going in that direction, and maybe some day earn the right to put that word in the title rather than just putting it there without much thought about what that word means. So I can start working on the code examples at least a little each day, for a few days, for at least maybe a week or longer to start going further in that direction. With that said I have worked out some things in the todo list, and also think I should write down some notes here as well.
+
+### Threejs DOCS and Directly studying source code
+
+Of course there is just looking over what the DOCS have to say about each mesh, point, and line materials as well as other related features such as the base material class that all of these extend from. However the DOCS are a bit lacking with a lot of things, which is good for people like be that aim to write deep dive style content on subjects such as this.
+
+
+
+## Other posts on materials in General
+
+One major part of the process of writing a blog post on just on this topic but in general is to do research, and to not just start and end with the threejs DOCS. There is of course studying the works of other developers that have wrote similar blog posts on this topic. In the process of doing so I will end up seeing what I should also write about, however there is also seeing what there is when it comes to things that are lacking as well.
+
+## Chris Courses "Comprehensive" post on materials in threejs \( chriscourses.com \)
+
+When I do a Google search for "threejs materials" I am showing up but I am getting out ranked by [this post](https://chriscourses.com/blog/a-comprehensive-guide-to-materials-in-threejs). It is not that bad of a post when it comes to a beginners introduction to the subject, but what floors me is that the author has titled it "A Comprehensive Guide to Materials in Three.js". The content piece does not even mention all of the mesh materials to work with, let alone the options for lines and points, features of the base material class, use of arrays of materials, so forth and so on. Oh and there is no talk at all about textures, uv mapping, and the various options that make use of textures, or much of any other base material class options, or options for specific materials. No mention at all of the Shader Material, Raw Shader Material, and with that the shader lib as well as raw GLSL code, you get the idea. The post is in no way at all even remotely comprehensive, but there is more.
 
 This bit of text also sticks out for me:
 
@@ -44,19 +58,12 @@ This bit of text also sticks out for me:
 >There is no way anyone knows what this actually means. To help do away with ambiguous definitions, let's see what a MeshStandardMaterial looks like by default with the following code:
 
 
-Okay so a quick google search for the term "physically based material" gaive me this: 
+Okay so a quick Google search for the term "physically based material" gave me this: 
 
 "A Physically Based Rendering (PBR) material is a material that closely approximates the way light reflects off of real-world objects"
 
-So I would take it that what this means is that the standard material is a little more realistic when it comes to approximating light, however that might come at the expense of a little more processing overhead compared to other options like that of the LambertMaterial maybe? That is of course speculation based on some quick research that took me about 5 seconds. However in order to really get to the bottom of it I will of course need to do more research, study some source code in the threejs repo, do some testing and so forth.
-
-### What I take from this Post
-
-It is easy to criticize, but it is not always so easy to create, research, and grow. These things take time, and a whole lot of it when it comes to these kinds of subjects. I should focus more so on my own content and the shortcomings that I see with it though if I want to rank a little higher in search. So I think that I will make this post one of the posts that I will go the distance with as it would seem that this is needed here.
-
-### Going the distance
-
-So I have found that I am getting out ranked by posts that are saying they are Comprehensive in the title, but of course the post is in no way Comprehensive. However maybe I should not be so quick to judge sense my main blog post on materials here is far from comprehensive as well. Sure I am not saying that the content is Comprehensive in the title, but I could start going in that direction, and maybe some day earn the right to put that word in the title rather than just putting it there without much thought about what that word means. So I can start working on the code examples at least a little each day, for a few days, for at least maybe a week or longer to start going further in that direction. With that said I have worked out some things in the todo list, and also think I should write down some notes here as well.
+So I would take it that what this means is that the standard material is a little more realistic when it comes to approximating light, however that might come at the expense of a little more processing overhead compared to other options like that of the LambertMaterial maybe? That is of course speculation based on some quick research that took me about 5 seconds. However in order to really get to the bottom of it I will of course need to do more research, study some source code in the threejs repo, do some testing and so forth. In other words what needs to happen here is doing research on what it is that I aim to write about which is a very important part of any topic that one will write about, and not just with tech topics of course. With that said when it comes to materials in threejs, I have found that I can never to enough research. Just when I think I have a comprehensive magnitude of understanding on materials I end up fining out just how much more I have to learn about it.
+Still it is easy to criticize, but it is not always so easy to create, research, and grow. These things take time, and a whole lot of it when it comes to these kinds of subjects. I should focus more so on my own content and the shortcomings that I see with it though if I want to rank a little higher in search. 
 
 ## Consolation of mesh material demos into a “Mesh Options” Section
 
