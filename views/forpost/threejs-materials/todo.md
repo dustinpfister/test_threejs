@@ -88,11 +88,7 @@ Shadows should have there own section
 
 It would be nice to have a section where I get into material arrays, and groups of buffer geometry. If so I should have at least one demo in which I am using the Phong for metal surfaces, and Lambert for wood surfaces.
 
-## sx-1-matarray-cube
-* () a mesh that uses the cube geometry is a good start for this kind of subject as always
-* () start with code from the mesh-material-index post if need be
-
-## sx-2-matarray-plane
+## () s11-2-matarray-plane
 * () a mesh using a plane might be a good start when it comes to the add group method
 * () see about making a custom one where we have an area that is a 'lake'
 * () use the phong material for the lake area, and Lambert for the rest
@@ -115,6 +111,12 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 * () draw points with a feature other than what is used with the points material as I am having problems with that on RPI OS
 
 <!-- DONE -->
+
+## ( done 07/24/2023 ) s11-1-matarray-cube
+* (done) a mesh that uses the cube geometry is a good start for this kind of subject as always
+* (done) start with the basic section example
+* (done) this time mutate the material index values and use just two materials
+* (done) make this demo a loop also
 
 ## ( done 07/21/2023 ) s10-1-shadow
 * ( done ) start a first basic example on shadows
