@@ -12,7 +12,7 @@
 
 <!-- S6 - LOOP SECTION -->
 
-## () s6-2-loop-smooth
+## () s6-3-loop-smooth
 * () demo that just involves smooth rotation of a single mesh object
 * () rotate 90 at a time, one axis at a time
 * () move the cube and and back down over time
