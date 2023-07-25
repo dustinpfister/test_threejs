@@ -1,11 +1,20 @@
 # threejs-cone
 
+<!-- S1 - BASIC SECTION -->
 
-## () expand basic section
-* () start a new s1-2-group example
+## () - s1-2-group example
+* () start a new example that involves a group of objects
 
-## () expand animation section
+<!-- S2 - V3ARRAY SECTION -->
+
+<!-- S3 - CURVE SECTION -->
+
+<!-- S4 - BASIC SECTION -->
+
+## () s4-3-loop-video1
 * () new animation example based off of source code used in video1
+
+<!-- DONE -->
 
 ## ( done 03/29/2023 ) s3-x-curve-section
 * (done) rename loop demos to s4-x-loop...

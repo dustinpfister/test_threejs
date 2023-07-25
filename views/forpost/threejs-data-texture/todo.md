@@ -1,10 +1,14 @@
 # threejs-data-texture todo list
 
+<!-- SX - Start a new Section On Canvas Textures -->
+
 ## () - sx-2-canvas-datato
 * () data texture to canvas example
 
 ## () - sx-1-canvas-datafrom
 * () start a section that has to do with canvas elements by starting with a data texture from canvas exampe
+
+<!-- DONE -->
 
 ## ( done 03/30/2023 ) - move files, r146 style
 * (done) move main.js file to root of each demo folder and delete js folders
