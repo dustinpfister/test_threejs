@@ -12,24 +12,26 @@ This is what I have when it comes to the source code examples that I am writing 
 
 I am going to make this post on materials in general one of the posts that I will keep working on a little each day for at least a week or longer until it starts to become a Deep Dive kind of post if that makes any sense. One vague feature of this kind of post I would say is at least 5,000+ words, however I would also say that the bulk of that writing is NOT Padding. I could just go on and on and on about things sure, but what I really want to do is make this post a lengthy content piece of substance.
 
-I have started the following, but will be expanding and refineing the demos in these sections
+I have started the following, but will be expanding and refining the demos in these sections
 
-* s1    - A Basic section in which I touch base on every key detail about materials at least
-* s2    - A Mesh Section in which I have just one decent example of each mesh material
-* s3-4  - Sections for Line Materials, and the Points Material
-* s5    - A common section with mnay demos on features that are sharded for all materials
-* s6    - Blending deep dive section
-* s7    - Loaders, THREE.MaterialLoader, THREE.ObjectLoader, ect
-* s8    - Textures and UV mapping Deep dive section
+* s01    - A Basic section in which I touch base on every key detail about materials at least
+* s02    - A Mesh Section in which I have just one decent example of each mesh material
+* s03    - Sections for Line Materials
+* s04    - The Points Material
+* s05    - A common section with mnay demos on features that are sharded for all materials
+* s06    - Blending deep dive section
+* s07    - Loaders, THREE.MaterialLoader, THREE.ObjectLoader, ect
+* s08    - Textures and UV mapping Deep dive section
+* s09    - Light
+* s10    - Shadows
+* s11    - Arrays of materials
+* s12    - Fog
+* s13    - THREE.ShaderMaterial
 
 I will want to start sections on a lot of topics also though
 
-* section on light
-* section on shadows
-* section on fog
-* the shader material, and with that the ShaderLib
+* One or more sections on 'user-style' that is just going with certain features and being done with materials
 * the Raw Shader material and with that RAW Shader GLSL code examples
-* geometry.groups and material index deep dive section
 
 ### Going the distance
 
@@ -68,7 +70,7 @@ One major part of the process of writing a blog post on just on this topic but i
 
 ## Chris Courses "Comprehensive" post on materials in threejs \( chriscourses.com \)
 
-When I do a Google search for "threejs materials" I am showing up but I am getting out ranked by [this post](https://chriscourses.com/blog/a-comprehensive-guide-to-materials-in-threejs). It is not that bad of a post when it comes to a beginners introduction to the subject, but what floors me is that the author has titled it "A Comprehensive Guide to Materials in Three.js". The content piece does not even mention all of the mesh materials to work with, let alone the options for lines and points, features of the base material class, use of arrays of materials, so forth and so on. Oh and there is no talk at all about textures, uv mapping, and the various options that make use of textures, or much of any other base material class options, or options for specific materials. No mention at all of the Shader Material, Raw Shader Material, and with that the shader lib as well as raw GLSL code, you get the idea. The post is in no way at all even remotely comprehensive, but there is more.
+When I do a Google search for "threejs materials" I am showing up but I am getting out ranked by [this post](https://chriscourses.com/blog/a-comprehensive-guide-to-materials-in-threejs). It is not that bad of a post when it comes to a beginners introduction to the subject, but what floors me is that the author has titled it "A Comprehensive Guide to Materials in Three.js". The content piece does not even mention all of the mesh materials to work with, let alone the options for lines and points, features of the base material class, use of arrays of materials. There is no talk at all about textures, uv mapping, and the various options of materials that make use of textures, or much of any other base material class options, or options for specific materials. No mention at all of the Shader Material, Raw Shader Material, and with that the shader lib as well as raw GLSL code, you get the idea. The post is in no way at all even remotely comprehensive, but there is more.
 
 This bit of text also sticks out for me:
 
@@ -83,21 +85,31 @@ Okay so a quick Google search for the term "physically based material" gave me t
 
 "A Physically Based Rendering (PBR) material is a material that closely approximates the way light reflects off of real-world objects"
 
-So I would take it that what this means is that the standard material is a little more realistic when it comes to approximating light, however that might come at the expense of a little more processing overhead compared to other options like that of the LambertMaterial maybe? That is of course speculation based on some quick research that took me about 5 seconds. However in order to really get to the bottom of it I will of course need to do more research, study some source code in the threejs repo, do some testing and so forth. In other words what needs to happen here is doing research on what it is that I aim to write about which is a very important part of any topic that one will write about, and not just with tech topics of course. With that said when it comes to materials in threejs, I have found that I can never to enough research. Just when I think I have a comprehensive magnitude of understanding on materials I end up fining out just how much more I have to learn about it.
-Still it is easy to criticize, but it is not always so easy to create, research, and grow. These things take time, and a whole lot of it when it comes to these kinds of subjects. I should focus more so on my own content and the shortcomings that I see with it though if I want to rank a little higher in search. 
+So I would take it that what this means is that the standard material is a little more realistic when it comes to approximating light, however that might come at the expense of a little more processing overhead compared to other options like that of the LambertMaterial maybe? That is of course speculation based on some quick research that took me about 5 seconds. However in order to really get to the bottom of it I will of course need to do more research, study some source code in the threejs repo, do some testing and so forth. In other words what needs to happen here is doing research on what it is that I aim to write about which is a very important part of any topic that one will write about, and not just with tech topics of course. 
 
-## Consolation of mesh material demos into a “Mesh Options” Section
+Speaking of research when it comes to materials in threejs, I have found that I can never to enough research. Just when I think I have a comprehensive magnitude of understanding on materials I end up fining out just how much more I have to learn about it still. It is however easy to criticize, but it is not always so easy to create, research, and grow. These things take time, and a whole lot of it when it comes to these kinds of subjects. I should focus more so on my own content and the shortcomings that I see with it though. So I am taking the time to actually turn this post into a comprehensive post on materials in general, and thus far I have to say that although I have over  25 demos spanning 13 sections I still can not say with confidence that this is a comprehensive post on materials in threejs. I have not even scratched the surface on the THREE.ShaderMaterial class when it comes to opening that can of worms, and with that one I have the shader lib to work with of course, as if this writing I have not even started my section on the THREE.RawShaderMaterial class.
+
+## Additional Notes
+
+This is just a place where I am parking additional ideas that apply to future edits of this post, as well as choices that where made in the past. When I get ideas I will want to write them down somewhere of course and this seems like a good place to park that.
+
+### Consolation of mesh material demos into a “Mesh Options” Section
 
 When I started this post I have a section for  each mesh material option, that is one section for the BasicMaterial, another for PhongMaterial, and so forth. This might make sense if I am going to have many demos for each material, however thus far that is not the case at this time. When it comes to many of the plans that I have for future edits I am going to start to have a lot of sections that apply to materials in general, and also subjects where there are some overlap with many other threejs features in the geometry class, textures, and so forth. So I am thinking that I should consolidate all of the simple mesh material demos into a single mesh options section. If I do start to write deep dive sections I can have a Basic Material Deep Dive Section, Phong Deep Dive Section, and so forth.
 
-## Proper Basic Section
+### Proper Basic Section
 
 I think it might be good to have a proper basic section with a few very simple demos for what I will expand more on in additional sections. For example I can have a basic example of using an map option with a canvas texture, but then have a far more advanced section where the main focus is on getting started with textures, and with that also UV mapping.
 
-## Shader Materials
+### Shader Materials
 
 I have wrote a single blog post on the shader material, but sense then I have not got around to exploring more with this and the shader lib of threejs. This is without question a must have section for this post at this time, and I would like to have a simple demo, as well as a whole lot more moving forward from there.
 
+### Having Some Sections on 'user style'
 
+The aim these days is to turn this post into a major deep dive post on the subject of materials in threejs. That is to just really dive down deep when it comes to this subject and just keep going. However that might not be the best idea when it comes to learning about materials, or any subject in general actually. What really needs to happen here of course is to figure out what one needs to know about materials, and then move on with ones life and start to study other subjects. This is where the idea of user styles comes into play, where there is just going with a certain material, and with that just using a few options of that material, and that is it.
 
+### 'N64Like' style - Basic Material with low res map texture
+
+One user style that I think I can move forward with is an N64Like style where I am just using the THREE.MeshBasicMaterial alone. On top of that I am also just using the map option of the material and with that very low res textures say maybe 128 x 128. So then I am doing nothing at all with light sources with this, and thus it is the textures alone that will be used to help show some depth. This in turn will also be used with geometry that has a very low count of points.
 
