@@ -8,6 +8,14 @@
 ## () - sx-1-canvas-datafrom
 * () start a section that has to do with canvas elements by starting with a data texture from canvas exampe
 
+<!-- S1 - BASIC -->
+
+## () s1-5-basic-type-format
+* () basic example on type and format
+
+<!-- S2 - LOOP -->
+
+
 <!-- DONE -->
 
 ## ( done 03/30/2023 ) - move files, r146 style
