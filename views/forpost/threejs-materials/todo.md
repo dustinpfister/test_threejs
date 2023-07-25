@@ -101,9 +101,8 @@ It would be nice to have a section where I get into material arrays, and groups 
 
 <!-- s13 - SHADER MATERIAL SECTION -->
 
-## () sx-1-shader-white
-* () This will be a very basic hello word type example where I just have a blob of white area
-
+## () - s13-shader-uniforms
+* Basic demo on the use of uniforms and custom shaders
 
 <!-- s14 - RAW SHADER MATERIAL SECTION -->
 
@@ -114,6 +113,9 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 * () draw points with a feature other than what is used with the points material as I am having problems with that on RPI OS
 
 <!-- DONE -->
+
+## ( done 07/25/2023 ) sx-1-shader-white
+* (done) This will be a very basic hello word type example where I just have a blob of white area
 
 ## ( done 07/24/2023 ) s11-1-matarray-cube
 * (done) a mesh that uses the cube geometry is a good start for this kind of subject as always
