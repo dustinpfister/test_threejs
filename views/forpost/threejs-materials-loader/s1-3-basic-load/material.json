@@ -1,0 +1,21 @@
+{
+    "metadata": {
+        "version": 4.5,
+        "type": "Material",
+        "generator": "Material.toJSON"
+    },
+    "uuid": "beb0f098-1561-467e-a207-b577a6f5e1da",
+    "type": "MeshNormalMaterial",
+    "depthFunc": 3,
+    "depthTest": true,
+    "depthWrite": true,
+    "colorWrite": true,
+    "stencilWrite": false,
+    "stencilWriteMask": 255,
+    "stencilFunc": 519,
+    "stencilRef": 0,
+    "stencilFuncMask": 255,
+    "stencilFail": 7680,
+    "stencilZFail": 7680,
+    "stencilZPass": 7680
+}

@@ -2,10 +2,6 @@
 
 <!-- S1 - BASIC SECTION -->
 
-
-## () - s1-3-basic-load
-* () simple load demo of an external JSON file
-
 <!-- S2 - SHADER SECTION -->
 
 <!-- S3 - TEXTURES SECTION -->
@@ -15,6 +11,9 @@
 <!-- SX - LOOP SECTION -->
 
 <!-- DONE -->
+
+## ( done 07/26/2023 ) - s1-3-basic-load
+* (done) simple load demo of an external JSON file
 
 ## ( done 07/26/2023 ) - s1-2-basic-tojson
 * (done) basic demo on how to create JSON data from a material object
