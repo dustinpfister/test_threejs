@@ -1,7 +1,15 @@
 # threejs-getting-started
 
+<!-- BASIC SECTION -->
+
+<!-- LOOP SECTION -->
+
+<!-- STOCHASTIC SECTION -->
+
 ## () s3-1-stochastic-basic - binary alpha options 
 * () I am also going to want to have binary alpha options that I can just turn on and off
+
+<!-- DONE -->
 
 ## ( done 03/30/2023 ) s3-1-stochastic-basic animation loop
 * (done) start new stochastic animation loop start point based off of loop-2dcanvas
