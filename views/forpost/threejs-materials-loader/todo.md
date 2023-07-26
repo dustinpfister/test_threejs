@@ -2,8 +2,6 @@
 
 <!-- S1 - BASIC SECTION -->
 
-## () - s1-2-basic-tojson
-* () basic demo on how to create JSON data from a material object
 
 ## () - s1-3-basic-load
 * () simple load demo of an external JSON file
@@ -17,6 +15,9 @@
 <!-- SX - LOOP SECTION -->
 
 <!-- DONE -->
+
+## ( done 07/26/2023 ) - s1-2-basic-tojson
+* (done) basic demo on how to create JSON data from a material object
 
 ## ( done 07/25/2023 ) - s1-1-basic-parse
 * (done) the first basic example can be on using the parse method of the loader
