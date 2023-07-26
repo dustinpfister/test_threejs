@@ -101,8 +101,11 @@ It would be nice to have a section where I get into material arrays, and groups 
 
 <!-- s13 - SHADER MATERIAL SECTION -->
 
-## () - s13-shader-uniforms
-* Basic demo on the use of uniforms and custom shaders
+## () - s13-3-shader-functions
+* () I would like to have a demo of functions
+
+## () - s13-4-shader-lib
+* () demo in which I make use of features of the shader lib to quickly add vertex colors
 
 <!-- s14 - RAW SHADER MATERIAL SECTION -->
 
@@ -114,6 +117,11 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 
 <!-- DONE -->
 
+## ( done 07/26/2023 ) - s13-2-shader-uniforms
+* (done) start a basic demo on the use of uniforms and custom shaders
+* (done) have a baseColor uniform
+* (done) see about adding a depth value by studying shader lib code on depth material
+
 ## ( done 07/25/2023 ) sx-1-shader-white
 * (done) This will be a very basic hello word type example where I just have a blob of white area
 
@@ -124,8 +132,8 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 * (done) make this demo a loop also
 
 ## ( done 07/21/2023 ) s10-1-shadow
-* ( done ) start a first basic example on shadows
-* ( done ) use a spot light as the light source
+* (done) start a first basic example on shadows
+* (done) use a spot light as the light source
 
 ## ( done 07/21/2023 ) s9-1-light
 * (done) first light demo should make use of directional light
