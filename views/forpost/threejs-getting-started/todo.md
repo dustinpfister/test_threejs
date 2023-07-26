@@ -2,6 +2,9 @@
 
 <!-- BASIC SECTION -->
 
+## s1-2-basic-mjs
+* () have a basic JSM demo following r152 style
+
 <!-- LOOP SECTION -->
 
 <!-- STOCHASTIC SECTION -->
