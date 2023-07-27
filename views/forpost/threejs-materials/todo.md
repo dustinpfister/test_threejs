@@ -48,13 +48,13 @@ At this time I do have one demo on the subject of blending and materials, but I 
 
 There are of course a lot of options when it comes to loading in material data. The main loader of interest with materials alone would be the MaterialLoader of course. However I think that I should also use this section to write a thing or two about the THREE.ObjectLoader also as this is the more general kind of loader that can be used to load a whole scene.
 
-## () s7-2-loader-material-file
-* () load a single json file of a materail demo
+## () s07-3-loader-object-images
+* () have an object format demo that shows that image data can be baked in
+* () while at it also place light objects along with the mesh
+* () make the root object a scene object
+* () use matrix4 for storing position, rotation, and scale of objects
 
-## () s7-3-loader-object-parse
-* () parse json txt, but now in the object format
-
-## () s7-4-loader-many
+## () s07-4-loader-many
 * () load many files demo
 * () use material, texture, and buffergeometry loaders
 
@@ -116,6 +116,9 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 * () draw points with a feature other than what is used with the points material as I am having problems with that on RPI OS
 
 <!-- DONE -->
+
+## ( done 07/27/2023 ) s7-2-loader-object-parse
+* (done) parse json txt, but now in the object format
 
 ## ( done 07/26/2023 ) - s13-2-shader-uniforms
 * (done) start a basic demo on the use of uniforms and custom shaders
