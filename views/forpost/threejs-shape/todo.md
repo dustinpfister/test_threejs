@@ -1,8 +1,6 @@
 # threejs-shape todo list
 
-## () expand s2-x-path
-* () s2-1-path-lineto that is just another example using moveto and line to
-* () rename old exmaples
+<!-- DONE -->
 
 ## ( done 04/04/2023 ) move files, use r146
 * (done) move js files to root of demo folders

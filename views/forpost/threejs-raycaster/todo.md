@@ -1,8 +1,12 @@
 # threejs-raycaster todo list
 
+<!-- LOOP SECTION -->
+
 ## ( ) s4-3-loop-torusgroup
 * () example involving a group of mesh objects to position to the surface
 * () reuse the same raycaster by setting orgin and dection each time a mesh is updated
+
+<!-- DONE -->
 
 ## ( done 04/03/2023 ) update to r146 style
 * (done) rename folders and using r146
