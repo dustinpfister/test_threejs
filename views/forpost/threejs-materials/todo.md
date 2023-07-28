@@ -28,9 +28,6 @@
 
 <!-- S5 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
 
-## () - s5-3-common-vertexcolor
-* () vertex color examples
-
 ## () - s5-4-common-depthfunc
 * () depth function demo
 
@@ -116,6 +113,9 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 * () draw points with a feature other than what is used with the points material as I am having problems with that on RPI OS
 
 <!-- DONE -->
+
+## ( done 07/28/2023 ) - s5-3-common-vertexcolor
+* (done) vertex color examples
 
 ## ( done 07/27/2023 ) s7-2-loader-object-parse
 * (done) parse json txt, but now in the object format
