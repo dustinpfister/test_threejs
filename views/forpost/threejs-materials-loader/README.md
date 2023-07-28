@@ -18,6 +18,10 @@ https://github.com/mrdoob/three.js/blob/r152/src/loaders/MaterialLoader.js
 * Loader class Source ( r152 )
 https://github.com/mrdoob/three.js/blob/r152/src/loaders/Loader.js
 
+## The Deal with loading textures
+
+One major problem with using the Material loader is how to go about loading the textures that will be used with the materials. There are ways of doing it, but the process is a little convoluted which makes me prefer to go with the Object loader. 
+
 
 ## Other Blog Posts and sources on the material loader
 
