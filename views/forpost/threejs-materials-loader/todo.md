@@ -6,20 +6,20 @@
 
 <!-- S3 - TEXTURES SECTION -->
 
-## () - s3-2-textures-loader
-* () the image file name should have the uuid used by the material encoded into it
-* () use the texture loader to loade an image first
-* () on the on done callback of the texture loader, update the uuid of the texture to the uuid used in material JSON
-* () create a textures object with the key value set to the UUID, and then the texture object as the value
-* () create the instance of the matreial loader
-* () use the setTextures method to set it to the tetxure object
-* () load the material
-
 <!-- SX - OBJECT LOADER SECTION-->
 
 <!-- SX - LOOP SECTION -->
 
 <!-- DONE -->
+
+## ( done 07/28/2023 ) - s3-2-textures-loader
+* (done) the image file name should have the uuid used by the material encoded into it
+* (done) use the texture loader to loade an image first
+* (done) on the on done callback of the texture loader, update the uuid of the texture to the uuid used in material JSON
+* (done) create a textures object with the key value set to the UUID, and then the texture object as the value
+* (done) create the instance of the matreial loader
+* (done) use the setTextures method to set it to the tetxure object
+* (done) load the material
 
 ## ( done 07/28/2023 ) s3-1-textures-canvas
 * (done) just want to test out if data url textures will work first hand

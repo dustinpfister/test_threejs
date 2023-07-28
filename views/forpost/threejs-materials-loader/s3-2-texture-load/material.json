@@ -1,0 +1,25 @@
+{
+  "metadata":{
+    "version":4.5,
+    "type":"Material",
+    "generator":"Hacked over Material.toJSON Export setting key value of map option"
+  },
+  "uuid":"a5ce8212-1239-49d2-b564-0dfb6d84441f",
+  "type":"MeshBasicMaterial",
+  "color":16777215,
+  "map":"c3ad2169-e7e1-435c-90f3-81bdc4ba6283",
+  "reflectivity":1,
+  "refractionRatio":0.98,
+  "depthFunc":3,
+  "depthTest":true,
+  "depthWrite":true,
+  "colorWrite":true,
+  "stencilWrite":false,
+  "stencilWriteMask":255,
+  "stencilFunc":519,
+  "stencilRef":0,
+  "stencilFuncMask":255,
+  "stencilFail":7680,
+  "stencilZFail":7680,
+  "stencilZPass":7680
+}
