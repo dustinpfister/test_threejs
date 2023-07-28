@@ -6,11 +6,16 @@
 
 <!-- S3 - TEXTURES SECTION -->
 
+
+
 <!-- SX - OBJECT LOADER SECTION-->
 
 <!-- SX - LOOP SECTION -->
 
 <!-- DONE -->
+
+## ( done 07/28/2023 ) s3-1-textures-canvas
+* (done) just want to test out if data url textures will work first hand
 
 ## ( done 07/26/2023 ) - s1-3-basic-load
 * (done) simple load demo of an external JSON file
