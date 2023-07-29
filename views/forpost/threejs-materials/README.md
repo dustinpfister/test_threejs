@@ -30,8 +30,10 @@ I have started the following, but will be expanding and refining the demos in th
 
 I will want to start sections on a lot of topics also though
 
-* One or more sections on 'user-style' that is just going with certain features and being done with materials
 * the Raw Shader material and with that RAW Shader GLSL code examples
+* A section on FPS testing of various materials
+* One or more sections on 'user-style' that is just going with certain features and being done with materials
+
 
 ### Going the distance
 
