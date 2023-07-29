@@ -2,19 +2,17 @@
 
 <!-- S1 - BASIC SECTION -->
 
-## () - s1-6-basic-light
-* () use a material like phong
-* () add a directional light source
-* () both map and emissive maps used
-* () color, emissive, and emissive intensity options used
-
 ## () - s1-7-basic-common
 * () basic common options demo
 * () this can start out the same as s1-2-basic-objects only add a color attribute
 * () set the use vertex colors boolean for all of the materials used
 * () might also choose to use other common material class features such as blending, opacity, ect keep in basic though
 
-## () - s1-8-basic-shader
+## () - s1-8-basic-textue
+* () very basic texture example
+* () start with the source from one of the basic examples from the canvas textures post.
+
+## () - s1-9-basic-shader
 * () very simple hello world demo of the shader material
 
 <!-- S2 - MESH SECTION -->
@@ -113,6 +111,12 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 * () draw points with a feature other than what is used with the points material as I am having problems with that on RPI OS
 
 <!-- DONE -->
+
+## ( done 07/29/2023 ) - s1-6-basic-light
+* (done) use a material like phong
+* (done) add a directional light source
+* (done) both map and emissive maps used
+* (done) color, emissive, and emissive intensity options used
 
 ## ( done 07/28/2023 ) - s5-3-common-vertexcolor
 * (done) vertex color examples
