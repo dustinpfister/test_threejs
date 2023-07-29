@@ -44,6 +44,7 @@ So I have found that I am getting out ranked by posts that are saying they are C
 Of course there is just looking over what the DOCS have to say about each mesh, point, and line materials as well as other related features such as the base material class that all of these extend from. However the DOCS are a bit lacking with a lot of things, which is good for people like be that aim to write deep dive style content on subjects such as this.
 
 THREEJS DOCS for Base class, constants, core specific Mesh materials
+
 https://threejs.org/docs/#api/en/materials/Material
 https://threejs.org/docs/#api/en/constants/Materials
 https://threejs.org/docs/#api/en/materials/MeshBasicMaterial
@@ -70,7 +71,7 @@ https://github.com/mrdoob/three.js/tree/r146/src/renderers/shaders/ShaderLib
 
 One major part of the process of writing a blog post on just on this topic but in general is to do research, and to not just start and end with the threejs DOCS. There is of course studying the works of other developers that have wrote similar blog posts on this topic. In the process of doing so I will end up seeing what I should also write about, however there is also seeing what there is when it comes to things that are lacking as well.
 
-## Chris Courses "Comprehensive" post on materials in threejs \( chriscourses.com \)
+### Chris Courses "Comprehensive" post on materials in threejs \( chriscourses.com \)
 
 When I do a Google search for "threejs materials" I am showing up but I am getting out ranked by [this post](https://chriscourses.com/blog/a-comprehensive-guide-to-materials-in-threejs). It is not that bad of a post when it comes to a beginners introduction to the subject, but what floors me is that the author has titled it "A Comprehensive Guide to Materials in Three.js". The content piece does not even mention all of the mesh materials to work with, let alone the options for lines and points, features of the base material class, use of arrays of materials. There is no talk at all about textures, uv mapping, and the various options of materials that make use of textures, or much of any other base material class options, or options for specific materials. No mention at all of the Shader Material, Raw Shader Material, and with that the shader lib as well as raw GLSL code, you get the idea. The post is in no way at all even remotely comprehensive, but there is more.
 
@@ -90,6 +91,13 @@ Okay so a quick Google search for the term "physically based material" gave me t
 So I would take it that what this means is that the standard material is a little more realistic when it comes to approximating light, however that might come at the expense of a little more processing overhead compared to other options like that of the LambertMaterial maybe? That is of course speculation based on some quick research that took me about 5 seconds. However in order to really get to the bottom of it I will of course need to do more research, study some source code in the threejs repo, do some testing and so forth. In other words what needs to happen here is doing research on what it is that I aim to write about which is a very important part of any topic that one will write about, and not just with tech topics of course. 
 
 Speaking of research when it comes to materials in threejs, I have found that I can never to enough research. Just when I think I have a comprehensive magnitude of understanding on materials I end up fining out just how much more I have to learn about it still. It is however easy to criticize, but it is not always so easy to create, research, and grow. These things take time, and a whole lot of it when it comes to these kinds of subjects. I should focus more so on my own content and the shortcomings that I see with it though. So I am taking the time to actually turn this post into a comprehensive post on materials in general, and thus far I have to say that although I have over  25 demos spanning 13 sections I still can not say with confidence that this is a comprehensive post on materials in threejs. I have not even scratched the surface on the THREE.ShaderMaterial class when it comes to opening that can of worms, and with that one I have the shader lib to work with of course, as if this writing I have not even started my section on the THREE.RawShaderMaterial class.
+
+### log rocket
+
+I have also check out another top ranking post on 'threejs materials' here on [the site log rocket](https://blog.logrocket.com/three-js-geometries-and-materials/). This post has a lot of problems the first of which is that the author suggests to use Github as a CDN it would seem which I would say is a bad idea for a number of reasons but in any case the link given is now a 404 anyway. I think what it should link to is the raw.githubusercontent if you are going to do it that way but that is not the only problem with this. Another glaring issue is that there is no version number given in the link, and also there is no mentine of what version the author was using at this time. So with that said even a student was to follow this and fix that they one run into another problem with the next major issue that I found.
+
+With that said another thing that stuck out right away was the use of THREE.CubeGeometry which was removed from threejs somewhere between r111, and r125. So in late revisions that example will break as that will result in calling undefined. 
+
 
 ## Additional Notes
 

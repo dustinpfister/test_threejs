@@ -15,6 +15,8 @@ var mesh = new THREE.Mesh(
         }));
 scene.add(mesh);
 
+console.log(THREE.CubeGeometry);
+
 // add AmbientLight
 var light = new THREE.AmbientLight(0xffffff);
 scene.add(light);

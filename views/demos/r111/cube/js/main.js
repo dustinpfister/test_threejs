@@ -39,6 +39,7 @@
     camera.lookAt(0, 0, 0);
     renderer.setSize(320, 240);
 
+
     // controls ( OrbitControls.js )
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
