@@ -26,12 +26,11 @@
 
 <!-- S5 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
 
-## () - s5-5-common-transparent
 
-## () - s5-6-common-depthfunc
+## () - s5-5-common-depthfunc
 * () depth function demo
 
-## () - s5-7-common-clip-intersection
+## () - s5-6-common-clip-intersection
 * () I am going to want to have at least one demo on the subject of cliping here
 
 <!-- S6 - BLENDING SECTION -->
