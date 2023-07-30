@@ -26,10 +26,12 @@
 
 <!-- S5 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
 
-## () - s5-4-common-depthfunc
+## () - s5-5-common-transparent
+
+## () - s5-6-common-depthfunc
 * () depth function demo
 
-## () - s5-5-common-clip-intersection
+## () - s5-7-common-clip-intersection
 * () I am going to want to have at least one demo on the subject of cliping here
 
 <!-- S6 - BLENDING SECTION -->
@@ -125,6 +127,9 @@ One really interesting test with this would be comparing the standard to lambert
 
 
 <!-- DONE -->
+
+## ( done 07/30/2023 ) - s5-4-common-side
+* (done) side demo of the base material class
 
 ## ( done 07/29/2023 ) - s1-6-basic-light
 * (done) use a material like phong
