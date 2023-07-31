@@ -37,7 +37,9 @@ I will want to start sections on a lot of topics also though
 
 ### Going the distance
 
-So I have found that I am getting out ranked by posts that are saying they are Comprehensive in the title, but of course the post is in no way Comprehensive. However maybe I should not be so quick to judge sense my main blog post on materials here is far from comprehensive as well. Sure I am not saying that the content is Comprehensive in the title, but I could start going in that direction, and maybe some day earn the right to put that word in the title rather than just putting it there without much thought about what that word means. So I can start working on the code examples at least a little each day, for a few days, for at least maybe a week or longer to start going further in that direction. With that said I have worked out some things in the todo list, and also think I should write down some notes here as well.
+So I have found that I am getting out ranked by posts that are saying they are Comprehensive in the title, but of course the post is in no way Comprehensive. However maybe I should not be so quick to judge sense my main blog post on materials here is far from comprehensive as well. Sure I am not saying that the content is Comprehensive in the title, but I could start going in that direction, and maybe some day earn the right to put that word in the title rather than just putting it there without much thought about what that word means.
+
+So I can start working on the code examples at least a little each day, for a few days, for at least maybe a week or longer to start going further in that direction. With that said I have worked out some things in the todo list, and also think I should write down some notes here as well.
 
 ### Threejs DOCS and Directly studying source code
 
@@ -69,9 +71,11 @@ https://github.com/mrdoob/three.js/tree/r146/src/renderers/shaders/ShaderLib
 
 ## Other posts on materials in General
 
-One major part of the process of writing a blog post on just on this topic but in general is to do research, and to not just start and end with the threejs DOCS. There is of course studying the works of other developers that have wrote similar blog posts on this topic. In the process of doing so I will end up seeing what I should also write about, however there is also seeing what there is when it comes to things that are lacking as well.
+One major part of the process of writing a blog post on just on this topic but in general is to do research, and to not just start and end with the threejs DOCS and reading source code. There is of course studying the works of other developers that have wrote similar blog posts on this topic. In the process of doing so I will end up seeing what I should also write about, however there is also seeing what there is when it comes to things that are lacking as well. So far it would seem that A lot of the content that I have found searhing on google is very much lacking. However still the main aim of doing this is to learn a think or two.
 
 ### Chris Courses "Comprehensive" post on materials in threejs \( chriscourses.com \)
+
+https://chriscourses.com/blog/a-comprehensive-guide-to-materials-in-threejs
 
 When I do a Google search for "threejs materials" I am showing up but I am getting out ranked by [this post](https://chriscourses.com/blog/a-comprehensive-guide-to-materials-in-threejs). It is not that bad of a post when it comes to a beginners introduction to the subject, but what floors me is that the author has titled it "A Comprehensive Guide to Materials in Three.js". The content piece does not even mention all of the mesh materials to work with, let alone the options for lines and points, features of the base material class, use of arrays of materials. There is no talk at all about textures, uv mapping, and the various options of materials that make use of textures, or much of any other base material class options, or options for specific materials. No mention at all of the Shader Material, Raw Shader Material, and with that the shader lib as well as raw GLSL code, you get the idea. The post is in no way at all even remotely comprehensive, but there is more.
 
@@ -94,10 +98,25 @@ Speaking of research when it comes to materials in threejs, I have found that I 
 
 ### log rocket
 
-I have also check out another top ranking post on 'threejs materials' here on [the site log rocket](https://blog.logrocket.com/three-js-geometries-and-materials/). This post has a lot of problems the first of which is that the author suggests to use Github as a CDN it would seem which I would say is a bad idea for a number of reasons but in any case the link given is now a 404 anyway. I think what it should link to is the raw.githubusercontent if you are going to do it that way but that is not the only problem with this. Another glaring issue is that there is no version number given in the link, and also there is no mentine of what version the author was using at this time. So with that said even a student was to follow this and fix that they one run into another problem with the next major issue that I found.
+https://blog.logrocket.com/three-js-geometries-and-materials/
 
-With that said another thing that stuck out right away was the use of THREE.CubeGeometry which was removed from threejs somewhere between r111, and r125. So in late revisions that example will break as that will result in calling undefined. 
+I have also check out another top ranking post on 'threejs materials' here on [the site log rocket](https://blog.logrocket.com/three-js-geometries-and-materials/). This post has a lot of problems the first of which is that the author suggests to use Github as a CDN it would seem which I would say is a bad idea for a number of reasons but in any case the link given is now a 404 anyway. I think what it should link to is the raw.githubusercontent if you are going to do it that way but that is not the only problem with this. Another glaring issue is that there is no version number given in the link, and also there is no mentine of what version the author was using at this time. So with that said even if a reader of this content was to follow this, and fix that the link isshue, they would run into another problem with the next major issue that I found.
 
+With that said another thing that stuck out right away was the use of THREE.CubeGeometry which was removed from threejs somewhere between r111, and r125. So in late revisions that example will break as that will result in calling undefined if they where to just grab whatever the lateset version is at this time, or any any other time moving forward. 
+
+### tutorialspoint
+
+https://www.tutorialspoint.com/threejs/threejs_materials.htm
+
+>
+>MeshBasicMateria
+>
+>It is the very basic material in Three.js.
+>
+
+So the Basic "Materia" is Basic, thanks helps a lot.
+
+I am sure that there are other great posts on materials on threejs, but I think this right here really proves that quality of content alone will only get one so far.
 
 ## Additional Notes
 
