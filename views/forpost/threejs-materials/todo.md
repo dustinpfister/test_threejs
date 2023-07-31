@@ -73,16 +73,10 @@ I would like to make my current s8-1-texture-emissive demo a real solid over all
 
 I should have a section on the subject of light
 
-## () s9-2-light-ambient
-* () demo of just the use of ambient light alone
-
-## () s9-3-light-emissive
-* () demo on use of emissive color along with color when using a material
-
-## () s9-4-light-map-emissivemap
+## () s9-3-light-map-emissivemap
 * () I will of course want to get into the subject of the map, and emissiveMap options
 
-## () s9-5-light-lambert-phong
+## () s9-4-light-lambert-phong
 * () demo in which the lambert and phong materials are compared
 
 <!-- S10 - SHADOWS  -->
@@ -126,6 +120,9 @@ One really interesting test with this would be comparing the standard to lambert
 
 
 <!-- DONE -->
+
+## ( done 07/30/2023 ) s9-2-light-ambient-emissive
+* (done) demo of just the use of ambient light alone
 
 ## ( done 07/30/2023 ) - s5-4-common-side
 * (done) side demo of the base material class
