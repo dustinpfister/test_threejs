@@ -17,6 +17,13 @@
 
 <!-- S2 - MESH SECTION -->
 
+## () - Add depth demo code for s2-1-mesh-basic
+* () I want to fix up the s2-1-mesh-basic demo to show some ways to add depth so that it is not just a solid color
+* () I think I should have a few materials and objects to show the various options actually
+* () use points as a child object of a mesh, and have high section count for the geometry made for the cube as one object
+* () use lines as a child object of a mesh, and edge geometry
+* () use canvas texture and shade the corners for one option
+
 ## () - s2-9-mesh-matcap
 * () I should start a mesh matcap section when I have a post on this material option.
 
