@@ -22,13 +22,13 @@
 
 <!-- EXPAND BASIC -->
 
-## () s1-5-basic-path
-* () demo using a curve path
-
 ## () s1-4-basic-cubic
 * () demo using a cubic bezier curve
 
 <!-- DONE -->
+
+## (  done 07/31/2023 ) s1-5-basic-curve2d
+* (done) demo using a curve path
 
 ## ( done 06/07/2023 ) s1-1-basic-v2array
 * (done) new s1-1-basic-v2arary demo to replace the current first basic example
