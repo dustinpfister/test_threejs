@@ -22,6 +22,9 @@
 
 <!-- S3 - POINTS SECTION -->
 
+## () - s03-2-points-size-attenuation
+* () demo where I have two materials one with sizeAttenuation option set to false
+
 <!-- S4 - LINES SECTION -->
 
 <!-- S5 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
