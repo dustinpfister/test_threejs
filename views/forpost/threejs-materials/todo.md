@@ -68,11 +68,6 @@ There are of course a lot of options when it comes to loading in material data. 
 
 I would like to make my current s8-1-texture-emissive demo a real solid over all demo of the use of texture and uv mapping. However at some point I am going to want to rename this demo to something else that will be a more advanced demo later in the section. New demos should then just be more basic demos of various texture features that are must know features such as the filters and wrapping values.
 
-## ( ) - s8-3-texture-rotation - loop, rotation
-* (done) work out some logic for rotation of uv attributes by looking at the position attribute
-* () make a helper function
-* () I want to add a loop for this demo
-
 ## ( ) - s8-4-texture-minimap - uvmap status rects
 * () the main element to render to should be a plain old 2d context canvas
 * () draw to the 2d canvas with the domElement of the renderer
@@ -130,6 +125,11 @@ One really interesting test with this would be comparing the standard to lambert
 
 
 <!-- DONE -->
+
+## ( done 08/01/2023 ) - s8-3-texture-rotation - loop, rotation
+* (done) work out some logic for rotation of uv attributes by looking at the position attribute
+* (done) make a helper function
+* (done) I want to add a loop for this demo
 
 ## ( done 07/30/2023 ) s9-2-light-ambient-emissive
 * (done) demo of just the use of ambient light alone
