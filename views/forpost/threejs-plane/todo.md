@@ -1,9 +1,5 @@
 # threejs-plane todo list
 
-## () update groups to r146+ style
-* () update groups section to r146 or lateset style
-
-
 <!-- Raycaster -->
 
 ## Maybe add a raycaster section and be sure to like to this video
@@ -53,6 +49,9 @@ https://www.youtube.com/watch?v=oQbfy8QP8Lc
 * () example on having a non indexed plane geometry
 
 <!-- DONE -->
+
+## ( done 08/01/2023 ) update demos to r146 style
+* (done) update all demos to r146 style with the exception of the old section
 
 ## ( done 04/13/2023 ) s1-x-basic updated to r146 style
 * (done) update basic section to r146 style rules
