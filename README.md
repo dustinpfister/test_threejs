@@ -1,10 +1,10 @@
 # test_threejs
 
-This is a collection of work using the javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene) to create simple threejs examples. Many of these are very basic demos of threejs features, but then a great deal more of them progress beyond that into collections of code that at least stat to look like finished projects working on top of the library.
+This is a collection of work using the 3D computer graphics javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene). Many of these are very basic demos of features of the library itself, others progress beyond that into collections of code that at least start to look like finished projects working on top of the library. However nothing here is really a kind of stand alone project, thus this is a kind of threejs sketchpad of sorts.
 
 I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far on threejs in the view folder. 
 
-Another folder of interest is the demos folder which is broken down on a reversion by revision basis. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. I test out new features, as well as ideas for basic projects and so forth here in the demos folder. So then this collection of examples is more of a kind of sketch pad of sorts, while the for post folder is where I will park, and update the file code examples that will show up in blog posts.
+Another folder of interest is the demos folder which is broken down on a reversion by revision basis. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. This can also go the other way when it comes to the various concerns with keeping code working on older devices. I test out new features, as well as ideas for basic projects and so forth here in the demos folder.
 
 
 
