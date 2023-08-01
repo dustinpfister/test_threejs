@@ -1,7 +1,7 @@
 # threejs-quaternion todo list
 
 
-
+<!-- stochastic loop section -->
 
 ## () s6-1-stochastic-premultiply
 * () start a stochastic loop example that allows for me to use input to change rotation
@@ -9,6 +9,8 @@
 * () mesh1 object can be used to set a first rotation
 * () mesh2 object can be used to set another rotation
 * () mesh3 will then be a the first two rotations.
+
+<!-- DONE -->
 
 ## ( done 04/03/2023) s2-4-methods-setfromunitvectors
 * (done) start a demo on the setfromunitvectors method

@@ -49,26 +49,20 @@ const material = new THREE.MeshBasicMaterial({
 const geo = new THREE.PlaneGeometry(2, 2, 1, 1);
 geo.rotateX( Math.PI * 1.5 );
 const att_uv = geo.getAttribute('uv');
-
-
-
-
-//const matrix = new THREE.Matrix4();
-//matrix.fromArray([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
-/*
-const pos = new THREE.Vector3(0, 0, 0);
-const q = new THREE.Quaternion();
-q.setFromEuler( new THREE.Euler(0,0,0) );
-const scale = new THREE.Vector3(1,1,1)
-matrix.compose(pos, q, scale);
-*/
-//att_uv.applyMatrix4(matrix);
-
-
-//att_uv.setXY(0, -0.25,  1.25);
-//att_uv.setXY(1,  0.25,  1.25);
-//att_uv.setXY(2, -0.25,  0.75);
-//att_uv.setXY(3,  0.25,  0.75);
+const att_pos = geo.getAttribute('position');
+{
+    const cx = 0.5; cy = 0.5;
+    const a_start = Math.PI * 1.5;
+    const radius = 0.75;
+    let i = 0;
+    while( i < att_uv.count ){
+        const a = a_start + Math.atan2( att_pos.getX(i), att_pos.getZ(i) );
+        const u = cx + Math.cos(a) * radius;
+        const v = cy + Math.sin(a) * radius;
+        att_uv.setXY( i, u, v );
+        i += 1;
+   }
+}
 //-------- ----------
 // MESH
 //-------- ----------
