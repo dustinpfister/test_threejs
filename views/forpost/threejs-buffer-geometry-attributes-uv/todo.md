@@ -2,11 +2,6 @@
 
 <!-- MINIMAP -->
 
-## () - s2-2-minimap-plane
-* () start a new demo of a plane
-* () bade this on the code that I worked out for s08-3-texture-rotation in threejs-materials
-
-
 ## () - s2-3-minimap-sphere
 * () another one this time with a sphere
 
@@ -15,6 +10,10 @@
 * () I would like to have a fast way to switch between having all sides use the same texture and various other states. 
 
 <!-- DONE -->
+
+## ( done 08/01/2023) - s2-2-minimap-plane
+* (done) start a new demo of a plane
+* (done) bade this on the code that I worked out for s08-3-texture-rotation in threejs-materials
 
 ## ( done 06/12/2023 ) s2-1-minimap-tri
 * (done) rename older demos as needed
