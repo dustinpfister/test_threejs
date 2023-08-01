@@ -1,10 +1,16 @@
 # threejs-buffer-geometry-attributes-uv
 
 <!-- MINIMAP -->
+
+## () - s2-2-minimap-plane
+* () start a new demo of a plane
+* () bade this on the code that I worked out for s08-3-texture-rotation in threejs-materials
+
+
 ## () - s2-3-minimap-sphere
 * () another one this time with a sphere
 
-## () - s2-2-minimap-cube
+## () - s2-4-minimap-cube
 * () start a new minimap demo that uses cubes
 * () I would like to have a fast way to switch between having all sides use the same texture and various other states. 
 
