@@ -14,7 +14,7 @@ renderer.setSize(640, 480, false);
 const al = new THREE.AmbientLight(0xffffff);
 scene.add(al); 
 // ADD a Point Light and position the light away from the camera
-var pl = new THREE.PointLight('white');
+const pl = new THREE.PointLight('white');
 pl.position.set(20, 30, 40);
 pl.add(new THREE.Mesh(
         new THREE.SphereGeometry(1, 10, 10),
