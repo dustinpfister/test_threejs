@@ -6,8 +6,10 @@ const camera = new THREE.PerspectiveCamera(50, 320 / 240, 0.5, 10);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
-
-
+//-------- ----------
+// HELPERS
+//-------- ----------
+// create a texture for the sprite
 const createTexture = () => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -34,9 +36,8 @@ const createTexture = () => {
     const texture = new THREE.CanvasTexture( canvas );
     return texture;
 };
-
+// create a sprite object using the THREE.SpriteMaterial
 const createCursorSprite = () => {
-    // the material for the sprite
     const material = new THREE.SpriteMaterial({
         map: createTexture(),
         sizeAttenuation: false,
