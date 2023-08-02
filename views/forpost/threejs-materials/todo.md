@@ -29,9 +29,6 @@
 
 <!-- S3 - POINTS SECTION -->
 
-## () - s03-2-points-size-attenuation
-* () demo where I have two materials one with sizeAttenuation option set to false
-
 <!-- S4 - LINES SECTION -->
 
 <!-- S5 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
@@ -45,14 +42,10 @@
 
 <!-- S6 - BLENDING SECTION -->
 
-At this time I do have one demo on the subject of blending and materials, but I can see that this is a subject that should have its own section. This is not a situation in which there are just a few constants for one property and that is it. Some of the constants for the blending property enabled other properties as well.
-
 ## () s6-2-blending-additive
 * () demo about additive compared to normal
 
 <!-- S7 - LOADERS SECTION -->
-
-There are of course a lot of options when it comes to loading in material data. The main loader of interest with materials alone would be the MaterialLoader of course. However I think that I should also use this section to write a thing or two about the THREE.ObjectLoader also as this is the more general kind of loader that can be used to load a whole scene.
 
 ## () s07-3-loader-object-images
 * () have an object format demo that shows that image data can be baked in
@@ -66,8 +59,6 @@ There are of course a lot of options when it comes to loading in material data. 
 
 <!-- S8 - TEXTURES SECTION -->
 
-I would like to make my current s8-1-texture-emissive demo a real solid over all demo of the use of texture and uv mapping. However at some point I am going to want to rename this demo to something else that will be a more advanced demo later in the section. New demos should then just be more basic demos of various texture features that are must know features such as the filters and wrapping values.
-
 ## ( ) - s8-4-texture-minimap - uvmap status rects
 * () the main element to render to should be a plain old 2d context canvas
 * () draw to the 2d canvas with the domElement of the renderer
@@ -75,8 +66,6 @@ I would like to make my current s8-1-texture-emissive demo a real solid over all
 * () I would like to have a uv map status rect for the emissive map
 
 <!-- S9 - LIGHT  -->
-
-I should have a section on the subject of light
 
 ## () s9-3-light-map-emissivemap
 * () I will of course want to get into the subject of the map, and emissiveMap options
@@ -86,11 +75,8 @@ I should have a section on the subject of light
 
 <!-- S10 - SHADOWS  -->
 
-Shadows should have there own section
 
 <!-- s11 - MATERAL ARRAY SECTION -->
-
-It would be nice to have a section where I get into material arrays, and groups of buffer geometry. If so I should have at least one demo in which I am using the Phong for metal surfaces, and Lambert for wood surfaces.
 
 ## () s11-2-matarray-plane
 * () a mesh using a plane might be a good start when it comes to the add group method
@@ -125,6 +111,9 @@ One really interesting test with this would be comparing the standard to lambert
 
 
 <!-- DONE -->
+
+## ( done 08/02/2023 ) - s03-2-points-size-attenuation
+* (done) demo where I have two materials one with sizeAttenuation option set to false
 
 ## ( done 08/01/2023 ) - s8-3-texture-rotation - loop, rotation
 * (done) work out some logic for rotation of uv attributes by looking at the position attribute
