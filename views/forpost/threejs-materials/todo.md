@@ -31,79 +31,84 @@
 
 <!-- S4 - LINES SECTION -->
 
-<!-- S5 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
+<!-- S5 - SPRITES SECTION -->
+
+## s05-1-sprites-crosshairs
+* () have a crosshairs demo based on the code I used in my position editor electionjs app
+
+<!-- S6 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
 
 
-## () - s5-5-common-depthfunc
+## () - s06-5-common-depthfunc
 * () depth function demo
 
-## () - s5-6-common-clip-intersection
+## () - s06-6-common-clip-intersection
 * () I am going to want to have at least one demo on the subject of cliping here
 
-<!-- S6 - BLENDING SECTION -->
+<!-- S7 - BLENDING SECTION -->
 
-## () s6-2-blending-additive
+## () s07-2-blending-additive
 * () demo about additive compared to normal
 
-<!-- S7 - LOADERS SECTION -->
+<!-- S8 - LOADERS SECTION -->
 
-## () s07-3-loader-object-images
+## () s08-3-loader-object-images
 * () have an object format demo that shows that image data can be baked in
 * () while at it also place light objects along with the mesh
 * () make the root object a scene object
 * () use matrix4 for storing position, rotation, and scale of objects
 
-## () s07-4-loader-many
+## () s08-4-loader-many
 * () load many files demo
 * () use material, texture, and buffergeometry loaders
 
-<!-- S8 - TEXTURES SECTION -->
+<!-- S9 - TEXTURES SECTION -->
 
-## ( ) - s8-4-texture-minimap - uvmap status rects
+## ( ) - s09-4-texture-minimap - uvmap status rects
 * () the main element to render to should be a plain old 2d context canvas
 * () draw to the 2d canvas with the domElement of the renderer
 * () I would like to have a uv map status rect for the map texture
 * () I would like to have a uv map status rect for the emissive map
 
-<!-- S9 - LIGHT  -->
+<!-- S10 - LIGHT  -->
 
-## () s9-3-light-map-emissivemap
+## () s10-3-light-map-emissivemap
 * () I will of course want to get into the subject of the map, and emissiveMap options
 
-## () s9-4-light-lambert-phong
+## () s10-4-light-lambert-phong
 * () demo in which the lambert and phong materials are compared
 
-<!-- S10 - SHADOWS  -->
+<!-- S11 - SHADOWS  -->
 
 
-<!-- s11 - MATERAL ARRAY SECTION -->
+<!-- s12 - MATERAL ARRAY SECTION -->
 
-## () s11-2-matarray-plane
+## () s12-2-matarray-plane
 * () a mesh using a plane might be a good start when it comes to the add group method
 * () see about making a custom one where we have an area that is a 'lake'
 * () use the phong material for the lake area, and Lambert for the rest
 
 
-<!-- s12 - Fog -->
+<!-- s13 - Fog -->
 
-<!-- s13 - SHADER MATERIAL SECTION -->
+<!-- s14 - SHADER MATERIAL SECTION -->
 
-## () - s13-3-shader-functions
+## () - s14-3-shader-functions
 * () I would like to have a demo of functions
 
-## () - s13-4-shader-lib
+## () - s14-4-shader-lib
 * () demo in which I make use of features of the shader lib to quickly add vertex colors
 
-<!-- s14 - RAW SHADER MATERIAL SECTION -->
+<!-- s15 - RAW SHADER MATERIAL SECTION -->
 
 When I get to it I should have at least one demo on the use of the raw shader material.
 
-## () s13-1-rawshader-points
+## () s15-1-rawshader-points
 * () I would like to make a raw shader that will work with just points
 * () draw points with a feature other than what is used with the points material as I am having problems with that on RPI OS
 
 
-<!-- s15 - PREFORMANCE TESTING SECTION -->
+<!-- s16 - PREFORMANCE TESTING SECTION -->
 
 If I get to this subject there is writing at leasr a few demos where the goal is to find out what materials preform the best in terms of processing overhead. For examples there is testing out what the FPS is for the movement of a whole bunch of objects each of which are using the MeshBasicMaterial, and then seeing how that compares to the use of the MeshPhongMaterial with one or more light sources. I would assume that I would get higher FPS with the Basic Material, but still I would assume nothing until some final testing is done.
 

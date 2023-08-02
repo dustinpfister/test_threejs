@@ -16,17 +16,18 @@ I have started the following, but will be expanding and refining the demos in th
 
 * s01    - A Basic section in which I touch base on every key detail about materials at least
 * s02    - A Mesh Section in which I have just one decent example of each mesh material
-* s03    - Sections for Line Materials
+* s03    - The Line Materials
 * s04    - The Points Material
-* s05    - A common section with mnay demos on features that are sharded for all materials
-* s06    - Blending deep dive section
-* s07    - Loaders, THREE.MaterialLoader, THREE.ObjectLoader, ect
-* s08    - Textures and UV mapping Deep dive section
-* s09    - Light
-* s10    - Shadows
-* s11    - Arrays of materials
-* s12    - Fog
-* s13    - THREE.ShaderMaterial
+* s05    - The Sprite Material
+* s06    - A common section with mnay demos on features that are sharded for all materials
+* s07    - Blending deep dive section
+* s08    - Loaders, THREE.MaterialLoader, THREE.ObjectLoader, ect
+* s09    - Textures and UV mapping Deep dive section
+* s10    - Light
+* s11    - Shadows
+* s12    - Arrays of materials
+* s13    - Fog
+* s14    - THREE.ShaderMaterial
 
 I will want to start sections on a lot of topics also though
 
