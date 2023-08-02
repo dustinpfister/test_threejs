@@ -33,9 +33,6 @@
 
 <!-- S5 - SPRITES SECTION -->
 
-## s05-1-sprites-crosshairs
-* () have a crosshairs demo based on the code I used in my position editor electionjs app
-
 <!-- S6 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
 
 
@@ -116,6 +113,9 @@ One really interesting test with this would be comparing the standard to lambert
 
 
 <!-- DONE -->
+
+## ( done 08/02/2023 ) s05-1-sprites-crosshairs
+* (done) have a crosshairs demo based on the code I used in my position editor electionjs app
 
 ## ( done 08/02/2023 ) - s03-2-points-size-attenuation
 * (done) demo where I have two materials one with sizeAttenuation option set to false
