@@ -2,9 +2,6 @@
 
 <!-- S1 - BASIC SECTION -->
 
-## () s1-3-basic-applyMatrix4
-* () apply matrix4 method example using a stand alone matrix object
-
 ## () s1-4-basic-from-array
 * () basic example of from array
 
@@ -18,6 +15,9 @@ I will want to have at least a few examples of the object loader with this.
 * () Of course the json string should have a matrix key for the scene, and child object
 
 <!-- DONE -->
+
+## ( done 08/03/2023 ) s1-3-basic-applyMatrix4
+* (done) apply matrix4 method example using a stand alone matrix object
 
 ## ( done 08/03/2023 ) s1-2-basic-manually
 * (done) demo where object3d.updateMatrix method is used
