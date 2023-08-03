@@ -2,15 +2,25 @@
 
 <!-- S1 - BASIC SECTION -->
 
-## () s1-4-basic-from-array
+<!-- S2 - METHODS SECTION -->
+
+## () s1-1-methods-decompose
+
+## () s1-2-methods-from-array
 * () basic example of from array
 
+## () s1-3-methods-identity
+* () demo on the identity method
 
-<!-- S2 - OBJECT LOADER SECTION -->
+## () s1-4-methods-make-rotation-x 
+
+## () s1-5-methods-make-scale
+
+<!-- S3 - OBJECT LOADER SECTION -->
 
 I will want to have at least a few examples of the object loader with this.
 
-## () s2-1-objectloader
+## () s3-1-objectloader
 * () Basic example here I am just working with a hard coded string of object json
 * () Of course the json string should have a matrix key for the scene, and child object
 
