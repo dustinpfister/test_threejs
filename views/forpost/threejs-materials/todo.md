@@ -35,12 +35,11 @@
 
 <!-- S6 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
 
-
-## () - s06-5-common-depthfunc
-* () depth function demo
-
-## () - s06-6-common-depthtest
+## () - s06-5-common-depthtest
 * () should have one on depth test like with the sprite demo
+
+## () - s06-6-common-depthfunc
+* () depth function demo
 
 ## () - s06-7-common-clip-intersection
 * () I am going to want to have at least one demo on the subject of cliping here
