@@ -17,13 +17,6 @@
 
 <!-- S2 - MESH SECTION -->
 
-## () - Add depth demo code for s2-1-mesh-basic
-* () I want to fix up the s2-1-mesh-basic demo to show some ways to add depth so that it is not just a solid color
-* () I think I should have a few materials and objects to show the various options actually
-* () use points as a child object of a mesh, and have high section count for the geometry made for the cube as one object
-* () use lines as a child object of a mesh, and edge geometry
-* () use canvas texture and shade the corners for one option
-
 ## () - s2-9-mesh-matcap
 * () I should start a mesh matcap section when I have a post on this material option.
 
@@ -34,9 +27,6 @@
 <!-- S5 - SPRITES SECTION -->
 
 <!-- S6 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
-
-## () - s06-5-common-depthtest
-* () should have one on depth test like with the sprite demo
 
 ## () - s06-6-common-depthfunc
 * () depth function demo
@@ -115,6 +105,13 @@ One really interesting test with this would be comparing the standard to lambert
 
 
 <!-- DONE -->
+
+
+## ( done 08/03/2023) - Add depth demo code for s2-1-mesh-basic
+* (done) I want to fix up the s2-1-mesh-basic demo to show some ways to add depth so that it is not just a solid color
+
+## ( done 08/03/2023 ) - s06-5-common-depthtest
+* (done) should have one on depth test like with the sprite demo
 
 ## ( done 08/02/2023 ) s05-1-sprites-crosshairs
 * (done) have a crosshairs demo based on the code I used in my position editor electionjs app
