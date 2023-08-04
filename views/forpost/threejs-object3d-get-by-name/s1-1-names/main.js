@@ -4,8 +4,6 @@
 const scene = new THREE.Scene();
 scene.add(new THREE.GridHelper(10, 10));
 const camera = new THREE.PerspectiveCamera(50, 320 / 240, 0.1, 1000);
-camera.position.set(4, 4, 4);
-camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
@@ -40,9 +38,11 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // GETTING GROUP AND BOX1 BY THE NAMES OUTSIDE OF THE IIFE
 const group = scene.getObjectByName('boxGroup');
-var box = group.getObjectByName('box1');
+const box = group.getObjectByName('box1');
 box.rotation.set(Math.PI / 180 * 45, 0, 0);
 //-------- ----------
 // RENDER
 //-------- ----------
+camera.position.set(4, 4, 4);
+camera.lookAt(0, 0, 0);
 renderer.render(scene, camera);
