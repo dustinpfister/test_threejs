@@ -2,15 +2,11 @@
 
 <!-- S1 - BASIC SECTION -->
 
-## () - s1-7-basic-common
+## () - s1-8-basic-common
 * () basic common options demo
 * () this can start out the same as s1-2-basic-objects only add a color attribute
 * () set the use vertex colors boolean for all of the materials used
 * () might also choose to use other common material class features such as blending, opacity, ect keep in basic though
-
-## () - s1-8-basic-textue
-* () very basic texture example
-* () start with the source from one of the basic examples from the canvas textures post.
 
 ## () - s1-9-basic-shader
 * () very simple hello world demo of the shader material
@@ -106,6 +102,10 @@ One really interesting test with this would be comparing the standard to lambert
 
 <!-- DONE -->
 
+## ( done 08/04/2023 ) - s1-7-basic-textue
+* (done) very basic texture example
+* (done) start with the source from the MeshBasicMaterial example from the mesh section
+* (done) go with canvas textures over that of data textures
 
 ## ( done 08/03/2023) - Add depth demo code for s2-1-mesh-basic
 * (done) I want to fix up the s2-1-mesh-basic demo to show some ways to add depth so that it is not just a solid color
