@@ -37,12 +37,6 @@
 
 <!-- S8 - LOADERS SECTION -->
 
-## () s08-3-loader-object-images
-* () have an object format demo that shows that image data can be baked in
-* () while at it also place light objects along with the mesh
-* () make the root object a scene object
-* () use matrix4 for storing position, rotation, and scale of objects
-
 ## () s08-4-loader-many
 * () load many files demo
 * () use material, texture, and buffergeometry loaders
@@ -101,6 +95,9 @@ One really interesting test with this would be comparing the standard to lambert
 
 
 <!-- DONE -->
+
+## ( done 08/05/2023 ) s08-3-loader-object-load-and-textures
+* (done) have an object format demo that shows that image data can be baked in
 
 ## ( done 08/04/2023 ) - s1-7-basic-textue
 * (done) very basic texture example
