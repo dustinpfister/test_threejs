@@ -2,11 +2,7 @@
 
 <!-- S1 - BASIC SECTION -->
 
-## () - s1-8-basic-common
-* () basic common options demo
-* () this can start out the same as s1-2-basic-objects only add a color attribute
-* () set the use vertex colors boolean for all of the materials used
-* () might also choose to use other common material class features such as blending, opacity, ect keep in basic though
+
 
 ## () - s1-9-basic-shader
 * () very simple hello world demo of the shader material
@@ -95,6 +91,11 @@ One really interesting test with this would be comparing the standard to lambert
 
 
 <!-- DONE -->
+
+## ( done 08/06/2023 ) - s1-8-basic-common
+* (done) basic common options demo
+* (done) this can start out the same as s1-2-basic-objects only add a color attribute
+* (done) set the use vertex colors boolean for all of the materials used
 
 ## ( done 08/05/2023 ) s08-3-loader-object-load-and-textures
 * (done) have an object format demo that shows that image data can be baked in
