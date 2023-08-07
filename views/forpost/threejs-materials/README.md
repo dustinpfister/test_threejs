@@ -125,10 +125,12 @@ https://medium.com/geekculture/threejs-tutorial-comparing-the-most-common-materi
 
 This post started out not so bad, but then started writing about the Baisc Material.
 
->MeshBasicMaterial
->This is the most basic material of all. Meshes that apply this material usually show only a single colour. Lighting does not affect this >material at all. When you look at an object using MeshBasicMaterial at different angles, at some point you just can’t figure out what >you’re looking at!
 >
+>MeshBasicMaterial
+>This is the most basic material of all. Meshes that apply this material usually show only a single colour. Lighting does not affect this material at all. When you look at an object using MeshBasicMaterial at different angles, at some point you just can’t figure out what you’re looking at!
+
 >This material is a good choice if you want to render your model in a simple wireframe.
+>
 
 Once again we have the basic material is basic type line. However there is more than just that which bothers me with this as the author leads people reading this to believe that the basic material is just good for using write frame mode, otherwise you just have a solid mass of color. The basic material can sill be used with textures by way of the map option which is one way to go about showing depth. Another option is the common vertexColor option and adding a color attribute to the buffer geometry. The Basic material is a great over all final choice for certain projects actually and the post failed to make that clear.
 

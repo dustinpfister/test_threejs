@@ -85,13 +85,13 @@ When I get to it I should have at least one demo on the use of the raw shader ma
 * () I would like to make a raw shader that will work with just points
 * () draw points with a feature other than what is used with the points material as I am having problems with that on RPI OS
 
-
 <!-- s16 - PREFORMANCE TESTING SECTION -->
 
 If I get to this subject there is writing at leasr a few demos where the goal is to find out what materials preform the best in terms of processing overhead. For examples there is testing out what the FPS is for the movement of a whole bunch of objects each of which are using the MeshBasicMaterial, and then seeing how that compares to the use of the MeshPhongMaterial with one or more light sources. I would assume that I would get higher FPS with the Basic Material, but still I would assume nothing until some final testing is done.
 
 One really interesting test with this would be comparing the standard to lambert to see if lambert is faster when it comes to light. From what I gathered I think Lambert will be faster, but still need to test first and to be sure.
 
+<!-- s17 WORKING DIRECTLY WITH WEBGL SECTION? -->
 
 <!-- DONE -->
 
