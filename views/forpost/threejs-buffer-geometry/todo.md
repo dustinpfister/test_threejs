@@ -13,34 +13,38 @@
 ## () - sx-1-vertcolors
 * () start a section on vertex colors
 
-<!-------- ----------
-  // EXPAND METHODS SECTION
----------- --------->
-## () - s3-x-apply-quaternion
-* () demo of the apply quaternion method
+<!-- S1 BASIC SECTION -->
 
-## () - s3-x-copy
-* () - have a demo on the copy method of buffer geometry
+<!-- S2 LIGHT SECTION -->
 
-<!-------- ----------
-  // EXPAND LIGHT SECTION
----------- --------->
-## () - s4-3-light-full
+## () - s2-3-light-full
 * () rename s4-1-light to s4-3-light-full
 * () add a uv attribute
 * () add canvas texture
 
-## () - s4-1-light-tri
+## () - s2-1-light-tri
 * () simple triangle example
 * () use phong material
 * () just position, and normal attributes
 
-## () - s4-2-light-uv
+## () - s2-2-light-uv
 * () same as s4-1-light-tri but add a uv attribute
 
-<!-------- ----------
-  // DONE
----------- --------->
+<!-- S3 METHODS SECTION -->
+
+## () - s3-x-methods-apply-quaternion
+* () demo of the apply quaternion method
+
+## () - s3-x-methods-copy
+* () - have a demo on the copy method of buffer geometry
+
+<!-- S4 TO JSON SECTION -->
+
+<!-- S5 LOADER SECTION -->
+
+<!-- S6 MORPH ATTRIBUTES SECTION -->
+
+<!-- DONE -->
 
 ## ( done 06/07/2023 ) - index and names for s5-2-loader-many-promise
 * (done) index values passed when buffer on load method called
