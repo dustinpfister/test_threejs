@@ -10,7 +10,7 @@ This is what I have when it comes to the source code examples that I am writing 
 
 ## What the plan is for future edits
 
-I am going to make this post on materials in general one of the posts that I will keep working on a little each day for at least a week or longer until it starts to become a Deep Dive kind of post if that makes any sense. One vague feature of this kind of post I would say is at least 5,000+ words, however I would also say that the bulk of that writing is NOT Padding. I could just go on and on and on about things sure, but what I really want to do is make this post a lengthy content piece of substance.
+I am going to make this post on materials in general one of the posts that I will keep working on a little each day for at least a week or longer until it starts to become a Deep Dive kind of post if that makes any sense. One vague feature of this kind of post I would say is at least 5,000+ words, however I would also say that the bulk of that writing should also NOT BE PADDING. I could just go on and on and on about things sure, but what I really want to do is make this post a lengthy content piece of substance.
 
 I have started the following, but will be expanding and refining the demos in these sections
 
@@ -31,7 +31,7 @@ I have started the following, but will be expanding and refining the demos in th
 
 I will want to start sections on a lot of topics also though
 
-* the Raw Shader material and with that RAW Shader GLSL code examples
+* The Raw Shader material and with that RAW Shader GLSL code examples
 * A section on FPS testing of various materials
 * One or more sections on 'user-style' that is just going with certain features and being done with materials
 
