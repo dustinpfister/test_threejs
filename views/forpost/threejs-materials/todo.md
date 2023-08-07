@@ -61,11 +61,8 @@
 
 <!-- s12 - MATERAL ARRAY SECTION -->
 
-## () s12-2-matarray-plane
-* () a mesh using a plane might be a good start when it comes to the add group method
-* () see about making a custom one where we have an area that is a 'lake'
-* () use the phong material for the lake area, and Lambert for the rest
-
+## () s12-3-matarray-plane
+* () this can be a more advanced demo ofthe use of the add group method
 
 <!-- s13 - Fog -->
 
@@ -94,6 +91,10 @@ One really interesting test with this would be comparing the standard to lambert
 <!-- s17 WORKING DIRECTLY WITH WEBGL SECTION? -->
 
 <!-- DONE -->
+
+## ( done 08/07/2023 ) s12-2-matarray-both-sides
+* (done) have a plane geometry
+* (done) use two materials one for each side
 
 ## ( done 08/06/2023 ) - s1-8-basic-common
 * (done) basic common options demo
