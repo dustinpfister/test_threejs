@@ -150,6 +150,21 @@ The normal attribute is a feature of buffer geometry objects, not the mesh objec
 
 Again totaly wrong as with any mesh material there are all the options that in the base material class that can be used. However I do not even know where this is comeing from at all becuase there are a whole lot of options for the mesh normal material alone as well such as normalMap, fog, flatShading, not to mentine that wireframe that so many of these authors seem to like.
 
+### blog.cjgammon.com
+
+https://blog.cjgammon.com/threejs-materials/
+
+Oh Boy here we go again...
+
+>
+> The most basic material is the MeshBasicMaterial. You can pass a color in as a parameter to get a solid colored object, which has no shading. You can also adjust the opacity by passing in the opacity as a parameter with a value from 0 to 1 and setting transparent to true.
+>
+
+I am noticing a pattern with this. Seems like a lot of these authors are just copying what is in other blog posts on this subject without adding of changing much. At least time time they mentioned a common base material class option, but sadly one that does not help show depth.
+
+This is now solid for me when it comes to future edits, in my main section on mesh material options I made sure to feature the use of the map option. I am not sure if I will start having sections in which I expand more on each mesh material as I think that is something that I should do in stand alone blog posts for each material option, but maybe I should do so in this post also..
+
+
 ## Additional Notes
 
 This is just a place where I am parking additional ideas that apply to future edits of this post, as well as choices that where made in the past. When I get ideas I will want to write them down somewhere of course and this seems like a good place to park that.
