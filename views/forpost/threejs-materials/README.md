@@ -132,6 +132,24 @@ This post started out not so bad, but then started writing about the Baisc Mater
 
 Once again we have the basic material is basic type line. However there is more than just that which bothers me with this as the author leads people reading this to believe that the basic material is just good for using write frame mode, otherwise you just have a solid mass of color. The basic material can sill be used with textures by way of the map option which is one way to go about showing depth. Another option is the common vertexColor option and adding a color attribute to the buffer geometry. The Basic material is a great over all final choice for certain projects actually and the post failed to make that clear.
 
+### voskan.host
+
+https://voskan.host/2023/02/02/materials-in-three-js-an-overview-with-examples-and-parameters/
+
+Another post that does a disservice with the MeshBasicMaterial, fails to mention the map option that can be used to set texture and thus show depth. Fails to mention that the base material class is still there to work with as the Basic Material extends from that. Says that a list of options for the basic material that it gives is a "Complete list of parameters" when many are missing including the map option. Like other posts it looks like this post is to suggesting that the only way to show depth with the basic material is to set it in wireframe mode.
+
+>
+> The MeshNormalMaterial is a simple material that is used to visualize the normals of a mesh.
+>
+
+The normal attribute is a feature of buffer geometry objects, not the mesh object alone.
+
+>
+> The MeshNormalMaterial does not have any parameters
+>
+
+Again totaly wrong as with any mesh material there are all the options that in the base material class that can be used. However I do not even know where this is comeing from at all becuase there are a whole lot of options for the mesh normal material alone as well such as normalMap, fog, flatShading, not to mentine that wireframe that so many of these authors seem to like.
+
 ## Additional Notes
 
 This is just a place where I am parking additional ideas that apply to future edits of this post, as well as choices that where made in the past. When I get ideas I will want to write them down somewhere of course and this seems like a good place to park that.

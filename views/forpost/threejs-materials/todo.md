@@ -12,6 +12,9 @@
 ## () - s2-9-mesh-matcap
 * () I should start a mesh matcap section when I have a post on this material option.
 
+## () -s2-10-mesh-distance
+* () see about making a demo of the distance material
+
 <!-- S3 - POINTS SECTION -->
 
 <!-- S4 - LINES SECTION -->
