@@ -32,6 +32,8 @@ I have started the following, but will be expanding and refining the demos in th
 I will want to start sections on a lot of topics also though
 
 * The Raw Shader material and with that RAW Shader GLSL code examples
+* A Second on node matreials than can be found in the /examples/jsm/nodes folder
+* A section on working directly with webgl alone
 * A section on FPS testing of various materials
 * One or more sections on 'user-style' that is just going with certain features and being done with materials
 
@@ -73,6 +75,22 @@ https://github.com/mrdoob/three.js/tree/r146/src/renderers/shaders/ShaderLib
 ## Other posts on materials in General
 
 One major part of the process of writing a blog post not just on this topic but in general is to do research, and to not just start and end with the threejs DOCS and reading source code. There is of course studying the works of other developers that have wrote similar blog posts on this topic. In the process of doing so I will end up seeing what I should also write about, however there is also seeing what there is when it comes to things that are lacking as well. So far it would seem that A lot of the content that I have found seraching on google is very much lacking. However still the main aim of doing this is to learn a think or two.
+
+### www.packtpub.com
+
+https://hub.packtpub.com/threejs-materials-and-texture/
+
+Not a post on materials in general, but does write about using canvas textures as a way to show depth. This is somehting that I like to do all the time as a way to create tetxures that can then be used with the various map options of materials.
+
+### www.donmccurdy.com
+
+https://www.donmccurdy.com/2019/03/17/three-nodematerial-introduction/
+
+This is a good post that pointeded out somehting new that I was not aware of before. So for that reason alone this is a great post. It is not on materials in general mind you, but it is a nice little piece on the subject of NodeMaterials. The link that is given is broken becuase it links to the js folder that was removed in r148. This is a simple fix though as they are now in the JSM folder when it comes to late revison numbers, else you just need to make sure you are linking to the right revision like this:
+
+https://github.com/mrdoob/three.js/tree/r155/examples/jsm/nodes
+
+This is something I will want to look into more
 
 ### Chris Courses "Comprehensive" post on materials in threejs \( chriscourses.com \)
 
