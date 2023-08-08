@@ -2,7 +2,7 @@
 // SCENE, CAMERA, RENDERER
 // ---------- ----------
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(50, 32 / 24, 1.8, 3);
 const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 (document.getElementById('demo') || document.body).appendChild(renderer.domElement);
@@ -16,13 +16,15 @@ const material1 = new THREE.ShaderMaterial({
         }`,
     fragmentShader: `
         void main() {
-            gl_FragColor = vec4( 255, 255, 255, 1.0 );
+            float d = 1.0 - gl_FragCoord.z;
+            vec3 v = vec3( d );
+            gl_FragColor = vec4( v, 1.0 );
         }`
 });
 // ---------- ----------
 // GEOMETRY, MESH
 // ---------- ----------
-const geometry = new THREE.SphereGeometry( 1, 16, 16);
+const geometry = new THREE.SphereGeometry( 1.2, 80, 80);
 const mesh = new THREE.Mesh(geometry, material1);
 scene.add(mesh);
 // ---------- ----------
