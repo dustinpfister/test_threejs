@@ -76,6 +76,13 @@ https://github.com/mrdoob/three.js/tree/r146/src/renderers/shaders/ShaderLib
 
 One major part of the process of writing a blog post not just on this topic but in general is to do research, and to not just start and end with the threejs DOCS and reading source code. There is of course studying the works of other developers that have wrote similar blog posts on this topic. In the process of doing so I will end up seeing what I should also write about, however there is also seeing what there is when it comes to things that are lacking as well. So far it would seem that A lot of the content that I have found seraching on google is very much lacking. However still the main aim of doing this is to learn a think or two.
 
+### jameshfisher
+
+https://jameshfisher.com/2017/10/19/glsl-varying/
+
+This was a nice, simple post on the subject of varying GLSL variables
+
+
 ### www.packtpub.com
 
 https://hub.packtpub.com/threejs-materials-and-texture/

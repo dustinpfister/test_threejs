@@ -73,8 +73,7 @@
 
 <!-- s14 - SHADER MATERIAL SECTION -->
 
-## () - s15-3-shader-varying
-* () demo on the use of varying types of values
+
 
 ## () - s14-4-shader-functions
 * () I would like to have a demo of functions
@@ -99,6 +98,9 @@ One really interesting test with this would be comparing the standard to lambert
 <!-- s17 WORKING DIRECTLY WITH WEBGL SECTION? -->
 
 <!-- DONE -->
+
+## ( done 08/08/2023 ) - s15-3-shader-varying
+* (done) demo on the use of varying types of values
 
 ## ( done 08/08/2023 ) - s14-1-shader-white
 * (done) I would like to show some depth but in a differing way from the basic example
