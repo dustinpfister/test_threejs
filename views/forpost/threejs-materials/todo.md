@@ -2,10 +2,9 @@
 
 <!-- S1 - BASIC SECTION -->
 
+## ( ) - s1-9-basic-shader - depth
+* () I would like to find some simple way to show deptn while still keepin this simple
 
-
-## () - s1-9-basic-shader
-* () very simple hello world demo of the shader material
 
 <!-- S2 - MESH SECTION -->
 
@@ -62,7 +61,13 @@
 <!-- s12 - MATERAL ARRAY SECTION -->
 
 ## () s12-3-matarray-plane
-* () this can be a more advanced demo ofthe use of the add group method
+* () this can be a more advanced demo of the use of the add group method
+* () have more than two group objects for this plane
+
+## () s12-4-matarray-sphere-loop
+* () demo in which a sphere is used as the geometry, and also an app loop
+* () add just two groups
+* () change the start and count calls over time in the loop
 
 <!-- s13 - Fog -->
 
@@ -91,6 +96,9 @@ One really interesting test with this would be comparing the standard to lambert
 <!-- s17 WORKING DIRECTLY WITH WEBGL SECTION? -->
 
 <!-- DONE -->
+
+## ( done 08/08/2023 ) - s1-9-basic-shader
+* (done) start very simple hello world demo of the shader material
 
 ## ( done 08/07/2023 ) s12-2-matarray-both-sides
 * (done) have a plane geometry
