@@ -3,7 +3,7 @@
 <!-- S1 - BASIC SECTION -->
 
 ## ( ) - s1-9-basic-shader - depth
-* () I would like to find some simple way to show deptn while still keepin this simple
+* () I would like to find some simple way to show depth while still keepin this simple
 
 
 <!-- S2 - MESH SECTION -->
@@ -72,6 +72,9 @@
 <!-- s13 - Fog -->
 
 <!-- s14 - SHADER MATERIAL SECTION -->
+
+## () - s14-1-shader-white
+* () I would like to show some depth but in a differing way from the basic example
 
 ## () - s14-3-shader-functions
 * () I would like to have a demo of functions
