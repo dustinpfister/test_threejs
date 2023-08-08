@@ -10,11 +10,15 @@ renderer.setSize(640, 480, false);
 // SHADER MATERIAL
 // ---------- ----------
 const material1 = new THREE.ShaderMaterial({
+    uniforms: {
+        intensity: { value: 3.0 }
+    },
     vertexShader: `
+        uniform float intensity;
         varying vec3 v_color;
         void main() {
             gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-            v_color = position * 2.00;
+            v_color = position * intensity;
         }`,
     fragmentShader: `
         varying vec3 v_color;
@@ -33,5 +37,16 @@ scene.add(mesh1);
 // ---------- ----------
 camera.position.set(2, 2, 2);
 camera.lookAt(0, 0, 0);
-renderer.render(scene, camera);
+let frame = 0;
+const frameMax = 900;
+const loop = () => {
+    const a_frame = frame / frameMax;
+    a_inten = Math.sin( Math.PI * (a_frame * 9 % 1) );
+    requestAnimationFrame(loop);
+    material1.uniforms.intensity.value = 1 + (1 + 7 * a_frame) * a_inten;
+    renderer.render(scene, camera);
+    frame += 1;
+    frame %= frameMax;
+};
+loop();
 
