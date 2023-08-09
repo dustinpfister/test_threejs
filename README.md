@@ -127,11 +127,25 @@ The json folder contains various kinds of JSON files in various kinds of formats
 
 Threejs is a very fast moving project in terms of development compared to many other libraries out on the open web. There is a whole lot to say about what has all ready broke, and will continue to break as things move forward with each new revision that comes out. As such many of us that use threejs will end up sticking with a certain given revision number of threejs for a while, maybe even indefinitely for various reasons. With that said as of this writing there are two general style rules that I am following as I write posts for new demos, and edit old ones.
 
-### The r152 style rules
+### 4.1 - The r152 style rules
 
 My [r152 style rules](https://github.com/dustinpfister/test_threejs/blob/master/views/demos/r152/README.md) is what I am following when it comes to writing new blog posts at this time. At this point I am now using module type script tags, which means that you will see the use of import and export in code examples. 
 
-### The r146 style rules
+### 4.2 - The r146 style rules
 
 For now the [r146 style rules](https://github.com/dustinpfister/test_threejs/blob/master/views/demos/r146/README.md) are the default style rules that I use when editing older demos, and will most likley remain so for a while to say the least. The very next revision after this one is the last revision where js file versions of add on files can be found in the github repo of threejs. So this revision marks the end of the use of text/javaScript mimie type script tags as part of the over all code style.
+
+## 5 - DEEP DIVE CONTENT
+
+I have by trying all kinds of ways to which I should go about improving content that is all ready in place rather than writing new content. For a long time I was stuck in this process of just doing a little touch up work on every post I have wrote this far, a little each day, over the course of months until I then get to the point that I loop around again. To some extent that might need to continue, but as of late I am more interested in exploring the polar opposite of that by making at least a few posts what some might call Deep Dive content posts. There might be some other terms for this kind of content, such as long form content or what have you.
+
+### 5.1 - My post on materials in general in threejs
+
+The post: https://dustinpfister.github.io/2018/04/30/threejs-materials/
+
+forpost folder here: https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-materials
+
+My blog post on threejs materials is now well over 10k words, and thus far I would say that I could in theory expand it even more so way beyond that if I do end up completely going off the deep end with this one.
+
+
 
