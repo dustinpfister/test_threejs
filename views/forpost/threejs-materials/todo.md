@@ -2,16 +2,15 @@
 
 <!-- S1 - BASIC SECTION -->
 
-## ( ) - s1-9-basic-shader - depth
+## ( ) - depth for s1-9-basic-shader
 * () I would like to find some simple way to show depth while still keepin this simple
-
 
 <!-- S2 - MESH SECTION -->
 
 ## () - s2-9-mesh-matcap
 * () I should start a mesh matcap section when I have a post on this material option.
 
-## () -s2-10-mesh-distance
+## () - s2-10-mesh-distance
 * () see about making a demo of the distance material
 
 <!-- S3 - POINTS SECTION -->
@@ -49,10 +48,10 @@
 
 <!-- S10 - LIGHT  -->
 
-## () s10-3-light-map-emissivemap
+## () - s10-3-light-map-emissivemap
 * () I will of course want to get into the subject of the map, and emissiveMap options
 
-## () s10-4-light-lambert-phong
+## () - s10-4-light-lambert-phong
 * () demo in which the lambert and phong materials are compared
 
 <!-- S11 - SHADOWS  -->
@@ -60,16 +59,19 @@
 
 <!-- s12 - MATERAL ARRAY SECTION -->
 
-## () s12-3-matarray-plane
+## () - s12-3-matarray-plane
 * () this can be a more advanced demo of the use of the add group method
 * () have more than two group objects for this plane
 
-## () s12-4-matarray-sphere-loop
+## () - s12-4-matarray-sphere-loop
 * () demo in which a sphere is used as the geometry, and also an app loop
 * () add just two groups
 * () change the start and count calls over time in the loop
 
 <!-- s13 - Fog -->
+
+## () - 13-2-fog-linear
+
 
 <!-- s14 - SHADER MATERIAL SECTION -->
 
@@ -99,6 +101,12 @@ One really interesting test with this would be comparing the standard to lambert
 
 <!-- DONE -->
 
+## ( done 08/09/2023 ) - s04-2-lines-width
+* (done) demo on the subject of line width
+* (done) use a curve for this demo
+* (done) create a line using the curve
+* (done) create a tube geometry with the curve as well as something to compare to.
+
 ## ( done 08/08/2023 ) - s15-3-shader-varying
 * (done) demo on the use of varying types of values
 
@@ -108,7 +116,7 @@ One really interesting test with this would be comparing the standard to lambert
 ## ( done 08/08/2023 ) - s1-9-basic-shader
 * (done) start very simple hello world demo of the shader material
 
-## ( done 08/07/2023 ) s12-2-matarray-both-sides
+## ( done 08/07/2023 ) - s12-2-matarray-both-sides
 * (done) have a plane geometry
 * (done) use two materials one for each side
 
@@ -117,7 +125,7 @@ One really interesting test with this would be comparing the standard to lambert
 * (done) this can start out the same as s1-2-basic-objects only add a color attribute
 * (done) set the use vertex colors boolean for all of the materials used
 
-## ( done 08/05/2023 ) s08-3-loader-object-load-and-textures
+## ( done 08/05/2023 ) - s08-3-loader-object-load-and-textures
 * (done) have an object format demo that shows that image data can be baked in
 
 ## ( done 08/04/2023 ) - s1-7-basic-textue
@@ -131,7 +139,7 @@ One really interesting test with this would be comparing the standard to lambert
 ## ( done 08/03/2023 ) - s06-5-common-depthtest
 * (done) should have one on depth test like with the sprite demo
 
-## ( done 08/02/2023 ) s05-1-sprites-crosshairs
+## ( done 08/02/2023 ) - s05-1-sprites-crosshairs
 * (done) have a crosshairs demo based on the code I used in my position editor electionjs app
 
 ## ( done 08/02/2023 ) - s03-2-points-size-attenuation
@@ -142,7 +150,7 @@ One really interesting test with this would be comparing the standard to lambert
 * (done) make a helper function
 * (done) I want to add a loop for this demo
 
-## ( done 07/30/2023 ) s9-2-light-ambient-emissive
+## ( done 07/30/2023 ) - s9-2-light-ambient-emissive
 * (done) demo of just the use of ambient light alone
 
 ## ( done 07/30/2023 ) - s5-4-common-side
@@ -157,7 +165,7 @@ One really interesting test with this would be comparing the standard to lambert
 ## ( done 07/28/2023 ) - s5-3-common-vertexcolor
 * (done) vertex color examples
 
-## ( done 07/27/2023 ) s7-2-loader-object-parse
+## ( done 07/27/2023 ) - s7-2-loader-object-parse
 * (done) parse json txt, but now in the object format
 
 ## ( done 07/26/2023 ) - s13-2-shader-uniforms
@@ -165,20 +173,20 @@ One really interesting test with this would be comparing the standard to lambert
 * (done) have a baseColor uniform
 * (done) see about adding a depth value by studying shader lib code on depth material
 
-## ( done 07/25/2023 ) sx-1-shader-white
+## ( done 07/25/2023 ) - sx-1-shader-white
 * (done) This will be a very basic hello word type example where I just have a blob of white area
 
-## ( done 07/24/2023 ) s11-1-matarray-cube
+## ( done 07/24/2023 ) - s11-1-matarray-cube
 * (done) a mesh that uses the cube geometry is a good start for this kind of subject as always
 * (done) start with the basic section example
 * (done) this time mutate the material index values and use just two materials
 * (done) make this demo a loop also
 
-## ( done 07/21/2023 ) s10-1-shadow
+## ( done 07/21/2023 ) - s10-1-shadow
 * (done) start a first basic example on shadows
 * (done) use a spot light as the light source
 
-## ( done 07/21/2023 ) s9-1-light
+## ( done 07/21/2023 ) - s9-1-light
 * (done) first light demo should make use of directional light
 
 ## ( done 07/20/2023 ) - s8-1-texture-wrapS-wrapT
@@ -188,7 +196,7 @@ One really interesting test with this would be comparing the standard to lambert
 * (done) mutate the uv attributes so that the values go into the negative range
 * (done) set the wrapS and wrapT properties to get a desired outcome
 
-## ( done 07/19/2023 ) s8-1-texture-emissive
+## ( done 07/19/2023 ) - s8-1-texture-emissive
 * (done) start with the source code of s1-5-basic-uvmap
 * (done) have a light source
 * (done) I will want to use the standard material
@@ -201,11 +209,11 @@ One really interesting test with this would be comparing the standard to lambert
 ## ( done 07/18/2023 ) - s1-5-basic-uvmapping
 * (done) similar to that of texture demo but doing uv edits
 
-## ( done 07/17/2023 ) s6-1-blending-none
+## ( done 07/17/2023 ) - s6-1-blending-none
 * (done) start a demo where we are using canvas2d rendering and drawing to that canvas with the renderer
 * (done) this will be a comparison demo with normal blending, and no blending
 
-## ( done 07/17/2023 ) s7-1-loader-material-parse
+## ( done 07/17/2023 ) - s7-1-loader-material-parse
 * (done) a demo in which I parse json as hard coded text
 * (done) the json text can just be some data for the MeshBasicMaterial
 
@@ -247,7 +255,7 @@ One really interesting test with this would be comparing the standard to lambert
 
 ## ( done 06/19/2023 ) - rename demo folders
 * (done) rename demo folders
-* (done) js files now at rot of each demo folder
+* (done) js files now at root of each demo folder
 
 ## ( done 04/28/2022 ) - s8-points
 * (done) section folder for this

@@ -10,7 +10,6 @@ renderer.setSize(640, 480, false);
 // LINE MATERIAL
 //-------- ----------
 const material = new THREE.LineBasicMaterial({
-    linewidth: 3,
     color: new THREE.Color('lime'),
     transparent: true,
     opacity: 0.25

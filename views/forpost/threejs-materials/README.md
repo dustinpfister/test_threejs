@@ -19,7 +19,7 @@ I have started the following, but will be expanding and refining the demos in th
 * s03    - The Line Materials
 * s04    - The Points Material
 * s05    - The Sprite Material
-* s06    - A common section with mnay demos on features that are sharded for all materials
+* s06    - A common section on features that are shared for most if not all materials ( Base Material Class )
 * s07    - Blending deep dive section
 * s08    - Loaders, THREE.MaterialLoader, THREE.ObjectLoader, ect
 * s09    - Textures and UV mapping Deep dive section
@@ -32,7 +32,7 @@ I have started the following, but will be expanding and refining the demos in th
 I will want to start sections on a lot of topics also though
 
 * The Raw Shader material and with that RAW Shader GLSL code examples
-* A Second on node matreials than can be found in the /examples/jsm/nodes folder
+* A section on node materials than can be found in the /examples/jsm/nodes folder
 * A section on working directly with webgl alone
 * A section on FPS testing of various materials
 * One or more sections on 'user-style' that is just going with certain features and being done with materials
