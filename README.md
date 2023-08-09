@@ -17,7 +17,7 @@ Another folder of interest is the demos folder which is broken down on a reversi
     </p>
 </div>
 
-## 1 - Install
+## 1 - INSTALL
 
 I do not have any intention to make this project an npm package or anything to that effect. So for now the best way to get things up and running with this on your end would be to clone it down with git, cd into the folder, and then do an npm install. This seems to work fine for me each time thus far with the various versions of nodejs and npm that I use at least. After that the main server script can be started as a way to navigate and view all the various demos, and post related source code examples.
 
@@ -27,7 +27,7 @@ $ cd test_threejs
 $ npm install
 ```
 
-## 2 - Starting a server
+## 2 - STARTING A SERVER
 
 I now have a node folder with two options for starting a server both of which make use of [express](https://dustinpfister.github.io/2018/06/12/express/) and [ejs](https://dustinpfister.github.io/2017/12/07/nodejs-ejs-javascript-templates/) for the rendering of templates. Both the new and old scripts use the same ejs templates at the time of this writing, but the new script is thus far working a little better when it comes to fully exploring the demo and for post folders. These scripts are still very much an after thought, but for me at least they are working well enough.
 
@@ -72,7 +72,7 @@ $ node ./node/server-old/index.js
 </div>
 
 
-## 3 - The views folder
+## 3 - THE VIEWS FOLDER
 
 As I have stated in the opening of this readme the views folder is where I have all the source code examples for all the blog posts on threejs that I have wrote thus far as well as all the draft demos I have made as well. However this is also the public folder where I store all kinds of additional assets that I am using for the various demos. This included copies of threejs itself, as well as additional add on files. I also have a number of additional assets in terms of textures, external geometry, and so forth.
 
@@ -123,7 +123,7 @@ I have a [for post folder](https://github.com/dustinpfister/test_threejs/tree/ma
 
 The json folder contains various kinds of JSON files in various kinds of formats that are used with threejs feature such as THREE.BufferGeometryLoader. However there are of course a number of formats to be aware of when it comes to JSON data that will work with many other features such as THREE.FontLoader, and THREE.ObjectLoader just to name a few.
 
-## 4 - Code Style
+## 4 - CODE STYLE
 
 Threejs is a very fast moving project in terms of development compared to many other libraries out on the open web. There is a whole lot to say about what has all ready broke, and will continue to break as things move forward with each new revision that comes out. As such many of us that use threejs will end up sticking with a certain given revision number of threejs for a while, maybe even indefinitely for various reasons. With that said as of this writing there are two general style rules that I am following as I write posts for new demos, and edit old ones.
 
