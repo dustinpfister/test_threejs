@@ -1,6 +1,6 @@
 # threejs-materials
 
-This is what I have when it comes to the source code examples that I am writing about in my [blog post on materials in general threejs](https://dustinpfister.github.io/2018/04/30/threejs-materials/). This is one of the first blog posts that I wrote, however I have made a whole lot of edits thus far, and will likely continue to do so with this topic now that I know a whole lot more about materials compared to when I first wrote this post way back in the day.
+This is what I have when it comes to the source code examples that I am writing about in my [blog post on materials in general threejs](https://dustinpfister.github.io/2018/04/30/threejs-materials/). This is one of the first blog posts that I wrote on threejs, however I have made a whole lot of edits thus far sense then, and will likely continue to do so with this topic. Now that I know a whole lot more about materials compared to when I first wrote this post way back in the day as of late I am starting to make this a kind of 5k+ word count Deep dive content piece. As of this writing the post is tactfully at the 10k+ mark and I still have way more to write about when it comes to every little detail about materials.
 
 <div align="center">
       <a href="https://www.youtube.com/watch?v=EouYzHldZd8">
@@ -10,7 +10,7 @@ This is what I have when it comes to the source code examples that I am writing 
 
 ## What the plan is for future edits
 
-I am going to make this post on materials in general one of the posts that I will keep working on a little each day for at least a week or longer until it starts to become a Deep Dive kind of post if that makes any sense. One vague feature of this kind of post I would say is at least 5,000+ words, however I would also say that the bulk of that writing should also NOT BE PADDING. I could just go on and on and on about things sure, but what I really want to do is make this post a lengthy content piece of substance.
+The plan now is to keep expanding with even more sections on materials as there is still a great deal of ground to cover even when it comes to superficial level detail about various materials related topics. However I am now also taking a moment now and then to improve the demos that are all ready in place as well. I was at one point thinking I would just work on this a little each day for about a week, then move on to another post that I will start to get up to this level of quality. However I am thinking that I might want to still stay in my lane with this one for at least a little while longer.
 
 I have started the following, but will be expanding and refining the demos in these sections
 
@@ -74,22 +74,15 @@ https://github.com/mrdoob/three.js/tree/r146/src/renderers/shaders/ShaderLib
 
 ## Other posts on materials in General
 
-One major part of the process of writing a blog post not just on this topic but in general is to do research, and to not just start and end with the threejs DOCS and reading source code. There is of course studying the works of other developers that have wrote similar blog posts on this topic. In the process of doing so I will end up seeing what I should also write about, however there is also seeing what there is when it comes to things that are lacking as well. So far it would seem that A lot of the content that I have found seraching on google is very much lacking. However still the main aim of doing this is to learn a think or two.
+One major part of the process of writing a blog post not just on this topic but in general is to do research, and to not just start and end with the threejs DOCS and reading source code in the threejs repo on Github. There is of course studying the works of other developers that have wrote similar blog posts on this topic. In the process of doing so I will end up seeing what I should also write about, however there is also seeing what there is when it comes to things that are lacking as well. That is that there is getting inspired by reading great content of course, but there is also seeing all the not so great content as well, that often ends up out ranking the great stuff and seeing all the mistakes that I would like to not repeat myself. So then this is a collection of links to various resources that I have found, many of which popped up when searing the keyword "threejs materials" on Google.
 
-### jameshfisher
-
-https://jameshfisher.com/2017/10/19/glsl-varying/
-
-This was a nice, simple post on the subject of varying GLSL variables
-
-
-### www.packtpub.com
+### CANVAS TEXTURES - www.packtpub.com
 
 https://hub.packtpub.com/threejs-materials-and-texture/
 
 Not a post on materials in general, but does write about using canvas textures as a way to show depth. This is somehting that I like to do all the time as a way to create tetxures that can then be used with the various map options of materials.
 
-### www.donmccurdy.com
+### NODE MATERIALS - www.donmccurdy.com
 
 https://www.donmccurdy.com/2019/03/17/three-nodematerial-introduction/
 
@@ -98,6 +91,18 @@ This is a good post that pointeded out somehting new that I was not aware of bef
 https://github.com/mrdoob/three.js/tree/r155/examples/jsm/nodes
 
 This is something I will want to look into more
+
+### NICE COLLECTION OF SHADER MATERIAL DEMOS - github.com/MasatoMakino 
+
+https://github.com/MasatoMakino/threejs-shader-materials
+
+This looks like a nice collection of shader material demos. At some point I might want to take a closer look at the source code in an effor to learn more about GLSL.
+
+### SHADER MATERIALS and varying GLSL variables jameshfisher
+
+https://jameshfisher.com/2017/10/19/glsl-varying/
+
+This was a nice, simple post on the subject of varying GLSL variables
 
 ### Chris Courses "Comprehensive" post on materials in threejs \( chriscourses.com \)
 
