@@ -3,6 +3,25 @@
 This is what I have for my post on the mapcap material.
 
 
+
+
+## When added?
+
+Looks like this was added to threejs all the way back in r97
+
+https://github.com/mrdoob/three.js/releases/tag/r97
+
+### THREEJS DOCS AND SOURCE
+
+THREEJS DOCS
+
+https://threejs.org/docs/#api/en/materials/MeshMatcapMaterial
+
+THREEJS SOURCE
+
+https://github.com/mrdoob/three.js/blob/r152/src/renderers/shaders/ShaderLib/meshmatcap.glsl.js
+
+
 ## Other Posts, and Resources
 
 ### StackOverflow - how to shade a circle in canvas
