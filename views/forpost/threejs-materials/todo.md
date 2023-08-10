@@ -7,9 +7,6 @@
 
 <!-- S2 - MESH SECTION -->
 
-## () - s2-9-mesh-matcap
-* () I should start a mesh matcap section when I have a post on this material option.
-
 ## () - s2-10-mesh-distance
 * () see about making a demo of the distance material
 
@@ -100,6 +97,9 @@ One really interesting test with this would be comparing the standard to lambert
 <!-- s17 WORKING DIRECTLY WITH WEBGL SECTION? -->
 
 <!-- DONE -->
+
+## ( done 08/10/2023 ) - s2-9-mesh-matcap
+* (done) I should start a mesh matcap section when I have a post on this material option.
 
 ## ( done 08/09/2023 ) - s04-2-lines-width
 * (done) demo on the subject of line width
