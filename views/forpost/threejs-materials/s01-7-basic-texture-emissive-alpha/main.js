@@ -23,7 +23,6 @@ const canvas_texture_grid = ( grid, size = 4, palette = null ) => {
         if(!palette){
             ctx.fillStyle = new THREE.Color( a, a, a).getStyle();
         }
-
         ctx.fillRect( x, y, 1, 1);
     });
     const texture = new THREE.CanvasTexture(canvas);
