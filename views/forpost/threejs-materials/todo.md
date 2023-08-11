@@ -93,6 +93,10 @@ One really interesting test with this would be comparing the standard to lambert
 
 <!-- DONE -->
 
+## ( done 08/11/2023 ) - s1-7-basic-texture-emissive-alpha
+* (done) rename s1-7-basic-texture to s1-7-basic-texture-emissive-alpha
+* (done) make this demo focus more so on other map options so that it is not redundant compared to s1-3-basic-texture
+
 ## ( done 08/11/2023 ) - 13-2-fog-linear
 * (done) simple linear fog demo
 
