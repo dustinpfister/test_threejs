@@ -29,13 +29,13 @@ I have started the following, but will be expanding and refining the demos in th
 * s13    - Fog
 * s14    - THREE.ShaderMaterial
 
-I will want to start sections on a lot of topics also though
+I still have a few plans for whole other sections for the post.
 
-* The Raw Shader material and with that RAW Shader GLSL code examples
-* A section on node materials than can be found in the /examples/jsm/nodes folder
-* A section on working directly with webgl alone
-* A section on FPS testing of various materials
-* One or more sections on 'user-style' that is just going with certain features and being done with materials
+* s15    - The Raw Shader material and with that RAW Shader GLSL code examples
+* s16    - A section on working directly with webgl alone
+* s17    - A section on node materials than can be found in the /examples/jsm/nodes folder
+* s18    - A section on FPS testing of various materials
+* sx     - One or more sections on 'user-style' that is just going with certain features and being done with materials
 
 
 ### Going the distance

@@ -67,12 +67,7 @@
 
 <!-- s13 - Fog -->
 
-## () - 13-2-fog-linear
-
-
 <!-- s14 - SHADER MATERIAL SECTION -->
-
-
 
 ## () - s14-4-shader-functions
 * () I would like to have a demo of functions
@@ -97,6 +92,9 @@ One really interesting test with this would be comparing the standard to lambert
 <!-- s17 WORKING DIRECTLY WITH WEBGL SECTION? -->
 
 <!-- DONE -->
+
+## ( done 08/11/2023 ) - 13-2-fog-linear
+* (done) simple linear fog demo
 
 ## ( done 08/10/2023 ) - s2-9-mesh-matcap
 * (done) I should start a mesh matcap section when I have a post on this material option.
