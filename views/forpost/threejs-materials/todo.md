@@ -93,6 +93,9 @@ One really interesting test with this would be comparing the standard to lambert
 
 <!-- DONE -->
 
+## ( done 08/11/2023 ) - depth packing - s02-2-mesh-depth
+* (done) make THREE.RGBADepthPacking the depth packijg used for this demo
+
 ## ( done 08/11/2023 ) - s1-7-basic-texture-emissive-alpha
 * (done) rename s1-7-basic-texture to s1-7-basic-texture-emissive-alpha
 * (done) make this demo focus more so on other map options so that it is not redundant compared to s1-3-basic-texture

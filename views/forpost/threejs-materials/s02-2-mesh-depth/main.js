@@ -13,7 +13,9 @@ renderer.setSize(640, 480, false);
 //-------- ----------
 // INSTANCE OF THE DEPTH MATERIAL
 //-------- ----------
-const material = new THREE.MeshDepthMaterial();
+const material = new THREE.MeshDepthMaterial({
+    depthPacking: THREE.RGBADepthPacking
+});
 //-------- ----------
 // SCENE CHILD OBJECTS
 //-------- ----------
