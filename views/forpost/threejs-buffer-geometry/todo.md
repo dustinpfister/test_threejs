@@ -41,16 +41,17 @@
 ## () - s3-x-methods-copy
 * () - have a demo on the copy method of buffer geometry
 
-<!-- S4 TO JSON SECTION -->
-
-## () - s4-2-tojson-object
-* () have a demo that focus on the use of the toJSON method used on the object level
-
 <!-- S5 LOADER SECTION -->
+
+## () - s05-3-loader-object
+* () have a demo that focus on the use of the toJSON method used on the object level
 
 <!-- S6 MORPH ATTRIBUTES SECTION -->
 
 <!-- DONE -->
+
+## ( done 08/12/2023 ) - made tojson demo part of methods section
+* (done) tojson dmeo now part of methods section
 
 ## ( done 08/12/2023 ) - s01-2-basic-normal - manual creation
 * (done) make the normal attribuite in the same way as position
