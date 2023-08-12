@@ -32,6 +32,9 @@
 
 <!-- S3 METHODS SECTION -->
 
+## () - s3-2-methods-compute-vertex-normals
+* () demo of the use of compute vertex normals method
+
 ## () - s3-x-methods-apply-quaternion
 * () demo of the apply quaternion method
 
@@ -40,11 +43,17 @@
 
 <!-- S4 TO JSON SECTION -->
 
+## () - s4-2-tojson-object
+* () have a demo that focus on the use of the toJSON method used on the object level
+
 <!-- S5 LOADER SECTION -->
 
 <!-- S6 MORPH ATTRIBUTES SECTION -->
 
 <!-- DONE -->
+
+## ( done 08/12/2023 ) - s01-2-basic-normal - manual creation
+* (done) make the normal attribuite in the same way as position
 
 ## ( done 06/07/2023 ) - index and names for s5-2-loader-many-promise
 * (done) index values passed when buffer on load method called
