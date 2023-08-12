@@ -7,10 +7,6 @@
 
 <!-- S2 - MESH SECTION -->
 
-## () - s02-5-mesh-phong - more features
-* () this demo should feature the use of the specular color
-* () also see about adding some code for the specular map
-
 ## () - s02-10-mesh-distance
 * () see about making a demo of the distance material
 
@@ -96,6 +92,10 @@ One really interesting test with this would be comparing the standard to lambert
 <!-- s17 WORKING DIRECTLY WITH WEBGL SECTION? -->
 
 <!-- DONE -->
+
+## ( done 08/12/2023 ) - s02-5-mesh-phong - more features
+* (done) this demo should feature the use of the specular color
+* (done) also see about adding some code for the specular map
 
 ## ( done 08/11/2023 ) - depth packing - s02-2-mesh-depth
 * (done) make THREE.RGBADepthPacking the depth packijg used for this demo
