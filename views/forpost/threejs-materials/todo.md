@@ -7,7 +7,11 @@
 
 <!-- S2 - MESH SECTION -->
 
-## () - s2-10-mesh-distance
+## () - s02-5-mesh-phong - more features
+* () this demo should feature the use of the specular color
+* () also see about adding some code for the specular map
+
+## () - s02-10-mesh-distance
 * () see about making a demo of the distance material
 
 <!-- S3 - POINTS SECTION -->
