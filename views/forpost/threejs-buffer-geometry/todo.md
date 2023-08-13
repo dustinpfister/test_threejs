@@ -17,6 +17,10 @@
 
 <!-- S02 LIGHT SECTION -->
 
+## () s02-2-light-uv
+* () add a uv to the geometry that is used
+* () add texture
+
 <!-- S03 METHODS SECTION -->
 
 ## () - s3-2-methods-compute-vertex-normals

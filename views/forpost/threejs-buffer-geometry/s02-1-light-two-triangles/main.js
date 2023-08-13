@@ -33,12 +33,9 @@ geometry.computeVertexNormals();
 scene.add( new THREE.GridHelper(10, 10) );
 const mesh1 = new THREE.Mesh( geometry, materials);
 scene.add(mesh1);
-const pl = new THREE.PointLight(0xffffff);
-pl.position.set(4, 2, 4);
-scene.add(pl);
-const al = new THREE.AmbientLight(0xffffff);
-al.intensity = 0.2;
-scene.add(al);
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(4, 2, 4);
+scene.add(dl);
 //-------- ---------- 
 // LOOP
 //-------- ----------
