@@ -2,7 +2,7 @@
 
 <!-- S1 - BASIC SECTION -->
 
-## ( ) - depth for s1-9-basic-shader
+## ( ) - s01-9-basic-shader - depth
 * () I would like to find some simple way to show depth while still keepin this simple
 
 <!-- S2 - MESH SECTION -->
