@@ -16,6 +16,15 @@
 
 <!-- S5 - SPRITES SECTION -->
 
+## () - s05-3-sprites-alphamap
+* () I would like to have a demo that involves the use of an alpha map for the sprite material
+* () the image used can be a tree, and use the alpha map to set what the fully transparent parts are
+
+## () - s05-4-sprites-lod
+* () I am thinking that it might be good to have a demo that uses LOD objects and sprites
+* () maybe have just two levels of detail one of which is a sprite and the other is a mesh
+* () I will then need a 3d geometry of a tree, and a 2d image of it
+
 <!-- S6 - COMMON ( BASE MATERIAL CLASS ) SECTION -->
 
 ## () - s06-6-common-depthfunc
@@ -92,6 +101,9 @@ One really interesting test with this would be comparing the standard to lambert
 <!-- s17 WORKING DIRECTLY WITH WEBGL SECTION? -->
 
 <!-- DONE -->
+
+## ( done 08/13/2023 ) - s05-2-sprites-rotation
+* (done) demo of the rotation property
 
 ## ( done 08/12/2023 ) - s02-5-mesh-phong - more features
 * (done) this demo should feature the use of the specular color
