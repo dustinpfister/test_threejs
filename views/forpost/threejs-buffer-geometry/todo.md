@@ -13,24 +13,11 @@
 ## () - sx-1-vertcolors
 * () start a section on vertex colors
 
-<!-- S1 BASIC SECTION -->
+<!-- S01 BASIC SECTION -->
 
-<!-- S2 LIGHT SECTION -->
+<!-- S02 LIGHT SECTION -->
 
-## () - s2-3-light-full
-* () rename s4-1-light to s4-3-light-full
-* () add a uv attribute
-* () add canvas texture
-
-## () - s2-1-light-tri
-* () simple triangle example
-* () use phong material
-* () just position, and normal attributes
-
-## () - s2-2-light-uv
-* () same as s4-1-light-tri but add a uv attribute
-
-<!-- S3 METHODS SECTION -->
+<!-- S03 METHODS SECTION -->
 
 ## () - s3-2-methods-compute-vertex-normals
 * () demo of the use of compute vertex normals method
@@ -41,14 +28,19 @@
 ## () - s3-x-methods-copy
 * () - have a demo on the copy method of buffer geometry
 
-<!-- S5 LOADER SECTION -->
+<!-- S05 LOADER SECTION -->
 
 ## () - s05-3-loader-object
 * () have a demo that focus on the use of the toJSON method used on the object level
 
-<!-- S6 MORPH ATTRIBUTES SECTION -->
+<!-- S06 MORPH ATTRIBUTES SECTION -->
 
 <!-- DONE -->
+
+## ( done 08/13/2023 ) s02-1-light-two-triangles
+* (done) rename demo
+* (done) remove loop
+* (done) use just one material
 
 ## ( done 08/12/2023 ) - made tojson demo part of methods section
 * (done) tojson dmeo now part of methods section
