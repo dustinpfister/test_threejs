@@ -12,6 +12,15 @@
 
 <!-- S3 - POINTS SECTION -->
 
+## () - s03-3-points-vertex-colors
+* () have a vertex color demo for the points
+* () use the box geometry for this one
+
+## () - s03-4-points-custom-shader
+* () see about a custom shader demo for points
+* () see about custom logic for setting size
+* () see about custom logic for point color where color is intense at the center of the point but then blends out
+
 <!-- S4 - LINES SECTION -->
 
 <!-- S5 - SPRITES SECTION -->
