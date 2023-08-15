@@ -10,15 +10,12 @@ renderer.setSize(640, 480, false);
 // START GEOMETRY / POSITION ATTRIBUTE / NORMAL ATTRIBUTE
 //-------- ----------
 const geometry = new THREE.BufferGeometry();
-const data_pos = [
-    0, 0, 0,
-    1, 0, 0,
-    1, 1, 0
-];
+const data_pos = [ -1, 0.1, 0,   1, 0.1, 0,   0, 1.1, 0 ];
 geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array( data_pos), 3) );
+// USING COMPUTE VERTEX NORMALS TO ADD A NORMAL ATTRIBUTE
 geometry.computeVertexNormals();
 //-------- ----------
-// GRID / MESH OBJECTS
+// SCENE CHILD OBJECTS
 //-------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
 const mesh1 = new THREE.Mesh(
@@ -26,7 +23,6 @@ const mesh1 = new THREE.Mesh(
         new THREE.MeshNormalMaterial({
             side: THREE.FrontSide
         }));
-mesh1.rotateY(Math.PI * 0.15);
 scene.add(mesh1);
 //-------- ----------
 // VERTEX HELPERS IF THERE
@@ -38,6 +34,6 @@ if(THREE.VertexNormalsHelper){
 //-------- ----------
 // RENDER
 //-------- ----------
-camera.position.set(0, 0.5, 3);
-camera.lookAt( 0, 0, 0);
+camera.position.set(0.5, 1, 2);
+camera.lookAt( 0, 0.5, 0);
 renderer.render(scene, camera);
