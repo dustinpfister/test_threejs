@@ -12,10 +12,6 @@
 
 <!-- S3 - POINTS SECTION -->
 
-## () - s03-3-points-vertex-colors
-* () have a vertex color demo for the points
-* () use the box geometry for this one
-
 ## () - s03-4-points-custom-shader
 * () see about a custom shader demo for points
 * () see about custom logic for setting size
@@ -110,6 +106,10 @@ One really interesting test with this would be comparing the standard to lambert
 <!-- s17 WORKING DIRECTLY WITH WEBGL SECTION? -->
 
 <!-- DONE -->
+
+## ( done 08/15/2023 ) - s03-3-points-vertex-colors
+* (done) have a vertex color demo for the points
+* (done) use the box geometry for this one
 
 ## ( done 08/13/2023 ) - s05-2-sprites-rotation
 * (done) demo of the rotation property
