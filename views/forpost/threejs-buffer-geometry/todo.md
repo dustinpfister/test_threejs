@@ -23,13 +23,10 @@
 
 <!-- S03 METHODS SECTION -->
 
-## () - s3-2-methods-compute-vertex-normals
-* () demo of the use of compute vertex normals method
-
-## () - s3-x-methods-apply-quaternion
+## () - s3-4-methods-apply-quaternion
 * () demo of the apply quaternion method
 
-## () - s3-x-methods-copy
+## () - s3-5-methods-copy
 * () - have a demo on the copy method of buffer geometry
 
 <!-- S05 LOADER SECTION -->
@@ -40,6 +37,9 @@
 <!-- S06 MORPH ATTRIBUTES SECTION -->
 
 <!-- DONE -->
+
+## ( done 08/15/2023 ) - s3-3-methods-compute-vertex-normals
+* (done) demo of the use of compute vertex normals method
 
 ## ( done 08/13/2023 ) s02-1-light-two-triangles
 * (done) rename demo
