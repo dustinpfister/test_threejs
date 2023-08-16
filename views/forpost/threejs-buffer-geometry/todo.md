@@ -23,9 +23,6 @@
 
 <!-- S03 METHODS SECTION -->
 
-## () - s3-4-methods-apply-quaternion
-* () demo of the apply quaternion method
-
 ## () - s3-5-methods-copy
 * () - have a demo on the copy method of buffer geometry
 
@@ -37,6 +34,9 @@
 <!-- S06 MORPH ATTRIBUTES SECTION -->
 
 <!-- DONE -->
+
+## ( done 08/16/2023 ) - s3-4-methods-apply-quaternion
+* (demo) demo of the apply quaternion method
 
 ## ( done 08/15/2023 ) - s3-3-methods-compute-vertex-normals
 * (done) demo of the use of compute vertex normals method

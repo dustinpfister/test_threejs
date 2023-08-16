@@ -18,7 +18,7 @@ const createCube = function (size, material, x, y, z) {
 //-------- ----------
 // SCENE CHILD OBJECTS
 //-------- ----------
-// mesh objects and mesh materails using opacity
+// mesh objects and mesh materials using opacity
 scene.add( createCube(1, new THREE.MeshNormalMaterial( { transparent: true, opacity: 0.4 } ), 0, 0, 0) );
 scene.add( createCube(1, new THREE.MeshBasicMaterial( { transparent: true, opacity: 0.7 } ), -1.4, -0.5, 0) );
 scene.add( createCube(1, new THREE.MeshPhongMaterial( { transparent: true, opacity: 0.2 } ), -0.4, -0.5, -2) );
