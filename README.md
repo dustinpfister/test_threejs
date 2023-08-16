@@ -137,15 +137,22 @@ For now the [r146 style rules](https://github.com/dustinpfister/test_threejs/blo
 
 ## 5 - DEEP DIVE CONTENT
 
-I have by trying all kinds of ways to which I should go about improving content that is all ready in place rather than writing new content. For a long time I was stuck in this process of just doing a little touch up work on every post I have wrote this far, a little each day, over the course of months until I then get to the point that I loop around again. To some extent that might need to continue, but as of late I am more interested in exploring the polar opposite of that by making at least a few posts what some might call Deep Dive content posts. There might be some other terms for this kind of content, such as long form content or what have you.
+I have by trying all kinds of ways by which I should go about improving content that is all ready in place rather than writing new content. For a long time I was stuck in this process of just doing a little touch up work on every post I have wrote thus far, a little each day, over the course of months until I then get to the point that I loop around again. To some extent that might need to continue, but as of late I am more interested in exploring the polar opposite of that by making at least a few posts what some might call Deep Dive content posts. There might be some other terms for this kind of content, such as long form content and so forth. In any case the general idea is to not just write a really long blog post that is say 5,000 words or more, but rather put in a whole lot of time in terms of doing research, writing demos, and so forth so that it is not just a whole lot of padding.
 
-### 5.1 - My post on materials in general in threejs
+### 5.1 - The post on materials in general in threejs
 
 The post: https://dustinpfister.github.io/2018/04/30/threejs-materials/
 
 forpost folder here: https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-materials
 
-My blog post on threejs materials is now well over 10k words, and thus far I would say that I could in theory expand it even more so way beyond that if I do end up completely going off the deep end with this one.
+The post on threejs materials is now over 12k words, and even so I would say that it is still not even a drop in the bucket. I could in theory expand it even more so way beyond that if I do end up completely going off the rails with this one. There is also a whole lot of overlap with many other topics with this one to say the least about it. For example there is the subject of normal maps which involves the use of textures, and many various advanced subjects with geometry naturally including position, normal, uv, and tangent attributes. Then there is also the subject of custom shaders using the THREE.ShaderMaterial which involves getting into openGL Shader Language GLSL, so when it comes to that, yes there is a whole language to be aware of if one aims to go so far as making there own custom materials.
+### 5.2 - The Main blog post on Buffer Geometry
+
+the post: https://dustinpfister.github.io/2021/04/22/threejs-buffer-geometry/
+
+forpost folder here: https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-buffer-geometry
+
+The main post on buffer geometry is another post that I am to turn into a Deep Dive content subject. I have wrote many posts on buffer geometry thus far, but I think it would be a good idea to expand the main post with everything that I know thus far. Also in the process of doing so it would seem that there is still way more to be aware of when it comes to this subject. There is so much more that I have not got to yet with this with a few more attributes mainly tangent, and weight attributes.
 
 
 
