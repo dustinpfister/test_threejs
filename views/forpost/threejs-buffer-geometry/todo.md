@@ -23,7 +23,11 @@
 
 <!-- S03 METHODS SECTION -->
 
-## () - s3-5-methods-copy
+## () - s03-5-methods-center
+
+## () - s03-6-methods-translate
+
+## () - s03-x-methods-copy
 * () - have a demo on the copy method of buffer geometry
 
 <!-- S05 LOADER SECTION -->
