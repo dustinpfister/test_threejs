@@ -19,16 +19,31 @@ const data_pos = [ 0,1,0,    0,0,1,    1,0,-1,    -1,0,-1 ];
 geometry.setAttribute('position', new THREE.BufferAttribute( new Float32Array( data_pos ), 3 ) );
 geometry.setIndex( [0,1,2,0,2,3,0,3,1,1,3,2] );
 geometry.computeVertexNormals();
-const data_uv = [ 0.5, 0.5,    0,0,    1,0,    0,1];
+const data_uv = [ 0.5, 0.5,    0,0,    1,1,    0,1];
 geometry.setAttribute('uv', new THREE.BufferAttribute( new Float32Array( data_uv ), 2 ) );
 geometry.computeTangents();
+// ---------- ----------
+// TEXTURE FOR NORMAL MAP
+// ---------- ----------
+const data_normalmap = [
+    255,0,0,255,    0,0,0,255,    0,0,0,255,    0,0,0,255,
+    0,255,0,255,    0,255,0,255,  0,0,0,255,    0,0,0,255,
+    0,0,0,255,    0,255,0,255,  0,255,0,255,  0,0,0,255,
+    0,255,0,255,    0,255,0,255,  0,255,0,255,  0,255,0,255
+];
+const texture_normal = new THREE.DataTexture( new Uint8Array( data_normalmap ), 4,  4 );
+texture_normal.needsUpdate = true;
+// ---------- ----------
+// MATERIAL
+// ---------- ----------
+const material = new THREE.MeshNormalMaterial({
+    normalMap: texture_normal
+});
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
 scene.add( new THREE.GridHelper( 10,10 ) );
-const mesh = new THREE.Mesh(
-    geometry,
-    new THREE.MeshNormalMaterial());
+const mesh = new THREE.Mesh( geometry, material);
 scene.add(mesh);
 // ---------- ----------
 // LOOP
