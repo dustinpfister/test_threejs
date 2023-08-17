@@ -1,6 +1,13 @@
 # threejs-shape todo list
 
+<!-- S01 BASIC SECTION -->
+
+
+
 <!-- DONE -->
+
+## ( done 08/17/2023 ) - s1-3-basic-arrayofshapes
+* (done) I would like to have a simple array of shapes demo.
 
 ## ( done 04/04/2023 ) move files, use r146
 * (done) move js files to root of demo folders
