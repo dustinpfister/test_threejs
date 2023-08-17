@@ -3,7 +3,7 @@
 //-------- ----------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, 320 / 240, 0.1, 1000);
-var renderer = new THREE.WebGL1Renderer();
+const renderer = new THREE.WebGL1Renderer();
 renderer.setSize(640, 480, false);
 ( document.getElementById('demo') || document.body ).appendChild(renderer.domElement);
 //-------- ----------
