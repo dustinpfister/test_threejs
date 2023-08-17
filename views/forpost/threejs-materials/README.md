@@ -72,11 +72,17 @@ Source code ( r146 ) of the shader lib ( A good way to start to learn GLSL for T
 https://github.com/mrdoob/three.js/tree/r146/src/renderers/shaders/ShaderChunk
 https://github.com/mrdoob/three.js/tree/r146/src/renderers/shaders/ShaderLib
 
-## Other posts on materials in General
+## Other resources on materials in General
 
 One major part of the process of writing a blog post not just on this topic but in general is to do research, and to not just start and end with the threejs DOCS and reading source code in the threejs repo on Github. There is of course studying the works of other developers that have wrote similar blog posts on this topic. In the process of doing so I will end up seeing what I should also write about, however there is also seeing what there is when it comes to things that are lacking as well. That is that there is getting inspired by reading great content of course, but there is also seeing all the not so great content as well, that often ends up out ranking the great stuff and seeing all the mistakes that I would like to not repeat myself. So then this is a collection of links to various resources that I have found, many of which popped up when searing the keyword "threejs materials" on Google.
 
-### CUSTOM BLENDING AND MAP OPTION FOR POINTS MATERIAL
+### youtube.com - simoneDev And How to Combine Additive and Alpha Blending
+
+Great video on blending.
+
+https://www.youtube.com/watch?v=AxopC4yW4uY
+
+### stackoverflow.com - CUSTOM BLENDING AND MAP OPTION FOR POINTS MATERIAL
 
 Found this stack overflow post while doing research on what there is on "three js additive blending". Looks like a great example on custom blending, but also pointed out a feature of the Points Material that I managed to overlook up until this point. Turns out the points material allows for me to style points with a texture, and not just vertex attributes. So I guess I will have to expand my points material section with something to that effect.
 
