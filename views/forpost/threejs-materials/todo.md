@@ -12,7 +12,10 @@
 
 <!-- S3 - POINTS SECTION -->
 
-## () - s03-4-points-custom-shader
+## () - s03-4-points-map
+* () demo using the map option of the points material
+
+## () - s03-5-points-custom-shader
 * () see about a custom shader demo for points
 * () see about custom logic for setting size
 * () see about custom logic for point color where color is intense at the center of the point but then blends out
