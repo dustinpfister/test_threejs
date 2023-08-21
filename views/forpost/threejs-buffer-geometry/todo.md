@@ -13,7 +13,19 @@
 ## () - sx-1-vertcolors
 * () start a section on vertex colors
 
+## () - sx-1-morph
+* () start a full seciton on the subject of morph attributes
+
 <!-- S01 BASIC SECTION -->
+
+## () - s01-6-basic-vertcolors
+* () start a section on vertex colors
+
+## () - s01-7-basic-tangents
+* () start a section on tangents and normal maps
+
+## () - s01-8-basic-morph
+* () start a section on morph attributes
 
 <!-- S02 LIGHT SECTION -->
 
@@ -23,9 +35,9 @@
 
 <!-- S03 METHODS SECTION -->
 
-## () - s03-5-methods-center
-
 ## () - s03-6-methods-translate
+* () start with the center demo code
+* () use translate in place of center
 
 ## () - s03-x-methods-copy
 * () - have a demo on the copy method of buffer geometry
@@ -38,6 +50,9 @@
 <!-- S06 MORPH ATTRIBUTES SECTION -->
 
 <!-- DONE -->
+
+## ( done 08/21/2023 ) - s03-5-methods-center
+* (done) just have a simple center demo
 
 ## ( done 08/16/2023 ) - s3-4-methods-apply-quaternion
 * (demo) demo of the apply quaternion method
