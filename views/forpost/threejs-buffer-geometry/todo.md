@@ -29,16 +29,9 @@
 
 <!-- S02 LIGHT SECTION -->
 
-## () - s02-2-light-uv-indexed
-* () add a uv to the geometry that is used
-* () add an index
-* () add texture
-* () create a non indexed geometry from this for comparison
+## ( ) - s02-2-light-uv-indexed
+* work out better code for setting the RGB values of a normal map
 
-## () - s02-3-light-normalmap
-* () start with code from s02-2-light-uv-indexed
-* () add a normal map for the material of the mesh that is used with the indexed geometry
-* () see about making the indexed geometry look as good as the non indexed one by adjusting the color values of the normal map
 
 <!-- S03 METHODS SECTION -->
 
@@ -60,6 +53,12 @@
 <!-- S06 MORPH ATTRIBUTES SECTION -->
 
 <!-- DONE -->
+
+## ( done 08/22/2023 ) - s02-2-light-uv-indexed
+* (done) add a uv to the geometry that is used
+* (done) add an index
+* (done) add texture
+* (done) create a non indexed geometry from this for comparison
 
 ## ( done 08/21/2023 ) - s03-5-methods-center
 * (done) just have a simple center demo
