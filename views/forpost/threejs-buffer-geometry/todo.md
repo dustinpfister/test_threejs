@@ -35,10 +35,6 @@
 
 <!-- S03 METHODS SECTION -->
 
-## () - s03-6-methods-translate
-* () start with the center demo code
-* () use translate in place of center
-
 ## () - s03-7-methods-clone
 * () - have a demo on the copy method of buffer geometry
 
@@ -53,6 +49,10 @@
 <!-- S06 MORPH ATTRIBUTES SECTION -->
 
 <!-- DONE -->
+
+## ( done 08/23/2023 ) - s03-6-methods-translate
+* (done) start with the center demo code
+* (done) use translate in place of center
 
 ## ( done 08/22/2023 ) - s02-2-light-uv-indexed
 * (done) add a uv to the geometry that is used
