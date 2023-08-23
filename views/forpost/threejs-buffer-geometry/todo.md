@@ -35,11 +35,12 @@
 
 <!-- S03 METHODS SECTION -->
 
-## () - s03-7-methods-clone
+## () - s03-7-methods-frompoints
+* () basic from points demo
+
+## () - s03-8-methods-clone
 * () - have a demo on the copy method of buffer geometry
 
-## () - s03-8-methods-frompoints
-* () basic from points demo
 
 <!-- S05 LOADER SECTION -->
 
