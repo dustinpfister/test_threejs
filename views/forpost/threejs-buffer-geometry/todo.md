@@ -13,9 +13,6 @@
 ## () - sx-1-vertcolors
 * () start a section on vertex colors
 
-## () - sx-1-morph
-* () start a full seciton on the subject of morph attributes
-
 <!-- S01 BASIC SECTION -->
 
 ## () - s01-6-basic-vertcolors
@@ -35,9 +32,18 @@
 
 <!-- S03 METHODS SECTION -->
 
-## () - s03-8-methods-clone
+## () - s03-08-methods-clone
 * () - have a demo on the copy method of buffer geometry
 
+## () - s03-09-methods-computeboundingbox 
+
+## () - s03-10-methods-setattribute
+
+## () - s03-11-methods-setdrawrange
+
+## () - s03-12-methods-setindex
+
+## () - s03-13-methods-tononindexed
 
 <!-- S05 LOADER SECTION -->
 
