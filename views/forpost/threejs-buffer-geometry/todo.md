@@ -35,9 +35,6 @@
 
 <!-- S03 METHODS SECTION -->
 
-## () - s03-7-methods-frompoints
-* () basic from points demo
-
 ## () - s03-8-methods-clone
 * () - have a demo on the copy method of buffer geometry
 
@@ -50,6 +47,9 @@
 <!-- S06 MORPH ATTRIBUTES SECTION -->
 
 <!-- DONE -->
+
+## ( done 08/24/2023 ) - s03-7-methods-frompoints
+* ( done ) basic from points demo
 
 ## ( done 08/23/2023 ) - s03-6-methods-translate
 * (done) start with the center demo code
