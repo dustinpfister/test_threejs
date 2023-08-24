@@ -2,11 +2,9 @@
 
 This is a collection of work using the 3D computer graphics javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene). Many of these are very basic demos of features of the library itself, others progress beyond that into collections of code that at least start to look like finished projects working on top of the library. However nothing here is really a kind of stand alone project, thus this is a kind of threejs sketchpad of sorts.
 
-I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far on threejs in the view folder. 
+I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far in the views folder. 
 
-Another folder of interest is the demos folder which is broken down on a reversion by revision basis. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. This can also go the other way when it comes to the various concerns with keeping code working on older devices. I test out new features, as well as ideas for basic projects and so forth here in the demos folder.
-
-
+There are other folders of interest, one of which is the demos folder which is broken down on a reversion by revision basis. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. This can also go the other way when it comes to the various concerns with keeping code working on older devices, as well as interest with the history of this library. This demos folder is also where I test out new ideas and features, as well as ones that I have just not yet covered yet which might in turn lead to whole posts on the subject.
 
 <div align="center">
     <a href="https://www.youtube.com/watch?v=nQ0rDFbFwK0">
@@ -141,18 +139,20 @@ I have by trying all kinds of ways by which I should go about improving content 
 
 ### 5.1 - The post on materials in general in threejs
 
-The post: https://dustinpfister.github.io/2018/04/30/threejs-materials/
+The blog post: https://dustinpfister.github.io/2018/04/30/threejs-materials/
 
-forpost folder here: https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-materials
+The for post folder here: https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-materials
 
-The post on threejs materials is now over 12k words, and even so I would say that it is still not even a drop in the bucket. I could in theory expand it even more so way beyond that if I do end up completely going off the rails with this one. There is also a whole lot of overlap with many other topics with this one to say the least about it. For example there is the subject of normal maps which involves the use of textures, and many various advanced subjects with geometry naturally including position, normal, uv, and tangent attributes. Then there is also the subject of custom shaders using the THREE.ShaderMaterial which involves getting into openGL Shader Language GLSL, so when it comes to that, yes there is a whole language to be aware of if one aims to go so far as making there own custom materials.
+I have a post on materials in general that is now over 13k words, and even so I would say that it is still not even scratching the surface with this subject. I could in theory expand it even more so way beyond that if I do end up completely going off the rails with this one, but I am not so sure at this time as there are still at least a few subjects that I think deserve this level of detail.
+
+When it comes to materials there is also a whole lot of overlap with many other topics. For example there is the subject of normal maps which involves the use of textures, and many various advanced subjects with geometry naturally including position, normal, uv, and tangent attributes. Then there is also the subject of custom shaders using the THREE.ShaderMaterial which involves getting into openGL Shader Language GLSL. In other words even when it comes to writing about everything of concern when it comes to the various abstractions of things in threejs, there is then a whole language to be aware of that is used for matreials.
+
 ### 5.2 - The Main blog post on Buffer Geometry
 
-the post: https://dustinpfister.github.io/2021/04/22/threejs-buffer-geometry/
+The blog post: https://dustinpfister.github.io/2021/04/22/threejs-buffer-geometry/
 
-forpost folder here: https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-buffer-geometry
+The for post folder here: https://github.com/dustinpfister/test_threejs/tree/master/views/forpost/threejs-buffer-geometry
 
-The main post on buffer geometry is another post that I am to turn into a Deep Dive content subject. I have wrote many posts on buffer geometry thus far, but I think it would be a good idea to expand the main post with everything that I know thus far. Also in the process of doing so it would seem that there is still way more to be aware of when it comes to this subject. There is so much more that I have not got to yet with this with a few more attributes mainly tangent, and weight attributes.
-
+The main post on buffer geometry is another post that I aim to turn into a Deep Dive content subject. I have wrote many posts on buffer geometry thus far, but I think it would be a good idea to expand the main post by at least touching base on all subjects that come up with geometry, which is of course a lot. As of this writing I am only just now just starting to look into tangent attributes, and with that the subject of normal maps that can be used with various mesh materials that work with that feature. That alone is not even a drop in the bucket, so yes in time this is going to be a lengthy sucker if I do say in my lane with this one for a while.
 
 
