@@ -32,9 +32,6 @@
 
 <!-- S03 METHODS SECTION -->
 
-## () - s03-08-methods-clone
-* () - have a demo on the copy method of buffer geometry
-
 ## () - s03-09-methods-computeboundingbox 
 
 ## () - s03-10-methods-setattribute
@@ -53,6 +50,9 @@
 <!-- S06 MORPH ATTRIBUTES SECTION -->
 
 <!-- DONE -->
+
+## ( done 08/28/2023 ) - s03-08-methods-clone
+* (done) - have a demo on the copy method of buffer geometry
 
 ## ( done 08/24/2023 ) - s03-7-methods-frompoints
 * ( done ) basic from points demo
