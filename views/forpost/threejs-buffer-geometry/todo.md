@@ -3,9 +3,7 @@
 <!-------- ----------
   // START NEW SECTIONS?
 ---------- --------->
-## () - sx-1-builtin
-* () start a section on built in geometry functions
-* () the first example might be on using the plane geometry class
+
 
 ## () - sx-1-uvmapping
 * () start an in depth section of uv mapping
@@ -26,8 +24,8 @@
 
 <!-- S02 LIGHT SECTION -->
 
-## ( ) - s02-2-light-uv-indexed
-* work out better code for setting the RGB values of a normal map
+## (  ) - s02-2-light-uv-indexed
+* () work out better code for setting the RGB values of a normal map
 
 
 <!-- S03 METHODS SECTION -->
@@ -42,6 +40,10 @@
 
 ## () - s03-13-methods-tononindexed
 
+<!-- S04 BUILT IN SECTION SECTION -->
+
+
+
 <!-- S05 LOADER SECTION -->
 
 ## () - s05-3-loader-object
@@ -49,7 +51,13 @@
 
 <!-- S06 MORPH ATTRIBUTES SECTION -->
 
+
+
 <!-- DONE -->
+
+## ( done 08/29/2023 ) - s04-1-builtin-boxgeometry
+* (done) then demo should showcase all arguments
+* (done) use the points material
 
 ## ( done 08/28/2023 ) - s03-08-methods-clone
 * (done) - have a demo on the copy method of buffer geometry

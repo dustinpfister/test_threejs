@@ -24,7 +24,6 @@ const mesh = new THREE.Mesh(
     })
 );
 scene.add(mesh);
-camera.lookAt(mesh.position)
 //-------- ----------
 // RENDER
 //-------- ----------
