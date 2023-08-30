@@ -42,7 +42,6 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-## () - S04-02-bultin-capsule
 
 ## () - S04-03-builtin-circle
 
@@ -61,6 +60,9 @@
 
 
 <!-- DONE -->
+
+## ( done 08/30/2023 ) - S04-02-bultin-capsule
+* (done) demo on the capsule geometry
 
 ## ( done 08/29/2023 ) - s04-1-builtin-boxgeometry
 * (done) then demo should showcase all arguments
