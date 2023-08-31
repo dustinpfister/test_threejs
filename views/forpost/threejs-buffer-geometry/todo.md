@@ -42,9 +42,6 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-
-## () - S04-03-builtin-circle
-
 ## () - S04-04-builtin-cone
 
 ## () - S04-05-builtin-cylinder
@@ -60,6 +57,9 @@
 
 
 <!-- DONE -->
+
+## ( done 08/31/2023 ) - S04-03-builtin-circle
+* ( done ) just a simple demo of this
 
 ## ( done 08/30/2023 ) - S04-02-bultin-capsule
 * (done) demo on the capsule geometry
