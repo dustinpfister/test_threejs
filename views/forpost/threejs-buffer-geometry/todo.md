@@ -42,8 +42,6 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-## () - S04-06-builtin-dodecahedron
-
 ## () - S04-07-builtin-edges
 
 ## () - S04-08-builtin-extrude
@@ -64,6 +62,9 @@
 * () simple merge utils method demo
 
 <!-- DONE -->
+
+## ( done 09/02/2023 ) - S04-06-builtin-dodecahedron
+* (done) just a simple dodecahedron demo
 
 ## ( done 09/01/2023 ) - S04-04-builtin-cone
 * (done) just have a simple code demo
