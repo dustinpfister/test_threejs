@@ -15,11 +15,16 @@ scene.add( new THREE.GridHelper(10, 10));
 //-------- ----------
 // GEOMETRY
 //-------- ----------
-const geo_source = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1);
-const geometry1 = BufferGeometryUtils.toTrianglesDrawMode(geo_source, THREE.TriangleStripDrawMode )
-const geometry2 = BufferGeometryUtils.toTrianglesDrawMode(geo_source, THREE.TriangleFanDrawMode );
+const geo_source_indexed = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1);
+const geo_source = geo_source_indexed.clone().toNonIndexed();
+const geometry1 = BufferGeometryUtils.toTrianglesDrawMode(geo_source.clone(), THREE.TriangleStripDrawMode )
+const geometry2 = BufferGeometryUtils.toTrianglesDrawMode(geo_source.clone(), THREE.TriangleFanDrawMode );
 geometry1.computeVertexNormals();
 geometry2.computeVertexNormals();
+console.log( geo_source_indexed.index.count ); // 36
+console.log( geo_source.index ); // null
+console.log( geometry1.index.count );  // 102
+console.log( geometry2.index.count );  // 102
 //-------- ----------
 // POINTS
 //-------- ----------
