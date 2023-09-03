@@ -42,11 +42,23 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-## () - S04-07-builtin-edges
-
 ## () - S04-08-builtin-extrude
 
-## () - S04-09-builtin-dodecahedron
+## () - S04-09-builtin-icosahedron
+
+## () - S04-10-builtin-Lathe
+## () - S04-11-builtin-0ctahedron
+## () - S04-12-builtin-plane
+## () - S04-13-builtin-polyhedron
+## () - S04-14-builtin-ring
+## () - S04-15-builtin-shape
+## () - S04-16-builtin-sphere
+## () - S04-17-builtin-tetrahedron
+## () - S04-18-builtin-torus
+## () - S04-19-builtin-torus-knot
+## () - S04-20-builtin-tube
+## () - S04-21-builtin-wireframe
+
 
 <!-- S05 LOADER SECTION -->
 
@@ -62,6 +74,9 @@
 * () simple merge utils method demo
 
 <!-- DONE -->
+
+## ( done 09/03/2023 ) - S04-07-builtin-edges
+* (done ) just a quick demo of this using line segments
 
 ## ( done 09/02/2023 ) - S04-06-builtin-dodecahedron
 * (done) just a simple dodecahedron demo
