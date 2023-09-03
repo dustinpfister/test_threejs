@@ -4,7 +4,7 @@
 
 <!-- S02 -->
 
-## - S02-01-tridrawmode-basic
+## - S02-01-tridrawmode-start
 * () just work out a basic example of this
 
 <!-- S03 MIIKTSPACE SECTION  -->
