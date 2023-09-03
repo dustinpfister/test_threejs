@@ -2,6 +2,16 @@
 
 <!-- S01 BASIC SCTION -->
 
+<!-- S02 -->
+
+## - S02-01-tridrawmode-basic
+* () just work out a basic example of this
+
+<!-- S03 MIIKTSPACE SECTION  -->
+
+## - S03-01-miiktspace-start
+* () start with the source from one of the demos from the tangets post
+
 <!-- DONE -->
 
 ## ( done 09/02/2023 ) - s1-2-basic-bytes-used
