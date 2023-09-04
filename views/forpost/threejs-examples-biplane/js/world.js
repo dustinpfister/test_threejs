@@ -14,8 +14,6 @@
         camera.lookAt(bp.position);
         world.add(camera);
         // ground
-
-
         var ground = TileMod.create({
                 w: 100,
                 h: 100
@@ -29,7 +27,6 @@
         cube.position.set(0, -4, 0);
         world.add(cube);
         world.add(ground);
-
         // point light
         var pointLight = new THREE.PointLight(0xffffff, 0.8);
         pointLight.position.set(28, 20, 40);
@@ -41,7 +38,6 @@
         world.add(pointLight);
         // ambient light
         world.add(new THREE.AmbientLight(0xffffff, 0.2));
-
         // return world group
         return world;
     };
@@ -53,21 +49,16 @@
         Biplane.update(wud.bp, wud.perObj.per);
         var radian1 = utils.normalizeRadian(utils.pi2 * wud.perObj.per),
         radian2 = utils.normalizeRadian(radian1 + Math.PI / 180 * 10);
-
         var pitch = Math.sin( Math.PI * 16 * wud.perObj.per)
         wud.bp.position.set(
             Math.cos(radian1) * 40,
             5,
             Math.sin(radian1) * 40);
-
-
         var target = new THREE.Vector3(
             Math.cos(radian2) * 40,
             7 + 5 * pitch,
             Math.sin(radian2) * 40);
-
         wud.bp.lookAt(target);
-
     };
 }
     (this['worldMod'] = {}));
