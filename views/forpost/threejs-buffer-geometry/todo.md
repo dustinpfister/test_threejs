@@ -42,12 +42,14 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-## () - S04-08-builtin-extrude
 
-## () - S04-09-builtin-icosahedron
 
-## () - S04-10-builtin-Lathe
-## () - S04-11-builtin-0ctahedron
+
+
+## () - S04-10-builtin-lathe
+* () start with a nice demo from the post
+
+## () - S04-11-builtin-octahedron
 ## () - S04-12-builtin-plane
 ## () - S04-13-builtin-polyhedron
 ## () - S04-14-builtin-ring
@@ -75,8 +77,14 @@
 
 <!-- DONE -->
 
+## ( done 09/05/2023 ) - S04-09-builtin-icosahedron
+* (done) just a simple demo of this one
+
+## ( done 09/04/2023 ) - S04-08-builtin-extrude
+* (done) start with a basic demo from the post
+
 ## ( done 09/03/2023 ) - S04-07-builtin-edges
-* (done ) just a quick demo of this using line segments
+* (done) just a quick demo of this using line segments
 
 ## ( done 09/02/2023 ) - S04-06-builtin-dodecahedron
 * (done) just a simple dodecahedron demo
@@ -88,7 +96,7 @@
 * (done) just have a simple code demo
 
 ## ( done 08/31/2023 ) - S04-03-builtin-circle
-* ( done ) just a simple demo of this
+* (done) just a simple demo of this
 
 ## ( done 08/30/2023 ) - S04-02-bultin-capsule
 * (done) demo on the capsule geometry
