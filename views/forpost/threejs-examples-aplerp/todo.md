@@ -6,6 +6,9 @@
 * () more built in get alpha methods
 * () s2-1-add-sin example that translates from each point using a sin wave
 
+## ( done 09/06/2023 ) - r146 style update
+* (done) update all demos to r146 style
+
 ## ( done 07/28/2022 ) - r0 - core of idea working okay
 * (done) start r0 of the aplerp.js module
 * (done) have a getPointsBetween method that returns an array of vector3 class instances
