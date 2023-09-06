@@ -42,13 +42,6 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-
-
-
-
-## () - S04-10-builtin-lathe
-* () start with a nice demo from the post
-
 ## () - S04-11-builtin-octahedron
 ## () - S04-12-builtin-plane
 ## () - S04-13-builtin-polyhedron
@@ -76,6 +69,9 @@
 * () simple merge utils method demo
 
 <!-- DONE -->
+
+## ( done 09/06/2023 ) - S04-10-builtin-lathe
+* (done) start with a nice demo from the post
 
 ## ( done 09/05/2023 ) - S04-09-builtin-icosahedron
 * (done) just a simple demo of this one
