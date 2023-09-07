@@ -28,17 +28,9 @@ for (let i = 0; i < 100; i++) {
         color: Math.random() * 0xffffff
     });
     const object = new THREE.Mesh(geometry, material);
-    object.position.x = Math.random() * 30 - 15;
-    object.position.y = Math.random() * 15 - 7.5;
-    object.position.z = Math.random() * 20 - 10;
-    object.rotation.x = Math.random() * 2 * Math.PI;
-    object.rotation.y = Math.random() * 2 * Math.PI;
-    object.rotation.z = Math.random() * 2 * Math.PI;
-    object.scale.x = Math.random() * 2 + 1;
-    object.scale.y = Math.random() * 2 + 1;
-    object.scale.z = Math.random() * 2 + 1;
-    object.castShadow = true;
-    object.receiveShadow = true;
+    object.position.randomDirection().multiplyScalar(10);
+    object.scale.random().multiplyScalar(3).add( new THREE.Vector3(0.5, 0.5, 0.5) );
+    object.quaternion.random();
     scene.add(object);
     objects.push(object);
 }
