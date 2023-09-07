@@ -43,7 +43,7 @@ function render() {
 // ---------- ----------
 // CONTROLS / SETUP
 // ---------- ----------
-const controls = new DragControls([...objects], camera, renderer.domElement);
+const controls = new DragControls(objects, camera, renderer.domElement);
 controls.addEventListener('drag', render);
 camera.position.z = 30;
 render();
