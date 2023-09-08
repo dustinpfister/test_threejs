@@ -42,16 +42,32 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-## () - S04-11-builtin-octahedron
 ## () - S04-12-builtin-plane
+* () take one from the post
+
 ## () - S04-13-builtin-polyhedron
+* () have a few objects for this one
+
 ## () - S04-14-builtin-ring
+* () just have a simple demo of it and move on
+
 ## () - S04-15-builtin-shape
+* () pull one from the post on Shape, or maybe better yet the SVG Loader
+
 ## () - S04-16-builtin-sphere
+* () pull one from the post
+
 ## () - S04-17-builtin-tetrahedron
+* () pull one from the post
+
 ## () - S04-18-builtin-torus
+* () pull one from the post
+
 ## () - S04-19-builtin-torus-knot
+
 ## () - S04-20-builtin-tube
+* () pull one from the post
+
 ## () - S04-21-builtin-wireframe
 
 
@@ -69,6 +85,9 @@
 * () simple merge utils method demo
 
 <!-- DONE -->
+
+## ( done 09/08/2023 ) - S04-11-builtin-octahedron
+* (done) simple demo of octahedron
 
 ## ( done 09/06/2023 ) - S04-10-builtin-lathe
 * (done) start with a nice demo from the post
