@@ -42,9 +42,6 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-## () - S04-12-builtin-plane
-* () take one from the post
-
 ## () - S04-13-builtin-polyhedron
 * () have a few objects for this one
 
@@ -85,6 +82,9 @@
 * () simple merge utils method demo
 
 <!-- DONE -->
+
+## ( done 09/08/2023 ) - S04-12-builtin-plane
+* (done) take one from the post
 
 ## ( done 09/08/2023 ) - S04-11-builtin-octahedron
 * (done) simple demo of octahedron
