@@ -25,7 +25,7 @@ const geometry = new THREE.PolyhedronGeometry(vertices, indices_of_faces, radius
 // ---------- ----------
 // OBJECTS
 // ---------- ----------
-const mesh1 = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({ side: THREE.DoubleSide, wireframe: true}) );
+const mesh1 = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial({ side: THREE.DoubleSide }) );
 scene.add(mesh1);
 // ---------- ----------
 // RENDER
