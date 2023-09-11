@@ -1,5 +1,15 @@
 # threejs-examples-camera-kit todo list
 
+
+
+
+<!-- DONE -->
+
+## ( done 09/11/2023 ) - r146 update
+* (done) rename folders so that it is clear what demos are using what revision
+* (done) use r146 for r0 demos
+* (done) update style of demos
+
 ## ( done 08/04/2022 ) - s3-circle-around
 * (done) demo of the cameraKit.circleAround method
 
