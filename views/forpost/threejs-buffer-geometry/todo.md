@@ -42,12 +42,6 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-## () - S04-13-builtin-polyhedron
-* () have a few objects for this one
-
-## () - S04-14-builtin-ring
-* () just have a simple demo of it and move on
-
 ## () - S04-15-builtin-shape
 * () pull one from the post on Shape, or maybe better yet the SVG Loader
 
@@ -82,6 +76,12 @@
 * () simple merge utils method demo
 
 <!-- DONE -->
+
+## ( done 09/11/2023 ) - S04-14-builtin-ring
+* (done) just have a simple demo of it and move on
+
+## ( done 09/09/2023 ) - S04-13-builtin-polyhedron
+* (done) have a few objects for this one
 
 ## ( done 09/08/2023 ) - S04-12-builtin-plane
 * (done) take one from the post
@@ -203,3 +203,4 @@
 
 ## ( done 06/29/2021 ) - first state of for post folder
 * (done) just start a forpost folder that reflects the current state of the post for s2, s3, s4, and s5
+
