@@ -1,9 +1,6 @@
-
+// nested-groups.js - r0 - from threejs-examples-nested-groups
 (function (api) {
-
     var MATERIALS_CUBE = new THREE.MeshStandardMaterial({color: 'white'});
-
-
     var createPointLight = function(color){
         color = color || new THREE.Color('white');
         var light = new THREE.Mesh(
@@ -18,7 +15,6 @@
         light.add(light.userData.pointLight);
         return light;
     };
-
     var createPointLightGroup = function(){
         var lightGroup = new THREE.Group();
         // lights
@@ -36,8 +32,6 @@
         lightGroup.add(light);
         return lightGroup;
     };
-
-
     var createWorldObjects = function(nud){
         var worldObjects = new THREE.Group();
         // grid helper
@@ -65,7 +59,6 @@
         worldObjects.add(cubes3);
         return worldObjects;
     };
-
     // create nested groups
     api.create = function(opt) {
         var nested = new THREE.Group(),
@@ -82,15 +75,11 @@
         // lights
         var lightGroup = nud.lightGroup = createPointLightGroup();
         nested.add(lightGroup);
-
         // world objects
         nud.worldObjects = createWorldObjects(nud);
         nested.add(nud.worldObjects);
         return nested;
-
     };
-
-  
     // update the nested groups
     api.update = function(nested, secs) {
        var nud = nested.userData,
@@ -122,6 +111,4 @@
        nud.frame += 30 * secs;
        nud.frame %= nud.maxFrame;
     };
-
-}
-    (this['NestedGroupsMod'] = {}));
+}(this['NestedGroupsMod'] = {}));

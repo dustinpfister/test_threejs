@@ -1,14 +1,11 @@
-
+// cube-groups.js - r0 - from threejs-examples-nested-groups
 (function (api) {
-
     var ANGLES_A = [225, 315, 135, 45];
-
     var toRadians = function (array) {
         return array.map(function(deg){
             return Math.PI / 180 * deg;
         });
     };
-
     // create a single cube mesh
     var createCube = function (rotationCounts, position, materials) {
         var cube = new THREE.Mesh(
@@ -20,7 +17,6 @@
         cube.position.copy(position || new THREE.Vector3(0, 0, 0));
         return cube;
     };
-
     // update a single cube
     var updateCube = function (cube, per) {
         var ud = cube.userData,
@@ -30,7 +26,6 @@
         cube.rotation.y = pi2 * rc[1] * per;
         cube.rotation.z = pi2 * rc[2] * per;
     };
-
     // public method to create a cube group
     api.create = function(opt) {
         opt = opt || {};
@@ -59,7 +54,6 @@
         };        
         return cubes;
     };
-
     var setCubesRotation = function(cubes, per){
         var gud = cubes.userData,
         r = gud.rotations,
@@ -69,7 +63,6 @@
         z = PI2 * r[2] * per;
         cubes.rotation.set(x, y, z);
     };
-
     // update the group
     api.update = function(cubes, secs) {
         // GROUP USER DATA OBJECT
@@ -104,6 +97,4 @@
             gud.secs %= 1 / gud.fps; 
         }
     };
-
-}
-    (this['CubeGroupMod'] = {}));
+}(this['CubeGroupMod'] = {}));
