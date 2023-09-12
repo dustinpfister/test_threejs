@@ -42,8 +42,7 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-## () - S04-15-builtin-shape
-* () pull one from the post on Shape, or maybe better yet the SVG Loader
+
 
 ## () - S04-16-builtin-sphere
 * () pull one from the post
@@ -76,6 +75,9 @@
 * () simple merge utils method demo
 
 <!-- DONE -->
+
+## ( done 09/12/2023 ) - S04-15-builtin-shape
+* (done) pull one from the post on Shape, or maybe better yet the SVG Loader
 
 ## ( done 09/11/2023 ) - S04-14-builtin-ring
 * (done) just have a simple demo of it and move on
