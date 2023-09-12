@@ -32,39 +32,32 @@
         lightGroup.add(light);
         return lightGroup;
     };
-    var createWorldObjects = function(nud){
+    var createWorldObjects = function(nud, opt){
         var worldObjects = new THREE.Group();
         // grid helper
         var gridHelper = new THREE.GridHelper(10, 10);
         worldObjects.add(gridHelper);
+        var data = opt.data || [ [[225, 315, 135, 45], [0, 0, 0], [0,0,0] ] ];
         // nested cube group one
-        var cubes1 = nud.cubes1 = CubeGroupMod.create({
-            materials: MATERIALS_CUBE,
-            rotations: [0, 0, 0]
-        });
-        worldObjects.add(cubes1);
-        var cubes2 = nud.cubes2 = CubeGroupMod.create({
-            materials: MATERIALS_CUBE,
-            anglesA: [180, 180, 90, 90],
-            rotations: [0, 1, 0]
-        });
-        cubes2.position.set(5, 0, 5);
-        worldObjects.add(cubes2);
-        var cubes3 = nud.cubes3 = CubeGroupMod.create({
-            materials: MATERIALS_CUBE,
-            anglesA: [180, 0, 0, 0],
-            rotations: [2, 0, 1]
-        });
-        cubes3.position.set(-5, 0, -5);
-        worldObjects.add(cubes3);
+        let i = 0;
+        while(i < data.length){
+            var cubes = nud['cubes' + i] = CubeGroupMod.create({
+                materials: opt.MATERIALS_CUBE || MATERIALS_CUBE,
+                anglesA: data[i][0],
+                rotations: data[i][1]
+            });
+            cubes.position.fromArray( data[i][2] );
+            worldObjects.add(cubes);
+            i += 1;
+        }
         return worldObjects;
     };
     // create nested groups
-    api.create = function(opt) {
+    api.create = function(opt = {} ) {
         var nested = new THREE.Group(),
         nud = nested.userData;
         nud.frame = 0;
-        nud.maxFrame = 600;
+        nud.maxFrame = opt.maxFrame === undefined ? 600: opt.maxFrame;
         // Camera
         var camera = nud.camera = new THREE.PerspectiveCamera(45, 4 / 3, 5, 60);
         camera.position.set(0, 10, 10);
@@ -76,7 +69,7 @@
         var lightGroup = nud.lightGroup = createPointLightGroup();
         nested.add(lightGroup);
         // world objects
-        nud.worldObjects = createWorldObjects(nud);
+        nud.worldObjects = createWorldObjects(nud, opt);
         nested.add(nud.worldObjects);
         return nested;
     };
