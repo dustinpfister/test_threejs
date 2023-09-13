@@ -8,6 +8,13 @@
 * () see about updating uv attrbute as well
 * () see about updaing normal attribute as well
 
+
+<!-- DONE -->
+
+# ( done 09/13/2023 ) - r146 style update for demos
+* (done) use r146 for r0 demos
+* (done) style update, but for demos only
+
 ## ( done 08/26/2022 ) r0-2-many-box
 * (done) demo the involves trasitions between box1, 2, and 3
 
