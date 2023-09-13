@@ -42,11 +42,6 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-
-
-## () - S04-16-builtin-sphere
-* () pull one from the post
-
 ## () - S04-17-builtin-tetrahedron
 * () pull one from the post
 
@@ -75,6 +70,9 @@
 * () simple merge utils method demo
 
 <!-- DONE -->
+
+## ( done 09/13/2023 ) - S04-16-builtin-sphere
+* (done) just made a quick one based off of the box geometry demo
 
 ## ( done 09/12/2023 ) - S04-15-builtin-shape
 * (done) pull one from the post on Shape, or maybe better yet the SVG Loader
