@@ -42,9 +42,6 @@
 
 <!-- S04 BUILT IN SECTION SECTION -->
 
-## () - S04-17-builtin-tetrahedron
-* () pull one from the post
-
 ## () - S04-18-builtin-torus
 * () pull one from the post
 
@@ -70,6 +67,9 @@
 * () simple merge utils method demo
 
 <!-- DONE -->
+
+## ( done 09/14/2023 ) - S04-17-builtin-tetrahedron
+* (done) pull one from the post
 
 ## ( done 09/13/2023 ) - S04-16-builtin-sphere
 * (done) just made a quick one based off of the box geometry demo
