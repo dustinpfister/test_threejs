@@ -125,11 +125,15 @@ The json folder contains various kinds of JSON files in various kinds of formats
 
 Threejs is a very fast moving project in terms of development compared to many other libraries out on the open web. There is a whole lot to say about what has all ready broke, and will continue to break as things move forward with each new revision that comes out. As such many of us that use threejs will end up sticking with a certain given revision number of threejs for a while, maybe even indefinitely for various reasons. With that said as of this writing there are two general style rules that I am following as I write posts for new demos, and edit old ones.
 
-### 4.1 - The r152 style rules
+### 4.1 - The Draft r162 style rules
+
+As of this writing I am starting to test out r162, and with that I MIGHT make some updates to my style rules. If not they will remain the same as with r152.
+
+### 4.2 - The r152 style rules
 
 My [r152 style rules](https://github.com/dustinpfister/test_threejs/blob/master/views/demos/r152/README.md) is what I am following when it comes to writing new blog posts at this time. At this point I am now using module type script tags, which means that you will see the use of import and export in code examples. 
 
-### 4.2 - The r146 style rules
+### 4.3 - The r146 style rules
 
 For now the [r146 style rules](https://github.com/dustinpfister/test_threejs/blob/master/views/demos/r146/README.md) are the default style rules that I use when editing older demos, and will most likley remain so for a while to say the least. The very next revision after this one is the last revision where js file versions of add on files can be found in the github repo of threejs. So this revision marks the end of the use of text/javaScript mimie type script tags as part of the over all code style.
 
