@@ -1,10 +1,10 @@
 # test_threejs
 
-This is a collection of work using the 3D computer graphics javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene). Many of these are very basic demos of features of the library itself, others progress beyond that into collections of code that at least start to look like finished projects working on top of the library. However nothing here is really a kind of stand alone project, thus this is a kind of threejs sketchpad of sorts.
+This is a collection of work using the 3D computer graphics javaScript library called [threejs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene). Many of these are very basic demos of features of the library itself, others progress beyond that into collections of code that may start to look like finished projects. However nothing here is really a kind of stand alone full project, as such this is a kind of threejs sketchpad of sorts.
 
 I [write about the state of the source code examples worked out here in blog posts](https://dustinpfister.github.io/categories/three-js/) that I publish on my [github pages site](https://dustinpfister.github.io/2018/04/04/threejs-getting-started/). With that said there is a folder for each blog post that I have written thus far in the views folder. 
 
-There are other folders of interest, one of which is the demos folder which is broken down on a reversion by revision basis. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. This can also go the other way when it comes to the various concerns with keeping code working on older devices, as well as interest with the history of this library. This demos folder is also where I test out new ideas and features, as well as ones that I have just not yet covered yet which might in turn lead to whole posts on the subject.
+There are other folders of interest, one of which is the demos folder which is broken down on a reversion by revision basis. So every now and then when new revisions come out I start a new folder for a late revision and test out if things still work okay for me, and if not what kind of changes need to happen with my code style to stay current. This can also go the other way when it comes to the various concerns with keeping code working on older devices, as well as interest with the history of this library. The demos folder is also where I test out new ideas for projects, as well as features of threejs that I have just not yet covered yet.
 
 <div align="center">
     <a href="https://www.youtube.com/watch?v=nQ0rDFbFwK0">
@@ -37,11 +37,11 @@ Once all dependencies are installed, call the main index.js file at the root nam
 $ node index 8080
 ```
 
-Optionally the first argument is the desired port you want the sever to run on. It will default to a PORT environment variable, or hard coded value of 3000 if not given.
+If all goes well starting the server, one can then go to http://localhost:8080 to view the demos. Optionally the first argument is the desired port you want the sever to run on. It will default to a PORT environment variable, or hard coded value of 3000 if there is no argument or environment variable. 
 
 ### 2.2 - Use the start.sh or start.bat files
 
-I also have a start.sh file that should work well for starting the sever in a Linux system and I assume most other POSIX like systems. For windows users there is also a start.bat file that works well for me for starting the server when I want to get this up and running on a windows system.
+I also have a start.sh file that should work well for starting the sever in most Linux systems, and I assume most other POSIX like systems. For windows users there is also a start.bat that should work for windows users.
 
 ```
 $ ./start.sh
